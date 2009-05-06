@@ -195,6 +195,69 @@ public class WSRPConsumerRegistrationClp extends BaseModelImpl<WSRPConsumerRegis
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{consumerRegistrationId=");
+		sb.append(getConsumerRegistrationId());
+		sb.append(", consumerName=");
+		sb.append(getConsumerName());
+		sb.append(", status=");
+		sb.append(getStatus());
+		sb.append(", registrationHandle=");
+		sb.append(getRegistrationHandle());
+		sb.append(", registrationData=");
+		sb.append(getRegistrationData());
+		sb.append(", lifetimeTerminationTime=");
+		sb.append(getLifetimeTerminationTime());
+		sb.append(", producerKey=");
+		sb.append(getProducerKey());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wsrp.model.WSRPConsumerRegistration");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>consumerRegistrationId</column-name><column-value><![CDATA[");
+		sb.append(getConsumerRegistrationId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>consumerName</column-name><column-value><![CDATA[");
+		sb.append(getConsumerName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>registrationHandle</column-name><column-value><![CDATA[");
+		sb.append(getRegistrationHandle());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>registrationData</column-name><column-value><![CDATA[");
+		sb.append(getRegistrationData());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lifetimeTerminationTime</column-name><column-value><![CDATA[");
+		sb.append(getLifetimeTerminationTime());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>producerKey</column-name><column-value><![CDATA[");
+		sb.append(getProducerKey());
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _consumerRegistrationId;
 	private String _consumerName;
 	private boolean _status;

@@ -190,6 +190,69 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{jiraChangeItemId=");
+		sb.append(getJiraChangeItemId());
+		sb.append(", jiraChangeGroupId=");
+		sb.append(getJiraChangeGroupId());
+		sb.append(", field=");
+		sb.append(getField());
+		sb.append(", oldValue=");
+		sb.append(getOldValue());
+		sb.append(", oldString=");
+		sb.append(getOldString());
+		sb.append(", newValue=");
+		sb.append(getNewValue());
+		sb.append(", newString=");
+		sb.append(getNewString());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wol.model.JIRAChangeItem");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>jiraChangeItemId</column-name><column-value><![CDATA[");
+		sb.append(getJiraChangeItemId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>jiraChangeGroupId</column-name><column-value><![CDATA[");
+		sb.append(getJiraChangeGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>field</column-name><column-value><![CDATA[");
+		sb.append(getField());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>oldValue</column-name><column-value><![CDATA[");
+		sb.append(getOldValue());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>oldString</column-name><column-value><![CDATA[");
+		sb.append(getOldString());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>newValue</column-name><column-value><![CDATA[");
+		sb.append(getNewValue());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>newString</column-name><column-value><![CDATA[");
+		sb.append(getNewString());
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _jiraChangeItemId;
 	private long _jiraChangeGroupId;
 	private String _field;

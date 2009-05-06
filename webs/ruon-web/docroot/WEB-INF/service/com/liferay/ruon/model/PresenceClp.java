@@ -172,6 +172,57 @@ public class PresenceClp extends BaseModelImpl<Presence> implements Presence {
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{presenceId=");
+		sb.append(getPresenceId());
+		sb.append(", userId=");
+		sb.append(getUserId());
+		sb.append(", modifiedDate=");
+		sb.append(getModifiedDate());
+		sb.append(", networkId=");
+		sb.append(getNetworkId());
+		sb.append(", online=");
+		sb.append(getOnline());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.ruon.model.Presence");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>presenceId</column-name><column-value><![CDATA[");
+		sb.append(getPresenceId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userId</column-name><column-value><![CDATA[");
+		sb.append(getUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
+		sb.append(getModifiedDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>networkId</column-name><column-value><![CDATA[");
+		sb.append(getNetworkId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>online</column-name><column-value><![CDATA[");
+		sb.append(getOnline());
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _presenceId;
 	private long _userId;
 	private long _modifiedDate;

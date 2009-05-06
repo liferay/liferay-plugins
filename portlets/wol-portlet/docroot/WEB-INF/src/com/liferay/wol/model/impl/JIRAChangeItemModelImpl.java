@@ -303,31 +303,31 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 
 		sb.append(
 			"<column><column-name>jiraChangeItemId</column-name><column-value><![CDATA[");
-		sb.append("getJiraChangeItemId()");
+		sb.append(getJiraChangeItemId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>jiraChangeGroupId</column-name><column-value><![CDATA[");
-		sb.append("getJiraChangeGroupId()");
+		sb.append(getJiraChangeGroupId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>field</column-name><column-value><![CDATA[");
-		sb.append("getField()");
+		sb.append(getField());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>oldValue</column-name><column-value><![CDATA[");
-		sb.append("getOldValue()");
+		sb.append(getOldValue());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>oldString</column-name><column-value><![CDATA[");
-		sb.append("getOldString()");
+		sb.append(getOldString());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>newValue</column-name><column-value><![CDATA[");
-		sb.append("getNewValue()");
+		sb.append(getNewValue());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>newString</column-name><column-value><![CDATA[");
-		sb.append("getNewString()");
+		sb.append(getNewString());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

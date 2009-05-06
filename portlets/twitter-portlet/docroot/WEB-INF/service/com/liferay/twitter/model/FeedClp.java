@@ -180,6 +180,63 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{feedId=");
+		sb.append(getFeedId());
+		sb.append(", twitterUserId=");
+		sb.append(getTwitterUserId());
+		sb.append(", twitterScreenName=");
+		sb.append(getTwitterScreenName());
+		sb.append(", createDate=");
+		sb.append(getCreateDate());
+		sb.append(", modifiedDate=");
+		sb.append(getModifiedDate());
+		sb.append(", lastStatusId=");
+		sb.append(getLastStatusId());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.twitter.model.Feed");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>feedId</column-name><column-value><![CDATA[");
+		sb.append(getFeedId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>twitterUserId</column-name><column-value><![CDATA[");
+		sb.append(getTwitterUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>twitterScreenName</column-name><column-value><![CDATA[");
+		sb.append(getTwitterScreenName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>createDate</column-name><column-value><![CDATA[");
+		sb.append(getCreateDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
+		sb.append(getModifiedDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lastStatusId</column-name><column-value><![CDATA[");
+		sb.append(getLastStatusId());
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _feedId;
 	private long _twitterUserId;
 	private String _twitterScreenName;

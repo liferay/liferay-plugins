@@ -259,19 +259,19 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
 
 		sb.append(
 			"<column><column-name>jiraChangeGroupId</column-name><column-value><![CDATA[");
-		sb.append("getJiraChangeGroupId()");
+		sb.append(getJiraChangeGroupId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>jiraUserId</column-name><column-value><![CDATA[");
-		sb.append("getJiraUserId()");
+		sb.append(getJiraUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append("getCreateDate()");
+		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>jiraIssueId</column-name><column-value><![CDATA[");
-		sb.append("getJiraIssueId()");
+		sb.append(getJiraIssueId());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

@@ -294,6 +294,129 @@ public class WSRPConfiguredProducerClp extends BaseModelImpl<WSRPConfiguredProdu
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{configuredProducerId=");
+		sb.append(getConfiguredProducerId());
+		sb.append(", name=");
+		sb.append(getName());
+		sb.append(", portalId=");
+		sb.append(getPortalId());
+		sb.append(", namespace=");
+		sb.append(getNamespace());
+		sb.append(", producerURL=");
+		sb.append(getProducerURL());
+		sb.append(", producerVersion=");
+		sb.append(getProducerVersion());
+		sb.append(", producerMarkupURL=");
+		sb.append(getProducerMarkupURL());
+		sb.append(", status=");
+		sb.append(getStatus());
+		sb.append(", registrationData=");
+		sb.append(getRegistrationData());
+		sb.append(", registrationContext=");
+		sb.append(getRegistrationContext());
+		sb.append(", serviceDescription=");
+		sb.append(getServiceDescription());
+		sb.append(", userCategoryMapping=");
+		sb.append(getUserCategoryMapping());
+		sb.append(", customUserProfile=");
+		sb.append(getCustomUserProfile());
+		sb.append(", identityPropagationType=");
+		sb.append(getIdentityPropagationType());
+		sb.append(", lifetimeTerminationTime=");
+		sb.append(getLifetimeTerminationTime());
+		sb.append(", sdLastModified=");
+		sb.append(getSdLastModified());
+		sb.append(", entityVersion=");
+		sb.append(getEntityVersion());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wsrp.model.WSRPConfiguredProducer");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>configuredProducerId</column-name><column-value><![CDATA[");
+		sb.append(getConfiguredProducerId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>name</column-name><column-value><![CDATA[");
+		sb.append(getName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>portalId</column-name><column-value><![CDATA[");
+		sb.append(getPortalId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>namespace</column-name><column-value><![CDATA[");
+		sb.append(getNamespace());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>producerURL</column-name><column-value><![CDATA[");
+		sb.append(getProducerURL());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>producerVersion</column-name><column-value><![CDATA[");
+		sb.append(getProducerVersion());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>producerMarkupURL</column-name><column-value><![CDATA[");
+		sb.append(getProducerMarkupURL());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>registrationData</column-name><column-value><![CDATA[");
+		sb.append(getRegistrationData());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>registrationContext</column-name><column-value><![CDATA[");
+		sb.append(getRegistrationContext());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>serviceDescription</column-name><column-value><![CDATA[");
+		sb.append(getServiceDescription());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userCategoryMapping</column-name><column-value><![CDATA[");
+		sb.append(getUserCategoryMapping());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>customUserProfile</column-name><column-value><![CDATA[");
+		sb.append(getCustomUserProfile());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>identityPropagationType</column-name><column-value><![CDATA[");
+		sb.append(getIdentityPropagationType());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lifetimeTerminationTime</column-name><column-value><![CDATA[");
+		sb.append(getLifetimeTerminationTime());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>sdLastModified</column-name><column-value><![CDATA[");
+		sb.append(getSdLastModified());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>entityVersion</column-name><column-value><![CDATA[");
+		sb.append(getEntityVersion());
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _configuredProducerId;
 	private String _name;
 	private String _portalId;

@@ -305,27 +305,27 @@ public class FeedModelImpl extends BaseModelImpl<Feed> {
 
 		sb.append(
 			"<column><column-name>feedId</column-name><column-value><![CDATA[");
-		sb.append("getFeedId()");
+		sb.append(getFeedId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>twitterUserId</column-name><column-value><![CDATA[");
-		sb.append("getTwitterUserId()");
+		sb.append(getTwitterUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>twitterScreenName</column-name><column-value><![CDATA[");
-		sb.append("getTwitterScreenName()");
+		sb.append(getTwitterScreenName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append("getCreateDate()");
+		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append("getModifiedDate()");
+		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>lastStatusId</column-name><column-value><![CDATA[");
-		sb.append("getLastStatusId()");
+		sb.append(getLastStatusId());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

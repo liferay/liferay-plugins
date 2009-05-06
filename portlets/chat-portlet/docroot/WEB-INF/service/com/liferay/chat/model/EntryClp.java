@@ -176,6 +176,57 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{entryId=");
+		sb.append(getEntryId());
+		sb.append(", createDate=");
+		sb.append(getCreateDate());
+		sb.append(", fromUserId=");
+		sb.append(getFromUserId());
+		sb.append(", toUserId=");
+		sb.append(getToUserId());
+		sb.append(", content=");
+		sb.append(getContent());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.chat.model.Entry");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>entryId</column-name><column-value><![CDATA[");
+		sb.append(getEntryId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>createDate</column-name><column-value><![CDATA[");
+		sb.append(getCreateDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>fromUserId</column-name><column-value><![CDATA[");
+		sb.append(getFromUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>toUserId</column-name><column-value><![CDATA[");
+		sb.append(getToUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>content</column-name><column-value><![CDATA[");
+		sb.append(getContent());
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _entryId;
 	private long _createDate;
 	private long _fromUserId;

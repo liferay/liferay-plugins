@@ -204,6 +204,75 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{jiraActionId=");
+		sb.append(getJiraActionId());
+		sb.append(", jiraUserId=");
+		sb.append(getJiraUserId());
+		sb.append(", createDate=");
+		sb.append(getCreateDate());
+		sb.append(", modifiedDate=");
+		sb.append(getModifiedDate());
+		sb.append(", jiraIssueId=");
+		sb.append(getJiraIssueId());
+		sb.append(", type=");
+		sb.append(getType());
+		sb.append(", body=");
+		sb.append(getBody());
+		sb.append(", jiraGroupName=");
+		sb.append(getJiraGroupName());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wol.model.JIRAAction");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>jiraActionId</column-name><column-value><![CDATA[");
+		sb.append(getJiraActionId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>jiraUserId</column-name><column-value><![CDATA[");
+		sb.append(getJiraUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>createDate</column-name><column-value><![CDATA[");
+		sb.append(getCreateDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
+		sb.append(getModifiedDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>jiraIssueId</column-name><column-value><![CDATA[");
+		sb.append(getJiraIssueId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>type</column-name><column-value><![CDATA[");
+		sb.append(getType());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>body</column-name><column-value><![CDATA[");
+		sb.append(getBody());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>jiraGroupName</column-name><column-value><![CDATA[");
+		sb.append(getJiraGroupName());
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _jiraActionId;
 	private String _jiraUserId;
 	private Date _createDate;

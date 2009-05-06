@@ -233,6 +233,93 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{jiraIssueId=");
+		sb.append(getJiraIssueId());
+		sb.append(", createDate=");
+		sb.append(getCreateDate());
+		sb.append(", modifiedDate=");
+		sb.append(getModifiedDate());
+		sb.append(", projectId=");
+		sb.append(getProjectId());
+		sb.append(", key=");
+		sb.append(getKey());
+		sb.append(", summary=");
+		sb.append(getSummary());
+		sb.append(", description=");
+		sb.append(getDescription());
+		sb.append(", reporterJiraUserId=");
+		sb.append(getReporterJiraUserId());
+		sb.append(", assigneeJiraUserId=");
+		sb.append(getAssigneeJiraUserId());
+		sb.append(", resolution=");
+		sb.append(getResolution());
+		sb.append(", status=");
+		sb.append(getStatus());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wol.model.JIRAIssue");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>jiraIssueId</column-name><column-value><![CDATA[");
+		sb.append(getJiraIssueId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>createDate</column-name><column-value><![CDATA[");
+		sb.append(getCreateDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
+		sb.append(getModifiedDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>projectId</column-name><column-value><![CDATA[");
+		sb.append(getProjectId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>key</column-name><column-value><![CDATA[");
+		sb.append(getKey());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>summary</column-name><column-value><![CDATA[");
+		sb.append(getSummary());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>description</column-name><column-value><![CDATA[");
+		sb.append(getDescription());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>reporterJiraUserId</column-name><column-value><![CDATA[");
+		sb.append(getReporterJiraUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>assigneeJiraUserId</column-name><column-value><![CDATA[");
+		sb.append(getAssigneeJiraUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>resolution</column-name><column-value><![CDATA[");
+		sb.append(getResolution());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _jiraIssueId;
 	private Date _createDate;
 	private Date _modifiedDate;

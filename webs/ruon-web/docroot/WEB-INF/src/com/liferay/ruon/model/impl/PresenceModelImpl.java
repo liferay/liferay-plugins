@@ -294,23 +294,23 @@ public class PresenceModelImpl extends BaseModelImpl<Presence> {
 
 		sb.append(
 			"<column><column-name>presenceId</column-name><column-value><![CDATA[");
-		sb.append("getPresenceId()");
+		sb.append(getPresenceId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append("getUserId()");
+		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append("getModifiedDate()");
+		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>networkId</column-name><column-value><![CDATA[");
-		sb.append("getNetworkId()");
+		sb.append(getNetworkId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>online</column-name><column-value><![CDATA[");
-		sb.append("getOnline()");
+		sb.append(getOnline());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

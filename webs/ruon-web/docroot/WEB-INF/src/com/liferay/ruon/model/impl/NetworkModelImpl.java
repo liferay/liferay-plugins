@@ -247,15 +247,15 @@ public class NetworkModelImpl extends BaseModelImpl<Network> {
 
 		sb.append(
 			"<column><column-name>networkId</column-name><column-value><![CDATA[");
-		sb.append("getNetworkId()");
+		sb.append(getNetworkId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append("getName()");
+		sb.append(getName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>ttl</column-name><column-value><![CDATA[");
-		sb.append("getTtl()");
+		sb.append(getTtl());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

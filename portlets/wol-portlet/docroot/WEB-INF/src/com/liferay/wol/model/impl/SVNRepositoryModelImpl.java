@@ -245,15 +245,15 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
 
 		sb.append(
 			"<column><column-name>svnRepositoryId</column-name><column-value><![CDATA[");
-		sb.append("getSvnRepositoryId()");
+		sb.append(getSvnRepositoryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>url</column-name><column-value><![CDATA[");
-		sb.append("getUrl()");
+		sb.append(getUrl());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>revisionNumber</column-name><column-value><![CDATA[");
-		sb.append("getRevisionNumber()");
+		sb.append(getRevisionNumber());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

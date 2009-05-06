@@ -378,47 +378,47 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 
 		sb.append(
 			"<column><column-name>jiraIssueId</column-name><column-value><![CDATA[");
-		sb.append("getJiraIssueId()");
+		sb.append(getJiraIssueId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append("getCreateDate()");
+		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append("getModifiedDate()");
+		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>projectId</column-name><column-value><![CDATA[");
-		sb.append("getProjectId()");
+		sb.append(getProjectId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>key</column-name><column-value><![CDATA[");
-		sb.append("getKey()");
+		sb.append(getKey());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>summary</column-name><column-value><![CDATA[");
-		sb.append("getSummary()");
+		sb.append(getSummary());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append("getDescription()");
+		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>reporterJiraUserId</column-name><column-value><![CDATA[");
-		sb.append("getReporterJiraUserId()");
+		sb.append(getReporterJiraUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>assigneeJiraUserId</column-name><column-value><![CDATA[");
-		sb.append("getAssigneeJiraUserId()");
+		sb.append(getAssigneeJiraUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>resolution</column-name><column-value><![CDATA[");
-		sb.append("getResolution()");
+		sb.append(getResolution());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
-		sb.append("getStatus()");
+		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

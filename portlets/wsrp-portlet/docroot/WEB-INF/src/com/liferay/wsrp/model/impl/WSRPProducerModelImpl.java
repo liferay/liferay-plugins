@@ -406,51 +406,51 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 
 		sb.append(
 			"<column><column-name>producerId</column-name><column-value><![CDATA[");
-		sb.append("getProducerId()");
+		sb.append(getProducerId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>portalId</column-name><column-value><![CDATA[");
-		sb.append("getPortalId()");
+		sb.append(getPortalId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
-		sb.append("getStatus()");
+		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>namespace</column-name><column-value><![CDATA[");
-		sb.append("getNamespace()");
+		sb.append(getNamespace());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>instanceName</column-name><column-value><![CDATA[");
-		sb.append("getInstanceName()");
+		sb.append(getInstanceName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>requiresRegistration</column-name><column-value><![CDATA[");
-		sb.append("getRequiresRegistration()");
+		sb.append(getRequiresRegistration());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>supportsInbandRegistration</column-name><column-value><![CDATA[");
-		sb.append("getSupportsInbandRegistration()");
+		sb.append(getSupportsInbandRegistration());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>version</column-name><column-value><![CDATA[");
-		sb.append("getVersion()");
+		sb.append(getVersion());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>offeredPortlets</column-name><column-value><![CDATA[");
-		sb.append("getOfferedPortlets()");
+		sb.append(getOfferedPortlets());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>producerProfileMap</column-name><column-value><![CDATA[");
-		sb.append("getProducerProfileMap()");
+		sb.append(getProducerProfileMap());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>registrationProperties</column-name><column-value><![CDATA[");
-		sb.append("getRegistrationProperties()");
+		sb.append(getRegistrationProperties());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>registrationValidatorClass</column-name><column-value><![CDATA[");
-		sb.append("getRegistrationValidatorClass()");
+		sb.append(getRegistrationValidatorClass());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

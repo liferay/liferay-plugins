@@ -220,6 +220,81 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{statusId=");
+		sb.append(getStatusId());
+		sb.append(", userId=");
+		sb.append(getUserId());
+		sb.append(", modifiedDate=");
+		sb.append(getModifiedDate());
+		sb.append(", online=");
+		sb.append(getOnline());
+		sb.append(", awake=");
+		sb.append(getAwake());
+		sb.append(", activeBrowserKey=");
+		sb.append(getActiveBrowserKey());
+		sb.append(", activePanelId=");
+		sb.append(getActivePanelId());
+		sb.append(", message=");
+		sb.append(getMessage());
+		sb.append(", playSound=");
+		sb.append(getPlaySound());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.chat.model.Status");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>statusId</column-name><column-value><![CDATA[");
+		sb.append(getStatusId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userId</column-name><column-value><![CDATA[");
+		sb.append(getUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
+		sb.append(getModifiedDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>online</column-name><column-value><![CDATA[");
+		sb.append(getOnline());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>awake</column-name><column-value><![CDATA[");
+		sb.append(getAwake());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>activeBrowserKey</column-name><column-value><![CDATA[");
+		sb.append(getActiveBrowserKey());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>activePanelId</column-name><column-value><![CDATA[");
+		sb.append(getActivePanelId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>message</column-name><column-value><![CDATA[");
+		sb.append(getMessage());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>playSound</column-name><column-value><![CDATA[");
+		sb.append(getPlaySound());
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _statusId;
 	private long _userId;
 	private long _modifiedDate;

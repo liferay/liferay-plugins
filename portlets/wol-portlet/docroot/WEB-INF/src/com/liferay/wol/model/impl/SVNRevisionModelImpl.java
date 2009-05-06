@@ -296,27 +296,27 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 
 		sb.append(
 			"<column><column-name>svnRevisionId</column-name><column-value><![CDATA[");
-		sb.append("getSvnRevisionId()");
+		sb.append(getSvnRevisionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>svnUserId</column-name><column-value><![CDATA[");
-		sb.append("getSvnUserId()");
+		sb.append(getSvnUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append("getCreateDate()");
+		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>svnRepositoryId</column-name><column-value><![CDATA[");
-		sb.append("getSvnRepositoryId()");
+		sb.append(getSvnRepositoryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>revisionNumber</column-name><column-value><![CDATA[");
-		sb.append("getRevisionNumber()");
+		sb.append(getRevisionNumber());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>comments</column-name><column-value><![CDATA[");
-		sb.append("getComments()");
+		sb.append(getComments());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

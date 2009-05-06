@@ -322,35 +322,35 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 
 		sb.append(
 			"<column><column-name>jiraActionId</column-name><column-value><![CDATA[");
-		sb.append("getJiraActionId()");
+		sb.append(getJiraActionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>jiraUserId</column-name><column-value><![CDATA[");
-		sb.append("getJiraUserId()");
+		sb.append(getJiraUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append("getCreateDate()");
+		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append("getModifiedDate()");
+		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>jiraIssueId</column-name><column-value><![CDATA[");
-		sb.append("getJiraIssueId()");
+		sb.append(getJiraIssueId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append("getType()");
+		sb.append(getType());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>body</column-name><column-value><![CDATA[");
-		sb.append("getBody()");
+		sb.append(getBody());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>jiraGroupName</column-name><column-value><![CDATA[");
-		sb.append("getJiraGroupName()");
+		sb.append(getJiraGroupName());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

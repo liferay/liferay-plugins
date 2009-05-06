@@ -156,6 +156,45 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{svnRepositoryId=");
+		sb.append(getSvnRepositoryId());
+		sb.append(", url=");
+		sb.append(getUrl());
+		sb.append(", revisionNumber=");
+		sb.append(getRevisionNumber());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wol.model.SVNRepository");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>svnRepositoryId</column-name><column-value><![CDATA[");
+		sb.append(getSvnRepositoryId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>url</column-name><column-value><![CDATA[");
+		sb.append(getUrl());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>revisionNumber</column-name><column-value><![CDATA[");
+		sb.append(getRevisionNumber());
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _svnRepositoryId;
 	private String _url;
 	private long _revisionNumber;

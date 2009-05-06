@@ -391,51 +391,51 @@ public class WSRPPortletModelImpl extends BaseModelImpl<WSRPPortlet> {
 
 		sb.append(
 			"<column><column-name>portletId</column-name><column-value><![CDATA[");
-		sb.append("getPortletId()");
+		sb.append(getPortletId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append("getName()");
+		sb.append(getName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>channelName</column-name><column-value><![CDATA[");
-		sb.append("getChannelName()");
+		sb.append(getChannelName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>title</column-name><column-value><![CDATA[");
-		sb.append("getTitle()");
+		sb.append(getTitle());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>shortTitle</column-name><column-value><![CDATA[");
-		sb.append("getShortTitle()");
+		sb.append(getShortTitle());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>displayName</column-name><column-value><![CDATA[");
-		sb.append("getDisplayName()");
+		sb.append(getDisplayName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>keywords</column-name><column-value><![CDATA[");
-		sb.append("getKeywords()");
+		sb.append(getKeywords());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
-		sb.append("getStatus()");
+		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>producerEntityId</column-name><column-value><![CDATA[");
-		sb.append("getProducerEntityId()");
+		sb.append(getProducerEntityId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>consumerId</column-name><column-value><![CDATA[");
-		sb.append("getConsumerId()");
+		sb.append(getConsumerId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>portletHandle</column-name><column-value><![CDATA[");
-		sb.append("getPortletHandle()");
+		sb.append(getPortletHandle());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>mimeTypes</column-name><column-value><![CDATA[");
-		sb.append("getMimeTypes()");
+		sb.append(getMimeTypes());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

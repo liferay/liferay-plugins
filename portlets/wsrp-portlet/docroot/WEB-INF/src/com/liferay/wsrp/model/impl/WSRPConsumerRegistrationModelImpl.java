@@ -326,31 +326,31 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl<WSRPConsume
 
 		sb.append(
 			"<column><column-name>consumerRegistrationId</column-name><column-value><![CDATA[");
-		sb.append("getConsumerRegistrationId()");
+		sb.append(getConsumerRegistrationId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>consumerName</column-name><column-value><![CDATA[");
-		sb.append("getConsumerName()");
+		sb.append(getConsumerName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
-		sb.append("getStatus()");
+		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>registrationHandle</column-name><column-value><![CDATA[");
-		sb.append("getRegistrationHandle()");
+		sb.append(getRegistrationHandle());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>registrationData</column-name><column-value><![CDATA[");
-		sb.append("getRegistrationData()");
+		sb.append(getRegistrationData());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>lifetimeTerminationTime</column-name><column-value><![CDATA[");
-		sb.append("getLifetimeTerminationTime()");
+		sb.append(getLifetimeTerminationTime());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>producerKey</column-name><column-value><![CDATA[");
-		sb.append("getProducerKey()");
+		sb.append(getProducerKey());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

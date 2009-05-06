@@ -356,39 +356,39 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 
 		sb.append(
 			"<column><column-name>statusId</column-name><column-value><![CDATA[");
-		sb.append("getStatusId()");
+		sb.append(getStatusId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append("getUserId()");
+		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append("getModifiedDate()");
+		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>online</column-name><column-value><![CDATA[");
-		sb.append("getOnline()");
+		sb.append(getOnline());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>awake</column-name><column-value><![CDATA[");
-		sb.append("getAwake()");
+		sb.append(getAwake());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activeBrowserKey</column-name><column-value><![CDATA[");
-		sb.append("getActiveBrowserKey()");
+		sb.append(getActiveBrowserKey());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activePanelId</column-name><column-value><![CDATA[");
-		sb.append("getActivePanelId()");
+		sb.append(getActivePanelId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>message</column-name><column-value><![CDATA[");
-		sb.append("getMessage()");
+		sb.append(getMessage());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>playSound</column-name><column-value><![CDATA[");
-		sb.append("getPlaySound()");
+		sb.append(getPlaySound());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

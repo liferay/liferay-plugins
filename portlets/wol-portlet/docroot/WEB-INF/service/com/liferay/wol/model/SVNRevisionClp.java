@@ -202,6 +202,63 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{svnRevisionId=");
+		sb.append(getSvnRevisionId());
+		sb.append(", svnUserId=");
+		sb.append(getSvnUserId());
+		sb.append(", createDate=");
+		sb.append(getCreateDate());
+		sb.append(", svnRepositoryId=");
+		sb.append(getSvnRepositoryId());
+		sb.append(", revisionNumber=");
+		sb.append(getRevisionNumber());
+		sb.append(", comments=");
+		sb.append(getComments());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wol.model.SVNRevision");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>svnRevisionId</column-name><column-value><![CDATA[");
+		sb.append(getSvnRevisionId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>svnUserId</column-name><column-value><![CDATA[");
+		sb.append(getSvnUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>createDate</column-name><column-value><![CDATA[");
+		sb.append(getCreateDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>svnRepositoryId</column-name><column-value><![CDATA[");
+		sb.append(getSvnRepositoryId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>revisionNumber</column-name><column-value><![CDATA[");
+		sb.append(getRevisionNumber());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>comments</column-name><column-value><![CDATA[");
+		sb.append(getComments());
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _svnRevisionId;
 	private String _svnUserId;
 	private Date _createDate;

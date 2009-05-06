@@ -182,6 +182,63 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{fooId=");
+		sb.append(getFooId());
+		sb.append(", field1=");
+		sb.append(getField1());
+		sb.append(", field2=");
+		sb.append(getField2());
+		sb.append(", field3=");
+		sb.append(getField3());
+		sb.append(", field4=");
+		sb.append(getField4());
+		sb.append(", field5=");
+		sb.append(getField5());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.sampleservicebuilder.model.Foo");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>fooId</column-name><column-value><![CDATA[");
+		sb.append(getFooId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>field1</column-name><column-value><![CDATA[");
+		sb.append(getField1());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>field2</column-name><column-value><![CDATA[");
+		sb.append(getField2());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>field3</column-name><column-value><![CDATA[");
+		sb.append(getField3());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>field4</column-name><column-value><![CDATA[");
+		sb.append(getField4());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>field5</column-name><column-value><![CDATA[");
+		sb.append(getField5());
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _fooId;
 	private String _field1;
 	private boolean _field2;

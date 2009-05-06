@@ -417,59 +417,59 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 
 		sb.append(
 			"<column><column-name>meetupsEntryId</column-name><column-value><![CDATA[");
-		sb.append("getMeetupsEntryId()");
+		sb.append(getMeetupsEntryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append("getCompanyId()");
+		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append("getUserId()");
+		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append("getUserName()");
+		sb.append(getUserName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append("getCreateDate()");
+		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append("getModifiedDate()");
+		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>title</column-name><column-value><![CDATA[");
-		sb.append("getTitle()");
+		sb.append(getTitle());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append("getDescription()");
+		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>startDate</column-name><column-value><![CDATA[");
-		sb.append("getStartDate()");
+		sb.append(getStartDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>endDate</column-name><column-value><![CDATA[");
-		sb.append("getEndDate()");
+		sb.append(getEndDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>totalAttendees</column-name><column-value><![CDATA[");
-		sb.append("getTotalAttendees()");
+		sb.append(getTotalAttendees());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>maxAttendees</column-name><column-value><![CDATA[");
-		sb.append("getMaxAttendees()");
+		sb.append(getMaxAttendees());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>price</column-name><column-value><![CDATA[");
-		sb.append("getPrice()");
+		sb.append(getPrice());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>thumbnailId</column-name><column-value><![CDATA[");
-		sb.append("getThumbnailId()");
+		sb.append(getThumbnailId());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

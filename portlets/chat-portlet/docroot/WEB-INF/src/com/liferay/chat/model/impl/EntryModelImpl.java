@@ -278,23 +278,23 @@ public class EntryModelImpl extends BaseModelImpl<Entry> {
 
 		sb.append(
 			"<column><column-name>entryId</column-name><column-value><![CDATA[");
-		sb.append("getEntryId()");
+		sb.append(getEntryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append("getCreateDate()");
+		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>fromUserId</column-name><column-value><![CDATA[");
-		sb.append("getFromUserId()");
+		sb.append(getFromUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>toUserId</column-name><column-value><![CDATA[");
-		sb.append("getToUserId()");
+		sb.append(getToUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>content</column-name><column-value><![CDATA[");
-		sb.append("getContent()");
+		sb.append(getContent());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

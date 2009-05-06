@@ -149,6 +149,45 @@ public class NetworkClp extends BaseModelImpl<Network> implements Network {
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{networkId=");
+		sb.append(getNetworkId());
+		sb.append(", name=");
+		sb.append(getName());
+		sb.append(", ttl=");
+		sb.append(getTtl());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.ruon.model.Network");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>networkId</column-name><column-value><![CDATA[");
+		sb.append(getNetworkId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>name</column-name><column-value><![CDATA[");
+		sb.append(getName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>ttl</column-name><column-value><![CDATA[");
+		sb.append(getTtl());
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _networkId;
 	private String _name;
 	private long _ttl;
