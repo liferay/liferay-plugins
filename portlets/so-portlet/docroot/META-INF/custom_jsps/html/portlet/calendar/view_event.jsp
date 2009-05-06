@@ -40,3 +40,14 @@ CalEvent event = (CalEvent)request.getAttribute(WebKeys.CALENDAR_EVENT);
 
 	<input type="button" value="<liferay-ui:message key="edit" />" onclick="location.href = '<%= HtmlUtil.escape(editURL) %>';" />
 </c:if>
+
+<c:if test="<%= CalEventPermission.contains(permissionChecker, event, ActionKeys.DELETE) %>">
+	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
+		<portlet:param name="struts_action" value="/calendar/edit_event" />
+		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+		<portlet:param name="redirect" value="<%= redirect %>" />
+		<portlet:param name="eventId" value="<%= String.valueOf(event.getEventId()) %>" />
+	</portlet:actionURL>
+
+	<input type="button" value="<liferay-ui:message key="delete" />" onclick="javascript: if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-this") %>')) { submitForm(document.hrefFm, '<%= deleteURL %>'); } else { self.focus(); }" />
+</c:if>
