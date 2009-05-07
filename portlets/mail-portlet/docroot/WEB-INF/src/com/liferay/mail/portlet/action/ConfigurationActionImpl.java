@@ -22,13 +22,7 @@
 
 package com.liferay.mail.portlet.action;
 
-import com.liferay.portal.kernel.portlet.ConfigurationAction;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.PortletConfig;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
+import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
 
 /**
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
@@ -36,20 +30,5 @@ import javax.portlet.RenderResponse;
  * @author Scott Lee
  *
  */
-public class ConfigurationActionImpl implements ConfigurationAction {
-
-	public void processAction(
-			PortletConfig portletConfig, ActionRequest actionRequest,
-			ActionResponse actionResponse)
-		throws Exception {
-	}
-
-	public String render(
-			PortletConfig portletConfig, RenderRequest renderRequest,
-			RenderResponse renderResponse)
-		throws Exception {
-
-		return "/configuration.jsp";
-	}
-
+public class ConfigurationActionImpl extends BaseConfigurationAction {
 }
