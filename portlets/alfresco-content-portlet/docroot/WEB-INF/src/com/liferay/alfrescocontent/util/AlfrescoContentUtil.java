@@ -77,14 +77,14 @@ public class AlfrescoContentUtil {
 			Reference reference = null;
 
 			if (Validator.isNull(uuid)) {
-				Predicate predicate = new Predicate(null, _SPACES_STORE, null);
+				Predicate predicate = new Predicate(null, _spacesStore, null);
 
 				Node[] nodes = repositoryService.get(predicate);
 
 				reference = nodes[0].getReference();
 			}
 			else {
-				reference = new Reference(_SPACES_STORE, uuid, null);
+				reference = new Reference(_spacesStore, uuid, null);
 			}
 
 			QueryResult result = repositoryService.queryChildren(reference);
@@ -118,10 +118,10 @@ public class AlfrescoContentUtil {
 			ContentServiceSoapBindingStub contentService =
 				WebServiceFactory.getContentService();
 
-			Reference reference = new Reference(_SPACES_STORE, uuid, path);
+			Reference reference = new Reference(_spacesStore, uuid, path);
 
 			Predicate predicate = new Predicate(
-				new Reference[] {reference}, _SPACES_STORE, null);
+				new Reference[] {reference}, _spacesStore, null);
 
 			Content[] contents = contentService.read(
 				predicate, Constants.PROP_CONTENT);
@@ -175,10 +175,10 @@ public class AlfrescoContentUtil {
 			RepositoryServiceSoapBindingStub repositoryService =
 				WebServiceFactory.getRepositoryService();
 
-			Reference reference = new Reference(_SPACES_STORE, uuid, null);
+			Reference reference = new Reference(_spacesStore, uuid, null);
 
 			Predicate predicate = new Predicate(
-				new Reference[] {reference}, _SPACES_STORE, null);
+				new Reference[] {reference}, _spacesStore, null);
 
 			Node[] nodes = repositoryService.get(predicate);
 
@@ -202,10 +202,10 @@ public class AlfrescoContentUtil {
 			Reference reference = null;
 
 			if (Validator.isNull(uuid)) {
-				reference = new Reference(_SPACES_STORE, null, null);
+				reference = new Reference(_spacesStore, null, null);
 			}
 			else {
-				reference = new Reference(_SPACES_STORE, uuid, null);
+				reference = new Reference(_spacesStore, uuid, null);
 			}
 
 			QueryResult result = repositoryService.queryParents(reference);
@@ -233,7 +233,7 @@ public class AlfrescoContentUtil {
 				Constants.QUERY_LANG_LUCENE, "TEXT:'" + keywords + "'");
 
 			QueryResult queryResult = repositoryService.query(
-				_SPACES_STORE, query, false);
+				_spacesStore, query, false);
 
 			ResultSet resultSet = queryResult.getResultSet();
 
@@ -251,13 +251,13 @@ public class AlfrescoContentUtil {
 			return null;
 		}
 
-		Matcher m = _PROXY_URL_PATTERN.matcher(content);
+		Matcher matcher = _proxyUrlPattern.matcher(content);
 
 		StringBuffer sb = new StringBuffer();
 
 		try {
-			while (m.find()) {
-				String uuid = m.group(1);
+			while (matcher.find()) {
+				String uuid = matcher.group(1);
 
 				PortletURL portletURL = renderResponse.createRenderURL();
 
@@ -267,26 +267,27 @@ public class AlfrescoContentUtil {
 					portletURL.setWindowState(WindowState.MAXIMIZED);
 				}
 
-				m.appendReplacement(sb, "\"" + portletURL.toString() + "\"");
+				matcher.appendReplacement(
+					sb, "\"" + portletURL.toString() + "\"");
 			}
 		}
 		catch (Exception e) {
 			_log.error(e);
 		}
 
-		m.appendTail(sb);
+		matcher.appendTail(sb);
 
 		content = sb.toString();
 
-		m = _RESOURCE_URL_PATTERN.matcher(content);
+		matcher = _resourceUrlPattern.matcher(content);
 
 		sb = new StringBuffer();
 
 		try {
-			while (m.find()) {
-				String imagePath = m.group(1);
+			while (matcher.find()) {
+				String imagePath = matcher.group(1);
 
-				m.appendReplacement(
+				matcher.appendReplacement(
 					sb,
 					"\"" + getEndpointAddress() + "/alfresco" + imagePath +
 						"?guest=true" + "\"");
@@ -296,7 +297,7 @@ public class AlfrescoContentUtil {
 			_log.error(e);
 		}
 
-		m.appendTail(sb);
+		matcher.appendTail(sb);
 
 		content = sb.toString();
 
@@ -312,10 +313,10 @@ public class AlfrescoContentUtil {
 
 			AuthenticationUtils.startSession(login, password);
 
-			Reference reference = new Reference(_SPACES_STORE, uuid, null);
+			Reference reference = new Reference(_spacesStore, uuid, null);
 
 			Predicate predicate = new Predicate(
-				new Reference[] {reference}, _SPACES_STORE, null);
+				new Reference[] {reference}, _spacesStore, null);
 
 			HasPermissionsResult[] results =
 				accessControlService.hasPermissions(
@@ -352,16 +353,14 @@ public class AlfrescoContentUtil {
 		return endPoint;
 	}
 
-	private static final Pattern _PROXY_URL_PATTERN = Pattern.compile(
-		"\"workspace://SpacesStore/([\\w\\-]*)\"");
+	private static Log _log = LogFactoryUtil.getLog(AlfrescoContentUtil.class);
 
-	private static final Pattern _RESOURCE_URL_PATTERN = Pattern.compile(
+	private static Pattern _proxyUrlPattern = Pattern.compile(
+		"\"workspace://SpacesStore/([\\w\\-]*)\"");
+	private static Pattern _resourceUrlPattern = Pattern.compile(
 		"\"(?:\\.\\.)?(?:/\\.\\.)*" +
 			"(/download/direct/workspace/SpacesStore/[\\w\\-/\\.]*)\"");
-
-	private static final Store _SPACES_STORE =
-		new Store(Constants.WORKSPACE_STORE, "SpacesStore");
-
-	private static Log _log = LogFactoryUtil.getLog(AlfrescoContentUtil.class);
+ 	private static Store _spacesStore = new Store(
+		Constants.WORKSPACE_STORE, "SpacesStore");
 
 }
