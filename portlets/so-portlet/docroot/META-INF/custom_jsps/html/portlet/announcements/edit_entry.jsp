@@ -1,24 +1,19 @@
 <%
 /**
- * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2008-2009 Liferay, Inc. All rights reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * This file is part of Liferay Social Office. Liferay Social Office is free
+ * software: you can redistribute it and/or modify it under the terms of the GNU
+ * Affero General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * Liferay Social Office is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License
+ * for more details.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * You should have received a copy of the GNU General Public License along with
+ * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 %>
 
@@ -52,6 +47,8 @@ if (entry != null) {
 }
 
 int priority = BeanParamUtil.getInteger(entry, request, "priority");
+
+Group scopeGroup = themeDisplay.getScopeGroup();
 %>
 
 <script type="text/javascript">
@@ -87,185 +84,285 @@ int priority = BeanParamUtil.getInteger(entry, request, "priority");
 <liferay-ui:error exception="<%= EntryTitleException.class %>" message="please-enter-a-valid-title" />
 
 <table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="distribution-scope" />
-	</td>
-	<td>
-		<c:choose>
-			<c:when test="<%= entry != null %>">
-
-				<%
-				long classNameId = BeanParamUtil.getLong(entry, request, "classNameId");
-
-				String className = StringPool.BLANK;
-
-				if (classNameId > 0) {
-					className = PortalUtil.getClassName(classNameId);
-				}
-				%>
-
+<c:choose>
+	<c:when test="<%= scopeGroup.isCommunity() || scopeGroup.isUser() %>">
+		<tr>
+			<td>
+				<liferay-ui:message key="to" />
+			</td>
+			<td>
 				<c:choose>
-					<c:when test="<%= Validator.isNull(className) %>">
-						<liferay-ui:message key="general" />
-					</c:when>
-					<c:when test="<%= className.equals(Group.class.getName()) %>">
+					<c:when test="<%= entry != null %>">
 
 						<%
-						Group group = GroupLocalServiceUtil.getGroup(entry.getClassPK());
+						long classNameId = BeanParamUtil.getLong(entry, request, "classNameId");
+
+						String className = StringPool.BLANK;
+
+						if (classNameId > 0) {
+							className = PortalUtil.getClassName(classNameId);
+						}
 						%>
 
-						<liferay-ui:message key="community" /> &raquo; <%= group.getName() %>
+						<c:choose>
+							<c:when test="<%= Validator.isNull(className) %>">
+								<liferay-ui:message key="everyone" />
+							</c:when>
+							<c:when test="<%= className.equals(Role.class.getName()) %>">
+								<liferay-ui:message key="all-site-owners" />
+							</c:when>
+							<c:when test="<%= className.equals(Group.class.getName()) %>">
+
+								<%
+								Group group = GroupLocalServiceUtil.getGroup(entry.getClassPK());
+								%>
+
+								<%= group.getName() %>
+							</c:when>
+						</c:choose>
 					</c:when>
-					<c:when test="<%= className.equals(Organization.class.getName()) %>">
+					<c:otherwise>
 
 						<%
-						Organization organization = OrganizationLocalServiceUtil.getOrganization(entry.getClassPK());
+						String distributionScope = ParamUtil.getString(request, "distributionScope");
+
+						long classNameId = -1;
+						long classPK = -1;
+
+						String[] distributionScopeArray = StringUtil.split(distributionScope);
+
+						if (distributionScopeArray.length == 2) {
+							classNameId = GetterUtil.getLong(distributionScopeArray[0]);
+							classPK = GetterUtil.getLong(distributionScopeArray[1]);
+						}
 						%>
 
-						<liferay-ui:message key="organization" /> &raquo; <%= HtmlUtil.escape(organization.getName()) %>
-					</c:when>
-					<c:when test="<%= className.equals(Role.class.getName()) %>">
+						<select name="<portlet:namespace />distributionScope">
+							<c:choose>
+								<c:when test="<%= scopeGroup.isCommunity() %>">
+									<option selected value="<%= PortalUtil.getClassNameId(Group.class) %><%= StringPool.COMMA %><%= scopeGroup.getGroupId() %>"><%= scopeGroup.getName() %></option>
+								</c:when>
+								<c:when test="<%= scopeGroup.isUser() %>">
+									<option value=""></option>
 
-						<%
-						Role role = RoleLocalServiceUtil.getRole(entry.getClassPK());
-						%>
+									<c:if test="<%= permissionChecker.isOmniadmin() %>">
+										<option <%= ((classNameId == 0) && (classPK == 0)) ? "selected" : "" %> value="0,0"><liferay-ui:message key="everyone" /></option>
+									</c:if>
 
-						<liferay-ui:message key="role" /> &raquo; <%= role.getTitle(locale) %>
-					</c:when>
-					<c:when test="<%= className.equals(User.class.getName()) %>">
+									<%
+									Role role = RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), RoleConstants.COMMUNITY_OWNER);
+									%>
 
-						<%
-						User user2 = UserLocalServiceUtil.getUserById(entry.getClassPK());
-						%>
+									<c:if test="<%= RolePermissionUtil.contains(permissionChecker, role.getRoleId(), ActionKeys.MANAGE_ANNOUNCEMENTS) %>">
+										<option <%= (classPK == role.getRoleId()) ? "selected" : "" %> value="<%= PortalUtil.getClassNameId(Role.class) %><%= StringPool.COMMA %><%= role.getRoleId() %>"><liferay-ui:message key="all-site-owners" /></option>
+									</c:if>
 
-						<liferay-ui:message key="personal" /> &raquo; <%= user2.getFullName() %>
-					</c:when>
-					<c:when test="<%= className.equals(UserGroup.class.getName()) %>">
+									<%
+									List<Group> groups = GroupLocalServiceUtil.getUserGroups(user.getUserId());
+									%>
 
-						<%
-						UserGroup userGroup = UserGroupLocalServiceUtil.getUserGroup(entry.getClassPK());
-						%>
+									<%
+									for (Group group : groups) {
+									%>
 
-						<liferay-ui:message key="user-group" /> &raquo;	<%= userGroup.getName() %>
-					</c:when>
+										<c:if test="<%= group.isCommunity() && GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS) %>">
+											<option <%= (classPK == group.getGroupId()) ? "selected" : "" %> value="<%= PortalUtil.getClassNameId(Group.class) %><%= StringPool.COMMA %><%= group.getGroupId() %>"><%= group.getName() %></option>
+										</c:if>
+
+									<%
+									}
+									%>
+
+								</c:when>
+							</c:choose>
+						</select>
+					</c:otherwise>
 				</c:choose>
-			</c:when>
-			<c:otherwise>
+			</td>
+		</tr>
+	</c:when>
+	<c:otherwise>
+		<tr>
+			<td>
+				<liferay-ui:message key="distribution-scope" />
+			</td>
+			<td>
+				<c:choose>
+					<c:when test="<%= entry != null %>">
 
-				<%
-				String distributionScope = ParamUtil.getString(request, "distributionScope");
+						<%
+						long classNameId = BeanParamUtil.getLong(entry, request, "classNameId");
 
-				long classNameId = -1;
-				long classPK = -1;
+						String className = StringPool.BLANK;
 
-				String[] distributionScopeArray = StringUtil.split(distributionScope);
+						if (classNameId > 0) {
+							className = PortalUtil.getClassName(classNameId);
+						}
+						%>
 
-				if (distributionScopeArray.length == 2) {
-					classNameId = GetterUtil.getLong(distributionScopeArray[0]);
-					classPK = GetterUtil.getLong(distributionScopeArray[1]);
-				}
-				%>
+						<c:choose>
+							<c:when test="<%= Validator.isNull(className) %>">
+								<liferay-ui:message key="general" />
+							</c:when>
+							<c:when test="<%= className.equals(Group.class.getName()) %>">
 
-				<select name="<portlet:namespace />distributionScope">
-					<option value=""></option>
+								<%
+								Group group = GroupLocalServiceUtil.getGroup(entry.getClassPK());
+								%>
 
-					<c:if test="<%= permissionChecker.isOmniadmin() %>">
-						<option <%= ((classNameId == 0) && (classPK == 0)) ? "selected" : "" %> value="0,0"><liferay-ui:message key="general" /></option>
-					</c:if>
+								<liferay-ui:message key="community" /> &raquo; <%= group.getName() %>
+							</c:when>
+							<c:when test="<%= className.equals(Organization.class.getName()) %>">
 
-					<%
-					List<Group> groups = GroupLocalServiceUtil.getUserGroups(user.getUserId());
-					%>
+								<%
+								Organization organization = OrganizationLocalServiceUtil.getOrganization(entry.getClassPK());
+								%>
 
-					<c:if test="<%= groups.size() > 0 %>">
-						<optgroup label="<liferay-ui:message key="communities" />">
+								<liferay-ui:message key="organization" /> &raquo; <%= HtmlUtil.escape(organization.getName()) %>
+							</c:when>
+							<c:when test="<%= className.equals(Role.class.getName()) %>">
 
-							<%
-							for (Group group : groups) {
-								if (group.isCommunity() && GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
-							%>
+								<%
+								Role role = RoleLocalServiceUtil.getRole(entry.getClassPK());
+								%>
 
-									<option <%= (classPK == group.getGroupId()) ? "selected" : "" %> value="<%= PortalUtil.getClassNameId(Group.class) %><%= StringPool.COMMA %><%= group.getGroupId() %>"><%= group.getName() %></option>
+								<liferay-ui:message key="role" /> &raquo; <%= role.getTitle(locale) %>
+							</c:when>
+							<c:when test="<%= className.equals(User.class.getName()) %>">
 
-							<%
-								}
-							}
-							%>
+								<%
+								User user2 = UserLocalServiceUtil.getUserById(entry.getClassPK());
+								%>
 
-						</optgroup>
-					</c:if>
+								<liferay-ui:message key="personal" /> &raquo; <%= user2.getFullName() %>
+							</c:when>
+							<c:when test="<%= className.equals(UserGroup.class.getName()) %>">
 
-					<%
-					List<Organization> organizations = OrganizationLocalServiceUtil.getUserOrganizations(user.getUserId());
-					%>
+								<%
+								UserGroup userGroup = UserGroupLocalServiceUtil.getUserGroup(entry.getClassPK());
+								%>
 
-					<c:if test="<%= organizations.size() > 0 %>">
-						<optgroup label="<liferay-ui:message key="organizations" />">
+								<liferay-ui:message key="user-group" /> &raquo;	<%= userGroup.getName() %>
+							</c:when>
+						</c:choose>
+					</c:when>
+					<c:otherwise>
 
-							<%
-							for (Organization organization : organizations) {
-								if (OrganizationPermissionUtil.contains(permissionChecker, organization.getOrganizationId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
-							%>
+						<%
+						String distributionScope = ParamUtil.getString(request, "distributionScope");
 
-									<option <%= (classPK == organization.getOrganizationId()) ? "selected" : "" %> value="<%= PortalUtil.getClassNameId(Organization.class) %><%= StringPool.COMMA %><%= organization.getOrganizationId() %>"><%= HtmlUtil.escape(organization.getName()) %></option>
+						long classNameId = -1;
+						long classPK = -1;
 
-							<%
-								}
-							}
-							%>
+						String[] distributionScopeArray = StringUtil.split(distributionScope);
 
-						</optgroup>
-					</c:if>
+						if (distributionScopeArray.length == 2) {
+							classNameId = GetterUtil.getLong(distributionScopeArray[0]);
+							classPK = GetterUtil.getLong(distributionScopeArray[1]);
+						}
+						%>
 
-					<%
-					List<Role> roles = RoleLocalServiceUtil.getRoles(themeDisplay.getCompanyId());
-					%>
+						<select name="<portlet:namespace />distributionScope">
+							<option value=""></option>
 
-					<c:if test="<%= roles.size() > 0 %>">
-						<optgroup label="<liferay-ui:message key="roles" />">
-
-							<%
-							for (Role role : roles) {
-								if (RolePermissionUtil.contains(permissionChecker, role.getRoleId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
-							%>
-
-									<option <%= (classPK == role.getRoleId()) ? "selected" : "" %> value="<%= PortalUtil.getClassNameId(Role.class) %><%= StringPool.COMMA %><%= role.getRoleId() %>"><%= role.getTitle(locale) %></option>
-
-							<%
-								}
-							}
-							%>
-
-						</optgroup>
-					</c:if>
-
-					<%
-					List<UserGroup> userGroups = UserGroupLocalServiceUtil.getUserGroups(themeDisplay.getCompanyId());
-					%>
-
-					<c:if test="<%= userGroups.size() > 0 %>">
-						<optgroup label="<liferay-ui:message key="user-groups" />">
+							<c:if test="<%= permissionChecker.isOmniadmin() %>">
+								<option <%= ((classNameId == 0) && (classPK == 0)) ? "selected" : "" %> value="0,0"><liferay-ui:message key="general" /></option>
+							</c:if>
 
 							<%
-							for (UserGroup userGroup : userGroups) {
-								if (UserGroupPermissionUtil.contains(permissionChecker, userGroup.getUserGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+							List<Group> groups = GroupLocalServiceUtil.getUserGroups(user.getUserId());
 							%>
 
-									<option <%= (classPK == userGroup.getUserGroupId()) ? "selected" : "" %> value="<%= PortalUtil.getClassNameId(UserGroup.class) %><%= StringPool.COMMA %><%= userGroup.getUserGroupId() %>"><%= userGroup.getName() %></option>
+							<c:if test="<%= groups.size() > 0 %>">
+								<optgroup label="<liferay-ui:message key="communities" />">
+
+									<%
+									for (Group group : groups) {
+										if (group.isCommunity() && GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+									%>
+
+											<option <%= (classPK == group.getGroupId()) ? "selected" : "" %> value="<%= PortalUtil.getClassNameId(Group.class) %><%= StringPool.COMMA %><%= group.getGroupId() %>"><%= group.getName() %></option>
+
+									<%
+										}
+									}
+									%>
+
+								</optgroup>
+							</c:if>
 
 							<%
-								}
-							}
+							List<Organization> organizations = OrganizationLocalServiceUtil.getUserOrganizations(user.getUserId());
 							%>
 
-						</optgroup>
-					</c:if>
-				</select>
-			</c:otherwise>
-		</c:choose>
-	</td>
-</tr>
+							<c:if test="<%= organizations.size() > 0 %>">
+								<optgroup label="<liferay-ui:message key="organizations" />">
+
+									<%
+									for (Organization organization : organizations) {
+										if (OrganizationPermissionUtil.contains(permissionChecker, organization.getOrganizationId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+									%>
+
+											<option <%= (classPK == organization.getOrganizationId()) ? "selected" : "" %> value="<%= PortalUtil.getClassNameId(Organization.class) %><%= StringPool.COMMA %><%= organization.getOrganizationId() %>"><%= HtmlUtil.escape(organization.getName()) %></option>
+
+									<%
+										}
+									}
+									%>
+
+								</optgroup>
+							</c:if>
+
+							<%
+							List<Role> roles = RoleLocalServiceUtil.getRoles(themeDisplay.getCompanyId());
+							%>
+
+							<c:if test="<%= roles.size() > 0 %>">
+								<optgroup label="<liferay-ui:message key="roles" />">
+
+									<%
+									for (Role role : roles) {
+										if (RolePermissionUtil.contains(permissionChecker, role.getRoleId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+									%>
+
+											<option <%= (classPK == role.getRoleId()) ? "selected" : "" %> value="<%= PortalUtil.getClassNameId(Role.class) %><%= StringPool.COMMA %><%= role.getRoleId() %>"><%= role.getTitle(locale) %></option>
+
+									<%
+										}
+									}
+									%>
+
+								</optgroup>
+							</c:if>
+
+							<%
+							List<UserGroup> userGroups = UserGroupLocalServiceUtil.getUserGroups(themeDisplay.getCompanyId());
+							%>
+
+							<c:if test="<%= userGroups.size() > 0 %>">
+								<optgroup label="<liferay-ui:message key="user-groups" />">
+
+									<%
+									for (UserGroup userGroup : userGroups) {
+										if (UserGroupPermissionUtil.contains(permissionChecker, userGroup.getUserGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+									%>
+
+											<option <%= (classPK == userGroup.getUserGroupId()) ? "selected" : "" %> value="<%= PortalUtil.getClassNameId(UserGroup.class) %><%= StringPool.COMMA %><%= userGroup.getUserGroupId() %>"><%= userGroup.getName() %></option>
+
+									<%
+										}
+									}
+									%>
+
+								</optgroup>
+							</c:if>
+						</select>
+					</c:otherwise>
+				</c:choose>
+			</td>
+		</tr>
+	</c:otherwise>
+</c:choose>
 <tr>
 	<td colspan="2">
 		<br />
