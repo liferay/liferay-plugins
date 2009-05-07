@@ -119,7 +119,6 @@ GGData data = GGUtil.getData(url);
 				%>
 
 				<div style="text-align: right;">
-
 					<span style="padding-left: 10px;">
 						<c:if test="<%= pagination.getPrevStart() >= 0 %>">
 							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="cat" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(pagination.getPrevStart()) %>" /></liferay-portlet:actionURL>');">&laquo; <liferay-ui:message key="previous" /></a>
@@ -145,7 +144,7 @@ GGData data = GGUtil.getData(url);
 						<%= tableIteratorObj.getName() %>
 
 						<div style="padding: 5px;">
-							<img src="<%= tableIteratorObj.getImage() %>" height="60" width="120" />
+							<img height="60" src="<%= tableIteratorObj.getImage() %>" width="120" />
 						</div>
 
 						<input onclick="<portlet:namespace />chooseGadget('<%= tableIteratorObj.getGadgetId() %>');" type="button" value="<liferay-ui:message key="choose" />" />

@@ -55,7 +55,7 @@ public class GGDataWebCacheItem implements WebCacheItem {
 		try {
 			String html = HttpUtil.URLtoString(_url);
 
-			List categories = new ArrayList();
+			List<GGCategory> categories = new ArrayList<GGCategory>();
 
 			Matcher matcher = _categoriesPattern.matcher(html);
 
@@ -68,7 +68,8 @@ public class GGDataWebCacheItem implements WebCacheItem {
 				categories.add(category);
 			}
 
-			List entries = new ArrayList();
+			List<GGEntry> entries = new ArrayList<GGEntry>();
+
 			int prevStart = -1;
 			int moreStart = -1;
 
@@ -92,6 +93,7 @@ public class GGDataWebCacheItem implements WebCacheItem {
 				if (matcher.find()) {
 					int start = GetterUtil.getInteger(matcher.group(1));
 					int end = GetterUtil.getInteger(matcher.group(2));
+
 					prevStart = 2 * start - end - 2;
 					moreStart = end;
 				}
@@ -113,6 +115,7 @@ public class GGDataWebCacheItem implements WebCacheItem {
 
 				if (matcher.find()) {
 					String paginationHtml = matcher.group(1);
+
 					matcher = _paginationMorePattern.matcher(paginationHtml);
 
 					if (matcher.find()) {
@@ -146,29 +149,22 @@ public class GGDataWebCacheItem implements WebCacheItem {
 
 	private static final long _REFRESH_TIME = Time.MINUTE * 5;
 
-	private static final Pattern _categoriesPattern = Pattern.compile(
-		PortletProps.get("regex.categories"), Pattern.DOTALL);
-
 	private static final Pattern _categoriesEntriesPattern = Pattern.compile(
 		PortletProps.get("regex.categories.entries"), Pattern.DOTALL);
-
-	private static final Pattern _paginationMorePattern = Pattern.compile(
-		PortletProps.get("regex.categories.pagination.more"), Pattern.DOTALL);
-
-	private static final Pattern _paginationPattern = Pattern.compile(
-		PortletProps.get("regex.pagination"), Pattern.DOTALL);
-
-	private static final Pattern _paginationPrevPattern = Pattern.compile(
-		PortletProps.get("regex.categories.pagination.prev"), Pattern.DOTALL);
-
+	private static final Pattern _categoriesPattern = Pattern.compile(
+		PortletProps.get("regex.categories"), Pattern.DOTALL);
 	private static final Pattern _queryEntriesPattern = Pattern.compile(
 		PortletProps.get("regex.query.entries"), Pattern.DOTALL);
-
 	private static final Pattern _queryPaginationPattern = Pattern.compile(
 		PortletProps.get("regex.query.pagination"), Pattern.DOTALL);
-
 	private static final Pattern _queryPattern = Pattern.compile(
 		PortletProps.get("regex.query"), Pattern.DOTALL);
+	private static final Pattern _paginationMorePattern = Pattern.compile(
+		PortletProps.get("regex.categories.pagination.more"), Pattern.DOTALL);
+	private static final Pattern _paginationPattern = Pattern.compile(
+		PortletProps.get("regex.pagination"), Pattern.DOTALL);
+	private static final Pattern _paginationPrevPattern = Pattern.compile(
+		PortletProps.get("regex.categories.pagination.prev"), Pattern.DOTALL);
 
 	private String _url;
 

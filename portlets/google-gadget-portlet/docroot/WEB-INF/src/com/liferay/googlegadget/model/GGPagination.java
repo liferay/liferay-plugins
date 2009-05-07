@@ -36,23 +36,23 @@ public class GGPagination {
 		_moreStart = moreStart;
 	}
 
-	public int getPrevStart() {
-		return _prevStart;
-	}
-
-	public void setPrevStart(int prevStart) {
-		_prevStart = prevStart;
-	}
-
 	public int getMoreStart() {
 		return _moreStart;
+	}
+
+	public int getPrevStart() {
+		return _prevStart;
 	}
 
 	public void setMoreStart(int moreStart) {
 		_moreStart = moreStart;
 	}
 
-	private int _prevStart;
+	public void setPrevStart(int prevStart) {
+		_prevStart = prevStart;
+	}
+
 	private int _moreStart;
+	private int _prevStart;
 
 }
