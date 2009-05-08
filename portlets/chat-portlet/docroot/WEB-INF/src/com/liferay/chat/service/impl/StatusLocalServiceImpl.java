@@ -24,7 +24,6 @@ package com.liferay.chat.service.impl;
 
 import com.liferay.chat.model.Status;
 import com.liferay.chat.service.base.StatusLocalServiceBaseImpl;
-import com.liferay.client.json.ruon.util.RUONUtil;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
@@ -92,8 +91,6 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 		status.setPlaySound(playSound);
 
 		statusPersistence.update(status, false);
-
-		RUONUtil.updatePresence(userId, "chat-portlet", online);
 
 		return status;
 	}
