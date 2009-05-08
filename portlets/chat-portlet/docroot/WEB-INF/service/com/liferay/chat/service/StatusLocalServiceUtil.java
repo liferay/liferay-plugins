@@ -119,14 +119,13 @@ public class StatusLocalServiceUtil {
 	}
 
 	public static com.liferay.chat.model.Status updateStatus(long userId,
-		boolean online, boolean awake, java.lang.String activeBrowserKey,
-		java.lang.String activePanelId, java.lang.String message,
-		boolean playSound)
+		int online, int awake, java.lang.String activePanelId,
+		java.lang.String message, int playSound)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		return getService()
-				   .updateStatus(userId, online, awake, activeBrowserKey,
-			activePanelId, message, playSound);
+				   .updateStatus(userId, online, awake, activePanelId, message,
+			playSound);
 	}
 
 	public static void clearService() {

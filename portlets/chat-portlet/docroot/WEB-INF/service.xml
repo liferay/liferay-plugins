@@ -70,7 +70,6 @@
 
 		<column name="online" type="boolean" />
 		<column name="awake" type="boolean" />
-		<column name="activeBrowserKey" type="String" />
 		<column name="activePanelId" type="String" />
 		<column name="message" type="String" />
 		<column name="playSound" type="boolean" />

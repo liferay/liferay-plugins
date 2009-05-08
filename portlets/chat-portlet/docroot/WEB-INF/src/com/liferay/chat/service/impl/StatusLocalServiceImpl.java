@@ -68,8 +68,8 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 	}
 
 	public Status updateStatus(
-			long userId, boolean online, boolean awake, String activeBrowserKey,
-			String activePanelId, String message, boolean playSound)
+			long userId, int online, int awake, String activePanelId,
+			String message, int playSound)
 		throws PortalException, SystemException {
 
 		Status status = statusPersistence.fetchByUserId(userId);
@@ -83,12 +83,26 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 		}
 
 		status.setModifiedDate(System.currentTimeMillis());
-		status.setOnline(online);
-		status.setAwake(awake);
-		status.setActiveBrowserKey(activeBrowserKey);
-		status.setActivePanelId(activePanelId);
-		status.setMessage(message);
-		status.setPlaySound(playSound);
+
+		if (online != -1) {
+			status.setOnline((online == 1) ? true : false);
+		}
+
+		if (awake != -1) {
+			status.setAwake((awake == 1) ? true : false);
+		}
+
+		if (activePanelId != null) {
+			status.setActivePanelId(activePanelId);
+		}
+
+		if (message != null) {
+			status.setMessage(message);
+		}
+
+		if (playSound != -1) {
+			status.setPlaySound((playSound == 1) ? true : false);
+		}
 
 		statusPersistence.update(status, false);
 

@@ -20,58 +20,20 @@
  * SOFTWARE.
  */
 
-package com.liferay.chat.model;
+package com.liferay.chat.util;
 
-import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.util.portlet.PortletProps;
 
 /**
- * <a href="StatusModel.java.html"><b><i>View Source</i></b></a>
+ * <a href="PortletPropsValues.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface StatusModel extends BaseModel<Status> {
-	public long getPrimaryKey();
+public class PortletPropsValues {
 
-	public void setPrimaryKey(long pk);
+	public static final String BUDDY_LIST_STRATEGY = GetterUtil.getString(
+		PortletProps.get("buddy.list.strategy"));
 
-	public long getStatusId();
-
-	public void setStatusId(long statusId);
-
-	public long getUserId();
-
-	public void setUserId(long userId);
-
-	public long getModifiedDate();
-
-	public void setModifiedDate(long modifiedDate);
-
-	public boolean getOnline();
-
-	public boolean isOnline();
-
-	public void setOnline(boolean online);
-
-	public boolean getAwake();
-
-	public boolean isAwake();
-
-	public void setAwake(boolean awake);
-
-	public String getActivePanelId();
-
-	public void setActivePanelId(String activePanelId);
-
-	public String getMessage();
-
-	public void setMessage(String message);
-
-	public boolean getPlaySound();
-
-	public boolean isPlaySound();
-
-	public void setPlaySound(boolean playSound);
-
-	public Status toEscapedModel();
 }

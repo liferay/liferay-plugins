@@ -66,9 +66,6 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 			{ "awake", new Integer(Types.BOOLEAN) },
 			
 
-			{ "activeBrowserKey", new Integer(Types.VARCHAR) },
-			
-
 			{ "activePanelId", new Integer(Types.VARCHAR) },
 			
 
@@ -77,7 +74,7 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 
 			{ "playSound", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Chat_Status (statusId LONG not null primary key,userId LONG,modifiedDate LONG,online_ BOOLEAN,awake BOOLEAN,activeBrowserKey VARCHAR(75) null,activePanelId VARCHAR(75) null,message STRING null,playSound BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table Chat_Status (statusId LONG not null primary key,userId LONG,modifiedDate LONG,online_ BOOLEAN,awake BOOLEAN,activePanelId VARCHAR(75) null,message STRING null,playSound BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Chat_Status";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -97,7 +94,6 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setOnline(soapModel.getOnline());
 		model.setAwake(soapModel.getAwake());
-		model.setActiveBrowserKey(soapModel.getActiveBrowserKey());
 		model.setActivePanelId(soapModel.getActivePanelId());
 		model.setMessage(soapModel.getMessage());
 		model.setPlaySound(soapModel.getPlaySound());
@@ -191,14 +187,6 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 		_awake = awake;
 	}
 
-	public String getActiveBrowserKey() {
-		return GetterUtil.getString(_activeBrowserKey);
-	}
-
-	public void setActiveBrowserKey(String activeBrowserKey) {
-		_activeBrowserKey = activeBrowserKey;
-	}
-
 	public String getActivePanelId() {
 		return GetterUtil.getString(_activePanelId);
 	}
@@ -242,7 +230,6 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 			model.setModifiedDate(getModifiedDate());
 			model.setOnline(getOnline());
 			model.setAwake(getAwake());
-			model.setActiveBrowserKey(HtmlUtil.escape(getActiveBrowserKey()));
 			model.setActivePanelId(HtmlUtil.escape(getActivePanelId()));
 			model.setMessage(HtmlUtil.escape(getMessage()));
 			model.setPlaySound(getPlaySound());
@@ -271,7 +258,6 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 		clone.setModifiedDate(getModifiedDate());
 		clone.setOnline(getOnline());
 		clone.setAwake(getAwake());
-		clone.setActiveBrowserKey(getActiveBrowserKey());
 		clone.setActivePanelId(getActivePanelId());
 		clone.setMessage(getMessage());
 		clone.setPlaySound(getPlaySound());
@@ -334,8 +320,6 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 		sb.append(getOnline());
 		sb.append(", awake=");
 		sb.append(getAwake());
-		sb.append(", activeBrowserKey=");
-		sb.append(getActiveBrowserKey());
 		sb.append(", activePanelId=");
 		sb.append(getActivePanelId());
 		sb.append(", message=");
@@ -375,10 +359,6 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 		sb.append(getAwake());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>activeBrowserKey</column-name><column-value><![CDATA[");
-		sb.append(getActiveBrowserKey());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>activePanelId</column-name><column-value><![CDATA[");
 		sb.append(getActivePanelId());
 		sb.append("]]></column-value></column>");
@@ -403,7 +383,6 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 	private long _modifiedDate;
 	private boolean _online;
 	private boolean _awake;
-	private String _activeBrowserKey;
 	private String _activePanelId;
 	private String _message;
 	private boolean _playSound;

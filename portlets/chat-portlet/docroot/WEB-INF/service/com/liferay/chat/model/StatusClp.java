@@ -100,14 +100,6 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		_awake = awake;
 	}
 
-	public String getActiveBrowserKey() {
-		return _activeBrowserKey;
-	}
-
-	public void setActiveBrowserKey(String activeBrowserKey) {
-		_activeBrowserKey = activeBrowserKey;
-	}
-
 	public String getActivePanelId() {
 		return _activePanelId;
 	}
@@ -150,7 +142,6 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 			model.setModifiedDate(getModifiedDate());
 			model.setOnline(getOnline());
 			model.setAwake(getAwake());
-			model.setActiveBrowserKey(HtmlUtil.escape(getActiveBrowserKey()));
 			model.setActivePanelId(HtmlUtil.escape(getActivePanelId()));
 			model.setMessage(HtmlUtil.escape(getMessage()));
 			model.setPlaySound(getPlaySound());
@@ -170,7 +161,6 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		clone.setModifiedDate(getModifiedDate());
 		clone.setOnline(getOnline());
 		clone.setAwake(getAwake());
-		clone.setActiveBrowserKey(getActiveBrowserKey());
 		clone.setActivePanelId(getActivePanelId());
 		clone.setMessage(getMessage());
 		clone.setPlaySound(getPlaySound());
@@ -233,8 +223,6 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		sb.append(getOnline());
 		sb.append(", awake=");
 		sb.append(getAwake());
-		sb.append(", activeBrowserKey=");
-		sb.append(getActiveBrowserKey());
 		sb.append(", activePanelId=");
 		sb.append(getActivePanelId());
 		sb.append(", message=");
@@ -274,10 +262,6 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		sb.append(getAwake());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>activeBrowserKey</column-name><column-value><![CDATA[");
-		sb.append(getActiveBrowserKey());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>activePanelId</column-name><column-value><![CDATA[");
 		sb.append(getActivePanelId());
 		sb.append("]]></column-value></column>");
@@ -300,7 +284,6 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 	private long _modifiedDate;
 	private boolean _online;
 	private boolean _awake;
-	private String _activeBrowserKey;
 	private String _activePanelId;
 	private String _message;
 	private boolean _playSound;

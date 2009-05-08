@@ -163,33 +163,26 @@ public class ClpSerializer {
 
 					method4.invoke(newModel, value4);
 
-					Method method5 = newModelClass.getMethod("setActiveBrowserKey",
+					Method method5 = newModelClass.getMethod("setActivePanelId",
 							new Class[] { String.class });
 
-					String value5 = oldCplModel.getActiveBrowserKey();
+					String value5 = oldCplModel.getActivePanelId();
 
 					method5.invoke(newModel, value5);
 
-					Method method6 = newModelClass.getMethod("setActivePanelId",
+					Method method6 = newModelClass.getMethod("setMessage",
 							new Class[] { String.class });
 
-					String value6 = oldCplModel.getActivePanelId();
+					String value6 = oldCplModel.getMessage();
 
 					method6.invoke(newModel, value6);
 
-					Method method7 = newModelClass.getMethod("setMessage",
-							new Class[] { String.class });
-
-					String value7 = oldCplModel.getMessage();
-
-					method7.invoke(newModel, value7);
-
-					Method method8 = newModelClass.getMethod("setPlaySound",
+					Method method7 = newModelClass.getMethod("setPlaySound",
 							new Class[] { Boolean.TYPE });
 
-					Boolean value8 = new Boolean(oldCplModel.getPlaySound());
+					Boolean value7 = new Boolean(oldCplModel.getPlaySound());
 
-					method8.invoke(newModel, value8);
+					method7.invoke(newModel, value7);
 
 					return newModel;
 				}
@@ -328,34 +321,26 @@ public class ClpSerializer {
 
 					newModel.setAwake(value4.booleanValue());
 
-					Method method5 = oldModelClass.getMethod(
-							"getActiveBrowserKey");
+					Method method5 = oldModelClass.getMethod("getActivePanelId");
 
 					String value5 = (String)method5.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setActiveBrowserKey(value5);
+					newModel.setActivePanelId(value5);
 
-					Method method6 = oldModelClass.getMethod("getActivePanelId");
+					Method method6 = oldModelClass.getMethod("getMessage");
 
 					String value6 = (String)method6.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setActivePanelId(value6);
+					newModel.setMessage(value6);
 
-					Method method7 = oldModelClass.getMethod("getMessage");
+					Method method7 = oldModelClass.getMethod("getPlaySound");
 
-					String value7 = (String)method7.invoke(oldModel,
+					Boolean value7 = (Boolean)method7.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setMessage(value7);
-
-					Method method8 = oldModelClass.getMethod("getPlaySound");
-
-					Boolean value8 = (Boolean)method8.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setPlaySound(value8.booleanValue());
+					newModel.setPlaySound(value7.booleanValue());
 
 					return newModel;
 				}

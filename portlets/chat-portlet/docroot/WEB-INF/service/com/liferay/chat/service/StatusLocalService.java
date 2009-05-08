@@ -98,10 +98,9 @@ public interface StatusLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public com.liferay.chat.model.Status updateStatus(long userId,
-		boolean online, boolean awake, java.lang.String activeBrowserKey,
-		java.lang.String activePanelId, java.lang.String message,
-		boolean playSound)
+	public com.liferay.chat.model.Status updateStatus(long userId, int online,
+		int awake, java.lang.String activePanelId, java.lang.String message,
+		int playSound)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 }

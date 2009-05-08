@@ -21,7 +21,6 @@
 		<property name="modifiedDate" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="online" column="online_" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="awake" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="activeBrowserKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="activePanelId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="message" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="playSound" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
