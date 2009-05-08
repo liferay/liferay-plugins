@@ -92,8 +92,8 @@ public class WorkflowDefinitionServiceImpl
 		long fileEntryId = 0;
 		String properties = StringPool.BLANK;
 		Date modifiedDate = new Date();
-		String[] tagsEntries = new String[0];
 		String[] tagsCategories = new String[0];
+		String[] tagsEntries = new String[0];
 		byte[] bytes = xml.getBytes();
 
 		try {
@@ -104,7 +104,7 @@ public class WorkflowDefinitionServiceImpl
 
 		DLServiceUtil.addFile(
 			companyId, portletId, groupId, repositoryId, fileName, fileEntryId,
-			properties, modifiedDate, tagsEntries, tagsCategories, bytes);
+			properties, modifiedDate, tagsCategories, tagsEntries, bytes);
 
 		// Resources
 
