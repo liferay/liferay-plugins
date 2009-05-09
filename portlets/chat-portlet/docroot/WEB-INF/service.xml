@@ -76,7 +76,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="UserId" return-type="Status">
+		<finder name="UserId" return-type="Status" unique="true">
 			<finder-column name="userId" />
 		</finder>
 		<finder name="ModifiedDate" return-type="Collection">

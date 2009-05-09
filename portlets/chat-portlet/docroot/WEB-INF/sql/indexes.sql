@@ -9,4 +9,4 @@ create index IX_16384BE6 on Chat_Entry (toUserId);
 create index IX_15BD544A on Chat_Status (modifiedDate);
 create index IX_B723B792 on Chat_Status (modifiedDate, online_);
 create index IX_32531B3D on Chat_Status (online_);
-create index IX_E17EBD79 on Chat_Status (userId);
+create unique index IX_E17EBD79 on Chat_Status (userId);
