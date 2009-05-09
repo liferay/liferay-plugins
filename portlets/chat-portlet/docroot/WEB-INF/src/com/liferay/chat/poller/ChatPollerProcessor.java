@@ -123,7 +123,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			buddiesJSON.put(curUserJSON);
 		}
 
-		pollerResponse.setParameter("buddies", buddiesJSON.toString());
+		pollerResponse.setParameter("buddies", buddiesJSON);
 	}
 
 	protected Map<Long, Long> getEntries(
@@ -182,7 +182,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			}
 		}
 
-		pollerResponse.setParameter("entries", entriesJSON.toString());
+		pollerResponse.setParameter("entries", entriesJSON);
 
 		return latestCreateDates;
 	}
