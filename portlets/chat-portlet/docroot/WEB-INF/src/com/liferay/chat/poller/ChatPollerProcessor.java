@@ -132,19 +132,18 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 
 		Map<Long, Long> latestCreateDates = new HashMap<Long, Long>();
 
-		long createDate = 0;
+		long createDate = getLong(pollerRequest, "createDate");
 
-		try {
-			Status status = StatusLocalServiceUtil.getUserStatus(
-				pollerRequest.getUserId());
+		if (createDate == -1) {
+			try {
+				Status status = StatusLocalServiceUtil.getUserStatus(
+					pollerRequest.getUserId());
 
-			createDate = status.getModifiedDate();
-		}
-		catch (NoSuchStatusException nsse) {
-		}
-
-		if (createDate <= 0) {
-			createDate = System.currentTimeMillis() - Time.MINUTE;
+				createDate = status.getModifiedDate();
+			}
+			catch (NoSuchStatusException nsse) {
+				createDate = System.currentTimeMillis() - Time.MINUTE;
+			}
 		}
 
 		List<Entry> entries = EntryLocalServiceUtil.getNewEntries(
@@ -160,6 +159,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		for (Entry entry : entries) {
 			JSONObject entryJSON = JSONFactoryUtil.createJSONObject();
 
+			entryJSON.put("entryId", entry.getEntryId());
 			entryJSON.put("createDate", entry.getCreateDate());
 			entryJSON.put("fromUserId", entry.getFromUserId());
 
