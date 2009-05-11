@@ -27,6 +27,8 @@ import com.liferay.chat.service.base.StatusLocalServiceBaseImpl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.util.List;
 
@@ -104,9 +106,25 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 			status.setPlaySound((playSound == 1) ? true : false);
 		}
 
-		statusPersistence.update(status, false);
+		try {
+			statusPersistence.update(status, false);
+		}
+		catch (SystemException se) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Add failed, fetch {userId=" + userId + "}");
+			}
+
+			status = statusPersistence.fetchByUserId(userId);
+
+			if (status == null) {
+				throw se;
+			}
+		}
 
 		return status;
 	}
+
+	private static Log _log =
+		LogFactoryUtil.getLog(StatusLocalServiceImpl.class);
 
 }
