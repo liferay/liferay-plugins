@@ -142,8 +142,10 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 				createDate = status.getModifiedDate();
 			}
 			catch (NoSuchStatusException nsse) {
-				createDate = System.currentTimeMillis() - Time.MINUTE;
+				createDate = System.currentTimeMillis();
 			}
+
+			createDate = createDate - Time.MINUTE;
 		}
 
 		List<Entry> entries = EntryLocalServiceUtil.getNewEntries(
