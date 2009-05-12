@@ -84,6 +84,18 @@
 			</p>
 
 			<%
+			String twitterSn = user2.getContact().getTwitterSn();
+			%>
+
+			<c:if test="Validator.isNotNull(twitterSn)">
+				<p>
+					<span class="user-twitter-sn"><liferay-ui:message key="twitter" /></span>
+
+					<a href="http://twitter.com/<%= twitterSn %>"><%= twitterSn %></a>
+				</p>
+			</c:if>
+
+			<%
 			String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK));
 			%>
 
