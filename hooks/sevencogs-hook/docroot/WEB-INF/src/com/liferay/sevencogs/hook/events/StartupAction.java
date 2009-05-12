@@ -132,17 +132,27 @@ public class StartupAction extends SimpleAction {
 
 		byte[] bytes = getBytes("/document_library/" + name);
 
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setAddCommunityPermissions(true);
+		serviceContext.setAddGuestPermissions(false);
+
 		return DLFileEntryLocalServiceUtil.addFileEntry(
-			userId, folderId, name, title, description, new String[0],
-			StringPool.BLANK, bytes, true, false);
+			userId, folderId, name, title, description, StringPool.BLANK, bytes,
+			serviceContext);
 	}
 
 	protected DLFolder addDLFolder(
 			long userId, long groupId, String name, String description)
 		throws Exception {
 
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setAddCommunityPermissions(true);
+		serviceContext.setAddGuestPermissions(false);
+
 		return DLFolderLocalServiceUtil.addFolder(
-			userId, groupId, 0, name, description, true, false);
+			userId, groupId, 0, name, description, serviceContext);
 	}
 
 	protected IGImage addIGImage(
@@ -172,7 +182,11 @@ public class StartupAction extends SimpleAction {
 		throws Exception {
 
 		String content = getString("/journal/articles/" + fileName);
-		PortletPreferences preferences = null;
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setAddCommunityPermissions(false);
+		serviceContext.setAddGuestPermissions(false);
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
@@ -180,11 +194,11 @@ public class StartupAction extends SimpleAction {
 				StringPool.BLANK, content, "general", structureId, templateId,
 				1, 1, 2008, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, true,
 				true, false, StringPool.BLANK, null, null, StringPool.BLANK,
-				preferences, new String[0], new String[0], false, false);
+				serviceContext);
 
 		JournalArticleLocalServiceUtil.approveArticle(
 			userId, groupId, journalArticle.getArticleId(),
-			journalArticle.getVersion(), StringPool.BLANK, preferences);
+			journalArticle.getVersion(), StringPool.BLANK, serviceContext);
 
 		return journalArticle;
 	}
@@ -194,9 +208,15 @@ public class StartupAction extends SimpleAction {
 
 		String xsd = getString("/journal/structures/single_image.xml");
 
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setAddCommunityPermissions(true);
+		serviceContext.setAddGuestPermissions(true);
+
 		return JournalStructureLocalServiceUtil.addStructure(
 			userId, groupId, "SINGLE-IMAGE", false, StringPool.BLANK,
-			"Single Image", "A single image, optional link", xsd, true, true);
+			"Single Image", "A single image, optional link", xsd,
+			serviceContext);
 	}
 
 	protected JournalTemplate addJournalTemplate(long userId, long groupId)
@@ -204,10 +224,15 @@ public class StartupAction extends SimpleAction {
 
 		String xsl = getString("/journal/templates/single_image.xml");
 
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setAddCommunityPermissions(true);
+		serviceContext.setAddGuestPermissions(true);
+
 		return JournalTemplateLocalServiceUtil.addTemplate (
 			userId, groupId, "SINGLE-IMAGE", false, "SINGLE-IMAGE",
 			"Single Image", "A single image, optional URL", xsl, true, "vm",
-			true, false, StringPool.BLANK,	null, true, true) ;
+			true, false, StringPool.BLANK,	null, serviceContext) ;
 	}
 
 	protected Layout addLayout(
