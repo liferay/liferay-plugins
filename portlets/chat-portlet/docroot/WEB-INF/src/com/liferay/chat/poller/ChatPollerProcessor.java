@@ -193,12 +193,13 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
+		long createDate = getLong(pollerRequest, "createDate");
 		long toUserId = getLong(pollerRequest, "toUserId");
 		String content = getString(pollerRequest, "content");
 
 		if (toUserId > 0) {
 			EntryLocalServiceUtil.addEntry(
-				pollerRequest.getUserId(), toUserId, content);
+				createDate, pollerRequest.getUserId(), toUserId, content);
 		}
 
 		Map<Long, Long> latestCreateDates = getEntries(
