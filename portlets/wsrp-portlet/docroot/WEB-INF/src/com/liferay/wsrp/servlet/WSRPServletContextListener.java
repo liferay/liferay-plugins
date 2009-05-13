@@ -32,8 +32,10 @@ import com.liferay.portal.model.Portlet;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.wsrp.WSRPFactoryUtil;
 import com.liferay.util.portlet.PortletProps;
+
 import com.liferay.wsrp.WSRPFactoryImpl;
 import com.liferay.wsrp.consumer.admin.WSRPPersistenceHelper;
+import com.liferay.wsrp.producer.usermanager.UserManagerImpl;
 
 import com.sun.portal.container.service.Service;
 import com.sun.portal.container.service.ServiceManager;
@@ -121,6 +123,14 @@ public class WSRPServletContextListener
 
 		WSRPPersistenceHelper wsrpPersistence =
 			WSRPPersistenceHelper.getInstance();
+
+		//create WSRP company, if not existing
+		try {
+			UserManagerImpl.getWSRPCompany();
+		}
+		catch (Exception e) {
+			_log.error(e);
+		}
 
 		if (isInitialDepoy()) {
 
