@@ -26,6 +26,7 @@ import com.liferay.chat.model.Entry;
 import com.liferay.chat.service.base.EntryLocalServiceBaseImpl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
@@ -51,6 +52,8 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		throws SystemException {
 
 		if (Validator.isNull(content)) {
+			content = StringPool.BLANK;
+
 			List<Entry> entries = entryFinder.findByEmptyContent(
 				fromUserId, toUserId, 0, 5);
 
