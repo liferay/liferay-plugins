@@ -186,6 +186,12 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 
 		pollerResponse.setParameter("entries", entriesJSON);
 
+		if (entriesJSON.length() > 0) {
+			pollerResponse.setParameter(
+				PollerResponse.POLLER_HINT_HIGH_CONNECTIVITY,
+				Boolean.TRUE.toString());
+		}
+
 		return latestCreateDates;
 	}
 
