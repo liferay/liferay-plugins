@@ -1082,7 +1082,8 @@ Liferay.Chat.FixBadBrowsers = function() {
 
 		chatBar.css('zIndex', zIndex + 100);
 
-		win.bind('scroll resize',
+		win.bind(
+			'scroll resize',
 			function(event) {
 				if (event.type == 'resize') {
 					frame = Liferay.Util.viewport.frame();
