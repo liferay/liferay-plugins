@@ -29,6 +29,7 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.List;
 
@@ -66,7 +67,14 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 	public Status getUserStatus(long userId)
 		throws PortalException, SystemException {
 
-		return statusPersistence.findByUserId(userId);
+		Status status = statusPersistence.fetchByUserId(userId);
+
+		if (status == null) {
+			status = statusLocalService.updateStatus(
+				userId, 1, 1, StringPool.BLANK, StringPool.BLANK, 1);
+		}
+
+		return status;
 	}
 
 	public Status updateStatus(

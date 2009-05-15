@@ -39,21 +39,12 @@
 	</liferay-util:html-bottom>
 
 	<%
-	boolean online = true;
-	String activePanelId = StringPool.BLANK;
-	String statusMessage = StringPool.BLANK;
-	boolean playSound = true;
+	Status status = StatusLocalServiceUtil.getUserStatus(themeDisplay.getUserId());
 
-	try {
-		Status status = StatusLocalServiceUtil.getUserStatus(themeDisplay.getUserId());
-
-		online = status.getOnline();
-		activePanelId = status.getActivePanelId();
-		statusMessage = HtmlUtil.escape(status.getMessage());
-		playSound = status.getPlaySound();
-	}
-	catch (NoSuchStatusException nsse) {
-	}
+	boolean online = status.getOnline();
+	String activePanelId = status.getActivePanelId();
+	String statusMessage = HtmlUtil.escape(status.getMessage());
+	boolean playSound = status.getPlaySound();
 
 	List<Object[]> buddies = ChatUtil.getBuddies(themeDisplay.getUserId());
 
