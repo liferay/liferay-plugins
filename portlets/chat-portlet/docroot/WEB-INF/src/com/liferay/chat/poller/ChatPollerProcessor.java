@@ -130,6 +130,8 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
+		long statusModifiedDate = 0;
+
 		Map<Long, Long> latestCreateDates = new HashMap<Long, Long>();
 
 		long createDate = getLong(pollerRequest, "createDate");
@@ -139,7 +141,9 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 				Status status = StatusLocalServiceUtil.getUserStatus(
 					pollerRequest.getUserId());
 
-				createDate = status.getModifiedDate();
+				statusModifiedDate = status.getModifiedDate();
+
+				createDate = statusModifiedDate;
 			}
 			catch (NoSuchStatusException nsse) {
 				createDate = System.currentTimeMillis();
@@ -182,15 +186,17 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 				latestCreateDates.put(
 					entry.getToUserId(), entry.getCreateDate());
 			}
+
+			if ((statusModifiedDate > 0) &&
+				(entry.getCreateDate() > statusModifiedDate)) {
+
+				pollerResponse.setParameter(
+					PollerResponse.POLLER_HINT_HIGH_CONNECTIVITY,
+					Boolean.TRUE.toString());
+			}
 		}
 
 		pollerResponse.setParameter("entries", entriesJSON);
-
-		if (entriesJSON.length() > 0) {
-			pollerResponse.setParameter(
-				PollerResponse.POLLER_HINT_HIGH_CONNECTIVITY,
-				Boolean.TRUE.toString());
-		}
 
 		return latestCreateDates;
 	}
