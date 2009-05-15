@@ -440,7 +440,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 					if ((status.getUserId() != userId)) {
 						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-							finderArgs, list);
+							finderArgs, status);
 					}
 				}
 

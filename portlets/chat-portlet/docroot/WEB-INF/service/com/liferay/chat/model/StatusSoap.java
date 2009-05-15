@@ -49,6 +49,33 @@ public class StatusSoap implements Serializable {
 		return soapModel;
 	}
 
+	public static StatusSoap[] toSoapModels(Status[] models) {
+		StatusSoap[] soapModels = new StatusSoap[models.length];
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModel(models[i]);
+		}
+
+		return soapModels;
+	}
+
+	public static StatusSoap[][] toSoapModels(Status[][] models) {
+		StatusSoap[][] soapModels = null;
+
+		if (models.length > 0) {
+			soapModels = new StatusSoap[models.length][models[0].length];
+		}
+		else {
+			soapModels = new StatusSoap[0][0];
+		}
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModels(models[i]);
+		}
+
+		return soapModels;
+	}
+
 	public static StatusSoap[] toSoapModels(List<Status> models) {
 		List<StatusSoap> soapModels = new ArrayList<StatusSoap>(models.size());
 
