@@ -29,38 +29,21 @@
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.chat.NoSuchStatusException" %>
-<%@ page import="com.liferay.chat.model.Entry" %>
 <%@ page import="com.liferay.chat.model.Status" %>
-<%@ page import="com.liferay.chat.service.EntryLocalServiceUtil" %>
 <%@ page import="com.liferay.chat.service.StatusLocalServiceUtil" %>
-<%@ page import="com.liferay.chat.util.comparator.BuddyComparator" %>
-<%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
-<%@ page import="com.liferay.portal.kernel.json.JSONArray" %>
-<%@ page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %>
-<%@ page import="com.liferay.portal.kernel.json.JSONObject" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
-<%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.ListUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.Time" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.model.ContactConstants" %>
 <%@ page import="com.liferay.portal.model.Portlet" %>
-<%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
-<%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
-<%@ page import="com.liferay.util.portlet.PortletProps" %>
 
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Collections" %>
-<%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.Map" %>
 
 <liferay-theme:defineObjects />

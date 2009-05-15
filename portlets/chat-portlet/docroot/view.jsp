@@ -54,11 +54,9 @@
 	}
 	catch (NoSuchStatusException nsse) {
 	}
-	%>
 
-	<%@ include file="/buddies.jsp" %>
+	List<Object[]> buddies = ChatUtil.getBuddies(themeDisplay.getUserId());
 
-	<%
 	int buddiesCount = buddies.size();
 	%>
 

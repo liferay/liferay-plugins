@@ -423,15 +423,15 @@ html body {
 .chat-height-monitor {
 	left: -10000em;
 	padding: 0;
-    position: absolute;
+	position: absolute;
 	top: -10000em;
 	white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
 }
 
 .ie .chat-height-monitor {
 	word-wrap: break-word;
-    zoom: 1;
+	zoom: 1;
 }
