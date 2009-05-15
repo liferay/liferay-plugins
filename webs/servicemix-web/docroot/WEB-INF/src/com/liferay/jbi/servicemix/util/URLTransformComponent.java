@@ -71,7 +71,7 @@ public class URLTransformComponent extends TransformComponentSupport {
 		}
 
 		try {
-			return HttpUtil.URLtoString(_url, null, parts, true);
+			return HttpUtil.URLtoString(_url, null, null, parts, true);
 		}
 		catch (IOException ioe) {
 			throw new MessagingException(ioe.getMessage());

@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.OpenSearch;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.util.portlet.PortletProps;
@@ -92,7 +93,8 @@ public class AlfrescoOpenSearchImpl implements OpenSearch {
 
 		try {
 			xml = HttpUtil.URLtoString(
-				url, HOST, PORT, REALM, USERNAME, PASSWORD);
+				url, null, new Http.Auth(HOST, PORT, REALM, USERNAME, PASSWORD),
+				(Http.Body)null, false);
 		}
 		catch (IOException ioe) {
 			_log.error("Unable to search with " + url, ioe);

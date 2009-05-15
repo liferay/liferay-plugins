@@ -42,7 +42,7 @@ public class URLTransformComponent
 		String xml = "<result />";
 
 		try {
-			xml = HttpUtil.URLtoString(url, null, parameters, true);
+			xml = HttpUtil.URLtoString(url, null, null, parameters, true);
 		}
 		catch (Exception e) {
 		}
