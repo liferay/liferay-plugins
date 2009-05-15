@@ -768,8 +768,8 @@ Liferay.Chat.Manager = {
 		instance._playSoundObj = settingsPanel.find('#playSound');
 
 		instance._statusMessage = instance._statusMessageObj.val() || '';
-		instance._online = instance._onlineObj.find('#').is(':checked') ? 1 : 0;
-		instance._playSound = instance._playSoundObj.find('#').is(':checked') ? 1 : 0;
+		instance._online = instance._onlineObj.find('#onlineStatus').is(':checked') ? 1 : 0;
+		instance._playSound = instance._playSoundObj.find('#playSound').is(':checked') ? 1 : 0;
 
 		saveSettings.click(
 			function(event) {
