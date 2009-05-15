@@ -102,7 +102,7 @@
 											String fullName = ContactConstants.getFullName(firstName, middleName, lastName);
 										%>
 
-											<li class="<%= awake ? "active" : "idle" %>" userId="<%= userId %>">
+											<li class="active" userId="<%= userId %>">
 												<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= portraitId %>">
 
 												<div class="name">
@@ -157,5 +157,6 @@
 		</div>
 
 		<input id="activePanelId" type="hidden" value="<%= activePanelId %>" />
+		<input id="chatPortletId" type="hidden" value="<%= portletDisplay.getId() %>" />
 	</div>
 </c:if>

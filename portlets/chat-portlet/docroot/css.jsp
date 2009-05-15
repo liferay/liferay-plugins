@@ -404,10 +404,34 @@ html body {
 	bottom: 0;
 	display: block;
 	float: left;
-	font: 11px/14px Tahoma, Geneva, sans-serif;
 	height: 14px;
 	overflow: hidden;
 	padding: 2px;
 	position: absolute;
 	width: 222px;
+}
+
+.panel-input textarea, .chat-height-monitor {
+	font: 11px/14px Tahoma, Geneva, sans-serif;
+}
+
+.panel-input textarea.focus, .ie6 .panel-input textarea.focus {
+	background: #fff;
+	border-width: 0;
+}
+
+.chat-height-monitor {
+	left: -10000em;
+	padding: 0;
+    position: absolute;
+	top: -10000em;
+	white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+}
+
+.ie .chat-height-monitor {
+	word-wrap: break-word;
+    zoom: 1;
 }
