@@ -156,7 +156,6 @@ Liferay.Chat.Panel = new Expanse.Class(
 			instance._panel.addClass('selected');
 
 			instance.trigger('show', instance);
-
 		},
 
 		suspendEvents: function(){
@@ -588,6 +587,18 @@ Liferay.Chat.Manager = {
 		instance._createSettingsPanel();
 	},
 
+	close: function(panelName) {
+		var instance = this;
+
+		if ((panelName != 'buddylist') && (panelName != 'settings')) {
+			var panel = instance._panels[panelName];
+
+			if (panel) {
+				panel.close();
+			}
+		}
+	},
+
 	getContainer: function() {
 		var instance = this;
 
@@ -606,7 +617,17 @@ Liferay.Chat.Manager = {
 		var panel = instance._panels[panelName];
 
 		if (panel) {
-			panel.addClass('selected');
+			panel.show();
+		}
+	},
+
+	toggle: function(panelName) {
+		var instance = this;
+
+		var panel = instance._panels[panelName];
+
+		if (panel) {
+			panel.toggle();
 		}
 	},
 
