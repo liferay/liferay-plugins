@@ -1091,7 +1091,9 @@ Liferay.Chat.FixBadBrowsers = function() {
 
 				var scrollTop = win.scrollTop();
 
-				if (event.type == 'resize' || (event.type == 'scroll' && scrollTop < maxPageScroll)) {
+				if ((event.type == 'resize') ||
+					((event.type == 'scroll') && (scrollTop < maxPageScroll))) {
+
 					chatBar.css('top', (scrollTop + frame.y) - chatBarHeight);
 					iframe.css('top', ((scrollTop + frame.y) - chatBarHeight));
 				}
