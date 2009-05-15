@@ -219,15 +219,26 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 
 		getBuddies(pollerRequest, pollerResponse, latestCreateDates);
 
-		updateStatus(pollerRequest);
+		updateStatus(pollerRequest, pollerResponse);
 	}
 
-	protected void updateStatus(PollerRequest pollerRequest) throws Exception {
+	protected void updateStatus(
+			PollerRequest pollerRequest, PollerResponse pollerResponse)
+		throws Exception {
+
 		int online = getInteger(pollerRequest, "online");
 		int awake = getInteger(pollerRequest, "awake");
 		String activePanelId = getString(pollerRequest, "activePanelId");
 		String statusMessage = getString(pollerRequest, "statusMessage");
 		int playSound = getInteger(pollerRequest, "playSound");
+
+		if ((online != -1) || (awake != -1) || (activePanelId != null) ||
+			(statusMessage != null) || (playSound != -1)) {
+
+			pollerResponse.setParameter(
+				PollerResponse.POLLER_HINT_HIGH_CONNECTIVITY,
+				Boolean.TRUE.toString());
+		}
 
 		StatusLocalServiceUtil.updateStatus(
 			pollerRequest.getUserId(), online, awake, activePanelId,
