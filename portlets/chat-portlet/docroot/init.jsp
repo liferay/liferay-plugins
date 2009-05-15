@@ -31,6 +31,7 @@
 <%@ page import="com.liferay.chat.NoSuchStatusException" %>
 <%@ page import="com.liferay.chat.model.Status" %>
 <%@ page import="com.liferay.chat.service.StatusLocalServiceUtil" %>
+<%@ page import="com.liferay.chat.util.ChatUtil" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
