@@ -797,7 +797,7 @@ Liferay.Chat.Manager = {
 		}
 
 		if (!instance._entryIds) {
-			instance._entryIds = [];
+			instance._entryIds = [0];
 		}
 
 		var entryCache = instance._entryCache;
