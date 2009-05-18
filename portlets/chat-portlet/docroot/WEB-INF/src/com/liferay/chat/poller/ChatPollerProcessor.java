@@ -28,26 +28,21 @@ import com.liferay.chat.model.Status;
 import com.liferay.chat.service.EntryLocalServiceUtil;
 import com.liferay.chat.service.StatusLocalServiceUtil;
 import com.liferay.chat.util.ChatUtil;
-import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.poller.BasePollerProcessor;
-import com.liferay.portal.kernel.poller.PollerException;
 import com.liferay.portal.kernel.poller.PollerRequest;
 import com.liferay.portal.kernel.poller.PollerResponse;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Time;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ContactConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * <a href="ChatPollerProcessor.java.html"><b><i>View Source</i></b></a>
@@ -57,21 +52,19 @@ import java.util.Map;
  */
 public class ChatPollerProcessor extends BasePollerProcessor {
 
-	public void process(
-			PollerRequest pollerRequest, PollerResponse pollerResponse)
-		throws PollerException {
+	protected void addEntry(PollerRequest pollerRequest) throws Exception {
+		long toUserId = getLong(pollerRequest, "toUserId");
+		String content = getString(pollerRequest, "content");
 
-		try {
-			doProcess(pollerRequest, pollerResponse);
-		}
-		catch (Exception e) {
-			throw new PollerException(e);
+		if (toUserId > 0) {
+			EntryLocalServiceUtil.addEntry(
+				pollerRequest.getTimestamp(), pollerRequest.getUserId(),
+				toUserId, content);
 		}
 	}
 
 	protected void getBuddies(
-			PollerRequest pollerRequest, PollerResponse pollerResponse,
-			Map<Long, Long> latestCreateDates)
+			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
 		List<Object[]> buddies = ChatUtil.getBuddies(pollerRequest.getUserId());
@@ -105,12 +98,6 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			catch (NoSuchStatusException nsse) {
 			}
 
-			Long latestCreateDate = latestCreateDates.get(userId);
-
-			if (latestCreateDate == null) {
-				latestCreateDate = new Long(0);
-			}
-
 			JSONObject curUserJSON = JSONFactoryUtil.createJSONObject();
 
 			curUserJSON.put("userId", userId);
@@ -118,7 +105,6 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			curUserJSON.put("portraitId", portraitId);
 			curUserJSON.put("awake", awake);
 			curUserJSON.put("statusMessage", statusMessage);
-			curUserJSON.put("latestCreateDate", latestCreateDate.longValue());
 
 			buddiesJSON.put(curUserJSON);
 		}
@@ -126,35 +112,37 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		pollerResponse.setParameter("buddies", buddiesJSON);
 	}
 
-	protected Map<Long, Long> getEntries(
+	protected void getEntries(
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
-		long statusModifiedDate = 0;
+		long createDate = pollerRequest.getTimestamp();
 
-		Map<Long, Long> latestCreateDates = new HashMap<Long, Long>();
+		try {
+			Status status = StatusLocalServiceUtil.getUserStatus(
+				pollerRequest.getUserId());
 
-		long createDate = getLong(pollerRequest, "createDate");
+			createDate = status.getModifiedDate();
 
-		if (createDate == -1) {
-			try {
-				Status status = StatusLocalServiceUtil.getUserStatus(
-					pollerRequest.getUserId());
+			long onlineTimestamp =
+				status.getModifiedDate() + ChatUtil.ONLINE_DELTA -
+					ChatUtil.MAX_POLL_LATENCY;
 
-				statusModifiedDate = status.getModifiedDate();
-
-				createDate = statusModifiedDate;
+			if (onlineTimestamp < System.currentTimeMillis()) {
+				StatusLocalServiceUtil.updateStatus(
+					pollerRequest.getUserId(), pollerRequest.getTimestamp());
 			}
-			catch (NoSuchStatusException nsse) {
-				createDate = System.currentTimeMillis();
-			}
+		}
+		catch (NoSuchStatusException nsse) {
+			createDate = System.currentTimeMillis();
+		}
 
-			createDate = createDate - Time.MINUTE;
+		if (pollerRequest.isInitialRequest()) {
+			createDate = createDate - Time.DAY;
 		}
 
 		List<Entry> entries = EntryLocalServiceUtil.getNewEntries(
-			pollerRequest.getUserId(), createDate, 0,
-			SearchContainer.DEFAULT_DELTA);
+			pollerRequest.getUserId(), createDate, 0, ChatUtil.MAX_ENTRIES);
 
 		entries = ListUtil.copy(entries);
 
@@ -181,51 +169,31 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			entryJSON.put("content", HtmlUtil.escape(entry.getContent()));
 
 			entriesJSON.put(entryJSON);
-
-			if (Validator.isNotNull(entry.getContent())) {
-				latestCreateDates.put(
-					entry.getToUserId(), entry.getCreateDate());
-			}
-
-			if ((statusModifiedDate > 0) &&
-				(entry.getCreateDate() > statusModifiedDate)) {
-
-				pollerResponse.setParameter(
-					PollerResponse.POLLER_HINT_HIGH_CONNECTIVITY,
-					Boolean.TRUE.toString());
-			}
 		}
 
 		pollerResponse.setParameter("entries", entriesJSON);
 
-		return latestCreateDates;
-	}
-
-	protected void doProcess(
-			PollerRequest pollerRequest, PollerResponse pollerResponse)
-		throws Exception {
-
-		long createDate = getLong(pollerRequest, "createDate");
-		long toUserId = getLong(pollerRequest, "toUserId");
-		String content = getString(pollerRequest, "content");
-
-		if (toUserId > 0) {
-			EntryLocalServiceUtil.addEntry(
-				createDate, pollerRequest.getUserId(), toUserId, content);
+		if (!entries.isEmpty()) {
+			pollerResponse.setParameter(
+				PollerResponse.POLLER_HINT_HIGH_CONNECTIVITY,
+				Boolean.TRUE.toString());
 		}
-
-		Map<Long, Long> latestCreateDates = getEntries(
-			pollerRequest, pollerResponse);
-
-		getBuddies(pollerRequest, pollerResponse, latestCreateDates);
-
-		updateStatus(pollerRequest, pollerResponse);
 	}
 
-	protected void updateStatus(
+	protected void doReceive(
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
+		getBuddies(pollerRequest, pollerResponse);
+		getEntries(pollerRequest, pollerResponse);
+	}
+
+	protected void doSend(PollerRequest pollerRequest) throws Exception {
+		addEntry(pollerRequest);
+		updateStatus(pollerRequest);
+	}
+
+	protected void updateStatus(PollerRequest pollerRequest) throws Exception {
 		int online = getInteger(pollerRequest, "online");
 		int awake = getInteger(pollerRequest, "awake");
 		String activePanelId = getString(pollerRequest, "activePanelId");
@@ -235,14 +203,10 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		if ((online != -1) || (awake != -1) || (activePanelId != null) ||
 			(statusMessage != null) || (playSound != -1)) {
 
-			pollerResponse.setParameter(
-				PollerResponse.POLLER_HINT_HIGH_CONNECTIVITY,
-				Boolean.TRUE.toString());
+			StatusLocalServiceUtil.updateStatus(
+				pollerRequest.getUserId(), pollerRequest.getTimestamp(), online,
+				awake, activePanelId, statusMessage, playSound);
 		}
-
-		StatusLocalServiceUtil.updateStatus(
-			pollerRequest.getUserId(), online, awake, activePanelId,
-			statusMessage, playSound);
 	}
 
 }

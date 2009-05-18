@@ -41,10 +41,16 @@ import java.util.List;
  */
 public class ChatUtil {
 
+	public static final int MAX_ENTRIES = 50;
+
+	public static final long MAX_POLL_LATENCY = Time.SECOND * 15;
+
+	public static final long ONLINE_DELTA = Time.MINUTE;
+
 	public static List<Object[]> getBuddies(long userId)
 		throws SystemException {
 
-		long modifiedDate = System.currentTimeMillis() - Time.MINUTE;
+		long modifiedDate = System.currentTimeMillis() - ONLINE_DELTA;
 
 		List<Object[]> buddies = null;
 

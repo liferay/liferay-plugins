@@ -71,15 +71,22 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 
 		if (status == null) {
 			status = statusLocalService.updateStatus(
-				userId, 1, 1, StringPool.BLANK, StringPool.BLANK, 1);
+				userId, System.currentTimeMillis(), 1, 1, StringPool.BLANK,
+				StringPool.BLANK, 1);
 		}
 
 		return status;
 	}
 
+	public Status updateStatus(long userId, long modifiedDate)
+		throws PortalException, SystemException {
+
+		return updateStatus(userId, modifiedDate, -1, -1, null, null, -1);
+	}
+
 	public Status updateStatus(
-			long userId, int online, int awake, String activePanelId,
-			String message, int playSound)
+			long userId, long modifiedDate, int online, int awake,
+			String activePanelId, String message, int playSound)
 		throws PortalException, SystemException {
 
 		Status status = statusPersistence.fetchByUserId(userId);
@@ -92,7 +99,7 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 			status.setUserId(userId);
 		}
 
-		status.setModifiedDate(System.currentTimeMillis());
+		status.setModifiedDate(modifiedDate);
 
 		if (online != -1) {
 			status.setOnline((online == 1) ? true : false);
