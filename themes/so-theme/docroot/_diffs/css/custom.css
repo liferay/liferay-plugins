@@ -469,6 +469,12 @@ ie6 textarea.focus {
 
 /* ---------- Portlet ---------- */
 
+/* Asset Publisher */
+
+.portlet-asset-publisher .portlet-title {
+	margin-bottom: 12px;
+}
+
 /* Blogs */
 
 .portlet-blogs .entry-content {

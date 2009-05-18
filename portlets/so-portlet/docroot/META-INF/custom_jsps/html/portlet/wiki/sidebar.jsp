@@ -80,7 +80,7 @@
 			</div>
 		</c:if>
 
-		<c:if test="<%= themeDisplay.isSignedIn() && PortletPermissionUtil.contains(permissionChecker, plid, PortletKeys.WIKI, ActionKeys.ADD_NODE) %>">
+		<c:if test="<%= WikiPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_NODE) %>">
 			<div class="quick-links">
 				<h2><liferay-ui:message key="quick-links" /></h2>
 
