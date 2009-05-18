@@ -3,7 +3,7 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>5.2.0+</version>
+		<version>5.3.0+</version>
 	</compatibility>
 	<theme id="so" name="Social Office">
 		<root-path>/</root-path>
