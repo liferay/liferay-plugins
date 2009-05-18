@@ -28,7 +28,6 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.chat.NoSuchStatusException" %>
 <%@ page import="com.liferay.chat.model.Status" %>
 <%@ page import="com.liferay.chat.service.StatusLocalServiceUtil" %>
 <%@ page import="com.liferay.chat.util.ChatUtil" %>

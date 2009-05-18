@@ -116,26 +116,10 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
-		long createDate = pollerRequest.getTimestamp();
+		Status status = StatusLocalServiceUtil.getUserStatus(
+			pollerRequest.getUserId());
 
-		try {
-			Status status = StatusLocalServiceUtil.getUserStatus(
-				pollerRequest.getUserId());
-
-			createDate = status.getModifiedDate();
-
-			long onlineTimestamp =
-				status.getModifiedDate() + ChatUtil.ONLINE_DELTA -
-					ChatUtil.MAX_POLL_LATENCY;
-
-			if (onlineTimestamp < System.currentTimeMillis()) {
-				StatusLocalServiceUtil.updateStatus(
-					pollerRequest.getUserId(), pollerRequest.getTimestamp());
-			}
-		}
-		catch (NoSuchStatusException nsse) {
-			createDate = System.currentTimeMillis();
-		}
+		long createDate = status.getModifiedDate();
 
 		if (pollerRequest.isInitialRequest()) {
 			createDate = createDate - Time.DAY;
@@ -178,6 +162,26 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 				PollerResponse.POLLER_HINT_HIGH_CONNECTIVITY,
 				Boolean.TRUE.toString());
 		}
+
+		boolean updateStatus = false;
+
+		if (!entries.isEmpty()) {
+			updateStatus = true;
+		}
+		else {
+			long onlineTimestamp =
+				status.getModifiedDate() + ChatUtil.ONLINE_DELTA -
+					ChatUtil.MAX_POLL_LATENCY;
+
+			if (onlineTimestamp < pollerRequest.getTimestamp()) {
+				updateStatus = true;
+			}
+		}
+
+		if (updateStatus) {
+			StatusLocalServiceUtil.updateStatus(
+				pollerRequest.getUserId(), pollerRequest.getTimestamp());
+		}
 	}
 
 	protected void doReceive(
@@ -194,6 +198,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 	}
 
 	protected void updateStatus(PollerRequest pollerRequest) throws Exception {
+		long timestamp = -1;
 		int online = getInteger(pollerRequest, "online");
 		int awake = getInteger(pollerRequest, "awake");
 		String activePanelId = getString(pollerRequest, "activePanelId");
@@ -204,8 +209,8 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			(statusMessage != null) || (playSound != -1)) {
 
 			StatusLocalServiceUtil.updateStatus(
-				pollerRequest.getUserId(), pollerRequest.getTimestamp(), online,
-				awake, activePanelId, statusMessage, playSound);
+				pollerRequest.getUserId(), timestamp, online, awake,
+				activePanelId, statusMessage, playSound);
 		}
 	}
 

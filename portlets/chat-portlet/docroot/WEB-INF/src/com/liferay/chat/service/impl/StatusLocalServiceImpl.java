@@ -99,7 +99,9 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 			status.setUserId(userId);
 		}
 
-		status.setModifiedDate(modifiedDate);
+		if (modifiedDate != -1) {
+			status.setModifiedDate(modifiedDate);
+		}
 
 		if (online != -1) {
 			status.setOnline((online == 1) ? true : false);
