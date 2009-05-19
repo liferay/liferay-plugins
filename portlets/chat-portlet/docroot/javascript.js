@@ -377,8 +377,6 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend(
 				instance.setTyping(false);
 			}
 
-			instance._lastMessageTime = entry.createDate;
-
 			if (entry.statusMessage) {
 				instance._statusMessage.text(entry.statusMessage);
 			}
@@ -446,12 +444,6 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend(
 			var chatInputEl = instance._chatInput[0];
 			var content = chatInputEl.value.replace(/\n|\r/gim, '');
 
-			if (event.keyCode == 13 && !event.shiftKey && content.length) {
-				instance._sendChat(chatInputEl.value);
-
-				chatInputEl.value = '';
-			}
-
 			if (event.type == 'keyup') {
 				if (instance.get('typedTo') == userId) {
 					instance.send(
@@ -463,6 +455,12 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend(
 				}
 
 				instance.set('typedTo', userId);
+			}
+
+			if (event.keyCode == 13 && !event.shiftKey && content.length) {
+				instance._sendChat(chatInputEl.value);
+
+				chatInputEl.value = '';
 			}
 
 			instance._autoSize();
@@ -479,7 +477,6 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend(
 			instance.send(
 				{
 					content: content,
-					createDate: createDate,
 					toUserId: userId
 				}
 			);
@@ -573,13 +570,6 @@ Liferay.Chat.Manager = {
 
 		instance._sound = new SWFObject('/chat-portlet/alert.swf', 'alertsound', '0', '0', '8');
 		instance._soundContainer = instance._chatContainer.find('.chat-sound');
-
-		instance.send(
-			{
-				createDate: Liferay.Chat.Util.getCurrentTimestamp() - Liferay.Chat.Util.TIMESTAMP_24
-			},
-			'cacheRequest'
-		);
 
 		Liferay.Poller.addListener(instance._portletId, instance._onPollerUpdate, instance);
 
@@ -885,7 +875,11 @@ Liferay.Chat.Manager = {
 
 		instance._updateBuddies(response.buddies);
 
-		if (chunkId == 'cacheRequest') {
+		if (instance._cacheLoaded) {
+			instance._updateConversations(response.entries);
+		}
+
+		if (response.initialRequest) {
 			instance._loadCache(response.entries);
 
 			if (instance._activePanelId.length) {
@@ -895,9 +889,8 @@ Liferay.Chat.Manager = {
 					instance._createChatFromUser(instance._activePanelId);
 				}
 			}
-		}
-		else {
-			instance._updateConversations(response.entries);
+
+			instance._cacheLoaded = true;
 		}
 	},
 
