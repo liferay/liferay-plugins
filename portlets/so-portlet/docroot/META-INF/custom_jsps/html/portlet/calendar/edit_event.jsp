@@ -21,4 +21,8 @@
 
 <liferay-util:include page="/html/portlet/calendar/sidebar.jsp" />
 
-<liferay-util:include page="/html/portlet/calendar/edit_event.portal.jsp" />
+<liferay-util:buffer var="html">
+	<liferay-util:include page="/html/portlet/calendar/edit_event.portal.jsp" />
+</liferay-util:buffer>
+
+<%= StringUtil.replace(html, "_8_fm", "_8_fm2") %>

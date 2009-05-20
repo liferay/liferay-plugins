@@ -25,6 +25,14 @@ String redirect = ParamUtil.getString(request, "redirect");
 CalEvent event = (CalEvent)request.getAttribute(WebKeys.CALENDAR_EVENT);
 %>
 
+<script type="text/javascript">
+	function <portlet:namespace />updatePopup(editURL) {
+		var popup = jQuery('.calendar-dialog .ui-dialog-content');
+
+		<portlet:namespace />displayPopup(popup, editURL, "Calendar Event");
+	};
+</script>
+
 <liferay-util:include page="/html/portlet/calendar/sidebar.jsp" />
 
 <liferay-util:include page="/html/portlet/calendar/view_event.portal.jsp" />
@@ -32,13 +40,13 @@ CalEvent event = (CalEvent)request.getAttribute(WebKeys.CALENDAR_EVENT);
 <c:if test="<%= CalEventPermission.contains(permissionChecker, event, ActionKeys.UPDATE) %>">
 	<br />
 
-	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
+	<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="editURL">
 		<portlet:param name="struts_action" value="/calendar/edit_event" />
 		<portlet:param name="redirect" value="<%= redirect %>" />
 		<portlet:param name="eventId" value="<%= String.valueOf(event.getEventId()) %>" />
 	</portlet:renderURL>
 
-	<input type="button" value="<liferay-ui:message key="edit" />" onclick="location.href = '<%= HtmlUtil.escape(editURL) %>';" />
+	<input type="button" value="<liferay-ui:message key="edit" />" onclick="<portlet:namespace />updatePopup('<%= HtmlUtil.escape(editURL) %>');" />
 </c:if>
 
 <c:if test="<%= CalEventPermission.contains(permissionChecker, event, ActionKeys.DELETE) %>">
