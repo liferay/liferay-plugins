@@ -8,19 +8,19 @@ Liferay.SO.Profiles = {
 	},
 
 	displayUserProfile: function(userId) {
-		jQuery('.so-portlet-invite-members .invite-members-wrapper').hide();
-		jQuery('.so-portlet-profiles .profile-wrapper').show();
+		this._loadProfileAction(userId, 'user_profile');
+	},
 
-		jQuery.ajax(
-			{
-				url: themeDisplay.getLayoutURL() + '/-/profiles/user_profile',
-				data: {userId: userId},
-				success: function(result) {
-					jQuery('.profile-wrapper').html(result);
-				},
-				type: 'POST'
-			}
-		);
+	editUserProfile: function(userId) {
+		this._loadProfileAction(userId, 'edit_profile');
+	},
+
+	editUserProjects: function(userId) {
+		this._loadProfileAction(userId, 'edit_projects');
+	},
+
+	editUserSettings: function(userId) {
+		this._loadProfileAction(userId, 'edit_settings');
 	},
 
 	_assignEvents: function() {
@@ -33,5 +33,27 @@ Liferay.SO.Profiles = {
 				instance.displayUserProfile(userId);
 			}
 		);
+	},
+
+	_loadProfileAction: function(userId, action) {
+		var instance = this;
+
+		instance._showProfile();
+
+		jQuery.ajax(
+			{
+				url: themeDisplay.getLayoutURL() + '/-/profiles/' + action,
+				data: {userId: userId},
+				success: function(result) {
+					jQuery('.profile-wrapper').html(result);
+				},
+				type: 'POST'
+			}
+		);
+	},
+
+	_showProfile: function() {
+		jQuery('.so-portlet-invite-members .invite-members-wrapper').hide();
+		jQuery('.so-portlet-profiles .profile-wrapper').show();
 	}
-}
+};

@@ -16,8 +16,15 @@
 				<li class="my-home">
 					<a class="heading" href="$themeDisplay.getPathFriendlyURLPublic()/$user.getScreenName()/home">#language ("my-home")</a>
 				</li>
+
+				#if ($permissionChecker.isOmniadmin())
+					<li class="control-panel">
+						<a class="heading" href="$my_account_url">#language ("control-panel")</a>
+					</li>
+				#end
+
 				<li class="my-profile">
-					<a class="heading" href="$my_account_url">#language ("my-profile")</a>
+					<a class="heading" href="$themeDisplay.getPathFriendlyURLPublic()/$user.getScreenName()/profile">#language ("my-profile")</a>
 				</li>
 				<li class="my-sites">
 					<a class="heading" href="javascript:;">#language ("my-sites")</a>

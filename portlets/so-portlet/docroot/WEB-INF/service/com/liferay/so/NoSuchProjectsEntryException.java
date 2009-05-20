@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2008-2009 Liferay, Inc. All rights reserved.
  *
@@ -15,8 +14,34 @@
  * You should have received a copy of the GNU General Public License along with
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
-%>
 
-<div class="profile-wrapper">
-	<%@ include file="/profiles/user_profile.jsp" %>
-</div>
+package com.liferay.so;
+
+import com.liferay.portal.PortalException;
+
+/**
+ * <a href="NoSuchProjectsEntryException.java.html"><b><i>View Source</i></b>
+ * </a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class NoSuchProjectsEntryException extends PortalException {
+
+	public NoSuchProjectsEntryException() {
+		super();
+	}
+
+	public NoSuchProjectsEntryException(String msg) {
+		super(msg);
+	}
+
+	public NoSuchProjectsEntryException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public NoSuchProjectsEntryException(Throwable cause) {
+		super(cause);
+	}
+
+}

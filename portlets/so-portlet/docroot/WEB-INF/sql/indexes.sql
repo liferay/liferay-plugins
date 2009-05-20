@@ -1,0 +1,1 @@
+create index IX_3371C715 on SO_ProjectsEntry (userId);

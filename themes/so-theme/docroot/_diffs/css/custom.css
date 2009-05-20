@@ -116,6 +116,7 @@ body #banner h1.logo a {
 	background: #F6F9FB;
 }
 
+#navigation-top .control-panel,
 #navigation-top .my-profile {
 	border-left: 1px solid #B0BAFF;
 }
@@ -243,7 +244,7 @@ body #banner h1.logo a {
 }
 
 .portlet-boundary h3 {
-	border-bottom: 1px solid #DEDEDE;
+	border-bottom: 1px solid #C0C0C0;
 	color: #3E3639;
 	font-size: 1.1em;
 }
@@ -412,11 +413,9 @@ textarea,
 	color: #555;
 }
 
-#wrapper input[type="password"].focus,
+input[type="password"]:focus,
 input.focus,
-textarea.focus,
-.ie6 input.focus,
-ie6 textarea.focus {
+textarea.focus {
 	background: #FFF6ED;
 	border: 1px solid #FC9;
 }
@@ -932,7 +931,7 @@ table.calendar {
 	display: none;
 }
 
-.so-portlet-members .portlet-section-body .col-1 {
+.so-portlet-members .taglib-search-iterator .col-1 {
 	width: 35px;
 }
 
@@ -943,20 +942,11 @@ table.calendar {
 /* SO: Profiles */
 
 .so-portlet-profiles td {
-	padding: 0 2em 0 0;
+	vertical-align: top;
 }
 
 .so-portlet-profiles .profile-area {
-	padding: 5px 25px 5px 5px;
-	white-space: nowrap;
-}
-
-.so-portlet-profiles .profile-wrapper td {
-	padding: 0 1em 0 0;
-}
-
-.so-portlet-profiles .user-detail {
-	margin-bottom: 1em;
+	padding: 0 0 15px 15px;
 }
 
 .so-portlet-profiles .user-name {
@@ -964,145 +954,141 @@ table.calendar {
 	font-weight: bold;
 }
 
-.so-portlet-profiles .user-password-form {
-	display: none;
-}
-
 .so-portlet-profiles .user-title {
 	font-size: 1.3em;
 	line-height: 1.6em;
 }
 
-.so-portlet-profiles .user-tags {
-	margin-top: 1em;
+.so-portlet-profiles .lfr-label {
+	padding-right: 1em;
 }
 
-.so-portlet-profiles .profile-area h3 {
+.so-portlet-profiles h3 {
+	color: #8F0920;
+}
+
+.so-portlet-profiles .project {
+	border-bottom: 1px solid #E2E2E2;
+}
+
+.so-portlet-profiles .project h4 {
+	color: #514849;
+	font-size: bold;
+	margin: 1em 0;
 	position: relative;
 }
 
-.so-portlet-profiles .profile-area h3 span {
+.so-portlet-profiles .project h4 span {
+	color: #999;
 	position: absolute;
-	right: 5px;
+	right: 0;
+	top: 0;
 }
 
-.so-portlet-profiles .profile-area .lfr-label {
-	vertical-align: middle;
+.so-portlet-profiles .project-footer {
+	font-size: 0.9em;
 }
 
-.so-portlet-profiles .profile-area .editable input[type=text] {
-	width: 100px !important;
+.so-portlet-profiles .project-footer span {
+	color: #514849;
+	font-weight: bold;
+	margin-right: .5em;
 }
 
-.so-portlet-profiles .profile-area .editable {
-	padding: 2px 25px 2px 2px;
+.so-portlet-profiles .extend-information {
+	width: 100%;
 }
 
-.so-portlet-profiles .profile-area .hover .editable {
-	background: #FFC url(../images/common/edit.png) no-repeat right;
+.so-portlet-profiles .extend-information .column-1 {
+	width: 70%;
 }
 
-.so-portlet-profiles .profile-area .delete {
-	display: none;
-	margin-right: -50px;
+.so-portlet-profiles .extend-information .column-2 {
+	width: 30%;
 }
 
-.so-portlet-profiles .profile-area .delete img {
-	vertical-align: top;
-}
-
-.so-portlet-profiles .profile-area .hover .delete {
-	display: inline;
-}
-
-.so-portlet-profiles .profile-area .portlet-msg-info {
-	margin: 0;
-	padding: 0 0 0 25px;
-}
-
-.so-portlet-profiles .address-form,
-.so-portlet-profiles .phone-number-form,
-.so-portlet-profiles .website-form {
-	display: none;
+.so-portlet-profiles .profile-controls {
+	margin-top: 1em;
 }
 
 .so-portlet-profiles .user-address {
 	float: left;
-	margin: 0 2em 1em 0;
-	padding: 5px 25px 5px 5px;
-	position: relative;
+	padding: 0 25px 5px 5px;
 }
 
-.so-portlet-profiles .user-address.hover {
-	background: #FFC;
-}
-
-.so-portlet-profiles .user-address .user-address-controls {
-	display: none;
-	position: absolute;
-	right: -15px;
-	top: 15px;
-}
-
-.so-portlet-profiles .user-address.hover .user-address-controls {
-	display: block;
-}
-
-.so-portlet-profiles .phone-number {
-	float: left;
-	padding: 5px 25px 5px 5px;
-	position: relative;
-}
-
-.so-portlet-profiles .phone-number.hover {
-	background: #FFC;
-}
-
-.so-portlet-profiles .phone-number .phone-number-controls {
-	display: none;
-	position: absolute;
-	right: -15px;
-	top: 5px;
-}
-
-.so-portlet-profiles .phone-number.hover .phone-number-controls {
-	display: block;
-}
-
-.so-portlet-profiles .website {
-	float: left;
-	margin-right: 20px;
-	padding: 5px 25px 5px 5px;
-	position: relative;
-}
-
-.so-portlet-profiles .website.hover {
-	background: #FFC;
-}
-
-.so-portlet-profiles .website .website-controls {
-	display: none;
-	position: absolute;
-	right: -15px;
-	top: 5px;
-}
-
-.so-portlet-profiles .website.hover .website-controls {
-	display: block;
-}
-
-.so-portlet-profiles .site-name,
-.so-portlet-profiles .user-address .line-1 {
-	color: #555;
+.so-portlet-profiles .site-name a {
 	font-weight: bold;
 }
 
-.so-portlet-profiles .user-site {
-	margin-bottom: 1em;
+.so-portlet-profiles .edit-profile td {
+	padding-bottom: .5em;
 }
 
-.so-portlet-profiles .site-description {
-	margin-left: 1.5em;
+.so-portlet-profiles .edit-profile .lfr-label {
+	width: 20%;
+}
+
+.so-portlet-profiles .profile-controls a {
+	display: block;
+	white-space: nowrap;
+}
+
+.so-portlet-profiles .edit-profile .first {
+	margin-top: 0;
+}
+
+.so-portlet-profiles fieldset {
+	border: none;
+	padding: 0;
+}
+
+.so-portlet-profiles .row-fields .col {
+	float: left;
+	margin-right: 1em;
+}
+
+.so-portlet-profiles .lfr-form-row {
+	border-bottom: 1px solid #EEE;
+	padding: 0 0 5px;
+}
+
+.so-portlet-profiles .portlet-msg-info.undo-queue {
+	display: none;
+}
+
+.so-portlet-profiles #addresses .ctrl-holder,
+.so-portlet-profiles #projectsEntries .ctrl-holder {
+	margin-bottom: 3px;
+}
+
+.so-portlet-profiles #additionalEmailAddresses .ctrl-holder,
+.so-portlet-profiles #phoneNumbers .ctrl-holder,
+.so-portlet-profiles #websites .ctrl-holder {
+	float: left;
+	margin-right: 1em;
+}
+
+.so-portlet-profiles #additionalEmailAddresses label,
+.so-portlet-profiles #addresses label,
+.so-portlet-profiles #phoneNumbers label,
+.so-portlet-profiles #projectsEntries label,
+.so-portlet-profiles #websites label {
+	color: #999;
+	display: block;
+	font-size: 10px;
+}
+
+.so-portlet-profiles #projectsEntries .date-selectors {
+	height: 41px;
+}
+
+.so-portlet-profiles #projectsEntries .date-selectors .ctrl-holder {
+	float: left;
+	margin-right: 2em;
+}
+
+.so-portlet-profiles #projectsEntries .ctrl-holder.last {
+	margin-bottom: 25px;
 }
 
 /* TMS: Tasks */

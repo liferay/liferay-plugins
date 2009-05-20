@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.liferay.so">
+	<namespace>SO</namespace>
+	<entity name="ProjectsEntry" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="projectsEntryId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="title" type="String" />
+		<column name="description" type="String" />
+		<column name="startDate" type="Date" />
+		<column name="endDate" type="Date" />
+		<column name="data" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="endDate" />
+		</order>
+		
+		<!-- Finder methods -->
+
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
+	</entity>
+	<exceptions>
+		<exception>ProjectsEntryEndDate</exception>
+		<exception>ProjectsEntryStartDate</exception>
+	</exceptions>
+</service-builder>

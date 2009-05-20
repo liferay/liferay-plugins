@@ -62,9 +62,19 @@ else {
 			<td valign="top">
 				<div>
 					<img alt="<%= curUser.getFullName() %>" src="<%= themeDisplay.getPathImage() %>/user_<%= (curUser.isFemale() ? "female" : "male") %>_portrait?img_id=<%= curUser.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(curUser.getPortraitId()) %>" />
+
+					<c:if test="<%= curUser.getUserId() == user.getUserId() %>">
+						<div class="profile-controls">
+							<a href="javascript: ;" onClick="Liferay.SO.Profiles.editUserProfile(<%= curUser.getUserId() %>);"><liferay-ui:message key="edit-profile" /></a>
+
+							<a href="javascript: ;" onClick="Liferay.SO.Profiles.editUserProjects(<%= curUser.getUserId() %>);"><liferay-ui:message key="edit-projects" /></a>
+
+							<a href="javascript: ;" onClick="Liferay.SO.Profiles.editUserSettings(<%= curUser.getUserId() %>);"><liferay-ui:message key="change-settings" /></a>
+						</div>
+					</c:if>
 				</div>
 			</td>
-			<td valign="top" width="90%">
+			<td valign="top">
 				<div class="profile-area">
 					<div class="user-name">
 						<%= curUser.getFullName() %>
@@ -77,400 +87,457 @@ else {
 					<div class="user-email">
 						<%= curUser.getEmailAddress() %>
 					</div>
-
-					<div class="user-tags">
-						<liferay-ui:tags-summary
-							className="<%= User.class.getName() %>"
-							classPK="<%= curUser.getUserId() %>"
-						/>
-					</div>
 				</div>
 
-				<div class="profile-area user-contact">
-					<h3>
-						<liferay-ui:message key="contact-information" />
+				<table class="extend-information">
+				<tr>
+					<td class="column-1">
+						<div class="profile-area user-contact">
+							<h3><liferay-ui:message key="contact-information" /></h3>
 
-						<c:if test="<%= curUser.getUserId() == user.getUserId() %>">
-							<span><a href="<%= themeDisplay.getURLMyAccount() %>"><liferay-ui:message key="edit" /></a></span>
-						</c:if>
-					</h3>
+							<table>
 
-					<table>
+							<%
+							List<Address> addresses = AddressLocalServiceUtil.getAddresses(themeDisplay.getCompanyId(), Contact.class.getName(), curContact.getContactId());
+							%>
 
-					<%
-					List<Address> addresses = AddressLocalServiceUtil.getAddresses(themeDisplay.getCompanyId(), Contact.class.getName(), curContact.getContactId());
-					%>
+							<c:if test="<%= !addresses.isEmpty() %>">
+								<tr>
+									<td class="lfr-label">
+										<c:choose>
+											<c:when test="<%= addresses.size() == 1 %>">
+												<liferay-ui:message key="address" />
+											</c:when>
+											<c:otherwise>
+												<liferay-ui:message key="addresses" />
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<td>
 
-					<c:if test="<%= !addresses.isEmpty() %>">
-						<tr>
-							<td class="lfr-label">
-								<c:choose>
-									<c:when test="<%= addresses.size() == 1 %>">
-										<liferay-ui:message key="address" />
-									</c:when>
-									<c:otherwise>
-										<liferay-ui:message key="addresses" />
-									</c:otherwise>
-								</c:choose>
-							</td>
-							<td>
+										<%
+										for (Address address : addresses) {
+											String region = StringPool.BLANK;
+
+											if (address.getRegionId() != 0) {
+												region = RegionServiceUtil.getRegion(address.getRegionId()).getRegionCode();
+											}
+										%>
+
+											<div class="user-address">
+												<div class="line-1">
+													<%= address.getStreet1() %>
+												</div>
+
+												<div class="line-2">
+													<%= address.getStreet2() %>
+												</div>
+
+												<div class="line-3">
+													<%= address.getStreet3() %>
+												</div>
+
+												<div class="line-4">
+													<%= address.getCity() %>, <%= region %> <%= address.getZip() %>
+												</div>
+											</div>
+
+										<%
+										}
+										%>
+
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<br />
+									</td>
+								</tr>
+							</c:if>
+
+							<%
+							List<Phone> phones = PhoneLocalServiceUtil.getPhones(themeDisplay.getCompanyId(), Contact.class.getName(), curContact.getContactId());
+							%>
+
+							<c:if test="<%= !phones.isEmpty() %>">
 
 								<%
-								for (Address address : addresses) {
-									String region = StringPool.BLANK;
+								for (Phone phone : phones) {
+									String extension = phone.getExtension();
 
-									if (address.getRegionId() != 0) {
-										region = RegionServiceUtil.getRegion(address.getRegionId()).getRegionCode();
+									if (!extension.equals(StringPool.BLANK)) {
+										extension = "x" + extension;
 									}
 								%>
 
-									<div class="user-address">
-										<div class="line-1">
-											<%= address.getStreet1() %>
-										</div>
-
-										<div class="line-2">
-											<%= address.getStreet2() %>
-										</div>
-
-										<div class="line-3">
-											<%= address.getStreet3() %>
-										</div>
-
-										<div class="line-4">
-											<%= address.getCity() %>, <%= region %> <%= address.getZip() %>
-										</div>
-									</div>
+									<tr>
+										<td class="lfr-label">
+											<%= phone.getType().getName() %> <liferay-ui:message key="number" />
+										</td>
+										<td>
+											<%= phone.getNumber() %> <%= extension %>
+										</td>
+									</tr>
 
 								<%
 								}
 								%>
 
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								&nbsp;
-							</td>
-						</tr>
-					</c:if>
+								<tr>
+									<td colspan="2">
+										<br />
+									</td>
+								</tr>
+							</c:if>
 
-					<%
-					List<Phone> phones = PhoneLocalServiceUtil.getPhones(themeDisplay.getCompanyId(), Contact.class.getName(), curContact.getContactId());
-					%>
+							<%
+							List<Website> websites = WebsiteLocalServiceUtil.getWebsites(themeDisplay.getCompanyId(), Contact.class.getName(), curContact.getContactId());
+							%>
 
-					<c:if test="<%= !phones.isEmpty() %>">
+							<c:if test="<%= websites.size() > 0 %>">
+								<tr>
+									<td class="lfr-label">
+										<c:choose>
+											<c:when test="<%= websites.size() == 1 %>">
+												<liferay-ui:message key="website" />
+											</c:when>
+											<c:otherwise>
+												<liferay-ui:message key="websites" />
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<td>
 
-						<%
-						for (Phone phone : phones) {
-							String extension = phone.getExtension();
+										<%
+										for (Website website : websites) {
+										%>
 
-							if (!extension.equals(StringPool.BLANK)) {
-								extension = "x" + extension;
-							}
-						%>
+											<div class="user-website">
+												<a href="<%= website.getUrl() %>"><%= website.getUrl() %></a>
+											</div>
 
-							<tr>
-								<td class="lfr-label">
-									<%= phone.getType().getName() %> <liferay-ui:message key="number" />
-								</td>
-								<td>
-									<%= phone.getNumber() %> <%= extension %>
-								</td>
-							</tr>
+										<%
+										}
+										%>
 
-						<%
-						}
-						%>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<br />
+									</td>
+								</tr>
+							</c:if>
 
-						<tr>
-							<td colspan="2">
-								&nbsp;
-							</td>
-						</tr>
-					</c:if>
+							<%
+							List<EmailAddress> emailAddresses = EmailAddressLocalServiceUtil.getEmailAddresses(themeDisplay.getCompanyId(), Contact.class.getName(), curContact.getContactId());
+							%>
 
-					<%
-					List<Website> websites = WebsiteLocalServiceUtil.getWebsites(themeDisplay.getCompanyId(), Contact.class.getName(), curContact.getContactId());
-					%>
+							<c:if test="<%= Validator.isNotNull(curUser.getEmailAddress()) || (emailAddresses.size() > 0) %>">
+								<tr>
+									<td class="lfr-label">
+										<c:choose>
+											<c:when test="<%= emailAddresses.size() > 0 %>">
+												<liferay-ui:message key="email-addresses" />
+											</c:when>
+											<c:otherwise>
+												<liferay-ui:message key="email-address" />
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<td>
+										<div class="user-email">
+											<a href="mailto:<%= curUser.getEmailAddress() %>"><%= curUser.getEmailAddress() %></a>
+										</div>
 
-					<c:if test="<%= websites.size() > 0 %>">
-						<tr>
-							<td class="lfr-label">
-								<c:choose>
-									<c:when test="<%= websites.size() == 1 %>">
-										<liferay-ui:message key="website" />
-									</c:when>
-									<c:otherwise>
-										<liferay-ui:message key="websites" />
-									</c:otherwise>
-								</c:choose>
-							</td>
-							<td>
+										<%
+										for (EmailAddress emailAddress : emailAddresses) {
+										%>
 
-								<%
-								for (Website website : websites) {
-								%>
+											<div class="user-email">
+												<a href="mailto:<%= emailAddress.getAddress() %>"><%= emailAddress.getAddress() %></a>
+											</div>
 
-									<div class="user-website">
-										<a href="<%= website.getUrl() %>"><%= website.getUrl() %></a>
-									</div>
+										<%
+										}
+										%>
 
-								<%
-								}
-								%>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<br />
+									</td>
+								</tr>
+							</c:if>
 
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								&nbsp;
-							</td>
-						</tr>
-					</c:if>
+							<c:if test="<%= Validator.isNotNull(curContact.getAimSn()) %>">
+								<tr>
+									<td class="lfr-label">
+										<liferay-ui:message key="aim" />
+									</td>
+									<td>
+										<%= curContact.getAimSn() %>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<br />
+									</td>
+								</tr>
+							</c:if>
 
-					<%
-					List<EmailAddress> emailAddresses = EmailAddressLocalServiceUtil.getEmailAddresses(themeDisplay.getCompanyId(), Contact.class.getName(), curContact.getContactId());
-					%>
+							<c:if test="<%= Validator.isNotNull(curContact.getIcqSn()) %>">
+								<tr>
+									<td class="lfr-label">
+										<liferay-ui:message key="icq" />
+									</td>
+									<td>
+										<%= curContact.getIcqSn() %>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<br />
+									</td>
+								</tr>
+							</c:if>
 
-					<c:if test="<%= Validator.isNotNull(curUser.getEmailAddress()) || (emailAddresses.size() > 0) %>">
-						<tr>
-							<td class="lfr-label">
-								<c:choose>
-									<c:when test="<%= emailAddresses.size() > 0 %>">
-										<liferay-ui:message key="email-addresses" />
-									</c:when>
-									<c:otherwise>
-										<liferay-ui:message key="email-address" />
-									</c:otherwise>
-								</c:choose>
-							</td>
-							<td>
-								<div class="user-email">
-									<%= curUser.getEmailAddress() %>
+							<c:if test="<%= Validator.isNotNull(curContact.getJabberSn()) %>">
+								<tr>
+									<td class="lfr-label">
+										<liferay-ui:message key="jabber" />
+									</td>
+									<td>
+										<%= curContact.getJabberSn() %>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<br />
+									</td>
+								</tr>
+							</c:if>
+
+							<c:if test="<%= Validator.isNotNull(curContact.getMsnSn()) %>">
+								<tr>
+									<td class="lfr-label">
+										<liferay-ui:message key="msn" />
+									</td>
+									<td>
+										<%= curContact.getMsnSn() %>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<br />
+									</td>
+								</tr>
+							</c:if>
+
+							<c:if test="<%= Validator.isNotNull(curContact.getSkypeSn()) %>">
+								<tr>
+									<td class="lfr-label">
+										<liferay-ui:message key="skype" />
+									</td>
+									<td>
+										<%= curContact.getSkypeSn() %>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<br />
+									</td>
+								</tr>
+							</c:if>
+
+							<c:if test="<%= Validator.isNotNull(curContact.getYmSn()) %>">
+								<tr>
+									<td class="lfr-label">
+										<liferay-ui:message key="ym" />
+									</td>
+									<td>
+										<%= curContact.getYmSn() %>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<br />
+									</td>
+								</tr>
+							</c:if>
+
+							<c:if test="<%= Validator.isNotNull(curContact.getFacebookSn()) %>">
+								<tr>
+									<td class="lfr-label">
+										<liferay-ui:message key="facebook" />
+									</td>
+									<td>
+										<%= curContact.getFacebookSn() %>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<br />
+									</td>
+								</tr>
+							</c:if>
+
+							<c:if test="<%= Validator.isNotNull(curContact.getMySpaceSn()) %>">
+								<tr>
+									<td class="lfr-label">
+										<liferay-ui:message key="myspace" />
+									</td>
+									<td>
+										<%= curContact.getMySpaceSn() %>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<br />
+									</td>
+								</tr>
+							</c:if>
+
+							<c:if test="<%= Validator.isNotNull(curContact.getTwitterSn()) %>">
+								<tr>
+									<td class="lfr-label">
+										<liferay-ui:message key="twitter" />
+									</td>
+									<td>
+										<%= curContact.getTwitterSn() %>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<br />
+									</td>
+								</tr>
+							</c:if>
+
+							</table>
+						</div>
+					</td>
+					<td class="column-2">
+						<div class="profile-area user-sites">
+							<h3><liferay-ui:message key="sites" /></h3>
+
+							<%
+							LiferayPortletURL myPlacesURL = PortletURLFactoryUtil.create(request, PortletKeys.MY_PLACES, layout.getPlid(), PortletRequest.ACTION_PHASE);
+
+							myPlacesURL.setWindowState(LiferayWindowState.NORMAL);
+
+							myPlacesURL.setParameter("struts_action", "/my_places/view");
+							myPlacesURL.setParameter("privateLayout", "0");
+
+							List<Group> groups = curUser.getGroups();
+
+							for (Group curGroup : groups) {
+								myPlacesURL.setParameter("groupId", String.valueOf(curGroup.getGroupId()));
+							%>
+
+								<div class="site-name">
+									<c:choose>
+										<c:when test="<%= curGroup.hasPublicLayouts() %>">
+											<a href="<%= myPlacesURL.toString() %>"><%= curGroup.getName() %></a>
+										</c:when>
+										<c:otherwise>
+											<%= curGroup.getName() %>
+										</c:otherwise>
+									</c:choose>
 								</div>
 
-								<%
-								for (EmailAddress emailAddress : emailAddresses) {
-								%>
+							<%
+							}
+							%>
 
-									<div class="user-email">
-										<%= emailAddress.getAddress() %>
-									</div>
-
-								<%
-								}
-								%>
-
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								&nbsp;
-							</td>
-						</tr>
-					</c:if>
-
-					<%
-					boolean showBreak = false;
-					%>
-
-					<c:if test="<%= Validator.isNotNull(curContact.getAimSn()) %>">
-						<tr>
-							<td class="lfr-label">
-								<liferay-ui:message key="aim" />
-							</td>
-							<td>
-								<%= curContact.getAimSn() %>
-							</td>
-						</tr>
-
-						<%
-						showBreak = true;
-						%>
-
-					</c:if>
-
-					<c:if test="<%= Validator.isNotNull(curContact.getIcqSn()) %>">
-						<tr>
-							<td class="lfr-label">
-								<liferay-ui:message key="icq" />
-							</td>
-							<td>
-								<%= curContact.getIcqSn() %>
-							</td>
-						</tr>
-
-						<%
-						showBreak = true;
-						%>
-
-					</c:if>
-
-					<c:if test="<%= Validator.isNotNull(curContact.getJabberSn()) %>">
-						<tr>
-							<td class="lfr-label">
-								<liferay-ui:message key="jabber" />
-							</td>
-							<td>
-								<%= curContact.getJabberSn() %>
-							</td>
-						</tr>
-
-						<%
-						showBreak = true;
-						%>
-
-					</c:if>
-
-					<c:if test="<%= Validator.isNotNull(curContact.getMsnSn()) %>">
-						<tr>
-							<td class="lfr-label">
-								<liferay-ui:message key="msn" />
-							</td>
-							<td>
-								<%= curContact.getMsnSn() %>
-							</td>
-						</tr>
-
-						<%
-						showBreak = true;
-						%>
-
-					</c:if>
-
-					<c:if test="<%= Validator.isNotNull(curContact.getSkypeSn()) %>">
-						<tr>
-							<td class="lfr-label">
-								<liferay-ui:message key="skype" />
-							</td>
-							<td>
-								<%= curContact.getSkypeSn() %>
-							</td>
-						</tr>
-
-						<%
-						showBreak = true;
-						%>
-
-					</c:if>
-
-					<c:if test="<%= Validator.isNotNull(curContact.getYmSn()) %>">
-						<tr>
-							<td class="lfr-label">
-								<liferay-ui:message key="ym" />
-							</td>
-							<td>
-								<%= curContact.getYmSn() %>
-							</td>
-						</tr>
-
-						<%
-						showBreak = true;
-						%>
-
-					</c:if>
-
-					<c:if test="<%= showBreak %>">
-						<tr>
-							<td colspan="2">
-								&nbsp;
-							</td>
-						</tr>
-
-						<%
-						showBreak = false;
-						%>
-					</c:if>
-
-					<c:if test="<%= Validator.isNotNull(curContact.getFacebookSn()) %>">
-						<tr>
-							<td class="lfr-label">
-								<liferay-ui:message key="facebook" />
-							</td>
-							<td>
-								<%= curContact.getFacebookSn() %>
-							</td>
-						</tr>
-
-						<%
-						showBreak = true;
-						%>
-
-					</c:if>
-
-					<c:if test="<%= Validator.isNotNull(curContact.getMySpaceSn()) %>">
-						<tr>
-							<td class="lfr-label">
-								<liferay-ui:message key="myspace" />
-							</td>
-							<td>
-								<%= curContact.getMySpaceSn() %>
-							</td>
-						</tr>
-
-						<%
-						showBreak = true;
-						%>
-
-					</c:if>
-
-					<c:if test="<%= Validator.isNotNull(curContact.getTwitterSn()) %>">
-						<tr>
-							<td class="lfr-label">
-								<liferay-ui:message key="twitter" />
-							</td>
-							<td>
-								<%= curContact.getTwitterSn() %>
-							</td>
-						</tr>
-
-						<%
-						showBreak = true;
-						%>
-
-					</c:if>
-
-					<c:if test="<%= showBreak %>">
-						<tr>
-							<td colspan="2">
-								&nbsp;
-							</td>
-						</tr>
-
-						<%
-						showBreak = false;
-						%>
-
-					</c:if>
-
-					</table>
-				</div>
-
-				<div class="profile-area user-sites">
-					<h3><liferay-ui:message key="sites" /></h3>
-
-					<%
-					List<Group> groups = curUser.getGroups();
-
-					for (Group curGroup : groups) {
-					%>
-
-						<div class="user-site">
-							<div class="site-name">
-								<%= curGroup.getName() %>
-							</div>
-
-							<div class="site-description">
-								<%= curGroup.getDescription() %>
-							</div>
 						</div>
 
-					<%
-					}
-					%>
+						<div class="profile-area user-tags">
+							<h3><liferay-ui:message key="tags" /></h3>
 
-				</div>
+							<%
+							StringBuilder sb = new StringBuilder();
+
+							List<TagsEntry> tagsEntries = TagsEntryLocalServiceUtil.getEntries(User.class.getName(), curUser.getUserId(), true);
+
+							Iterator itr = tagsEntries.iterator();
+
+							while (itr.hasNext()) {
+								TagsEntry tagsEntry = (TagsEntry)itr.next();
+
+								sb.append("<nobr>");
+								sb.append(tagsEntry.getName());
+								sb.append("</nobr>");
+
+								if (itr.hasNext()) {
+									sb.append(", ");
+								}
+							}
+							%>
+
+							<%= sb.toString() %>
+
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="column-3" colspan="2">
+						<div class="profile-area user-notes">
+							<h3><liferay-ui:message key="notes" /></h3>
+
+							<%= curUser.getComments() %>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="column-4" colspan="2">
+						<div class="profile-area user-projects">
+							<h3><liferay-ui:message key="projects" /></h3>
+
+							<%
+							List<ProjectsEntry> projectsEntries = ProjectsEntryLocalServiceUtil.getUserProjectsEntries(curUser.getUserId());
+
+							for (ProjectsEntry projectsEntry : projectsEntries) {
+							%>
+
+								<div class="project">
+									<h4 class="project-title">
+										<%= projectsEntry.getTitle() %>
+
+										<span>
+											<%= dateFormatDate.format(projectsEntry.getStartDate()) %>
+
+											-
+
+											<c:choose>
+												<c:when test="<%= projectsEntry.getEndDate() != null %>">
+													<%= dateFormatDate.format(projectsEntry.getEndDate()) %>
+												</c:when>
+												<c:otherwise>
+													<liferay-ui:message key="current" />
+												</c:otherwise>
+											</c:choose>
+										</span>
+									</h4>
+
+									<div class="project-body">
+										<%= projectsEntry.getDescription() %>
+									</div>
+
+									<div class="project-footer">
+										<span><liferay-ui:message key="other-members" />:</span><%= projectsEntry.getData() %>
+									</div>
+								</div>
+
+							<%
+							}
+							%>
+
+						</div>
+					</td>
+				</tr>
+				</table>
 			</td>
 		</tr>
 		</table>

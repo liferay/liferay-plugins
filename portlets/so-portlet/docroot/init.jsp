@@ -24,12 +24,19 @@
 <%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+<%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
+<%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
+<%@ page import="com.liferay.portal.kernel.portlet.LiferayPortletURL" %>
+<%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
 <%@ page import="com.liferay.portal.kernel.servlet.ImageServletTokenUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.CalendarUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.LocaleUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
@@ -37,30 +44,55 @@
 <%@ page import="com.liferay.portal.model.Contact" %>
 <%@ page import="com.liferay.portal.model.EmailAddress" %>
 <%@ page import="com.liferay.portal.model.Group" %>
+<%@ page import="com.liferay.portal.model.ListType" %>
 <%@ page import="com.liferay.portal.model.Phone" %>
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.model.Website" %>
 <%@ page import="com.liferay.portal.service.AddressLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.EmailAddressLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.service.ListTypeServiceUtil" %>
 <%@ page import="com.liferay.portal.service.PhoneLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.RegionServiceUtil" %>
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.WebsiteLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
+<%@ page import="com.liferay.portal.util.PortletKeys" %>
 <%@ page import="com.liferay.portal.util.comparator.ContactFirstNameComparator" %>
+<%@ page import="com.liferay.portlet.PortletURLFactoryUtil" %>
 <%@ page import="com.liferay.portlet.social.model.SocialActivity" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
 <%@ page import="com.liferay.portlet.social.service.SocialActivityLocalServiceUtil" %>
+<%@ page import="com.liferay.portlet.tags.model.TagsEntry" %>
+<%@ page import="com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil" %>
+<%@ page import="com.liferay.so.model.ProjectsEntry" %>
+<%@ page import="com.liferay.so.service.ProjectsEntryLocalServiceUtil" %>
 <%@ page import="com.liferay.util.format.PhoneNumberUtil" %>
 
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.LinkedHashMap" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Locale" %>
 
 <%@ page import="javax.portlet.PortletMode" %>
 <%@ page import="javax.portlet.PortletPreferences" %>
+<%@ page import="javax.portlet.PortletRequest" %>
 <%@ page import="javax.portlet.PortletURL" %>
 
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
+
+<%
+String currentURL = PortalUtil.getCurrentURL(request);
+
+DateFormat dateFormatDate = new SimpleDateFormat("MMM yyyy", locale);
+
+dateFormatDate.setTimeZone(timeZone);
+%>
