@@ -19,12 +19,12 @@ package com.liferay.so.profiles.portlet;
 
 import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
+import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Map;
 
 import javax.portlet.PortletMode;
-import javax.portlet.WindowState;
 
 /**
  * <a href="ProfilesFriendlyURLMapper.java.html"><b><i>View Source</i></b></a>
@@ -64,8 +64,8 @@ public class ProfilesFriendlyURLMapper extends BaseFriendlyURLMapper {
 		}
 
 		addParam(params, "p_p_id", _PORTLET_ID);
-		addParam(params, "p_p_lifecycle", "2");
-		addParam(params, "p_p_state", WindowState.NORMAL);
+		addParam(params, "p_p_lifecycle", "0");
+		addParam(params, "p_p_state", LiferayWindowState.EXCLUSIVE);
 		addParam(params, "p_p_mode", PortletMode.VIEW);
 
 		addParam(params, "jspPage", "/profiles/" + jspPage + ".jsp");

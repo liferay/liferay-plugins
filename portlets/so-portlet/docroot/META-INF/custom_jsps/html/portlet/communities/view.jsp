@@ -122,7 +122,9 @@ pageContext.setAttribute("portletURL", portletURL);
 		}
 		else {
 			var popupContainer = popup.parents('.ui-dialog');
+
 			popupContainer.find('.ui-dialog-title').text(popupTitle);
+
 			var popupHelper = popupContainer.data('ui-helper-drag');
 
 			if (popupHelper) {
