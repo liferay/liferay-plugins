@@ -265,8 +265,12 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend(
 
 			instance._created = Liferay.Chat.Util.getCurrentTimestamp();
 			instance._lastMessageTime = 0;
+			instance._lastTypedTime = 0;
+			instance._typingDelay = 5000;
 			instance._unreadMessages = 0;
 			instance._originalPageTitle = document.title;
+
+			instance._stopTypingTask = new Expanse.DelayedTask(instance.setTyping, instance, [false]);
 
 			instance._heightMonitor = jQuery('<pre class="chat-height-monitor" />');
 			instance._heightMonitor.appendTo(document.body);
@@ -353,8 +357,6 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend(
 		update: function(entry) {
 			var instance = this;
 
-			instance.setTyping(false);
-
 			if (entry.incoming && !entry.cache) {
 				if (entry.content.length) {
 					if (!instance.get('selected')) {
@@ -369,6 +371,8 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend(
 				}
 				else {
 					instance.setTyping(true);
+
+					instance._stopTypingTask.delay(instance._typingDelay);
 				}
 			}
 
@@ -446,12 +450,18 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend(
 
 			if (event.type == 'keyup') {
 				if (instance.get('typedTo') == userId) {
-					instance.send(
-						{
-							toUserId: userId,
-							content: ''
-						}
-					);
+					var currentTime = Liferay.Chat.Util.getCurrentTimestamp();
+
+					if (currentTime - instance._lastTypedTime > instance._typingDelay) {
+						instance.send(
+							{
+								toUserId: userId,
+								content: ''
+							}
+						);
+
+						instance._lastTypedTime = currentTime;
+					}
 				}
 
 				instance.set('typedTo', userId);
@@ -567,6 +577,9 @@ Liferay.Chat.Manager = {
 		instance._created = Liferay.Chat.Util.getCurrentTimestamp();
 
 		instance._myStatus = instance._chatContainer.find('.status-message');
+
+		instance._sendTask = new Expanse.DelayedTask(instance.send, instance);
+		instance._saveSettingsDelay = 100;
 
 		instance._sound = new SWFObject('/chat-portlet/alert.swf', 'alertsound', '0', '0', '8');
 		instance._soundContainer = instance._chatContainer.find('.chat-sound');
@@ -897,7 +910,7 @@ Liferay.Chat.Manager = {
 	_saveSettings: function() {
 		var instance = this;
 
-		Liferay.Poller.submitRequest(instance._portletId, instance._getSettings());
+		instance._sendTask.delay(instance._saveSettingsDelay, null, null, [instance._getSettings()]);
 	},
 
 	_updateBuddies: function(buddies) {
@@ -958,14 +971,6 @@ Liferay.Chat.Manager = {
 		var entriesLength = entries.length;
 
 		var currentUserId = themeDisplay.getUserId();
-
-		if (!entriesLength) {
-			var chatSessions = instance._chatSessions;
-
-			for(var i in chatSessions) {
-				chatSessions[i].setTyping(false);
-			}
-		}
 
 		var entryCache = instance._entryCache;
 		var entryIds = instance._entryIds.join('|');
