@@ -856,11 +856,11 @@ table.calendar {
 	font-size: 1.2em;
 }
 
-#siteSelectorPanel {
+#contactsSelectorPanel {
 	font-size: 1.2em;
 }
 
-#siteSelectorPanel .lfr-panel-content a.panel-hover {
+#contactsSelectorPanel .lfr-panel-content a.panel-hover {
 	background: #E8EFF4;
 }
 
