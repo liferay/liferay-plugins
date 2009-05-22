@@ -843,6 +843,11 @@ table.calendar {
 	font-weight: normal;
 }
 
+.contacts-portlet .edit-card-table .label,
+.contacts-portlet .send-email-table .label {
+	color: #999;
+}
+
 .contacts-portlet .search-cards {
 	margin-bottom: 9px;
 }
