@@ -856,6 +856,14 @@ table.calendar {
 	font-size: 1.2em;
 }
 
+#contactsSelectorPanel {
+	font-size: 1.2em;
+}
+
+#contactsSelectorPanel .lfr-panel-content a.panel-hover {
+	background: #E8EFF4;
+}
+
 /* Document Library */
 
 .portlet-document-library .webdav-url {
