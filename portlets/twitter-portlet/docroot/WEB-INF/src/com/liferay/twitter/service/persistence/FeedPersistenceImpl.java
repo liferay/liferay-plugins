@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -279,15 +280,15 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 		}
 
 		if (!isNew &&
-				(!feed.getTwitterScreenName()
-						  .equals(feedModelImpl.getOriginalTwitterScreenName()))) {
+				(!Validator.equals(feed.getTwitterScreenName(),
+					feedModelImpl.getOriginalTwitterScreenName()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
 				new Object[] { feedModelImpl.getOriginalTwitterScreenName() });
 		}
 
 		if (isNew ||
-				(!feed.getTwitterScreenName()
-						  .equals(feedModelImpl.getOriginalTwitterScreenName()))) {
+				(!Validator.equals(feed.getTwitterScreenName(),
+					feedModelImpl.getOriginalTwitterScreenName()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
 				new Object[] { feed.getTwitterScreenName() }, feed);
 		}
@@ -385,9 +386,9 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.twitter.model.Feed WHERE ");
+				query.append("SELECT feed FROM Feed feed WHERE ");
 
-				query.append("twitterUserId = ?");
+				query.append("feed.twitterUserId = ?");
 
 				query.append(" ");
 
@@ -414,7 +415,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 					if ((feed.getTwitterUserId() != twitterUserId)) {
 						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
-							finderArgs, list);
+							finderArgs, feed);
 					}
 				}
 
@@ -489,13 +490,13 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.twitter.model.Feed WHERE ");
+				query.append("SELECT feed FROM Feed feed WHERE ");
 
 				if (twitterScreenName == null) {
-					query.append("twitterScreenName IS NULL");
+					query.append("feed.twitterScreenName IS NULL");
 				}
 				else {
-					query.append("twitterScreenName = ?");
+					query.append("feed.twitterScreenName = ?");
 				}
 
 				query.append(" ");
@@ -527,7 +528,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 							!feed.getTwitterScreenName()
 									 .equals(twitterScreenName)) {
 						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
-							finderArgs, list);
+							finderArgs, feed);
 					}
 				}
 
@@ -620,11 +621,28 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.twitter.model.Feed ");
+				query.append("SELECT feed FROM Feed feed ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("feed.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -694,10 +712,10 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.twitter.model.Feed WHERE ");
+				query.append("SELECT COUNT(feed) ");
+				query.append("FROM Feed feed WHERE ");
 
-				query.append("twitterUserId = ?");
+				query.append("feed.twitterUserId = ?");
 
 				query.append(" ");
 
@@ -742,14 +760,14 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.twitter.model.Feed WHERE ");
+				query.append("SELECT COUNT(feed) ");
+				query.append("FROM Feed feed WHERE ");
 
 				if (twitterScreenName == null) {
-					query.append("twitterScreenName IS NULL");
+					query.append("feed.twitterScreenName IS NULL");
 				}
 				else {
-					query.append("twitterScreenName = ?");
+					query.append("feed.twitterScreenName = ?");
 				}
 
 				query.append(" ");
@@ -795,7 +813,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.twitter.model.Feed");
+						"SELECT COUNT(feed) FROM Feed feed");
 
 				count = (Long)q.uniqueResult();
 			}

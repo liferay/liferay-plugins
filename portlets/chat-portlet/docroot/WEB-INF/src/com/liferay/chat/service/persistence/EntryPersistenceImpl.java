@@ -423,15 +423,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT entry FROM Entry entry WHERE ");
 
-				query.append("createDate = ?");
+				query.append("entry.createDate = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("entry.createDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -485,21 +485,38 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT entry FROM Entry entry WHERE ");
 
-				query.append("createDate = ?");
+				query.append("entry.createDate = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("entry.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("createDate DESC");
+					query.append("entry.createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -585,21 +602,38 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.chat.model.Entry WHERE ");
+			query.append("SELECT entry FROM Entry entry WHERE ");
 
-			query.append("createDate = ?");
+			query.append("entry.createDate = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("entry.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("entry.createDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -641,15 +675,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT entry FROM Entry entry WHERE ");
 
-				query.append("fromUserId = ?");
+				query.append("entry.fromUserId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("entry.createDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -703,21 +737,38 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT entry FROM Entry entry WHERE ");
 
-				query.append("fromUserId = ?");
+				query.append("entry.fromUserId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("entry.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("createDate DESC");
+					query.append("entry.createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -803,21 +854,38 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.chat.model.Entry WHERE ");
+			query.append("SELECT entry FROM Entry entry WHERE ");
 
-			query.append("fromUserId = ?");
+			query.append("entry.fromUserId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("entry.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("entry.createDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -858,15 +926,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT entry FROM Entry entry WHERE ");
 
-				query.append("toUserId = ?");
+				query.append("entry.toUserId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("entry.createDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -920,21 +988,38 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT entry FROM Entry entry WHERE ");
 
-				query.append("toUserId = ?");
+				query.append("entry.toUserId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("entry.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("createDate DESC");
+					query.append("entry.createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -1020,21 +1105,38 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.chat.model.Entry WHERE ");
+			query.append("SELECT entry FROM Entry entry WHERE ");
 
-			query.append("toUserId = ?");
+			query.append("entry.toUserId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("entry.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("entry.createDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -1078,19 +1180,19 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT entry FROM Entry entry WHERE ");
 
-				query.append("createDate = ?");
+				query.append("entry.createDate = ?");
 
 				query.append(" AND ");
 
-				query.append("fromUserId = ?");
+				query.append("entry.fromUserId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("entry.createDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -1146,25 +1248,42 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT entry FROM Entry entry WHERE ");
 
-				query.append("createDate = ?");
+				query.append("entry.createDate = ?");
 
 				query.append(" AND ");
 
-				query.append("fromUserId = ?");
+				query.append("entry.fromUserId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("entry.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("createDate DESC");
+					query.append("entry.createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -1260,25 +1379,42 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.chat.model.Entry WHERE ");
+			query.append("SELECT entry FROM Entry entry WHERE ");
 
-			query.append("createDate = ?");
+			query.append("entry.createDate = ?");
 
 			query.append(" AND ");
 
-			query.append("fromUserId = ?");
+			query.append("entry.fromUserId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("entry.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("entry.createDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -1324,19 +1460,19 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT entry FROM Entry entry WHERE ");
 
-				query.append("createDate = ?");
+				query.append("entry.createDate = ?");
 
 				query.append(" AND ");
 
-				query.append("toUserId = ?");
+				query.append("entry.toUserId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("entry.createDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -1392,25 +1528,42 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT entry FROM Entry entry WHERE ");
 
-				query.append("createDate = ?");
+				query.append("entry.createDate = ?");
 
 				query.append(" AND ");
 
-				query.append("toUserId = ?");
+				query.append("entry.toUserId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("entry.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("createDate DESC");
+					query.append("entry.createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -1505,25 +1658,42 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.chat.model.Entry WHERE ");
+			query.append("SELECT entry FROM Entry entry WHERE ");
 
-			query.append("createDate = ?");
+			query.append("entry.createDate = ?");
 
 			query.append(" AND ");
 
-			query.append("toUserId = ?");
+			query.append("entry.toUserId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("entry.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("entry.createDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -1569,23 +1739,23 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT entry FROM Entry entry WHERE ");
 
-				query.append("createDate = ?");
-
-				query.append(" AND ");
-
-				query.append("fromUserId = ?");
+				query.append("entry.createDate = ?");
 
 				query.append(" AND ");
 
-				query.append("toUserId = ?");
+				query.append("entry.fromUserId = ?");
+
+				query.append(" AND ");
+
+				query.append("entry.toUserId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("entry.createDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -1644,29 +1814,46 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT entry FROM Entry entry WHERE ");
 
-				query.append("createDate = ?");
-
-				query.append(" AND ");
-
-				query.append("fromUserId = ?");
+				query.append("entry.createDate = ?");
 
 				query.append(" AND ");
 
-				query.append("toUserId = ?");
+				query.append("entry.fromUserId = ?");
+
+				query.append(" AND ");
+
+				query.append("entry.toUserId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("entry.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("createDate DESC");
+					query.append("entry.createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -1773,29 +1960,46 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.chat.model.Entry WHERE ");
+			query.append("SELECT entry FROM Entry entry WHERE ");
 
-			query.append("createDate = ?");
-
-			query.append(" AND ");
-
-			query.append("fromUserId = ?");
+			query.append("entry.createDate = ?");
 
 			query.append(" AND ");
 
-			query.append("toUserId = ?");
+			query.append("entry.fromUserId = ?");
+
+			query.append(" AND ");
+
+			query.append("entry.toUserId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("entry.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("entry.createDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -1845,28 +2049,28 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT entry FROM Entry entry WHERE ");
 
-				query.append("fromUserId = ?");
+				query.append("entry.fromUserId = ?");
 
 				query.append(" AND ");
 
-				query.append("toUserId = ?");
+				query.append("entry.toUserId = ?");
 
 				query.append(" AND ");
 
 				if (content == null) {
-					query.append("content IS NULL");
+					query.append("entry.content IS NULL");
 				}
 				else {
-					query.append("content = ?");
+					query.append("entry.content = ?");
 				}
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("entry.createDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -1929,34 +2133,51 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT entry FROM Entry entry WHERE ");
 
-				query.append("fromUserId = ?");
+				query.append("entry.fromUserId = ?");
 
 				query.append(" AND ");
 
-				query.append("toUserId = ?");
+				query.append("entry.toUserId = ?");
 
 				query.append(" AND ");
 
 				if (content == null) {
-					query.append("content IS NULL");
+					query.append("entry.content IS NULL");
 				}
 				else {
-					query.append("content = ?");
+					query.append("entry.content = ?");
 				}
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("entry.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("createDate DESC");
+					query.append("entry.createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -2064,34 +2285,51 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.chat.model.Entry WHERE ");
+			query.append("SELECT entry FROM Entry entry WHERE ");
 
-			query.append("fromUserId = ?");
+			query.append("entry.fromUserId = ?");
 
 			query.append(" AND ");
 
-			query.append("toUserId = ?");
+			query.append("entry.toUserId = ?");
 
 			query.append(" AND ");
 
 			if (content == null) {
-				query.append("content IS NULL");
+				query.append("entry.content IS NULL");
 			}
 			else {
-				query.append("content = ?");
+				query.append("entry.content = ?");
 			}
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("entry.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("entry.createDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -2189,17 +2427,34 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Entry ");
+				query.append("SELECT entry FROM Entry entry ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("entry.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("createDate DESC");
+					query.append("entry.createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -2300,10 +2555,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT COUNT(entry) ");
+				query.append("FROM Entry entry WHERE ");
 
-				query.append("createDate = ?");
+				query.append("entry.createDate = ?");
 
 				query.append(" ");
 
@@ -2347,10 +2602,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT COUNT(entry) ");
+				query.append("FROM Entry entry WHERE ");
 
-				query.append("fromUserId = ?");
+				query.append("entry.fromUserId = ?");
 
 				query.append(" ");
 
@@ -2394,10 +2649,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT COUNT(entry) ");
+				query.append("FROM Entry entry WHERE ");
 
-				query.append("toUserId = ?");
+				query.append("entry.toUserId = ?");
 
 				query.append(" ");
 
@@ -2444,14 +2699,14 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT COUNT(entry) ");
+				query.append("FROM Entry entry WHERE ");
 
-				query.append("createDate = ?");
+				query.append("entry.createDate = ?");
 
 				query.append(" AND ");
 
-				query.append("fromUserId = ?");
+				query.append("entry.fromUserId = ?");
 
 				query.append(" ");
 
@@ -2500,14 +2755,14 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT COUNT(entry) ");
+				query.append("FROM Entry entry WHERE ");
 
-				query.append("createDate = ?");
+				query.append("entry.createDate = ?");
 
 				query.append(" AND ");
 
-				query.append("toUserId = ?");
+				query.append("entry.toUserId = ?");
 
 				query.append(" ");
 
@@ -2556,18 +2811,18 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT COUNT(entry) ");
+				query.append("FROM Entry entry WHERE ");
 
-				query.append("createDate = ?");
-
-				query.append(" AND ");
-
-				query.append("fromUserId = ?");
+				query.append("entry.createDate = ?");
 
 				query.append(" AND ");
 
-				query.append("toUserId = ?");
+				query.append("entry.fromUserId = ?");
+
+				query.append(" AND ");
+
+				query.append("entry.toUserId = ?");
 
 				query.append(" ");
 
@@ -2620,22 +2875,22 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+				query.append("SELECT COUNT(entry) ");
+				query.append("FROM Entry entry WHERE ");
 
-				query.append("fromUserId = ?");
+				query.append("entry.fromUserId = ?");
 
 				query.append(" AND ");
 
-				query.append("toUserId = ?");
+				query.append("entry.toUserId = ?");
 
 				query.append(" AND ");
 
 				if (content == null) {
-					query.append("content IS NULL");
+					query.append("entry.content IS NULL");
 				}
 				else {
-					query.append("content = ?");
+					query.append("entry.content = ?");
 				}
 
 				query.append(" ");
@@ -2685,7 +2940,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.chat.model.Entry");
+						"SELECT COUNT(entry) FROM Entry entry");
 
 				count = (Long)q.uniqueResult();
 			}

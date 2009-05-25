@@ -53,6 +53,33 @@ public class JIRAIssueSoap implements Serializable {
 		return soapModel;
 	}
 
+	public static JIRAIssueSoap[] toSoapModels(JIRAIssue[] models) {
+		JIRAIssueSoap[] soapModels = new JIRAIssueSoap[models.length];
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModel(models[i]);
+		}
+
+		return soapModels;
+	}
+
+	public static JIRAIssueSoap[][] toSoapModels(JIRAIssue[][] models) {
+		JIRAIssueSoap[][] soapModels = null;
+
+		if (models.length > 0) {
+			soapModels = new JIRAIssueSoap[models.length][models[0].length];
+		}
+		else {
+			soapModels = new JIRAIssueSoap[0][0];
+		}
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModels(models[i]);
+		}
+
+		return soapModels;
+	}
+
 	public static JIRAIssueSoap[] toSoapModels(List<JIRAIssue> models) {
 		List<JIRAIssueSoap> soapModels = new ArrayList<JIRAIssueSoap>(models.size());
 

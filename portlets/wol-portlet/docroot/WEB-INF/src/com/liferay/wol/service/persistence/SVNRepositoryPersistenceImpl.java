@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -270,15 +271,15 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 			svnRepository);
 
 		if (!isNew &&
-				(!svnRepository.getUrl()
-								   .equals(svnRepositoryModelImpl.getOriginalUrl()))) {
+				(!Validator.equals(svnRepository.getUrl(),
+					svnRepositoryModelImpl.getOriginalUrl()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL,
 				new Object[] { svnRepositoryModelImpl.getOriginalUrl() });
 		}
 
 		if (isNew ||
-				(!svnRepository.getUrl()
-								   .equals(svnRepositoryModelImpl.getOriginalUrl()))) {
+				(!Validator.equals(svnRepository.getUrl(),
+					svnRepositoryModelImpl.getOriginalUrl()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_URL,
 				new Object[] { svnRepository.getUrl() }, svnRepository);
 		}
@@ -379,20 +380,21 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.SVNRepository WHERE ");
+				query.append(
+					"SELECT svnRepository FROM SVNRepository svnRepository WHERE ");
 
 				if (url == null) {
-					query.append("url IS NULL");
+					query.append("svnRepository.url IS NULL");
 				}
 				else {
-					query.append("url = ?");
+					query.append("svnRepository.url = ?");
 				}
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("url ASC");
+				query.append("svnRepository.url ASC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -420,7 +422,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 					if ((svnRepository.getUrl() == null) ||
 							!svnRepository.getUrl().equals(url)) {
 						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_URL,
-							finderArgs, list);
+							finderArgs, svnRepository);
 					}
 				}
 
@@ -514,17 +516,35 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.SVNRepository ");
+				query.append(
+					"SELECT svnRepository FROM SVNRepository svnRepository ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("svnRepository.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("url ASC");
+					query.append("svnRepository.url ASC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -586,14 +606,14 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.SVNRepository WHERE ");
+				query.append("SELECT COUNT(svnRepository) ");
+				query.append("FROM SVNRepository svnRepository WHERE ");
 
 				if (url == null) {
-					query.append("url IS NULL");
+					query.append("svnRepository.url IS NULL");
 				}
 				else {
-					query.append("url = ?");
+					query.append("svnRepository.url = ?");
 				}
 
 				query.append(" ");
@@ -639,7 +659,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.wol.model.SVNRepository");
+						"SELECT COUNT(svnRepository) FROM SVNRepository svnRepository");
 
 				count = (Long)q.uniqueResult();
 			}

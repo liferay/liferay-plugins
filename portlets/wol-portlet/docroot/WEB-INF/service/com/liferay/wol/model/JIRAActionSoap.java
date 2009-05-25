@@ -50,6 +50,33 @@ public class JIRAActionSoap implements Serializable {
 		return soapModel;
 	}
 
+	public static JIRAActionSoap[] toSoapModels(JIRAAction[] models) {
+		JIRAActionSoap[] soapModels = new JIRAActionSoap[models.length];
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModel(models[i]);
+		}
+
+		return soapModels;
+	}
+
+	public static JIRAActionSoap[][] toSoapModels(JIRAAction[][] models) {
+		JIRAActionSoap[][] soapModels = null;
+
+		if (models.length > 0) {
+			soapModels = new JIRAActionSoap[models.length][models[0].length];
+		}
+		else {
+			soapModels = new JIRAActionSoap[0][0];
+		}
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModels(models[i]);
+		}
+
+		return soapModels;
+	}
+
 	public static JIRAActionSoap[] toSoapModels(List<JIRAAction> models) {
 		List<JIRAActionSoap> soapModels = new ArrayList<JIRAActionSoap>(models.size());
 

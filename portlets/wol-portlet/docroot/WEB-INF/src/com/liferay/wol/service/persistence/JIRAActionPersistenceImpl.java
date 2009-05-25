@@ -352,20 +352,21 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.JIRAAction WHERE ");
+				query.append(
+					"SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
 
 				if (jiraUserId == null) {
-					query.append("author IS NULL");
+					query.append("jiraAction.jiraUserId IS NULL");
 				}
 				else {
-					query.append("author = ?");
+					query.append("jiraAction.jiraUserId = ?");
 				}
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("updated DESC");
+				query.append("jiraAction.modifiedDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -421,26 +422,44 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.JIRAAction WHERE ");
+				query.append(
+					"SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
 
 				if (jiraUserId == null) {
-					query.append("author IS NULL");
+					query.append("jiraAction.jiraUserId IS NULL");
 				}
 				else {
-					query.append("author = ?");
+					query.append("jiraAction.jiraUserId = ?");
 				}
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("jiraAction.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("updated DESC");
+					query.append("jiraAction.modifiedDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -533,26 +552,43 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.wol.model.JIRAAction WHERE ");
+			query.append("SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
 
 			if (jiraUserId == null) {
-				query.append("author IS NULL");
+				query.append("jiraAction.jiraUserId IS NULL");
 			}
 			else {
-				query.append("author = ?");
+				query.append("jiraAction.jiraUserId = ?");
 			}
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("jiraAction.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("updated DESC");
+				query.append("jiraAction.modifiedDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -597,15 +633,16 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.JIRAAction WHERE ");
+				query.append(
+					"SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
 
-				query.append("issueid = ?");
+				query.append("jiraAction.jiraIssueId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("updated DESC");
+				query.append("jiraAction.modifiedDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -659,21 +696,39 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.JIRAAction WHERE ");
+				query.append(
+					"SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
 
-				query.append("issueid = ?");
+				query.append("jiraAction.jiraIssueId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("jiraAction.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("updated DESC");
+					query.append("jiraAction.modifiedDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -764,21 +819,38 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.wol.model.JIRAAction WHERE ");
+			query.append("SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
 
-			query.append("issueid = ?");
+			query.append("jiraAction.jiraIssueId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("jiraAction.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("updated DESC");
+				query.append("jiraAction.modifiedDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -820,20 +892,21 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.JIRAAction WHERE ");
+				query.append(
+					"SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
 
 				if (type == null) {
-					query.append("actiontype IS NULL");
+					query.append("jiraAction.type IS NULL");
 				}
 				else {
-					query.append("actiontype = ?");
+					query.append("jiraAction.type = ?");
 				}
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("updated DESC");
+				query.append("jiraAction.modifiedDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -889,26 +962,44 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.JIRAAction WHERE ");
+				query.append(
+					"SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
 
 				if (type == null) {
-					query.append("actiontype IS NULL");
+					query.append("jiraAction.type IS NULL");
 				}
 				else {
-					query.append("actiontype = ?");
+					query.append("jiraAction.type = ?");
 				}
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("jiraAction.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("updated DESC");
+					query.append("jiraAction.modifiedDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -998,26 +1089,43 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.wol.model.JIRAAction WHERE ");
+			query.append("SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
 
 			if (type == null) {
-				query.append("actiontype IS NULL");
+				query.append("jiraAction.type IS NULL");
 			}
 			else {
-				query.append("actiontype = ?");
+				query.append("jiraAction.type = ?");
 			}
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("jiraAction.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("updated DESC");
+				query.append("jiraAction.modifiedDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -1113,17 +1221,34 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.JIRAAction ");
+				query.append("SELECT jiraAction FROM JIRAAction jiraAction ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("jiraAction.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("updated DESC");
+					query.append("jiraAction.modifiedDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -1196,14 +1321,14 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.JIRAAction WHERE ");
+				query.append("SELECT COUNT(jiraAction) ");
+				query.append("FROM JIRAAction jiraAction WHERE ");
 
 				if (jiraUserId == null) {
-					query.append("author IS NULL");
+					query.append("jiraAction.jiraUserId IS NULL");
 				}
 				else {
-					query.append("author = ?");
+					query.append("jiraAction.jiraUserId = ?");
 				}
 
 				query.append(" ");
@@ -1250,10 +1375,10 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.JIRAAction WHERE ");
+				query.append("SELECT COUNT(jiraAction) ");
+				query.append("FROM JIRAAction jiraAction WHERE ");
 
-				query.append("issueid = ?");
+				query.append("jiraAction.jiraIssueId = ?");
 
 				query.append(" ");
 
@@ -1297,14 +1422,14 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.JIRAAction WHERE ");
+				query.append("SELECT COUNT(jiraAction) ");
+				query.append("FROM JIRAAction jiraAction WHERE ");
 
 				if (type == null) {
-					query.append("actiontype IS NULL");
+					query.append("jiraAction.type IS NULL");
 				}
 				else {
-					query.append("actiontype = ?");
+					query.append("jiraAction.type = ?");
 				}
 
 				query.append(" ");
@@ -1350,7 +1475,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.wol.model.JIRAAction");
+						"SELECT COUNT(jiraAction) FROM JIRAAction jiraAction");
 
 				count = (Long)q.uniqueResult();
 			}

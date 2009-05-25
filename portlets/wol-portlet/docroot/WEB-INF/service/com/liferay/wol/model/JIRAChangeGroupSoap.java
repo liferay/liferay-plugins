@@ -46,6 +46,34 @@ public class JIRAChangeGroupSoap implements Serializable {
 		return soapModel;
 	}
 
+	public static JIRAChangeGroupSoap[] toSoapModels(JIRAChangeGroup[] models) {
+		JIRAChangeGroupSoap[] soapModels = new JIRAChangeGroupSoap[models.length];
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModel(models[i]);
+		}
+
+		return soapModels;
+	}
+
+	public static JIRAChangeGroupSoap[][] toSoapModels(
+		JIRAChangeGroup[][] models) {
+		JIRAChangeGroupSoap[][] soapModels = null;
+
+		if (models.length > 0) {
+			soapModels = new JIRAChangeGroupSoap[models.length][models[0].length];
+		}
+		else {
+			soapModels = new JIRAChangeGroupSoap[0][0];
+		}
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModels(models[i]);
+		}
+
+		return soapModels;
+	}
+
 	public static JIRAChangeGroupSoap[] toSoapModels(
 		List<JIRAChangeGroup> models) {
 		List<JIRAChangeGroupSoap> soapModels = new ArrayList<JIRAChangeGroupSoap>(models.size());

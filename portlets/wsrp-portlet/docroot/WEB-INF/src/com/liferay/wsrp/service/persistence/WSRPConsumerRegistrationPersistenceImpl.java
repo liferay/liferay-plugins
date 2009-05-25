@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -303,10 +304,11 @@ public class WSRPConsumerRegistrationPersistenceImpl extends BasePersistenceImpl
 			wsrpConsumerRegistration.getPrimaryKey(), wsrpConsumerRegistration);
 
 		if (!isNew &&
-				(!wsrpConsumerRegistration.getRegistrationHandle()
-											  .equals(wsrpConsumerRegistrationModelImpl.getOriginalRegistrationHandle()) ||
-				!wsrpConsumerRegistration.getProducerKey()
-											 .equals(wsrpConsumerRegistrationModelImpl.getOriginalProducerKey()))) {
+				(!Validator.equals(
+					wsrpConsumerRegistration.getRegistrationHandle(),
+					wsrpConsumerRegistrationModelImpl.getOriginalRegistrationHandle()) ||
+				!Validator.equals(wsrpConsumerRegistration.getProducerKey(),
+					wsrpConsumerRegistrationModelImpl.getOriginalProducerKey()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_P,
 				new Object[] {
 					wsrpConsumerRegistrationModelImpl.getOriginalRegistrationHandle(),
@@ -316,10 +318,11 @@ public class WSRPConsumerRegistrationPersistenceImpl extends BasePersistenceImpl
 		}
 
 		if (isNew ||
-				(!wsrpConsumerRegistration.getRegistrationHandle()
-											  .equals(wsrpConsumerRegistrationModelImpl.getOriginalRegistrationHandle()) ||
-				!wsrpConsumerRegistration.getProducerKey()
-											 .equals(wsrpConsumerRegistrationModelImpl.getOriginalProducerKey()))) {
+				(!Validator.equals(
+					wsrpConsumerRegistration.getRegistrationHandle(),
+					wsrpConsumerRegistrationModelImpl.getOriginalRegistrationHandle()) ||
+				!Validator.equals(wsrpConsumerRegistration.getProducerKey(),
+					wsrpConsumerRegistrationModelImpl.getOriginalProducerKey()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_P,
 				new Object[] {
 					wsrpConsumerRegistration.getRegistrationHandle(),
@@ -396,13 +399,13 @@ public class WSRPConsumerRegistrationPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.wsrp.model.WSRPConsumerRegistration WHERE ");
+					"SELECT wsrpConsumerRegistration FROM WSRPConsumerRegistration wsrpConsumerRegistration WHERE ");
 
 				if (producerKey == null) {
-					query.append("producerKey IS NULL");
+					query.append("wsrpConsumerRegistration.producerKey IS NULL");
 				}
 				else {
-					query.append("producerKey = ?");
+					query.append("wsrpConsumerRegistration.producerKey = ?");
 				}
 
 				query.append(" ");
@@ -463,20 +466,37 @@ public class WSRPConsumerRegistrationPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.wsrp.model.WSRPConsumerRegistration WHERE ");
+					"SELECT wsrpConsumerRegistration FROM WSRPConsumerRegistration wsrpConsumerRegistration WHERE ");
 
 				if (producerKey == null) {
-					query.append("producerKey IS NULL");
+					query.append("wsrpConsumerRegistration.producerKey IS NULL");
 				}
 				else {
-					query.append("producerKey = ?");
+					query.append("wsrpConsumerRegistration.producerKey = ?");
 				}
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("wsrpConsumerRegistration.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -571,20 +591,37 @@ public class WSRPConsumerRegistrationPersistenceImpl extends BasePersistenceImpl
 			StringBuilder query = new StringBuilder();
 
 			query.append(
-				"FROM com.liferay.wsrp.model.WSRPConsumerRegistration WHERE ");
+				"SELECT wsrpConsumerRegistration FROM WSRPConsumerRegistration wsrpConsumerRegistration WHERE ");
 
 			if (producerKey == null) {
-				query.append("producerKey IS NULL");
+				query.append("wsrpConsumerRegistration.producerKey IS NULL");
 			}
 			else {
-				query.append("producerKey = ?");
+				query.append("wsrpConsumerRegistration.producerKey = ?");
 			}
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("wsrpConsumerRegistration.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -668,22 +705,24 @@ public class WSRPConsumerRegistrationPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.wsrp.model.WSRPConsumerRegistration WHERE ");
+					"SELECT wsrpConsumerRegistration FROM WSRPConsumerRegistration wsrpConsumerRegistration WHERE ");
 
 				if (registrationHandle == null) {
-					query.append("registrationHandle IS NULL");
+					query.append(
+						"wsrpConsumerRegistration.registrationHandle IS NULL");
 				}
 				else {
-					query.append("registrationHandle = ?");
+					query.append(
+						"wsrpConsumerRegistration.registrationHandle = ?");
 				}
 
 				query.append(" AND ");
 
 				if (producerKey == null) {
-					query.append("producerKey IS NULL");
+					query.append("wsrpConsumerRegistration.producerKey IS NULL");
 				}
 				else {
-					query.append("producerKey = ?");
+					query.append("wsrpConsumerRegistration.producerKey = ?");
 				}
 
 				query.append(" ");
@@ -722,7 +761,7 @@ public class WSRPConsumerRegistrationPersistenceImpl extends BasePersistenceImpl
 							!wsrpConsumerRegistration.getProducerKey()
 														 .equals(producerKey)) {
 						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_P,
-							finderArgs, list);
+							finderArgs, wsrpConsumerRegistration);
 					}
 				}
 
@@ -817,11 +856,28 @@ public class WSRPConsumerRegistrationPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.wsrp.model.WSRPConsumerRegistration ");
+					"SELECT wsrpConsumerRegistration FROM WSRPConsumerRegistration wsrpConsumerRegistration ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("wsrpConsumerRegistration.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -892,15 +948,15 @@ public class WSRPConsumerRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
+				query.append("SELECT COUNT(wsrpConsumerRegistration) ");
 				query.append(
-					"FROM com.liferay.wsrp.model.WSRPConsumerRegistration WHERE ");
+					"FROM WSRPConsumerRegistration wsrpConsumerRegistration WHERE ");
 
 				if (producerKey == null) {
-					query.append("producerKey IS NULL");
+					query.append("wsrpConsumerRegistration.producerKey IS NULL");
 				}
 				else {
-					query.append("producerKey = ?");
+					query.append("wsrpConsumerRegistration.producerKey = ?");
 				}
 
 				query.append(" ");
@@ -948,24 +1004,26 @@ public class WSRPConsumerRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
+				query.append("SELECT COUNT(wsrpConsumerRegistration) ");
 				query.append(
-					"FROM com.liferay.wsrp.model.WSRPConsumerRegistration WHERE ");
+					"FROM WSRPConsumerRegistration wsrpConsumerRegistration WHERE ");
 
 				if (registrationHandle == null) {
-					query.append("registrationHandle IS NULL");
+					query.append(
+						"wsrpConsumerRegistration.registrationHandle IS NULL");
 				}
 				else {
-					query.append("registrationHandle = ?");
+					query.append(
+						"wsrpConsumerRegistration.registrationHandle = ?");
 				}
 
 				query.append(" AND ");
 
 				if (producerKey == null) {
-					query.append("producerKey IS NULL");
+					query.append("wsrpConsumerRegistration.producerKey IS NULL");
 				}
 				else {
-					query.append("producerKey = ?");
+					query.append("wsrpConsumerRegistration.producerKey = ?");
 				}
 
 				query.append(" ");
@@ -1015,7 +1073,7 @@ public class WSRPConsumerRegistrationPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.wsrp.model.WSRPConsumerRegistration");
+						"SELECT COUNT(wsrpConsumerRegistration) FROM WSRPConsumerRegistration wsrpConsumerRegistration");
 
 				count = (Long)q.uniqueResult();
 			}

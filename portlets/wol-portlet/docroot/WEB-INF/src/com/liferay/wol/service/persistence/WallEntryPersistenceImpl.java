@@ -353,15 +353,15 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+				query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
 
-				query.append("groupId = ?");
+				query.append("wallEntry.groupId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("wallEntry.createDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -415,21 +415,38 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+				query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
 
-				query.append("groupId = ?");
+				query.append("wallEntry.groupId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("wallEntry.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("createDate DESC");
+					query.append("wallEntry.createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -517,21 +534,38 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+			query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
 
-			query.append("groupId = ?");
+			query.append("wallEntry.groupId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("wallEntry.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("wallEntry.createDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -573,15 +607,15 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+				query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
 
-				query.append("userId = ?");
+				query.append("wallEntry.userId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("wallEntry.createDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -635,21 +669,38 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+				query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
 
-				query.append("userId = ?");
+				query.append("wallEntry.userId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("wallEntry.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("createDate DESC");
+					query.append("wallEntry.createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -736,21 +787,38 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+			query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
 
-			query.append("userId = ?");
+			query.append("wallEntry.userId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("wallEntry.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("wallEntry.createDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -793,19 +861,19 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+				query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
 
-				query.append("groupId = ?");
+				query.append("wallEntry.groupId = ?");
 
 				query.append(" AND ");
 
-				query.append("userId = ?");
+				query.append("wallEntry.userId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("wallEntry.createDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -861,25 +929,42 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+				query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
 
-				query.append("groupId = ?");
+				query.append("wallEntry.groupId = ?");
 
 				query.append(" AND ");
 
-				query.append("userId = ?");
+				query.append("wallEntry.userId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("wallEntry.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("createDate DESC");
+					query.append("wallEntry.createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -975,25 +1060,42 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+			query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
 
-			query.append("groupId = ?");
+			query.append("wallEntry.groupId = ?");
 
 			query.append(" AND ");
 
-			query.append("userId = ?");
+			query.append("wallEntry.userId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("wallEntry.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("createDate DESC");
+				query.append("wallEntry.createDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -1089,17 +1191,34 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.WallEntry ");
+				query.append("SELECT wallEntry FROM WallEntry wallEntry ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("wallEntry.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("createDate DESC");
+					query.append("wallEntry.createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -1173,10 +1292,10 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+				query.append("SELECT COUNT(wallEntry) ");
+				query.append("FROM WallEntry wallEntry WHERE ");
 
-				query.append("groupId = ?");
+				query.append("wallEntry.groupId = ?");
 
 				query.append(" ");
 
@@ -1220,10 +1339,10 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+				query.append("SELECT COUNT(wallEntry) ");
+				query.append("FROM WallEntry wallEntry WHERE ");
 
-				query.append("userId = ?");
+				query.append("wallEntry.userId = ?");
 
 				query.append(" ");
 
@@ -1267,14 +1386,14 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+				query.append("SELECT COUNT(wallEntry) ");
+				query.append("FROM WallEntry wallEntry WHERE ");
 
-				query.append("groupId = ?");
+				query.append("wallEntry.groupId = ?");
 
 				query.append(" AND ");
 
-				query.append("userId = ?");
+				query.append("wallEntry.userId = ?");
 
 				query.append(" ");
 
@@ -1319,7 +1438,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.wol.model.WallEntry");
+						"SELECT COUNT(wallEntry) FROM WallEntry wallEntry");
 
 				count = (Long)q.uniqueResult();
 			}

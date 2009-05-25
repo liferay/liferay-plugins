@@ -50,6 +50,33 @@ public class WallEntrySoap implements Serializable {
 		return soapModel;
 	}
 
+	public static WallEntrySoap[] toSoapModels(WallEntry[] models) {
+		WallEntrySoap[] soapModels = new WallEntrySoap[models.length];
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModel(models[i]);
+		}
+
+		return soapModels;
+	}
+
+	public static WallEntrySoap[][] toSoapModels(WallEntry[][] models) {
+		WallEntrySoap[][] soapModels = null;
+
+		if (models.length > 0) {
+			soapModels = new WallEntrySoap[models.length][models[0].length];
+		}
+		else {
+			soapModels = new WallEntrySoap[0][0];
+		}
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModels(models[i]);
+		}
+
+		return soapModels;
+	}
+
 	public static WallEntrySoap[] toSoapModels(List<WallEntry> models) {
 		List<WallEntrySoap> soapModels = new ArrayList<WallEntrySoap>(models.size());
 

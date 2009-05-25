@@ -48,6 +48,33 @@ public class SVNRevisionSoap implements Serializable {
 		return soapModel;
 	}
 
+	public static SVNRevisionSoap[] toSoapModels(SVNRevision[] models) {
+		SVNRevisionSoap[] soapModels = new SVNRevisionSoap[models.length];
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModel(models[i]);
+		}
+
+		return soapModels;
+	}
+
+	public static SVNRevisionSoap[][] toSoapModels(SVNRevision[][] models) {
+		SVNRevisionSoap[][] soapModels = null;
+
+		if (models.length > 0) {
+			soapModels = new SVNRevisionSoap[models.length][models[0].length];
+		}
+		else {
+			soapModels = new SVNRevisionSoap[0][0];
+		}
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModels(models[i]);
+		}
+
+		return soapModels;
+	}
+
 	public static SVNRevisionSoap[] toSoapModels(List<SVNRevision> models) {
 		List<SVNRevisionSoap> soapModels = new ArrayList<SVNRevisionSoap>(models.size());
 

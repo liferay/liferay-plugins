@@ -311,16 +311,15 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append(
-					"FROM com.liferay.sampleservicebuilder.model.Foo WHERE ");
+				query.append("SELECT foo FROM Foo foo WHERE ");
 
-				query.append("field2 = ?");
+				query.append("foo.field2 = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("field1 ASC");
+				query.append("foo.field1 ASC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -374,22 +373,38 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append(
-					"FROM com.liferay.sampleservicebuilder.model.Foo WHERE ");
+				query.append("SELECT foo FROM Foo foo WHERE ");
 
-				query.append("field2 = ?");
+				query.append("foo.field2 = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("foo.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("field1 ASC");
+					query.append("foo.field1 ASC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -475,22 +490,38 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append(
-				"FROM com.liferay.sampleservicebuilder.model.Foo WHERE ");
+			query.append("SELECT foo FROM Foo foo WHERE ");
 
-			query.append("field2 = ?");
+			query.append("foo.field2 = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("foo.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("field1 ASC");
+				query.append("foo.field1 ASC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -582,17 +613,34 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.sampleservicebuilder.model.Foo ");
+				query.append("SELECT foo FROM Foo foo ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("foo.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("field1 ASC");
+					query.append("foo.field1 ASC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -652,11 +700,10 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.sampleservicebuilder.model.Foo WHERE ");
+				query.append("SELECT COUNT(foo) ");
+				query.append("FROM Foo foo WHERE ");
 
-				query.append("field2 = ?");
+				query.append("foo.field2 = ?");
 
 				query.append(" ");
 
@@ -698,8 +745,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.sampleservicebuilder.model.Foo");
+				Query q = session.createQuery("SELECT COUNT(foo) FROM Foo foo");
 
 				count = (Long)q.uniqueResult();
 			}

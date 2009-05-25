@@ -52,6 +52,35 @@ public class MeetupsRegistrationSoap implements Serializable {
 	}
 
 	public static MeetupsRegistrationSoap[] toSoapModels(
+		MeetupsRegistration[] models) {
+		MeetupsRegistrationSoap[] soapModels = new MeetupsRegistrationSoap[models.length];
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModel(models[i]);
+		}
+
+		return soapModels;
+	}
+
+	public static MeetupsRegistrationSoap[][] toSoapModels(
+		MeetupsRegistration[][] models) {
+		MeetupsRegistrationSoap[][] soapModels = null;
+
+		if (models.length > 0) {
+			soapModels = new MeetupsRegistrationSoap[models.length][models[0].length];
+		}
+		else {
+			soapModels = new MeetupsRegistrationSoap[0][0];
+		}
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModels(models[i]);
+		}
+
+		return soapModels;
+	}
+
+	public static MeetupsRegistrationSoap[] toSoapModels(
 		List<MeetupsRegistration> models) {
 		List<MeetupsRegistrationSoap> soapModels = new ArrayList<MeetupsRegistrationSoap>(models.size());
 

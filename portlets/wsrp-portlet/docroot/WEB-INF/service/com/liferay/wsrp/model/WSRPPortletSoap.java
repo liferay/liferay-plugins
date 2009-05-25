@@ -53,6 +53,33 @@ public class WSRPPortletSoap implements Serializable {
 		return soapModel;
 	}
 
+	public static WSRPPortletSoap[] toSoapModels(WSRPPortlet[] models) {
+		WSRPPortletSoap[] soapModels = new WSRPPortletSoap[models.length];
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModel(models[i]);
+		}
+
+		return soapModels;
+	}
+
+	public static WSRPPortletSoap[][] toSoapModels(WSRPPortlet[][] models) {
+		WSRPPortletSoap[][] soapModels = null;
+
+		if (models.length > 0) {
+			soapModels = new WSRPPortletSoap[models.length][models[0].length];
+		}
+		else {
+			soapModels = new WSRPPortletSoap[0][0];
+		}
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModels(models[i]);
+		}
+
+		return soapModels;
+	}
+
 	public static WSRPPortletSoap[] toSoapModels(List<WSRPPortlet> models) {
 		List<WSRPPortletSoap> soapModels = new ArrayList<WSRPPortletSoap>(models.size());
 

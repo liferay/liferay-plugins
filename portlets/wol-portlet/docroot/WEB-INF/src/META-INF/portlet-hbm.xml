@@ -2,6 +2,15 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.wol.model.JIRAAction" />
+	<import class="com.liferay.wol.model.JIRAChangeGroup" />
+	<import class="com.liferay.wol.model.JIRAChangeItem" />
+	<import class="com.liferay.wol.model.JIRAIssue" />
+	<import class="com.liferay.wol.model.MeetupsEntry" />
+	<import class="com.liferay.wol.model.MeetupsRegistration" />
+	<import class="com.liferay.wol.model.SVNRepository" />
+	<import class="com.liferay.wol.model.SVNRevision" />
+	<import class="com.liferay.wol.model.WallEntry" />
 	<class name="com.liferay.wol.model.impl.JIRAActionImpl" table="jiraaction">
 		<cache usage="read-write" />
 		<id name="jiraActionId" column="id" type="long">

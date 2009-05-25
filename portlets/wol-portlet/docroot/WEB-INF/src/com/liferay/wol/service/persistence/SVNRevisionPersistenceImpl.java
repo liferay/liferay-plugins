@@ -357,20 +357,21 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+				query.append(
+					"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
 
 				if (svnUserId == null) {
-					query.append("svnUserId IS NULL");
+					query.append("svnRevision.svnUserId IS NULL");
 				}
 				else {
-					query.append("svnUserId = ?");
+					query.append("svnRevision.svnUserId = ?");
 				}
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("revisionNumber DESC");
+				query.append("svnRevision.revisionNumber DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -426,26 +427,44 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+				query.append(
+					"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
 
 				if (svnUserId == null) {
-					query.append("svnUserId IS NULL");
+					query.append("svnRevision.svnUserId IS NULL");
 				}
 				else {
-					query.append("svnUserId = ?");
+					query.append("svnRevision.svnUserId = ?");
 				}
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("svnRevision.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("revisionNumber DESC");
+					query.append("svnRevision.revisionNumber DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -538,26 +557,44 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+			query.append(
+				"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
 
 			if (svnUserId == null) {
-				query.append("svnUserId IS NULL");
+				query.append("svnRevision.svnUserId IS NULL");
 			}
 			else {
-				query.append("svnUserId = ?");
+				query.append("svnRevision.svnUserId = ?");
 			}
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("svnRevision.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("revisionNumber DESC");
+				query.append("svnRevision.revisionNumber DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -602,15 +639,16 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+				query.append(
+					"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
 
-				query.append("svnRepositoryId = ?");
+				query.append("svnRevision.svnRepositoryId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("revisionNumber DESC");
+				query.append("svnRevision.revisionNumber DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -664,21 +702,39 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+				query.append(
+					"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
 
-				query.append("svnRepositoryId = ?");
+				query.append("svnRevision.svnRepositoryId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("svnRevision.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("revisionNumber DESC");
+					query.append("svnRevision.revisionNumber DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -770,21 +826,39 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+			query.append(
+				"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
 
-			query.append("svnRepositoryId = ?");
+			query.append("svnRevision.svnRepositoryId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("svnRevision.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("revisionNumber DESC");
+				query.append("svnRevision.revisionNumber DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -827,24 +901,25 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+				query.append(
+					"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
 
 				if (svnUserId == null) {
-					query.append("svnUserId IS NULL");
+					query.append("svnRevision.svnUserId IS NULL");
 				}
 				else {
-					query.append("svnUserId = ?");
+					query.append("svnRevision.svnUserId = ?");
 				}
 
 				query.append(" AND ");
 
-				query.append("svnRepositoryId = ?");
+				query.append("svnRevision.svnRepositoryId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("revisionNumber DESC");
+				query.append("svnRevision.revisionNumber DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -903,30 +978,48 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+				query.append(
+					"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
 
 				if (svnUserId == null) {
-					query.append("svnUserId IS NULL");
+					query.append("svnRevision.svnUserId IS NULL");
 				}
 				else {
-					query.append("svnUserId = ?");
+					query.append("svnRevision.svnUserId = ?");
 				}
 
 				query.append(" AND ");
 
-				query.append("svnRepositoryId = ?");
+				query.append("svnRevision.svnRepositoryId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("svnRevision.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("revisionNumber DESC");
+					query.append("svnRevision.revisionNumber DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -1028,30 +1121,48 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+			query.append(
+				"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
 
 			if (svnUserId == null) {
-				query.append("svnUserId IS NULL");
+				query.append("svnRevision.svnUserId IS NULL");
 			}
 			else {
-				query.append("svnUserId = ?");
+				query.append("svnRevision.svnUserId = ?");
 			}
 
 			query.append(" AND ");
 
-			query.append("svnRepositoryId = ?");
+			query.append("svnRevision.svnRepositoryId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("svnRevision.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("revisionNumber DESC");
+				query.append("svnRevision.revisionNumber DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -1149,17 +1260,34 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.SVNRevision ");
+				query.append("SELECT svnRevision FROM SVNRevision svnRevision ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("svnRevision.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("revisionNumber DESC");
+					query.append("svnRevision.revisionNumber DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -1235,14 +1363,14 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+				query.append("SELECT COUNT(svnRevision) ");
+				query.append("FROM SVNRevision svnRevision WHERE ");
 
 				if (svnUserId == null) {
-					query.append("svnUserId IS NULL");
+					query.append("svnRevision.svnUserId IS NULL");
 				}
 				else {
-					query.append("svnUserId = ?");
+					query.append("svnRevision.svnUserId = ?");
 				}
 
 				query.append(" ");
@@ -1290,10 +1418,10 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+				query.append("SELECT COUNT(svnRevision) ");
+				query.append("FROM SVNRevision svnRevision WHERE ");
 
-				query.append("svnRepositoryId = ?");
+				query.append("svnRevision.svnRepositoryId = ?");
 
 				query.append(" ");
 
@@ -1338,19 +1466,19 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+				query.append("SELECT COUNT(svnRevision) ");
+				query.append("FROM SVNRevision svnRevision WHERE ");
 
 				if (svnUserId == null) {
-					query.append("svnUserId IS NULL");
+					query.append("svnRevision.svnUserId IS NULL");
 				}
 				else {
-					query.append("svnUserId = ?");
+					query.append("svnRevision.svnUserId = ?");
 				}
 
 				query.append(" AND ");
 
-				query.append("svnRepositoryId = ?");
+				query.append("svnRevision.svnRepositoryId = ?");
 
 				query.append(" ");
 
@@ -1397,7 +1525,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.wol.model.SVNRevision");
+						"SELECT COUNT(svnRevision) FROM SVNRevision svnRevision");
 
 				count = (Long)q.uniqueResult();
 			}

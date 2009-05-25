@@ -48,6 +48,33 @@ public class FooSoap implements Serializable {
 		return soapModel;
 	}
 
+	public static FooSoap[] toSoapModels(Foo[] models) {
+		FooSoap[] soapModels = new FooSoap[models.length];
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModel(models[i]);
+		}
+
+		return soapModels;
+	}
+
+	public static FooSoap[][] toSoapModels(Foo[][] models) {
+		FooSoap[][] soapModels = null;
+
+		if (models.length > 0) {
+			soapModels = new FooSoap[models.length][models[0].length];
+		}
+		else {
+			soapModels = new FooSoap[0][0];
+		}
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModels(models[i]);
+		}
+
+		return soapModels;
+	}
+
 	public static FooSoap[] toSoapModels(List<Foo> models) {
 		List<FooSoap> soapModels = new ArrayList<FooSoap>(models.size());
 

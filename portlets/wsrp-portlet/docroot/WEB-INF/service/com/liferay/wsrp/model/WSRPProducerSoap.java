@@ -53,6 +53,33 @@ public class WSRPProducerSoap implements Serializable {
 		return soapModel;
 	}
 
+	public static WSRPProducerSoap[] toSoapModels(WSRPProducer[] models) {
+		WSRPProducerSoap[] soapModels = new WSRPProducerSoap[models.length];
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModel(models[i]);
+		}
+
+		return soapModels;
+	}
+
+	public static WSRPProducerSoap[][] toSoapModels(WSRPProducer[][] models) {
+		WSRPProducerSoap[][] soapModels = null;
+
+		if (models.length > 0) {
+			soapModels = new WSRPProducerSoap[models.length][models[0].length];
+		}
+		else {
+			soapModels = new WSRPProducerSoap[0][0];
+		}
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModels(models[i]);
+		}
+
+		return soapModels;
+	}
+
 	public static WSRPProducerSoap[] toSoapModels(List<WSRPProducer> models) {
 		List<WSRPProducerSoap> soapModels = new ArrayList<WSRPProducerSoap>(models.size());
 

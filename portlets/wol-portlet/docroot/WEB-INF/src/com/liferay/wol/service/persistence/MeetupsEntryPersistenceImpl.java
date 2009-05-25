@@ -327,15 +327,16 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.MeetupsEntry WHERE ");
+				query.append(
+					"SELECT meetupsEntry FROM MeetupsEntry meetupsEntry WHERE ");
 
-				query.append("companyId = ?");
+				query.append("meetupsEntry.companyId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("startDate DESC");
+				query.append("meetupsEntry.startDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -389,21 +390,39 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.MeetupsEntry WHERE ");
+				query.append(
+					"SELECT meetupsEntry FROM MeetupsEntry meetupsEntry WHERE ");
 
-				query.append("companyId = ?");
+				query.append("meetupsEntry.companyId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("meetupsEntry.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("startDate DESC");
+					query.append("meetupsEntry.startDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -494,21 +513,39 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.wol.model.MeetupsEntry WHERE ");
+			query.append(
+				"SELECT meetupsEntry FROM MeetupsEntry meetupsEntry WHERE ");
 
-			query.append("companyId = ?");
+			query.append("meetupsEntry.companyId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("meetupsEntry.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("startDate DESC");
+				query.append("meetupsEntry.startDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -602,17 +639,35 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.MeetupsEntry ");
+				query.append(
+					"SELECT meetupsEntry FROM MeetupsEntry meetupsEntry ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("meetupsEntry.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("startDate DESC");
+					query.append("meetupsEntry.startDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -673,10 +728,10 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.MeetupsEntry WHERE ");
+				query.append("SELECT COUNT(meetupsEntry) ");
+				query.append("FROM MeetupsEntry meetupsEntry WHERE ");
 
-				query.append("companyId = ?");
+				query.append("meetupsEntry.companyId = ?");
 
 				query.append(" ");
 
@@ -719,7 +774,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.wol.model.MeetupsEntry");
+						"SELECT COUNT(meetupsEntry) FROM MeetupsEntry meetupsEntry");
 
 				count = (Long)q.uniqueResult();
 			}

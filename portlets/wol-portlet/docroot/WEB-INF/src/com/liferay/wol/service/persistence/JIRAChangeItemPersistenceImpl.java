@@ -331,9 +331,10 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.JIRAChangeItem WHERE ");
+				query.append(
+					"SELECT jiraChangeItem FROM JIRAChangeItem jiraChangeItem WHERE ");
 
-				query.append("groupid = ?");
+				query.append("jiraChangeItem.jiraChangeGroupId = ?");
 
 				query.append(" ");
 
@@ -390,15 +391,33 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.JIRAChangeItem WHERE ");
+				query.append(
+					"SELECT jiraChangeItem FROM JIRAChangeItem jiraChangeItem WHERE ");
 
-				query.append("groupid = ?");
+				query.append("jiraChangeItem.jiraChangeGroupId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("jiraChangeItem.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -490,15 +509,33 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.wol.model.JIRAChangeItem WHERE ");
+			query.append(
+				"SELECT jiraChangeItem FROM JIRAChangeItem jiraChangeItem WHERE ");
 
-			query.append("groupid = ?");
+			query.append("jiraChangeItem.jiraChangeGroupId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("jiraChangeItem.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -592,11 +629,29 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.JIRAChangeItem ");
+				query.append(
+					"SELECT jiraChangeItem FROM JIRAChangeItem jiraChangeItem ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("jiraChangeItem.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -660,10 +715,10 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.JIRAChangeItem WHERE ");
+				query.append("SELECT COUNT(jiraChangeItem) ");
+				query.append("FROM JIRAChangeItem jiraChangeItem WHERE ");
 
-				query.append("groupid = ?");
+				query.append("jiraChangeItem.jiraChangeGroupId = ?");
 
 				query.append(" ");
 
@@ -706,7 +761,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.wol.model.JIRAChangeItem");
+						"SELECT COUNT(jiraChangeItem) FROM JIRAChangeItem jiraChangeItem");
 
 				count = (Long)q.uniqueResult();
 			}

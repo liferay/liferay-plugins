@@ -350,20 +350,20 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.wol.model.JIRAChangeGroup WHERE ");
+					"SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup WHERE ");
 
 				if (jiraUserId == null) {
-					query.append("author IS NULL");
+					query.append("jiraChangeGroup.jiraUserId IS NULL");
 				}
 				else {
-					query.append("author = ?");
+					query.append("jiraChangeGroup.jiraUserId = ?");
 				}
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("created DESC");
+				query.append("jiraChangeGroup.createDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -420,26 +420,43 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.wol.model.JIRAChangeGroup WHERE ");
+					"SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup WHERE ");
 
 				if (jiraUserId == null) {
-					query.append("author IS NULL");
+					query.append("jiraChangeGroup.jiraUserId IS NULL");
 				}
 				else {
-					query.append("author = ?");
+					query.append("jiraChangeGroup.jiraUserId = ?");
 				}
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("jiraChangeGroup.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("created DESC");
+					query.append("jiraChangeGroup.createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -532,26 +549,44 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.wol.model.JIRAChangeGroup WHERE ");
+			query.append(
+				"SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup WHERE ");
 
 			if (jiraUserId == null) {
-				query.append("author IS NULL");
+				query.append("jiraChangeGroup.jiraUserId IS NULL");
 			}
 			else {
-				query.append("author = ?");
+				query.append("jiraChangeGroup.jiraUserId = ?");
 			}
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("jiraChangeGroup.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("created DESC");
+				query.append("jiraChangeGroup.createDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -597,15 +632,15 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.wol.model.JIRAChangeGroup WHERE ");
+					"SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup WHERE ");
 
-				query.append("issueid = ?");
+				query.append("jiraChangeGroup.jiraIssueId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("created DESC");
+				query.append("jiraChangeGroup.createDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -660,21 +695,38 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.wol.model.JIRAChangeGroup WHERE ");
+					"SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup WHERE ");
 
-				query.append("issueid = ?");
+				query.append("jiraChangeGroup.jiraIssueId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("jiraChangeGroup.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("created DESC");
+					query.append("jiraChangeGroup.createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -765,21 +817,39 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.wol.model.JIRAChangeGroup WHERE ");
+			query.append(
+				"SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup WHERE ");
 
-			query.append("issueid = ?");
+			query.append("jiraChangeGroup.jiraIssueId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("jiraChangeGroup.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("created DESC");
+				query.append("jiraChangeGroup.createDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -873,17 +943,35 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.JIRAChangeGroup ");
+				query.append(
+					"SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("jiraChangeGroup.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("created DESC");
+					query.append("jiraChangeGroup.createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -950,15 +1038,14 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.wol.model.JIRAChangeGroup WHERE ");
+				query.append("SELECT COUNT(jiraChangeGroup) ");
+				query.append("FROM JIRAChangeGroup jiraChangeGroup WHERE ");
 
 				if (jiraUserId == null) {
-					query.append("author IS NULL");
+					query.append("jiraChangeGroup.jiraUserId IS NULL");
 				}
 				else {
-					query.append("author = ?");
+					query.append("jiraChangeGroup.jiraUserId = ?");
 				}
 
 				query.append(" ");
@@ -1005,11 +1092,10 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.wol.model.JIRAChangeGroup WHERE ");
+				query.append("SELECT COUNT(jiraChangeGroup) ");
+				query.append("FROM JIRAChangeGroup jiraChangeGroup WHERE ");
 
-				query.append("issueid = ?");
+				query.append("jiraChangeGroup.jiraIssueId = ?");
 
 				query.append(" ");
 
@@ -1052,7 +1138,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.wol.model.JIRAChangeGroup");
+						"SELECT COUNT(jiraChangeGroup) FROM JIRAChangeGroup jiraChangeGroup");
 
 				count = (Long)q.uniqueResult();
 			}

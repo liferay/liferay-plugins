@@ -48,6 +48,33 @@ public class FeedSoap implements Serializable {
 		return soapModel;
 	}
 
+	public static FeedSoap[] toSoapModels(Feed[] models) {
+		FeedSoap[] soapModels = new FeedSoap[models.length];
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModel(models[i]);
+		}
+
+		return soapModels;
+	}
+
+	public static FeedSoap[][] toSoapModels(Feed[][] models) {
+		FeedSoap[][] soapModels = null;
+
+		if (models.length > 0) {
+			soapModels = new FeedSoap[models.length][models[0].length];
+		}
+		else {
+			soapModels = new FeedSoap[0][0];
+		}
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModels(models[i]);
+		}
+
+		return soapModels;
+	}
+
 	public static FeedSoap[] toSoapModels(List<Feed> models) {
 		List<FeedSoap> soapModels = new ArrayList<FeedSoap>(models.size());
 

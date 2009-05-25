@@ -46,6 +46,33 @@ public class PresenceSoap implements Serializable {
 		return soapModel;
 	}
 
+	public static PresenceSoap[] toSoapModels(Presence[] models) {
+		PresenceSoap[] soapModels = new PresenceSoap[models.length];
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModel(models[i]);
+		}
+
+		return soapModels;
+	}
+
+	public static PresenceSoap[][] toSoapModels(Presence[][] models) {
+		PresenceSoap[][] soapModels = null;
+
+		if (models.length > 0) {
+			soapModels = new PresenceSoap[models.length][models[0].length];
+		}
+		else {
+			soapModels = new PresenceSoap[0][0];
+		}
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModels(models[i]);
+		}
+
+		return soapModels;
+	}
+
 	public static PresenceSoap[] toSoapModels(List<Presence> models) {
 		List<PresenceSoap> soapModels = new ArrayList<PresenceSoap>(models.size());
 

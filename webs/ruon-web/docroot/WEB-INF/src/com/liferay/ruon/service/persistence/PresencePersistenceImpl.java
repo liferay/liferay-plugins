@@ -382,9 +382,9 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.ruon.model.Presence WHERE ");
+				query.append("SELECT presence FROM Presence presence WHERE ");
 
-				query.append("userId = ?");
+				query.append("presence.userId = ?");
 
 				query.append(" ");
 
@@ -440,15 +440,32 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.ruon.model.Presence WHERE ");
+				query.append("SELECT presence FROM Presence presence WHERE ");
 
-				query.append("userId = ?");
+				query.append("presence.userId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("presence.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -535,15 +552,32 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.ruon.model.Presence WHERE ");
+			query.append("SELECT presence FROM Presence presence WHERE ");
 
-			query.append("userId = ?");
+			query.append("presence.userId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("presence.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -620,13 +654,13 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.ruon.model.Presence WHERE ");
+				query.append("SELECT presence FROM Presence presence WHERE ");
 
-				query.append("userId = ?");
+				query.append("presence.userId = ?");
 
 				query.append(" AND ");
 
-				query.append("networkId = ?");
+				query.append("presence.networkId = ?");
 
 				query.append(" ");
 
@@ -656,7 +690,7 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 					if ((presence.getUserId() != userId) ||
 							(presence.getNetworkId() != networkId)) {
 						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_N,
-							finderArgs, list);
+							finderArgs, presence);
 					}
 				}
 
@@ -701,13 +735,13 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.ruon.model.Presence WHERE ");
+				query.append("SELECT presence FROM Presence presence WHERE ");
 
-				query.append("userId = ?");
+				query.append("presence.userId = ?");
 
 				query.append(" AND ");
 
-				query.append("online_ = ?");
+				query.append("presence.online = ?");
 
 				query.append(" ");
 
@@ -765,19 +799,36 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.ruon.model.Presence WHERE ");
+				query.append("SELECT presence FROM Presence presence WHERE ");
 
-				query.append("userId = ?");
+				query.append("presence.userId = ?");
 
 				query.append(" AND ");
 
-				query.append("online_ = ?");
+				query.append("presence.online = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("presence.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -873,19 +924,36 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.ruon.model.Presence WHERE ");
+			query.append("SELECT presence FROM Presence presence WHERE ");
 
-			query.append("userId = ?");
+			query.append("presence.userId = ?");
 
 			query.append(" AND ");
 
-			query.append("online_ = ?");
+			query.append("presence.online = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("presence.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -979,11 +1047,28 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.ruon.model.Presence ");
+				query.append("SELECT presence FROM Presence presence ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("presence.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -1058,10 +1143,10 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.ruon.model.Presence WHERE ");
+				query.append("SELECT COUNT(presence) ");
+				query.append("FROM Presence presence WHERE ");
 
-				query.append("userId = ?");
+				query.append("presence.userId = ?");
 
 				query.append(" ");
 
@@ -1106,14 +1191,14 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.ruon.model.Presence WHERE ");
+				query.append("SELECT COUNT(presence) ");
+				query.append("FROM Presence presence WHERE ");
 
-				query.append("userId = ?");
+				query.append("presence.userId = ?");
 
 				query.append(" AND ");
 
-				query.append("networkId = ?");
+				query.append("presence.networkId = ?");
 
 				query.append(" ");
 
@@ -1162,14 +1247,14 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.ruon.model.Presence WHERE ");
+				query.append("SELECT COUNT(presence) ");
+				query.append("FROM Presence presence WHERE ");
 
-				query.append("userId = ?");
+				query.append("presence.userId = ?");
 
 				query.append(" AND ");
 
-				query.append("online_ = ?");
+				query.append("presence.online = ?");
 
 				query.append(" ");
 
@@ -1214,7 +1299,7 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.ruon.model.Presence");
+						"SELECT COUNT(presence) FROM Presence presence");
 
 				count = (Long)q.uniqueResult();
 			}

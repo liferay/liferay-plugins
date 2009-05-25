@@ -397,15 +397,15 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+					"SELECT meetupsRegistration FROM MeetupsRegistration meetupsRegistration WHERE ");
 
-				query.append("meetupsEntryId = ?");
+				query.append("meetupsRegistration.meetupsEntryId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("modifiedDate DESC");
+				query.append("meetupsRegistration.modifiedDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -460,21 +460,38 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+					"SELECT meetupsRegistration FROM MeetupsRegistration meetupsRegistration WHERE ");
 
-				query.append("meetupsEntryId = ?");
+				query.append("meetupsRegistration.meetupsEntryId = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("meetupsRegistration.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("modifiedDate DESC");
+					query.append("meetupsRegistration.modifiedDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -567,21 +584,38 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 			StringBuilder query = new StringBuilder();
 
 			query.append(
-				"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+				"SELECT meetupsRegistration FROM MeetupsRegistration meetupsRegistration WHERE ");
 
-			query.append("meetupsEntryId = ?");
+			query.append("meetupsRegistration.meetupsEntryId = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("meetupsRegistration.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("modifiedDate DESC");
+				query.append("meetupsRegistration.modifiedDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -663,19 +697,19 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+					"SELECT meetupsRegistration FROM MeetupsRegistration meetupsRegistration WHERE ");
 
-				query.append("userId = ?");
+				query.append("meetupsRegistration.userId = ?");
 
 				query.append(" AND ");
 
-				query.append("meetupsEntryId = ?");
+				query.append("meetupsRegistration.meetupsEntryId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("modifiedDate DESC");
+				query.append("meetupsRegistration.modifiedDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -703,7 +737,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 					if ((meetupsRegistration.getUserId() != userId) ||
 							(meetupsRegistration.getMeetupsEntryId() != meetupsEntryId)) {
 						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_ME,
-							finderArgs, list);
+							finderArgs, meetupsRegistration);
 					}
 				}
 
@@ -749,19 +783,19 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+					"SELECT meetupsRegistration FROM MeetupsRegistration meetupsRegistration WHERE ");
 
-				query.append("meetupsEntryId = ?");
+				query.append("meetupsRegistration.meetupsEntryId = ?");
 
 				query.append(" AND ");
 
-				query.append("status = ?");
+				query.append("meetupsRegistration.status = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("modifiedDate DESC");
+				query.append("meetupsRegistration.modifiedDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -819,25 +853,42 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+					"SELECT meetupsRegistration FROM MeetupsRegistration meetupsRegistration WHERE ");
 
-				query.append("meetupsEntryId = ?");
+				query.append("meetupsRegistration.meetupsEntryId = ?");
 
 				query.append(" AND ");
 
-				query.append("status = ?");
+				query.append("meetupsRegistration.status = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("meetupsRegistration.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("modifiedDate DESC");
+					query.append("meetupsRegistration.modifiedDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -939,25 +990,42 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 			StringBuilder query = new StringBuilder();
 
 			query.append(
-				"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+				"SELECT meetupsRegistration FROM MeetupsRegistration meetupsRegistration WHERE ");
 
-			query.append("meetupsEntryId = ?");
+			query.append("meetupsRegistration.meetupsEntryId = ?");
 
 			query.append(" AND ");
 
-			query.append("status = ?");
+			query.append("meetupsRegistration.status = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("meetupsRegistration.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			else {
 				query.append("ORDER BY ");
 
-				query.append("modifiedDate DESC");
+				query.append("meetupsRegistration.modifiedDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -1053,17 +1121,35 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wol.model.MeetupsRegistration ");
+				query.append(
+					"SELECT meetupsRegistration FROM MeetupsRegistration meetupsRegistration ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("meetupsRegistration.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				else {
 					query.append("ORDER BY ");
 
-					query.append("modifiedDate DESC");
+					query.append("meetupsRegistration.modifiedDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -1143,11 +1229,11 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
+				query.append("SELECT COUNT(meetupsRegistration) ");
 				query.append(
-					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+					"FROM MeetupsRegistration meetupsRegistration WHERE ");
 
-				query.append("meetupsEntryId = ?");
+				query.append("meetupsRegistration.meetupsEntryId = ?");
 
 				query.append(" ");
 
@@ -1194,15 +1280,15 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
+				query.append("SELECT COUNT(meetupsRegistration) ");
 				query.append(
-					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+					"FROM MeetupsRegistration meetupsRegistration WHERE ");
 
-				query.append("userId = ?");
+				query.append("meetupsRegistration.userId = ?");
 
 				query.append(" AND ");
 
-				query.append("meetupsEntryId = ?");
+				query.append("meetupsRegistration.meetupsEntryId = ?");
 
 				query.append(" ");
 
@@ -1251,15 +1337,15 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
+				query.append("SELECT COUNT(meetupsRegistration) ");
 				query.append(
-					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+					"FROM MeetupsRegistration meetupsRegistration WHERE ");
 
-				query.append("meetupsEntryId = ?");
+				query.append("meetupsRegistration.meetupsEntryId = ?");
 
 				query.append(" AND ");
 
-				query.append("status = ?");
+				query.append("meetupsRegistration.status = ?");
 
 				query.append(" ");
 
@@ -1304,7 +1390,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.wol.model.MeetupsRegistration");
+						"SELECT COUNT(meetupsRegistration) FROM MeetupsRegistration meetupsRegistration");
 
 				count = (Long)q.uniqueResult();
 			}

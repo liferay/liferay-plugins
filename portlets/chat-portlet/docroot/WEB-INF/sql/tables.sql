@@ -4,7 +4,7 @@ create table Chat_Entry (
 	createDate LONG,
 	fromUserId LONG,
 	toUserId LONG,
-	content STRING null
+	content VARCHAR(1000) null
 );
 
 create table Chat_Status (

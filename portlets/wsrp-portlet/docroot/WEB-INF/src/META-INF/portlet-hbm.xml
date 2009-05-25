@@ -2,6 +2,10 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.wsrp.model.WSRPConfiguredProducer" />
+	<import class="com.liferay.wsrp.model.WSRPConsumerRegistration" />
+	<import class="com.liferay.wsrp.model.WSRPPortlet" />
+	<import class="com.liferay.wsrp.model.WSRPProducer" />
 	<class name="com.liferay.wsrp.model.impl.WSRPConfiguredProducerImpl" table="WSRP_WSRPConfiguredProducer">
 		<cache usage="read-write" />
 		<id name="configuredProducerId" type="long">

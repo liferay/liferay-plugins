@@ -44,6 +44,33 @@ public class NetworkSoap implements Serializable {
 		return soapModel;
 	}
 
+	public static NetworkSoap[] toSoapModels(Network[] models) {
+		NetworkSoap[] soapModels = new NetworkSoap[models.length];
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModel(models[i]);
+		}
+
+		return soapModels;
+	}
+
+	public static NetworkSoap[][] toSoapModels(Network[][] models) {
+		NetworkSoap[][] soapModels = null;
+
+		if (models.length > 0) {
+			soapModels = new NetworkSoap[models.length][models[0].length];
+		}
+		else {
+			soapModels = new NetworkSoap[0][0];
+		}
+
+		for (int i = 0; i < models.length; i++) {
+			soapModels[i] = toSoapModels(models[i]);
+		}
+
+		return soapModels;
+	}
+
 	public static NetworkSoap[] toSoapModels(List<Network> models) {
 		List<NetworkSoap> soapModels = new ArrayList<NetworkSoap>(models.size());
 

@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -284,15 +285,15 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 			WSRPProducerImpl.class, wsrpProducer.getPrimaryKey(), wsrpProducer);
 
 		if (!isNew &&
-				(!wsrpProducer.getInstanceName()
-								  .equals(wsrpProducerModelImpl.getOriginalInstanceName()))) {
+				(!Validator.equals(wsrpProducer.getInstanceName(),
+					wsrpProducerModelImpl.getOriginalInstanceName()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_INSTANCENAME,
 				new Object[] { wsrpProducerModelImpl.getOriginalInstanceName() });
 		}
 
 		if (isNew ||
-				(!wsrpProducer.getInstanceName()
-								  .equals(wsrpProducerModelImpl.getOriginalInstanceName()))) {
+				(!Validator.equals(wsrpProducer.getInstanceName(),
+					wsrpProducerModelImpl.getOriginalInstanceName()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_INSTANCENAME,
 				new Object[] { wsrpProducer.getInstanceName() }, wsrpProducer);
 		}
@@ -393,13 +394,14 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wsrp.model.WSRPProducer WHERE ");
+				query.append(
+					"SELECT wsrpProducer FROM WSRPProducer wsrpProducer WHERE ");
 
 				if (instanceName == null) {
-					query.append("instanceName IS NULL");
+					query.append("wsrpProducer.instanceName IS NULL");
 				}
 				else {
-					query.append("instanceName = ?");
+					query.append("wsrpProducer.instanceName = ?");
 				}
 
 				query.append(" ");
@@ -430,7 +432,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 					if ((wsrpProducer.getInstanceName() == null) ||
 							!wsrpProducer.getInstanceName().equals(instanceName)) {
 						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_INSTANCENAME,
-							finderArgs, list);
+							finderArgs, wsrpProducer);
 					}
 				}
 
@@ -473,22 +475,23 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wsrp.model.WSRPProducer WHERE ");
+				query.append(
+					"SELECT wsrpProducer FROM WSRPProducer wsrpProducer WHERE ");
 
 				if (portalId == null) {
-					query.append("portalId IS NULL");
+					query.append("wsrpProducer.portalId IS NULL");
 				}
 				else {
-					query.append("portalId = ?");
+					query.append("wsrpProducer.portalId = ?");
 				}
 
 				query.append(" AND ");
 
 				if (namespace == null) {
-					query.append("namespace IS NULL");
+					query.append("wsrpProducer.namespace IS NULL");
 				}
 				else {
-					query.append("namespace = ?");
+					query.append("wsrpProducer.namespace = ?");
 				}
 
 				query.append(" ");
@@ -553,29 +556,47 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wsrp.model.WSRPProducer WHERE ");
+				query.append(
+					"SELECT wsrpProducer FROM WSRPProducer wsrpProducer WHERE ");
 
 				if (portalId == null) {
-					query.append("portalId IS NULL");
+					query.append("wsrpProducer.portalId IS NULL");
 				}
 				else {
-					query.append("portalId = ?");
+					query.append("wsrpProducer.portalId = ?");
 				}
 
 				query.append(" AND ");
 
 				if (namespace == null) {
-					query.append("namespace IS NULL");
+					query.append("wsrpProducer.namespace IS NULL");
 				}
 				else {
-					query.append("namespace = ?");
+					query.append("wsrpProducer.namespace = ?");
 				}
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("wsrpProducer.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -676,29 +697,47 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.wsrp.model.WSRPProducer WHERE ");
+			query.append(
+				"SELECT wsrpProducer FROM WSRPProducer wsrpProducer WHERE ");
 
 			if (portalId == null) {
-				query.append("portalId IS NULL");
+				query.append("wsrpProducer.portalId IS NULL");
 			}
 			else {
-				query.append("portalId = ?");
+				query.append("wsrpProducer.portalId = ?");
 			}
 
 			query.append(" AND ");
 
 			if (namespace == null) {
-				query.append("namespace IS NULL");
+				query.append("wsrpProducer.namespace IS NULL");
 			}
 			else {
-				query.append("namespace = ?");
+				query.append("wsrpProducer.namespace = ?");
 			}
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("wsrpProducer.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -798,11 +837,29 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.wsrp.model.WSRPProducer ");
+				query.append(
+					"SELECT wsrpProducer FROM WSRPProducer wsrpProducer ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("wsrpProducer.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -872,14 +929,14 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wsrp.model.WSRPProducer WHERE ");
+				query.append("SELECT COUNT(wsrpProducer) ");
+				query.append("FROM WSRPProducer wsrpProducer WHERE ");
 
 				if (instanceName == null) {
-					query.append("instanceName IS NULL");
+					query.append("wsrpProducer.instanceName IS NULL");
 				}
 				else {
-					query.append("instanceName = ?");
+					query.append("wsrpProducer.instanceName = ?");
 				}
 
 				query.append(" ");
@@ -927,23 +984,23 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wsrp.model.WSRPProducer WHERE ");
+				query.append("SELECT COUNT(wsrpProducer) ");
+				query.append("FROM WSRPProducer wsrpProducer WHERE ");
 
 				if (portalId == null) {
-					query.append("portalId IS NULL");
+					query.append("wsrpProducer.portalId IS NULL");
 				}
 				else {
-					query.append("portalId = ?");
+					query.append("wsrpProducer.portalId = ?");
 				}
 
 				query.append(" AND ");
 
 				if (namespace == null) {
-					query.append("namespace IS NULL");
+					query.append("wsrpProducer.namespace IS NULL");
 				}
 				else {
-					query.append("namespace = ?");
+					query.append("wsrpProducer.namespace = ?");
 				}
 
 				query.append(" ");
@@ -993,7 +1050,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.wsrp.model.WSRPProducer");
+						"SELECT COUNT(wsrpProducer) FROM WSRPProducer wsrpProducer");
 
 				count = (Long)q.uniqueResult();
 			}

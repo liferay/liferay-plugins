@@ -411,9 +411,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Status WHERE ");
+				query.append("SELECT status FROM Status status WHERE ");
 
-				query.append("userId = ?");
+				query.append("status.userId = ?");
 
 				query.append(" ");
 
@@ -483,9 +483,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Status WHERE ");
+				query.append("SELECT status FROM Status status WHERE ");
 
-				query.append("modifiedDate = ?");
+				query.append("status.modifiedDate = ?");
 
 				query.append(" ");
 
@@ -541,15 +541,32 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Status WHERE ");
+				query.append("SELECT status FROM Status status WHERE ");
 
-				query.append("modifiedDate = ?");
+				query.append("status.modifiedDate = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("status.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -637,15 +654,32 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.chat.model.Status WHERE ");
+			query.append("SELECT status FROM Status status WHERE ");
 
-			query.append("modifiedDate = ?");
+			query.append("status.modifiedDate = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("status.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -686,9 +720,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Status WHERE ");
+				query.append("SELECT status FROM Status status WHERE ");
 
-				query.append("online_ = ?");
+				query.append("status.online = ?");
 
 				query.append(" ");
 
@@ -744,15 +778,32 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Status WHERE ");
+				query.append("SELECT status FROM Status status WHERE ");
 
-				query.append("online_ = ?");
+				query.append("status.online = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("status.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -838,15 +889,32 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.chat.model.Status WHERE ");
+			query.append("SELECT status FROM Status status WHERE ");
 
-			query.append("online_ = ?");
+			query.append("status.online = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("status.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -890,13 +958,13 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Status WHERE ");
+				query.append("SELECT status FROM Status status WHERE ");
 
-				query.append("modifiedDate = ?");
+				query.append("status.modifiedDate = ?");
 
 				query.append(" AND ");
 
-				query.append("online_ = ?");
+				query.append("status.online = ?");
 
 				query.append(" ");
 
@@ -954,19 +1022,36 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Status WHERE ");
+				query.append("SELECT status FROM Status status WHERE ");
 
-				query.append("modifiedDate = ?");
+				query.append("status.modifiedDate = ?");
 
 				query.append(" AND ");
 
-				query.append("online_ = ?");
+				query.append("status.online = ?");
 
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("status.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -1062,19 +1147,36 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 			StringBuilder query = new StringBuilder();
 
-			query.append("FROM com.liferay.chat.model.Status WHERE ");
+			query.append("SELECT status FROM Status status WHERE ");
 
-			query.append("modifiedDate = ?");
+			query.append("status.modifiedDate = ?");
 
 			query.append(" AND ");
 
-			query.append("online_ = ?");
+			query.append("status.online = ?");
 
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("status.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
 			}
 
 			Query q = session.createQuery(query.toString());
@@ -1168,11 +1270,28 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.chat.model.Status ");
+				query.append("SELECT status FROM Status status ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("status.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -1254,10 +1373,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.chat.model.Status WHERE ");
+				query.append("SELECT COUNT(status) ");
+				query.append("FROM Status status WHERE ");
 
-				query.append("userId = ?");
+				query.append("status.userId = ?");
 
 				query.append(" ");
 
@@ -1301,10 +1420,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.chat.model.Status WHERE ");
+				query.append("SELECT COUNT(status) ");
+				query.append("FROM Status status WHERE ");
 
-				query.append("modifiedDate = ?");
+				query.append("status.modifiedDate = ?");
 
 				query.append(" ");
 
@@ -1348,10 +1467,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.chat.model.Status WHERE ");
+				query.append("SELECT COUNT(status) ");
+				query.append("FROM Status status WHERE ");
 
-				query.append("online_ = ?");
+				query.append("status.online = ?");
 
 				query.append(" ");
 
@@ -1398,14 +1517,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.chat.model.Status WHERE ");
+				query.append("SELECT COUNT(status) ");
+				query.append("FROM Status status WHERE ");
 
-				query.append("modifiedDate = ?");
+				query.append("status.modifiedDate = ?");
 
 				query.append(" AND ");
 
-				query.append("online_ = ?");
+				query.append("status.online = ?");
 
 				query.append(" ");
 
@@ -1450,7 +1569,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.chat.model.Status");
+						"SELECT COUNT(status) FROM Status status");
 
 				count = (Long)q.uniqueResult();
 			}
