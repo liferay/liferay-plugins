@@ -61,6 +61,11 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 				entryPersistence.remove(entry);
 			}
 		}
+		else {
+			if (content.length() > 500) {
+				content = content.substring(0, 500);
+			}
+		}
 
 		long entryId = CounterLocalServiceUtil.increment();
 
