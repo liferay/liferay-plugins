@@ -163,10 +163,12 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 				Boolean.TRUE.toString());
 		}
 
-		boolean updateStatus = false;
+		boolean updatePresence = getBoolean(pollerRequest, "updatePresence");
 
-		if (!entries.isEmpty()) {
-			updateStatus = true;
+		if (updatePresence) {
+		}
+		else if (!entries.isEmpty()) {
+			updatePresence = true;
 		}
 		else {
 			long onlineTimestamp =
@@ -174,11 +176,11 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 					ChatUtil.MAX_POLL_LATENCY;
 
 			if (onlineTimestamp < pollerRequest.getTimestamp()) {
-				updateStatus = true;
+				updatePresence = true;
 			}
 		}
 
-		if (updateStatus) {
+		if (updatePresence) {
 			StatusLocalServiceUtil.updateStatus(
 				pollerRequest.getUserId(), pollerRequest.getTimestamp());
 		}
