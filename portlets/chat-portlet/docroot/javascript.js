@@ -584,6 +584,11 @@ Liferay.Chat.Manager = {
 		instance._sound = new SWFObject('/chat-portlet/alert.swf', 'alertsound', '0', '0', '8');
 		instance._soundContainer = instance._chatContainer.find('.chat-sound');
 
+		instance._updatePresenceTask = new Expanse.DelayedTask(instance._updatePresence, instance);
+		instance._updatePresenceDelay = 30000;
+
+		instance._updatePresenceTask.delay();
+
 		Liferay.Poller.addListener(instance._portletId, instance._onPollerUpdate, instance);
 
 		instance._createBuddyListPanel();
@@ -611,7 +616,13 @@ Liferay.Chat.Manager = {
 	send: function(options, id) {
 		var instance = this;
 
+		if (!options.updatePresence) {
+			instance._updatePresenceTask.cancel();
+		}
+
 		Liferay.Poller.submitRequest(instance._portletId, options, id);
+
+		instance._updatePresenceTask.delay(instance._updatePresenceDelay);
 	},
 
 	show: function(panelName) {
@@ -1021,6 +1032,16 @@ Liferay.Chat.Manager = {
 		}
 
 		instance._loadCache(entries);
+	},
+
+	_updatePresence: function() {
+		var instance = this;
+
+		instance.send(
+			{
+				updatePresence: true
+			}
+		);
 	},
 
 	_updateSettings: function() {
