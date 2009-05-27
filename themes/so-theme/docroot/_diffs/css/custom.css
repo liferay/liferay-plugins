@@ -468,6 +468,14 @@ textarea.focus {
 
 /* ---------- Portlet ---------- */
 
+/* Activities */
+
+.portlet-activities .activity-body a,
+.so-portlet-activities .activity-body a {
+	background: url(../images/custom/bullet.png) no-repeat 3px 50%;
+	padding-left: 10px;
+}
+
 /* Asset Publisher */
 
 .portlet-asset-publisher .portlet-title {
