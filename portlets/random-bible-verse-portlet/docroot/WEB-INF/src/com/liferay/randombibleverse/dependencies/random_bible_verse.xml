@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<random-bible-verse>
+	<bibles>
+		<bible language="sq" language-name="Albanian" version-id="1" />
+		<bible language="ar" language-name="Arabic" version-id="28" />
+		<bible language="bg" language-name="Bulgarian" version-id="21" />
+		<bible language="zh" language-name="Chinese" version-id="22" />
+		<bible language="cs" language-name="Czech" version-id="29" />
+		<bible language="da" language-name="Danish" version-id="11" />
+		<bible language="nl" language-name="Dutch" version-id="30" />
+		<bible language="en" language-name="English" version-id="47" />
+		<bible language="fr" language-name="French" version-id="2" />
+		<bible language="de" language-name="German" version-id="10" />
+		<bible language="hu" language-name="Hungarian" version-id="17" />
+		<bible language="is" language-name="Icelandic" version-id="18" />
+		<bible language="it" language-name="Italian" version-id="3" />
+		<bible language="ko" language-name="Korean" version-id="20" />
+		<bible language="la" language-name="Latin" version-id="4" />
+		<bible language="mi" language-name="Maori" version-id="24" />
+		<bible language="no" language-name="Norwegian" version-id="5" />
+		<bible language="pl" language-name="Polish" version-id="12" />
+		<bible language="pt" language-name="Portuguese" version-id="37" />
+		<bible language="ro" language-name="Romanian" version-id="14" />
+		<bible language="ru" language-name="Russian" version-id="13" />
+		<bible language="sk" language-name="Slovak" version-id="40" />
+		<bible language="es" language-name="Spanish" version-id="60" />
+		<bible language="sv" language-name="Swedish" version-id="44" />
+		<bible language="tl" language-name="Tagalog" version-id="43" />
+		<bible language="uk" language-name="Ukrainian" version-id="27" />
+	</bibles>
+	<verses>
+		<verse location="Exodus 20:3" />
+		<verse location="Exodus 20:4" />
+		<verse location="Exodus 20:8" />
+		<verse location="Exodus 20:12" />
+		<verse location="Exodus 20:13" />
+		<verse location="Exodus 20:14" />
+		<verse location="Exodus 20:15" />
+		<verse location="Exodus 20:16" />
+		<verse location="Exodus 20:17" />
+		<verse location="Deuteronomy 6:4" />
+		<verse location="Deuteronomy 13:4" />
+		<verse location="Deuteronomy 28:14" />
+		<verse location="Deuteronomy 28:58-59" />
+		<verse location="Deuteronomy 29:4" />
+		<verse location="Deuteronomy 29:29" />
+		<verse location="Deuteronomy 30:6" />
+		<verse location="Deuteronomy 30:9-10" />
+		<verse location="1 Samuel 2:3" />
+		<verse location="1 Samuel 16:7" />
+		<verse location="1 Chronicles 4:10" />
+		<verse location="Psalm 19:14" />
+		<verse location="Psalm 46:10" />
+		<verse location="Psalm 115:1" />
+		<verse location="Psalm 119:11" />
+		<verse location="Psalm 119:18" />
+		<verse location="Psalm 119:97" />
+		<verse location="Psalm 139:15-16" />
+		<verse location="Proverbs 3:5-6" />
+		<verse location="Proverbs 3:7" />
+		<verse location="Proverbs 4:3-4" />
+		<verse location="Proverbs 11:30" />
+		<verse location="Proverbs 13:24" />
+		<verse location="Proverbs 14:21" />
+		<verse location="Proverbs 15:17" />
+		<verse location="Proverbs 16:8" />
+		<verse location="Proverbs 16:19" />
+		<verse location="Proverbs 16:20" />
+		<verse location="Proverbs 17:1" />
+		<verse location="Proverbs 28:6" />
+		<verse location="Proverbs 31:30" />
+		<verse location="Ecclesiastes 7:16-18" />
+		<verse location="Isaiah 26:12" />
+		<verse location="Isaiah 51:16" />
+		<verse location="Isaiah 55:6-7" />
+		<verse location="Isaiah 64:4" />
+		<verse location="Jeremiah 9:23-24" />
+		<verse location="Daniel 4:37" />
+		<verse location="Habakkuk 3:17-18" />
+		<verse location="Matthew 5:3" />
+		<verse location="Matthew 5:4" />
+		<verse location="Matthew 5:5" />
+		<verse location="Matthew 5:6" />
+		<verse location="Matthew 5:7" />
+		<verse location="Matthew 5:8" />
+		<verse location="Matthew 5:9" />
+		<verse location="Matthew 5:10" />
+		<verse location="Matthew 5:11-12" />
+		<verse location="Matthew 22:14" />
+		<verse location="Matthew 23:1-3" />
+		<verse location="Matthew 23:11-12" />
+		<verse location="Mark 12:17" />
+		<verse location="Luke 6:45" />
+		<verse location="Luke 6:46" />
+		<verse location="Luke 11:28" />
+		<verse location="Luke 12:15" />
+		<verse location="Luke 12:51" />
+		<verse location="Luke 13:4-5" />
+		<verse location="Luke 13:23-24" />
+		<verse location="Luke 21:36" />
+		<verse location="John 5:25" />
+		<verse location="John 8:51" />
+		<verse location="John 11:26" />
+		<verse location="John 13:8" />
+		<verse location="John 14:27" />
+		<verse location="Acts 17:11" />
+		<verse location="Romans 8:31" />
+		<verse location="Romans 9:15-16" />
+		<verse location="Romans 12:19" />
+		<verse location="1 Corinthians 3:17" />
+		<verse location="Galatians 5:6" />
+		<verse location="Ephesians 1:4-6" />
+		<verse location="Ephesians 1:11-12" />
+		<verse location="Ephesians 5:22" />
+		<verse location="Ephesians 5:28" />
+		<verse location="Ephesians 6:5-8" />
+		<verse location="Philippians 2:12-13" />
+		<verse location="Philippians 4:4" />
+		<verse location="Colossians 3:22-24" />
+		<verse location="1 Thessalonians 5:9-10" />
+		<verse location="1 Thessalonians 5:16-18" />
+		<verse location="1 Thessalonians 5:21" />
+		<verse location="1 Timothy 4:16" />
+		<verse location="2 Timothy 3:16-17" />
+		<verse location="Hebrews 10:26-27" />
+		<verse location="Hebrews 11:6" />
+		<verse location="Hebrews 12:3" />
+		<verse location="Hebrews 13:4" />
+		<verse location="James 1:12" />
+		<verse location="James 1:27" />
+		<verse location="James 2:12-13" />
+		<verse location="James 2:14" />
+		<verse location="James 2:19" />
+		<verse location="James 4:8" />
+		<verse location="James 4:10" />
+		<verse location="1 Peter 4:7" />
+		<verse location="1 John 2:4" />
+		<verse location="1 John 2:15" />
+		<verse location="1 John 3:10" />
+		<verse location="Revelations 1:3" />
+		<verse location="Revelations 3:16" />
+		<verse location="Revelations 3:21" />
+		<verse location="Revelations 13:10" />
+		<verse location="Revelations 15:4" />
+	</verses>
+</random-bible-verse>
