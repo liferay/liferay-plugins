@@ -849,6 +849,8 @@ table.calendar {
 .contacts-portlet .control .arrow:hover {
 	font-size: 11px;
 	font-weight: normal;
+	position: relative;
+	top: -78px;
 }
 
 .contacts-portlet .edit-card-table .label {
