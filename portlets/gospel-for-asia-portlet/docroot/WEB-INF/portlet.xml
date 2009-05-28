@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd">
+	<portlet>
+		<portlet-name>1</portlet-name>
+		<display-name>Gospel for Asia</display-name>
+		<portlet-class>com.liferay.portlet.iframe.IFramePortlet</portlet-class>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>Gospel for Asia</title>
+			<short-title>Gospel for Asia</short-title>
+			<keywords>Gospel for Asia</keywords>
+		</portlet-info>
+		<portlet-preferences>
+			<preference>
+				<name>src</name>
+				<value>http://www.gfa.org</value>
+			</preference>
+		</portlet-preferences>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<container-runtime-option>
+		<name>com.liferay.portal.portalContext</name>
+		<value>true</value>
+	</container-runtime-option>
+</portlet-app>
