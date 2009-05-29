@@ -18,7 +18,10 @@
 package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
@@ -38,6 +41,7 @@ import com.liferay.portal.service.ResourceLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -144,7 +148,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		Layout layout = addLayout(group, "Home", "/home", "user_home");
 
-		removePortletBorder(layout, "29");
+		updatePortletTitle(layout, "29", "sites");
 
 		updatePermissions(layout);
 
@@ -190,7 +194,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 	protected void configureAssetPublisher(Layout layout) throws Exception {
 		String portletId = "101_INSTANCE_abcd";
 
-		removePortletBorder(layout, portletId);
+		updatePortletTitle(layout, portletId, "related-content");
 
 		PortletPreferences portletSetup =
 			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
@@ -210,6 +214,33 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		portletSetup.setValue(
 			"portlet-setup-show-borders", String.valueOf(Boolean.FALSE));
+
+		portletSetup.store();
+	}
+
+	protected void updatePortletTitle(
+			Layout layout, String portletId, String title)
+		throws Exception {
+
+		PortletPreferences portletSetup =
+			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+				layout, portletId);
+
+		Locale[] locales = LanguageUtil.getAvailableLocales();
+
+		for (int i = 0; i < locales.length; i++) {
+			String languageId = LocaleUtil.toLanguageId(locales[i]);
+
+			if (Validator.isNotNull(languageId)) {
+				String localizedTitle = LanguageUtil.get(locales[i], title);
+
+				portletSetup.setValue(
+					"portlet-setup-title-" + languageId, localizedTitle);
+			}
+		}
+
+		portletSetup.setValue(
+			"portlet-setup-use-custom-title", String.valueOf(Boolean.TRUE));
 
 		portletSetup.store();
 	}

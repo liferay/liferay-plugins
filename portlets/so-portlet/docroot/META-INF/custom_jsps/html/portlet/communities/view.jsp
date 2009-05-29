@@ -35,8 +35,6 @@ pageContext.setAttribute("portletURL", portletURL);
 <form action="<%= portletURL.toString() %>" method="get" name="<portlet:namespace />fm">
 <liferay-portlet:renderURLParams varImpl="portletURL" />
 
-<h1><liferay-ui:message key="sites" /></h1>
-
 <div class="site-list">
 	<liferay-ui:search-container
 		delta="<%= 1000 %>"
