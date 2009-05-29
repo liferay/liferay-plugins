@@ -44,7 +44,7 @@ for (int i = 0; i < htmlFragments.length; i++) {
 			int z = htmlFragment.indexOf(">", y);
 			%>
 
-			<a class="title-link" href="javascript: ;" onClick="<portlet:namespace />loadRelatedContent('<%= htmlFragment.substring(x + 6, y) %>');">
+			<a class="title-link" href="javascript:;" onClick="<portlet:namespace />loadRelatedContent('<%= htmlFragment.substring(x + 6, y) %>');">
 
 			<%= htmlFragment.substring(z + 1) %>
 		</c:otherwise>
