@@ -47,7 +47,7 @@ Group group = (Group)row.getObject();
 					<portlet:param name="addUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
 				</portlet:actionURL>
 
-				<a class="join-site" href="javascript: ;" onclick="return (submitForm(document.hrefFm, '<%= joinURL %>'));"><liferay-ui:message key="join" /></a>
+				<a class="join-site" href="javascript:;" onclick="return (submitForm(document.hrefFm, '<%= joinURL %>'));"><liferay-ui:message key="join" /></a>
 			</c:if>
 		</c:when>
 		<c:when test="<%= !GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.DELETE) %>">
@@ -59,7 +59,7 @@ Group group = (Group)row.getObject();
 				<portlet:param name="removeUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
 			</portlet:actionURL>
 
-			<a class="leave-site" href="javascript: ;" onclick="return (submitForm(document.hrefFm, '<%= leaveURL %>'));"><liferay-ui:message key="leave" /></a>
+			<a class="leave-site" href="javascript:;" onclick="return (submitForm(document.hrefFm, '<%= leaveURL %>'));"><liferay-ui:message key="leave" /></a>
 		</c:when>
 	</c:choose>
 
@@ -71,6 +71,6 @@ Group group = (Group)row.getObject();
 			<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 		</portlet:actionURL>
 
-		<a class="delete-site" href="javascript: ;" onclick="return (confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this" />') && submitForm(document.hrefFm, '<%= deleteURL %>'));"><liferay-ui:message key="delete" /></a>
+		<a class="delete-site" href="javascript:;" onclick="return (confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this" />') && submitForm(document.hrefFm, '<%= deleteURL %>'));"><liferay-ui:message key="delete" /></a>
 	</c:if>
 </div>

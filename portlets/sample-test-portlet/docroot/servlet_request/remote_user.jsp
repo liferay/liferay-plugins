@@ -26,4 +26,4 @@
 
 <br /><br />
 
-<a href="javascript: history.go(-1);">&laquo; Back</a>
+<a href="javascript:history.go(-1);">&laquo; Back</a>

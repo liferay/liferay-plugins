@@ -378,7 +378,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 									<liferay-ui:error key='<%= "invalidValidationDefinition" + formFieldsIndex %>' message="please-enter-both-the-validation-code-and-the-error-message" />
 
 									<div class="ctrl-holder">
-										<a class="validation-link" href="javascript: ;"><liferay-ui:message key="validation" /> &raquo;</a>
+										<a class="validation-link" href="javascript:;"><liferay-ui:message key="validation" /> &raquo;</a>
 									</div>
 
 									<div class="validation-input" style='<%= Validator.isNull(fieldValidationScript) ? "display:none" : "" %>'>

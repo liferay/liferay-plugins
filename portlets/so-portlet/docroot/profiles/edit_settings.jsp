@@ -55,7 +55,7 @@ String timeZoneId = BeanParamUtil.getString(user, request, "timeZoneId", user.ge
 		<img alt="<%= user.getFullName() %>" src="<%= themeDisplay.getPathImage() %>/user_<%= (user.isFemale() ? "female" : "male") %>_portrait?img_id=<%= user.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user.getPortraitId()) %>" />
 
 		<div class="profile-controls">
-			<a href="javascript: ;" onClick="Liferay.SO.Profiles.displayUserProfile(<%= user.getUserId() %>);"><liferay-ui:message key="cancel-edit" /></a>
+			<a href="javascript:;" onClick="Liferay.SO.Profiles.displayUserProfile(<%= user.getUserId() %>);"><liferay-ui:message key="cancel-edit" /></a>
 		</div>
 	</td>
 	<td class="profile-area edit-profile">

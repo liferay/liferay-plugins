@@ -38,7 +38,7 @@ JIRAIssue jiraIssue = (JIRAIssue)objArray[2];
 	<liferay-ui:icon-list>
 
 		<%
-		String taglibSVNURL = "javascript: location.href = '" + rowHREF + "';";
+		String taglibSVNURL = "javascript:location.href = '" + rowHREF + "';";
 		%>
 
 		<liferay-ui:icon
@@ -52,7 +52,7 @@ JIRAIssue jiraIssue = (JIRAIssue)objArray[2];
 		<c:if test="<%= jiraIssue != null %>">
 
 			<%
-			String taglibJIRAURL = "javascript: location.href = 'http://support.liferay.com/browse/" + jiraIssue.getKey() + "';";
+			String taglibJIRAURL = "javascript:location.href = 'http://support.liferay.com/browse/" + jiraIssue.getKey() + "';";
 			%>
 
 			<liferay-ui:icon

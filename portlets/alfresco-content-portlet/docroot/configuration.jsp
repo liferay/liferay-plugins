@@ -254,7 +254,7 @@ for (int i = 0; i < childNodes.length; i++) {
 
 	StringBuilder sb = new StringBuilder();
 
-	sb.append("javascript: ");
+	sb.append("javascript:");
 
 	String propContent = AlfrescoContentUtil.getNamedValue(nodeNamedValues, org.alfresco.webservice.util.Constants.PROP_CONTENT);
 

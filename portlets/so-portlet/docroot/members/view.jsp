@@ -39,7 +39,7 @@
 		>
 
 			<%
-			buffer.append("<a class=\"user\" href=\"javascript: ;\" data-userId=\"");
+			buffer.append("<a class=\"user\" href=\"javascript:;\" data-userId=\"");
 			buffer.append(curUser.getUserId());
 			buffer.append("\"><img alt=\"");
 			buffer.append(curUser.getFullName());
@@ -60,7 +60,7 @@
 		>
 
 			<%
-			buffer.append("<a class=\"user\" href=\"javascript: ;\" data-userId=\"");
+			buffer.append("<a class=\"user\" href=\"javascript:;\" data-userId=\"");
 			buffer.append(curUser.getUserId());
 			buffer.append("\">");
 			buffer.append(curUser.getFullName());
@@ -86,7 +86,7 @@ int invitedMembersCount = ParamUtil.getInteger(renderRequest, "invitedMembersCou
 
 <c:if test="<%= users.contains(user) %>">
 	<div class="invite-members">
-		<a href="javascript: ;"><liferay-ui:message key="invite-members" /></a>
+		<a href="javascript:;"><liferay-ui:message key="invite-members" /></a>
 	</div>
 </c:if>
 

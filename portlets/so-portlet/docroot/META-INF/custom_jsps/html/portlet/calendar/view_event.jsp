@@ -57,5 +57,5 @@ CalEvent event = (CalEvent)request.getAttribute(WebKeys.CALENDAR_EVENT);
 		<portlet:param name="eventId" value="<%= String.valueOf(event.getEventId()) %>" />
 	</portlet:actionURL>
 
-	<input type="button" value="<liferay-ui:message key="delete" />" onclick="javascript: if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-this") %>')) { submitForm(document.hrefFm, '<%= deleteURL %>'); } else { self.focus(); }" />
+	<input type="button" value="<liferay-ui:message key="delete" />" onclick="javascript:if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-this") %>')) { submitForm(document.hrefFm, '<%= deleteURL %>'); } else { self.focus(); }" />
 </c:if>

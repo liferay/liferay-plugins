@@ -85,7 +85,7 @@
 
 					<div id="<portlet:namespace />folders">
 						<div class="folder" folderName="INBOX">
-							<a href="javascript: ;">INBOX</a>
+							<a href="javascript:;">INBOX</a>
 						</div>
 					</div>
 				</td>
@@ -109,25 +109,25 @@
 								<div>
 									<liferay-ui:message key="select" />:
 
-									<a class="select-all" href="javascript: ;"><liferay-ui:message key="all" /></a>,
+									<a class="select-all" href="javascript:;"><liferay-ui:message key="all" /></a>,
 
-									<a class="select-none" href="javascript: ;"><liferay-ui:message key="none" /></a>,
+									<a class="select-none" href="javascript:;"><liferay-ui:message key="none" /></a>,
 
-									<a class="select-read" href="javascript: ;"><liferay-ui:message key="read" /></a>,
+									<a class="select-read" href="javascript:;"><liferay-ui:message key="read" /></a>,
 
-									<a class="select-unread" href="javascript: ;"><liferay-ui:message key="unread" /></a>
+									<a class="select-unread" href="javascript:;"><liferay-ui:message key="unread" /></a>
 								</div>
 							</td>
 							<td class="navigation">
-								<a class="newest" href="javascript: ;">&laquo; <liferay-ui:message key="newest" /></a>
+								<a class="newest" href="javascript:;">&laquo; <liferay-ui:message key="newest" /></a>
 
-								<a class="newer" href="javascript: ;">&lt; <liferay-ui:message key="newer" /></a>
+								<a class="newer" href="javascript:;">&lt; <liferay-ui:message key="newer" /></a>
 
 								<span class="status">? - ? of ???</span>
 
-								<a class="older" href="javascript: ;"><liferay-ui:message key="older" /> &gt;</a>
+								<a class="older" href="javascript:;"><liferay-ui:message key="older" /> &gt;</a>
 
-								<!--<a class="oldest" href="javascript: ;"><liferay-ui:message key="oldest" /> &raquo;</a>-->
+								<!--<a class="oldest" href="javascript:;"><liferay-ui:message key="oldest" /> &raquo;</a>-->
 							</td>
 						</tr>
 						</table>
@@ -144,13 +144,13 @@
 								<div>
 									<liferay-ui:message key="select" />:
 
-									<a class="select-all" href="javascript: ;"><liferay-ui:message key="all" /></a>,
+									<a class="select-all" href="javascript:;"><liferay-ui:message key="all" /></a>,
 
-									<a class="select-none" href="javascript: ;"><liferay-ui:message key="none" /></a>,
+									<a class="select-none" href="javascript:;"><liferay-ui:message key="none" /></a>,
 
-									<a class="select-read" href="javascript: ;"><liferay-ui:message key="read" /></a>,
+									<a class="select-read" href="javascript:;"><liferay-ui:message key="read" /></a>,
 
-									<a class="select-unread" href="javascript: ;"><liferay-ui:message key="unread" /></a>
+									<a class="select-unread" href="javascript:;"><liferay-ui:message key="unread" /></a>
 								</div>
 
 								<div>
@@ -166,15 +166,15 @@
 								</div>
 							</td>
 							<td class="navigation">
-								<a class="newest" href="javascript: ;">&laquo; <liferay-ui:message key="newest" /></a>
+								<a class="newest" href="javascript:;">&laquo; <liferay-ui:message key="newest" /></a>
 
-								<a class="newer" href="javascript: ;">&lt; <liferay-ui:message key="newer" /></a>
+								<a class="newer" href="javascript:;">&lt; <liferay-ui:message key="newer" /></a>
 
 								<span class="status">? - ? of ???</span>
 
-								<a class="older" href="javascript: ;"><liferay-ui:message key="older" /> &gt;</a>
+								<a class="older" href="javascript:;"><liferay-ui:message key="older" /> &gt;</a>
 
-								<!--<a class="oldest" href="javascript: ;"><liferay-ui:message key="oldest" /> &raquo;</a>-->
+								<!--<a class="oldest" href="javascript:;"><liferay-ui:message key="oldest" /> &raquo;</a>-->
 							</td>
 						</tr>
 						</table>

@@ -54,7 +54,7 @@ pageContext.setAttribute("portletURL", portletURL);
 			/>
 
 			<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_COMMUNITY) %>">
-				<a class="add-site" href="javascript: ;"><liferay-ui:message key="add-site" /></a>
+				<a class="add-site" href="javascript:;"><liferay-ui:message key="add-site" /></a>
 			</c:if>
 		</div>
 

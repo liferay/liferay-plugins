@@ -71,12 +71,12 @@
 			<liferay-portlet:param name="portrait_id" value="<%= String.valueOf(user.getPortraitId()) %>" />
 		</liferay-portlet:renderURL>
 
-		<a class="change-avatar" href="javascript: <portlet:namespace />editUserPortrait('<%= editUserPortraitURL %>');"><img alt="<liferay-ui:message key="avatar" />" class="avatar" id="<portlet:namespace />avatar" src='<%= themeDisplay.getPathImage() %>/user_<%= user.isFemale() ? "female" : "male" %>_portrait?img_id=<%= user.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user.getPortraitId()) %>' /></a>
+		<a class="change-avatar" href="javascript:<portlet:namespace />editUserPortrait('<%= editUserPortraitURL %>');"><img alt="<liferay-ui:message key="avatar" />" class="avatar" id="<portlet:namespace />avatar" src='<%= themeDisplay.getPathImage() %>/user_<%= user.isFemale() ? "female" : "male" %>_portrait?img_id=<%= user.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user.getPortraitId()) %>' /></a>
 
 		<div class="profile-controls">
-			<a href="javascript: ;" onClick="<portlet:namespace />editUserPortrait('<%= editUserPortraitURL %>');"><liferay-ui:message key="change-picture" /></a>
+			<a href="javascript:;" onClick="<portlet:namespace />editUserPortrait('<%= editUserPortraitURL %>');"><liferay-ui:message key="change-picture" /></a>
 
-			<a href="javascript: ;" onClick="Liferay.SO.Profiles.displayUserProfile(<%= user.getUserId() %>);"><liferay-ui:message key="cancel-edit" /></a>
+			<a href="javascript:;" onClick="Liferay.SO.Profiles.displayUserProfile(<%= user.getUserId() %>);"><liferay-ui:message key="cancel-edit" /></a>
 		</div>
 	</td>
 	<td class="profile-area edit-profile">

@@ -1093,7 +1093,7 @@ Liferay.Chat.FixBadBrowsers = function() {
 
 		var zIndex = chatBar.css('zIndex');
 
-		var iframe = jQuery('<iframe class="lfr-shim" frameborder="0" src="javascript: ;" />');
+		var iframe = jQuery('<iframe class="lfr-shim" frameborder="0" src="javascript:;" />');
 
 		iframe.width(chatBarWidth);
 		iframe.height(chatBarHeight);

@@ -109,7 +109,7 @@ for (int j = 0; j < jiraProjectRowsArray.length; j++) {
 	else {
 		String message = (String)jiraProjectRows[0];
 		String icon = (String)jiraProjectRows[1];
-		String url = "javascript: location.href = '" + (String)jiraProjectRows[2] + "';";
+		String url = "javascript:location.href = '" + (String)jiraProjectRows[2] + "';";
 		int curCount = ((Integer)jiraProjectRows[3]).intValue();
 		int totalCount = ((Integer)jiraProjectRows[4]).intValue();
 

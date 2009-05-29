@@ -40,7 +40,7 @@
 					removeFriendURL.setParameter(ActionRequest.ACTION_NAME, "deleteFriend");
 					removeFriendURL.setParameter("redirect", currentURL);
 
-					String removeFriendHREF = "javascript: if (confirm('" + LanguageUtil.format(pageContext, "are-you-sure-you-want-to-remove-x-as-a-friend-x-will-not-be-notified", user2.getFullName()) + "')) { submitForm(document.hrefFm, '" + removeFriendURL + "'); }";
+					String removeFriendHREF = "javascript:if (confirm('" + LanguageUtil.format(pageContext, "are-you-sure-you-want-to-remove-x-as-a-friend-x-will-not-be-notified", user2.getFullName()) + "')) { submitForm(document.hrefFm, '" + removeFriendURL + "'); }";
 					%>
 
 					<p class="remove-friend">

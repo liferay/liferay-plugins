@@ -50,7 +50,7 @@ int y = html.indexOf("</tr>", x);
 
 <tr>
 	<th valign="center">
-		<a href="javascript: <%= namespace %>updateCalendar(<%= selMonth - 1 %>, <%= selDay %>, <%= selYear %>);">
+		<a href="javascript:<%= namespace %>updateCalendar(<%= selMonth - 1 %>, <%= selDay %>, <%= selYear %>);">
 			<img border="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/01_left.png" />
 		</a>
 	</th>
@@ -58,7 +58,7 @@ int y = html.indexOf("</tr>", x);
 		<%= dateFormat.format(selCal.getTime()) %>
 	</th>
 	<th valign="center">
-		<a href="javascript: <%= namespace %>updateCalendar(<%= selMonth + 1 %>, <%= selDay %>, <%= selYear %>);">
+		<a href="javascript:<%= namespace %>updateCalendar(<%= selMonth + 1 %>, <%= selDay %>, <%= selYear %>);">
 			<img border="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/01_right.png" />
 		</a>
 	</th>
