@@ -24,7 +24,7 @@ package com.liferay.googlemaps.portlet;
 
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
@@ -39,7 +39,7 @@ import javax.portlet.PortletSession;
  * @author Brian Wing Shun Chan
  *
  */
-public class GoogleMapsPortlet extends JSPPortlet {
+public class GoogleMapsPortlet extends MVCPortlet {
 
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)

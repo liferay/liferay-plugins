@@ -33,7 +33,7 @@ import com.liferay.portal.service.permission.UserPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
-import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.wol.model.WallEntry;
 import com.liferay.wol.service.WallEntryLocalServiceUtil;
 
@@ -46,7 +46,7 @@ import javax.portlet.ActionResponse;
  * @author Brian Wing Shun Chan
  *
  */
-public class WallPortlet extends JSPPortlet {
+public class WallPortlet extends MVCPortlet {
 
 	public void addWallEntry(
 			ActionRequest actionRequest, ActionResponse actionResponse)

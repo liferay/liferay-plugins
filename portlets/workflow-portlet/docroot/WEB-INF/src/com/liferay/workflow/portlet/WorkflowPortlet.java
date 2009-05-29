@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.workflow.DefinitionXmlException;
 import com.liferay.workflow.NoSuchDefinitionException;
 import com.liferay.workflow.model.WorkflowInstance;
@@ -50,7 +50,7 @@ import javax.portlet.PortletException;
  * @author Brian Wing Shun Chan
  *
  */
-public class WorkflowPortlet extends JSPPortlet {
+public class WorkflowPortlet extends MVCPortlet {
 
 	public void addInstance(
 			ActionRequest actionRequest, ActionResponse actionResponse)

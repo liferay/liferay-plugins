@@ -29,7 +29,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.wol.service.MeetupsEntryLocalServiceUtil;
 import com.liferay.wol.service.MeetupsRegistrationLocalServiceUtil;
 
@@ -46,7 +46,7 @@ import javax.portlet.ActionResponse;
  * @author Brian Wing Shun Chan
  *
  */
-public class MeetupsPortlet extends JSPPortlet {
+public class MeetupsPortlet extends MVCPortlet {
 
 	public void deleteMeetupsEntry(
 			ActionRequest actionRequest, ActionResponse actionResponse)

@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -41,7 +41,7 @@ import javax.portlet.PortletPreferences;
  * @author Brett Swaim
  *
  */
-public class InviteMembersPortlet extends JSPPortlet {
+public class InviteMembersPortlet extends MVCPortlet {
 
 	public void sendEmail(
 			ActionRequest actionRequest, ActionResponse actionResponse)

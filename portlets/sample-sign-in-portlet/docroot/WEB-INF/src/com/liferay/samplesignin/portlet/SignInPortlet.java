@@ -30,7 +30,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
@@ -45,7 +45,7 @@ import javax.portlet.PortletException;
  * @author Brian Wing Shun Chan
  *
  */
-public class SignInPortlet extends JSPPortlet {
+public class SignInPortlet extends MVCPortlet {
 
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)

@@ -25,7 +25,7 @@ package com.liferay.googlesearch.portlet;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
@@ -42,7 +42,7 @@ import javax.portlet.PortletPreferences;
  * @author Brian Wing Shun Chan
  *
  */
-public class GoogleSearchPortlet extends JSPPortlet {
+public class GoogleSearchPortlet extends MVCPortlet {
 
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)

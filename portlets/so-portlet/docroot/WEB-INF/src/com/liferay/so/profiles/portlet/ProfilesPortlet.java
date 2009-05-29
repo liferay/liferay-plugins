@@ -39,7 +39,7 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.announcements.model.AnnouncementsDelivery;
 import com.liferay.so.model.ProjectsEntry;
 import com.liferay.so.service.ProjectsEntryLocalServiceUtil;
-import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -57,7 +57,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Ryan Park
  *
  */
-public class ProfilesPortlet extends JSPPortlet {
+public class ProfilesPortlet extends MVCPortlet {
 
 	public void updateUserProfile(
 			ActionRequest actionRequest, ActionResponse actionResponse)

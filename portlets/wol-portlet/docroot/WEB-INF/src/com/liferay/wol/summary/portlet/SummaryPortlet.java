@@ -46,7 +46,7 @@ import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
-import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.wol.friends.social.FriendsRequestKeys;
 import com.liferay.wol.members.social.MembersRequestKeys;
 
@@ -62,7 +62,7 @@ import javax.portlet.ActionResponse;
  * @author Brian Wing Shun Chan
  *
  */
-public class SummaryPortlet extends JSPPortlet {
+public class SummaryPortlet extends MVCPortlet {
 
 	public void addFriend(
 			ActionRequest actionRequest, ActionResponse actionResponse)

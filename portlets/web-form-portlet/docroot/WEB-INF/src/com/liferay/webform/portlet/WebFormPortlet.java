@@ -46,7 +46,7 @@ import com.liferay.portlet.expando.model.ExpandoRow;
 import com.liferay.portlet.expando.service.ExpandoRowLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
-import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
 import com.liferay.webform.util.WebFormUtil;
 
@@ -78,7 +78,7 @@ import javax.portlet.ResourceResponse;
  * @author Brian Wing Shun Chan
  *
  */
-public class WebFormPortlet extends JSPPortlet {
+public class WebFormPortlet extends MVCPortlet {
 
 	public void deleteData(
 			ActionRequest actionRequest, ActionResponse actionResponse)
