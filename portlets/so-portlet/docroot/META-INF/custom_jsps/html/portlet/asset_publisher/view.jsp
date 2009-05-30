@@ -33,7 +33,7 @@ for (int i = 0; i < htmlFragments.length; i++) {
 %>
 
 	<c:choose>
-		<c:when test="<%= (i == 0) || htmlFragments.length == 1 %>">
+		<c:when test="<%= i == 0 %>">
 			<%= htmlFragment %>
 		</c:when>
 		<c:otherwise>
