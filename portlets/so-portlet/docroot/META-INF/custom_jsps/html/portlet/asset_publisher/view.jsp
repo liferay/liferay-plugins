@@ -25,9 +25,7 @@
 
 <%
 String[] htmlFragments = StringUtil.split(html, "<a class=\"title-link\" ");
-%>
 
-<%
 for (int i = 0; i < htmlFragments.length; i++) {
 	String htmlFragment = htmlFragments[i];
 %>

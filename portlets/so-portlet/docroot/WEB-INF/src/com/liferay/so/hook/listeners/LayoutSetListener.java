@@ -218,33 +218,6 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		portletSetup.store();
 	}
 
-	protected void updatePortletTitle(
-			Layout layout, String portletId, String title)
-		throws Exception {
-
-		PortletPreferences portletSetup =
-			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-				layout, portletId);
-
-		Locale[] locales = LanguageUtil.getAvailableLocales();
-
-		for (int i = 0; i < locales.length; i++) {
-			String languageId = LocaleUtil.toLanguageId(locales[i]);
-
-			if (Validator.isNotNull(languageId)) {
-				String localizedTitle = LanguageUtil.get(locales[i], title);
-
-				portletSetup.setValue(
-					"portlet-setup-title-" + languageId, localizedTitle);
-			}
-		}
-
-		portletSetup.setValue(
-			"portlet-setup-use-custom-title", String.valueOf(Boolean.TRUE));
-
-		portletSetup.store();
-	}
-
 	protected void updateFriendlyURL(Group group) {
 		String name = group.getName();
 
@@ -298,6 +271,33 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		PermissionLocalServiceUtil.unsetUserPermissions(
 			userId, actionIds, resourceId);
+	}
+
+	protected void updatePortletTitle(
+			Layout layout, String portletId, String title)
+		throws Exception {
+
+		PortletPreferences portletSetup =
+			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+				layout, portletId);
+
+		Locale[] locales = LanguageUtil.getAvailableLocales();
+
+		for (Locale locale : locales) {
+			String languageId = LocaleUtil.toLanguageId(locale);
+
+			if (Validator.isNotNull(languageId)) {
+				String localizedTitle = LanguageUtil.get(locale, title);
+
+				portletSetup.setValue(
+					"portlet-setup-title-" + languageId, localizedTitle);
+			}
+		}
+
+		portletSetup.setValue(
+			"portlet-setup-use-custom-title", String.valueOf(Boolean.TRUE));
+
+		portletSetup.store();
 	}
 
 }
