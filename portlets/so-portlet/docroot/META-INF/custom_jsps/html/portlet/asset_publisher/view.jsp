@@ -19,52 +19,36 @@
 
 <%@ include file="/html/portlet/asset_publisher/init.jsp" %>
 
-<liferay-util:buffer var="html">
-	<liferay-util:include page="/html/portlet/asset_publisher/view.portal.jsp" />
-</liferay-util:buffer>
+<liferay-util:include page="/html/portlet/asset_publisher/view.portal.jsp" />
 
-<%
-String[] htmlFragments = StringUtil.split(html, "<a class=\"title-link\" ");
+<script type="text/javascript">
+	var titleLinks = jQuery('li.title-list > a');
 
-for (int i = 0; i < htmlFragments.length; i++) {
-	String htmlFragment = htmlFragments[i];
-%>
+	titleLinks.each(
+		function(i) {
+			var titleLink = jQuery(this);
 
-	<c:choose>
-		<c:when test="<%= i == 0 %>">
-			<%= htmlFragment %>
-		</c:when>
-		<c:otherwise>
+			var titleURL = this.href;
 
-			<%
-			int x = htmlFragment.indexOf("href=\"");
-			int y = htmlFragment.indexOf("\"", x + 6);
-			int z = htmlFragment.indexOf(">", y);
-			%>
-
-			<a class="title-link" href="javascript:;" onClick="<portlet:namespace />loadRelatedContent('<%= htmlFragment.substring(x + 6, y) %>');">
-
-			<%= htmlFragment.substring(z + 1) %>
-		</c:otherwise>
-	</c:choose>
-
-<%
-}
-%>
-
-<c:if test="<%= htmlFragments.length > 1 %>">
-	<script type="text/javascript">
-		function <portlet:namespace />loadRelatedContent(titleURL) {
-			var portletContent = jQuery('.portlet-asset-publisher .portlet-content');
-
-			portletContent.html('<div class="loading-animation" />');
-
-			portletContent.load(
-				titleURL + ' .portlet-asset-publisher .portlet-content-container',
+			titleLink.attr(
 				{
-					uuid: Math.random() * 9999
+					'href': 'javascript:;',
+					'onClick': '<portlet:namespace />loadRelatedContent(\'' + titleURL + '\');'
 				}
 			);
 		}
-	</script>
-</c:if>
+	);
+
+	function <portlet:namespace />loadRelatedContent(titleURL) {
+		var portletContent = jQuery('.portlet-asset-publisher .portlet-content');
+
+		portletContent.html('<div class="loading-animation" />');
+
+		portletContent.load(
+			titleURL + ' .portlet-asset-publisher .portlet-content-container',
+			{
+				uuid: Math.random() * 9999
+			}
+		);
+	}
+</script>
