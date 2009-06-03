@@ -28,6 +28,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutTypePortlet;
+import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
@@ -38,6 +39,7 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.PermissionLocalServiceUtil;
+import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -89,6 +91,7 @@ public class StartupAction extends SimpleAction {
 
 		setupCompany(companyId);
 		setupPermissions(companyId);
+		setupPortlets();
 		setupLayouts(layout);
 		setupUsers(companyId);
 	}
@@ -282,6 +285,15 @@ public class StartupAction extends SimpleAction {
 
 		PermissionLocalServiceUtil.setRolePermission(
 			roleId, companyId, name, scope, primKey, actionId);
+	}
+
+	protected void setupPortlets() throws Exception {
+
+		// Directory portlet
+
+		Portlet portlet = PortletLocalServiceUtil.getPortletById("11");
+
+		portlet.setAddDefaultResource(true);
 	}
 
 	protected void setupUsers(long companyId) throws Exception {
