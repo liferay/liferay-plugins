@@ -843,8 +843,14 @@ table.calendar {
 .contacts-portlet .control .arrow:hover {
 	font-size: 11px;
 	font-weight: normal;
-	position: relative;
-	top: -78px;
+	position: absolute;
+	right: 0;
+	top: -40px;
+}
+
+.ie6 .contacts-portlet .control .arrow,
+.ie6 .contacts-portlet .control .arrow:hover {
+	position: static;
 }
 
 .contacts-portlet .edit-card-table .label {
@@ -857,6 +863,10 @@ table.calendar {
 
 .contacts-portlet .lfr-panel-content a.panel-hover {
 	background: #E8EFF4;
+}
+
+.contacts-portlet .portlet-content-container {
+	position: relative;
 }
 
 .contacts-portlet .search-cards {
