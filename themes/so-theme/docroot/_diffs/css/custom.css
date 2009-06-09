@@ -476,6 +476,11 @@ textarea.focus {
 	padding-left: 10px;
 }
 
+.portlet-activities .user,
+.so-portlet-activities .user {
+	font-weight: bold;
+}
+
 /* Blogs */
 
 .portlet-blogs .entry-content {
