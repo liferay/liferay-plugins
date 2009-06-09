@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="urn:oasis:names:tc:wsrp:v2:wsdl"
+                  xmlns:v2bind="urn:oasis:names:tc:wsrp:v2:bind"
+                  xmlns:v1bind="urn:oasis:names:tc:wsrp:v1:bind"
+
+                  xmlns="http://schemas.xmlsoap.org/wsdl/"
+
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+  <!-- The following causes the required WSRP v2 definitions to be used -->
+  <import namespace="urn:oasis:names:tc:wsrp:v2:bind" location="wsrp-2.0-bindings.wsdl"/>
+
+  <!-- The following causes the required WSRP v1 definitions to be used -->
+  <import namespace="urn:oasis:names:tc:wsrp:v1:bind" location="wsrp_v1_bindings.wsdl"/>
+
+  <!-- Since this wsdl includes both v1 and v2 service elements, the Consumer will expect
+       resources (e.g. registrationHandle, registrationState, etc) can cross the service boundaries -->
+
+  <!-- A service definition encapsulating the WSRP v1 support of this Producer -->
+  <wsdl:service name="WSRP_v1_Service">
+    <wsdl:port binding="v1bind:WSRP_v1_Markup_Binding_SOAP" name="WSRP_v1_Markup_Service">
+      <soap:address location="http://my.service:8081/WSRPService"/>
+    </wsdl:port>
+    <wsdl:port binding="v1bind:WSRP_v1_ServiceDescription_Binding_SOAP" name="WSRP_v1_ServiceDescription_Service">
+      <soap:address location="http://my.service:8081/WSRPService"/>
+    </wsdl:port>
+    <wsdl:port binding="v1bind:WSRP_v1_Registration_Binding_SOAP" name="WSRP_v1_Registration_Service">
+      <soap:address location="http://my.service:8081/WSRPService"/>
+    </wsdl:port>
+    <wsdl:port binding="v1bind:WSRP_v1_PortletManagement_Binding_SOAP" name="WSRP_v1_PortletManagement_Service">
+      <soap:address location="http://my.service:8081/WSRPService"/>
+    </wsdl:port>
+  </wsdl:service>
+
+  <!-- A service definition encapsulating the WSRP v2 support of this Producer -->
+  <wsdl:service name="WSRP_v2_Service">
+    <wsdl:port binding="v2bind:WSRP_v2_Markup_Binding_SOAP" name="WSRP_v2_Markup_Service">
+      <soap:address location="http://my.service:8082/WSRPService"/>
+    </wsdl:port>
+    <wsdl:port binding="v2bind:WSRP_v2_ServiceDescription_Binding_SOAP" name="WSRP_v2_ServiceDescription_Service">
+      <soap:address location="http://my.service:8082/WSRPService"/>
+    </wsdl:port>
+    <wsdl:port binding="v2bind:WSRP_v2_Registration_Binding_SOAP" name="WSRP_v2_Registration_Service">
+      <soap:address location="http://my.service:8082/WSRPService"/>
+    </wsdl:port>
+    <wsdl:port binding="v2bind:WSRP_v2_PortletManagement_Binding_SOAP" name="WSRP_v2_PortletManagement_Service">
+      <soap:address location="http://my.service:8082/WSRPService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

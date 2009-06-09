@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<project name="portlet" basedir="." default="deploy">
+	<import file="../build-common-portlet.xml" />
+
+	<taskdef classpathref="portal.classpath" resource="axis-tasks.properties" />
+	
+	<target name="build-wsdl2java">
+		<axis-wsdl2java
+			output="docroot/WEB-INF/src"
+			serverside="true"
+			verbose="true"
+			url="docroot/wsdl/wsrp-2.0-service.wsdl">
+		    <mapping
+		      namespace="urn:oasis:names:tc:wsrp:v2:bind"
+		      package="com.liferay.wsrp.v2.bind" />
+		    <mapping
+		      namespace="urn:oasis:names:tc:wsrp:v2:intf"
+		      package="com.liferay.wsrp.v2.intf" />
+		    <mapping
+		      namespace="urn:oasis:names:tc:wsrp:v2:types"
+		      package="com.liferay.wsrp.v2.types" />
+		    <mapping
+		      namespace="urn:oasis:names:tc:wsrp:v2:wsdl"
+		      package="com.liferay.wsrp.v2.wsdl" />
+		</axis-wsdl2java>
+		<axis-wsdl2java
+			output="docroot/WEB-INF/src"
+			serverside="true"
+			verbose="true"
+			url="docroot/wsdl/wsrp_v1_service.wsdl">
+		    <mapping
+		      namespace="urn:oasis:names:tc:wsrp:v1:bind"
+		      package="com.liferay.wsrp.v1.bind" />
+		    <mapping
+		      namespace="urn:oasis:names:tc:wsrp:v1:intf"
+		      package="com.liferay.wsrp.v1.intf" />
+		    <mapping
+		      namespace="urn:oasis:names:tc:wsrp:v1:types"
+		      package="com.liferay.wsrp.v1.types" />
+		    <mapping
+		      namespace="urn:oasis:names:tc:wsrp:v1:wsdl"
+		      package="com.liferay.wsrp.v1.wsdl" />
+		</axis-wsdl2java>
+	</target>
+</project>

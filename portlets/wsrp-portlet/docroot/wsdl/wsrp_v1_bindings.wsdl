@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="urn:oasis:names:tc:wsrp:v1:bind"
+                  xmlns:bind="urn:oasis:names:tc:wsrp:v1:bind"
+                  xmlns:intf="urn:oasis:names:tc:wsrp:v1:intf"
+
+                  xmlns="http://schemas.xmlsoap.org/wsdl/"
+
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+<!-- This file reflects v1.0 of the specification -->
+
+
+  <import namespace="urn:oasis:names:tc:wsrp:v1:intf"
+          location="wsrp_v1_interfaces.wsdl"/>
+
+  <wsdl:binding name="WSRP_v1_Markup_Binding_SOAP" type="intf:WSRP_v1_Markup_PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+    <wsdl:operation name="getMarkup">
+      <soap:operation soapAction="urn:oasis:names:tc:wsrp:v1:getMarkup"/>
+      <wsdl:input name="getMarkup">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMarkupResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDenied">
+        <soap:fault name="AccessDenied" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidUserCategory">
+        <soap:fault name="InvalidUserCategory" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InconsistentParameters">
+        <soap:fault name="InconsistentParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidRegistration">
+        <soap:fault name="InvalidRegistration" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="MissingParameters">
+        <soap:fault name="MissingParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationFailed">
+        <soap:fault name="OperationFailed" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidHandle">
+        <soap:fault name="InvalidHandle" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidCookie">
+        <soap:fault name="InvalidCookie" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidSession">
+        <soap:fault name="InvalidSession" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnsupportedMode">
+        <soap:fault name="UnsupportedMode" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnsupportedWindowState">
+        <soap:fault name="UnsupportedWindowState" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnsupportedLocale">
+        <soap:fault name="UnsupportedLocale" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnsupportedMimeType">
+        <soap:fault name="UnsupportedMimeType" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="performBlockingInteraction">
+      <soap:operation soapAction="urn:oasis:names:tc:wsrp:v1:performBlockingInteraction"/>
+      <wsdl:input name="performBlockingInteraction">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="performBlockingInteractionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDenied">
+        <soap:fault name="AccessDenied" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidUserCategory">
+        <soap:fault name="InvalidUserCategory" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InconsistentParameters">
+        <soap:fault name="InconsistentParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidRegistration">
+        <soap:fault name="InvalidRegistration" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="MissingParameters">
+        <soap:fault name="MissingParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationFailed">
+        <soap:fault name="OperationFailed" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidHandle">
+        <soap:fault name="InvalidHandle" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PortletStateChangeRequired">
+        <soap:fault name="PortletStateChangeRequired" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidCookie">
+        <soap:fault name="InvalidCookie" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidSession">
+        <soap:fault name="InvalidSession" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnsupportedMode">
+        <soap:fault name="UnsupportedMode" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnsupportedWindowState">
+        <soap:fault name="UnsupportedWindowState" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnsupportedLocale">
+        <soap:fault name="UnsupportedLocale" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnsupportedMimeType">
+        <soap:fault name="UnsupportedMimeType" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="releaseSessions">
+      <soap:operation soapAction="urn:oasis:names:tc:wsrp:v1:releaseSessions"/>
+      <wsdl:input name="releaseSessions">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="releaseSessionsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDenied">
+        <soap:fault name="AccessDenied" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidRegistration">
+        <soap:fault name="InvalidRegistration" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="MissingParameters">
+        <soap:fault name="MissingParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationFailed">
+        <soap:fault name="OperationFailed" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="initCookie">
+      <soap:operation soapAction="urn:oasis:names:tc:wsrp:v1:initCookie"/>
+      <wsdl:input name="initCookie">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="initCookieResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDenied">
+        <soap:fault name="AccessDenied" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidRegistration">
+        <soap:fault name="InvalidRegistration" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationFailed">
+        <soap:fault name="OperationFailed" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+
+
+  <wsdl:binding name="WSRP_v1_ServiceDescription_Binding_SOAP" type="intf:WSRP_v1_ServiceDescription_PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+    <wsdl:operation name="getServiceDescription">
+      <soap:operation soapAction="urn:oasis:names:tc:wsrp:v1:getServiceDescription"/>
+      <wsdl:input name="getServiceDescription">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getServiceDescriptionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidRegistration">
+        <soap:fault name="InvalidRegistration" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationFailed">
+        <soap:fault name="OperationFailed" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:binding name="WSRP_v1_PortletManagement_Binding_SOAP" type="intf:WSRP_v1_PortletManagement_PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+    <wsdl:operation name="getPortletDescription">
+      <soap:operation soapAction="urn:oasis:names:tc:wsrp:v1:getPortletDescription"/>
+      <wsdl:input name="getPortletDescription">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPortletDescriptionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDenied">
+        <soap:fault name="AccessDenied" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidUserCategory">
+        <soap:fault name="InvalidUserCategory" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InconsistentParameters">
+        <soap:fault name="InconsistentParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidRegistration">
+        <soap:fault name="InvalidRegistration" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="MissingParameters">
+        <soap:fault name="MissingParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationFailed">
+        <soap:fault name="OperationFailed" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidHandle">
+        <soap:fault name="InvalidHandle" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="clonePortlet">
+      <soap:operation soapAction="urn:oasis:names:tc:wsrp:v1:clonePortlet"/>
+      <wsdl:input name="clonePortlet">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="clonePortletResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDenied">
+        <soap:fault name="AccessDenied" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidUserCategory">
+        <soap:fault name="InvalidUserCategory" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InconsistentParameters">
+        <soap:fault name="InconsistentParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidRegistration">
+        <soap:fault name="InvalidRegistration" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="MissingParameters">
+        <soap:fault name="MissingParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationFailed">
+        <soap:fault name="OperationFailed" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidHandle">
+        <soap:fault name="InvalidHandle" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="destroyPortlets">
+      <soap:operation soapAction="urn:oasis:names:tc:wsrp:v1:destroyPortlets"/>
+      <wsdl:input name="destroyPortlets">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="destroyPortletsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InconsistentParameters">
+        <soap:fault name="InconsistentParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidRegistration">
+        <soap:fault name="InvalidRegistration" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="MissingParameters">
+        <soap:fault name="MissingParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationFailed">
+        <soap:fault name="OperationFailed" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="setPortletProperties">
+      <soap:operation soapAction="urn:oasis:names:tc:wsrp:v1:setPortletProperties"/>
+      <wsdl:input name="setPortletProperties">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setPortletPropertiesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDenied">
+        <soap:fault name="AccessDenied" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidUserCategory">
+        <soap:fault name="InvalidUserCategory" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InconsistentParameters">
+        <soap:fault name="InconsistentParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidRegistration">
+        <soap:fault name="InvalidRegistration" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="MissingParameters">
+        <soap:fault name="MissingParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationFailed">
+        <soap:fault name="OperationFailed" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidHandle">
+        <soap:fault name="InvalidHandle" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="getPortletProperties">
+      <soap:operation soapAction="urn:oasis:names:tc:wsrp:v1:getPortletProperties"/>
+      <wsdl:input name="getPortletProperties">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPortletPropertiesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDenied">
+        <soap:fault name="AccessDenied" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidUserCategory">
+        <soap:fault name="InvalidUserCategory" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InconsistentParameters">
+        <soap:fault name="InconsistentParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidRegistration">
+        <soap:fault name="InvalidRegistration" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="MissingParameters">
+        <soap:fault name="MissingParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationFailed">
+        <soap:fault name="OperationFailed" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidHandle">
+        <soap:fault name="InvalidHandle" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="getPortletPropertyDescription">
+      <soap:operation soapAction="urn:oasis:names:tc:wsrp:v1:getPortletPropertyDescription"/>
+      <wsdl:input name="getPortletPropertyDescription">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPortletPropertyDescriptionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDenied">
+        <soap:fault name="AccessDenied" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidUserCategory">
+        <soap:fault name="InvalidUserCategory" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InconsistentParameters">
+        <soap:fault name="InconsistentParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidRegistration">
+        <soap:fault name="InvalidRegistration" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="MissingParameters">
+        <soap:fault name="MissingParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationFailed">
+        <soap:fault name="OperationFailed" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidHandle">
+        <soap:fault name="InvalidHandle" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:binding name="WSRP_v1_Registration_Binding_SOAP" type="intf:WSRP_v1_Registration_PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+    <wsdl:operation name="register">
+      <soap:operation soapAction="urn:oasis:names:tc:wsrp:v1:register"/>
+      <wsdl:input name="register">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="registerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="MissingParameters">
+        <soap:fault name="MissingParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationFailed">
+        <soap:fault name="OperationFailed" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="deregister">
+      <soap:operation soapAction="urn:oasis:names:tc:wsrp:v1:deregister"/>
+      <wsdl:input name="deregister">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deregisterResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidRegistration">
+        <soap:fault name="InvalidRegistration" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationFailed">
+        <soap:fault name="OperationFailed" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="modifyRegistration">
+      <soap:operation soapAction="urn:oasis:names:tc:wsrp:v1:modifyRegistration"/>
+      <wsdl:input name="modifyRegistration">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="modifyRegistrationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidRegistration">
+        <soap:fault name="InvalidRegistration" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="MissingParameters">
+        <soap:fault name="MissingParameters" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationFailed">
+        <soap:fault name="OperationFailed" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>
