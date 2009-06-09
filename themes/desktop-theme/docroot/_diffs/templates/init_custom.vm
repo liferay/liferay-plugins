@@ -1,0 +1,48 @@
+## ---------- Common ---------- ##
+
+#set ($theme_flash_folder = "$themeDisplay.getPathThemeRoot()/flash")
+
+## ---------- Browsers ---------- ##
+
+#set ($is_ie6 = false)
+
+#if ($browserSniffer.isIe($request) && $browserSniffer.getMajorVersion($request) < 7)
+	#set ($is_ie6 = true)
+#end
+
+## ---------- Body ID ---------- ##
+
+#if ($themeDisplay.getTilesTitle().equals("email-address") ||
+	$themeDisplay.getTilesTitle().equals("new-password") ||
+	$themeDisplay.getTilesTitle().equals("password-reminder") ||
+	$themeDisplay.getTilesTitle().equals("terms-of-use"))
+
+	#set ($is_login_page = true)
+#elseif ($is_portlet_page && $is_maximized && !$is_signed_in)
+	#if ($paramUtil.getString($request, "p_p_id").equals("58"))
+		#set ($is_login_page = true)
+	#end
+#end
+
+#if ($is_login_page)
+	#set ($css_id = "desktop-login")
+#elseif ($show_sign_in)
+	#set ($css_id = "desktop-locked")
+#elseif ($is_maximized)
+	#set ($css_id = "desktop-maximized")
+#else
+	#set ($css_id = "desktop-user")
+#end
+
+## ---------- Desktop ---------- ##
+
+#set ($home_text = $languageUtil.get($company_id, $locale, "my-home"))
+
+#set ($has_sidebar = ($show_add_content && !$is_ie6))
+#set ($has_taskbar = !$is_maximized && !$is_login_page)
+
+#if ($has_sidebar)
+	#set ($add_content_url = "Sidebar.animate();")
+#else
+	#set ($add_content_url = "Sidebar.toggle('87', true);")
+#end

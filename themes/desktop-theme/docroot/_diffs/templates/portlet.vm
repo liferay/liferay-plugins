@@ -1,0 +1,115 @@
+## ---------- Common ---------- ##
+
+#set ($userLocalService = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
+#set ($organizationLocalService = $serviceLocator.findService("com.liferay.portal.service.OrganizationLocalService"))
+
+## ---------- Group name ---------- ##
+
+#set ($group_name = $layout.getGroup().getName())
+
+#if ($layout.getGroup().isOrganization())
+	#set ($organization = $organizationLocalService.getOrganization($layout.getGroup().getClassPK()))
+	#set ($group_name = $organization.getName())
+#elseif ($layout.getGroup().isUser())
+	#set ($user2 = $userLocalService.getUserById($layout.getGroup().getClassPK()))
+	#set ($group_name = $user2.getFullName())
+#end
+
+## ---------- Portlet ---------- ##
+
+#set ($portlet_display = $portletDisplay)
+
+#set ($portlet_id = $htmlUtil.escape($portlet_display.getId()))
+#set ($portlet_title = $portlet_display.getTitle())
+#set ($portlet_content = $portlet_display.getContent())
+#set ($portlet_back_url = $htmlUtil.escape($portlet_display.getURLBack()))
+#set ($portlet_column_pos = $portlet_display.getColumnPos())
+
+#set ($portlet_address = "$group_name - $layout.getHTMLTitle($locale) - $portlet_title")
+
+## ---------- Icons ---------- ##
+
+#set ($icon_options_class = "icon-options")
+
+#if ($portlet_display.isShowMinIcon())
+	#set ($icon_options_class = $icon_options_class + "-min")
+#end
+
+#if ($portlet_display.isShowMaxIcon())
+	#set ($icon_options_class = $icon_options_class + "-max")
+#end
+
+#if ($portlet_display.isShowCloseIcon())
+	#set ($icon_options_class = $icon_options_class + "-close")
+#end
+
+<div id="portlet-wrapper-$portlet_id">
+	<div class="portlet-top">
+		<div class="top-left">
+			<div class="top-right">
+				<div class="top-center">
+					<div class="portlet-topper">
+						<span class="portlet-title not-editable">$theme.iconPortlet() $portlet_title</span>
+
+						<span
+							#if ($portlet_display.isShowBackIcon())
+								class="portlet-icons icon-back"
+							#else
+								class="portlet-icons portlet-modes"
+							#end
+							id="portlet-small-icon-bar_$portlet_id"
+						>
+							#if ($portlet_display.isShowBackIcon())
+								<a href="$portlet_back_url" class="portlet-icon-back">#language ("return-to-full-page")</a>
+							#else
+								#if ($portlet_display.isShowMinIcon())
+									<span class="icon-min"><a href="javascript: Desktop.portletMinimize('$portlet_display.getId()');"></a></span>
+								#end
+
+								#if ($portlet_display.isShowMaxIcon())
+									<span class="icon-max"><a href="javascript: submitForm(document.hrefFm,'$portlet_display.getURLMax()')"></a></span>
+								#end
+
+								#if ($portlet_display.isShowCloseIcon())
+									<span class="icon-close"><a href="javascript: Desktop.portletRemove('$portlet_display.getId()', '$portlet_column_pos');"></a></span>
+								#end
+							#end
+						</span>
+
+						#if (!$portlet_display.isShowBackIcon())
+							<span class="portlet-icons $icon_options_class">$theme.iconOptions()</span>
+						#end
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="portlet-middle">
+		<div class="middle-left">
+			<div class="middle-right">
+				<div class="middle-center">
+					<div class="portlet-content">
+						$portlet_content
+					</div>
+					<div class="portlet-address">
+						$portlet_address
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="portlet-clear"></div>
+	<div class="portlet-bottom">
+		<div class="bottom-left">
+			<div class="bottom-right">
+				<div class="bottom-center"> </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	if (!$portlet_display.isShowBackIcon()) {
+		Desktop.taskbarAddPortlet('$portlet_id', $portlet_display.isShowMinIcon());
+	}
+</script>
