@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
@@ -59,7 +60,7 @@ public class ServicePreAction extends Action {
 
 		String currentURL = PortalUtil.getCurrentURL(request);
 
-		if (displayURL(themeDisplay, currentURL)) {
+		if (isDisplayURL(themeDisplay, currentURL)) {
 
 			// SOS-9
 
@@ -118,7 +119,9 @@ public class ServicePreAction extends Action {
 		}
 	}
 
-	protected boolean displayURL(ThemeDisplay themeDisplay, String currentURL) {
+	protected boolean isDisplayURL(
+		ThemeDisplay themeDisplay, String currentURL) {
+
 		String urlFragment1 =
 			themeDisplay.getPathMain() + "/my_places/view?groupId=";
 
@@ -137,10 +140,7 @@ public class ServicePreAction extends Action {
 		s = StringUtil.remove(s, urlFragment1, StringPool.BLANK);
 		s = StringUtil.remove(s, urlFragment2, StringPool.BLANK);
 
-		try {
-			Long.parseLong(s);
-		}
-		catch (NumberFormatException nfe) {
+		if (!Validator.isNumber(s)) {
 			return false;
 		}
 
