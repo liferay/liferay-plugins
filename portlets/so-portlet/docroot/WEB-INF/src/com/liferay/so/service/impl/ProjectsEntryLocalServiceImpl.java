@@ -50,7 +50,7 @@ public class ProjectsEntryLocalServiceImpl
 		User user = UserLocalServiceUtil.getUserById(userId);
 
 		Date startDate = PortalUtil.getDate(
-			endDateMonth, endDateDay, endDateYear, user.getTimeZone(),
+			startDateMonth, startDateDay, startDateYear, user.getTimeZone(),
 			new ProjectsEntryStartDateException());
 
 		Date endDate = null;

@@ -112,7 +112,7 @@
 							Calendar startDate = CalendarFactoryUtil.getCalendar();
 							Calendar endDate = CalendarFactoryUtil.getCalendar();
 
-							boolean current = true;
+							boolean current = false;
 
 							if (projectsEntry != null) {
 								projectsEntryId = projectsEntry.getProjectsEntryId();
