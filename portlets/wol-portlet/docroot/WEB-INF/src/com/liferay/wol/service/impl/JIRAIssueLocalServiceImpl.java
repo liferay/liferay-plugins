@@ -331,7 +331,8 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 		if (socialActivities.size() > 0) {
 			SocialActivity socialActivity = socialActivities.get(0);
 
-			modifiedDate = JIRAUtil.getJIRADate(socialActivity.getCreateDate());
+			modifiedDate = JIRAUtil.getJIRADate(
+				new Date(socialActivity.getCreateDate()));
 		}
 		else {
 			modifiedDate = JIRAUtil.getJIRADate(-1);
