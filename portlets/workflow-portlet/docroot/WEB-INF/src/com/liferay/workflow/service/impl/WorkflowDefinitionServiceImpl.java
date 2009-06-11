@@ -33,6 +33,7 @@ import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ResourceLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.workflow.NoSuchDefinitionException;
 import com.liferay.workflow.model.WorkflowDefinition;
 import com.liferay.workflow.service.base.WorkflowDefinitionServiceBaseImpl;
@@ -92,8 +93,7 @@ public class WorkflowDefinitionServiceImpl
 		long fileEntryId = 0;
 		String properties = StringPool.BLANK;
 		Date modifiedDate = new Date();
-		String[] tagsCategories = new String[0];
-		String[] tagsEntries = new String[0];
+		ServiceContext serviceContext = new ServiceContext();
 		byte[] bytes = xml.getBytes();
 
 		try {
@@ -104,7 +104,7 @@ public class WorkflowDefinitionServiceImpl
 
 		DLServiceUtil.addFile(
 			companyId, portletId, groupId, repositoryId, fileName, fileEntryId,
-			properties, modifiedDate, tagsCategories, tagsEntries, bytes);
+			properties, modifiedDate, serviceContext, bytes);
 
 		// Resources
 
