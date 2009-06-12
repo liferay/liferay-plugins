@@ -7,24 +7,7 @@
 	
 	<target name="build-wsdl2java">
 		<axis-wsdl2java
-			output="docroot/WEB-INF/src"
-			serverside="true"
-			verbose="true"
-			url="docroot/wsdl/wsrp-2.0-service.wsdl">
-		    <mapping
-		      namespace="urn:oasis:names:tc:wsrp:v2:bind"
-		      package="com.liferay.wsrp.v2.bind" />
-		    <mapping
-		      namespace="urn:oasis:names:tc:wsrp:v2:intf"
-		      package="com.liferay.wsrp.v2.intf" />
-		    <mapping
-		      namespace="urn:oasis:names:tc:wsrp:v2:types"
-		      package="com.liferay.wsrp.v2.types" />
-		    <mapping
-		      namespace="urn:oasis:names:tc:wsrp:v2:wsdl"
-		      package="com.liferay.wsrp.v2.wsdl" />
-		</axis-wsdl2java>
-		<axis-wsdl2java
+			nowrapped="true"
 			output="docroot/WEB-INF/src"
 			serverside="true"
 			verbose="true"
@@ -42,5 +25,46 @@
 		      namespace="urn:oasis:names:tc:wsrp:v1:wsdl"
 		      package="com.liferay.wsrp.v1.wsdl" />
 		</axis-wsdl2java>
-	</target>
+
+		<axis-wsdl2java
+			nowrapped="true"
+			output="docroot/WEB-INF/src"
+			serverside="true"
+			verbose="true"
+			url="docroot/wsdl/wsrp-2.0-service.wsdl">
+		    <mapping
+		      namespace="urn:oasis:names:tc:wsrp:v2:bind"
+		      package="com.liferay.wsrp.v2.bind" />
+		    <mapping
+		      namespace="urn:oasis:names:tc:wsrp:v2:intf"
+		      package="com.liferay.wsrp.v2.intf" />
+		    <mapping
+		      namespace="urn:oasis:names:tc:wsrp:v2:types"
+		      package="com.liferay.wsrp.v2.types" />
+		    <mapping
+		      namespace="urn:oasis:names:tc:wsrp:v2:wsdl"
+		      package="com.liferay.wsrp.v2.wsdl" />
+		</axis-wsdl2java>
+
+		<replaceregexp 
+			file="docroot/WEB-INF/src/com/liferay/wsrp/v2/types/FailedPortlets.java"
+			match="super\(\s*errorCode,\s*reason,\s*resourceList,\s*extensions\)"
+			replace="super(reason, resourceList, extensions, errorCode)" />
+		<replaceregexp 
+			file="docroot/WEB-INF/src/com/liferay/wsrp/v2/types/HandleEventsFailed.java"
+			match="super\(\s*errorCode,\s*reason,\s*resourceList,\s*extensions\)"
+			replace="super(reason, resourceList, extensions, errorCode)" />
+		<replaceregexp 
+			file="docroot/WEB-INF/src/com/liferay/wsrp/v2/types/ImportPortletsFailed.java"
+			match="super\(\s*errorCode,\s*reason,\s*resourceList,\s*extensions\)"
+			replace="super(reason, resourceList, extensions, errorCode)" />
+		<replaceregexp 
+			file="docroot/WEB-INF/src/com/liferay/wsrp/v2/types/MarkupContext.java"
+			match="super\(\s*ccppProfileWarning,\s*useCachedItem,\s*mimeType,\s*itemString,\s*itemBinary,\s*locale,\s*requiresRewriting,\s*cacheControl,\s*clientAttributes,\s*extensions\);"
+			replace="super(useCachedItem,mimeType,itemString,itemBinary,locale,requiresRewriting,cacheControl,clientAttributes,extensions,ccppProfileWarning);" />
+		<replaceregexp 
+			file="docroot/WEB-INF/src/com/liferay/wsrp/v2/types/ResourceContext.java"
+			match="super\(\s*ccppProfileWarning,\s*useCachedItem,\s*mimeType,\s*itemString,\s*itemBinary,\s*locale,\s*requiresRewriting,\s*cacheControl,\s*clientAttributes,\s*extensions\);"
+			replace="super(useCachedItem,mimeType,itemString,itemBinary,locale,requiresRewriting,cacheControl,clientAttributes,extensions,ccppProfileWarning);" />
+	</target>	
 </project>

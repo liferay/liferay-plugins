@@ -2,4 +2,13 @@
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
+	<servlet>
+		<servlet-name>Axis Servlet</servlet-name>
+		<servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Axis Servlet</servlet-name>
+		<url-pattern>/wsrp/*</url-pattern>
+	</servlet-mapping>
 </web-app>
