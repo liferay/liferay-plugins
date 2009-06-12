@@ -35,14 +35,14 @@ html {
 }
 
 .js .interactive-mode h2 {
-	height: 23px;
 	background-position: 100% -3px;
+	height: 23px;
 }
 
 .js .interactive-mode h2 span {
 	background-position: 0 -3px;
-	line-height: 22px;
 	height: 23px;
+	line-height: 22px;
 	min-height: 23px;
 	padding: 0 20px;
 }
@@ -75,7 +75,8 @@ html {
 	font: bold 11px/32px Arial, Helvetica, sans-serif;
 	height: 32px;
 	letter-spacing: 0.0115em;
-	margin: 0 7px 0 8px;
+	outline: 0;
+	padding: 0 7px 0 8px;
 	text-decoration: none;
 }
 
@@ -89,12 +90,12 @@ html {
 
 #navigation .first {
 	background: url(../images/custom/navigation_bg.png) no-repeat left -32px;
-	padding: 0 0 0 7px;
+	padding-left: 7px;
 }
 
 #navigation .last {
 	background: url(../images/custom/navigation_bg.png) no-repeat right -64px;
-	padding: 0 7px 0 0;
+	padding-right: 7px;
 }
 
 #content-wrapper {
