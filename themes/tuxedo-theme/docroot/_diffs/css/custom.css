@@ -1,0 +1,123 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Base ---------- */
+
+html {
+	overflow-y: scroll;
+}
+
+/* ---------- Banner Login ---------- */
+
+#banner-login {
+	background: #525252 url(../images/custom/banner-login_bg.png) repeat-x 0 bottom;
+	min-height: 24px;
+}
+
+/* ---------- Banner ---------- */
+
+#banner-wrapper {
+	background: #111 url(../images/custom/banner_bg.png) repeat-x 0 bottom;
+	min-height: 98px;
+}
+
+#banner {
+	margin: 0 auto;
+	padding: 25px 0;
+	width: 938px;
+}
+
+/* ---------- Dock ---------- */
+
+.js .interactive-mode {
+	background-position: 0 -3px;
+	right: 0;
+	top: -24px;
+}
+
+.js .interactive-mode h2 {
+	height: 23px;
+	background-position: 100% -3px;
+}
+
+.js .interactive-mode h2 span {
+	background-position: 0 -3px;
+	line-height: 22px;
+	height: 23px;
+	min-height: 23px;
+	padding: 0 20px;
+}
+
+/* ---------- Navigation ---------- */
+
+#navigation {
+	height: 32px;
+	margin: -19px auto 23px;
+	position: relative;
+	text-transform: uppercase;
+	width: 939px;
+	z-index: 21;
+}
+
+#navigation ul {
+	background: url(../images/custom/navigation_bg.png);
+	float: left;
+	height: 32px;
+}
+
+#navigation li {
+	height: 32px;
+}
+
+#navigation a {
+	color: #B7B7B7;
+	display: block;
+	float: left;
+	font: bold 11px/32px Arial, Helvetica, sans-serif;
+	height: 32px;
+	letter-spacing: 0.0115em;
+	margin: 0 7px 0 8px;
+	text-decoration: none;
+}
+
+#navigation a:hover {
+	color: #FFF;
+}
+
+#navigation .selected a {
+	color: #EC9423;
+}
+
+#navigation .first {
+	background: url(../images/custom/navigation_bg.png) no-repeat left -32px;
+	padding: 0 0 0 7px;
+}
+
+#navigation .last {
+	background: url(../images/custom/navigation_bg.png) no-repeat right -64px;
+	padding: 0 7px 0 0;
+}
+
+#content-wrapper {
+	background: url(../images/custom/content-wrapper_bg.png) repeat-x 0 bottom;
+	margin: 0 auto 30px;
+	min-height: 100px;
+	width: 939px;
+}
+
+/* ---------- Portlet ---------- */
+
+.portlet-content {
+	color: #303030;
+	font: 12px/1.5 Arial, Helvetica, sans-serif;
+	padding: 18px 0 0;
+}
+
+.portlet-title {
+	color: #446D77;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+.portlet-title img {
+	vertical-align: bottom;
+}
