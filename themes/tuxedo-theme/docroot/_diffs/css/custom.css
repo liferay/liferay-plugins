@@ -58,7 +58,8 @@ html {
 	z-index: 21;
 }
 
-#navigation ul {
+#navigation ul,
+.ie #navigation ul {
 	background: url(../images/custom/navigation_bg.png);
 	float: left;
 	height: 32px;
