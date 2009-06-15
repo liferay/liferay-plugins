@@ -4,67 +4,62 @@
 	<import file="../build-common-portlet.xml" />
 
 	<taskdef classpathref="portal.classpath" resource="axis-tasks.properties" />
-	
-	<target name="build-wsdl2java">
-		<axis-wsdl2java
-			nowrapped="true"
-			output="docroot/WEB-INF/src"
-			serverside="true"
-			verbose="true"
-			url="docroot/wsdl/wsrp_v1_service.wsdl">
-		    <mapping
-		      namespace="urn:oasis:names:tc:wsrp:v1:bind"
-		      package="com.liferay.wsrp.v1.bind" />
-		    <mapping
-		      namespace="urn:oasis:names:tc:wsrp:v1:intf"
-		      package="com.liferay.wsrp.v1.intf" />
-		    <mapping
-		      namespace="urn:oasis:names:tc:wsrp:v1:types"
-		      package="com.liferay.wsrp.v1.types" />
-		    <mapping
-		      namespace="urn:oasis:names:tc:wsrp:v1:wsdl"
-		      package="com.liferay.wsrp.v1.wsdl" />
+
+	<target name="build-wsrp-client">
+		<tstamp>
+			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+		</tstamp>
+
+		<mkdir dir="${tstamp.value}" />
+
+		<axis-wsdl2java nowrapped="true" output="${tstamp.value}" serverside="true" url="docroot/wsdl/wsrp_v1_service.wsdl" verbose="true">
+			<mapping namespace="urn:oasis:names:tc:wsrp:v1:bind" package="com.liferay.client.soap.wsrp.v1.bind" />
+			<mapping namespace="urn:oasis:names:tc:wsrp:v1:intf" package="com.liferay.client.soap.wsrp.v1.intf" />
+			<mapping namespace="urn:oasis:names:tc:wsrp:v1:types" package="com.liferay.client.soap.wsrp.v1.types" />
+			<mapping namespace="urn:oasis:names:tc:wsrp:v1:wsdl" package="com.liferay.client.soap.wsrp.v1.wsdl" />
 		</axis-wsdl2java>
 
-		<axis-wsdl2java
-			nowrapped="true"
-			output="docroot/WEB-INF/src"
-			serverside="true"
-			verbose="true"
-			url="docroot/wsdl/wsrp-2.0-service.wsdl">
-		    <mapping
-		      namespace="urn:oasis:names:tc:wsrp:v2:bind"
-		      package="com.liferay.wsrp.v2.bind" />
-		    <mapping
-		      namespace="urn:oasis:names:tc:wsrp:v2:intf"
-		      package="com.liferay.wsrp.v2.intf" />
-		    <mapping
-		      namespace="urn:oasis:names:tc:wsrp:v2:types"
-		      package="com.liferay.wsrp.v2.types" />
-		    <mapping
-		      namespace="urn:oasis:names:tc:wsrp:v2:wsdl"
-		      package="com.liferay.wsrp.v2.wsdl" />
+		<axis-wsdl2java nowrapped="true" output="${tstamp.value}" serverside="true" url="docroot/wsdl/wsrp-2.0-service.wsdl" verbose="true">
+			<mapping namespace="urn:oasis:names:tc:wsrp:v2:bind" package="com.liferay.client.soap.wsrp.v2.bind" />
+			<mapping namespace="urn:oasis:names:tc:wsrp:v2:intf" package="com.liferay.client.soap.wsrp.v2.intf" />
+			<mapping namespace="urn:oasis:names:tc:wsrp:v2:types" package="com.liferay.client.soap.wsrp.v2.types" />
+			<mapping namespace="urn:oasis:names:tc:wsrp:v2:wsdl" package="com.liferay.client.soap.wsrp.v2.wsdl" />
 		</axis-wsdl2java>
 
-		<replaceregexp 
-			file="docroot/WEB-INF/src/com/liferay/wsrp/v2/types/FailedPortlets.java"
+		<replaceregexp
 			match="super\(\s*errorCode,\s*reason,\s*resourceList,\s*extensions\)"
-			replace="super(reason, resourceList, extensions, errorCode)" />
-		<replaceregexp 
-			file="docroot/WEB-INF/src/com/liferay/wsrp/v2/types/HandleEventsFailed.java"
-			match="super\(\s*errorCode,\s*reason,\s*resourceList,\s*extensions\)"
-			replace="super(reason, resourceList, extensions, errorCode)" />
-		<replaceregexp 
-			file="docroot/WEB-INF/src/com/liferay/wsrp/v2/types/ImportPortletsFailed.java"
-			match="super\(\s*errorCode,\s*reason,\s*resourceList,\s*extensions\)"
-			replace="super(reason, resourceList, extensions, errorCode)" />
-		<replaceregexp 
-			file="docroot/WEB-INF/src/com/liferay/wsrp/v2/types/MarkupContext.java"
+			replace="super(reason, resourceList, extensions, errorCode)"
+		>
+			<fileset dir="${tstamp.value}/com/liferay/client/soap/wsrp/v2/types" includes="FailedPortlets.java,HandleEventsFailed.java,ImportPortletsFailed.java" />
+		</replaceregexp>
+
+		<replaceregexp
 			match="super\(\s*ccppProfileWarning,\s*useCachedItem,\s*mimeType,\s*itemString,\s*itemBinary,\s*locale,\s*requiresRewriting,\s*cacheControl,\s*clientAttributes,\s*extensions\);"
-			replace="super(useCachedItem,mimeType,itemString,itemBinary,locale,requiresRewriting,cacheControl,clientAttributes,extensions,ccppProfileWarning);" />
-		<replaceregexp 
-			file="docroot/WEB-INF/src/com/liferay/wsrp/v2/types/ResourceContext.java"
-			match="super\(\s*ccppProfileWarning,\s*useCachedItem,\s*mimeType,\s*itemString,\s*itemBinary,\s*locale,\s*requiresRewriting,\s*cacheControl,\s*clientAttributes,\s*extensions\);"
-			replace="super(useCachedItem,mimeType,itemString,itemBinary,locale,requiresRewriting,cacheControl,clientAttributes,extensions,ccppProfileWarning);" />
-	</target>	
+			replace="super(useCachedItem,mimeType,itemString,itemBinary,locale,requiresRewriting,cacheControl,clientAttributes,extensions,ccppProfileWarning);"
+		>
+			<fileset dir="${tstamp.value}/com/liferay/client/soap/wsrp/v2/types" includes="MarkupContext.java,ResourceContext.java" />
+		</replaceregexp>
+
+		<path id="plugin-lib.classpath">
+			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+			<pathelement location="docroot/WEB-INF/classes" />
+		</path>
+
+		<javac
+			classpathref="plugin.classpath"
+			compiler="${javac.compiler}"
+			debug="${javac.debug}"
+			deprecation="${javac.deprecation}"
+			destdir="${tstamp.value}"
+			nowarn="${javac.nowarn}"
+			srcdir="${tstamp.value}"
+		/>
+
+		<jar
+			basedir="${tstamp.value}"
+			jarfile="docroot/WEB-INF/lib/wsrp-client.jar"
+		/>
+
+		<delete dir="${tstamp.value}" />
+	</target>
 </project>

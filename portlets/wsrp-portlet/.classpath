@@ -10,7 +10,6 @@
 	<classpathentry kind="lib" path="/portal/lib/development/servlet-api.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/annotations.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/axis-ant.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/axis.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/commons-discovery.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/commons-logging.jar" />
@@ -24,5 +23,6 @@
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/wsrp-client.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
