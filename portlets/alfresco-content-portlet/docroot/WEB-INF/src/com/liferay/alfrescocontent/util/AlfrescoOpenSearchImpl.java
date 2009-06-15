@@ -92,9 +92,12 @@ public class AlfrescoOpenSearchImpl implements OpenSearch {
 		}
 
 		try {
-			xml = HttpUtil.URLtoString(
-				url, null, new Http.Auth(HOST, PORT, REALM, USERNAME, PASSWORD),
-				(Http.Body)null, false);
+			Http.Options options = new Http.Options();
+
+			options.setAuth(HOST, PORT, REALM, USERNAME, PASSWORD);
+			options.setLocation(url);
+
+			xml = HttpUtil.URLtoString(options);
 		}
 		catch (IOException ioe) {
 			_log.error("Unable to search with " + url, ioe);
