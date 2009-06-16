@@ -58,7 +58,7 @@ public class MeetupsPortlet extends MVCPortlet {
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
-		if (!permissionChecker.isCompanyAdmin(themeDisplay.getCompanyId())) {
+		if (!permissionChecker.isCompanyAdmin()) {
 			return;
 		}
 
@@ -81,7 +81,7 @@ public class MeetupsPortlet extends MVCPortlet {
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
-		if (!permissionChecker.isCompanyAdmin(themeDisplay.getCompanyId())) {
+		if (!permissionChecker.isCompanyAdmin()) {
 			return;
 		}
 
