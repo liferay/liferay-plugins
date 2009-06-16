@@ -92,7 +92,7 @@
 										%>
 
 											<li class="active" userId="<%= userId %>">
-												<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= portraitId %>">
+												<img alt="" src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= portraitId %>">
 
 												<div class="name">
 													<%= fullName %>

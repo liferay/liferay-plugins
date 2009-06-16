@@ -86,7 +86,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 				<%= foo.getField5() %>
 			</td>
 			<td>
-				<a href="<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" /><portlet:param name="redirect" value="<%= portletURL.toString() %>" /><portlet:param name="fooId" value="<%= String.valueOf(foo.getFooId()) %>" /></portlet:actionURL>"><img src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_x.png" /></a>
+				<a href="<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" /><portlet:param name="redirect" value="<%= portletURL.toString() %>" /><portlet:param name="fooId" value="<%= String.valueOf(foo.getFooId()) %>" /></portlet:actionURL>"><img alt='<liferay-ui:message key="delete" />' src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_x.png" /></a>
 			</td>
 		</tr>
 

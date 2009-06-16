@@ -513,7 +513,7 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend(
 								'<div class="panel-window">' +
 									'<div class="panel-button minimize"></div>' +
 									'<div class="panel-button close"></div>' +
-									'<img class="panel-icon" src="' + userImagePath + '" />' +
+									'<img alt="" class="panel-icon" src="' + userImagePath + '" />' +
 									'<div class="panel-title">' + instance._panelTitle + '</div>' +
 									'<div class="panel-profile">...</div>' +
 									'<div class="panel-output"></div>' +
@@ -954,7 +954,7 @@ Liferay.Chat.Manager = {
 
 			buffer.push(
 				'<li class="active" userId="' + buddy.userId + '">' +
-					'<img src="' + userImagePath + '" />' +
+					'<img alt="" src="' + userImagePath + '" />' +
 					'<div class="name">' + buddy.fullName + '</div>' +
 				'</li>');
 		}

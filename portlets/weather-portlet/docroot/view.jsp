@@ -53,7 +53,7 @@ for (String zip : zips) {
 				</span>
 			</td>
 			<td align="right">
-				<img src="<%= weather.getIconURL() %>" />
+				<img alt="" src="<%= weather.getIconURL() %>" />
 			</td>
 		</tr>
 

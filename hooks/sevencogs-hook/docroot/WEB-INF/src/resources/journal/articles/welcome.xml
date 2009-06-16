@@ -77,7 +77,7 @@
 				<table class="content-grid">
 					<tr>
 						<td valign="top">
-							<img class="content-description" src="/image/image_gallery?uuid=[$WEB_PUBLISHING_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]">
+							<img alt="" class="content-description" src="/image/image_gallery?uuid=[$WEB_PUBLISHING_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]">
 						</td>
 						<td valign="top">
 				            <ul>
@@ -96,7 +96,7 @@
 			<table class="content-grid">
 				<tr>
 					<td valign="top">
-						<img class="content-description" src="/image/image_gallery?uuid=[$SOCIAL_NETWORKING_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]">
+						<img alt="" class="content-description" src="/image/image_gallery?uuid=[$SOCIAL_NETWORKING_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]">
 					</td>
 					<td valign="top">
 						<ul>
@@ -122,7 +122,7 @@
 			<table class="content-grid">
 				<tr>
 					<td valign="top">
-						<img class="content-description" src="/image/image_gallery?uuid=[$SHARED_WORKSPACES_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]">
+						<img alt="" class="content-description" src="/image/image_gallery?uuid=[$SHARED_WORKSPACES_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]">
 					</td>
 					<td valign="top">
 						<ul>
@@ -144,7 +144,7 @@
 			<table class="content-grid">
 				<tr>
 					<td valign="top">
-						<img class="content-description" src="/image/image_gallery?uuid=[$PORTAL_MASHUPS_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]">
+						<img alt="" class="content-description" src="/image/image_gallery?uuid=[$PORTAL_MASHUPS_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]">
 					</td>
 					<td valign="top">
 						<ul>

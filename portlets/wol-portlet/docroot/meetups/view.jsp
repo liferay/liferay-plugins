@@ -106,7 +106,7 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 			viewMeetupsEntryURL.setParameter("meetupsEntryId", String.valueOf(meetupsEntry.getMeetupsEntryId()));
 			%>
 
-			<a href="<%= viewMeetupsEntryURL %>"><img src="<%= themeDisplay.getPathImage() %>?img_id=<%= meetupsEntry.getThumbnailId() %>&t=<%= ImageServletTokenUtil.getToken(meetupsEntry.getThumbnailId()) %>" /></a>
+			<a href="<%= viewMeetupsEntryURL %>"><img alt='<liferay-ui:message key="view-meetup" />' src="<%= themeDisplay.getPathImage() %>?img_id=<%= meetupsEntry.getThumbnailId() %>&t=<%= ImageServletTokenUtil.getToken(meetupsEntry.getThumbnailId()) %>" /></a>
 		</td>
 		<td valign="top" width="99%">
 			<div>

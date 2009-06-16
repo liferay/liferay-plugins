@@ -75,7 +75,7 @@ portletURL.setParameter("tabs1", tabs1);
 portletURL.setParameter("meetupsEntryId", String.valueOf(meetupsEntryId));
 %>
 
-<img src="<%= themeDisplay.getPathImage() %>?img_id=<%= meetupsEntry.getThumbnailId() %>&t=<%= ImageServletTokenUtil.getToken(meetupsEntry.getThumbnailId()) %>" style="float: left; margin-right: 10px;" />
+<img alt="" src="<%= themeDisplay.getPathImage() %>?img_id=<%= meetupsEntry.getThumbnailId() %>&t=<%= ImageServletTokenUtil.getToken(meetupsEntry.getThumbnailId()) %>" style="float: left; margin-right: 10px;" />
 
 <h4>
 	<%= meetupsEntry.getTitle() %>
