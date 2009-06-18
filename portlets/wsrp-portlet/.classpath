@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <classpath>
+	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/service" />
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/src" />
 	<classpathentry kind="src" path="/portal" />
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
@@ -14,6 +15,8 @@
 	<classpathentry kind="lib" path="/portal/lib/portal/commons-discovery.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/jaxrpc.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/jstl-impl.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/jstl.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/saaj-api.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/saaj-impl.jar" />

@@ -1,0 +1,60 @@
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.liferay.wsrp">
+	<namespace>WSRP</namespace>
+	<entity name="WSRPConsumer" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="wsrpConsumerId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="url" type="String" />
+		<column name="wsdl" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="name" />
+		</order>
+	</entity>
+	<entity name="WSRPConsumerPortlet" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="wsrpConsumerPortletId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="wsrpConsumerId" type="long" />
+		<column name="name" type="String" />
+		<column name="portletHandle" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="name" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="WsrpConsumerId" return-type="Collection">
+			<finder-column name="wsrpConsumerId" />
+		</finder>
+	</entity>
+	<exceptions>
+		<exception>WSRPConsumerWSDL</exception>
+	</exceptions>
+</service-builder>
