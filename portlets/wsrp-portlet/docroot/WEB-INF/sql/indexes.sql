@@ -1,0 +1,1 @@
+create index IX_1CEEF2AA on WSRP_WSRPConsumerPortlet (wsrpConsumerId);
