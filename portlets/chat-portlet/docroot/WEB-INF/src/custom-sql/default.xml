@@ -10,7 +10,7 @@
 			WHERE
 				(fromUserId = ?) AND
 				(toUserId = ?) AND
-				(content = '')
+				(content = '' OR content IS NULL)
 			ORDER BY
 				createDate DESC
 		]]>
