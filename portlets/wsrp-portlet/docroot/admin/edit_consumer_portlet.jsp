@@ -38,6 +38,7 @@ catch (NoSuchConsumerPortletException nscpe) {
 }
 
 long wsrpConsumerId = BeanParamUtil.getLong(wsrpConsumerPortlet, request, "wsrpConsumerId");
+String portletHandle = BeanParamUtil.getString(wsrpConsumerPortlet, request, "portletHandle");
 
 WSRPConsumer wsrpConsumer = WSRPConsumerLocalServiceUtil.getWSRPConsumer(wsrpConsumerId);
 
@@ -88,7 +89,7 @@ PortletDescription[] portletDescriptions = serviceDescription.getOfferedPortlets
 			for (PortletDescription portletDescription : portletDescriptions) {
 			%>
 
-				<option value="<%= portletDescription.getPortletHandle() %>"><%= portletDescription.getDisplayName().getValue() %></option>
+				<option <%= portletHandle.equals(portletDescription.getPortletHandle()) ? "selected" : "" %> value="<%= portletDescription.getPortletHandle() %>"><%= portletDescription.getDisplayName().getValue() %></option>
 
 			<%
 			}

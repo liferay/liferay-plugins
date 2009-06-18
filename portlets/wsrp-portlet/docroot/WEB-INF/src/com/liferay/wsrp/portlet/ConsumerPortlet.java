@@ -28,8 +28,10 @@ import com.liferay.client.soap.wsrp.v2.types.GetMarkup;
 import com.liferay.client.soap.wsrp.v2.types.InitCookie;
 import com.liferay.client.soap.wsrp.v2.types.MarkupParams;
 import com.liferay.client.soap.wsrp.v2.types.MarkupResponse;
+import com.liferay.client.soap.wsrp.v2.types.MarkupType;
 import com.liferay.client.soap.wsrp.v2.types.NavigationalContext;
 import com.liferay.client.soap.wsrp.v2.types.PortletContext;
+import com.liferay.client.soap.wsrp.v2.types.PortletDescription;
 import com.liferay.client.soap.wsrp.v2.types.RuntimeContext;
 import com.liferay.client.soap.wsrp.v2.types.ServiceDescription;
 import com.liferay.client.soap.wsrp.v2.types.UserContext;
@@ -91,7 +93,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		ActionRequest actionRequest, ActionResponse actionResponse) {
 	}
 
-	public void doView(
+	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
@@ -202,6 +204,12 @@ public class ConsumerPortlet extends GenericPortlet {
 		WSRPConsumerManager wsrpConsumerManager =
 			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
+		// Portlet description
+
+		PortletDescription portletDescription =
+			wsrpConsumerManager.getPortletDescription(
+				wsrpConsumerPortlet.getPortletHandle());
+
 		// Get markup
 
 		GetMarkup getMarkup = new GetMarkup();
@@ -224,11 +232,20 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		markupParams.setMarkupCharacterSets(new String[] {StringPool.UTF8});
 		markupParams.setMimeTypes(new String[] {ContentTypes.TEXT_HTML});
-		markupParams.setMode("wsrp:view");
-		markupParams.setValidNewModes(new String[] {"wsrp:view"});
-		markupParams.setValidNewWindowStates(
-			new String[] {"wsrp:maximized", "wsrp:minimized", "wsrp:normal"});
-		markupParams.setWindowState("wsrp:normal");
+		markupParams.setMode("wsrp:" + renderRequest.getPortletMode());
+		markupParams.setWindowState("wsrp:" + renderRequest.getWindowState());
+
+		MarkupType[] markupTypes = portletDescription.getMarkupTypes();
+
+		for (MarkupType markupType : markupTypes) {
+			if (markupType.getMimeType().equalsIgnoreCase(
+					ContentTypes.TEXT_HTML)) {
+
+				markupParams.setValidNewModes(markupType.getModes());
+				markupParams.setValidNewWindowStates(
+					markupType.getWindowStates());
+			}
+		}
 
 		getMarkup.setMarkupParams(markupParams);
 

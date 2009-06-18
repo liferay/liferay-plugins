@@ -22,13 +22,13 @@
 
 package com.liferay.wsrp.service.impl;
 
+import com.liferay.client.soap.wsrp.v2.types.MarkupType;
 import com.liferay.client.soap.wsrp.v2.types.PortletDescription;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
-import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CompanyConstants;
@@ -52,8 +52,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-
-import javax.portlet.PortletMode;
 
 /**
  * <a href="WSRPConsumerPortletLocalServiceImpl.java.html"><b><i>View Source</i>
@@ -234,12 +232,39 @@ public class WSRPConsumerPortletLocalServiceImpl
 		initParams.put(
 			InvokerPortlet.INIT_INVOKER_PORTLET_NAME, _CONSUMER_PORTLET_NAME);
 
-		Set<String> mimeTypeModes = new HashSet<String>();
+		MarkupType[] markupTypes = portletDescription.getMarkupTypes();
 
-		mimeTypeModes.add(PortletMode.VIEW.toString().toLowerCase());
+		for (MarkupType markupType : markupTypes) {
+			Set<String> mimeTypePortletModes = new HashSet<String>();
 
-		portlet.getPortletModes().put(
-			ContentTypes.TEXT_HTML, mimeTypeModes);
+			for (String portletMode : markupType.getModes()) {
+				portletMode = portletMode.toLowerCase();
+
+				if (portletMode.startsWith("wsrp:")) {
+					portletMode = portletMode.substring(5);
+				}
+
+				mimeTypePortletModes.add(portletMode);
+			}
+
+			portlet.getPortletModes().put(
+				markupType.getMimeType(), mimeTypePortletModes);
+
+			Set<String> mimeTypeWindowStates = new HashSet<String>();
+
+			for (String windowState : markupType.getWindowStates()) {
+				windowState = windowState.toLowerCase();
+
+				if (windowState.startsWith("wsrp:")) {
+					windowState = windowState.substring(5);
+				}
+
+				mimeTypeWindowStates.add(windowState);
+			}
+
+			portlet.getWindowStates().put(
+				markupType.getMimeType(), mimeTypeWindowStates);
+		}
 
 		String title = WSRPConsumerManager.getLocalizedStringValue(
 			portletDescription.getTitle(),
