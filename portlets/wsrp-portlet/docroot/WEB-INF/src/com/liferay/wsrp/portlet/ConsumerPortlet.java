@@ -23,6 +23,7 @@
 package com.liferay.wsrp.portlet;
 
 import com.liferay.client.soap.wsrp.v2.intf.WSRP_v2_Markup_PortType;
+import com.liferay.client.soap.wsrp.v2.types.ClientData;
 import com.liferay.client.soap.wsrp.v2.types.CookieProtocol;
 import com.liferay.client.soap.wsrp.v2.types.GetMarkup;
 import com.liferay.client.soap.wsrp.v2.types.InitCookie;
@@ -34,6 +35,8 @@ import com.liferay.client.soap.wsrp.v2.types.PortletContext;
 import com.liferay.client.soap.wsrp.v2.types.PortletDescription;
 import com.liferay.client.soap.wsrp.v2.types.RuntimeContext;
 import com.liferay.client.soap.wsrp.v2.types.ServiceDescription;
+import com.liferay.client.soap.wsrp.v2.types.SessionContext;
+import com.liferay.client.soap.wsrp.v2.types.SessionParams;
 import com.liferay.client.soap.wsrp.v2.types.UserContext;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -218,6 +221,15 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		MarkupParams markupParams = new MarkupParams();
 
+		ClientData clientData = new ClientData();
+
+		clientData.setRequestVerb("GET");
+		clientData.setUserAgent(
+			"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; " +
+			"rv:1.9.0.11) Gecko/2009060214 Firefox/3.0.11");
+
+		markupParams.setClientData(clientData);
+
 		List<Locale> locales = Collections.list(renderRequest.getLocales());
 
 		String[] localesArray = new String[locales.size()];
@@ -279,7 +291,21 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		runtimeContext.setNamespacePrefix(renderResponse.getNamespace());
 		runtimeContext.setPortletInstanceKey(renderResponse.getNamespace());
-		runtimeContext.setUserAuthentication("wsrp:user");
+
+		PortletSession portletSession = renderRequest.getPortletSession();
+
+		SessionContext sessionContext =
+			(SessionContext)portletSession.getAttribute(_SESSION_CONTEXT);
+
+		if (sessionContext != null) {
+			SessionParams sessionParams = new SessionParams();
+
+			sessionParams.setSessionID(sessionContext.getSessionID());
+
+			runtimeContext.setSessionParams(sessionParams);
+		}
+
+		runtimeContext.setUserAuthentication("wsrp:password");
 
 		getMarkup.setRuntimeContext(runtimeContext);
 
@@ -300,6 +326,12 @@ public class ConsumerPortlet extends GenericPortlet {
 		// Markup response
 
 		MarkupResponse markupResponse = markupService.getMarkup(getMarkup);
+
+		sessionContext = markupResponse.getSessionContext();
+
+		if (sessionContext != null) {
+			portletSession.setAttribute(_SESSION_CONTEXT, sessionContext);
+		}
 
 		return markupResponse;
 	}
@@ -414,6 +446,8 @@ public class ConsumerPortlet extends GenericPortlet {
 	private static final String _COOKIE = "COOKIE";
 
 	private static final String _MARKUP_SERVICE = "MARKUP_SERVICE";
+
+	private static final String _SESSION_CONTEXT = "SESSION_CONTEXT";
 
 	private static Pattern _urlParametersPattern = Pattern.compile(
 		"(?:([^&]+)=([^&]+))(?:(?:&amp;|&))?");

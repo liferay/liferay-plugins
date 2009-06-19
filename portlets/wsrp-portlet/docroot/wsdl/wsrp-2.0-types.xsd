@@ -175,9 +175,9 @@
   <element name="SessionContext" type="types:SessionContext"/>
 
   <complexType name="SessionParams">
-    <sequence>
+    <!--<sequence>
       <element name="extensions" type="types:Extension" minOccurs="0"  maxOccurs="unbounded"/>
-    </sequence>
+    </sequence>-->
     <attribute name="sessionID" type="xsd:string" use="optional"/>
   </complexType>
   <element name="SessionParams" type="types:SessionParams"/>
@@ -244,9 +244,9 @@
   <element name="ServiceDescription" type="types:ServiceDescription"/>
 
   <complexType name="Lifetime">
-    <sequence>
+    <!--<sequence>
       <element name="extensions"      type="types:Extension" minOccurs="0" maxOccurs="unbounded"/>
-    </sequence>
+    </sequence>-->
     <!--
       The following two attributes are marked as optional despite the spec
       requiring values so that some validating parsers do not require
