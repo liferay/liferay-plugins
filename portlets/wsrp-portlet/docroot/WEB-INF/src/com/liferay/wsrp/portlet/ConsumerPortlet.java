@@ -38,6 +38,7 @@ import com.liferay.client.soap.wsrp.v2.types.ServiceDescription;
 import com.liferay.client.soap.wsrp.v2.types.SessionContext;
 import com.liferay.client.soap.wsrp.v2.types.SessionParams;
 import com.liferay.client.soap.wsrp.v2.types.UserContext;
+import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -81,6 +82,8 @@ import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 import javax.portlet.WindowState;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <a href="ConsumerPortlet.java.html"><b><i>View Source</i></b></a>
@@ -224,9 +227,14 @@ public class ConsumerPortlet extends GenericPortlet {
 		ClientData clientData = new ClientData();
 
 		clientData.setRequestVerb("GET");
-		clientData.setUserAgent(
-			"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; " +
-			"rv:1.9.0.11) Gecko/2009060214 Firefox/3.0.11");
+
+		LiferayPortletRequest liferayPortletRequest =
+			(LiferayPortletRequest)renderRequest;
+
+		HttpServletRequest httpServletRequest =
+			liferayPortletRequest.getHttpServletRequest();
+
+		clientData.setUserAgent(httpServletRequest.getHeader("User-Agent"));
 
 		markupParams.setClientData(clientData);
 
