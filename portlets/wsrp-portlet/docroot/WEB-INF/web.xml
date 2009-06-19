@@ -2,6 +2,10 @@
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
+	<context-param>
+		<param-name>axis.servicesPath</param-name>
+		<param-value>/producer/</param-value>
+	</context-param>
 	<listener>
 		<listener-class>com.liferay.portal.kernel.servlet.PortletContextListener</listener-class>
 	</listener>
@@ -11,15 +15,15 @@
 	<listener>
 		<listener-class>com.liferay.wsrp.servlet.WSRPServletContextListener</listener-class>
 	</listener>
-	<!--<servlet>
+	<servlet>
 		<servlet-name>Axis Servlet</servlet-name>
 		<servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
 		<load-on-startup>0</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Axis Servlet</servlet-name>
-		<url-pattern>/wsrp/*</url-pattern>
-	</servlet-mapping>-->
+		<url-pattern>/producer/*</url-pattern>
+	</servlet-mapping>
 	<taglib>
 		<taglib-uri>http://java.sun.com/jstl/core_rt</taglib-uri>
 		<taglib-location>/WEB-INF/tld/c-rt.tld</taglib-location>

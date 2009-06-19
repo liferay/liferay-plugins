@@ -38,8 +38,9 @@ import com.liferay.client.soap.wsrp.v2.types.ServiceDescription;
 import com.liferay.client.soap.wsrp.v2.types.SessionContext;
 import com.liferay.client.soap.wsrp.v2.types.SessionParams;
 import com.liferay.client.soap.wsrp.v2.types.UserContext;
-import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
+import com.liferay.portal.kernel.servlet.HttpHeaders;
+import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -47,6 +48,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.axis.SimpleHTTPSender;
 import com.liferay.util.servlet.PortletResponseUtil;
 import com.liferay.wsrp.model.WSRPConsumer;
@@ -185,6 +187,11 @@ public class ConsumerPortlet extends GenericPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
 
+		PortletSession portletSession = renderRequest.getPortletSession();
+
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+			renderRequest);
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -226,15 +233,8 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		ClientData clientData = new ClientData();
 
-		clientData.setRequestVerb("GET");
-
-		LiferayPortletRequest liferayPortletRequest =
-			(LiferayPortletRequest)renderRequest;
-
-		HttpServletRequest httpServletRequest =
-			liferayPortletRequest.getHttpServletRequest();
-
-		clientData.setUserAgent(httpServletRequest.getHeader("User-Agent"));
+		clientData.setRequestVerb(HttpMethods.GET);
+		clientData.setUserAgent(request.getHeader(HttpHeaders.USER_AGENT));
 
 		markupParams.setClientData(clientData);
 
@@ -299,8 +299,6 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		runtimeContext.setNamespacePrefix(renderResponse.getNamespace());
 		runtimeContext.setPortletInstanceKey(renderResponse.getNamespace());
-
-		PortletSession portletSession = renderRequest.getPortletSession();
 
 		SessionContext sessionContext =
 			(SessionContext)portletSession.getAttribute(_SESSION_CONTEXT);

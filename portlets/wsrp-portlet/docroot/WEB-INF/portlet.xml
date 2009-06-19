@@ -31,8 +31,6 @@
 		<portlet-class>com.liferay.wsrp.portlet.ConsumerPortlet</portlet-class>
 		<supports>
 			<mime-type>text/html</mime-type>
-			<portlet-mode>edit</portlet-mode>
-			<portlet-mode>help</portlet-mode>
 		</supports>
 	</portlet>
 </portlet-app>
