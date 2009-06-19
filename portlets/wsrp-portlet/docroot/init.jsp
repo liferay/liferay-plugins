@@ -29,8 +29,6 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.client.soap.wsrp.v2.types.PortletDescription" %>
-<%@ page import="com.liferay.client.soap.wsrp.v2.types.ServiceDescription" %>
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
@@ -49,6 +47,8 @@
 <%@ page import="com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil" %>
 <%@ page import="com.liferay.wsrp.util.WSRPConsumerManager" %>
 <%@ page import="com.liferay.wsrp.util.WSRPConsumerManagerFactory" %>
+<%@ page import="com.liferay.wsrp.v2.types.PortletDescription" %>
+<%@ page import="com.liferay.wsrp.v2.types.ServiceDescription" %>
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>

@@ -22,22 +22,6 @@
 
 package com.liferay.wsrp.portlet;
 
-import com.liferay.client.soap.wsrp.v2.intf.WSRP_v2_Markup_PortType;
-import com.liferay.client.soap.wsrp.v2.types.ClientData;
-import com.liferay.client.soap.wsrp.v2.types.CookieProtocol;
-import com.liferay.client.soap.wsrp.v2.types.GetMarkup;
-import com.liferay.client.soap.wsrp.v2.types.InitCookie;
-import com.liferay.client.soap.wsrp.v2.types.MarkupParams;
-import com.liferay.client.soap.wsrp.v2.types.MarkupResponse;
-import com.liferay.client.soap.wsrp.v2.types.MarkupType;
-import com.liferay.client.soap.wsrp.v2.types.NavigationalContext;
-import com.liferay.client.soap.wsrp.v2.types.PortletContext;
-import com.liferay.client.soap.wsrp.v2.types.PortletDescription;
-import com.liferay.client.soap.wsrp.v2.types.RuntimeContext;
-import com.liferay.client.soap.wsrp.v2.types.ServiceDescription;
-import com.liferay.client.soap.wsrp.v2.types.SessionContext;
-import com.liferay.client.soap.wsrp.v2.types.SessionParams;
-import com.liferay.client.soap.wsrp.v2.types.UserContext;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.HttpMethods;
@@ -57,6 +41,22 @@ import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
+import com.liferay.wsrp.v2.intf.WSRP_v2_Markup_PortType;
+import com.liferay.wsrp.v2.types.ClientData;
+import com.liferay.wsrp.v2.types.CookieProtocol;
+import com.liferay.wsrp.v2.types.GetMarkup;
+import com.liferay.wsrp.v2.types.InitCookie;
+import com.liferay.wsrp.v2.types.MarkupParams;
+import com.liferay.wsrp.v2.types.MarkupResponse;
+import com.liferay.wsrp.v2.types.MarkupType;
+import com.liferay.wsrp.v2.types.NavigationalContext;
+import com.liferay.wsrp.v2.types.PortletContext;
+import com.liferay.wsrp.v2.types.PortletDescription;
+import com.liferay.wsrp.v2.types.RuntimeContext;
+import com.liferay.wsrp.v2.types.ServiceDescription;
+import com.liferay.wsrp.v2.types.SessionContext;
+import com.liferay.wsrp.v2.types.SessionParams;
+import com.liferay.wsrp.v2.types.UserContext;
 
 import java.io.IOException;
 import java.io.PrintWriter;

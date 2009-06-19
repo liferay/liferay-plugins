@@ -22,8 +22,6 @@
 
 package com.liferay.wsrp.service.impl;
 
-import com.liferay.client.soap.wsrp.v2.types.MarkupType;
-import com.liferay.client.soap.wsrp.v2.types.PortletDescription;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
@@ -45,6 +43,8 @@ import com.liferay.wsrp.service.ClpSerializer;
 import com.liferay.wsrp.service.base.WSRPConsumerPortletLocalServiceBaseImpl;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
+import com.liferay.wsrp.v2.types.MarkupType;
+import com.liferay.wsrp.v2.types.PortletDescription;
 
 import java.util.Date;
 import java.util.HashSet;

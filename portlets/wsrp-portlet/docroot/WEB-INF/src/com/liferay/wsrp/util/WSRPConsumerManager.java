@@ -22,19 +22,19 @@
 
 package com.liferay.wsrp.util;
 
-import com.liferay.client.soap.wsrp.v2.intf.WSRP_v2_Markup_PortType;
-import com.liferay.client.soap.wsrp.v2.intf.WSRP_v2_ServiceDescription_PortType;
-import com.liferay.client.soap.wsrp.v2.types.GetServiceDescription;
-import com.liferay.client.soap.wsrp.v2.types.LocalizedString;
-import com.liferay.client.soap.wsrp.v2.types.PortletDescription;
-import com.liferay.client.soap.wsrp.v2.types.ServiceDescription;
-import com.liferay.client.soap.wsrp.v2.wsdl.WSRP_v2_ServiceLocator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.Namespace;
 import com.liferay.portal.kernel.xml.QName;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
+import com.liferay.wsrp.v2.intf.WSRP_v2_Markup_PortType;
+import com.liferay.wsrp.v2.intf.WSRP_v2_ServiceDescription_PortType;
+import com.liferay.wsrp.v2.types.GetServiceDescription;
+import com.liferay.wsrp.v2.types.LocalizedString;
+import com.liferay.wsrp.v2.types.PortletDescription;
+import com.liferay.wsrp.v2.types.ServiceDescription;
+import com.liferay.wsrp.v2.wsdl.WSRP_v2_ServiceLocator;
 
 import java.net.URL;
 
