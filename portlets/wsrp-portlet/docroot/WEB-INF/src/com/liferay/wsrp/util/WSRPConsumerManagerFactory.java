@@ -38,8 +38,8 @@ public class WSRPConsumerManagerFactory {
 	public static WSRPConsumerManager getWSRPConsumerManager(String wsdl)
 		throws Exception {
 
-		WSRPConsumerManager wsrpConsumerManager =
-			(WSRPConsumerManager)_wsrpConsumerManagers.get(wsdl);
+		WSRPConsumerManager wsrpConsumerManager = _wsrpConsumerManagers.get(
+			wsdl);
 
 		if (wsrpConsumerManager == null) {
 			wsrpConsumerManager = new WSRPConsumerManager(wsdl);

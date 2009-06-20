@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.wsrp.WSRPConsumerWSDLException;
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.service.base.WSRPConsumerLocalServiceBaseImpl;
-import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
 
 import java.util.Date;
@@ -107,8 +106,7 @@ public class WSRPConsumerLocalServiceImpl
 		try {
 			String wsdl = HttpUtil.URLtoString(url);
 
-			WSRPConsumerManager wsrpConsumerMananger =
-				WSRPConsumerManagerFactory.getWSRPConsumerManager(wsdl);
+			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsdl);
 
 			return wsdl;
 		}

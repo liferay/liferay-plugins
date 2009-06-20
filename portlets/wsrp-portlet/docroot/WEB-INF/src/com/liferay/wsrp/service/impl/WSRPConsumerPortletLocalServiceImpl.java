@@ -192,7 +192,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 	protected Portlet getPortlet(WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws Exception {
 
-		Portlet portlet = (Portlet)_portletsPool.get(
+		Portlet portlet = _portletsPool.get(
 			wsrpConsumerPortlet.getWsrpConsumerPortletId());
 
 		if (portlet != null) {
