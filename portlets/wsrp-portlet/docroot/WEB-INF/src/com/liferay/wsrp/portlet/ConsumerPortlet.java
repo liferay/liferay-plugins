@@ -23,6 +23,8 @@
 package com.liferay.wsrp.portlet;
 
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
+import com.liferay.portal.kernel.servlet.HttpHeaders;
+import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -64,7 +66,6 @@ import com.liferay.wsrp.v2.types.UpdateResponse;
 import com.liferay.wsrp.v2.types.UserContext;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import java.net.URL;
 import java.net.URLConnection;
@@ -110,64 +111,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		throws IOException, PortletException {
 
 		try {
-			// WSRP consumer portlet
-
-			String portletName = getPortletConfig().getPortletName();
-
-			long wsrpConsumerPortletId = GetterUtil.getLong(
-				portletName.substring(PORTLET_NAME_PREFIX.length()));
-
-			WSRPConsumerPortlet wsrpConsumerPortlet =
-				WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(
-					wsrpConsumerPortletId);
-
-			// WSRP consumer
-
-			WSRPConsumer wsrpConsumer =
-				WSRPConsumerLocalServiceUtil.getWSRPConsumer(
-					wsrpConsumerPortlet.getWsrpConsumerId());
-
-			// WSRP consumer manager
-
-			WSRPConsumerManager wsrpConsumerManager =
-				WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
-
-			InteractionParams interactionParams = new InteractionParams();
-			MarkupParams markupParams = new MarkupParams();
-			PortletContext portletContext = new PortletContext();
-			RuntimeContext runtimeContext = new RuntimeContext();
-			UserContext userContext = new UserContext();
-
-			initContexts(actionRequest, actionResponse, wsrpConsumerManager,
-				wsrpConsumerPortlet, interactionParams, markupParams,
-				portletContext, runtimeContext, userContext);
-
-			// Perform blocking interaction
-
-			PerformBlockingInteraction performBlockingInteraction =
-				new PerformBlockingInteraction();
-
-			performBlockingInteraction.setPortletContext(portletContext);
-			performBlockingInteraction.setRuntimeContext(runtimeContext);
-			performBlockingInteraction.setMarkupParams(markupParams);
-			performBlockingInteraction.setUserContext(userContext);
-			performBlockingInteraction.setInteractionParams(interactionParams);
-
-			// Markup service
-
-			WSRP_v2_Markup_PortType markupService = getMarkupService(
-				actionRequest, wsrpConsumerManager);
-
-			// Blocking interaction response
-
-			BlockingInteractionResponse blockingInteractionResponse =
-				markupService.performBlockingInteraction(
-					performBlockingInteraction);
-
-			blockingInteractionResponse.getUpdateResponse();
-
-			processBlockingInteractionResponse(
-				actionRequest, actionResponse, blockingInteractionResponse);
+			doProcessAction(actionRequest, actionResponse);
 		}
 		catch (IOException ioe) {
 			throw ioe;
@@ -185,15 +129,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		throws IOException, PortletException {
 
 		try {
-			renderResponse.setContentType(ContentTypes.TEXT_HTML_UTF8);
-
-			PrintWriter printWriter = renderResponse.getWriter();
-
-			String content = getContent(renderRequest, renderResponse);
-
-			printWriter.print(content);
-
-			printWriter.close();
+			doRender(renderRequest, renderResponse);
 		}
 		catch (IOException ioe) {
 			throw ioe;
@@ -226,7 +162,49 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 	}
 
-	protected String getContent(
+	protected void doProcessAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		WSRPConsumerPortlet wsrpConsumerPortlet = getWSRPConsumerPortlet();
+
+		WSRPConsumerManager wsrpConsumerManager = getWSRPConsumerManager(
+			wsrpConsumerPortlet);
+
+		InteractionParams interactionParams = new InteractionParams();
+		MarkupParams markupParams = new MarkupParams();
+		PortletContext portletContext = new PortletContext();
+		RuntimeContext runtimeContext = new RuntimeContext();
+		UserContext userContext = new UserContext();
+
+		initContexts(
+			actionRequest, actionResponse, wsrpConsumerPortlet,
+			wsrpConsumerManager, interactionParams, markupParams,
+			portletContext, runtimeContext, userContext);
+
+		PerformBlockingInteraction performBlockingInteraction =
+			new PerformBlockingInteraction();
+
+		performBlockingInteraction.setInteractionParams(interactionParams);
+		performBlockingInteraction.setMarkupParams(markupParams);
+		performBlockingInteraction.setPortletContext(portletContext);
+		performBlockingInteraction.setRuntimeContext(runtimeContext);
+		performBlockingInteraction.setUserContext(userContext);
+
+		WSRP_v2_Markup_PortType markupService = getMarkupService(
+			actionRequest, wsrpConsumerManager);
+
+		BlockingInteractionResponse blockingInteractionResponse =
+			markupService.performBlockingInteraction(
+				performBlockingInteraction);
+
+		blockingInteractionResponse.getUpdateResponse();
+
+		processBlockingInteractionResponse(
+			actionRequest, actionResponse, blockingInteractionResponse);
+	}
+
+	protected void doRender(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
 
@@ -259,7 +237,18 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		urlMatcher.appendTail(sb);
 
-		return sb.toString();
+		renderResponse.setContentType(ContentTypes.TEXT_HTML_UTF8);
+
+		PortletResponseUtil.write(renderResponse, sb.toString());
+	}
+
+	protected void doServeResource(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		String url = resourceRequest.getParameter("wsrp-url");
+
+		proxyURL(resourceRequest, resourceResponse, new URL(url));
 	}
 
 	protected MarkupResponse getMarkupResponse(
@@ -268,48 +257,30 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		PortletSession portletSession = portletRequest.getPortletSession();
 
-		// WSRP consumer portlet
+		WSRPConsumerPortlet wsrpConsumerPortlet = getWSRPConsumerPortlet();
 
-		String portletName = getPortletConfig().getPortletName();
-
-		long wsrpConsumerPortletId = GetterUtil.getLong(
-			portletName.substring(PORTLET_NAME_PREFIX.length()));
-
-		WSRPConsumerPortlet wsrpConsumerPortlet =
-			WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(
-				wsrpConsumerPortletId);
-
-		// WSRP consumer
-
-		WSRPConsumer wsrpConsumer =
-			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
-				wsrpConsumerPortlet.getWsrpConsumerId());
-
-		// WSRP consumer manager
-
-		WSRPConsumerManager wsrpConsumerManager =
-			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
-
-		// Get markup
-
-		GetMarkup getMarkup = new GetMarkup();
+		WSRPConsumerManager wsrpConsumerManager = getWSRPConsumerManager(
+			wsrpConsumerPortlet);
 
 		MarkupParams markupParams = new MarkupParams();
 		PortletContext portletContext = new PortletContext();
 		RuntimeContext runtimeContext = new RuntimeContext();
 		UserContext userContext = new UserContext();
 
-		initContexts(portletRequest, portletResponse, wsrpConsumerManager,
-			wsrpConsumerPortlet, markupParams, portletContext, runtimeContext,
+		initContexts(
+			portletRequest, portletResponse, wsrpConsumerPortlet,
+			wsrpConsumerManager, markupParams, portletContext, runtimeContext,
 			userContext);
+
+		GetMarkup getMarkup = new GetMarkup();
 
 		getMarkup.setMarkupParams(markupParams);
 
-		PortletContext updatePortletContext =
+		PortletContext existingPortletContext =
 			(PortletContext)portletSession.getAttribute(_PORTLET_CONTEXT);
 
-		if (updatePortletContext != null) {
-			getMarkup.setPortletContext(updatePortletContext);
+		if (existingPortletContext != null) {
+			getMarkup.setPortletContext(existingPortletContext);
 		}
 		else {
 			getMarkup.setPortletContext(portletContext);
@@ -318,12 +289,8 @@ public class ConsumerPortlet extends GenericPortlet {
 		getMarkup.setRuntimeContext(runtimeContext);
 		getMarkup.setUserContext(userContext);
 
-		// Markup service
-
 		WSRP_v2_Markup_PortType markupService = getMarkupService(
 			portletRequest, wsrpConsumerManager);
-
-		// Markup response
 
 		MarkupResponse markupResponse = markupService.getMarkup(getMarkup);
 
@@ -376,10 +343,45 @@ public class ConsumerPortlet extends GenericPortlet {
 		return markupService;
 	}
 
-	protected void initContexts(ActionRequest actionRequest,
-			ActionResponse actionResponse,
-			WSRPConsumerManager wsrpConsumerManager,
+	protected PortletMode getPortletMode(String portletMode) {
+		return new PortletMode(portletMode.substring(_WSRP_PREFIX.length()));
+	}
+
+	protected WindowState getWindowState(String windowState) {
+		return new WindowState(windowState.substring(_WSRP_PREFIX.length()));
+	}
+
+	protected WSRPConsumerManager getWSRPConsumerManager(
+			WSRPConsumerPortlet wsrpConsumerPortlet)
+		throws Exception {
+
+		WSRPConsumer wsrpConsumer =
+			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
+				wsrpConsumerPortlet.getWsrpConsumerId());
+
+		WSRPConsumerManager wsrpConsumerManager =
+			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
+
+		return wsrpConsumerManager;
+	}
+
+	protected WSRPConsumerPortlet getWSRPConsumerPortlet() throws Exception {
+		String portletName = getPortletConfig().getPortletName();
+
+		long wsrpConsumerPortletId = GetterUtil.getLong(
+			portletName.substring(PORTLET_NAME_PREFIX.length()));
+
+		WSRPConsumerPortlet wsrpConsumerPortlet =
+			WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(
+				wsrpConsumerPortletId);
+
+		return wsrpConsumerPortlet;
+	}
+
+	protected void initContexts(
+			ActionRequest actionRequest, ActionResponse actionResponse,
 			WSRPConsumerPortlet wsrpConsumerPortlet,
+			WSRPConsumerManager wsrpConsumerManager,
 			InteractionParams interactionParams, MarkupParams markupParams,
 			PortletContext portletContext, RuntimeContext runtimeContext,
 			UserContext userContext)
@@ -388,36 +390,35 @@ public class ConsumerPortlet extends GenericPortlet {
 		HttpServletRequest request = PortalUtil.getHttpServletRequest(
 			actionRequest);
 
-		initContexts(actionRequest, actionResponse, wsrpConsumerManager,
-			wsrpConsumerPortlet, markupParams, portletContext, runtimeContext,
+		initContexts(
+			actionRequest, actionResponse, wsrpConsumerPortlet,
+			wsrpConsumerManager, markupParams, portletContext, runtimeContext,
 			userContext);
-
-		// Interaction params
 
 		interactionParams.setPortletStateChange(StateChange.cloneBeforeWrite);
 
-		String interactionState =
-			actionRequest.getParameter("wsrp-interactionState");
+		String interactionState = actionRequest.getParameter(
+			"wsrp-interactionState");
 
 		interactionParams.setInteractionState(interactionState);
 
 		String contentType = request.getContentType();
 
 		if (Validator.isNotNull(contentType) &&
-				contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA)) {
+			contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA)) {
 
 			//processUpload(request, interactionParams);
 		}
 		else {
-			processFormParameters(actionRequest, actionResponse,
-				interactionParams);
+			processFormParameters(
+				actionRequest, actionResponse, interactionParams);
 		}
 	}
 
-	protected void initContexts(PortletRequest portletRequest,
-			PortletResponse portletResponse,
-			WSRPConsumerManager wsrpConsumerManager,
-			WSRPConsumerPortlet wsrpConsumerPortlet, MarkupParams markupParams,
+	protected void initContexts(
+			PortletRequest portletRequest, PortletResponse portletResponse,
+			WSRPConsumerPortlet wsrpConsumerPortlet,
+			WSRPConsumerManager wsrpConsumerManager, MarkupParams markupParams,
 			PortletContext portletContext, RuntimeContext runtimeContext,
 			UserContext userContext)
 		throws Exception {
@@ -430,13 +431,12 @@ public class ConsumerPortlet extends GenericPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		// Markup parameters
+		// Markup params
 
 		ClientData clientData = new ClientData();
 
-		clientData.setRequestVerb("GET");
-
-		clientData.setUserAgent(request.getHeader("User-Agent"));
+		clientData.setRequestVerb(HttpMethods.GET);
+		clientData.setUserAgent(request.getHeader(HttpHeaders.USER_AGENT));
 
 		markupParams.setClientData(clientData);
 
@@ -452,12 +452,10 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		markupParams.setLocales(localesArray);
 
-		markupParams.setMarkupCharacterSets(new String[] {StringPool.UTF8});
-		markupParams.setMimeTypes(new String[] {ContentTypes.TEXT_HTML});
+		markupParams.setMarkupCharacterSets(_CHAR_SETS);
+		markupParams.setMimeTypes(_MIME_TYPES);
 		markupParams.setMode("wsrp:" + portletRequest.getPortletMode());
 		markupParams.setWindowState("wsrp:" + portletRequest.getWindowState());
-
-		// Portlet description
 
 		PortletDescription portletDescription =
 			wsrpConsumerManager.getPortletDescription(
@@ -526,7 +524,7 @@ public class ConsumerPortlet extends GenericPortlet {
 	}
 
 	protected boolean isReservedParameter(String name) {
-		if (name.startsWith("wsrp-")) {
+		if (name.startsWith(_WSRP_PREFIX)) {
 			return true;
 		}
 		else {
@@ -559,17 +557,16 @@ public class ConsumerPortlet extends GenericPortlet {
 		portletSession.setAttribute(
 			_PORTLET_CONTEXT, updateResponse.getPortletContext());
 
-		String mode = updateResponse.getNewMode();
+		String portletMode = updateResponse.getNewMode();
 
-		if (Validator.isNotNull(mode)) {
-			actionResponse.setPortletMode(new PortletMode(mode.substring(5)));
+		if (Validator.isNotNull(portletMode)) {
+			actionResponse.setPortletMode(getPortletMode(portletMode));
 		}
 
 		String windowState = updateResponse.getNewWindowState();
 
 		if (Validator.isNotNull(windowState)) {
-			actionResponse.setWindowState(
-				new WindowState(windowState.substring(5)));
+			actionResponse.setWindowState(getWindowState(windowState));
 		}
 
 		portletSession.setAttribute(
@@ -580,10 +577,10 @@ public class ConsumerPortlet extends GenericPortlet {
 		ActionRequest actionRequest, ActionResponse actionResponse,
 		InteractionParams interactionParams) {
 
-		Enumeration<String> nameEnum = actionRequest.getParameterNames();
+		Enumeration<String> enu = actionRequest.getParameterNames();
 
-		while (nameEnum.hasMoreElements()) {
-			String name = (String)nameEnum.nextElement();
+		while (enu.hasMoreElements()) {
+			String name = enu.nextElement();
 
 			if (isReservedParameter(name)) {
 				continue;
@@ -595,7 +592,7 @@ public class ConsumerPortlet extends GenericPortlet {
 				continue;
 			}
 
-			List<NamedString> formParameterList = new ArrayList<NamedString>();
+			List<NamedString> formParameters = new ArrayList<NamedString>();
 
 			for (String value : values) {
 				NamedString formParameter = new NamedString();
@@ -603,18 +600,20 @@ public class ConsumerPortlet extends GenericPortlet {
 				formParameter.setName(name);
 				formParameter.setValue(value);
 
-				formParameterList.add(formParameter);
+				formParameters.add(formParameter);
 			}
 
-			if (!formParameterList.isEmpty()) {
+			if (!formParameters.isEmpty()) {
 				interactionParams.setFormParameters(
-					formParameterList.toArray(new NamedString[]{}));
+					formParameters.toArray(
+						new NamedString[formParameters.size()]));
 			}
 		}
 	}
 
-	protected void processMarkupResponse(PortletRequest portletRequest,
-		PortletResponse portletResponse, MarkupResponse markupResponse) {
+	protected void processMarkupResponse(
+		PortletRequest portletRequest, PortletResponse portletResponse,
+		MarkupResponse markupResponse) {
 
 		PortletSession portletSession = portletRequest.getPortletSession();
 
@@ -672,7 +671,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			String value = parameter.getValue();
 
 			if (name.equals("wsrp-mode")) {
-				portletURL.setPortletMode(new PortletMode(value.substring(5)));
+				portletURL.setPortletMode(getPortletMode(value));
 			}
 			else if (name.equals("wsrp-resourceID")) {
 				portletURL.setResourceID(value);
@@ -680,7 +679,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			else if (name.equals("wsrp-urlType")) {
 			}
 			else if (name.equals("wsrp-windowState")) {
-				portletURL.setWindowState(new WindowState(value.substring(5)));
+				portletURL.setWindowState(getWindowState(value));
 			}
 			else {
 				portletURL.setParameter(name, value);
@@ -690,17 +689,23 @@ public class ConsumerPortlet extends GenericPortlet {
 		return portletURL.toString();
 	}
 
+	private static final String[] _CHAR_SETS = {StringPool.UTF8};
+
 	private static final String _COOKIE = "COOKIE";
 
 	private static final String _MARKUP_CONTEXT = "MARKUP_CONTEXT";
 
 	private static final String _MARKUP_SERVICE = "MARKUP_SERVICE";
 
+	private static final String[] _MIME_TYPES = {ContentTypes.TEXT_HTML};
+
 	private static final String _NAVIGATIONAL_CONTEXT = "MARKUP_SERVICE";
 
 	private static final String _PORTLET_CONTEXT = "PORTLET_CONTEXT";
 
 	private static final String _SESSION_CONTEXT = "SESSION_CONTEXT";
+
+	private static final String _WSRP_PREFIX = "wsrp-";
 
 	private static Pattern _urlParametersPattern = Pattern.compile(
 		"(?:([^&]+)=([^&]+))(?:(?:&amp;|&))?");
