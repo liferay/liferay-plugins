@@ -23,12 +23,11 @@
 package com.liferay.wsrp.portlet;
 
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
-import com.liferay.portal.kernel.servlet.HttpHeaders;
-import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -42,20 +41,26 @@ import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
 import com.liferay.wsrp.v2.intf.WSRP_v2_Markup_PortType;
+import com.liferay.wsrp.v2.types.BlockingInteractionResponse;
 import com.liferay.wsrp.v2.types.ClientData;
 import com.liferay.wsrp.v2.types.CookieProtocol;
 import com.liferay.wsrp.v2.types.GetMarkup;
 import com.liferay.wsrp.v2.types.InitCookie;
+import com.liferay.wsrp.v2.types.InteractionParams;
 import com.liferay.wsrp.v2.types.MarkupParams;
 import com.liferay.wsrp.v2.types.MarkupResponse;
 import com.liferay.wsrp.v2.types.MarkupType;
+import com.liferay.wsrp.v2.types.NamedString;
 import com.liferay.wsrp.v2.types.NavigationalContext;
+import com.liferay.wsrp.v2.types.PerformBlockingInteraction;
 import com.liferay.wsrp.v2.types.PortletContext;
 import com.liferay.wsrp.v2.types.PortletDescription;
 import com.liferay.wsrp.v2.types.RuntimeContext;
 import com.liferay.wsrp.v2.types.ServiceDescription;
 import com.liferay.wsrp.v2.types.SessionContext;
 import com.liferay.wsrp.v2.types.SessionParams;
+import com.liferay.wsrp.v2.types.StateChange;
+import com.liferay.wsrp.v2.types.UpdateResponse;
 import com.liferay.wsrp.v2.types.UserContext;
 
 import java.io.IOException;
@@ -64,7 +69,9 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -78,6 +85,7 @@ import javax.portlet.GenericPortlet;
 import javax.portlet.PortletException;
 import javax.portlet.PortletMode;
 import javax.portlet.PortletRequest;
+import javax.portlet.PortletResponse;
 import javax.portlet.PortletSession;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -98,7 +106,78 @@ public class ConsumerPortlet extends GenericPortlet {
 	public static final String PORTLET_NAME_PREFIX = "WSRP_";
 
 	public void processAction(
-		ActionRequest actionRequest, ActionResponse actionResponse) {
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws IOException, PortletException {
+
+		try {
+			// WSRP consumer portlet
+
+			String portletName = getPortletConfig().getPortletName();
+
+			long wsrpConsumerPortletId = GetterUtil.getLong(
+				portletName.substring(PORTLET_NAME_PREFIX.length()));
+
+			WSRPConsumerPortlet wsrpConsumerPortlet =
+				WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(
+					wsrpConsumerPortletId);
+
+			// WSRP consumer
+
+			WSRPConsumer wsrpConsumer =
+				WSRPConsumerLocalServiceUtil.getWSRPConsumer(
+					wsrpConsumerPortlet.getWsrpConsumerId());
+
+			// WSRP consumer manager
+
+			WSRPConsumerManager wsrpConsumerManager =
+				WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
+
+			InteractionParams interactionParams = new InteractionParams();
+			MarkupParams markupParams = new MarkupParams();
+			PortletContext portletContext = new PortletContext();
+			RuntimeContext runtimeContext = new RuntimeContext();
+			UserContext userContext = new UserContext();
+
+			initContexts(actionRequest, actionResponse, wsrpConsumerManager,
+					wsrpConsumerPortlet, interactionParams, markupParams,
+					portletContext, runtimeContext, userContext);
+
+			// Perform blocking interaction
+
+			PerformBlockingInteraction performBlockingInteraction =
+				new PerformBlockingInteraction();
+
+			performBlockingInteraction.setPortletContext(portletContext);
+			performBlockingInteraction.setRuntimeContext(runtimeContext);
+			performBlockingInteraction.setMarkupParams(markupParams);
+			performBlockingInteraction.setUserContext(userContext);
+			performBlockingInteraction.setInteractionParams(interactionParams);
+
+			// Markup service
+
+			WSRP_v2_Markup_PortType markupService = getMarkupService(
+				actionRequest, wsrpConsumerManager);
+
+			// Blocking interaction response
+
+			BlockingInteractionResponse blockingInteractionResponse =
+				markupService.performBlockingInteraction(
+					performBlockingInteraction);
+
+			blockingInteractionResponse.getUpdateResponse();
+
+			processBlockingInteractionResponse(
+				actionRequest, actionResponse, blockingInteractionResponse);
+		}
+		catch (IOException ioe) {
+			throw ioe;
+		}
+		catch (PortletException pe) {
+			throw pe;
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
 	}
 
 	public void render(
@@ -184,16 +263,10 @@ public class ConsumerPortlet extends GenericPortlet {
 	}
 
 	protected MarkupResponse getMarkupResponse(
-			RenderRequest renderRequest, RenderResponse renderResponse)
+			PortletRequest portletRequest, PortletResponse portletResponse)
 		throws Exception {
 
-		PortletSession portletSession = renderRequest.getPortletSession();
-
-		HttpServletRequest request = PortalUtil.getHttpServletRequest(
-			renderRequest);
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		PortletSession portletSession = portletRequest.getPortletSession();
 
 		// WSRP consumer portlet
 
@@ -217,127 +290,44 @@ public class ConsumerPortlet extends GenericPortlet {
 		WSRPConsumerManager wsrpConsumerManager =
 			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
-		// Portlet description
-
-		PortletDescription portletDescription =
-			wsrpConsumerManager.getPortletDescription(
-				wsrpConsumerPortlet.getPortletHandle());
-
 		// Get markup
 
 		GetMarkup getMarkup = new GetMarkup();
 
-		// Markup parameters
-
 		MarkupParams markupParams = new MarkupParams();
+		PortletContext portletContext = new PortletContext();
+		RuntimeContext runtimeContext = new RuntimeContext();
+		UserContext userContext = new UserContext();
 
-		ClientData clientData = new ClientData();
-
-		clientData.setRequestVerb(HttpMethods.GET);
-		clientData.setUserAgent(request.getHeader(HttpHeaders.USER_AGENT));
-
-		markupParams.setClientData(clientData);
-
-		List<Locale> locales = Collections.list(renderRequest.getLocales());
-
-		String[] localesArray = new String[locales.size()];
-
-		for (int i = 0; i < locales.size(); i++) {
-			Locale locale = locales.get(i);
-
-			localesArray[i] = locale.toString();
-		}
-
-		markupParams.setLocales(localesArray);
-
-		markupParams.setMarkupCharacterSets(new String[] {StringPool.UTF8});
-		markupParams.setMimeTypes(new String[] {ContentTypes.TEXT_HTML});
-		markupParams.setMode("wsrp:" + renderRequest.getPortletMode());
-		markupParams.setWindowState("wsrp:" + renderRequest.getWindowState());
-
-		MarkupType[] markupTypes = portletDescription.getMarkupTypes();
-
-		for (MarkupType markupType : markupTypes) {
-			if (markupType.getMimeType().equalsIgnoreCase(
-					ContentTypes.TEXT_HTML)) {
-
-				markupParams.setValidNewModes(markupType.getModes());
-				markupParams.setValidNewWindowStates(
-					markupType.getWindowStates());
-			}
-		}
+		initContexts(portletRequest, portletResponse, wsrpConsumerManager,
+			wsrpConsumerPortlet, markupParams, portletContext, runtimeContext,
+			userContext);
 
 		getMarkup.setMarkupParams(markupParams);
 
-		// Navigational context
+		PortletContext updatePortletContext =
+			(PortletContext)portletSession.getAttribute(_PORTLET_CONTEXT);
 
-		NavigationalContext navigationalContext = new NavigationalContext();
-
-		String navigationalState = renderRequest.getParameter(
-			"wsrp-navigationalState");
-
-		navigationalContext.setOpaqueValue(navigationalState);
-
-		//String navigationalValues = renderRequest.getParameter(
-		//	"wsrp-navigationalValues");
-
-		//navigationalContext.setPublicValues(publicValues);
-
-		markupParams.setNavigationalContext(navigationalContext);
-
-		// Portlet context
-
-		PortletContext portletContext = new PortletContext();
-
-		portletContext.setPortletHandle(wsrpConsumerPortlet.getPortletHandle());
-
-		getMarkup.setPortletContext(portletContext);
-
-		// Runtime context
-
-		RuntimeContext runtimeContext = new RuntimeContext();
-
-		runtimeContext.setNamespacePrefix(renderResponse.getNamespace());
-		runtimeContext.setPortletInstanceKey(renderResponse.getNamespace());
-
-		SessionContext sessionContext =
-			(SessionContext)portletSession.getAttribute(_SESSION_CONTEXT);
-
-		if (sessionContext != null) {
-			SessionParams sessionParams = new SessionParams();
-
-			sessionParams.setSessionID(sessionContext.getSessionID());
-
-			runtimeContext.setSessionParams(sessionParams);
+		if (updatePortletContext != null) {
+			getMarkup.setPortletContext(updatePortletContext);
+		}
+		else {
+			getMarkup.setPortletContext(portletContext);
 		}
 
-		runtimeContext.setUserAuthentication("wsrp:password");
-
 		getMarkup.setRuntimeContext(runtimeContext);
-
-		// User context
-
-		UserContext userContext = new UserContext();
-
-		userContext.setUserCategories(new String[] {RoleConstants.USER});
-		userContext.setUserContextKey(String.valueOf(themeDisplay.getUserId()));
-
 		getMarkup.setUserContext(userContext);
 
 		// Markup service
 
 		WSRP_v2_Markup_PortType markupService = getMarkupService(
-			renderRequest, wsrpConsumerManager);
+			portletRequest, wsrpConsumerManager);
 
 		// Markup response
 
 		MarkupResponse markupResponse = markupService.getMarkup(getMarkup);
 
-		sessionContext = markupResponse.getSessionContext();
-
-		if (sessionContext != null) {
-			portletSession.setAttribute(_SESSION_CONTEXT, sessionContext);
-		}
+		processMarkupResponse(portletRequest, portletResponse, markupResponse);
 
 		return markupResponse;
 	}
@@ -384,6 +374,257 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 
 		return markupService;
+	}
+
+	protected void initContexts(ActionRequest actionRequest,
+			ActionResponse actionResponse,
+			WSRPConsumerManager wsrpConsumerManager,
+			WSRPConsumerPortlet wsrpConsumerPortlet,
+			InteractionParams interactionParams, MarkupParams markupParams,
+			PortletContext portletContext, RuntimeContext runtimeContext,
+			UserContext userContext)
+		throws Exception {
+
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+			actionRequest);
+
+		initContexts(actionRequest, actionResponse, wsrpConsumerManager,
+			wsrpConsumerPortlet, markupParams, portletContext, runtimeContext,
+			userContext);
+
+		// Interaction params
+
+		interactionParams.setPortletStateChange(StateChange.cloneBeforeWrite);
+
+		String interactionState =
+			actionRequest.getParameter("wsrp-interactionState");
+
+		interactionParams.setInteractionState(interactionState);
+
+		String contentType = request.getContentType();
+
+		if (Validator.isNotNull(contentType) &&
+				contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA)) {
+
+			//processUpload(request, interactionParams);
+		}
+		else {
+			processFormParameters(actionRequest, actionResponse,
+				interactionParams);
+		}
+	}
+
+	protected void initContexts(PortletRequest portletRequest,
+			PortletResponse portletResponse,
+			WSRPConsumerManager wsrpConsumerManager,
+			WSRPConsumerPortlet wsrpConsumerPortlet, MarkupParams markupParams,
+			PortletContext portletContext, RuntimeContext runtimeContext,
+			UserContext userContext)
+		throws Exception {
+
+		PortletSession portletSession = portletRequest.getPortletSession();
+
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+				portletRequest);
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
+		// Markup parameters
+
+		ClientData clientData = new ClientData();
+
+		clientData.setRequestVerb("GET");
+
+		clientData.setUserAgent(request.getHeader("User-Agent"));
+
+		markupParams.setClientData(clientData);
+
+		List<Locale> locales = Collections.list(portletRequest.getLocales());
+
+		String[] localesArray = new String[locales.size()];
+
+		for (int i = 0; i < locales.size(); i++) {
+			Locale locale = locales.get(i);
+
+			localesArray[i] = locale.toString();
+		}
+
+		markupParams.setLocales(localesArray);
+
+		markupParams.setMarkupCharacterSets(new String[] {StringPool.UTF8});
+		markupParams.setMimeTypes(new String[] {ContentTypes.TEXT_HTML});
+		markupParams.setMode("wsrp:" + portletRequest.getPortletMode());
+		markupParams.setWindowState("wsrp:" + portletRequest.getWindowState());
+
+		// Portlet description
+
+		PortletDescription portletDescription =
+			wsrpConsumerManager.getPortletDescription(
+				wsrpConsumerPortlet.getPortletHandle());
+
+		MarkupType[] markupTypes = portletDescription.getMarkupTypes();
+
+		for (MarkupType markupType : markupTypes) {
+			if (markupType.getMimeType().equalsIgnoreCase(
+					ContentTypes.TEXT_HTML)) {
+
+				markupParams.setValidNewModes(markupType.getModes());
+				markupParams.setValidNewWindowStates(
+					markupType.getWindowStates());
+			}
+		}
+
+		// Navigational context
+
+		NavigationalContext navigationalContext =
+			(NavigationalContext)portletSession.getAttribute(
+				_NAVIGATIONAL_CONTEXT);
+
+		if (navigationalContext == null) {
+			navigationalContext = new NavigationalContext();
+
+			String navigationalState = portletRequest.getParameter(
+				"wsrp-navigationalState");
+
+			navigationalContext.setOpaqueValue(navigationalState);
+
+			//String navigationalValues = renderRequest.getParameter(
+			//	"wsrp-navigationalValues");
+
+			//navigationalContext.setPublicValues(publicValues);
+		}
+
+		markupParams.setNavigationalContext(navigationalContext);
+
+		// Portlet context
+
+		portletContext.setPortletHandle(wsrpConsumerPortlet.getPortletHandle());
+
+		// Runtime context
+
+		runtimeContext.setNamespacePrefix(portletResponse.getNamespace());
+		runtimeContext.setPortletInstanceKey(portletResponse.getNamespace());
+
+		SessionContext sessionContext =
+			(SessionContext)portletSession.getAttribute(_SESSION_CONTEXT);
+
+		if (sessionContext != null) {
+			SessionParams sessionParams = new SessionParams();
+
+			sessionParams.setSessionID(sessionContext.getSessionID());
+
+			runtimeContext.setSessionParams(sessionParams);
+		}
+
+		runtimeContext.setUserAuthentication("wsrp:password");
+
+		// User context
+
+		userContext.setUserCategories(new String[] {RoleConstants.USER});
+		userContext.setUserContextKey(String.valueOf(themeDisplay.getUserId()));
+	}
+
+	protected boolean isReservedParameter(String name) {
+		if (name.startsWith("wsrp-")) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	protected void processBlockingInteractionResponse(
+			ActionRequest actionRequest, ActionResponse actionResponse,
+			BlockingInteractionResponse blockingInteractionResponse)
+		throws Exception {
+
+		PortletSession portletSession = actionRequest.getPortletSession();
+
+		UpdateResponse updateResponse =
+			blockingInteractionResponse.getUpdateResponse();
+
+		String redirectURL = blockingInteractionResponse.getRedirectURL();
+
+		if (Validator.isNotNull(redirectURL)) {
+			actionResponse.sendRedirect(redirectURL);
+
+			return;
+		}
+
+		portletSession.setAttribute(
+			_MARKUP_CONTEXT, updateResponse.getMarkupContext());
+		portletSession.setAttribute(
+			_NAVIGATIONAL_CONTEXT, updateResponse.getNavigationalContext());
+		portletSession.setAttribute(
+			_PORTLET_CONTEXT, updateResponse.getPortletContext());
+
+		String mode = updateResponse.getNewMode();
+
+		if (Validator.isNotNull(mode)) {
+			actionResponse.setPortletMode(new PortletMode(mode.substring(5)));
+		}
+
+		String windowState = updateResponse.getNewWindowState();
+
+		if (Validator.isNotNull(windowState)) {
+			actionResponse.setWindowState(
+				new WindowState(windowState.substring(5)));
+		}
+
+		portletSession.setAttribute(
+			_SESSION_CONTEXT, updateResponse.getSessionContext());
+	}
+
+	protected void processFormParameters(
+		ActionRequest actionRequest, ActionResponse actionResponse,
+		InteractionParams interactionParams) {
+
+		Enumeration<String> nameEnum = actionRequest.getParameterNames();
+
+		while (nameEnum.hasMoreElements()) {
+			String name = (String) nameEnum.nextElement();
+
+			if (isReservedParameter(name)) {
+				continue;
+			}
+
+			String[] values = actionRequest.getParameterValues(name);
+
+			if (values == null) {
+				continue;
+			}
+
+			List<NamedString> formParameterList = new ArrayList<NamedString>();
+
+			for (String value : values) {
+				NamedString formParameter = new NamedString();
+
+				formParameter.setName(name);
+				formParameter.setValue(value);
+
+				formParameterList.add(formParameter);
+			}
+
+			if (!formParameterList.isEmpty()) {
+				interactionParams.setFormParameters(
+					formParameterList.toArray(new NamedString[]{}));
+			}
+		}
+	}
+
+	protected void processMarkupResponse(PortletRequest portletRequest,
+		PortletResponse portletResponse, MarkupResponse markupResponse) {
+
+		PortletSession portletSession = portletRequest.getPortletSession();
+
+		portletSession.setAttribute(
+			_SESSION_CONTEXT, markupResponse.getSessionContext());
+
+		portletSession.removeAttribute(_MARKUP_CONTEXT);
+		portletSession.removeAttribute(_MARKUP_SERVICE);
+		portletSession.removeAttribute(_NAVIGATIONAL_CONTEXT);
+		portletSession.removeAttribute(_PORTLET_CONTEXT);
 	}
 
 	protected void proxyURL(
@@ -451,7 +692,13 @@ public class ConsumerPortlet extends GenericPortlet {
 
 	private static final String _COOKIE = "COOKIE";
 
+	private static final String _MARKUP_CONTEXT = "MARKUP_CONTEXT";
+
 	private static final String _MARKUP_SERVICE = "MARKUP_SERVICE";
+
+	private static final String _NAVIGATIONAL_CONTEXT = "MARKUP_SERVICE";
+
+	private static final String _PORTLET_CONTEXT = "PORTLET_CONTEXT";
 
 	private static final String _SESSION_CONTEXT = "SESSION_CONTEXT";
 
