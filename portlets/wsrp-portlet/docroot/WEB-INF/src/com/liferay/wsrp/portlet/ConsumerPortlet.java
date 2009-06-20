@@ -139,8 +139,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			UserContext userContext = new UserContext();
 
 			initContexts(actionRequest, actionResponse, wsrpConsumerManager,
-					wsrpConsumerPortlet, interactionParams, markupParams,
-					portletContext, runtimeContext, userContext);
+				wsrpConsumerPortlet, interactionParams, markupParams,
+				portletContext, runtimeContext, userContext);
 
 			// Perform blocking interaction
 
@@ -425,10 +425,10 @@ public class ConsumerPortlet extends GenericPortlet {
 		PortletSession portletSession = portletRequest.getPortletSession();
 
 		HttpServletRequest request = PortalUtil.getHttpServletRequest(
-				portletRequest);
+			portletRequest);
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
+			WebKeys.THEME_DISPLAY);
 
 		// Markup parameters
 
@@ -583,7 +583,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		Enumeration<String> nameEnum = actionRequest.getParameterNames();
 
 		while (nameEnum.hasMoreElements()) {
-			String name = (String) nameEnum.nextElement();
+			String name = (String)nameEnum.nextElement();
 
 			if (isReservedParameter(name)) {
 				continue;
