@@ -47,13 +47,14 @@
 <%@ page import="com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil" %>
 <%@ page import="com.liferay.wsrp.util.WSRPConsumerManager" %>
 <%@ page import="com.liferay.wsrp.util.WSRPConsumerManagerFactory" %>
-<%@ page import="com.liferay.wsrp.v2.types.PortletDescription" %>
-<%@ page import="com.liferay.wsrp.v2.types.ServiceDescription" %>
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 
 <%@ page import="javax.portlet.PortletURL" %>
+
+<%@ page import="oasis.names.tc.wsrp.v2.types.PortletDescription" %>
+<%@ page import="oasis.names.tc.wsrp.v2.types.ServiceDescription" %>
 
 <portlet:defineObjects />
 

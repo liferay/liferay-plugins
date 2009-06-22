@@ -28,19 +28,20 @@ import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.Namespace;
 import com.liferay.portal.kernel.xml.QName;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
-import com.liferay.wsrp.v2.intf.WSRP_v2_Markup_PortType;
-import com.liferay.wsrp.v2.intf.WSRP_v2_ServiceDescription_PortType;
-import com.liferay.wsrp.v2.types.GetServiceDescription;
-import com.liferay.wsrp.v2.types.LocalizedString;
-import com.liferay.wsrp.v2.types.PortletDescription;
-import com.liferay.wsrp.v2.types.ServiceDescription;
-import com.liferay.wsrp.v2.wsdl.WSRP_v2_ServiceLocator;
 
 import java.net.URL;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
+import oasis.names.tc.wsrp.v2.intf.WSRP_v2_ServiceDescription_PortType;
+import oasis.names.tc.wsrp.v2.types.GetServiceDescription;
+import oasis.names.tc.wsrp.v2.types.LocalizedString;
+import oasis.names.tc.wsrp.v2.types.PortletDescription;
+import oasis.names.tc.wsrp.v2.types.ServiceDescription;
+import oasis.names.tc.wsrp.v2.wsdl.WSRP_v2_ServiceLocator;
 
 /**
  * <a href="WSRPConsumerManager.java.html"><b><i>View Source</i></b></a>

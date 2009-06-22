@@ -42,28 +42,6 @@ import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
-import com.liferay.wsrp.v2.intf.WSRP_v2_Markup_PortType;
-import com.liferay.wsrp.v2.types.BlockingInteractionResponse;
-import com.liferay.wsrp.v2.types.ClientData;
-import com.liferay.wsrp.v2.types.CookieProtocol;
-import com.liferay.wsrp.v2.types.GetMarkup;
-import com.liferay.wsrp.v2.types.InitCookie;
-import com.liferay.wsrp.v2.types.InteractionParams;
-import com.liferay.wsrp.v2.types.MarkupParams;
-import com.liferay.wsrp.v2.types.MarkupResponse;
-import com.liferay.wsrp.v2.types.MarkupType;
-import com.liferay.wsrp.v2.types.NamedString;
-import com.liferay.wsrp.v2.types.NavigationalContext;
-import com.liferay.wsrp.v2.types.PerformBlockingInteraction;
-import com.liferay.wsrp.v2.types.PortletContext;
-import com.liferay.wsrp.v2.types.PortletDescription;
-import com.liferay.wsrp.v2.types.RuntimeContext;
-import com.liferay.wsrp.v2.types.ServiceDescription;
-import com.liferay.wsrp.v2.types.SessionContext;
-import com.liferay.wsrp.v2.types.SessionParams;
-import com.liferay.wsrp.v2.types.StateChange;
-import com.liferay.wsrp.v2.types.UpdateResponse;
-import com.liferay.wsrp.v2.types.UserContext;
 
 import java.io.IOException;
 
@@ -95,6 +73,29 @@ import javax.portlet.ResourceResponse;
 import javax.portlet.WindowState;
 
 import javax.servlet.http.HttpServletRequest;
+
+import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
+import oasis.names.tc.wsrp.v2.types.BlockingInteractionResponse;
+import oasis.names.tc.wsrp.v2.types.ClientData;
+import oasis.names.tc.wsrp.v2.types.CookieProtocol;
+import oasis.names.tc.wsrp.v2.types.GetMarkup;
+import oasis.names.tc.wsrp.v2.types.InitCookie;
+import oasis.names.tc.wsrp.v2.types.InteractionParams;
+import oasis.names.tc.wsrp.v2.types.MarkupParams;
+import oasis.names.tc.wsrp.v2.types.MarkupResponse;
+import oasis.names.tc.wsrp.v2.types.MarkupType;
+import oasis.names.tc.wsrp.v2.types.NamedString;
+import oasis.names.tc.wsrp.v2.types.NavigationalContext;
+import oasis.names.tc.wsrp.v2.types.PerformBlockingInteraction;
+import oasis.names.tc.wsrp.v2.types.PortletContext;
+import oasis.names.tc.wsrp.v2.types.PortletDescription;
+import oasis.names.tc.wsrp.v2.types.RuntimeContext;
+import oasis.names.tc.wsrp.v2.types.ServiceDescription;
+import oasis.names.tc.wsrp.v2.types.SessionContext;
+import oasis.names.tc.wsrp.v2.types.SessionParams;
+import oasis.names.tc.wsrp.v2.types.StateChange;
+import oasis.names.tc.wsrp.v2.types.UpdateResponse;
+import oasis.names.tc.wsrp.v2.types.UserContext;
 
 /**
  * <a href="ConsumerPortlet.java.html"><b><i>View Source</i></b></a>

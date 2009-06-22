@@ -43,8 +43,6 @@ import com.liferay.wsrp.service.ClpSerializer;
 import com.liferay.wsrp.service.base.WSRPConsumerPortletLocalServiceBaseImpl;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
-import com.liferay.wsrp.v2.types.MarkupType;
-import com.liferay.wsrp.v2.types.PortletDescription;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -52,6 +50,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+
+import oasis.names.tc.wsrp.v2.types.MarkupType;
+import oasis.names.tc.wsrp.v2.types.PortletDescription;
 
 /**
  * <a href="WSRPConsumerPortletLocalServiceImpl.java.html"><b><i>View Source</i>
