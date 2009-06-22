@@ -25,7 +25,9 @@ package com.liferay.wsrp.portlet;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.HttpMethods;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -43,6 +45,7 @@ import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.net.URL;
@@ -81,6 +84,7 @@ import oasis.names.tc.wsrp.v2.types.CookieProtocol;
 import oasis.names.tc.wsrp.v2.types.GetMarkup;
 import oasis.names.tc.wsrp.v2.types.InitCookie;
 import oasis.names.tc.wsrp.v2.types.InteractionParams;
+import oasis.names.tc.wsrp.v2.types.MarkupContext;
 import oasis.names.tc.wsrp.v2.types.MarkupParams;
 import oasis.names.tc.wsrp.v2.types.MarkupResponse;
 import oasis.names.tc.wsrp.v2.types.MarkupType;
@@ -95,6 +99,7 @@ import oasis.names.tc.wsrp.v2.types.SessionContext;
 import oasis.names.tc.wsrp.v2.types.SessionParams;
 import oasis.names.tc.wsrp.v2.types.StateChange;
 import oasis.names.tc.wsrp.v2.types.UpdateResponse;
+import oasis.names.tc.wsrp.v2.types.UploadContext;
 import oasis.names.tc.wsrp.v2.types.UserContext;
 
 /**
@@ -163,6 +168,19 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 	}
 
+	protected void addFormField(
+		List<NamedString> formParameters, String name, String[] values) {
+
+		for (String value : values) {
+			NamedString formParameter = new NamedString();
+
+			formParameter.setName(name);
+			formParameter.setValue(value);
+
+			formParameters.add(formParameter);
+		}
+	}
+
 	protected void doProcessAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -209,34 +227,51 @@ public class ConsumerPortlet extends GenericPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
 
-		MarkupResponse markupResponse = getMarkupResponse(
-			renderRequest, renderResponse);
+		PortletSession portletSession = renderRequest.getPortletSession();
 
-		String content = markupResponse.getMarkupContext().getItemString();
+		MarkupContext markupContext =
+			(MarkupContext)portletSession.getAttribute(_MARKUP_CONTEXT);
 
-		Matcher urlMatcher = _urlPattern.matcher(content);
+		if (markupContext == null) {
+			MarkupResponse markupResponse = getMarkupResponse(
+					renderRequest, renderResponse);
+
+			markupContext = markupResponse.getMarkupContext();
+		}
+
+		String content = markupContext.getItemString();
+
+		Matcher rewriteMatcher = _rewritePattern.matcher(content);
 
 		StringBuffer sb = new StringBuffer();
 
-		while (urlMatcher.find()) {
-			String url = urlMatcher.group(1);
+		while (rewriteMatcher.find()) {
+			String namespace = rewriteMatcher.group(1);
+			String url = rewriteMatcher.group(2);
 
-			Map<String, String> parameterMap = new HashMap<String, String>();
-
-			Matcher parameterMatcher = _urlParametersPattern.matcher(url);
-
-			while (parameterMatcher.find()) {
-				String name = parameterMatcher.group(1);
-				String value = parameterMatcher.group(2);
-
-				parameterMap.put(name, HttpUtil.decodeURL(value));
+			if (Validator.isNotNull(namespace)) {
+				rewriteMatcher.appendReplacement(
+					sb, renderResponse.getNamespace());
 			}
+			else if (Validator.isNotNull(url)) {
+				Map<String, String> parameterMap =
+					new HashMap<String, String>();
 
-			urlMatcher.appendReplacement(
-				sb, rewriteURL(renderResponse, parameterMap));
+				Matcher parameterMatcher = _urlParametersPattern.matcher(url);
+
+				while (parameterMatcher.find()) {
+					String name = parameterMatcher.group(1);
+					String value = parameterMatcher.group(2);
+
+					parameterMap.put(name, HttpUtil.decodeURL(value));
+				}
+
+				rewriteMatcher.appendReplacement(
+					sb, rewriteURL(renderResponse, parameterMap));
+			}
 		}
 
-		urlMatcher.appendTail(sb);
+		rewriteMatcher.appendTail(sb);
 
 		renderResponse.setContentType(ContentTypes.TEXT_HTML_UTF8);
 
@@ -408,7 +443,8 @@ public class ConsumerPortlet extends GenericPortlet {
 		if (Validator.isNotNull(contentType) &&
 			contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA)) {
 
-			//processUpload(request, interactionParams);
+			processMultipartForm(
+				actionRequest, actionResponse, interactionParams);
 		}
 		else {
 			processFormParameters(
@@ -578,6 +614,8 @@ public class ConsumerPortlet extends GenericPortlet {
 		ActionRequest actionRequest, ActionResponse actionResponse,
 		InteractionParams interactionParams) {
 
+		List<NamedString> formParameters = new ArrayList<NamedString>();
+
 		Enumeration<String> enu = actionRequest.getParameterNames();
 
 		while (enu.hasMoreElements()) {
@@ -593,22 +631,13 @@ public class ConsumerPortlet extends GenericPortlet {
 				continue;
 			}
 
-			List<NamedString> formParameters = new ArrayList<NamedString>();
+			addFormField(formParameters, name, values);
+		}
 
-			for (String value : values) {
-				NamedString formParameter = new NamedString();
-
-				formParameter.setName(name);
-				formParameter.setValue(value);
-
-				formParameters.add(formParameter);
-			}
-
-			if (!formParameters.isEmpty()) {
-				interactionParams.setFormParameters(
-					formParameters.toArray(
-						new NamedString[formParameters.size()]));
-			}
+		if (!formParameters.isEmpty()) {
+			interactionParams.setFormParameters(
+				formParameters.toArray(
+					new NamedString[formParameters.size()]));
 		}
 	}
 
@@ -622,9 +651,84 @@ public class ConsumerPortlet extends GenericPortlet {
 			_SESSION_CONTEXT, markupResponse.getSessionContext());
 
 		portletSession.removeAttribute(_MARKUP_CONTEXT);
-		portletSession.removeAttribute(_MARKUP_SERVICE);
-		portletSession.removeAttribute(_NAVIGATIONAL_CONTEXT);
-		portletSession.removeAttribute(_PORTLET_CONTEXT);
+	}
+
+	protected void processMultipartForm(
+			ActionRequest actionRequest, ActionResponse actionResponse,
+			InteractionParams interactionParams)
+		throws Exception {
+
+		List<NamedString> formParameters = new ArrayList<NamedString>();
+		List<UploadContext> uploadContexts = new ArrayList<UploadContext>();
+
+		UploadPortletRequest uploadPortletRequest =
+			PortalUtil.getUploadPortletRequest(actionRequest);
+
+		Enumeration<String> enu = uploadPortletRequest.getParameterNames();
+
+		while (enu.hasMoreElements()) {
+			String name = (String)enu.nextElement();
+
+			if (isReservedParameter(name)) {
+				continue;
+			}
+
+			if (uploadPortletRequest.isFormField(name)) {
+				String[] values = actionRequest.getParameterValues(name);
+
+				addFormField(formParameters, name, values);
+			}
+			else {
+				UploadContext uploadContext = new UploadContext();
+
+				String contentType =
+					uploadPortletRequest.getContentType(name);
+
+				uploadContext.setMimeType(contentType);
+
+				StringBuilder sb = new StringBuilder();
+
+				sb.append("form-data; ");
+				sb.append("name=");
+				sb.append(name);
+				sb.append("; filename=");
+				sb.append(uploadPortletRequest.getFileName(name));
+
+				NamedString mimeAttribute = new NamedString();
+
+				mimeAttribute.setName("Content-Disposition");
+				mimeAttribute.setValue(sb.toString());
+
+				uploadContext.setMimeAttributes(
+					new NamedString[] {mimeAttribute});
+
+				File file = uploadPortletRequest.getFile(name);
+
+				byte[] fileBytes = null;
+
+				fileBytes = FileUtil.getBytes(file);
+
+				if (fileBytes == null) {
+					continue;
+				}
+
+				uploadContext.setUploadData(fileBytes);
+
+				uploadContexts.add(uploadContext);
+			}
+		}
+
+		if (!formParameters.isEmpty()) {
+			interactionParams.setFormParameters(
+				formParameters.toArray(
+					new NamedString[formParameters.size()]));
+		}
+
+		if (!uploadContexts.isEmpty()) {
+			interactionParams.setUploadContexts(
+				uploadContexts.toArray(
+					new UploadContext[uploadContexts.size()]));
+		}
 	}
 
 	protected void proxyURL(
@@ -700,7 +804,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 	private static final String[] _MIME_TYPES = {ContentTypes.TEXT_HTML};
 
-	private static final String _NAVIGATIONAL_CONTEXT = "MARKUP_SERVICE";
+	private static final String _NAVIGATIONAL_CONTEXT = "NAVIGATIONAL_CONTEXT";
 
 	private static final String _PORTLET_CONTEXT = "PORTLET_CONTEXT";
 
@@ -710,7 +814,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 	private static Pattern _urlParametersPattern = Pattern.compile(
 		"(?:([^&]+)=([^&]+))(?:(?:&amp;|&))?");
-	private static Pattern _urlPattern = Pattern.compile(
-		"wsrp_rewrite\\?(.*)/wsrp_rewrite");
+	private static Pattern _rewritePattern = Pattern.compile(
+		"(wsrp_rewrite_)|(?:wsrp_rewrite\\?(.*)/wsrp_rewrite)");
 
 }
