@@ -37,6 +37,9 @@ import com.liferay.portal.service.UserServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.announcements.model.AnnouncementsDelivery;
+import com.liferay.portlet.social.model.SocialRelationConstants;
+import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
+import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.so.model.ProjectsEntry;
 import com.liferay.so.service.ProjectsEntryLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -58,6 +61,34 @@ import javax.servlet.http.HttpServletRequest;
  *
  */
 public class ProfilesPortlet extends MVCPortlet {
+
+	public void addFriend(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long userId = ParamUtil.getLong(actionRequest, "userId");
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		SocialRequestLocalServiceUtil.addRequest(
+			themeDisplay.getUserId(), 0, User.class.getName(),
+			themeDisplay.getUserId(), 1, StringPool.BLANK, userId);
+	}
+
+	public void deleteFriend(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long userId = ParamUtil.getLong(actionRequest, "userId");
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		SocialRelationLocalServiceUtil.deleteRelation(
+			themeDisplay.getUserId(), userId,
+			SocialRelationConstants.TYPE_BI_FRIEND);
+	}
 
 	public void updateUserProfile(
 			ActionRequest actionRequest, ActionResponse actionResponse)

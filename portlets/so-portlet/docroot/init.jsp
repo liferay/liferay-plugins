@@ -62,10 +62,16 @@
 <%@ page import="com.liferay.portlet.PortletURLFactoryUtil" %>
 <%@ page import="com.liferay.portlet.social.model.SocialActivity" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
+<%@ page import="com.liferay.portlet.social.model.SocialRequest" %>
+<%@ page import="com.liferay.portlet.social.model.SocialRequestConstants" %>
+<%@ page import="com.liferay.portlet.social.model.SocialRequestFeedEntry" %>
 <%@ page import="com.liferay.portlet.social.service.SocialActivityLocalServiceUtil" %>
+<%@ page import="com.liferay.portlet.social.service.SocialRelationLocalServiceUtil" %>
+<%@ page import="com.liferay.portlet.social.service.SocialRequestLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.tags.model.TagsEntry" %>
 <%@ page import="com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil" %>
 <%@ page import="com.liferay.so.model.ProjectsEntry" %>
+<%@ page import="com.liferay.so.profiles.social.ProfilesRequestKeys" %>
 <%@ page import="com.liferay.so.service.ProjectsEntryLocalServiceUtil" %>
 <%@ page import="com.liferay.util.format.PhoneNumberUtil" %>
 
@@ -80,6 +86,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Locale" %>
 
+<%@ page import="javax.portlet.ActionRequest" %>
 <%@ page import="javax.portlet.PortletMode" %>
 <%@ page import="javax.portlet.PortletPreferences" %>
 <%@ page import="javax.portlet.PortletRequest" %>

@@ -72,6 +72,42 @@ else {
 							<a href="javascript:;" onClick="Liferay.SO.Profiles.editUserSettings(<%= curUser.getUserId() %>);"><liferay-ui:message key="change-settings" /></a>
 						</div>
 					</c:if>
+
+					<div class="relations-controls">
+						<c:choose>
+							<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(user.getUserId(), curUser.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
+
+								<%
+								PortletURL removeFriendURL = renderResponse.createActionURL();
+
+								removeFriendURL.setParameter(ActionRequest.ACTION_NAME, "deleteFriend");
+								removeFriendURL.setParameter("redirect", currentURL);
+								removeFriendURL.setParameter("userId", String.valueOf(curUser.getUserId()));
+
+								String removeFriendHREF = "javascript:if (confirm('" + LanguageUtil.format(pageContext, "are-you-sure-you-want-to-remove-x-as-a-friend-x-will-not-be-notified", curUser.getFullName()) + "')) { submitForm(document.hrefFm, '" + removeFriendURL + "'); }";
+								%>
+
+								<a href="<%= removeFriendHREF %>"><liferay-ui:message key="remove-friend" /></a>
+							</c:when>
+							<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user.getUserId(), User.class.getName(), user.getUserId(), ProfilesRequestKeys.ADD_FRIEND, curUser.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
+								<div>
+									<liferay-ui:message key="friend-requested" />
+								</div>
+							</c:when>
+							<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(user.getUserId(), curUser.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
+
+								<%
+								PortletURL addAsFriendURL = renderResponse.createActionURL();
+
+								addAsFriendURL.setParameter(ActionRequest.ACTION_NAME, "addFriend");
+								addAsFriendURL.setParameter("redirect", currentURL);
+								addAsFriendURL.setParameter("userId", String.valueOf(curUser.getUserId()));
+								%>
+
+								<a href="<%= addAsFriendURL.toString() %>"><liferay-ui:message key="add-as-friend" /></a>
+							</c:when>
+						</c:choose>
+					</div>
 				</div>
 			</td>
 			<td valign="top">
