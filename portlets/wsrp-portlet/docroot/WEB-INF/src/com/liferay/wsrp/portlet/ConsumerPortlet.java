@@ -651,6 +651,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			_SESSION_CONTEXT, markupResponse.getSessionContext());
 
 		portletSession.removeAttribute(_MARKUP_CONTEXT);
+		portletSession.removeAttribute(_NAVIGATIONAL_CONTEXT);
 	}
 
 	protected void processMultipartForm(
