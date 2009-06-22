@@ -104,11 +104,11 @@ public class WSRPProducerSoap implements Serializable {
 		_wsrpProducerId = wsrpProducerId;
 	}
 
-	public String getCompanyId() {
+	public long getCompanyId() {
 		return _companyId;
 	}
 
-	public void setCompanyId(String companyId) {
+	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 	}
 
@@ -145,7 +145,7 @@ public class WSRPProducerSoap implements Serializable {
 	}
 
 	private long _wsrpProducerId;
-	private String _companyId;
+	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;

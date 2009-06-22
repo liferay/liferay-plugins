@@ -62,7 +62,7 @@
 
 		<!-- Audit fields -->
 
-		<column name="companyId" type="String" />
+		<column name="companyId" type="long" />
 		<column name="createDate" type="Date" />
 		<column name="modifiedDate" type="Date" />
 
@@ -78,6 +78,9 @@
 		</order>
 	</entity>
 	<exceptions>
+		<exception>WSRPConsumerName</exception>
+		<exception>WSRPConsumerPortletName</exception>
 		<exception>WSRPConsumerWSDL</exception>
+		<exception>WSRPProducerName</exception>
 	</exceptions>
 </service-builder>

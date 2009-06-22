@@ -1,3 +1,4 @@
+<%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
@@ -19,47 +20,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+%>
 
-package com.liferay.wsrp.model;
+<%@ include file="/init.jsp" %>
 
-import com.liferay.portal.model.BaseModel;
+<%
+ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-import java.util.Date;
+WSRPProducer wsrpProducer = (WSRPProducer)row.getObject();
+%>
 
-/**
- * <a href="WSRPProducerModel.java.html"><b><i>View Source</i></b></a>
- *
- * @author Brian Wing Shun Chan
- *
- */
-public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
-	public long getPrimaryKey();
+<liferay-ui:icon-menu>
+	<portlet:renderURL var="editURL">
+		<portlet:param name="jspPage" value="/admin/edit_producer.jsp" />
+		<portlet:param name="redirect" value="<%= currentURL %>" />
+		<portlet:param name="wsrpProducerId" value="<%= String.valueOf(wsrpProducer.getWsrpProducerId()) %>" />
+	</portlet:renderURL>
 
-	public void setPrimaryKey(long pk);
+	<liferay-ui:icon image="edit" url="<%= editURL %>" />
 
-	public long getWsrpProducerId();
+	<portlet:actionURL name="deleteWSRPProducer" var="deleteURL">
+		<portlet:param name="redirect" value="<%= currentURL %>" />
+		<portlet:param name="wsrpProducerId" value="<%= String.valueOf(wsrpProducer.getWsrpProducerId()) %>" />
+	</portlet:actionURL>
 
-	public void setWsrpProducerId(long wsrpProducerId);
-
-	public long getCompanyId();
-
-	public void setCompanyId(long companyId);
-
-	public Date getCreateDate();
-
-	public void setCreateDate(Date createDate);
-
-	public Date getModifiedDate();
-
-	public void setModifiedDate(Date modifiedDate);
-
-	public String getName();
-
-	public void setName(String name);
-
-	public String getPortletIds();
-
-	public void setPortletIds(String portletIds);
-
-	public WSRPProducer toEscapedModel();
-}
+	<liferay-ui:icon-delete url="<%= deleteURL %>" />
+</liferay-ui:icon-menu>

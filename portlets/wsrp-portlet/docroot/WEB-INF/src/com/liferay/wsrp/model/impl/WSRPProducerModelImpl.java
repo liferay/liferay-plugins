@@ -55,7 +55,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 			{ "wsrpProducerId", new Integer(Types.BIGINT) },
 			
 
-			{ "companyId", new Integer(Types.VARCHAR) },
+			{ "companyId", new Integer(Types.BIGINT) },
 			
 
 			{ "createDate", new Integer(Types.TIMESTAMP) },
@@ -69,7 +69,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 
 			{ "portletIds", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPProducer (wsrpProducerId LONG not null primary key,companyId VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,portletIds STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPProducer (wsrpProducerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,portletIds STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table WSRP_WSRPProducer";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -130,11 +130,11 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 		_wsrpProducerId = wsrpProducerId;
 	}
 
-	public String getCompanyId() {
-		return GetterUtil.getString(_companyId);
+	public long getCompanyId() {
+		return _companyId;
 	}
 
-	public void setCompanyId(String companyId) {
+	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 	}
 
@@ -181,7 +181,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 			model.setEscapedModel(true);
 
 			model.setWsrpProducerId(getWsrpProducerId());
-			model.setCompanyId(HtmlUtil.escape(getCompanyId()));
+			model.setCompanyId(getCompanyId());
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
 			model.setName(HtmlUtil.escape(getName()));
@@ -315,7 +315,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	}
 
 	private long _wsrpProducerId;
-	private String _companyId;
+	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;

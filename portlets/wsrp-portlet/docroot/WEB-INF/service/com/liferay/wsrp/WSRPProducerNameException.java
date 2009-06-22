@@ -20,46 +20,32 @@
  * SOFTWARE.
  */
 
-package com.liferay.wsrp.model;
+package com.liferay.wsrp;
 
-import com.liferay.portal.model.BaseModel;
-
-import java.util.Date;
+import com.liferay.portal.PortalException;
 
 /**
- * <a href="WSRPProducerModel.java.html"><b><i>View Source</i></b></a>
+ * <a href="WSRPProducerNameException.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
-	public long getPrimaryKey();
+public class WSRPProducerNameException extends PortalException {
 
-	public void setPrimaryKey(long pk);
+	public WSRPProducerNameException() {
+		super();
+	}
 
-	public long getWsrpProducerId();
+	public WSRPProducerNameException(String msg) {
+		super(msg);
+	}
 
-	public void setWsrpProducerId(long wsrpProducerId);
+	public WSRPProducerNameException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
 
-	public long getCompanyId();
+	public WSRPProducerNameException(Throwable cause) {
+		super(cause);
+	}
 
-	public void setCompanyId(long companyId);
-
-	public Date getCreateDate();
-
-	public void setCreateDate(Date createDate);
-
-	public Date getModifiedDate();
-
-	public void setModifiedDate(Date modifiedDate);
-
-	public String getName();
-
-	public void setName(String name);
-
-	public String getPortletIds();
-
-	public void setPortletIds(String portletIds);
-
-	public WSRPProducer toEscapedModel();
 }

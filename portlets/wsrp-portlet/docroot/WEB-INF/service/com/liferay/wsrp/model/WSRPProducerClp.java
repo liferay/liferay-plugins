@@ -63,11 +63,11 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		_wsrpProducerId = wsrpProducerId;
 	}
 
-	public String getCompanyId() {
+	public long getCompanyId() {
 		return _companyId;
 	}
 
-	public void setCompanyId(String companyId) {
+	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 	}
 
@@ -113,7 +113,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 			model.setEscapedModel(true);
 
 			model.setWsrpProducerId(getWsrpProducerId());
-			model.setCompanyId(HtmlUtil.escape(getCompanyId()));
+			model.setCompanyId(getCompanyId());
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
 			model.setName(HtmlUtil.escape(getName()));
@@ -238,7 +238,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	}
 
 	private long _wsrpProducerId;
-	private String _companyId;
+	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;

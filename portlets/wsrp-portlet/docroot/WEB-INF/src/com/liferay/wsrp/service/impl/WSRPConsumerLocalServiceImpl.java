@@ -26,6 +26,8 @@ import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.wsrp.WSRPConsumerNameException;
 import com.liferay.wsrp.WSRPConsumerWSDLException;
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.service.base.WSRPConsumerLocalServiceBaseImpl;
@@ -48,6 +50,8 @@ public class WSRPConsumerLocalServiceImpl
 
 		String wsdl = getWSDL(url);
 		Date now = new Date();
+
+		validate(name);
 
 		long wsrpConsumerId = CounterLocalServiceUtil.increment();
 
@@ -89,6 +93,8 @@ public class WSRPConsumerLocalServiceImpl
 
 		String wsdl = getWSDL(url);
 
+		validate(name);
+
 		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
 			wsrpConsumerId);
 
@@ -112,6 +118,12 @@ public class WSRPConsumerLocalServiceImpl
 		}
 		catch (Exception e) {
 			throw new WSRPConsumerWSDLException(e);
+		}
+	}
+
+	protected void validate(String name) throws PortalException {
+		if (Validator.isNull(name)) {
+			throw new WSRPConsumerNameException();
 		}
 	}
 

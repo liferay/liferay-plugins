@@ -27,33 +27,32 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-long wsrpConsumerId = ParamUtil.getLong(request, "wsrpConsumerId");
+long wsrpProducerId = ParamUtil.getLong(request, "wsrpProducerId");
 
-WSRPConsumer wsrpConsumer = null;
+WSRPProducer wsrpProducer = null;
 
 try {
-	wsrpConsumer = WSRPConsumerLocalServiceUtil.getWSRPConsumer(wsrpConsumerId);
+	wsrpProducer = WSRPProducerLocalServiceUtil.getWSRPProducer(wsrpProducerId);
 }
-catch (NoSuchConsumerException nsce) {
+catch (NoSuchProducerException nsce) {
 }
 %>
 
 <script type="text/javascript">
-	function <portlet:namespace />saveConsumer() {
+	function <portlet:namespace />saveProducer() {
 		submitForm(document.<portlet:namespace />fm);
 	}
 </script>
 
-<form action="<portlet:actionURL name="updateWSRPConsumer"><portlet:param name="jspPage" value="/admin/edit_consumer.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumer(); return false;">
-<input name="<portlet:namespace />wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
+<form action="<portlet:actionURL name="updateWSRPProducer"><portlet:param name="jspPage" value="/admin/edit_producer.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveProducer(); return false;">
+<input name="<portlet:namespace />wsrpProducerId" type="hidden" value="<%= wsrpProducerId %>" />
 
-<liferay-ui:error exception="<%= WSRPConsumerNameException.class %>" message="please-enter-a-valid-name" />
-<liferay-ui:error exception="<%= WSRPConsumerWSDLException.class %>" message="url-does-not-point-to-a-valid-wsrp-producer" />
+<liferay-ui:error exception="<%= WSRPProducerNameException.class %>" message="please-enter-a-valid-name" />
 
 <div class="breadcrumbs">
-	<span class="first"><a href="<portlet:renderURL />"><liferay-ui:message key="consumers" /></a></span> &raquo;
+	<span class="first"><a href="<portlet:renderURL />"><liferay-ui:message key="producers" /></a></span> &raquo;
 
-	<span class="last"><liferay-ui:message key='<%= ((wsrpConsumer == null) ? Constants.ADD : Constants.UPDATE) + "-consumer" %>' /></span>
+	<span class="last"><liferay-ui:message key='<%= ((wsrpProducer == null) ? Constants.ADD : Constants.UPDATE) + "-producer" %>' /></span>
 </div>
 
 <table class="lfr-table">
@@ -62,26 +61,21 @@ catch (NoSuchConsumerException nsce) {
 		<liferay-ui:message key="name" />
 	</td>
 	<td>
-		<liferay-ui:input-field model="<%= WSRPConsumer.class %>" bean="<%= wsrpConsumer %>" field="name" />
+		<liferay-ui:input-field model="<%= WSRPProducer.class %>" bean="<%= wsrpProducer %>" field="name" />
 	</td>
 </tr>
-<tr>
-	<td>
-		<liferay-ui:message key="url" />
-	</td>
-	<td>
-		<c:choose>
-			<c:when test="<%= wsrpConsumer == null %>">
-				<liferay-ui:input-field model="<%= WSRPConsumer.class %>" bean="<%= wsrpConsumer %>" field="url" />
-			</c:when>
-			<c:otherwise>
-				<%= wsrpConsumer.getUrl() %>
 
-				<input name="<portlet:namespace />url" type="hidden" value="<%= wsrpConsumer.getUrl() %>" />
-			</c:otherwise>
-		</c:choose>
-	</td>
-</tr>
+<c:if test="<%= wsrpProducer != null %>">
+	<tr>
+		<td>
+			<liferay-ui:message key="url" />
+		</td>
+		<td>
+			<%= themeDisplay.getPortalURL() %>/wsrp-portlet/wsdl/<%= wsrpProducer.getWsrpProducerId() %>
+		</td>
+	</tr>
+</c:if>
+
 </table>
 
 <br />

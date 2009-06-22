@@ -32,6 +32,7 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
+import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -70,6 +71,18 @@ public class AdminPortlet extends MVCPortlet {
 			wsrpConsumerPortletId);
 	}
 
+	public void deleteWSRPProducer(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		checkPermissions(actionRequest);
+
+		long wsrpProducerId = ParamUtil.getLong(
+			actionRequest, "wsrpProducerId");
+
+		WSRPProducerLocalServiceUtil.deleteWSRPProducer(wsrpProducerId);
+	}
+
 	public void updateWSRPConsumer(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -92,6 +105,20 @@ public class AdminPortlet extends MVCPortlet {
 
 		try {
 			doUpdateWSRPConsumerPortlet(actionRequest, actionResponse);
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(actionRequest, pe.getClass().getName());
+		}
+	}
+
+	public void updateWSRPProducer(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		checkPermissions(actionRequest);
+
+		try {
+			doUpdateWSRPProducer(actionRequest, actionResponse);
 		}
 		catch (PortalException pe) {
 			SessionErrors.add(actionRequest, pe.getClass().getName());
@@ -151,6 +178,29 @@ public class AdminPortlet extends MVCPortlet {
 		else {
 			WSRPConsumerPortletLocalServiceUtil.updateWSRPConsumerPortlet(
 				wsrpConsumerPortletId, name);
+		}
+	}
+
+	protected void doUpdateWSRPProducer(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long wsrpProducerId = ParamUtil.getLong(
+			actionRequest, "wsrpProducerId");
+
+		String name = ParamUtil.getString(actionRequest, "name");
+		String portletIds = ParamUtil.getString(actionRequest, "portletIds");
+
+		if (wsrpProducerId <= 0) {
+			WSRPProducerLocalServiceUtil.addWSRPProducer(
+				themeDisplay.getCompanyId(), name, portletIds);
+		}
+		else {
+			WSRPProducerLocalServiceUtil.updateWSRPProducer(
+				wsrpProducerId, name, portletIds);
 		}
 	}
 

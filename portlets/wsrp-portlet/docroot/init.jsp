@@ -41,10 +41,17 @@
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.wsrp.NoSuchConsumerException" %>
 <%@ page import="com.liferay.wsrp.NoSuchConsumerPortletException" %>
+<%@ page import="com.liferay.wsrp.NoSuchProducerException" %>
+<%@ page import="com.liferay.wsrp.WSRPConsumerNameException" %>
+<%@ page import="com.liferay.wsrp.WSRPConsumerPortletNameException" %>
+<%@ page import="com.liferay.wsrp.WSRPConsumerWSDLException" %>
+<%@ page import="com.liferay.wsrp.WSRPProducerNameException" %>
 <%@ page import="com.liferay.wsrp.model.WSRPConsumer" %>
 <%@ page import="com.liferay.wsrp.model.WSRPConsumerPortlet" %>
+<%@ page import="com.liferay.wsrp.model.WSRPProducer" %>
 <%@ page import="com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil" %>
 <%@ page import="com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil" %>
+<%@ page import="com.liferay.wsrp.service.WSRPProducerLocalServiceUtil" %>
 <%@ page import="com.liferay.wsrp.util.WSRPConsumerManager" %>
 <%@ page import="com.liferay.wsrp.util.WSRPConsumerManagerFactory" %>
 

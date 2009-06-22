@@ -21,3 +21,47 @@
  * SOFTWARE.
  */
 %>
+
+<liferay-ui:search-container
+	emptyResultsMessage="there-are-no-producers"
+	headerNames="name"
+	iteratorURL="<%= portletURL %>"
+>
+	<liferay-ui:search-container-results
+		results="<%= WSRPProducerLocalServiceUtil.getWSRPProducers(searchContainer.getStart(), searchContainer.getEnd()) %>"
+		total="<%= WSRPProducerLocalServiceUtil.getWSRPProducersCount() %>"
+	/>
+
+	<liferay-ui:search-container-row
+		className="com.liferay.wsrp.model.WSRPProducer"
+		escapedModel="<%= true %>"
+		keyProperty="wsrpProducerId"
+		modelVar="producer"
+	>
+		<portlet:renderURL var="rowURL">
+			<portlet:param name="jspPage" value="/admin/edit_producer.jsp" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="wsrpProducerId" value="<%= String.valueOf(producer.getWsrpProducerId()) %>" />
+		</portlet:renderURL>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="producer"
+			property="name"
+		/>
+
+		<liferay-ui:search-container-column-jsp
+			align="right"
+			path="/admin/producer_action.jsp"
+			valign="top"
+		/>
+	</liferay-ui:search-container-row>
+
+	<div>
+		<input type="button" value="<liferay-ui:message key="add-producer" />" onClick="location.href = '<portlet:renderURL><portlet:param name="jspPage" value="/admin/edit_producer.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
+	</div>
+
+	<br />
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>

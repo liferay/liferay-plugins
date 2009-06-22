@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletApp;
@@ -36,6 +37,7 @@ import com.liferay.portal.model.PortletInfo;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.InvokerPortlet;
+import com.liferay.wsrp.WSRPConsumerPortletNameException;
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.portlet.ConsumerPortlet;
@@ -69,6 +71,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 		throws PortalException, SystemException {
 
 		Date now = new Date();
+
+		validate(name);
 
 		long wsrpConsumerPortletId = CounterLocalServiceUtil.increment();
 
@@ -157,6 +161,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 	public WSRPConsumerPortlet updateWSRPConsumerPortlet(
 			long wsrpConsumerPortletId, String name)
 		throws PortalException, SystemException {
+
+		validate(name);
 
 		WSRPConsumerPortlet wsrpConsumerPortlet =
 			wsrpConsumerPortletPersistence.findByPrimaryKey(
@@ -313,6 +319,12 @@ public class WSRPConsumerPortletLocalServiceImpl
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
+		}
+	}
+
+	protected void validate(String name) throws PortalException {
+		if (Validator.isNull(name)) {
+			throw new WSRPConsumerPortletNameException();
 		}
 	}
 

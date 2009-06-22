@@ -213,9 +213,9 @@ public class ClpSerializer {
 					method0.invoke(newModel, value0);
 
 					Method method1 = newModelClass.getMethod("setCompanyId",
-							new Class[] { String.class });
+							new Class[] { Long.TYPE });
 
-					String value1 = oldCplModel.getCompanyId();
+					Long value1 = new Long(oldCplModel.getCompanyId());
 
 					method1.invoke(newModel, value1);
 
@@ -434,10 +434,9 @@ public class ClpSerializer {
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
-					String value1 = (String)method1.invoke(oldModel,
-							(Object[])null);
+					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1);
+					newModel.setCompanyId(value1.longValue());
 
 					Method method2 = oldModelClass.getMethod("getCreateDate");
 

@@ -81,4 +81,14 @@ public interface WSRPProducerLocalService {
 	public com.liferay.wsrp.model.WSRPProducer updateWSRPProducer(
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer, boolean merge)
 		throws com.liferay.portal.SystemException;
+
+	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long companyId,
+		java.lang.String name, java.lang.String portletIds)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public com.liferay.wsrp.model.WSRPProducer updateWSRPProducer(
+		long wsrpProducerId, java.lang.String name, java.lang.String portletIds)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 }

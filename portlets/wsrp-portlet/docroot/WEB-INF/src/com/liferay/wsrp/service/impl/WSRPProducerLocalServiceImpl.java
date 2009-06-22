@@ -22,7 +22,15 @@
 
 package com.liferay.wsrp.service.impl;
 
+import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.wsrp.WSRPProducerNameException;
+import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.base.WSRPProducerLocalServiceBaseImpl;
+
+import java.util.Date;
 
 /**
  * <a href="WSRPProducerLocalServiceImpl.java.html"><b><i>View Source</i></b>
@@ -33,4 +41,53 @@ import com.liferay.wsrp.service.base.WSRPProducerLocalServiceBaseImpl;
  */
 public class WSRPProducerLocalServiceImpl
 	extends WSRPProducerLocalServiceBaseImpl {
+
+	public WSRPProducer addWSRPProducer(
+			long companyId, String name, String portletIds)
+		throws PortalException, SystemException {
+
+		Date now = new Date();
+
+		validate(name);
+
+		long wsrpProducerId = CounterLocalServiceUtil.increment();
+
+		WSRPProducer wsrpProducer = wsrpProducerPersistence.create(
+			wsrpProducerId);
+
+		wsrpProducer.setCompanyId(companyId);
+		wsrpProducer.setCreateDate(now);
+		wsrpProducer.setModifiedDate(now);
+		wsrpProducer.setName(name);
+		wsrpProducer.setPortletIds(portletIds);
+
+		wsrpProducerPersistence.update(wsrpProducer, false);
+
+		return wsrpProducer;
+	}
+
+	public WSRPProducer updateWSRPProducer(
+			long wsrpProducerId, String name, String portletIds)
+		throws PortalException, SystemException {
+
+		validate(name);
+
+		WSRPProducer wsrpProducer = wsrpProducerPersistence.findByPrimaryKey(
+			wsrpProducerId);
+
+		wsrpProducer.setModifiedDate(new Date());
+		wsrpProducer.setName(name);
+		wsrpProducer.setPortletIds(portletIds);
+
+		wsrpProducerPersistence.update(wsrpProducer, false);
+
+		return wsrpProducer;
+	}
+
+	protected void validate(String name) throws PortalException {
+		if (Validator.isNull(name)) {
+			throw new WSRPProducerNameException();
+		}
+	}
+
 }
