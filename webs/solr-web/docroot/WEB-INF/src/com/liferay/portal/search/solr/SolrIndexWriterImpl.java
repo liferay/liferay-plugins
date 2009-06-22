@@ -47,7 +47,9 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		try {
 			_solrServer.add(getSolrDocument(doc));
 
-			_solrServer.commit();
+			if (_commit) {
+				_solrServer.commit();
+			}
 		}
 		catch (Exception e) {
 			throw new SearchException(e);
@@ -60,7 +62,9 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		try {
 			_solrServer.deleteById(uid);
 
-			_solrServer.commit();
+			if (_commit) {
+				_solrServer.commit();
+			}
 		}
 		catch (Exception e) {
 			throw new SearchException(e);
@@ -74,11 +78,17 @@ public class SolrIndexWriterImpl implements IndexWriter {
 			_solrServer.deleteByQuery(
 				Field.PORTLET_ID + StringPool.COLON + portletId);
 
-			_solrServer.commit();
+			if (_commit) {
+				_solrServer.commit();
+			}
 		}
 		catch (Exception e) {
 			throw new SearchException(e);
 		}
+	}
+
+	public void setCommit(boolean commit) {
+		_commit = commit;
 	}
 
 	public void setSolrServer(SolrServer solrServer) {
@@ -111,6 +121,7 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		return solrDoc;
 	}
 
+	private boolean _commit;
 	private SolrServer _solrServer;
 
 }
