@@ -234,7 +234,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		if (markupContext == null) {
 			MarkupResponse markupResponse = getMarkupResponse(
-					renderRequest, renderResponse);
+				renderRequest, renderResponse);
 
 			markupContext = markupResponse.getMarkupContext();
 		}
@@ -257,7 +257,7 @@ public class ConsumerPortlet extends GenericPortlet {
 				Map<String, String> parameterMap =
 					new HashMap<String, String>();
 
-				Matcher parameterMatcher = _urlParametersPattern.matcher(url);
+				Matcher parameterMatcher = _parameterPattern.matcher(url);
 
 				while (parameterMatcher.find()) {
 					String name = parameterMatcher.group(1);
@@ -636,8 +636,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		if (!formParameters.isEmpty()) {
 			interactionParams.setFormParameters(
-				formParameters.toArray(
-					new NamedString[formParameters.size()]));
+				formParameters.toArray(new NamedString[formParameters.size()]));
 		}
 	}
 
@@ -682,8 +681,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			else {
 				UploadContext uploadContext = new UploadContext();
 
-				String contentType =
-					uploadPortletRequest.getContentType(name);
+				String contentType = uploadPortletRequest.getContentType(name);
 
 				uploadContext.setMimeType(contentType);
 
@@ -697,7 +695,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 				NamedString mimeAttribute = new NamedString();
 
-				mimeAttribute.setName("Content-Disposition");
+				mimeAttribute.setName(HttpHeaders.CONTENT_DISPOSITION);
 				mimeAttribute.setValue(sb.toString());
 
 				uploadContext.setMimeAttributes(
@@ -705,15 +703,13 @@ public class ConsumerPortlet extends GenericPortlet {
 
 				File file = uploadPortletRequest.getFile(name);
 
-				byte[] fileBytes = null;
+				byte[] bytes = FileUtil.getBytes(file);
 
-				fileBytes = FileUtil.getBytes(file);
-
-				if (fileBytes == null) {
+				if (bytes == null) {
 					continue;
 				}
 
-				uploadContext.setUploadData(fileBytes);
+				uploadContext.setUploadData(bytes);
 
 				uploadContexts.add(uploadContext);
 			}
@@ -721,8 +717,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		if (!formParameters.isEmpty()) {
 			interactionParams.setFormParameters(
-				formParameters.toArray(
-					new NamedString[formParameters.size()]));
+				formParameters.toArray(new NamedString[formParameters.size()]));
 		}
 
 		if (!uploadContexts.isEmpty()) {
@@ -813,7 +808,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 	private static final String _WSRP_PREFIX = "wsrp-";
 
-	private static Pattern _urlParametersPattern = Pattern.compile(
+	private static Pattern _parameterPattern = Pattern.compile(
 		"(?:([^&]+)=([^&]+))(?:(?:&amp;|&))?");
 	private static Pattern _rewritePattern = Pattern.compile(
 		"(wsrp_rewrite_)|(?:wsrp_rewrite\\?(.*)/wsrp_rewrite)");
