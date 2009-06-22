@@ -12,14 +12,14 @@
 
 		<mkdir dir="${tstamp.value}" />
 
-		<axis-wsdl2java nowrapped="true" output="${tstamp.value}" serverside="true" url="docroot/wsdl/wsrp-1.0-service.wsdl" verbose="true">
+		<axis-wsdl2java nowrapped="true" output="${tstamp.value}" serverside="true" url="docroot/WEB-INF/wsdl/wsrp-1.0-service.wsdl" verbose="true">
 			<mapping namespace="urn:oasis:names:tc:wsrp:v1:bind" package="oasis.names.tc.wsrp.v1.bind" />
 			<mapping namespace="urn:oasis:names:tc:wsrp:v1:intf" package="oasis.names.tc.wsrp.v1.intf" />
 			<mapping namespace="urn:oasis:names:tc:wsrp:v1:types" package="oasis.names.tc.wsrp.v1.types" />
 			<mapping namespace="urn:oasis:names:tc:wsrp:v1:wsdl" package="oasis.names.tc.wsrp.v1.wsdl" />
 		</axis-wsdl2java>
 
-		<axis-wsdl2java nowrapped="true" output="${tstamp.value}" serverside="true" url="docroot/wsdl/wsrp-2.0-service.wsdl" verbose="true">
+		<axis-wsdl2java nowrapped="true" output="${tstamp.value}" serverside="true" url="docroot/WEB-INF/wsdl/wsrp-2.0-service.wsdl" verbose="true">
 			<mapping namespace="urn:oasis:names:tc:wsrp:v2:bind" package="oasis.names.tc.wsrp.v2.bind" />
 			<mapping namespace="urn:oasis:names:tc:wsrp:v2:intf" package="oasis.names.tc.wsrp.v2.intf" />
 			<mapping namespace="urn:oasis:names:tc:wsrp:v2:types" package="oasis.names.tc.wsrp.v2.types" />
@@ -68,7 +68,7 @@
 			<path>
 				<fileset
 					dir="."
-					includes="docroot/wsdl/*"
+					includes="docroot/WEB-INF/wsdl/*"
 				/>
 			</path>
 			<sequential>
