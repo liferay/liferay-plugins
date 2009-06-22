@@ -4,6 +4,7 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.wsrp.model.WSRPConsumer" />
 	<import class="com.liferay.wsrp.model.WSRPConsumerPortlet" />
+	<import class="com.liferay.wsrp.model.WSRPProducer" />
 	<class name="com.liferay.wsrp.model.impl.WSRPConsumerImpl" table="WSRP_WSRPConsumer">
 		<cache usage="read-write" />
 		<id name="wsrpConsumerId" type="long">
@@ -25,5 +26,16 @@
 		<property name="wsrpConsumerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="portletHandle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.wsrp.model.impl.WSRPProducerImpl" table="WSRP_WSRPProducer">
+		<cache usage="read-write" />
+		<id name="wsrpProducerId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="portletIds" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

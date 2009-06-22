@@ -16,3 +16,12 @@ create table WSRP_WSRPConsumerPortlet (
 	name VARCHAR(75) null,
 	portletHandle STRING null
 );
+
+create table WSRP_WSRPProducer (
+	wsrpProducerId LONG not null primary key,
+	companyId VARCHAR(75) null,
+	createDate DATE null,
+	modifiedDate DATE null,
+	name VARCHAR(75) null,
+	portletIds STRING null
+);

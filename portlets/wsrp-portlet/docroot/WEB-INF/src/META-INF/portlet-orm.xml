@@ -37,4 +37,19 @@
 			<basic name="portletHandle" />
 		</attributes>
 	</entity>
+	<entity class="com.liferay.wsrp.model.impl.WSRPProducerImpl" name="WSRPProducer">
+		<table name="WSRP_WSRPProducer" />
+		<attributes>
+			<id name="wsrpProducerId" />
+			<basic name="companyId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="name" />
+			<basic name="portletIds" />
+		</attributes>
+	</entity>
 </entity-mappings>

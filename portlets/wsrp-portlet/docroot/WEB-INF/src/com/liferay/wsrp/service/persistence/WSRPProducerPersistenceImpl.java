@@ -41,89 +41,89 @@ import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.wsrp.NoSuchConsumerException;
-import com.liferay.wsrp.model.WSRPConsumer;
-import com.liferay.wsrp.model.impl.WSRPConsumerImpl;
-import com.liferay.wsrp.model.impl.WSRPConsumerModelImpl;
+import com.liferay.wsrp.NoSuchProducerException;
+import com.liferay.wsrp.model.WSRPProducer;
+import com.liferay.wsrp.model.impl.WSRPProducerImpl;
+import com.liferay.wsrp.model.impl.WSRPProducerModelImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * <a href="WSRPConsumerPersistenceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WSRPProducerPersistenceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
-	implements WSRPConsumerPersistence {
-	public static final String FINDER_CLASS_NAME_ENTITY = WSRPConsumerImpl.class.getName();
+public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
+	implements WSRPProducerPersistence {
+	public static final String FINDER_CLASS_NAME_ENTITY = WSRPProducerImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
-	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPProducerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPProducerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
-	public void cacheResult(WSRPConsumer wsrpConsumer) {
-		EntityCacheUtil.putResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerImpl.class, wsrpConsumer.getPrimaryKey(), wsrpConsumer);
+	public void cacheResult(WSRPProducer wsrpProducer) {
+		EntityCacheUtil.putResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPProducerImpl.class, wsrpProducer.getPrimaryKey(), wsrpProducer);
 	}
 
-	public void cacheResult(List<WSRPConsumer> wsrpConsumers) {
-		for (WSRPConsumer wsrpConsumer : wsrpConsumers) {
+	public void cacheResult(List<WSRPProducer> wsrpProducers) {
+		for (WSRPProducer wsrpProducer : wsrpProducers) {
 			if (EntityCacheUtil.getResult(
-						WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-						WSRPConsumerImpl.class, wsrpConsumer.getPrimaryKey(),
+						WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
+						WSRPProducerImpl.class, wsrpProducer.getPrimaryKey(),
 						this) == null) {
-				cacheResult(wsrpConsumer);
+				cacheResult(wsrpProducer);
 			}
 		}
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(WSRPConsumerImpl.class.getName());
-		EntityCacheUtil.clearCache(WSRPConsumerImpl.class.getName());
+		CacheRegistry.clear(WSRPProducerImpl.class.getName());
+		EntityCacheUtil.clearCache(WSRPProducerImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
-	public WSRPConsumer create(long wsrpConsumerId) {
-		WSRPConsumer wsrpConsumer = new WSRPConsumerImpl();
+	public WSRPProducer create(long wsrpProducerId) {
+		WSRPProducer wsrpProducer = new WSRPProducerImpl();
 
-		wsrpConsumer.setNew(true);
-		wsrpConsumer.setPrimaryKey(wsrpConsumerId);
+		wsrpProducer.setNew(true);
+		wsrpProducer.setPrimaryKey(wsrpProducerId);
 
-		return wsrpConsumer;
+		return wsrpProducer;
 	}
 
-	public WSRPConsumer remove(long wsrpConsumerId)
-		throws NoSuchConsumerException, SystemException {
+	public WSRPProducer remove(long wsrpProducerId)
+		throws NoSuchProducerException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			WSRPConsumer wsrpConsumer = (WSRPConsumer)session.get(WSRPConsumerImpl.class,
-					new Long(wsrpConsumerId));
+			WSRPProducer wsrpProducer = (WSRPProducer)session.get(WSRPProducerImpl.class,
+					new Long(wsrpProducerId));
 
-			if (wsrpConsumer == null) {
+			if (wsrpProducer == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No WSRPConsumer exists with the primary key " +
-						wsrpConsumerId);
+					_log.warn("No WSRPProducer exists with the primary key " +
+						wsrpProducerId);
 				}
 
-				throw new NoSuchConsumerException(
-					"No WSRPConsumer exists with the primary key " +
-					wsrpConsumerId);
+				throw new NoSuchProducerException(
+					"No WSRPProducer exists with the primary key " +
+					wsrpProducerId);
 			}
 
-			return remove(wsrpConsumer);
+			return remove(wsrpProducer);
 		}
-		catch (NoSuchConsumerException nsee) {
+		catch (NoSuchProducerException nsee) {
 			throw nsee;
 		}
 		catch (Exception e) {
@@ -134,38 +134,38 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public WSRPConsumer remove(WSRPConsumer wsrpConsumer)
+	public WSRPProducer remove(WSRPProducer wsrpProducer)
 		throws SystemException {
-		for (ModelListener<WSRPConsumer> listener : listeners) {
-			listener.onBeforeRemove(wsrpConsumer);
+		for (ModelListener<WSRPProducer> listener : listeners) {
+			listener.onBeforeRemove(wsrpProducer);
 		}
 
-		wsrpConsumer = removeImpl(wsrpConsumer);
+		wsrpProducer = removeImpl(wsrpProducer);
 
-		for (ModelListener<WSRPConsumer> listener : listeners) {
-			listener.onAfterRemove(wsrpConsumer);
+		for (ModelListener<WSRPProducer> listener : listeners) {
+			listener.onAfterRemove(wsrpProducer);
 		}
 
-		return wsrpConsumer;
+		return wsrpProducer;
 	}
 
-	protected WSRPConsumer removeImpl(WSRPConsumer wsrpConsumer)
+	protected WSRPProducer removeImpl(WSRPProducer wsrpProducer)
 		throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			if (wsrpConsumer.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(WSRPConsumerImpl.class,
-						wsrpConsumer.getPrimaryKeyObj());
+			if (wsrpProducer.isCachedModel() || BatchSessionUtil.isEnabled()) {
+				Object staleObject = session.get(WSRPProducerImpl.class,
+						wsrpProducer.getPrimaryKeyObj());
 
 				if (staleObject != null) {
 					session.evict(staleObject);
 				}
 			}
 
-			session.delete(wsrpConsumer);
+			session.delete(wsrpProducer);
 
 			session.flush();
 		}
@@ -178,60 +178,60 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		EntityCacheUtil.removeResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerImpl.class, wsrpConsumer.getPrimaryKey());
+		EntityCacheUtil.removeResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPProducerImpl.class, wsrpProducer.getPrimaryKey());
 
-		return wsrpConsumer;
+		return wsrpProducer;
 	}
 
-	public WSRPConsumer update(WSRPConsumer wsrpConsumer)
+	public WSRPProducer update(WSRPProducer wsrpProducer)
 		throws SystemException {
 		if (_log.isWarnEnabled()) {
 			_log.warn(
-				"Using the deprecated update(WSRPConsumer wsrpConsumer) method. Use update(WSRPConsumer wsrpConsumer, boolean merge) instead.");
+				"Using the deprecated update(WSRPProducer wsrpProducer) method. Use update(WSRPProducer wsrpProducer, boolean merge) instead.");
 		}
 
-		return update(wsrpConsumer, false);
+		return update(wsrpProducer, false);
 	}
 
-	public WSRPConsumer update(WSRPConsumer wsrpConsumer, boolean merge)
+	public WSRPProducer update(WSRPProducer wsrpProducer, boolean merge)
 		throws SystemException {
-		boolean isNew = wsrpConsumer.isNew();
+		boolean isNew = wsrpProducer.isNew();
 
-		for (ModelListener<WSRPConsumer> listener : listeners) {
+		for (ModelListener<WSRPProducer> listener : listeners) {
 			if (isNew) {
-				listener.onBeforeCreate(wsrpConsumer);
+				listener.onBeforeCreate(wsrpProducer);
 			}
 			else {
-				listener.onBeforeUpdate(wsrpConsumer);
+				listener.onBeforeUpdate(wsrpProducer);
 			}
 		}
 
-		wsrpConsumer = updateImpl(wsrpConsumer, merge);
+		wsrpProducer = updateImpl(wsrpProducer, merge);
 
-		for (ModelListener<WSRPConsumer> listener : listeners) {
+		for (ModelListener<WSRPProducer> listener : listeners) {
 			if (isNew) {
-				listener.onAfterCreate(wsrpConsumer);
+				listener.onAfterCreate(wsrpProducer);
 			}
 			else {
-				listener.onAfterUpdate(wsrpConsumer);
+				listener.onAfterUpdate(wsrpProducer);
 			}
 		}
 
-		return wsrpConsumer;
+		return wsrpProducer;
 	}
 
-	public WSRPConsumer updateImpl(
-		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer, boolean merge)
+	public WSRPProducer updateImpl(
+		com.liferay.wsrp.model.WSRPProducer wsrpProducer, boolean merge)
 		throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, wsrpConsumer, merge);
+			BatchSessionUtil.update(session, wsrpProducer, merge);
 
-			wsrpConsumer.setNew(false);
+			wsrpProducer.setNew(false);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -242,57 +242,57 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		EntityCacheUtil.putResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerImpl.class, wsrpConsumer.getPrimaryKey(), wsrpConsumer);
+		EntityCacheUtil.putResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPProducerImpl.class, wsrpProducer.getPrimaryKey(), wsrpProducer);
 
-		return wsrpConsumer;
+		return wsrpProducer;
 	}
 
-	public WSRPConsumer findByPrimaryKey(long wsrpConsumerId)
-		throws NoSuchConsumerException, SystemException {
-		WSRPConsumer wsrpConsumer = fetchByPrimaryKey(wsrpConsumerId);
+	public WSRPProducer findByPrimaryKey(long wsrpProducerId)
+		throws NoSuchProducerException, SystemException {
+		WSRPProducer wsrpProducer = fetchByPrimaryKey(wsrpProducerId);
 
-		if (wsrpConsumer == null) {
+		if (wsrpProducer == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No WSRPConsumer exists with the primary key " +
-					wsrpConsumerId);
+				_log.warn("No WSRPProducer exists with the primary key " +
+					wsrpProducerId);
 			}
 
-			throw new NoSuchConsumerException(
-				"No WSRPConsumer exists with the primary key " +
-				wsrpConsumerId);
+			throw new NoSuchProducerException(
+				"No WSRPProducer exists with the primary key " +
+				wsrpProducerId);
 		}
 
-		return wsrpConsumer;
+		return wsrpProducer;
 	}
 
-	public WSRPConsumer fetchByPrimaryKey(long wsrpConsumerId)
+	public WSRPProducer fetchByPrimaryKey(long wsrpProducerId)
 		throws SystemException {
-		WSRPConsumer wsrpConsumer = (WSRPConsumer)EntityCacheUtil.getResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-				WSRPConsumerImpl.class, wsrpConsumerId, this);
+		WSRPProducer wsrpProducer = (WSRPProducer)EntityCacheUtil.getResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPProducerImpl.class, wsrpProducerId, this);
 
-		if (wsrpConsumer == null) {
+		if (wsrpProducer == null) {
 			Session session = null;
 
 			try {
 				session = openSession();
 
-				wsrpConsumer = (WSRPConsumer)session.get(WSRPConsumerImpl.class,
-						new Long(wsrpConsumerId));
+				wsrpProducer = (WSRPProducer)session.get(WSRPProducerImpl.class,
+						new Long(wsrpProducerId));
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
-				if (wsrpConsumer != null) {
-					cacheResult(wsrpConsumer);
+				if (wsrpProducer != null) {
+					cacheResult(wsrpProducer);
 				}
 
 				closeSession(session);
 			}
 		}
 
-		return wsrpConsumer;
+		return wsrpProducer;
 	}
 
 	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
@@ -335,22 +335,22 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<WSRPConsumer> findAll() throws SystemException {
+	public List<WSRPProducer> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
-	public List<WSRPConsumer> findAll(int start, int end)
+	public List<WSRPProducer> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
-	public List<WSRPConsumer> findAll(int start, int end, OrderByComparator obc)
+	public List<WSRPProducer> findAll(int start, int end, OrderByComparator obc)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		List<WSRPConsumer> list = (List<WSRPConsumer>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+		List<WSRPProducer> list = (List<WSRPProducer>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);
 
 		if (list == null) {
@@ -362,7 +362,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"SELECT wsrpConsumer FROM WSRPConsumer wsrpConsumer ");
+					"SELECT wsrpProducer FROM WSRPProducer wsrpProducer ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
@@ -370,7 +370,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 					String[] orderByFields = obc.getOrderByFields();
 
 					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("wsrpConsumer.");
+						query.append("wsrpProducer.");
 						query.append(orderByFields[i]);
 
 						if (obc.isAscending()) {
@@ -389,19 +389,19 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 				else {
 					query.append("ORDER BY ");
 
-					query.append("wsrpConsumer.name ASC");
+					query.append("wsrpProducer.name ASC");
 				}
 
 				Query q = session.createQuery(query.toString());
 
 				if (obc == null) {
-					list = (List<WSRPConsumer>)QueryUtil.list(q, getDialect(),
+					list = (List<WSRPProducer>)QueryUtil.list(q, getDialect(),
 							start, end, false);
 
 					Collections.sort(list);
 				}
 				else {
-					list = (List<WSRPConsumer>)QueryUtil.list(q, getDialect(),
+					list = (List<WSRPProducer>)QueryUtil.list(q, getDialect(),
 							start, end);
 				}
 			}
@@ -410,7 +410,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<WSRPConsumer>();
+					list = new ArrayList<WSRPProducer>();
 				}
 
 				cacheResult(list);
@@ -425,8 +425,8 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public void removeAll() throws SystemException {
-		for (WSRPConsumer wsrpConsumer : findAll()) {
-			remove(wsrpConsumer);
+		for (WSRPProducer wsrpProducer : findAll()) {
+			remove(wsrpProducer);
 		}
 	}
 
@@ -443,7 +443,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(wsrpConsumer) FROM WSRPConsumer wsrpConsumer");
+						"SELECT COUNT(wsrpProducer) FROM WSRPProducer wsrpProducer");
 
 				count = (Long)q.uniqueResult();
 			}
@@ -468,14 +468,14 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
-						"value.object.listener.com.liferay.wsrp.model.WSRPConsumer")));
+						"value.object.listener.com.liferay.wsrp.model.WSRPProducer")));
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener<WSRPConsumer>> listenersList = new ArrayList<ModelListener<WSRPConsumer>>();
+				List<ModelListener<WSRPProducer>> listenersList = new ArrayList<ModelListener<WSRPProducer>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener<WSRPConsumer>)Class.forName(
+					listenersList.add((ModelListener<WSRPProducer>)Class.forName(
 							listenerClassName).newInstance());
 				}
 
@@ -493,5 +493,5 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 	protected com.liferay.wsrp.service.persistence.WSRPConsumerPortletPersistence wsrpConsumerPortletPersistence;
 	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPProducerPersistence.impl")
 	protected com.liferay.wsrp.service.persistence.WSRPProducerPersistence wsrpProducerPersistence;
-	private static Log _log = LogFactoryUtil.getLog(WSRPConsumerPersistenceImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(WSRPProducerPersistenceImpl.class);
 }

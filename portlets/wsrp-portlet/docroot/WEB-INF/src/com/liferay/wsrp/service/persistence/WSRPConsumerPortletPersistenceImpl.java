@@ -833,5 +833,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl
 	protected com.liferay.wsrp.service.persistence.WSRPConsumerPersistence wsrpConsumerPersistence;
 	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPConsumerPortletPersistence.impl")
 	protected com.liferay.wsrp.service.persistence.WSRPConsumerPortletPersistence wsrpConsumerPortletPersistence;
+	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPProducerPersistence.impl")
+	protected com.liferay.wsrp.service.persistence.WSRPProducerPersistence wsrpProducerPersistence;
 	private static Log _log = LogFactoryUtil.getLog(WSRPConsumerPortletPersistenceImpl.class);
 }

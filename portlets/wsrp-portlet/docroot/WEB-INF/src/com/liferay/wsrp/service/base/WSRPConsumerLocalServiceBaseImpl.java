@@ -31,8 +31,10 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.service.WSRPConsumerLocalService;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalService;
+import com.liferay.wsrp.service.WSRPProducerLocalService;
 import com.liferay.wsrp.service.persistence.WSRPConsumerPersistence;
 import com.liferay.wsrp.service.persistence.WSRPConsumerPortletPersistence;
+import com.liferay.wsrp.service.persistence.WSRPProducerPersistence;
 
 import java.util.List;
 
@@ -140,6 +142,24 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 		this.wsrpConsumerPortletPersistence = wsrpConsumerPortletPersistence;
 	}
 
+	public WSRPProducerLocalService getWSRPProducerLocalService() {
+		return wsrpProducerLocalService;
+	}
+
+	public void setWSRPProducerLocalService(
+		WSRPProducerLocalService wsrpProducerLocalService) {
+		this.wsrpProducerLocalService = wsrpProducerLocalService;
+	}
+
+	public WSRPProducerPersistence getWSRPProducerPersistence() {
+		return wsrpProducerPersistence;
+	}
+
+	public void setWSRPProducerPersistence(
+		WSRPProducerPersistence wsrpProducerPersistence) {
+		this.wsrpProducerPersistence = wsrpProducerPersistence;
+	}
+
 	protected void runSQL(String sql) throws SystemException {
 		try {
 			PortalUtil.runSQL(sql);
@@ -157,4 +177,8 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	protected WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService;
 	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPConsumerPortletPersistence.impl")
 	protected WSRPConsumerPortletPersistence wsrpConsumerPortletPersistence;
+	@BeanReference(name = "com.liferay.wsrp.service.WSRPProducerLocalService.impl")
+	protected WSRPProducerLocalService wsrpProducerLocalService;
+	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPProducerPersistence.impl")
+	protected WSRPProducerPersistence wsrpProducerPersistence;
 }

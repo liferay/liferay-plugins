@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.wsrp.service.ClpSerializer;
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
+import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
 
 /**
  * <a href="ClpMessageListener.java.html"><b><i>View Source</i></b></a>
@@ -58,6 +59,8 @@ public class ClpMessageListener implements MessageListener {
 			WSRPConsumerLocalServiceUtil.clearService();
 
 			WSRPConsumerPortletLocalServiceUtil.clearService();
+
+			WSRPProducerLocalServiceUtil.clearService();
 		}
 	}
 

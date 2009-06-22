@@ -23,4 +23,15 @@
 	<bean id="com.liferay.wsrp.service.persistence.WSRPConsumerPortletUtil" class="com.liferay.wsrp.service.persistence.WSRPConsumerPortletUtil">
 		<property name="persistence" ref="com.liferay.wsrp.service.persistence.WSRPConsumerPortletPersistence.impl" />
 	</bean>
+	<bean id="com.liferay.wsrp.service.WSRPProducerLocalService.impl" class="com.liferay.wsrp.service.impl.WSRPProducerLocalServiceImpl" />
+	<bean id="com.liferay.wsrp.service.WSRPProducerLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.wsrp.service.WSRPProducerLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.wsrp.service.WSRPProducerLocalServiceUtil" class="com.liferay.wsrp.service.WSRPProducerLocalServiceUtil">
+		<property name="service" ref="com.liferay.wsrp.service.WSRPProducerLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.wsrp.service.persistence.WSRPProducerPersistence.impl" class="com.liferay.wsrp.service.persistence.WSRPProducerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.wsrp.service.persistence.WSRPProducerUtil" class="com.liferay.wsrp.service.persistence.WSRPProducerUtil">
+		<property name="persistence" ref="com.liferay.wsrp.service.persistence.WSRPProducerPersistence.impl" />
+	</bean>
 </beans>

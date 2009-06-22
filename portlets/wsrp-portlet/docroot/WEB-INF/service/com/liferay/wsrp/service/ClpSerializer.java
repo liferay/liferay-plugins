@@ -28,6 +28,7 @@ import com.liferay.portal.model.BaseModel;
 
 import com.liferay.wsrp.model.WSRPConsumerClp;
 import com.liferay.wsrp.model.WSRPConsumerPortletClp;
+import com.liferay.wsrp.model.WSRPProducerClp;
 
 import java.lang.reflect.Method;
 
@@ -189,6 +190,74 @@ public class ClpSerializer {
 			}
 		}
 
+		if (oldModelClassName.equals(WSRPProducerClp.class.getName())) {
+			WSRPProducerClp oldCplModel = (WSRPProducerClp)oldModel;
+
+			ClassLoader contextClassLoader = Thread.currentThread()
+												   .getContextClassLoader();
+
+			try {
+				Thread.currentThread().setContextClassLoader(_classLoader);
+
+				try {
+					Class<?> newModelClass = Class.forName("com.liferay.wsrp.model.impl.WSRPProducerImpl",
+							true, _classLoader);
+
+					Object newModel = newModelClass.newInstance();
+
+					Method method0 = newModelClass.getMethod("setWsrpProducerId",
+							new Class[] { Long.TYPE });
+
+					Long value0 = new Long(oldCplModel.getWsrpProducerId());
+
+					method0.invoke(newModel, value0);
+
+					Method method1 = newModelClass.getMethod("setCompanyId",
+							new Class[] { String.class });
+
+					String value1 = oldCplModel.getCompanyId();
+
+					method1.invoke(newModel, value1);
+
+					Method method2 = newModelClass.getMethod("setCreateDate",
+							new Class[] { Date.class });
+
+					Date value2 = oldCplModel.getCreateDate();
+
+					method2.invoke(newModel, value2);
+
+					Method method3 = newModelClass.getMethod("setModifiedDate",
+							new Class[] { Date.class });
+
+					Date value3 = oldCplModel.getModifiedDate();
+
+					method3.invoke(newModel, value3);
+
+					Method method4 = newModelClass.getMethod("setName",
+							new Class[] { String.class });
+
+					String value4 = oldCplModel.getName();
+
+					method4.invoke(newModel, value4);
+
+					Method method5 = newModelClass.getMethod("setPortletIds",
+							new Class[] { String.class });
+
+					String value5 = oldCplModel.getPortletIds();
+
+					method5.invoke(newModel, value5);
+
+					return newModel;
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+			}
+			finally {
+				Thread.currentThread().setContextClassLoader(contextClassLoader);
+			}
+		}
+
 		return oldModel;
 	}
 
@@ -333,6 +402,68 @@ public class ClpSerializer {
 							(Object[])null);
 
 					newModel.setPortletHandle(value5);
+
+					return newModel;
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+			}
+			finally {
+				Thread.currentThread().setContextClassLoader(contextClassLoader);
+			}
+		}
+
+		if (oldModelClassName.equals(
+					"com.liferay.wsrp.model.impl.WSRPProducerImpl")) {
+			ClassLoader contextClassLoader = Thread.currentThread()
+												   .getContextClassLoader();
+
+			try {
+				Thread.currentThread().setContextClassLoader(_classLoader);
+
+				try {
+					WSRPProducerClp newModel = new WSRPProducerClp();
+
+					Method method0 = oldModelClass.getMethod(
+							"getWsrpProducerId");
+
+					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
+
+					newModel.setWsrpProducerId(value0.longValue());
+
+					Method method1 = oldModelClass.getMethod("getCompanyId");
+
+					String value1 = (String)method1.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setCompanyId(value1);
+
+					Method method2 = oldModelClass.getMethod("getCreateDate");
+
+					Date value2 = (Date)method2.invoke(oldModel, (Object[])null);
+
+					newModel.setCreateDate(value2);
+
+					Method method3 = oldModelClass.getMethod("getModifiedDate");
+
+					Date value3 = (Date)method3.invoke(oldModel, (Object[])null);
+
+					newModel.setModifiedDate(value3);
+
+					Method method4 = oldModelClass.getMethod("getName");
+
+					String value4 = (String)method4.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setName(value4);
+
+					Method method5 = oldModelClass.getMethod("getPortletIds");
+
+					String value5 = (String)method5.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setPortletIds(value5);
 
 					return newModel;
 				}

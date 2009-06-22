@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.util.PortalUtil;
 
-import com.liferay.wsrp.model.WSRPConsumerPortlet;
+import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.WSRPConsumerLocalService;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalService;
 import com.liferay.wsrp.service.WSRPProducerLocalService;
@@ -39,74 +39,71 @@ import com.liferay.wsrp.service.persistence.WSRPProducerPersistence;
 import java.util.List;
 
 /**
- * <a href="WSRPConsumerPortletLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WSRPProducerLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class WSRPConsumerPortletLocalServiceBaseImpl
-	implements WSRPConsumerPortletLocalService {
-	public WSRPConsumerPortlet addWSRPConsumerPortlet(
-		WSRPConsumerPortlet wsrpConsumerPortlet) throws SystemException {
-		wsrpConsumerPortlet.setNew(true);
+public abstract class WSRPProducerLocalServiceBaseImpl
+	implements WSRPProducerLocalService {
+	public WSRPProducer addWSRPProducer(WSRPProducer wsrpProducer)
+		throws SystemException {
+		wsrpProducer.setNew(true);
 
-		return wsrpConsumerPortletPersistence.update(wsrpConsumerPortlet, false);
+		return wsrpProducerPersistence.update(wsrpProducer, false);
 	}
 
-	public WSRPConsumerPortlet createWSRPConsumerPortlet(
-		long wsrpConsumerPortletId) {
-		return wsrpConsumerPortletPersistence.create(wsrpConsumerPortletId);
+	public WSRPProducer createWSRPProducer(long wsrpProducerId) {
+		return wsrpProducerPersistence.create(wsrpProducerId);
 	}
 
-	public void deleteWSRPConsumerPortlet(long wsrpConsumerPortletId)
+	public void deleteWSRPProducer(long wsrpProducerId)
 		throws PortalException, SystemException {
-		wsrpConsumerPortletPersistence.remove(wsrpConsumerPortletId);
+		wsrpProducerPersistence.remove(wsrpProducerId);
 	}
 
-	public void deleteWSRPConsumerPortlet(
-		WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws PortalException, SystemException {
-		wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
+	public void deleteWSRPProducer(WSRPProducer wsrpProducer)
+		throws SystemException {
+		wsrpProducerPersistence.remove(wsrpProducer);
 	}
 
 	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
-		return wsrpConsumerPortletPersistence.findWithDynamicQuery(dynamicQuery);
+		return wsrpProducerPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
 	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end) throws SystemException {
-		return wsrpConsumerPortletPersistence.findWithDynamicQuery(dynamicQuery,
+		return wsrpProducerPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
 
-	public WSRPConsumerPortlet getWSRPConsumerPortlet(
-		long wsrpConsumerPortletId) throws PortalException, SystemException {
-		return wsrpConsumerPortletPersistence.findByPrimaryKey(wsrpConsumerPortletId);
+	public WSRPProducer getWSRPProducer(long wsrpProducerId)
+		throws PortalException, SystemException {
+		return wsrpProducerPersistence.findByPrimaryKey(wsrpProducerId);
 	}
 
-	public List<WSRPConsumerPortlet> getWSRPConsumerPortlets(int start, int end)
+	public List<WSRPProducer> getWSRPProducers(int start, int end)
 		throws SystemException {
-		return wsrpConsumerPortletPersistence.findAll(start, end);
+		return wsrpProducerPersistence.findAll(start, end);
 	}
 
-	public int getWSRPConsumerPortletsCount() throws SystemException {
-		return wsrpConsumerPortletPersistence.countAll();
+	public int getWSRPProducersCount() throws SystemException {
+		return wsrpProducerPersistence.countAll();
 	}
 
-	public WSRPConsumerPortlet updateWSRPConsumerPortlet(
-		WSRPConsumerPortlet wsrpConsumerPortlet) throws SystemException {
-		wsrpConsumerPortlet.setNew(false);
-
-		return wsrpConsumerPortletPersistence.update(wsrpConsumerPortlet, true);
-	}
-
-	public WSRPConsumerPortlet updateWSRPConsumerPortlet(
-		WSRPConsumerPortlet wsrpConsumerPortlet, boolean merge)
+	public WSRPProducer updateWSRPProducer(WSRPProducer wsrpProducer)
 		throws SystemException {
-		wsrpConsumerPortlet.setNew(false);
+		wsrpProducer.setNew(false);
 
-		return wsrpConsumerPortletPersistence.update(wsrpConsumerPortlet, merge);
+		return wsrpProducerPersistence.update(wsrpProducer, true);
+	}
+
+	public WSRPProducer updateWSRPProducer(WSRPProducer wsrpProducer,
+		boolean merge) throws SystemException {
+		wsrpProducer.setNew(false);
+
+		return wsrpProducerPersistence.update(wsrpProducer, merge);
 	}
 
 	public WSRPConsumerLocalService getWSRPConsumerLocalService() {

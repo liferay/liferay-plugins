@@ -54,6 +54,29 @@
 			<finder-column name="wsrpConsumerId" />
 		</finder>
 	</entity>
+	<entity name="WSRPProducer" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="wsrpProducerId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="portletIds" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="name" />
+		</order>
+	</entity>
 	<exceptions>
 		<exception>WSRPConsumerWSDL</exception>
 	</exceptions>
