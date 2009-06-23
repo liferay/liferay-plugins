@@ -53,6 +53,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import oasis.names.tc.wsrp.v2.types.LocalizedString;
 import oasis.names.tc.wsrp.v2.types.MarkupType;
 import oasis.names.tc.wsrp.v2.types.PortletDescription;
 
@@ -196,6 +197,42 @@ public class WSRPConsumerPortletLocalServiceImpl
 		}
 	}
 
+	protected String getLocalizedStringValue(LocalizedString localizedString) {
+		return getLocalizedStringValue(localizedString, null);
+	}
+
+	protected String getLocalizedStringValue(
+		LocalizedString localizedString, String defaultValue) {
+
+		if (localizedString == null) {
+			return defaultValue;
+		}
+
+		return localizedString.getValue();
+	}
+
+	protected String[] getLocalizedStringValues(
+		LocalizedString[] localizedStrings) {
+
+		return getLocalizedStringValues(localizedStrings, null);
+	}
+
+	protected String[] getLocalizedStringValues(
+		LocalizedString[] localizedStrings, String[] defaultValue) {
+
+		if (localizedStrings == null) {
+			return defaultValue;
+		}
+
+		String[] values = new String[localizedStrings.length];
+
+		for (int i = 0; i < localizedStrings.length; i++) {
+			values[i] = getLocalizedStringValue(localizedStrings[i]);
+		}
+
+		return values;
+	}
+
 	protected Portlet getPortlet(WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws Exception {
 
@@ -273,14 +310,11 @@ public class WSRPConsumerPortletLocalServiceImpl
 				markupType.getMimeType(), mimeTypeWindowStates);
 		}
 
-		String title = WSRPConsumerManager.getLocalizedStringValue(
-			portletDescription.getTitle(),
-			portletDescription.getDisplayName().getValue());
-		String shortTitle = WSRPConsumerManager.getLocalizedStringValue(
+		String title = wsrpConsumerPortlet.getName();
+		String shortTitle = getLocalizedStringValue(
 			portletDescription.getShortTitle(), title);
 		String keywords = StringUtil.merge(
-			WSRPConsumerManager.getLocalizedStringValues(
-				portletDescription.getKeywords()),
+			getLocalizedStringValues(portletDescription.getKeywords()),
 			StringPool.SPACE);
 
 		PortletInfo portletInfo = new PortletInfo(title, shortTitle, keywords);

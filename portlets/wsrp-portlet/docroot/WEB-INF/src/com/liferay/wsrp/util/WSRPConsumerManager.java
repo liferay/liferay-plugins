@@ -38,7 +38,6 @@ import java.util.Map;
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_ServiceDescription_PortType;
 import oasis.names.tc.wsrp.v2.types.GetServiceDescription;
-import oasis.names.tc.wsrp.v2.types.LocalizedString;
 import oasis.names.tc.wsrp.v2.types.PortletDescription;
 import oasis.names.tc.wsrp.v2.types.ServiceDescription;
 import oasis.names.tc.wsrp.v2.wsdl.WSRP_v2_ServiceLocator;
@@ -50,44 +49,6 @@ import oasis.names.tc.wsrp.v2.wsdl.WSRP_v2_ServiceLocator;
  *
  */
 public class WSRPConsumerManager {
-
-	public static String getLocalizedStringValue(
-		LocalizedString localizedString) {
-
-		return getLocalizedStringValue(localizedString, null);
-	}
-
-	public static String getLocalizedStringValue(
-		LocalizedString localizedString, String defaultValue) {
-
-		if (localizedString == null) {
-			return defaultValue;
-		}
-
-		return localizedString.getValue();
-	}
-
-	public static String[] getLocalizedStringValues(
-		LocalizedString[] localizedStrings) {
-
-		return getLocalizedStringValues(localizedStrings, null);
-	}
-
-	public static String[] getLocalizedStringValues(
-		LocalizedString[] localizedStrings, String[] defaultValue) {
-
-		if (localizedStrings == null) {
-			return defaultValue;
-		}
-
-		String[] values = new String[localizedStrings.length];
-
-		for (int i = 0; i < localizedStrings.length; i++) {
-			values[i] = getLocalizedStringValue(localizedStrings[i]);
-		}
-
-		return values;
-	}
 
 	public WSRP_v2_Markup_PortType getMarkupService() throws Exception {
 		return _serviceLocator.getWSRP_v2_Markup_Service(_markupServiceURL);
