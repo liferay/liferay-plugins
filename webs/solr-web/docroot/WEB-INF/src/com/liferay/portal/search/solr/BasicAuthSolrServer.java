@@ -20,13 +20,14 @@
  * SOFTWARE.
  */
 
-package com.liferay.portal.search.solr.server;
+package com.liferay.portal.search.solr;
 
 import java.io.IOException;
 
 import java.net.MalformedURLException;
 
 import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpState;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.solr.client.solrj.ResponseParser;
@@ -69,7 +70,9 @@ public class BasicAuthSolrServer extends SolrServer {
 				authScope = AuthScope.ANY;
 			}
 
-			httpClient.getState().setCredentials(
+			HttpState httpState = httpClient.getState();
+
+			httpState.setCredentials(
 				authScope,
 				new UsernamePasswordCredentials(_username, _password));
 		}
@@ -100,7 +103,7 @@ public class BasicAuthSolrServer extends SolrServer {
 	}
 
 	public NamedList<Object> request(SolrRequest request, ResponseParser parser)
-		throws SolrServerException, IOException {
+		throws IOException, SolrServerException {
 
 		return _server.request(request, parser);
 	}
@@ -145,8 +148,8 @@ public class BasicAuthSolrServer extends SolrServer {
 		_server.setSoTimeout(soTimeout);
 	}
 
-	private String _username;
 	private String _password;
 	private CommonsHttpSolrServer _server;
+	private String _username;
 
 }
