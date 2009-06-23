@@ -888,6 +888,38 @@ table.calendar {
 
 /* Document Library */
 
+.portlet-document-library .results-header {
+	display: none;
+}
+
+.portlet-document-library .folder-name img,
+.portlet-document-library .file-name img {
+	margin-right: .5em;
+}
+
+.portlet-document-library .subfolder,
+.portlet-document-library .file-data,
+.portlet-document-library .file-tags {
+	color: #777;
+	font-size: 10px;
+}
+
+.portlet-document-library .file-tags {
+	background: url(../images/custom/tag_small.png) no-repeat 0 3px;
+	padding-left: 15px;
+}
+
+.portlet-document-library .file-tags span {
+	float: left;
+	font-size: 0;
+	opacity: 0;
+	text-indent: -9999em;
+}
+
+.portlet-document-library .file-data span {
+	margin-right: 1em;
+}
+
 .portlet-document-library .webdav-url {
 	margin-top: 1em;
 }

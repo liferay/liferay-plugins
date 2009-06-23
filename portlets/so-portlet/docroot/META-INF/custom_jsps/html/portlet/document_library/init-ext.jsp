@@ -18,7 +18,7 @@
 %>
 
 <%
-folderColumns = new String[] {"name", "size", "tags", "downloads", "locked", "action"};
+folderColumns = new String[] {"name", "action"};
 fileEntryColumns = folderColumns;
 
 showSubfolders = false;
