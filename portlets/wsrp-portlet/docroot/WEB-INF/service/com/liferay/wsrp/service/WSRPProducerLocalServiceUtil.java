@@ -51,7 +51,8 @@ public class WSRPProducerLocalServiceUtil {
 
 	public static void deleteWSRPProducer(
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
 		getService().deleteWSRPProducer(wsrpProducer);
 	}
 

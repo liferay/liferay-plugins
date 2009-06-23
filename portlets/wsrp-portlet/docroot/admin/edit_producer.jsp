@@ -36,16 +36,20 @@ try {
 }
 catch (NoSuchProducerException nsce) {
 }
+
+String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, request, "portletIds"));
 %>
 
 <script type="text/javascript">
 	function <portlet:namespace />saveProducer() {
+		document.<portlet:namespace />fm.<portlet:namespace />portletIds.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentPortletIds);
 		submitForm(document.<portlet:namespace />fm);
 	}
 </script>
 
 <form action="<portlet:actionURL name="updateWSRPProducer"><portlet:param name="jspPage" value="/admin/edit_producer.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveProducer(); return false;">
 <input name="<portlet:namespace />wsrpProducerId" type="hidden" value="<%= wsrpProducerId %>" />
+<input name="<portlet:namespace />portletIds" type="hidden" value="" />
 
 <liferay-ui:error exception="<%= WSRPProducerNameException.class %>" message="please-enter-a-valid-name" />
 
@@ -76,6 +80,61 @@ catch (NoSuchProducerException nsce) {
 	</tr>
 </c:if>
 
+<tr>
+	<td colspan="3">
+		<br />
+	</td>
+</tr>
+<tr>
+	<td>
+		<liferay-ui:message key="portlets" />
+	</td>
+	<td>
+
+		<%
+
+		// Left list
+
+		List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
+
+		for (String portletId : portletIds) {
+			leftList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portletId, company.getCompanyId(), locale)));
+		}
+
+		leftList = ListUtil.sort(leftList, new KeyValuePairComparator(false, true));
+
+		// Right list
+
+		List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
+
+		Arrays.sort(portletIds);
+
+		Iterator<Portlet> itr = PortletLocalServiceUtil.getPortlets().iterator();
+
+		while (itr.hasNext()) {
+			Portlet portlet = (Portlet)itr.next();
+
+			String portletId = portlet.getPortletId();
+
+			if (Arrays.binarySearch(portletIds, portletId) < 0) {
+				rightList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portletId, company.getCompanyId(), locale)));
+			}
+		}
+
+		rightList = ListUtil.sort(rightList, new KeyValuePairComparator(false, true));
+		%>
+
+		<liferay-ui:input-move-boxes
+			formName="fm"
+			leftTitle="current"
+			rightTitle="available"
+			leftBoxName="currentPortletIds"
+			rightBoxName="availablePortletIds"
+			leftList="<%= leftList %>"
+			rightList="<%= rightList %>"
+		/>
+	</td>
+</tr>
 </table>
 
 <br />

@@ -63,7 +63,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	}
 
 	public void deleteWSRPProducer(WSRPProducer wsrpProducer)
-		throws SystemException {
+		throws PortalException, SystemException {
 		wsrpProducerPersistence.remove(wsrpProducer);
 	}
 

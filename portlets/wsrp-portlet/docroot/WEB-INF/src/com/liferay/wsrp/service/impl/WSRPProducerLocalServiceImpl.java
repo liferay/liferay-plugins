@@ -26,6 +26,7 @@ import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.wsrp.WSRPProducerNameException;
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.base.WSRPProducerLocalServiceBaseImpl;
@@ -46,6 +47,8 @@ public class WSRPProducerLocalServiceImpl
 			long companyId, String name, String portletIds)
 		throws PortalException, SystemException {
 
+		// WSRP producer
+
 		Date now = new Date();
 
 		validate(name);
@@ -63,7 +66,35 @@ public class WSRPProducerLocalServiceImpl
 
 		wsrpProducerPersistence.update(wsrpProducer, false);
 
+		// Company
+
+		String webId = "wsrp-" + wsrpProducerId + ".com";
+		String virtualHost = webId;
+		String mx = webId;
+		String shardName = null;
+		boolean system = true;
+
+		CompanyLocalServiceUtil.addCompany(
+			webId, virtualHost, mx, shardName, system);
+
 		return wsrpProducer;
+	}
+
+	public void deleteWSRPProducer(long wsrpProducerId)
+		throws PortalException, SystemException {
+
+		WSRPProducer wsrpProducer = wsrpProducerPersistence.findByPrimaryKey(
+			wsrpProducerId);
+
+		deleteWSRPProducer(wsrpProducer);
+	}
+
+	public void deleteWSRPProducer(WSRPProducer wsrpProducer)
+		throws PortalException, SystemException {
+
+		CompanyLocalServiceUtil.deleteCompany(wsrpProducer.getCompanyId());
+
+		wsrpProducerPersistence.remove(wsrpProducer);
 	}
 
 	public WSRPProducer updateWSRPProducer(
