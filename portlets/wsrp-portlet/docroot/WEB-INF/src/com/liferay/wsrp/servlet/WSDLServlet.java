@@ -109,15 +109,15 @@ public class WSDLServlet extends HttpServlet {
 	protected String getURL(HttpServletRequest request) {
 		String url = request.getRequestURL().toString();
 
-		int pos = url.indexOf("/wsdl");
+		int pos = url.lastIndexOf("/wsdl");
 
-		return url.substring(0, pos) + "/wsdl";
+		return url.substring(0, pos);
 	}
 
 	protected String replaceLocations(
 		HttpServletRequest request, String content) {
 
-		String url = getURL(request);
+		String url = getURL(request) + "/wsdl";
 
 		return StringUtil.replace(
 			content,
