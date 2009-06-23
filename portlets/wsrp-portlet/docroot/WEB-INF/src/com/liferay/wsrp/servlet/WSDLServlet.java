@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.servlet.ServletResponseUtil;
 
 import java.io.IOException;
@@ -54,14 +53,9 @@ public class WSDLServlet extends HttpServlet {
 		try {
 			String content = getContent(request);
 
-			if (content == null) {
-				response.sendError(HttpServletResponse.SC_NOT_FOUND);
-			}
-			else {
-				response.setContentType(ContentTypes.TEXT_XML);
+			response.setContentType(ContentTypes.TEXT_XML);
 
-				ServletResponseUtil.write(response, content);
-			}
+			ServletResponseUtil.write(response, content);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -76,17 +70,6 @@ public class WSDLServlet extends HttpServlet {
 
 		ServletContext servletContext = getServletContext();
 
-		if (Validator.isNull(path)) {
-			double version = ParamUtil.getDouble(
-				request, "version", _DEFAULT_VERSION);
-
-			String content = StringUtil.read(
-				servletContext.getResourceAsStream(
-					"/WEB-INF/wsdl/wsrp-" + version + "-service.wsdl"));
-
-			return replaceLocations(request, content);
-		}
-
 		for (String curPath : _PATHS) {
 			if (path.equals(curPath)) {
 				String content = StringUtil.read(
@@ -96,35 +79,53 @@ public class WSDLServlet extends HttpServlet {
 			}
 		}
 
-		return null;
-	}
+		double version = ParamUtil.getDouble(
+			request, "version", _DEFAULT_VERSION);
 
-	protected String replaceLocations(
-		HttpServletRequest request, String content) {
+		String content = StringUtil.read(
+			servletContext.getResourceAsStream(
+				"/WEB-INF/wsdl/wsrp-" + version + "-service.wsdl"));
+
+		content = replaceLocations(request, content);
 
 		String url = request.getRequestURL().toString();
 
-		if (url.endsWith(".wsdl") || url.endsWith(".xsd")) {
-			int pos = url.lastIndexOf(StringPool.SLASH);
+		int pos = url.lastIndexOf(StringPool.SLASH);
 
-			url = url.substring(0, pos);
-		}
-
-		long wsrpProducerId = ParamUtil.getLong(request, "wsrpProducerId");
+		long wsrpProducerId = GetterUtil.getLong(url.substring(pos));
 
 		return StringUtil.replace(
 			content,
 			new String[] {
 				"http://my.service:8080",
-				"/wsdl/services/",
-				"${wsrpProducerId}",
+				"${wsrpProducerId}"
+			},
+			new String[] {
+				getURL(request),
+				String.valueOf(wsrpProducerId)
+			});
+	}
+
+	protected String getURL(HttpServletRequest request) {
+		String url = request.getRequestURL().toString();
+
+		int pos = url.indexOf("/wsdl");
+
+		return url.substring(0, pos) + "/wsdl";
+	}
+
+	protected String replaceLocations(
+		HttpServletRequest request, String content) {
+
+		String url = getURL(request);
+
+		return StringUtil.replace(
+			content,
+			new String[] {
 				"location=\"wsrp-",
 				"schemaLocation=\"wsrp-"
 			},
 			new String[] {
-				url,
-				"/services/",
-				String.valueOf(wsrpProducerId),
 				"location=\"" + url + "/wsrp-",
 				"schemaLocation=\"" + url + "/wsrp-"
 			});
