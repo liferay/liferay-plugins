@@ -5,7 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
 >
-	<bean id="solrServer" class="org.apache.solr.client.solrj.impl.CommonsHttpSolrServer">
+	<bean id="solrServer" class="com.liferay.portal.search.solr.server.BasicAuthSolrServer">
 		<constructor-arg type="java.lang.String" value="http://localhost:8080/solr" />
 	</bean>
 	<bean id="indexSearcher.solr" class="com.liferay.portal.search.solr.SolrIndexSearcherImpl">
