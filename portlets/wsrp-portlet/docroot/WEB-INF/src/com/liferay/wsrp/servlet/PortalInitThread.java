@@ -24,42 +24,36 @@ package com.liferay.wsrp.servlet;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.PortalInitable;
-import com.liferay.portal.kernel.util.PortalInitableUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-
 /**
- * <a href="WSRPServletContextListener.java.html"><b><i>View Source</i></b></a>
+ * <a href="PortalInitThread.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class WSRPServletContextListener
-	implements PortalInitable, ServletContextListener {
+public class PortalInitThread extends Thread {
 
-	public void contextDestroyed(ServletContextEvent event) {
+	public void run() {
 		try {
-			WSRPConsumerPortletLocalServiceUtil.destroyWSRPConsumerPortlets();
+
+			// Wait 5 seconds before initializing consumer portlets in case the
+			// consumer and producer are the same machine
+
+			Thread.sleep(5000);
+
+			WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlets();
+		}
+		catch (InterruptedException ie) {
 		}
 		catch (Exception e) {
 			_log.error(e, e);
 		}
+		finally {
+			stop();
+		}
 	}
 
-	public void contextInitialized(ServletContextEvent event) {
-		PortalInitableUtil.init(this);
-	}
-
-	public void portalInit() {
-		PortalInitThread portalInitThread = new PortalInitThread();
-
-		portalInitThread.start();
-	}
-
-	private static Log _log =
-		LogFactoryUtil.getLog(WSRPServletContextListener.class);
+	private static Log _log = LogFactoryUtil.getLog(PortalInitThread.class);
 
 }

@@ -47,6 +47,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_ServiceDescription_PortType;
+import oasis.names.tc.wsrp.v2.types.CookieProtocol;
 import oasis.names.tc.wsrp.v2.types.GetServiceDescription;
 import oasis.names.tc.wsrp.v2.types.LocalizedString;
 import oasis.names.tc.wsrp.v2.types.MarkupType;
@@ -61,6 +62,9 @@ import oasis.names.tc.wsrp.v2.types.ServiceDescription;
  */
 public class ServiceDescriptionImpl
 	implements WSRP_v2_ServiceDescription_PortType {
+
+	public ServiceDescriptionImpl() {
+	}
 
 	public ServiceDescription getServiceDescription(
 			GetServiceDescription getServiceDescription)
@@ -96,6 +100,7 @@ public class ServiceDescriptionImpl
 
 		serviceDescription.setOfferedPortlets(
 			getPortletDescriptions(wsrpProducer));
+		serviceDescription.setRequiresInitCookie(_COOKIE_PROTOCOL);
 
 		return serviceDescription;
 	}
@@ -217,5 +222,8 @@ public class ServiceDescriptionImpl
 
 	private static Log _log =
 		LogFactoryUtil.getLog(ServiceDescriptionImpl.class);
+
+	private static CookieProtocol _COOKIE_PROTOCOL = CookieProtocol.fromString(
+		CookieProtocol._perUser);
 
 }

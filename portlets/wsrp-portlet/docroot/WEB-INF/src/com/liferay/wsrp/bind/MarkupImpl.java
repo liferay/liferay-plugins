@@ -22,6 +22,9 @@
 
 package com.liferay.wsrp.bind;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.rmi.RemoteException;
 
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
@@ -49,6 +52,113 @@ public class MarkupImpl implements WSRP_v2_Markup_PortType {
 	public MarkupResponse getMarkup(GetMarkup getMarkup)
 		throws RemoteException {
 
+		try {
+			return doGetMarkup(getMarkup);
+		}
+		catch (RemoteException re) {
+			_log.error(re, re);
+
+			throw re;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public ResourceResponse getResource(GetResource getResource)
+		throws RemoteException {
+
+		try {
+			return doGetResource(getResource);
+		}
+		catch (RemoteException re) {
+			_log.error(re, re);
+
+			throw re;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public HandleEventsResponse handleEvents(HandleEvents handleEvents)
+		throws RemoteException {
+
+		try {
+			return doHandleEvents(handleEvents);
+		}
+		catch (RemoteException re) {
+			_log.error(re, re);
+
+			throw re;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public Extension[] initCookie(InitCookie initCookie)
+		throws RemoteException {
+
+		try {
+			return doInitCookie(initCookie);
+		}
+		catch (RemoteException re) {
+			_log.error(re, re);
+
+			throw re;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public BlockingInteractionResponse performBlockingInteraction(
+			PerformBlockingInteraction performBlockingInteraction)
+		throws RemoteException {
+
+		try {
+			return doPerformBlockingInteraction(performBlockingInteraction);
+		}
+		catch (RemoteException re) {
+			_log.error(re, re);
+
+			throw re;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public Extension[] releaseSessions(ReleaseSessions releaseSessions)
+		throws RemoteException {
+
+		try {
+			return doReleaseSessions(releaseSessions);
+		}
+		catch (RemoteException re) {
+			_log.error(re, re);
+
+			throw re;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	protected MarkupResponse doGetMarkup(GetMarkup getMarkup) throws Exception {
 		MarkupContext markupContext = new MarkupContext();
 
 		markupContext.setItemString("Hello World");
@@ -60,31 +170,29 @@ public class MarkupImpl implements WSRP_v2_Markup_PortType {
 		return markupResponse;
 	}
 
-	public ResourceResponse getResource(GetResource getResource)
-		throws RemoteException {
+	protected ResourceResponse doGetResource(GetResource getResource)
+		throws Exception {
 
 		ResourceResponse resourceResponse = new ResourceResponse();
 
 		return resourceResponse;
 	}
 
-	public HandleEventsResponse handleEvents(HandleEvents handleEvents)
-		throws RemoteException {
+	protected HandleEventsResponse doHandleEvents(HandleEvents handleEvents)
+		throws Exception {
 
 		HandleEventsResponse handleEventsResponse = new HandleEventsResponse();
 
 		return handleEventsResponse;
 	}
 
-	public Extension[] initCookie(InitCookie initCookie)
-		throws RemoteException {
-
+	protected Extension[] doInitCookie(InitCookie initCookie) throws Exception {
 		return null;
 	}
 
-	public BlockingInteractionResponse performBlockingInteraction(
+	protected BlockingInteractionResponse doPerformBlockingInteraction(
 			PerformBlockingInteraction performBlockingInteraction)
-		throws RemoteException {
+		throws Exception {
 
 		BlockingInteractionResponse blockingInteractionResponse =
 			new BlockingInteractionResponse();
@@ -92,10 +200,12 @@ public class MarkupImpl implements WSRP_v2_Markup_PortType {
 		return blockingInteractionResponse;
 	}
 
-	public Extension[] releaseSessions(ReleaseSessions releaseSessions)
-		throws RemoteException {
+	protected Extension[] doReleaseSessions(ReleaseSessions releaseSessions)
+		throws Exception {
 
 		return null;
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(MarkupImpl.class);
 
 }
