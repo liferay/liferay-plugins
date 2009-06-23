@@ -71,7 +71,7 @@ catch (NoSuchProducerException nsce) {
 			<liferay-ui:message key="url" />
 		</td>
 		<td>
-			<%= themeDisplay.getPortalURL() %>/wsrp-portlet/wsdl/<%= wsrpProducer.getWsrpProducerId() %>
+			<a href="<%= themeDisplay.getPortalURL() %>/wsrp-portlet/wsdl/<%= wsrpProducer.getWsrpProducerId() %>" target="_blank"><%= themeDisplay.getPortalURL() %>/wsrp-portlet/wsdl/<%= wsrpProducer.getWsrpProducerId() %></a>
 		</td>
 	</tr>
 </c:if>
