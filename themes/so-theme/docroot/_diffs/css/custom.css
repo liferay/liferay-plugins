@@ -481,6 +481,20 @@ textarea.focus {
 	font-weight: bold;
 }
 
+/* Asset Publisher */
+
+.portlet-asset-publisher .document-folder {
+	margin: 0.5em 0 0;
+}
+
+.portlet-asset-publisher .document-folder a {
+	float: none;
+}
+
+.portlet-asset-publisher .title-list .asset-actions {
+	float: left;
+}
+
 /* Blogs */
 
 .portlet-blogs .entry-content {
