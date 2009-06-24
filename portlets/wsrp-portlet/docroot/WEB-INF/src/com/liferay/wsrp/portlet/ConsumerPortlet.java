@@ -512,22 +512,33 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		// Navigational context
 
-		NavigationalContext navigationalContext =
-			(NavigationalContext)portletSession.getAttribute(
-				_NAVIGATIONAL_CONTEXT);
+		NavigationalContext navigationalContext = new NavigationalContext();
 
-		if (navigationalContext == null) {
-			navigationalContext = new NavigationalContext();
+		String navigationalState = portletRequest.getParameter(
+			"wsrp-navigationalState");
 
-			String navigationalState = portletRequest.getParameter(
-				"wsrp-navigationalState");
+		navigationalContext.setOpaqueValue(navigationalState);
 
-			navigationalContext.setOpaqueValue(navigationalState);
+		String navigationalValues = portletRequest.getParameter(
+			"wsrp-navigationalValues");
 
-			//String navigationalValues = renderRequest.getParameter(
-			//	"wsrp-navigationalValues");
+		if (Validator.isNotNull(navigationalValues)) {
+			List<NamedString> publicValues = new ArrayList<NamedString>();
 
-			//navigationalContext.setPublicValues(publicValues);
+			Matcher matcher = _publicValueParameterPattern.matcher(
+				navigationalValues);
+
+			while (matcher.find()) {
+				NamedString publicValue = new NamedString();
+
+				publicValue.setName(matcher.group(1));
+				publicValue.setValue(matcher.group(2));
+
+				publicValues.add(publicValue);
+			}
+
+			navigationalContext.setPublicValues(
+				publicValues.toArray(new NamedString[publicValues.size()]));
 		}
 
 		markupParams.setNavigationalContext(navigationalContext);
@@ -589,10 +600,58 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		portletSession.setAttribute(
 			_MARKUP_CONTEXT, updateResponse.getMarkupContext());
-		portletSession.setAttribute(
-			_NAVIGATIONAL_CONTEXT, updateResponse.getNavigationalContext());
-		portletSession.setAttribute(
-			_PORTLET_CONTEXT, updateResponse.getPortletContext());
+
+		NavigationalContext navigationalContext =
+			updateResponse.getNavigationalContext();
+
+		if (navigationalContext != null) {
+			String opaqueValue = navigationalContext.getOpaqueValue();
+
+			if (opaqueValue != null) {
+				actionResponse.setRenderParameter(
+					"wsrp-navigationalState", opaqueValue);
+			}
+
+			NamedString[] publicValues = navigationalContext.getPublicValues();
+
+			if ((publicValues != null) && (publicValues.length > 0)) {
+				int lastIndex = publicValues.length - 2;
+
+				StringBuilder sb = new StringBuilder();
+
+				for (int i = 0; i < publicValues.length; i++) {
+					NamedString publicValue = publicValues[i];
+
+					sb.append(publicValue.getName());
+
+					String value = publicValue.getValue();
+
+					if (Validator.isNotNull(value)) {
+						sb.append(StringPool.EQUAL);
+						sb.append(publicValue.getValue());
+					}
+
+					if (i < lastIndex) {
+						sb.append(StringPool.AMPERSAND);
+					}
+				}
+
+				actionResponse.setRenderParameter(
+					"wsrp-navigationalValues", sb.toString());
+			}
+		}
+
+		PortletContext portletContext = updateResponse.getPortletContext();
+
+		if (portletContext != null) {
+			portletSession.setAttribute(_PORTLET_CONTEXT, portletContext);
+		}
+
+		SessionContext sessionContext = updateResponse.getSessionContext();
+
+		if (sessionContext != null) {
+			portletSession.setAttribute(_SESSION_CONTEXT, sessionContext);
+		}
 
 		String portletMode = updateResponse.getNewMode();
 
@@ -606,8 +665,6 @@ public class ConsumerPortlet extends GenericPortlet {
 			actionResponse.setWindowState(getWindowState(windowState));
 		}
 
-		portletSession.setAttribute(
-			_SESSION_CONTEXT, updateResponse.getSessionContext());
 	}
 
 	protected void processFormParameters(
@@ -646,11 +703,13 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		PortletSession portletSession = portletRequest.getPortletSession();
 
-		portletSession.setAttribute(
-			_SESSION_CONTEXT, markupResponse.getSessionContext());
+		SessionContext sessionContext = markupResponse.getSessionContext();
+
+		if (sessionContext != null) {
+			portletSession.setAttribute(_SESSION_CONTEXT, sessionContext);
+		}
 
 		portletSession.removeAttribute(_MARKUP_CONTEXT);
-		portletSession.removeAttribute(_NAVIGATIONAL_CONTEXT);
 	}
 
 	protected void processMultipartForm(
@@ -800,14 +859,14 @@ public class ConsumerPortlet extends GenericPortlet {
 
 	private static final String[] _MIME_TYPES = {ContentTypes.TEXT_HTML};
 
-	private static final String _NAVIGATIONAL_CONTEXT = "NAVIGATIONAL_CONTEXT";
-
 	private static final String _PORTLET_CONTEXT = "PORTLET_CONTEXT";
 
 	private static final String _SESSION_CONTEXT = "SESSION_CONTEXT";
 
 	private static Pattern _parameterPattern = Pattern.compile(
-		"(?:([^&]+)=([^&]+))(?:(?:&amp;|&))?");
+		"(?:([^&]+)=([^&]+))(?:&amp;|&)?");
+	private static Pattern _publicValueParameterPattern = Pattern.compile(
+		"(?:([^&]+)(?:=([^&]+)?))&?");
 	private static Pattern _rewritePattern = Pattern.compile(
 		"(wsrp_rewrite_)|(?:wsrp_rewrite\\?(.*)/wsrp_rewrite)");
 
