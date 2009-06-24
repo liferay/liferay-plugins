@@ -472,6 +472,26 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		ClientData clientData = new ClientData();
 
+		List<NamedString> clientAttributes = new ArrayList<NamedString>();
+
+		Enumeration<String> enu = request.getHeaderNames();
+
+		while (enu.hasMoreElements()) {
+			String name = enu.nextElement();
+
+			String value = request.getHeader(name);
+
+			NamedString clientAttribute = new NamedString();
+
+			clientAttribute.setName(name);
+			clientAttribute.setValue(value);
+
+			clientAttributes.add(clientAttribute);
+		}
+
+		clientData.setClientAttributes(
+			clientAttributes.toArray(new NamedString[clientAttributes.size()]));
+
 		clientData.setRequestVerb(HttpMethods.GET);
 		clientData.setUserAgent(request.getHeader(HttpHeaders.USER_AGENT));
 
