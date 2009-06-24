@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.portal.search.solr;
+package com.liferay.portal.search.solr.server;
 
 import java.io.IOException;
 
