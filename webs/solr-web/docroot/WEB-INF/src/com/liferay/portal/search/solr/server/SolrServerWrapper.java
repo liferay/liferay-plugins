@@ -37,12 +37,12 @@ public class SolrServerWrapper {
 		_server = server;
 	}
 
-	public SolrServer getServer() {
-		return _server;
-	}
-
 	public String getId() {
 		return _id;
+	}
+
+	public SolrServer getServer() {
+		return _server;
 	}
 
 	private String _id;

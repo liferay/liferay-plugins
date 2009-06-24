@@ -52,8 +52,8 @@ public class SolrServerFactoryImpl implements SolrServerFactory {
 				return;
 			}
 
-			_liveServers.put(serverWrapper.getId(), serverWrapper);
 			_deadServers.remove(serverWrapper.getId());
+			_liveServers.put(serverWrapper.getId(), serverWrapper);
 		}
 	}
 
@@ -99,15 +99,15 @@ public class SolrServerFactoryImpl implements SolrServerFactory {
 				return;
 			}
 
-			_liveServers.remove(serverWrapper.getId());
 			_deadServers.put(serverWrapper.getId(), serverWrapper);
+			_liveServers.remove(serverWrapper.getId());
 		}
 	}
 
-	private Map<String, SolrServerWrapper> _liveServers =
+	private Map<String, SolrServerWrapper> _deadServers =
 		new TreeMap<String, SolrServerWrapper>(String.CASE_INSENSITIVE_ORDER);
 
-	private Map<String, SolrServerWrapper> _deadServers =
+	private Map<String, SolrServerWrapper> _liveServers =
 		new TreeMap<String, SolrServerWrapper>(String.CASE_INSENSITIVE_ORDER);
 
 }
