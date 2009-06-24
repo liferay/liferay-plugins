@@ -47,8 +47,7 @@ public class LoadBalancerSolrServer extends SolrServer {
 	public NamedList<Object> request(SolrRequest request)
 		throws SolrServerException {
 
-		List<SolrServerWrapper> serverWrappers =
-			_factory.getLiveServers();
+		List<SolrServerWrapper> serverWrappers = _factory.getLiveServers();
 
 		for (SolrServerWrapper serverWrapper : serverWrappers) {
 			SolrServer server = _factory.getLiveServer(serverWrapper);
@@ -76,7 +75,7 @@ public class LoadBalancerSolrServer extends SolrServer {
 			}
 		}
 
-		throw new SolrServerException("No server available.");
+		throw new SolrServerException("No server available");
 	}
 
 	private SolrServerFactory _factory;

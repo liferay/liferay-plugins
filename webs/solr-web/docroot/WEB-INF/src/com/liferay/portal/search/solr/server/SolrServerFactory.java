@@ -34,8 +34,6 @@ import org.apache.solr.client.solrj.SolrServer;
  */
 public interface SolrServerFactory {
 
-	public void aliveServer(SolrServerWrapper serverWrapper);
-
 	public SolrServer getDeadServer(SolrServerWrapper serverWrapper);
 
 	public List<SolrServerWrapper> getDeadServers();
@@ -45,5 +43,7 @@ public interface SolrServerFactory {
 	public List<SolrServerWrapper> getLiveServers();
 
 	public void killServer(SolrServerWrapper serverWrapper);
+
+	public void startServer(SolrServerWrapper serverWrapper);
 
 }

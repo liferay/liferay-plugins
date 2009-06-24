@@ -50,7 +50,7 @@ public class BroadcastWriterSolrServer extends SolrServer {
 
 		if (!(request instanceof UpdateRequest)) {
 			throw new IllegalStateException(
-				"This SolrServer should be used only to update requests.");
+				"This SolrServer should be used only to update requests");
 		}
 
 		for (SolrServerWrapper serverWrapper : _serverWrappers) {
@@ -61,13 +61,14 @@ public class BroadcastWriterSolrServer extends SolrServer {
 			}
 			catch (Exception e) {
 				_log.error(
-					"Could not send request to server: " +
-						serverWrapper.getId());
+					"Could not send request to server " +
+						serverWrapper.getId(),
+					e);
 			}
 		}
 
 		if (response == null) {
-			throw new SolrServerException("No server available.");
+			throw new SolrServerException("No server available");
 		}
 
 		return response;

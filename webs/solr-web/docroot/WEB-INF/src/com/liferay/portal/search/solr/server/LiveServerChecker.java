@@ -43,6 +43,7 @@ public class LiveServerChecker {
 			Executors.newSingleThreadScheduledExecutor();
 
 		Runnable runnable = new Runnable() {
+
 			public void run() {
 				Collection<SolrServerWrapper> serverWrappers =
 					factory.getDeadServers();
@@ -58,13 +59,14 @@ public class LiveServerChecker {
 						SolrPingResponse response = server.ping();
 
 						if (response.getStatus() == 0) {
-							factory.aliveServer(serverWrapper);
+							factory.startServer(serverWrapper);
 						}
 					}
 					catch (Exception e) {
 					}
 				}
 			}
+
 		};
 
 		executor.scheduleWithFixedDelay(runnable, 0, delay, TimeUnit.SECONDS);

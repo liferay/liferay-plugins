@@ -38,22 +38,11 @@ import org.apache.solr.client.solrj.SolrServer;
 public class SolrServerFactoryImpl implements SolrServerFactory {
 
 	public SolrServerFactoryImpl(Map<String, SolrServer> servers) {
-		for (Map.Entry<String, SolrServer> server : servers.entrySet()) {
-			String id = server.getKey();
-			SolrServer solrServer = server.getValue();
+		for (Map.Entry<String, SolrServer> entry : servers.entrySet()) {
+			String id = entry.getKey();
+			SolrServer solrServer = entry.getValue();
 
 			_liveServers.put(id, new SolrServerWrapper(id, solrServer));
-		}
-	}
-
-	public void aliveServer(SolrServerWrapper serverWrapper) {
-		synchronized (this) {
-			if (_liveServers.containsKey(serverWrapper.getId())) {
-				return;
-			}
-
-			_deadServers.remove(serverWrapper.getId());
-			_liveServers.put(serverWrapper.getId(), serverWrapper);
 		}
 	}
 
@@ -104,9 +93,19 @@ public class SolrServerFactoryImpl implements SolrServerFactory {
 		}
 	}
 
+	public void startServer(SolrServerWrapper serverWrapper) {
+		synchronized (this) {
+			if (_liveServers.containsKey(serverWrapper.getId())) {
+				return;
+			}
+
+			_deadServers.remove(serverWrapper.getId());
+			_liveServers.put(serverWrapper.getId(), serverWrapper);
+		}
+	}
+
 	private Map<String, SolrServerWrapper> _deadServers =
 		new TreeMap<String, SolrServerWrapper>(String.CASE_INSENSITIVE_ORDER);
-
 	private Map<String, SolrServerWrapper> _liveServers =
 		new TreeMap<String, SolrServerWrapper>(String.CASE_INSENSITIVE_ORDER);
 
