@@ -525,7 +525,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		if (Validator.isNotNull(navigationalValues)) {
 			List<NamedString> publicValues = new ArrayList<NamedString>();
 
-			Matcher matcher = _publicValueParameterPattern.matcher(
+			Matcher matcher = _navigationalValuesPattern.matcher(
 				navigationalValues);
 
 			while (matcher.find()) {
@@ -664,7 +664,6 @@ public class ConsumerPortlet extends GenericPortlet {
 		if (Validator.isNotNull(windowState)) {
 			actionResponse.setWindowState(getWindowState(windowState));
 		}
-
 	}
 
 	protected void processFormParameters(
@@ -863,10 +862,10 @@ public class ConsumerPortlet extends GenericPortlet {
 
 	private static final String _SESSION_CONTEXT = "SESSION_CONTEXT";
 
+	private static Pattern _navigationalValuesPattern = Pattern.compile(
+		"(?:([^&]+)(?:=([^&]+)?))&?");
 	private static Pattern _parameterPattern = Pattern.compile(
 		"(?:([^&]+)=([^&]+))(?:&amp;|&)?");
-	private static Pattern _publicValueParameterPattern = Pattern.compile(
-		"(?:([^&]+)(?:=([^&]+)?))&?");
 	private static Pattern _rewritePattern = Pattern.compile(
 		"(wsrp_rewrite_)|(?:wsrp_rewrite\\?(.*)/wsrp_rewrite)");
 
