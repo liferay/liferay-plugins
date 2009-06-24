@@ -22,10 +22,27 @@
 
 package com.liferay.wsrp.bind;
 
+import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
+import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.LayoutConstants;
+import com.liferay.portal.model.LayoutTypePortlet;
+import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.util.axis.ServletUtil;
+import com.liferay.wsrp.model.WSRPProducer;
 
 import java.rmi.RemoteException;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
 import oasis.names.tc.wsrp.v2.types.BlockingInteractionResponse;
@@ -36,18 +53,21 @@ import oasis.names.tc.wsrp.v2.types.HandleEvents;
 import oasis.names.tc.wsrp.v2.types.HandleEventsResponse;
 import oasis.names.tc.wsrp.v2.types.InitCookie;
 import oasis.names.tc.wsrp.v2.types.MarkupContext;
+import oasis.names.tc.wsrp.v2.types.MarkupParams;
 import oasis.names.tc.wsrp.v2.types.MarkupResponse;
 import oasis.names.tc.wsrp.v2.types.PerformBlockingInteraction;
+import oasis.names.tc.wsrp.v2.types.PortletContext;
 import oasis.names.tc.wsrp.v2.types.ReleaseSessions;
 import oasis.names.tc.wsrp.v2.types.ResourceResponse;
 
 /**
- * <a href="MarkupImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="MarkupServiceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class MarkupImpl implements WSRP_v2_Markup_PortType {
+public class MarkupServiceImpl
+	extends BaseServiceImpl implements WSRP_v2_Markup_PortType {
 
 	public MarkupResponse getMarkup(GetMarkup getMarkup)
 		throws RemoteException {
@@ -159,9 +179,23 @@ public class MarkupImpl implements WSRP_v2_Markup_PortType {
 	}
 
 	protected MarkupResponse doGetMarkup(GetMarkup getMarkup) throws Exception {
+		WSRPProducer wsrpProducer = getWSRPProducer();
+
+		PortletContext portletContext = getMarkup.getPortletContext();
+
+		String portletId = portletContext.getPortletHandle();
+
+		Layout layout = getLayout(wsrpProducer, portletId);
+
+		MarkupParams markupParams = getMarkup.getMarkupParams();
+
+		String url = getURL(layout, portletId, markupParams.getMode());
+
+		String content = HttpUtil.URLtoString(url);
+
 		MarkupContext markupContext = new MarkupContext();
 
-		markupContext.setItemString("Hello World");
+		markupContext.setItemString(content);
 
 		MarkupResponse markupResponse = new MarkupResponse();
 
@@ -206,6 +240,58 @@ public class MarkupImpl implements WSRP_v2_Markup_PortType {
 		return null;
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(MarkupImpl.class);
+	protected Layout getLayout(WSRPProducer wsrpProducer, String portletId)
+		throws Exception {
+
+		Group group = GroupLocalServiceUtil.getGroup(
+			wsrpProducer.getCompanyId(), GroupConstants.GUEST);
+
+		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
+			group.getGroupId(), false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			0, 1);
+
+		if (layouts.isEmpty()) {
+			throw new NoSuchLayoutException();
+		}
+
+		Layout layout = layouts.get(0);
+
+		LayoutTypePortlet layoutTypePortlet =
+			(LayoutTypePortlet)layout.getLayoutType();
+
+		if (!layoutTypePortlet.hasPortletId(portletId)) {
+			layoutTypePortlet.addPortletId(0, portletId, "column-1", -1, false);
+		}
+
+		return layout;
+	}
+
+	protected String getURL(
+		Layout layout, String portletId, String portletMode) {
+
+		HttpServletRequest request = ServletUtil.getRequest();
+
+		String portalURL = PortalUtil.getPortalURL(request);
+		String mainPath = PortalUtil.getPathMain();
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(portalURL);
+		sb.append(mainPath);
+		sb.append(_PATH_RENDER_PORTLET);
+		sb.append(StringPool.QUESTION);
+		sb.append("p_l_id=");
+		sb.append(layout.getPlid());
+		sb.append("&p_p_id=");
+		sb.append(portletId);
+		sb.append("&p_p_lifecycle=0&p_p_state=exclusive&p_p_mode=");
+		sb.append(portletMode.substring(5));
+
+		return sb.toString();
+	}
+
+	private static final String _PATH_RENDER_PORTLET = "/portal/render_portlet";
+
+	private static Log _log = LogFactoryUtil.getLog(MarkupServiceImpl.class);
 
 }

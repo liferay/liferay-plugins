@@ -380,11 +380,11 @@ public class ConsumerPortlet extends GenericPortlet {
 	}
 
 	protected PortletMode getPortletMode(String portletMode) {
-		return new PortletMode(portletMode.substring(_WSRP_PREFIX.length()));
+		return new PortletMode(portletMode.substring(5));
 	}
 
 	protected WindowState getWindowState(String windowState) {
-		return new WindowState(windowState.substring(_WSRP_PREFIX.length()));
+		return new WindowState(windowState.substring(5));
 	}
 
 	protected WSRPConsumerManager getWSRPConsumerManager(
@@ -561,7 +561,7 @@ public class ConsumerPortlet extends GenericPortlet {
 	}
 
 	protected boolean isReservedParameter(String name) {
-		if (name.startsWith(_WSRP_PREFIX)) {
+		if (name.startsWith("wsrp-")) {
 			return true;
 		}
 		else {
@@ -805,8 +805,6 @@ public class ConsumerPortlet extends GenericPortlet {
 	private static final String _PORTLET_CONTEXT = "PORTLET_CONTEXT";
 
 	private static final String _SESSION_CONTEXT = "SESSION_CONTEXT";
-
-	private static final String _WSRP_PREFIX = "wsrp-";
 
 	private static Pattern _parameterPattern = Pattern.compile(
 		"(?:([^&]+)=([^&]+))(?:(?:&amp;|&))?");
