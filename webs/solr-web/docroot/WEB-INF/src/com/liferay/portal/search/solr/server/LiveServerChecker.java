@@ -39,7 +39,8 @@ import org.apache.solr.client.solrj.response.SolrPingResponse;
 public class LiveServerChecker {
 
 	public LiveServerChecker(final SolrServerFactory factory, Long delay) {
-		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+		ScheduledExecutorService executor =
+			Executors.newSingleThreadScheduledExecutor();
 
 		Runnable runnable = new Runnable() {
 			public void run() {

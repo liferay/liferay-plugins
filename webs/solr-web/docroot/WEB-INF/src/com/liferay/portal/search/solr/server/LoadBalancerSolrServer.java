@@ -76,7 +76,7 @@ public class LoadBalancerSolrServer extends SolrServer {
 			}
 		}
 
-		return null;
+		throw new SolrServerException("No server available.");
 	}
 
 	private SolrServerFactory _factory;
