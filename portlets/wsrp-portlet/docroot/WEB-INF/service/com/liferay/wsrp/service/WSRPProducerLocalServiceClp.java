@@ -124,8 +124,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 
 	public void deleteWSRPProducer(
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(wsrpProducer);
 
 		if (wsrpProducer == null) {
@@ -137,10 +136,6 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.PortalException) {
-				throw (com.liferay.portal.PortalException)t;
-			}
-
 			if (t instanceof com.liferay.portal.SystemException) {
 				throw (com.liferay.portal.SystemException)t;
 			}

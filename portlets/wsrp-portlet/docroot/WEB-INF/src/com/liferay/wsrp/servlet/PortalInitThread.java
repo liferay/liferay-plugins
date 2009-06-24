@@ -49,9 +49,6 @@ public class PortalInitThread extends Thread {
 		catch (Exception e) {
 			_log.error(e, e);
 		}
-		finally {
-			stop();
-		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(PortalInitThread.class);
