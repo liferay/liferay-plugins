@@ -455,14 +455,14 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		return (java.util.List<com.liferay.wsrp.model.WSRPConsumer>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getWSRPConsumers(long companyId)
+	public int getWSRPConsumersCount(long companyId)
 		throws com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getWSRPConsumers",
+			returnObj = _classLoaderProxy.invoke("getWSRPConsumersCount",
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {

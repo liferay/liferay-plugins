@@ -89,7 +89,7 @@ public class WSRPProducerLocalServiceImpl
 		return wsrpProducerPersistence.findByCompanyId(companyId, start, end);
 	}
 
-	public int getWSRPProducers(long companyId) throws SystemException {
+	public int getWSRPProducersCount(long companyId) throws SystemException {
 		return wsrpProducerPersistence.countByCompanyId(companyId);
 	}
 

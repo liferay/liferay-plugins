@@ -110,9 +110,9 @@ public class WSRPConsumerLocalServiceUtil {
 		return getService().getWSRPConsumers(companyId, start, end);
 	}
 
-	public static int getWSRPConsumers(long companyId)
+	public static int getWSRPConsumersCount(long companyId)
 		throws com.liferay.portal.SystemException {
-		return getService().getWSRPConsumers(companyId);
+		return getService().getWSRPConsumersCount(companyId);
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(

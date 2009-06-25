@@ -94,7 +94,7 @@ public interface WSRPConsumerLocalService {
 		throws com.liferay.portal.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getWSRPConsumers(long companyId)
+	public int getWSRPConsumersCount(long companyId)
 		throws com.liferay.portal.SystemException;
 
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(

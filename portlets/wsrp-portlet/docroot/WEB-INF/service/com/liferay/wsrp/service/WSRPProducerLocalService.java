@@ -93,7 +93,7 @@ public interface WSRPProducerLocalService {
 		throws com.liferay.portal.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getWSRPProducers(long companyId)
+	public int getWSRPProducersCount(long companyId)
 		throws com.liferay.portal.SystemException;
 
 	public com.liferay.wsrp.model.WSRPProducer updateWSRPProducer(

@@ -96,7 +96,7 @@ public class WSRPConsumerLocalServiceImpl
 		return wsrpConsumerPersistence.findByCompanyId(companyId, start, end);
 	}
 
-	public int getWSRPConsumers(long companyId) throws SystemException {
+	public int getWSRPConsumersCount(long companyId) throws SystemException {
 		return wsrpConsumerPersistence.countByCompanyId(companyId);
 	}
 
