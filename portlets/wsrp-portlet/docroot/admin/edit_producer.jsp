@@ -98,7 +98,13 @@ String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, req
 		List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
 
 		for (String portletId : portletIds) {
-			leftList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portletId, company.getCompanyId(), locale)));
+			Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletId);
+
+			if ((portlet == null) || portlet.isUndeployedPortlet()) {
+				continue;
+			}
+
+			leftList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portlet, application, locale)));
 		}
 
 		leftList = ListUtil.sort(leftList, new KeyValuePairComparator(false, true));
@@ -109,15 +115,19 @@ String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, req
 
 		Arrays.sort(portletIds);
 
-		Iterator<Portlet> itr = PortletLocalServiceUtil.getPortlets().iterator();
+		Iterator<Portlet> itr = PortletLocalServiceUtil.getPortlets(company.getCompanyId(), false, false).iterator();
 
 		while (itr.hasNext()) {
 			Portlet portlet = (Portlet)itr.next();
 
+			if (portlet.isUndeployedPortlet()) {
+				continue;
+			}
+
 			String portletId = portlet.getPortletId();
 
 			if (Arrays.binarySearch(portletIds, portletId) < 0) {
-				rightList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portletId, company.getCompanyId(), locale)));
+				rightList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portlet, application, locale)));
 			}
 		}
 
