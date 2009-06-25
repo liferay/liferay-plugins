@@ -1,6 +1,7 @@
 
 create table WSRP_WSRPConsumer (
 	wsrpConsumerId LONG not null primary key,
+	companyId LONG,
 	createDate DATE null,
 	modifiedDate DATE null,
 	name VARCHAR(75) null,
@@ -10,6 +11,7 @@ create table WSRP_WSRPConsumer (
 
 create table WSRP_WSRPConsumerPortlet (
 	wsrpConsumerPortletId LONG not null primary key,
+	companyId LONG,
 	createDate DATE null,
 	modifiedDate DATE null,
 	wsrpConsumerId LONG,

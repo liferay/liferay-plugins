@@ -55,6 +55,9 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			{ "wsrpConsumerPortletId", new Integer(Types.BIGINT) },
 			
 
+			{ "companyId", new Integer(Types.BIGINT) },
+			
+
 			{ "createDate", new Integer(Types.TIMESTAMP) },
 			
 
@@ -69,7 +72,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 			{ "portletHandle", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPConsumerPortlet (wsrpConsumerPortletId LONG not null primary key,createDate DATE null,modifiedDate DATE null,wsrpConsumerId LONG,name VARCHAR(75) null,portletHandle STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPConsumerPortlet (wsrpConsumerPortletId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,wsrpConsumerId LONG,name VARCHAR(75) null,portletHandle STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table WSRP_WSRPConsumerPortlet";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -85,6 +88,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		WSRPConsumerPortlet model = new WSRPConsumerPortletImpl();
 
 		model.setWsrpConsumerPortletId(soapModel.getWsrpConsumerPortletId());
+		model.setCompanyId(soapModel.getCompanyId());
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setWsrpConsumerId(soapModel.getWsrpConsumerId());
@@ -129,6 +133,14 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 	public void setWsrpConsumerPortletId(long wsrpConsumerPortletId) {
 		_wsrpConsumerPortletId = wsrpConsumerPortletId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
 	}
 
 	public Date getCreateDate() {
@@ -182,6 +194,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			model.setEscapedModel(true);
 
 			model.setWsrpConsumerPortletId(getWsrpConsumerPortletId());
+			model.setCompanyId(getCompanyId());
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
 			model.setWsrpConsumerId(getWsrpConsumerId());
@@ -209,6 +222,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		WSRPConsumerPortletImpl clone = new WSRPConsumerPortletImpl();
 
 		clone.setWsrpConsumerPortletId(getWsrpConsumerPortletId());
+		clone.setCompanyId(getCompanyId());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
 		clone.setWsrpConsumerId(getWsrpConsumerId());
@@ -263,6 +277,8 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 		sb.append("{wsrpConsumerPortletId=");
 		sb.append(getWsrpConsumerPortletId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
@@ -288,6 +304,10 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		sb.append(
 			"<column><column-name>wsrpConsumerPortletId</column-name><column-value><![CDATA[");
 		sb.append(getWsrpConsumerPortletId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
@@ -316,6 +336,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	}
 
 	private long _wsrpConsumerPortletId;
+	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _wsrpConsumerId;

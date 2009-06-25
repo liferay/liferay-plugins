@@ -10,6 +10,7 @@
 
 		<!-- Audit fields -->
 
+		<column name="companyId" type="long" />
 		<column name="createDate" type="Date" />
 		<column name="modifiedDate" type="Date" />
 
@@ -24,6 +25,12 @@
 		<order by="asc">
 			<order-column name="name" />
 		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
 	</entity>
 	<entity name="WSRPConsumerPortlet" local-service="true" remote-service="false">
 
@@ -33,6 +40,7 @@
 
 		<!-- Audit fields -->
 
+		<column name="companyId" type="long" />
 		<column name="createDate" type="Date" />
 		<column name="modifiedDate" type="Date" />
 
@@ -76,6 +84,12 @@
 		<order by="asc">
 			<order-column name="name" />
 		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
 	</entity>
 	<exceptions>
 		<exception>WSRPConsumerName</exception>

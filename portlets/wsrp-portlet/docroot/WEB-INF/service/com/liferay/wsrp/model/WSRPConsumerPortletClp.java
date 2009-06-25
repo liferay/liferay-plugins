@@ -63,6 +63,14 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 		_wsrpConsumerPortletId = wsrpConsumerPortletId;
 	}
 
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -113,6 +121,7 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 			model.setEscapedModel(true);
 
 			model.setWsrpConsumerPortletId(getWsrpConsumerPortletId());
+			model.setCompanyId(getCompanyId());
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
 			model.setWsrpConsumerId(getWsrpConsumerId());
@@ -131,6 +140,7 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 		WSRPConsumerPortletClp clone = new WSRPConsumerPortletClp();
 
 		clone.setWsrpConsumerPortletId(getWsrpConsumerPortletId());
+		clone.setCompanyId(getCompanyId());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
 		clone.setWsrpConsumerId(getWsrpConsumerId());
@@ -185,6 +195,8 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 
 		sb.append("{wsrpConsumerPortletId=");
 		sb.append(getWsrpConsumerPortletId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
@@ -210,6 +222,10 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 		sb.append(
 			"<column><column-name>wsrpConsumerPortletId</column-name><column-value><![CDATA[");
 		sb.append(getWsrpConsumerPortletId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
@@ -238,6 +254,7 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 	}
 
 	private long _wsrpConsumerPortletId;
+	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _wsrpConsumerId;

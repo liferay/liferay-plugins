@@ -41,6 +41,10 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 
 	public void setWsrpConsumerPortletId(long wsrpConsumerPortletId);
 
+	public long getCompanyId();
+
+	public void setCompanyId(long companyId);
+
 	public Date getCreateDate();
 
 	public void setCreateDate(Date createDate);

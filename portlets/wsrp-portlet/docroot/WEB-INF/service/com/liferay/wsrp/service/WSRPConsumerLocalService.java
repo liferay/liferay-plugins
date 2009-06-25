@@ -83,10 +83,19 @@ public interface WSRPConsumerLocalService {
 		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer, boolean merge)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(
+	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(long companyId,
 		java.lang.String name, java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.wsrp.model.WSRPConsumer> getWSRPConsumers(
+		long companyId, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getWSRPConsumers(long companyId)
+		throws com.liferay.portal.SystemException;
 
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
 		long wsrpConsumerId, java.lang.String name, java.lang.String url)

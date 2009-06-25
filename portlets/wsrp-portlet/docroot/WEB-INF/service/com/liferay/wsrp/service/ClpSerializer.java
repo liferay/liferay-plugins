@@ -76,40 +76,47 @@ public class ClpSerializer {
 
 					method0.invoke(newModel, value0);
 
-					Method method1 = newModelClass.getMethod("setCreateDate",
-							new Class[] { Date.class });
+					Method method1 = newModelClass.getMethod("setCompanyId",
+							new Class[] { Long.TYPE });
 
-					Date value1 = oldCplModel.getCreateDate();
+					Long value1 = new Long(oldCplModel.getCompanyId());
 
 					method1.invoke(newModel, value1);
 
-					Method method2 = newModelClass.getMethod("setModifiedDate",
+					Method method2 = newModelClass.getMethod("setCreateDate",
 							new Class[] { Date.class });
 
-					Date value2 = oldCplModel.getModifiedDate();
+					Date value2 = oldCplModel.getCreateDate();
 
 					method2.invoke(newModel, value2);
 
-					Method method3 = newModelClass.getMethod("setName",
-							new Class[] { String.class });
+					Method method3 = newModelClass.getMethod("setModifiedDate",
+							new Class[] { Date.class });
 
-					String value3 = oldCplModel.getName();
+					Date value3 = oldCplModel.getModifiedDate();
 
 					method3.invoke(newModel, value3);
 
-					Method method4 = newModelClass.getMethod("setUrl",
+					Method method4 = newModelClass.getMethod("setName",
 							new Class[] { String.class });
 
-					String value4 = oldCplModel.getUrl();
+					String value4 = oldCplModel.getName();
 
 					method4.invoke(newModel, value4);
 
-					Method method5 = newModelClass.getMethod("setWsdl",
+					Method method5 = newModelClass.getMethod("setUrl",
 							new Class[] { String.class });
 
-					String value5 = oldCplModel.getWsdl();
+					String value5 = oldCplModel.getUrl();
 
 					method5.invoke(newModel, value5);
+
+					Method method6 = newModelClass.getMethod("setWsdl",
+							new Class[] { String.class });
+
+					String value6 = oldCplModel.getWsdl();
+
+					method6.invoke(newModel, value6);
 
 					return newModel;
 				}
@@ -144,40 +151,47 @@ public class ClpSerializer {
 
 					method0.invoke(newModel, value0);
 
-					Method method1 = newModelClass.getMethod("setCreateDate",
-							new Class[] { Date.class });
+					Method method1 = newModelClass.getMethod("setCompanyId",
+							new Class[] { Long.TYPE });
 
-					Date value1 = oldCplModel.getCreateDate();
+					Long value1 = new Long(oldCplModel.getCompanyId());
 
 					method1.invoke(newModel, value1);
 
-					Method method2 = newModelClass.getMethod("setModifiedDate",
+					Method method2 = newModelClass.getMethod("setCreateDate",
 							new Class[] { Date.class });
 
-					Date value2 = oldCplModel.getModifiedDate();
+					Date value2 = oldCplModel.getCreateDate();
 
 					method2.invoke(newModel, value2);
 
-					Method method3 = newModelClass.getMethod("setWsrpConsumerId",
-							new Class[] { Long.TYPE });
+					Method method3 = newModelClass.getMethod("setModifiedDate",
+							new Class[] { Date.class });
 
-					Long value3 = new Long(oldCplModel.getWsrpConsumerId());
+					Date value3 = oldCplModel.getModifiedDate();
 
 					method3.invoke(newModel, value3);
 
-					Method method4 = newModelClass.getMethod("setName",
-							new Class[] { String.class });
+					Method method4 = newModelClass.getMethod("setWsrpConsumerId",
+							new Class[] { Long.TYPE });
 
-					String value4 = oldCplModel.getName();
+					Long value4 = new Long(oldCplModel.getWsrpConsumerId());
 
 					method4.invoke(newModel, value4);
 
-					Method method5 = newModelClass.getMethod("setPortletHandle",
+					Method method5 = newModelClass.getMethod("setName",
 							new Class[] { String.class });
 
-					String value5 = oldCplModel.getPortletHandle();
+					String value5 = oldCplModel.getName();
 
 					method5.invoke(newModel, value5);
+
+					Method method6 = newModelClass.getMethod("setPortletHandle",
+							new Class[] { String.class });
+
+					String value6 = oldCplModel.getPortletHandle();
+
+					method6.invoke(newModel, value6);
 
 					return newModel;
 				}
@@ -308,38 +322,44 @@ public class ClpSerializer {
 
 					newModel.setWsrpConsumerId(value0.longValue());
 
-					Method method1 = oldModelClass.getMethod("getCreateDate");
+					Method method1 = oldModelClass.getMethod("getCompanyId");
 
-					Date value1 = (Date)method1.invoke(oldModel, (Object[])null);
+					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCreateDate(value1);
+					newModel.setCompanyId(value1.longValue());
 
-					Method method2 = oldModelClass.getMethod("getModifiedDate");
+					Method method2 = oldModelClass.getMethod("getCreateDate");
 
 					Date value2 = (Date)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setModifiedDate(value2);
+					newModel.setCreateDate(value2);
 
-					Method method3 = oldModelClass.getMethod("getName");
+					Method method3 = oldModelClass.getMethod("getModifiedDate");
 
-					String value3 = (String)method3.invoke(oldModel,
-							(Object[])null);
+					Date value3 = (Date)method3.invoke(oldModel, (Object[])null);
 
-					newModel.setName(value3);
+					newModel.setModifiedDate(value3);
 
-					Method method4 = oldModelClass.getMethod("getUrl");
+					Method method4 = oldModelClass.getMethod("getName");
 
 					String value4 = (String)method4.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setUrl(value4);
+					newModel.setName(value4);
 
-					Method method5 = oldModelClass.getMethod("getWsdl");
+					Method method5 = oldModelClass.getMethod("getUrl");
 
 					String value5 = (String)method5.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setWsdl(value5);
+					newModel.setUrl(value5);
+
+					Method method6 = oldModelClass.getMethod("getWsdl");
+
+					String value6 = (String)method6.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setWsdl(value6);
 
 					return newModel;
 				}
@@ -370,38 +390,44 @@ public class ClpSerializer {
 
 					newModel.setWsrpConsumerPortletId(value0.longValue());
 
-					Method method1 = oldModelClass.getMethod("getCreateDate");
+					Method method1 = oldModelClass.getMethod("getCompanyId");
 
-					Date value1 = (Date)method1.invoke(oldModel, (Object[])null);
+					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCreateDate(value1);
+					newModel.setCompanyId(value1.longValue());
 
-					Method method2 = oldModelClass.getMethod("getModifiedDate");
+					Method method2 = oldModelClass.getMethod("getCreateDate");
 
 					Date value2 = (Date)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setModifiedDate(value2);
+					newModel.setCreateDate(value2);
 
-					Method method3 = oldModelClass.getMethod(
+					Method method3 = oldModelClass.getMethod("getModifiedDate");
+
+					Date value3 = (Date)method3.invoke(oldModel, (Object[])null);
+
+					newModel.setModifiedDate(value3);
+
+					Method method4 = oldModelClass.getMethod(
 							"getWsrpConsumerId");
 
-					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
+					Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
 
-					newModel.setWsrpConsumerId(value3.longValue());
+					newModel.setWsrpConsumerId(value4.longValue());
 
-					Method method4 = oldModelClass.getMethod("getName");
-
-					String value4 = (String)method4.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setName(value4);
-
-					Method method5 = oldModelClass.getMethod("getPortletHandle");
+					Method method5 = oldModelClass.getMethod("getName");
 
 					String value5 = (String)method5.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setPortletHandle(value5);
+					newModel.setName(value5);
+
+					Method method6 = oldModelClass.getMethod("getPortletHandle");
+
+					String value6 = (String)method6.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setPortletHandle(value6);
 
 					return newModel;
 				}

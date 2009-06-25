@@ -143,6 +143,9 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long wsrpConsumerId = ParamUtil.getLong(
 			actionRequest, "wsrpConsumerId");
 
@@ -150,7 +153,8 @@ public class AdminPortlet extends MVCPortlet {
 		String url = ParamUtil.getString(actionRequest, "url");
 
 		if (wsrpConsumerId <= 0) {
-			WSRPConsumerLocalServiceUtil.addWSRPConsumer(name, url);
+			WSRPConsumerLocalServiceUtil.addWSRPConsumer(
+				themeDisplay.getCompanyId(), name, url);
 		}
 		else {
 			WSRPConsumerLocalServiceUtil.updateWSRPConsumer(

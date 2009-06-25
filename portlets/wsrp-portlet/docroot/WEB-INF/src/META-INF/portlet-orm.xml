@@ -11,6 +11,7 @@
 		<table name="WSRP_WSRPConsumer" />
 		<attributes>
 			<id name="wsrpConsumerId" />
+			<basic name="companyId" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
@@ -26,6 +27,7 @@
 		<table name="WSRP_WSRPConsumerPortlet" />
 		<attributes>
 			<id name="wsrpConsumerPortletId" />
+			<basic name="companyId" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>

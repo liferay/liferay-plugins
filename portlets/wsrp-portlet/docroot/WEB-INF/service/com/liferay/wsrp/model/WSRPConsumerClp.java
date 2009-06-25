@@ -63,6 +63,14 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		_wsrpConsumerId = wsrpConsumerId;
 	}
 
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -113,6 +121,7 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 			model.setEscapedModel(true);
 
 			model.setWsrpConsumerId(getWsrpConsumerId());
+			model.setCompanyId(getCompanyId());
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
 			model.setName(HtmlUtil.escape(getName()));
@@ -131,6 +140,7 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		WSRPConsumerClp clone = new WSRPConsumerClp();
 
 		clone.setWsrpConsumerId(getWsrpConsumerId());
+		clone.setCompanyId(getCompanyId());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
 		clone.setName(getName());
@@ -185,6 +195,8 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 
 		sb.append("{wsrpConsumerId=");
 		sb.append(getWsrpConsumerId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
@@ -210,6 +222,10 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		sb.append(
 			"<column><column-name>wsrpConsumerId</column-name><column-value><![CDATA[");
 		sb.append(getWsrpConsumerId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
@@ -238,6 +254,7 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 	}
 
 	private long _wsrpConsumerId;
+	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;

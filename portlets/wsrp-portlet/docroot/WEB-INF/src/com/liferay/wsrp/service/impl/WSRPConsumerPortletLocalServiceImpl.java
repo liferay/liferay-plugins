@@ -71,6 +71,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 			long wsrpConsumerId, String name, String portletHandle)
 		throws PortalException, SystemException {
 
+		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
+			wsrpConsumerId);
 		Date now = new Date();
 
 		validate(name);
@@ -80,6 +82,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 		WSRPConsumerPortlet wsrpConsumerPortlet =
 			wsrpConsumerPortletPersistence.create(wsrpConsumerPortletId);
 
+		wsrpConsumerPortlet.setCompanyId(wsrpConsumer.getCompanyId());
 		wsrpConsumerPortlet.setCreateDate(now);
 		wsrpConsumerPortlet.setModifiedDate(now);
 		wsrpConsumerPortlet.setWsrpConsumerId(wsrpConsumerId);

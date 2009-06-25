@@ -98,10 +98,21 @@ public class WSRPConsumerLocalServiceUtil {
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(
-		java.lang.String name, java.lang.String url)
+		long companyId, java.lang.String name, java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return getService().addWSRPConsumer(name, url);
+		return getService().addWSRPConsumer(companyId, name, url);
+	}
+
+	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> getWSRPConsumers(
+		long companyId, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getService().getWSRPConsumers(companyId, start, end);
+	}
+
+	public static int getWSRPConsumers(long companyId)
+		throws com.liferay.portal.SystemException {
+		return getService().getWSRPConsumers(companyId);
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(

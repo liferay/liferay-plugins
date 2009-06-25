@@ -39,6 +39,7 @@ public class WSRPConsumerPortletSoap implements Serializable {
 		WSRPConsumerPortletSoap soapModel = new WSRPConsumerPortletSoap();
 
 		soapModel.setWsrpConsumerPortletId(model.getWsrpConsumerPortletId());
+		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setWsrpConsumerId(model.getWsrpConsumerId());
@@ -107,6 +108,14 @@ public class WSRPConsumerPortletSoap implements Serializable {
 		_wsrpConsumerPortletId = wsrpConsumerPortletId;
 	}
 
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -148,6 +157,7 @@ public class WSRPConsumerPortletSoap implements Serializable {
 	}
 
 	private long _wsrpConsumerPortletId;
+	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _wsrpConsumerId;

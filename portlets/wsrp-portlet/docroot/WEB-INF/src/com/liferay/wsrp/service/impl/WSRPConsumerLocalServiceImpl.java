@@ -34,6 +34,7 @@ import com.liferay.wsrp.service.base.WSRPConsumerLocalServiceBaseImpl;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <a href="WSRPConsumerLocalServiceImpl.java.html"><b><i>View Source</i></b>
@@ -45,7 +46,7 @@ import java.util.Date;
 public class WSRPConsumerLocalServiceImpl
 	extends WSRPConsumerLocalServiceBaseImpl {
 
-	public WSRPConsumer addWSRPConsumer(String name, String url)
+	public WSRPConsumer addWSRPConsumer(long companyId, String name, String url)
 		throws PortalException, SystemException {
 
 		String wsdl = getWSDL(url);
@@ -58,6 +59,7 @@ public class WSRPConsumerLocalServiceImpl
 		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.create(
 			wsrpConsumerId);
 
+		wsrpConsumer.setCompanyId(companyId);
 		wsrpConsumer.setCreateDate(now);
 		wsrpConsumer.setModifiedDate(now);
 		wsrpConsumer.setName(name);
@@ -85,6 +87,17 @@ public class WSRPConsumerLocalServiceImpl
 			wsrpConsumer.getWsrpConsumerId());
 
 		wsrpConsumerPersistence.remove(wsrpConsumer);
+	}
+
+	public List<WSRPConsumer> getWSRPConsumers(
+			long companyId, int start, int end)
+		throws SystemException {
+
+		return wsrpConsumerPersistence.findByCompanyId(companyId, start, end);
+	}
+
+	public int getWSRPConsumers(long companyId) throws SystemException {
+		return wsrpConsumerPersistence.countByCompanyId(companyId);
 	}
 
 	public WSRPConsumer updateWSRPConsumer(

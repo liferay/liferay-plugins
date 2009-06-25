@@ -31,6 +31,7 @@ import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.base.WSRPProducerLocalServiceBaseImpl;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <a href="WSRPProducerLocalServiceImpl.java.html"><b><i>View Source</i></b>
@@ -79,6 +80,17 @@ public class WSRPProducerLocalServiceImpl
 		throws SystemException {
 
 		wsrpProducerPersistence.remove(wsrpProducer);
+	}
+
+	public List<WSRPProducer> getWSRPProducers(
+			long companyId, int start, int end)
+		throws SystemException {
+
+		return wsrpProducerPersistence.findByCompanyId(companyId, start, end);
+	}
+
+	public int getWSRPProducers(long companyId) throws SystemException {
+		return wsrpProducerPersistence.countByCompanyId(companyId);
 	}
 
 	public WSRPProducer updateWSRPProducer(

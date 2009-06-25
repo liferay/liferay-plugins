@@ -68,6 +68,34 @@ public interface WSRPConsumerPersistence extends BasePersistence {
 	public com.liferay.wsrp.model.WSRPConsumer fetchByPrimaryKey(
 		long wsrpConsumerId) throws com.liferay.portal.SystemException;
 
+	public java.util.List<com.liferay.wsrp.model.WSRPConsumer> findByCompanyId(
+		long companyId) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.wsrp.model.WSRPConsumer> findByCompanyId(
+		long companyId, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.wsrp.model.WSRPConsumer> findByCompanyId(
+		long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.wsrp.model.WSRPConsumer findByCompanyId_First(
+		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wsrp.NoSuchConsumerException;
+
+	public com.liferay.wsrp.model.WSRPConsumer findByCompanyId_Last(
+		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wsrp.NoSuchConsumerException;
+
+	public com.liferay.wsrp.model.WSRPConsumer[] findByCompanyId_PrevAndNext(
+		long wsrpConsumerId, long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wsrp.NoSuchConsumerException;
+
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
@@ -86,7 +114,13 @@ public interface WSRPConsumerPersistence extends BasePersistence {
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	public void removeByCompanyId(long companyId)
+		throws com.liferay.portal.SystemException;
+
 	public void removeAll() throws com.liferay.portal.SystemException;
+
+	public int countByCompanyId(long companyId)
+		throws com.liferay.portal.SystemException;
 
 	public int countAll() throws com.liferay.portal.SystemException;
 }

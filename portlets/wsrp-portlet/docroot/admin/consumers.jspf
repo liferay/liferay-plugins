@@ -28,8 +28,8 @@
 	iteratorURL="<%= portletURL %>"
 >
 	<liferay-ui:search-container-results
-		results="<%= WSRPConsumerLocalServiceUtil.getWSRPConsumers(searchContainer.getStart(), searchContainer.getEnd()) %>"
-		total="<%= WSRPConsumerLocalServiceUtil.getWSRPConsumersCount() %>"
+		results="<%= WSRPConsumerLocalServiceUtil.getWSRPConsumers(company.getCompanyId(), searchContainer.getStart(), searchContainer.getEnd()) %>"
+		total="<%= WSRPConsumerLocalServiceUtil.getWSRPConsumersCount(company.getCompanyId()) %>"
 	/>
 
 	<liferay-ui:search-container-row

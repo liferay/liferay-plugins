@@ -103,6 +103,17 @@ public class WSRPProducerLocalServiceUtil {
 		return getService().addWSRPProducer(companyId, name, portletIds);
 	}
 
+	public static java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducers(
+		long companyId, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getService().getWSRPProducers(companyId, start, end);
+	}
+
+	public static int getWSRPProducers(long companyId)
+		throws com.liferay.portal.SystemException {
+		return getService().getWSRPProducers(companyId);
+	}
+
 	public static com.liferay.wsrp.model.WSRPProducer updateWSRPProducer(
 		long wsrpProducerId, java.lang.String name, java.lang.String portletIds)
 		throws com.liferay.portal.PortalException,

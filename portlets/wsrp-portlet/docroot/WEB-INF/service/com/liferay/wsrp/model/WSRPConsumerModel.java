@@ -41,6 +41,10 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 
 	public void setWsrpConsumerId(long wsrpConsumerId);
 
+	public long getCompanyId();
+
+	public void setCompanyId(long companyId);
+
 	public Date getCreateDate();
 
 	public void setCreateDate(Date createDate);

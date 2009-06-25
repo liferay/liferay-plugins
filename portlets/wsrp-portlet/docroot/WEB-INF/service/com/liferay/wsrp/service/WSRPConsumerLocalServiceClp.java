@@ -378,27 +378,29 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		return (com.liferay.wsrp.model.WSRPConsumer)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(
+	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(long companyId,
 		java.lang.String name, java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(name);
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object paramObj1 = ClpSerializer.translateInput(name);
 
 		if (name == null) {
-			paramObj0 = new NullWrapper("java.lang.String");
+			paramObj1 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj1 = ClpSerializer.translateInput(url);
+		Object paramObj2 = ClpSerializer.translateInput(url);
 
 		if (url == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
+			paramObj2 = new NullWrapper("java.lang.String");
 		}
 
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("addWSRPConsumer",
-					new Object[] { paramObj0, paramObj1 });
+					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.PortalException) {
@@ -419,6 +421,65 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		}
 
 		return (com.liferay.wsrp.model.WSRPConsumer)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.wsrp.model.WSRPConsumer> getWSRPConsumers(
+		long companyId, int start, int end)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object paramObj1 = new IntegerWrapper(start);
+
+		Object paramObj2 = new IntegerWrapper(end);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getWSRPConsumers",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.wsrp.model.WSRPConsumer>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int getWSRPConsumers(long companyId)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getWSRPConsumers",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(

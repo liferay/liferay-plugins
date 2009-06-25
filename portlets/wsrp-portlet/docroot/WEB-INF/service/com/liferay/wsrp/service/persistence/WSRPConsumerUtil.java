@@ -91,6 +91,47 @@ public class WSRPConsumerUtil {
 		return getPersistence().fetchByPrimaryKey(wsrpConsumerId);
 	}
 
+	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> findByCompanyId(
+		long companyId) throws com.liferay.portal.SystemException {
+		return getPersistence().findByCompanyId(companyId);
+	}
+
+	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> findByCompanyId(
+		long companyId, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByCompanyId(companyId, start, end);
+	}
+
+	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> findByCompanyId(
+		long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByCompanyId(companyId, start, end, obc);
+	}
+
+	public static com.liferay.wsrp.model.WSRPConsumer findByCompanyId_First(
+		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wsrp.NoSuchConsumerException {
+		return getPersistence().findByCompanyId_First(companyId, obc);
+	}
+
+	public static com.liferay.wsrp.model.WSRPConsumer findByCompanyId_Last(
+		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wsrp.NoSuchConsumerException {
+		return getPersistence().findByCompanyId_Last(companyId, obc);
+	}
+
+	public static com.liferay.wsrp.model.WSRPConsumer[] findByCompanyId_PrevAndNext(
+		long wsrpConsumerId, long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wsrp.NoSuchConsumerException {
+		return getPersistence()
+				   .findByCompanyId_PrevAndNext(wsrpConsumerId, companyId, obc);
+	}
+
 	public static java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
@@ -119,8 +160,18 @@ public class WSRPConsumerUtil {
 		return getPersistence().findAll(start, end, obc);
 	}
 
+	public static void removeByCompanyId(long companyId)
+		throws com.liferay.portal.SystemException {
+		getPersistence().removeByCompanyId(companyId);
+	}
+
 	public static void removeAll() throws com.liferay.portal.SystemException {
 		getPersistence().removeAll();
+	}
+
+	public static int countByCompanyId(long companyId)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByCompanyId(companyId);
 	}
 
 	public static int countAll() throws com.liferay.portal.SystemException {

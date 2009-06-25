@@ -55,6 +55,9 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer> {
 			{ "wsrpConsumerId", new Integer(Types.BIGINT) },
 			
 
+			{ "companyId", new Integer(Types.BIGINT) },
+			
+
 			{ "createDate", new Integer(Types.TIMESTAMP) },
 			
 
@@ -69,7 +72,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer> {
 
 			{ "wsdl", new Integer(Types.CLOB) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPConsumer (wsrpConsumerId LONG not null primary key,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,wsdl TEXT null)";
+	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPConsumer (wsrpConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,wsdl TEXT null)";
 	public static final String TABLE_SQL_DROP = "drop table WSRP_WSRPConsumer";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -85,6 +88,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer> {
 		WSRPConsumer model = new WSRPConsumerImpl();
 
 		model.setWsrpConsumerId(soapModel.getWsrpConsumerId());
+		model.setCompanyId(soapModel.getCompanyId());
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setName(soapModel.getName());
@@ -128,6 +132,14 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer> {
 
 	public void setWsrpConsumerId(long wsrpConsumerId) {
 		_wsrpConsumerId = wsrpConsumerId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
 	}
 
 	public Date getCreateDate() {
@@ -181,6 +193,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer> {
 			model.setEscapedModel(true);
 
 			model.setWsrpConsumerId(getWsrpConsumerId());
+			model.setCompanyId(getCompanyId());
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
 			model.setName(HtmlUtil.escape(getName()));
@@ -208,6 +221,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer> {
 		WSRPConsumerImpl clone = new WSRPConsumerImpl();
 
 		clone.setWsrpConsumerId(getWsrpConsumerId());
+		clone.setCompanyId(getCompanyId());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
 		clone.setName(getName());
@@ -262,6 +276,8 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer> {
 
 		sb.append("{wsrpConsumerId=");
 		sb.append(getWsrpConsumerId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
@@ -287,6 +303,10 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer> {
 		sb.append(
 			"<column><column-name>wsrpConsumerId</column-name><column-value><![CDATA[");
 		sb.append(getWsrpConsumerId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
@@ -315,6 +335,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer> {
 	}
 
 	private long _wsrpConsumerId;
+	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;
