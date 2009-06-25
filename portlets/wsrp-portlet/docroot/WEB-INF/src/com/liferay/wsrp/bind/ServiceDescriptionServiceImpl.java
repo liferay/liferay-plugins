@@ -24,6 +24,7 @@ package com.liferay.wsrp.bind;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Portlet;
@@ -93,8 +94,6 @@ public class ServiceDescriptionServiceImpl
 	}
 
 	protected MarkupType[] getMarkupTypes(Portlet portlet) {
-		List<MarkupType> markupTypes = new ArrayList<MarkupType>();
-
 		Map<String, Set<String>> portletModes = portlet.getPortletModes();
 		Map<String, Set<String>> windowStates = portlet.getWindowStates();
 
@@ -102,6 +101,8 @@ public class ServiceDescriptionServiceImpl
 
 		mimeTypes.addAll(portletModes.keySet());
 		mimeTypes.addAll(windowStates.keySet());
+
+		List<MarkupType> markupTypes = new ArrayList<MarkupType>();
 
 		for (String mimeType : mimeTypes) {
 			Set<String> mimeTypePortletModes = portletModes.get(mimeType);
@@ -138,15 +139,23 @@ public class ServiceDescriptionServiceImpl
 		String title = PortalUtil.getPortletTitle(
 			portlet, wsrpProducer.getCompanyId(), LocaleUtil.getDefault());
 
-		String displayName = portlet.getDisplayName();
+		PortletDescription portletDescription = new PortletDescription();
 
-		if (displayName == null) {
-			displayName = title;
-		}
+		portletDescription.setTitle(getLocalizedString(title));
+
+		String displayName = GetterUtil.getString(
+			portlet.getDisplayName(), title);
+
+		portletDescription.setDisplayName(getLocalizedString(displayName));
 
 		PortletInfo portletInfo = portlet.getPortletInfo();
 
 		String[] keywords = StringUtil.split(portletInfo.getKeywords());
+
+		portletDescription.setKeywords(getLocalizedStrings(keywords));
+
+		portletDescription.setMarkupTypes(getMarkupTypes(portlet));
+		portletDescription.setPortletHandle(portlet.getPortletId());
 
 		String shortTitle = portletInfo.getShortTitle();
 
@@ -154,14 +163,7 @@ public class ServiceDescriptionServiceImpl
 			shortTitle = title;
 		}
 
-		PortletDescription portletDescription = new PortletDescription();
-
-		portletDescription.setDisplayName(getLocalizedString(displayName));
-		portletDescription.setKeywords(getLocalizedStrings(keywords));
-		portletDescription.setMarkupTypes(getMarkupTypes(portlet));
-		portletDescription.setPortletHandle(portlet.getPortletId());
 		portletDescription.setShortTitle(getLocalizedString(shortTitle));
-		portletDescription.setTitle(getLocalizedString(title));
 
 		return portletDescription;
 	}
@@ -169,10 +171,10 @@ public class ServiceDescriptionServiceImpl
 	protected PortletDescription[] getPortletDescriptions(
 		WSRPProducer wsrpProducer) {
 
+		String[] portletIds = StringUtil.split(wsrpProducer.getPortletIds());
+
 		List<PortletDescription> portletDescriptions =
 			new ArrayList<PortletDescription>();
-
-		String[] portletIds = StringUtil.split(wsrpProducer.getPortletIds());
 
 		for (String portletId : portletIds) {
 			Portlet portlet = PortletLocalServiceUtil.getPortletById(portletId);

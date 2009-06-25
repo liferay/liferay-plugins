@@ -25,6 +25,8 @@ package com.liferay.wsrp.bind;
 import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.servlet.HttpHeaders;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
@@ -46,6 +48,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
 import oasis.names.tc.wsrp.v2.types.BlockingInteractionResponse;
+import oasis.names.tc.wsrp.v2.types.ClientData;
 import oasis.names.tc.wsrp.v2.types.Extension;
 import oasis.names.tc.wsrp.v2.types.GetMarkup;
 import oasis.names.tc.wsrp.v2.types.GetResource;
@@ -55,6 +58,7 @@ import oasis.names.tc.wsrp.v2.types.InitCookie;
 import oasis.names.tc.wsrp.v2.types.MarkupContext;
 import oasis.names.tc.wsrp.v2.types.MarkupParams;
 import oasis.names.tc.wsrp.v2.types.MarkupResponse;
+import oasis.names.tc.wsrp.v2.types.NamedString;
 import oasis.names.tc.wsrp.v2.types.PerformBlockingInteraction;
 import oasis.names.tc.wsrp.v2.types.PortletContext;
 import oasis.names.tc.wsrp.v2.types.ReleaseSessions;
@@ -181,17 +185,32 @@ public class MarkupServiceImpl
 	protected MarkupResponse doGetMarkup(GetMarkup getMarkup) throws Exception {
 		WSRPProducer wsrpProducer = getWSRPProducer();
 
-		PortletContext portletContext = getMarkup.getPortletContext();
+		String url = getURL(getMarkup, wsrpProducer);
 
-		String portletId = portletContext.getPortletHandle();
+		Http.Options httpOptions = new Http.Options();
 
-		Layout layout = getLayout(wsrpProducer, portletId);
+		httpOptions.setLocation(url);
 
 		MarkupParams markupParams = getMarkup.getMarkupParams();
 
-		String url = getURL(layout, portletId, markupParams.getMode());
+		ClientData clientData = markupParams.getClientData();
 
-		String content = HttpUtil.URLtoString(url);
+		NamedString[] clientAttributes = clientData.getClientAttributes();
+
+		for (NamedString clientAttribute : clientAttributes) {
+			String name = clientAttribute.getName();
+			String value = clientAttribute.getValue();
+
+			if (name.equalsIgnoreCase(HttpHeaders.ACCEPT_ENCODING) ||
+				name.equalsIgnoreCase(HttpHeaders.COOKIE)) {
+
+				continue;
+			}
+
+			httpOptions.addHeader(name, value);
+		}
+
+		String content = HttpUtil.URLtoString(httpOptions);
 
 		MarkupContext markupContext = new MarkupContext();
 
@@ -240,7 +259,7 @@ public class MarkupServiceImpl
 		return null;
 	}
 
-	protected Layout getLayout(WSRPProducer wsrpProducer, String portletId)
+	protected Layout getLayout(GetMarkup getMarkup, WSRPProducer wsrpProducer)
 		throws Exception {
 
 		Group group = GroupLocalServiceUtil.getGroup(
@@ -259,33 +278,67 @@ public class MarkupServiceImpl
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
 
+		String portletId = getPortletId(getMarkup);
+
 		if (!layoutTypePortlet.hasPortletId(portletId)) {
 			layoutTypePortlet.addPortletId(0, portletId, "column-1", -1, false);
+
+			LayoutLocalServiceUtil.updateLayout(
+				layout.getGroupId(), layout.isPrivateLayout(),
+				layout.getLayoutId(), layout.getTypeSettings());
 		}
 
 		return layout;
 	}
 
-	protected String getURL(
-		Layout layout, String portletId, String portletMode) {
+	protected String getPortletId(GetMarkup getMarkup) throws Exception {
+		PortletContext portletContext = getMarkup.getPortletContext();
+
+		return portletContext.getPortletHandle();
+	}
+
+	protected String getPortletMode(GetMarkup getMarkup) throws Exception {
+		MarkupParams markupParams = getMarkup.getMarkupParams();
+
+		String portletMode = markupParams.getMode();
+
+		return portletMode.substring(5);
+	}
+
+	protected String getURL(GetMarkup getMarkup, WSRPProducer wsrpProducer)
+		throws Exception {
 
 		HttpServletRequest request = ServletUtil.getRequest();
 
 		String portalURL = PortalUtil.getPortalURL(request);
-		String mainPath = PortalUtil.getPathMain();
 
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(portalURL);
-		sb.append(mainPath);
+		sb.append(PortalUtil.getPathMain());
 		sb.append(_PATH_RENDER_PORTLET);
 		sb.append(StringPool.QUESTION);
+
+		Layout layout = getLayout(getMarkup, wsrpProducer);
+
 		sb.append("p_l_id=");
 		sb.append(layout.getPlid());
+
+		String portletId = getPortletId(getMarkup);
+
 		sb.append("&p_p_id=");
-		sb.append(portletId);
-		sb.append("&p_p_lifecycle=0&p_p_state=exclusive&p_p_mode=");
-		sb.append(portletMode.substring(5));
+		sb.append(HttpUtil.encodeURL(portletId));
+
+		sb.append("&p_p_lifecycle=0&p_p_state=exclusive");
+
+		String portletMode = getPortletMode(getMarkup);
+
+		sb.append("&p_p_mode=");
+		sb.append(HttpUtil.encodeURL(portletMode));
+
+		if (_log.isInfoEnabled()) {
+			_log.info("URL " + sb.toString());
+		}
 
 		return sb.toString();
 	}

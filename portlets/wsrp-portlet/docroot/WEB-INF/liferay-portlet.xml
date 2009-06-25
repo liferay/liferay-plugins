@@ -4,7 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<control-panel-entry-category>server</control-panel-entry-category>
+		<control-panel-entry-category>portal</control-panel-entry-category>
 		<css-class-wrapper>wsrp-portlet-admin</css-class-wrapper>
 	</portlet>
 	<portlet>

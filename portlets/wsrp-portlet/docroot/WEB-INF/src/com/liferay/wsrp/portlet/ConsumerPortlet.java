@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.axis.SimpleHTTPSender;
@@ -470,8 +471,6 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		// Markup params
 
-		ClientData clientData = new ClientData();
-
 		List<NamedString> clientAttributes = new ArrayList<NamedString>();
 
 		Enumeration<String> enu = request.getHeaderNames();
@@ -488,6 +487,21 @@ public class ConsumerPortlet extends GenericPortlet {
 
 			clientAttributes.add(clientAttribute);
 		}
+
+		User user = themeDisplay.getUser();
+
+		clientAttributes.add(
+			new NamedString(
+				user.getEmailAddress(), HttpHeaders.LIFERAY_EMAIL_ADDRESS));
+		clientAttributes.add(
+			new NamedString(
+				user.getScreenName(), HttpHeaders.LIFERAY_SCREEN_NAME));
+		clientAttributes.add(
+			new NamedString(
+				String.valueOf(user.getUserId()),
+				HttpHeaders.LIFERAY_USER_ID));
+
+		ClientData clientData = new ClientData();
 
 		clientData.setClientAttributes(
 			clientAttributes.toArray(new NamedString[clientAttributes.size()]));
@@ -745,7 +759,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		Enumeration<String> enu = uploadPortletRequest.getParameterNames();
 
 		while (enu.hasMoreElements()) {
-			String name = (String)enu.nextElement();
+			String name = enu.nextElement();
 
 			if (isReservedParameter(name)) {
 				continue;
