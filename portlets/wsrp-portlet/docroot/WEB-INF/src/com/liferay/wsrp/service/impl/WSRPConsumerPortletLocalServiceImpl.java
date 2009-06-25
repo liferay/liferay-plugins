@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletApp;
 import com.liferay.portal.model.PortletInfo;
@@ -187,7 +186,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 		try {
 			Portlet portlet = getPortlet(wsrpConsumerPortlet);
 
-			PortletLocalServiceUtil.destroyPortlet(portlet);
+			PortletLocalServiceUtil.destroyRemotePortlet(portlet);
 		}
 		catch (PortalException pe) {
 			throw pe;
@@ -256,12 +255,17 @@ public class WSRPConsumerPortletLocalServiceImpl
 			wsrpConsumerManager.getPortletDescription(
 				wsrpConsumerPortlet.getPortletHandle());
 
-		String portletId = PortalUtil.getJsSafePortletId(
-			ConsumerPortlet.PORTLET_NAME_PREFIX +
-				wsrpConsumerPortlet.getWsrpConsumerPortletId());
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(ConsumerPortlet.PORTLET_NAME_PREFIX);
+		sb.append(wsrpConsumerPortlet.getCompanyId());
+		sb.append(StringPool.UNDERLINE);
+		sb.append(wsrpConsumerPortlet.getWsrpConsumerPortletId());
+
+		String portletId = PortalUtil.getJsSafePortletId(sb.toString());
 
 		portlet = PortletLocalServiceUtil.newPortlet(
-			CompanyConstants.SYSTEM, portletId);
+			wsrpConsumerPortlet.getCompanyId(), portletId);
 
 		portlet.setTimestamp(System.currentTimeMillis());
 

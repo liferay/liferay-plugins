@@ -405,8 +405,11 @@ public class ConsumerPortlet extends GenericPortlet {
 	protected WSRPConsumerPortlet getWSRPConsumerPortlet() throws Exception {
 		String portletName = getPortletConfig().getPortletName();
 
+		int pos = portletName.indexOf(
+			StringPool.UNDERLINE, PORTLET_NAME_PREFIX.length());
+
 		long wsrpConsumerPortletId = GetterUtil.getLong(
-			portletName.substring(PORTLET_NAME_PREFIX.length()));
+			portletName.substring(pos + 1));
 
 		WSRPConsumerPortlet wsrpConsumerPortlet =
 			WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(
