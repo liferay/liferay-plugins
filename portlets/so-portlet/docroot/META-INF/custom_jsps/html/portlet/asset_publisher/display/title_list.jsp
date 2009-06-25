@@ -38,9 +38,9 @@ long classPK = ((Long)request.getAttribute("view.jsp-classPK")).longValue();
 
 		DLFileEntry fileEntry = DLFileEntryLocalServiceUtil.getFileEntry(classPK);
 
-		long curPlid = PortalUtil.getPlidFromPortletId(fileEntry.getGroupId(), PortletKeys.DOCUMENT_LIBRARY);
+		long dlPlid = PortalUtil.getPlidFromPortletId(fileEntry.getGroupId(), PortletKeys.DOCUMENT_LIBRARY);
 
-		PortletURL viewFolderURL = new PortletURLImpl(request, PortletKeys.DOCUMENT_LIBRARY, curPlid, PortletRequest.RENDER_PHASE);
+		PortletURL viewFolderURL = new PortletURLImpl(request, PortletKeys.DOCUMENT_LIBRARY, dlPlid, PortletRequest.RENDER_PHASE);
 
 		viewFolderURL.setParameter("struts_action", "/document_library/view");
 		viewFolderURL.setParameter("folderId", String.valueOf(fileEntry.getFolderId()));
