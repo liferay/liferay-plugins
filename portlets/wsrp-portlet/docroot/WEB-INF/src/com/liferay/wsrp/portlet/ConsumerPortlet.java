@@ -904,6 +904,6 @@ public class ConsumerPortlet extends GenericPortlet {
 	private static Pattern _parameterPattern = Pattern.compile(
 		"(?:([^&]+)=([^&]+))(?:&amp;|&)?");
 	private static Pattern _rewritePattern = Pattern.compile(
-		"(wsrp_rewrite_)|(?:wsrp_rewrite\\?(.*)/wsrp_rewrite)");
+		"(wsrp_rewrite_)|(?:wsrp_rewrite\\?([^\\s/]+)/wsrp_rewrite)");
 
 }

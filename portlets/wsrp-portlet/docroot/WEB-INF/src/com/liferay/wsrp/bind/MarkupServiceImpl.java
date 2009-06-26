@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
@@ -59,6 +60,7 @@ import oasis.names.tc.wsrp.v2.types.MarkupContext;
 import oasis.names.tc.wsrp.v2.types.MarkupParams;
 import oasis.names.tc.wsrp.v2.types.MarkupResponse;
 import oasis.names.tc.wsrp.v2.types.NamedString;
+import oasis.names.tc.wsrp.v2.types.NavigationalContext;
 import oasis.names.tc.wsrp.v2.types.PerformBlockingInteraction;
 import oasis.names.tc.wsrp.v2.types.PortletContext;
 import oasis.names.tc.wsrp.v2.types.ReleaseSessions;
@@ -335,6 +337,20 @@ public class MarkupServiceImpl
 
 		sb.append("&p_p_mode=");
 		sb.append(HttpUtil.encodeURL(portletMode));
+
+		NavigationalContext navigationalContext =
+			getMarkup.getMarkupParams().getNavigationalContext();
+
+		if (navigationalContext != null) {
+			String opaqueValue = navigationalContext.getOpaqueValue();
+
+			if (Validator.isNotNull(opaqueValue)) {
+				sb.append(StringPool.AMPERSAND);
+				sb.append(HttpUtil.decodeURL(opaqueValue));
+			}
+		}
+
+		sb.append("&wsrp=1");
 
 		if (_log.isInfoEnabled()) {
 			_log.info("URL " + sb.toString());
