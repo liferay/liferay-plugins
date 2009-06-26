@@ -1256,7 +1256,7 @@ public class StartupAction extends SimpleAction {
 		throws Exception {
 
 		Role publisherRole = RoleLocalServiceUtil.addRole(
-			defaultUserId, companyId, "Publisher", null,
+			defaultUserId, companyId, "Publisher",
 			"Publishers are responsible for approving content.",
 			RoleConstants.TYPE_REGULAR);
 
@@ -1276,7 +1276,7 @@ public class StartupAction extends SimpleAction {
 			});
 
 		Role writerRole = RoleLocalServiceUtil.addRole(
-			defaultUserId, companyId, "Writer", null, 
+			defaultUserId, companyId, "Writer",
 			"Writers are responsible for creating content.",
 			RoleConstants.TYPE_REGULAR);
 
