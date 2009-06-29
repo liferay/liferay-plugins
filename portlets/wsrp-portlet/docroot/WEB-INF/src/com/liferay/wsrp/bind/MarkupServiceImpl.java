@@ -56,6 +56,7 @@ import oasis.names.tc.wsrp.v2.types.GetResource;
 import oasis.names.tc.wsrp.v2.types.HandleEvents;
 import oasis.names.tc.wsrp.v2.types.HandleEventsResponse;
 import oasis.names.tc.wsrp.v2.types.InitCookie;
+import oasis.names.tc.wsrp.v2.types.InteractionParams;
 import oasis.names.tc.wsrp.v2.types.MarkupContext;
 import oasis.names.tc.wsrp.v2.types.MarkupParams;
 import oasis.names.tc.wsrp.v2.types.MarkupResponse;
@@ -65,6 +66,7 @@ import oasis.names.tc.wsrp.v2.types.PerformBlockingInteraction;
 import oasis.names.tc.wsrp.v2.types.PortletContext;
 import oasis.names.tc.wsrp.v2.types.ReleaseSessions;
 import oasis.names.tc.wsrp.v2.types.ResourceResponse;
+import oasis.names.tc.wsrp.v2.types.UpdateResponse;
 
 /**
  * <a href="MarkupServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -217,6 +219,7 @@ public class MarkupServiceImpl
 		MarkupContext markupContext = new MarkupContext();
 
 		markupContext.setItemString(content);
+		markupContext.setRequiresRewriting(true);
 
 		MarkupResponse markupResponse = new MarkupResponse();
 
@@ -249,8 +252,59 @@ public class MarkupServiceImpl
 			PerformBlockingInteraction performBlockingInteraction)
 		throws Exception {
 
+		WSRPProducer wsrpProducer = getWSRPProducer();
+
+		String url = getURL(performBlockingInteraction, wsrpProducer);
+
+		Http.Options httpOptions = new Http.Options();
+
+		httpOptions.setLocation(url);
+
+		MarkupParams markupParams =
+			performBlockingInteraction.getMarkupParams();
+
+		ClientData clientData = markupParams.getClientData();
+
+		NamedString[] clientAttributes = clientData.getClientAttributes();
+
+		for (NamedString clientAttribute : clientAttributes) {
+			String name = clientAttribute.getName();
+			String value = clientAttribute.getValue();
+
+			if (name.equalsIgnoreCase(HttpHeaders.ACCEPT_ENCODING) ||
+				name.equalsIgnoreCase(HttpHeaders.COOKIE)) {
+
+				continue;
+			}
+
+			httpOptions.addHeader(name, value);
+		}
+
+		InteractionParams interactionParams =
+			performBlockingInteraction.getInteractionParams();
+
+		NamedString[] formParameters  = interactionParams.getFormParameters();
+
+		for (NamedString formParameter : formParameters) {
+			httpOptions.addPart(
+				formParameter.getName(), formParameter.getValue());
+		}
+
+		String content = HttpUtil.URLtoString(httpOptions);
+
+		MarkupContext markupContext = new MarkupContext();
+
+		markupContext.setItemString(content);
+		markupContext.setRequiresRewriting(true);
+
 		BlockingInteractionResponse blockingInteractionResponse =
 			new BlockingInteractionResponse();
+
+		UpdateResponse updateResponse = new UpdateResponse();
+
+		updateResponse.setMarkupContext(markupContext);
+
+		blockingInteractionResponse.setUpdateResponse(updateResponse);
 
 		return blockingInteractionResponse;
 	}
@@ -261,7 +315,8 @@ public class MarkupServiceImpl
 		return null;
 	}
 
-	protected Layout getLayout(GetMarkup getMarkup, WSRPProducer wsrpProducer)
+	protected Layout getLayout(
+			PortletContext portletContext, WSRPProducer wsrpProducer)
 		throws Exception {
 
 		Group group = GroupLocalServiceUtil.getGroup(
@@ -280,7 +335,7 @@ public class MarkupServiceImpl
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
 
-		String portletId = getPortletId(getMarkup);
+		String portletId = getPortletId(portletContext);
 
 		if (!layoutTypePortlet.hasPortletId(portletId)) {
 			layoutTypePortlet.addPortletId(0, portletId, "column-1", -1, false);
@@ -293,14 +348,14 @@ public class MarkupServiceImpl
 		return layout;
 	}
 
-	protected String getPortletId(GetMarkup getMarkup) throws Exception {
-		PortletContext portletContext = getMarkup.getPortletContext();
+	protected String getPortletId(PortletContext portletContext)
+		throws Exception {
 
 		return portletContext.getPortletHandle();
 	}
 
-	protected String getPortletMode(GetMarkup getMarkup) throws Exception {
-		MarkupParams markupParams = getMarkup.getMarkupParams();
+	protected String getPortletMode(MarkupParams markupParams)
+		throws Exception {
 
 		String portletMode = markupParams.getMode();
 
@@ -308,6 +363,26 @@ public class MarkupServiceImpl
 	}
 
 	protected String getURL(GetMarkup getMarkup, WSRPProducer wsrpProducer)
+		throws Exception {
+
+		return getURL(
+			"0", getMarkup.getMarkupParams(), getMarkup.getPortletContext(),
+			wsrpProducer);
+	}
+
+	protected String getURL(
+			PerformBlockingInteraction performBlockingInteraction,
+			WSRPProducer wsrpProducer)
+		throws Exception {
+
+		return getURL(
+			"1", performBlockingInteraction.getMarkupParams(),
+			performBlockingInteraction.getPortletContext(), wsrpProducer);
+	}
+
+	protected String getURL(
+			String lifecycle, MarkupParams markupParams,
+			PortletContext portletContext, WSRPProducer wsrpProducer)
 		throws Exception {
 
 		HttpServletRequest request = ServletUtil.getRequest();
@@ -321,25 +396,28 @@ public class MarkupServiceImpl
 		sb.append(_PATH_RENDER_PORTLET);
 		sb.append(StringPool.QUESTION);
 
-		Layout layout = getLayout(getMarkup, wsrpProducer);
+		Layout layout = getLayout(portletContext, wsrpProducer);
 
 		sb.append("p_l_id=");
 		sb.append(layout.getPlid());
 
-		String portletId = getPortletId(getMarkup);
+		String portletId = getPortletId(portletContext);
 
 		sb.append("&p_p_id=");
 		sb.append(HttpUtil.encodeURL(portletId));
 
-		sb.append("&p_p_lifecycle=0&p_p_state=exclusive");
+		sb.append("&p_p_lifecycle=");
+		sb.append(lifecycle);
 
-		String portletMode = getPortletMode(getMarkup);
+		sb.append("&p_p_state=exclusive");
+
+		String portletMode = getPortletMode(markupParams);
 
 		sb.append("&p_p_mode=");
 		sb.append(HttpUtil.encodeURL(portletMode));
 
 		NavigationalContext navigationalContext =
-			getMarkup.getMarkupParams().getNavigationalContext();
+			markupParams.getNavigationalContext();
 
 		if (navigationalContext != null) {
 			String opaqueValue = navigationalContext.getOpaqueValue();
