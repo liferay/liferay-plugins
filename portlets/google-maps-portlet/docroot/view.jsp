@@ -32,7 +32,7 @@
 		directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("directionsAddress"), directionsAddress);
 		%>
 
-		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= license %>" type="text/javascript"></script>
+		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= license %>&amp;sensor=false" type="text/javascript"></script>
 
 		<script type="text/javascript">
 			var <portlet:namespace />map;
@@ -103,11 +103,25 @@
 			}
 
 			function <portlet:namespace />saveDirectionsAddress(address) {
-				loadPage("<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveDirectionsAddress" /></portlet:actionURL>&directionsAddress=" + encodeURIComponent(address));
+				jQuery.ajax(
+					{
+						url: '<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveDirectionsAddress" /></portlet:actionURL>',
+						data: {
+							directionsAddress: encodeURIComponent(address)
+						}
+					}
+				);
 			}
 
 			function <portlet:namespace />saveMapAddress(address) {
-				loadPage("<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveMapAddress" /></portlet:actionURL>&mapAddress=" + encodeURIComponent(address));
+				jQuery.ajax(
+					{
+						url: '<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveMapAddress" /></portlet:actionURL>',
+						data: {
+							mapAddress: encodeURIComponent(address)
+						}
+					}
+				);
 			}
 		</script>
 
