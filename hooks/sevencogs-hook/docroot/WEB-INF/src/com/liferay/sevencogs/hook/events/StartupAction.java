@@ -22,6 +22,7 @@
 
 package com.liferay.sevencogs.hook.events;
 
+import com.liferay.documentlibrary.DuplicateFileException;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.events.ActionException;
@@ -137,9 +138,16 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(false);
 
-		return DLFileEntryLocalServiceUtil.addFileEntry(
-			userId, folderId, name, title, description, StringPool.BLANK, bytes,
-			serviceContext);
+		try {
+			return DLFileEntryLocalServiceUtil.addFileEntry(
+				userId, folderId, name, title, description, StringPool.BLANK,
+				bytes, serviceContext);
+		}
+		catch (DuplicateFileException dfe) {
+			return DLFileEntryLocalServiceUtil.updateFileEntry(
+				userId, folderId, folderId, name, null, title, description,
+				StringPool.BLANK, bytes, serviceContext);
+		}
 	}
 
 	protected DLFolder addDLFolder(
