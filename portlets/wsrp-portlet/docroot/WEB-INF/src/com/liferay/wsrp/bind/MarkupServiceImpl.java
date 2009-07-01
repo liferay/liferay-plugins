@@ -186,16 +186,8 @@ public class MarkupServiceImpl
 		}
 	}
 
-	protected MarkupResponse doGetMarkup(GetMarkup getMarkup) throws Exception {
-		WSRPProducer wsrpProducer = getWSRPProducer();
-
-		String url = getURL(getMarkup, wsrpProducer);
-
-		Http.Options httpOptions = new Http.Options();
-
-		httpOptions.setLocation(url);
-
-		MarkupParams markupParams = getMarkup.getMarkupParams();
+	protected void addHeaders(
+		MarkupParams markupParams, Http.Options httpOptions) {
 
 		ClientData clientData = markupParams.getClientData();
 
@@ -213,6 +205,20 @@ public class MarkupServiceImpl
 
 			httpOptions.addHeader(name, value);
 		}
+	}
+
+	protected MarkupResponse doGetMarkup(GetMarkup getMarkup) throws Exception {
+		WSRPProducer wsrpProducer = getWSRPProducer();
+
+		String url = getURL(getMarkup, wsrpProducer);
+
+		Http.Options httpOptions = new Http.Options();
+
+		httpOptions.setLocation(url);
+
+		MarkupParams markupParams = getMarkup.getMarkupParams();
+
+		addHeaders(markupParams, httpOptions);
 
 		String content = HttpUtil.URLtoString(httpOptions);
 
@@ -263,22 +269,7 @@ public class MarkupServiceImpl
 		MarkupParams markupParams =
 			performBlockingInteraction.getMarkupParams();
 
-		ClientData clientData = markupParams.getClientData();
-
-		NamedString[] clientAttributes = clientData.getClientAttributes();
-
-		for (NamedString clientAttribute : clientAttributes) {
-			String name = clientAttribute.getName();
-			String value = clientAttribute.getValue();
-
-			if (name.equalsIgnoreCase(HttpHeaders.ACCEPT_ENCODING) ||
-				name.equalsIgnoreCase(HttpHeaders.COOKIE)) {
-
-				continue;
-			}
-
-			httpOptions.addHeader(name, value);
-		}
+		addHeaders(markupParams, httpOptions);
 
 		InteractionParams interactionParams =
 			performBlockingInteraction.getInteractionParams();
