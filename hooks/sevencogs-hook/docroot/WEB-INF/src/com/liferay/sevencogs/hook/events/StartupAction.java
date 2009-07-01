@@ -1269,6 +1269,10 @@ public class StartupAction extends SimpleAction {
 			RoleConstants.TYPE_REGULAR);
 
 		setRolePermissions(
+			publisherRole, PortletKeys.JOURNAL,
+			new String[] {ActionKeys.ACCESS_IN_CONTROL_PANEL});
+
+		setRolePermissions(
 			publisherRole, "com.liferay.portlet.journal",
 			new String[] {
 				ActionKeys.ADD_ARTICLE, ActionKeys.ADD_FEED,
@@ -1283,14 +1287,14 @@ public class StartupAction extends SimpleAction {
 				ActionKeys.PERMISSIONS, ActionKeys.UPDATE, ActionKeys.VIEW
 			});
 
-		setRolePermissions(
-			publisherRole, PortletKeys.JOURNAL,
-			new String[] {ActionKeys.ACCESS_IN_CONTROL_PANEL});
-
 		Role writerRole = RoleLocalServiceUtil.addRole(
 			defaultUserId, companyId, "Writer",
 			"Writers are responsible for creating content.",
 			RoleConstants.TYPE_REGULAR);
+
+		setRolePermissions(
+			writerRole, PortletKeys.JOURNAL,
+			new String[] {ActionKeys.ACCESS_IN_CONTROL_PANEL});
 
 		setRolePermissions(
 			writerRole, "com.liferay.portlet.journal",
@@ -1303,10 +1307,6 @@ public class StartupAction extends SimpleAction {
 		setRolePermissions(
 			writerRole, JournalArticle.class.getName(),
 			new String[] {ActionKeys.UPDATE, ActionKeys.VIEW});
-
-		setRolePermissions(
-			writerRole, PortletKeys.JOURNAL,
-			new String[] {ActionKeys.ACCESS_IN_CONTROL_PANEL});
 	}
 
 	protected void setupUsers(long companyId) throws Exception {
