@@ -22,6 +22,7 @@
 
 package com.liferay.wsrp.portlet;
 
+import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.HttpMethods;
@@ -233,50 +234,22 @@ public class ConsumerPortlet extends GenericPortlet {
 		MarkupContext markupContext =
 			(MarkupContext)portletSession.getAttribute(_MARKUP_CONTEXT);
 
-		if (markupContext == null) {
+		if (markupContext != null) {
+			portletSession.removeAttribute(_MARKUP_CONTEXT);
+		}
+		else {
 			MarkupResponse markupResponse = getMarkupResponse(
 				renderRequest, renderResponse);
 
 			markupContext = markupResponse.getMarkupContext();
 		}
 
-		String content = markupContext.getItemString();
-
-		Matcher rewriteMatcher = _rewritePattern.matcher(content);
-
-		StringBuffer sb = new StringBuffer();
-
-		while (rewriteMatcher.find()) {
-			String namespace = rewriteMatcher.group(1);
-			String url = rewriteMatcher.group(2);
-
-			if (Validator.isNotNull(namespace)) {
-				rewriteMatcher.appendReplacement(
-					sb, renderResponse.getNamespace());
-			}
-			else if (Validator.isNotNull(url)) {
-				Map<String, String> parameterMap =
-					new HashMap<String, String>();
-
-				Matcher parameterMatcher = _parameterPattern.matcher(url);
-
-				while (parameterMatcher.find()) {
-					String name = parameterMatcher.group(1);
-					String value = parameterMatcher.group(2);
-
-					parameterMap.put(name, HttpUtil.decodeURL(value));
-				}
-
-				rewriteMatcher.appendReplacement(
-					sb, rewriteURL(renderResponse, parameterMap));
-			}
-		}
-
-		rewriteMatcher.appendTail(sb);
-
 		renderResponse.setContentType(ContentTypes.TEXT_HTML_UTF8);
 
-		PortletResponseUtil.write(renderResponse, sb.toString());
+		String content = rewriteURLs(
+			markupContext.getItemString(), renderResponse);
+
+		PortletResponseUtil.write(renderResponse, content);
 	}
 
 	protected void doServeResource(
@@ -630,7 +603,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		String redirectURL = blockingInteractionResponse.getRedirectURL();
 
 		if (Validator.isNotNull(redirectURL)) {
-			actionResponse.sendRedirect(redirectURL);
+			sendRedirect(redirectURL, actionResponse);
 
 			return;
 		}
@@ -744,8 +717,6 @@ public class ConsumerPortlet extends GenericPortlet {
 		if (sessionContext != null) {
 			portletSession.setAttribute(_SESSION_CONTEXT, sessionContext);
 		}
-
-		portletSession.removeAttribute(_MARKUP_CONTEXT);
 	}
 
 	protected void processMultipartForm(
@@ -845,7 +816,8 @@ public class ConsumerPortlet extends GenericPortlet {
 	}
 
 	protected String rewriteURL(
-			RenderResponse renderResponse, Map<String, String> parameterMap)
+			LiferayPortletResponse portletResponse,
+			Map<String, String> parameterMap)
 		throws Exception {
 
 		String lifecycle = parameterMap.get("wsrp-urlType");
@@ -853,13 +825,13 @@ public class ConsumerPortlet extends GenericPortlet {
 		LiferayPortletURL portletURL = null;
 
 		if (lifecycle.equals("blockingAction")) {
-			portletURL = (LiferayPortletURL)renderResponse.createActionURL();
+			portletURL = (LiferayPortletURL)portletResponse.createActionURL();
 		}
 		else if (lifecycle.equals("render")) {
-			portletURL = (LiferayPortletURL)renderResponse.createRenderURL();
+			portletURL = (LiferayPortletURL)portletResponse.createRenderURL();
 		}
 		else if (lifecycle.equals("resource")) {
-			portletURL = (LiferayPortletURL)renderResponse.createResourceURL();
+			portletURL = (LiferayPortletURL)portletResponse.createResourceURL();
 		}
 
 		for (Map.Entry<String, String> parameter : parameterMap.entrySet()) {
@@ -883,6 +855,54 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 
 		return portletURL.toString();
+	}
+
+	protected String rewriteURLs(
+		String content, PortletResponse portletResponse) throws Exception {
+
+		Matcher rewriteMatcher = _rewritePattern.matcher(content);
+
+		StringBuffer sb = new StringBuffer();
+
+		while (rewriteMatcher.find()) {
+			String namespace = rewriteMatcher.group(1);
+			String url = rewriteMatcher.group(2);
+
+			if (Validator.isNotNull(namespace)) {
+				rewriteMatcher.appendReplacement(
+					sb, portletResponse.getNamespace());
+			}
+			else if (Validator.isNotNull(url)) {
+				Map<String, String> parameterMap =
+					new HashMap<String, String>();
+
+				Matcher parameterMatcher = _parameterPattern.matcher(url);
+
+				while (parameterMatcher.find()) {
+					String name = parameterMatcher.group(1);
+					String value = parameterMatcher.group(2);
+
+					parameterMap.put(name, HttpUtil.decodeURL(value));
+				}
+
+				rewriteMatcher.appendReplacement(
+					sb, rewriteURL((LiferayPortletResponse)portletResponse,
+						parameterMap));
+			}
+		}
+
+		rewriteMatcher.appendTail(sb);
+
+		return sb.toString();
+	}
+
+	protected void sendRedirect(
+			String redirectURL, ActionResponse actionResponse)
+		throws Exception {
+
+		redirectURL = rewriteURLs(redirectURL, actionResponse);
+
+		actionResponse.sendRedirect(redirectURL);
 	}
 
 	private static final String[] _CHAR_SETS = {StringPool.UTF8};

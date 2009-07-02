@@ -197,6 +197,6 @@ public class ServiceDescriptionServiceImpl
 		LogFactoryUtil.getLog(ServiceDescriptionServiceImpl.class);
 
 	private static CookieProtocol _COOKIE_PROTOCOL = CookieProtocol.fromString(
-		CookieProtocol._perUser);
+		CookieProtocol._perGroup);
 
 }

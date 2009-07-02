@@ -45,7 +45,9 @@ import java.rmi.RemoteException;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
 import oasis.names.tc.wsrp.v2.types.BlockingInteractionResponse;
@@ -208,6 +210,8 @@ public class MarkupServiceImpl
 	}
 
 	protected MarkupResponse doGetMarkup(GetMarkup getMarkup) throws Exception {
+		HttpSession session = ServletUtil.getRequest().getSession();
+
 		WSRPProducer wsrpProducer = getWSRPProducer();
 
 		String url = getURL(getMarkup, wsrpProducer);
@@ -216,11 +220,23 @@ public class MarkupServiceImpl
 
 		httpOptions.setLocation(url);
 
+		Cookie[] cookies = (Cookie[])session.getAttribute("cookies");
+
+		if (cookies != null) {
+			httpOptions.setCookies(cookies);
+		}
+
 		MarkupParams markupParams = getMarkup.getMarkupParams();
 
 		addHeaders(markupParams, httpOptions);
 
 		String content = HttpUtil.URLtoString(httpOptions);
+
+		// cookies = (Cookie[])objects[1];
+
+		if (cookies != null) {
+			session.setAttribute("cookies", cookies);
+		}
 
 		MarkupContext markupContext = new MarkupContext();
 
@@ -251,12 +267,16 @@ public class MarkupServiceImpl
 	}
 
 	protected Extension[] doInitCookie(InitCookie initCookie) throws Exception {
+		ServletUtil.getRequest().getSession();
+
 		return null;
 	}
 
 	protected BlockingInteractionResponse doPerformBlockingInteraction(
 			PerformBlockingInteraction performBlockingInteraction)
 		throws Exception {
+
+		HttpSession session = ServletUtil.getRequest().getSession();
 
 		WSRPProducer wsrpProducer = getWSRPProducer();
 
@@ -265,11 +285,21 @@ public class MarkupServiceImpl
 		Http.Options httpOptions = new Http.Options();
 
 		httpOptions.setLocation(url);
+		httpOptions.setPost(true);
+
+		Cookie[] cookies = (Cookie[])session.getAttribute("cookies");
+
+		if (cookies != null) {
+			httpOptions.setCookies(cookies);
+		}
 
 		MarkupParams markupParams =
 			performBlockingInteraction.getMarkupParams();
 
 		addHeaders(markupParams, httpOptions);
+
+		PortletContext portletContext =
+			performBlockingInteraction.getPortletContext();
 
 		InteractionParams interactionParams =
 			performBlockingInteraction.getInteractionParams();
@@ -277,11 +307,19 @@ public class MarkupServiceImpl
 		NamedString[] formParameters  = interactionParams.getFormParameters();
 
 		for (NamedString formParameter : formParameters) {
-			httpOptions.addPart(
-				formParameter.getName(), formParameter.getValue());
+			String name = getPortletId(portletContext) + "_"+
+				formParameter.getName();
+
+			httpOptions.addPart(name, formParameter.getValue());
 		}
 
 		String content = HttpUtil.URLtoString(httpOptions);
+
+		// cookies = (Cookie[])objects[1];
+
+		if (cookies != null) {
+			session.setAttribute("cookies", cookies);
+		}
 
 		MarkupContext markupContext = new MarkupContext();
 
