@@ -20,37 +20,26 @@
  * SOFTWARE.
  */
 
-package com.liferay.wsrp.servlet;
-
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
+package com.liferay.wsrp.util;
 
 /**
- * <a href="PortalInitThread.java.html"><b><i>View Source</i></b></a>
+ * <a href="WebKeys.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class PortalInitThread extends Thread {
+public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 
-	public void run() {
-		try {
+	public static final String COOKIE = "COOKIE";
 
-			// Wait 3 seconds before initializing consumer portlets in case the
-			// consumer and producer are the same machine
+	public static final String COOKIES = "COOKIES";
 
-			Thread.sleep(3000);
+	public static final String MARKUP_CONTEXT = "MARKUP_CONTEXT";
 
-			WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlets();
-		}
-		catch (InterruptedException ie) {
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-	}
+	public static final String MARKUP_SERVICE = "MARKUP_SERVICE";
 
-	private static Log _log = LogFactoryUtil.getLog(PortalInitThread.class);
+	public static final String PORTLET_CONTEXT = "PORTLET_CONTEXT";
+
+	public static final String SESSION_CONTEXT = "SESSION_CONTEXT";
 
 }

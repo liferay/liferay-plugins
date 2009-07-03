@@ -41,7 +41,6 @@
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 <%@ page import="com.liferay.portal.model.Portlet" %>
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
@@ -58,6 +57,7 @@
 <%@ page import="com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil" %>
 <%@ page import="com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil" %>
 <%@ page import="com.liferay.wsrp.service.WSRPProducerLocalServiceUtil" %>
+<%@ page import="com.liferay.wsrp.util.WebKeys" %>
 <%@ page import="com.liferay.wsrp.util.WSRPConsumerManager" %>
 <%@ page import="com.liferay.wsrp.util.WSRPConsumerManagerFactory" %>
 

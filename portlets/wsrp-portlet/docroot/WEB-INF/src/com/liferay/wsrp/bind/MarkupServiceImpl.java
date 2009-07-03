@@ -40,6 +40,7 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.axis.ServletUtil;
 import com.liferay.wsrp.model.WSRPProducer;
+import com.liferay.wsrp.util.WebKeys;
 
 import java.rmi.RemoteException;
 
@@ -68,6 +69,7 @@ import oasis.names.tc.wsrp.v2.types.PerformBlockingInteraction;
 import oasis.names.tc.wsrp.v2.types.PortletContext;
 import oasis.names.tc.wsrp.v2.types.ReleaseSessions;
 import oasis.names.tc.wsrp.v2.types.ResourceResponse;
+import oasis.names.tc.wsrp.v2.types.UpdateResponse;
 
 /**
  * <a href="MarkupServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -210,35 +212,15 @@ public class MarkupServiceImpl
 	}
 
 	protected MarkupResponse doGetMarkup(GetMarkup getMarkup) throws Exception {
-		HttpSession session = ServletUtil.getRequest().getSession();
-
 		WSRPProducer wsrpProducer = getWSRPProducer();
-
-		String url = getURL(getMarkup, wsrpProducer);
 
 		Http.Options httpOptions = new Http.Options();
 
-		httpOptions.setLocation(url);
+		addHeaders(getMarkup.getMarkupParams(), httpOptions);
 
-		Cookie[] cookies = (Cookie[])session.getAttribute("cookies");
+		httpOptions.setLocation(getURL(getMarkup, wsrpProducer));
 
-		if (cookies != null) {
-			httpOptions.setCookies(cookies);
-		}
-
-		MarkupParams markupParams = getMarkup.getMarkupParams();
-
-		addHeaders(markupParams, httpOptions);
-
-		String content = HttpUtil.URLtoString(httpOptions);
-
-		// Cookies from HttpUtil
-
-		// cookies = (Cookie[])objects[1];
-
-		if (cookies != null) {
-			session.setAttribute("cookies", cookies);
-		}
+		String content = getContent(httpOptions);
 
 		MarkupContext markupContext = new MarkupContext();
 
@@ -269,7 +251,7 @@ public class MarkupServiceImpl
 	}
 
 	protected Extension[] doInitCookie(InitCookie initCookie) throws Exception {
-		ServletUtil.getRequest().getSession();
+		ServletUtil.getSession();
 
 		return null;
 	}
@@ -278,27 +260,14 @@ public class MarkupServiceImpl
 			PerformBlockingInteraction performBlockingInteraction)
 		throws Exception {
 
-		HttpSession session = ServletUtil.getRequest().getSession();
-
 		WSRPProducer wsrpProducer = getWSRPProducer();
-
-		String url = getURL(performBlockingInteraction, wsrpProducer);
 
 		Http.Options httpOptions = new Http.Options();
 
-		httpOptions.setLocation(url);
-		httpOptions.setPost(true);
+		addHeaders(performBlockingInteraction.getMarkupParams(), httpOptions);
 
-		Cookie[] cookies = (Cookie[])session.getAttribute("cookies");
-
-		if (cookies != null) {
-			httpOptions.setCookies(cookies);
-		}
-
-		MarkupParams markupParams =
-			performBlockingInteraction.getMarkupParams();
-
-		addHeaders(markupParams, httpOptions);
+		httpOptions.setLocation(
+			getURL(performBlockingInteraction, wsrpProducer));
 
 		PortletContext portletContext =
 			performBlockingInteraction.getPortletContext();
@@ -309,25 +278,16 @@ public class MarkupServiceImpl
 		NamedString[] formParameters  = interactionParams.getFormParameters();
 
 		for (NamedString formParameter : formParameters) {
-			StringBuilder sb = new StringBuilder();
+			String name =
+				PortalUtil.getPortletNamespace(getPortletId(portletContext)) +
+					formParameter.getName();
 
-			sb.append(StringPool.UNDERLINE);
-			sb.append(getPortletId(portletContext));
-			sb.append(StringPool.UNDERLINE);
-			sb.append(formParameter.getName());
-
-			httpOptions.addPart(sb.toString(), formParameter.getValue());
+			httpOptions.addPart(name, formParameter.getValue());
 		}
 
-		String content = HttpUtil.URLtoString(httpOptions);
+		httpOptions.setPost(true);
 
-		// Cookies from HttpUtil
-
-		// cookies = (Cookie[])objects[1];
-
-		if (cookies != null) {
-			session.setAttribute("cookies", cookies);
-		}
+		String content = getContent(httpOptions);
 
 		MarkupContext markupContext = new MarkupContext();
 
@@ -337,13 +297,11 @@ public class MarkupServiceImpl
 		BlockingInteractionResponse blockingInteractionResponse =
 			new BlockingInteractionResponse();
 
-		// Restore this once /widget is parsing content properly
-
-		/*UpdateResponse updateResponse = new UpdateResponse();
+		UpdateResponse updateResponse = new UpdateResponse();
 
 		updateResponse.setMarkupContext(markupContext);
 
-		blockingInteractionResponse.setUpdateResponse(updateResponse);*/
+		blockingInteractionResponse.setUpdateResponse(updateResponse);
 
 		return blockingInteractionResponse;
 	}
@@ -352,6 +310,46 @@ public class MarkupServiceImpl
 		throws Exception {
 
 		return null;
+	}
+
+	protected String getContent(Http.Options httpOptions)
+		throws Exception {
+
+		HttpSession session = ServletUtil.getSession();
+
+		Cookie[] cookies = (Cookie[])session.getAttribute(WebKeys.COOKIES);
+
+		if (cookies != null) {
+			httpOptions.setCookies(cookies);
+		}
+
+		String content = HttpUtil.URLtoString(httpOptions);
+
+		cookies = HttpUtil.getCookies();
+
+		if (cookies != null) {
+			session.setAttribute(WebKeys.COOKIES, cookies);
+		}
+
+		int x = content.indexOf("portlet-content-container");
+
+		if (x == -1) {
+			return content;
+		}
+
+		x = content.indexOf("<div>", x);
+
+		if (x == -1) {
+			return content;
+		}
+
+		int y = content.indexOf("</div></div></div></div>", x);
+
+		if (y == -1) {
+			return content;
+		}
+
+		return content.substring(x + 5, y);
 	}
 
 	protected Layout getLayout(
@@ -431,17 +429,8 @@ public class MarkupServiceImpl
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(portalURL);
-
-		if (lifecycle.equals("1")) {
-			sb.append(PortalUtil.getPathContext());
-			sb.append(_PATH_WIDGET);
-		}
-		else {
-			sb.append(PortalUtil.getPathMain());
-			sb.append(_PATH_RENDER_PORTLET);
-		}
-
-		sb.append(StringPool.QUESTION);
+		sb.append(PortalUtil.getPathContext());
+		sb.append(_PATH_WIDGET);
 
 		Layout layout = getLayout(portletContext, wsrpProducer);
 
@@ -456,7 +445,10 @@ public class MarkupServiceImpl
 		sb.append("&p_p_lifecycle=");
 		sb.append(lifecycle);
 
-		sb.append("&p_p_state=exclusive");
+		String windowState = getWindowState(markupParams);
+
+		sb.append("&p_p_state=");
+		sb.append(HttpUtil.encodeURL(windowState));
 
 		String portletMode = getPortletMode(markupParams);
 
@@ -484,9 +476,15 @@ public class MarkupServiceImpl
 		return sb.toString();
 	}
 
-	private static final String _PATH_WIDGET = "/widget/c/portal/layout";
+	protected String getWindowState(MarkupParams markupParams)
+		throws Exception {
 
-	private static final String _PATH_RENDER_PORTLET = "/portal/render_portlet";
+		String windowState = markupParams.getWindowState();
+
+		return windowState.substring(5);
+	}
+
+	private static final String _PATH_WIDGET = "/widget/c/portal/layout?";
 
 	private static Log _log = LogFactoryUtil.getLog(MarkupServiceImpl.class);
 

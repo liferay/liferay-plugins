@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -46,6 +45,7 @@ import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
+import com.liferay.wsrp.util.WebKeys;
 
 import java.io.File;
 import java.io.IOException;
@@ -232,10 +232,10 @@ public class ConsumerPortlet extends GenericPortlet {
 		PortletSession portletSession = renderRequest.getPortletSession();
 
 		MarkupContext markupContext =
-			(MarkupContext)portletSession.getAttribute(_MARKUP_CONTEXT);
+			(MarkupContext)portletSession.getAttribute(WebKeys.MARKUP_CONTEXT);
 
 		if (markupContext != null) {
-			portletSession.removeAttribute(_MARKUP_CONTEXT);
+			portletSession.removeAttribute(WebKeys.MARKUP_CONTEXT);
 		}
 		else {
 			MarkupResponse markupResponse = getMarkupResponse(
@@ -247,7 +247,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		renderResponse.setContentType(ContentTypes.TEXT_HTML_UTF8);
 
 		String content = rewriteURLs(
-			markupContext.getItemString(), renderResponse);
+			renderResponse, markupContext.getItemString());
 
 		PortletResponseUtil.write(renderResponse, content);
 	}
@@ -287,7 +287,8 @@ public class ConsumerPortlet extends GenericPortlet {
 		getMarkup.setMarkupParams(markupParams);
 
 		PortletContext existingPortletContext =
-			(PortletContext)portletSession.getAttribute(_PORTLET_CONTEXT);
+			(PortletContext)portletSession.getAttribute(
+				WebKeys.PORTLET_CONTEXT);
 
 		if (existingPortletContext != null) {
 			getMarkup.setPortletContext(existingPortletContext);
@@ -318,7 +319,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		WSRP_v2_Markup_PortType markupService =
 			(WSRP_v2_Markup_PortType)portletSession.getAttribute(
-				_MARKUP_SERVICE);
+				WebKeys.MARKUP_SERVICE);
 
 		if (markupService == null) {
 			markupService = wsrpConsumerManager.getMarkupService();
@@ -326,7 +327,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			ServiceDescription serviceDescription =
 				wsrpConsumerManager.getServiceDescription();
 
-			String cookie = (String)portletSession.getAttribute(_COOKIE);
+			String cookie = (String)portletSession.getAttribute(
+				WebKeys.COOKIE);
 
 			if (cookie == null) {
 				CookieProtocol cookieProtocol =
@@ -343,11 +345,11 @@ public class ConsumerPortlet extends GenericPortlet {
 
 					cookie = SimpleHTTPSender.getCurrentCookie();
 
-					portletSession.setAttribute(_COOKIE, cookie);
+					portletSession.setAttribute(WebKeys.COOKIE, cookie);
 				}
 			}
 
-			portletSession.setAttribute(_MARKUP_SERVICE, markupService);
+			portletSession.setAttribute(WebKeys.MARKUP_SERVICE, markupService);
 		}
 
 		return markupService;
@@ -563,7 +565,8 @@ public class ConsumerPortlet extends GenericPortlet {
 		runtimeContext.setPortletInstanceKey(portletResponse.getNamespace());
 
 		SessionContext sessionContext =
-			(SessionContext)portletSession.getAttribute(_SESSION_CONTEXT);
+			(SessionContext)portletSession.getAttribute(
+				WebKeys.SESSION_CONTEXT);
 
 		if (sessionContext != null) {
 			SessionParams sessionParams = new SessionParams();
@@ -600,7 +603,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		String redirectURL = blockingInteractionResponse.getRedirectURL();
 
 		if (Validator.isNotNull(redirectURL)) {
-			sendRedirect(redirectURL, actionResponse);
+			sendRedirect(actionResponse, redirectURL);
 
 			return;
 		}
@@ -613,7 +616,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 
 		portletSession.setAttribute(
-			_MARKUP_CONTEXT, updateResponse.getMarkupContext());
+			WebKeys.MARKUP_CONTEXT, updateResponse.getMarkupContext());
 
 		NavigationalContext navigationalContext =
 			updateResponse.getNavigationalContext();
@@ -658,13 +661,15 @@ public class ConsumerPortlet extends GenericPortlet {
 		PortletContext portletContext = updateResponse.getPortletContext();
 
 		if (portletContext != null) {
-			portletSession.setAttribute(_PORTLET_CONTEXT, portletContext);
+			portletSession.setAttribute(
+				WebKeys.PORTLET_CONTEXT, portletContext);
 		}
 
 		SessionContext sessionContext = updateResponse.getSessionContext();
 
 		if (sessionContext != null) {
-			portletSession.setAttribute(_SESSION_CONTEXT, sessionContext);
+			portletSession.setAttribute(
+				WebKeys.SESSION_CONTEXT, sessionContext);
 		}
 
 		String portletMode = updateResponse.getNewMode();
@@ -719,7 +724,8 @@ public class ConsumerPortlet extends GenericPortlet {
 		SessionContext sessionContext = markupResponse.getSessionContext();
 
 		if (sessionContext != null) {
-			portletSession.setAttribute(_SESSION_CONTEXT, sessionContext);
+			portletSession.setAttribute(
+				WebKeys.SESSION_CONTEXT, sessionContext);
 		}
 	}
 
@@ -804,7 +810,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		PortletSession portletSession = resourceRequest.getPortletSession();
 
-		String cookie = (String)portletSession.getAttribute(_COOKIE);
+		String cookie = (String)portletSession.getAttribute(WebKeys.COOKIE);
 
 		URLConnection urlConnection = url.openConnection();
 
@@ -820,22 +826,27 @@ public class ConsumerPortlet extends GenericPortlet {
 	}
 
 	protected String rewriteURL(
-			LiferayPortletResponse portletResponse,
-			Map<String, String> parameterMap)
+			PortletResponse portletResponse, Map<String, String> parameterMap)
 		throws Exception {
+
+		LiferayPortletResponse liferayPortletResponse =
+			(LiferayPortletResponse)portletResponse;
 
 		String lifecycle = parameterMap.get("wsrp-urlType");
 
-		LiferayPortletURL portletURL = null;
+		LiferayPortletURL liferayPortletURL = null;
 
 		if (lifecycle.equals("blockingAction")) {
-			portletURL = (LiferayPortletURL)portletResponse.createActionURL();
+			liferayPortletURL =
+				(LiferayPortletURL)liferayPortletResponse.createActionURL();
 		}
 		else if (lifecycle.equals("render")) {
-			portletURL = (LiferayPortletURL)portletResponse.createRenderURL();
+			liferayPortletURL =
+				(LiferayPortletURL)liferayPortletResponse.createRenderURL();
 		}
 		else if (lifecycle.equals("resource")) {
-			portletURL = (LiferayPortletURL)portletResponse.createResourceURL();
+			liferayPortletURL =
+				(LiferayPortletURL)liferayPortletResponse.createResourceURL();
 		}
 
 		for (Map.Entry<String, String> parameter : parameterMap.entrySet()) {
@@ -843,26 +854,27 @@ public class ConsumerPortlet extends GenericPortlet {
 			String value = parameter.getValue();
 
 			if (name.equals("wsrp-mode")) {
-				portletURL.setPortletMode(getPortletMode(value));
+				liferayPortletURL.setPortletMode(getPortletMode(value));
 			}
 			else if (name.equals("wsrp-resourceID")) {
-				portletURL.setResourceID(value);
+				liferayPortletURL.setResourceID(value);
 			}
 			else if (name.equals("wsrp-urlType")) {
 			}
 			else if (name.equals("wsrp-windowState")) {
-				portletURL.setWindowState(getWindowState(value));
+				liferayPortletURL.setWindowState(getWindowState(value));
 			}
 			else {
-				portletURL.setParameter(name, value);
+				liferayPortletURL.setParameter(name, value);
 			}
 		}
 
-		return portletURL.toString();
+		return liferayPortletURL.toString();
 	}
 
 	protected String rewriteURLs(
-		String content, PortletResponse portletResponse) throws Exception {
+			PortletResponse portletResponse, String content)
+		throws Exception {
 
 		Matcher rewriteMatcher = _rewritePattern.matcher(content);
 
@@ -890,8 +902,7 @@ public class ConsumerPortlet extends GenericPortlet {
 				}
 
 				rewriteMatcher.appendReplacement(
-					sb, rewriteURL((LiferayPortletResponse)portletResponse,
-						parameterMap));
+					sb, rewriteURL(portletResponse, parameterMap));
 			}
 		}
 
@@ -901,27 +912,17 @@ public class ConsumerPortlet extends GenericPortlet {
 	}
 
 	protected void sendRedirect(
-			String redirectURL, ActionResponse actionResponse)
+			ActionResponse actionResponse, String redirectURL)
 		throws Exception {
 
-		redirectURL = rewriteURLs(redirectURL, actionResponse);
+		redirectURL = rewriteURLs(actionResponse, redirectURL);
 
 		actionResponse.sendRedirect(redirectURL);
 	}
 
 	private static final String[] _CHAR_SETS = {StringPool.UTF8};
 
-	private static final String _COOKIE = "COOKIE";
-
-	private static final String _MARKUP_CONTEXT = "MARKUP_CONTEXT";
-
-	private static final String _MARKUP_SERVICE = "MARKUP_SERVICE";
-
 	private static final String[] _MIME_TYPES = {ContentTypes.TEXT_HTML};
-
-	private static final String _PORTLET_CONTEXT = "PORTLET_CONTEXT";
-
-	private static final String _SESSION_CONTEXT = "SESSION_CONTEXT";
 
 	private static Pattern _navigationalValuesPattern = Pattern.compile(
 		"(?:([^&]+)(?:=([^&]+)?))&?");
