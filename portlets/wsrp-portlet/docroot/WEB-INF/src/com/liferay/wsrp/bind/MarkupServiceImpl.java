@@ -68,7 +68,6 @@ import oasis.names.tc.wsrp.v2.types.PerformBlockingInteraction;
 import oasis.names.tc.wsrp.v2.types.PortletContext;
 import oasis.names.tc.wsrp.v2.types.ReleaseSessions;
 import oasis.names.tc.wsrp.v2.types.ResourceResponse;
-import oasis.names.tc.wsrp.v2.types.UpdateResponse;
 
 /**
  * <a href="MarkupServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -200,6 +199,7 @@ public class MarkupServiceImpl
 			String value = clientAttribute.getValue();
 
 			if (name.equalsIgnoreCase(HttpHeaders.ACCEPT_ENCODING) ||
+				name.equalsIgnoreCase(HttpHeaders.CONTENT_LENGTH) ||
 				name.equalsIgnoreCase(HttpHeaders.COOKIE)) {
 
 				continue;
@@ -231,6 +231,8 @@ public class MarkupServiceImpl
 		addHeaders(markupParams, httpOptions);
 
 		String content = HttpUtil.URLtoString(httpOptions);
+
+		// Cookies from HttpUtil
 
 		// cookies = (Cookie[])objects[1];
 
@@ -307,13 +309,19 @@ public class MarkupServiceImpl
 		NamedString[] formParameters  = interactionParams.getFormParameters();
 
 		for (NamedString formParameter : formParameters) {
-			String name = getPortletId(portletContext) + "_"+
-				formParameter.getName();
+			StringBuilder sb = new StringBuilder();
 
-			httpOptions.addPart(name, formParameter.getValue());
+			sb.append(StringPool.UNDERLINE);
+			sb.append(getPortletId(portletContext));
+			sb.append(StringPool.UNDERLINE);
+			sb.append(formParameter.getName());
+
+			httpOptions.addPart(sb.toString(), formParameter.getValue());
 		}
 
 		String content = HttpUtil.URLtoString(httpOptions);
+
+		// Cookies from HttpUtil
 
 		// cookies = (Cookie[])objects[1];
 
@@ -329,11 +337,13 @@ public class MarkupServiceImpl
 		BlockingInteractionResponse blockingInteractionResponse =
 			new BlockingInteractionResponse();
 
-		UpdateResponse updateResponse = new UpdateResponse();
+		// Restore this once /widget is parsing content properly
+
+		/*UpdateResponse updateResponse = new UpdateResponse();
 
 		updateResponse.setMarkupContext(markupContext);
 
-		blockingInteractionResponse.setUpdateResponse(updateResponse);
+		blockingInteractionResponse.setUpdateResponse(updateResponse);*/
 
 		return blockingInteractionResponse;
 	}
@@ -421,8 +431,16 @@ public class MarkupServiceImpl
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(portalURL);
-		sb.append(PortalUtil.getPathMain());
-		sb.append(_PATH_RENDER_PORTLET);
+
+		if (lifecycle.equals("1")) {
+			sb.append(PortalUtil.getPathContext());
+			sb.append(_PATH_WIDGET);
+		}
+		else {
+			sb.append(PortalUtil.getPathMain());
+			sb.append(_PATH_RENDER_PORTLET);
+		}
+
 		sb.append(StringPool.QUESTION);
 
 		Layout layout = getLayout(portletContext, wsrpProducer);
@@ -465,6 +483,8 @@ public class MarkupServiceImpl
 
 		return sb.toString();
 	}
+
+	private static final String _PATH_WIDGET = "/widget/c/portal/layout";
 
 	private static final String _PATH_RENDER_PORTLET = "/portal/render_portlet";
 

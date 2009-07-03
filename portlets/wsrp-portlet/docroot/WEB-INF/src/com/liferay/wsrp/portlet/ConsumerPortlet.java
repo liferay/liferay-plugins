@@ -597,14 +597,18 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		PortletSession portletSession = actionRequest.getPortletSession();
 
-		UpdateResponse updateResponse =
-			blockingInteractionResponse.getUpdateResponse();
-
 		String redirectURL = blockingInteractionResponse.getRedirectURL();
 
 		if (Validator.isNotNull(redirectURL)) {
 			sendRedirect(redirectURL, actionResponse);
 
+			return;
+		}
+
+		UpdateResponse updateResponse =
+			blockingInteractionResponse.getUpdateResponse();
+
+		if (updateResponse == null) {
 			return;
 		}
 
