@@ -341,7 +341,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 			if (messageElements != null) {
 				for (MessageElement messageElement : messageElements) {
-					setExtension(wsrpConsumerPortlet, portlet, messageElement);
+					setExtension(portlet, messageElement);
 				}
 			}
 		}
@@ -361,17 +361,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 		return portlet;
 	}
 
-	protected String getProxyURL(
-		WSRPConsumerPortlet wsrpConsumerPortlet, String url) {
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("/proxy?wsrpConsumerPortletId=");
-		sb.append(wsrpConsumerPortlet.getWsrpConsumerPortletId());
-		sb.append("&url=");
-		sb.append(HttpUtil.encodeURL(url));
-
-		return sb.toString();
+	protected String getProxyURL(String url) {
+		return "/proxy?url=" + HttpUtil.encodeURL(url);
 	}
 
 	protected void initWSRPConsumerPortlet(
@@ -395,8 +386,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 	}
 
 	protected void setExtension(
-		WSRPConsumerPortlet wsrpConsumerPortlet, Portlet portlet,
-		MessageElement messageElement) {
+		Portlet portlet, MessageElement messageElement) {
 
 		String name = messageElement.getName();
 		String value = messageElement.getValue();
@@ -405,36 +395,28 @@ public class WSRPConsumerPortletLocalServiceImpl
 			portlet.setCssClassWrapper(value);
 		}
 		else if (name.equals("footer-portal-css")) {
-			portlet.getFooterPortalCss().add(
-				getProxyURL(wsrpConsumerPortlet, value));
+			portlet.getFooterPortalCss().add(getProxyURL(value));
 		}
 		else if (name.equals("footer-portal-javascript")) {
-			portlet.getFooterPortalJavaScript().add(
-				getProxyURL(wsrpConsumerPortlet, value));
+			portlet.getFooterPortalJavaScript().add(getProxyURL(value));
 		}
 		else if (name.equals("footer-portlet-css")) {
-			portlet.getFooterPortletCss().add(
-				getProxyURL(wsrpConsumerPortlet, value));
+			portlet.getFooterPortletCss().add(getProxyURL(value));
 		}
 		else if (name.equals("footer-portlet-javascript")) {
-			portlet.getFooterPortletJavaScript().add(
-				getProxyURL(wsrpConsumerPortlet, value));
+			portlet.getFooterPortletJavaScript().add(getProxyURL(value));
 		}
 		else if (name.equals("header-portal-css")) {
-			portlet.getHeaderPortalCss().add(
-				getProxyURL(wsrpConsumerPortlet, value));
+			portlet.getHeaderPortalCss().add(getProxyURL(value));
 		}
 		else if (name.equals("header-portal-javascript")) {
-			portlet.getHeaderPortalJavaScript().add(
-				getProxyURL(wsrpConsumerPortlet, value));
+			portlet.getHeaderPortalJavaScript().add(getProxyURL(value));
 		}
 		else if (name.equals("header-portlet-css")) {
-			portlet.getHeaderPortletCss().add(
-				getProxyURL(wsrpConsumerPortlet, value));
+			portlet.getHeaderPortletCss().add(getProxyURL(value));
 		}
 		else if (name.equals("header-portlet-javascript")) {
-			portlet.getHeaderPortletJavaScript().add(
-				getProxyURL(wsrpConsumerPortlet, value));
+			portlet.getHeaderPortletJavaScript().add(getProxyURL(value));
 		}
 	}
 
