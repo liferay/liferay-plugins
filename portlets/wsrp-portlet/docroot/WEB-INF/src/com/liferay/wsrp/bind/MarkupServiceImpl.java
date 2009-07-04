@@ -38,6 +38,7 @@ import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.PortletKeys;
 import com.liferay.util.axis.ServletUtil;
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.util.WebKeys;
@@ -45,6 +46,7 @@ import com.liferay.wsrp.util.WebKeys;
 import java.rmi.RemoteException;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -439,6 +441,24 @@ public class MarkupServiceImpl
 
 		String portletId = getPortletId(portletContext);
 
+		NavigationalContext navigationalContext =
+			markupParams.getNavigationalContext();
+
+		String opaqueValue = null;
+
+		if (navigationalContext != null) {
+			opaqueValue = navigationalContext.getOpaqueValue();
+
+			Map<String, String[]> parameterMap =
+				HttpUtil.parameterMapFromString(opaqueValue);
+
+			if (parameterMap.containsKey(
+					_STRUTS_ACTION_PORTLET_CONFIGURATION)) {
+
+				portletId = PortletKeys.PORTLET_CONFIGURATION;
+			}
+		}
+
 		sb.append("&p_p_id=");
 		sb.append(HttpUtil.encodeURL(portletId));
 
@@ -455,19 +475,12 @@ public class MarkupServiceImpl
 		sb.append("&p_p_mode=");
 		sb.append(HttpUtil.encodeURL(portletMode));
 
-		NavigationalContext navigationalContext =
-			markupParams.getNavigationalContext();
-
-		if (navigationalContext != null) {
-			String opaqueValue = navigationalContext.getOpaqueValue();
-
-			if (Validator.isNotNull(opaqueValue)) {
-				sb.append(StringPool.AMPERSAND);
-				sb.append(opaqueValue);
-			}
-		}
-
 		sb.append("&wsrp=1");
+
+		if (Validator.isNotNull(opaqueValue)) {
+			sb.append(StringPool.AMPERSAND);
+			sb.append(opaqueValue);
+		}
 
 		if (_log.isInfoEnabled()) {
 			_log.info("URL " + sb.toString());
@@ -485,6 +498,10 @@ public class MarkupServiceImpl
 	}
 
 	private static final String _PATH_WIDGET = "/widget/c/portal/layout?";
+
+	private static final String _STRUTS_ACTION_PORTLET_CONFIGURATION =
+		PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) +
+			"struts_action";
 
 	private static Log _log = LogFactoryUtil.getLog(MarkupServiceImpl.class);
 
