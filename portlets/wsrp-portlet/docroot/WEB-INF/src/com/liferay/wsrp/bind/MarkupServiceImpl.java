@@ -463,7 +463,7 @@ public class MarkupServiceImpl
 
 			if (Validator.isNotNull(opaqueValue)) {
 				sb.append(StringPool.AMPERSAND);
-				sb.append(HttpUtil.decodeURL(opaqueValue));
+				sb.append(opaqueValue);
 			}
 		}
 
