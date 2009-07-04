@@ -155,9 +155,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		throws IOException, PortletException {
 
 		try {
-			String url = resourceRequest.getParameter("wsrp-url");
-
-			proxyURL(resourceRequest, resourceResponse, new URL(url));
+			doServeResource(resourceRequest, resourceResponse);
 		}
 		catch (IOException ioe) {
 			throw ioe;

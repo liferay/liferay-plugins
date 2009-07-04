@@ -25,12 +25,14 @@ package com.liferay.wsrp.bind;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletInfo;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.util.axis.ServletUtil;
 import com.liferay.wsrp.model.WSRPProducer;
 
 import java.rmi.RemoteException;
@@ -42,12 +44,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_ServiceDescription_PortType;
 import oasis.names.tc.wsrp.v2.types.CookieProtocol;
+import oasis.names.tc.wsrp.v2.types.Extension;
 import oasis.names.tc.wsrp.v2.types.GetServiceDescription;
 import oasis.names.tc.wsrp.v2.types.MarkupType;
 import oasis.names.tc.wsrp.v2.types.PortletDescription;
 import oasis.names.tc.wsrp.v2.types.ServiceDescription;
+
+import org.apache.axis.message.MessageElement;
 
 /**
  * <a href="ServiceDescriptionServiceImpl.java.html"><b><i>View Source</i></b>
@@ -78,6 +85,17 @@ public class ServiceDescriptionServiceImpl
 		}
 	}
 
+	protected void addMessageElement(
+		List<MessageElement> messageElements, String localPart, String value) {
+
+		MessageElement messageElement = new MessageElement(
+			"liferay", localPart);
+
+		messageElement.setValue(value);
+
+		messageElements.add(messageElement);
+	}
+
 	protected ServiceDescription doGetServiceDescription(
 			GetServiceDescription getServiceDescription)
 		throws Exception {
@@ -91,6 +109,21 @@ public class ServiceDescriptionServiceImpl
 		serviceDescription.setRequiresInitCookie(_COOKIE_PROTOCOL);
 
 		return serviceDescription;
+	}
+
+	protected Extension getExtension(List<MessageElement> messageElements) {
+		MessageElement[] messageElementsArray = messageElements.toArray(
+			new MessageElement[messageElements.size()]);
+
+		return new Extension(messageElementsArray);
+	}
+
+	protected Extension[] getExtensions(List<MessageElement> messageElements) {
+		List<Extension> extensions = new ArrayList<Extension>();
+
+		extensions.add(getExtension(messageElements));
+
+		return extensions.toArray(new Extension[extensions.size()]);
 	}
 
 	protected MarkupType[] getMarkupTypes(Portlet portlet) {
@@ -136,26 +169,17 @@ public class ServiceDescriptionServiceImpl
 	protected PortletDescription getPortletDescription(
 		WSRPProducer wsrpProducer, Portlet portlet) {
 
+		PortletDescription portletDescription = new PortletDescription();
+
+		portletDescription.setPortletHandle(portlet.getPortletId());
+		portletDescription.setMarkupTypes(getMarkupTypes(portlet));
+
 		String title = PortalUtil.getPortletTitle(
 			portlet, wsrpProducer.getCompanyId(), LocaleUtil.getDefault());
 
-		PortletDescription portletDescription = new PortletDescription();
-
 		portletDescription.setTitle(getLocalizedString(title));
 
-		String displayName = GetterUtil.getString(
-			portlet.getDisplayName(), title);
-
-		portletDescription.setDisplayName(getLocalizedString(displayName));
-
 		PortletInfo portletInfo = portlet.getPortletInfo();
-
-		String[] keywords = StringUtil.split(portletInfo.getKeywords());
-
-		portletDescription.setKeywords(getLocalizedStrings(keywords));
-
-		portletDescription.setMarkupTypes(getMarkupTypes(portlet));
-		portletDescription.setPortletHandle(portlet.getPortletId());
 
 		String shortTitle = portletInfo.getShortTitle();
 
@@ -164,6 +188,17 @@ public class ServiceDescriptionServiceImpl
 		}
 
 		portletDescription.setShortTitle(getLocalizedString(shortTitle));
+
+		String[] keywords = StringUtil.split(portletInfo.getKeywords());
+
+		portletDescription.setKeywords(getLocalizedStrings(keywords));
+
+		String displayName = GetterUtil.getString(
+			portlet.getDisplayName(), title);
+
+		portletDescription.setDisplayName(getLocalizedString(displayName));
+
+		setExtensions(portletDescription, portlet);
 
 		return portletDescription;
 	}
@@ -191,6 +226,33 @@ public class ServiceDescriptionServiceImpl
 
 		return portletDescriptions.toArray(
 			new PortletDescription[portletDescriptions.size()]);
+	}
+
+	protected void setExtensions(
+		PortletDescription portletDescription, Portlet portlet) {
+
+		List<MessageElement> messageElements = new ArrayList<MessageElement>();
+
+		addMessageElement(
+			messageElements, "css-class-wrapper",
+			portlet.getCssClassWrapper());
+
+		HttpServletRequest request = ServletUtil.getRequest();
+
+		String portalURL = PortalUtil.getPortalURL(request);
+
+		for (String headerPortletCss : portlet.getHeaderPortletCss()) {
+			if (!HttpUtil.hasProtocol(headerPortletCss)) {
+				headerPortletCss =
+					portalURL + portlet.getContextPath() + headerPortletCss +
+						"?t=" + portlet.getTimestamp();
+			}
+
+			addMessageElement(
+				messageElements, "header-portlet-css", headerPortletCss);
+		}
+
+		portletDescription.setExtensions(getExtensions(messageElements));
 	}
 
 	private static Log _log =

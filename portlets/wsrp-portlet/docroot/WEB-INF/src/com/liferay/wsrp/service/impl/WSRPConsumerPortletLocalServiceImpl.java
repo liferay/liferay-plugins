@@ -27,6 +27,7 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -52,9 +53,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import oasis.names.tc.wsrp.v2.types.Extension;
 import oasis.names.tc.wsrp.v2.types.LocalizedString;
 import oasis.names.tc.wsrp.v2.types.MarkupType;
 import oasis.names.tc.wsrp.v2.types.PortletDescription;
+
+import org.apache.axis.message.MessageElement;
 
 /**
  * <a href="WSRPConsumerPortletLocalServiceImpl.java.html"><b><i>View Source</i>
@@ -328,6 +332,20 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		portlet.setPortletInfo(portletInfo);
 
+		Extension[] extensions = portletDescription.getExtensions();
+
+		if ((extensions != null) && (extensions.length == 1)) {
+			Extension extension = extensions[0];
+
+			MessageElement[] messageElements = extension.get_any();
+
+			if (messageElements != null) {
+				for (MessageElement messageElement : messageElements) {
+					setExtension(wsrpConsumerPortlet, portlet, messageElement);
+				}
+			}
+		}
+
 		_portletsPool.put(
 			wsrpConsumerPortlet.getWsrpConsumerPortletId(), portlet);
 
@@ -341,6 +359,19 @@ public class WSRPConsumerPortletLocalServiceImpl
 		PortletBagPool.put(portletId, portletBag);
 
 		return portlet;
+	}
+
+	protected String getProxyURL(
+		WSRPConsumerPortlet wsrpConsumerPortlet, String url) {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("/proxy?wsrpConsumerPortletId=");
+		sb.append(wsrpConsumerPortlet.getWsrpConsumerPortletId());
+		sb.append("&url=");
+		sb.append(HttpUtil.encodeURL(url));
+
+		return sb.toString();
 	}
 
 	protected void initWSRPConsumerPortlet(
@@ -360,6 +391,22 @@ public class WSRPConsumerPortletLocalServiceImpl
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
+		}
+	}
+
+	protected void setExtension(
+		WSRPConsumerPortlet wsrpConsumerPortlet, Portlet portlet,
+		MessageElement messageElement) {
+
+		String name = messageElement.getName();
+		String value = messageElement.getValue();
+
+		if (name.equals("css-class-wrapper")) {
+			portlet.setCssClassWrapper(value);
+		}
+		else if (name.equals("header-portlet-css")) {
+			portlet.getHeaderPortletCss().add(
+				getProxyURL(wsrpConsumerPortlet, value));
 		}
 	}
 

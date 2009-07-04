@@ -21,6 +21,11 @@
 		<load-on-startup>0</load-on-startup>
 	</servlet>
 	<servlet>
+		<servlet-name>Proxy Servlet</servlet-name>
+		<servlet-class>com.liferay.wsrp.servlet.ProxyServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet>
 		<servlet-name>WSDL Servlet</servlet-name>
 		<servlet-class>com.liferay.wsrp.servlet.WSDLServlet</servlet-class>
 		<load-on-startup>0</load-on-startup>
@@ -28,6 +33,10 @@
 	<servlet-mapping>
 		<servlet-name>Axis Servlet</servlet-name>
 		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Proxy Servlet</servlet-name>
+		<url-pattern>/proxy/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>WSDL Servlet</servlet-name>
