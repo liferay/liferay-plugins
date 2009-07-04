@@ -241,15 +241,97 @@ public class ServiceDescriptionServiceImpl
 
 		String portalURL = PortalUtil.getPortalURL(request);
 
+		String portalPath = portalURL + PortalUtil.getPathContext();
+		String portletPath = portalURL + portlet.getContextPath();
+
+		long timestamp = portlet.getTimestamp();
+
+		for (String footerPortalCss : portlet.getHeaderPortalCss()) {
+			if (!HttpUtil.hasProtocol(footerPortalCss)) {
+				footerPortalCss =
+					portalPath + footerPortalCss + "?t=" + timestamp;
+			}
+
+			addMessageElement(
+				messageElements, "footer-portal-css", footerPortalCss);
+		}
+
+		for (String footerPortalJavaScript :
+				portlet.getHeaderPortalJavaScript()) {
+
+			if (!HttpUtil.hasProtocol(footerPortalJavaScript)) {
+				footerPortalJavaScript =
+					portalPath + footerPortalJavaScript + "?t=" + timestamp;
+			}
+
+			addMessageElement(
+				messageElements, "footer-portal-css", footerPortalJavaScript);
+		}
+
+		for (String footerPortletCss : portlet.getHeaderPortletCss()) {
+			if (!HttpUtil.hasProtocol(footerPortletCss)) {
+				footerPortletCss =
+					portletPath + footerPortletCss + "?t=" + timestamp;
+			}
+
+			addMessageElement(
+				messageElements, "footer-portlet-css", footerPortletCss);
+		}
+
+		for (String footerPortletJavaScript :
+				portlet.getHeaderPortletJavaScript()) {
+
+			if (!HttpUtil.hasProtocol(footerPortletJavaScript)) {
+				footerPortletJavaScript =
+					portletPath + footerPortletJavaScript + "?t=" + timestamp;
+			}
+
+			addMessageElement(
+				messageElements, "footer-portlet-css", footerPortletJavaScript);
+		}
+
+		for (String headerPortalCss : portlet.getHeaderPortalCss()) {
+			if (!HttpUtil.hasProtocol(headerPortalCss)) {
+				headerPortalCss =
+					portalPath + headerPortalCss + "?t=" + timestamp;
+			}
+
+			addMessageElement(
+				messageElements, "header-portal-css", headerPortalCss);
+		}
+
+		for (String headerPortalJavaScript :
+				portlet.getHeaderPortalJavaScript()) {
+
+			if (!HttpUtil.hasProtocol(headerPortalJavaScript)) {
+				headerPortalJavaScript =
+					portalPath + headerPortalJavaScript + "?t=" + timestamp;
+			}
+
+			addMessageElement(
+				messageElements, "header-portal-css", headerPortalJavaScript);
+		}
+
 		for (String headerPortletCss : portlet.getHeaderPortletCss()) {
 			if (!HttpUtil.hasProtocol(headerPortletCss)) {
 				headerPortletCss =
-					portalURL + portlet.getContextPath() + headerPortletCss +
-						"?t=" + portlet.getTimestamp();
+					portletPath + headerPortletCss + "?t=" + timestamp;
 			}
 
 			addMessageElement(
 				messageElements, "header-portlet-css", headerPortletCss);
+		}
+
+		for (String headerPortletJavaScript :
+				portlet.getHeaderPortletJavaScript()) {
+
+			if (!HttpUtil.hasProtocol(headerPortletJavaScript)) {
+				headerPortletJavaScript =
+					portletPath + headerPortletJavaScript + "?t=" + timestamp;
+			}
+
+			addMessageElement(
+				messageElements, "header-portlet-css", headerPortletJavaScript);
 		}
 
 		portletDescription.setExtensions(getExtensions(messageElements));

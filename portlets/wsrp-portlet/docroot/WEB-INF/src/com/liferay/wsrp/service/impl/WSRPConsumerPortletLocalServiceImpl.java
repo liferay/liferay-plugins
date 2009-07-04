@@ -404,8 +404,36 @@ public class WSRPConsumerPortletLocalServiceImpl
 		if (name.equals("css-class-wrapper")) {
 			portlet.setCssClassWrapper(value);
 		}
+		else if (name.equals("footer-portal-css")) {
+			portlet.getFooterPortalCss().add(
+				getProxyURL(wsrpConsumerPortlet, value));
+		}
+		else if (name.equals("footer-portal-javascript")) {
+			portlet.getFooterPortalJavaScript().add(
+				getProxyURL(wsrpConsumerPortlet, value));
+		}
+		else if (name.equals("footer-portlet-css")) {
+			portlet.getFooterPortletCss().add(
+				getProxyURL(wsrpConsumerPortlet, value));
+		}
+		else if (name.equals("footer-portlet-javascript")) {
+			portlet.getFooterPortletJavaScript().add(
+				getProxyURL(wsrpConsumerPortlet, value));
+		}
+		else if (name.equals("header-portal-css")) {
+			portlet.getHeaderPortalCss().add(
+				getProxyURL(wsrpConsumerPortlet, value));
+		}
+		else if (name.equals("header-portal-javascript")) {
+			portlet.getHeaderPortalJavaScript().add(
+				getProxyURL(wsrpConsumerPortlet, value));
+		}
 		else if (name.equals("header-portlet-css")) {
 			portlet.getHeaderPortletCss().add(
+				getProxyURL(wsrpConsumerPortlet, value));
+		}
+		else if (name.equals("header-portlet-javascript")) {
+			portlet.getHeaderPortletJavaScript().add(
 				getProxyURL(wsrpConsumerPortlet, value));
 		}
 	}
