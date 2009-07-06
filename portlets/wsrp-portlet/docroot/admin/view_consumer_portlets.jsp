@@ -34,6 +34,7 @@ WSRPConsumerManager wsrpConsumerManager = WSRPConsumerManagerFactory.getWSRPCons
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("jspPage", "/admin/view_consumer_portlets.jsp");
+portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 %>
 
 <form>
