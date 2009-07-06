@@ -279,12 +279,14 @@ public class MarkupServiceImpl
 
 		NamedString[] formParameters  = interactionParams.getFormParameters();
 
-		for (NamedString formParameter : formParameters) {
-			String name =
-				PortalUtil.getPortletNamespace(getPortletId(portletContext)) +
-					formParameter.getName();
+		if (formParameters != null) {
+			for (NamedString formParameter : formParameters) {
+				String name =
+					PortalUtil.getPortletNamespace(
+						getPortletId(portletContext)) + formParameter.getName();
 
-			httpOptions.addPart(name, formParameter.getValue());
+				httpOptions.addPart(name, formParameter.getValue());
+			}
 		}
 
 		httpOptions.setPost(true);
