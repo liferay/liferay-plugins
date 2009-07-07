@@ -31,14 +31,14 @@ import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.Resource;
 import com.liferay.portal.model.ResourceConstants;
-import com.liferay.portal.model.User;
-import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.PermissionLocalServiceUtil;
 import com.liferay.portal.service.ResourceLocalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import java.util.Locale;
@@ -263,14 +263,18 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		Resource resource = ResourceLocalServiceUtil.getResource(
 			companyId, name, scope, primKey);
 
-		User defaultUser = UserLocalServiceUtil.getDefaultUser(companyId);
+		Role role = RoleLocalServiceUtil.getRole(
+			companyId, RoleConstants.GUEST);
+		String[] actionIds = new String[] {};
 
-		long userId = defaultUser.getUserId();
-		String[] actionIds = new String[] {ActionKeys.VIEW};
-		long resourceId = resource.getResourceId();
+		PermissionLocalServiceUtil.setRolePermissions(
+			role.getRoleId(), actionIds, resource.getResourceId());
 
-		PermissionLocalServiceUtil.unsetUserPermissions(
-			userId, actionIds, resourceId);
+		role = RoleLocalServiceUtil.getRole(
+			companyId, RoleConstants.POWER_USER);
+
+		PermissionLocalServiceUtil.setRolePermissions(
+			role.getRoleId(), actionIds, resource.getResourceId());
 	}
 
 	protected void updatePortletTitle(
