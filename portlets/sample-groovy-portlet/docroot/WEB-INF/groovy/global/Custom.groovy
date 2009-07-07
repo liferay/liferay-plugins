@@ -4,17 +4,17 @@ import javax.portlet.RenderResponse;
 
 class Custom {
 
-	static String navigation(RenderResponse res) { 
+	static String navigation(RenderResponse renderResponse) {
 		"""
 			<div class='separator'></div>
 
 			<div>
 				Navigation:
 
-				${LiferayPortlet.renderLink(res, "Home", "/WEB-INF/groovy/view.groovy", [:])} -
-				${LiferayPortlet.renderLink(res, "User Info", "/WEB-INF/groovy/info.groovy", ['type' : 'user'])} -
-				${LiferayPortlet.renderLink(res, "Portlet Info", "/WEB-INF/groovy/info.groovy", ['type' : 'portlet'])} -
-				${LiferayPortlet.renderLink(res, "Invoke Java", "/WEB-INF/groovy/java.groovy", [:])}
+				${LiferayPortlet.renderLink(renderResponse, "Home", "/WEB-INF/groovy/view.groovy", [:])} -
+				${LiferayPortlet.renderLink(renderResponse, "User Info", "/WEB-INF/groovy/info.groovy", ['type' : 'user'])} -
+				${LiferayPortlet.renderLink(renderResponse, "Portlet Info", "/WEB-INF/groovy/info.groovy", ['type' : 'portlet'])} -
+				${LiferayPortlet.renderLink(renderResponse, "Invoke Java", "/WEB-INF/groovy/java.groovy", [:])}
 			</div>
 		"""
 	}
@@ -27,14 +27,14 @@ class Custom {
 		""";
 	}
 
-	static String showNumber(RenderRequest req, RenderResponse res) {
-		PortletPreferences prefs = req.getPreferences();
+	static String showNumber(RenderRequest renderRequest, RenderResponse renderResponse) {
+		PortletPreferences preferences = renderRequest.getPreferences();
 
-		String num = prefs.getValue("number", "0");
+		String num = preferences.getValue("number", "0");
 
 		return """
 			<div>
-				Number: ${num} (${LiferayPortlet.actionLink(res, "Increment", [:])})
+				Number: ${num} (${LiferayPortlet.actionLink(renderResponse, "Increment", [:])})
 			</div>
 		""";
 	}

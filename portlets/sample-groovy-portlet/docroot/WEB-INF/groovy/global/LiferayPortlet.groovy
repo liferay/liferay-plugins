@@ -6,12 +6,12 @@ import javax.portlet.RenderResponse;
 
 class LiferayPortlet {
 
-	static String actionLink(RenderResponse res, String text, Map params) {
-		return link(actionUrl(res, params), text);
+	static String actionLink(RenderResponse renderResponse, String text, Map params) {
+		return link(actionUrl(renderResponse, params), text);
 	}
 
-	static String actionUrl(RenderResponse res, Map params) {
-		PortletURL portletUrl = res.createActionURL();
+	static String actionUrl(RenderResponse renderResponse, Map params) {
+		PortletURL portletUrl = renderResponse.createActionURL();
 
 		return url(portletUrl, params);
 	}
@@ -20,12 +20,12 @@ class LiferayPortlet {
 		return "<a href='" + url + "'>" + text + "</a>";
 	}
 
-	static String renderLink(RenderResponse res, String text, String target, Map params) {
-		return link(renderUrl(res, target, params), text);
+	static String renderLink(RenderResponse renderResponse, String text, String target, Map params) {
+		return link(renderUrl(renderResponse, target, params), text);
 	}
 
-	static renderUrl(RenderResponse res, String target, Map params) {
-		PortletURL portletUrl = res.createRenderURL();
+	static renderUrl(RenderResponse renderResponse, String target, Map params) {
+		PortletURL portletUrl = renderResponse.createRenderURL();
 
 		if (Validator.isNotNull(target)) {
 			portletUrl.setParameter("groovyFile", target);
@@ -34,7 +34,7 @@ class LiferayPortlet {
 		return url(portletUrl, params);
 	}
 
-	static String showPortletDetails(PortletConfig portletConfig, RenderRequest req) {
+	static String showPortletDetails(PortletConfig portletConfig, RenderRequest renderRequest) {
 		"""
 			<table class='liferay-table'>
 	   		<tr>
@@ -43,11 +43,11 @@ class LiferayPortlet {
 			</tr>
 			<tr>
 				<td>Preferences:</td>
-				<td>${req.getPreferences().getMap()}</td>
+				<td>${renderRequest.getPreferences().getMap()}</td>
 			</tr>
 			<tr>
 				<td>Parameters:</td>
-				<td>${req.getParameterMap()}</td>
+				<td>${renderRequest.getParameterMap()}</td>
 			</tr>
 			</table>
 		"""
