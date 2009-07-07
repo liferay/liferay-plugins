@@ -505,7 +505,7 @@ textarea.focus {
 
 .so-portlet-activities .activity-body {
 	border-bottom: 1px solid #DBDBDB;
-	font-size: 9.5px;
+	font-size: 9px;
 	width: 323px;
 }
 
@@ -1236,7 +1236,8 @@ table.calendar {
 	margin-bottom: 25px;
 }
 
-/* RSS Portlet */
+/* RSS */
+
 .portlet-rss .configure {
 	font-size: 11px;
 	text-align: right;
