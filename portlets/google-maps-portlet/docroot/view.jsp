@@ -107,7 +107,7 @@
 					{
 						url: '<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveDirectionsAddress" /></portlet:actionURL>',
 						data: {
-							directionsAddress: encodeURIComponent(address)
+							directionsAddress: address
 						}
 					}
 				);
@@ -118,7 +118,7 @@
 					{
 						url: '<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveMapAddress" /></portlet:actionURL>',
 						data: {
-							mapAddress: encodeURIComponent(address)
+							mapAddress: address
 						}
 					}
 				);
