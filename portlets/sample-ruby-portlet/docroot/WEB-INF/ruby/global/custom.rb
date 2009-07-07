@@ -22,9 +22,9 @@ module Custom
 		"""
 	end
 
-	def Custom.showNumber(req)
-		prefs = req.getPreferences();
-		num = prefs.getValue("number", "0")
+	def Custom.showNumber(renderRequest)
+		preferences = renderRequest.getPreferences();
+		num = preferences.getValue("number", "0")
 
 		"""
 			<div>

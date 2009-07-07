@@ -26,7 +26,7 @@ module LiferayPortlet
 		url portletUrl, params
 	end
 
-	def LiferayPortlet.showPortletDetails(req)
+	def LiferayPortlet.showPortletDetails(renderRequest)
 		"""
 			<table class='liferay-table'>
 			<tr>
@@ -35,11 +35,11 @@ module LiferayPortlet
 			</tr>
 			<tr>
 				<td>Preferences:</td>
-				<td>#{req.getPreferences.getMap}</td>
+				<td>#{renderRequest.getPreferences.getMap}</td>
 			</tr>
 			<tr>
 				<td>Parameters:</td>
-				<td>#{req.getParameterMap}</td>
+				<td>#{renderRequest.getParameterMap}</td>
 			</tr>
 			</table>
 		"""
