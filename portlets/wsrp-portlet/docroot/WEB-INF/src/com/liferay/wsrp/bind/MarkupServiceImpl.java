@@ -280,10 +280,11 @@ public class MarkupServiceImpl
 		NamedString[] formParameters  = interactionParams.getFormParameters();
 
 		if (formParameters != null) {
+			String namespace = PortalUtil.getPortletNamespace(
+				getPortletId(portletContext));
+
 			for (NamedString formParameter : formParameters) {
-				String name =
-					PortalUtil.getPortletNamespace(
-						getPortletId(portletContext)) + formParameter.getName();
+				String name = namespace + formParameter.getName();
 
 				httpOptions.addPart(name, formParameter.getValue());
 			}
