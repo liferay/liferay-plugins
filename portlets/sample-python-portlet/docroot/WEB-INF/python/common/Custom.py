@@ -16,15 +16,17 @@ class Custom:
         """;
     
     def navigation(self):
-        return '\n' +
-            '<div class="separator"></div>\n\n' +
-            '<div>\n' +
-                'Navigation:\n' +
-                '\n' + self.lp.renderLink("Home", "/WEB-INF/python/view.py", {}) + " - " + 
-                self.lp.renderLink("User Info", "/WEB-INF/python/info.py", {'type' : 'user'}) + " - " + 
-                self.lp.renderLink("Portlet Info", "/WEB-INF/python/info.py", {'type' : 'portlet'}) + " - " + 
-                self.lp.renderLink("Invoke Java", "/WEB-INF/python/java.py", {}) + '\n' +
-            '</div>\n';
+        nav = '\n';
+        nav += '<div class="separator"></div>\n\n';
+        nav += '<div>\n';
+        nav += 'Navigation:\n';
+        nav += '\n' + self.lp.renderLink("Home", "/WEB-INF/python/view.py", {}) + " - ";
+        nav += self.lp.renderLink("User Info", "/WEB-INF/python/info.py", {'type' : 'user'}) + " - ";
+        nav += self.lp.renderLink("Portlet Info", "/WEB-INF/python/info.py", {'type' : 'portlet'}) + " - ";
+        nav += self.lp.renderLink("Invoke Java", "/WEB-INF/python/java.py", {}) + '\n';
+        nav += '</div>\n';
+
+        return nav;
     
     def showNumber(self):
         preferences = self.renderRequest.getPreferences();
