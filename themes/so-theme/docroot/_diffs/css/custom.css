@@ -505,7 +505,7 @@ textarea.focus {
 
 .so-portlet-activities .activity-body {
 	border-bottom: 1px solid #DBDBDB;
-	font-size: 0.5px;
+	font-size: 9.5px;
 	width: 323px;
 }
 
@@ -1234,6 +1234,12 @@ table.calendar {
 
 .so-portlet-profiles #projectsEntries .ctrl-holder.last {
 	margin-bottom: 25px;
+}
+
+/* RSS Portlet */
+.portlet-rss .configure {
+	font-size: 11px;
+	text-align: right;
 }
 
 /* TMS: Tasks */
