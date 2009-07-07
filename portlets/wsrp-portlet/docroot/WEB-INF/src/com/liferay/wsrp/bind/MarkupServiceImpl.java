@@ -284,9 +284,9 @@ public class MarkupServiceImpl
 				getPortletId(portletContext));
 
 			for (NamedString formParameter : formParameters) {
-				String name = namespace + formParameter.getName();
-
-				httpOptions.addPart(name, formParameter.getValue());
+				httpOptions.addPart(
+					namespace + formParameter.getName(),
+					formParameter.getValue());
 			}
 		}
 
