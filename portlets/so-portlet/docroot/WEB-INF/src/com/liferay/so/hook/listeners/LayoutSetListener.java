@@ -256,16 +256,18 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 	protected void updatePermissions(Layout layout) throws Exception {
 		long companyId = layout.getCompanyId();
+
+		Role role = RoleLocalServiceUtil.getRole(
+			companyId, RoleConstants.GUEST);
+
+		String[] actionIds = new String[0];
+
 		String name = Layout.class.getName();
 		int scope =	ResourceConstants.SCOPE_INDIVIDUAL;
 		String primKey = String.valueOf(layout.getPrimaryKey());
 
 		Resource resource = ResourceLocalServiceUtil.getResource(
 			companyId, name, scope, primKey);
-
-		Role role = RoleLocalServiceUtil.getRole(
-			companyId, RoleConstants.GUEST);
-		String[] actionIds = new String[] {};
 
 		PermissionLocalServiceUtil.setRolePermissions(
 			role.getRoleId(), actionIds, resource.getResourceId());

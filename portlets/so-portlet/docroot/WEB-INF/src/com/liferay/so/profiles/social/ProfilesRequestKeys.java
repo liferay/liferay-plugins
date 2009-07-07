@@ -18,7 +18,7 @@
 package com.liferay.so.profiles.social;
 
 /**
- * <a href="FriendsRequestKeys.java.html"><b><i>View Source</i></b></a>
+ * <a href="ProfilesRequestKeys.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
