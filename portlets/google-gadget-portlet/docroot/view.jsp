@@ -25,22 +25,25 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String url = "http://gmodules.com/ig/ifr?url=" + gadgetId + "&title=&border=none&output=js";
+String url = "http://gmodules.com/ig/ifr?url=" + gadgetId + "&synd=open&w=auto&title=&border=none&output=js";
 
 String html = HttpUtil.URLtoString(url);
 
 try {
-	int x = html.indexOf("*/");
 
-	html = html.substring(x + 2, html.length());
+	// Remove google footer
 
-	x = html.indexOf("/ig/add?");
+	int x = html.indexOf("/ig/add?");
 
 	x = html.lastIndexOf("\\x3ctr", x);
 
 	int y = html.indexOf("\\x3c/tr\\x3e", x);
 
 	html = html.substring(0, x) + html.substring(y + 11);
+
+	// Sometimes the gadget does not set its own height correctly
+
+	html = html.replace("height\\x3d10 ", "height\\x3d100% ");
 }
 catch (Exception e) {
 }
