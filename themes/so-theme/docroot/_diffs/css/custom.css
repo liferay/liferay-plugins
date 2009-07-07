@@ -272,6 +272,7 @@ body #banner h1.logo a {
 	background: #F0F5F7;
 	border: 1px solid #B0BAFF;
 	clear: none;
+	font-size:11px;
 	left: -250px;
 	margin: 0;
 	padding: 12px;
@@ -468,6 +469,12 @@ textarea.focus {
 
 /* ---------- Portlet ---------- */
 
+/* Announcements */
+
+.portlet-announcements .entry-title {
+	padding: 0 10px 14px 20px;
+}
+
 /* Activities */
 
 .portlet-activities .activity-body a,
@@ -476,8 +483,45 @@ textarea.focus {
 	padding-left: 10px;
 }
 
-.portlet-activities .user,
-.so-portlet-activities .user {
+.portlet-activities .user {
+	font-weight: bold;
+}
+
+.so-portlet-activities a.user, .so-portlet-activities .user {
+	color: rgb(60,102,150);
+	font-weight: bold;
+	font-size: 11px;
+}
+
+.so-portlet-activities a.group {
+	color: rgb(116,11,43);
+	font-weight: bold;
+}
+
+.so-portlet-activities .activity-body a {
+	padding-left: 5px;
+}
+
+.so-portlet-activities .activity-body {
+	border-bottom: 1px solid rgb(219,219,219);
+	font-size: .5px;
+	width:323px;
+}
+
+.so-portlet-activities .activity-title {
+	color: rgb(65,55,57);
+	font-size: 11px;
+}
+
+.so-portlet-activities .time {
+	color: rgb(132,132,132);
+}
+
+.so-portlet-activities .taglib-social-activities {
+	width: 350px;
+}
+.so-portlet-activities .first-day-separator {
+	border-bottom: 1px solid rgb(179,179,179);
 	font-weight: bold;
 }
 
@@ -857,6 +901,14 @@ table.calendar {
 }
 
 /* Contacts */
+.contacts-portlet .card-display-table a {
+	font-size:11px;
+	font-weight:bold;
+}
+
+.contacts-portlet .card-display-table .login-date {
+	font-size:9px;
+}
 
 .contacts-portlet .control .add-card {
 	position: absolute;
@@ -902,6 +954,11 @@ table.calendar {
 
 .contacts-portlet .ui-dialog-content {
 	font-size: 1.2em;
+}
+
+.contacts-portlet td .col-1 a {
+	font-size:11px;
+	font-weight:bold;
 }
 
 /* Document Library */
