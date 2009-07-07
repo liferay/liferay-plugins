@@ -131,27 +131,30 @@
 					/>
 				</td>
 			</tr>
-			<tr>
-				<td>
 
-					<%
-					int blogsEntriesCount = BlogsStatsUserLocalServiceUtil.getStatsUser(group.getGroupId(), user2.getUserId()).getEntryCount();
-					%>
+			<%
+			int blogsEntriesCount = BlogsStatsUserLocalServiceUtil.getStatsUser(group.getGroupId(), user2.getUserId()).getEntryCount();
+			%>
 
-					<liferay-ui:icon
-						image="view"
-						message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<b>" + blogsEntriesCount + "</b>"}) %>'
-						url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog" %>'
-						label="<%= true %>"
-					/>
-				</td>
-				<td>
-					<liferay-ui:icon
-						image="rss"
-						url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog/-/blogs/rss" %>'
-					/>
-				</td>
-			</tr>
+			<c:if test="<%= blogsEntriesCount > 0 %>">
+				<tr>
+					<td>
+						<liferay-ui:icon
+							image="view"
+							message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<b>" + blogsEntriesCount + "</b>"}) %>'
+							url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog" %>'
+							label="<%= true %>"
+						/>
+					</td>
+					<td>
+						<liferay-ui:icon
+							image="rss"
+							url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog/-/blogs/rss" %>'
+						/>
+					</td>
+				</tr>
+			</c:if>
+
 			</table>
 		</div>
 
