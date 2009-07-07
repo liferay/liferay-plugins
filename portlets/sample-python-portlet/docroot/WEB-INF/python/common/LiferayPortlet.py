@@ -2,15 +2,15 @@ from com.liferay.portal.kernel.util import Validator;
 
 class LiferayPortlet:
     
-    def __init__(self, req, res):
-        self.req = req;
-        self.res = res;
+    def __init__(self, renderRequest, renderResponse):
+        self.renderRequest = renderRequest;
+        self.renderResponse = renderResponse;
     
     def actionLink(self, text, params):
         return self.link(self.actionUrl(params), text);
     
     def actionUrl(self, params):
-        portletUrl = self.res.createActionURL();
+        portletUrl = self.renderResponse.createActionURL();
     
         return self.url(portletUrl, params);
     
@@ -21,7 +21,7 @@ class LiferayPortlet:
         return self.link(self.renderUrl(target, params), text);
     
     def renderUrl(self, target, params):
-        portletUrl = self.res.createRenderURL();
+        portletUrl = self.renderResponse.createRenderURL();
     
         if (Validator.isNotNull(target)):
             portletUrl.setParameter("pythonFile", target);
@@ -37,11 +37,11 @@ class LiferayPortlet:
             </tr>
             <tr>
                 <td>Preferences:</td>
-                <td>""" + str(self.req.getPreferences().getMap()) + """</td>
+                <td>""" + str(self.renderRequest.getPreferences().getMap()) + """</td>
             </tr>
             <tr>
                 <td>Parameters:</td>
-                <td>""" + str(self.req.getParameterMap()) + """</td>
+                <td>""" + str(self.renderRequest.getParameterMap()) + """</td>
             </tr>
             </table>
         """;

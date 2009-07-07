@@ -3,10 +3,10 @@ from javax.portlet.RenderRequest import *;
 from javax.portlet.RenderResponse import *;
 
 class Custom:
-    def __init__(self, req, res):
-        self.req = req;
-        self.res = res;
-        self.lp = LiferayPortlet(req, res);
+    def __init__(self, renderRequest, renderResponse):
+        self.renderRequest = renderRequest;
+        self.renderResponse = renderResponse;
+        self.lp = LiferayPortlet(renderRequest, renderResponse);
 
     def sayHello(self):
         return """
@@ -27,9 +27,9 @@ class Custom:
             '</div>\n';
     
     def showNumber(self):
-        prefs = self.req.getPreferences();
+        preferences = self.renderRequest.getPreferences();
     
-        num = prefs.getValue("number", "0");
+        num = preferences.getValue("number", "0");
         actionLink = self.lp.actionLink("Increment", {});
     
         return '<div>#Number: ' + num + ' (' + actionLink + ')</div>';
