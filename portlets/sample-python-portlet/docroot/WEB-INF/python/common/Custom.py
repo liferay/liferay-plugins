@@ -16,16 +16,15 @@ class Custom:
         """;
     
     def navigation(self):
-        return '\n\
-            <div class="separator"></div>\n\n\
-            <div>\n\
-                Navigation:\n\
-                \n' + self.lp.renderLink("Home", "/WEB-INF/python/view.py", {}) + " - " + \
-                self.lp.renderLink("User Info", "/WEB-INF/python/info.py", {'type' : 'user'}) + " - " + \
-                self.lp.renderLink("Portlet Info", "/WEB-INF/python/info.py", {'type' : 'portlet'}) + " - " + \
-                self.lp.renderLink("Invoke Java", "/WEB-INF/python/java.py", {}) + '\n\
-            </div>\n\
-        ';
+        return '\n' +
+            '<div class="separator"></div>\n\n' +
+            '<div>\n' +
+                'Navigation:\n' +
+                '\n' + self.lp.renderLink("Home", "/WEB-INF/python/view.py", {}) + " - " + 
+                self.lp.renderLink("User Info", "/WEB-INF/python/info.py", {'type' : 'user'}) + " - " + 
+                self.lp.renderLink("Portlet Info", "/WEB-INF/python/info.py", {'type' : 'portlet'}) + " - " + 
+                self.lp.renderLink("Invoke Java", "/WEB-INF/python/java.py", {}) + '\n' +
+            '</div>\n';
     
     def showNumber(self):
         prefs = self.req.getPreferences();
@@ -33,7 +32,4 @@ class Custom:
         num = prefs.getValue("number", "0");
         actionLink = self.lp.actionLink("Increment", {});
     
-        return '<div>\n\
-                #Number: ' + num + ' (' + actionLink + ')\n\
-            </div>\n\
-        ';
+        return '<div>#Number: ' + num + ' (' + actionLink + ')</div>';
