@@ -17,6 +17,73 @@
  */
 %>
 
+<%
+long[] unscopedEntryIds = TagsEntryLocalServiceUtil.getEntryIds(0, entries);
+long[] unscopedNotEntryIds = TagsEntryLocalServiceUtil.getEntryIds(0, notEntries);
+
+if (allowEmptyResults && (unscopedEntryIds.length == 0) && (unscopedNotEntryIds.length == 0)) {
+	unscopedEntryIds = new long[] {-1};
+}
+
+long[] unscopedClassNameIds = new long[] {PortalUtil.getClassNameId(User.class.getName())};
+
+List<TagsAsset> unscopedAssets = TagsAssetLocalServiceUtil.getAssets(0, unscopedClassNameIds, unscopedEntryIds, unscopedNotEntryIds, andOperator, excludeZeroViewCount, searchContainer.getStart(), searchContainer.getEnd());
+%>
+
 <%@ include file="/html/portlet/asset_publisher/view_dynamic_list.portal.jspf" %>
 
-<%@ include file="/html/portlet/asset_publisher/view_contacts.jspf" %>
+<c:if test="<%= unscopedAssets.size() > 0 %>">
+	<h3><liferay-ui:message key="contacts" /></h3>
+
+	<ul class="title-list">
+
+		<%
+		for (TagsAsset asset : unscopedAssets) {
+			User curUser = UserLocalServiceUtil.getUser(asset.getClassPK());
+
+			List<Phone> phones = PhoneLocalServiceUtil.getPhones(company.getCompanyId(), Contact.class.getName(), curUser.getContactId());
+
+			Phone primaryPhone = null;
+
+			for (Phone phone : phones) {
+				if (phone.getPrimary()) {
+					primaryPhone = phone;
+
+					break;
+				}
+			}
+		%>
+
+			<li class="title-list contact">
+				<div class="contact-name">
+					<c:choose>
+						<c:when test="<%= Validator.isNotNull(curUser.getDisplayURL(themeDisplay)) %>">
+							<a href="<%= curUser.getDisplayURL(themeDisplay) %>"><%= curUser.getFullName() %></a>
+						</c:when>
+						<c:otherwise>
+							<%= curUser.getFullName() %>
+						</c:otherwise>
+					</c:choose>
+
+					<c:if test="<%= Validator.isNotNull(curUser.getEmailAddress()) && UserLocalServiceUtil.hasGroupUser(scopeGroupId, user.getUserId()) %>">
+						<a href="mailto:<%= curUser.getEmailAddress() %>"><img border="0" src="<%= themeDisplay.getPathThemeImages() %>/mail/unread.png" /></a>
+					</c:if>
+				</div>
+
+				<c:if test="<%= primaryPhone != null %>">
+					<div class="contact-phone">
+						<%= PhoneNumberUtil.format(primaryPhone.getNumber()) %>
+
+						<c:if test="<%= Validator.isNotNull(primaryPhone.getExtension()) %>">
+							x<%= primaryPhone.getExtension() %>
+						</c:if>
+					</div>
+				</c:if>
+			</li>
+
+		<%
+		}
+		%>
+
+	</ul>
+</c:if>
