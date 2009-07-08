@@ -26,6 +26,9 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.scripting.ScriptingException;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.log.Log;
 import com.liferay.util.bridges.ruby.RubyPortlet;
 
 import java.io.IOException;
@@ -74,7 +77,7 @@ public class RubyConsolePortlet extends RubyPortlet {
 		try {
 			declareBeans(consoleInput, portletRequest, portletResponse);
 		}
-		catch (BSFException bsfe) {
+		catch (ScriptingException se) {
 			if (portletResponse instanceof MimeResponse) {
 				MimeResponse mimeResponse = (MimeResponse)portletResponse;
 
@@ -82,7 +85,7 @@ public class RubyConsolePortlet extends RubyPortlet {
 
 				OutputStream out = mimeResponse.getPortletOutputStream();
 
-				Throwable te = bsfe.getTargetException();
+				Throwable te = se.getCause();
 
 				out.write("\n@ERROR@\n".getBytes());
 
@@ -91,9 +94,12 @@ public class RubyConsolePortlet extends RubyPortlet {
 				out.close();
 			}
 			else {
-				logBSFException(bsfe, "Console input");
+				String message = "The configured script has errors.";
+
+				_log.error(message, se);
 			}
 		}
 	}
 
+	private static Log _log = LogFactoryUtil.getLog(RubyConsolePortlet.class);
 }

@@ -20,6 +20,7 @@ out.print <<-EOF
 </style>
 
 <script type="text/javascript">
+	// <![CDATA[
 	function #{namespace}execute() {
 		var content = #{namespace}consoleInput.getCode();
 
@@ -41,6 +42,7 @@ out.print <<-EOF
 
 		return false;
 	}
+	// ]]>
 </script>
 
 <form name="#{namespace}fm">
