@@ -4,6 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
+		<friendly-url-mapper-class>com.liferay.so.activities.portlet.ActivitiesFriendlyURLMapper</friendly-url-mapper-class>
 		<css-class-wrapper>so-portlet-activities</css-class-wrapper>
 	</portlet>
 	<portlet>

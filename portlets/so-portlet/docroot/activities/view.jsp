@@ -25,13 +25,19 @@ String tabs1 = ParamUtil.getString(request, "tabs1", "my-sites");
 PortletURL portletURL = renderResponse.createRenderURL();
 %>
 
-<liferay-ui:tabs
-	names="my-sites,my-friends,me"
-	url="<%= portletURL.toString() %>"
-/>
+<c:if test="<%= !themeDisplay.isStateExclusive() %>">
+	<liferay-ui:tabs
+		names="my-sites,my-friends,me"
+		url="<%= portletURL.toString() %>"
+	/>
+</c:if>
 
 <%
+SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
+
 List<SocialActivity> activities = null;
+
+int total = 0;
 
 Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
@@ -45,14 +51,22 @@ else {
 }
 
 if (tabs1.equals("my-sites")) {
-	activities = SocialActivityLocalServiceUtil.getUserGroupsActivities(curUser.getUserId(), 0, SearchContainer.DEFAULT_DELTA);
+	activities = SocialActivityLocalServiceUtil.getUserGroupsActivities(curUser.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+
+	total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(curUser.getUserId());
 }
 else if (tabs1.equals("my-friends")) {
-	activities = SocialActivityLocalServiceUtil.getRelationActivities(curUser.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, SearchContainer.DEFAULT_DELTA);
+	activities = SocialActivityLocalServiceUtil.getRelationActivities(curUser.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, searchContainer.getStart(), searchContainer.getEnd());
+
+	total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(curUser.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND);
 }
 else {
-	activities = SocialActivityLocalServiceUtil.getUserActivities(curUser.getUserId(), 0, SearchContainer.DEFAULT_DELTA);
+	activities = SocialActivityLocalServiceUtil.getUserActivities(curUser.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+
+	total = SocialActivityLocalServiceUtil.getUserActivitiesCount(curUser.getUserId());
 }
+
+searchContainer.setTotal(total);
 
 PortletURL rssURL = renderResponse.createRenderURL();
 
@@ -66,3 +80,12 @@ rssURL.setParameter("rss", "1");
 	feedLink="<%= rssURL.toString() %>"
 	feedLinkMessage='<%= LanguageUtil.format(pageContext, "subscribe-to-these-activities", user.getFirstName()) %>'
 />
+
+<c:if test="<%= (activities.size() > 0) && !themeDisplay.isStateExclusive() %>">
+	<div class="pagination" id="<portlet:namespace />searchActivities">
+		<liferay-ui:search-paginator
+			searchContainer="<%= searchContainer %>"
+			type="article"
+		/>
+	</div>
+</c:if>

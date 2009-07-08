@@ -527,6 +527,23 @@ textarea.focus {
 	font-weight: bold;
 }
 
+.so-portlet-activities .pagination {
+	margin-top: 1em;
+}
+
+.so-portlet-activities .pagination .search-results {
+	display: none;
+}
+
+.so-portlet-activities .pagination .search-pages {
+	float: none;
+}
+
+.so-portlet-activities .search-pages .page-links a,
+.so-portlet-activities .search-pages .page-links span {
+	border: none;
+}
+
 /* Asset Publisher */
 
 .portlet-asset-publisher .document-folder {
