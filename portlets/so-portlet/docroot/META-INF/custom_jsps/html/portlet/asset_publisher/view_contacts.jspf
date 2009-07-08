@@ -72,7 +72,7 @@ List<TagsAsset> unscopedAssets = TagsAssetLocalServiceUtil.getAssets(0, unscoped
 						<%= PhoneNumberUtil.format(primaryPhone.getNumber()) %>
 
 						<c:if test="<%= Validator.isNotNull(primaryPhone.getExtension()) %>">
-							x <%= primaryPhone.getExtension() %>
+							x<%= primaryPhone.getExtension() %>
 						</c:if>
 					</div>
 				</c:if>
