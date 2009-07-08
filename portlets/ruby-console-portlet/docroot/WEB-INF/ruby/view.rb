@@ -21,27 +21,27 @@ out.print <<-EOF
 
 <script type="text/javascript">
 	// <![CDATA[
-	function #{namespace}execute() {
-		var content = #{namespace}consoleInput.getCode();
+		function #{namespace}execute() {
+			var content = #{namespace}consoleInput.getCode();
 
-		jQuery.get(
-			'#{$renderResponse.createResourceURL}',
-			{
-				#{namespace}cmd: "exec",
-				#{namespace}consoleInput: content
-			},
-			function(data) {
-				if (!data.match(/^@ERROR@$/m) && document.#{namespace}fm.#{namespace}outputMode.checked) {
-					jQuery("\##{namespace}consoleOutput").empty().append(data);
+			jQuery.get(
+				'#{$renderResponse.createResourceURL}',
+				{
+					#{namespace}cmd: "exec",
+					#{namespace}consoleInput: content
+				},
+				function(data) {
+					if (!data.match(/^@ERROR@$/m) && document.#{namespace}fm.#{namespace}outputMode.checked) {
+						jQuery("\##{namespace}consoleOutput").empty().append(data);
+					}
+					else {
+						jQuery("\##{namespace}consoleOutput").empty().text(data);
+					}
 				}
-				else {
-					jQuery("\##{namespace}consoleOutput").empty().text(data);
-				}
-			}
-		);
+			);
 
-		return false;
-	}
+			return false;
+		}
 	// ]]>
 </script>
 

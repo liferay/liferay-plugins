@@ -85,21 +85,20 @@ public class RubyConsolePortlet extends RubyPortlet {
 
 				OutputStream out = mimeResponse.getPortletOutputStream();
 
-				Throwable te = se.getCause();
+				Throwable t = se.getCause();
 
 				out.write("\n@ERROR@\n".getBytes());
 
-				te.printStackTrace(new PrintStream(out, true, StringPool.UTF8));
+				t.printStackTrace(new PrintStream(out, true, StringPool.UTF8));
 
 				out.close();
 			}
 			else {
-				String message = "The configured script has errors.";
-
-				_log.error(message, se);
+				_log.error("The configured script has errors", se);
 			}
 		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(RubyConsolePortlet.class);
+
 }
