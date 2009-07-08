@@ -1,0 +1,65 @@
+<%
+/**
+ * Copyright (c) 2008-2009 Liferay, Inc. All rights reserved.
+ *
+ * This file is part of Liferay Social Office. Liferay Social Office is free
+ * software: you can redistribute it and/or modify it under the terms of the GNU
+ * Affero General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ *
+ * Liferay Social Office is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
+ */
+%>
+
+<%
+long[] unscopedEntryIds = TagsEntryLocalServiceUtil.getEntryIds(0, entries);
+long[] unscopedNotEntryIds = TagsEntryLocalServiceUtil.getEntryIds(0, notEntries);
+
+if (allowEmptyResults && (unscopedEntryIds.length == 0) && (unscopedNotEntryIds.length == 0)) {
+	unscopedEntryIds = new long[] {-1};
+}
+
+long[] unscopedClassNameIds = new long[] {PortalUtil.getClassNameId(User.class.getName())};
+
+List<TagsAsset> unscopedAssets = TagsAssetLocalServiceUtil.getAssets(0, unscopedClassNameIds, unscopedEntryIds, unscopedNotEntryIds, andOperator, excludeZeroViewCount, searchContainer.getStart(), searchContainer.getEnd());
+%>
+
+<c:if test="<%= unscopedAssets.size() > 0 %>">
+	<h3><liferay-ui:message key="contacts" /></h3>
+
+	<ul class="title-list">
+
+		<%
+		for (TagsAsset asset : unscopedAssets) {
+			User curUser = UserLocalServiceUtil.getUser(asset.getClassPK());
+		%>
+
+			<li class="title-list contact">
+				<div class="contact-name">
+					<c:choose>
+						<c:when test="<%= Validator.isNotNull(curUser.getDisplayURL(themeDisplay)) %>">
+							<a href="<%= curUser.getDisplayURL(themeDisplay) %>"><%= curUser.getFullName() %></a>
+						</c:when>
+						<c:otherwise>
+							<%= curUser.getFullName() %>
+						</c:otherwise>
+					</c:choose>
+
+					<c:if test="<%= Validator.isNotNull(curUser.getEmailAddress()) && UserLocalServiceUtil.hasGroupUser(scopeGroupId, user.getUserId()) %>">
+						<a href="mailto:<%= curUser.getEmailAddress() %>"><img border="0" src="<%= themeDisplay.getPathThemeImages() %>/mail/unread.png" /></a>
+					</c:if>
+				</div>
+			</li>
+
+		<%
+		}
+		%>
+
+	</ul>
+</c:if>

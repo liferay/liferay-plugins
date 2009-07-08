@@ -546,6 +546,19 @@ textarea.focus {
 
 /* Asset Publisher */
 
+.portlet-asset-publisher .contact {
+	background-image: url(../images/custom/user.png);
+}
+
+.portlet-asset-publisher .contact-name a {
+	float: none;
+	margin-right: 10px;
+}
+
+.portlet-asset-publisher .contact-name img {
+	vertical-align: middle;
+}
+
 .portlet-asset-publisher .document-folder {
 	margin: 0.5em 0;
 }
