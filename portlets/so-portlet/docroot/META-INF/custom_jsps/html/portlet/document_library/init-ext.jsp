@@ -18,6 +18,31 @@
 %>
 
 <%
+if (rootFolderId <= 0) {
+	List<DLFolder> folders = DLFolderLocalServiceUtil.getFolders(scopeGroupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, 0, 1);
+
+	DLFolder dynamicRootFolder = null;
+
+	if (folders.size() > 0) {
+		dynamicRootFolder = folders.get(0);
+	}
+	else {
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(DLFolder.class.getName(), renderRequest);
+
+		dynamicRootFolder = DLFolderLocalServiceUtil.addFolder(themeDisplay.getUserId(), scopeGroupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "Documents Home", "", serviceContext);
+	}
+
+	rootFolderId = dynamicRootFolder.getFolderId();
+
+	rootFolder = DLFolderLocalServiceUtil.getFolder(rootFolderId);
+
+	rootFolderName = rootFolder.getName();
+
+	preferences.setValue("rootFolderId", String.valueOf(rootFolderId));
+
+	preferences.store();
+}
+
 folderColumns = new String[] {"name", "action"};
 fileEntryColumns = folderColumns;
 
