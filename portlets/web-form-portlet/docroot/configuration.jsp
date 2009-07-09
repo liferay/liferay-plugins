@@ -50,8 +50,13 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 %>
 
 <style type="text/css">
-	.portlet-web-form.aui-form fieldset {
+	.portlet-web-form fieldset {
 		border: 1px solid #BFBFBF;
+	}
+
+	.portlet-web-form fieldset.rows-container {
+		border: none;
+		margin-top: 0;
 	}
 
 	.portlet-web-form table.editing-disabled {
@@ -85,26 +90,6 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 		font-size: 120%;
 		font-weight: bold;
 		padding: 3px;
-	}
-
-	.portlet-web-form .lfr-form-row {
-		border: none;
-		border-bottom: 1px solid #CCC;
-		margin-top: 10px;
-		padding-top: 1px;
-		width: 100%;
-	}
-
-	.portlet-web-form .lfr-form-row:hover {
-		background-color: #DFFCCB;
-		border-bottom: 1px solid #B2FF3A;
-		border-top: 1px solid #B2FF3A;
-		padding-top: 0;
-	}
-
-	.portlet-web-form fieldset.rows-container {
-		border: none;
-		margin-top: 0;
 	}
 </style>
 
