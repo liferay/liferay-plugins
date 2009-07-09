@@ -32,8 +32,13 @@
 
 			titleLink.attr(
 				{
-					'href': 'javascript:;',
-					'onClick': '<portlet:namespace />loadRelatedContent(\'' + titleURL + '\');'
+					'href': 'javascript:;'
+				}
+			);
+
+			titleLink.click(
+				function() {
+					<portlet:namespace />loadRelatedContent(titleURL);
 				}
 			);
 		}
