@@ -50,6 +50,10 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 %>
 
 <style type="text/css">
+	.portlet-web-form.aui-form fieldset {
+		border: 1px solid #BFBFBF;
+	}
+
 	.portlet-web-form table.editing-disabled {
 		margin-left: 30px;
 	}
@@ -63,21 +67,15 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 		padding: 3px;
 	}
 
-	.portlet-web-form .ctrl-holder label, .portlet-web-form table label {
-		font-weight: bold;
-	}
-
-	.portlet-web-form .lfr-form-row .ctrl-holder {
-		clear: none;
-		float: left;
+	.portlet-web-form .lfr-form-row .aui-ctrl-holder {
 		margin-left: 2em;
 	}
 
-	.portlet-web-form .lfr-form-row .ctrl-holder.optional-control {
+	.portlet-web-form .lfr-form-row .aui-ctrl-holder.optional-control {
 		margin: 1.3em;
 	}
 
-	.portlet-web-form .lfr-form-row .ctrl-holder.options, .portlet-web-form .lfr-form-row .validation .ctrl-holder {
+	.portlet-web-form .lfr-form-row .aui-ctrl-holder.options, .portlet-web-form .lfr-form-row .validation .aui-ctrl-holder {
 		clear: both;
 		float: none;
 	}
@@ -87,10 +85,6 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 		font-size: 120%;
 		font-weight: bold;
 		padding: 3px;
-	}
-
-	.portlet-web-form .lfr-form-row .row-controls {
-		right: 10px;
 	}
 
 	.portlet-web-form .lfr-form-row {
@@ -115,7 +109,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 </style>
 
 
-<form action="<liferay-portlet:actionURL portletConfiguration="true" />" class="uni-form portlet-web-form" method="post" id="<portlet:namespace />fm" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
+<form action="<liferay-portlet:actionURL portletConfiguration="true" />" class="aui-form portlet-web-form" method="post" id="<portlet:namespace />fm" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 
@@ -125,38 +119,38 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 	refresh="<%= false %>"
 >
 	<liferay-ui:section>
-		<fieldset class="block-labels">
+		<fieldset class="aui-block-labels">
 			<legend><liferay-ui:message key="form-information" /></legend>
 
 			<liferay-ui:error key="titleRequired" message="please-enter-a-title" />
 
-			<div class="ctrl-holder">
+			<div class="aui-ctrl-holder">
 				<label for="<portlet:namespace />title"><liferay-ui:message key="title" /></label>
 
 				<input class="lfr-input-text" id="<portlet:namespace />title" name="<portlet:namespace />title" type="text" value="<%= HtmlUtil.toInputSafe(title) %>" />
 			</div>
 
-			<div class="ctrl-holder">
+			<div class="aui-ctrl-holder">
 				<label for="<portlet:namespace/>description"><liferay-ui:message key="description" /></label>
 
 				<textarea class="lfr-textarea" id="<portlet:namespace/>description" name="<portlet:namespace/>description" wrap="soft"><%= description %></textarea>
 			</div>
 
-			<div class="ctrl-holder">
+			<div class="aui-ctrl-holder">
 				<label><liferay-ui:message key="require-captcha" /> <liferay-ui:input-checkbox param="requireCaptcha" defaultValue="<%= requireCaptcha %>" /></label>
 			</div>
 
-			<div class="ctrl-holder">
+			<div class="aui-ctrl-holder">
 				<label for="<portlet:namespace />successURL"><liferay-ui:message key="redirect-url-on-success" /></label>
 
 				<input class="lfr-input-text" id="<portlet:namespace />successURL" name="<portlet:namespace />successURL" type="text" value="<%= HtmlUtil.toInputSafe(successURL) %>" />
 			</div>
 		</fieldset>
 
-		<fieldset class="block-labels">
+		<fieldset class="aui-block-labels">
 			<legend><liferay-ui:message key="handling-of-form-data" /></legend>
 
-			<fieldset class="block-labels">
+			<fieldset class="aui-block-labels">
 				<legend><liferay-ui:message key="email" /></legend>
 
 				<liferay-ui:error key="subjectRequired" message="please-enter-a-subject" />
@@ -165,39 +159,39 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 				<liferay-ui:error key="emailAddressRequired" message="please-enter-an-email-address" />
 				<liferay-ui:error key="fileNameInvalid" message="please-enter-a-valid-path-and-filename" />
 
-				<div class="ctrl-holder">
+				<div class="aui-ctrl-holder">
 					<label><liferay-ui:message key="send-as-email" /> <liferay-ui:input-checkbox param="sendAsEmail" defaultValue="<%= sendAsEmail %>" /></label>
 				</div>
 
-				<div class="ctrl-holder">
+				<div class="aui-ctrl-holder">
 					<label for="<portlet:namespace />subject"><liferay-ui:message key="subject" /></label>
 
 					<input class="lfr-input-text" id="<portlet:namespace />subject" name="<portlet:namespace />subject" type="text" value="<%= subject %>" />
 				</div>
 
-				<div class="ctrl-holder">
+				<div class="aui-ctrl-holder">
 					<label for="<portlet:namespace />emailAddress"><liferay-ui:message key="email-address" /></label>
 
 					<input class="lfr-input-text" id="<portlet:namespace />emailAddress" name="<portlet:namespace />emailAddress" type="text" value="<%= emailAddress %>" />
 				</div>
 			</fieldset>
 
-			<fieldset class="block-labels">
+			<fieldset class="aui-block-labels">
 				<legend><liferay-ui:message key="database" /></legend>
 
-				<div class="ctrl-holder">
+				<div class="aui-ctrl-holder">
 					<label><liferay-ui:message key="save-to-database" /> <liferay-ui:input-checkbox param="saveToDatabase" defaultValue="<%= saveToDatabase %>" /></label>
 				</div>
 			</fieldset>
 
-			<fieldset class="block-labels">
+			<fieldset class="aui-block-labels">
 				<legend><liferay-ui:message key="file" /></legend>
 
-				<div class="ctrl-holder">
+				<div class="aui-ctrl-holder">
 					<label><liferay-ui:message key="save-to-file" /> <liferay-ui:input-checkbox param="saveToFile" defaultValue="<%= saveToFile %>" /></label>
 				</div>
 
-				<div class="ctrl-holder">
+				<div class="aui-ctrl-holder">
 					<label for="<portlet:namespace />filename"><liferay-ui:message key="path-and-file-name" /></label>
 
 					<input class="lfr-input-text" id="<portlet:namespace />filename" name="<portlet:namespace />fileName" type="text" value="<%= fileName %>" />
@@ -207,7 +201,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 	</liferay-ui:section>
 
 	<liferay-ui:section>
-		<fieldset class="block-labels rows-container" id="<portlet:namespace/>webFields">
+		<fieldset class="aui-block-labels rows-container" id="<portlet:namespace/>webFields">
 
 			<c:if test="<%= fieldsEditingDisabled %>">
 				<div class="portlet-msg-alert">
@@ -285,7 +279,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 					<c:choose>
 						<c:when test="<%= !fieldsEditingDisabled %>">
-							<div class="ctrl-holder">
+							<div class="aui-ctrl-holder">
 								<label for="<portlet:namespace/>fieldLabel<%= formFieldsIndex %>"><liferay-ui:message key="name" /></label>
 
 								<input class="lfr-input-text label-name" id="<portlet:namespace/>fieldLabel<%= formFieldsIndex %>" name="<portlet:namespace/>fieldLabel<%= formFieldsIndex %>" size="50" type="text" value="<%= fieldLabel %>" onchange="jQuery(this).parent().prev().children('.field-label').html(jQuery(this).val())" />
@@ -306,7 +300,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 					<c:choose>
 						<c:when test="<%= !fieldsEditingDisabled %>">
-							<div class="ctrl-holder">
+							<div class="aui-ctrl-holder">
 								<label for="<portlet:namespace/>fieldType<%= formFieldsIndex %>"><liferay-ui:message key="type" /></label>
 
 								<select id="<portlet:namespace/>fieldType<%= formFieldsIndex %>" name="<portlet:namespace/>fieldType<%= formFieldsIndex %>">
@@ -333,7 +327,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 					<c:choose>
 						<c:when test="<%= !fieldsEditingDisabled %>">
-							<div class="ctrl-holder optional-control">
+							<div class="aui-ctrl-holder optional-control">
 								<label><liferay-ui:message key="optional" /> <input <c:if test="<%= fieldOptional %>">checked</c:if> id="<portlet:namespace/>fieldOptional<%= formFieldsIndex %>" name="<portlet:namespace/>fieldOptional<%= formFieldsIndex %>" type="checkbox" /></label>
 							</div>
 						</c:when>
@@ -351,7 +345,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 					<c:choose>
 						<c:when test="<%= !fieldsEditingDisabled %>">
-							<div class="ctrl-holder options" id="<portlet:namespace/>optionsGroup<%= formFieldsIndex %>">
+							<div class="aui-ctrl-holder options" id="<portlet:namespace/>optionsGroup<%= formFieldsIndex %>">
 								<label for="<portlet:namespace/>fieldOptions<%= formFieldsIndex %>"><liferay-ui:message key="options" /></label>
 
 								<span>(<liferay-ui:message key="add-options-separated-by-commas" />)</span><br />
@@ -377,12 +371,12 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 								<div class="validation">
 									<liferay-ui:error key='<%= "invalidValidationDefinition" + formFieldsIndex %>' message="please-enter-both-the-validation-code-and-the-error-message" />
 
-									<div class="ctrl-holder">
+									<div class="aui-ctrl-holder">
 										<a class="validation-link" href="javascript:;"><liferay-ui:message key="validation" /> &raquo;</a>
 									</div>
 
 									<div class="validation-input" style='<%= Validator.isNull(fieldValidationScript) ? "display:none" : "" %>'>
-										<div class="ctrl-holder">
+										<div class="aui-ctrl-holder">
 											<table>
 											<tr>
 												<td>
@@ -399,7 +393,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 											</table>
 										</div>
 
-										<div class="ctrl-holder">
+										<div class="aui-ctrl-holder">
 											<label for="<portlet:namespace/>fieldValidationErrorMessage<%= formFieldsIndex %>"><liferay-ui:message key="validation-error-message" /></label>
 
 											<input class="lfr-input-text" id="<portlet:namespace />fieldValidationErrorMessage<%= formFieldsIndex %>" name="<portlet:namespace />fieldValidationErrorMessage<%= formFieldsIndex %>" size="80" type="text" value="<%= fieldValidationErrorMessage %>" />

@@ -31,13 +31,13 @@ boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCapt
 String successURL = preferences.getValue("successURL", StringPool.BLANK);
 %>
 
-<form action="<portlet:actionURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="saveData" /></portlet:actionURL>" class="uni-form" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
+<form action="<portlet:actionURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="saveData" /></portlet:actionURL>" class="aui-form" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
 
 <c:if test="<%= Validator.isNull(successURL) %>">
 	<input name="<portlet:namespace/>redirect" type="hidden" value="<%= currentURL %>" />
 </c:if>
 
-<fieldset class="block-labels">
+<fieldset class="aui-block-labels">
 	<legend><%= HtmlUtil.escape(title) %></legend>
 
 	<p class="description"><%= HtmlUtil.escape(description) %></p>
@@ -86,26 +86,26 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 				<p class="lfr-webform" id="<portlet:namespace /><%= fieldName %>"><%= fieldOptions %></p>
 			</c:when>
 			<c:when test='<%= fieldType.equals("text") %>'>
-				<div class="ctrl-holder">
+				<div class="aui-ctrl-holder">
 					<label class='<%= fieldOptional ? "optional" : "" %>' for="<portlet:namespace /><%= fieldName %>"><%= HtmlUtil.escape(fieldLabel) %></label>
 
 					<input class='<%= fieldOptional ? "optional" : "" %>' id="<portlet:namespace /><%= fieldName %>" name="<portlet:namespace /><%= fieldName %>" type="text" value="<%= HtmlUtil.escape(fieldValue) %>" />
 				</div>
 			</c:when>
 			<c:when test='<%= fieldType.equals("textarea") %>'>
-				<div class="ctrl-holder">
+				<div class="aui-ctrl-holder">
 					<label class='<%= fieldOptional ? "optional" : "" %>' for="<portlet:namespace /><%= fieldName %>"><%= HtmlUtil.escape(fieldLabel) %></label>
 
 					<textarea class='<%= fieldOptional ? "optional" : "" %>' id="<portlet:namespace /><%= fieldName %>" name="<portlet:namespace /><%= fieldName %>" wrap="soft"><%= HtmlUtil.escape(fieldValue) %></textarea>
 				</div>
 			</c:when>
 			<c:when test='<%= fieldType.equals("checkbox") %>'>
-				<div class="ctrl-holder <%= fieldOptional ? "optional" : "" %>">
+				<div class="aui-ctrl-holder <%= fieldOptional ? "optional" : "" %>">
 					<label class='<%= fieldOptional ? "optional" : "" %>' for="<portlet:namespace /><%= fieldName %>"><input <%= Validator.isNotNull(fieldValue) ? "checked" : "" %> id="<portlet:namespace /><%= fieldName %>" name="<portlet:namespace /><%= fieldName %>" type="checkbox" /> <%= HtmlUtil.escape(fieldLabel) %></label>
 				</div>
 			</c:when>
 			<c:when test='<%= fieldType.equals("radio") %>'>
-				<div class="ctrl-holder <%= fieldOptional ? "optional" : "" %>">
+				<div class="aui-ctrl-holder <%= fieldOptional ? "optional" : "" %>">
 					<label class='<%= fieldOptional ? "optional" : "" %>' for="<portlet:namespace /><%= fieldName %>"><%= HtmlUtil.escape(fieldLabel) %></label>
 
 					<%
@@ -124,7 +124,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 				</div>
 			</c:when>
 			<c:when test='<%= fieldType.equals("options") %>'>
-				<div class="ctrl-holder <%= fieldOptional ? "optional" : "" %>">
+				<div class="aui-ctrl-holder <%= fieldOptional ? "optional" : "" %>">
 					<label class='<%= fieldOptional ? "optional" : "" %>' for="<portlet:namespace /><%= fieldName %>"><%= HtmlUtil.escape(fieldLabel) %></label>
 
 					<%
