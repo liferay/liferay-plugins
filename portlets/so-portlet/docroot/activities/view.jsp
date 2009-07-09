@@ -36,7 +36,6 @@ PortletURL portletURL = renderResponse.createRenderURL();
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
 
 List<SocialActivity> activities = null;
-
 int total = 0;
 
 Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
@@ -52,17 +51,14 @@ else {
 
 if (tabs1.equals("my-sites")) {
 	activities = SocialActivityLocalServiceUtil.getUserGroupsActivities(curUser.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-
 	total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(curUser.getUserId());
 }
 else if (tabs1.equals("my-friends")) {
 	activities = SocialActivityLocalServiceUtil.getRelationActivities(curUser.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, searchContainer.getStart(), searchContainer.getEnd());
-
 	total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(curUser.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND);
 }
 else {
 	activities = SocialActivityLocalServiceUtil.getUserActivities(curUser.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-
 	total = SocialActivityLocalServiceUtil.getUserActivitiesCount(curUser.getUserId());
 }
 
@@ -82,7 +78,7 @@ rssURL.setParameter("rss", "1");
 />
 
 <c:if test="<%= (activities.size() > 0) && !themeDisplay.isStateExclusive() %>">
-	<div class="pagination" id="<portlet:namespace />searchActivities">
+	<div class="taglib-search-iterator-page-iterator-bottom" id="<portlet:namespace />searchActivities">
 		<liferay-ui:search-paginator
 			searchContainer="<%= searchContainer %>"
 			type="article"
