@@ -28,6 +28,8 @@
 
 <%@ page import="com.liferay.portal.ContactFirstNameException" %>
 <%@ page import="com.liferay.portal.ContactLastNameException" %>
+<%@ page import="com.liferay.portal.DuplicateUserEmailAddressException" %>
+<%@ page import="com.liferay.portal.ReservedUserEmailAddressException" %>
 <%@ page import="com.liferay.portal.UserEmailAddressException" %>
 <%@ page import="com.liferay.portal.UserPasswordException" %>
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
