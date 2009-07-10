@@ -1090,6 +1090,12 @@ table.calendar {
 	padding-left: 10px;
 }
 
+/* Search */
+
+.portlet-search .entry-title {
+	font-size: 100%;
+}
+
 /* SO: Members */
 
 .so-portlet-members .invite-members a {
