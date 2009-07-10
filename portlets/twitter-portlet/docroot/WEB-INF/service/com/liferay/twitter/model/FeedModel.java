@@ -22,6 +22,7 @@
 
 package com.liferay.twitter.model;
 
+import com.liferay.portal.SystemException;
 import com.liferay.portal.model.BaseModel;
 
 import java.util.Date;
@@ -44,6 +45,10 @@ public interface FeedModel extends BaseModel<Feed> {
 	public long getTwitterUserId();
 
 	public void setTwitterUserId(long twitterUserId);
+
+	public String getTwitterUserUuid() throws SystemException;
+
+	public void setTwitterUserUuid(String twitterUserUuid);
 
 	public String getTwitterScreenName();
 

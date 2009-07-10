@@ -25,10 +25,12 @@ package com.liferay.chat.model.impl;
 import com.liferay.chat.model.Status;
 import com.liferay.chat.model.StatusSoap;
 
+import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
@@ -149,6 +151,14 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 
 			_originalUserId = userId;
 		}
+	}
+
+	public String getUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+	}
+
+	public void setUserUuid(String userUuid) {
+		_userUuid = userUuid;
 	}
 
 	public long getOriginalUserId() {
@@ -378,6 +388,7 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 
 	private long _statusId;
 	private long _userId;
+	private String _userUuid;
 	private long _originalUserId;
 	private boolean _setOriginalUserId;
 	private long _modifiedDate;

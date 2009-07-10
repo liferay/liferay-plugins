@@ -25,10 +25,12 @@ package com.liferay.chat.model.impl;
 import com.liferay.chat.model.Entry;
 import com.liferay.chat.model.EntrySoap;
 
+import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
@@ -141,12 +143,28 @@ public class EntryModelImpl extends BaseModelImpl<Entry> {
 		_fromUserId = fromUserId;
 	}
 
+	public String getFromUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getFromUserId(), "uuid", _fromUserUuid);
+	}
+
+	public void setFromUserUuid(String fromUserUuid) {
+		_fromUserUuid = fromUserUuid;
+	}
+
 	public long getToUserId() {
 		return _toUserId;
 	}
 
 	public void setToUserId(long toUserId) {
 		_toUserId = toUserId;
+	}
+
+	public String getToUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getToUserId(), "uuid", _toUserUuid);
+	}
+
+	public void setToUserUuid(String toUserUuid) {
+		_toUserUuid = toUserUuid;
 	}
 
 	public String getContent() {
@@ -305,7 +323,9 @@ public class EntryModelImpl extends BaseModelImpl<Entry> {
 	private long _entryId;
 	private long _createDate;
 	private long _fromUserId;
+	private String _fromUserUuid;
 	private long _toUserId;
+	private String _toUserUuid;
 	private String _content;
 	private transient ExpandoBridge _expandoBridge;
 }

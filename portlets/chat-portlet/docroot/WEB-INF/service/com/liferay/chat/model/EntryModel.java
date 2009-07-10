@@ -22,6 +22,7 @@
 
 package com.liferay.chat.model;
 
+import com.liferay.portal.SystemException;
 import com.liferay.portal.model.BaseModel;
 
 /**
@@ -47,9 +48,17 @@ public interface EntryModel extends BaseModel<Entry> {
 
 	public void setFromUserId(long fromUserId);
 
+	public String getFromUserUuid() throws SystemException;
+
+	public void setFromUserUuid(String fromUserUuid);
+
 	public long getToUserId();
 
 	public void setToUserId(long toUserId);
+
+	public String getToUserUuid() throws SystemException;
+
+	public void setToUserUuid(String toUserUuid);
 
 	public String getContent();
 

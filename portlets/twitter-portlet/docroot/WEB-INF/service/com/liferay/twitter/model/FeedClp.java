@@ -22,9 +22,11 @@
 
 package com.liferay.twitter.model;
 
+import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
@@ -68,6 +70,15 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 
 	public void setTwitterUserId(long twitterUserId) {
 		_twitterUserId = twitterUserId;
+	}
+
+	public String getTwitterUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getTwitterUserId(), "uuid",
+			_twitterUserUuid);
+	}
+
+	public void setTwitterUserUuid(String twitterUserUuid) {
+		_twitterUserUuid = twitterUserUuid;
 	}
 
 	public String getTwitterScreenName() {
@@ -239,6 +250,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 
 	private long _feedId;
 	private long _twitterUserId;
+	private String _twitterUserUuid;
 	private String _twitterScreenName;
 	private Date _createDate;
 	private Date _modifiedDate;

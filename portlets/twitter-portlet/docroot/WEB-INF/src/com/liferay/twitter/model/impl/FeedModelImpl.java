@@ -22,10 +22,12 @@
 
 package com.liferay.twitter.model.impl;
 
+import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
@@ -142,6 +144,15 @@ public class FeedModelImpl extends BaseModelImpl<Feed> {
 
 			_originalTwitterUserId = twitterUserId;
 		}
+	}
+
+	public String getTwitterUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getTwitterUserId(), "uuid",
+			_twitterUserUuid);
+	}
+
+	public void setTwitterUserUuid(String twitterUserUuid) {
+		_twitterUserUuid = twitterUserUuid;
 	}
 
 	public long getOriginalTwitterUserId() {
@@ -335,6 +346,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> {
 
 	private long _feedId;
 	private long _twitterUserId;
+	private String _twitterUserUuid;
 	private long _originalTwitterUserId;
 	private boolean _setOriginalTwitterUserId;
 	private String _twitterScreenName;
