@@ -91,7 +91,7 @@ public class StartupAction extends SimpleAction {
 
 		setupCompany(companyId);
 		setupPermissions(companyId);
-		setupPortlets();
+		setupPortlets(companyId);
 		setupLayouts(layout);
 		setupUsers(companyId);
 	}
@@ -287,11 +287,12 @@ public class StartupAction extends SimpleAction {
 			roleId, companyId, name, scope, primKey, actionId);
 	}
 
-	protected void setupPortlets() throws Exception {
+	protected void setupPortlets(long companyId) throws Exception {
 
 		// Directory portlet
 
-		Portlet portlet = PortletLocalServiceUtil.getPortletById("11");
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(
+			companyId, PortletKeys.DIRECTORY);
 
 		portlet.setAddDefaultResource(true);
 	}
