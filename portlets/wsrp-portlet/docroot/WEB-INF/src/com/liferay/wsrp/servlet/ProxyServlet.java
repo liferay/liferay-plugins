@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.util.servlet.ServletResponseUtil;
+import com.liferay.wsrp.util.WebKeys;
 
 import java.io.IOException;
 
@@ -35,6 +36,7 @@ import java.net.URLConnection;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * <a href="ProxyServlet.java.html"><b><i>View Source</i></b></a>
@@ -65,13 +67,13 @@ public class ProxyServlet extends HttpServlet {
 			HttpServletRequest request, HttpServletResponse response, URL url)
 		throws Exception {
 
-		//HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 
-		//String cookie = (String)session.getAttribute(WebKeys.COOKIE);
+		String cookie = (String)session.getAttribute(WebKeys.COOKIE);
 
 		URLConnection urlConnection = url.openConnection();
 
-		//urlConnection.setRequestProperty("Cookie", cookie);
+		urlConnection.setRequestProperty("Cookie", cookie);
 
 		urlConnection.connect();
 

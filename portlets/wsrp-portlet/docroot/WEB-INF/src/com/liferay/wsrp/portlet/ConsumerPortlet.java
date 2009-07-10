@@ -320,7 +320,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		WSRP_v2_Markup_PortType markupService =
 			(WSRP_v2_Markup_PortType)portletSession.getAttribute(
-				WebKeys.MARKUP_SERVICE);
+				WebKeys.MARKUP_SERVICE, PortletSession.APPLICATION_SCOPE);
 
 		if (markupService == null) {
 			markupService = wsrpConsumerManager.getMarkupService();
@@ -346,11 +346,15 @@ public class ConsumerPortlet extends GenericPortlet {
 
 					cookie = SimpleHTTPSender.getCurrentCookie();
 
-					portletSession.setAttribute(WebKeys.COOKIE, cookie);
+					portletSession.setAttribute(
+						WebKeys.COOKIE, cookie,
+						PortletSession.APPLICATION_SCOPE);
 				}
 			}
 
-			portletSession.setAttribute(WebKeys.MARKUP_SERVICE, markupService);
+			portletSession.setAttribute(
+				WebKeys.MARKUP_SERVICE, markupService,
+				PortletSession.APPLICATION_SCOPE);
 		}
 
 		return markupService;
