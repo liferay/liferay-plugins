@@ -41,6 +41,7 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.util.axis.ServletUtil;
 import com.liferay.wsrp.model.WSRPProducer;
+import com.liferay.wsrp.util.ExtensionUtil;
 import com.liferay.wsrp.util.WebKeys;
 
 import java.rmi.RemoteException;
@@ -72,6 +73,8 @@ import oasis.names.tc.wsrp.v2.types.PortletContext;
 import oasis.names.tc.wsrp.v2.types.ReleaseSessions;
 import oasis.names.tc.wsrp.v2.types.ResourceResponse;
 import oasis.names.tc.wsrp.v2.types.UpdateResponse;
+
+import org.apache.axis.message.MessageElement;
 
 /**
  * <a href="MarkupServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -478,12 +481,27 @@ public class MarkupServiceImpl
 		sb.append("&p_p_mode=");
 		sb.append(HttpUtil.encodeURL(portletMode));
 
-		sb.append("&wsrp=1");
-
 		if (Validator.isNotNull(opaqueValue)) {
 			sb.append(StringPool.AMPERSAND);
 			sb.append(opaqueValue);
 		}
+
+		MessageElement[] formParameters =
+			ExtensionUtil.getMessageElements(markupParams.getExtensions());
+
+		if (formParameters != null) {
+			String namespace = PortalUtil.getPortletNamespace(
+				getPortletId(portletContext));
+
+			for (MessageElement formParameter : formParameters) {
+				sb.append(StringPool.AMPERSAND);
+				sb.append(namespace + formParameter.getName());
+				sb.append(StringPool.EQUAL);
+				sb.append(HttpUtil.encodeURL(formParameter.getValue()));
+			}
+		}
+
+		sb.append("&wsrp=1");
 
 		if (_log.isInfoEnabled()) {
 			_log.info("URL " + sb.toString());

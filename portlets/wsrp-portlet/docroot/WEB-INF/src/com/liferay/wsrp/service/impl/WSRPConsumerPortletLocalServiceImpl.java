@@ -40,9 +40,11 @@ import com.liferay.portlet.InvokerPortlet;
 import com.liferay.wsrp.WSRPConsumerPortletNameException;
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
+import com.liferay.wsrp.portlet.ConsumerFriendlyURLMapper;
 import com.liferay.wsrp.portlet.ConsumerPortlet;
 import com.liferay.wsrp.service.ClpSerializer;
 import com.liferay.wsrp.service.base.WSRPConsumerPortletLocalServiceBaseImpl;
+import com.liferay.wsrp.util.ExtensionUtil;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
 
@@ -53,7 +55,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import oasis.names.tc.wsrp.v2.types.Extension;
 import oasis.names.tc.wsrp.v2.types.LocalizedString;
 import oasis.names.tc.wsrp.v2.types.MarkupType;
 import oasis.names.tc.wsrp.v2.types.PortletDescription;
@@ -282,6 +283,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 		portlet.setDisplayName(portletId);
 		portlet.setPortletClass(ConsumerPortlet.class.getName());
 
+		portlet.setFriendlyURLMapperClass(_FRIENDLY_URL_MAPPER);
+
 		Map<String, String> initParams = portlet.getInitParams();
 
 		initParams.put(
@@ -332,17 +335,12 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		portlet.setPortletInfo(portletInfo);
 
-		Extension[] extensions = portletDescription.getExtensions();
+		MessageElement[] messageElements = ExtensionUtil.getMessageElements(
+			portletDescription.getExtensions());
 
-		if ((extensions != null) && (extensions.length == 1)) {
-			Extension extension = extensions[0];
-
-			MessageElement[] messageElements = extension.get_any();
-
-			if (messageElements != null) {
-				for (MessageElement messageElement : messageElements) {
-					setExtension(portlet, messageElement);
-				}
+		if (messageElements != null) {
+			for (MessageElement messageElement : messageElements) {
+				setExtension(portlet, messageElement);
 			}
 		}
 
@@ -429,6 +427,9 @@ public class WSRPConsumerPortletLocalServiceImpl
 	private static final String _CONSUMER_PORTLET_ID = "2_WAR_wsrpportlet";
 
 	private static final String _CONSUMER_PORTLET_NAME = "2";
+
+	private static final String _FRIENDLY_URL_MAPPER =
+		ConsumerFriendlyURLMapper.class.getName();
 
 	private static Map<Long, Portlet> _portletsPool =
 		new ConcurrentHashMap<Long, Portlet>();

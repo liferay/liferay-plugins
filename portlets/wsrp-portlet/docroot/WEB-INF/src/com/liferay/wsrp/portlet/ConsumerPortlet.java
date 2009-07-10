@@ -43,6 +43,7 @@ import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
+import com.liferay.wsrp.util.ExtensionUtil;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
 import com.liferay.wsrp.util.WebKeys;
@@ -103,6 +104,8 @@ import oasis.names.tc.wsrp.v2.types.StateChange;
 import oasis.names.tc.wsrp.v2.types.UpdateResponse;
 import oasis.names.tc.wsrp.v2.types.UploadContext;
 import oasis.names.tc.wsrp.v2.types.UserContext;
+
+import org.apache.axis.message.MessageElement;
 
 /**
  * <a href="ConsumerPortlet.java.html"><b><i>View Source</i></b></a>
@@ -553,6 +556,8 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		markupParams.setNavigationalContext(navigationalContext);
 
+		processFormParameters(portletRequest, portletResponse, markupParams);
+
 		// Portlet context
 
 		portletContext.setPortletHandle(wsrpConsumerPortlet.getPortletHandle());
@@ -710,6 +715,38 @@ public class ConsumerPortlet extends GenericPortlet {
 		if (!formParameters.isEmpty()) {
 			interactionParams.setFormParameters(
 				formParameters.toArray(new NamedString[formParameters.size()]));
+		}
+	}
+
+	protected void processFormParameters(
+		PortletRequest portletRequest, PortletResponse portletResponse,
+		MarkupParams markupParams) {
+
+		List<MessageElement> formParameters = new ArrayList<MessageElement>();
+
+		Enumeration<String> enu = portletRequest.getParameterNames();
+
+		while (enu.hasMoreElements()) {
+			String name = enu.nextElement();
+
+			if (isReservedParameter(name)) {
+				continue;
+			}
+
+			String[] values = portletRequest.getParameterValues(name);
+
+			if (values == null) {
+				continue;
+			}
+
+			for (String value : values) {
+				ExtensionUtil.addMessageElement(formParameters, name, value);
+			}
+		}
+
+		if (!formParameters.isEmpty()) {
+			markupParams.setExtensions(
+				ExtensionUtil.getExtensions(formParameters));
 		}
 	}
 

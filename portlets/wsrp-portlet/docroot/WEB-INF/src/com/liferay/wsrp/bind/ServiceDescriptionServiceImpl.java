@@ -34,6 +34,7 @@ import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.axis.ServletUtil;
 import com.liferay.wsrp.model.WSRPProducer;
+import com.liferay.wsrp.util.ExtensionUtil;
 
 import java.rmi.RemoteException;
 
@@ -48,7 +49,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_ServiceDescription_PortType;
 import oasis.names.tc.wsrp.v2.types.CookieProtocol;
-import oasis.names.tc.wsrp.v2.types.Extension;
 import oasis.names.tc.wsrp.v2.types.GetServiceDescription;
 import oasis.names.tc.wsrp.v2.types.MarkupType;
 import oasis.names.tc.wsrp.v2.types.PortletDescription;
@@ -85,17 +85,6 @@ public class ServiceDescriptionServiceImpl
 		}
 	}
 
-	protected void addMessageElement(
-		List<MessageElement> messageElements, String localPart, String value) {
-
-		MessageElement messageElement = new MessageElement(
-			"liferay", localPart);
-
-		messageElement.setValue(value);
-
-		messageElements.add(messageElement);
-	}
-
 	protected ServiceDescription doGetServiceDescription(
 			GetServiceDescription getServiceDescription)
 		throws Exception {
@@ -109,21 +98,6 @@ public class ServiceDescriptionServiceImpl
 		serviceDescription.setRequiresInitCookie(_COOKIE_PROTOCOL);
 
 		return serviceDescription;
-	}
-
-	protected Extension getExtension(List<MessageElement> messageElements) {
-		MessageElement[] messageElementsArray = messageElements.toArray(
-			new MessageElement[messageElements.size()]);
-
-		return new Extension(messageElementsArray);
-	}
-
-	protected Extension[] getExtensions(List<MessageElement> messageElements) {
-		List<Extension> extensions = new ArrayList<Extension>();
-
-		extensions.add(getExtension(messageElements));
-
-		return extensions.toArray(new Extension[extensions.size()]);
 	}
 
 	protected MarkupType[] getMarkupTypes(Portlet portlet) {
@@ -233,7 +207,7 @@ public class ServiceDescriptionServiceImpl
 
 		List<MessageElement> messageElements = new ArrayList<MessageElement>();
 
-		addMessageElement(
+		ExtensionUtil.addMessageElement(
 			messageElements, "css-class-wrapper",
 			portlet.getCssClassWrapper());
 
@@ -252,7 +226,7 @@ public class ServiceDescriptionServiceImpl
 					portalPath + footerPortalCss + "?t=" + timestamp;
 			}
 
-			addMessageElement(
+			ExtensionUtil.addMessageElement(
 				messageElements, "footer-portal-css", footerPortalCss);
 		}
 
@@ -264,7 +238,7 @@ public class ServiceDescriptionServiceImpl
 					portalPath + footerPortalJavaScript + "?t=" + timestamp;
 			}
 
-			addMessageElement(
+			ExtensionUtil.addMessageElement(
 				messageElements, "footer-portal-css", footerPortalJavaScript);
 		}
 
@@ -274,7 +248,7 @@ public class ServiceDescriptionServiceImpl
 					portletPath + footerPortletCss + "?t=" + timestamp;
 			}
 
-			addMessageElement(
+			ExtensionUtil.addMessageElement(
 				messageElements, "footer-portlet-css", footerPortletCss);
 		}
 
@@ -286,7 +260,7 @@ public class ServiceDescriptionServiceImpl
 					portletPath + footerPortletJavaScript + "?t=" + timestamp;
 			}
 
-			addMessageElement(
+			ExtensionUtil.addMessageElement(
 				messageElements, "footer-portlet-css", footerPortletJavaScript);
 		}
 
@@ -296,7 +270,7 @@ public class ServiceDescriptionServiceImpl
 					portalPath + headerPortalCss + "?t=" + timestamp;
 			}
 
-			addMessageElement(
+			ExtensionUtil.addMessageElement(
 				messageElements, "header-portal-css", headerPortalCss);
 		}
 
@@ -308,7 +282,7 @@ public class ServiceDescriptionServiceImpl
 					portalPath + headerPortalJavaScript + "?t=" + timestamp;
 			}
 
-			addMessageElement(
+			ExtensionUtil.addMessageElement(
 				messageElements, "header-portal-css", headerPortalJavaScript);
 		}
 
@@ -318,7 +292,7 @@ public class ServiceDescriptionServiceImpl
 					portletPath + headerPortletCss + "?t=" + timestamp;
 			}
 
-			addMessageElement(
+			ExtensionUtil.addMessageElement(
 				messageElements, "header-portlet-css", headerPortletCss);
 		}
 
@@ -330,11 +304,12 @@ public class ServiceDescriptionServiceImpl
 					portletPath + headerPortletJavaScript + "?t=" + timestamp;
 			}
 
-			addMessageElement(
+			ExtensionUtil.addMessageElement(
 				messageElements, "header-portlet-css", headerPortletJavaScript);
 		}
 
-		portletDescription.setExtensions(getExtensions(messageElements));
+		portletDescription.setExtensions(
+			ExtensionUtil.getExtensions(messageElements));
 	}
 
 	private static Log _log =
