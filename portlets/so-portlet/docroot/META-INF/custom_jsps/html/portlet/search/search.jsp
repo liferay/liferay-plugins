@@ -74,20 +74,45 @@ int e = html.indexOf("<div class=\"section-title\">");
 <%
 String[] htmlFragments = StringUtil.split(html.substring(e + 27), "<div class=\"section-title\">");
 
-for (String htmlFragment : htmlFragments) {
-	String sectionTitle = htmlFragment.substring(0, htmlFragment.indexOf("</div>")).trim();
+Map<String, String> map = new TreeMap<String, String>(new StringComparator());
 
-	htmlFragment = "<div class=\"section-title\">" + htmlFragment;
+for (int i = 0; i < htmlFragments.length; i++) {
+	String htmlFragment = "<div class=\"section-title\">" + htmlFragments[i];
+
+	String portletTitle = htmlFragment.substring(27, htmlFragment.indexOf(StringPool.OPEN_PARENTHESIS)).trim();
+
+	if (portletTitle.equals(oldPortletTitle)) {
+		htmlFragment = htmlFragment.substring(0, 27) + StringUtil.replaceFirst(htmlFragment.substring(27), oldPortletTitle, newPortletTitle);
+
+		portletTitle = newPortletTitle;
+	}
+
+	int x = htmlFragment.indexOf("<div class=\"search-paginator-container\">");
 %>
 
 	<c:choose>
-		<c:when test="<%= sectionTitle.startsWith(oldPortletTitle) %>">
-			<%= htmlFragment.substring(0, 27) + StringUtil.replaceFirst(htmlFragment.substring(27), oldPortletTitle, newPortletTitle) %>
+		<c:when test="<%= x != -1 %>">
+			<%= htmlFragment %>
 		</c:when>
 		<c:otherwise>
-			<%= htmlFragment %>
+
+			<%
+			map.put(portletTitle, htmlFragment);
+			%>
+
 		</c:otherwise>
 	</c:choose>
+
+<%
+}
+
+Iterator<Map.Entry<String, String>> itr = map.entrySet().iterator();
+
+while (itr.hasNext()) {
+	Map.Entry<String, String> entry = itr.next();
+%>
+
+	<%= entry.getValue() %>
 
 <%
 }
