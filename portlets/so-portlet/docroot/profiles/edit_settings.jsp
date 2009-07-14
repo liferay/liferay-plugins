@@ -20,6 +20,15 @@
 <%@ include file="/init.jsp" %>
 
 <%
+PasswordPolicy passwordPolicy = null;
+
+if (user == null) {
+	passwordPolicy = PasswordPolicyLocalServiceUtil.getDefaultPasswordPolicy(company.getCompanyId());
+}
+else {
+	passwordPolicy = user.getPasswordPolicy();
+}
+
 String languageId = BeanParamUtil.getString(user, request, "languageId", user.getLanguageId());
 String timeZoneId = BeanParamUtil.getString(user, request, "timeZoneId", user.getTimeZoneId());
 %>
@@ -35,8 +44,10 @@ String timeZoneId = BeanParamUtil.getString(user, request, "timeZoneId", user.ge
 					beforeSubmit: function() {
 						document.getElementById('<portlet:namespace />submit').disabled = true;
 					},
-					success: function() {
-						Liferay.SO.Profiles.displayUserProfile(<%= user.getUserId() %>);
+					success: function(message) {
+						jQuery('.profile-wrapper').html(message);
+
+						window.scrollTo(0,0);
 					}
 				}
 			);
@@ -47,7 +58,11 @@ String timeZoneId = BeanParamUtil.getString(user, request, "timeZoneId", user.ge
 <h1><%= user.getFullName() %> : <liferay-ui:message key="edit-settings" /></h1>
 
 <form action="<portlet:actionURL name="updateUserSettings"></portlet:actionURL>" name="<portlet:namespace />fm">
+<input name="<portlet:namespace />redirect" type="hidden" value="<%= PortalUtil.getLayoutURL(layout, themeDisplay) %>/-/profiles/user_profile" />
+<input name="<portlet:namespace />redirectOnError" type="hidden" value="<%= PortalUtil.getLayoutURL(layout, themeDisplay) %>/-/profiles/edit_settings" />
 <input name="<portlet:namespace />userId" type="hidden" value="<%= user.getUserId() %>" />
+
+<liferay-ui:error />
 
 <table width="100%">
 <tr>
@@ -70,6 +85,45 @@ String timeZoneId = BeanParamUtil.getString(user, request, "timeZoneId", user.ge
 				<liferay-ui:message key="password" />
 			</td>
 			<td>
+				<liferay-ui:error exception="<%= UserPasswordException.class %>">
+
+					<%
+					UserPasswordException upe = (UserPasswordException)errorException;
+					%>
+
+					<c:if test="<%= upe.getType() == UserPasswordException.PASSWORD_ALREADY_USED %>">
+						<liferay-ui:message key="that-password-has-already-been-used-please-enter-in-a-different-password" />
+					</c:if>
+
+					<c:if test="<%= upe.getType() == UserPasswordException.PASSWORD_CONTAINS_TRIVIAL_WORDS %>">
+						<liferay-ui:message key="that-password-uses-common-words-please-enter-in-a-password-that-is-harder-to-guess-i-e-contains-a-mix-of-numbers-and-letters" />
+					</c:if>
+
+					<c:if test="<%= upe.getType() == UserPasswordException.PASSWORD_INVALID %>">
+						<liferay-ui:message key="that-password-is-invalid-please-enter-in-a-different-password" />
+					</c:if>
+
+					<c:if test="<%= upe.getType() == UserPasswordException.PASSWORD_LENGTH %>">
+						<%= LanguageUtil.format(pageContext, "that-password-is-too-short-or-too-long-please-make-sure-your-password-is-between-x-and-512-characters", String.valueOf(passwordPolicy.getMinLength()), false) %>
+					</c:if>
+
+					<c:if test="<%= upe.getType() == UserPasswordException.PASSWORD_NOT_CHANGEABLE %>">
+						<liferay-ui:message key="your-password-cannot-be-changed" />
+					</c:if>
+
+					<c:if test="<%= upe.getType() == UserPasswordException.PASSWORD_SAME_AS_CURRENT %>">
+						<liferay-ui:message key="your-new-password-cannot-be-the-same-as-your-old-password-please-enter-in-a-different-password" />
+					</c:if>
+
+					<c:if test="<%= upe.getType() == UserPasswordException.PASSWORD_TOO_YOUNG %>">
+						<%= LanguageUtil.format(pageContext, "you-cannot-change-your-password-yet-please-wait-at-least-x-before-changing-your-password-again", LanguageUtil.getTimeDescription(pageContext, passwordPolicy.getMinAge() * 1000), false) %>
+					</c:if>
+
+					<c:if test="<%= upe.getType() == UserPasswordException.PASSWORDS_DO_NOT_MATCH %>">
+						<liferay-ui:message key="the-passwords-you-entered-do-not-match-each-other-please-re-enter-your-password" />
+					</c:if>
+				</liferay-ui:error>
+
 				<input name="<portlet:namespace />password1" size="30" type="password" value="" />
 			</td>
 		</tr>

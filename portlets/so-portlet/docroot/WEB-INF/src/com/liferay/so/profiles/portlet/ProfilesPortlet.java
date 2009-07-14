@@ -17,6 +17,24 @@
 
 package com.liferay.so.profiles.portlet;
 
+import com.liferay.portal.AddressCityException;
+import com.liferay.portal.AddressStreetException;
+import com.liferay.portal.AddressZipException;
+import com.liferay.portal.ContactFirstNameException;
+import com.liferay.portal.ContactLastNameException;
+import com.liferay.portal.DuplicateUserEmailAddressException;
+import com.liferay.portal.EmailAddressException;
+import com.liferay.portal.NoSuchCountryException;
+import com.liferay.portal.NoSuchListTypeException;
+import com.liferay.portal.NoSuchRegionException;
+import com.liferay.portal.PhoneNumberException;
+import com.liferay.portal.RequiredUserException;
+import com.liferay.portal.ReservedUserEmailAddressException;
+import com.liferay.portal.UserEmailAddressException;
+import com.liferay.portal.UserIdException;
+import com.liferay.portal.UserPasswordException;
+import com.liferay.portal.WebsiteURLException;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
@@ -91,6 +109,85 @@ public class ProfilesPortlet extends MVCPortlet {
 	}
 
 	public void updateUserProfile(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		try {
+			doUpdateUserProfile(actionRequest,actionResponse);
+		}
+		catch (Exception e) {
+			if (e instanceof AddressCityException ||
+				e instanceof AddressStreetException ||
+				e instanceof AddressZipException ||
+				e instanceof ContactFirstNameException ||
+				e instanceof ContactLastNameException ||
+				e instanceof DuplicateUserEmailAddressException ||
+				e instanceof EmailAddressException ||
+				e instanceof NoSuchCountryException ||
+				e instanceof NoSuchListTypeException ||
+				e instanceof NoSuchRegionException ||
+				e instanceof PhoneNumberException ||
+				e instanceof RequiredUserException ||
+				e instanceof ReservedUserEmailAddressException ||
+				e instanceof UserEmailAddressException ||
+				e instanceof UserIdException ||
+				e instanceof WebsiteURLException) {
+
+				if (e instanceof NoSuchListTypeException) {
+					NoSuchListTypeException nslte = (NoSuchListTypeException)e;
+
+					SessionErrors.add(
+						actionRequest,
+						e.getClass().getName() + nslte.getType());
+				}
+				else {
+					SessionErrors.add(actionRequest, e.getClass().getName(), e);
+				}
+
+				actionResponse.sendRedirect(
+					ParamUtil.getString(actionRequest, "redirectOnError"));
+
+				if (e instanceof RequiredUserException) {
+					actionResponse.sendRedirect(
+						ParamUtil.getString(actionRequest, "redirect"));
+				}
+			}
+			else {
+				throw e;
+			}
+		}
+	}
+
+	public void updateUserProjects(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long userId = ParamUtil.getLong(actionRequest, "userId");
+
+		updateProjectsEntries(userId, actionRequest);
+	}
+
+	public void updateUserSettings(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		try {
+			doUpdateUserSettings(actionRequest, actionResponse);
+		}
+		catch (Exception e) {
+			if (e instanceof UserPasswordException) {
+				SessionErrors.add(actionRequest, e.getClass().getName(), e);
+			}
+			else {
+				throw e;
+			}
+
+			actionResponse.sendRedirect(
+				ParamUtil.getString(actionRequest, "redirectOnError"));
+		}
+	}
+
+	protected void doUpdateUserProfile(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -170,16 +267,7 @@ public class ProfilesPortlet extends MVCPortlet {
 			announcementsDeliveries, serviceContext);
 	}
 
-	public void updateUserProjects(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long userId = ParamUtil.getLong(actionRequest, "userId");
-
-		updateProjectsEntries(userId, actionRequest);
-	}
-
-	public void updateUserSettings(
+	protected void doUpdateUserSettings(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
