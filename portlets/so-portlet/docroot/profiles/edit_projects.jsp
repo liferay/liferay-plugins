@@ -36,10 +36,8 @@
 					beforeSubmit: function() {
 						document.getElementById('<portlet:namespace />submit').disabled = true;
 					},
-					success: function(message) {
-						jQuery('.profile-wrapper').html(message);
-
-						window.scrollTo(0,0);
+					success: function() {
+						Liferay.SO.Profiles.displayUserProfile(<%= user.getUserId() %>);
 					}
 				}
 			);
@@ -51,10 +49,6 @@
 
 <form action="<portlet:actionURL name="updateUserProjects"></portlet:actionURL>" name="<portlet:namespace />fm">
 <input name="<portlet:namespace />userId" type="hidden" value="<%= user.getUserId() %>" />
-<input name="<portlet:namespace />currentURL" type="hidden" value="<%= PortalUtil.getLayoutURL(layout, themeDisplay) %>/-/profiles/edit_projects" />
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= PortalUtil.getLayoutURL(layout, themeDisplay) %>/-/profiles/user_profile" />
-
-<liferay-ui:error />
 
 <table width="100%">
 <tr>

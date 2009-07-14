@@ -26,12 +26,6 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.portal.ContactFirstNameException" %>
-<%@ page import="com.liferay.portal.ContactLastNameException" %>
-<%@ page import="com.liferay.portal.DuplicateUserEmailAddressException" %>
-<%@ page import="com.liferay.portal.ReservedUserEmailAddressException" %>
-<%@ page import="com.liferay.portal.UserEmailAddressException" %>
-<%@ page import="com.liferay.portal.UserPasswordException" %>
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
@@ -51,7 +45,6 @@
 <%@ page import="com.liferay.portal.model.EmailAddress" %>
 <%@ page import="com.liferay.portal.model.Group" %>
 <%@ page import="com.liferay.portal.model.ListType" %>
-<%@ page import="com.liferay.portal.model.PasswordPolicy" %>
 <%@ page import="com.liferay.portal.model.Phone" %>
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.model.Website" %>
@@ -59,7 +52,6 @@
 <%@ page import="com.liferay.portal.service.EmailAddressLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.ListTypeServiceUtil" %>
-<%@ page import="com.liferay.portal.service.PasswordPolicyLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.PhoneLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.RegionServiceUtil" %>
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>

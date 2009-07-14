@@ -47,10 +47,8 @@
 					beforeSubmit: function() {
 						document.getElementById('<portlet:namespace />submit').disabled = true;
 					},
-					success: function(message) {
-						jQuery('.profile-wrapper').html(message);
-
-						window.scrollTo(0,0);
+					success: function() {
+						Liferay.SO.Profiles.displayUserProfile(<%= user.getUserId() %>);
 					}
 				}
 			);
@@ -62,10 +60,6 @@
 
 <form action="<portlet:actionURL name="updateUserProfile"></portlet:actionURL>" name="<portlet:namespace />fm">
 <input name="<portlet:namespace />userId" type="hidden" value="<%= user.getUserId() %>" />
-<input name="<portlet:namespace />currentURL" type="hidden" value="<%= PortalUtil.getLayoutURL(layout, themeDisplay) %>/-/profiles/edit_profile" />
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= PortalUtil.getLayoutURL(layout, themeDisplay) %>/-/profiles/user_profile" />
-
-<liferay-ui:error />
 
 <table width="100%">
 <tr>
@@ -97,8 +91,6 @@
 				<liferay-ui:message key="first-name" />
 			</td>
 			<td>
-				<liferay-ui:error exception="<%= ContactFirstNameException.class %>" message="please-enter-a-valid-first-name" />
-
 				<liferay-ui:input-field model="<%= Contact.class %>" bean="<%= contact %>" field="firstName" />
 			</td>
 		</tr>
@@ -115,8 +107,6 @@
 				<liferay-ui:message key="last-name" />
 			</td>
 			<td>
-				<liferay-ui:error exception="<%= ContactLastNameException.class %>" message="please-enter-a-valid-last-name" />
-
 				<liferay-ui:input-field model="<%= Contact.class %>" bean="<%= contact %>" field="lastName" />
 			</td>
 		</tr>
@@ -133,10 +123,6 @@
 				<liferay-ui:message key="primary-email" />
 			</td>
 			<td>
-				<liferay-ui:error exception="<%= DuplicateUserEmailAddressException.class %>" message="the-email-address-you-requested-is-already-taken" />
-				<liferay-ui:error exception="<%= ReservedUserEmailAddressException.class %>" message="the-email-address-you-requested-is-reserved" />
-				<liferay-ui:error exception="<%= UserEmailAddressException.class %>" message="please-enter-a-valid-email-address" />
-
 				<liferay-ui:input-field model="<%= User.class %>" bean="<%= user %>" field="emailAddress" />
 			</td>
 		</tr>

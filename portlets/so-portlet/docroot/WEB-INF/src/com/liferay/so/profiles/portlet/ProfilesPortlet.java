@@ -17,24 +17,6 @@
 
 package com.liferay.so.profiles.portlet;
 
-import com.liferay.portal.AddressCityException;
-import com.liferay.portal.AddressStreetException;
-import com.liferay.portal.AddressZipException;
-import com.liferay.portal.ContactFirstNameException;
-import com.liferay.portal.ContactLastNameException;
-import com.liferay.portal.DuplicateUserEmailAddressException;
-import com.liferay.portal.EmailAddressException;
-import com.liferay.portal.NoSuchCountryException;
-import com.liferay.portal.NoSuchListTypeException;
-import com.liferay.portal.NoSuchRegionException;
-import com.liferay.portal.PhoneNumberException;
-import com.liferay.portal.RequiredUserException;
-import com.liferay.portal.ReservedUserEmailAddressException;
-import com.liferay.portal.UserEmailAddressException;
-import com.liferay.portal.UserIdException;
-import com.liferay.portal.UserPasswordException;
-import com.liferay.portal.WebsiteURLException;
-import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
@@ -176,59 +158,16 @@ public class ProfilesPortlet extends MVCPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			User.class.getName(), actionRequest);
 
-		try {
-			UserServiceUtil.updateUser(
-				userId, oldPassword, newPassword1, newPassword2, passwordReset,
-				reminderQueryQuestion, reminderQueryAnswer, screenName,
-				emailAddress, openId, languageId, timeZoneId, greeting,
-				comments, firstName, middleName, lastName, prefixId, suffixId,
-				male, birthdayMonth, birthdayDay, birthdayYear, smsSn, aimSn,
-				facebookSn, icqSn, jabberSn, msnSn, mySpaceSn, skypeSn,
-				twitterSn, ymSn, jobTitle, groupIds, organizationIds, roleIds,
-				userGroupRoles, userGroupIds, addresses, emailAddresses, phones,
-				websites, announcementsDeliveries, serviceContext);
-		}
-		catch (Exception e) {
-			if ( e instanceof AddressCityException ||
-				 e instanceof AddressStreetException ||
-				 e instanceof AddressZipException ||
-				 e instanceof ContactFirstNameException ||
-				 e instanceof ContactLastNameException ||
-				 e instanceof DuplicateUserEmailAddressException ||
-				 e instanceof EmailAddressException ||
-				 e instanceof NoSuchCountryException ||
-				 e instanceof NoSuchListTypeException ||
-				 e instanceof NoSuchRegionException ||
-				 e instanceof PhoneNumberException ||
-				 e instanceof RequiredUserException ||
-				 e instanceof ReservedUserEmailAddressException ||
-				 e instanceof UserEmailAddressException ||
-				 e instanceof UserIdException ||
-				 e instanceof WebsiteURLException) {
-
-				if (e instanceof NoSuchListTypeException) {
-					NoSuchListTypeException nslte = (NoSuchListTypeException)e;
-
-					SessionErrors.add(
-						actionRequest,
-						e.getClass().getName() + nslte.getType());
-				}
-				else {
-					SessionErrors.add(actionRequest, e.getClass().getName(), e);
-				}
-
-				if (e instanceof RequiredUserException) {
-					actionResponse.sendRedirect(
-						ParamUtil.getString(actionRequest, "redirect"));
-				}
-			}
-			else {
-				throw e;
-			}
-
-			actionResponse.sendRedirect(
-				ParamUtil.getString(actionRequest, "currentURL"));
-		}
+		UserServiceUtil.updateUser(
+			userId, oldPassword, newPassword1, newPassword2, passwordReset,
+			reminderQueryQuestion, reminderQueryAnswer, screenName,
+			emailAddress, openId, languageId, timeZoneId, greeting, comments,
+			firstName, middleName, lastName, prefixId, suffixId, male,
+			birthdayMonth, birthdayDay, birthdayYear, smsSn, aimSn, facebookSn,
+			icqSn, jabberSn, msnSn, mySpaceSn, skypeSn, twitterSn, ymSn,
+			jobTitle, groupIds, organizationIds, roleIds, userGroupRoles,
+			userGroupIds, addresses, emailAddresses, phones, websites,
+			announcementsDeliveries, serviceContext);
 	}
 
 	public void updateUserProjects(
@@ -287,28 +226,14 @@ public class ProfilesPortlet extends MVCPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			User.class.getName(), actionRequest);
 
-		try {
-			UserServiceUtil.updateUser(
-				userId, oldPassword, newPassword1, newPassword2, passwordReset,
-				reminderQueryQuestion, reminderQueryAnswer, screenName,
-				emailAddress, openId, languageId, timeZoneId, greeting,
-				comments, firstName, middleName, lastName, prefixId, suffixId,
-				male, birthdayMonth, birthdayDay, birthdayYear, smsSn, aimSn,
-				facebookSn, icqSn, jabberSn, msnSn, mySpaceSn, skypeSn,
-				twitterSn, ymSn, jobTitle, null, null, null, null, null,
-				serviceContext);
-		}
-		catch (Exception e) {
-			if (e instanceof UserPasswordException) {
-				SessionErrors.add(actionRequest, e.getClass().getName(), e);
-			}
-			else {
-				throw e;
-			}
-
-			actionResponse.sendRedirect(
-				ParamUtil.getString(actionRequest, "currentURL"));
-		}
+		UserServiceUtil.updateUser(
+			userId, oldPassword, newPassword1, newPassword2, passwordReset,
+			reminderQueryQuestion, reminderQueryAnswer, screenName,
+			emailAddress, openId, languageId, timeZoneId, greeting, comments,
+			firstName, middleName, lastName, prefixId, suffixId, male,
+			birthdayMonth, birthdayDay, birthdayYear, smsSn, aimSn, facebookSn,
+			icqSn, jabberSn, msnSn, mySpaceSn, skypeSn, twitterSn, ymSn,
+			jobTitle, null, null, null, null, null, serviceContext);
 	}
 
 	protected String getUpdateUserPassword(
