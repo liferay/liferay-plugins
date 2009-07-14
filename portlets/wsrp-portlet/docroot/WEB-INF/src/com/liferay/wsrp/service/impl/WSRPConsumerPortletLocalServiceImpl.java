@@ -283,8 +283,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 		portlet.setDisplayName(portletId);
 		portlet.setPortletClass(ConsumerPortlet.class.getName());
 
-		portlet.setFriendlyURLMapperClass(_FRIENDLY_URL_MAPPER);
-
 		Map<String, String> initParams = portlet.getInitParams();
 
 		initParams.put(
@@ -334,6 +332,9 @@ public class WSRPConsumerPortletLocalServiceImpl
 		PortletInfo portletInfo = new PortletInfo(title, shortTitle, keywords);
 
 		portlet.setPortletInfo(portletInfo);
+
+		portlet.setFriendlyURLMapperClass(
+			ConsumerFriendlyURLMapper.class.getName());
 
 		MessageElement[] messageElements = ExtensionUtil.getMessageElements(
 			portletDescription.getExtensions());
@@ -427,9 +428,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 	private static final String _CONSUMER_PORTLET_ID = "2_WAR_wsrpportlet";
 
 	private static final String _CONSUMER_PORTLET_NAME = "2";
-
-	private static final String _FRIENDLY_URL_MAPPER =
-		ConsumerFriendlyURLMapper.class.getName();
 
 	private static Map<Long, Portlet> _portletsPool =
 		new ConcurrentHashMap<Long, Portlet>();

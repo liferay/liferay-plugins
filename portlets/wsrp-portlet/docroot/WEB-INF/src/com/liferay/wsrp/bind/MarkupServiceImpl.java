@@ -486,8 +486,8 @@ public class MarkupServiceImpl
 			sb.append(opaqueValue);
 		}
 
-		MessageElement[] formParameters =
-			ExtensionUtil.getMessageElements(markupParams.getExtensions());
+		MessageElement[] formParameters = ExtensionUtil.getMessageElements(
+			markupParams.getExtensions());
 
 		if (formParameters != null) {
 			String namespace = PortalUtil.getPortletNamespace(
