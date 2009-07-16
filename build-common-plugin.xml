@@ -159,6 +159,28 @@
 				</copy>
 
 				<if>
+					<available file="docroot/WEB-INF/lib/portal-impl.jar" />
+					<then>
+						<fail>
+.
+
+Detected inclusion of portal-impl.jar in WEB-INF/lib.
+
+portal-impl.jar is designed with a large number of singleton
+classes which are erected on the basis that they will exist
+alone in the app server.
+
+While compilation-time issues may be resolved, portlets cannot
+be made to work by simply adding portal-impl.jar, because doing
+so violates the above assumption, and the resulting problems
+will be extremely difficult to debug.
+
+Please find a workaround that does not require portal-impl.jar.
+						</fail>
+					</then>
+				</if>
+
+				<if>
 					<equals arg1="${javac.compiler}" arg2="modern" />
 					<then>
 						<javac
