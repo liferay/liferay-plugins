@@ -25,7 +25,6 @@ package com.liferay.portal.search.solr;
 import com.liferay.portal.kernel.search.IndexSearcher;
 import com.liferay.portal.kernel.search.IndexWriter;
 import com.liferay.portal.kernel.search.SearchEngine;
-import com.liferay.portal.kernel.search.SearchEngineUtil;
 
 /**
  * <a href="SolrSearchEngineImpl.java.html"><b><i>View Source</i></b></a>
@@ -36,15 +35,7 @@ import com.liferay.portal.kernel.search.SearchEngineUtil;
 public class SolrSearchEngineImpl implements SearchEngine {
 
 	public String getName() {
-		return _name;
-	}
-
-	public void init() {
-		SearchEngineUtil.unregister(_name);
-	}
-
-	public void destroy() {
-		SearchEngineUtil.registerDefaultSearchEngine();
+		return _SEARCH_ENGINE_NAME;
 	}
 
 	public IndexSearcher getSearcher() {
@@ -55,20 +46,6 @@ public class SolrSearchEngineImpl implements SearchEngine {
 		return _writer;
 	}
 
-	public boolean isRegistered() {
-		return _registered;
-	}
-
-	public void register(String name) {
-		if (_name.equals(name)) {
-			_registered = true;
-		}
-	}
-
-	public void setName(String name) {
-		_name = name;
-	}
-
 	public void setSearcher(IndexSearcher searcher) {
 		_searcher = searcher;
 	}
@@ -77,15 +54,8 @@ public class SolrSearchEngineImpl implements SearchEngine {
 		_writer = writer;
 	}
 
-	public void unregister(String fromName) {
-		if (!_name.equals(fromName)) {
-			_registered = false;
-		}
-	}
-
-	private String _name;
+	private static final String _SEARCH_ENGINE_NAME = "SOLR_LUCENE";
+	
 	private IndexSearcher _searcher;
 	private IndexWriter _writer;
-	private boolean _registered = true;
-
 }
