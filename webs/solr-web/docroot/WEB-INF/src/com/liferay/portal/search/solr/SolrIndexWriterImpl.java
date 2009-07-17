@@ -110,11 +110,22 @@ public class SolrIndexWriterImpl implements IndexWriter {
 
 		for (Field field : fields) {
 			String name = field.getName();
-			String value = field.getValue();
 			float boost = field.getBoost();
 
-			if (value != null) {
-				solrDoc.addField(name, value, boost);
+			StringBuffer sb = new StringBuffer();
+
+			for (String value: field.getValues()) {
+
+				if (Validator.isNull(value)) {
+					continue;
+				}
+
+				sb.append(value);
+				sb.append(StringPool.SPACE);
+			}
+
+			if (sb.length() > 0) {
+				solrDoc.addField(name, sb.toString().trim(), boost);
 			}
 		}
 
