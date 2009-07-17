@@ -166,16 +166,14 @@
 
 Detected inclusion of portal-impl.jar in WEB-INF/lib.
 
-portal-impl.jar is designed with a large number of singleton
-classes which are erected on the basis that they will exist
-alone in the app server.
+portal-impl.jar is designed with a large number of singleton classes which are
+instantiated on the basis that they will exist alone in the application server.
 
-While compilation-time issues may be resolved, portlets cannot
-be made to work by simply adding portal-impl.jar, because doing
-so violates the above assumption, and the resulting problems
-will be extremely difficult to debug.
+While compile time issues may be resolved, portlets cannot be made to work by
+simply adding portal-impl.jar, because doing so violates the above assumption,
+and the resulting problems will be extremely difficult to debug.
 
-Please find a workaround that does not require portal-impl.jar.
+Please find a solution that does not require portal-impl.jar.
 						</fail>
 					</then>
 				</if>
