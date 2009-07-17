@@ -34,8 +34,10 @@ import com.liferay.portal.kernel.search.SearchEngine;
  */
 public class SolrSearchEngineImpl implements SearchEngine {
 
+	public static final String NAME = "SOLR_LUCENE";
+
 	public String getName() {
-		return _NAME;
+		return NAME;
 	}
 
 	public IndexSearcher getSearcher() {
@@ -54,8 +56,6 @@ public class SolrSearchEngineImpl implements SearchEngine {
 		_writer = writer;
 	}
 
-	private static final String _NAME = "SOLR_LUCENE";
-	
 	private IndexSearcher _searcher;
 	private IndexWriter _writer;
 
