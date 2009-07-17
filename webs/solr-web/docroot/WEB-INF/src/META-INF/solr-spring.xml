@@ -19,8 +19,6 @@
 		<property name="searcher" ref="indexSearcher.solr" />
 		<property name="writer" ref="indexWriter.solr" />
 	</bean>
-
-	<!-- messaging configurations -->
 	<bean id="messageListener.solr_reader" class="com.liferay.portal.kernel.search.messaging.SearchReaderMessageListener">
 		<property name="searchEngine" ref="searchEngine.solr" />
 	</bean>
