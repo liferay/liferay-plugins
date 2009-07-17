@@ -115,7 +115,6 @@ public class SolrIndexWriterImpl implements IndexWriter {
 			StringBuffer sb = new StringBuffer();
 
 			for (String value: field.getValues()) {
-
 				if (Validator.isNull(value)) {
 					continue;
 				}
