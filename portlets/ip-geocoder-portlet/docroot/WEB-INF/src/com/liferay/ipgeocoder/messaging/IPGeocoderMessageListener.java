@@ -63,7 +63,8 @@ public class IPGeocoderMessageListener implements MessageListener {
 
 		message.setPayload(payload);
 
-		MessageBusUtil.sendMessage(message.getResponseDestination(), message);
+		MessageBusUtil.sendMessage(
+			message.getResponseDestinationName(), message);
 	}
 
 	private static Log _log =
