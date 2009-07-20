@@ -933,15 +933,19 @@ public class ConsumerPortlet extends GenericPortlet {
 		while (rewriteMatcher.find()) {
 			String namespace = rewriteMatcher.group(1);
 			String url = rewriteMatcher.group(2);
+			String extensionURL = rewriteMatcher.group(3);
+			String extensionURL2 = rewriteMatcher.group(4);
+
+			String replacement = null;
+
+			Map<String, String> parameterMap =
+				new HashMap<String, String>();
 
 			if (Validator.isNotNull(namespace)) {
 				rewriteMatcher.appendReplacement(
 					sb, portletResponse.getNamespace());
 			}
 			else if (Validator.isNotNull(url)) {
-				Map<String, String> parameterMap =
-					new HashMap<String, String>();
-
 				Matcher parameterMatcher = _parameterPattern.matcher(url);
 
 				while (parameterMatcher.find()) {
@@ -953,6 +957,26 @@ public class ConsumerPortlet extends GenericPortlet {
 
 				rewriteMatcher.appendReplacement(
 					sb, rewriteURL(portletResponse, parameterMap));
+			}
+			else if (Validator.isNotNull(extensionURL)) {
+				parameterMap.put("wsrp-urlType", "render");
+				parameterMap.put("wsrp-windowState", "wsrp:normal");
+
+				replacement =
+					"location.href = '" +
+					rewriteURL(portletResponse, parameterMap) + "'";
+
+				rewriteMatcher.appendReplacement(sb, replacement);
+			}
+			else if (Validator.isNotNull(extensionURL2)) {
+				parameterMap.put("wsrp-urlType", "render");
+				parameterMap.put("wsrp-windowState", "wsrp:normal");
+
+				replacement =
+					"href=\"" + rewriteURL(portletResponse, parameterMap) +
+					"\"";
+
+				rewriteMatcher.appendReplacement(sb, replacement);
 			}
 		}
 
@@ -979,6 +1003,8 @@ public class ConsumerPortlet extends GenericPortlet {
 	private static Pattern _parameterPattern = Pattern.compile(
 		"(?:([^&]+)=([^&]+))(?:&amp;|&)?");
 	private static Pattern _rewritePattern = Pattern.compile(
-		"(wsrp_rewrite_)|(?:wsrp_rewrite\\?([^\\s/]+)/wsrp_rewrite)");
+		"(wsrp_rewrite_)|(?:wsrp_rewrite\\?([^\\s/]+)/wsrp_rewrite)|" +
+		"(?:location\\.href\\s*=\\s*'(/widget/c/portal/layout(?:[^']+))')|" +
+		"(?:href\\s*=\\s*\"(/widget/c/portal/layout(?:[^\"]+))\")");
 
 }

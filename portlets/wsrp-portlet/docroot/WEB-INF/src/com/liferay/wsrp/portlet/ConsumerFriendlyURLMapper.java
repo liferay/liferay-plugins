@@ -87,11 +87,13 @@ public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 		String[] navigationalState = parameterMap.get("wsrp-navigationalState");
 
-		if ((navigationalState != null) && (navigationalState.length > 0)) {
-			addPathElement(sb, navigationalState[0]);
-
-			portletURL.addParameterIncludedInPath("wsrp-navigationalState");
+		if ((navigationalState == null) || (navigationalState.length <= 0)) {
+			navigationalState = new String[] {null};
 		}
+
+		addPathElement(sb, navigationalState[0]);
+
+		portletURL.addParameterIncludedInPath("wsrp-navigationalState");
 
 		return sb.toString();
 	}
