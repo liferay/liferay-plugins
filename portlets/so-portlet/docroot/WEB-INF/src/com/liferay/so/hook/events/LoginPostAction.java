@@ -27,12 +27,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * <a href="DefaultLandingPageAction.java.html"><b><i>View Source</i></b></a>
+ * <a href="LoginPostAction.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brett Swaim
  *
  */
-public class DefaultLandingPageAction extends Action {
+public class LoginPostAction extends Action {
 
 	public void run(HttpServletRequest request, HttpServletResponse response) {
 		try {
@@ -50,6 +50,6 @@ public class DefaultLandingPageAction extends Action {
 	}
 
 	private static Log _log =
-		LogFactoryUtil.getLog(DefaultLandingPageAction.class);
+		LogFactoryUtil.getLog(LoginPostAction.class);
 
 }
