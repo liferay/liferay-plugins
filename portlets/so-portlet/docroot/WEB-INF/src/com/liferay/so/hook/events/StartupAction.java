@@ -292,7 +292,7 @@ public class StartupAction extends SimpleAction {
 		// Directory portlet
 
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
-			companyId, PortletKeys.DIRECTORY);
+			PortletKeys.DIRECTORY);
 
 		portlet.setAddDefaultResource(true);
 	}
