@@ -140,7 +140,7 @@ public class Indexer implements com.liferay.portal.kernel.search.Indexer {
 	}
 
 	public DocumentSummary getDocumentSummary(
-		Document doc, PortletURL portletURL) {
+		Document doc, String snippet, PortletURL portletURL) {
 
 		return null;
 	}
