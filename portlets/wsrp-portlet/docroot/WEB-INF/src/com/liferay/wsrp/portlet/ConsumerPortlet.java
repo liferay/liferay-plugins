@@ -933,7 +933,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		while (rewriteMatcher.find()) {
 			String namespace = rewriteMatcher.group(1);
 			String url = rewriteMatcher.group(2);
-			String extensionURL = rewriteMatcher.group(3);
+			String extensionURL1 = rewriteMatcher.group(3);
 			String extensionURL2 = rewriteMatcher.group(4);
 
 			String replacement = null;
@@ -958,13 +958,13 @@ public class ConsumerPortlet extends GenericPortlet {
 				rewriteMatcher.appendReplacement(
 					sb, rewriteURL(portletResponse, parameterMap));
 			}
-			else if (Validator.isNotNull(extensionURL)) {
+			else if (Validator.isNotNull(extensionURL1)) {
 				parameterMap.put("wsrp-urlType", "render");
 				parameterMap.put("wsrp-windowState", "wsrp:normal");
 
 				replacement =
 					"location.href = '" +
-					rewriteURL(portletResponse, parameterMap) + "'";
+						rewriteURL(portletResponse, parameterMap) + "'";
 
 				rewriteMatcher.appendReplacement(sb, replacement);
 			}
@@ -974,7 +974,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 				replacement =
 					"href=\"" + rewriteURL(portletResponse, parameterMap) +
-					"\"";
+						"\"";
 
 				rewriteMatcher.appendReplacement(sb, replacement);
 			}
