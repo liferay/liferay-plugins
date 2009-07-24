@@ -76,13 +76,19 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected void doRun(long companyId) throws Exception {
-		setupDatabase(companyId);
 		setupRuntime(companyId);
+		
+		if (isFirstRun(companyId)) {
+			return;
+		}
+
+		setupCompany(companyId);
+		setupPermissions(companyId);
+		setupLayouts(companyId);
+		setupUsers(companyId);
 	}
 
-	protected boolean isAlreadyRan(long companyId) throws Exception {
-		boolean alreadyRan = false;
-
+	protected boolean isFirstRun(long companyId) throws Exception {
 		Group group = GroupLocalServiceUtil.getGroup(
 			companyId, GroupConstants.GUEST);
 
@@ -93,10 +99,10 @@ public class StartupAction extends SimpleAction {
 			(LayoutTypePortlet)layout.getLayoutType();
 
 		if (!layoutTypePortlet.hasPortletId("47")) {
-			alreadyRan = true;
+			return true;
 		}
 
-		return alreadyRan;
+		return false;
 	}
 
 	protected void setupCompany(long companyId) throws Exception {
@@ -111,17 +117,6 @@ public class StartupAction extends SimpleAction {
 		CompanyLocalServiceUtil.updateSecurity(
 			companyId, authType, autoLogin, sendPassword, strangers,
 			strangersWithMx, strangersVerify, communityLogo);
-	}
-
-	protected void setupDatabase(long companyId) throws Exception {
-		if (isAlreadyRan(companyId)) {
-			return;
-		}
-
-		setupCompany(companyId);
-		setupPermissions(companyId);
-		setupLayouts(companyId);
-		setupUsers(companyId);
 	}
 
 	protected void setupLayouts(long companyId) throws Exception {
