@@ -76,24 +76,27 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected void doRun(long companyId) throws Exception {
-		Group guestGroup = GroupLocalServiceUtil.getGroup(
+		setupDatabase(companyId);
+		setupRuntime(companyId);
+	}
+
+	protected boolean isAlreadyRan(long companyId) throws Exception {
+		boolean alreadyRan = false;
+
+		Group group = GroupLocalServiceUtil.getGroup(
 			companyId, GroupConstants.GUEST);
 
 		Layout layout = LayoutLocalServiceUtil.getLayout(
-			guestGroup.getGroupId(), false, 1);
+			group.getGroupId(), false, 1);
 
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
 
 		if (!layoutTypePortlet.hasPortletId("47")) {
-			return;
+			alreadyRan = true;
 		}
 
-		setupCompany(companyId);
-		setupPermissions(companyId);
-		setupPortlets(companyId);
-		setupLayouts(layout);
-		setupUsers(companyId);
+		return alreadyRan;
 	}
 
 	protected void setupCompany(long companyId) throws Exception {
@@ -110,7 +113,24 @@ public class StartupAction extends SimpleAction {
 			strangersWithMx, strangersVerify, communityLogo);
 	}
 
-	protected void setupLayouts(Layout layout) throws Exception {
+	protected void setupDatabase(long companyId) throws Exception {
+		if (isAlreadyRan(companyId)) {
+			return;
+		}
+
+		setupCompany(companyId);
+		setupPermissions(companyId);
+		setupLayouts(companyId);
+		setupUsers(companyId);
+	}
+
+	protected void setupLayouts(long companyId) throws Exception {
+		Group group = GroupLocalServiceUtil.getGroup(
+			companyId, GroupConstants.GUEST);
+
+		Layout layout = LayoutLocalServiceUtil.getLayout(
+			group.getGroupId(), false, 1);
+
 		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(
 			layout.getCompanyId());
 
@@ -285,9 +305,17 @@ public class StartupAction extends SimpleAction {
 
 		PermissionLocalServiceUtil.setRolePermission(
 			roleId, companyId, name, scope, primKey, actionId);
+
+		// Power User - Directory
+
+		name = PortletKeys.DIRECTORY;
+		actionId = ActionKeys.VIEW;
+
+		PermissionLocalServiceUtil.setRolePermission(
+			roleId, companyId, name, scope, primKey, actionId);
 	}
 
-	protected void setupPortlets(long companyId) throws Exception {
+	protected void setupRuntime(long companyId) throws Exception {
 
 		// Directory portlet
 
@@ -342,7 +370,7 @@ public class StartupAction extends SimpleAction {
 		boolean sendEmail = false;
 		ServiceContext serviceContext = null;
 
-		User user = UserLocalServiceUtil.addUser(
+		UserLocalServiceUtil.addUser(
 			creatorUserId, companyId, autoPassword, password1, password2,
 			autoScreenName, screenName, emailAddress, openId, locale, firstName,
 			middleName, lastName, prefixId, suffixId, male, birthdayMonth,
