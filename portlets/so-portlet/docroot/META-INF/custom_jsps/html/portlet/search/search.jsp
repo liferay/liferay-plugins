@@ -19,6 +19,12 @@
 
 <%@ include file="/html/portlet/search/init.jsp" %>
 
+<%
+Portlet dlPortlet = PortletLocalServiceUtil.getPortletById(PortletKeys.DOCUMENT_LIBRARY);
+
+String dlPortletTitle = PortalUtil.getPortletTitle(dlPortlet, application, locale);
+%>
+
 <liferay-util:buffer var="html">
 	<liferay-util:include page="/html/portlet/search/search.portal.jsp" />
 </liferay-util:buffer>
@@ -32,4 +38,70 @@ if (x != -1) {
 }
 %>
 
-<%= html %>
+<%
+String[] htmlFragments = StringUtil.split(html, "<div class=\"section-title\">");
+
+for (int i = 0; i < htmlFragments.length; i++) {
+	String htmlFragment = htmlFragments[i];
+
+	String portletTitle = StringPool.BLANK;
+
+	if (i != 0) {
+		htmlFragment = "<div class=\"section-title\">" + htmlFragment;
+
+		portletTitle = htmlFragment.substring(27, htmlFragment.indexOf(StringPool.OPEN_PARENTHESIS)).trim();
+	}
+%>
+
+	<c:choose>
+		<c:when test="<%= portletTitle.equals(dlPortletTitle) %>">
+
+			<%
+			String[] entryHtmlFragments = StringUtil.split(htmlFragment, "<a class=\"entry-title\"");
+
+			for (int j = 0; j < entryHtmlFragments.length; j++) {
+				String entryHtmlFragment = entryHtmlFragments[j];
+
+				String oldURL = null;
+
+				if (j != 0) {
+					entryHtmlFragment = "<a class=\"entry-title\"" + entryHtmlFragment;
+
+					x = entryHtmlFragment.indexOf("href=\"");
+					y = entryHtmlFragment.indexOf("\"", x + 6);
+
+					oldURL = entryHtmlFragment.substring(x + 6, y);
+				}
+
+				if (oldURL != null) {
+					long folderId = GetterUtil.getLong(HttpUtil.getParameter(oldURL, "_20_folderId", false));
+					String name = GetterUtil.getString(HttpUtil.getParameter(oldURL, "_20_name", false));
+
+					DLFileEntry fileEntry = DLFileEntryLocalServiceUtil.getFileEntry(folderId, name);
+
+					long dlPlid = PortalUtil.getPlidFromPortletId(fileEntry.getGroupId(), PortletKeys.DOCUMENT_LIBRARY);
+
+					PortletURL viewFolderURL = new PortletURLImpl(request, PortletKeys.DOCUMENT_LIBRARY, dlPlid, PortletRequest.RENDER_PHASE);
+
+					viewFolderURL.setParameter("struts_action", "/document_library/view");
+					viewFolderURL.setParameter("folderId", String.valueOf(fileEntry.getFolderId()));
+
+					entryHtmlFragment = StringUtil.replace(entryHtmlFragment, oldURL, viewFolderURL.toString());
+				}
+			%>
+
+				<%= entryHtmlFragment %>
+
+			<%
+			}
+			%>
+
+		</c:when>
+		<c:otherwise>
+			<%= htmlFragment %>
+		</c:otherwise>
+	</c:choose>
+
+<%
+}
+%>
