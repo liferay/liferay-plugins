@@ -24,11 +24,11 @@
 </liferay-util:buffer>
 
 <%
-int x = html.indexOf("<input type=\"button\" value=\"" + LanguageUtil.get(pageContext, "add-liferay-as-a-search-provider") + "\"");
-int y = html.indexOf("/>", x);
+int x = html.indexOf("<div class=\"add-search-provider\">");
+int y = html.indexOf("</div>", x);
 
 if (x != -1) {
-	html = StringUtil.remove(html, html.substring(x, y + 2), StringPool.BLANK);
+	html = StringUtil.remove(html, html.substring(x, y + 6), StringPool.BLANK);
 }
 %>
 
