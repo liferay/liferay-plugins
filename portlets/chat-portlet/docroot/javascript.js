@@ -45,7 +45,7 @@ Liferay.Chat.Util = {
 	TIMESTAMP_24: (24 * 60 * 60 * 1000)
 };
 
-Liferay.Chat.Panel = new Expanse.Class(
+Liferay.Chat.Panel = new Alloy.Class(
 	{
 		initialize: function(options) {
 			var instance = this;
@@ -270,7 +270,7 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend(
 			instance._unreadMessages = 0;
 			instance._originalPageTitle = document.title;
 
-			instance._stopTypingTask = new Expanse.DelayedTask(instance.setTyping, instance, [false]);
+			instance._stopTypingTask = new Alloy.DelayedTask(instance.setTyping, instance, [false]);
 
 			instance._heightMonitor = jQuery('<pre class="chat-height-monitor" />');
 			instance._heightMonitor.appendTo(document.body);
@@ -578,13 +578,13 @@ Liferay.Chat.Manager = {
 
 		instance._myStatus = instance._chatContainer.find('.status-message');
 
-		instance._sendTask = new Expanse.DelayedTask(instance.send, instance);
+		instance._sendTask = new Alloy.DelayedTask(instance.send, instance);
 		instance._saveSettingsDelay = 100;
 
 		instance._sound = new SWFObject('/chat-portlet/alert.swf', 'alertsound', '0', '0', '8');
 		instance._soundContainer = instance._chatContainer.find('.chat-sound');
 
-		instance._updatePresenceTask = new Expanse.DelayedTask(instance._updatePresence, instance);
+		instance._updatePresenceTask = new Alloy.DelayedTask(instance._updatePresence, instance);
 		instance._updatePresenceDelay = 30000;
 
 		instance._updatePresenceTask.delay();
