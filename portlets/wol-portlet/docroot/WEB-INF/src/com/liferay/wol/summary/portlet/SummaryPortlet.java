@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
@@ -106,26 +107,35 @@ public class SummaryPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Role role = RoleLocalServiceUtil.getRole(
-			themeDisplay.getCompanyId(), "Community Administrator");
+		Group group = GroupLocalServiceUtil.getGroup(
+			themeDisplay.getScopeGroupId());
 
-		LinkedHashMap<String, Object> userParams =
-			new LinkedHashMap<String, Object>();
+		if (group.getType() == GroupConstants.TYPE_COMMUNITY_OPEN) {
+			UserLocalServiceUtil.addGroupUsers(
+				group.getGroupId(), new long[] {themeDisplay.getUserId()});
+		}
+		else {
+			Role role = RoleLocalServiceUtil.getRole(
+				themeDisplay.getCompanyId(), "Community Administrator");
 
-		userParams.put(
-			"userGroupRole",
-			new Long[] {new Long(themeDisplay.getScopeGroupId()),
-			new Long(role.getRoleId())});
+			LinkedHashMap<String, Object> userParams =
+				new LinkedHashMap<String, Object>();
 
-		List<User> users = UserLocalServiceUtil.search(
-			themeDisplay.getCompanyId(), null, Boolean.TRUE, userParams,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator) null);
+			userParams.put(
+				"userGroupRole",
+				new Long[] {new Long(group.getGroupId()),
+				new Long(role.getRoleId())});
 
-		for (User user : users) {
-			SocialRequestLocalServiceUtil.addRequest(
-				themeDisplay.getUserId(), 0, Group.class.getName(),
-				themeDisplay.getScopeGroupId(), MembersRequestKeys.ADD_MEMBER,
-				StringPool.BLANK, user.getUserId());
+			List<User> users = UserLocalServiceUtil.search(
+				themeDisplay.getCompanyId(), null, Boolean.TRUE, userParams,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator) null);
+
+			for (User user : users) {
+				SocialRequestLocalServiceUtil.addRequest(
+					themeDisplay.getUserId(), 0, Group.class.getName(),
+					group.getGroupId(), MembersRequestKeys.ADD_MEMBER,
+					StringPool.BLANK, user.getUserId());
+			}
 		}
 	}
 
