@@ -7,18 +7,18 @@ html {
 }
 
 body {
-	margin: 0;
-	font-family: Helvetica;
-	-webkit-user-select: none;
 	-webkit-text-size-adjust: none;
+	-webkit-user-select: none;
+	font-family: Helvetica;
+	margin: 0;
 	min-height: 480px;
 }
 
 a {
+	color: #005E96;
 	cursor: pointer;
-	color: #005e96;
-	text-decoration: inherit;
 	outline: 0;
+	text-decoration: inherit;
 }
 
 a img {
@@ -26,26 +26,26 @@ a img {
 }
 
 .button {
-	position: absolute;
-	overflow: hidden;
-	top: 3px;
-	right: 3px;
 	border: 5px solid transparent;
-	padding: 1px 6px;
-	line-height: 16px;
+	color: #FFF;
 	font-size: 13px;
 	font-weight: bold;
-	color: #fff;
-	text-overflow: ellipsis;
-	text-decoration: none;
-	text-shadow: rgba(0, 0, 0, .4) 0 -1px 0;
+	line-height: 16px;
+	overflow: hidden;
+	padding: 1px 6px;
+	position: absolute;
+	right: 3px;
 	text-align: center;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	text-shadow: rgba(0, 0, 0, .4) 0 -1px 0;
+	top: 3px;
 	white-space: nowrap;
 }
 
 .left {
-	right: auto;
 	left: 3px;
+	right: auto;
 }
 
 .right {
@@ -54,14 +54,14 @@ a img {
 }
 
 .tab {
-	text-align: center;
 	padding: 0;
+	text-align: center;
 	vertical-align: bottom;
 }
 
 .tab a {
-	position: relative;
 	display: block;
+	position: relative;
 }
 
 /* ---------- Topper ---------- */
@@ -83,30 +83,30 @@ a img {
 #topper #banner .logo a {
 	background: url(../images/custom/company_logo.png);
 	height: 30px;
-	width: 118px;
 	margin: 0 auto;
+	width: 118px;
 }
 
 /* ---------- Navigation ---------- */
 
 #navigation {
-	width: 100%;
-	font-size: 14px;
 	border-spacing: 0;
+	font-size: 14px;
+	width: 100%;
 }
 
 #navigation .tab a {
-	-webkit-box-sizing: border-box;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
 	-moz-box-sizing: border-box;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-webkit-box-sizing: border-box;
 	background: url(../images/custom/tabs_bg.png) no-repeat left center;
 	color: #83B1C0;
 	left: 1px;
-	padding: 7px 0;
 	margin-right: 1px;
-	-moz-border-radius-topleft: 4px;
-	-moz-border-radius-topright: 4px;
-	-webkit-border-top-left-radius: 4px;
-	-webkit-border-top-right-radius: 4px;
+	padding: 7px 0;
 }
 
 #navigation .tab a[selected="true"] {
@@ -118,14 +118,14 @@ a img {
 /* ---------- Child Navigation ---------- */
 
 #child-navigation {
-	background: #dae4e7;
-	border-bottom: 1px solid #a0a7a9;
+	background: #DAE4E7;
+	border-bottom: 1px solid #A0A7A9;
+	border-spacing: 0;
 	font-size: 18px;
-	text-shadow: rgba(255, 255, 255, 50) 0 -1px 0;
 	text-align: center;
+	text-shadow: rgba(255, 255, 255, 50) 0 -1px 0;
 	white-space: nowrap;
 	width: 100%;
-	border-spacing: 0;
 }
 
 #child-navigation .tab {
@@ -133,30 +133,30 @@ a img {
 }
 
 #child-navigation .tab a {
-	background: #dae4e7;
-	border: 1px solid #c8d1d4;
-	border-width: 0 1px 0 0;
-	-moz-border-radius-topright: 10px;
 	-moz-border-radius-bottomright: 10px;
-	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topright: 10px;
 	-webkit-border-bottom-right-radius: 10px;
-	padding: 3px 12px 2px;
-	font-size: 13px;
+	-webkit-border-top-right-radius: 10px;
+	background: #DAE4E7;
+	border: 1px solid #C8D1D4;
+	border-width: 0 1px 0 0;
 	color: #000;
-	z-index: 2;
+	font-size: 13px;
+	padding: 3px 12px 2px;
 	position: relative;
+	z-index: 2;
 }
 
 #child-navigation .tab a[selected="true"] {
-	left: -4px;
-	background: #fff;
+	background: #FFF;
 	color: #000;
+	left: -4px;
 	text-shadow: none;
 	z-index: 1;
 }
 
 #child-navigation .tab a[depressed="true"] {
-	color: #fff;
+	color: #FFF;
 	text-shadow: rgba(0, 0, 0, .4) 0 -1px 0;
 }
 
@@ -170,11 +170,11 @@ a img {
 
 .portlet,
 .portlet-borderless-container {
+	border-bottom: 1px solid #DDD;
 	color: #555;
-	border-bottom: 1px solid #ddd;
 	font-size: 14px;
-	padding: 6px;
 	margin: 0 0 12px;
+	padding: 6px;
 }
 
 .portlet-borderless-bar {
@@ -206,9 +206,9 @@ a img {
 .portlet-content h3,
 .portlet-borderless-container h3,
 .portlet-blogs .entry-title {
- 	margin: 0;
- 	color: #000;
+	color: #000;
 	font-size: 18px;
+	margin: 0;
 }
 
 .portlet-borderless-container h3,
@@ -224,15 +224,17 @@ a img {
 
 .ui-tabs {
 	border-bottom: 0;
+	float: right;
 	margin: 0 0 6px;
 	padding: 0;
-	float: right;
 }
 
 .ui-tabs li a,
 .tabs li span,
 .ui-tabs li a:hover,
 .ui-tabs li span:hover {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
 	background: #EEE;
 	border: 1px solid #DDD;
 	color: #555;
@@ -240,8 +242,6 @@ a img {
 	margin: 0 3px 3px 0;
 	padding: 6px 12px;
 	text-decoration: none;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
 }
 
 .ui-tabs li.current a,
