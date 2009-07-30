@@ -62,7 +62,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(themeDisplay.getURLPortal());
+		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
 		sb.append(creatorUser.getScreenName());
@@ -78,7 +78,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 			sb = new StringBuilder();
 
 			sb.append("<a href=\"");
-			sb.append(themeDisplay.getURLPortal());
+			sb.append(themeDisplay.getPortalURL());
 			sb.append(themeDisplay.getPathFriendlyURLPublic());
 			sb.append(StringPool.SLASH);
 			sb.append(creatorUser.getScreenName());
@@ -91,7 +91,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 			sb = new StringBuilder();
 
 			sb.append("<a href=\"");
-			sb.append(themeDisplay.getURLPortal());
+			sb.append(themeDisplay.getPortalURL());
 			sb.append(themeDisplay.getPathFriendlyURLPublic());
 			sb.append(StringPool.SLASH);
 			sb.append(receiverUser.getScreenName());

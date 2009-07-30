@@ -86,7 +86,7 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 			StringBuilder sb = new StringBuilder();
 
 			sb.append("<a href=\"");
-			sb.append(themeDisplay.getURLPortal());
+			sb.append(themeDisplay.getPortalURL());
 			sb.append(themeDisplay.getPathFriendlyURLPublic());
 			sb.append(StringPool.SLASH);
 			sb.append(creatorUser.getScreenName());
@@ -99,7 +99,7 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 			sb = new StringBuilder();
 
 			sb.append("<a href=\"");
-			sb.append(themeDisplay.getURLPortal());
+			sb.append(themeDisplay.getPortalURL());
 			sb.append(themeDisplay.getPathFriendlyURLPublic());
 			sb.append(group.getFriendlyURL());
 			sb.append("/profile\">");

@@ -64,7 +64,7 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 			activity.getClassPK());
 
 		String link =
-			themeDisplay.getURLPortal() +
+			themeDisplay.getPortalURL() +
 				themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH +
 					receiverUser.getScreenName() + "/profile/-/wall/" +
 						activity.getClassPK();

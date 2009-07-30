@@ -62,7 +62,7 @@ public class ProfilesRequestInterpreter extends BaseSocialRequestInterpreter {
 			StringBuilder sb = new StringBuilder();
 
 			sb.append("<a href=\"");
-			sb.append(themeDisplay.getURLPortal());
+			sb.append(themeDisplay.getPortalURL());
 			sb.append(themeDisplay.getPathFriendlyURLPublic());
 			sb.append(StringPool.SLASH);
 			sb.append(creatorUser.getScreenName());
