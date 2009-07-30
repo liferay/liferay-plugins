@@ -6,11 +6,24 @@
 
 <head>
 	<title>$the_title - $company_name</title>
+	<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+	<meta name="apple-touch-fullscreen" content="YES" /> 
 
 	$theme.include($top_head_include)
+
+	<script type="text/javascript">
+	iPhone = function() {
+		setTimeout("window.scrollTo(0,1);", 100);
+	};
+
+	if (navigator.userAgent.indexOf('iPhone') != -1) {
+		addEventListener("load", iPhone, false);
+		addEventListener("onorientationchange", iPhone, false);
+	}
+	</script>
 </head>
 
-<body class="$css_class">
+<body class="$css_class" onload="initScreen();" onorientationchange="initScreen();">
 
 $theme.include($top_messages_include)
 

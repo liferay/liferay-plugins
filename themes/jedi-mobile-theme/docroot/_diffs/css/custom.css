@@ -11,6 +11,7 @@ body {
 	font-family: Helvetica;
 	-webkit-user-select: none;
 	-webkit-text-size-adjust: none;
+	min-height: 480px;
 }
 
 a {
@@ -81,8 +82,8 @@ a img {
 
 #topper #banner .logo a {
 	background: url(../images/custom/company_logo.png);
-	height: 23px;
-	width: 90px;
+	height: 30px;
+	width: 118px;
 	margin: 0 auto;
 }
 
@@ -224,6 +225,8 @@ a img {
 .ui-tabs {
 	border-bottom: 0;
 	margin: 0 0 6px;
+	padding: 0;
+	float: right;
 }
 
 .ui-tabs li a,
@@ -238,7 +241,7 @@ a img {
 	padding: 6px 12px;
 	text-decoration: none;
 	-moz-border-radius: 4px;
-	-webkit-border--radius: 4px;
+	-webkit-border-radius: 4px;
 }
 
 .ui-tabs li.current a,
@@ -271,6 +274,7 @@ a img {
 
 .portlet-calendar form > table > tbody > tr > td {
 	display: block;
+	width: 100%;
 }
 
 .portlet-calendar .calendar-day .day-text {
