@@ -1,0 +1,286 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Base ---------- */
+
+html {
+	overflow-x: hidden;
+}
+
+body {
+	margin: 0;
+	font-family: Helvetica;
+	-webkit-user-select: none;
+	-webkit-text-size-adjust: none;
+}
+
+a {
+	cursor: pointer;
+	color: #005e96;
+	text-decoration: inherit;
+	outline: 0;
+}
+
+a img {
+	border: 0;
+}
+
+.button {
+	position: absolute;
+	overflow: hidden;
+	top: 3px;
+	right: 3px;
+	border: 5px solid transparent;
+	padding: 1px 6px;
+	line-height: 16px;
+	font-size: 13px;
+	font-weight: bold;
+	color: #fff;
+	text-overflow: ellipsis;
+	text-decoration: none;
+	text-shadow: rgba(0, 0, 0, .4) 0 -1px 0;
+	text-align: center;
+	white-space: nowrap;
+}
+
+.left {
+	right: auto;
+	left: 3px;
+}
+
+.right {
+	left: auto;
+	right: 3px;
+}
+
+.tab {
+	text-align: center;
+	padding: 0;
+	vertical-align: bottom;
+}
+
+.tab a {
+	position: relative;
+	display: block;
+}
+
+/* ---------- Topper ---------- */
+
+#topper {
+	background: #000 url(../images/custom/banner_bg.jpg) center top;
+}
+
+/* ---------- Banner ---------- */
+
+#banner {
+	padding: 8px 0;
+	text-align: center;
+	vertical-align: center;
+}
+
+/* ---------- Logo ---------- */
+
+#topper #banner .logo a {
+	background: url(../images/custom/company_logo.png);
+	height: 23px;
+	width: 90px;
+	margin: 0 auto;
+}
+
+/* ---------- Navigation ---------- */
+
+#navigation {
+	width: 100%;
+	font-size: 14px;
+	border-spacing: 0;
+}
+
+#navigation .tab a {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	background: url(../images/custom/tabs_bg.png) no-repeat left center;
+	color: #83B1C0;
+	left: 1px;
+	padding: 7px 0;
+	margin-right: 1px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+}
+
+#navigation .tab a[selected="true"] {
+	background: url(../images/custom/selected_tab.png);
+	color: #FFF;
+	padding: 11px 0 7px;
+}
+
+/* ---------- Child Navigation ---------- */
+
+#child-navigation {
+	background: #dae4e7;
+	border-bottom: 1px solid #a0a7a9;
+	font-size: 18px;
+	text-shadow: rgba(255, 255, 255, 50) 0 -1px 0;
+	text-align: center;
+	white-space: nowrap;
+	width: 100%;
+	border-spacing: 0;
+}
+
+#child-navigation .tab {
+	line-height: 25px;
+}
+
+#child-navigation .tab a {
+	background: #dae4e7;
+	border: 1px solid #c8d1d4;
+	border-width: 0 1px 0 0;
+	-moz-border-radius-topright: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	padding: 3px 12px 2px;
+	font-size: 13px;
+	color: #000;
+	z-index: 2;
+	position: relative;
+}
+
+#child-navigation .tab a[selected="true"] {
+	left: -4px;
+	background: #fff;
+	color: #000;
+	text-shadow: none;
+	z-index: 1;
+}
+
+#child-navigation .tab a[depressed="true"] {
+	color: #fff;
+	text-shadow: rgba(0, 0, 0, .4) 0 -1px 0;
+}
+
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	padding: 12px 0;
+}
+
+/* ---------- Portlet ---------- */
+
+.portlet,
+.portlet-borderless-container {
+	color: #555;
+	border-bottom: 1px solid #ddd;
+	font-size: 14px;
+	padding: 6px;
+	margin: 0 0 12px;
+}
+
+.portlet-borderless-bar {
+	display: none;
+}
+
+.portlet-toolbar {
+	display: none;
+}
+
+.portlet-title {
+	color: #000;
+	font-size: 18px;
+}
+
+.portlet-title img {
+	display: none;
+}
+
+.portlet-icons,
+.js .page-maximized .portlet-icons {
+	display: none;
+}
+
+.portlet-content {
+	padding: 12px 0;
+}
+
+.portlet-content h3,
+.portlet-borderless-container h3,
+.portlet-blogs .entry-title {
+ 	margin: 0;
+ 	color: #000;
+	font-size: 18px;
+}
+
+.portlet-borderless-container h3,
+.portlet-blogs .entry-title {
+	margin-bottom: 12px;
+}
+
+.portlet-blogs .entry-title a {
+	color: #000;
+}
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+	border-bottom: 0;
+	margin: 0 0 6px;
+}
+
+.ui-tabs li a,
+.tabs li span,
+.ui-tabs li a:hover,
+.ui-tabs li span:hover {
+	background: #EEE;
+	border: 1px solid #DDD;
+	color: #555;
+	font: 11px Arial, Helvetica, sans-serif;
+	margin: 0 3px 3px 0;
+	padding: 6px 12px;
+	text-decoration: none;
+	-moz-border-radius: 4px;
+	-webkit-border--radius: 4px;
+}
+
+.ui-tabs li.current a,
+.ui-tabs li.current span,
+.ui-tabs li.current a:hover,
+.ui-tabs li.current span:hover {
+	background: #FFF;
+	border: 1px solid #CCC;
+	color: #36C;
+	font: bold 11px Arial, Helvetica, sans-serif;
+}
+
+.portlet-calendar .calendar-container {
+	border: 0;
+	width: auto;
+}
+
+.portlet-calendar .calendar-container .taglib-calendar {
+	float: none;
+}
+
+.portlet-calendar .calendar-day {
+	width: 100%;
+}
+
+.portlet-calendar .calendar-container,
+.portlet-calendar .taglib-calendar {
+	width: 100%;
+}
+
+.portlet-calendar form > table > tbody > tr > td {
+	display: block;
+}
+
+.portlet-calendar .calendar-day .day-text {
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	background: #EEE;
+	color: #222;
+	text-shadow: 2px 2px 1px #BBB;
+}
+
+.portlet-calendar .portlet-section-header {
+	background: #999;
+}
