@@ -33,6 +33,7 @@ import com.liferay.portal.model.Resource;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
@@ -91,11 +92,15 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		removePortletBorder(layout, "1_WAR_soportlet");
 
+		updatePermissions(layout, true);
+
 		// Calendar
 
 		layout = addLayout(group, "Calendar", "/calendar", "1_column");
 
 		removePortletBorder(layout, "8");
+
+		updatePermissions(layout, true);
 
 		// Documents
 
@@ -105,6 +110,8 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		configureAssetPublisher(layout);
 
+		updatePermissions(layout, true);
+
 		// Forums
 
 		layout = addLayout(group, "Forums", "/forums", "2_columns_iii");
@@ -112,6 +119,8 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		removePortletBorder(layout, "19");
 
 		configureAssetPublisher(layout);
+
+		updatePermissions(layout, true);
 
 		// Blog
 
@@ -121,6 +130,8 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		configureAssetPublisher(layout);
 
+		updatePermissions(layout, true);
+
 		// Wiki
 
 		layout = addLayout(group, "Wiki", "/wiki", "2_columns_iii");
@@ -129,6 +140,8 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		configureAssetPublisher(layout);
 
+		updatePermissions(layout, true);
+
 		// Members
 
 		layout = addLayout(group, "Members", "/members", "2_columns_ii");
@@ -136,6 +149,8 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		removePortletBorder(layout, "2_WAR_soportlet");
 		removePortletBorder(layout, "3_WAR_soportlet");
 		removePortletBorder(layout, "4_WAR_soportlet");
+
+		updatePermissions(layout, true);
 	}
 
 	protected void addUserLayouts(Group group) throws Exception {
@@ -150,7 +165,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		updatePortletTitle(layout, "29", "sites");
 
-		updatePermissions(layout);
+		updatePermissions(layout, false);
 
 		// Profile
 
@@ -158,11 +173,13 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		removePortletBorder(layout, "4_WAR_soportlet");
 
+		updatePermissions(layout, true);
+
 		// Mail
 
 		layout = addLayout(group, "Mail", "/mail", "1_column");
 
-		updatePermissions(layout);
+		updatePermissions(layout, false);
 	}
 
 	protected Layout addLayout(
@@ -254,7 +271,9 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
 	}
 
-	protected void updatePermissions(Layout layout) throws Exception {
+	protected void updatePermissions(Layout layout, boolean isPublic)
+		throws Exception {
+
 		long companyId = layout.getCompanyId();
 
 		Role role = RoleLocalServiceUtil.getRole(
@@ -271,6 +290,10 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		PermissionLocalServiceUtil.setRolePermissions(
 			role.getRoleId(), actionIds, resource.getResourceId());
+
+		if (isPublic) {
+			actionIds = new String[] {ActionKeys.VIEW};
+		}
 
 		role = RoleLocalServiceUtil.getRole(
 			companyId, RoleConstants.POWER_USER);

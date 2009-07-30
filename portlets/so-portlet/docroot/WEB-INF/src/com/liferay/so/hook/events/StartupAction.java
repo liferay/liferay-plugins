@@ -77,7 +77,7 @@ public class StartupAction extends SimpleAction {
 
 	protected void doRun(long companyId) throws Exception {
 		setupRuntime(companyId);
-		
+
 		if (isFirstRun(companyId)) {
 			return;
 		}
