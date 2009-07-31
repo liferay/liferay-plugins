@@ -4,52 +4,28 @@ Liferay.SO.InviteMembers = {
 	init: function(params) {
 		var instance = this;
 
-		instance._assignEvents();
-		instance._assignAddEmailEvents();
-		instance._assignAddMemberEvents();
-		instance._setupLiveSearch();
+		if (!instance._initialized) {
+			instance._assignEvents();
+			instance._setupLiveSearch();
+			instance._setupEventHandler();
+
+			instance._initialized = true;
+		}
 	},
 
-	addEmailInvite: function(address) {
+	addEmailInvite: function() {
 		var instance = this;
 
-		var emailAddress = address.attr('value');
+		var address = instance._emailInput;
 
-		if ((emailAddress != "") && (jQuery("." + instance._sanitizeEmailAddress(emailAddress)).size() < 1)) {
+		var emailAddress = jQuery.trim(address.val());
+
+		if (emailAddress) {
 			var emailHTML = '<div class="user" data-emailAddress="' + emailAddress + '"><span class="email">' + emailAddress + '</span></div>';
 
 			jQuery('.so-portlet-invite-members .email-invited .list').append(emailHTML);
 
-			var inviteMember = jQuery('.so-portlet-invite-members .email-invited .list').find('.user[data-emailAddress=' + emailAddress + ']');
-
-			var formInput = '<input class="' + instance._sanitizeEmailAddress(emailAddress) + '" name="emailAddresses" type="hidden" value="' + emailAddress + '" />';
-
-			jQuery('.invite-actions').append(formInput);
-
-			jQuery('.so-portlet-invite-members #new-member-email-address').val('');
-
-			var numOfMembers = jQuery("#invitedMembersCount").val();
-
-			jQuery("#invitedMembersCount").val(parseInt(numOfMembers) + 1);
-
-			inviteMember.click(
-				function() {
-					instance.removeEmailInvite(jQuery(this));
-				}
-			);
-		}
-		else if (jQuery("." + instance._sanitizeEmailAddress(emailAddress)).size() > 0) {
-			var emailBox = jQuery('#new-member-email-address');
-			var previousColor = emailBox.css('color');
-
-			emailBox.css('color', '#CCCC00');
-
-			setTimeout(
-				function() {
-					emailBox.css('color', previousColor);
-				},
-				100
-			);
+			address.val('');
 		}
 	},
 	
@@ -58,35 +34,68 @@ Liferay.SO.InviteMembers = {
 
 		var invitedUser = member.clone().appendTo('.so-portlet-invite-members .invited .list');
 
-		invitedUser.click(
-			function() {
-				instance.removeMemberInvite(jQuery(this));
+		invitedUser.data('originalUser', member);
+		member.data('invitedUser', invitedUser);
+
+		member.addClass('invited-user');
+	},
+
+	prepareMemberInvite: function(data) {
+		var userIdsToInvite = jQuery('.so-portlet-invite-members .invited .user');
+		var emailAddressesToInvite = jQuery('.so-portlet-invite-members .email-invited .user');
+
+		var receiverUserIds = [];
+		var receiverEmailAddresses = [];
+
+		userIdsToInvite.each(
+			function(index) {
+				user = jQuery(this);
+			
+				receiverUserIds.push(user.attr('data-userId'));
 			}
 		);
 
-		member.removeClass('user').addClass('invited-user');
+		emailAddressesToInvite.each(
+			function(index) {
+				emailAddress = jQuery(this);
+
+				receiverEmailAddresses.push(emailAddress.attr('data-emailAddress'));
+			}
+		)
+
+		receiverUserIds = receiverUserIds.join();
+		receiverEmailAddresses = receiverEmailAddresses.join();
+
+		for(var i = 0; i < data.length; i++){
+			var obj = data[i];
+
+			if(obj.name.indexOf('receiverUserIds') > -1){
+				obj.value = receiverUserIds;
+			}
+			else if(obj.name.indexOf('receiverEmailAddresses') > -1){
+				obj.value = receiverEmailAddresses;
+			}
+		}
 	},
 
 	removeEmailInvite: function(address) {
-		var instance = this;
-
-		var addressStr = address.attr('data-emailaddress');
-
-		jQuery("." + instance._sanitizeEmailAddress(addressStr)).remove();
-
 		address.remove();
 	},
 
 	removeMemberInvite: function(member) {
 		var userId = member.attr('data-userId');
 
-		jQuery('.so-portlet-invite-members .uninvited .list').find('.invited-user[data-userId=' + userId + ']').removeClass('invited-user').addClass('user');
+		var originalUser = member.data('originalUser');
+		var invitedUser = member.data('invitedUser');
 
-		jQuery('.so-portlet-invite-members .invited .list').find('.user[data-userId=' + userId + ']').remove();
-
-		var numOfMembers = jQuery("#invitedMembersCount").val();
-
-		jQuery("#invitedMembersCount").val(parseInt(numOfMembers) - 1);
+		if(originalUser){
+			originalUser.removeClass('invited-user');
+			member.remove();
+		}
+		else if(invitedUser){
+			member.removeClass('invited-user');
+			invitedUser.remove();
+		}
 	},
 
 	_assignAddEmailEvents: function() {
@@ -101,23 +110,6 @@ Liferay.SO.InviteMembers = {
 		);
 	},
 
-	_assignAddMemberEvents: function() {
-		var instance = this;
-
-		jQuery('.so-portlet-invite-members .user').click(
-			function() {
-				var member = jQuery(this);
-
-				if (member.hasClass('user')) {
-					instance.addMemberInvite(member);
-				}
-				else {
-					instance.removeMemberInvite(member);
-				}
-			}
-		);
-	},
-
 	_assignEvents: function() {
 		jQuery('.so-portlet-members .invite-members a').click(
 			function() {
@@ -127,8 +119,54 @@ Liferay.SO.InviteMembers = {
 		);
 	},
 
-	_sanitizeEmailAddress: function(address) {
-		return address.replace(/@|\./g,"");
+	_setupEventHandler: function() {
+		var instance = this;
+
+		instance._emailInput = jQuery('#new-member-email-address');
+
+		instance._emailInput.livequery(
+			'keypress',
+			function(event){
+				if(event.which == 13){
+					instance.addEmailInvite();
+				}			
+			}
+		);
+
+		jQuery('.so-portlet-invite-members').click(
+			function (event) {
+				var target = jQuery(event.target);
+				var userTarget = jQuery([]);
+
+				if (target.hasClass('user') || (userTarget = target.parents('.user:first')).length) {
+					target = target.hasClass('user') ? target : userTarget;
+
+					var userEmail = target.attr('data-emailAddress');
+					var userId = target.attr('data-userId');
+
+					if(userEmail){
+						instance.removeEmailInvite(target);
+					}
+					else {
+						if (target.parents('.uninvited:first').length) {
+							if (target.hasClass('invited-user')) {
+								instance.removeMemberInvite(target);
+							}
+							else {
+								instance.addMemberInvite(target);
+							}
+						}
+						else if (target.parents('.invited:first').length) {
+							instance.removeMemberInvite(target);
+						}
+					}
+				}
+				else if(target.attr('id') == 'add-email-address') {
+					instance._emailInput = jQuery('#new-member-email-address');
+					instance.addEmailInvite();
+				}
+			}
+		);
 	},
 
 	_setupLiveSearch: function() {

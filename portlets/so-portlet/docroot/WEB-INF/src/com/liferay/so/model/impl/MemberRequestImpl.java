@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2008-2009 Liferay, Inc. All rights reserved.
  *
@@ -15,21 +14,21 @@
  * You should have received a copy of the GNU General Public License along with
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
-%>
 
-<%@ include file="/init.jsp" %>
+package com.liferay.so.model.impl;
 
-<%
-Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
-%>
+import com.liferay.so.model.MemberRequest;
 
-<c:choose>
-	<c:when test="<%= group.isUser() %>">
-		<%@ include file="/invite_members/view_user.jspf" %>
-	</c:when>
-	<c:otherwise>
-		<div class="invite-members-wrapper" style="display: none;">
-			<%@ include file="/invite_members/view_community.jspf" %>
-		</div>
-	</c:otherwise>
-</c:choose>
+/**
+ * <a href="MemberRequestImpl.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class MemberRequestImpl extends MemberRequestModelImpl
+	implements MemberRequest {
+
+	public MemberRequestImpl() {
+	}
+
+}

@@ -17,19 +17,14 @@
  */
 %>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/html/portlet/login/init.jsp" %>
 
 <%
-Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
+String memberRequestKey = HttpUtil.getParameter(currentURL, "key");
+
+if (Validator.isNotNull(memberRequestKey)) {
+	session.setAttribute("LIFERAY_SHARED_MEMBER_REQUEST_KEY", memberRequestKey);
+}
 %>
 
-<c:choose>
-	<c:when test="<%= group.isUser() %>">
-		<%@ include file="/invite_members/view_user.jspf" %>
-	</c:when>
-	<c:otherwise>
-		<div class="invite-members-wrapper" style="display: none;">
-			<%@ include file="/invite_members/view_community.jspf" %>
-		</div>
-	</c:otherwise>
-</c:choose>
+<liferay-util:include page="/html/portlet/login/login.portal.jsp" />

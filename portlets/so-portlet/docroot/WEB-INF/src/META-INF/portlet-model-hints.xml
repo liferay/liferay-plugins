@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <model-hints>
+	<model name="com.liferay.so.model.MemberRequest">
+		<field name="memberRequestId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="key" type="String" />
+		<field name="receiverUserId" type="long" />
+		<field name="status" type="int" />
+	</model>
 	<model name="com.liferay.so.model.ProjectsEntry">
 		<field name="projectsEntryId" type="long" />
 		<field name="companyId" type="long" />

@@ -17,129 +17,190 @@
 
 package com.liferay.so.invitemembers.portlet;
 
-import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.mail.MailMessage;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.so.MemberRequestAlreadyUsedException;
+import com.liferay.so.MemberRequestInvalidUserException;
+import com.liferay.so.invitemembers.util.InviteMembersConstants;
+import com.liferay.so.model.MemberRequest;
+import com.liferay.so.service.MemberRequestLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
+import java.io.IOException;
+
+import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletPreferences;
+import javax.portlet.PortletException;
+import javax.portlet.PortletRequest;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * <a href="InviteMembersPortlet.java.html"><b><i>View Source</i></b></a>
  *
- * @author Brett Swaim
+ * @author Ryan Park
  *
  */
 public class InviteMembersPortlet extends MVCPortlet {
 
-	public void sendEmail(
+	public void doView(
+			RenderRequest renderRequest, RenderResponse renderResponse)
+		throws IOException, PortletException {
+
+		try {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			Group group = GroupLocalServiceUtil.getGroup(
+				themeDisplay.getScopeGroupId());
+
+			if (group.isUser() && themeDisplay.isSignedIn()) {
+				HttpServletRequest request =
+					PortalUtil.getHttpServletRequest(renderRequest);
+
+				HttpSession session = request.getSession();
+
+				String memberRequestKey =
+					(String)session.getAttribute(
+					"LIFERAY_SHARED_MEMBER_REQUEST_KEY");
+
+				if (Validator.isNotNull(memberRequestKey)) {
+					MemberRequestLocalServiceUtil.updateMemberRequest(
+						memberRequestKey, themeDisplay.getUserId());
+
+					session.removeAttribute(
+						"LIFERAY_SHARED_MEMBER_REQUEST_KEY");
+				}
+			}
+
+			List<MemberRequest> memberRequests =
+				MemberRequestLocalServiceUtil.getReceiverStatusMemberRequest(
+					themeDisplay.getUserId(),
+					InviteMembersConstants.STATUS_PENDING, -1, -1);
+
+			if ((group.isUser()) && (memberRequests.size() == 0)) {
+				renderRequest.setAttribute(
+					WebKeys.PORTLET_DECORATE, Boolean.FALSE);
+			}
+
+			include(viewJSP, renderRequest, renderResponse);
+		}
+		catch (Exception e) {
+			super.doView(renderRequest, renderResponse);
+		}
+	}
+
+	public void sendInvites(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		PortletPreferences preferences = actionRequest.getPreferences();
+		try {
+			doSendInvite(actionRequest, actionResponse);
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(e, e);
+			}
+		}
+	}
 
-		String[] emailAddresses = actionRequest.getParameterValues(
-			"emailAddresses");
+	public void updateInvite(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
 
-		if (Validator.isNull(emailAddresses)) {
+		try {
+			doUpdateInvite(actionRequest, actionResponse);
+		}
+		catch (Exception e) {
+			if (e instanceof MemberRequestAlreadyUsedException ||
+				e instanceof MemberRequestInvalidUserException) {
+
+				SessionErrors.add(actionRequest, e.getClass().getName(), e);
+			}
+			else {
+				throw e;
+			}
+		}
+	}
+
+	protected void doSendInvite(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long groupId = ParamUtil.getLong(actionRequest, "groupId");
+		long[] receiverUserIds = getLongArray(actionRequest, "receiverUserIds");
+		String[] receiverEmailAddresses =
+			getStringArray(actionRequest, "receiverEmailAddresses");
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		List<User> users = UserLocalServiceUtil.getGroupUsers(groupId);
+
+		if (!users.contains(themeDisplay.getUser())) {
 			return;
 		}
 
-		User user = PortalUtil.getUser(actionRequest);
+		MemberRequestLocalServiceUtil.addMemberRequests(
+			themeDisplay.getUserId(), groupId, receiverUserIds, themeDisplay);
 
-		InternetAddress from = new InternetAddress(
-			user.getEmailAddress(), user.getFullName());
-
-		String subject = getSubject(preferences);
-		String body = getBody(preferences);
-
-		body = StringUtil.replace(
-			body,
-			new String[] {
-				"[$PORTAL_URL$]",
-				"[$SENDER_EMAIL_ADDRESS$]",
-				"[$SENDER_FULL_NAME$]"
-			},
-			new String[] {
-				PortalUtil.getPortalURL(actionRequest),
-				user.getEmailAddress(),
-				user.getFullName()
-			});
-
-		MailMessage mailMessage = new MailMessage(from, subject, body, true);
-
-		for (String emailAddress : emailAddresses) {
-			try {
-				InternetAddress to = new InternetAddress(emailAddress);
-
-				mailMessage.setTo(to);
-
-				MailServiceUtil.sendEmail(mailMessage);
-			}
-			catch (AddressException ae) {
-				if (_log.isWarnEnabled()) {
-					_log.warn("Invalid email address " + emailAddress);
-				}
-			}
-		}
-
-		int invitedMembersCount = ParamUtil.getInteger(
-			actionRequest, "invitedMembersCount");
-
-		actionResponse.setRenderParameter(
-			"invitedMembersCount", String.valueOf(invitedMembersCount));
+		MemberRequestLocalServiceUtil.addMemberRequests(
+			themeDisplay.getUserId(), groupId, receiverEmailAddresses,
+			themeDisplay);
 	}
 
-	public void updateEmail(
+	protected void doUpdateInvite(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		String body = ParamUtil.getString(actionRequest, "body");
-		String subject = ParamUtil.getString(actionRequest, "subject");
+		long memberRequestId =
+			ParamUtil.getLong(actionRequest, "memberRequestId");
+		int status = ParamUtil.getInteger(actionRequest, "status");
 
-		PortletPreferences preferences = actionRequest.getPreferences();
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
-		preferences.setValue("body", body);
-		preferences.setValue("subject", subject);
-
-		preferences.store();
+		MemberRequestLocalServiceUtil.updateMemberRequest(
+			themeDisplay.getUserId(), memberRequestId, status);
 	}
 
-	protected String getBody(PortletPreferences preferences) throws Exception {
-		String body = preferences.getValue("body", null);
+	protected long[] getLongArray(PortletRequest portletRequest, String name) {
+		String value = portletRequest.getParameter(name);
 
-		if (Validator.isNotNull(body)) {
-			return body;
+		if (value == null) {
+			return null;
 		}
 
-		return StringUtil.read(
-			InviteMembersPortlet.class.getResourceAsStream(
-				"dependencies/body.tmpl"));
+		return StringUtil.split(GetterUtil.getString(value), 0L);
 	}
 
-	protected String getSubject(PortletPreferences preferences)
-		throws Exception {
+	protected String[] getStringArray(
+		PortletRequest portletRequest, String name) {
 
-		String subject = preferences.getValue("subject", null);
+		String value = portletRequest.getParameter(name);
 
-		if (Validator.isNotNull(subject)) {
-			return subject;
+		if (value == null) {
+			return null;
 		}
 
-		return StringUtil.read(
-			InviteMembersPortlet.class.getResourceAsStream(
-				"dependencies/subject.tmpl"));
+		return StringUtil.split(GetterUtil.getString(value));
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(InviteMembersPortlet.class);

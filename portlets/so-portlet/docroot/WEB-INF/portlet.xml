@@ -36,17 +36,12 @@
 		<display-name>Invite Members</display-name>
 		<portlet-class>com.liferay.so.invitemembers.portlet.InviteMembersPortlet</portlet-class>
 		<init-param>
-			<name>edit-jsp</name>
-			<value>/invite_members/edit.jsp</value>
-		</init-param>
-		<init-param>
 			<name>view-jsp</name>
 			<value>/invite_members/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
-			<portlet-mode>edit</portlet-mode>
 		</supports>
 		<portlet-info>
 			<title>Invite Members</title>

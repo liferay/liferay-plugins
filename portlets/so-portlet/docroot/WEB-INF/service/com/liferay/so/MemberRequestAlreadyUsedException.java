@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2008-2009 Liferay, Inc. All rights reserved.
  *
@@ -15,21 +14,34 @@
  * You should have received a copy of the GNU General Public License along with
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
-%>
 
-<%@ include file="/init.jsp" %>
+package com.liferay.so;
 
-<%
-Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
-%>
+import com.liferay.portal.PortalException;
 
-<c:choose>
-	<c:when test="<%= group.isUser() %>">
-		<%@ include file="/invite_members/view_user.jspf" %>
-	</c:when>
-	<c:otherwise>
-		<div class="invite-members-wrapper" style="display: none;">
-			<%@ include file="/invite_members/view_community.jspf" %>
-		</div>
-	</c:otherwise>
-</c:choose>
+/**
+ * <a href="MemberRequestAlreadyUsedException.java.html"><b><i>View Source</i>
+ * </b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class MemberRequestAlreadyUsedException extends PortalException {
+
+	public MemberRequestAlreadyUsedException() {
+		super();
+	}
+
+	public MemberRequestAlreadyUsedException(String msg) {
+		super(msg);
+	}
+
+	public MemberRequestAlreadyUsedException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public MemberRequestAlreadyUsedException(Throwable cause) {
+		super(cause);
+	}
+
+}
