@@ -271,7 +271,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
 	}
 
-	protected void updatePermissions(Layout layout, boolean isPublic)
+	protected void updatePermissions(Layout layout, boolean addDefaultActionIds)
 		throws Exception {
 
 		long companyId = layout.getCompanyId();
@@ -291,7 +291,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		PermissionLocalServiceUtil.setRolePermissions(
 			role.getRoleId(), actionIds, resource.getResourceId());
 
-		if (isPublic) {
+		if (addDefaultActionIds) {
 			actionIds = new String[] {ActionKeys.VIEW};
 		}
 
