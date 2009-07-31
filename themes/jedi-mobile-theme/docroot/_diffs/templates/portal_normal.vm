@@ -12,14 +12,14 @@
 	$theme.include($top_head_include)
 
 	<script type="text/javascript">
-	iPhone = function() {
-		setTimeout("window.scrollTo(0,1);", 100);
-	};
+		iPhone = function() {
+			setTimeout("window.scrollTo(0,1);", 100);
+		};
 
-	if (navigator.userAgent.indexOf('iPhone') != -1) {
-		addEventListener("load", iPhone, false);
-		addEventListener("onorientationchange", iPhone, false);
-	}
+		if (navigator.userAgent.indexOf('iPhone') != -1) {
+			addEventListener("load", iPhone, false);
+			addEventListener("onorientationchange", iPhone, false);
+		}
 	</script>
 </head>
 
