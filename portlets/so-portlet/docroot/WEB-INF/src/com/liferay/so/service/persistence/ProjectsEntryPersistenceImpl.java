@@ -53,10 +53,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * <a href="ProjectsEntryPersistenceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="ProjectsEntryPersistenceImpl.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl
 	implements ProjectsEntryPersistence {
@@ -819,6 +819,8 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	@BeanReference(name = "com.liferay.so.service.persistence.MemberRequestPersistence.impl")
+	protected com.liferay.so.service.persistence.MemberRequestPersistence memberRequestPersistence;
 	@BeanReference(name = "com.liferay.so.service.persistence.ProjectsEntryPersistence.impl")
 	protected com.liferay.so.service.persistence.ProjectsEntryPersistence projectsEntryPersistence;
 	private static Log _log = LogFactoryUtil.getLog(ProjectsEntryPersistenceImpl.class);

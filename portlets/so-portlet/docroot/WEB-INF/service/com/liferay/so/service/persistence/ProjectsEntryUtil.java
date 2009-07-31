@@ -26,7 +26,6 @@ package com.liferay.so.service.persistence;
  * <a href="ProjectsEntryUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class ProjectsEntryUtil {
 	public static void cacheResult(

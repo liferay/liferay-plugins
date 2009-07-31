@@ -26,7 +26,6 @@ package com.liferay.so.model;
  * <a href="ProjectsEntry.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface ProjectsEntry extends ProjectsEntryModel {
 }

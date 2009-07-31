@@ -29,10 +29,10 @@ import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
 
 /**
- * <a href="ProjectsEntryLocalServiceClp.java.html"><b><i>View Source</i></b></a>
+ * <a href="ProjectsEntryLocalServiceClp.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	public ProjectsEntryLocalServiceClp(ClassLoaderProxy classLoaderProxy) {

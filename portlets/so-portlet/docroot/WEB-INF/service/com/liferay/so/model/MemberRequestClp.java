@@ -36,33 +36,41 @@ import java.lang.reflect.Proxy;
 import java.util.Date;
 
 /**
- * <a href="ProjectsEntryClp.java.html"><b><i>View Source</i></b></a>
+ * <a href="MemberRequestClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
-	implements ProjectsEntry {
-	public ProjectsEntryClp() {
+public class MemberRequestClp extends BaseModelImpl<MemberRequest>
+	implements MemberRequest {
+	public MemberRequestClp() {
 	}
 
 	public long getPrimaryKey() {
-		return _projectsEntryId;
+		return _memberRequestId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setProjectsEntryId(pk);
+		setMemberRequestId(pk);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_projectsEntryId);
+		return new Long(_memberRequestId);
 	}
 
-	public long getProjectsEntryId() {
-		return _projectsEntryId;
+	public long getMemberRequestId() {
+		return _memberRequestId;
 	}
 
-	public void setProjectsEntryId(long projectsEntryId) {
-		_projectsEntryId = projectsEntryId;
+	public void setMemberRequestId(long memberRequestId) {
+		_memberRequestId = memberRequestId;
+	}
+
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
 	}
 
 	public long getCompanyId() {
@@ -113,69 +121,61 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		_modifiedDate = modifiedDate;
 	}
 
-	public String getTitle() {
-		return _title;
+	public String getKey() {
+		return _key;
 	}
 
-	public void setTitle(String title) {
-		_title = title;
+	public void setKey(String key) {
+		_key = key;
 	}
 
-	public String getDescription() {
-		return _description;
+	public long getReceiverUserId() {
+		return _receiverUserId;
 	}
 
-	public void setDescription(String description) {
-		_description = description;
+	public void setReceiverUserId(long receiverUserId) {
+		_receiverUserId = receiverUserId;
 	}
 
-	public Date getStartDate() {
-		return _startDate;
+	public String getReceiverUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getReceiverUserId(), "uuid",
+			_receiverUserUuid);
 	}
 
-	public void setStartDate(Date startDate) {
-		_startDate = startDate;
+	public void setReceiverUserUuid(String receiverUserUuid) {
+		_receiverUserUuid = receiverUserUuid;
 	}
 
-	public Date getEndDate() {
-		return _endDate;
+	public int getStatus() {
+		return _status;
 	}
 
-	public void setEndDate(Date endDate) {
-		_endDate = endDate;
+	public void setStatus(int status) {
+		_status = status;
 	}
 
-	public String getData() {
-		return _data;
-	}
-
-	public void setData(String data) {
-		_data = data;
-	}
-
-	public ProjectsEntry toEscapedModel() {
+	public MemberRequest toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
 		}
 		else {
-			ProjectsEntry model = new ProjectsEntryClp();
+			MemberRequest model = new MemberRequestClp();
 
 			model.setEscapedModel(true);
 
-			model.setProjectsEntryId(getProjectsEntryId());
+			model.setMemberRequestId(getMemberRequestId());
+			model.setGroupId(getGroupId());
 			model.setCompanyId(getCompanyId());
 			model.setUserId(getUserId());
 			model.setUserName(HtmlUtil.escape(getUserName()));
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
-			model.setTitle(HtmlUtil.escape(getTitle()));
-			model.setDescription(HtmlUtil.escape(getDescription()));
-			model.setStartDate(getStartDate());
-			model.setEndDate(getEndDate());
-			model.setData(HtmlUtil.escape(getData()));
+			model.setKey(HtmlUtil.escape(getKey()));
+			model.setReceiverUserId(getReceiverUserId());
+			model.setStatus(getStatus());
 
-			model = (ProjectsEntry)Proxy.newProxyInstance(ProjectsEntry.class.getClassLoader(),
-					new Class[] { ProjectsEntry.class },
+			model = (MemberRequest)Proxy.newProxyInstance(MemberRequest.class.getClassLoader(),
+					new Class[] { MemberRequest.class },
 					new ReadOnlyBeanHandler(model));
 
 			return model;
@@ -183,27 +183,29 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 	}
 
 	public Object clone() {
-		ProjectsEntryClp clone = new ProjectsEntryClp();
+		MemberRequestClp clone = new MemberRequestClp();
 
-		clone.setProjectsEntryId(getProjectsEntryId());
+		clone.setMemberRequestId(getMemberRequestId());
+		clone.setGroupId(getGroupId());
 		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
-		clone.setTitle(getTitle());
-		clone.setDescription(getDescription());
-		clone.setStartDate(getStartDate());
-		clone.setEndDate(getEndDate());
-		clone.setData(getData());
+		clone.setKey(getKey());
+		clone.setReceiverUserId(getReceiverUserId());
+		clone.setStatus(getStatus());
 
 		return clone;
 	}
 
-	public int compareTo(ProjectsEntry projectsEntry) {
+	public int compareTo(MemberRequest memberRequest) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getEndDate(), projectsEntry.getEndDate());
+		value = DateUtil.compareTo(getCreateDate(),
+				memberRequest.getCreateDate());
+
+		value = value * -1;
 
 		if (value != 0) {
 			return value;
@@ -217,16 +219,16 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 			return false;
 		}
 
-		ProjectsEntryClp projectsEntry = null;
+		MemberRequestClp memberRequest = null;
 
 		try {
-			projectsEntry = (ProjectsEntryClp)obj;
+			memberRequest = (MemberRequestClp)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
 		}
 
-		long pk = projectsEntry.getPrimaryKey();
+		long pk = memberRequest.getPrimaryKey();
 
 		if (getPrimaryKey() == pk) {
 			return true;
@@ -243,8 +245,10 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("{projectsEntryId=");
-		sb.append(getProjectsEntryId());
+		sb.append("{memberRequestId=");
+		sb.append(getMemberRequestId());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", userId=");
@@ -255,16 +259,12 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", title=");
-		sb.append(getTitle());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", startDate=");
-		sb.append(getStartDate());
-		sb.append(", endDate=");
-		sb.append(getEndDate());
-		sb.append(", data=");
-		sb.append(getData());
+		sb.append(", key=");
+		sb.append(getKey());
+		sb.append(", receiverUserId=");
+		sb.append(getReceiverUserId());
+		sb.append(", status=");
+		sb.append(getStatus());
 		sb.append("}");
 
 		return sb.toString();
@@ -274,12 +274,16 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.so.model.ProjectsEntry");
+		sb.append("com.liferay.so.model.MemberRequest");
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>projectsEntryId</column-name><column-value><![CDATA[");
-		sb.append(getProjectsEntryId());
+			"<column><column-name>memberRequestId</column-name><column-value><![CDATA[");
+		sb.append(getMemberRequestId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -302,24 +306,16 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>title</column-name><column-value><![CDATA[");
-		sb.append(getTitle());
+			"<column><column-name>key</column-name><column-value><![CDATA[");
+		sb.append(getKey());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
+			"<column><column-name>receiverUserId</column-name><column-value><![CDATA[");
+		sb.append(getReceiverUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>startDate</column-name><column-value><![CDATA[");
-		sb.append(getStartDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>endDate</column-name><column-value><![CDATA[");
-		sb.append(getEndDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>data</column-name><column-value><![CDATA[");
-		sb.append(getData());
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -327,16 +323,16 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		return sb.toString();
 	}
 
-	private long _projectsEntryId;
+	private long _memberRequestId;
+	private long _groupId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private String _title;
-	private String _description;
-	private Date _startDate;
-	private Date _endDate;
-	private String _data;
+	private String _key;
+	private long _receiverUserId;
+	private String _receiverUserUuid;
+	private int _status;
 }

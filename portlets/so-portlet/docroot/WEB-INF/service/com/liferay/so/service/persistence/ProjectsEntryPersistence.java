@@ -28,7 +28,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * <a href="ProjectsEntryPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface ProjectsEntryPersistence extends BasePersistence {
 	public void cacheResult(com.liferay.so.model.ProjectsEntry projectsEntry);

@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.BaseModel;
 
+import com.liferay.so.model.MemberRequestClp;
 import com.liferay.so.model.ProjectsEntryClp;
 
 import java.lang.reflect.Method;
@@ -38,7 +39,6 @@ import java.util.List;
  * <a href="ClpSerializer.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class ClpSerializer {
 	public static final String SERVLET_CONTEXT_NAME = "so-portlet";
@@ -51,6 +51,102 @@ public class ClpSerializer {
 		Class<?> oldModelClass = oldModel.getClass();
 
 		String oldModelClassName = oldModelClass.getName();
+
+		if (oldModelClassName.equals(MemberRequestClp.class.getName())) {
+			MemberRequestClp oldCplModel = (MemberRequestClp)oldModel;
+
+			ClassLoader contextClassLoader = Thread.currentThread()
+												   .getContextClassLoader();
+
+			try {
+				Thread.currentThread().setContextClassLoader(_classLoader);
+
+				try {
+					Class<?> newModelClass = Class.forName("com.liferay.so.model.impl.MemberRequestImpl",
+							true, _classLoader);
+
+					Object newModel = newModelClass.newInstance();
+
+					Method method0 = newModelClass.getMethod("setMemberRequestId",
+							new Class[] { Long.TYPE });
+
+					Long value0 = new Long(oldCplModel.getMemberRequestId());
+
+					method0.invoke(newModel, value0);
+
+					Method method1 = newModelClass.getMethod("setGroupId",
+							new Class[] { Long.TYPE });
+
+					Long value1 = new Long(oldCplModel.getGroupId());
+
+					method1.invoke(newModel, value1);
+
+					Method method2 = newModelClass.getMethod("setCompanyId",
+							new Class[] { Long.TYPE });
+
+					Long value2 = new Long(oldCplModel.getCompanyId());
+
+					method2.invoke(newModel, value2);
+
+					Method method3 = newModelClass.getMethod("setUserId",
+							new Class[] { Long.TYPE });
+
+					Long value3 = new Long(oldCplModel.getUserId());
+
+					method3.invoke(newModel, value3);
+
+					Method method4 = newModelClass.getMethod("setUserName",
+							new Class[] { String.class });
+
+					String value4 = oldCplModel.getUserName();
+
+					method4.invoke(newModel, value4);
+
+					Method method5 = newModelClass.getMethod("setCreateDate",
+							new Class[] { Date.class });
+
+					Date value5 = oldCplModel.getCreateDate();
+
+					method5.invoke(newModel, value5);
+
+					Method method6 = newModelClass.getMethod("setModifiedDate",
+							new Class[] { Date.class });
+
+					Date value6 = oldCplModel.getModifiedDate();
+
+					method6.invoke(newModel, value6);
+
+					Method method7 = newModelClass.getMethod("setKey",
+							new Class[] { String.class });
+
+					String value7 = oldCplModel.getKey();
+
+					method7.invoke(newModel, value7);
+
+					Method method8 = newModelClass.getMethod("setReceiverUserId",
+							new Class[] { Long.TYPE });
+
+					Long value8 = new Long(oldCplModel.getReceiverUserId());
+
+					method8.invoke(newModel, value8);
+
+					Method method9 = newModelClass.getMethod("setStatus",
+							new Class[] { Integer.TYPE });
+
+					Integer value9 = new Integer(oldCplModel.getStatus());
+
+					method9.invoke(newModel, value9);
+
+					return newModel;
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+			}
+			finally {
+				Thread.currentThread().setContextClassLoader(contextClassLoader);
+			}
+		}
 
 		if (oldModelClassName.equals(ProjectsEntryClp.class.getName())) {
 			ProjectsEntryClp oldCplModel = (ProjectsEntryClp)oldModel;
@@ -186,6 +282,93 @@ public class ClpSerializer {
 		Class<?> oldModelClass = oldModel.getClass();
 
 		String oldModelClassName = oldModelClass.getName();
+
+		if (oldModelClassName.equals(
+					"com.liferay.so.model.impl.MemberRequestImpl")) {
+			ClassLoader contextClassLoader = Thread.currentThread()
+												   .getContextClassLoader();
+
+			try {
+				Thread.currentThread().setContextClassLoader(_classLoader);
+
+				try {
+					MemberRequestClp newModel = new MemberRequestClp();
+
+					Method method0 = oldModelClass.getMethod(
+							"getMemberRequestId");
+
+					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
+
+					newModel.setMemberRequestId(value0.longValue());
+
+					Method method1 = oldModelClass.getMethod("getGroupId");
+
+					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+
+					newModel.setGroupId(value1.longValue());
+
+					Method method2 = oldModelClass.getMethod("getCompanyId");
+
+					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
+
+					newModel.setCompanyId(value2.longValue());
+
+					Method method3 = oldModelClass.getMethod("getUserId");
+
+					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
+
+					newModel.setUserId(value3.longValue());
+
+					Method method4 = oldModelClass.getMethod("getUserName");
+
+					String value4 = (String)method4.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setUserName(value4);
+
+					Method method5 = oldModelClass.getMethod("getCreateDate");
+
+					Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
+
+					newModel.setCreateDate(value5);
+
+					Method method6 = oldModelClass.getMethod("getModifiedDate");
+
+					Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
+
+					newModel.setModifiedDate(value6);
+
+					Method method7 = oldModelClass.getMethod("getKey");
+
+					String value7 = (String)method7.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setKey(value7);
+
+					Method method8 = oldModelClass.getMethod(
+							"getReceiverUserId");
+
+					Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
+
+					newModel.setReceiverUserId(value8.longValue());
+
+					Method method9 = oldModelClass.getMethod("getStatus");
+
+					Integer value9 = (Integer)method9.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setStatus(value9.intValue());
+
+					return newModel;
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+			}
+			finally {
+				Thread.currentThread().setContextClassLoader(contextClassLoader);
+			}
+		}
 
 		if (oldModelClassName.equals(
 					"com.liferay.so.model.impl.ProjectsEntryImpl")) {

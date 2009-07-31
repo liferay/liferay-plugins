@@ -28,18 +28,22 @@ import com.liferay.portal.model.BaseModel;
 import java.util.Date;
 
 /**
- * <a href="ProjectsEntryModel.java.html"><b><i>View Source</i></b></a>
+ * <a href="MemberRequestModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public interface ProjectsEntryModel extends BaseModel<ProjectsEntry> {
+public interface MemberRequestModel extends BaseModel<MemberRequest> {
 	public long getPrimaryKey();
 
 	public void setPrimaryKey(long pk);
 
-	public long getProjectsEntryId();
+	public long getMemberRequestId();
 
-	public void setProjectsEntryId(long projectsEntryId);
+	public void setMemberRequestId(long memberRequestId);
+
+	public long getGroupId();
+
+	public void setGroupId(long groupId);
 
 	public long getCompanyId();
 
@@ -65,25 +69,21 @@ public interface ProjectsEntryModel extends BaseModel<ProjectsEntry> {
 
 	public void setModifiedDate(Date modifiedDate);
 
-	public String getTitle();
+	public String getKey();
 
-	public void setTitle(String title);
+	public void setKey(String key);
 
-	public String getDescription();
+	public long getReceiverUserId();
 
-	public void setDescription(String description);
+	public void setReceiverUserId(long receiverUserId);
 
-	public Date getStartDate();
+	public String getReceiverUserUuid() throws SystemException;
 
-	public void setStartDate(Date startDate);
+	public void setReceiverUserUuid(String receiverUserUuid);
 
-	public Date getEndDate();
+	public int getStatus();
 
-	public void setEndDate(Date endDate);
+	public void setStatus(int status);
 
-	public String getData();
-
-	public void setData(String data);
-
-	public ProjectsEntry toEscapedModel();
+	public MemberRequest toEscapedModel();
 }

@@ -28,13 +28,13 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
 
 import com.liferay.so.service.ClpSerializer;
+import com.liferay.so.service.MemberRequestLocalServiceUtil;
 import com.liferay.so.service.ProjectsEntryLocalServiceUtil;
 
 /**
  * <a href="ClpMessageListener.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class ClpMessageListener implements MessageListener {
 	public static final String SERVLET_CONTEXT_NAME = ClpSerializer.SERVLET_CONTEXT_NAME;
@@ -54,6 +54,8 @@ public class ClpMessageListener implements MessageListener {
 
 		if (command.equals("undeploy") &&
 				servletContextName.equals(SERVLET_CONTEXT_NAME)) {
+			MemberRequestLocalServiceUtil.clearService();
+
 			ProjectsEntryLocalServiceUtil.clearService();
 		}
 	}

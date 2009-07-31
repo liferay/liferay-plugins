@@ -33,8 +33,8 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
 
-import com.liferay.so.model.ProjectsEntry;
-import com.liferay.so.model.ProjectsEntrySoap;
+import com.liferay.so.model.MemberRequest;
+import com.liferay.so.model.MemberRequestSoap;
 
 import java.io.Serializable;
 
@@ -47,14 +47,17 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <a href="ProjectsEntryModelImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="MemberRequestModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
-	public static final String TABLE_NAME = "SO_ProjectsEntry";
+public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
+	public static final String TABLE_NAME = "SO_MemberRequest";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "projectsEntryId", new Integer(Types.BIGINT) },
+			{ "memberRequestId", new Integer(Types.BIGINT) },
+			
+
+			{ "groupId", new Integer(Types.BIGINT) },
 			
 
 			{ "companyId", new Integer(Types.BIGINT) },
@@ -72,54 +75,47 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
 			
 
-			{ "title", new Integer(Types.VARCHAR) },
+			{ "key_", new Integer(Types.VARCHAR) },
 			
 
-			{ "description", new Integer(Types.VARCHAR) },
+			{ "receiverUserId", new Integer(Types.BIGINT) },
 			
 
-			{ "startDate", new Integer(Types.TIMESTAMP) },
-			
-
-			{ "endDate", new Integer(Types.TIMESTAMP) },
-			
-
-			{ "data_", new Integer(Types.VARCHAR) }
+			{ "status", new Integer(Types.INTEGER) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table SO_ProjectsEntry (projectsEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,description STRING null,startDate DATE null,endDate DATE null,data_ VARCHAR(1000) null)";
-	public static final String TABLE_SQL_DROP = "drop table SO_ProjectsEntry";
+	public static final String TABLE_SQL_CREATE = "create table SO_MemberRequest (memberRequestId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,key_ VARCHAR(75) null,receiverUserId LONG,status INTEGER)";
+	public static final String TABLE_SQL_DROP = "drop table SO_MemberRequest";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
 	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.so.model.ProjectsEntry"),
+				"value.object.entity.cache.enabled.com.liferay.so.model.MemberRequest"),
 			true);
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.so.model.ProjectsEntry"),
+				"value.object.finder.cache.enabled.com.liferay.so.model.MemberRequest"),
 			true);
 
-	public static ProjectsEntry toModel(ProjectsEntrySoap soapModel) {
-		ProjectsEntry model = new ProjectsEntryImpl();
+	public static MemberRequest toModel(MemberRequestSoap soapModel) {
+		MemberRequest model = new MemberRequestImpl();
 
-		model.setProjectsEntryId(soapModel.getProjectsEntryId());
+		model.setMemberRequestId(soapModel.getMemberRequestId());
+		model.setGroupId(soapModel.getGroupId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setUserId(soapModel.getUserId());
 		model.setUserName(soapModel.getUserName());
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setTitle(soapModel.getTitle());
-		model.setDescription(soapModel.getDescription());
-		model.setStartDate(soapModel.getStartDate());
-		model.setEndDate(soapModel.getEndDate());
-		model.setData(soapModel.getData());
+		model.setKey(soapModel.getKey());
+		model.setReceiverUserId(soapModel.getReceiverUserId());
+		model.setStatus(soapModel.getStatus());
 
 		return model;
 	}
 
-	public static List<ProjectsEntry> toModels(ProjectsEntrySoap[] soapModels) {
-		List<ProjectsEntry> models = new ArrayList<ProjectsEntry>(soapModels.length);
+	public static List<MemberRequest> toModels(MemberRequestSoap[] soapModels) {
+		List<MemberRequest> models = new ArrayList<MemberRequest>(soapModels.length);
 
-		for (ProjectsEntrySoap soapModel : soapModels) {
+		for (MemberRequestSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
 		}
 
@@ -127,29 +123,47 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 	}
 
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
-				"lock.expiration.time.com.liferay.so.model.ProjectsEntry"));
+				"lock.expiration.time.com.liferay.so.model.MemberRequest"));
 
-	public ProjectsEntryModelImpl() {
+	public MemberRequestModelImpl() {
 	}
 
 	public long getPrimaryKey() {
-		return _projectsEntryId;
+		return _memberRequestId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setProjectsEntryId(pk);
+		setMemberRequestId(pk);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_projectsEntryId);
+		return new Long(_memberRequestId);
 	}
 
-	public long getProjectsEntryId() {
-		return _projectsEntryId;
+	public long getMemberRequestId() {
+		return _memberRequestId;
 	}
 
-	public void setProjectsEntryId(long projectsEntryId) {
-		_projectsEntryId = projectsEntryId;
+	public void setMemberRequestId(long memberRequestId) {
+		_memberRequestId = memberRequestId;
+	}
+
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+
+		if (!_setOriginalGroupId) {
+			_setOriginalGroupId = true;
+
+			_originalGroupId = groupId;
+		}
+	}
+
+	public long getOriginalGroupId() {
+		return _originalGroupId;
 	}
 
 	public long getCompanyId() {
@@ -200,70 +214,90 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 		_modifiedDate = modifiedDate;
 	}
 
-	public String getTitle() {
-		return GetterUtil.getString(_title);
+	public String getKey() {
+		return GetterUtil.getString(_key);
 	}
 
-	public void setTitle(String title) {
-		_title = title;
+	public void setKey(String key) {
+		_key = key;
+
+		if (_originalKey == null) {
+			_originalKey = key;
+		}
 	}
 
-	public String getDescription() {
-		return GetterUtil.getString(_description);
+	public String getOriginalKey() {
+		return GetterUtil.getString(_originalKey);
 	}
 
-	public void setDescription(String description) {
-		_description = description;
+	public long getReceiverUserId() {
+		return _receiverUserId;
 	}
 
-	public Date getStartDate() {
-		return _startDate;
+	public void setReceiverUserId(long receiverUserId) {
+		_receiverUserId = receiverUserId;
+
+		if (!_setOriginalReceiverUserId) {
+			_setOriginalReceiverUserId = true;
+
+			_originalReceiverUserId = receiverUserId;
+		}
 	}
 
-	public void setStartDate(Date startDate) {
-		_startDate = startDate;
+	public String getReceiverUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getReceiverUserId(), "uuid",
+			_receiverUserUuid);
 	}
 
-	public Date getEndDate() {
-		return _endDate;
+	public void setReceiverUserUuid(String receiverUserUuid) {
+		_receiverUserUuid = receiverUserUuid;
 	}
 
-	public void setEndDate(Date endDate) {
-		_endDate = endDate;
+	public long getOriginalReceiverUserId() {
+		return _originalReceiverUserId;
 	}
 
-	public String getData() {
-		return GetterUtil.getString(_data);
+	public int getStatus() {
+		return _status;
 	}
 
-	public void setData(String data) {
-		_data = data;
+	public void setStatus(int status) {
+		_status = status;
+
+		if (!_setOriginalStatus) {
+			_setOriginalStatus = true;
+
+			_originalStatus = status;
+		}
 	}
 
-	public ProjectsEntry toEscapedModel() {
+	public int getOriginalStatus() {
+		return _originalStatus;
+	}
+
+	public MemberRequest toEscapedModel() {
 		if (isEscapedModel()) {
-			return (ProjectsEntry)this;
+			return (MemberRequest)this;
 		}
 		else {
-			ProjectsEntry model = new ProjectsEntryImpl();
+			MemberRequest model = new MemberRequestImpl();
 
 			model.setNew(isNew());
 			model.setEscapedModel(true);
 
-			model.setProjectsEntryId(getProjectsEntryId());
+			model.setMemberRequestId(getMemberRequestId());
+			model.setGroupId(getGroupId());
 			model.setCompanyId(getCompanyId());
 			model.setUserId(getUserId());
 			model.setUserName(HtmlUtil.escape(getUserName()));
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
-			model.setTitle(HtmlUtil.escape(getTitle()));
-			model.setDescription(HtmlUtil.escape(getDescription()));
-			model.setStartDate(getStartDate());
-			model.setEndDate(getEndDate());
-			model.setData(HtmlUtil.escape(getData()));
+			model.setKey(HtmlUtil.escape(getKey()));
+			model.setReceiverUserId(getReceiverUserId());
+			model.setStatus(getStatus());
 
-			model = (ProjectsEntry)Proxy.newProxyInstance(ProjectsEntry.class.getClassLoader(),
-					new Class[] { ProjectsEntry.class },
+			model = (MemberRequest)Proxy.newProxyInstance(MemberRequest.class.getClassLoader(),
+					new Class[] { MemberRequest.class },
 					new ReadOnlyBeanHandler(model));
 
 			return model;
@@ -272,7 +306,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = new ExpandoBridgeImpl(ProjectsEntry.class.getName(),
+			_expandoBridge = new ExpandoBridgeImpl(MemberRequest.class.getName(),
 					getPrimaryKey());
 		}
 
@@ -280,27 +314,29 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 	}
 
 	public Object clone() {
-		ProjectsEntryImpl clone = new ProjectsEntryImpl();
+		MemberRequestImpl clone = new MemberRequestImpl();
 
-		clone.setProjectsEntryId(getProjectsEntryId());
+		clone.setMemberRequestId(getMemberRequestId());
+		clone.setGroupId(getGroupId());
 		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
-		clone.setTitle(getTitle());
-		clone.setDescription(getDescription());
-		clone.setStartDate(getStartDate());
-		clone.setEndDate(getEndDate());
-		clone.setData(getData());
+		clone.setKey(getKey());
+		clone.setReceiverUserId(getReceiverUserId());
+		clone.setStatus(getStatus());
 
 		return clone;
 	}
 
-	public int compareTo(ProjectsEntry projectsEntry) {
+	public int compareTo(MemberRequest memberRequest) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getEndDate(), projectsEntry.getEndDate());
+		value = DateUtil.compareTo(getCreateDate(),
+				memberRequest.getCreateDate());
+
+		value = value * -1;
 
 		if (value != 0) {
 			return value;
@@ -314,16 +350,16 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 			return false;
 		}
 
-		ProjectsEntry projectsEntry = null;
+		MemberRequest memberRequest = null;
 
 		try {
-			projectsEntry = (ProjectsEntry)obj;
+			memberRequest = (MemberRequest)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
 		}
 
-		long pk = projectsEntry.getPrimaryKey();
+		long pk = memberRequest.getPrimaryKey();
 
 		if (getPrimaryKey() == pk) {
 			return true;
@@ -340,8 +376,10 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("{projectsEntryId=");
-		sb.append(getProjectsEntryId());
+		sb.append("{memberRequestId=");
+		sb.append(getMemberRequestId());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", userId=");
@@ -352,16 +390,12 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", title=");
-		sb.append(getTitle());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", startDate=");
-		sb.append(getStartDate());
-		sb.append(", endDate=");
-		sb.append(getEndDate());
-		sb.append(", data=");
-		sb.append(getData());
+		sb.append(", key=");
+		sb.append(getKey());
+		sb.append(", receiverUserId=");
+		sb.append(getReceiverUserId());
+		sb.append(", status=");
+		sb.append(getStatus());
 		sb.append("}");
 
 		return sb.toString();
@@ -371,12 +405,16 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.so.model.ProjectsEntry");
+		sb.append("com.liferay.so.model.MemberRequest");
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>projectsEntryId</column-name><column-value><![CDATA[");
-		sb.append(getProjectsEntryId());
+			"<column><column-name>memberRequestId</column-name><column-value><![CDATA[");
+		sb.append(getMemberRequestId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -399,24 +437,16 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>title</column-name><column-value><![CDATA[");
-		sb.append(getTitle());
+			"<column><column-name>key</column-name><column-value><![CDATA[");
+		sb.append(getKey());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
+			"<column><column-name>receiverUserId</column-name><column-value><![CDATA[");
+		sb.append(getReceiverUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>startDate</column-name><column-value><![CDATA[");
-		sb.append(getStartDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>endDate</column-name><column-value><![CDATA[");
-		sb.append(getEndDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>data</column-name><column-value><![CDATA[");
-		sb.append(getData());
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -424,17 +454,24 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 		return sb.toString();
 	}
 
-	private long _projectsEntryId;
+	private long _memberRequestId;
+	private long _groupId;
+	private long _originalGroupId;
+	private boolean _setOriginalGroupId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private String _title;
-	private String _description;
-	private Date _startDate;
-	private Date _endDate;
-	private String _data;
+	private String _key;
+	private String _originalKey;
+	private long _receiverUserId;
+	private String _receiverUserUuid;
+	private long _originalReceiverUserId;
+	private boolean _setOriginalReceiverUserId;
+	private int _status;
+	private int _originalStatus;
+	private boolean _setOriginalStatus;
 	private transient ExpandoBridge _expandoBridge;
 }

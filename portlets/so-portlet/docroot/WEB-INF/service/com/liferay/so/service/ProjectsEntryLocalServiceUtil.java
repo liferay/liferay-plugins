@@ -26,10 +26,10 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 
 /**
- * <a href="ProjectsEntryLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="ProjectsEntryLocalServiceUtil.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class ProjectsEntryLocalServiceUtil {
 	public static com.liferay.so.model.ProjectsEntry addProjectsEntry(

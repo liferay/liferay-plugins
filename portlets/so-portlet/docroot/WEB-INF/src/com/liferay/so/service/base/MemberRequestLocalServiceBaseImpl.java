@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.util.PortalUtil;
 
-import com.liferay.so.model.ProjectsEntry;
+import com.liferay.so.model.MemberRequest;
 import com.liferay.so.service.MemberRequestLocalService;
 import com.liferay.so.service.ProjectsEntryLocalService;
 import com.liferay.so.service.persistence.MemberRequestPersistence;
@@ -37,71 +37,71 @@ import com.liferay.so.service.persistence.ProjectsEntryPersistence;
 import java.util.List;
 
 /**
- * <a href="ProjectsEntryLocalServiceBaseImpl.java.html"><b><i>View Source</i>
+ * <a href="MemberRequestLocalServiceBaseImpl.java.html"><b><i>View Source</i>
  * </b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public abstract class ProjectsEntryLocalServiceBaseImpl
-	implements ProjectsEntryLocalService {
-	public ProjectsEntry addProjectsEntry(ProjectsEntry projectsEntry)
+public abstract class MemberRequestLocalServiceBaseImpl
+	implements MemberRequestLocalService {
+	public MemberRequest addMemberRequest(MemberRequest memberRequest)
 		throws SystemException {
-		projectsEntry.setNew(true);
+		memberRequest.setNew(true);
 
-		return projectsEntryPersistence.update(projectsEntry, false);
+		return memberRequestPersistence.update(memberRequest, false);
 	}
 
-	public ProjectsEntry createProjectsEntry(long projectsEntryId) {
-		return projectsEntryPersistence.create(projectsEntryId);
+	public MemberRequest createMemberRequest(long memberRequestId) {
+		return memberRequestPersistence.create(memberRequestId);
 	}
 
-	public void deleteProjectsEntry(long projectsEntryId)
+	public void deleteMemberRequest(long memberRequestId)
 		throws PortalException, SystemException {
-		projectsEntryPersistence.remove(projectsEntryId);
+		memberRequestPersistence.remove(memberRequestId);
 	}
 
-	public void deleteProjectsEntry(ProjectsEntry projectsEntry)
+	public void deleteMemberRequest(MemberRequest memberRequest)
 		throws SystemException {
-		projectsEntryPersistence.remove(projectsEntry);
+		memberRequestPersistence.remove(memberRequest);
 	}
 
 	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
-		return projectsEntryPersistence.findWithDynamicQuery(dynamicQuery);
+		return memberRequestPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
 	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end) throws SystemException {
-		return projectsEntryPersistence.findWithDynamicQuery(dynamicQuery,
+		return memberRequestPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
 
-	public ProjectsEntry getProjectsEntry(long projectsEntryId)
+	public MemberRequest getMemberRequest(long memberRequestId)
 		throws PortalException, SystemException {
-		return projectsEntryPersistence.findByPrimaryKey(projectsEntryId);
+		return memberRequestPersistence.findByPrimaryKey(memberRequestId);
 	}
 
-	public List<ProjectsEntry> getProjectsEntries(int start, int end)
+	public List<MemberRequest> getMemberRequests(int start, int end)
 		throws SystemException {
-		return projectsEntryPersistence.findAll(start, end);
+		return memberRequestPersistence.findAll(start, end);
 	}
 
-	public int getProjectsEntriesCount() throws SystemException {
-		return projectsEntryPersistence.countAll();
+	public int getMemberRequestsCount() throws SystemException {
+		return memberRequestPersistence.countAll();
 	}
 
-	public ProjectsEntry updateProjectsEntry(ProjectsEntry projectsEntry)
+	public MemberRequest updateMemberRequest(MemberRequest memberRequest)
 		throws SystemException {
-		projectsEntry.setNew(false);
+		memberRequest.setNew(false);
 
-		return projectsEntryPersistence.update(projectsEntry, true);
+		return memberRequestPersistence.update(memberRequest, true);
 	}
 
-	public ProjectsEntry updateProjectsEntry(ProjectsEntry projectsEntry,
+	public MemberRequest updateMemberRequest(MemberRequest memberRequest,
 		boolean merge) throws SystemException {
-		projectsEntry.setNew(false);
+		memberRequest.setNew(false);
 
-		return projectsEntryPersistence.update(projectsEntry, merge);
+		return memberRequestPersistence.update(memberRequest, merge);
 	}
 
 	public MemberRequestLocalService getMemberRequestLocalService() {

@@ -29,31 +29,30 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <a href="ProjectsEntrySoap.java.html"><b><i>View Source</i></b></a>
+ * <a href="MemberRequestSoap.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public class ProjectsEntrySoap implements Serializable {
-	public static ProjectsEntrySoap toSoapModel(ProjectsEntry model) {
-		ProjectsEntrySoap soapModel = new ProjectsEntrySoap();
+public class MemberRequestSoap implements Serializable {
+	public static MemberRequestSoap toSoapModel(MemberRequest model) {
+		MemberRequestSoap soapModel = new MemberRequestSoap();
 
-		soapModel.setProjectsEntryId(model.getProjectsEntryId());
+		soapModel.setMemberRequestId(model.getMemberRequestId());
+		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setTitle(model.getTitle());
-		soapModel.setDescription(model.getDescription());
-		soapModel.setStartDate(model.getStartDate());
-		soapModel.setEndDate(model.getEndDate());
-		soapModel.setData(model.getData());
+		soapModel.setKey(model.getKey());
+		soapModel.setReceiverUserId(model.getReceiverUserId());
+		soapModel.setStatus(model.getStatus());
 
 		return soapModel;
 	}
 
-	public static ProjectsEntrySoap[] toSoapModels(ProjectsEntry[] models) {
-		ProjectsEntrySoap[] soapModels = new ProjectsEntrySoap[models.length];
+	public static MemberRequestSoap[] toSoapModels(MemberRequest[] models) {
+		MemberRequestSoap[] soapModels = new MemberRequestSoap[models.length];
 
 		for (int i = 0; i < models.length; i++) {
 			soapModels[i] = toSoapModel(models[i]);
@@ -62,14 +61,14 @@ public class ProjectsEntrySoap implements Serializable {
 		return soapModels;
 	}
 
-	public static ProjectsEntrySoap[][] toSoapModels(ProjectsEntry[][] models) {
-		ProjectsEntrySoap[][] soapModels = null;
+	public static MemberRequestSoap[][] toSoapModels(MemberRequest[][] models) {
+		MemberRequestSoap[][] soapModels = null;
 
 		if (models.length > 0) {
-			soapModels = new ProjectsEntrySoap[models.length][models[0].length];
+			soapModels = new MemberRequestSoap[models.length][models[0].length];
 		}
 		else {
-			soapModels = new ProjectsEntrySoap[0][0];
+			soapModels = new MemberRequestSoap[0][0];
 		}
 
 		for (int i = 0; i < models.length; i++) {
@@ -79,33 +78,41 @@ public class ProjectsEntrySoap implements Serializable {
 		return soapModels;
 	}
 
-	public static ProjectsEntrySoap[] toSoapModels(List<ProjectsEntry> models) {
-		List<ProjectsEntrySoap> soapModels = new ArrayList<ProjectsEntrySoap>(models.size());
+	public static MemberRequestSoap[] toSoapModels(List<MemberRequest> models) {
+		List<MemberRequestSoap> soapModels = new ArrayList<MemberRequestSoap>(models.size());
 
-		for (ProjectsEntry model : models) {
+		for (MemberRequest model : models) {
 			soapModels.add(toSoapModel(model));
 		}
 
-		return soapModels.toArray(new ProjectsEntrySoap[soapModels.size()]);
+		return soapModels.toArray(new MemberRequestSoap[soapModels.size()]);
 	}
 
-	public ProjectsEntrySoap() {
+	public MemberRequestSoap() {
 	}
 
 	public long getPrimaryKey() {
-		return _projectsEntryId;
+		return _memberRequestId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setProjectsEntryId(pk);
+		setMemberRequestId(pk);
 	}
 
-	public long getProjectsEntryId() {
-		return _projectsEntryId;
+	public long getMemberRequestId() {
+		return _memberRequestId;
 	}
 
-	public void setProjectsEntryId(long projectsEntryId) {
-		_projectsEntryId = projectsEntryId;
+	public void setMemberRequestId(long memberRequestId) {
+		_memberRequestId = memberRequestId;
+	}
+
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
 	}
 
 	public long getCompanyId() {
@@ -148,55 +155,38 @@ public class ProjectsEntrySoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public String getTitle() {
-		return _title;
+	public String getKey() {
+		return _key;
 	}
 
-	public void setTitle(String title) {
-		_title = title;
+	public void setKey(String key) {
+		_key = key;
 	}
 
-	public String getDescription() {
-		return _description;
+	public long getReceiverUserId() {
+		return _receiverUserId;
 	}
 
-	public void setDescription(String description) {
-		_description = description;
+	public void setReceiverUserId(long receiverUserId) {
+		_receiverUserId = receiverUserId;
 	}
 
-	public Date getStartDate() {
-		return _startDate;
+	public int getStatus() {
+		return _status;
 	}
 
-	public void setStartDate(Date startDate) {
-		_startDate = startDate;
+	public void setStatus(int status) {
+		_status = status;
 	}
 
-	public Date getEndDate() {
-		return _endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		_endDate = endDate;
-	}
-
-	public String getData() {
-		return _data;
-	}
-
-	public void setData(String data) {
-		_data = data;
-	}
-
-	private long _projectsEntryId;
+	private long _memberRequestId;
+	private long _groupId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private String _title;
-	private String _description;
-	private Date _startDate;
-	private Date _endDate;
-	private String _data;
+	private String _key;
+	private long _receiverUserId;
+	private int _status;
 }
