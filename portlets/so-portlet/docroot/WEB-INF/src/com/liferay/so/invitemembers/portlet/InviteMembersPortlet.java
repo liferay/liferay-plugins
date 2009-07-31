@@ -77,8 +77,7 @@ public class InviteMembersPortlet extends MVCPortlet {
 
 				HttpSession session = request.getSession();
 
-				String memberRequestKey =
-					(String)session.getAttribute(
+				String memberRequestKey = (String)session.getAttribute(
 					"LIFERAY_SHARED_MEMBER_REQUEST_KEY");
 
 				if (Validator.isNotNull(memberRequestKey)) {
@@ -95,7 +94,7 @@ public class InviteMembersPortlet extends MVCPortlet {
 					themeDisplay.getUserId(),
 					InviteMembersConstants.STATUS_PENDING, -1, -1);
 
-			if ((group.isUser()) && (memberRequests.size() == 0)) {
+			if (group.isUser() &&(memberRequests.size() == 0)) {
 				renderRequest.setAttribute(
 					WebKeys.PORTLET_DECORATE, Boolean.FALSE);
 			}
@@ -146,15 +145,15 @@ public class InviteMembersPortlet extends MVCPortlet {
 
 		long groupId = ParamUtil.getLong(actionRequest, "groupId");
 		long[] receiverUserIds = getLongArray(actionRequest, "receiverUserIds");
-		String[] receiverEmailAddresses =
-			getStringArray(actionRequest, "receiverEmailAddresses");
+		String[] receiverEmailAddresses = getStringArray(
+			actionRequest, "receiverEmailAddresses");
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		List<User> users = UserLocalServiceUtil.getGroupUsers(groupId);
+		if (!UserLocalServiceUtil.hasGroupUser(
+				groupId, themeDisplay.getUserId()) {
 
-		if (!users.contains(themeDisplay.getUser())) {
 			return;
 		}
 
@@ -170,8 +169,8 @@ public class InviteMembersPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long memberRequestId =
-			ParamUtil.getLong(actionRequest, "memberRequestId");
+		long memberRequestId = ParamUtil.getLong(
+			actionRequest, "memberRequestId");
 		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(

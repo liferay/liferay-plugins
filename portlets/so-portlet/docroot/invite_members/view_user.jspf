@@ -37,7 +37,6 @@ List<MemberRequest> memberRequests = MemberRequestLocalServiceUtil.getReceiverSt
 				<%= themeDisplay.translate("x-has-invited-you-to-join-x", new Object[] {curUser.getFullName(), curGroup.getDescriptiveName()}) %>
 
 				<div class="controls">
-
 					<portlet:actionURL name="updateInvite" var="confirmURL">
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="memberRequestId" value="<%= String.valueOf(memberRequest.getMemberRequestId()) %>" />
