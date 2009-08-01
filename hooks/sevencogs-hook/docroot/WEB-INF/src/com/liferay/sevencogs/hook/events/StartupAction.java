@@ -248,10 +248,13 @@ public class StartupAction extends SimpleAction {
 			String layouteTemplateId)
 		throws Exception {
 
+		ServiceContext serviceContext = new ServiceContext();
+
 		Layout layout = LayoutLocalServiceUtil.addLayout(
 			group.getCreatorUserId(), group.getGroupId(), privateLayout,
 			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, name, StringPool.BLANK,
-			StringPool.BLANK, LayoutConstants.TYPE_PORTLET, false, friendlyURL);
+			StringPool.BLANK, LayoutConstants.TYPE_PORTLET, false, friendlyURL,
+			serviceContext);
 
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
