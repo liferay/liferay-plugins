@@ -58,7 +58,7 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 					List<TagsEntry> tagsEntries = TagsEntryLocalServiceUtil.getEntries(DLFileEntry.class.getName(), fileEntry.getFileEntryId(), true);
 					%>
 
-					<c:if test="<%= tagsEntries.size() > 0 %>">
+					<c:if test="<%= !tagsEntries.isEmpty() %>">
 						<div class="file-tags">
 							<span><liferay-ui:message key="tags" />:</span>
 

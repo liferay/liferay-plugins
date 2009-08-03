@@ -23,7 +23,7 @@ if (rootFolderId <= 0) {
 
 	DLFolder dynamicRootFolder = null;
 
-	if (folders.size() > 0) {
+	if (!folders.isEmpty()) {
 		dynamicRootFolder = folders.get(0);
 	}
 	else {

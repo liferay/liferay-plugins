@@ -18,12 +18,12 @@
 %>
 
 <%
-List<MemberRequest> memberRequests = MemberRequestLocalServiceUtil.getReceiverStatusMemberRequest(user.getUserId(), InviteMembersConstants.STATUS_PENDING, -1, -1);
+List<MemberRequest> memberRequests = MemberRequestLocalServiceUtil.getReceiverStatusMemberRequest(user.getUserId(), InviteMembersConstants.STATUS_PENDING, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 %>
 
 <liferay-ui:error />
 
-<c:if test="<%= memberRequests.size() > 0 %>">
+<c:if test="<%= !memberRequests.isEmpty() %>">
 	<table class="lfr-table" width="100%">
 
 	<%

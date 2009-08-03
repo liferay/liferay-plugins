@@ -40,7 +40,6 @@ import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Address;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.EmailAddress;
@@ -60,6 +59,7 @@ import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.so.model.ProjectsEntry;
 import com.liferay.so.service.ProjectsEntryLocalServiceUtil;
+import com.liferay.so.util.WebKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.util.ArrayList;

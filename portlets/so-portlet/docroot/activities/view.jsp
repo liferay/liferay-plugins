@@ -77,7 +77,7 @@ rssURL.setParameter("rss", "1");
 	feedLinkMessage='<%= LanguageUtil.format(pageContext, "subscribe-to-these-activities", user.getFirstName()) %>'
 />
 
-<c:if test="<%= (activities.size() > 0) && !themeDisplay.isStateExclusive() %>">
+<c:if test="<%= (!activities.isEmpty()) && !themeDisplay.isStateExclusive() %>">
 	<div class="taglib-search-iterator-page-iterator-bottom" id="<portlet:namespace />searchActivities">
 		<liferay-ui:search-paginator
 			searchContainer="<%= searchContainer %>"

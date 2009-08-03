@@ -41,7 +41,7 @@ else {
 	if (curUser == null) {
 		List<User> users = UserLocalServiceUtil.getGroupUsers(layout.getGroupId());
 
-		if (users.size() > 0) {
+		if (!users.isEmpty()) {
 			curUser = users.get(0);
 		}
 	}
@@ -230,7 +230,7 @@ else {
 							List<Website> websites = WebsiteLocalServiceUtil.getWebsites(themeDisplay.getCompanyId(), Contact.class.getName(), curContact.getContactId());
 							%>
 
-							<c:if test="<%= websites.size() > 0 %>">
+							<c:if test="<%= !websites.isEmpty() %>">
 								<tr>
 									<td class="lfr-label">
 										<c:choose>
@@ -269,11 +269,11 @@ else {
 							List<EmailAddress> emailAddresses = EmailAddressLocalServiceUtil.getEmailAddresses(themeDisplay.getCompanyId(), Contact.class.getName(), curContact.getContactId());
 							%>
 
-							<c:if test="<%= Validator.isNotNull(curUser.getEmailAddress()) || (emailAddresses.size() > 0) %>">
+							<c:if test="<%= Validator.isNotNull(curUser.getEmailAddress()) || !emailAddresses.isEmpty() %>">
 								<tr>
 									<td class="lfr-label">
 										<c:choose>
-											<c:when test="<%= emailAddresses.size() > 0 %>">
+											<c:when test="<%= !emailAddresses.isEmpty() %>">
 												<liferay-ui:message key="email-addresses" />
 											</c:when>
 											<c:otherwise>

@@ -72,15 +72,13 @@
 
 			List<User> inviteUsers = new ArrayList<User>();
 
-			List<User> groupUsers = UserLocalServiceUtil.getGroupUsers(layout.getGroupId());
-
 			for (User curUser : users) {
-				if(!groupUsers.contains(curUser) && !curUser.equals(defaultUser)) {
+				if(!UserLocalServiceUtil.hasGroupUser(layout.getGroupId(), curUser.getUserId()) && !curUser.equals(defaultUser)) {
 					inviteUsers.add(curUser);
 				}
 			}
 
-			if (inviteUsers.size() > 0) {
+			if (!inviteUsers.isEmpty()) {
 				for (User curUser : inviteUsers) {
 			%>
 

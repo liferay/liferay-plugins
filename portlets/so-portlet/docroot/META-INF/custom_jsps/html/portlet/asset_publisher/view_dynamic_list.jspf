@@ -32,7 +32,7 @@ List<TagsAsset> unscopedAssets = TagsAssetLocalServiceUtil.getAssets(0, unscoped
 
 <%@ include file="/html/portlet/asset_publisher/view_dynamic_list.portal.jspf" %>
 
-<c:if test="<%= unscopedAssets.size() > 0 %>">
+<c:if test="<%= !unscopedAssets.isEmpty() %>">
 	<h3><liferay-ui:message key="contacts" /></h3>
 
 	<ul class="title-list">

@@ -61,7 +61,7 @@ for (int j = 0; j < folderColumns.length; j++) {
 					List subfolders = DLFolderLocalServiceUtil.getFolders(scopeGroupId, curFolder.getFolderId(), 0, 5);
 					%>
 
-					<c:if test="<%= subfolders.size() > 0 %>">
+					<c:if test="<%= !subfolders.isEmpty() %>">
 						<div class="subfolder">
 							<span><liferay-ui:message key="subfolders" />:</span>
 

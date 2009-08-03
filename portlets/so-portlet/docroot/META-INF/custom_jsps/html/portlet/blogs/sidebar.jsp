@@ -31,7 +31,7 @@
 	%>
 
 	<c:choose>
-		<c:when test="<%= results.size() > 0 %>">
+		<c:when test="<%= !results.isEmpty() %>">
 			<h2><liferay-ui:message key="recent-entries" /></h2>
 
 			<div class="recent-entries-list">

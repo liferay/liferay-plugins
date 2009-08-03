@@ -17,6 +17,7 @@
 
 package com.liferay.so.invitemembers.portlet;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -24,7 +25,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -36,6 +36,7 @@ import com.liferay.so.MemberRequestInvalidUserException;
 import com.liferay.so.invitemembers.util.InviteMembersConstants;
 import com.liferay.so.model.MemberRequest;
 import com.liferay.so.service.MemberRequestLocalServiceUtil;
+import com.liferay.so.util.WebKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
@@ -78,23 +79,23 @@ public class InviteMembersPortlet extends MVCPortlet {
 				HttpSession session = request.getSession();
 
 				String memberRequestKey = (String)session.getAttribute(
-					"LIFERAY_SHARED_MEMBER_REQUEST_KEY");
+					WebKeys.MEMBER_REQEUST_KEY);
 
 				if (Validator.isNotNull(memberRequestKey)) {
 					MemberRequestLocalServiceUtil.updateMemberRequest(
 						memberRequestKey, themeDisplay.getUserId());
 
-					session.removeAttribute(
-						"LIFERAY_SHARED_MEMBER_REQUEST_KEY");
+					session.removeAttribute(WebKeys.MEMBER_REQEUST_KEY);
 				}
 			}
 
 			List<MemberRequest> memberRequests =
 				MemberRequestLocalServiceUtil.getReceiverStatusMemberRequest(
 					themeDisplay.getUserId(),
-					InviteMembersConstants.STATUS_PENDING, -1, -1);
+					InviteMembersConstants.STATUS_PENDING, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS);
 
-			if (group.isUser() &&(memberRequests.size() == 0)) {
+			if (group.isUser() && memberRequests.isEmpty()) {
 				renderRequest.setAttribute(
 					WebKeys.PORTLET_DECORATE, Boolean.FALSE);
 			}
@@ -152,7 +153,7 @@ public class InviteMembersPortlet extends MVCPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		if (!UserLocalServiceUtil.hasGroupUser(
-				groupId, themeDisplay.getUserId()) {
+				groupId, themeDisplay.getUserId())) {
 
 			return;
 		}
