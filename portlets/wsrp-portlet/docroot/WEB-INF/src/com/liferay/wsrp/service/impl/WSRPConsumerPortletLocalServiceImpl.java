@@ -328,8 +328,11 @@ public class WSRPConsumerPortletLocalServiceImpl
 		String keywords = StringUtil.merge(
 			getLocalizedStringValues(portletDescription.getKeywords()),
 			StringPool.SPACE);
+		String description = getLocalizedStringValue(
+			portletDescription.getShortTitle());
 
-		PortletInfo portletInfo = new PortletInfo(title, shortTitle, keywords);
+		PortletInfo portletInfo = new PortletInfo(
+			title, shortTitle, keywords, description);
 
 		portlet.setPortletInfo(portletInfo);
 
