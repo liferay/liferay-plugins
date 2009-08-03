@@ -20,7 +20,7 @@
 <%@ include file="/html/portlet/calendar/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "month");
+String tabs1 = ParamUtil.getString(request, "tabs1", tabs1Default);
 
 String eventType = ParamUtil.getString(request, "eventType");
 
@@ -34,11 +34,13 @@ portletURL.setParameter("tabs1", tabs1);
 
 <form method="post" name="<portlet:namespace />fm">
 
-<%@ include file="/html/portlet/calendar/mini_calendar.jsp" %>
+<c:if test='<%= !tabs1.equals("events") %>'>
+	<%@ include file="/html/portlet/calendar/mini_calendar.jsp" %>
 
-<liferay-util:include page="/html/portlet/calendar/tabs1.jsp" />
+	<liferay-util:include page="/html/portlet/calendar/tabs1.jsp" />
 
-<br />
+	<br />
+</c:if>
 
 <c:choose>
 	<c:when test='<%= tabs1.equals("day") %>'>
@@ -49,6 +51,9 @@ portletURL.setParameter("tabs1", tabs1);
 	</c:when>
 	<c:when test='<%= tabs1.equals("month") %>'>
 		<%@ include file="/html/portlet/calendar/month.jspf" %>
+	</c:when>
+	<c:when test='<%= tabs1.equals("events") %>'>
+		<%@ include file="/html/portlet/calendar/events.jspf" %>
 	</c:when>
 	<c:when test='<%= tabs1.equals("export-import") %>'>
 		<%@ include file="/html/portlet/calendar/export_import.jspf" %>

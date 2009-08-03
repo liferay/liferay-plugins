@@ -861,6 +861,20 @@ textarea.focus {
 	margin-left: 50px;
 }
 
+.portlet-calendar .events .results-header {
+	display: none;
+}
+
+.portlet-calendar .events .results-row td {
+	padding: 5px 10px;
+}
+
+.portlet-calendar .events .results-row td span {
+	color: #777;
+	font-size: 10px;
+	margin-right: 1em;
+}
+
 table.calendar {
 	border-top: 2px solid #6F686B;
 }

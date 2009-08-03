@@ -18,5 +18,10 @@
 %>
 
 <%
-tabs1Default = "month";
+if (layout.getPriority() == 0) {
+	tabs1Default = "events";
+}
+else {
+	tabs1Default = "month";
+}
 %>
