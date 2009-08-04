@@ -19,6 +19,7 @@ package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -169,6 +170,12 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		Layout layout = addLayout(group, "Home", "/home", "user_home");
 
 		updatePortletTitle(layout, "29", "sites");
+		updatePortletTitle(layout, "39_INSTANCE_abcd", "Feeds");
+		updatePortletTitle(
+			layout, "1_WAR_googlegadgetportlet_INSTANCE_abcd", "Weather");
+
+		configureRSS(layout);
+		configureGoogleGadget(layout);
 
 		updatePermissions(layout, false);
 
@@ -223,6 +230,18 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 				layout, portletId);
 
 		portletSetup.setValue("displayStyle", "title-list");
+
+		portletSetup.store();
+	}
+
+	protected void configureGoogleGadget(Layout layout) throws Exception {
+		PortletPreferences portletSetup =
+			PortletPreferencesFactoryUtil.getPortletSetup(
+				layout, "1_WAR_googlegadgetportlet_INSTANCE_abcd", null);
+
+		String gadgetId = "http://www.yourminis.com/embed/google.aspx?xheight=80&xwidth=250&mininame=weather&buildnumber=1.5.5.6&title=Weather(91789)&accountname=yourminis&uri=yourminis/yourminis/mini:weather&swfhost=ct.yourminis.com&hostname=www.yourminis.com&swfurl=/widget_weatherchannel.swf&statshostname=stats.yourminis.com&uniqueID=realtime&";
+
+		portletSetup.setValue("gadget-id", HttpUtil.encodeURL(gadgetId));
 
 		portletSetup.store();
 	}
