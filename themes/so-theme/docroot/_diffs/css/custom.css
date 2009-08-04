@@ -643,6 +643,22 @@ textarea.focus {
 	position: relative;
 }
 
+/* Bookmarks */
+
+.portlet-bookmarks .control-wrapper {
+	text-align: right;
+}
+
+.portlet-bookmarks .results-header {
+	display: none;
+}
+
+.portlet-bookmarks .control-wrapper a {
+	background: url(../images/arrows/01_plus.png) no-repeat scroll 100% 50%;
+	font-size: 11px;
+	padding-right: 16px;
+}
+
 /* Calendar */
 
 .portlet-calendar .portlet-borderless-container {
@@ -1097,11 +1113,48 @@ table.calendar {
 	display: none;
 }
 
+/* Recent Documents */
+
+.portlet-recent-documents td {
+	font-size: 11px;
+}
+
+.portlet-recent-documents img {
+	padding: 0 5px 8px 0;
+}
+
 /* Requests */
 
 .portlet-activities .request .controls a {
 	background: url(../images/custom/bullet.png) no-repeat 3px 50%;
 	padding-left: 10px;
+}
+
+/* RSS */
+
+.portlet-rss .control-wrapper {
+	position: relative;
+}
+
+.portlet-rss .configure {
+	display: block;
+	font-size: 11px;
+	position: absolute;
+	right: 0px;
+	top: -32px;
+}
+
+.portlet-rss .feed-entry-title {
+	font-size: 11px;
+}
+
+.portlet-rss .feed-entry-content {
+	font-size: 10px;
+}
+
+.portlet-rss .feed-date {
+	font-size: 10px;
+	font-weight: bold;
 }
 
 /* Search */

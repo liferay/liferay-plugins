@@ -88,9 +88,14 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		// Home
 
-		Layout layout = addLayout(group, "Home", "/home", "2_columns_i");
+		Layout layout = addLayout(group, "Home", "/home", "3_columns");
+
+		updatePortletTitle(layout, "39_INSTANCE_abcd", "Feeds");
+		updatePortletTitle(layout, "56", "Welcome");
 
 		removePortletBorder(layout, "1_WAR_soportlet");
+
+		configureRSS(layout);
 
 		updatePermissions(layout, true);
 
@@ -218,6 +223,24 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 				layout, portletId);
 
 		portletSetup.setValue("displayStyle", "title-list");
+
+		portletSetup.store();
+	}
+
+	protected void configureRSS(Layout layout) throws Exception {
+		PortletPreferences portletSetup =
+			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+				layout, "39_INSTANCE_abcd");
+
+		portletSetup.setValue("items-per-channel", "3");
+		portletSetup.setValue("show-feed-title", "false");
+		portletSetup.setValue("show-feed-published-date", "false");
+		portletSetup.setValue("show-feed-description", "false");
+		portletSetup.setValue("show-feed-image", "false");
+		portletSetup.setValue("show-feed-item-author", "false");
+		portletSetup.setValue(
+			"urls",
+			"http://www.economist.com/rss/daily_news_and_views_rss.xml");
 
 		portletSetup.store();
 	}

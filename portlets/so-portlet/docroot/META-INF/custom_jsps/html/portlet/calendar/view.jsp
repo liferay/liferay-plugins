@@ -62,7 +62,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 </form>
 
-<c:if test='<%= !tabs1.equals("export-import") %>'>
+<c:if test='<%= !tabs1.equals("export-import") && !tabs1.equals("events") %>'>
 	<%@ include file="/html/portlet/calendar/export_import_action.jsp" %>
 </c:if>
 

@@ -79,5 +79,9 @@
 		</liferay-ui:search-container-row>
 
 		<liferay-ui:search-iterator />
+
+		<c:if test="<%= CalEventLocalServiceUtil.getEventsCount(scopeGroupId, eventType) <= 0 %>">
+			<liferay-ui:message key="there-are-no-events" />
+		</c:if>
 	</liferay-ui:search-container>
 </div>
