@@ -19,12 +19,15 @@
 
 <%@ include file="/html/portlet/rss/init.jsp" %>
 
-<%
-String configureURL = portletDisplay.getURLConfiguration();
-%>
+<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, plid, portletDisplay.getId(), ActionKeys.CONFIGURATION) %>">
 
-<div class="control-wrapper">
-	<a class="configure" href="<%= configureURL %>"><liferay-ui:message key="configure" /></a>
-</div>
+	<%
+	String configureURL = portletDisplay.getURLConfiguration();
+	%>
+
+	<div class="control-wrapper">
+		<a class="configure" href="<%= configureURL %>"><liferay-ui:message key="configure" /></a>
+	</div>
+</c:if>
 
 <liferay-util:include page="/html/portlet/rss/view.portal.jsp" />

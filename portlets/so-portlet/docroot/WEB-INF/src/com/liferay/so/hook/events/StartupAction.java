@@ -275,6 +275,14 @@ public class StartupAction extends SimpleAction {
 		PermissionLocalServiceUtil.setRolePermission(
 			roleId, companyId, name, scope, primKey, actionId);
 
+		// Community Owner - RSS
+
+		name = "com.liferay.portlet.rss";
+		actionId = ActionKeys.CONFIGURATION;
+
+		PermissionLocalServiceUtil.setRolePermission(
+			roleId, companyId, name, scope, primKey, actionId);
+
 		// Guest - Blogs Entry
 
 		role = RoleLocalServiceUtil.getRole(
