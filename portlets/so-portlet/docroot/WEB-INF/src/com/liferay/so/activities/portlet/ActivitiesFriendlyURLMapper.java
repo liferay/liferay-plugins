@@ -35,7 +35,7 @@ public class ActivitiesFriendlyURLMapper extends RSSFriendlyURLMapper {
 		return _PORTLET_ID;
 	}
 
-	private static final String _MAPPING = "activities";
+	private static final String _MAPPING = "user_activities";
 
 	private static final String _PORTLET_ID = "1_WAR_soportlet";
 
