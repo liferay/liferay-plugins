@@ -239,7 +239,17 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				layout, "1_WAR_googlegadgetportlet_INSTANCE_abcd", null);
 
-		String gadgetId = "http://www.yourminis.com/embed/google.aspx?xheight=80&xwidth=250&mininame=weather&buildnumber=1.5.5.6&title=Weather(91789)&accountname=yourminis&uri=yourminis/yourminis/mini:weather&swfhost=ct.yourminis.com&hostname=www.yourminis.com&swfurl=/widget_weatherchannel.swf&statshostname=stats.yourminis.com&uniqueID=realtime&";
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("http://www.yourminis.com/embed/google.aspx?xheight=80&);
+		sb.append("xwidth=250&mininame=weather&buildnumber=1.5.5.6&"):
+		sb.append("title=Weather(91789)&accountname=yourminis&");
+		sb.append("uri=yourminis/yourminis/mini:weather&");
+		sb.append("swfhost=ct.yourminis.com&hostname=www.yourminis.com&");
+		sb.append("swfurl=/widget_weatherchannel.swf&");
+		sb.append("statshostname=stats.yourminis.com&uniqueID=realtime&");
+
+		String gadgetId = sb.toString();
 
 		portletSetup.setValue("gadget-id", HttpUtil.encodeURL(gadgetId));
 
