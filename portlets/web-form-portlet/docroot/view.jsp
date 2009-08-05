@@ -31,148 +31,136 @@ boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCapt
 String successURL = preferences.getValue("successURL", StringPool.BLANK);
 %>
 
-<form action="<portlet:actionURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="saveData" /></portlet:actionURL>" class="aui-form" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
+<portlet:actionURL var="saveDataURL">
+	<portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="saveData" />
+</portlet:actionURL>
 
-<c:if test="<%= Validator.isNull(successURL) %>">
-	<input name="<portlet:namespace/>redirect" type="hidden" value="<%= currentURL %>" />
-</c:if>
+<aui:form action="<%= saveDataURL %>" method="post" name="fm">
 
-<fieldset class="aui-block-labels">
-	<legend><%= HtmlUtil.escape(title) %></legend>
-
-	<p class="description"><%= HtmlUtil.escape(description) %></p>
-
-	<liferay-ui:success key="success" message="the-form-information-was-sent-successfully" />
-
-	<liferay-ui:error exception="<%= CaptchaTextException.class %>" message="text-verification-failed" />
-	<liferay-ui:error key="error" message="an-error-occurred-while-sending-the-form-information" />
-
-	<c:if test='<%= WebFormUtil.VALIDATION_SCRIPT_ENABLED && SessionErrors.contains(renderRequest, "validation-script-error") %>'>
-		<liferay-util:include page="/script_error.jsp" />
+	<c:if test="<%= Validator.isNull(successURL) %>">
+		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 	</c:if>
 
-	<%
-	int i = 1;
+	<aui:fieldset>
+		<legend><%= HtmlUtil.escape(title) %></legend>
 
-	String fieldName = "field" + i;
-	String fieldLabel = preferences.getValue("fieldLabel" + i, StringPool.BLANK);
-	boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + i, false);
-	String fieldValue = ParamUtil.getString(request, fieldName);
-	String[] options = null;
+		<p class="description"><%= HtmlUtil.escape(description) %></p>
 
-	while ((i == 1) || Validator.isNotNull(fieldLabel)) {
-		String fieldType = preferences.getValue("fieldType" + i, "text");
-		String fieldOptions = preferences.getValue("fieldOptions" + i, "unknown");
-		String fieldValidationScript = preferences.getValue("fieldValidationScript" + i, StringPool.BLANK);
-		String fieldValidationErrorMessage = preferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
-	%>
+		<liferay-ui:success key="success" message="the-form-information-was-sent-successfully" />
 
-		<liferay-ui:error key='<%= "error" + fieldLabel %>' message="<%= fieldValidationErrorMessage %>" />
+		<liferay-ui:error exception="<%= CaptchaTextException.class %>" message="text-verification-failed" />
+		<liferay-ui:error key="error" message="an-error-occurred-while-sending-the-form-information" />
 
-		<c:if test='<%= Validator.isNotNull(fieldValidationScript) %>'>
-			<div id="<portlet:namespace/>validationError<%= fieldLabel %>" style="display: none">
-				<span class="portlet-msg-error"><%= fieldValidationErrorMessage %></span>
-			</div>
+		<c:if test='<%= WebFormUtil.VALIDATION_SCRIPT_ENABLED && SessionErrors.contains(renderRequest, "validation-script-error") %>'>
+			<liferay-util:include page="/script_error.jsp" />
 		</c:if>
 
-		<c:if test="<%= !fieldOptional %>">
-			<div id="<portlet:namespace/>fieldOptionalError<%= fieldLabel %>" style="display: none">
-				<span class="portlet-msg-error"><liferay-ui:message key="this-field-is-mandatory" /></span>
-			</div>
-		</c:if>
+		<%
+		int i = 1;
 
-		<c:choose>
-			<c:when test='<%= fieldType.equals("paragraph") %>'>
-				<p class="lfr-webform" id="<portlet:namespace /><%= fieldName %>"><%= fieldOptions %></p>
-			</c:when>
-			<c:when test='<%= fieldType.equals("text") %>'>
-				<div class="aui-ctrl-holder">
-					<label class='<%= fieldOptional ? "optional" : "" %>' for="<portlet:namespace /><%= fieldName %>"><%= HtmlUtil.escape(fieldLabel) %></label>
+		String fieldName = "field" + i;
+		String fieldLabel = preferences.getValue("fieldLabel" + i, StringPool.BLANK);
+		boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + i, false);
+		String fieldValue = ParamUtil.getString(request, fieldName);
+		String[] options = null;
 
-					<input class='<%= fieldOptional ? "optional" : "" %>' id="<portlet:namespace /><%= fieldName %>" name="<portlet:namespace /><%= fieldName %>" type="text" value="<%= HtmlUtil.escape(fieldValue) %>" />
-				</div>
-			</c:when>
-			<c:when test='<%= fieldType.equals("textarea") %>'>
-				<div class="aui-ctrl-holder">
-					<label class='<%= fieldOptional ? "optional" : "" %>' for="<portlet:namespace /><%= fieldName %>"><%= HtmlUtil.escape(fieldLabel) %></label>
+		while ((i == 1) || Validator.isNotNull(fieldLabel)) {
+			String fieldType = preferences.getValue("fieldType" + i, "text");
+			String fieldOptions = preferences.getValue("fieldOptions" + i, "unknown");
+			String fieldValidationScript = preferences.getValue("fieldValidationScript" + i, StringPool.BLANK);
+			String fieldValidationErrorMessage = preferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
+		%>
 
-					<textarea class='<%= fieldOptional ? "optional" : "" %>' id="<portlet:namespace /><%= fieldName %>" name="<portlet:namespace /><%= fieldName %>" wrap="soft"><%= HtmlUtil.escape(fieldValue) %></textarea>
+			<liferay-ui:error key='<%= "error" + fieldLabel %>' message="<%= fieldValidationErrorMessage %>" />
+
+			<c:if test='<%= Validator.isNotNull(fieldValidationScript) %>'>
+				<div id="<portlet:namespace/>validationError<%= fieldLabel %>" style="display: none">
+					<span class="portlet-msg-error"><%= fieldValidationErrorMessage %></span>
 				</div>
-			</c:when>
-			<c:when test='<%= fieldType.equals("checkbox") %>'>
-				<div class="aui-ctrl-holder <%= fieldOptional ? "optional" : "" %>">
-					<label class='<%= fieldOptional ? "optional" : "" %>' for="<portlet:namespace /><%= fieldName %>"><input <%= Validator.isNotNull(fieldValue) ? "checked" : "" %> id="<portlet:namespace /><%= fieldName %>" name="<portlet:namespace /><%= fieldName %>" type="checkbox" /> <%= HtmlUtil.escape(fieldLabel) %></label>
+			</c:if>
+
+			<c:if test="<%= !fieldOptional %>">
+				<div id="<portlet:namespace/>fieldOptionalError<%= fieldLabel %>" style="display: none">
+					<span class="portlet-msg-error"><liferay-ui:message key="this-field-is-mandatory" /></span>
 				</div>
-			</c:when>
-			<c:when test='<%= fieldType.equals("radio") %>'>
-				<div class="aui-ctrl-holder <%= fieldOptional ? "optional" : "" %>">
-					<label class='<%= fieldOptional ? "optional" : "" %>' for="<portlet:namespace /><%= fieldName %>"><%= HtmlUtil.escape(fieldLabel) %></label>
+			</c:if>
+
+			<c:choose>
+				<c:when test='<%= fieldType.equals("paragraph") %>'>
+					<p class="lfr-webform" id="<portlet:namespace /><%= fieldName %>"><%= fieldOptions %></p>
+				</c:when>
+				<c:when test='<%= fieldType.equals("text") %>'>
+					<aui:input cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>"  value="<%= HtmlUtil.escape(fieldValue) %>" />
+				</c:when>
+				<c:when test='<%= fieldType.equals("textarea") %>'>
+					<aui:input cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>" type="textarea" value="<%= HtmlUtil.escape(fieldValue) %>" wrap="soft" />
+				</c:when>
+				<c:when test='<%= fieldType.equals("checkbox") %>'>
+					<aui:input cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' inlineLabel="<%= true %>" label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>" type="checkbox" value="<%= GetterUtil.getBoolean(fieldValue) %>" />
+				</c:when>
+				<c:when test='<%= fieldType.equals("radio") %>'>
+					<aui:field-wrapper cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>">
+
+						 <%
+						options = WebFormUtil.split(fieldOptions);
+
+						for (int j = 0; j < options.length; j++) {
+							String optionValue = options[j];
+						%>
+
+							<aui:input checked="<%= fieldValue.equals(optionValue) %>" inlineLabel="<%= true %>" label="<%= HtmlUtil.escape(optionValue) %>" name="<%= fieldName %>" type="radio" value="<%= HtmlUtil.escape(optionValue) %>" />
+
+						<%
+						}
+						%>
+
+					</aui:field-wrapper>
+				</c:when>
+				<c:when test='<%= fieldType.equals("options") %>'>
 
 					<%
 					options = WebFormUtil.split(fieldOptions);
-
-					for (int j = 0; j < options.length; j++) {
-						String optionValue = options[j];
 					%>
 
-						<label><input name="<portlet:namespace /><%= fieldName %>" <%= fieldValue.equals(optionValue) ? "checked=\"true\"" : "" %> type="radio" value="<%= HtmlUtil.escape(optionValue) %>" /> <%= HtmlUtil.escape(optionValue) %></label>
-
-					<%
-					}
-					%>
-
-				</div>
-			</c:when>
-			<c:when test='<%= fieldType.equals("options") %>'>
-				<div class="aui-ctrl-holder <%= fieldOptional ? "optional" : "" %>">
-					<label class='<%= fieldOptional ? "optional" : "" %>' for="<portlet:namespace /><%= fieldName %>"><%= HtmlUtil.escape(fieldLabel) %></label>
-
-					<%
-					options = WebFormUtil.split(fieldOptions);
-					%>
-
-					<select id="<portlet:namespace /><%= fieldName %>" name="<portlet:namespace /><%= fieldName %>">
+					<aui:select cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>">
 
 						<%
 						for (int j = 0; j < options.length; j++) {
 							String optionValue = options[j];
 						%>
 
-							<option <%= fieldValue.equals(optionValue) ? "selected" : "" %> value="<%= HtmlUtil.escape(optionValue) %>"><%= HtmlUtil.escape(optionValue) %></option>
+							<aui:option selected="<%= fieldValue.equals(optionValue) %>"><%= HtmlUtil.escape(optionValue) %></aui:option>
 
 						<%
 						}
 						%>
 
-					</select>
-				</div>
-			</c:when>
-		</c:choose>
+					</aui:select>
+				</c:when>
+			</c:choose>
 
-	<%
-		i++;
+		<%
+			i++;
 
-		fieldName = "field" + i;
-		fieldLabel = preferences.getValue("fieldLabel" + i, "");
-		fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + i, false);
-		fieldValue = ParamUtil.getString(request, fieldName);
-	}
-	%>
+			fieldName = "field" + i;
+			fieldLabel = preferences.getValue("fieldLabel" + i, "");
+			fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + i, false);
+			fieldValue = ParamUtil.getString(request, fieldName);
+		}
+		%>
 
-	<c:if test="<%= requireCaptcha %>">
-		<portlet:resourceURL var="captchaURL">
-			<portlet:param name="<%= Constants.CMD %>" value="captcha" />
-		</portlet:resourceURL>
+		<c:if test="<%= requireCaptcha %>">
+			<portlet:resourceURL var="captchaURL">
+				<portlet:param name="<%= Constants.CMD %>" value="captcha" />
+			</portlet:resourceURL>
 
-		<liferay-ui:captcha url="<%= captchaURL %>" />
-	</c:if>
+			<liferay-ui:captcha url="<%= captchaURL %>" />
+		</c:if>
 
-	<div class="button-holder">
-		<input type="submit" value="<liferay-ui:message key="send" />" />
-	</div>
-</fieldset>
+		<aui:button type="submit" value="send" />
 
-</form>
+	</aui:fieldset>
+</aui:form>
 
 <script type="text/javascript">
 	jQuery(document).ready(
@@ -188,10 +176,10 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 
 					<%
 					int fieldIndex = 1;
-					fieldLabel = preferences.getValue("fieldLabel" + fieldIndex, StringPool.BLANK);
+					String fieldLabel = preferences.getValue("fieldLabel" + fieldIndex, StringPool.BLANK);
 
 					while ((fieldIndex == 1) || Validator.isNotNull(fieldLabel)) {
-						fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + fieldIndex, false);
+						boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + fieldIndex, false);
 						String fieldType = preferences.getValue("fieldType" + fieldIndex, "text");
 						String fieldValidationScript = preferences.getValue("fieldValidationScript" + fieldIndex, StringPool.BLANK);
 						String fieldValidationErrorMessage = preferences.getValue("fieldValidationErrorMessage" + fieldIndex, StringPool.BLANK);

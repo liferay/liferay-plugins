@@ -91,361 +91,311 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 		font-weight: bold;
 		padding: 3px;
 	}
+
+	.portlet-web-form .validation {
+		clear: left;
+	}
 </style>
 
+<liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
 
-<form action="<liferay-portlet:actionURL portletConfiguration="true" />" class="aui-form portlet-web-form" method="post" id="<portlet:namespace />fm" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
+<aui:form action="<%= configurationURL %>" cssClass="portlet-web-form" method="post" name="fm" onSubmit='<%= "submitForm(this); return false;" %>'>
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
-<liferay-ui:tabs
-	names="general,form-fields"
-	param="tabs1"
-	refresh="<%= false %>"
->
-	<liferay-ui:section>
-		<fieldset class="aui-block-labels">
-			<legend><liferay-ui:message key="form-information" /></legend>
+	<liferay-ui:tabs
+		names="general,form-fields"
+		param="tabs1"
+		refresh="<%= false %>"
+	>
+		<liferay-ui:section>
+			<aui:fieldset>
+				<legend><liferay-ui:message key="form-information" /></legend>
 
-			<liferay-ui:error key="titleRequired" message="please-enter-a-title" />
+				<liferay-ui:error key="titleRequired" message="please-enter-a-title" />
 
-			<div class="aui-ctrl-holder">
-				<label for="<portlet:namespace />title"><liferay-ui:message key="title" /></label>
+				<aui:input cssClass="lfr-input-text" name="title" value="<%= HtmlUtil.toInputSafe(title) %>" />
 
-				<input class="lfr-input-text" id="<portlet:namespace />title" name="<portlet:namespace />title" type="text" value="<%= HtmlUtil.toInputSafe(title) %>" />
-			</div>
+				<aui:input name="description" type="textarea" value="<%= HtmlUtil.toInputSafe(description) %>" wrap="soft" />
 
-			<div class="aui-ctrl-holder">
-				<label for="<portlet:namespace/>description"><liferay-ui:message key="description" /></label>
+				<aui:input inlineLabel="<%= true %>" label="require-captcha" name="requireCaptcha" type="checkbox" value="<%= requireCaptcha %>" />
 
-				<textarea class="lfr-textarea" id="<portlet:namespace/>description" name="<portlet:namespace/>description" wrap="soft"><%= description %></textarea>
-			</div>
+				<aui:input cssClass="lfr-input-text" label="redirect-url-on-success" name="successURL" value="<%= HtmlUtil.toInputSafe(successURL) %>" />
+			</aui:fieldset>
 
-			<div class="aui-ctrl-holder">
-				<label><liferay-ui:message key="require-captcha" /> <liferay-ui:input-checkbox param="requireCaptcha" defaultValue="<%= requireCaptcha %>" /></label>
-			</div>
+			<aui:fieldset>
+				<legend><liferay-ui:message key="handling-of-form-data" /></legend>
 
-			<div class="aui-ctrl-holder">
-				<label for="<portlet:namespace />successURL"><liferay-ui:message key="redirect-url-on-success" /></label>
+				<fieldset>
+					<legend><liferay-ui:message key="email" /></legend>
 
-				<input class="lfr-input-text" id="<portlet:namespace />successURL" name="<portlet:namespace />successURL" type="text" value="<%= HtmlUtil.toInputSafe(successURL) %>" />
-			</div>
-		</fieldset>
+					<liferay-ui:error key="subjectRequired" message="please-enter-a-subject" />
+					<liferay-ui:error key="handlingRequired" message="please-select-an-action-for-the-handling-of-form-data" />
+					<liferay-ui:error key="emailAddressInvalid" message="please-enter-a-valid-email-address" />
+					<liferay-ui:error key="emailAddressRequired" message="please-enter-an-email-address" />
+					<liferay-ui:error key="fileNameInvalid" message="please-enter-a-valid-path-and-filename" />
 
-		<fieldset class="aui-block-labels">
-			<legend><liferay-ui:message key="handling-of-form-data" /></legend>
+					<aui:input inlineLabel="<%= true %>" label="send-as-email" name="sendAsEmail" type="checkbox" value="<%= sendAsEmail %>" />
 
-			<fieldset class="aui-block-labels">
-				<legend><liferay-ui:message key="email" /></legend>
+					<aui:input cssClass="lfr-input-text" name="subject" value="<%= subject %>" />
 
-				<liferay-ui:error key="subjectRequired" message="please-enter-a-subject" />
-				<liferay-ui:error key="handlingRequired" message="please-select-an-action-for-the-handling-of-form-data" />
-				<liferay-ui:error key="emailAddressInvalid" message="please-enter-a-valid-email-address" />
-				<liferay-ui:error key="emailAddressRequired" message="please-enter-an-email-address" />
-				<liferay-ui:error key="fileNameInvalid" message="please-enter-a-valid-path-and-filename" />
+					<aui:input cssClass="lfr-input-text" label="email-address" name="emailAddress" value="<%= emailAddress %>" />
+				</fieldset>
 
-				<div class="aui-ctrl-holder">
-					<label><liferay-ui:message key="send-as-email" /> <liferay-ui:input-checkbox param="sendAsEmail" defaultValue="<%= sendAsEmail %>" /></label>
-				</div>
+				<fieldset class="aui-block-labels">
+					<legend><liferay-ui:message key="database" /></legend>
 
-				<div class="aui-ctrl-holder">
-					<label for="<portlet:namespace />subject"><liferay-ui:message key="subject" /></label>
+					<aui:input inlineLabel="<%= true %>" label="save-to-database" name="saveToDatabase" type="checkbox" value="<%= saveToDatabase %>" />
+				</fieldset>
 
-					<input class="lfr-input-text" id="<portlet:namespace />subject" name="<portlet:namespace />subject" type="text" value="<%= subject %>" />
-				</div>
+				<fieldset class="aui-block-labels">
+					<legend><liferay-ui:message key="file" /></legend>
 
-				<div class="aui-ctrl-holder">
-					<label for="<portlet:namespace />emailAddress"><liferay-ui:message key="email-address" /></label>
+					<aui:input inlineLabel="<%= true %>" label="save-to-file" name="saveToFile" type="checkbox" value="<%= saveToFile %>" />
 
-					<input class="lfr-input-text" id="<portlet:namespace />emailAddress" name="<portlet:namespace />emailAddress" type="text" value="<%= emailAddress %>" />
-				</div>
-			</fieldset>
+					<aui:input cssClass="lfr-input-text" label="path-and-file-name" name="filename" value="<%= fileName %>" />
+				</fieldset>
+			</aui:fieldset>
+		</liferay-ui:section>
 
-			<fieldset class="aui-block-labels">
-				<legend><liferay-ui:message key="database" /></legend>
+		<liferay-ui:section>
+			<aui:fieldset cssClass="rows-container webFields">
 
-				<div class="aui-ctrl-holder">
-					<label><liferay-ui:message key="save-to-database" /> <liferay-ui:input-checkbox param="saveToDatabase" defaultValue="<%= saveToDatabase %>" /></label>
-				</div>
-			</fieldset>
-
-			<fieldset class="aui-block-labels">
-				<legend><liferay-ui:message key="file" /></legend>
-
-				<div class="aui-ctrl-holder">
-					<label><liferay-ui:message key="save-to-file" /> <liferay-ui:input-checkbox param="saveToFile" defaultValue="<%= saveToFile %>" /></label>
-				</div>
-
-				<div class="aui-ctrl-holder">
-					<label for="<portlet:namespace />filename"><liferay-ui:message key="path-and-file-name" /></label>
-
-					<input class="lfr-input-text" id="<portlet:namespace />filename" name="<portlet:namespace />fileName" type="text" value="<%= fileName %>" />
-				</div>
-			</fieldset>
-		</fieldset>
-	</liferay-ui:section>
-
-	<liferay-ui:section>
-		<fieldset class="aui-block-labels rows-container" id="<portlet:namespace/>webFields">
-
-			<c:if test="<%= fieldsEditingDisabled %>">
-				<div class="portlet-msg-alert">
-					<liferay-ui:message key="there-is-existing-form-data-please-export-and-delete-it-before-making-changes-to-the-fields" />
-				</div>
-
-				<liferay-portlet:resourceURL var="exportURL" portletName="<%= portletResource %>">
-					<portlet:param name="<%= Constants.CMD %>" value="export" />
-				</liferay-portlet:resourceURL>
-
-				<input type="button" value="<liferay-ui:message key="export-data" />" onclick="submitForm(document.hrefFm, '<%= exportURL %>');" />
-
-				<liferay-portlet:actionURL var="deleteURL" portletName="<%= portletResource %>">
-					<portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="deleteData" />
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-				</liferay-portlet:actionURL>
-
-				<input type="button" value="<liferay-ui:message key="delete-data" />" onclick="submitForm(document.<portlet:namespace/>fm, '<%= deleteURL %>');" />
-
-				<br /><br />
-			</c:if>
-
-			<input name="<portlet:namespace/>updateFields" type="hidden" value="<%= !fieldsEditingDisabled %>" />
-
-			<%
-			String formFieldsIndexesParam = ParamUtil.getString(renderRequest, "formFieldsIndexes") ;
-
-			int[] formFieldsIndexes = null;
-
-			if (Validator.isNotNull(formFieldsIndexesParam)){
-				formFieldsIndexes = StringUtil.split(formFieldsIndexesParam, 0);
-			}
-			else {
-				formFieldsIndexes = new int[0];
-
-				for (int i = 1; true; i++) {
-					String fieldLabel = PrefsParamUtil.getString(preferences, request, "fieldLabel" + i);
-
-					if (Validator.isNull(fieldLabel)) {
-						break;
-					}
-
-					formFieldsIndexes = ArrayUtil.append(formFieldsIndexes, i);
-				}
-			}
-
-			for (int formFieldsIndex : formFieldsIndexes) {
-				String fieldLabel = PrefsParamUtil.getString(preferences, request, "fieldLabel" + formFieldsIndex);
-				String fieldType = PrefsParamUtil.getString(preferences, request, "fieldType" + formFieldsIndex);
-				boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + formFieldsIndex);
-				String fieldOptions = PrefsParamUtil.getString(preferences, request, "fieldOptions" + formFieldsIndex);
-				String fieldValidationScript = StringPool.BLANK;
-				String fieldValidationErrorMessage = StringPool.BLANK;
-
-				if (WebFormUtil.VALIDATION_SCRIPT_ENABLED) {
-					fieldValidationScript = PrefsParamUtil.getString(preferences, request, "fieldValidationScript" + formFieldsIndex);
-					fieldValidationErrorMessage = PrefsParamUtil.getString(preferences, request, "fieldValidationErrorMessage" + formFieldsIndex);
-				}
-			%>
-
-				<div class="lfr-form-row" id="<portlet:namespace/>fieldset<%= formFieldsIndex %>">
-					<div class="field-title">
-						<c:choose>
-							<c:when test='<%= fieldType.equals("paragraph") %>'>
-								<span class="field-label"><liferay-ui:message key="paragraph" /></span>
-							</c:when>
-							<c:when test="<%= Validator.isNotNull(fieldLabel) %>">
-								<span class="field-label"><%= fieldLabel %></span>
-							</c:when>
-							<c:otherwise>
-								<liferay-ui:message key="field" /> <%= formFieldsIndex %>
-							</c:otherwise>
-						</c:choose>
+				<c:if test="<%= fieldsEditingDisabled %>">
+					<div class="portlet-msg-alert">
+						<liferay-ui:message key="there-is-existing-form-data-please-export-and-delete-it-before-making-changes-to-the-fields" />
 					</div>
 
-					<c:choose>
-						<c:when test="<%= !fieldsEditingDisabled %>">
-							<div class="aui-ctrl-holder">
-								<label for="<portlet:namespace/>fieldLabel<%= formFieldsIndex %>"><liferay-ui:message key="name" /></label>
+					<liferay-portlet:resourceURL var="exportURL" portletName="<%= portletResource %>">
+						<portlet:param name="<%= Constants.CMD %>" value="export" />
+					</liferay-portlet:resourceURL>
 
-								<input class="lfr-input-text label-name" id="<portlet:namespace/>fieldLabel<%= formFieldsIndex %>" name="<portlet:namespace/>fieldLabel<%= formFieldsIndex %>" size="50" type="text" value="<%= fieldLabel %>" onchange="jQuery(this).parent().prev().children('.field-label').html(jQuery(this).val())" />
-							</div>
-						</c:when>
-						<c:otherwise>
-							<table class="editing-disabled">
-							<tr>
-								<td>
-									<label><liferay-ui:message key="name" /></label>
-								</td>
-								<td>
-									<%= fieldLabel %>
-								</td>
-							</tr>
-						</c:otherwise>
-					</c:choose>
+					<%
+					String taglibExport = "submitForm(document.hrefFm, '" + exportURL + "');";
+					%>
 
-					<c:choose>
-						<c:when test="<%= !fieldsEditingDisabled %>">
-							<div class="aui-ctrl-holder">
-								<label for="<portlet:namespace/>fieldType<%= formFieldsIndex %>"><liferay-ui:message key="type" /></label>
+					<aui:button value="export-data" onclick="<%= taglibExport %>" />
 
-								<select id="<portlet:namespace/>fieldType<%= formFieldsIndex %>" name="<portlet:namespace/>fieldType<%= formFieldsIndex %>">
-									<option <%= (fieldType.equals("text")) ? "selected" : "" %> value="text"><liferay-ui:message key="text" /></option>
-									<option <%= (fieldType.equals("textarea")) ? "selected" : "" %> value="textarea"><liferay-ui:message key="text-box" /></option>
-									<option <%= (fieldType.equals("options")) ? "selected" : "" %> value="options"><liferay-ui:message key="options" /></option>
-									<option <%= (fieldType.equals("radio")) ? "selected" : "" %> value="radio"><liferay-ui:message key="radio-buttons" /></option>
-									<option <%= (fieldType.equals("paragraph")) ? "selected" : "" %> value="paragraph"><liferay-ui:message key="paragraph" /></option>
-									<option <%= (fieldType.equals("checkbox")) ? "selected" : "" %> value="checkbox"><liferay-ui:message key="check-box" /></option>
-								</select>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<tr>
-								<td>
-									<label><liferay-ui:message key="type" /></label>
-								</td>
-								<td>
-									<liferay-ui:message key="<%= fieldType %>" />
-								</td>
-							</tr>
-						</c:otherwise>
-					</c:choose>
+					<liferay-portlet:actionURL var="deleteURL" portletName="<%= portletResource %>">
+						<portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="deleteData" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
+					</liferay-portlet:actionURL>
 
-					<c:choose>
-						<c:when test="<%= !fieldsEditingDisabled %>">
-							<div class="aui-ctrl-holder optional-control">
-								<label><liferay-ui:message key="optional" /> <input <c:if test="<%= fieldOptional %>">checked</c:if> id="<portlet:namespace/>fieldOptional<%= formFieldsIndex %>" name="<portlet:namespace/>fieldOptional<%= formFieldsIndex %>" type="checkbox" /></label>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<tr>
-								<td>
-									<label><liferay-ui:message key="optional" /></label>
-								</td>
-								<td>
-									<liferay-ui:message key='<%= fieldOptional ? "yes" : "no" %>' />
-								</td>
-							</tr>
-						</c:otherwise>
-					</c:choose>
+					<%
+					String taglibDelete = "submitForm(document." + renderResponse.getNamespace() + "fm, '" + deleteURL + "');";
+					%>
 
-					<c:choose>
-						<c:when test="<%= !fieldsEditingDisabled %>">
-							<div class="aui-ctrl-holder options" id="<portlet:namespace/>optionsGroup<%= formFieldsIndex %>">
-								<label for="<portlet:namespace/>fieldOptions<%= formFieldsIndex %>"><liferay-ui:message key="options" /></label>
+					<aui:button value="delete-data" onclick="<%= taglibDelete %>" />
 
-								<span>(<liferay-ui:message key="add-options-separated-by-commas" />)</span><br />
+					<br /><br />
+				</c:if>
 
-								<input class="lfr-input-text" id="<portlet:namespace/>fieldOptions<%= formFieldsIndex %>" name="<portlet:namespace/>fieldOptions<%= formFieldsIndex %>" type="text" value="<%= fieldOptions %>" />
-							</div>
-						</c:when>
-						<c:when test="<%= Validator.isNotNull(fieldOptions) %>">
-							<tr>
-								<td>
-									<label><liferay-ui:message key="options" /></label>
-								</td>
-								<td>
-									<%= fieldOptions %>
-								</td>
-							</tr>
-						</c:when>
-					</c:choose>
+				<aui:input name="updateFields" type="hidden" value="<%= !fieldsEditingDisabled %>" />
 
-					<c:if test="<%= WebFormUtil.VALIDATION_SCRIPT_ENABLED %>">
+				<%
+				String formFieldsIndexesParam = ParamUtil.getString(renderRequest, "formFieldsIndexes") ;
+
+				int[] formFieldsIndexes = null;
+
+				if (Validator.isNotNull(formFieldsIndexesParam)){
+					formFieldsIndexes = StringUtil.split(formFieldsIndexesParam, 0);
+				}
+				else {
+					formFieldsIndexes = new int[0];
+
+					for (int i = 1; true; i++) {
+						String fieldLabel = PrefsParamUtil.getString(preferences, request, "fieldLabel" + i);
+
+						if (Validator.isNull(fieldLabel)) {
+							break;
+						}
+
+						formFieldsIndexes = ArrayUtil.append(formFieldsIndexes, i);
+					}
+				}
+
+				for (int formFieldsIndex : formFieldsIndexes) {
+					String fieldLabel = PrefsParamUtil.getString(preferences, request, "fieldLabel" + formFieldsIndex);
+					String fieldType = PrefsParamUtil.getString(preferences, request, "fieldType" + formFieldsIndex);
+					boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + formFieldsIndex);
+					String fieldOptions = PrefsParamUtil.getString(preferences, request, "fieldOptions" + formFieldsIndex);
+					String fieldValidationScript = StringPool.BLANK;
+					String fieldValidationErrorMessage = StringPool.BLANK;
+
+					if (WebFormUtil.VALIDATION_SCRIPT_ENABLED) {
+						fieldValidationScript = PrefsParamUtil.getString(preferences, request, "fieldValidationScript" + formFieldsIndex);
+						fieldValidationErrorMessage = PrefsParamUtil.getString(preferences, request, "fieldValidationErrorMessage" + formFieldsIndex);
+					}
+				%>
+
+					<div class="lfr-form-row" id="<portlet:namespace/>fieldset<%= formFieldsIndex %>">
+						<div class="field-title">
+							<c:choose>
+								<c:when test='<%= fieldType.equals("paragraph") %>'>
+									<span class="field-label"><liferay-ui:message key="paragraph" /></span>
+								</c:when>
+								<c:when test="<%= Validator.isNotNull(fieldLabel) %>">
+									<span class="field-label"><%= fieldLabel %></span>
+								</c:when>
+								<c:otherwise>
+									<liferay-ui:message key="field" /> <%= formFieldsIndex %>
+								</c:otherwise>
+							</c:choose>
+						</div>
+
 						<c:choose>
 							<c:when test="<%= !fieldsEditingDisabled %>">
-								<div class="validation">
-									<liferay-ui:error key='<%= "invalidValidationDefinition" + formFieldsIndex %>' message="please-enter-both-the-validation-code-and-the-error-message" />
-
-									<div class="aui-ctrl-holder">
-										<a class="validation-link" href="javascript:;"><liferay-ui:message key="validation" /> &raquo;</a>
-									</div>
-
-									<div class="validation-input" style='<%= Validator.isNull(fieldValidationScript) ? "display:none" : "" %>'>
-										<div class="aui-ctrl-holder">
-											<table>
-											<tr>
-												<td>
-													<label for="<portlet:namespace/>fieldValidationScript<%= formFieldsIndex %>"><liferay-ui:message key="validation-script" /></label>
-
-													<textarea class="lfr-textarea validation-script" cols="80" id="<portlet:namespace />fieldValidationScript<%= formFieldsIndex %>" name="<portlet:namespace />fieldValidationScript<%= formFieldsIndex %>" style="width: 95%" wrap="off"><%= fieldValidationScript %></textarea>
-												</td>
-												<td>
-													<div class="syntax-help">
-														<jsp:include page="/script_help.jsp" />
-													</div>
-												</td>
-											</tr>
-											</table>
-										</div>
-
-										<div class="aui-ctrl-holder">
-											<label for="<portlet:namespace/>fieldValidationErrorMessage<%= formFieldsIndex %>"><liferay-ui:message key="validation-error-message" /></label>
-
-											<input class="lfr-input-text" id="<portlet:namespace />fieldValidationErrorMessage<%= formFieldsIndex %>" name="<portlet:namespace />fieldValidationErrorMessage<%= formFieldsIndex %>" size="80" type="text" value="<%= fieldValidationErrorMessage %>" />
-										</div>
-									</div>
-								</div>
-							</c:when>
-							<c:when test="<%= Validator.isNotNull(fieldValidationScript) %>">
-								<tr>
-									<td>
-										<label class="optional"><liferay-ui:message key="validation" /></label>
-									</td>
-									<td>
-										<pre><%= fieldValidationScript %></pre>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label class="optional"><liferay-ui:message key="validation-error-message" /></label>
-									</td>
-									<td>
-										<%= fieldValidationErrorMessage %>
-									</td>
-								</tr>
+								<aui:input cssClass="lfr-input-text label-name" label="name" name='<%= "fieldLabel" + formFieldsIndex %>' onchange="jQuery(this).parent().parent().parent().find('.field-label').html(jQuery(this).val())" size="50" value="<%= fieldLabel %>"  />
 							</c:when>
 							<c:otherwise>
+								<table class="editing-disabled">
 								<tr>
 									<td>
-										<label class="optional"><liferay-ui:message key="validation" /></label>
+										<label><liferay-ui:message key="name" /></label>
 									</td>
 									<td>
-										<liferay-ui:message key="this-field-does-not-have-any-specific-validation" />
+										<%= fieldLabel %>
 									</td>
 								</tr>
 							</c:otherwise>
 						</c:choose>
-					</c:if>
 
-					<c:if test="<%= fieldsEditingDisabled %>">
-						</table>
-					</c:if>
-				</div>
+						<c:choose>
+							<c:when test="<%= !fieldsEditingDisabled %>">
+								<aui:select label="type" name='<%= "fieldType" + formFieldsIndex %>'>
+									<aui:option selected='<%= fieldType.equals("text") %>' value="text"><liferay-ui:message key="text" /></aui:option>
+									<aui:option selected='<%= fieldType.equals("textarea") %>' value="textarea"><liferay-ui:message key="text-box" /></aui:option>
+									<aui:option selected='<%= fieldType.equals("options") %>' value="options"><liferay-ui:message key="options" /></aui:option>
+									<aui:option selected='<%= fieldType.equals("radio") %>' value="radio"><liferay-ui:message key="radio-buttons" /></aui:option>
+									<aui:option selected='<%= fieldType.equals("paragraph") %>' value="paragraph"><liferay-ui:message key="paragraph" /></aui:option>
+									<aui:option selected='<%= fieldType.equals("checkbox") %>' value="checkbox"><liferay-ui:message key="check-box" /></aui:option>
+								</aui:select>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td>
+										<label><liferay-ui:message key="type" /></label>
+									</td>
+									<td>
+										<liferay-ui:message key="<%= fieldType %>" />
+									</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
 
-			<%
-			}
-			%>
+						<c:choose>
+							<c:when test="<%= !fieldsEditingDisabled %>">
+								<aui:input cssClass="optional-control" inlineLabel="<%= true %>" label="optional" name='<%= "fieldOptional" + formFieldsIndex %>' type="checkbox" value="<%= fieldOptional %>" />
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td>
+										<label><liferay-ui:message key="optional" /></label>
+									</td>
+									<td>
+										<liferay-ui:message key='<%= fieldOptional ? "yes" : "no" %>' />
+									</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
 
-		</fieldset>
-	</liferay-ui:section>
-</liferay-ui:tabs>
+						<c:choose>
+							<c:when test="<%= !fieldsEditingDisabled %>">
+								<aui:input cssClass="options lfr-input-text" helpMessage="add-options-separated-by-commas" label="options" name='<%= "fieldOptions" + formFieldsIndex %>' value="<%= fieldOptions %>" />
+							</c:when>
+							<c:when test="<%= Validator.isNotNull(fieldOptions) %>">
+								<tr>
+									<td>
+										<label><liferay-ui:message key="options" /></label>
+									</td>
+									<td>
+										<%= fieldOptions %>
+									</td>
+								</tr>
+							</c:when>
+						</c:choose>
 
-<div class="button-holder">
-	<input type="submit" value="<liferay-ui:message key="save" />" />
+						<c:if test="<%= WebFormUtil.VALIDATION_SCRIPT_ENABLED %>">
+							<c:choose>
+								<c:when test="<%= !fieldsEditingDisabled %>">
+									<div class="validation">
+										<liferay-ui:error key='<%= "invalidValidationDefinition" + formFieldsIndex %>' message="please-enter-both-the-validation-code-and-the-error-message" />
 
-	<input type="button" value="<liferay-ui:message key="cancel" />" onclick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
-</div>
+										<aui:a cssClass="validation-link" href="javascript:;"><liferay-ui:message key="validation" /> &raquo;</aui:a>
 
-</form>
+										<div class="validation-input" style='<%= Validator.isNull(fieldValidationScript) ? "display:none" : "" %>'>
+											<aui:column columnWidth="50">
+												<aui:input  cssClass="validation-script" cols="80" label="validation-script" name='<%= "fieldValidationScript" + formFieldsIndex %>' style="width: 95%" type="textarea" value="<%= fieldValidationScript %>" wrap="off" />
+
+												<aui:input  cssClass="lfr-input-text" cols="80" label="validation-error-message" name='<%= "fieldValidationErrorMessage" + formFieldsIndex %>' size="80" value="<%= fieldValidationErrorMessage %>" />
+											</aui:column>
+											<aui:column columnWidth="50">
+												<div class="syntax-help">
+													<jsp:include page="/script_help.jsp" />
+												</div>
+											</aui:column>
+										</div>
+									</div>
+								</c:when>
+								<c:when test="<%= Validator.isNotNull(fieldValidationScript) %>">
+									<tr>
+										<td>
+											<label class="optional"><liferay-ui:message key="validation" /></label>
+										</td>
+										<td>
+											<pre><%= fieldValidationScript %></pre>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label class="optional"><liferay-ui:message key="validation-error-message" /></label>
+										</td>
+										<td>
+											<%= fieldValidationErrorMessage %>
+										</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<td>
+											<label class="optional"><liferay-ui:message key="validation" /></label>
+										</td>
+										<td>
+											<liferay-ui:message key="this-field-does-not-have-any-specific-validation" />
+										</td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
+						</c:if>
+
+						<c:if test="<%= fieldsEditingDisabled %>">
+							</table>
+						</c:if>
+					</div>
+
+				<%
+				}
+				%>
+
+			</aui:fieldset>
+		</liferay-ui:section>
+	</liferay-ui:tabs>
+
+	<aui:button-row>
+		<aui:button type="submit" value="save" />
+
+		<aui:button value="cancel" onclick="<%= redirect %>" />
+	</aui:button-row>
+</aui:form>
 
 <script type="text/javascript">
 	jQuery(
 		function() {
-			var selects = jQuery('#<portlet:namespace/>webFields select');
+			var selects = jQuery('.webFields select');
 
 			var toggleOptions = function() {
 				var select = jQuery(this);
-				var div = select.parent().next().next();
+				var div = select.parent().parent().next().next();
 				var value = select.find('option:selected').val();
 
 				if (value == 'options' || value == 'radio') {
@@ -457,16 +407,15 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 					// Show just the text field and not the labels since there
 					// are multiple choice inputs
 
-					div.children().hide();
-					div.children(".lfr-input-text").show();
+					div.find("label").hide();
 					div.show();
 				}
 				else {
 					div.hide();
 				}
 
-				var optional = select.parent().next();
-				var divName = select.parent().prev();
+				var optional = select.parent().parent().next();
+				var divName = select.parent().parent().prev();
 
 				if (value == 'paragraph') {
 					var inputName = divName.children("input");
@@ -490,15 +439,15 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 			jQuery('.validation-link').click(
 				function(event){
-					jQuery(this).parent().next().toggle();
+					jQuery(this).next().toggle();
 				}
 			);
 
 			<c:if test="<%= !fieldsEditingDisabled %>">
 				new Liferay.AutoFields(
 					{
-						container: '#<portlet:namespace />webFields',
-						baseRows: '#<portlet:namespace />webFields > .lfr-form-row',
+						container: '.webFields',
+						baseRows: '.webFields > .lfr-form-row',
 						fieldIndexes: '<portlet:namespace />formFieldsIndexes',
 						sortable: true,
 						sortableHandle: '.field-label'
