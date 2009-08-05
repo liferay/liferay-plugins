@@ -241,8 +241,8 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("http://www.yourminis.com/embed/google.aspx?xheight=80&);
-		sb.append("xwidth=250&mininame=weather&buildnumber=1.5.5.6&"):
+		sb.append("http://www.yourminis.com/embed/google.aspx?xheight=80&");
+		sb.append("xwidth=250&mininame=weather&buildnumber=1.5.5.6&");
 		sb.append("title=Weather(91789)&accountname=yourminis&");
 		sb.append("uri=yourminis/yourminis/mini:weather&");
 		sb.append("swfhost=ct.yourminis.com&hostname=www.yourminis.com&");
