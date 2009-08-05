@@ -36,7 +36,6 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 </portlet:actionURL>
 
 <aui:form action="<%= saveDataURL %>" method="post" name="fm">
-
 	<c:if test="<%= Validator.isNull(successURL) %>">
 		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 	</c:if>
@@ -158,7 +157,6 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 		</c:if>
 
 		<aui:button type="submit" value="send" />
-
 	</aui:fieldset>
 </aui:form>
 

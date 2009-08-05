@@ -99,7 +99,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
 
-<aui:form action="<%= configurationURL %>" cssClass="portlet-web-form" method="post" name="fm" onSubmit='<%= "submitForm(this); return false;" %>'>
+<aui:form action="<%= configurationURL %>" cssClass="portlet-web-form" method="post" name="fm" onSubmit="submitForm(this); return false;">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
