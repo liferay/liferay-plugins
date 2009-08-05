@@ -973,22 +973,13 @@ table.calendar {
 
 /* Contacts */
 
-.contacts-portlet .card-display-table a {
-	font-size: 11px;
-	font-weight: bold;
-}
-
-.contacts-portlet .card-display-table .login-date {
-	font-size: 9px;
-}
-
-.contacts-portlet .control .add-card {
+.contacts-portlet .control .add-entry {
 	position: absolute;
 	right: 0;
 	top: -40px;
 }
 
-.ie6 .contacts-portlet .control .add-card {
+.ie6 .contacts-portlet .control .add-entry {
 	position: static;
 }
 
@@ -1000,8 +991,17 @@ table.calendar {
 	font-weight: normal;
 }
 
-.contacts-portlet .edit-card-table .label {
+.contacts-portlet .edit-entry-table .label {
 	color: #999;
+}
+
+.contacts-portlet .entry-display-table a {
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.contacts-portlet .entry-display-table .login-date {
+	font-size: 9px;
 }
 
 .contacts-portlet .lfr-panel {
@@ -1016,7 +1016,7 @@ table.calendar {
 	position: relative;
 }
 
-.contacts-portlet .search-cards {
+.contacts-portlet .search-entries {
 	margin-bottom: 9px;
 }
 
