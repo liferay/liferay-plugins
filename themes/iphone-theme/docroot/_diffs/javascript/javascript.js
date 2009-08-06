@@ -20,8 +20,7 @@
 		$(doc).bind(
 			'ready fragmentChange',
 			function () {
-				var wrapper = doc.getElementById('wrapper'),
-				hash = loc.hash.substr(1) || loc.href.replace(root, '');
+				var hash = loc.hash.substr(1) || loc.href.replace(root, '');
 
 				$wrap = $wrap || $(doc.getElementById('wrap'));
 				$page = $page || $(doc.getElementById('page'));
@@ -70,7 +69,7 @@
 								var capture = doc.createElement('body');
 								capture.innerHTML = r;
 
-								if (!(capture = $(capture).find('#wrapper')[0])) {
+								if (!(capture = $(capture).find('#page')[0])) {
 									win.history.back();
 									return true;
 								}
@@ -127,7 +126,9 @@
 				$('a:urlInternal').live(
 					'click',
 					function() {
-						loc.hash = this.href.replace(root, '');
+						if (!/selected/.test(this.className)) {
+							loc.hash = this.href.replace(root, '');
+						}
 						return false;
 					}
 				);

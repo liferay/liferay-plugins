@@ -1,4 +1,4 @@
-<ul class="menu">
+<div class="menu">
 	#foreach ($nav_item in $nav_items)
 		#if ($nav_item.isSelected())
 			#set ($nav_item_class = 'class="selected"')
@@ -6,16 +6,14 @@
 			#set ($nav_item_class = '')
 		#end
 
-		<li>
-			<a $nav_item_class href="$nav_item.getURL()">$nav_item.getName()</a>
-		</li>
+		<a $nav_item_class href="$nav_item.getURL()">$nav_item.getName()</a>
 	#end
-</ul>
+</div>
 
 #foreach ($nav_item in $nav_items)
 	#if ($nav_item.isSelected())
 		#if ($nav_item.hasChildren())
-			<ul class="menu">
+			<div class="menu">
 				#foreach ($nav_child in $nav_item.getChildren())
 					#if ($nav_child.isSelected())
 						#set ($nav_child_class = 'class="selected"')
@@ -23,11 +21,9 @@
 						#set ($nav_child_class = '')
 					#end
 
-					<li>
-						<a $nav_child_class href="$nav_child.getURL()">$nav_child.getName()</a>
-					</li>
+					<a $nav_child_class href="$nav_child.getURL()">$nav_child.getName()</a>
 				#end
-			</ul>
+			</div>
 		#end
 	#end
 #end
