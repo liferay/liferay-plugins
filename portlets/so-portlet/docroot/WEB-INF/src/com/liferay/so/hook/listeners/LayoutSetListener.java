@@ -92,7 +92,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		Layout layout = addLayout(group, "Home", "/home", "3_columns");
 
 		updatePortletTitle(layout, "39_INSTANCE_abcd", "Feeds");
-		updatePortletTitle(layout, "56", "Welcome");
+		updatePortletTitle(layout, "1_WAR_wysiwygportlet", "Welcome");
 
 		removePortletBorder(layout, "1_WAR_soportlet");
 
