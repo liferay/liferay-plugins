@@ -50,7 +50,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 %>
 
 <style type="text/css">
-	.portlet-web-form fieldset {
+	.portlet-web-form fieldset .handle-data{
 		border: 1px solid #BFBFBF;
 	}
 
@@ -103,15 +103,9 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
-	<liferay-ui:tabs
-		names="general,form-fields"
-		param="tabs1"
-		refresh="<%= false %>"
-	>
-		<liferay-ui:section>
+	<liferay-ui:panel-container id='webFormConfiguration' extended="<%= Boolean.TRUE %>" persistState="<%= true %>">
+		<liferay-ui:panel id='webFormGeneral' title='<%= LanguageUtil.get(pageContext, "form-information") %>' collapsible="<%= true %>" persistState="<%= true %>" extended="<%= true %>">
 			<aui:fieldset>
-				<legend><liferay-ui:message key="form-information" /></legend>
-
 				<liferay-ui:error key="titleRequired" message="please-enter-a-title" />
 
 				<aui:input cssClass="lfr-input-text" name="title" value="<%= HtmlUtil.toInputSafe(title) %>" />
@@ -122,11 +116,11 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 				<aui:input cssClass="lfr-input-text" label="redirect-url-on-success" name="successURL" value="<%= HtmlUtil.toInputSafe(successURL) %>" />
 			</aui:fieldset>
+		</liferay-ui:panel>
 
+		<liferay-ui:panel id='webFormData' title='<%= LanguageUtil.get(pageContext, "handling-of-form-data") %>' collapsible="<%= true %>" persistState="<%= true %>" extended="<%= true %>">
 			<aui:fieldset>
-				<legend><liferay-ui:message key="handling-of-form-data" /></legend>
-
-				<fieldset>
+				<fieldset class="handle-data">
 					<legend><liferay-ui:message key="email" /></legend>
 
 					<liferay-ui:error key="subjectRequired" message="please-enter-a-subject" />
@@ -142,13 +136,13 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 					<aui:input cssClass="lfr-input-text" label="email-address" name="emailAddress" value="<%= emailAddress %>" />
 				</fieldset>
 
-				<fieldset class="aui-block-labels">
+				<fieldset class="handle-data">
 					<legend><liferay-ui:message key="database" /></legend>
 
 					<aui:input inlineLabel="<%= true %>" label="save-to-database" name="saveToDatabase" type="checkbox" value="<%= saveToDatabase %>" />
 				</fieldset>
 
-				<fieldset class="aui-block-labels">
+				<fieldset class="handle-data">
 					<legend><liferay-ui:message key="file" /></legend>
 
 					<aui:input inlineLabel="<%= true %>" label="save-to-file" name="saveToFile" type="checkbox" value="<%= saveToFile %>" />
@@ -156,9 +150,9 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 					<aui:input cssClass="lfr-input-text" label="path-and-file-name" name="filename" value="<%= fileName %>" />
 				</fieldset>
 			</aui:fieldset>
-		</liferay-ui:section>
+		</liferay-ui:panel>
 
-		<liferay-ui:section>
+		<liferay-ui:panel id='webFormFields' title='<%= LanguageUtil.get(pageContext, "form-fields") %>' collapsible="<%= true %>" persistState="<%= true %>" extended="<%= true %>">
 			<aui:fieldset cssClass="rows-container webFields">
 
 				<c:if test="<%= fieldsEditingDisabled %>">
@@ -378,8 +372,8 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 				%>
 
 			</aui:fieldset>
-		</liferay-ui:section>
-	</liferay-ui:tabs>
+		</liferay-ui:panel>
+	</liferay-ui:panel-container>
 
 	<aui:button-row>
 		<aui:button type="submit" value="save" />
