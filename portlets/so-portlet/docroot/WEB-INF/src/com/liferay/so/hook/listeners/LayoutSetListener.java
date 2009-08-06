@@ -170,11 +170,9 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		Layout layout = addLayout(group, "Home", "/home", "user_home");
 
 		updatePortletTitle(layout, "29", "sites");
-		updatePortletTitle(layout, "39_INSTANCE_abcd", "Feeds");
 		updatePortletTitle(
 			layout, "1_WAR_googlegadgetportlet_INSTANCE_abcd", "Weather");
 
-		configureRSS(layout);
 		configureGoogleGadget(layout);
 
 		updatePermissions(layout, false);
