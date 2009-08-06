@@ -50,7 +50,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 %>
 
 <style type="text/css">
-	.portlet-web-form fieldset .handle-data{
+	.portlet-web-form fieldset .handle-data {
 		border: 1px solid #BFBFBF;
 	}
 
@@ -103,8 +103,8 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
-	<liferay-ui:panel-container id='webFormConfiguration' extended="<%= Boolean.TRUE %>" persistState="<%= true %>">
-		<liferay-ui:panel id='webFormGeneral' title='<%= LanguageUtil.get(pageContext, "form-information") %>' collapsible="<%= true %>" persistState="<%= true %>" extended="<%= true %>">
+	<liferay-ui:panel-container id="webFormConfiguration" extended="<%= Boolean.TRUE %>" persistState="<%= true %>">
+		<liferay-ui:panel id="webFormGeneral" title='<%= LanguageUtil.get(pageContext, "form-information") %>' collapsible="<%= true %>" persistState="<%= true %>" extended="<%= true %>">
 			<aui:fieldset>
 				<liferay-ui:error key="titleRequired" message="please-enter-a-title" />
 
