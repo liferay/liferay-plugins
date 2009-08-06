@@ -71,7 +71,7 @@ String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 						var contactsPortlet = jQuery('.contacts-portlet');
 
 						if (contactsPortlet.length > 0) {
-							Liferay.Contacts.loadContacts(false);
+							Liferay.Contacts.loadEntries(false);
 						}
 					}
 				}
