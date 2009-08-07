@@ -22,3 +22,21 @@
 <liferay-util:include page="/html/portlet/document_library/sidebar.jsp" />
 
 <liferay-util:include page="/html/portlet/document_library/edit_file_entry.portal.jsp" />
+
+<script type="text/javascript">
+	var folderLinks = jQuery('.portlet-document-library .breadcrumbs a');
+
+	folderLinks.each(
+		function(i) {
+			var folderLink = jQuery(this);
+
+			var folderURL = this.href;
+
+			folderLink.attr(
+				{
+					'href': folderURL.replace('&p_p_state=maximized', '&p_p_state=normal')
+				}
+			);
+		}
+	);
+</script>
