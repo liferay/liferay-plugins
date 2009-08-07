@@ -17,30 +17,17 @@
  */
 %>
 
-<%@ include file="/html/portlet/search/init.jsp" %>
+<%@ include file="/html/taglib/ui/search/init.jsp" %>
 
 <%
 Group group = layout.getGroup();
 %>
 
-<liferay-util:buffer var="html">
-	<liferay-util:include page="/html/portlet/search/search.portal.jsp" />
-</liferay-util:buffer>
-
-<%
-int x = html.indexOf("<div class=\"add-search-provider\">");
-int y = html.indexOf("</div>", x);
-
-if (x != -1) {
-	html = StringUtil.remove(html, html.substring(x, y + 6), StringPool.BLANK);
-}
-%>
-
-<%= html %>
+<liferay-util:include page="/html/taglib/ui/search/start.portal.jsp" />
 
 <c:if test="<%= group.isUser() %>">
 	<script type="text/javascript">
-		var searchOptions = jQuery('select[name=<portlet:namespace />groupId] option');
+		var searchOptions = jQuery('select[name=<%= namespace %>groupId] option');
 
 		searchOptions.each(
 			function(i) {
