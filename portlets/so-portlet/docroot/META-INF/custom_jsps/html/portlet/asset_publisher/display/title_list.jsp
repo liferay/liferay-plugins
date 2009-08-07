@@ -52,7 +52,7 @@ long classPK = ((Long)request.getAttribute("view.jsp-classPK")).longValue();
 			<%= html.substring(y + 1, z) %>
 		</div>
 		<div class="document-folder">
-			<a href="<%= viewFolderURL.toString() %>"><liferay-ui:message key="view-folder" /> &raquo;</a>
+			<a href="<%= viewFolderURL.toString() %>"><liferay-ui:message key="go-to-folder" /></a>
 		</div>
 
 		<%= html.substring(z) %>
