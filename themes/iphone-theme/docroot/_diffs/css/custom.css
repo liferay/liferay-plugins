@@ -119,8 +119,8 @@ table {
 
 .menu,
 .body,
-.portlet,
-.portlet-borderless-container {
+#content-wrapper .portlet,
+#content-wrapper .portlet-borderless-container {
 	-moz-border-radius-bottomleft: 4px;
 	-moz-border-radius-bottomright: 4px;
 	-moz-border-radius-topleft: 4px;
@@ -137,8 +137,8 @@ table {
 }
 
 .body,
-.portlet,
-.portlet-borderless-container {
+#content-wrapper .portlet,
+#content-wrapper .portlet-borderless-container {
 	padding: 0.75em;
 }
 
@@ -228,17 +228,17 @@ table {
 	color: #000;
 }
 
-.portlet-borderless-bar,
-.portlet-toolbar,
-.portlet-title img,
-.portlet-icons,
-.js .page-maximized .portlet-icons,
-.edit-actions,
-.taglib-social-bookmarks,
-.taglib-page-iterator,
-.taglib-flags,
-.subscribe,
-.lfr-meta-actions {
+.iphone .portlet-borderless-bar,
+.iphone .portlet-toolbar,
+.iphone .portlet-title img,
+.iphone .portlet-icons,
+.iphone .page-maximized .portlet-icons,
+.iphone .edit-actions,
+.iphone .taglib-social-bookmarks,
+.iphone .taglib-page-iterator,
+.iphone .taglib-flags,
+.iphone .subscribe,
+.iphone .lfr-meta-actions {
 	display: none;
 }
 
