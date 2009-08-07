@@ -102,14 +102,10 @@ table {
 /* ---------- Logo ---------- */
 
 .logo {
-	margin: 1em 0;
-}
-
-.logo a {
 	display: block;
 	font-size: 0;
 	height: 50px;
-	margin: 0 auto;
+	margin: 20px auto;
 	overflow: hidden;
 	text-indent: -99999em;
 	width: 205px;
@@ -226,6 +222,10 @@ table {
 
 .portlet-blogs .entry-title a {
 	color: #000;
+}
+
+.portlet-icons img {
+	display: block;
 }
 
 .iphone .portlet-borderless-bar,

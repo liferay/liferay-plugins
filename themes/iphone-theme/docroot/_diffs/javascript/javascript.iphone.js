@@ -1,5 +1,5 @@
 (
-	function() {
+	function($) {
 		var win = window,
 		doc = document,
 		loc = win.location,
@@ -114,15 +114,16 @@
 					);
 				}
 				else {
+					$('html').addClass('iphone');
 					win.setTimeout(
 						function() {
 							win.scrollTo(0, 0);
 						},
-						100
+						1000 * 0.33
 					);
 				}
 
-				/* Hijack the hyperlinks */
+				/* Hijack most hyperlinks */
 				$('a:urlInternal').live(
 					'click',
 					function() {
@@ -134,5 +135,5 @@
 				);
 			}
 		);
-	}()
+	}(jQuery)
 );
