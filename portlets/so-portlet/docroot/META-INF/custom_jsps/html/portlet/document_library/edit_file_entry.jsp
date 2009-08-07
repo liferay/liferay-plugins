@@ -23,6 +23,27 @@
 
 <liferay-util:include page="/html/portlet/document_library/edit_file_entry.portal.jsp" />
 
+<%
+String strutsAction = ParamUtil.getString(request, "struts_action");
+
+String redirect = ParamUtil.getString(request, "redirect");
+
+DLFileEntry fileEntry = (DLFileEntry)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_FILE_ENTRY);
+%>
+
+<c:if test='<%= DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE) && strutsAction.equals("/document_library/view_file_entry") %>'>
+	<br />
+
+	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
+		<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
+		<portlet:param name="redirect" value="<%= redirect %>" />
+		<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
+		<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
+	</portlet:renderURL>
+
+	<input type="button" value="<liferay-ui:message key="edit" />" onClick="location = '<%= editURL %>';" />
+</c:if>
+
 <script type="text/javascript">
 	var folderLinks = jQuery('.portlet-document-library .breadcrumbs a');
 
