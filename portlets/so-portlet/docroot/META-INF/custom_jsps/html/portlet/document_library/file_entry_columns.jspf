@@ -63,6 +63,8 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 							<span><liferay-ui:message key="tags" />:</span>
 
 							<%
+							TagsUtil.addLayoutTagsEntries(request, tagsEntries);
+
 							StringBuilder sb = new StringBuilder();
 
 							Iterator itr = tagsEntries.iterator();
