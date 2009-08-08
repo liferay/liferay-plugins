@@ -96,7 +96,7 @@ String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 <input name="<portlet:namespace />active" type="hidden" value="1" />
 
 <liferay-ui:error exception="<%= DuplicateGroupException.class %>" message="please-enter-a-unique-name" />
-<liferay-ui:error exception="<%= GroupNameException.class %>" message="group-name-exception-message" />
+<liferay-ui:error exception="<%= GroupNameException.class %>" message="please-enter-a-valid-name.-the-name-can-not-contain-a-comma,-an-asterisk,-be-blank-or-be-a-number" />
 <liferay-ui:error exception="<%= RequiredGroupException.class %>" message="old-group-name-is-a-required-system-group" />
 <liferay-ui:success	key="request_processed" message="your-request-processed-successfully" />
 
