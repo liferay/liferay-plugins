@@ -19,10 +19,6 @@
 
 <%@ include file="/html/portlet/document_library/init.jsp" %>
 
-<liferay-util:include page="/html/portlet/document_library/sidebar.jsp" />
-
-<liferay-util:include page="/html/portlet/document_library/edit_file_entry.portal.jsp" />
-
 <%
 String strutsAction = ParamUtil.getString(request, "struts_action");
 
@@ -30,6 +26,32 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 DLFileEntry fileEntry = (DLFileEntry)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_FILE_ENTRY);
 %>
+
+<liferay-util:include page="/html/portlet/document_library/sidebar.jsp" />
+
+<liferay-util:buffer var="html">
+	<liferay-util:include page="/html/portlet/document_library/edit_file_entry.portal.jsp" />
+</liferay-util:buffer>
+
+<c:choose>
+	<c:when test='<%= strutsAction.equals("/document_library/view_file_entry") %>'>
+
+		<%
+		int x = html.indexOf("<div class=\"breadcrumbs\">");
+		int y = html.indexOf("<span class=\"last\">", x);
+		int z = html.indexOf("</span>", y);
+		%>
+
+		<%= html.substring(0, y) %>
+
+		<span class="last"><liferay-ui:message key="view-file-entry" /></span>
+
+		<%= html.substring(z + 7) %>
+	</c:when>
+	<c:otherwise>
+		<%= html %>
+	</c:otherwise>
+</c:choose>
 
 <c:if test='<%= DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE) && strutsAction.equals("/document_library/view_file_entry") %>'>
 	<br />

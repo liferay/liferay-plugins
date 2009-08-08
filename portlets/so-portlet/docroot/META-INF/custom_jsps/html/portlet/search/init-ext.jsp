@@ -18,5 +18,5 @@
 %>
 
 <%
-dlLinkToFolder = true;
+dlLinkToViewURL = true;
 %>
