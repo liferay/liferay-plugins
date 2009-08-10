@@ -43,7 +43,7 @@ if (rootFolderId <= 0) {
 	preferences.store();
 }
 
-folderColumns = new String[] {"name", "action"};
+folderColumns = new String[] {"name", "lock", "action"};
 fileEntryColumns = folderColumns;
 
 showSubfolders = false;

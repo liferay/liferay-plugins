@@ -39,6 +39,55 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 			/>
 
 		</c:when>
+		<c:when test='<%= fileEntryColumn.equals("lock") %>'>
+			<liferay-ui:search-container-column-text
+				name="<%= fileEntryColumn %>"
+			>
+				<c:if test="<%= DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE) %>">
+
+					<%
+					Lock lock = null;
+					Boolean isLocked = Boolean.FALSE;
+					Boolean hasLock = Boolean.FALSE;
+
+					if (fileEntry != null) {
+						folder = fileEntry.getFolder();
+
+						try {
+							lock = LockLocalServiceUtil.getLock(DLFileEntry.class.getName(), DLUtil.getLockId(fileEntry.getFolderId(), fileEntry.getName()));
+
+							isLocked = Boolean.TRUE;
+
+							if (lock.getUserId() == user.getUserId()) {
+								hasLock = Boolean.TRUE;
+							}
+						}
+						catch (Exception e) {
+						}
+					}
+					%>
+
+					<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="lockURL">
+						<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
+						<portlet:param name="<%= Constants.CMD %>" value="<%= isLocked.booleanValue() ? Constants.UNLOCK : Constants.LOCK %>" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
+						<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
+						<portlet:param name="name" value="<%= fileEntry.getName() %>" />
+					</portlet:actionURL>
+
+					<div class="file-lock">
+						<c:choose>
+							<c:when test="<%= hasLock.booleanValue() %>">
+								<a class="unlock" href="javascript:;" onClick="submitForm(document.hrefFm, '<%= lockURL %>');"><span><liferay-ui:message key="unlock" /></span></a>
+							</c:when>
+							<c:otherwise>
+								<a class="lock" href="javascript:;" onClick="submitForm(document.hrefFm, '<%= lockURL %>');"><span><liferay-ui:message key="lock" /></span></a>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</c:if>
+			</liferay-ui:search-container-column-text>
+		</c:when>
 		<c:when test='<%= fileEntryColumn.equals("name") %>'>
 			<liferay-ui:search-container-column-text
 				name="<%= fileEntryColumn %>"

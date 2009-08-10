@@ -1057,6 +1057,7 @@ table.calendar {
 	padding-left: 15px;
 }
 
+.portlet-document-library .file-lock span,
 .portlet-document-library .file-tags span {
 	float: left;
 	font-size: 0;
@@ -1066,6 +1067,25 @@ table.calendar {
 
 .portlet-document-library .file-data span {
 	margin-right: 1em;
+	white-space: nowrap;
+}
+
+.portlet-document-library .file-lock a {
+	display: block;
+	height: 16px;
+	width: 16px;
+}
+
+.portlet-document-library .file-lock span {
+	opacity: 0;
+}
+
+.portlet-document-library .file-lock .lock {
+	background: url(../images/custom/unlock.png) no-repeat;
+}
+
+.portlet-document-library .file-lock .unlock {
+	background: url(../images/custom/lock.png) no-repeat;
 }
 
 .portlet-document-library .webdav-url {
