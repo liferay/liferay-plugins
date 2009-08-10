@@ -30,7 +30,6 @@ import java.util.Date;
  * <a href="WSRPConsumerPortletModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet> {
 	public long getPrimaryKey();

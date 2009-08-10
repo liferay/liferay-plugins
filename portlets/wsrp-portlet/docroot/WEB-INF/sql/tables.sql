@@ -5,6 +5,8 @@ create table WSRP_WSRPConsumer (
 	createDate DATE null,
 	modifiedDate DATE null,
 	name VARCHAR(75) null,
+	registrationContextXML TEXT null,
+	registrationPropertiesString TEXT null,
 	url STRING null,
 	wsdl TEXT null
 );

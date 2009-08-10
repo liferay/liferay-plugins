@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.annotation.Transactional;
  * <a href="WSRPConsumerLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
@@ -99,6 +98,13 @@ public interface WSRPConsumerLocalService {
 
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
 		long wsrpConsumerId, java.lang.String name, java.lang.String url)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
+		long wsrpConsumerId,
+		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
+		java.lang.String registrationHandle)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 }

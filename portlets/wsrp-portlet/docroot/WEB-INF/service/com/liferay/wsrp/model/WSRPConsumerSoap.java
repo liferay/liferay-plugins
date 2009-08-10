@@ -32,7 +32,6 @@ import java.util.List;
  * <a href="WSRPConsumerSoap.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WSRPConsumerSoap implements Serializable {
 	public static WSRPConsumerSoap toSoapModel(WSRPConsumer model) {
@@ -43,6 +42,8 @@ public class WSRPConsumerSoap implements Serializable {
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setName(model.getName());
+		soapModel.setRegistrationContextXML(model.getRegistrationContextXML());
+		soapModel.setRegistrationPropertiesString(model.getRegistrationPropertiesString());
 		soapModel.setUrl(model.getUrl());
 		soapModel.setWsdl(model.getWsdl());
 
@@ -137,6 +138,23 @@ public class WSRPConsumerSoap implements Serializable {
 		_name = name;
 	}
 
+	public String getRegistrationContextXML() {
+		return _registrationContextXML;
+	}
+
+	public void setRegistrationContextXML(String registrationContextXML) {
+		_registrationContextXML = registrationContextXML;
+	}
+
+	public String getRegistrationPropertiesString() {
+		return _registrationPropertiesString;
+	}
+
+	public void setRegistrationPropertiesString(
+		String registrationPropertiesString) {
+		_registrationPropertiesString = registrationPropertiesString;
+	}
+
 	public String getUrl() {
 		return _url;
 	}
@@ -158,6 +176,8 @@ public class WSRPConsumerSoap implements Serializable {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;
+	private String _registrationContextXML;
+	private String _registrationPropertiesString;
 	private String _url;
 	private String _wsdl;
 }

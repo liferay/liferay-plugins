@@ -26,10 +26,10 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 
 /**
- * <a href="WSRPConsumerLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="WSRPConsumerLocalServiceUtil.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WSRPConsumerLocalServiceUtil {
 	public static com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(
@@ -120,6 +120,17 @@ public class WSRPConsumerLocalServiceUtil {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		return getService().updateWSRPConsumer(wsrpConsumerId, name, url);
+	}
+
+	public static com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
+		long wsrpConsumerId,
+		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
+		java.lang.String registrationHandle)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		return getService()
+				   .updateWSRPConsumer(wsrpConsumerId, registrationProperties,
+			registrationHandle);
 	}
 
 	public static void clearService() {

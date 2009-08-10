@@ -25,10 +25,10 @@ package com.liferay.wsrp.service.persistence;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
- * <a href="WSRPConsumerPortletPersistence.java.html"><b><i>View Source</i></b></a>
+ * <a href="WSRPConsumerPortletPersistence.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface WSRPConsumerPortletPersistence extends BasePersistence {
 	public void cacheResult(

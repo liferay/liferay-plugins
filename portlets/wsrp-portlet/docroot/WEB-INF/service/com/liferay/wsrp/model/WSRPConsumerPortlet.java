@@ -26,7 +26,6 @@ package com.liferay.wsrp.model;
  * <a href="WSRPConsumerPortlet.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface WSRPConsumerPortlet extends WSRPConsumerPortletModel {
 }

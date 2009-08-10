@@ -47,7 +47,6 @@ import java.util.List;
  * <a href="WSRPProducerModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	public static final String TABLE_NAME = "WSRP_WSRPProducer";

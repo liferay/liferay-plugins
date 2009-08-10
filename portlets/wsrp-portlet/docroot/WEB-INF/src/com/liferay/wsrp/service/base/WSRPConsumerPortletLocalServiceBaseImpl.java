@@ -39,10 +39,10 @@ import com.liferay.wsrp.service.persistence.WSRPProducerPersistence;
 import java.util.List;
 
 /**
- * <a href="WSRPConsumerPortletLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WSRPConsumerPortletLocalServiceBaseImpl.java.html"><b><i>View Source
+ * </i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	implements WSRPConsumerPortletLocalService {

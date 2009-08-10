@@ -26,7 +26,6 @@ package com.liferay.wsrp.service.persistence;
  * <a href="WSRPProducerUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WSRPProducerUtil {
 	public static void cacheResult(

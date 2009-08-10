@@ -28,7 +28,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * <a href="WSRPConsumerPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface WSRPConsumerPersistence extends BasePersistence {
 	public void cacheResult(com.liferay.wsrp.model.WSRPConsumer wsrpConsumer);

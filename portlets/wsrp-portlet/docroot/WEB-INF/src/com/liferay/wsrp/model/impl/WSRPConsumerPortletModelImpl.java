@@ -44,10 +44,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <a href="WSRPConsumerPortletModelImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WSRPConsumerPortletModelImpl.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPortlet> {
 	public static final String TABLE_NAME = "WSRP_WSRPConsumerPortlet";

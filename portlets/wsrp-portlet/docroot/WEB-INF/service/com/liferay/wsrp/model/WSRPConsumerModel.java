@@ -30,7 +30,6 @@ import java.util.Date;
  * <a href="WSRPConsumerModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public long getPrimaryKey();
@@ -56,6 +55,15 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public String getName();
 
 	public void setName(String name);
+
+	public String getRegistrationContextXML();
+
+	public void setRegistrationContextXML(String registrationContextXML);
+
+	public String getRegistrationPropertiesString();
+
+	public void setRegistrationPropertiesString(
+		String registrationPropertiesString);
 
 	public String getUrl();
 

@@ -26,7 +26,15 @@ package com.liferay.wsrp.model;
  * <a href="WSRPConsumer.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface WSRPConsumer extends WSRPConsumerModel {
+	public oasis.names.tc.wsrp.v2.types.RegistrationContext getRegistrationContext();
+
+	public com.liferay.portal.kernel.util.UnicodeProperties getRegistrationProperties();
+
+	public void setRegistrationContext(
+		oasis.names.tc.wsrp.v2.types.RegistrationContext registrationContext);
+
+	public void setRegistrationProperties(
+		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties);
 }

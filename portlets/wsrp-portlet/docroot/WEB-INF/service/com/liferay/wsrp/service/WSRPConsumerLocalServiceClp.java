@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.util.NullWrapper;
  * <a href="WSRPConsumerLocalServiceClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	public WSRPConsumerLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
@@ -497,6 +496,54 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		Object paramObj2 = ClpSerializer.translateInput(url);
 
 		if (url == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateWSRPConsumer",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.PortalException) {
+				throw (com.liferay.portal.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.wsrp.model.WSRPConsumer)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
+		long wsrpConsumerId,
+		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
+		java.lang.String registrationHandle)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(wsrpConsumerId);
+
+		Object paramObj1 = ClpSerializer.translateInput(registrationProperties);
+
+		if (registrationProperties == null) {
+			paramObj1 = new NullWrapper(
+					"com.liferay.portal.kernel.util.UnicodeProperties");
+		}
+
+		Object paramObj2 = ClpSerializer.translateInput(registrationHandle);
+
+		if (registrationHandle == null) {
 			paramObj2 = new NullWrapper("java.lang.String");
 		}
 

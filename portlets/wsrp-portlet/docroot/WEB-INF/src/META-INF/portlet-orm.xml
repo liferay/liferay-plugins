@@ -19,8 +19,12 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="name" />
+			<basic name="registrationContextXML" />
+			<basic name="registrationPropertiesString" />
 			<basic name="url" />
 			<basic name="wsdl" />
+			<transient name="registrationContext" />
+			<transient name="registrationProperties" />
 		</attributes>
 	</entity>
 	<entity class="com.liferay.wsrp.model.impl.WSRPConsumerPortletImpl" name="WSRPConsumerPortlet">

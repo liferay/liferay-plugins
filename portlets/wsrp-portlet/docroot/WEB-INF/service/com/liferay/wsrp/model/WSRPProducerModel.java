@@ -30,7 +30,6 @@ import java.util.Date;
  * <a href="WSRPProducerModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public long getPrimaryKey();

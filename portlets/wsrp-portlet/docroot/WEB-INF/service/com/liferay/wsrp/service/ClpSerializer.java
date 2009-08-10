@@ -40,7 +40,6 @@ import java.util.List;
  * <a href="ClpSerializer.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class ClpSerializer {
 	public static final String SERVLET_CONTEXT_NAME = "wsrp-portlet";
@@ -104,19 +103,33 @@ public class ClpSerializer {
 
 					method4.invoke(newModel, value4);
 
-					Method method5 = newModelClass.getMethod("setUrl",
+					Method method5 = newModelClass.getMethod("setRegistrationContextXML",
 							new Class[] { String.class });
 
-					String value5 = oldCplModel.getUrl();
+					String value5 = oldCplModel.getRegistrationContextXML();
 
 					method5.invoke(newModel, value5);
 
-					Method method6 = newModelClass.getMethod("setWsdl",
+					Method method6 = newModelClass.getMethod("setRegistrationPropertiesString",
 							new Class[] { String.class });
 
-					String value6 = oldCplModel.getWsdl();
+					String value6 = oldCplModel.getRegistrationPropertiesString();
 
 					method6.invoke(newModel, value6);
+
+					Method method7 = newModelClass.getMethod("setUrl",
+							new Class[] { String.class });
+
+					String value7 = oldCplModel.getUrl();
+
+					method7.invoke(newModel, value7);
+
+					Method method8 = newModelClass.getMethod("setWsdl",
+							new Class[] { String.class });
+
+					String value8 = oldCplModel.getWsdl();
+
+					method8.invoke(newModel, value8);
 
 					return newModel;
 				}
@@ -347,19 +360,35 @@ public class ClpSerializer {
 
 					newModel.setName(value4);
 
-					Method method5 = oldModelClass.getMethod("getUrl");
+					Method method5 = oldModelClass.getMethod(
+							"getRegistrationContextXML");
 
 					String value5 = (String)method5.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setUrl(value5);
+					newModel.setRegistrationContextXML(value5);
 
-					Method method6 = oldModelClass.getMethod("getWsdl");
+					Method method6 = oldModelClass.getMethod(
+							"getRegistrationPropertiesString");
 
 					String value6 = (String)method6.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setWsdl(value6);
+					newModel.setRegistrationPropertiesString(value6);
+
+					Method method7 = oldModelClass.getMethod("getUrl");
+
+					String value7 = (String)method7.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setUrl(value7);
+
+					Method method8 = oldModelClass.getMethod("getWsdl");
+
+					String value8 = (String)method8.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setWsdl(value8);
 
 					return newModel;
 				}

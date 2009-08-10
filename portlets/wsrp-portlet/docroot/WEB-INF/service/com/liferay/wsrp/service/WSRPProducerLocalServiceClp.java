@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.util.NullWrapper;
  * <a href="WSRPProducerLocalServiceClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	public WSRPProducerLocalServiceClp(ClassLoaderProxy classLoaderProxy) {

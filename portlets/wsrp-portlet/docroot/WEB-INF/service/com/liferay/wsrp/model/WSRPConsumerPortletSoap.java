@@ -32,7 +32,6 @@ import java.util.List;
  * <a href="WSRPConsumerPortletSoap.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WSRPConsumerPortletSoap implements Serializable {
 	public static WSRPConsumerPortletSoap toSoapModel(WSRPConsumerPortlet model) {

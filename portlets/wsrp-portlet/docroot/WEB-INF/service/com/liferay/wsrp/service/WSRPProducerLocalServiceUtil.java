@@ -26,10 +26,10 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 
 /**
- * <a href="WSRPProducerLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="WSRPProducerLocalServiceUtil.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WSRPProducerLocalServiceUtil {
 	public static com.liferay.wsrp.model.WSRPProducer addWSRPProducer(
