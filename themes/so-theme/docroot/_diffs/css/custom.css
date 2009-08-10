@@ -207,6 +207,14 @@ body #banner h1.logo a {
 	padding: 0 15px;
 }
 
+#column-1.seventy {
+	width: 75%;
+}
+
+#column-2.thirty {
+	width: 25%;
+}
+
 .columns-2 #column-1 {
 	border-right: 1px solid #CCC;
 }
@@ -218,14 +226,6 @@ body #banner h1.logo a {
 
 .columns-3 #column-2 {
 	width: 40%;
-}
-
-#column-1.seventy {
-	width: 75%;
-}
-
-#column-2.thirty {
-	width: 25%;
 }
 
 .columns-1 #column-1,
