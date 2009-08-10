@@ -28,6 +28,18 @@
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 WSRPConsumer wsrpConsumer = (WSRPConsumer)row.getObject();
+
+WSRPConsumerManager wsrpConsumerManager = null;
+boolean requiresRegistration = false;
+boolean registered = wsrpConsumer.getRegistrationContext() == null ? false : true;
+
+try {
+	wsrpConsumerManager = WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
+	ServiceDescription serviceDescription = wsrpConsumerManager.getServiceDescription();
+	requiresRegistration = serviceDescription.isRequiresRegistration();
+}
+catch (NoSuchConsumerException nsce) {
+}
 %>
 
 <liferay-ui:icon-menu>
@@ -39,12 +51,24 @@ WSRPConsumer wsrpConsumer = (WSRPConsumer)row.getObject();
 
 	<liferay-ui:icon image="edit" url="<%= editURL %>" />
 
-	<portlet:renderURL var="managePortletsURL">
-		<portlet:param name="jspPage" value="/admin/view_consumer_portlets.jsp" />
-		<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
-	</portlet:renderURL>
+	<c:if test="<%= requiresRegistration %>">
+		<portlet:renderURL var="editRegistrationURL">
+			<portlet:param name="jspPage" value="/admin/edit_consumer_registration.jsp" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
+		</portlet:renderURL>
 
-	<liferay-ui:icon image="portlet" message="manage-portlets" url="<%= managePortletsURL %>" />
+		<liferay-ui:icon image="edit" message="edit-registration" url="<%= editRegistrationURL %>" />
+	</c:if>
+
+	<c:if test="<%= !requiresRegistration || registered %>">
+		<portlet:renderURL var="managePortletsURL">
+			<portlet:param name="jspPage" value="/admin/view_consumer_portlets.jsp" />
+			<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
+		</portlet:renderURL>
+
+		<liferay-ui:icon image="portlet" message="manage-portlets" url="<%= managePortletsURL %>" />
+	</c:if>
 
 	<portlet:actionURL name="deleteWSRPConsumer" var="deleteURL">
 		<portlet:param name="redirect" value="<%= currentURL %>" />

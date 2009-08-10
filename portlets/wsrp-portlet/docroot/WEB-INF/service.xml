@@ -17,6 +17,8 @@
 		<!-- Other fields -->
 
 		<column name="name" type="String" />
+		<column name="registrationContextXML" type="String" />
+		<column name="registrationPropertiesString" type="String" />
 		<column name="url" type="String" />
 		<column name="wsdl" type="String" />
 

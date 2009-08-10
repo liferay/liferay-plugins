@@ -25,6 +25,8 @@ package com.liferay.wsrp.portlet;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -111,6 +113,20 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
+	public void updateWSRPConsumerRegistration(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		checkPermissions(actionRequest);
+
+		try {
+			doUpdateWSRPConsumerRegistration(actionRequest, actionResponse);
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(actionRequest, pe.getClass().getName());
+		}
+	}
+
 	public void updateWSRPProducer(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -183,6 +199,47 @@ public class AdminPortlet extends MVCPortlet {
 			WSRPConsumerPortletLocalServiceUtil.updateWSRPConsumerPortlet(
 				wsrpConsumerPortletId, name);
 		}
+	}
+
+	protected void doUpdateWSRPConsumerRegistration(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long wsrpConsumerId = ParamUtil.getLong(
+			actionRequest, "wsrpConsumerId");
+
+		boolean inbandRegistration =
+			ParamUtil.getBoolean(actionRequest, "inbandRegistration");
+
+		UnicodeProperties registrationProperties = null;
+		String registrationHandle = null;
+
+		if (inbandRegistration) {
+			registrationProperties = new UnicodeProperties();
+
+			for (int i = 0;; i++) {
+				String regPropName =
+					ParamUtil.getString(actionRequest, "regPropName" + i);
+
+				String regPropValue =
+					ParamUtil.getString(actionRequest, "regPropValue" + i);
+
+				if (Validator.isNull(regPropName)) {
+					break;
+				}
+
+				registrationProperties.setProperty(
+					regPropName, regPropValue);
+			}
+		}
+		else {
+			registrationHandle =
+				ParamUtil.getString(actionRequest, "registrationHandle");
+		}
+
+		WSRPConsumerLocalServiceUtil.updateWSRPConsumer(
+			wsrpConsumerId, registrationProperties,
+			registrationHandle);
 	}
 
 	protected void doUpdateWSRPProducer(

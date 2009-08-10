@@ -34,6 +34,7 @@
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchEntry" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
+<%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.KeyValuePair" %>
 <%@ page import="com.liferay.portal.kernel.util.KeyValuePairComparator" %>
@@ -41,6 +42,7 @@
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.UnicodeProperties" %>
 <%@ page import="com.liferay.portal.model.Portlet" %>
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
@@ -65,10 +67,13 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 
 <%@ page import="javax.portlet.PortletURL" %>
 
+<%@ page import="oasis.names.tc.wsrp.v2.types.ModelDescription" %>
 <%@ page import="oasis.names.tc.wsrp.v2.types.PortletDescription" %>
+<%@ page import="oasis.names.tc.wsrp.v2.types.PropertyDescription" %>
 <%@ page import="oasis.names.tc.wsrp.v2.types.ServiceDescription" %>
 
 <portlet:defineObjects />

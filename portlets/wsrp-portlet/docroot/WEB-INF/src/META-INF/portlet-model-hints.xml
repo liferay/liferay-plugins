@@ -7,6 +7,12 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="name" type="String" />
+		<field name="registrationContextXML" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="registrationPropertiesString" type="String">
+			<hint-collection name="CLOB" />
+		</field>
 		<field name="url" type="String">
 			<hint-collection name="URL" />
 		</field>

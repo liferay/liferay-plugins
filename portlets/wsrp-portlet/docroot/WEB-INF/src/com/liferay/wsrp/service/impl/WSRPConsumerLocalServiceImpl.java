@@ -26,15 +26,33 @@ import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.ReleaseInfo;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.wsrp.WSRPConsumerNameException;
 import com.liferay.wsrp.WSRPConsumerWSDLException;
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.service.base.WSRPConsumerLocalServiceBaseImpl;
+import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import javax.xml.namespace.QName;
+
+import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Registration_PortType;
+import oasis.names.tc.wsrp.v2.types.ModifyRegistration;
+import oasis.names.tc.wsrp.v2.types.Property;
+import oasis.names.tc.wsrp.v2.types.PropertyDescription;
+import oasis.names.tc.wsrp.v2.types.Register;
+import oasis.names.tc.wsrp.v2.types.RegistrationContext;
+import oasis.names.tc.wsrp.v2.types.RegistrationData;
+import oasis.names.tc.wsrp.v2.types.RegistrationState;
 
 /**
  * <a href="WSRPConsumerLocalServiceImpl.java.html"><b><i>View Source</i></b>
@@ -121,6 +139,35 @@ public class WSRPConsumerLocalServiceImpl
 		return wsrpConsumer;
 	}
 
+	public WSRPConsumer updateWSRPConsumer(
+			long wsrpConsumerId, UnicodeProperties registrationProperties,
+			String registrationHandle)
+		throws PortalException, SystemException {
+
+		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
+			wsrpConsumerId);
+
+		RegistrationContext registrationContext = null;
+
+		if (registrationProperties != null) {
+			registrationContext = register(
+				wsrpConsumer, registrationProperties);
+		}
+		else if (Validator.isNotNull(registrationHandle)) {
+			registrationContext = new RegistrationContext();
+
+			registrationContext.setRegistrationHandle(registrationHandle);
+		}
+
+		wsrpConsumer.setModifiedDate(new Date());
+		wsrpConsumer.setRegistrationContext(registrationContext);
+		wsrpConsumer.setRegistrationProperties(registrationProperties);
+
+		wsrpConsumerPersistence.update(wsrpConsumer, false);
+
+		return wsrpConsumer;
+	}
+
 	protected String getWSDL(String url) throws PortalException {
 		try {
 			String wsdl = HttpUtil.URLtoString(url);
@@ -132,6 +179,85 @@ public class WSRPConsumerLocalServiceImpl
 		catch (Exception e) {
 			throw new WSRPConsumerWSDLException(e);
 		}
+	}
+
+	protected RegistrationContext register(
+			WSRPConsumer wsrpConsumer, UnicodeProperties registrationProperties)
+		throws PortalException {
+
+		RegistrationContext registrationContext =
+			wsrpConsumer.getRegistrationContext();
+
+		try {
+			WSRPConsumerManager wsrpConsumerManager =
+				WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
+
+			WSRP_v2_Registration_PortType registrationService =
+				wsrpConsumerManager.getRegistrationService();
+
+			Property[] properties = new Property[registrationProperties.size()];
+
+			List<Map.Entry<String, String>> registrationPropertiesList =
+				ListUtil.fromCollection(registrationProperties.entrySet());
+
+			for (int i = 0; i < properties.length; i++) {
+				Map.Entry<String, String> entry =
+					registrationPropertiesList.get(i);
+
+				String name = entry.getKey();
+				String value = entry.getValue();
+
+				PropertyDescription propertyDescription =
+					wsrpConsumerManager.getPropertyDescription(name);
+
+				QName qName = propertyDescription.getName();
+
+				properties[i] = new Property();
+
+				properties[i].setName(qName);
+				properties[i].setStringValue(value);
+			}
+
+			Company company =
+				CompanyLocalServiceUtil.getCompany(wsrpConsumer.getCompanyId());
+
+			RegistrationData registrationData = new RegistrationData();
+
+			registrationData.setConsumerName(company.getVirtualHost());
+			registrationData.setConsumerAgent(ReleaseInfo.getServerInfo());
+			registrationData.setMethodGetSupported(true);
+			registrationData.setRegistrationProperties(properties);
+
+			if (registrationContext == null) {
+				Register register = new Register();
+
+				register.setRegistrationData(registrationData);
+
+				registrationContext = registrationService.register(register);
+			}
+			else {
+				ModifyRegistration modifyRegistration =
+					new ModifyRegistration();
+
+				modifyRegistration.setRegistrationContext(registrationContext);
+				modifyRegistration.setRegistrationData(registrationData);
+
+				RegistrationState registrationState =
+					registrationService.modifyRegistration(modifyRegistration);
+
+				registrationContext.setRegistrationState(
+					registrationState.getRegistrationState());
+				registrationContext.setScheduledDestruction(
+					registrationState.getScheduledDestruction());
+			}
+
+			wsrpConsumerManager.updateServiceDescription(registrationContext);
+		}
+		catch (Exception e) {
+			throw new WSRPConsumerWSDLException(e);
+		}
+
+		return registrationContext;
 	}
 
 	protected void validate(String name) throws PortalException {

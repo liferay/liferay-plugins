@@ -22,7 +22,13 @@
 
 package com.liferay.wsrp.model.impl;
 
+import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.wsrp.model.WSRPConsumer;
+
+import com.thoughtworks.xstream.XStream;
+
+import oasis.names.tc.wsrp.v2.types.RegistrationContext;
 
 /**
  * <a href="WSRPConsumerImpl.java.html"><b><i>View Source</i></b></a>
@@ -35,5 +41,61 @@ public class WSRPConsumerImpl
 
 	public WSRPConsumerImpl() {
 	}
+
+	public RegistrationContext getRegistrationContext() {
+		if (_registrationContext != null) {
+			return _registrationContext;
+		}
+
+		String registrationContextString = getRegistrationContextXML();
+
+		if (Validator.isNotNull(registrationContextString)) {
+			_registrationContext = (RegistrationContext)_xStream.fromXML(
+				registrationContextString);
+		}
+
+		return _registrationContext;
+	}
+
+	public UnicodeProperties getRegistrationProperties() {
+		if (_registrationProperties != null) {
+			return _registrationProperties;
+		}
+
+		_registrationProperties = new UnicodeProperties();
+
+		String registrationPropertiesString = getRegistrationPropertiesString();
+
+		try {
+			if (Validator.isNotNull(registrationPropertiesString)) {
+				_registrationProperties.load(registrationPropertiesString);
+			}
+		}
+		catch (Exception e) {
+		}
+
+		return _registrationProperties;
+	}
+
+	public void setRegistrationContext(
+		RegistrationContext registrationContext) {
+
+		setRegistrationContextXML(_xStream.toXML(registrationContext));
+
+		_registrationContext = registrationContext;
+	}
+
+	public void setRegistrationProperties(
+		UnicodeProperties registrationProperties) {
+
+		setRegistrationPropertiesString(registrationProperties.toString());
+
+		_registrationProperties = registrationProperties;
+	}
+
+	private static XStream _xStream = new XStream();
+
+	private RegistrationContext _registrationContext;
+	private UnicodeProperties _registrationProperties;
 
 }

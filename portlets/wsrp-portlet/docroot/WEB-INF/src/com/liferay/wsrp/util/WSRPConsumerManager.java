@@ -36,9 +36,14 @@ import java.util.List;
 import java.util.Map;
 
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
+import oasis.names.tc.wsrp.v2.intf.WSRP_v2_PortletManagement_PortType;
+import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Registration_PortType;
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_ServiceDescription_PortType;
 import oasis.names.tc.wsrp.v2.types.GetServiceDescription;
+import oasis.names.tc.wsrp.v2.types.ModelDescription;
 import oasis.names.tc.wsrp.v2.types.PortletDescription;
+import oasis.names.tc.wsrp.v2.types.PropertyDescription;
+import oasis.names.tc.wsrp.v2.types.RegistrationContext;
 import oasis.names.tc.wsrp.v2.types.ServiceDescription;
 import oasis.names.tc.wsrp.v2.wsdl.WSRP_v2_ServiceLocator;
 
@@ -52,6 +57,14 @@ public class WSRPConsumerManager {
 
 	public WSRP_v2_Markup_PortType getMarkupService() throws Exception {
 		return _serviceLocator.getWSRP_v2_Markup_Service(_markupServiceURL);
+	}
+
+	public WSRP_v2_PortletManagement_PortType getPortletManagementService() {
+		return _portletManagementService;
+	}
+
+	public WSRP_v2_Registration_PortType getRegistrationService() {
+		return _registrationService;
 	}
 
 	public ServiceDescription getServiceDescription() {
@@ -88,10 +101,50 @@ public class WSRPConsumerManager {
 			_portletDescriptions.put(
 				portletDescription.getPortletHandle(), portletDescription);
 		}
+
+		PropertyDescription[] propertyDescriptions = getPropertyDescriptions();
+
+		if (propertyDescriptions != null) {
+			for (PropertyDescription propertyDescription : propertyDescriptions)
+			{
+				_propertyDescriptions.put(
+					propertyDescription.getName().toString(),
+					propertyDescription);
+			}
+		}
 	}
 
 	public PortletDescription getPortletDescription(String portletHandle) {
 		return _portletDescriptions.get(portletHandle);
+	}
+
+	public PropertyDescription getPropertyDescription(String name) {
+		return _propertyDescriptions.get(name);
+	}
+
+	public PropertyDescription[] getPropertyDescriptions() {
+		PropertyDescription[] propertyDescriptions = null;
+
+		ModelDescription modelDescription =
+			_serviceDescription.getRegistrationPropertyDescription();
+
+		if (modelDescription != null) {
+			propertyDescriptions = modelDescription.getPropertyDescriptions();
+		}
+
+		return propertyDescriptions;
+	}
+
+	public void updateServiceDescription(
+		RegistrationContext registrationContext) throws Exception {
+
+		GetServiceDescription getServiceDescription =
+			new GetServiceDescription();
+
+		getServiceDescription.setRegistrationContext(registrationContext);
+
+		_serviceDescription = _serviceDescriptionService.getServiceDescription(
+			getServiceDescription);
 	}
 
 	private Namespace _getWsdlNamespace(Element element) {
@@ -119,10 +172,14 @@ public class WSRPConsumerManager {
 			_markupServiceURL = bindingLocationURL;
 		}
 		else if (binding.equals(_WSRP_V2_PORTLET_MANAGEMENT_BINDING)) {
-			_portletManagementServiceURL = bindingLocationURL;
+			_portletManagementService =
+				_serviceLocator.getWSRP_v2_PortletManagement_Service(
+					bindingLocationURL);
 		}
 		else if (binding.equals(_WSRP_V2_REGISTRATION_BINDING)) {
-			_registrationServiceURL = bindingLocationURL;
+			_registrationService =
+				_serviceLocator.getWSRP_v2_Registration_Service(
+					bindingLocationURL);
 		}
 		else if (binding.equals(_WSRP_V2_SERVICE_DESCRIPTION_BINDING)) {
 			_serviceDescriptionService =
@@ -156,9 +213,11 @@ public class WSRPConsumerManager {
 	private URL _markupServiceURL;
 	private Map<String, PortletDescription> _portletDescriptions =
 		new HashMap<String, PortletDescription>();
-	private URL _portletManagementServiceURL;
-	private URL _registrationServiceURL;
+	private Map<String, PropertyDescription> _propertyDescriptions =
+		new HashMap<String, PropertyDescription>();
 	private ServiceDescription _serviceDescription;
+	private WSRP_v2_PortletManagement_PortType _portletManagementService;
+	private WSRP_v2_Registration_PortType _registrationService;
 	private WSRP_v2_ServiceDescription_PortType _serviceDescriptionService;
 	private WSRP_v2_ServiceLocator _serviceLocator;
 	private Namespace _wsdlNamespace;
