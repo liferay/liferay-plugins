@@ -53,17 +53,19 @@ DLFileEntry fileEntry = (DLFileEntry)request.getAttribute(WebKeys.DOCUMENT_LIBRA
 	</c:otherwise>
 </c:choose>
 
-<c:if test='<%= DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE) && strutsAction.equals("/document_library/view_file_entry") %>'>
-	<br />
+<c:if test="<%= Validator.isNotNull(fileEntry) %>">
+	<c:if test='<%= DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE) && strutsAction.equals("/document_library/view_file_entry") %>'>
+		<br />
 
-	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
-		<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
-		<portlet:param name="redirect" value="<%= redirect %>" />
-		<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
-		<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
-	</portlet:renderURL>
+		<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
+			<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
+			<portlet:param name="redirect" value="<%= redirect %>" />
+			<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
+			<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
+		</portlet:renderURL>
 
-	<input type="button" value="<liferay-ui:message key="edit" />" onClick="location = '<%= editURL %>';" />
+		<input type="button" value="<liferay-ui:message key="edit" />" onClick="location = '<%= editURL %>';" />
+	</c:if>
 </c:if>
 
 <script type="text/javascript">
