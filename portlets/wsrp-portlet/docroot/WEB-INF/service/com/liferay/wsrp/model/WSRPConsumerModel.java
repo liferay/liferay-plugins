@@ -56,15 +56,6 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 
 	public void setName(String name);
 
-	public String getRegistrationContextXML();
-
-	public void setRegistrationContextXML(String registrationContextXML);
-
-	public String getRegistrationPropertiesString();
-
-	public void setRegistrationPropertiesString(
-		String registrationPropertiesString);
-
 	public String getUrl();
 
 	public void setUrl(String url);
@@ -72,6 +63,15 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public String getWsdl();
 
 	public void setWsdl(String wsdl);
+
+	public String getRegistrationContextString();
+
+	public void setRegistrationContextString(String registrationContextString);
+
+	public String getRegistrationPropertiesString();
+
+	public void setRegistrationPropertiesString(
+		String registrationPropertiesString);
 
 	public WSRPConsumer toEscapedModel();
 }

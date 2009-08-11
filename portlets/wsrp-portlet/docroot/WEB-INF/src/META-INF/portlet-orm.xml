@@ -19,10 +19,10 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="name" />
-			<basic name="registrationContextXML" />
-			<basic name="registrationPropertiesString" />
 			<basic name="url" />
 			<basic name="wsdl" />
+			<basic name="registrationContextString" />
+			<basic name="registrationPropertiesString" />
 			<transient name="registrationContext" />
 			<transient name="registrationProperties" />
 		</attributes>

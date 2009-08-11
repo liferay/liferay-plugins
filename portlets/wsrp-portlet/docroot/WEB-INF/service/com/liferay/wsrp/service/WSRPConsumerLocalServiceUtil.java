@@ -115,22 +115,22 @@ public class WSRPConsumerLocalServiceUtil {
 		return getService().getWSRPConsumersCount(companyId);
 	}
 
-	public static com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
-		long wsrpConsumerId, java.lang.String name, java.lang.String url)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		return getService().updateWSRPConsumer(wsrpConsumerId, name, url);
-	}
-
-	public static com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
+	public static com.liferay.wsrp.model.WSRPConsumer registerWSRPConsumer(
 		long wsrpConsumerId,
 		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
 		java.lang.String registrationHandle)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		return getService()
-				   .updateWSRPConsumer(wsrpConsumerId, registrationProperties,
-			registrationHandle);
+				   .registerWSRPConsumer(wsrpConsumerId,
+			registrationProperties, registrationHandle);
+	}
+
+	public static com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
+		long wsrpConsumerId, java.lang.String name, java.lang.String url)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		return getService().updateWSRPConsumer(wsrpConsumerId, name, url);
 	}
 
 	public static void clearService() {

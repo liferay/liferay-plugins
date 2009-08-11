@@ -96,15 +96,15 @@ public interface WSRPConsumerLocalService {
 	public int getWSRPConsumersCount(long companyId)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
-		long wsrpConsumerId, java.lang.String name, java.lang.String url)
+	public com.liferay.wsrp.model.WSRPConsumer registerWSRPConsumer(
+		long wsrpConsumerId,
+		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
+		java.lang.String registrationHandle)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
-		long wsrpConsumerId,
-		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
-		java.lang.String registrationHandle)
+		long wsrpConsumerId, java.lang.String name, java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 }

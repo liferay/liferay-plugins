@@ -481,28 +481,31 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
-		long wsrpConsumerId, java.lang.String name, java.lang.String url)
+	public com.liferay.wsrp.model.WSRPConsumer registerWSRPConsumer(
+		long wsrpConsumerId,
+		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
+		java.lang.String registrationHandle)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(wsrpConsumerId);
 
-		Object paramObj1 = ClpSerializer.translateInput(name);
+		Object paramObj1 = ClpSerializer.translateInput(registrationProperties);
 
-		if (name == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
+		if (registrationProperties == null) {
+			paramObj1 = new NullWrapper(
+					"com.liferay.portal.kernel.util.UnicodeProperties");
 		}
 
-		Object paramObj2 = ClpSerializer.translateInput(url);
+		Object paramObj2 = ClpSerializer.translateInput(registrationHandle);
 
-		if (url == null) {
+		if (registrationHandle == null) {
 			paramObj2 = new NullWrapper("java.lang.String");
 		}
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("updateWSRPConsumer",
+			returnObj = _classLoaderProxy.invoke("registerWSRPConsumer",
 					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
@@ -527,23 +530,20 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
-		long wsrpConsumerId,
-		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
-		java.lang.String registrationHandle)
+		long wsrpConsumerId, java.lang.String name, java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(wsrpConsumerId);
 
-		Object paramObj1 = ClpSerializer.translateInput(registrationProperties);
+		Object paramObj1 = ClpSerializer.translateInput(name);
 
-		if (registrationProperties == null) {
-			paramObj1 = new NullWrapper(
-					"com.liferay.portal.kernel.util.UnicodeProperties");
+		if (name == null) {
+			paramObj1 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj2 = ClpSerializer.translateInput(registrationHandle);
+		Object paramObj2 = ClpSerializer.translateInput(url);
 
-		if (registrationHandle == null) {
+		if (url == null) {
 			paramObj2 = new NullWrapper("java.lang.String");
 		}
 

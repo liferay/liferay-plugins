@@ -42,10 +42,10 @@ public class WSRPConsumerSoap implements Serializable {
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setName(model.getName());
-		soapModel.setRegistrationContextXML(model.getRegistrationContextXML());
-		soapModel.setRegistrationPropertiesString(model.getRegistrationPropertiesString());
 		soapModel.setUrl(model.getUrl());
 		soapModel.setWsdl(model.getWsdl());
+		soapModel.setRegistrationContextString(model.getRegistrationContextString());
+		soapModel.setRegistrationPropertiesString(model.getRegistrationPropertiesString());
 
 		return soapModel;
 	}
@@ -138,23 +138,6 @@ public class WSRPConsumerSoap implements Serializable {
 		_name = name;
 	}
 
-	public String getRegistrationContextXML() {
-		return _registrationContextXML;
-	}
-
-	public void setRegistrationContextXML(String registrationContextXML) {
-		_registrationContextXML = registrationContextXML;
-	}
-
-	public String getRegistrationPropertiesString() {
-		return _registrationPropertiesString;
-	}
-
-	public void setRegistrationPropertiesString(
-		String registrationPropertiesString) {
-		_registrationPropertiesString = registrationPropertiesString;
-	}
-
 	public String getUrl() {
 		return _url;
 	}
@@ -171,13 +154,30 @@ public class WSRPConsumerSoap implements Serializable {
 		_wsdl = wsdl;
 	}
 
+	public String getRegistrationContextString() {
+		return _registrationContextString;
+	}
+
+	public void setRegistrationContextString(String registrationContextString) {
+		_registrationContextString = registrationContextString;
+	}
+
+	public String getRegistrationPropertiesString() {
+		return _registrationPropertiesString;
+	}
+
+	public void setRegistrationPropertiesString(
+		String registrationPropertiesString) {
+		_registrationPropertiesString = registrationPropertiesString;
+	}
+
 	private long _wsrpConsumerId;
 	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;
-	private String _registrationContextXML;
-	private String _registrationPropertiesString;
 	private String _url;
 	private String _wsdl;
+	private String _registrationContextString;
+	private String _registrationPropertiesString;
 }

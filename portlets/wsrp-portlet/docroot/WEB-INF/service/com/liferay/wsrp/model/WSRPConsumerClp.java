@@ -94,23 +94,6 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		_name = name;
 	}
 
-	public String getRegistrationContextXML() {
-		return _registrationContextXML;
-	}
-
-	public void setRegistrationContextXML(String registrationContextXML) {
-		_registrationContextXML = registrationContextXML;
-	}
-
-	public String getRegistrationPropertiesString() {
-		return _registrationPropertiesString;
-	}
-
-	public void setRegistrationPropertiesString(
-		String registrationPropertiesString) {
-		_registrationPropertiesString = registrationPropertiesString;
-	}
-
 	public String getUrl() {
 		return _url;
 	}
@@ -125,6 +108,23 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 
 	public void setWsdl(String wsdl) {
 		_wsdl = wsdl;
+	}
+
+	public String getRegistrationContextString() {
+		return _registrationContextString;
+	}
+
+	public void setRegistrationContextString(String registrationContextString) {
+		_registrationContextString = registrationContextString;
+	}
+
+	public String getRegistrationPropertiesString() {
+		return _registrationPropertiesString;
+	}
+
+	public void setRegistrationPropertiesString(
+		String registrationPropertiesString) {
+		_registrationPropertiesString = registrationPropertiesString;
 	}
 
 	public oasis.names.tc.wsrp.v2.types.RegistrationContext getRegistrationContext() {
@@ -159,12 +159,12 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
 			model.setName(HtmlUtil.escape(getName()));
-			model.setRegistrationContextXML(HtmlUtil.escape(
-					getRegistrationContextXML()));
-			model.setRegistrationPropertiesString(HtmlUtil.escape(
-					getRegistrationPropertiesString()));
 			model.setUrl(HtmlUtil.escape(getUrl()));
 			model.setWsdl(HtmlUtil.escape(getWsdl()));
+			model.setRegistrationContextString(HtmlUtil.escape(
+					getRegistrationContextString()));
+			model.setRegistrationPropertiesString(HtmlUtil.escape(
+					getRegistrationPropertiesString()));
 
 			model = (WSRPConsumer)Proxy.newProxyInstance(WSRPConsumer.class.getClassLoader(),
 					new Class[] { WSRPConsumer.class },
@@ -182,10 +182,10 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
 		clone.setName(getName());
-		clone.setRegistrationContextXML(getRegistrationContextXML());
-		clone.setRegistrationPropertiesString(getRegistrationPropertiesString());
 		clone.setUrl(getUrl());
 		clone.setWsdl(getWsdl());
+		clone.setRegistrationContextString(getRegistrationContextString());
+		clone.setRegistrationPropertiesString(getRegistrationPropertiesString());
 
 		return clone;
 	}
@@ -243,14 +243,14 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		sb.append(getModifiedDate());
 		sb.append(", name=");
 		sb.append(getName());
-		sb.append(", registrationContextXML=");
-		sb.append(getRegistrationContextXML());
-		sb.append(", registrationPropertiesString=");
-		sb.append(getRegistrationPropertiesString());
 		sb.append(", url=");
 		sb.append(getUrl());
 		sb.append(", wsdl=");
 		sb.append(getWsdl());
+		sb.append(", registrationContextString=");
+		sb.append(getRegistrationContextString());
+		sb.append(", registrationPropertiesString=");
+		sb.append(getRegistrationPropertiesString());
 		sb.append("}");
 
 		return sb.toString();
@@ -284,20 +284,20 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		sb.append(getName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>registrationContextXML</column-name><column-value><![CDATA[");
-		sb.append(getRegistrationContextXML());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>registrationPropertiesString</column-name><column-value><![CDATA[");
-		sb.append(getRegistrationPropertiesString());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>url</column-name><column-value><![CDATA[");
 		sb.append(getUrl());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>wsdl</column-name><column-value><![CDATA[");
 		sb.append(getWsdl());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>registrationContextString</column-name><column-value><![CDATA[");
+		sb.append(getRegistrationContextString());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>registrationPropertiesString</column-name><column-value><![CDATA[");
+		sb.append(getRegistrationPropertiesString());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -310,8 +310,8 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;
-	private String _registrationContextXML;
-	private String _registrationPropertiesString;
 	private String _url;
 	private String _wsdl;
+	private String _registrationContextString;
+	private String _registrationPropertiesString;
 }
