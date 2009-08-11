@@ -22,11 +22,14 @@
 
 package com.liferay.wsrp.model.impl;
 
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.wsrp.model.WSRPConsumer;
 
-import com.thoughtworks.xstream.XStream;
+import java.io.IOException;
 
 import oasis.names.tc.wsrp.v2.types.RegistrationContext;
 
@@ -47,11 +50,12 @@ public class WSRPConsumerImpl
 			return _registrationContext;
 		}
 
-		String registrationContextString = getRegistrationContextXML();
+		String registrationContextString = getRegistrationContextString();
 
 		if (Validator.isNotNull(registrationContextString)) {
-			_registrationContext = (RegistrationContext)_xStream.fromXML(
-				registrationContextString);
+			_registrationContext =
+				(RegistrationContext)JSONFactoryUtil.deserialize(
+					registrationContextString);
 		}
 
 		return _registrationContext;
@@ -67,11 +71,10 @@ public class WSRPConsumerImpl
 		String registrationPropertiesString = getRegistrationPropertiesString();
 
 		try {
-			if (Validator.isNotNull(registrationPropertiesString)) {
-				_registrationProperties.load(registrationPropertiesString);
-			}
+			_registrationProperties.load(registrationPropertiesString);
 		}
-		catch (Exception e) {
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
 		}
 
 		return _registrationProperties;
@@ -80,7 +83,8 @@ public class WSRPConsumerImpl
 	public void setRegistrationContext(
 		RegistrationContext registrationContext) {
 
-		setRegistrationContextXML(_xStream.toXML(registrationContext));
+		setRegistrationContextString(
+			JSONFactoryUtil.serialize(registrationContext));
 
 		_registrationContext = registrationContext;
 	}
@@ -93,7 +97,7 @@ public class WSRPConsumerImpl
 		_registrationProperties = registrationProperties;
 	}
 
-	private static XStream _xStream = new XStream();
+	private static Log _log = LogFactoryUtil.getLog(WSRPConsumerImpl.class);
 
 	private RegistrationContext _registrationContext;
 	private UnicodeProperties _registrationProperties;

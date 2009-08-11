@@ -208,38 +208,35 @@ public class AdminPortlet extends MVCPortlet {
 		long wsrpConsumerId = ParamUtil.getLong(
 			actionRequest, "wsrpConsumerId");
 
-		boolean inbandRegistration =
-			ParamUtil.getBoolean(actionRequest, "inbandRegistration");
+		boolean inbandRegistration = ParamUtil.getBoolean(
+			actionRequest, "inbandRegistration");
 
 		UnicodeProperties registrationProperties = null;
-		String registrationHandle = null;
 
 		if (inbandRegistration) {
 			registrationProperties = new UnicodeProperties();
 
 			for (int i = 0;; i++) {
-				String regPropName =
-					ParamUtil.getString(actionRequest, "regPropName" + i);
+				String registrationPropertyName = ParamUtil.getString(
+					actionRequest, "registrationPropertyName" + i);
 
-				String regPropValue =
-					ParamUtil.getString(actionRequest, "regPropValue" + i);
+				String registrationPropertyValue = ParamUtil.getString(
+					actionRequest, "registrationPropertyValue" + i);
 
-				if (Validator.isNull(regPropName)) {
+				if (Validator.isNull(registrationPropertyName)) {
 					break;
 				}
 
 				registrationProperties.setProperty(
-					regPropName, regPropValue);
+					registrationPropertyName, registrationPropertyValue);
 			}
 		}
-		else {
-			registrationHandle =
-				ParamUtil.getString(actionRequest, "registrationHandle");
-		}
 
-		WSRPConsumerLocalServiceUtil.updateWSRPConsumer(
-			wsrpConsumerId, registrationProperties,
-			registrationHandle);
+		String registrationHandle = ParamUtil.getString(
+			actionRequest, "registrationHandle");
+
+		WSRPConsumerLocalServiceUtil.registerWSRPConsumer(
+			wsrpConsumerId, registrationProperties, registrationHandle);
 	}
 
 	protected void doUpdateWSRPProducer(

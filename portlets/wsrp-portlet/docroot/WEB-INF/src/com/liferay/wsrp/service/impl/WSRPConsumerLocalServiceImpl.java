@@ -118,6 +118,46 @@ public class WSRPConsumerLocalServiceImpl
 		return wsrpConsumerPersistence.countByCompanyId(companyId);
 	}
 
+	public WSRPConsumer registerWSRPConsumer(
+			long wsrpConsumerId, UnicodeProperties registrationProperties,
+			String registrationHandle)
+		throws PortalException, SystemException {
+
+		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
+			wsrpConsumerId);
+
+		RegistrationContext registrationContext = null;
+
+		if (registrationProperties != null) {
+			try {
+				registrationContext = register(
+					wsrpConsumer, registrationProperties);
+			}
+			catch (PortalException pe) {
+				throw pe;
+			}
+			catch (SystemException se) {
+				throw se;
+			}
+			catch (Exception e) {
+				throw new WSRPConsumerWSDLException(e);
+			}
+		}
+		else if (Validator.isNotNull(registrationHandle)) {
+			registrationContext = new RegistrationContext();
+
+			registrationContext.setRegistrationHandle(registrationHandle);
+		}
+
+		wsrpConsumer.setModifiedDate(new Date());
+		wsrpConsumer.setRegistrationContext(registrationContext);
+		wsrpConsumer.setRegistrationProperties(registrationProperties);
+
+		wsrpConsumerPersistence.update(wsrpConsumer, false);
+
+		return wsrpConsumer;
+	}
+
 	public WSRPConsumer updateWSRPConsumer(
 			long wsrpConsumerId, String name, String url)
 		throws PortalException, SystemException {
@@ -139,35 +179,6 @@ public class WSRPConsumerLocalServiceImpl
 		return wsrpConsumer;
 	}
 
-	public WSRPConsumer updateWSRPConsumer(
-			long wsrpConsumerId, UnicodeProperties registrationProperties,
-			String registrationHandle)
-		throws PortalException, SystemException {
-
-		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
-			wsrpConsumerId);
-
-		RegistrationContext registrationContext = null;
-
-		if (registrationProperties != null) {
-			registrationContext = register(
-				wsrpConsumer, registrationProperties);
-		}
-		else if (Validator.isNotNull(registrationHandle)) {
-			registrationContext = new RegistrationContext();
-
-			registrationContext.setRegistrationHandle(registrationHandle);
-		}
-
-		wsrpConsumer.setModifiedDate(new Date());
-		wsrpConsumer.setRegistrationContext(registrationContext);
-		wsrpConsumer.setRegistrationProperties(registrationProperties);
-
-		wsrpConsumerPersistence.update(wsrpConsumer, false);
-
-		return wsrpConsumer;
-	}
-
 	protected String getWSDL(String url) throws PortalException {
 		try {
 			String wsdl = HttpUtil.URLtoString(url);
@@ -183,79 +194,74 @@ public class WSRPConsumerLocalServiceImpl
 
 	protected RegistrationContext register(
 			WSRPConsumer wsrpConsumer, UnicodeProperties registrationProperties)
-		throws PortalException {
+		throws Exception {
+
+		WSRPConsumerManager wsrpConsumerManager =
+			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
+
+		WSRP_v2_Registration_PortType registrationService =
+			wsrpConsumerManager.getRegistrationService();
 
 		RegistrationContext registrationContext =
 			wsrpConsumer.getRegistrationContext();
 
-		try {
-			WSRPConsumerManager wsrpConsumerManager =
-				WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
+		Property[] properties = new Property[registrationProperties.size()];
 
-			WSRP_v2_Registration_PortType registrationService =
-				wsrpConsumerManager.getRegistrationService();
+		List<Map.Entry<String, String>> registrationPropertiesList =
+			ListUtil.fromCollection(registrationProperties.entrySet());
 
-			Property[] properties = new Property[registrationProperties.size()];
+		for (int i = 0; i < properties.length; i++) {
+			Map.Entry<String, String> entry = registrationPropertiesList.get(i);
 
-			List<Map.Entry<String, String>> registrationPropertiesList =
-				ListUtil.fromCollection(registrationProperties.entrySet());
+			String name = entry.getKey();
+			String value = entry.getValue();
 
-			for (int i = 0; i < properties.length; i++) {
-				Map.Entry<String, String> entry =
-					registrationPropertiesList.get(i);
+			PropertyDescription propertyDescription =
+				wsrpConsumerManager.getPropertyDescription(name);
 
-				String name = entry.getKey();
-				String value = entry.getValue();
+			QName qName = propertyDescription.getName();
 
-				PropertyDescription propertyDescription =
-					wsrpConsumerManager.getPropertyDescription(name);
+			Property property = new Property();
 
-				QName qName = propertyDescription.getName();
+			property.setName(qName);
+			property.setStringValue(value);
 
-				properties[i] = new Property();
-
-				properties[i].setName(qName);
-				properties[i].setStringValue(value);
-			}
-
-			Company company =
-				CompanyLocalServiceUtil.getCompany(wsrpConsumer.getCompanyId());
-
-			RegistrationData registrationData = new RegistrationData();
-
-			registrationData.setConsumerName(company.getVirtualHost());
-			registrationData.setConsumerAgent(ReleaseInfo.getServerInfo());
-			registrationData.setMethodGetSupported(true);
-			registrationData.setRegistrationProperties(properties);
-
-			if (registrationContext == null) {
-				Register register = new Register();
-
-				register.setRegistrationData(registrationData);
-
-				registrationContext = registrationService.register(register);
-			}
-			else {
-				ModifyRegistration modifyRegistration =
-					new ModifyRegistration();
-
-				modifyRegistration.setRegistrationContext(registrationContext);
-				modifyRegistration.setRegistrationData(registrationData);
-
-				RegistrationState registrationState =
-					registrationService.modifyRegistration(modifyRegistration);
-
-				registrationContext.setRegistrationState(
-					registrationState.getRegistrationState());
-				registrationContext.setScheduledDestruction(
-					registrationState.getScheduledDestruction());
-			}
-
-			wsrpConsumerManager.updateServiceDescription(registrationContext);
+			properties[i] = property;
 		}
-		catch (Exception e) {
-			throw new WSRPConsumerWSDLException(e);
+
+		Company company = CompanyLocalServiceUtil.getCompany(
+			wsrpConsumer.getCompanyId());
+
+		RegistrationData registrationData = new RegistrationData();
+
+		registrationData.setConsumerAgent(ReleaseInfo.getServerInfo());
+		registrationData.setConsumerName(company.getVirtualHost());
+		registrationData.setMethodGetSupported(true);
+		registrationData.setRegistrationProperties(properties);
+
+		if (registrationContext == null) {
+			Register register = new Register();
+
+			register.setRegistrationData(registrationData);
+
+			registrationContext = registrationService.register(register);
 		}
+		else {
+			ModifyRegistration modifyRegistration = new ModifyRegistration();
+
+			modifyRegistration.setRegistrationContext(registrationContext);
+			modifyRegistration.setRegistrationData(registrationData);
+
+			RegistrationState registrationState =
+				registrationService.modifyRegistration(modifyRegistration);
+
+			registrationContext.setRegistrationState(
+				registrationState.getRegistrationState());
+			registrationContext.setScheduledDestruction(
+				registrationState.getScheduledDestruction());
+		}
+
+		wsrpConsumerManager.updateServiceDescription(registrationContext);
 
 		return registrationContext;
 	}

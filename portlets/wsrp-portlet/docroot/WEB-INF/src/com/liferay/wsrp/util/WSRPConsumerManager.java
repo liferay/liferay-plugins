@@ -105,8 +105,9 @@ public class WSRPConsumerManager {
 		PropertyDescription[] propertyDescriptions = getPropertyDescriptions();
 
 		if (propertyDescriptions != null) {
-			for (PropertyDescription propertyDescription : propertyDescriptions)
-			{
+			for (PropertyDescription propertyDescription :
+					propertyDescriptions) {
+
 				_propertyDescriptions.put(
 					propertyDescription.getName().toString(),
 					propertyDescription);
@@ -136,7 +137,8 @@ public class WSRPConsumerManager {
 	}
 
 	public void updateServiceDescription(
-		RegistrationContext registrationContext) throws Exception {
+			RegistrationContext registrationContext)
+		throws Exception {
 
 		GetServiceDescription getServiceDescription =
 			new GetServiceDescription();
@@ -213,11 +215,11 @@ public class WSRPConsumerManager {
 	private URL _markupServiceURL;
 	private Map<String, PortletDescription> _portletDescriptions =
 		new HashMap<String, PortletDescription>();
+	private WSRP_v2_PortletManagement_PortType _portletManagementService;
 	private Map<String, PropertyDescription> _propertyDescriptions =
 		new HashMap<String, PropertyDescription>();
-	private ServiceDescription _serviceDescription;
-	private WSRP_v2_PortletManagement_PortType _portletManagementService;
 	private WSRP_v2_Registration_PortType _registrationService;
+	private ServiceDescription _serviceDescription;
 	private WSRP_v2_ServiceDescription_PortType _serviceDescriptionService;
 	private WSRP_v2_ServiceLocator _serviceLocator;
 	private Namespace _wsdlNamespace;

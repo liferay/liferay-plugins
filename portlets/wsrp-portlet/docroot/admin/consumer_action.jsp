@@ -29,17 +29,9 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 
 WSRPConsumer wsrpConsumer = (WSRPConsumer)row.getObject();
 
-WSRPConsumerManager wsrpConsumerManager = null;
-boolean requiresRegistration = false;
-boolean registered = wsrpConsumer.getRegistrationContext() == null ? false : true;
+WSRPConsumerManager wsrpConsumerManager = WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
-try {
-	wsrpConsumerManager = WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
-	ServiceDescription serviceDescription = wsrpConsumerManager.getServiceDescription();
-	requiresRegistration = serviceDescription.isRequiresRegistration();
-}
-catch (NoSuchConsumerException nsce) {
-}
+ServiceDescription serviceDescription = wsrpConsumerManager.getServiceDescription();
 %>
 
 <liferay-ui:icon-menu>
@@ -51,7 +43,7 @@ catch (NoSuchConsumerException nsce) {
 
 	<liferay-ui:icon image="edit" url="<%= editURL %>" />
 
-	<c:if test="<%= requiresRegistration %>">
+	<c:if test="<%= serviceDescription.isRequiresRegistration() %>">
 		<portlet:renderURL var="editRegistrationURL">
 			<portlet:param name="jspPage" value="/admin/edit_consumer_registration.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -61,7 +53,7 @@ catch (NoSuchConsumerException nsce) {
 		<liferay-ui:icon image="edit" message="edit-registration" url="<%= editRegistrationURL %>" />
 	</c:if>
 
-	<c:if test="<%= !requiresRegistration || registered %>">
+	<c:if test="<%= !serviceDescription.isRequiresRegistration() || (wsrpConsumer.getRegistrationContext() != null) %>">
 		<portlet:renderURL var="managePortletsURL">
 			<portlet:param name="jspPage" value="/admin/view_consumer_portlets.jsp" />
 			<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />

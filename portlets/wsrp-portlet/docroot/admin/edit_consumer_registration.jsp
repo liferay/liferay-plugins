@@ -29,31 +29,24 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 long wsrpConsumerId = ParamUtil.getLong(request, "wsrpConsumerId");
 
-WSRPConsumer wsrpConsumer = null;
-WSRPConsumerManager wsrpConsumerManager = null;
-ServiceDescription serviceDescription = null;
+WSRPConsumer wsrpConsumer = WSRPConsumerLocalServiceUtil.getWSRPConsumer(wsrpConsumerId);
+
+UnicodeProperties registrationProperties = wsrpConsumer.getRegistrationProperties();
+
+WSRPConsumerManager wsrpConsumerManager = WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
+
+ServiceDescription serviceDescription = wsrpConsumerManager.getServiceDescription();
+
 boolean supportsInbandRegistration = false;
-boolean requiresRegistration = false;
-UnicodeProperties registrationProperties = null;
 
-try {
-	wsrpConsumer = WSRPConsumerLocalServiceUtil.getWSRPConsumer(wsrpConsumerId);
-	wsrpConsumerManager = WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
-	serviceDescription = wsrpConsumerManager.getServiceDescription();
-	requiresRegistration = serviceDescription.isRequiresRegistration();
-	registrationProperties = wsrpConsumer.getRegistrationProperties();
-}
-catch (NoSuchConsumerException nsce) {
+if (serviceDescription.isRequiresRegistration() && (wsrpConsumerManager.getRegistrationService() != null)) {
+	supportsInbandRegistration = true;
 }
 
-PropertyDescription[] propertyDescriptions = null;
+PropertyDescription[] propertyDescriptions = new PropertyDescription[0];
 
-if (requiresRegistration) {
-	supportsInbandRegistration = wsrpConsumerManager.getRegistrationService() == null ? false : true;
-
-	if (supportsInbandRegistration) {
-		propertyDescriptions = wsrpConsumerManager.getPropertyDescriptions();
-	}
+if (supportsInbandRegistration) {
+	propertyDescriptions = wsrpConsumerManager.getPropertyDescriptions();
 }
 %>
 
@@ -124,6 +117,7 @@ if (requiresRegistration) {
 			<liferay-ui:message key="registration-properties" />
 		</td>
 		<td>
+
 			<%
 			SearchContainer searchContainer = new SearchContainer();
 
@@ -135,10 +129,6 @@ if (requiresRegistration) {
 
 			searchContainer.setHeaderNames(headerNames);
 			searchContainer.setEmptyResultsMessage("there-are-no-registration-properties");
-
-			if (propertyDescriptions == null) {
-				propertyDescriptions = new PropertyDescription[0];
-			}
 
 			List resultRows = searchContainer.getResultRows();
 
@@ -161,20 +151,20 @@ if (requiresRegistration) {
 
 				sb.append("<input name=\"");
 				sb.append(renderResponse.getNamespace());
-				sb.append("regPropName");
+				sb.append("registrationPropertyName");
 				sb.append(i);
 				sb.append("\" type=\"hidden\" value=\"");
 				sb.append(fullyQualifiedName);
 				sb.append("\" />");
 
-				String regPropValue = GetterUtil.getString(registrationProperties.get(fullyQualifiedName));
+				String registrationPropertyValue = GetterUtil.getString(registrationProperties.get(fullyQualifiedName));
 
 				sb.append("<input name=\"");
 				sb.append(renderResponse.getNamespace());
-				sb.append("regPropValue");
+				sb.append("registrationPropertyValue");
 				sb.append(i);
 				sb.append("\" type=\"text\" value=\"");
-				sb.append(regPropValue);
+				sb.append(registrationPropertyValue);
 				sb.append("\" />");
 
 				row.addText(sb.toString());
