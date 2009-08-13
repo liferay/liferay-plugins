@@ -1404,6 +1404,16 @@ table.calendar {
 	top: 3px;
 }
 
+/* Today's Events */
+
+.todays-events-portlet h2 {
+	font-size: 13px;
+}
+
+.todays-events-portlet .event {
+	font-size: 11px;
+}
+
 /* Wikis */
 
 .portlet-wiki h1.page-title {
