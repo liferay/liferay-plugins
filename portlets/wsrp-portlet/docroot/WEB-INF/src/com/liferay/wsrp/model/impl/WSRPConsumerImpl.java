@@ -22,7 +22,6 @@
 
 package com.liferay.wsrp.model.impl;
 
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
@@ -32,6 +31,10 @@ import com.liferay.wsrp.model.WSRPConsumer;
 import java.io.IOException;
 
 import oasis.names.tc.wsrp.v2.types.RegistrationContext;
+
+import org.jabsorb.JSONSerializer;
+import org.jabsorb.serializer.MarshallException;
+import org.jabsorb.serializer.UnmarshallException;
 
 /**
  * <a href="WSRPConsumerImpl.java.html"><b><i>View Source</i></b></a>
@@ -52,10 +55,15 @@ public class WSRPConsumerImpl
 
 		String registrationContextString = getRegistrationContextString();
 
-		if (Validator.isNotNull(registrationContextString)) {
-			_registrationContext =
-				(RegistrationContext)JSONFactoryUtil.deserialize(
-					registrationContextString);
+		try {
+			if (Validator.isNotNull(registrationContextString)) {
+				_registrationContext =
+					(RegistrationContext)_getSerializer().fromJSON(
+						registrationContextString);
+			}
+		}
+		catch (UnmarshallException ue) {
+			_log.error(ue, ue);
 		}
 
 		return _registrationContext;
@@ -83,8 +91,13 @@ public class WSRPConsumerImpl
 	public void setRegistrationContext(
 		RegistrationContext registrationContext) {
 
-		setRegistrationContextString(
-			JSONFactoryUtil.serialize(registrationContext));
+		try {
+			setRegistrationContextString(
+				_getSerializer().toJSON(registrationContext));
+		}
+		catch (MarshallException me) {
+			_log.error(me, me);
+		}
 
 		_registrationContext = registrationContext;
 	}
@@ -97,7 +110,26 @@ public class WSRPConsumerImpl
 		_registrationProperties = registrationProperties;
 	}
 
+	private static JSONSerializer _getSerializer() {
+		if (_serializer != null) {
+			return _serializer;
+		}
+
+		_serializer = new JSONSerializer();
+
+		try {
+			 _serializer.registerDefaultSerializers();
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
+		return _serializer;
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(WSRPConsumerImpl.class);
+
+	private static JSONSerializer _serializer;
 
 	private RegistrationContext _registrationContext;
 	private UnicodeProperties _registrationProperties;
