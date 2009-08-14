@@ -221,11 +221,12 @@ body #banner h1.logo a {
 
 .columns-3 #column-1,
 .columns-3 #column-3 {
-	width: 30%;
+	min-width: 250px;
+	width: 25%;
 }
 
 .columns-3 #column-2 {
-	width: 40%;
+	width: 50%;
 }
 
 .columns-1 #column-1,
@@ -1092,12 +1093,6 @@ table.calendar {
 	margin-top: 1em;
 }
 
-/* Google Gadget */
-
-.google-gadget-portlet {
-	width: 250px;
-}
-
 /* Log In */
 
 .portlet-login {
@@ -1412,6 +1407,20 @@ table.calendar {
 
 .todays-events-portlet .event {
 	font-size: 11px;
+}
+
+/* Weather */
+
+.weather-portlet .control-wrapper {
+	position: relative;
+}
+
+.weather-portlet .edit {
+	display: block;
+	font-size: 11px;
+	position: absolute;
+	right: 0px;
+	top: -32px;
 }
 
 /* Wikis */

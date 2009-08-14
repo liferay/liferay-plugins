@@ -167,13 +167,9 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		// Home
 
-		Layout layout = addLayout(group, "Home", "/home", "user_home");
+		Layout layout = addLayout(group, "Home", "/home", "3_columns");
 
 		updatePortletTitle(layout, "29", "sites");
-		updatePortletTitle(
-			layout, "1_WAR_googlegadgetportlet_INSTANCE_abcd", "Weather");
-
-		configureGoogleGadget(layout);
 
 		updatePermissions(layout, false);
 
@@ -228,28 +224,6 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 				layout, portletId);
 
 		portletSetup.setValue("displayStyle", "title-list");
-
-		portletSetup.store();
-	}
-
-	protected void configureGoogleGadget(Layout layout) throws Exception {
-		PortletPreferences portletSetup =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				layout, "1_WAR_googlegadgetportlet_INSTANCE_abcd", null);
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("http://www.yourminis.com/embed/google.aspx?xheight=80&");
-		sb.append("xwidth=250&mininame=weather&buildnumber=1.5.5.6&");
-		sb.append("title=Weather(91789)&accountname=yourminis&");
-		sb.append("uri=yourminis/yourminis/mini:weather&");
-		sb.append("swfhost=ct.yourminis.com&hostname=www.yourminis.com&");
-		sb.append("swfurl=/widget_weatherchannel.swf&");
-		sb.append("statshostname=stats.yourminis.com&uniqueID=realtime&");
-
-		String gadgetId = sb.toString();
-
-		portletSetup.setValue("gadget-id", HttpUtil.encodeURL(gadgetId));
 
 		portletSetup.store();
 	}
