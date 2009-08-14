@@ -487,71 +487,61 @@ textarea.focus {
 
 /* Activities */
 
-.portlet-activities .activity-body a,
-.so-portlet-activities .activity-body a {
+.so-portlet-activities .taglib-page-iterator {
+	margin-top: 1em;
+}
+
+.so-portlet-activities .taglib-page-iterator .search-results {
+	display: none;
+}
+
+.so-portlet-activities .taglib-page-iterator .search-pages {
+	float: none;
+}
+
+.so-portlet-activities .taglib-page-iterator .page-links a,
+.so-portlet-activities .taglib-page-iterator .page-links span {
+	border: none;
+}
+
+.portlet-activities .separator,
+.so-portlet-activities .separator,
+.taglib-social-activities .separator {
+	border-top: none;
+}
+
+.taglib-social-activities .activity-body {
+	font-size: 9px;
+}
+
+.taglib-social-activities .activity-body a {
 	background: url(../images/custom/bullet.png) no-repeat 3px 50%;
 	padding-left: 10px;
 }
 
-.portlet-activities .user {
-	font-weight: bold;
-}
-
-.portlet-activities .user,
-.so-portlet-activities .user {
+.taglib-social-activities .user {
 	color: #3C6696;
 	font-weight: bold;
 	font-size: 11px;
 }
 
-.so-portlet-activities a.group {
+.taglib-social-activities a.group {
 	color: #740B2B;
 	font-weight: bold;
 }
 
-.so-portlet-activities .activity-body a {
-	padding-left: 5px;
-}
-
-.so-portlet-activities .activity-body {
-	border-bottom: 1px solid #DBDBDB;
-	font-size: 9px;
-	width: 323px;
-}
-
-.so-portlet-activities .activity-title {
+.taglib-social-activities .activity-title {
 	color: #413739;
 	font-size: 11px;
 }
 
-.so-portlet-activities .time {
+.taglib-social-activities .time {
 	color: #848484;
 }
 
-.so-portlet-activities .taglib-social-activities {
-	width: 350px;
-}
-
-.so-portlet-activities .first-day-separator {
+.taglib-social-activities .first-day-separator {
 	border-bottom: 1px solid #B3B3B3;
 	font-weight: bold;
-}
-
-.so-portlet-activities .pagination {
-	margin-top: 1em;
-}
-
-.so-portlet-activities .pagination .search-results {
-	display: none;
-}
-
-.so-portlet-activities .pagination .search-pages {
-	float: none;
-}
-
-.so-portlet-activities .search-pages .page-links a,
-.so-portlet-activities .search-pages .page-links span {
-	border: none;
 }
 
 /* Asset Publisher */
