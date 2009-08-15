@@ -511,7 +511,9 @@ textarea.focus {
 }
 
 .taglib-social-activities .activity-body {
+	border-bottom: 1px solid #DBDBDB;
 	font-size: 9px;
+	width: 325px;
 }
 
 .taglib-social-activities .activity-body a {
