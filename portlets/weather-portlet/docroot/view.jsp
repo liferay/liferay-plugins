@@ -24,13 +24,9 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-String editURL = portletDisplay.getURLEdit();
-%>
-
 <c:if test="<%= PortletPermissionUtil.contains(permissionChecker, plid, portletDisplay.getId(), ActionKeys.PREFERENCES) %>">
 	<div class="control-wrapper">
-		<a class="edit" href="<%= editURL %>"><liferay-ui:message key="configure" /></a>
+		<a class="edit" href="<%= portletDisplay.getURLEdit() %>"><liferay-ui:message key="configure" /></a>
 	</div>
 </c:if>
 
