@@ -201,6 +201,18 @@ body #banner h1.logo a {
 	display: none;
 }
 
+.portlet-configuration {
+	position: relative;
+}
+
+.portlet-configuration a {
+	display: block;
+	font-size: 11px;
+	position: absolute;
+	right: 0px;
+	top: -32px;
+}
+
 /* ---------- Layout ---------- */
 
 .lfr-grid .lfr-column {
@@ -1155,18 +1167,6 @@ table.calendar {
 
 /* RSS */
 
-.portlet-rss .control-wrapper {
-	position: relative;
-}
-
-.portlet-rss .configure {
-	display: block;
-	font-size: 11px;
-	position: absolute;
-	right: 0px;
-	top: -32px;
-}
-
 .portlet-rss .feed-entry-title {
 	font-size: 11px;
 }
@@ -1401,38 +1401,10 @@ table.calendar {
 	font-size: 11px;
 }
 
-/* Weather */
-
-.weather-portlet .control-wrapper {
-	position: relative;
-}
-
-.weather-portlet .edit {
-	display: block;
-	font-size: 11px;
-	position: absolute;
-	right: 0px;
-	top: -32px;
-}
-
 /* Wikis */
 
 .portlet-wiki h1.page-title {
 	border-bottom: none;
 	font-size: 2.5em;
 	line-height: 1em;
-}
-
-/* WYSIWYG */
-
-.wysiwyg-portlet .control-wrapper {
-	position: relative;
-}
-
-.wysiwyg-portlet .configure {
-	display: block;
-	font-size: 11px;
-	position: absolute;
-	right: 0px;
-	top: -32px;
 }
