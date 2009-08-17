@@ -24,12 +24,6 @@
 
 <%@ include file="/init.jsp" %>
 
-<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, plid, portletDisplay.getId(), ActionKeys.PREFERENCES) %>">
-	<div class="control-wrapper">
-		<a class="edit" href="<%= portletDisplay.getURLEdit() %>"><liferay-ui:message key="configure" /></a>
-	</div>
-</c:if>
-
 <form name="<portlet:namespace />fm" target="_blank" onSubmit="submitForm(document.<portlet:namespace />fm, 'http://www.weather.com/search/search', false); return false;">
 
 <table class="lfr-table">
@@ -72,9 +66,9 @@ for (String zip : zips) {
 
 <br />
 
-<liferay-ui:message key="city-or-zip-code" /><br />
+<liferay-ui:message key="city-or-zip-code" />
 
-<input name="where" size="15" type="text" />
+<input name="where" size="23" type="text" />
 
 <input type="submit" value="<liferay-ui:message key="search" />" />
 
