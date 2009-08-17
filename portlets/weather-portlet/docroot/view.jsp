@@ -72,9 +72,7 @@ for (String zip : zips) {
 
 <br />
 
-<liferay-ui:message key="city-or-zip-code" />
-
-<br />
+<liferay-ui:message key="city-or-zip-code" /><br />
 
 <input name="where" size="15" type="text" />
 
