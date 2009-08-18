@@ -50,7 +50,6 @@ import java.util.List;
  * <a href="MeetupsEntryModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	public static final String TABLE_NAME = "WOL_MeetupsEntry";

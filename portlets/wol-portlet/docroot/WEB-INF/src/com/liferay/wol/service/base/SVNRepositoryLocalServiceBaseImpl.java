@@ -55,10 +55,10 @@ import com.liferay.wol.service.persistence.WallEntryPersistence;
 import java.util.List;
 
 /**
- * <a href="SVNRepositoryLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="SVNRepositoryLocalServiceBaseImpl.java.html"><b><i>View Source</i>
+ * </b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public abstract class SVNRepositoryLocalServiceBaseImpl
 	implements SVNRepositoryLocalService {

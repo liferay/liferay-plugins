@@ -32,7 +32,6 @@ import java.util.List;
  * <a href="JIRAChangeGroupSoap.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAChangeGroupSoap implements Serializable {
 	public static JIRAChangeGroupSoap toSoapModel(JIRAChangeGroup model) {

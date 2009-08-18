@@ -28,7 +28,6 @@ import com.liferay.portal.model.BaseModel;
  * <a href="SVNRepositoryModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface SVNRepositoryModel extends BaseModel<SVNRepository> {
 	public long getPrimaryKey();

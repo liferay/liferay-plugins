@@ -31,7 +31,6 @@ import java.util.List;
  * <a href="SVNRepositorySoap.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class SVNRepositorySoap implements Serializable {
 	public static SVNRepositorySoap toSoapModel(SVNRepository model) {

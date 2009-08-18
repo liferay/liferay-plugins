@@ -29,10 +29,10 @@ import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
 
 /**
- * <a href="SVNRepositoryLocalServiceClp.java.html"><b><i>View Source</i></b></a>
+ * <a href="SVNRepositoryLocalServiceClp.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	public SVNRepositoryLocalServiceClp(ClassLoaderProxy classLoaderProxy) {

@@ -50,7 +50,6 @@ import java.util.List;
  * <a href="WallEntryModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 	public static final String TABLE_NAME = "WOL_WallEntry";

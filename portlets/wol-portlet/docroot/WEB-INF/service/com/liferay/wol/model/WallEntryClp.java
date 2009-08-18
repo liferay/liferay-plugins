@@ -39,7 +39,6 @@ import java.util.Date;
  * <a href="WallEntryClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry {
 	public WallEntryClp() {

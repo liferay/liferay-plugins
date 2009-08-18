@@ -26,7 +26,6 @@ package com.liferay.wol.model;
  * <a href="JIRAIssue.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface JIRAIssue extends JIRAIssueModel {
 }

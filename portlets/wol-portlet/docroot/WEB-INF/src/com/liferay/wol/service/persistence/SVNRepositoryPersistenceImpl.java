@@ -54,10 +54,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * <a href="SVNRepositoryPersistenceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="SVNRepositoryPersistenceImpl.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 	implements SVNRepositoryPersistence {
@@ -441,7 +441,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 			}
 		}
 		else {
-			if (result instanceof List) {
+			if (result instanceof List<?>) {
 				return null;
 			}
 			else {

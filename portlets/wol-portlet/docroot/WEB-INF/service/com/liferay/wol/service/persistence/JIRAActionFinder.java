@@ -26,7 +26,6 @@ package com.liferay.wol.service.persistence;
  * <a href="JIRAActionFinder.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface JIRAActionFinder {
 	public int countByCD_P(java.util.Date createDate, long projectId)

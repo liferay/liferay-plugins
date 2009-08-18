@@ -25,10 +25,10 @@ package com.liferay.wol.service.persistence;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
- * <a href="MeetupsRegistrationPersistence.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsRegistrationPersistence.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface MeetupsRegistrationPersistence extends BasePersistence {
 	public void cacheResult(

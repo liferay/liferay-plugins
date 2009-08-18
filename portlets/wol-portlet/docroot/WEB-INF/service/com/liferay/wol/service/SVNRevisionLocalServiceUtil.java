@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
  * <a href="SVNRevisionLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class SVNRevisionLocalServiceUtil {
 	public static com.liferay.wol.model.SVNRevision addSVNRevision(

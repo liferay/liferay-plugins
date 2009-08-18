@@ -29,10 +29,10 @@ import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
 
 /**
- * <a href="JIRAChangeGroupLocalServiceClp.java.html"><b><i>View Source</i></b></a>
+ * <a href="JIRAChangeGroupLocalServiceClp.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAChangeGroupLocalServiceClp
 	implements JIRAChangeGroupLocalService {

@@ -30,7 +30,6 @@ import java.util.Date;
  * <a href="SVNRevisionModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface SVNRevisionModel extends BaseModel<SVNRevision> {
 	public long getPrimaryKey();

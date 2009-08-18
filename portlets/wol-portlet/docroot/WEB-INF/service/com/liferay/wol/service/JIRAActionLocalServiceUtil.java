@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
  * <a href="JIRAActionLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAActionLocalServiceUtil {
 	public static com.liferay.wol.model.JIRAAction addJIRAAction(

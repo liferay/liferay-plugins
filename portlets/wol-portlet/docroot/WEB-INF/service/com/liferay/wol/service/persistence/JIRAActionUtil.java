@@ -26,7 +26,6 @@ package com.liferay.wol.service.persistence;
  * <a href="JIRAActionUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAActionUtil {
 	public static void cacheResult(com.liferay.wol.model.JIRAAction jiraAction) {

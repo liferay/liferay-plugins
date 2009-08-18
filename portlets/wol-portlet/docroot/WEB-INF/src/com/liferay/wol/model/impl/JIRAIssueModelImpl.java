@@ -48,7 +48,6 @@ import java.util.List;
  * <a href="JIRAIssueModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	public static final String TABLE_NAME = "jiraissue";

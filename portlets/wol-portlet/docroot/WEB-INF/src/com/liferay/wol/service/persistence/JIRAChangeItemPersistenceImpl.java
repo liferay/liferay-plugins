@@ -53,10 +53,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * <a href="JIRAChangeItemPersistenceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="JIRAChangeItemPersistenceImpl.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 	implements JIRAChangeItemPersistence {

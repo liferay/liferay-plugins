@@ -26,7 +26,6 @@ package com.liferay.wol.service.persistence;
  * <a href="JIRAChangeGroupFinder.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface JIRAChangeGroupFinder {
 	public int countByCD_P(java.util.Date createDate, long projectId)

@@ -26,10 +26,10 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 
 /**
- * <a href="JIRAChangeGroupLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="JIRAChangeGroupLocalServiceUtil.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAChangeGroupLocalServiceUtil {
 	public static com.liferay.wol.model.JIRAChangeGroup addJIRAChangeGroup(

@@ -30,7 +30,6 @@ import java.util.Date;
  * <a href="JIRAChangeGroupModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 	public long getPrimaryKey();

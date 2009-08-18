@@ -26,7 +26,6 @@ package com.liferay.wol.service.persistence;
  * <a href="JIRAIssueFinderUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAIssueFinderUtil {
 	public static int countByCD_P(java.util.Date createDate, long projectId)

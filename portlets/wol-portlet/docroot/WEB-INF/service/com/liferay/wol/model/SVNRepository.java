@@ -26,7 +26,6 @@ package com.liferay.wol.model;
  * <a href="SVNRepository.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface SVNRepository extends SVNRepositoryModel {
 	public java.lang.String getName();

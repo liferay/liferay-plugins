@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.util.NullWrapper;
  * <a href="JIRAIssueLocalServiceClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 	public JIRAIssueLocalServiceClp(ClassLoaderProxy classLoaderProxy) {

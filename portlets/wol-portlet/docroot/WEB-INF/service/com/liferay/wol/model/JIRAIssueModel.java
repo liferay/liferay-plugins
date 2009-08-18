@@ -30,7 +30,6 @@ import java.util.Date;
  * <a href="JIRAIssueModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface JIRAIssueModel extends BaseModel<JIRAIssue> {
 	public long getPrimaryKey();

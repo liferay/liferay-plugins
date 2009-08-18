@@ -29,10 +29,10 @@ import com.liferay.portal.kernel.annotation.Propagation;
 import com.liferay.portal.kernel.annotation.Transactional;
 
 /**
- * <a href="MeetupsRegistrationLocalService.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsRegistrationLocalService.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})

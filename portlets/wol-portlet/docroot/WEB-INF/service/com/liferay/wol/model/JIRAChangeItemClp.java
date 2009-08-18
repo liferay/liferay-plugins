@@ -34,7 +34,6 @@ import java.lang.reflect.Proxy;
  * <a href="JIRAChangeItemClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 	implements JIRAChangeItem {

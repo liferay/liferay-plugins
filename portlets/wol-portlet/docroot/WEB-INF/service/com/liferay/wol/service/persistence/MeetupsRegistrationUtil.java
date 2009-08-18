@@ -26,7 +26,6 @@ package com.liferay.wol.service.persistence;
  * <a href="MeetupsRegistrationUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class MeetupsRegistrationUtil {
 	public static void cacheResult(

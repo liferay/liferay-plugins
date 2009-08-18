@@ -31,7 +31,6 @@ import java.util.Date;
  * <a href="MeetupsEntryModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface MeetupsEntryModel extends BaseModel<MeetupsEntry> {
 	public long getPrimaryKey();

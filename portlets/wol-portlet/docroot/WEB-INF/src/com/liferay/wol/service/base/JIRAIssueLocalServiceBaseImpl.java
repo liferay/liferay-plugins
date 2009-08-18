@@ -55,10 +55,10 @@ import com.liferay.wol.service.persistence.WallEntryPersistence;
 import java.util.List;
 
 /**
- * <a href="JIRAIssueLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="JIRAIssueLocalServiceBaseImpl.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public abstract class JIRAIssueLocalServiceBaseImpl
 	implements JIRAIssueLocalService {

@@ -34,7 +34,6 @@ import java.lang.reflect.Proxy;
  * <a href="SVNRepositoryClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 	implements SVNRepository {

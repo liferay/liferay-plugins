@@ -32,7 +32,6 @@ import java.util.List;
  * <a href="JIRAActionSoap.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAActionSoap implements Serializable {
 	public static JIRAActionSoap toSoapModel(JIRAAction model) {

@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.util.NullWrapper;
  * <a href="WallEntryLocalServiceClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public WallEntryLocalServiceClp(ClassLoaderProxy classLoaderProxy) {

@@ -31,7 +31,6 @@ import java.util.Date;
  * <a href="WallEntryModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface WallEntryModel extends BaseModel<WallEntry> {
 	public long getPrimaryKey();

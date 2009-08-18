@@ -59,7 +59,6 @@ import java.util.List;
  * <a href="JIRAIssuePersistenceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 	implements JIRAIssuePersistence {
@@ -879,7 +878,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 			}
 		}
 		else {
-			if (result instanceof List) {
+			if (result instanceof List<?>) {
 				return null;
 			}
 			else {

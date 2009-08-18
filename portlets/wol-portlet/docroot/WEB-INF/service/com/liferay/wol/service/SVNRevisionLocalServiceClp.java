@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.util.NullWrapper;
  * <a href="SVNRevisionLocalServiceClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 	public SVNRevisionLocalServiceClp(ClassLoaderProxy classLoaderProxy) {

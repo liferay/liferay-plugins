@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
  * <a href="WallEntryLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WallEntryLocalServiceUtil {
 	public static com.liferay.wol.model.WallEntry addWallEntry(

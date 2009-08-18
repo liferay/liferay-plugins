@@ -47,10 +47,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <a href="MeetupsRegistrationModelImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsRegistrationModelImpl.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistration> {
 	public static final String TABLE_NAME = "WOL_MeetupsRegistration";

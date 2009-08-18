@@ -47,7 +47,6 @@ import java.util.List;
  * <a href="SVNRevisionModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 	public static final String TABLE_NAME = "WOL_SVNRevision";

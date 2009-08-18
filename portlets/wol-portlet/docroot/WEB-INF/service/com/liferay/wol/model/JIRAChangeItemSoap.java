@@ -31,7 +31,6 @@ import java.util.List;
  * <a href="JIRAChangeItemSoap.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAChangeItemSoap implements Serializable {
 	public static JIRAChangeItemSoap toSoapModel(JIRAChangeItem model) {

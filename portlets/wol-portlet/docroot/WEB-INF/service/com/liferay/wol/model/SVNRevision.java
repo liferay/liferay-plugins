@@ -26,7 +26,6 @@ package com.liferay.wol.model;
  * <a href="SVNRevision.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface SVNRevision extends SVNRevisionModel {
 	public com.liferay.wol.model.SVNRepository getSVNRepository();

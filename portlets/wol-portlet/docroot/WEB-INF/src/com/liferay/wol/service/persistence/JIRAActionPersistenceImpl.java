@@ -56,7 +56,6 @@ import java.util.List;
  * <a href="JIRAActionPersistenceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 	implements JIRAActionPersistence {

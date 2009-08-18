@@ -46,7 +46,6 @@ import java.util.List;
  * <a href="JIRAChangeItemModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 	public static final String TABLE_NAME = "changeitem";

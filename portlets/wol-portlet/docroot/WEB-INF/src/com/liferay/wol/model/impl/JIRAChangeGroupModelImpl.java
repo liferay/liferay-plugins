@@ -48,7 +48,6 @@ import java.util.List;
  * <a href="JIRAChangeGroupModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
 	public static final String TABLE_NAME = "changegroup";

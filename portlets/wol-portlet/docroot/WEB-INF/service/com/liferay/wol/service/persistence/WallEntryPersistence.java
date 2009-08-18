@@ -28,7 +28,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * <a href="WallEntryPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface WallEntryPersistence extends BasePersistence {
 	public void cacheResult(com.liferay.wol.model.WallEntry wallEntry);

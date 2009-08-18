@@ -28,7 +28,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * <a href="JIRAChangeGroupPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface JIRAChangeGroupPersistence extends BasePersistence {
 	public void cacheResult(

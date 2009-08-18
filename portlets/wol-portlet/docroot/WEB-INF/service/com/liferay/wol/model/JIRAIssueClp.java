@@ -37,7 +37,6 @@ import java.util.Date;
  * <a href="JIRAIssueClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue {
 	public JIRAIssueClp() {

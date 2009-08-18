@@ -28,7 +28,6 @@ import com.liferay.portal.model.BaseModel;
  * <a href="JIRAChangeItemModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 	public long getPrimaryKey();

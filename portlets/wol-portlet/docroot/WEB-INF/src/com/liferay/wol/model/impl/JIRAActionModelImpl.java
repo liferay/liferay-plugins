@@ -48,7 +48,6 @@ import java.util.List;
  * <a href="JIRAActionModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	public static final String TABLE_NAME = "jiraaction";

@@ -30,7 +30,6 @@ import java.util.Date;
  * <a href="JIRAActionModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	public long getPrimaryKey();

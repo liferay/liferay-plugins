@@ -53,10 +53,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * <a href="MeetupsRegistrationPersistenceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsRegistrationPersistenceImpl.java.html"><b><i>View Source</i>
+ * </b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 	implements MeetupsRegistrationPersistence {
@@ -756,7 +756,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 			}
 		}
 		else {
-			if (result instanceof List) {
+			if (result instanceof List<?>) {
 				return null;
 			}
 			else {

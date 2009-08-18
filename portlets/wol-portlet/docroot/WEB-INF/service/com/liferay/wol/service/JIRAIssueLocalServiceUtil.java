@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
  * <a href="JIRAIssueLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAIssueLocalServiceUtil {
 	public static com.liferay.wol.model.JIRAIssue addJIRAIssue(

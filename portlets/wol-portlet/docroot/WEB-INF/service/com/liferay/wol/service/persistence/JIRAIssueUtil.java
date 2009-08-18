@@ -26,7 +26,6 @@ package com.liferay.wol.service.persistence;
  * <a href="JIRAIssueUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAIssueUtil {
 	public static void cacheResult(com.liferay.wol.model.JIRAIssue jiraIssue) {

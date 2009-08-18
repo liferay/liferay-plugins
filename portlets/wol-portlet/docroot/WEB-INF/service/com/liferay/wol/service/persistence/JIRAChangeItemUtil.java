@@ -26,7 +26,6 @@ package com.liferay.wol.service.persistence;
  * <a href="JIRAChangeItemUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAChangeItemUtil {
 	public static void cacheResult(

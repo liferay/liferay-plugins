@@ -26,7 +26,6 @@ package com.liferay.wol.service.persistence;
  * <a href="WallEntryFinderUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WallEntryFinderUtil {
 	public static int countByG1_G2_U1_U2(long groupId1, long groupId2,
