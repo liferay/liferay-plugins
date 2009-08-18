@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="com.liferay.socialnetworking.service.MeetupsEntryLocalService.impl" class="com.liferay.socialnetworking.service.impl.MeetupsEntryLocalServiceImpl" />
+	<bean id="com.liferay.socialnetworking.service.MeetupsEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.socialnetworking.service.MeetupsEntryLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialnetworking.service.MeetupsEntryLocalServiceUtil" class="com.liferay.socialnetworking.service.MeetupsEntryLocalServiceUtil">
+		<property name="service" ref="com.liferay.socialnetworking.service.MeetupsEntryLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistence.impl" class="com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.socialnetworking.service.persistence.MeetupsEntryUtil" class="com.liferay.socialnetworking.service.persistence.MeetupsEntryUtil">
+		<property name="persistence" ref="com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.socialnetworking.service.MeetupsRegistrationLocalService.impl" class="com.liferay.socialnetworking.service.impl.MeetupsRegistrationLocalServiceImpl" />
+	<bean id="com.liferay.socialnetworking.service.MeetupsRegistrationLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.socialnetworking.service.MeetupsRegistrationLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialnetworking.service.MeetupsRegistrationLocalServiceUtil" class="com.liferay.socialnetworking.service.MeetupsRegistrationLocalServiceUtil">
+		<property name="service" ref="com.liferay.socialnetworking.service.MeetupsRegistrationLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence.impl" class="com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.socialnetworking.service.persistence.MeetupsRegistrationUtil" class="com.liferay.socialnetworking.service.persistence.MeetupsRegistrationUtil">
+		<property name="persistence" ref="com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.socialnetworking.service.WallEntryLocalService.impl" class="com.liferay.socialnetworking.service.impl.WallEntryLocalServiceImpl" />
+	<bean id="com.liferay.socialnetworking.service.WallEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.socialnetworking.service.WallEntryLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialnetworking.service.WallEntryLocalServiceUtil" class="com.liferay.socialnetworking.service.WallEntryLocalServiceUtil">
+		<property name="service" ref="com.liferay.socialnetworking.service.WallEntryLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialnetworking.service.persistence.WallEntryPersistence.impl" class="com.liferay.socialnetworking.service.persistence.WallEntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.socialnetworking.service.persistence.WallEntryUtil" class="com.liferay.socialnetworking.service.persistence.WallEntryUtil">
+		<property name="persistence" ref="com.liferay.socialnetworking.service.persistence.WallEntryPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.socialnetworking.service.persistence.WallEntryFinder.impl" class="com.liferay.socialnetworking.service.persistence.WallEntryFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.socialnetworking.service.persistence.WallEntryFinderUtil" class="com.liferay.socialnetworking.service.persistence.WallEntryFinderUtil">
+		<property name="finder" ref="com.liferay.socialnetworking.service.persistence.WallEntryFinder.impl" />
+	</bean>
+</beans>
