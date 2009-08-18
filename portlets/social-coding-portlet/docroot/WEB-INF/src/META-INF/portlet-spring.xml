@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="com.liferay.socialcoding.service.JIRAActionLocalService.impl" class="com.liferay.socialcoding.service.impl.JIRAActionLocalServiceImpl" />
+	<bean id="com.liferay.socialcoding.service.JIRAActionLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.socialcoding.service.JIRAActionLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.JIRAActionLocalServiceUtil" class="com.liferay.socialcoding.service.JIRAActionLocalServiceUtil">
+		<property name="service" ref="com.liferay.socialcoding.service.JIRAActionLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAActionPersistence.impl" class="com.liferay.socialcoding.service.persistence.JIRAActionPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="jiraDataSource" />
+		<property name="sessionFactory" ref="jiraSessionFactory" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAActionUtil" class="com.liferay.socialcoding.service.persistence.JIRAActionUtil">
+		<property name="persistence" ref="com.liferay.socialcoding.service.persistence.JIRAActionPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAActionFinder.impl" class="com.liferay.socialcoding.service.persistence.JIRAActionFinderImpl" parent="basePersistence">
+		<property name="dataSource" ref="jiraDataSource" />
+		<property name="sessionFactory" ref="jiraSessionFactory" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAActionFinderUtil" class="com.liferay.socialcoding.service.persistence.JIRAActionFinderUtil">
+		<property name="finder" ref="com.liferay.socialcoding.service.persistence.JIRAActionFinder.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.JIRAChangeGroupLocalService.impl" class="com.liferay.socialcoding.service.impl.JIRAChangeGroupLocalServiceImpl" />
+	<bean id="com.liferay.socialcoding.service.JIRAChangeGroupLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.socialcoding.service.JIRAChangeGroupLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.JIRAChangeGroupLocalServiceUtil" class="com.liferay.socialcoding.service.JIRAChangeGroupLocalServiceUtil">
+		<property name="service" ref="com.liferay.socialcoding.service.JIRAChangeGroupLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence.impl" class="com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="jiraDataSource" />
+		<property name="sessionFactory" ref="jiraSessionFactory" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAChangeGroupUtil" class="com.liferay.socialcoding.service.persistence.JIRAChangeGroupUtil">
+		<property name="persistence" ref="com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAChangeGroupFinder.impl" class="com.liferay.socialcoding.service.persistence.JIRAChangeGroupFinderImpl" parent="basePersistence">
+		<property name="dataSource" ref="jiraDataSource" />
+		<property name="sessionFactory" ref="jiraSessionFactory" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAChangeGroupFinderUtil" class="com.liferay.socialcoding.service.persistence.JIRAChangeGroupFinderUtil">
+		<property name="finder" ref="com.liferay.socialcoding.service.persistence.JIRAChangeGroupFinder.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.JIRAChangeItemLocalService.impl" class="com.liferay.socialcoding.service.impl.JIRAChangeItemLocalServiceImpl" />
+	<bean id="com.liferay.socialcoding.service.JIRAChangeItemLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.socialcoding.service.JIRAChangeItemLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil" class="com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil">
+		<property name="service" ref="com.liferay.socialcoding.service.JIRAChangeItemLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence.impl" class="com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="jiraDataSource" />
+		<property name="sessionFactory" ref="jiraSessionFactory" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAChangeItemUtil" class="com.liferay.socialcoding.service.persistence.JIRAChangeItemUtil">
+		<property name="persistence" ref="com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.JIRAIssueLocalService.impl" class="com.liferay.socialcoding.service.impl.JIRAIssueLocalServiceImpl" />
+	<bean id="com.liferay.socialcoding.service.JIRAIssueLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.socialcoding.service.JIRAIssueLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil" class="com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil">
+		<property name="service" ref="com.liferay.socialcoding.service.JIRAIssueLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAIssuePersistence.impl" class="com.liferay.socialcoding.service.persistence.JIRAIssuePersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="jiraDataSource" />
+		<property name="sessionFactory" ref="jiraSessionFactory" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAIssueUtil" class="com.liferay.socialcoding.service.persistence.JIRAIssueUtil">
+		<property name="persistence" ref="com.liferay.socialcoding.service.persistence.JIRAIssuePersistence.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAIssueFinder.impl" class="com.liferay.socialcoding.service.persistence.JIRAIssueFinderImpl" parent="basePersistence">
+		<property name="dataSource" ref="jiraDataSource" />
+		<property name="sessionFactory" ref="jiraSessionFactory" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAIssueFinderUtil" class="com.liferay.socialcoding.service.persistence.JIRAIssueFinderUtil">
+		<property name="finder" ref="com.liferay.socialcoding.service.persistence.JIRAIssueFinder.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.SVNRepositoryLocalService.impl" class="com.liferay.socialcoding.service.impl.SVNRepositoryLocalServiceImpl" />
+	<bean id="com.liferay.socialcoding.service.SVNRepositoryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.socialcoding.service.SVNRepositoryLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil" class="com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil">
+		<property name="service" ref="com.liferay.socialcoding.service.SVNRepositoryLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence.impl" class="com.liferay.socialcoding.service.persistence.SVNRepositoryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.socialcoding.service.persistence.SVNRepositoryUtil" class="com.liferay.socialcoding.service.persistence.SVNRepositoryUtil">
+		<property name="persistence" ref="com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.SVNRevisionLocalService.impl" class="com.liferay.socialcoding.service.impl.SVNRevisionLocalServiceImpl" />
+	<bean id="com.liferay.socialcoding.service.SVNRevisionLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.socialcoding.service.SVNRevisionLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil" class="com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil">
+		<property name="service" ref="com.liferay.socialcoding.service.SVNRevisionLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.socialcoding.service.persistence.SVNRevisionPersistence.impl" class="com.liferay.socialcoding.service.persistence.SVNRevisionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.socialcoding.service.persistence.SVNRevisionUtil" class="com.liferay.socialcoding.service.persistence.SVNRevisionUtil">
+		<property name="persistence" ref="com.liferay.socialcoding.service.persistence.SVNRevisionPersistence.impl" />
+	</bean>
+</beans>
