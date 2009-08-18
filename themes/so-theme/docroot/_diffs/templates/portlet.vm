@@ -1,12 +1,12 @@
 #set ($portlet_display = $portletDisplay)
 
-#set ($portlets_configurable = ["39_INSTANCE_abcd","1_WAR_wysiwygportlet"])
-#set ($portlets_editable = ["1_WAR_weatherportlet"])
-
 #set ($portlet_id = $htmlUtil.escape($portlet_display.getId()))
 #set ($portlet_title = $portlet_display.getTitle())
 #set ($portlet_content = $portlet_display.getContent())
 #set ($portlet_back_url = $htmlUtil.escape($portlet_display.getURLBack()))
+
+#set ($portlets_configurable = ["39_INSTANCE_abcd", "1_WAR_wysiwygportlet"])
+#set ($portlets_editable = ["1_WAR_weatherportlet"])
 
 <div class="portlet" id="portlet-wrapper-$portlet_id">
 	<div class="portlet-topper">
