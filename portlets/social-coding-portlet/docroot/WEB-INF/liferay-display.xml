@@ -6,8 +6,4 @@
 		<portlet id="1" />
 		<portlet id="2" />
 	</category>
-	<category name="category.social.coding">
-		<portlet id="1" />
-		<portlet id="2" />
-	</category>
 </display>
