@@ -42,7 +42,7 @@ if (theme.isWARFile()) {
 	themeContextPath = theme.getContextPath();
 }
 
-String cdnHost = PortalUtil.getCDNHost();
+String cdnHost = PortalUtil.getCDNHost(request.isSecure());
 
 String themeImagesPath = cdnHost + themeContextPath + theme.getImagesPath();
 
