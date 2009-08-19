@@ -101,6 +101,7 @@ import oasis.names.tc.wsrp.v2.types.ServiceDescription;
 import oasis.names.tc.wsrp.v2.types.SessionContext;
 import oasis.names.tc.wsrp.v2.types.SessionParams;
 import oasis.names.tc.wsrp.v2.types.StateChange;
+import oasis.names.tc.wsrp.v2.types.Templates;
 import oasis.names.tc.wsrp.v2.types.UpdateResponse;
 import oasis.names.tc.wsrp.v2.types.UploadContext;
 import oasis.names.tc.wsrp.v2.types.UserContext;
@@ -190,8 +191,12 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		WSRPConsumerPortlet wsrpConsumerPortlet = getWSRPConsumerPortlet();
 
-		WSRPConsumerManager wsrpConsumerManager = getWSRPConsumerManager(
-			wsrpConsumerPortlet);
+		WSRPConsumer wsrpConsumer =
+			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
+				wsrpConsumerPortlet.getWsrpConsumerId());
+
+		WSRPConsumerManager wsrpConsumerManager =
+			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 		InteractionParams interactionParams = new InteractionParams();
 		MarkupParams markupParams = new MarkupParams();
@@ -210,11 +215,13 @@ public class ConsumerPortlet extends GenericPortlet {
 		performBlockingInteraction.setInteractionParams(interactionParams);
 		performBlockingInteraction.setMarkupParams(markupParams);
 		performBlockingInteraction.setPortletContext(portletContext);
+		performBlockingInteraction.setRegistrationContext(
+			wsrpConsumer.getRegistrationContext());
 		performBlockingInteraction.setRuntimeContext(runtimeContext);
 		performBlockingInteraction.setUserContext(userContext);
 
 		WSRP_v2_Markup_PortType markupService = getMarkupService(
-			actionRequest, wsrpConsumerManager);
+			actionRequest, wsrpConsumerManager, wsrpConsumer);
 
 		BlockingInteractionResponse blockingInteractionResponse =
 			markupService.performBlockingInteraction(
@@ -270,8 +277,12 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		WSRPConsumerPortlet wsrpConsumerPortlet = getWSRPConsumerPortlet();
 
-		WSRPConsumerManager wsrpConsumerManager = getWSRPConsumerManager(
-			wsrpConsumerPortlet);
+		WSRPConsumer wsrpConsumer =
+			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
+				wsrpConsumerPortlet.getWsrpConsumerId());
+
+		WSRPConsumerManager wsrpConsumerManager =
+			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 		MarkupParams markupParams = new MarkupParams();
 		PortletContext portletContext = new PortletContext();
@@ -298,11 +309,12 @@ public class ConsumerPortlet extends GenericPortlet {
 			getMarkup.setPortletContext(portletContext);
 		}
 
+		getMarkup.setRegistrationContext(wsrpConsumer.getRegistrationContext());
 		getMarkup.setRuntimeContext(runtimeContext);
 		getMarkup.setUserContext(userContext);
 
 		WSRP_v2_Markup_PortType markupService = getMarkupService(
-			portletRequest, wsrpConsumerManager);
+			portletRequest, wsrpConsumerManager, wsrpConsumer);
 
 		MarkupResponse markupResponse = markupService.getMarkup(getMarkup);
 
@@ -313,7 +325,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 	protected WSRP_v2_Markup_PortType getMarkupService(
 			PortletRequest portletRequest,
-			WSRPConsumerManager wsrpConsumerManager)
+			WSRPConsumerManager wsrpConsumerManager, WSRPConsumer wsrpConsumer)
 		throws Exception {
 
 		PortletSession portletSession = portletRequest.getPortletSession();
@@ -342,6 +354,8 @@ public class ConsumerPortlet extends GenericPortlet {
 
 					InitCookie initCookie = new InitCookie();
 
+					initCookie.setRegistrationContext(
+						wsrpConsumer.getRegistrationContext());
 					markupService.initCookie(initCookie);
 
 					cookie = SimpleHTTPSender.getCurrentCookie();
@@ -366,20 +380,6 @@ public class ConsumerPortlet extends GenericPortlet {
 
 	protected WindowState getWindowState(String windowState) {
 		return new WindowState(windowState.substring(5));
-	}
-
-	protected WSRPConsumerManager getWSRPConsumerManager(
-			WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws Exception {
-
-		WSRPConsumer wsrpConsumer =
-			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
-				wsrpConsumerPortlet.getWsrpConsumerId());
-
-		WSRPConsumerManager wsrpConsumerManager =
-			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
-
-		return wsrpConsumerManager;
 	}
 
 	protected WSRPConsumerPortlet getWSRPConsumerPortlet() throws Exception {
@@ -584,6 +584,19 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 
 		runtimeContext.setUserAuthentication("wsrp:password");
+
+		if (portletDescription.getDoesUrlTemplateProcessing()) {
+			Templates templates = new Templates();
+
+			templates.setBlockingActionTemplate(_blockingActionTemplate);
+			templates.setRenderTemplate(_renderTemplate);
+			templates.setResourceTemplate(_resourceTemplate);
+			templates.setSecureBlockingActionTemplate(_blockingActionTemplate);
+			templates.setSecureRenderTemplate(_renderTemplate);
+			templates.setSecureResourceTemplate(_resourceTemplate);
+
+			runtimeContext.setTemplates(templates);
+		}
 
 		// User context
 
@@ -952,6 +965,10 @@ public class ConsumerPortlet extends GenericPortlet {
 					String name = parameterMatcher.group(1);
 					String value = parameterMatcher.group(2);
 
+					if (Validator.isNull(value) || value.equals("\"\"")) {
+						continue;
+					}
+
 					parameterMap.put(name, HttpUtil.decodeURL(value));
 				}
 
@@ -1001,10 +1018,31 @@ public class ConsumerPortlet extends GenericPortlet {
 	private static Pattern _navigationalValuesPattern = Pattern.compile(
 		"(?:([^&]+)(?:=([^&]+)?))&?");
 	private static Pattern _parameterPattern = Pattern.compile(
-		"(?:([^&]+)=([^&]+))(?:&amp;|&)?");
+		"(?:([^&]+)=([^&]*))(?:&amp;|&)?");
 	private static Pattern _rewritePattern = Pattern.compile(
 		"(wsrp_rewrite_)|(?:wsrp_rewrite\\?([^\\s/]+)/wsrp_rewrite)|" +
 		"(?:location\\.href\\s*=\\s*'(/widget/c/portal/layout(?:[^']+))')|" +
 		"(?:href\\s*=\\s*\"(/widget/c/portal/layout(?:[^\"]+))\")");
+
+	private static final String _blockingActionTemplate =
+		"wsrp_rewrite?wsrp-urlType=blockingAction&" +
+		"wsrp-navigationalState={wsrp-navigationalState}&" +
+		"wsrp-navigationalValues={wsrp-navigationalValues}&" +
+		"wsrp-interactionState={wsrp-interactionState}&" +
+		"wsrp-mode={wsrp-mode}&wsrp-windowState={wsrp-windowState}" +
+		"&wsrp-fragmentID={wsrp-fragmentID}/wsrp_rewrite";
+	private static final String _renderTemplate =
+		"wsrp_rewrite?wsrp-urlType=render&" +
+		"wsrp-navigationalState={wsrp-navigationalState}&" +
+		"wsrp-navigationalValues={wsrp-navigationalValues}&" +
+		"wsrp-mode={wsrp-mode}&wsrp-windowState={wsrp-windowState}&" +
+		"wsrp-fragmentID={wsrp-fragmentID}/wsrp_rewrite";
+	private static final String _resourceTemplate=
+		"wsrp_rewrite?wsrp-urlType=resource&wsrp-url={wsrp-url}&" +
+		"wsrp-resourceID={wsrp-resourceID}&" +
+		"wsrp-preferOperation={wsrp-preferOperation}&" +
+		"wsrp-resourceState={wsrp-resourceState}&" +
+		"wsrp-requiresRewrite={wsrp-requiresRewrite}&" +
+		"wsrp-resourceCacheability={wsrp-resourceCacheability}&/wsrp_rewrite";
 
 }
