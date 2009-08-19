@@ -102,7 +102,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 			String receiverUserNameURL = sb.toString();
 
 			title = themeDisplay.translate(
-				"activity-wol-summary-add-friend",
+				"activity-social-networking-summary-add-friend",
 				new Object[] {creatorUserNameURL, receiverUserNameURL});
 		}
 

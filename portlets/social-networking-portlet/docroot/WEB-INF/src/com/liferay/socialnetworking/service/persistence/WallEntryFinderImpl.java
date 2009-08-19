@@ -107,7 +107,7 @@ public class WallEntryFinderImpl
 
 			SQLQuery q = session.createSQLQuery(sql);
 
-			q.addEntity("WOL_WallEntry", WallEntryImpl.class);
+			q.addEntity("SN_WallEntry", WallEntryImpl.class);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 

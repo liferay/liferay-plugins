@@ -61,6 +61,6 @@ public class MapFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 	private static final String _MAPPING = "map";
 
-	private static final String _PORTLET_ID = "8_WAR_wolportlet";
+	private static final String _PORTLET_ID = "6_WAR_socialnetworkingportlet";
 
 }

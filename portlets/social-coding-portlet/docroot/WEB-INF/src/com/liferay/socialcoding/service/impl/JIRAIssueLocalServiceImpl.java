@@ -344,7 +344,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 	protected long getUserId(String jiraUserId) throws SystemException {
 		List<ExpandoValue> expandoValues =
 			ExpandoValueLocalServiceUtil.getColumnValues(
-				User.class.getName(), "WOL", "jiraUserId", jiraUserId, 0, 1);
+				User.class.getName(), "SC", "jiraUserId", jiraUserId, 0, 1);
 
 		if (expandoValues.size() == 0) {
 			return 0;

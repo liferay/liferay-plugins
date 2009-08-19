@@ -109,7 +109,7 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 			String organizationNameURL = sb.toString();
 
 			title = themeDisplay.translate(
-				"request-wol-summary-join-organization",
+				"request-social-networking-summary-join-organization",
 				new Object[] {creatorUserNameURL, organizationNameURL});
 		}
 

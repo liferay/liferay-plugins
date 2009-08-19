@@ -106,6 +106,6 @@ public class SVNFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 	private static final String _MAPPING = "svn";
 
-	private static final String _PORTLET_ID = "2_WAR_wolportlet";
+	private static final String _PORTLET_ID = "1_WAR_socialcodingportlet";
 
 }
