@@ -206,11 +206,11 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		String subject = StringUtil.read(
 			classLoader,
 			"com/liferay/socialnetworking/wall/dependencies/" +
-			"wall_entry_added_subject.tmpl");
+				"wall_entry_added_subject.tmpl");
 		String body = StringUtil.read(
 			classLoader,
 			"com/liferay/socialnetworking/wall/dependencies/" +
-			"wall_entry_added_body.tmpl");
+				"wall_entry_added_body.tmpl");
 
 		subject = StringUtil.replace(
 			subject,

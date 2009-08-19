@@ -34,7 +34,7 @@
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<display-name>JIRA</display-name>
-		<portlet-class>com.liferay.socialcoding.jira.portlet.JiraPortlet</portlet-class>
+		<portlet-class>com.liferay.socialcoding.jira.portlet.JIRAPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/jira/view.jsp</value>
