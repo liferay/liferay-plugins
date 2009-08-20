@@ -588,12 +588,13 @@ public class ConsumerPortlet extends GenericPortlet {
 		if (portletDescription.getDoesUrlTemplateProcessing()) {
 			Templates templates = new Templates();
 
-			templates.setBlockingActionTemplate(_blockingActionTemplate);
-			templates.setRenderTemplate(_renderTemplate);
-			templates.setResourceTemplate(_resourceTemplate);
-			templates.setSecureBlockingActionTemplate(_blockingActionTemplate);
-			templates.setSecureRenderTemplate(_renderTemplate);
-			templates.setSecureResourceTemplate(_resourceTemplate);
+			templates.setBlockingActionTemplate(_BLOCKING_ACTION_TEMPLATE);
+			templates.setRenderTemplate(_RENDER_TEMPLATE);
+			templates.setResourceTemplate(_RESOURCE_TEMPLATE);
+			templates.setSecureBlockingActionTemplate(
+				_BLOCKING_ACTION_TEMPLATE);
+			templates.setSecureRenderTemplate(_RENDER_TEMPLATE);
+			templates.setSecureResourceTemplate(_RESOURCE_TEMPLATE);
 
 			runtimeContext.setTemplates(templates);
 		}
@@ -965,7 +966,9 @@ public class ConsumerPortlet extends GenericPortlet {
 					String name = parameterMatcher.group(1);
 					String value = parameterMatcher.group(2);
 
-					if (Validator.isNull(value) || value.equals("\"\"")) {
+					if (Validator.isNull(value) ||
+						value.equals(StringPool.DOUBLE_QUOTE)) {
+
 						continue;
 					}
 
@@ -1011,9 +1014,32 @@ public class ConsumerPortlet extends GenericPortlet {
 		actionResponse.sendRedirect(redirectURL);
 	}
 
+	private static final String _BLOCKING_ACTION_TEMPLATE =
+		"wsrp_rewrite?wsrp-urlType=blockingAction&" +
+		"wsrp-navigationalState={wsrp-navigationalState}&" +
+		"wsrp-navigationalValues={wsrp-navigationalValues}&" +
+		"wsrp-interactionState={wsrp-interactionState}&" +
+		"wsrp-mode={wsrp-mode}&wsrp-windowState={wsrp-windowState}" +
+		"&wsrp-fragmentID={wsrp-fragmentID}/wsrp_rewrite";
+
 	private static final String[] _CHAR_SETS = {StringPool.UTF8};
 
 	private static final String[] _MIME_TYPES = {ContentTypes.TEXT_HTML};
+
+	private static final String _RENDER_TEMPLATE =
+		"wsrp_rewrite?wsrp-urlType=render&" +
+		"wsrp-navigationalState={wsrp-navigationalState}&" +
+		"wsrp-navigationalValues={wsrp-navigationalValues}&" +
+		"wsrp-mode={wsrp-mode}&wsrp-windowState={wsrp-windowState}&" +
+		"wsrp-fragmentID={wsrp-fragmentID}/wsrp_rewrite";
+
+	private static final String _RESOURCE_TEMPLATE =
+		"wsrp_rewrite?wsrp-urlType=resource&wsrp-url={wsrp-url}&" +
+		"wsrp-resourceID={wsrp-resourceID}&" +
+		"wsrp-preferOperation={wsrp-preferOperation}&" +
+		"wsrp-resourceState={wsrp-resourceState}&" +
+		"wsrp-requiresRewrite={wsrp-requiresRewrite}&" +
+		"wsrp-resourceCacheability={wsrp-resourceCacheability}&/wsrp_rewrite";
 
 	private static Pattern _navigationalValuesPattern = Pattern.compile(
 		"(?:([^&]+)(?:=([^&]+)?))&?");
@@ -1023,26 +1049,5 @@ public class ConsumerPortlet extends GenericPortlet {
 		"(wsrp_rewrite_)|(?:wsrp_rewrite\\?([^\\s/]+)/wsrp_rewrite)|" +
 		"(?:location\\.href\\s*=\\s*'(/widget/c/portal/layout(?:[^']+))')|" +
 		"(?:href\\s*=\\s*\"(/widget/c/portal/layout(?:[^\"]+))\")");
-
-	private static final String _blockingActionTemplate =
-		"wsrp_rewrite?wsrp-urlType=blockingAction&" +
-		"wsrp-navigationalState={wsrp-navigationalState}&" +
-		"wsrp-navigationalValues={wsrp-navigationalValues}&" +
-		"wsrp-interactionState={wsrp-interactionState}&" +
-		"wsrp-mode={wsrp-mode}&wsrp-windowState={wsrp-windowState}" +
-		"&wsrp-fragmentID={wsrp-fragmentID}/wsrp_rewrite";
-	private static final String _renderTemplate =
-		"wsrp_rewrite?wsrp-urlType=render&" +
-		"wsrp-navigationalState={wsrp-navigationalState}&" +
-		"wsrp-navigationalValues={wsrp-navigationalValues}&" +
-		"wsrp-mode={wsrp-mode}&wsrp-windowState={wsrp-windowState}&" +
-		"wsrp-fragmentID={wsrp-fragmentID}/wsrp_rewrite";
-	private static final String _resourceTemplate=
-		"wsrp_rewrite?wsrp-urlType=resource&wsrp-url={wsrp-url}&" +
-		"wsrp-resourceID={wsrp-resourceID}&" +
-		"wsrp-preferOperation={wsrp-preferOperation}&" +
-		"wsrp-resourceState={wsrp-resourceState}&" +
-		"wsrp-requiresRewrite={wsrp-requiresRewrite}&" +
-		"wsrp-resourceCacheability={wsrp-resourceCacheability}&/wsrp_rewrite";
 
 }
