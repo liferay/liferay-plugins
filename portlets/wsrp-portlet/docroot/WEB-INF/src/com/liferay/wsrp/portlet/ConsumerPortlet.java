@@ -1039,7 +1039,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		"wsrp-preferOperation={wsrp-preferOperation}&" +
 		"wsrp-resourceState={wsrp-resourceState}&" +
 		"wsrp-requiresRewrite={wsrp-requiresRewrite}&" +
-		"wsrp-resourceCacheability={wsrp-resourceCacheability}&/wsrp_rewrite";
+		"wsrp-resourceCacheability={wsrp-resourceCacheability}/wsrp_rewrite";
 
 	private static Pattern _navigationalValuesPattern = Pattern.compile(
 		"(?:([^&]+)(?:=([^&]+)?))&?");
