@@ -54,7 +54,7 @@ html body {
 	z-index: 100;
 }
 
-.chat-sound-container {
+.chat-sound {
 	position: absolute;
 }
 
