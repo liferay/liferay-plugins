@@ -591,6 +591,15 @@ Liferay.Chat.Manager = {
 
 		Liferay.Poller.addListener(instance._portletId, instance._onPollerUpdate, instance);
 
+		Liferay.bind(
+			'sessionExpired',
+			function(event) {
+				Liferay.Poller.removeListener(instance._portletId);
+
+				instance._chatContainer.hide();
+			}
+		);
+
 		instance._createBuddyListPanel();
 		instance._createSettingsPanel();
 	},
