@@ -135,9 +135,22 @@ if (supportsInbandRegistration) {
 			for (int i = 0; i < propertyDescriptions.length; i++) {
 				PropertyDescription propertyDescription = propertyDescriptions[i];
 
-				String name = propertyDescription.getName().getLocalPart();
 				String fullyQualifiedName = propertyDescription.getName().toString();
-				String description = propertyDescription.getDescription().getValue();
+
+				String name = propertyDescription.getName().getLocalPart();
+
+				String descriptionString = StringPool.BLANK;
+				LocalizedString description = propertyDescription.getDescription();
+
+				if (description != null) {
+					descriptionString = description.getValue();
+				}
+
+				LocalizedString hint = propertyDescription.getHint();
+
+				if (hint != null) {
+					descriptionString += hint.getValue();
+				}
 
 				ResultRow row = new ResultRow(name, name, i);
 
@@ -171,7 +184,7 @@ if (supportsInbandRegistration) {
 
 				// Description
 
-				row.addText(description);
+				row.addText(descriptionString);
 
 				// Add result row
 
