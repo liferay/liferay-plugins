@@ -383,7 +383,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 </aui:form>
 
 <script type="text/javascript">
-	jQuery(
+	AUI().ready(
 		function() {
 			var selects = jQuery('.webFields select');
 

@@ -174,7 +174,7 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 		%>
 
 		<script type="text/javascript">
-			jQuery(
+			AUI().ready(
 				function () {
 					jQuery('.social-networking-portlet-meetups .response').hover(
 						function() {

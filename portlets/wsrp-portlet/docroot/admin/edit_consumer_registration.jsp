@@ -194,7 +194,7 @@ if (supportsInbandRegistration) {
 </form>
 
 <script type="text/javascript">
-	jQuery(
+	AUI().ready(
 		function() {
 			jQuery('#<portlet:namespace />inbandRegistration').change(
 				function() {

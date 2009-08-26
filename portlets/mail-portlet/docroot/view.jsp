@@ -33,7 +33,7 @@
 				return '';
 			}
 
-			jQuery(
+			AUI().ready(
 				function() {
 					Liferay.Mail.init(
 						{

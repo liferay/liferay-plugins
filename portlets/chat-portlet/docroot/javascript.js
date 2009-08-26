@@ -1156,7 +1156,7 @@ jQuery.fn.extend(
 	}
 );
 
-jQuery(
+AUI().ready(
 	function() {
 		Liferay.Chat.Manager.init();
 		Liferay.Chat.FixBadBrowsers();

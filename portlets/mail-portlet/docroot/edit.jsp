@@ -25,7 +25,7 @@
 <%@ include file="/init.jsp" %>
 
 <script type="text/javascript">
-	jQuery(
+	AUI().ready(
 		function() {
 			Liferay.MailConfiguration.init(
 				{
