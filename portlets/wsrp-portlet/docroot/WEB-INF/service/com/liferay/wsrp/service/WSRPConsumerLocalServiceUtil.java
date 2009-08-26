@@ -98,10 +98,11 @@ public class WSRPConsumerLocalServiceUtil {
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(
-		long companyId, java.lang.String name, java.lang.String url)
+		long companyId, java.lang.String adminPortletId, java.lang.String name,
+		java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return getService().addWSRPConsumer(companyId, name, url);
+		return getService().addWSRPConsumer(companyId, adminPortletId, name, url);
 	}
 
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> getWSRPConsumers(
@@ -116,21 +117,23 @@ public class WSRPConsumerLocalServiceUtil {
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumer registerWSRPConsumer(
-		long wsrpConsumerId,
+		long wsrpConsumerId, java.lang.String adminPortletId,
 		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
 		java.lang.String registrationHandle)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		return getService()
-				   .registerWSRPConsumer(wsrpConsumerId,
+				   .registerWSRPConsumer(wsrpConsumerId, adminPortletId,
 			registrationProperties, registrationHandle);
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
-		long wsrpConsumerId, java.lang.String name, java.lang.String url)
+		long wsrpConsumerId, java.lang.String adminPortletId,
+		java.lang.String name, java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return getService().updateWSRPConsumer(wsrpConsumerId, name, url);
+		return getService()
+				   .updateWSRPConsumer(wsrpConsumerId, adminPortletId, name, url);
 	}
 
 	public static void clearService() {

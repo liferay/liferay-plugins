@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
@@ -168,13 +169,15 @@ public class AdminPortlet extends MVCPortlet {
 		String name = ParamUtil.getString(actionRequest, "name");
 		String url = ParamUtil.getString(actionRequest, "url");
 
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
 		if (wsrpConsumerId <= 0) {
 			WSRPConsumerLocalServiceUtil.addWSRPConsumer(
-				themeDisplay.getCompanyId(), name, url);
+				themeDisplay.getCompanyId(), portletId, name, url);
 		}
 		else {
 			WSRPConsumerLocalServiceUtil.updateWSRPConsumer(
-				wsrpConsumerId, name, url);
+				wsrpConsumerId, portletId, name, url);
 		}
 	}
 
@@ -235,8 +238,11 @@ public class AdminPortlet extends MVCPortlet {
 		String registrationHandle = ParamUtil.getString(
 			actionRequest, "registrationHandle");
 
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
 		WSRPConsumerLocalServiceUtil.registerWSRPConsumer(
-			wsrpConsumerId, registrationProperties, registrationHandle);
+			wsrpConsumerId, portletId, registrationProperties, 
+			registrationHandle);
 	}
 
 	protected void doUpdateWSRPProducer(

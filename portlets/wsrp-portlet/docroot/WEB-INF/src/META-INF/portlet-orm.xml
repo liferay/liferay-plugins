@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
 	<persistence-unit-metadata>
 		<xml-mapping-metadata-complete/>
 		<persistence-unit-defaults>
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
-	<entity class="com.liferay.wsrp.model.impl.WSRPConsumerImpl" name="WSRPConsumer">
-		<table name="WSRP_WSRPConsumer" />
+	<mapped-superclass class="com.liferay.wsrp.model.impl.WSRPConsumerModelImpl">
 		<attributes>
 			<id name="wsrpConsumerId" />
 			<basic name="companyId" />
@@ -23,12 +22,10 @@
 			<basic name="wsdl" />
 			<basic name="registrationContextString" />
 			<basic name="registrationPropertiesString" />
-			<transient name="registrationContext" />
-			<transient name="registrationProperties" />
+			<transient name="primaryKey" />
 		</attributes>
-	</entity>
-	<entity class="com.liferay.wsrp.model.impl.WSRPConsumerPortletImpl" name="WSRPConsumerPortlet">
-		<table name="WSRP_WSRPConsumerPortlet" />
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.wsrp.model.impl.WSRPConsumerPortletModelImpl">
 		<attributes>
 			<id name="wsrpConsumerPortletId" />
 			<basic name="companyId" />
@@ -41,10 +38,10 @@
 			<basic name="wsrpConsumerId" />
 			<basic name="name" />
 			<basic name="portletHandle" />
+			<transient name="primaryKey" />
 		</attributes>
-	</entity>
-	<entity class="com.liferay.wsrp.model.impl.WSRPProducerImpl" name="WSRPProducer">
-		<table name="WSRP_WSRPProducer" />
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.wsrp.model.impl.WSRPProducerModelImpl">
 		<attributes>
 			<id name="wsrpProducerId" />
 			<basic name="companyId" />
@@ -56,6 +53,22 @@
 			</basic>
 			<basic name="name" />
 			<basic name="portletIds" />
+			<transient name="primaryKey" />
 		</attributes>
+	</mapped-superclass>
+	<entity class="com.liferay.wsrp.model.impl.WSRPConsumerImpl" name="WSRPConsumer">
+		<table name="WSRP_WSRPConsumer" />
+		<attributes>
+			<transient name="registrationContext" />
+			<transient name="registrationProperties" />
+		</attributes>
+	</entity>
+	<entity class="com.liferay.wsrp.model.impl.WSRPConsumerPortletImpl" name="WSRPConsumerPortlet">
+		<table name="WSRP_WSRPConsumerPortlet" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.wsrp.model.impl.WSRPProducerImpl" name="WSRPProducer">
+		<table name="WSRP_WSRPProducer" />
+		<attributes />
 	</entity>
 </entity-mappings>

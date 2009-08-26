@@ -83,7 +83,8 @@ public interface WSRPConsumerLocalService {
 		throws com.liferay.portal.SystemException;
 
 	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(long companyId,
-		java.lang.String name, java.lang.String url)
+		java.lang.String adminPortletId, java.lang.String name,
+		java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
@@ -97,14 +98,15 @@ public interface WSRPConsumerLocalService {
 		throws com.liferay.portal.SystemException;
 
 	public com.liferay.wsrp.model.WSRPConsumer registerWSRPConsumer(
-		long wsrpConsumerId,
+		long wsrpConsumerId, java.lang.String adminPortletId,
 		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
 		java.lang.String registrationHandle)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
-		long wsrpConsumerId, java.lang.String name, java.lang.String url)
+		long wsrpConsumerId, java.lang.String adminPortletId,
+		java.lang.String name, java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 }

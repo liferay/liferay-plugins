@@ -378,28 +378,35 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(long companyId,
-		java.lang.String name, java.lang.String url)
+		java.lang.String adminPortletId, java.lang.String name,
+		java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);
 
-		Object paramObj1 = ClpSerializer.translateInput(name);
+		Object paramObj1 = ClpSerializer.translateInput(adminPortletId);
 
-		if (name == null) {
+		if (adminPortletId == null) {
 			paramObj1 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj2 = ClpSerializer.translateInput(url);
+		Object paramObj2 = ClpSerializer.translateInput(name);
+
+		if (name == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj3 = ClpSerializer.translateInput(url);
 
 		if (url == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
+			paramObj3 = new NullWrapper("java.lang.String");
 		}
 
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("addWSRPConsumer",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.PortalException) {
@@ -482,31 +489,37 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumer registerWSRPConsumer(
-		long wsrpConsumerId,
+		long wsrpConsumerId, java.lang.String adminPortletId,
 		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
 		java.lang.String registrationHandle)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(wsrpConsumerId);
 
-		Object paramObj1 = ClpSerializer.translateInput(registrationProperties);
+		Object paramObj1 = ClpSerializer.translateInput(adminPortletId);
+
+		if (adminPortletId == null) {
+			paramObj1 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj2 = ClpSerializer.translateInput(registrationProperties);
 
 		if (registrationProperties == null) {
-			paramObj1 = new NullWrapper(
+			paramObj2 = new NullWrapper(
 					"com.liferay.portal.kernel.util.UnicodeProperties");
 		}
 
-		Object paramObj2 = ClpSerializer.translateInput(registrationHandle);
+		Object paramObj3 = ClpSerializer.translateInput(registrationHandle);
 
 		if (registrationHandle == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
+			paramObj3 = new NullWrapper("java.lang.String");
 		}
 
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("registerWSRPConsumer",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.PortalException) {
@@ -530,28 +543,35 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
-		long wsrpConsumerId, java.lang.String name, java.lang.String url)
+		long wsrpConsumerId, java.lang.String adminPortletId,
+		java.lang.String name, java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(wsrpConsumerId);
 
-		Object paramObj1 = ClpSerializer.translateInput(name);
+		Object paramObj1 = ClpSerializer.translateInput(adminPortletId);
 
-		if (name == null) {
+		if (adminPortletId == null) {
 			paramObj1 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj2 = ClpSerializer.translateInput(url);
+		Object paramObj2 = ClpSerializer.translateInput(name);
+
+		if (name == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj3 = ClpSerializer.translateInput(url);
 
 		if (url == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
+			paramObj3 = new NullWrapper("java.lang.String");
 		}
 
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("updateWSRPConsumer",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.PortalException) {
