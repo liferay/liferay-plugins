@@ -71,6 +71,7 @@
 
 <%@ page import="javax.portlet.PortletURL" %>
 
+<%@ page import="oasis.names.tc.wsrp.v2.types.LocalizedString" %>
 <%@ page import="oasis.names.tc.wsrp.v2.types.ModelDescription" %>
 <%@ page import="oasis.names.tc.wsrp.v2.types.PortletDescription" %>
 <%@ page import="oasis.names.tc.wsrp.v2.types.PropertyDescription" %>
