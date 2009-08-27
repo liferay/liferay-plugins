@@ -72,8 +72,8 @@ import oasis.names.tc.wsrp.v2.types.ServiceDescription;
 public class WSRPConsumerLocalServiceImpl
 	extends WSRPConsumerLocalServiceBaseImpl {
 
-	public WSRPConsumer addWSRPConsumer(long companyId, String adminPortletId,
-			String name, String url)
+	public WSRPConsumer addWSRPConsumer(
+			long companyId, String adminPortletId, String name, String url)
 		throws PortalException, SystemException {
 
 		String wsdl = getWSDL(url);
@@ -304,14 +304,9 @@ public class WSRPConsumerLocalServiceImpl
 		return registrationContext;
 	}
 
-	protected void validate(String name) throws PortalException {
-		if (Validator.isNull(name)) {
-			throw new WSRPConsumerNameException();
-		}
-	}
-
 	protected void updatePublicRenderParameters(
-		String adminPortletId, String wsdl) throws Exception {
+			String adminPortletId, String wsdl)
+		throws Exception {
 
 		WSRPConsumerManager wsrpConsumerManager =
 			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsdl);
@@ -324,7 +319,7 @@ public class WSRPConsumerLocalServiceImpl
 		throws Exception {
 
 		Portlet adminPortlet = PortletLocalServiceUtil.getPortletById(
-				adminPortletId);
+			adminPortletId);
 
 		ServiceDescription serviceDescription =
 			wsrpConsumerManager.getServiceDescription();
@@ -345,21 +340,20 @@ public class WSRPConsumerLocalServiceImpl
 			}
 
 			for (ParameterDescription parameterDescription :
-				parameterDescriptions) {
+					parameterDescriptions) {
 
-				QName[] wsrpQNames =
-					parameterDescription.getNames();
+				QName[] qNames = parameterDescription.getNames();
 
-				if (wsrpQNames == null && wsrpQNames.length >= 0) {
+				if ((qNames == null) || (qNames.length == 0)) {
 					continue;
 				}
 
-				String localPart = wsrpQNames[0].getLocalPart();
-				String namespaceURI = wsrpQNames[0].getNamespaceURI();
-				String prefix = wsrpQNames[0].getPrefix();
+				String localPart = qNames[0].getLocalPart();
+				String prefix = qNames[0].getPrefix();
+				String namespaceURI = qNames[0].getNamespaceURI();
 
-				Namespace namespace =
-					SAXReaderUtil.createNamespace(prefix, namespaceURI);
+				Namespace namespace = SAXReaderUtil.createNamespace(
+					prefix, namespaceURI);
 
 				com.liferay.portal.kernel.xml.QName qName =
 					SAXReaderUtil.createQName(localPart, namespace);
@@ -369,6 +363,12 @@ public class WSRPConsumerLocalServiceImpl
 				portletApp.addPublicRenderParameter(
 					parameterDescription.getIdentifier(), qName);
 			}
+		}
+	}
+
+	protected void validate(String name) throws PortalException {
+		if (Validator.isNull(name)) {
+			throw new WSRPConsumerNameException();
 		}
 	}
 

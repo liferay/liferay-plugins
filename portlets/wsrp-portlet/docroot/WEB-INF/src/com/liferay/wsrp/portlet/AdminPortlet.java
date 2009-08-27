@@ -166,10 +166,9 @@ public class AdminPortlet extends MVCPortlet {
 		long wsrpConsumerId = ParamUtil.getLong(
 			actionRequest, "wsrpConsumerId");
 
+		String portletId = PortalUtil.getPortletId(actionRequest);
 		String name = ParamUtil.getString(actionRequest, "name");
 		String url = ParamUtil.getString(actionRequest, "url");
-
-		String portletId = PortalUtil.getPortletId(actionRequest);
 
 		if (wsrpConsumerId <= 0) {
 			WSRPConsumerLocalServiceUtil.addWSRPConsumer(
@@ -211,6 +210,8 @@ public class AdminPortlet extends MVCPortlet {
 		long wsrpConsumerId = ParamUtil.getLong(
 			actionRequest, "wsrpConsumerId");
 
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
 		boolean inbandRegistration = ParamUtil.getBoolean(
 			actionRequest, "inbandRegistration");
 
@@ -238,10 +239,8 @@ public class AdminPortlet extends MVCPortlet {
 		String registrationHandle = ParamUtil.getString(
 			actionRequest, "registrationHandle");
 
-		String portletId = PortalUtil.getPortletId(actionRequest);
-
 		WSRPConsumerLocalServiceUtil.registerWSRPConsumer(
-			wsrpConsumerId, portletId, registrationProperties, 
+			wsrpConsumerId, portletId, registrationProperties,
 			registrationHandle);
 	}
 

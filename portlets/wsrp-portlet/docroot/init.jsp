@@ -59,6 +59,7 @@
 <%@ page import="com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil" %>
 <%@ page import="com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil" %>
 <%@ page import="com.liferay.wsrp.service.WSRPProducerLocalServiceUtil" %>
+<%@ page import="com.liferay.wsrp.util.LocalizedStringUtil" %>
 <%@ page import="com.liferay.wsrp.util.WebKeys" %>
 <%@ page import="com.liferay.wsrp.util.WSRPConsumerManager" %>
 <%@ page import="com.liferay.wsrp.util.WSRPConsumerManagerFactory" %>
@@ -71,7 +72,6 @@
 
 <%@ page import="javax.portlet.PortletURL" %>
 
-<%@ page import="oasis.names.tc.wsrp.v2.types.LocalizedString" %>
 <%@ page import="oasis.names.tc.wsrp.v2.types.ModelDescription" %>
 <%@ page import="oasis.names.tc.wsrp.v2.types.PortletDescription" %>
 <%@ page import="oasis.names.tc.wsrp.v2.types.PropertyDescription" %>

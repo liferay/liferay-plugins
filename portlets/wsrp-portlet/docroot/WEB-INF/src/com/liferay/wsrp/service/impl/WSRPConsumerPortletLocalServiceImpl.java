@@ -45,6 +45,7 @@ import com.liferay.wsrp.portlet.ConsumerPortlet;
 import com.liferay.wsrp.service.ClpSerializer;
 import com.liferay.wsrp.service.base.WSRPConsumerPortletLocalServiceBaseImpl;
 import com.liferay.wsrp.util.ExtensionUtil;
+import com.liferay.wsrp.util.LocalizedStringUtil;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
 
@@ -55,7 +56,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import oasis.names.tc.wsrp.v2.types.LocalizedString;
 import oasis.names.tc.wsrp.v2.types.MarkupType;
 import oasis.names.tc.wsrp.v2.types.PortletDescription;
 
@@ -204,42 +204,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 		}
 	}
 
-	protected String getLocalizedStringValue(LocalizedString localizedString) {
-		return getLocalizedStringValue(localizedString, null);
-	}
-
-	protected String getLocalizedStringValue(
-		LocalizedString localizedString, String defaultValue) {
-
-		if (localizedString == null) {
-			return defaultValue;
-		}
-
-		return localizedString.getValue();
-	}
-
-	protected String[] getLocalizedStringValues(
-		LocalizedString[] localizedStrings) {
-
-		return getLocalizedStringValues(localizedStrings, null);
-	}
-
-	protected String[] getLocalizedStringValues(
-		LocalizedString[] localizedStrings, String[] defaultValue) {
-
-		if (localizedStrings == null) {
-			return defaultValue;
-		}
-
-		String[] values = new String[localizedStrings.length];
-
-		for (int i = 0; i < localizedStrings.length; i++) {
-			values[i] = getLocalizedStringValue(localizedStrings[i]);
-		}
-
-		return values;
-	}
-
 	protected Portlet getPortlet(WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws Exception {
 
@@ -323,12 +287,13 @@ public class WSRPConsumerPortletLocalServiceImpl
 		}
 
 		String title = wsrpConsumerPortlet.getName();
-		String shortTitle = getLocalizedStringValue(
+		String shortTitle = LocalizedStringUtil.getLocalizedStringValue(
 			portletDescription.getShortTitle(), title);
 		String keywords = StringUtil.merge(
-			getLocalizedStringValues(portletDescription.getKeywords()),
+			LocalizedStringUtil.getLocalizedStringValues(
+				portletDescription.getKeywords()),
 			StringPool.SPACE);
-		String description = getLocalizedStringValue(
+		String description = LocalizedStringUtil.getLocalizedStringValue(
 			portletDescription.getShortTitle());
 
 		PortletInfo portletInfo = new PortletInfo(
