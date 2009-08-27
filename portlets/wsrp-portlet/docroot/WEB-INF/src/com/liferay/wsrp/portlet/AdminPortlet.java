@@ -166,17 +166,17 @@ public class AdminPortlet extends MVCPortlet {
 		long wsrpConsumerId = ParamUtil.getLong(
 			actionRequest, "wsrpConsumerId");
 
-		String portletId = PortalUtil.getPortletId(actionRequest);
+		String adminPortletId = PortalUtil.getPortletId(actionRequest);
 		String name = ParamUtil.getString(actionRequest, "name");
 		String url = ParamUtil.getString(actionRequest, "url");
 
 		if (wsrpConsumerId <= 0) {
 			WSRPConsumerLocalServiceUtil.addWSRPConsumer(
-				themeDisplay.getCompanyId(), portletId, name, url);
+				themeDisplay.getCompanyId(), adminPortletId, name, url);
 		}
 		else {
 			WSRPConsumerLocalServiceUtil.updateWSRPConsumer(
-				wsrpConsumerId, portletId, name, url);
+				wsrpConsumerId, adminPortletId, name, url);
 		}
 	}
 
@@ -210,7 +210,7 @@ public class AdminPortlet extends MVCPortlet {
 		long wsrpConsumerId = ParamUtil.getLong(
 			actionRequest, "wsrpConsumerId");
 
-		String portletId = PortalUtil.getPortletId(actionRequest);
+		String adminPortletId = PortalUtil.getPortletId(actionRequest);
 
 		boolean inbandRegistration = ParamUtil.getBoolean(
 			actionRequest, "inbandRegistration");
@@ -240,7 +240,7 @@ public class AdminPortlet extends MVCPortlet {
 			actionRequest, "registrationHandle");
 
 		WSRPConsumerLocalServiceUtil.registerWSRPConsumer(
-			wsrpConsumerId, portletId, registrationProperties,
+			wsrpConsumerId, adminPortletId, registrationProperties,
 			registrationHandle);
 	}
 
