@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
  * <a href="FeedLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class FeedLocalServiceUtil {
 	public static com.liferay.twitter.model.Feed addFeed(

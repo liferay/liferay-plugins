@@ -38,7 +38,6 @@ import java.util.List;
  * <a href="ClpSerializer.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class ClpSerializer {
 	public static final String SERVLET_CONTEXT_NAME = "sample-service-builder-portlet";

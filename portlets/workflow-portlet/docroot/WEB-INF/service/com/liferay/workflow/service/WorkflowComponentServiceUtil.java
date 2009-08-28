@@ -26,10 +26,10 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 
 /**
- * <a href="WorkflowComponentServiceUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowComponentServiceUtil.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WorkflowComponentServiceUtil {
 	public static java.util.List getCurrentTasks(long instanceId, long tokenId)

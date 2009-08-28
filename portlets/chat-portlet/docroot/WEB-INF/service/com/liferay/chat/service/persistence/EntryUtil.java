@@ -26,7 +26,6 @@ package com.liferay.chat.service.persistence;
  * <a href="EntryUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class EntryUtil {
 	public static void cacheResult(com.liferay.chat.model.Entry entry) {

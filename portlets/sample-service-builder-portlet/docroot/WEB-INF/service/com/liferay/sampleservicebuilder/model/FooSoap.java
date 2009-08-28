@@ -32,7 +32,6 @@ import java.util.List;
  * <a href="FooSoap.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class FooSoap implements Serializable {
 	public static FooSoap toSoapModel(Foo model) {

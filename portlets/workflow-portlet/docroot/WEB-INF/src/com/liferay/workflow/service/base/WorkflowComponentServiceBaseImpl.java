@@ -33,10 +33,10 @@ import com.liferay.workflow.service.WorkflowInstanceService;
 import com.liferay.workflow.service.WorkflowTaskService;
 
 /**
- * <a href="WorkflowComponentServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowComponentServiceBaseImpl.java.html"><b><i>View Source</i>
+ * </b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public abstract class WorkflowComponentServiceBaseImpl extends PrincipalBean
 	implements WorkflowComponentService {

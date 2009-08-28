@@ -38,7 +38,6 @@ import java.util.List;
  * <a href="FeedLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public abstract class FeedLocalServiceBaseImpl implements FeedLocalService {
 	public Feed addFeed(Feed feed) throws SystemException {

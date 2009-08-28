@@ -38,7 +38,6 @@ import java.util.Date;
  * <a href="FeedClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	public FeedClp() {

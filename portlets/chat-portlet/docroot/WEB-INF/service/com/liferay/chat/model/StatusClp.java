@@ -36,7 +36,6 @@ import java.lang.reflect.Proxy;
  * <a href="StatusClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class StatusClp extends BaseModelImpl<Status> implements Status {
 	public StatusClp() {

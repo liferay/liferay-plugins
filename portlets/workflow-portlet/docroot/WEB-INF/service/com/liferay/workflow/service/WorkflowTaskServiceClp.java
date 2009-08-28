@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.util.NullWrapper;
  * <a href="WorkflowTaskServiceClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WorkflowTaskServiceClp implements WorkflowTaskService {
 	public WorkflowTaskServiceClp(ClassLoaderProxy classLoaderProxy) {

@@ -31,7 +31,6 @@ import java.util.List;
  * <a href="StatusSoap.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class StatusSoap implements Serializable {
 	public static StatusSoap toSoapModel(Status model) {

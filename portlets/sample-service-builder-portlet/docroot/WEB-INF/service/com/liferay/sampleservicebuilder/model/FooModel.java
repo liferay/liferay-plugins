@@ -30,7 +30,6 @@ import java.util.Date;
  * <a href="FooModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface FooModel extends BaseModel<Foo> {
 	public long getPrimaryKey();

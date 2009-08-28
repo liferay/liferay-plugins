@@ -26,7 +26,6 @@ package com.liferay.sampleservicebuilder.service.persistence;
  * <a href="FooUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class FooUtil {
 	public static void cacheResult(

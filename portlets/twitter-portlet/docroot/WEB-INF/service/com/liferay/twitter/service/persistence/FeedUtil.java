@@ -26,7 +26,6 @@ package com.liferay.twitter.service.persistence;
  * <a href="FeedUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class FeedUtil {
 	public static void cacheResult(com.liferay.twitter.model.Feed feed) {

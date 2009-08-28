@@ -26,7 +26,6 @@ package com.liferay.sampleservicebuilder.model;
  * <a href="Foo.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface Foo extends FooModel {
 }

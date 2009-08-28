@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.util.NullWrapper;
  * <a href="WorkflowComponentServiceClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	public WorkflowComponentServiceClp(ClassLoaderProxy classLoaderProxy) {

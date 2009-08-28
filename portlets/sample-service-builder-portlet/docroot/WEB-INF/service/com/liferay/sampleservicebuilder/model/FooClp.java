@@ -36,7 +36,6 @@ import java.util.Date;
  * <a href="FooClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	public FooClp() {

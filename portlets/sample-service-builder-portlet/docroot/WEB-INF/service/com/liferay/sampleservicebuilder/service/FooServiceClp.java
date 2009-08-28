@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
  * <a href="FooServiceClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class FooServiceClp implements FooService {
 	public FooServiceClp(ClassLoaderProxy classLoaderProxy) {

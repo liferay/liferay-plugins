@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
 	<persistence-unit-metadata>
 		<xml-mapping-metadata-complete/>
 		<persistence-unit-defaults>
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
-	<entity class="com.liferay.socialcoding.model.impl.JIRAActionImpl" name="JIRAAction">
-		<table name="jiraaction" />
+	<mapped-superclass class="com.liferay.socialcoding.model.impl.JIRAActionModelImpl">
 		<attributes>
 			<id name="jiraActionId">
 				<column name="ID" />
@@ -36,10 +35,10 @@
 			<basic name="jiraGroupName">
 				<column name="ACTIONLEVEL" />
 			</basic>
+			<transient name="primaryKey" />
 		</attributes>
-	</entity>
-	<entity class="com.liferay.socialcoding.model.impl.JIRAChangeGroupImpl" name="JIRAChangeGroup">
-		<table name="changegroup" />
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.socialcoding.model.impl.JIRAChangeGroupModelImpl">
 		<attributes>
 			<id name="jiraChangeGroupId">
 				<column name="ID" />
@@ -54,10 +53,10 @@
 			<basic name="jiraIssueId">
 				<column name="ISSUEID" />
 			</basic>
+			<transient name="primaryKey" />
 		</attributes>
-	</entity>
-	<entity class="com.liferay.socialcoding.model.impl.JIRAChangeItemImpl" name="JIRAChangeItem">
-		<table name="changeitem" />
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.socialcoding.model.impl.JIRAChangeItemModelImpl">
 		<attributes>
 			<id name="jiraChangeItemId">
 				<column name="ID" />
@@ -70,10 +69,10 @@
 			<basic name="oldString" />
 			<basic name="newValue" />
 			<basic name="newString" />
+			<transient name="primaryKey" />
 		</attributes>
-	</entity>
-	<entity class="com.liferay.socialcoding.model.impl.JIRAIssueImpl" name="JIRAIssue">
-		<table name="jiraissue" />
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.socialcoding.model.impl.JIRAIssueModelImpl">
 		<attributes>
 			<id name="jiraIssueId">
 				<column name="ID" />
@@ -104,18 +103,18 @@
 			<basic name="status">
 				<column name="ISSUESTATUS" />
 			</basic>
+			<transient name="primaryKey" />
 		</attributes>
-	</entity>
-	<entity class="com.liferay.socialcoding.model.impl.SVNRepositoryImpl" name="SVNRepository">
-		<table name="SC_SVNRepository" />
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.socialcoding.model.impl.SVNRepositoryModelImpl">
 		<attributes>
 			<id name="svnRepositoryId" />
 			<basic name="url" />
 			<basic name="revisionNumber" />
+			<transient name="primaryKey" />
 		</attributes>
-	</entity>
-	<entity class="com.liferay.socialcoding.model.impl.SVNRevisionImpl" name="SVNRevision">
-		<table name="SC_SVNRevision" />
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.socialcoding.model.impl.SVNRevisionModelImpl">
 		<attributes>
 			<id name="svnRevisionId" />
 			<basic name="svnUserId" />
@@ -125,6 +124,31 @@
 			<basic name="svnRepositoryId" />
 			<basic name="revisionNumber" />
 			<basic name="comments" />
+			<transient name="primaryKey" />
 		</attributes>
+	</mapped-superclass>
+	<entity class="com.liferay.socialcoding.model.impl.JIRAActionImpl" name="JIRAAction">
+		<table name="jiraaction" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.socialcoding.model.impl.JIRAChangeGroupImpl" name="JIRAChangeGroup">
+		<table name="changegroup" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.socialcoding.model.impl.JIRAChangeItemImpl" name="JIRAChangeItem">
+		<table name="changeitem" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.socialcoding.model.impl.JIRAIssueImpl" name="JIRAIssue">
+		<table name="jiraissue" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.socialcoding.model.impl.SVNRepositoryImpl" name="SVNRepository">
+		<table name="SC_SVNRepository" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.socialcoding.model.impl.SVNRevisionImpl" name="SVNRevision">
+		<table name="SC_SVNRevision" />
+		<attributes />
 	</entity>
 </entity-mappings>

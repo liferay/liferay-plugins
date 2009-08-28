@@ -31,7 +31,6 @@ import java.util.Date;
  * <a href="FeedModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface FeedModel extends BaseModel<Feed> {
 	public long getPrimaryKey();

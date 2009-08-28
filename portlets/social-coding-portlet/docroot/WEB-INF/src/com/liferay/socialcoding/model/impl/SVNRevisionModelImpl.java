@@ -52,20 +52,10 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 	public static final String TABLE_NAME = "SC_SVNRevision";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "svnRevisionId", new Integer(Types.BIGINT) },
-			
-
 			{ "svnUserId", new Integer(Types.VARCHAR) },
-			
-
 			{ "createDate", new Integer(Types.TIMESTAMP) },
-			
-
 			{ "svnRepositoryId", new Integer(Types.BIGINT) },
-			
-
 			{ "revisionNumber", new Integer(Types.BIGINT) },
-			
-
 			{ "comments", new Integer(Types.VARCHAR) }
 		};
 	public static final String TABLE_SQL_CREATE = "create table SC_SVNRevision (svnRevisionId LONG not null primary key,svnUserId VARCHAR(75) null,createDate DATE null,svnRepositoryId LONG,revisionNumber LONG,comments STRING null)";

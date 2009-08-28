@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
 	<persistence-unit-metadata>
 		<xml-mapping-metadata-complete/>
 		<persistence-unit-defaults>
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
-	<entity class="com.liferay.chat.model.impl.EntryImpl" name="Entry">
-		<table name="Chat_Entry" />
+	<mapped-superclass class="com.liferay.chat.model.impl.EntryModelImpl">
 		<attributes>
 			<id name="entryId" />
 			<basic name="createDate" />
 			<basic name="fromUserId" />
 			<basic name="toUserId" />
 			<basic name="content" />
+			<transient name="fromUserUuid" />
+			<transient name="primaryKey" />
+			<transient name="toUserUuid" />
 		</attributes>
-	</entity>
-	<entity class="com.liferay.chat.model.impl.StatusImpl" name="Status">
-		<table name="Chat_Status" />
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.chat.model.impl.StatusModelImpl">
 		<attributes>
 			<id name="statusId" />
 			<basic name="userId" />
@@ -30,6 +31,16 @@
 			<basic name="activePanelId" />
 			<basic name="message" />
 			<basic name="playSound" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
 		</attributes>
+	</mapped-superclass>
+	<entity class="com.liferay.chat.model.impl.EntryImpl" name="Entry">
+		<table name="Chat_Entry" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.chat.model.impl.StatusImpl" name="Status">
+		<table name="Chat_Status" />
+		<attributes />
 	</entity>
 </entity-mappings>

@@ -26,7 +26,6 @@ package com.liferay.chat.model;
  * <a href="Entry.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface Entry extends EntryModel {
 }

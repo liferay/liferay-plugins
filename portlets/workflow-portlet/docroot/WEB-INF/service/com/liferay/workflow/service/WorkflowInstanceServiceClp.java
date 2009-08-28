@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.LongWrapper;
  * <a href="WorkflowInstanceServiceClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WorkflowInstanceServiceClp implements WorkflowInstanceService {
 	public WorkflowInstanceServiceClp(ClassLoaderProxy classLoaderProxy) {

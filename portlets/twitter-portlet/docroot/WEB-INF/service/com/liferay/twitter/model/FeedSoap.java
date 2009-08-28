@@ -32,7 +32,6 @@ import java.util.List;
  * <a href="FeedSoap.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class FeedSoap implements Serializable {
 	public static FeedSoap toSoapModel(Feed model) {

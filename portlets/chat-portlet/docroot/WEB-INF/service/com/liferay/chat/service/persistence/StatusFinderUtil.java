@@ -26,7 +26,6 @@ package com.liferay.chat.service.persistence;
  * <a href="StatusFinderUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class StatusFinderUtil {
 	public static java.util.List<Object[]> findByModifiedDate(long userId,

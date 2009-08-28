@@ -42,7 +42,6 @@ import java.util.List;
  * <a href="StatusLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public abstract class StatusLocalServiceBaseImpl implements StatusLocalService {
 	public Status addStatus(Status status) throws SystemException {

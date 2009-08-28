@@ -29,7 +29,6 @@ import com.liferay.portal.model.BaseModel;
  * <a href="EntryModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface EntryModel extends BaseModel<Entry> {
 	public long getPrimaryKey();

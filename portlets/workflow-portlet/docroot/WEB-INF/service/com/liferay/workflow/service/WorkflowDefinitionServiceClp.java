@@ -28,10 +28,10 @@ import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
 
 /**
- * <a href="WorkflowDefinitionServiceClp.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowDefinitionServiceClp.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WorkflowDefinitionServiceClp implements WorkflowDefinitionService {
 	public WorkflowDefinitionServiceClp(ClassLoaderProxy classLoaderProxy) {

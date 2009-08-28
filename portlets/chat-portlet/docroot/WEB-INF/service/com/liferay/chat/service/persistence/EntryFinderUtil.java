@@ -26,7 +26,6 @@ package com.liferay.chat.service.persistence;
  * <a href="EntryFinderUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class EntryFinderUtil {
 	public static java.util.List<com.liferay.chat.model.Entry> findByEmptyContent(

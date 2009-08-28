@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
  * <a href="WorkflowInstanceServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WorkflowInstanceServiceUtil {
 	public static com.liferay.workflow.model.WorkflowInstance addInstance(

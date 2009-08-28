@@ -26,7 +26,6 @@ package com.liferay.chat.model;
  * <a href="Status.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface Status extends StatusModel {
 }

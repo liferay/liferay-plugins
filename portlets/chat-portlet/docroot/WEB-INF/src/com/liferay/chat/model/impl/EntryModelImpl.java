@@ -48,23 +48,14 @@ import java.util.List;
  * <a href="EntryModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class EntryModelImpl extends BaseModelImpl<Entry> {
 	public static final String TABLE_NAME = "Chat_Entry";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "entryId", new Integer(Types.BIGINT) },
-			
-
 			{ "createDate", new Integer(Types.BIGINT) },
-			
-
 			{ "fromUserId", new Integer(Types.BIGINT) },
-			
-
 			{ "toUserId", new Integer(Types.BIGINT) },
-			
-
 			{ "content", new Integer(Types.VARCHAR) }
 		};
 	public static final String TABLE_SQL_CREATE = "create table Chat_Entry (entryId LONG not null primary key,createDate LONG,fromUserId LONG,toUserId LONG,content VARCHAR(1000) null)";

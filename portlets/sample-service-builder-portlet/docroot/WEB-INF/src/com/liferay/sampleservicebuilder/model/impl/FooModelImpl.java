@@ -47,26 +47,15 @@ import java.util.List;
  * <a href="FooModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class FooModelImpl extends BaseModelImpl<Foo> {
 	public static final String TABLE_NAME = "SSB_Foo";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "fooId", new Integer(Types.BIGINT) },
-			
-
 			{ "field1", new Integer(Types.VARCHAR) },
-			
-
 			{ "field2", new Integer(Types.BOOLEAN) },
-			
-
 			{ "field3", new Integer(Types.INTEGER) },
-			
-
 			{ "field4", new Integer(Types.TIMESTAMP) },
-			
-
 			{ "field5", new Integer(Types.VARCHAR) }
 		};
 	public static final String TABLE_SQL_CREATE = "create table SSB_Foo (fooId LONG not null primary key,field1 VARCHAR(75) null,field2 BOOLEAN,field3 INTEGER,field4 DATE null,field5 VARCHAR(75) null)";

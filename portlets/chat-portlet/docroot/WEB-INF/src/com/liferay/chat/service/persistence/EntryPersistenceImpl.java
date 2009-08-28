@@ -56,7 +56,6 @@ import java.util.List;
  * <a href="EntryPersistenceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class EntryPersistenceImpl extends BasePersistenceImpl
 	implements EntryPersistence {

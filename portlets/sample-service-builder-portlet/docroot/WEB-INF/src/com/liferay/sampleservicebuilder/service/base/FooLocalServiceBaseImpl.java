@@ -39,7 +39,6 @@ import java.util.List;
  * <a href="FooLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public abstract class FooLocalServiceBaseImpl implements FooLocalService {
 	public Foo addFoo(Foo foo) throws SystemException {

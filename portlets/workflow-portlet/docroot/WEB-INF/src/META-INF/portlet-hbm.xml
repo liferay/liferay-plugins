@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping default-lazy="false" auto-import="false" />
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.workflow.model.WorkflowComponent" />
+	<import class="com.liferay.workflow.model.WorkflowDefinition" />
+	<import class="com.liferay.workflow.model.WorkflowInstance" />
+	<import class="com.liferay.workflow.model.WorkflowTask" />
+</hibernate-mapping>

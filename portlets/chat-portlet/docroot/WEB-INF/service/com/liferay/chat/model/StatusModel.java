@@ -29,7 +29,6 @@ import com.liferay.portal.model.BaseModel;
  * <a href="StatusModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface StatusModel extends BaseModel<Status> {
 	public long getPrimaryKey();

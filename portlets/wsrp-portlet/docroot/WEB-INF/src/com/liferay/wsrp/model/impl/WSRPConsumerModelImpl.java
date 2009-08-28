@@ -52,29 +52,13 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer> {
 	public static final String TABLE_NAME = "WSRP_WSRPConsumer";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "wsrpConsumerId", new Integer(Types.BIGINT) },
-			
-
 			{ "companyId", new Integer(Types.BIGINT) },
-			
-
 			{ "createDate", new Integer(Types.TIMESTAMP) },
-			
-
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			
-
 			{ "name", new Integer(Types.VARCHAR) },
-			
-
 			{ "url", new Integer(Types.VARCHAR) },
-			
-
 			{ "wsdl", new Integer(Types.CLOB) },
-			
-
 			{ "registrationContextString", new Integer(Types.CLOB) },
-			
-
 			{ "registrationPropertiesString", new Integer(Types.VARCHAR) }
 		};
 	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPConsumer (wsrpConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,wsdl TEXT null,registrationContextString TEXT null,registrationPropertiesString STRING null)";

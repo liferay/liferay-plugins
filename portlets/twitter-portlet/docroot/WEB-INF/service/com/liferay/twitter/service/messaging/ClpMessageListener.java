@@ -34,7 +34,6 @@ import com.liferay.twitter.service.FeedLocalServiceUtil;
  * <a href="ClpMessageListener.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class ClpMessageListener implements MessageListener {
 	public static final String SERVLET_CONTEXT_NAME = ClpSerializer.SERVLET_CONTEXT_NAME;

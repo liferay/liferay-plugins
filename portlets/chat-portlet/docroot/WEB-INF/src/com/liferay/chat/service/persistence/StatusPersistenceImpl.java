@@ -56,7 +56,6 @@ import java.util.List;
  * <a href="StatusPersistenceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class StatusPersistenceImpl extends BasePersistenceImpl
 	implements StatusPersistence {
@@ -459,7 +458,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 			}
 		}
 		else {
-			if (result instanceof List) {
+			if (result instanceof List<?>) {
 				return null;
 			}
 			else {

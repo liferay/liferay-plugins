@@ -28,7 +28,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * <a href="FooPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface FooPersistence extends BasePersistence {
 	public void cacheResult(com.liferay.sampleservicebuilder.model.Foo foo);

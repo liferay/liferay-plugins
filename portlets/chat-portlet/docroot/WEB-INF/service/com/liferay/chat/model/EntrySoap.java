@@ -31,7 +31,6 @@ import java.util.List;
  * <a href="EntrySoap.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class EntrySoap implements Serializable {
 	public static EntrySoap toSoapModel(Entry model) {

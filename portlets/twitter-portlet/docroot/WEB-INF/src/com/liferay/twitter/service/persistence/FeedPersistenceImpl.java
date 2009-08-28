@@ -57,7 +57,6 @@ import java.util.List;
  * <a href="FeedPersistenceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class FeedPersistenceImpl extends BasePersistenceImpl
 	implements FeedPersistence {
@@ -434,7 +433,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 			}
 		}
 		else {
-			if (result instanceof List) {
+			if (result instanceof List<?>) {
 				return null;
 			}
 			else {
@@ -547,7 +546,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 			}
 		}
 		else {
-			if (result instanceof List) {
+			if (result instanceof List<?>) {
 				return null;
 			}
 			else {

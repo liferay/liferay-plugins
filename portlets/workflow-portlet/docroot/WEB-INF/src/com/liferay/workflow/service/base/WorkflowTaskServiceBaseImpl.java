@@ -36,7 +36,6 @@ import com.liferay.workflow.service.WorkflowTaskService;
  * <a href="WorkflowTaskServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public abstract class WorkflowTaskServiceBaseImpl extends PrincipalBean
 	implements WorkflowTaskService {

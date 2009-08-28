@@ -35,7 +35,6 @@ import com.liferay.sampleservicebuilder.service.persistence.FooPersistence;
  * <a href="FooServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public abstract class FooServiceBaseImpl extends PrincipalBean
 	implements FooService {

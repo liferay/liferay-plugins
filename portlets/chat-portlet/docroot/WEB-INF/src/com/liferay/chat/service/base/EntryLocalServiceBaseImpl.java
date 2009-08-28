@@ -42,7 +42,6 @@ import java.util.List;
  * <a href="EntryLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public abstract class EntryLocalServiceBaseImpl implements EntryLocalService {
 	public Entry addEntry(Entry entry) throws SystemException {

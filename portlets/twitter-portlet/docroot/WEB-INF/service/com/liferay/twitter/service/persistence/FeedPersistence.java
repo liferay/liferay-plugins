@@ -28,7 +28,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * <a href="FeedPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface FeedPersistence extends BasePersistence {
 	public void cacheResult(com.liferay.twitter.model.Feed feed);

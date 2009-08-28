@@ -49,26 +49,15 @@ import java.util.List;
  * <a href="FeedModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class FeedModelImpl extends BaseModelImpl<Feed> {
 	public static final String TABLE_NAME = "Twitter_Feed";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "feedId", new Integer(Types.BIGINT) },
-			
-
 			{ "twitterUserId", new Integer(Types.BIGINT) },
-			
-
 			{ "twitterScreenName", new Integer(Types.VARCHAR) },
-			
-
 			{ "createDate", new Integer(Types.TIMESTAMP) },
-			
-
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			
-
 			{ "lastStatusId", new Integer(Types.BIGINT) }
 		};
 	public static final String TABLE_SQL_CREATE = "create table Twitter_Feed (feedId LONG not null primary key,twitterUserId LONG,twitterScreenName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,lastStatusId LONG)";

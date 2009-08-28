@@ -28,7 +28,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * <a href="EntryPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public interface EntryPersistence extends BasePersistence {
 	public void cacheResult(com.liferay.chat.model.Entry entry);
