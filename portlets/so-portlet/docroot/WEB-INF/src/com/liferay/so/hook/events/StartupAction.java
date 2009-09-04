@@ -178,6 +178,14 @@ public class StartupAction extends SimpleAction {
 		PermissionLocalServiceUtil.setRolePermission(
 			roleId, companyId, name, scope, primKey, actionId);
 
+		// Community Member - Community
+
+		name = Group.class.getName();
+		actionId = ActionKeys.ASSIGN_MEMBERS;
+
+		PermissionLocalServiceUtil.setRolePermission(
+			roleId, companyId, name, scope, primKey, actionId);
+
 		// Community Member - Document Library
 
 		name = "com.liferay.portlet.documentlibrary";
