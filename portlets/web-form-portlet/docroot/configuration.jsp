@@ -191,7 +191,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 				int[] formFieldsIndexes = null;
 
-				if (Validator.isNotNull(formFieldsIndexesParam)){
+				if (Validator.isNotNull(formFieldsIndexesParam)) {
 					formFieldsIndexes = StringUtil.split(formFieldsIndexesParam, 0);
 				}
 				else {
@@ -432,7 +432,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 			selects.each(toggleOptions);
 
 			jQuery('.validation-link').click(
-				function(event){
+				function(event) {
 					jQuery(this).next().toggle();
 				}
 			);

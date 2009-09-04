@@ -44,7 +44,7 @@ String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 				{
 					target: ".ui-dialog-content",
 					type: "POST",
-					success: function(){
+					success: function() {
 
 						var dialog = jQuery('.site-dialog').find('.ui-dialog-content');
 
@@ -52,7 +52,7 @@ String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 						cmd.val("<%= group == null ? Constants.ADD : Constants.UPDATE %>");
 
 						if(dialog.find('.portlet-msg-success').length) {
-							if(<%= group == null ? false : true %>){
+							if(<%= group == null ? false : true %>) {
 								dialog.dialog('close');
 							}
 						}

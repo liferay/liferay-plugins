@@ -451,7 +451,7 @@ public class WorkflowComponentImpl implements WorkflowComponent {
 
 		List instances = new ArrayList();
 
-		if (definitionId > 0){
+		if (definitionId > 0) {
 			ProcessDefinition definition =
 				graphSession.loadProcessDefinition(definitionId);
 
@@ -459,7 +459,7 @@ public class WorkflowComponentImpl implements WorkflowComponent {
 
 			WorkflowUtil.initInstances(instances);
 		}
-		else if (instanceId > 0){
+		else if (instanceId > 0) {
 			ProcessInstance instance =
 				graphSession.loadProcessInstance(instanceId);
 
@@ -490,10 +490,10 @@ public class WorkflowComponentImpl implements WorkflowComponent {
 			boolean retrieveUserInstances, boolean andOperator)
 		throws WorkflowComponentException {
 
-		if (definitionId > 0){
+		if (definitionId > 0) {
 			return 1;
 		}
-		else if (instanceId > 0){
+		else if (instanceId > 0) {
 			return 1;
 		}
 		else {
