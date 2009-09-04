@@ -108,13 +108,13 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 			<aui:fieldset>
 				<liferay-ui:error key="titleRequired" message="please-enter-a-title" />
 
-				<aui:input cssClass="lfr-input-text" name="title" value="<%= HtmlUtil.toInputSafe(title) %>" />
+				<aui:input cssClass="lfr-input-text-container" name="title" value="<%= HtmlUtil.toInputSafe(title) %>" />
 
 				<aui:input name="description" type="textarea" value="<%= HtmlUtil.toInputSafe(description) %>" wrap="soft" />
 
 				<aui:input inlineLabel="<%= true %>" label="require-captcha" name="requireCaptcha" type="checkbox" value="<%= requireCaptcha %>" />
 
-				<aui:input cssClass="lfr-input-text" label="redirect-url-on-success" name="successURL" value="<%= HtmlUtil.toInputSafe(successURL) %>" />
+				<aui:input cssClass="lfr-input-text-container" label="redirect-url-on-success" name="successURL" value="<%= HtmlUtil.toInputSafe(successURL) %>" />
 			</aui:fieldset>
 		</liferay-ui:panel>
 
@@ -131,9 +131,9 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 					<aui:input inlineLabel="<%= true %>" label="send-as-email" name="sendAsEmail" type="checkbox" value="<%= sendAsEmail %>" />
 
-					<aui:input cssClass="lfr-input-text" name="subject" value="<%= subject %>" />
+					<aui:input cssClass="lfr-input-text-container" name="subject" value="<%= subject %>" />
 
-					<aui:input cssClass="lfr-input-text" label="email-address" name="emailAddress" value="<%= emailAddress %>" />
+					<aui:input cssClass="lfr-input-text-container" label="email-address" name="emailAddress" value="<%= emailAddress %>" />
 				</fieldset>
 
 				<fieldset class="handle-data">
@@ -147,7 +147,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 					<aui:input inlineLabel="<%= true %>" label="save-to-file" name="saveToFile" type="checkbox" value="<%= saveToFile %>" />
 
-					<aui:input cssClass="lfr-input-text" label="path-and-file-name" name="filename" value="<%= fileName %>" />
+					<aui:input cssClass="lfr-input-text-container" label="path-and-file-name" name="filename" value="<%= fileName %>" />
 				</fieldset>
 			</aui:fieldset>
 		</liferay-ui:panel>
@@ -239,7 +239,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 						<c:choose>
 							<c:when test="<%= !fieldsEditingDisabled %>">
-								<aui:input cssClass="lfr-input-text label-name" label="name" name='<%= "fieldLabel" + formFieldsIndex %>' onchange="jQuery(this).parent().parent().parent().find('.field-label').html(jQuery(this).val())" size="50" value="<%= fieldLabel %>"  />
+								<aui:input cssClass="lfr-input-text-container label-name" label="name" name='<%= "fieldLabel" + formFieldsIndex %>' onchange="jQuery(this).parent().parent().parent().find('.field-label').html(jQuery(this).val())" size="50" value="<%= fieldLabel %>"  />
 							</c:when>
 							<c:otherwise>
 								<table class="editing-disabled">
@@ -321,7 +321,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 											<aui:column columnWidth="50">
 												<aui:input  cssClass="validation-script" cols="80" label="validation-script" name='<%= "fieldValidationScript" + formFieldsIndex %>' style="width: 95%" type="textarea" value="<%= fieldValidationScript %>" wrap="off" />
 
-												<aui:input  cssClass="lfr-input-text" cols="80" label="validation-error-message" name='<%= "fieldValidationErrorMessage" + formFieldsIndex %>' size="80" value="<%= fieldValidationErrorMessage %>" />
+												<aui:input  cssClass="lfr-input-text-container" cols="80" label="validation-error-message" name='<%= "fieldValidationErrorMessage" + formFieldsIndex %>' size="80" value="<%= fieldValidationErrorMessage %>" />
 											</aui:column>
 											<aui:column columnWidth="50">
 												<div class="syntax-help">
