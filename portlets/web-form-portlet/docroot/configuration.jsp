@@ -239,7 +239,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 						<c:choose>
 							<c:when test="<%= !fieldsEditingDisabled %>">
-								<aui:input cssClass="lfr-input-text-container label-name" label="name" name='<%= "fieldLabel" + formFieldsIndex %>' onchange="jQuery(this).parent().parent().parent().find('.field-label').html(jQuery(this).val())" size="50" value="<%= fieldLabel %>"  />
+								<aui:input cssClass="lfr-input-text-container label-name" label="name" name='<%= "fieldLabel" + formFieldsIndex %>' onchange="jQuery(this).parent().parent().parent().find('.field-label').html(jQuery(this).val())" size="50" value="<%= fieldLabel %>" />
 							</c:when>
 							<c:otherwise>
 								<table class="editing-disabled">
@@ -319,9 +319,9 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 										<div class="validation-input" style='<%= Validator.isNull(fieldValidationScript) ? "display:none" : "" %>'>
 											<aui:column columnWidth="50">
-												<aui:input  cssClass="validation-script" cols="80" label="validation-script" name='<%= "fieldValidationScript" + formFieldsIndex %>' style="width: 95%" type="textarea" value="<%= fieldValidationScript %>" wrap="off" />
+												<aui:input cssClass="validation-script" cols="80" label="validation-script" name='<%= "fieldValidationScript" + formFieldsIndex %>' style="width: 95%" type="textarea" value="<%= fieldValidationScript %>" wrap="off" />
 
-												<aui:input  cssClass="lfr-input-text-container" cols="80" label="validation-error-message" name='<%= "fieldValidationErrorMessage" + formFieldsIndex %>' size="80" value="<%= fieldValidationErrorMessage %>" />
+												<aui:input cssClass="lfr-input-text-container" cols="80" label="validation-error-message" name='<%= "fieldValidationErrorMessage" + formFieldsIndex %>' size="80" value="<%= fieldValidationErrorMessage %>" />
 											</aui:column>
 											<aui:column columnWidth="50">
 												<div class="syntax-help">
