@@ -18,8 +18,6 @@
 %>
 
 <%
-displayStyle = "title-list";
-
 showPortletWithNoResults = true;
 groupByClass = true;
 allowEmptyResults = true;

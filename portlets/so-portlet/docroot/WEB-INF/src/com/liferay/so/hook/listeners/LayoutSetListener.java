@@ -222,7 +222,8 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 				layout, portletId);
 
-		portletSetup.setValue("displayStyle", "title-list");
+		portletSetup.setValue("display-style", "title-list");
+		portletSetup.setValue("asset-link-behaviour", "viewInPortlet");
 
 		portletSetup.store();
 	}
