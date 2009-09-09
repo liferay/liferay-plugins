@@ -28,7 +28,7 @@
 	%>
 
 		<li>
-			<a href="<%= rowHREF %>"><%= fileEntryImage %><%= fileEntry.getTitleWithExtension() %></a>
+			<a href="<%= rowHREF %>"><%= fileEntryImage %><%= StringUtil.shorten(fileEntry.getTitleWithExtension(), 25) %></a>
 		</li>
 
 	<%
