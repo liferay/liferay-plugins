@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.sampleservicebuilder.model.Foo;
 import com.liferay.sampleservicebuilder.model.FooSoap;
@@ -189,7 +189,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = new ExpandoBridgeImpl(Foo.class.getName(),
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(Foo.class.getName(),
 					getPrimaryKey());
 		}
 

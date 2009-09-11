@@ -31,7 +31,7 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.so.model.ProjectsEntry;
 import com.liferay.so.model.ProjectsEntrySoap;
@@ -252,7 +252,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = new ExpandoBridgeImpl(ProjectsEntry.class.getName(),
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(ProjectsEntry.class.getName(),
 					getPrimaryKey());
 		}
 

@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.model.WSRPConsumerPortletSoap;
@@ -199,7 +199,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = new ExpandoBridgeImpl(WSRPConsumerPortlet.class.getName(),
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(WSRPConsumerPortlet.class.getName(),
 					getPrimaryKey());
 		}
 

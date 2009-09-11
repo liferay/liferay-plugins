@@ -30,7 +30,7 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.model.FeedSoap;
@@ -214,7 +214,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = new ExpandoBridgeImpl(Feed.class.getName(),
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(Feed.class.getName(),
 					getPrimaryKey());
 		}
 

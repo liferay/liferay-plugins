@@ -31,7 +31,7 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialnetworking.model.MeetupsRegistration;
 import com.liferay.socialnetworking.model.MeetupsRegistrationSoap;
@@ -252,7 +252,7 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = new ExpandoBridgeImpl(MeetupsRegistration.class.getName(),
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(MeetupsRegistration.class.getName(),
 					getPrimaryKey());
 		}
 

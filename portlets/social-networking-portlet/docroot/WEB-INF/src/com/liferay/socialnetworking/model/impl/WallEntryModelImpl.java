@@ -31,7 +31,7 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialnetworking.model.WallEntry;
 import com.liferay.socialnetworking.model.WallEntrySoap;
@@ -219,7 +219,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = new ExpandoBridgeImpl(WallEntry.class.getName(),
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(WallEntry.class.getName(),
 					getPrimaryKey());
 		}
 

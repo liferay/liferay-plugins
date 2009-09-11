@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialcoding.model.SVNRepository;
 import com.liferay.socialcoding.model.SVNRepositorySoap;
@@ -160,7 +160,7 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = new ExpandoBridgeImpl(SVNRepository.class.getName(),
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(SVNRepository.class.getName(),
 					getPrimaryKey());
 		}
 

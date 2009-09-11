@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialcoding.model.JIRAChangeItem;
 import com.liferay.socialcoding.model.JIRAChangeItemSoap;
@@ -196,7 +196,7 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = new ExpandoBridgeImpl(JIRAChangeItem.class.getName(),
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(JIRAChangeItem.class.getName(),
 					getPrimaryKey());
 		}
 
