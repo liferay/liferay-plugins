@@ -43,6 +43,7 @@
 <%@ page import="com.liferay.portal.kernel.servlet.SessionMessages" %>
 <%@ page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.CalendarUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.LocaleUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
@@ -87,8 +88,7 @@
 <%@ page import="com.liferay.so.service.ProjectsEntryLocalServiceUtil" %>
 <%@ page import="com.liferay.util.format.PhoneNumberUtil" %>
 
-<%@ page import="java.text.DateFormat" %>
-<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.Format" %>
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Calendar" %>
@@ -111,7 +111,5 @@
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
 
-DateFormat dateFormatDate = new SimpleDateFormat("MMM yyyy", locale);
-
-dateFormatDate.setTimeZone(timeZone);
+Format dateFormatDate = FastDateFormatFactoryUtil.getSimpleDateFormat("MMM yyyy", locale, timeZone);
 %>

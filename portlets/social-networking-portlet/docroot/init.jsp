@@ -44,7 +44,7 @@
 <%@ page import="com.liferay.portal.kernel.servlet.ImageServletTokenUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
-<%@ page import="com.liferay.portal.kernel.util.DateFormats" %>
+<%@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
@@ -88,7 +88,7 @@
 <%@ page import="com.liferay.util.RSSUtil" %>
 <%@ page import="com.liferay.util.portlet.PortletProps" %>
 
-<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.Format" %>
 <%@ page import="java.text.NumberFormat" %>
 
 <%@ page import="java.util.ArrayList" %>
@@ -122,11 +122,9 @@ else if (group.isUser()) {
 	user2 = UserLocalServiceUtil.getUserById(group.getClassPK());
 }
 
-DateFormat dateFormatDate = DateFormat.getDateInstance(DateFormat.LONG, locale);
+Format dateFormatDate = FastDateFormatFactoryUtil.getDateInstance(locale, timeZone);
 
-dateFormatDate.setTimeZone(timeZone);
-
-DateFormat dateFormatDateTime = DateFormats.getDateTime(locale, timeZone);
+Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 
 NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
 

@@ -30,14 +30,14 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
-<%@ page import="com.liferay.portal.kernel.util.DateFormats" %>
+<%@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.sampleservicebuilder.model.Foo" %>
 <%@ page import="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil" %>
 <%@ page import="com.liferay.sampleservicebuilder.util.comparator.FooField4Comparator" %>
 
-<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.Format" %>
 
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.List" %>
@@ -49,5 +49,5 @@
 <liferay-theme:defineObjects />
 
 <%
-DateFormat dateFormatDateTime = DateFormats.getDateTime(locale, timeZone);
+Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>

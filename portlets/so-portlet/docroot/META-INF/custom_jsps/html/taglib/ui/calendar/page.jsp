@@ -34,7 +34,7 @@ int selMonth = selCal.get(Calendar.MONTH);
 int selDay = selCal.get(Calendar.DATE);
 int selYear = selCal.get(Calendar.YEAR);
 
-DateFormat dateFormat = new SimpleDateFormat("MMMM, yyyy", locale);
+Format dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat("MMMM, yyyy", locale);
 %>
 
 <liferay-util:buffer var="html">

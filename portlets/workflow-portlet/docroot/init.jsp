@@ -37,7 +37,7 @@
 <%@ page import="com.liferay.portal.kernel.servlet.SessionErrors" %>
 <%@ page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
-<%@ page import="com.liferay.portal.kernel.util.DateFormats" %>
+<%@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
@@ -73,7 +73,7 @@
 <%@ page import="com.liferay.workflow.service.permission.WorkflowInstancePermission" %>
 <%@ page import="com.liferay.workflow.service.permission.WorkflowTaskPermission" %>
 
-<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.Format" %>
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Calendar" %>
@@ -107,5 +107,5 @@ if (Validator.isNotNull(portletResource)) {
 String viewType = preferences.getValue("viewType", "administrator");
 String definitionName = preferences.getValue("definitionName", StringPool.BLANK);
 
-DateFormat dateFormatDateTime = DateFormats.getDateTime(locale, timeZone);
+Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>
