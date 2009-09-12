@@ -123,10 +123,8 @@ else if (group.isUser()) {
 }
 
 Format dateFormatDate = FastDateFormatFactoryUtil.getDateInstance(locale, timeZone);
-
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 
 NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
-
 NumberFormat percentFormat = NumberFormat.getPercentInstance(locale);
 %>
