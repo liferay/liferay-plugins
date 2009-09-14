@@ -95,7 +95,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 					<aui:input cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>" type="textarea" value="<%= HtmlUtil.escape(fieldValue) %>" wrap="soft" />
 				</c:when>
 				<c:when test='<%= fieldType.equals("checkbox") %>'>
-					<aui:input cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' inlineLabel="<%= true %>" label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>" type="checkbox" value="<%= GetterUtil.getBoolean(fieldValue) %>" />
+					<aui:input cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' inlineLabel="left" label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>" type="checkbox" value="<%= GetterUtil.getBoolean(fieldValue) %>" />
 				</c:when>
 				<c:when test='<%= fieldType.equals("radio") %>'>
 					<aui:field-wrapper cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>">
@@ -107,7 +107,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 							String optionValue = options[j];
 						%>
 
-							<aui:input checked="<%= fieldValue.equals(optionValue) %>" inlineLabel="<%= true %>" label="<%= HtmlUtil.escape(optionValue) %>" name="<%= fieldName %>" type="radio" value="<%= HtmlUtil.escape(optionValue) %>" />
+							<aui:input checked="<%= fieldValue.equals(optionValue) %>" inlineLabel="left" label="<%= HtmlUtil.escape(optionValue) %>" name="<%= fieldName %>" type="radio" value="<%= HtmlUtil.escape(optionValue) %>" />
 
 						<%
 						}

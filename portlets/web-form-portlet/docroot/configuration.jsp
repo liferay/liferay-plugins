@@ -112,7 +112,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 				<aui:input name="description" type="textarea" value="<%= HtmlUtil.toInputSafe(description) %>" wrap="soft" />
 
-				<aui:input inlineLabel="<%= true %>" label="require-captcha" name="requireCaptcha" type="checkbox" value="<%= requireCaptcha %>" />
+				<aui:input inlineLabel="left" label="require-captcha" name="requireCaptcha" type="checkbox" value="<%= requireCaptcha %>" />
 
 				<aui:input cssClass="lfr-input-text-container" label="redirect-url-on-success" name="successURL" value="<%= HtmlUtil.toInputSafe(successURL) %>" />
 			</aui:fieldset>
@@ -129,7 +129,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 					<liferay-ui:error key="emailAddressRequired" message="please-enter-an-email-address" />
 					<liferay-ui:error key="fileNameInvalid" message="please-enter-a-valid-path-and-filename" />
 
-					<aui:input inlineLabel="<%= true %>" label="send-as-email" name="sendAsEmail" type="checkbox" value="<%= sendAsEmail %>" />
+					<aui:input inlineLabel="left" label="send-as-email" name="sendAsEmail" type="checkbox" value="<%= sendAsEmail %>" />
 
 					<aui:input cssClass="lfr-input-text-container" name="subject" value="<%= subject %>" />
 
@@ -139,13 +139,13 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 				<fieldset class="handle-data">
 					<legend><liferay-ui:message key="database" /></legend>
 
-					<aui:input inlineLabel="<%= true %>" label="save-to-database" name="saveToDatabase" type="checkbox" value="<%= saveToDatabase %>" />
+					<aui:input inlineLabel="left" label="save-to-database" name="saveToDatabase" type="checkbox" value="<%= saveToDatabase %>" />
 				</fieldset>
 
 				<fieldset class="handle-data">
 					<legend><liferay-ui:message key="file" /></legend>
 
-					<aui:input inlineLabel="<%= true %>" label="save-to-file" name="saveToFile" type="checkbox" value="<%= saveToFile %>" />
+					<aui:input inlineLabel="left" label="save-to-file" name="saveToFile" type="checkbox" value="<%= saveToFile %>" />
 
 					<aui:input cssClass="lfr-input-text-container" label="path-and-file-name" name="filename" value="<%= fileName %>" />
 				</fieldset>
@@ -279,7 +279,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 						<c:choose>
 							<c:when test="<%= !fieldsEditingDisabled %>">
-								<aui:input cssClass="optional-control" inlineLabel="<%= true %>" label="optional" name='<%= "fieldOptional" + formFieldsIndex %>' type="checkbox" value="<%= fieldOptional %>" />
+								<aui:input cssClass="optional-control" inlineLabel="left" label="optional" name='<%= "fieldOptional" + formFieldsIndex %>' type="checkbox" value="<%= fieldOptional %>" />
 							</c:when>
 							<c:otherwise>
 								<tr>
