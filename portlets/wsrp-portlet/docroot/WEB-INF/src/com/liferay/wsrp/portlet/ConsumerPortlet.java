@@ -61,6 +61,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -343,9 +344,11 @@ public class ConsumerPortlet extends GenericPortlet {
 			String cookie = (String)portletSession.getAttribute(
 				WebKeys.COOKIE);
 
-			if (cookie == null) {
-				CookieProtocol cookieProtocol =
-					serviceDescription.getRequiresInitCookie();
+			CookieProtocol cookieProtocol =
+				serviceDescription.getRequiresInitCookie();
+
+			if ((cookie == null) &&
+				(cookieProtocol != null)) {
 
 				String cookieProtocolValue = cookieProtocol.getValue();
 
@@ -536,27 +539,27 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		navigationalContext.setOpaqueValue(navigationalState);
 
-		String navigationalValues = portletRequest.getParameter(
-			"wsrp-navigationalValues");
+		Map<String, String[]> publicParameterMap =
+			portletRequest.getPublicParameterMap();
 
-		if (Validator.isNotNull(navigationalValues)) {
-			List<NamedString> publicValues = new ArrayList<NamedString>();
+		Set<String> names = publicParameterMap.keySet();
+		List<NamedString> publicValues = new ArrayList<NamedString>();
 
-			Matcher matcher = _navigationalValuesPattern.matcher(
-				navigationalValues);
+		for (String name : names) {
+			String[] values = publicParameterMap.get(name);
 
-			while (matcher.find()) {
+			for (String value : values) {
 				NamedString publicValue = new NamedString();
 
-				publicValue.setName(matcher.group(1));
-				publicValue.setValue(matcher.group(2));
+				publicValue.setName(name);
+				publicValue.setValue(value);
 
 				publicValues.add(publicValue);
 			}
-
-			navigationalContext.setPublicValues(
-				publicValues.toArray(new NamedString[publicValues.size()]));
 		}
+
+		navigationalContext.setPublicValues(
+			publicValues.toArray(new NamedString[publicValues.size()]));
 
 		markupParams.setNavigationalContext(navigationalContext);
 
@@ -652,30 +655,18 @@ public class ConsumerPortlet extends GenericPortlet {
 
 			NamedString[] publicValues = navigationalContext.getPublicValues();
 
-			if ((publicValues != null) && (publicValues.length > 0)) {
-				int lastIndex = publicValues.length - 2;
-
-				StringBuilder sb = new StringBuilder();
-
-				for (int i = 0; i < publicValues.length; i++) {
-					NamedString publicValue = publicValues[i];
-
-					sb.append(publicValue.getName());
-
+			if (publicValues != null) {
+				for (NamedString publicValue : publicValues) {
+					String name = publicValue.getName();
 					String value = publicValue.getValue();
 
 					if (Validator.isNotNull(value)) {
-						sb.append(StringPool.EQUAL);
-						sb.append(publicValue.getValue());
+						actionResponse.setRenderParameter(name, value);
 					}
-
-					if (i < lastIndex) {
-						sb.append(StringPool.AMPERSAND);
+					else {
+						actionResponse.removePublicRenderParameter(name);
 					}
 				}
-
-				actionResponse.setRenderParameter(
-					"wsrp-navigationalValues", sb.toString());
 			}
 		}
 
@@ -922,6 +913,27 @@ public class ConsumerPortlet extends GenericPortlet {
 			else if (name.equals("wsrp-windowState")) {
 				liferayPortletURL.setWindowState(getWindowState(value));
 			}
+			else if (name.equals("wsrp-navigationalValues")) {
+				Matcher navigationalValuesMatcher =
+					_navigationalValuesPattern.matcher(value);
+
+				while (navigationalValuesMatcher.find()) {
+					String navigationalValuesName =
+						navigationalValuesMatcher.group(1);
+					String navigationalValuesValue =
+						navigationalValuesMatcher.group(2);
+
+					if (Validator.isNull(navigationalValuesValue)) {
+						liferayPortletURL.removePublicRenderParameter(
+							navigationalValuesName);
+					}
+					else {
+						liferayPortletURL.setParameter(
+							navigationalValuesName, navigationalValuesValue,
+							true);
+					}
+				}
+			}
 			else {
 				liferayPortletURL.setParameter(name, value);
 			}
@@ -1042,7 +1054,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		"wsrp-resourceCacheability={wsrp-resourceCacheability}/wsrp_rewrite";
 
 	private static Pattern _navigationalValuesPattern = Pattern.compile(
-		"(?:([^&]+)(?:=([^&]+)?))&?");
+		"(?:([^&=]+)(?:=([^&=]*))?)&");
 	private static Pattern _parameterPattern = Pattern.compile(
 		"(?:([^&]+)=([^&]*))(?:&amp;|&)?");
 	private static Pattern _rewritePattern = Pattern.compile(

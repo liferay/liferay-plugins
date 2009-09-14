@@ -31,6 +31,8 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.xml.Namespace;
+import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletApp;
 import com.liferay.portal.model.PortletInfo;
@@ -56,7 +58,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.xml.namespace.QName;
+
 import oasis.names.tc.wsrp.v2.types.MarkupType;
+import oasis.names.tc.wsrp.v2.types.ParameterDescription;
 import oasis.names.tc.wsrp.v2.types.PortletDescription;
 
 import org.apache.axis.message.MessageElement;
@@ -242,6 +247,38 @@ public class WSRPConsumerPortletLocalServiceImpl
 			ClpSerializer.SERVLET_CONTEXT_NAME);
 
 		portlet.setPortletApp(portletApp);
+
+		ParameterDescription[] parameterDescriptions =
+			portletDescription.getNavigationalPublicValueDescriptions();
+
+		if (parameterDescriptions != null) {
+			for (ParameterDescription parameterDescription :
+					parameterDescriptions) {
+
+				QName[] qNames = parameterDescription.getNames();
+
+				if ((qNames == null) || (qNames.length == 0)) {
+					continue;
+				}
+
+				String localPart = qNames[0].getLocalPart();
+				String prefix = qNames[0].getPrefix();
+				String namespaceURI = qNames[0].getNamespaceURI();
+
+				Namespace namespace = SAXReaderUtil.createNamespace(
+					prefix, namespaceURI);
+
+				com.liferay.portal.kernel.xml.QName qName =
+					SAXReaderUtil.createQName(localPart, namespace);
+
+				String identifier = parameterDescription.getIdentifier();
+
+				portletApp.addPublicRenderParameter(identifier, qName);
+
+				portlet.addPublicRenderParameter(
+					portletApp.getPublicRenderParameter(identifier));
+			}
+		}
 
 		portlet.setPortletName(portletId);
 		portlet.setDisplayName(portletId);

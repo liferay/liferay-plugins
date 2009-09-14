@@ -30,13 +30,8 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.xml.Namespace;
-import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.model.Company;
-import com.liferay.portal.model.Portlet;
-import com.liferay.portal.model.PortletApp;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
-import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.wsrp.WSRPConsumerNameException;
 import com.liferay.wsrp.WSRPConsumerWSDLException;
 import com.liferay.wsrp.model.WSRPConsumer;
@@ -52,15 +47,12 @@ import javax.xml.namespace.QName;
 
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Registration_PortType;
 import oasis.names.tc.wsrp.v2.types.ModifyRegistration;
-import oasis.names.tc.wsrp.v2.types.ParameterDescription;
-import oasis.names.tc.wsrp.v2.types.PortletDescription;
 import oasis.names.tc.wsrp.v2.types.Property;
 import oasis.names.tc.wsrp.v2.types.PropertyDescription;
 import oasis.names.tc.wsrp.v2.types.Register;
 import oasis.names.tc.wsrp.v2.types.RegistrationContext;
 import oasis.names.tc.wsrp.v2.types.RegistrationData;
 import oasis.names.tc.wsrp.v2.types.RegistrationState;
-import oasis.names.tc.wsrp.v2.types.ServiceDescription;
 
 /**
  * <a href="WSRPConsumerLocalServiceImpl.java.html"><b><i>View Source</i></b>
@@ -94,19 +86,6 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setWsdl(wsdl);
 
 		wsrpConsumerPersistence.update(wsrpConsumer, false);
-
-		try {
-			updatePublicRenderParameters(adminPortletId, wsdl);
-		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (SystemException se) {
-			throw se;
-		}
-		catch (Exception e) {
-			throw new WSRPConsumerWSDLException(e);
-		}
 
 		return wsrpConsumer;
 	}
@@ -198,19 +177,6 @@ public class WSRPConsumerLocalServiceImpl
 
 		wsrpConsumerPersistence.update(wsrpConsumer, false);
 
-		try {
-			updatePublicRenderParameters(adminPortletId, wsdl);
-		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (SystemException se) {
-			throw se;
-		}
-		catch (Exception e) {
-			throw new WSRPConsumerWSDLException(e);
-		}
-
 		return wsrpConsumer;
 	}
 
@@ -299,71 +265,7 @@ public class WSRPConsumerLocalServiceImpl
 
 		wsrpConsumerManager.updateServiceDescription(registrationContext);
 
-		updatePublicRenderParameters(adminPortletId, wsrpConsumerManager);
-
 		return registrationContext;
-	}
-
-	protected void updatePublicRenderParameters(
-			String adminPortletId, String wsdl)
-		throws Exception {
-
-		WSRPConsumerManager wsrpConsumerManager =
-			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsdl);
-
-		updatePublicRenderParameters(adminPortletId, wsrpConsumerManager);
-	}
-
-	protected void updatePublicRenderParameters(
-			String adminPortletId, WSRPConsumerManager wsrpConsumerManager)
-		throws Exception {
-
-		Portlet adminPortlet = PortletLocalServiceUtil.getPortletById(
-			adminPortletId);
-
-		ServiceDescription serviceDescription =
-			wsrpConsumerManager.getServiceDescription();
-
-		PortletDescription[] portletDescriptions =
-			serviceDescription.getOfferedPortlets();
-
-		if (portletDescriptions == null) {
-			return;
-		}
-
-		for (PortletDescription portletDescription : portletDescriptions) {
-			ParameterDescription[] parameterDescriptions =
-				portletDescription.getNavigationalPublicValueDescriptions();
-
-			if (parameterDescriptions == null) {
-				continue;
-			}
-
-			for (ParameterDescription parameterDescription :
-					parameterDescriptions) {
-
-				QName[] qNames = parameterDescription.getNames();
-
-				if ((qNames == null) || (qNames.length == 0)) {
-					continue;
-				}
-
-				String localPart = qNames[0].getLocalPart();
-				String prefix = qNames[0].getPrefix();
-				String namespaceURI = qNames[0].getNamespaceURI();
-
-				Namespace namespace = SAXReaderUtil.createNamespace(
-					prefix, namespaceURI);
-
-				com.liferay.portal.kernel.xml.QName qName =
-					SAXReaderUtil.createQName(localPart, namespace);
-
-				PortletApp portletApp = adminPortlet.getPortletApp();
-
-				portletApp.addPublicRenderParameter(
-					parameterDescription.getIdentifier(), qName);
-			}
-		}
 	}
 
 	protected void validate(String name) throws PortalException {
