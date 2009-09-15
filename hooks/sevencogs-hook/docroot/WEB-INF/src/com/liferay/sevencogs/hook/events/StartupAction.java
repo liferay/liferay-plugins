@@ -172,7 +172,7 @@ public class StartupAction extends SimpleAction {
 		InputStream is = getInputStream("/images/" + name);
 
 		return IGImageLocalServiceUtil.addImage(
-			userId, serviceContext.getScopeGroupId(), folderId, name, 
+			userId, serviceContext.getScopeGroupId(), folderId, name,
 			StringPool.BLANK, name, is, "image/png", serviceContext);
 	}
 
@@ -1410,9 +1410,8 @@ public class StartupAction extends SimpleAction {
 
 		addDLFileEntry(
 			michelleUser.getUserId(), dlFolder.getGroupId(),
-			dlFolder.getFolderId(),
-			"Notes from the last meeting.doc", "Notes from the last meeting",
-			"Important notes");
+			dlFolder.getFolderId(), "Notes from the last meeting.doc",
+			"Notes from the last meeting", "Important notes");
 
 		addDLFolder(
 			richardUser.getUserId(), richardUser.getGroup().getGroupId(),
@@ -1424,8 +1423,8 @@ public class StartupAction extends SimpleAction {
 
 		addDLFileEntry(
 			richardUser.getUserId(), dlFolder.getGroupId(),
-			dlFolder.getFolderId(), "New Features.ppt",
-			"New Features", "Features for the current year");
+			dlFolder.getFolderId(), "New Features.ppt", "New Features",
+			"Features for the current year");
 
 		// Message boards
 
