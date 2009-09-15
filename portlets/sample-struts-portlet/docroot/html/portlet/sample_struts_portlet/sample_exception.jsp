@@ -22,4 +22,4 @@
  */
 %>
 
-<b>Sample Exception</b>
+<strong>Sample Exception</strong>
