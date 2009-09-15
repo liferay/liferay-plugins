@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.workflow.StatusConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
@@ -122,12 +123,12 @@ public class StartupAction extends SimpleAction {
 		String content = getString("/blogs/" + fileName);
 
 		return BlogsEntryLocalServiceUtil.addEntry(
-			userId, title, content, 1, 1, 2008, 0,0, false, true, new String[0],
-			serviceContext);
+			userId, title, content, 1, 1, 2008, 0,0, true, new String[0],
+			StatusConstants.APPROVED, serviceContext);
 	}
 
 	protected DLFileEntry addDLFileEntry(
-			long userId, long folderId, String name, String title,
+			long userId, long groupId, long folderId, String name, String title,
 			String description)
 		throws Exception {
 
@@ -140,13 +141,13 @@ public class StartupAction extends SimpleAction {
 
 		try {
 			return DLFileEntryLocalServiceUtil.addFileEntry(
-				userId, folderId, name, title, description, StringPool.BLANK,
-				bytes, serviceContext);
+				userId, groupId, folderId, name, title, description,
+				StringPool.BLANK, bytes, serviceContext);
 		}
 		catch (DuplicateFileException dfe) {
 			return DLFileEntryLocalServiceUtil.updateFileEntry(
-				userId, folderId, folderId, name, null, title, description,
-				StringPool.BLANK, bytes, serviceContext);
+				userId, groupId, folderId, folderId, name, null, title,
+				description, StringPool.BLANK, bytes, serviceContext);
 		}
 	}
 
@@ -171,8 +172,8 @@ public class StartupAction extends SimpleAction {
 		InputStream is = getInputStream("/images/" + name);
 
 		return IGImageLocalServiceUtil.addImage(
-			userId, folderId, name, StringPool.BLANK, name, is, "image/png",
-			serviceContext);
+			userId, serviceContext.getScopeGroupId(), folderId, name, 
+			StringPool.BLANK, name, is, "image/png", serviceContext);
 	}
 
 	protected JournalArticle addJournalArticle(
@@ -204,9 +205,10 @@ public class StartupAction extends SimpleAction {
 				true, false, StringPool.BLANK, null, null, StringPool.BLANK,
 				serviceContext);
 
-		JournalArticleLocalServiceUtil.approveArticle(
+		JournalArticleLocalServiceUtil.updateStatus(
 			userId, groupId, journalArticle.getArticleId(),
-			journalArticle.getVersion(), StringPool.BLANK, serviceContext);
+			journalArticle.getVersion(), StatusConstants.APPROVED,
+			StringPool.BLANK, serviceContext);
 
 		return journalArticle;
 	}
@@ -277,15 +279,15 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected MBMessage addMBMessage(
-			long userId, String userName, long categoryId, long threadId,
-			long parentMessageId, String subject, String fileName,
-			ServiceContext serviceContext)
+			long userId, String userName, long groupId, long categoryId,
+			long threadId, long parentMessageId, String subject,
+			String fileName, ServiceContext serviceContext)
 		throws Exception {
 
 		String body = getString("/message_boards/" + fileName);
 
 		return MBMessageLocalServiceUtil.addMessage(
-			userId, userName, categoryId, threadId, parentMessageId,
+			userId, userName, groupId, categoryId, threadId, parentMessageId,
 			subject, body, new ArrayList(), false, -1.0, serviceContext);
 	}
 
@@ -1394,8 +1396,9 @@ public class StartupAction extends SimpleAction {
 			"Important Documents", "Documents related with the company");
 
 		addDLFileEntry(
-			brunoUser.getUserId(), dlFolder.getFolderId(), "Budget.xls",
-			"Budget", "Budgets for the current year");
+			brunoUser.getUserId(), dlFolder.getGroupId(),
+			dlFolder.getFolderId(), "Budget.xls", "Budget",
+			"Budgets for the current year");
 
 		addDLFolder(
 			michelleUser.getUserId(), michelleUser.getGroup().getGroupId(),
@@ -1406,7 +1409,8 @@ public class StartupAction extends SimpleAction {
 			"Work Documents", "Works docs");
 
 		addDLFileEntry(
-			michelleUser.getUserId(), dlFolder.getFolderId(),
+			michelleUser.getUserId(), dlFolder.getGroupId(),
+			dlFolder.getFolderId(),
 			"Notes from the last meeting.doc", "Notes from the last meeting",
 			"Important notes");
 
@@ -1419,7 +1423,8 @@ public class StartupAction extends SimpleAction {
 			"Innovation", "New things");
 
 		addDLFileEntry(
-			richardUser.getUserId(), dlFolder.getFolderId(), "New Features.ppt",
+			richardUser.getUserId(), dlFolder.getGroupId(),
+			dlFolder.getFolderId(), "New Features.ppt",
 			"New Features", "Features for the current year");
 
 		// Message boards
@@ -1437,8 +1442,8 @@ public class StartupAction extends SimpleAction {
 
 		addMBMessage(
 			brunoUser.getUserId(), brunoUser.getFullName(),
-			mbCategory.getCategoryId(), 0, 0, "Nice Forums", "general.xml",
-			serviceContext);
+			mbCategory.getGroupId(), mbCategory.getCategoryId(), 0, 0,
+			"Nice Forums", "general.xml", serviceContext);
 
 		mbCategory = addMBCategory(
 			brunoUser.getUserId(), "General Questions",
@@ -1446,20 +1451,20 @@ public class StartupAction extends SimpleAction {
 
 		MBMessage vix1Message = addMBMessage(
 			brunoUser.getUserId(), brunoUser.getFullName(),
-			mbCategory.getCategoryId(), 0, 0, "About the Vix-998", "vix1.xml",
-			serviceContext);
+			mbCategory.getGroupId(), mbCategory.getCategoryId(), 0, 0,
+			"About the Vix-998", "vix1.xml", serviceContext);
 
 		MBMessage vix2Message = addMBMessage(
 			richardUser.getUserId(), richardUser.getFullName(),
-			mbCategory.getCategoryId(), vix1Message.getThreadId(),
-			vix1Message.getMessageId(), "RE: About the Vix-998", "vix2.xml",
-			serviceContext);
+			mbCategory.getGroupId(), mbCategory.getCategoryId(),
+			vix1Message.getThreadId(), vix1Message.getMessageId(),
+			"RE: About the Vix-998", "vix2.xml", serviceContext);
 
 		addMBMessage(
 			michelleUser.getUserId(), michelleUser.getFullName(),
-			mbCategory.getCategoryId(), vix1Message.getThreadId(),
-			vix2Message.getMessageId(), "RE: About the Vix-998", "vix3.xml",
-			serviceContext);
+			mbCategory.getGroupId(), mbCategory.getCategoryId(),
+			vix1Message.getThreadId(), vix2Message.getMessageId(),
+			"RE: About the Vix-998", "vix3.xml", serviceContext);
 
 		// Social
 
