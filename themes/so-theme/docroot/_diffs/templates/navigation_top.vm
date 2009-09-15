@@ -52,7 +52,7 @@
 				</li>
 			#else
 				<li class="sign-in">
-					<a class="heading" href="$company_url/login">$sign_in_text</a>
+					<a class="heading" href="$sign_in_url">$sign_in_text</a>
 				</li>
 			#end
 
