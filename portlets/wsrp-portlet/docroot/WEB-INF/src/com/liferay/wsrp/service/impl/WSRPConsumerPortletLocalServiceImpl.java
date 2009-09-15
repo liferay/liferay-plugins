@@ -248,38 +248,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		portlet.setPortletApp(portletApp);
 
-		ParameterDescription[] parameterDescriptions =
-			portletDescription.getNavigationalPublicValueDescriptions();
-
-		if (parameterDescriptions != null) {
-			for (ParameterDescription parameterDescription :
-					parameterDescriptions) {
-
-				QName[] qNames = parameterDescription.getNames();
-
-				if ((qNames == null) || (qNames.length == 0)) {
-					continue;
-				}
-
-				String localPart = qNames[0].getLocalPart();
-				String prefix = qNames[0].getPrefix();
-				String namespaceURI = qNames[0].getNamespaceURI();
-
-				Namespace namespace = SAXReaderUtil.createNamespace(
-					prefix, namespaceURI);
-
-				com.liferay.portal.kernel.xml.QName qName =
-					SAXReaderUtil.createQName(localPart, namespace);
-
-				String identifier = parameterDescription.getIdentifier();
-
-				portletApp.addPublicRenderParameter(identifier, qName);
-
-				portlet.addPublicRenderParameter(
-					portletApp.getPublicRenderParameter(identifier));
-			}
-		}
-
 		portlet.setPortletName(portletId);
 		portlet.setDisplayName(portletId);
 		portlet.setPortletClass(ConsumerPortlet.class.getName());
@@ -340,6 +308,38 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		portlet.setFriendlyURLMapperClass(
 			ConsumerFriendlyURLMapper.class.getName());
+
+		ParameterDescription[] parameterDescriptions =
+			portletDescription.getNavigationalPublicValueDescriptions();
+
+		if (parameterDescriptions != null) {
+			for (ParameterDescription parameterDescription :
+					parameterDescriptions) {
+
+				QName[] qNames = parameterDescription.getNames();
+
+				if ((qNames == null) || (qNames.length == 0)) {
+					continue;
+				}
+
+				String localPart = qNames[0].getLocalPart();
+				String prefix = qNames[0].getPrefix();
+				String namespaceURI = qNames[0].getNamespaceURI();
+
+				Namespace namespace = SAXReaderUtil.createNamespace(
+					prefix, namespaceURI);
+
+				com.liferay.portal.kernel.xml.QName qName =
+					SAXReaderUtil.createQName(localPart, namespace);
+
+				String identifier = parameterDescription.getIdentifier();
+
+				portletApp.addPublicRenderParameter(identifier, qName);
+
+				portlet.addPublicRenderParameter(
+					portletApp.getPublicRenderParameter(identifier));
+			}
+		}
 
 		MessageElement[] messageElements = ExtensionUtil.getMessageElements(
 			portletDescription.getExtensions());

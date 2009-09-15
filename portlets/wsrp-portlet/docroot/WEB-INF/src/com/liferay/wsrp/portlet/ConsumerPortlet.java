@@ -61,7 +61,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -542,11 +541,13 @@ public class ConsumerPortlet extends GenericPortlet {
 		Map<String, String[]> publicParameterMap =
 			portletRequest.getPublicParameterMap();
 
-		Set<String> names = publicParameterMap.keySet();
 		List<NamedString> publicValues = new ArrayList<NamedString>();
 
-		for (String name : names) {
-			String[] values = publicParameterMap.get(name);
+		for (Map.Entry<String, String[]> entry :
+				publicParameterMap.entrySet()) {
+
+			String name = entry.getKey();
+			String[] values = entry.getValue();
 
 			for (String value : values) {
 				NamedString publicValue = new NamedString();
@@ -905,14 +906,6 @@ public class ConsumerPortlet extends GenericPortlet {
 			else if (name.equals("wsrp-mode")) {
 				liferayPortletURL.setPortletMode(getPortletMode(value));
 			}
-			else if (name.equals("wsrp-resourceID")) {
-				liferayPortletURL.setResourceID(value);
-			}
-			else if (name.equals("wsrp-urlType")) {
-			}
-			else if (name.equals("wsrp-windowState")) {
-				liferayPortletURL.setWindowState(getWindowState(value));
-			}
 			else if (name.equals("wsrp-navigationalValues")) {
 				Matcher navigationalValuesMatcher =
 					_navigationalValuesPattern.matcher(value);
@@ -933,6 +926,14 @@ public class ConsumerPortlet extends GenericPortlet {
 							true);
 					}
 				}
+			}
+			else if (name.equals("wsrp-resourceID")) {
+				liferayPortletURL.setResourceID(value);
+			}
+			else if (name.equals("wsrp-urlType")) {
+			}
+			else if (name.equals("wsrp-windowState")) {
+				liferayPortletURL.setWindowState(getWindowState(value));
 			}
 			else {
 				liferayPortletURL.setParameter(name, value);
