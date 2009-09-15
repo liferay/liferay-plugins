@@ -16,3 +16,36 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 %>
+
+<%@ include file="/html/portlet/message_boards/init.jsp" %>
+
+<liferay-util:include page="/html/portlet/message_boards/sidebar.jsp" />
+
+<%
+String tabs1 = ParamUtil.getString(request, "tabs1", "categories");
+
+MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_CATEGORY);
+
+long categoryId = BeanParamUtil.getLong(category, request, "categoryId", MBCategoryImpl.DEFAULT_PARENT_CATEGORY_ID);
+%>
+
+<c:choose>
+	<c:when test='<%= (tabs1.equals("categories")) && (categoryId == MBCategoryImpl.DEFAULT_PARENT_CATEGORY_ID) %>'>
+		<h6><liferay-ui:message key="forums" /></h6>
+	</c:when>
+	<c:when test='<%= tabs1.equals("my_posts") %>'>
+		<h6><liferay-ui:message key="my-posts" /></h6>
+	</c:when>
+	<c:when test='<%= tabs1.equals("my_subscriptions") %>'>
+		<h6><liferay-ui:message key="my-subscriptions" /></h6>
+	</c:when>
+	<c:when test='<%= tabs1.equals("recent_posts") %>'>
+		<h6><liferay-ui:message key="recent-posts" /></h6>
+	</c:when>
+	<c:when test='<%= tabs1.equals("statistics") %>'>
+		<h6><liferay-ui:message key="statistics" /></h6>
+	</c:when>
+	<c:when test='<%= tabs1.equals("banned_users") %>'>
+		<h6><liferay-ui:message key="banned-users" /></h6>
+	</c:when>
+</c:choose>

@@ -47,15 +47,7 @@ PortletURL tabs1URL = renderResponse.createRenderURL();
 	<ul class="disc">
 
 		<%
-		long parentCategoryId = MBCategoryImpl.DEFAULT_PARENT_CATEGORY_ID;
-
-		boolean showMoreLink = false;
-
-		if (MBCategoryLocalServiceUtil.getCategoriesCount(scopeGroupId, parentCategoryId) > 10) {
-			showMoreLink = true;
-		}
-
-		List<MBCategory> categories = MBCategoryLocalServiceUtil.getCategories(scopeGroupId, parentCategoryId, 0, 10);
+		List<MBCategory> categories = MBCategoryLocalServiceUtil.getCategories(scopeGroupId, categoryId, -1, -1);
 
 		for(MBCategory curCategory : categories) {
 			curCategory = curCategory.toEscapedModel();
@@ -76,13 +68,46 @@ PortletURL tabs1URL = renderResponse.createRenderURL();
 
 	</ul>
 
-	<c:if test="<%= showMoreLink %>">
+	<%
+	boolean showAddCategoryButton = MBCategoryPermission.contains(permissionChecker, scopeGroupId, categoryId, ActionKeys.ADD_CATEGORY);
+	boolean showPermissionsButton = GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS);
+	boolean defaultCategory = (categoryId == MBCategoryImpl.DEFAULT_PARENT_CATEGORY_ID);
+	%>
 
-		<%
-		tabs1URL.setParameter("tabs1", "categories");
-		%>
+	<c:if test="<%= (showAddCategoryButton || showPermissionsButton) && !defaultCategory %>">
+		<ul class="disc">
+			<c:if test="<%= showAddCategoryButton %>">
+				<li>
+					<a href="javascript:;" onClick="<portlet:namespace />addCategory();"><liferay-ui:message key='<%= (category == null) ? "add-category" : "add-subcategory" %>' /></a>
+				</li>
+			</c:if>
 
-		<a href="<%= tabs1URL %>"><liferay-ui:message key="view-more" /></a>
+			<c:if test="<%= showPermissionsButton %>">
+
+				<%
+				String modelResource = "com.liferay.portlet.messageboards";
+				String modelResourceDescription = themeDisplay.getScopeGroupName();
+				String resourcePrimKey = String.valueOf(scopeGroupId);
+
+				if (category != null) {
+					modelResource = MBCategory.class.getName();
+					modelResourceDescription = category.getName();
+					resourcePrimKey = String.valueOf(category.getCategoryId());
+				}
+				%>
+
+				<liferay-security:permissionsURL
+					modelResource="<%= modelResource %>"
+					modelResourceDescription="<%= HtmlUtil.escape(modelResourceDescription) %>"
+					resourcePrimKey="<%= resourcePrimKey %>"
+					var="permissionsURL"
+				/>
+
+				<li>
+					<a href="javascript:;" onClick="location.href = '<%= permissionsURL %>';" /><liferay-ui:message key="permissions" /></a>
+				</li>
+			</c:if>
+		</ul>
 	</c:if>
 
 	<h2><liferay-ui:message key="quick-links" /></h2>

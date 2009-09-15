@@ -53,7 +53,7 @@ for (int j = 0; j < folderColumns.length; j++) {
 				name="<%= folderColumn %>"
 			>
 				<div>
-					<div class="folder-name">
+					<div class="result-title">
 						<a href="<%= rowURL %>"><img align="left" border="0" src="<%= themeDisplay.getPathThemeImages() %>/custom/folder_small.png" /><%= curFolder.getName() %></a>
 					</div>
 
@@ -62,7 +62,7 @@ for (int j = 0; j < folderColumns.length; j++) {
 					%>
 
 					<c:if test="<%= !subfolders.isEmpty() %>">
-						<div class="subfolder">
+						<div class="result-data">
 							<span><liferay-ui:message key="subfolders" />:</span>
 
 							<%

@@ -93,11 +93,11 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 				name="<%= fileEntryColumn %>"
 			>
 				<div>
-					<div class="file-name">
+					<div class="result-title">
 						<a href="<%= rowHREF %>"><%= _getFileEntryImage(fileEntry, themeDisplay) %><%= fileEntry.getTitleWithExtension() %></a>
 					</div>
 
-					<div class="file-data">
+					<div class="result-data">
 						<span><liferay-ui:message key="by" />: <%= fileEntry.getUserName() %></span>
 						<span><liferay-ui:message key="modified" />: <%= dateFormatDateTime.format(fileEntry.getModifiedDate()) %></span>
 						<span><liferay-ui:message key="downloads" />: <%= fileEntry.getReadCount() %></span>
@@ -108,7 +108,7 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 					%>
 
 					<c:if test="<%= !tagsEntries.isEmpty() %>">
-						<div class="file-tags">
+						<div class="result-tags">
 							<span><liferay-ui:message key="tags" />:</span>
 
 							<%
@@ -133,8 +133,8 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 
 							<%= sb.toString() %>
 						</div>
-					</div>
-				</c:if>
+					</c:if>
+				</div>
 			</liferay-ui:search-container-column-text>
 		</c:when>
 	</c:choose>
