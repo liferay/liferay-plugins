@@ -22,4 +22,4 @@
  */
 %>
 
-<b>Print</b>
+<strong>Print</strong>

@@ -50,7 +50,7 @@ symbolsString = StringUtil.merge(symbols, StringPool.SPACE);
 		String symbol = (String)enu.nextElement();
 	%>
 
-		<b><%= symbol %></b><%= (enu.hasMoreElements()) ? ", " : "." %>
+		<strong><%= symbol %></strong><%= (enu.hasMoreElements()) ? ", " : "." %>
 
 	<%
 	}

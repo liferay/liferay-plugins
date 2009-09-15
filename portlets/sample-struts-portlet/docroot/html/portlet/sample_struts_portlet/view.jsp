@@ -35,7 +35,7 @@ You can use the Struts tag library or build your own Java resource bundle. Both
 refer to the same properties files in located in
 /WEB-INF/classes/content/test/Language.properties.
 
-<b>View <bean:message key="hello-there" /></b>
+<strong>View <bean:message key="hello-there" /></strong>
 -->
 
-<b>View <%= bundle.getString("hello-there") %></b>
+<strong>View <%= bundle.getString("hello-there") %></strong>

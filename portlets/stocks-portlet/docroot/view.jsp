@@ -142,7 +142,7 @@
 				<tr>
 					<td align="center">
 						<liferay-ui:message key="last-trade" /><br />
-						<b><%= decimalFormat.format(stocks.getLastTrade()) %></b>
+						<strong><%= decimalFormat.format(stocks.getLastTrade()) %></strong>
 					</td>
 					<td align="center">
 						<liferay-ui:message key="change" /><br />
@@ -150,44 +150,44 @@
 						<c:if test="<%= stocks.isChangeAvailable() && stocks.isPreviousCloseAvailable() %>">
 							<c:if test="<%= stocks.getChange() < 0 %>">
 								<span class="portlet-msg-error">
-								<b><%= decimalFormat.format(stocks.getChange()) %> / <%= decimalFormat.format(stocks.getChange() / stocks.getPreviousClose()) %>%</b>
+								<strong><%= decimalFormat.format(stocks.getChange()) %> / <%= decimalFormat.format(stocks.getChange() / stocks.getPreviousClose()) %>%</strong>
 								</span>
 							</c:if>
 
 							<c:if test="<%= stocks.getChange() > 0 %>">
 								<span class="portlet-msg-success">
-								<b>+<%= decimalFormat.format(stocks.getChange()) %> / <%= decimalFormat.format(stocks.getChange() / stocks.getPreviousClose()) %>%</b>
+								<strong>+<%= decimalFormat.format(stocks.getChange()) %> / <%= decimalFormat.format(stocks.getChange() / stocks.getPreviousClose()) %>%</strong>
 								</span>
 							</c:if>
 
 							<c:if test="<%= stocks.getChange() == 0 %>">
-								<b><%= decimalFormat.format(stocks.getChange()) %> / <%= decimalFormat.format(stocks.getChange() / stocks.getPreviousClose()) %>%</b>
+								<strong><%= decimalFormat.format(stocks.getChange()) %> / <%= decimalFormat.format(stocks.getChange() / stocks.getPreviousClose()) %>%</strong>
 							</c:if>
 						</c:if>
 
 						<c:if test="<%= !stocks.isChangeAvailable() || !stocks.isPreviousCloseAvailable() %>">
-							<b><liferay-ui:message key="not-available" /></b>
+							<strong><liferay-ui:message key="not-available" /></strong>
 						</c:if>
 					</td>
 					<td align="center">
 						<liferay-ui:message key="day-high" /><br />
-						<b><%= stocks.isDayHighAvailable() ? decimalFormat.format(stocks.getDayHigh()) : LanguageUtil.get(pageContext, "not-available") %></b>
+						<strong><%= stocks.isDayHighAvailable() ? decimalFormat.format(stocks.getDayHigh()) : LanguageUtil.get(pageContext, "not-available") %></strong>
 					</td>
 					<td align="center">
 						<liferay-ui:message key="day-low" /><br />
-						<b><%= stocks.isDayLowAvailable() ? decimalFormat.format(stocks.getDayLow()) : LanguageUtil.get(pageContext, "not-available") %></b>
+						<strong><%= stocks.isDayLowAvailable() ? decimalFormat.format(stocks.getDayLow()) : LanguageUtil.get(pageContext, "not-available") %></strong>
 					</td>
 					<td align="center">
 						<liferay-ui:message key="open" /><br />
-						<b><%= stocks.isOpenAvailable() ? decimalFormat.format(stocks.getOpen()) : LanguageUtil.get(pageContext, "not-available") %></b>
+						<strong><%= stocks.isOpenAvailable() ? decimalFormat.format(stocks.getOpen()) : LanguageUtil.get(pageContext, "not-available") %></strong>
 					</td>
 					<td align="center">
 						<liferay-ui:message key="previous-close" /><br />
-						<b><%= stocks.isPreviousCloseAvailable() ? decimalFormat.format(stocks.getPreviousClose()) : LanguageUtil.get(pageContext, "not-available") %></b>
+						<strong><%= stocks.isPreviousCloseAvailable() ? decimalFormat.format(stocks.getPreviousClose()) : LanguageUtil.get(pageContext, "not-available") %></strong>
 					</td>
 					<td align="center">
 						<liferay-ui:message key="volume" /><br />
-						<b><%= stocks.isVolumeAvailable() ? numberFormat.format(stocks.getVolume()) : LanguageUtil.get(pageContext, "not-available") %></b>
+						<strong><%= stocks.isVolumeAvailable() ? numberFormat.format(stocks.getVolume()) : LanguageUtil.get(pageContext, "not-available") %></strong>
 					</td>
 				</tr>
 				</table>

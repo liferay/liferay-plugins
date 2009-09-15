@@ -73,9 +73,9 @@ private String _buildTreeMenuHTML(List<MenuItem> menuItems, String curTitle, boo
 
 		if (Validator.isNotNull(url)) {
 			if (label.equals(curTitle)) {
-				sb.append("<b>");
+				sb.append("<strong>");
 				sb.append(label);
-				sb.append("</b>");
+				sb.append("</strong>");
 			}
 			else {
 				sb.append("<a ");

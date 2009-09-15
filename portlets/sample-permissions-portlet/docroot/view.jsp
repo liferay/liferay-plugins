@@ -42,7 +42,7 @@ String actionId = "VIEW";
 
 Do you have the VIEW permission for this portlet?
 
-<b>
+<strong>
 
 <c:choose>
 	<c:when test="<%= permissionChecker.hasPermission(groupId, name, primKey, actionId) %>">
@@ -53,7 +53,7 @@ Do you have the VIEW permission for this portlet?
 	</c:otherwise>
 </c:choose>
 
-</b>
+</strong>
 
 <br /><br />
 
@@ -65,7 +65,7 @@ actionId = "DELETE";
 
 Does you have the DELETE permission for the model <%= name %> with the primary key <%= primKey %>?
 
-<b>
+<strong>
 
 <c:choose>
 	<c:when test="<%= permissionChecker.hasPermission(groupId, name, primKey, actionId) %>">
@@ -76,7 +76,7 @@ Does you have the DELETE permission for the model <%= name %> with the primary k
 	</c:otherwise>
 </c:choose>
 
-</b>
+</strong>
 
 <br /><br />
 

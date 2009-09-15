@@ -24,7 +24,7 @@
 
 <%@ include file="/init.jsp" %>
 
-This is the <b>Sample UI Search Container Taglib Portlet</b>. This was made to showcase Liferay's liferay-ui:search-container taglib.<br /><br />
+This is the <strong>Sample UI Search Container Taglib Portlet</strong>. This was made to showcase Liferay's liferay-ui:search-container taglib.<br /><br />
 
 <a href="<portlet:renderURL><portlet:param name="jspPage" value="/basic.jsp" /></portlet:renderURL>">Basic Example</a><br /><br />
 

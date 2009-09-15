@@ -34,7 +34,7 @@ Verse verse = RBVUtil.getVerse(preferences, locale);
 
 		<br /><br />
 
-		<i><%= verse.getLocation() %></i>
+		<em><%= verse.getLocation() %></em>
 	</c:when>
 	<c:otherwise>
 		<liferay-util:include page="/html/portal/portlet_error.jsp" />

@@ -378,7 +378,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 	<aui:button-row>
 		<aui:button type="submit" value="save" />
 
-		<aui:button onclick="<%= redirect %>" value="cancel"/>
+		<aui:button onclick="<%= redirect %>" value="cancel" />
 	</aui:button-row>
 </aui:form>
 

@@ -24,7 +24,7 @@
 
 <%@ include file="/html/portlet/sample_struts_portlet/init.jsp" %>
 
-<b>Page X</b>
+<strong>Page X</strong>
 
 <br /><br />
 

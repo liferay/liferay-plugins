@@ -50,7 +50,7 @@ zipsString = StringUtil.merge(zips, StringPool.NEW_LINE);
 		String zip = (String)enu.nextElement();
 	%>
 
-		<b><%= zip %></b><%= (enu.hasMoreElements()) ? ", " : "." %>
+		<strong><%= zip %></strong><%= (enu.hasMoreElements()) ? ", " : "." %>
 
 	<%
 	}

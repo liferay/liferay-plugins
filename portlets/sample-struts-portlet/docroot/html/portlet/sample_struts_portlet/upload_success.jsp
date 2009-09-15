@@ -22,4 +22,4 @@
  */
 %>
 
-<b>Upload Success: <%= request.getAttribute("file_name") %></b>
+<strong>Upload Success: <%= request.getAttribute("file_name") %></strong>

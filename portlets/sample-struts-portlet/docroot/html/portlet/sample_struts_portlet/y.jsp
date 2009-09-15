@@ -22,7 +22,7 @@
  */
 %>
 
-<b>Page Y</b>
+<strong>Page Y</strong>
 
 <br /><br />
 

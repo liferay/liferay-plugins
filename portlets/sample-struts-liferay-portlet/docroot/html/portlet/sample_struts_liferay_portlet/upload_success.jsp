@@ -22,4 +22,4 @@
  */
 %>
 
-<b>Upload Success</b>
+<strong>Upload Success</strong>

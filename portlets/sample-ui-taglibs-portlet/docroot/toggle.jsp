@@ -55,7 +55,7 @@ Result:
 
 	<br /><br />
 
-	The attributes <i>onImage</i> and <i>offImage</i> are optional and default to the images in this sample. You can also customize the default images by replacing them in a custom theme.
+	The attributes <em>onImage</em> and <em>offImage</em> are optional and default to the images in this sample. You can also customize the default images by replacing them in a custom theme.
 </div>
 
 <div class="separator"></div>

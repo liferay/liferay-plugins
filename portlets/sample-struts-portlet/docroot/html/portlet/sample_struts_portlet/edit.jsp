@@ -22,4 +22,4 @@
  */
 %>
 
-<b>Edit</b>
+<strong>Edit</strong>

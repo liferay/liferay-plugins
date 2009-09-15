@@ -24,7 +24,7 @@
 
 <%@ include file="/html/portlet/sample_struts_liferay_portlet/init.jsp" %>
 
-<b>Remote User:</b>
+<strong>Remote User:</strong>
 
 <br /><br />
 
@@ -32,7 +32,7 @@
 
 <br /><br />
 
-<b>Session ID:</b>
+<strong>Session ID:</strong>
 
 <br /><br />
 
@@ -40,11 +40,11 @@
 
 <br /><br />
 
-<b>Portlet Session Attributes:</b>
+<strong>Portlet Session Attributes:</strong>
 
 <br /><br />
 
-<i>Portlet Scope</i>
+<em>Portlet Scope</em>
 
 <br /><br />
 
@@ -65,7 +65,7 @@ while (enu.hasMoreElements()) {
 
 <br />
 
-<i>Application Scope</i>
+<em>Application Scope</em>
 
 <br /><br />
 

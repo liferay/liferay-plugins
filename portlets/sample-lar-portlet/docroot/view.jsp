@@ -37,7 +37,7 @@ long exportDate = Long.parseLong(preferences.getValue("last-export-date", "0"));
 long importDate = Long.parseLong(preferences.getValue("last-import-date", "0"));
 %>
 
-This is the <b>Sample LAR Portlet</b>. This was made to demonstrate the portlet
+This is the <strong>Sample LAR Portlet</strong>. This was made to demonstrate the portlet
 LAR plugin feature.
 
 <br /><br />

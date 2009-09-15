@@ -24,7 +24,7 @@
 
 <%@ include file="/html/portlet/sample_struts_liferay_portlet/init.jsp" %>
 
-<b>Portlet Display Attributes:</b>
+<strong>Portlet Display Attributes:</strong>
 
 <br /><br />
 

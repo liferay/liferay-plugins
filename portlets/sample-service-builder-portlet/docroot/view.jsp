@@ -30,7 +30,7 @@ List<Foo> foos = FooLocalServiceUtil.getFoos(new FooField4Comparator());
 PortletURL portletURL = renderResponse.createRenderURL();
 %>
 
-<b>Welcome to the Sample Service Builder Portlet!</b>
+<strong>Welcome to the Sample Service Builder Portlet!</strong>
 
 <br /><br />
 

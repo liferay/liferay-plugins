@@ -54,7 +54,7 @@ List<Event> events = TICHUtil.getEvents();
 				Event event = events.get(Randomizer.getInstance().nextInt(events.size()));
 				%>
 
-				<b><i><%= event.getYear() %></i></b>
+				<strong><em><%= event.getYear() %></em></strong>
 
 				<br /><br />
 
@@ -75,7 +75,7 @@ List<Event> events = TICHUtil.getEvents();
 
 					<tr>
 						<td valign="top">
-							<b><i><%= event.getYear() %></i></b>
+							<strong><em><%= event.getYear() %></em></strong>
 						</td>
 						<td>
 							<%= event.getDescription() %>
@@ -94,7 +94,7 @@ List<Event> events = TICHUtil.getEvents();
 				<tr>
 					<td></td>
 					<td>
-						<liferay-ui:message key="source" />: William D. Blake</a>, <i>Almanac of the Christian Church</i>.
+						<liferay-ui:message key="source" />: William D. Blake</a>, <em>Almanac of the Christian Church</em>.
 					</td>
 				</tr>
 				</table>

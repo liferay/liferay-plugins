@@ -46,7 +46,7 @@ while (enu.hasMoreElements()) {
 	String value = props.getProperty(key);
 %>
 
-	<b><%= key %></b>=<%= value%><br />
+	<strong><%= key %></strong>=<%= value%><br />
 
 <%
 }

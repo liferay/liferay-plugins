@@ -22,4 +22,4 @@
  */
 %>
 
-<b>Nested Success</b>
+<strong>Nested Success</strong>

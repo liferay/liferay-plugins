@@ -22,4 +22,4 @@
  */
 %>
 
-<b>Help</b>
+<strong>Help</strong>

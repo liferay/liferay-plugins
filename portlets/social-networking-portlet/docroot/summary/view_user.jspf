@@ -119,7 +119,7 @@
 
 					<liferay-ui:icon
 						image="view"
-						message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<b>" + mbMessagesCount + "</b>"}) %>'
+						message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>'
 						url='<%= themeDisplay.getPathContext() + "/web/guest/community/forums/-/message_boards/recent_posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
 						label="<%= true %>"
 					/>
@@ -141,7 +141,7 @@
 					<td>
 						<liferay-ui:icon
 							image="view"
-							message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<b>" + blogsEntriesCount + "</b>"}) %>'
+							message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>'
 							url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog" %>'
 							label="<%= true %>"
 						/>

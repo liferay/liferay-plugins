@@ -78,7 +78,7 @@ List tasks = (List)request.getAttribute("WORKFLOW_TASKS");
 					<tr class="<%= className %>" onMouseEnter="this.className = '<%= classHoverName %>';" onMouseLeave="this.className = '<%= className %>';">
 						<td colspan="<%= viewType.equals("user") ? "3" : "5" %>"></td>
 						<td>
-							<b><%= LanguageUtil.get(pageContext, "task") %> <%= i + 1 %>:</b> <a href="<%= manageTaskURL %>"><%= LanguageUtil.get(pageContext, displayName) %></a>
+							<strong><%= LanguageUtil.get(pageContext, "task") %> <%= i + 1 %>:</strong> <a href="<%= manageTaskURL %>"><%= LanguageUtil.get(pageContext, displayName) %></a>
 						</td>
 						<td align="right" valign="middle">
 				</c:if>

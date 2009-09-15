@@ -127,16 +127,16 @@ else {
 	<table border="1" cellpadding="4" cellspacing="0" width="100%">
 	<tr>
 		<td>
-			<b>Food Item ID</b>
+			<strong>Food Item ID</strong>
 		</td>
 		<td>
-			<b>Name</b>
+			<strong>Name</strong>
 		</td>
 		<td>
-			<b>Points</b>
+			<strong>Points</strong>
 		</td>
 		<td>
-			<b>Action</b>
+			<strong>Action</strong>
 		</td>
 	</tr>
 

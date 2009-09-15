@@ -22,4 +22,4 @@
  */
 %>
 
-<b>Subscribe Success</b>
+<strong>Subscribe Success</strong>

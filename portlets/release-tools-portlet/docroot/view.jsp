@@ -64,7 +64,7 @@ Please enter a SourceForge URL that points to a specific release.
 
 <br /><br />
 
-An example URL is: <i>http://sourceforge.net/project/showfiles.php?group_id=49260&package_id=243192&release_id=571184</i>
+An example URL is: <em>http://sourceforge.net/project/showfiles.php?group_id=49260&package_id=243192&release_id=571184</em>
 
 <br /><br />
 
