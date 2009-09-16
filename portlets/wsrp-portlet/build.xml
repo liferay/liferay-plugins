@@ -40,11 +40,6 @@
 			<fileset dir="${tstamp.value}/oasis/names/tc/wsrp/v2/types" includes="MarkupContext.java,ResourceContext.java" />
 		</replaceregexp>
 
-		<path id="plugin-lib.classpath">
-			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-			<pathelement location="docroot/WEB-INF/classes" />
-		</path>
-
 		<javac
 			classpathref="plugin.classpath"
 			compiler="${javac.compiler}"
