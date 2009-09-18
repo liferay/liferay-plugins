@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.Namespace;
 import com.liferay.portal.kernel.xml.QName;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
+import com.liferay.portlet.PortletQNameUtil;
 
 import java.net.URL;
 
@@ -39,6 +40,7 @@ import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_PortletManagement_PortType;
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Registration_PortType;
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_ServiceDescription_PortType;
+import oasis.names.tc.wsrp.v2.types.EventDescription;
 import oasis.names.tc.wsrp.v2.types.GetServiceDescription;
 import oasis.names.tc.wsrp.v2.types.ModelDescription;
 import oasis.names.tc.wsrp.v2.types.PortletDescription;
@@ -152,6 +154,40 @@ public class WSRPConsumerManager {
 					propertyDescription);
 			}
 		}
+
+		_events = new HashMap<String, QName>();
+
+		EventDescription[] eventDescriptions =
+			_serviceDescription.getEventDescriptions();
+
+		if (eventDescriptions != null) {
+			for (EventDescription eventDescription : eventDescriptions) {
+				javax.xml.namespace.QName[] aliases =
+					eventDescription.getAliases();
+				javax.xml.namespace.QName name = eventDescription.getName();
+
+				String localPart = name.getLocalPart();
+				String prefix = name.getPrefix();
+				String namespaceURI = name.getNamespaceURI();
+
+				Namespace namespace = SAXReaderUtil.createNamespace(
+					prefix, namespaceURI);
+
+				QName qName =
+					SAXReaderUtil.createQName(localPart, namespace);
+
+				String key = PortletQNameUtil.getKey(qName);
+
+				_events.put(key, qName);
+
+				for (javax.xml.namespace.QName alias : aliases) {
+					key = PortletQNameUtil.getKey(
+						alias.getNamespaceURI(), alias.getLocalPart());
+
+					_events.put(key, qName);
+				}
+			}
+		}
 	}
 
 	private Namespace _getWsdlNamespace(Element element) {
@@ -217,6 +253,7 @@ public class WSRPConsumerManager {
 	private static final String _WSRP_V2_SERVICE_DESCRIPTION_BINDING =
 		"WSRP_v2_ServiceDescription_Binding_SOAP";
 
+	private Map<String, QName> _events;
 	private URL _markupServiceURL;
 	private Map<String, PortletDescription> _portletDescriptions;
 	private WSRP_v2_PortletManagement_PortType _portletManagementService;
