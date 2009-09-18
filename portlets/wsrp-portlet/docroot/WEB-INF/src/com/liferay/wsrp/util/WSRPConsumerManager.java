@@ -71,7 +71,10 @@ public class WSRPConsumerManager {
 		return _serviceDescription;
 	}
 
-	protected WSRPConsumerManager(String wsdl) throws Exception {
+	protected WSRPConsumerManager(
+			String wsdl, RegistrationContext registrationContext)
+		throws Exception {
+
 		_serviceLocator = new WSRP_v2_ServiceLocator();
 
 		_serviceLocator.setMaintainSession(true);
@@ -88,31 +91,7 @@ public class WSRPConsumerManager {
 			_readServiceElement(serviceElement);
 		}
 
-		GetServiceDescription getServiceDescription =
-			new GetServiceDescription();
-
-		_serviceDescription = _serviceDescriptionService.getServiceDescription(
-			getServiceDescription);
-
-		PortletDescription[] portletDescriptions =
-			_serviceDescription.getOfferedPortlets();
-
-		for (PortletDescription portletDescription : portletDescriptions) {
-			_portletDescriptions.put(
-				portletDescription.getPortletHandle(), portletDescription);
-		}
-
-		PropertyDescription[] propertyDescriptions = getPropertyDescriptions();
-
-		if (propertyDescriptions != null) {
-			for (PropertyDescription propertyDescription :
-					propertyDescriptions) {
-
-				_propertyDescriptions.put(
-					propertyDescription.getName().toString(),
-					propertyDescription);
-			}
-		}
+		updateServiceDescription(registrationContext);
 	}
 
 	public PortletDescription getPortletDescription(String portletHandle) {
@@ -143,10 +122,36 @@ public class WSRPConsumerManager {
 		GetServiceDescription getServiceDescription =
 			new GetServiceDescription();
 
-		getServiceDescription.setRegistrationContext(registrationContext);
+		if (registrationContext != null) {
+			getServiceDescription.setRegistrationContext(registrationContext);
+		}
 
 		_serviceDescription = _serviceDescriptionService.getServiceDescription(
 			getServiceDescription);
+
+		_portletDescriptions = new HashMap<String, PortletDescription>();
+
+		PortletDescription[] portletDescriptions =
+			_serviceDescription.getOfferedPortlets();
+
+		for (PortletDescription portletDescription : portletDescriptions) {
+			_portletDescriptions.put(
+				portletDescription.getPortletHandle(), portletDescription);
+		}
+
+		_propertyDescriptions = new HashMap<String, PropertyDescription>();
+
+		PropertyDescription[] propertyDescriptions = getPropertyDescriptions();
+
+		if (propertyDescriptions != null) {
+			for (PropertyDescription propertyDescription :
+					propertyDescriptions) {
+
+				_propertyDescriptions.put(
+					propertyDescription.getName().toString(),
+					propertyDescription);
+			}
+		}
 	}
 
 	private Namespace _getWsdlNamespace(Element element) {
@@ -213,11 +218,9 @@ public class WSRPConsumerManager {
 		"WSRP_v2_ServiceDescription_Binding_SOAP";
 
 	private URL _markupServiceURL;
-	private Map<String, PortletDescription> _portletDescriptions =
-		new HashMap<String, PortletDescription>();
+	private Map<String, PortletDescription> _portletDescriptions;
 	private WSRP_v2_PortletManagement_PortType _portletManagementService;
-	private Map<String, PropertyDescription> _propertyDescriptions =
-		new HashMap<String, PropertyDescription>();
+	private Map<String, PropertyDescription> _propertyDescriptions;
 	private WSRP_v2_Registration_PortType _registrationService;
 	private ServiceDescription _serviceDescription;
 	private WSRP_v2_ServiceDescription_PortType _serviceDescriptionService;

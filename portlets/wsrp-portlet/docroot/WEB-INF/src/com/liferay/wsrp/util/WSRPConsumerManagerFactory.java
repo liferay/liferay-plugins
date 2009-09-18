@@ -27,6 +27,8 @@ import com.liferay.wsrp.model.WSRPConsumer;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import oasis.names.tc.wsrp.v2.types.RegistrationContext;
+
 /**
  * <a href="WSRPConsumerManagerFactory.java.html"><b><i>View Source</i></b></a>
  *
@@ -38,23 +40,31 @@ public class WSRPConsumerManagerFactory {
 	public static WSRPConsumerManager getWSRPConsumerManager(String wsdl)
 		throws Exception {
 
-		WSRPConsumerManager wsrpConsumerManager = _wsrpConsumerManagers.get(
-			wsdl);
-
-		if (wsrpConsumerManager == null) {
-			wsrpConsumerManager = new WSRPConsumerManager(wsdl);
-
-			_wsrpConsumerManagers.put(wsdl, wsrpConsumerManager);
-		}
-
-		return wsrpConsumerManager;
+		return getWSRPConsumerManager(wsdl, null);
 	}
 
 	public static WSRPConsumerManager getWSRPConsumerManager(
 			WSRPConsumer wsrpConsumer)
 		throws Exception {
 
-		return getWSRPConsumerManager(wsrpConsumer.getWsdl());
+		return getWSRPConsumerManager(
+			wsrpConsumer.getWsdl(), wsrpConsumer.getRegistrationContext());
+	}
+
+	protected static WSRPConsumerManager getWSRPConsumerManager(
+			String wsdl, RegistrationContext registrationContext)
+		throws Exception {
+
+		WSRPConsumerManager wsrpConsumerManager = _wsrpConsumerManagers.get(
+			wsdl);
+
+		if (wsrpConsumerManager == null) {
+			wsrpConsumerManager = new WSRPConsumerManager(wsdl, null);
+
+			_wsrpConsumerManagers.put(wsdl, wsrpConsumerManager);
+		}
+
+		return wsrpConsumerManager;
 	}
 
 	private static Map<String, WSRPConsumerManager> _wsrpConsumerManagers =
