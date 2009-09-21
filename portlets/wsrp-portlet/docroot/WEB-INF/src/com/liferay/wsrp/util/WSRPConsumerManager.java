@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.Namespace;
-import com.liferay.portal.kernel.xml.QName;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portlet.PortletQNameUtil;
 
@@ -35,6 +34,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.namespace.QName;
 
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_PortletManagement_PortType;
@@ -56,6 +57,13 @@ import oasis.names.tc.wsrp.v2.wsdl.WSRP_v2_ServiceLocator;
  *
  */
 public class WSRPConsumerManager {
+
+	public QName getEventQName(QName name) {
+		String key = PortletQNameUtil.getKey(
+			name.getNamespaceURI(), name.getLocalPart());
+
+		return _events.get(key);
+	}
 
 	public WSRP_v2_Markup_PortType getMarkupService() throws Exception {
 		return _serviceLocator.getWSRP_v2_Markup_Service(_markupServiceURL);
@@ -162,29 +170,19 @@ public class WSRPConsumerManager {
 
 		if (eventDescriptions != null) {
 			for (EventDescription eventDescription : eventDescriptions) {
-				javax.xml.namespace.QName[] aliases =
-					eventDescription.getAliases();
-				javax.xml.namespace.QName name = eventDescription.getName();
+				QName[] aliases = eventDescription.getAliases();
+				QName name = eventDescription.getName();
 
-				String localPart = name.getLocalPart();
-				String prefix = name.getPrefix();
-				String namespaceURI = name.getNamespaceURI();
+				String key = PortletQNameUtil.getKey(
+					name.getNamespaceURI(), name.getLocalPart());
 
-				Namespace namespace = SAXReaderUtil.createNamespace(
-					prefix, namespaceURI);
+				_events.put(key, name);
 
-				QName qName =
-					SAXReaderUtil.createQName(localPart, namespace);
-
-				String key = PortletQNameUtil.getKey(qName);
-
-				_events.put(key, qName);
-
-				for (javax.xml.namespace.QName alias : aliases) {
+				for (QName alias : aliases) {
 					key = PortletQNameUtil.getKey(
 						alias.getNamespaceURI(), alias.getLocalPart());
 
-					_events.put(key, qName);
+					_events.put(key, name);
 				}
 			}
 		}
@@ -194,7 +192,9 @@ public class WSRPConsumerManager {
 		return element.getNamespaceForURI(_WSDL_URI);
 	}
 
-	private QName _getWsdlQName(String localName) {
+	private com.liferay.portal.kernel.xml.QName _getWsdlQName(
+		String localName) {
+
 		return SAXReaderUtil.createQName(localName, _wsdlNamespace);
 	}
 

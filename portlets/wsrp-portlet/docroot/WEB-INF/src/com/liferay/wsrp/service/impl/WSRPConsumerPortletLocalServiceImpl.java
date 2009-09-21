@@ -322,15 +322,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 					continue;
 				}
 
-				String localPart = qNames[0].getLocalPart();
-				String prefix = qNames[0].getPrefix();
-				String namespaceURI = qNames[0].getNamespaceURI();
-
-				Namespace namespace = SAXReaderUtil.createNamespace(
-					prefix, namespaceURI);
-
-				com.liferay.portal.kernel.xml.QName qName =
-					SAXReaderUtil.createQName(localPart, namespace);
+				com.liferay.portal.kernel.xml.QName qName = getQName(qNames[0]);
 
 				String identifier = parameterDescription.getIdentifier();
 
@@ -338,6 +330,22 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 				portlet.addPublicRenderParameter(
 					portletApp.getPublicRenderParameter(identifier));
+			}
+		}
+
+		QName[] handledEvents = portletDescription.getHandledEvents();
+
+		if (handledEvents != null) {
+			for (QName handledEvent : handledEvents) {
+				portlet.addProcessingEvent(getQName(handledEvent));
+			}
+		}
+
+		QName[] publishedEvents = portletDescription.getPublishedEvents();
+
+		if (publishedEvents != null) {
+			for (QName publishedEvent : publishedEvents) {
+				portlet.addPublishingEvent(getQName(publishedEvent));
 			}
 		}
 
@@ -367,6 +375,17 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 	protected String getProxyURL(String url) {
 		return "/proxy?url=" + HttpUtil.encodeURL(url);
+	}
+
+	protected com.liferay.portal.kernel.xml.QName getQName(QName qName) {
+		String localPart = qName.getLocalPart();
+		String prefix = qName.getPrefix();
+		String namespaceURI = qName.getNamespaceURI();
+
+		Namespace namespace = SAXReaderUtil.createNamespace(
+			prefix, namespaceURI);
+
+		return SAXReaderUtil.createQName(localPart, namespace);
 	}
 
 	protected void initWSRPConsumerPortlet(

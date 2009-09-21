@@ -80,10 +80,13 @@ import javax.portlet.WindowState;
 
 import javax.servlet.http.HttpServletRequest;
 
+import javax.xml.namespace.QName;
+
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
 import oasis.names.tc.wsrp.v2.types.BlockingInteractionResponse;
 import oasis.names.tc.wsrp.v2.types.ClientData;
 import oasis.names.tc.wsrp.v2.types.CookieProtocol;
+import oasis.names.tc.wsrp.v2.types.Event;
 import oasis.names.tc.wsrp.v2.types.GetMarkup;
 import oasis.names.tc.wsrp.v2.types.InitCookie;
 import oasis.names.tc.wsrp.v2.types.InteractionParams;
@@ -230,7 +233,8 @@ public class ConsumerPortlet extends GenericPortlet {
 		blockingInteractionResponse.getUpdateResponse();
 
 		processBlockingInteractionResponse(
-			actionRequest, actionResponse, blockingInteractionResponse);
+			actionRequest, actionResponse, wsrpConsumerManager,
+			blockingInteractionResponse);
 	}
 
 	protected void doRender(
@@ -620,6 +624,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 	protected void processBlockingInteractionResponse(
 			ActionRequest actionRequest, ActionResponse actionResponse,
+			WSRPConsumerManager wsrpConsumerManager,
 			BlockingInteractionResponse blockingInteractionResponse)
 		throws Exception {
 
@@ -695,6 +700,19 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		if (Validator.isNotNull(windowState)) {
 			actionResponse.setWindowState(getWindowState(windowState));
+		}
+
+		Event[] events = updateResponse.getEvents();
+
+		if (events != null) {
+			for (Event event : events) {
+				QName qName = 
+					wsrpConsumerManager.getEventQName(event.getName());
+
+				event.setName(qName);
+
+				actionResponse.setEvent(qName, event);
+			}
 		}
 	}
 
