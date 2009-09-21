@@ -706,8 +706,8 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		if (events != null) {
 			for (Event event : events) {
-				QName qName = 
-					wsrpConsumerManager.getEventQName(event.getName());
+				QName qName = wsrpConsumerManager.getEventQName(
+					event.getName());
 
 				event.setName(qName);
 

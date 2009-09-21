@@ -58,9 +58,9 @@ import oasis.names.tc.wsrp.v2.wsdl.WSRP_v2_ServiceLocator;
  */
 public class WSRPConsumerManager {
 
-	public QName getEventQName(QName name) {
+	public QName getEventQName(QName qName) {
 		String key = PortletQNameUtil.getKey(
-			name.getNamespaceURI(), name.getLocalPart());
+			qName.getNamespaceURI(), qName.getLocalPart());
 
 		return _events.get(key);
 	}
@@ -171,18 +171,18 @@ public class WSRPConsumerManager {
 		if (eventDescriptions != null) {
 			for (EventDescription eventDescription : eventDescriptions) {
 				QName[] aliases = eventDescription.getAliases();
-				QName name = eventDescription.getName();
+				QName qName = eventDescription.getName();
 
 				String key = PortletQNameUtil.getKey(
-					name.getNamespaceURI(), name.getLocalPart());
+					qName.getNamespaceURI(), qName.getLocalPart());
 
-				_events.put(key, name);
+				_events.put(key, qName);
 
 				for (QName alias : aliases) {
 					key = PortletQNameUtil.getKey(
 						alias.getNamespaceURI(), alias.getLocalPart());
 
-					_events.put(key, name);
+					_events.put(key, qName);
 				}
 			}
 		}
