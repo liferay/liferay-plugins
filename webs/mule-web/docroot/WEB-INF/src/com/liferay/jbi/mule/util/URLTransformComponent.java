@@ -22,8 +22,8 @@
 
 package com.liferay.jbi.mule.util;
 
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
 
 import java.util.Map;
 
@@ -44,6 +44,7 @@ public class URLTransformComponent
 
 		try {
 			Http.Options options = new Http.Options();
+
 			options.setLocation(url);
 			options.setParts(parameters);
 			options.setPost(true);
