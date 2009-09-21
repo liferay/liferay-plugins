@@ -58,6 +58,10 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.portlet.asset.model.AssetCategory;
+import com.liferay.portlet.asset.model.AssetVocabulary;
+import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
+import com.liferay.portlet.asset.service.AssetVocabularyLocalServiceUtil;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
@@ -129,12 +133,10 @@ public class StartupAction extends SimpleAction {
 
 	protected DLFileEntry addDLFileEntry(
 			long userId, long groupId, long folderId, String name, String title,
-			String description)
+			String description, ServiceContext serviceContext)
 		throws Exception {
 
 		byte[] bytes = getBytes("/document_library/" + name);
-
-		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(false);
@@ -177,22 +179,22 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected JournalArticle addJournalArticle(
-			long userId, long groupId, String title, String fileName)
+			long userId, long groupId, String title, String fileName,
+			ServiceContext serviceContext)
 		throws Exception {
 
 		return addJournalArticle(
 			userId, groupId, title, fileName, StringPool.BLANK,
-			StringPool.BLANK);
+			StringPool.BLANK, serviceContext);
 	}
 
 	protected JournalArticle addJournalArticle(
 			long userId, long groupId, String title, String fileName,
-			String structureId, String templateId)
+			String structureId, String templateId,
+			ServiceContext serviceContext)
 		throws Exception {
 
 		String content = getString("/journal/articles/" + fileName);
-
-		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddCommunityPermissions(false);
 		serviceContext.setAddGuestPermissions(false);
@@ -287,8 +289,8 @@ public class StartupAction extends SimpleAction {
 		String body = getString("/message_boards/" + fileName);
 
 		return MBMessageLocalServiceUtil.addMessage(
-			userId, userName, groupId, categoryId, threadId, parentMessageId,
-			subject, body, new ArrayList(), false, -1.0, serviceContext);
+			userId, userName, categoryId, threadId, parentMessageId,
+			subject, body, new ArrayList(), false, -1.0, 0, serviceContext);
 	}
 
 	public String addPortletId(Layout layout, String portletId, String columnId)
@@ -356,7 +358,7 @@ public class StartupAction extends SimpleAction {
 
 		long[] userGroupIds = null;
 		boolean sendEmail = false;
-		ServiceContext serviceContext = null;
+		ServiceContext serviceContext = new ServiceContext();
 
 		User user = UserLocalServiceUtil.addUser(
 			creatorUserId, companyId, autoPassword, password1, password2,
@@ -390,10 +392,12 @@ public class StartupAction extends SimpleAction {
 
 		highlightPortlet(layout, portletId);
 
+		serviceContext.setAssetTagNames(new String[]{"community", "tips"});
+
 		JournalArticle journalArticle = addJournalArticle(
 			user.getUserId(), group.getGroupId(),
 			"Public Pages " + user.getScreenName(),
-			"my_community_" + user.getScreenName() + ".xml");
+			"my_community_" + user.getScreenName() + ".xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -423,10 +427,12 @@ public class StartupAction extends SimpleAction {
 
 		highlightPortlet(layout, portletId);
 
+		serviceContext.setAssetTagNames(new String[]{"social", "tips"});
+
 		journalArticle = addJournalArticle(
 			user.getUserId(), group.getGroupId(),
 			"Public Pages " + user.getScreenName(),
-			"private_pages_" + user.getScreenName() + ".xml");
+			"private_pages_" + user.getScreenName() + ".xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -469,9 +475,11 @@ public class StartupAction extends SimpleAction {
 
 		highlightPortlet(layout, portletId);
 
+		serviceContext.setAssetTagNames(new String[]{"documents", "tips"});
+
 		journalArticle = addJournalArticle(
 			user.getUserId(), group.getGroupId(), "My documents",
-			"workspace_docs.xml");
+			"workspace_docs.xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -744,8 +752,11 @@ public class StartupAction extends SimpleAction {
 
 		removePortletBorder(layout, portletId);
 
+		serviceContext.setAssetTagNames(new String[]{"liferay", "welcome"});
+
 		JournalArticle journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Welcome", "welcome.xml");
+			defaultUserId, group.getGroupId(), "Welcome", "welcome.xml",
+			serviceContext);
 
 		String content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -780,8 +791,11 @@ public class StartupAction extends SimpleAction {
 
 		removePortletBorder(layout, portletId);
 
+		serviceContext.setAssetTagNames(new String[]{"liferay", "7cogs"});
+
 		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "7 Cogs Ad", "7cogs_ad.xml");
+			defaultUserId, group.getGroupId(), "7 Cogs Ad", "7cogs_ad.xml",
+			serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -808,9 +822,11 @@ public class StartupAction extends SimpleAction {
 
 		removePortletBorder(layout, portletId);
 
+		serviceContext.setAssetTagNames(new String[]{"welcome"});
+
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Welcome Note",
-			"welcome_note.xml");
+			"welcome_note.xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -820,9 +836,12 @@ public class StartupAction extends SimpleAction {
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
 
+		serviceContext.setAssetTagNames(
+			new String[]{"login", "users", "welcome"});
+
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Welcome Login",
-			"welcome_login.xml");
+			"welcome_login.xml", serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(), "[$COMPANY_ID$]",
@@ -858,6 +877,7 @@ public class StartupAction extends SimpleAction {
 		int statusId = GetterUtil.getInteger(PropsUtil.get(
 			"sql.data.com.liferay.portal.model.ListType.organization.status"));
 		String comments = null;
+		Locale locale = Locale.US;
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -875,6 +895,8 @@ public class StartupAction extends SimpleAction {
 
 		GroupLocalServiceUtil.updateFriendlyURL(group.getGroupId(), "/7cogs");
 
+		serviceContext.setScopeGroupId(group.getGroupId());
+
 		// Layout set
 
 		LayoutSetLocalServiceUtil.updateLogo(
@@ -884,6 +906,46 @@ public class StartupAction extends SimpleAction {
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
 			group.getGroupId(), false, "sevencogs_WAR_sevencogstheme", "01", "",
 			false);
+
+		// Categories and Vocabularies
+		AssetVocabulary topicVocabulary =
+			AssetVocabularyLocalServiceUtil.addVocabulary(null, defaultUserId,
+			 "topic", serviceContext);
+
+		AssetVocabulary imageVocabulary =
+			AssetVocabularyLocalServiceUtil.addVocabulary(null, defaultUserId,
+			"Image Type", serviceContext);
+
+		AssetCategory iconCategory = AssetCategoryLocalServiceUtil.addCategory(
+			null, defaultUserId, 0, "Icon", imageVocabulary.getVocabularyId(),
+			null, serviceContext);
+
+		AssetCategory bannerCategory =
+			AssetCategoryLocalServiceUtil.addCategory(
+				null, defaultUserId, 0, "Banner",
+				imageVocabulary.getVocabularyId(), null, serviceContext);
+
+		AssetCategory learningCategory =
+			AssetCategoryLocalServiceUtil.addCategory(
+				null, defaultUserId, 0, "Learning",
+				topicVocabulary.getVocabularyId(), null, serviceContext);
+
+		AssetCategory productsCategory =
+			AssetCategoryLocalServiceUtil.addCategory(
+				null, defaultUserId, 0, "Products",
+				topicVocabulary.getVocabularyId(), null, serviceContext);
+
+		AssetCategory liferayCategory =
+			AssetCategoryLocalServiceUtil.addCategory(
+				null, defaultUserId, 0, "Liferay",
+				topicVocabulary.getVocabularyId(), null, serviceContext);
+
+		_categories = new HashMap<String, AssetCategory>();
+		_categories.put("Type", iconCategory);
+		_categories.put("Banner", bannerCategory);
+		_categories.put("Learning", learningCategory);
+		_categories.put("Products", productsCategory);
+		_categories.put("Liferay", liferayCategory);
 
 		// Journal
 
@@ -898,36 +960,72 @@ public class StartupAction extends SimpleAction {
 			defaultUserId, 0, "7Cogs Web Content", "Images used for content",
 			serviceContext);
 
+		serviceContext.setAssetTagNames(new String[]{"add"});
+		serviceContext.setAssetCategoryIds(
+			new long[]{iconCategory.getCategoryId()});
+
 		IGImage addIconIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "add_icon.png",
 			serviceContext);
+
+		serviceContext.setAssetTagNames(new String[]{"configuration"});
+		serviceContext.setAssetCategoryIds(
+			new long[]{iconCategory.getCategoryId()});
 
 		IGImage configurationIconIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "configuration_icon.png",
 			serviceContext);
 
+		serviceContext.setAssetTagNames(new String[]{"edit"});
+		serviceContext.setAssetCategoryIds(
+			new long[]{iconCategory.getCategoryId()});
+
 		IGImage editIconIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "edit_icon.png",
 			serviceContext);
 
+		serviceContext.setAssetTagNames(new String[]{"enterprise"});
+		serviceContext.setAssetCategoryIds(
+			new long[]{bannerCategory.getCategoryId(),
+				liferayCategory.getCategoryId()});
+
 		IGImage eeAdIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "ee_ad.png", serviceContext);
+
+		serviceContext.setAssetTagNames(new String[]{"gartner", "quadrant"});
+		serviceContext.setAssetCategoryIds(
+			new long[]{bannerCategory.getCategoryId(),
+				liferayCategory.getCategoryId()});
 
 		IGImage gartnerIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "gartner.png",
 			serviceContext);
 
+		serviceContext.setAssetTagNames(new String[]{"vix-998"});
+
 		IGImage introducingIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "introducing.png",
 			serviceContext);
+
+		serviceContext.setAssetTagNames(new String[]{"liferay", "logo"});
+		serviceContext.setAssetCategoryIds(
+			new long[]{liferayCategory.getCategoryId()});
 
 		IGImage liferayLogoIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "liferay_logo.png",
 			serviceContext);
 
+		serviceContext.setAssetTagNames(new String[]{"look and feel"});
+		serviceContext.setAssetCategoryIds(
+			new long[]{iconCategory.getCategoryId()});
+
 		IGImage lookIconIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "look_icon.png",
 			serviceContext);
+
+		serviceContext.setAssetTagNames(new String[]{"vix-998", "products"});
+		serviceContext.setAssetCategoryIds(
+			new long[]{productsCategory.getCategoryId()});
 
 		IGImage productsIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "products.png",
@@ -945,9 +1043,11 @@ public class StartupAction extends SimpleAction {
 
 		removePortletBorder(layout, portletId);
 
+		serviceContext.setAssetTagNames(new String[]{"liferay", "7cogs"});
+
 		JournalArticle journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Banner",
-			"front_page_banner.xml");
+			"front_page_banner.xml", serviceContext);
 
 		String content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -974,9 +1074,11 @@ public class StartupAction extends SimpleAction {
 
 		removePortletBorder(layout, portletId);
 
+		serviceContext.setAssetTagNames(new String[]{"front"});
+
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Front Page Intro",
-			"front_page_intro.xml");
+			"front_page_intro.xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -988,9 +1090,11 @@ public class StartupAction extends SimpleAction {
 
 		configurePortletTitle(layout, portletId, "Edit and Add Content");
 
+		serviceContext.setAssetTagNames(new String[]{"liferay", "tips"});
+
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Fron Page - Edit and Create",
-			"front_page_edit_and_create.xml");
+			"front_page_edit_and_create.xml", serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -1023,9 +1127,11 @@ public class StartupAction extends SimpleAction {
 
 		configurePortletTitle(layout, portletId, "Advertisement");
 
+		serviceContext.setAssetTagNames(new String[]{"liferay", "enterprise"});
+
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Front Page - EE Ad",
-			"ee_ad.xml");
+			"ee_ad.xml", serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -1052,9 +1158,11 @@ public class StartupAction extends SimpleAction {
 
 		highlightPortlet(layout, portletId);
 
+		serviceContext.setAssetTagNames(new String[]{"liferay", "permissions"});
+
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Front Page - Permissions",
-			"front_page_permissions.xml");
+			"front_page_permissions.xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -1071,9 +1179,11 @@ public class StartupAction extends SimpleAction {
 
 		removePortletBorder(layout, portletId);
 
+		serviceContext.setAssetTagNames(new String[]{"Vix-998", "7cogs"});
+
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Products Image",
-			"products_banner.xml");
+			"products_banner.xml", serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -1100,8 +1210,11 @@ public class StartupAction extends SimpleAction {
 
 		configurePortletTitle(layout, portletId, "News");
 
+		serviceContext.setAssetTagNames(new String[]{"liferay", "gartner"});
+
 		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Gartner", "gartner.xml");
+			defaultUserId, group.getGroupId(), "Gartner", "gartner.xml",
+			serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -1127,9 +1240,11 @@ public class StartupAction extends SimpleAction {
 
 		removePortletBorder(layout, portletId);
 
+		serviceContext.setAssetTagNames(new String[]{"Vix-998", "7cogs"});
+
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Introducing Vix",
-			"introducing_vix.xml");
+			"introducing_vix.xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -1141,9 +1256,11 @@ public class StartupAction extends SimpleAction {
 
 		highlightPortlet(layout, portletId);
 
+		serviceContext.setAssetTagNames(new String[]{"info"});
+
 		journalArticle = addJournalArticle(defaultUserId,
 			group.getGroupId(), "Products - More Information",
-			"products_more.xml");
+			"products_more.xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -1166,9 +1283,19 @@ public class StartupAction extends SimpleAction {
 		WikiNode wikiNode = WikiNodeLocalServiceUtil.addNode(
 			defaultUserId, "Main", StringPool.BLANK, serviceContext);
 
+		serviceContext.setAssetTagNames(
+			new String[]{"new", "features"});
+		serviceContext.setAssetCategoryIds(
+			new long[]{learningCategory.getCategoryId()});
+
 		addWikiPage(
 			defaultUserId, wikiNode.getNodeId(), "FrontPage",
 			"FrontPage.xml", serviceContext);
+
+		serviceContext.setAssetTagNames(
+			new String[]{"vix-998", "features"});
+		serviceContext.setAssetCategoryIds(
+			new long[]{productsCategory.getCategoryId()});
 
 		addWikiPage(
 			defaultUserId, wikiNode.getNodeId(), "Vix-998",
@@ -1190,9 +1317,11 @@ public class StartupAction extends SimpleAction {
 
 		highlightPortlet(layout, portletId);
 
+		serviceContext.setAssetTagNames(new String[]{"liferay"});
+
 		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "About Us",
-			"7cogs_about_us.xml");
+			defaultUserId, group.getGroupId(), "About Us", "7cogs_about_us.xml",
+			serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -1232,9 +1361,11 @@ public class StartupAction extends SimpleAction {
 
 		highlightPortlet(layout, portletId);
 
+		serviceContext.setAssetTagNames(new String[]{"7cogs", "tips"});
+
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Home",
-			"7cogs_private_pages.xml");
+			"7cogs_private_pages.xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -1257,9 +1388,11 @@ public class StartupAction extends SimpleAction {
 
 		highlightPortlet(layout, portletId);
 
+		serviceContext.setAssetTagNames(new String[]{"documents", "sharing"});
+
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Shared Documents",
-			"shared_docs.xml");
+			"shared_docs.xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -1361,28 +1494,56 @@ public class StartupAction extends SimpleAction {
 			companyId, "richard", "Richard", "Editor", true, "Publisher",
 			roleIds);
 
+		// Categories
+
+		AssetCategory learningCategory = _categories.get("Learning");
+		AssetCategory productsCategory = _categories.get("Products");
+		AssetCategory liferayCategory = _categories.get("Liferay");
+
 		// Blogs
 
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
+		serviceContext.setAssetTagNames(
+			new String[]{"new", "features", "control panel"});
+		serviceContext.setAssetCategoryIds(
+			new long[]{learningCategory.getCategoryId(),
+				liferayCategory.getCategoryId()});
 		serviceContext.setScopeGroupId(brunoUser.getGroup().getGroupId());
 
 		addBlogsEntry(
 			brunoUser.getUserId(), "New Control Panel!!", "controlpanel.xml",
 			serviceContext);
 
+		serviceContext.setAssetCategoryIds(
+			new long[]{learningCategory.getCategoryId(),
+				liferayCategory.getCategoryId()});
+		serviceContext.setAssetTagNames(
+			new String[]
+				{"configuration", "portal.properties", "customization"});
+
 		addBlogsEntry(
 			brunoUser.getUserId(),
 			"Configuration of the portal: portal.properties",
 			"portalproperties.xml", serviceContext);
 
+		serviceContext.setAssetCategoryIds(
+			new long[]{learningCategory.getCategoryId(),
+				liferayCategory.getCategoryId()});
+		serviceContext.setAssetTagNames(
+			new String[]{"new", "wiki", "knowledge"});
 		serviceContext.setScopeGroupId(johnUser.getGroup().getGroupId());
 
 		addBlogsEntry(
 			johnUser.getUserId(), "Using the wiki", "wiki.xml", serviceContext);
 
+		serviceContext.setAssetCategoryIds(
+			new long[]{learningCategory.getCategoryId(),
+				liferayCategory.getCategoryId()});
+		serviceContext.setAssetTagNames(
+			new String[]{"new", "chat", "communications", "features"});
 		serviceContext.setScopeGroupId(michelleUser.getGroup().getGroupId());
 
 		addBlogsEntry(
@@ -1395,10 +1556,13 @@ public class StartupAction extends SimpleAction {
 			brunoUser.getUserId(), brunoUser.getGroup().getGroupId(),
 			"Important Documents", "Documents related with the company");
 
+		serviceContext.setAssetTagNames(
+			new String[]{"document", "budget", "2009"});
+
 		addDLFileEntry(
 			brunoUser.getUserId(), dlFolder.getGroupId(),
 			dlFolder.getFolderId(), "Budget.xls", "Budget",
-			"Budgets for the current year");
+			"Budgets for the current year", serviceContext);
 
 		addDLFolder(
 			michelleUser.getUserId(), michelleUser.getGroup().getGroupId(),
@@ -1408,10 +1572,13 @@ public class StartupAction extends SimpleAction {
 			michelleUser.getUserId(), michelleUser.getGroup().getGroupId(),
 			"Work Documents", "Works docs");
 
+		serviceContext.setAssetTagNames(
+			new String[]{"document", "notes", "meeting"});
+
 		addDLFileEntry(
 			michelleUser.getUserId(), dlFolder.getGroupId(),
 			dlFolder.getFolderId(), "Notes from the last meeting.doc",
-			"Notes from the last meeting", "Important notes");
+			"Notes from the last meeting", "Important notes", serviceContext);
 
 		addDLFolder(
 			richardUser.getUserId(), richardUser.getGroup().getGroupId(),
@@ -1421,10 +1588,13 @@ public class StartupAction extends SimpleAction {
 			richardUser.getUserId(),richardUser.getGroup().getGroupId(),
 			"Innovation", "New things");
 
+		serviceContext.setAssetTagNames(
+			new String[]{"new", "features", "2009"});
+
 		addDLFileEntry(
 			richardUser.getUserId(), dlFolder.getGroupId(),
 			dlFolder.getFolderId(), "New Features.ppt", "New Features",
-			"Features for the current year");
+			"Features for the current year", serviceContext);
 
 		// Message boards
 
@@ -1439,6 +1609,9 @@ public class StartupAction extends SimpleAction {
 			brunoUser.getUserId(), "Using the forum",
 			"Some advice on using the forum", serviceContext);
 
+		serviceContext.setAssetTagNames(
+			new String[]{"forums", "liferay", "7cogs"});
+
 		addMBMessage(
 			brunoUser.getUserId(), brunoUser.getFullName(),
 			mbCategory.getGroupId(), mbCategory.getCategoryId(), 0, 0,
@@ -1448,16 +1621,25 @@ public class StartupAction extends SimpleAction {
 			brunoUser.getUserId(), "General Questions",
 			"Product questions and more!", serviceContext);
 
+		serviceContext.setAssetTagNames(
+			new String[]{"vix-998", "liferay"});
+
 		MBMessage vix1Message = addMBMessage(
 			brunoUser.getUserId(), brunoUser.getFullName(),
 			mbCategory.getGroupId(), mbCategory.getCategoryId(), 0, 0,
 			"About the Vix-998", "vix1.xml", serviceContext);
+
+		serviceContext.setAssetTagNames(
+			new String[]{"vix-998", "latin"});
 
 		MBMessage vix2Message = addMBMessage(
 			richardUser.getUserId(), richardUser.getFullName(),
 			mbCategory.getGroupId(), mbCategory.getCategoryId(),
 			vix1Message.getThreadId(), vix1Message.getMessageId(),
 			"RE: About the Vix-998", "vix2.xml", serviceContext);
+
+		serviceContext.setAssetTagNames(
+			new String[]{"vix-998", "vulgo"});
 
 		addMBMessage(
 			michelleUser.getUserId(), michelleUser.getFullName(),
@@ -1507,5 +1689,6 @@ public class StartupAction extends SimpleAction {
 	}
 
 	private static final int _WOL_FRIENDS_REQUEST_KEYS_ADD_FRIEND = 1;
+	private static Map<String, AssetCategory> _categories;
 
 }
