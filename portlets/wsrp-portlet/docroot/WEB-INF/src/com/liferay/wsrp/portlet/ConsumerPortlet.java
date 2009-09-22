@@ -280,8 +280,8 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		initContexts(
 			eventRequest, eventResponse, wsrpConsumerPortlet,
-			wsrpConsumerManager, eventParams, markupParams,
-			portletContext, runtimeContext, userContext);
+			wsrpConsumerManager, eventParams, markupParams, portletContext,
+			runtimeContext, userContext);
 
 		HandleEvents handleEvents = new HandleEvents();
 
@@ -525,9 +525,9 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		eventParams.setPortletStateChange(StateChange.cloneBeforeWrite);
 
-		javax.portlet.Event javaxEvent = eventRequest.getEvent();
+		javax.portlet.Event jxEvent = eventRequest.getEvent();
 
-		Event event = (Event)javaxEvent.getValue();
+		Event event = (Event)jxEvent.getValue();
 
 		eventParams.setEvents(new Event[] {event});
 	}
@@ -793,6 +793,17 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 	}
 
+	protected void processHandleEventsResponse(
+			EventRequest eventRequest, EventResponse eventResponse,
+			WSRPConsumerManager wsrpConsumerManager,
+			HandleEventsResponse handleEventsResponse)
+		throws Exception {
+
+		processUpdateResponse(
+			eventRequest, eventResponse, wsrpConsumerManager,
+			handleEventsResponse.getUpdateResponse());
+	}
+
 	protected void processMarkupResponse(
 		PortletRequest portletRequest, PortletResponse portletResponse,
 		MarkupResponse markupResponse) {
@@ -805,17 +816,6 @@ public class ConsumerPortlet extends GenericPortlet {
 			portletSession.setAttribute(
 				WebKeys.SESSION_CONTEXT, sessionContext);
 		}
-	}
-
-	protected void processHandleEventsResponse(
-			EventRequest eventRequest, EventResponse eventResponse,
-			WSRPConsumerManager wsrpConsumerManager,
-			HandleEventsResponse handleEventsResponse)
-		throws Exception {
-
-		processUpdateResponse(
-			eventRequest, eventResponse, wsrpConsumerManager,
-			handleEventsResponse.getUpdateResponse());
 	}
 
 	protected void processMultipartForm(
@@ -966,8 +966,8 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		if (events != null) {
 			for (Event event : events) {
-				QName qName =
-					wsrpConsumerManager.getEventQName(event.getName());
+				QName qName = wsrpConsumerManager.getEventQName(
+					event.getName());
 
 				event.setName(qName);
 
