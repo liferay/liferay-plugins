@@ -1112,10 +1112,6 @@ table.calendar {
 
 /* Document Library */
 
-.portlet-document-library .results-header {
-	display: none;
-}
-
 .portlet-document-library .folder-name img,
 .portlet-document-library .file-name img {
 	margin-right: .5em;
