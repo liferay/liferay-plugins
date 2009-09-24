@@ -1,0 +1,275 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */ @import url(color_schemes/green.css); @import url(color_schemes/orange.css); /* ---------- Base styles ---------- */
+
+html {
+	height: 100%;
+}
+
+body {
+	background: #fff;
+	font-size: 11px;
+}
+
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	background: transparent url(../images/common/body_bg.png) repeat-x 0 0;
+}
+
+#content-wrapper {
+	margin: 0 auto;
+	width: 90%;
+}
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: transparent url(../images/common/banner_bg.jpg) no-repeat 20% 0;
+	height: 100px;
+	top: -1px;
+}
+
+#banner h1.logo {
+	display: block;
+	float: left;
+	font-size: 2em;
+	left: 5%;
+	margin: 25px 0 0;
+	padding: 0;
+	position: absolute;
+}
+
+#banner .logo a {
+	float: left;
+	text-decoration: none;
+}
+
+.ie6 #banner .logo {
+	zoom: 1;
+}
+
+.logo .current-community {
+	background: url(../images/dock/my_places_public.png) no-repeat 15px 50%;
+	border-left: 1px solid #D3DADD;
+	color: #D3DADD;
+	display: block;
+	float: left;
+	font-size: 0.8em;
+	font-weight: bold;
+	margin: 0 0 0 20px;
+	padding: 20px;
+	padding-left: 40px;
+}
+
+.guest-community .logo .current-community {
+	display: none;
+}
+
+.private-page .logo .current-community {
+	background-image: url(../images/dock/my_places_private.png);
+}
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	background: #020509;
+	border-top: 1px solid #304049;
+	margin: 0 auto 20px;
+	min-height: 2.2em;
+	width: 100%;
+}
+
+#navigation ul {
+	min-height: 2em;
+	width: 90%;
+}
+
+#navigation li {
+	border: 1px solid #304049;
+	display: inline;
+	margin: -1px 0 0 -1px;
+	padding: 0;
+}
+
+#navigation a {
+	color: #D3DADD;
+	padding: 5px 20px;
+}
+
+#navigation li a {
+	display: block;
+	text-decoration: none;
+}
+
+#navigation li a span {
+	text-decoration: none;
+}
+
+#navigation li.selected a, #navigation li a:hover, #navigation .child-menu li a {
+	background-color: #1E2529;
+	color: #fff;
+}
+
+#navigation li.selected a span {
+	background: url(../images/navigation/bullet_selected.png) no-repeat 0 50%;
+	padding-left: 10px;
+}
+
+#navigation li:hover .child-menu {
+	background: #1E2529;
+	display: block;
+	position: absolute;
+	width: 200px;
+	z-index: 300;
+}
+
+.ie6 #navigation li.hover .child-menu {
+	background: #1E2529;
+	display: block;
+	position: absolute;
+	width: 200px;
+	z-index: 300;
+}
+
+#navigation .child-menu li {
+	border-width: 0 0 1px;
+	display: block;
+	float: none;
+	margin: 0;
+}
+
+#navigation .child-menu li a {
+	cursor: pointer !important;
+}
+
+.ie7 #navigation .child-menu li a {
+	zoom: 1;
+}
+
+#navigation .child-menu li a:hover {
+	background-color: #020509;
+}
+
+#navigation .child-menu .selected a {
+	background: #020509 url(../images/navigation/bullet_selected.png) no-repeat 5px 50%;
+}
+
+/* ---------- Add/remove page ---------- */
+
+.js #navigation .enter-page {
+	background-color: #1E2529;
+	padding: 2px;
+}
+
+.js #navigation .enter-page a {
+	background: none;
+	display: inline;
+	font-weight: bold;
+	padding: 0;
+}
+
+.js #navigation .enter-page .save-page {
+	background: url(../images/dock/my_place_current.png) no-repeat 0 50%;
+	margin: 0 10px;
+	padding-left: 20px;
+}
+
+.ie.js #navigation .enter-page .save-page {
+	display: inline-block;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	vertical-align: top;
+}
+
+.js #navigation .enter-page .cancel-page {
+	display: none;
+}
+
+.ie.js #navigation .enter-page {
+	padding: 0;
+}
+
+.ie.js #navigation .enter-page input.text {
+	margin: 2px;
+	padding: 3px 1px;
+}
+
+.js #navigation {
+	position: relative;
+}
+
+.js #add-page {
+	background: #020509;
+	border: 1px solid #304049;
+	border-bottom: none;
+	bottom: 100%;
+	font-weight: bold;
+	position: absolute;
+	right: 5%;
+}
+
+.js #add-page a {
+	display: block;
+	text-decoration: none;
+}
+
+.js #add-page a span {
+	background: url(../images/common/add.png) no-repeat 0 50%;
+	display: block;
+	margin-left: 15px;
+	padding: 5px 20px 2px;
+}
+
+.js #add-page a:hover span {
+}
+
+/*------ Navigation portlet ------*/
+
+.nav-menu-style-1 {
+}
+
+.nav-menu-style-2 {
+}
+
+/* ---------- Portlet wrapper and icons ---------- */
+
+.portlet {
+	background: #fff;
+	border: 2px solid #828F95;
+	margin: 0 0 10px;
+	padding: 3px;
+}
+
+.portlet-topper {
+	background: #D3DADD;
+	border-bottom: 1px solid #AEB8BC;
+	overflow: hidden;
+	position: static;
+}
+
+.portlet-title {
+	float: left;
+	padding: 5px;
+}
+
+.ie .portlet-title {
+	padding-bottom: 5px;
+}
+
+.ie6 .portlet-topper {
+	zoom: 1;
+}
+
+.portlet-icons {
+	float: right;
+	margin: 0.4em 0.2em 0 0;
+	position: static;
+}
+
+body.lfr-has-sidebar {
+	padding-left: 0;
+}
+
+.lfr-has-sidebar #content-wrapper {
+	padding-left: 270px;
+	width: auto;
+}
