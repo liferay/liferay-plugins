@@ -167,6 +167,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 
 	protected WSRPProducer removeImpl(WSRPProducer wsrpProducer)
 		throws SystemException {
+		wsrpProducer = toUnwrappedModel(wsrpProducer);
+
 		Session session = null;
 
 		try {
@@ -240,6 +242,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 	public WSRPProducer updateImpl(
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer, boolean merge)
 		throws SystemException {
+		wsrpProducer = toUnwrappedModel(wsrpProducer);
+
 		Session session = null;
 
 		try {
@@ -262,6 +266,26 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 			WSRPProducerImpl.class, wsrpProducer.getPrimaryKey(), wsrpProducer);
 
 		return wsrpProducer;
+	}
+
+	protected WSRPProducer toUnwrappedModel(WSRPProducer wsrpProducer) {
+		if (wsrpProducer instanceof WSRPProducerImpl) {
+			return wsrpProducer;
+		}
+
+		WSRPProducerImpl wsrpProducerImpl = new WSRPProducerImpl();
+
+		wsrpProducerImpl.setNew(wsrpProducer.isNew());
+		wsrpProducerImpl.setPrimaryKey(wsrpProducer.getPrimaryKey());
+
+		wsrpProducerImpl.setWsrpProducerId(wsrpProducer.getWsrpProducerId());
+		wsrpProducerImpl.setCompanyId(wsrpProducer.getCompanyId());
+		wsrpProducerImpl.setCreateDate(wsrpProducer.getCreateDate());
+		wsrpProducerImpl.setModifiedDate(wsrpProducer.getModifiedDate());
+		wsrpProducerImpl.setName(wsrpProducer.getName());
+		wsrpProducerImpl.setPortletIds(wsrpProducer.getPortletIds());
+
+		return wsrpProducerImpl;
 	}
 
 	public WSRPProducer findByPrimaryKey(long wsrpProducerId)

@@ -24,6 +24,11 @@ package com.liferay.socialnetworking.model;
 
 import com.liferay.portal.SystemException;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.service.ServiceContext;
+
+import com.liferay.portlet.expando.model.ExpandoBridge;
+
+import java.io.Serializable;
 
 import java.util.Date;
 
@@ -98,4 +103,32 @@ public interface MeetupsEntryModel extends BaseModel<MeetupsEntry> {
 	public void setThumbnailId(long thumbnailId);
 
 	public MeetupsEntry toEscapedModel();
+
+	public boolean isNew();
+
+	public boolean setNew(boolean n);
+
+	public boolean isCachedModel();
+
+	public void setCachedModel(boolean cachedModel);
+
+	public boolean isEscapedModel();
+
+	public void setEscapedModel(boolean escapedModel);
+
+	public Serializable getPrimaryKeyObj();
+
+	public ExpandoBridge getExpandoBridge();
+
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
+
+	public Object clone();
+
+	public int compareTo(MeetupsEntry meetupsEntry);
+
+	public int hashCode();
+
+	public String toString();
+
+	public String toXmlString();
 }

@@ -188,6 +188,8 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 	protected JIRAChangeGroup removeImpl(JIRAChangeGroup jiraChangeGroup)
 		throws SystemException {
+		jiraChangeGroup = toUnwrappedModel(jiraChangeGroup);
+
 		Session session = null;
 
 		try {
@@ -262,6 +264,8 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 	public JIRAChangeGroup updateImpl(
 		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup,
 		boolean merge) throws SystemException {
+		jiraChangeGroup = toUnwrappedModel(jiraChangeGroup);
+
 		Session session = null;
 
 		try {
@@ -285,6 +289,24 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 			jiraChangeGroup);
 
 		return jiraChangeGroup;
+	}
+
+	protected JIRAChangeGroup toUnwrappedModel(JIRAChangeGroup jiraChangeGroup) {
+		if (jiraChangeGroup instanceof JIRAChangeGroupImpl) {
+			return jiraChangeGroup;
+		}
+
+		JIRAChangeGroupImpl jiraChangeGroupImpl = new JIRAChangeGroupImpl();
+
+		jiraChangeGroupImpl.setNew(jiraChangeGroup.isNew());
+		jiraChangeGroupImpl.setPrimaryKey(jiraChangeGroup.getPrimaryKey());
+
+		jiraChangeGroupImpl.setJiraChangeGroupId(jiraChangeGroup.getJiraChangeGroupId());
+		jiraChangeGroupImpl.setJiraUserId(jiraChangeGroup.getJiraUserId());
+		jiraChangeGroupImpl.setCreateDate(jiraChangeGroup.getCreateDate());
+		jiraChangeGroupImpl.setJiraIssueId(jiraChangeGroup.getJiraIssueId());
+
+		return jiraChangeGroupImpl;
 	}
 
 	public JIRAChangeGroup findByPrimaryKey(long jiraChangeGroupId)

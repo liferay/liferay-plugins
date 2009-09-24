@@ -3,9 +3,7 @@
 
 <beans>
 	<bean id="com.liferay.socialcoding.service.JIRAActionLocalService.impl" class="com.liferay.socialcoding.service.impl.JIRAActionLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.JIRAActionLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.socialcoding.service.JIRAActionLocalService.impl" />
-	</bean>
+	<bean id="com.liferay.socialcoding.service.JIRAActionLocalService.velocity" class="com.liferay.socialcoding.service.impl.JIRAActionLocalServiceImpl" />
 	<bean id="com.liferay.socialcoding.service.JIRAActionLocalServiceUtil" class="com.liferay.socialcoding.service.JIRAActionLocalServiceUtil">
 		<property name="service" ref="com.liferay.socialcoding.service.JIRAActionLocalService.impl" />
 	</bean>
@@ -24,9 +22,7 @@
 		<property name="finder" ref="com.liferay.socialcoding.service.persistence.JIRAActionFinder.impl" />
 	</bean>
 	<bean id="com.liferay.socialcoding.service.JIRAChangeGroupLocalService.impl" class="com.liferay.socialcoding.service.impl.JIRAChangeGroupLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.JIRAChangeGroupLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.socialcoding.service.JIRAChangeGroupLocalService.impl" />
-	</bean>
+	<bean id="com.liferay.socialcoding.service.JIRAChangeGroupLocalService.velocity" class="com.liferay.socialcoding.service.impl.JIRAChangeGroupLocalServiceImpl" />
 	<bean id="com.liferay.socialcoding.service.JIRAChangeGroupLocalServiceUtil" class="com.liferay.socialcoding.service.JIRAChangeGroupLocalServiceUtil">
 		<property name="service" ref="com.liferay.socialcoding.service.JIRAChangeGroupLocalService.impl" />
 	</bean>
@@ -45,9 +41,7 @@
 		<property name="finder" ref="com.liferay.socialcoding.service.persistence.JIRAChangeGroupFinder.impl" />
 	</bean>
 	<bean id="com.liferay.socialcoding.service.JIRAChangeItemLocalService.impl" class="com.liferay.socialcoding.service.impl.JIRAChangeItemLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.JIRAChangeItemLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.socialcoding.service.JIRAChangeItemLocalService.impl" />
-	</bean>
+	<bean id="com.liferay.socialcoding.service.JIRAChangeItemLocalService.velocity" class="com.liferay.socialcoding.service.impl.JIRAChangeItemLocalServiceImpl" />
 	<bean id="com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil" class="com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil">
 		<property name="service" ref="com.liferay.socialcoding.service.JIRAChangeItemLocalService.impl" />
 	</bean>
@@ -59,9 +53,7 @@
 		<property name="persistence" ref="com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence.impl" />
 	</bean>
 	<bean id="com.liferay.socialcoding.service.JIRAIssueLocalService.impl" class="com.liferay.socialcoding.service.impl.JIRAIssueLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.JIRAIssueLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.socialcoding.service.JIRAIssueLocalService.impl" />
-	</bean>
+	<bean id="com.liferay.socialcoding.service.JIRAIssueLocalService.velocity" class="com.liferay.socialcoding.service.impl.JIRAIssueLocalServiceImpl" />
 	<bean id="com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil" class="com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil">
 		<property name="service" ref="com.liferay.socialcoding.service.JIRAIssueLocalService.impl" />
 	</bean>
@@ -80,9 +72,7 @@
 		<property name="finder" ref="com.liferay.socialcoding.service.persistence.JIRAIssueFinder.impl" />
 	</bean>
 	<bean id="com.liferay.socialcoding.service.SVNRepositoryLocalService.impl" class="com.liferay.socialcoding.service.impl.SVNRepositoryLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.SVNRepositoryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.socialcoding.service.SVNRepositoryLocalService.impl" />
-	</bean>
+	<bean id="com.liferay.socialcoding.service.SVNRepositoryLocalService.velocity" class="com.liferay.socialcoding.service.impl.SVNRepositoryLocalServiceImpl" />
 	<bean id="com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil" class="com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil">
 		<property name="service" ref="com.liferay.socialcoding.service.SVNRepositoryLocalService.impl" />
 	</bean>
@@ -91,9 +81,7 @@
 		<property name="persistence" ref="com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence.impl" />
 	</bean>
 	<bean id="com.liferay.socialcoding.service.SVNRevisionLocalService.impl" class="com.liferay.socialcoding.service.impl.SVNRevisionLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.SVNRevisionLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.socialcoding.service.SVNRevisionLocalService.impl" />
-	</bean>
+	<bean id="com.liferay.socialcoding.service.SVNRevisionLocalService.velocity" class="com.liferay.socialcoding.service.impl.SVNRevisionLocalServiceImpl" />
 	<bean id="com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil" class="com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil">
 		<property name="service" ref="com.liferay.socialcoding.service.SVNRevisionLocalService.impl" />
 	</bean>

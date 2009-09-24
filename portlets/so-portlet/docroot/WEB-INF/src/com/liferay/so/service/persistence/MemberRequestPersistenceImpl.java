@@ -221,6 +221,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl
 
 	protected MemberRequest removeImpl(MemberRequest memberRequest)
 		throws SystemException {
+		memberRequest = toUnwrappedModel(memberRequest);
+
 		Session session = null;
 
 		try {
@@ -306,6 +308,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl
 	public MemberRequest updateImpl(
 		com.liferay.so.model.MemberRequest memberRequest, boolean merge)
 		throws SystemException {
+		memberRequest = toUnwrappedModel(memberRequest);
+
 		boolean isNew = memberRequest.isNew();
 
 		MemberRequestModelImpl memberRequestModelImpl = (MemberRequestModelImpl)memberRequest;
@@ -371,6 +375,30 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return memberRequest;
+	}
+
+	protected MemberRequest toUnwrappedModel(MemberRequest memberRequest) {
+		if (memberRequest instanceof MemberRequestImpl) {
+			return memberRequest;
+		}
+
+		MemberRequestImpl memberRequestImpl = new MemberRequestImpl();
+
+		memberRequestImpl.setNew(memberRequest.isNew());
+		memberRequestImpl.setPrimaryKey(memberRequest.getPrimaryKey());
+
+		memberRequestImpl.setMemberRequestId(memberRequest.getMemberRequestId());
+		memberRequestImpl.setGroupId(memberRequest.getGroupId());
+		memberRequestImpl.setCompanyId(memberRequest.getCompanyId());
+		memberRequestImpl.setUserId(memberRequest.getUserId());
+		memberRequestImpl.setUserName(memberRequest.getUserName());
+		memberRequestImpl.setCreateDate(memberRequest.getCreateDate());
+		memberRequestImpl.setModifiedDate(memberRequest.getModifiedDate());
+		memberRequestImpl.setKey(memberRequest.getKey());
+		memberRequestImpl.setReceiverUserId(memberRequest.getReceiverUserId());
+		memberRequestImpl.setStatus(memberRequest.getStatus());
+
+		return memberRequestImpl;
 	}
 
 	public MemberRequest findByPrimaryKey(long memberRequestId)

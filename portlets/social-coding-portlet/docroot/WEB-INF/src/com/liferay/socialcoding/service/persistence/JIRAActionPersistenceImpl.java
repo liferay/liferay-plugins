@@ -195,6 +195,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 	protected JIRAAction removeImpl(JIRAAction jiraAction)
 		throws SystemException {
+		jiraAction = toUnwrappedModel(jiraAction);
+
 		Session session = null;
 
 		try {
@@ -267,6 +269,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 	public JIRAAction updateImpl(
 		com.liferay.socialcoding.model.JIRAAction jiraAction, boolean merge)
 		throws SystemException {
+		jiraAction = toUnwrappedModel(jiraAction);
+
 		Session session = null;
 
 		try {
@@ -289,6 +293,28 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 			JIRAActionImpl.class, jiraAction.getPrimaryKey(), jiraAction);
 
 		return jiraAction;
+	}
+
+	protected JIRAAction toUnwrappedModel(JIRAAction jiraAction) {
+		if (jiraAction instanceof JIRAActionImpl) {
+			return jiraAction;
+		}
+
+		JIRAActionImpl jiraActionImpl = new JIRAActionImpl();
+
+		jiraActionImpl.setNew(jiraAction.isNew());
+		jiraActionImpl.setPrimaryKey(jiraAction.getPrimaryKey());
+
+		jiraActionImpl.setJiraActionId(jiraAction.getJiraActionId());
+		jiraActionImpl.setJiraUserId(jiraAction.getJiraUserId());
+		jiraActionImpl.setCreateDate(jiraAction.getCreateDate());
+		jiraActionImpl.setModifiedDate(jiraAction.getModifiedDate());
+		jiraActionImpl.setJiraIssueId(jiraAction.getJiraIssueId());
+		jiraActionImpl.setType(jiraAction.getType());
+		jiraActionImpl.setBody(jiraAction.getBody());
+		jiraActionImpl.setJiraGroupName(jiraAction.getJiraGroupName());
+
+		return jiraActionImpl;
 	}
 
 	public JIRAAction findByPrimaryKey(long jiraActionId)

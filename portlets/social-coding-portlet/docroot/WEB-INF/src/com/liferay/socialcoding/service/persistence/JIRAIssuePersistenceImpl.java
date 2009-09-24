@@ -353,6 +353,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	protected JIRAIssue removeImpl(JIRAIssue jiraIssue)
 		throws SystemException {
+		jiraIssue = toUnwrappedModel(jiraIssue);
+
 		Session session = null;
 
 		try {
@@ -430,6 +432,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 	public JIRAIssue updateImpl(
 		com.liferay.socialcoding.model.JIRAIssue jiraIssue, boolean merge)
 		throws SystemException {
+		jiraIssue = toUnwrappedModel(jiraIssue);
+
 		boolean isNew = jiraIssue.isNew();
 
 		JIRAIssueModelImpl jiraIssueModelImpl = (JIRAIssueModelImpl)jiraIssue;
@@ -470,6 +474,31 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		}
 
 		return jiraIssue;
+	}
+
+	protected JIRAIssue toUnwrappedModel(JIRAIssue jiraIssue) {
+		if (jiraIssue instanceof JIRAIssueImpl) {
+			return jiraIssue;
+		}
+
+		JIRAIssueImpl jiraIssueImpl = new JIRAIssueImpl();
+
+		jiraIssueImpl.setNew(jiraIssue.isNew());
+		jiraIssueImpl.setPrimaryKey(jiraIssue.getPrimaryKey());
+
+		jiraIssueImpl.setJiraIssueId(jiraIssue.getJiraIssueId());
+		jiraIssueImpl.setCreateDate(jiraIssue.getCreateDate());
+		jiraIssueImpl.setModifiedDate(jiraIssue.getModifiedDate());
+		jiraIssueImpl.setProjectId(jiraIssue.getProjectId());
+		jiraIssueImpl.setKey(jiraIssue.getKey());
+		jiraIssueImpl.setSummary(jiraIssue.getSummary());
+		jiraIssueImpl.setDescription(jiraIssue.getDescription());
+		jiraIssueImpl.setReporterJiraUserId(jiraIssue.getReporterJiraUserId());
+		jiraIssueImpl.setAssigneeJiraUserId(jiraIssue.getAssigneeJiraUserId());
+		jiraIssueImpl.setResolution(jiraIssue.getResolution());
+		jiraIssueImpl.setStatus(jiraIssue.getStatus());
+
+		return jiraIssueImpl;
 	}
 
 	public JIRAIssue findByPrimaryKey(long jiraIssueId)

@@ -172,6 +172,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl
 
 	protected WSRPConsumerPortlet removeImpl(
 		WSRPConsumerPortlet wsrpConsumerPortlet) throws SystemException {
+		wsrpConsumerPortlet = toUnwrappedModel(wsrpConsumerPortlet);
+
 		Session session = null;
 
 		try {
@@ -246,6 +248,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl
 	public WSRPConsumerPortlet updateImpl(
 		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet,
 		boolean merge) throws SystemException {
+		wsrpConsumerPortlet = toUnwrappedModel(wsrpConsumerPortlet);
+
 		Session session = null;
 
 		try {
@@ -269,6 +273,28 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl
 			wsrpConsumerPortlet);
 
 		return wsrpConsumerPortlet;
+	}
+
+	protected WSRPConsumerPortlet toUnwrappedModel(
+		WSRPConsumerPortlet wsrpConsumerPortlet) {
+		if (wsrpConsumerPortlet instanceof WSRPConsumerPortletImpl) {
+			return wsrpConsumerPortlet;
+		}
+
+		WSRPConsumerPortletImpl wsrpConsumerPortletImpl = new WSRPConsumerPortletImpl();
+
+		wsrpConsumerPortletImpl.setNew(wsrpConsumerPortlet.isNew());
+		wsrpConsumerPortletImpl.setPrimaryKey(wsrpConsumerPortlet.getPrimaryKey());
+
+		wsrpConsumerPortletImpl.setWsrpConsumerPortletId(wsrpConsumerPortlet.getWsrpConsumerPortletId());
+		wsrpConsumerPortletImpl.setCompanyId(wsrpConsumerPortlet.getCompanyId());
+		wsrpConsumerPortletImpl.setCreateDate(wsrpConsumerPortlet.getCreateDate());
+		wsrpConsumerPortletImpl.setModifiedDate(wsrpConsumerPortlet.getModifiedDate());
+		wsrpConsumerPortletImpl.setWsrpConsumerId(wsrpConsumerPortlet.getWsrpConsumerId());
+		wsrpConsumerPortletImpl.setName(wsrpConsumerPortlet.getName());
+		wsrpConsumerPortletImpl.setPortletHandle(wsrpConsumerPortlet.getPortletHandle());
+
+		return wsrpConsumerPortletImpl;
 	}
 
 	public WSRPConsumerPortlet findByPrimaryKey(long wsrpConsumerPortletId)

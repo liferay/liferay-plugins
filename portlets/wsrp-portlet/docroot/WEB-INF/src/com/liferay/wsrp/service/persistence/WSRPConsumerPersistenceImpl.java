@@ -167,6 +167,8 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 
 	protected WSRPConsumer removeImpl(WSRPConsumer wsrpConsumer)
 		throws SystemException {
+		wsrpConsumer = toUnwrappedModel(wsrpConsumer);
+
 		Session session = null;
 
 		try {
@@ -240,6 +242,8 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 	public WSRPConsumer updateImpl(
 		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer, boolean merge)
 		throws SystemException {
+		wsrpConsumer = toUnwrappedModel(wsrpConsumer);
+
 		Session session = null;
 
 		try {
@@ -262,6 +266,29 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 			WSRPConsumerImpl.class, wsrpConsumer.getPrimaryKey(), wsrpConsumer);
 
 		return wsrpConsumer;
+	}
+
+	protected WSRPConsumer toUnwrappedModel(WSRPConsumer wsrpConsumer) {
+		if (wsrpConsumer instanceof WSRPConsumerImpl) {
+			return wsrpConsumer;
+		}
+
+		WSRPConsumerImpl wsrpConsumerImpl = new WSRPConsumerImpl();
+
+		wsrpConsumerImpl.setNew(wsrpConsumer.isNew());
+		wsrpConsumerImpl.setPrimaryKey(wsrpConsumer.getPrimaryKey());
+
+		wsrpConsumerImpl.setWsrpConsumerId(wsrpConsumer.getWsrpConsumerId());
+		wsrpConsumerImpl.setCompanyId(wsrpConsumer.getCompanyId());
+		wsrpConsumerImpl.setCreateDate(wsrpConsumer.getCreateDate());
+		wsrpConsumerImpl.setModifiedDate(wsrpConsumer.getModifiedDate());
+		wsrpConsumerImpl.setName(wsrpConsumer.getName());
+		wsrpConsumerImpl.setUrl(wsrpConsumer.getUrl());
+		wsrpConsumerImpl.setWsdl(wsrpConsumer.getWsdl());
+		wsrpConsumerImpl.setRegistrationContextString(wsrpConsumer.getRegistrationContextString());
+		wsrpConsumerImpl.setRegistrationPropertiesString(wsrpConsumer.getRegistrationPropertiesString());
+
+		return wsrpConsumerImpl;
 	}
 
 	public WSRPConsumer findByPrimaryKey(long wsrpConsumerId)

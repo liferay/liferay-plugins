@@ -3,9 +3,7 @@
 
 <beans>
 	<bean id="com.liferay.socialnetworking.service.MeetupsEntryLocalService.impl" class="com.liferay.socialnetworking.service.impl.MeetupsEntryLocalServiceImpl" />
-	<bean id="com.liferay.socialnetworking.service.MeetupsEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.socialnetworking.service.MeetupsEntryLocalService.impl" />
-	</bean>
+	<bean id="com.liferay.socialnetworking.service.MeetupsEntryLocalService.velocity" class="com.liferay.socialnetworking.service.impl.MeetupsEntryLocalServiceImpl" />
 	<bean id="com.liferay.socialnetworking.service.MeetupsEntryLocalServiceUtil" class="com.liferay.socialnetworking.service.MeetupsEntryLocalServiceUtil">
 		<property name="service" ref="com.liferay.socialnetworking.service.MeetupsEntryLocalService.impl" />
 	</bean>
@@ -14,9 +12,7 @@
 		<property name="persistence" ref="com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistence.impl" />
 	</bean>
 	<bean id="com.liferay.socialnetworking.service.MeetupsRegistrationLocalService.impl" class="com.liferay.socialnetworking.service.impl.MeetupsRegistrationLocalServiceImpl" />
-	<bean id="com.liferay.socialnetworking.service.MeetupsRegistrationLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.socialnetworking.service.MeetupsRegistrationLocalService.impl" />
-	</bean>
+	<bean id="com.liferay.socialnetworking.service.MeetupsRegistrationLocalService.velocity" class="com.liferay.socialnetworking.service.impl.MeetupsRegistrationLocalServiceImpl" />
 	<bean id="com.liferay.socialnetworking.service.MeetupsRegistrationLocalServiceUtil" class="com.liferay.socialnetworking.service.MeetupsRegistrationLocalServiceUtil">
 		<property name="service" ref="com.liferay.socialnetworking.service.MeetupsRegistrationLocalService.impl" />
 	</bean>
@@ -25,9 +21,7 @@
 		<property name="persistence" ref="com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence.impl" />
 	</bean>
 	<bean id="com.liferay.socialnetworking.service.WallEntryLocalService.impl" class="com.liferay.socialnetworking.service.impl.WallEntryLocalServiceImpl" />
-	<bean id="com.liferay.socialnetworking.service.WallEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.socialnetworking.service.WallEntryLocalService.impl" />
-	</bean>
+	<bean id="com.liferay.socialnetworking.service.WallEntryLocalService.velocity" class="com.liferay.socialnetworking.service.impl.WallEntryLocalServiceImpl" />
 	<bean id="com.liferay.socialnetworking.service.WallEntryLocalServiceUtil" class="com.liferay.socialnetworking.service.WallEntryLocalServiceUtil">
 		<property name="service" ref="com.liferay.socialnetworking.service.WallEntryLocalService.impl" />
 	</bean>

@@ -159,6 +159,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 	}
 
 	protected Foo removeImpl(Foo foo) throws SystemException {
+		foo = toUnwrappedModel(foo);
+
 		Session session = null;
 
 		try {
@@ -229,6 +231,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 
 	public Foo updateImpl(com.liferay.sampleservicebuilder.model.Foo foo,
 		boolean merge) throws SystemException {
+		foo = toUnwrappedModel(foo);
+
 		Session session = null;
 
 		try {
@@ -251,6 +255,26 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 			FooImpl.class, foo.getPrimaryKey(), foo);
 
 		return foo;
+	}
+
+	protected Foo toUnwrappedModel(Foo foo) {
+		if (foo instanceof FooImpl) {
+			return foo;
+		}
+
+		FooImpl fooImpl = new FooImpl();
+
+		fooImpl.setNew(foo.isNew());
+		fooImpl.setPrimaryKey(foo.getPrimaryKey());
+
+		fooImpl.setFooId(foo.getFooId());
+		fooImpl.setField1(foo.getField1());
+		fooImpl.setField2(foo.isField2());
+		fooImpl.setField3(foo.getField3());
+		fooImpl.setField4(foo.getField4());
+		fooImpl.setField5(foo.getField5());
+
+		return fooImpl;
 	}
 
 	public Foo findByPrimaryKey(long fooId)

@@ -203,6 +203,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 	protected MeetupsRegistration removeImpl(
 		MeetupsRegistration meetupsRegistration) throws SystemException {
+		meetupsRegistration = toUnwrappedModel(meetupsRegistration);
+
 		Session session = null;
 
 		try {
@@ -285,6 +287,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 	public MeetupsRegistration updateImpl(
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration,
 		boolean merge) throws SystemException {
+		meetupsRegistration = toUnwrappedModel(meetupsRegistration);
+
 		boolean isNew = meetupsRegistration.isNew();
 
 		MeetupsRegistrationModelImpl meetupsRegistrationModelImpl = (MeetupsRegistrationModelImpl)meetupsRegistration;
@@ -332,6 +336,30 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return meetupsRegistration;
+	}
+
+	protected MeetupsRegistration toUnwrappedModel(
+		MeetupsRegistration meetupsRegistration) {
+		if (meetupsRegistration instanceof MeetupsRegistrationImpl) {
+			return meetupsRegistration;
+		}
+
+		MeetupsRegistrationImpl meetupsRegistrationImpl = new MeetupsRegistrationImpl();
+
+		meetupsRegistrationImpl.setNew(meetupsRegistration.isNew());
+		meetupsRegistrationImpl.setPrimaryKey(meetupsRegistration.getPrimaryKey());
+
+		meetupsRegistrationImpl.setMeetupsRegistrationId(meetupsRegistration.getMeetupsRegistrationId());
+		meetupsRegistrationImpl.setCompanyId(meetupsRegistration.getCompanyId());
+		meetupsRegistrationImpl.setUserId(meetupsRegistration.getUserId());
+		meetupsRegistrationImpl.setUserName(meetupsRegistration.getUserName());
+		meetupsRegistrationImpl.setCreateDate(meetupsRegistration.getCreateDate());
+		meetupsRegistrationImpl.setModifiedDate(meetupsRegistration.getModifiedDate());
+		meetupsRegistrationImpl.setMeetupsEntryId(meetupsRegistration.getMeetupsEntryId());
+		meetupsRegistrationImpl.setStatus(meetupsRegistration.getStatus());
+		meetupsRegistrationImpl.setComments(meetupsRegistration.getComments());
+
+		return meetupsRegistrationImpl;
 	}
 
 	public MeetupsRegistration findByPrimaryKey(long meetupsRegistrationId)

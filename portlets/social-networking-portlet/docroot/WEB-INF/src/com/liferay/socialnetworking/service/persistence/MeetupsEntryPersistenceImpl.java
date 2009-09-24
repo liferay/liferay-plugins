@@ -167,6 +167,8 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 
 	protected MeetupsEntry removeImpl(MeetupsEntry meetupsEntry)
 		throws SystemException {
+		meetupsEntry = toUnwrappedModel(meetupsEntry);
+
 		Session session = null;
 
 		try {
@@ -240,6 +242,8 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 	public MeetupsEntry updateImpl(
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry,
 		boolean merge) throws SystemException {
+		meetupsEntry = toUnwrappedModel(meetupsEntry);
+
 		Session session = null;
 
 		try {
@@ -262,6 +266,34 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 			MeetupsEntryImpl.class, meetupsEntry.getPrimaryKey(), meetupsEntry);
 
 		return meetupsEntry;
+	}
+
+	protected MeetupsEntry toUnwrappedModel(MeetupsEntry meetupsEntry) {
+		if (meetupsEntry instanceof MeetupsEntryImpl) {
+			return meetupsEntry;
+		}
+
+		MeetupsEntryImpl meetupsEntryImpl = new MeetupsEntryImpl();
+
+		meetupsEntryImpl.setNew(meetupsEntry.isNew());
+		meetupsEntryImpl.setPrimaryKey(meetupsEntry.getPrimaryKey());
+
+		meetupsEntryImpl.setMeetupsEntryId(meetupsEntry.getMeetupsEntryId());
+		meetupsEntryImpl.setCompanyId(meetupsEntry.getCompanyId());
+		meetupsEntryImpl.setUserId(meetupsEntry.getUserId());
+		meetupsEntryImpl.setUserName(meetupsEntry.getUserName());
+		meetupsEntryImpl.setCreateDate(meetupsEntry.getCreateDate());
+		meetupsEntryImpl.setModifiedDate(meetupsEntry.getModifiedDate());
+		meetupsEntryImpl.setTitle(meetupsEntry.getTitle());
+		meetupsEntryImpl.setDescription(meetupsEntry.getDescription());
+		meetupsEntryImpl.setStartDate(meetupsEntry.getStartDate());
+		meetupsEntryImpl.setEndDate(meetupsEntry.getEndDate());
+		meetupsEntryImpl.setTotalAttendees(meetupsEntry.getTotalAttendees());
+		meetupsEntryImpl.setMaxAttendees(meetupsEntry.getMaxAttendees());
+		meetupsEntryImpl.setPrice(meetupsEntry.getPrice());
+		meetupsEntryImpl.setThumbnailId(meetupsEntry.getThumbnailId());
+
+		return meetupsEntryImpl;
 	}
 
 	public MeetupsEntry findByPrimaryKey(long meetupsEntryId)

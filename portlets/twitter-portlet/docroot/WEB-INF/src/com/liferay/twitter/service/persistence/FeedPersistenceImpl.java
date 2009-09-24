@@ -163,6 +163,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 	}
 
 	protected Feed removeImpl(Feed feed) throws SystemException {
+		feed = toUnwrappedModel(feed);
+
 		Session session = null;
 
 		try {
@@ -241,6 +243,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 	public Feed updateImpl(com.liferay.twitter.model.Feed feed, boolean merge)
 		throws SystemException {
+		feed = toUnwrappedModel(feed);
+
 		boolean isNew = feed.isNew();
 
 		FeedModelImpl feedModelImpl = (FeedModelImpl)feed;
@@ -293,6 +297,26 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return feed;
+	}
+
+	protected Feed toUnwrappedModel(Feed feed) {
+		if (feed instanceof FeedImpl) {
+			return feed;
+		}
+
+		FeedImpl feedImpl = new FeedImpl();
+
+		feedImpl.setNew(feed.isNew());
+		feedImpl.setPrimaryKey(feed.getPrimaryKey());
+
+		feedImpl.setFeedId(feed.getFeedId());
+		feedImpl.setTwitterUserId(feed.getTwitterUserId());
+		feedImpl.setTwitterScreenName(feed.getTwitterScreenName());
+		feedImpl.setCreateDate(feed.getCreateDate());
+		feedImpl.setModifiedDate(feed.getModifiedDate());
+		feedImpl.setLastStatusId(feed.getLastStatusId());
+
+		return feedImpl;
 	}
 
 	public Feed findByPrimaryKey(long feedId)

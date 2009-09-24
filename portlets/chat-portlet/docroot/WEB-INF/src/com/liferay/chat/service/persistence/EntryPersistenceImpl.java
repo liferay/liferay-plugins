@@ -270,6 +270,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 	}
 
 	protected Entry removeImpl(Entry entry) throws SystemException {
+		entry = toUnwrappedModel(entry);
+
 		Session session = null;
 
 		try {
@@ -340,6 +342,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 	public Entry updateImpl(com.liferay.chat.model.Entry entry, boolean merge)
 		throws SystemException {
+		entry = toUnwrappedModel(entry);
+
 		Session session = null;
 
 		try {
@@ -362,6 +366,25 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 			EntryImpl.class, entry.getPrimaryKey(), entry);
 
 		return entry;
+	}
+
+	protected Entry toUnwrappedModel(Entry entry) {
+		if (entry instanceof EntryImpl) {
+			return entry;
+		}
+
+		EntryImpl entryImpl = new EntryImpl();
+
+		entryImpl.setNew(entry.isNew());
+		entryImpl.setPrimaryKey(entry.getPrimaryKey());
+
+		entryImpl.setEntryId(entry.getEntryId());
+		entryImpl.setCreateDate(entry.getCreateDate());
+		entryImpl.setFromUserId(entry.getFromUserId());
+		entryImpl.setToUserId(entry.getToUserId());
+		entryImpl.setContent(entry.getContent());
+
+		return entryImpl;
 	}
 
 	public Entry findByPrimaryKey(long entryId)

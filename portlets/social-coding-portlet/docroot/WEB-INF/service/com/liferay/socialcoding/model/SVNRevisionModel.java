@@ -23,6 +23,11 @@
 package com.liferay.socialcoding.model;
 
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.service.ServiceContext;
+
+import com.liferay.portlet.expando.model.ExpandoBridge;
+
+import java.io.Serializable;
 
 import java.util.Date;
 
@@ -61,4 +66,32 @@ public interface SVNRevisionModel extends BaseModel<SVNRevision> {
 	public void setComments(String comments);
 
 	public SVNRevision toEscapedModel();
+
+	public boolean isNew();
+
+	public boolean setNew(boolean n);
+
+	public boolean isCachedModel();
+
+	public void setCachedModel(boolean cachedModel);
+
+	public boolean isEscapedModel();
+
+	public void setEscapedModel(boolean escapedModel);
+
+	public Serializable getPrimaryKeyObj();
+
+	public ExpandoBridge getExpandoBridge();
+
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
+
+	public Object clone();
+
+	public int compareTo(SVNRevision svnRevision);
+
+	public int hashCode();
+
+	public String toString();
+
+	public String toXmlString();
 }

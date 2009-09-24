@@ -171,6 +171,8 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 
 	protected JIRAChangeItem removeImpl(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
+		jiraChangeItem = toUnwrappedModel(jiraChangeItem);
+
 		Session session = null;
 
 		try {
@@ -244,6 +246,8 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 	public JIRAChangeItem updateImpl(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem,
 		boolean merge) throws SystemException {
+		jiraChangeItem = toUnwrappedModel(jiraChangeItem);
+
 		Session session = null;
 
 		try {
@@ -267,6 +271,27 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 			jiraChangeItem);
 
 		return jiraChangeItem;
+	}
+
+	protected JIRAChangeItem toUnwrappedModel(JIRAChangeItem jiraChangeItem) {
+		if (jiraChangeItem instanceof JIRAChangeItemImpl) {
+			return jiraChangeItem;
+		}
+
+		JIRAChangeItemImpl jiraChangeItemImpl = new JIRAChangeItemImpl();
+
+		jiraChangeItemImpl.setNew(jiraChangeItem.isNew());
+		jiraChangeItemImpl.setPrimaryKey(jiraChangeItem.getPrimaryKey());
+
+		jiraChangeItemImpl.setJiraChangeItemId(jiraChangeItem.getJiraChangeItemId());
+		jiraChangeItemImpl.setJiraChangeGroupId(jiraChangeItem.getJiraChangeGroupId());
+		jiraChangeItemImpl.setField(jiraChangeItem.getField());
+		jiraChangeItemImpl.setOldValue(jiraChangeItem.getOldValue());
+		jiraChangeItemImpl.setOldString(jiraChangeItem.getOldString());
+		jiraChangeItemImpl.setNewValue(jiraChangeItem.getNewValue());
+		jiraChangeItemImpl.setNewString(jiraChangeItem.getNewString());
+
+		return jiraChangeItemImpl;
 	}
 
 	public JIRAChangeItem findByPrimaryKey(long jiraChangeItemId)

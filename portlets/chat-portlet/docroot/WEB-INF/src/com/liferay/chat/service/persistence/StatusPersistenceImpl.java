@@ -204,6 +204,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 	}
 
 	protected Status removeImpl(Status status) throws SystemException {
+		status = toUnwrappedModel(status);
+
 		Session session = null;
 
 		try {
@@ -280,6 +282,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 	public Status updateImpl(com.liferay.chat.model.Status status, boolean merge)
 		throws SystemException {
+		status = toUnwrappedModel(status);
+
 		boolean isNew = status.isNew();
 
 		StatusModelImpl statusModelImpl = (StatusModelImpl)status;
@@ -318,6 +322,28 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return status;
+	}
+
+	protected Status toUnwrappedModel(Status status) {
+		if (status instanceof StatusImpl) {
+			return status;
+		}
+
+		StatusImpl statusImpl = new StatusImpl();
+
+		statusImpl.setNew(status.isNew());
+		statusImpl.setPrimaryKey(status.getPrimaryKey());
+
+		statusImpl.setStatusId(status.getStatusId());
+		statusImpl.setUserId(status.getUserId());
+		statusImpl.setModifiedDate(status.getModifiedDate());
+		statusImpl.setOnline(status.isOnline());
+		statusImpl.setAwake(status.isAwake());
+		statusImpl.setActivePanelId(status.getActivePanelId());
+		statusImpl.setMessage(status.getMessage());
+		statusImpl.setPlaySound(status.isPlaySound());
+
+		return statusImpl;
 	}
 
 	public Status findByPrimaryKey(long statusId)

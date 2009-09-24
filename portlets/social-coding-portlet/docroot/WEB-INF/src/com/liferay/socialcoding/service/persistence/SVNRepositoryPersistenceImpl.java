@@ -166,6 +166,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 
 	protected SVNRepository removeImpl(SVNRepository svnRepository)
 		throws SystemException {
+		svnRepository = toUnwrappedModel(svnRepository);
+
 		Session session = null;
 
 		try {
@@ -244,6 +246,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 	public SVNRepository updateImpl(
 		com.liferay.socialcoding.model.SVNRepository svnRepository,
 		boolean merge) throws SystemException {
+		svnRepository = toUnwrappedModel(svnRepository);
+
 		boolean isNew = svnRepository.isNew();
 
 		SVNRepositoryModelImpl svnRepositoryModelImpl = (SVNRepositoryModelImpl)svnRepository;
@@ -285,6 +289,23 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return svnRepository;
+	}
+
+	protected SVNRepository toUnwrappedModel(SVNRepository svnRepository) {
+		if (svnRepository instanceof SVNRepositoryImpl) {
+			return svnRepository;
+		}
+
+		SVNRepositoryImpl svnRepositoryImpl = new SVNRepositoryImpl();
+
+		svnRepositoryImpl.setNew(svnRepository.isNew());
+		svnRepositoryImpl.setPrimaryKey(svnRepository.getPrimaryKey());
+
+		svnRepositoryImpl.setSvnRepositoryId(svnRepository.getSvnRepositoryId());
+		svnRepositoryImpl.setUrl(svnRepository.getUrl());
+		svnRepositoryImpl.setRevisionNumber(svnRepository.getRevisionNumber());
+
+		return svnRepositoryImpl;
 	}
 
 	public SVNRepository findByPrimaryKey(long svnRepositoryId)

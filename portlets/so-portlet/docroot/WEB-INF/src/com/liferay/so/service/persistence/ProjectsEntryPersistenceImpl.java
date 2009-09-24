@@ -171,6 +171,8 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl
 
 	protected ProjectsEntry removeImpl(ProjectsEntry projectsEntry)
 		throws SystemException {
+		projectsEntry = toUnwrappedModel(projectsEntry);
+
 		Session session = null;
 
 		try {
@@ -244,6 +246,8 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl
 	public ProjectsEntry updateImpl(
 		com.liferay.so.model.ProjectsEntry projectsEntry, boolean merge)
 		throws SystemException {
+		projectsEntry = toUnwrappedModel(projectsEntry);
+
 		Session session = null;
 
 		try {
@@ -267,6 +271,31 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl
 			projectsEntry);
 
 		return projectsEntry;
+	}
+
+	protected ProjectsEntry toUnwrappedModel(ProjectsEntry projectsEntry) {
+		if (projectsEntry instanceof ProjectsEntryImpl) {
+			return projectsEntry;
+		}
+
+		ProjectsEntryImpl projectsEntryImpl = new ProjectsEntryImpl();
+
+		projectsEntryImpl.setNew(projectsEntry.isNew());
+		projectsEntryImpl.setPrimaryKey(projectsEntry.getPrimaryKey());
+
+		projectsEntryImpl.setProjectsEntryId(projectsEntry.getProjectsEntryId());
+		projectsEntryImpl.setCompanyId(projectsEntry.getCompanyId());
+		projectsEntryImpl.setUserId(projectsEntry.getUserId());
+		projectsEntryImpl.setUserName(projectsEntry.getUserName());
+		projectsEntryImpl.setCreateDate(projectsEntry.getCreateDate());
+		projectsEntryImpl.setModifiedDate(projectsEntry.getModifiedDate());
+		projectsEntryImpl.setTitle(projectsEntry.getTitle());
+		projectsEntryImpl.setDescription(projectsEntry.getDescription());
+		projectsEntryImpl.setStartDate(projectsEntry.getStartDate());
+		projectsEntryImpl.setEndDate(projectsEntry.getEndDate());
+		projectsEntryImpl.setData(projectsEntry.getData());
+
+		return projectsEntryImpl;
 	}
 
 	public ProjectsEntry findByPrimaryKey(long projectsEntryId)

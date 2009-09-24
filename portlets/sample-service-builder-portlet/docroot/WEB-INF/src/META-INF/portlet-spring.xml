@@ -3,16 +3,12 @@
 
 <beans>
 	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.impl" class="com.liferay.sampleservicebuilder.service.impl.FooLocalServiceImpl" />
-	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.sampleservicebuilder.service.FooLocalService.impl" />
-	</bean>
+	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.velocity" class="com.liferay.sampleservicebuilder.service.impl.FooLocalServiceImpl" />
 	<bean id="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil" class="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil">
 		<property name="service" ref="com.liferay.sampleservicebuilder.service.FooLocalService.impl" />
 	</bean>
 	<bean id="com.liferay.sampleservicebuilder.service.FooService.impl" class="com.liferay.sampleservicebuilder.service.impl.FooServiceImpl" />
-	<bean id="com.liferay.sampleservicebuilder.service.FooService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.sampleservicebuilder.service.FooService.impl" />
-	</bean>
+	<bean id="com.liferay.sampleservicebuilder.service.FooService.velocity" class="com.liferay.sampleservicebuilder.service.impl.FooServiceImpl" />
 	<bean id="com.liferay.sampleservicebuilder.service.FooServiceUtil" class="com.liferay.sampleservicebuilder.service.FooServiceUtil">
 		<property name="service" ref="com.liferay.sampleservicebuilder.service.FooService.impl" />
 	</bean>

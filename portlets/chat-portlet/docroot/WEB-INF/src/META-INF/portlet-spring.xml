@@ -3,9 +3,7 @@
 
 <beans>
 	<bean id="com.liferay.chat.service.EntryLocalService.impl" class="com.liferay.chat.service.impl.EntryLocalServiceImpl" />
-	<bean id="com.liferay.chat.service.EntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.chat.service.EntryLocalService.impl" />
-	</bean>
+	<bean id="com.liferay.chat.service.EntryLocalService.velocity" class="com.liferay.chat.service.impl.EntryLocalServiceImpl" />
 	<bean id="com.liferay.chat.service.EntryLocalServiceUtil" class="com.liferay.chat.service.EntryLocalServiceUtil">
 		<property name="service" ref="com.liferay.chat.service.EntryLocalService.impl" />
 	</bean>
@@ -18,9 +16,7 @@
 		<property name="finder" ref="com.liferay.chat.service.persistence.EntryFinder.impl" />
 	</bean>
 	<bean id="com.liferay.chat.service.StatusLocalService.impl" class="com.liferay.chat.service.impl.StatusLocalServiceImpl" />
-	<bean id="com.liferay.chat.service.StatusLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.chat.service.StatusLocalService.impl" />
-	</bean>
+	<bean id="com.liferay.chat.service.StatusLocalService.velocity" class="com.liferay.chat.service.impl.StatusLocalServiceImpl" />
 	<bean id="com.liferay.chat.service.StatusLocalServiceUtil" class="com.liferay.chat.service.StatusLocalServiceUtil">
 		<property name="service" ref="com.liferay.chat.service.StatusLocalService.impl" />
 	</bean>

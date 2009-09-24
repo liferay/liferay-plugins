@@ -198,6 +198,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 	protected SVNRevision removeImpl(SVNRevision svnRevision)
 		throws SystemException {
+		svnRevision = toUnwrappedModel(svnRevision);
+
 		Session session = null;
 
 		try {
@@ -271,6 +273,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 	public SVNRevision updateImpl(
 		com.liferay.socialcoding.model.SVNRevision svnRevision, boolean merge)
 		throws SystemException {
+		svnRevision = toUnwrappedModel(svnRevision);
+
 		Session session = null;
 
 		try {
@@ -293,6 +297,26 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 			SVNRevisionImpl.class, svnRevision.getPrimaryKey(), svnRevision);
 
 		return svnRevision;
+	}
+
+	protected SVNRevision toUnwrappedModel(SVNRevision svnRevision) {
+		if (svnRevision instanceof SVNRevisionImpl) {
+			return svnRevision;
+		}
+
+		SVNRevisionImpl svnRevisionImpl = new SVNRevisionImpl();
+
+		svnRevisionImpl.setNew(svnRevision.isNew());
+		svnRevisionImpl.setPrimaryKey(svnRevision.getPrimaryKey());
+
+		svnRevisionImpl.setSvnRevisionId(svnRevision.getSvnRevisionId());
+		svnRevisionImpl.setSvnUserId(svnRevision.getSvnUserId());
+		svnRevisionImpl.setCreateDate(svnRevision.getCreateDate());
+		svnRevisionImpl.setSvnRepositoryId(svnRevision.getSvnRepositoryId());
+		svnRevisionImpl.setRevisionNumber(svnRevision.getRevisionNumber());
+		svnRevisionImpl.setComments(svnRevision.getComments());
+
+		return svnRevisionImpl;
 	}
 
 	public SVNRevision findByPrimaryKey(long svnRevisionId)
