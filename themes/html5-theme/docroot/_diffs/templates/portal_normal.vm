@@ -8,6 +8,21 @@
 	<title>$the_title - $company_name</title>
 
 	$theme.include($top_head_include)
+	
+	<script type="text/javascript">
+
+(
+	function() {
+		var element = 'abbr article aside audio bb canvas datagrid datalist details dialog figure footer header mark menu meter nav output progress section time video'.split(' '),
+		elementLength = element.length;
+		
+		while (elementLength--) {
+			document.createElement(element[elementLength]);
+		}
+	}
+)();
+
+	</script>
 </head>
 
 <body class="$css_class">
