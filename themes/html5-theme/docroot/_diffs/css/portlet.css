@@ -23,11 +23,6 @@ body.portlet {
 	font-size: 1em;
 	font-weight: bold;
 	margin: 0;
-	min-width: 50%;
-}
-
-.portlet-title img {
-	vertical-align: middle;
 }
 
 .portlet-icons {
@@ -44,7 +39,8 @@ body.portlet {
 	padding: 1px;
 }
 
-.portlet-content, .portlet-minimized .portlet-content-container {
+.portlet-content,
+.portlet-minimized .portlet-content-container {
 	padding: 12px 10px 10px;
 }
 
@@ -75,27 +71,6 @@ body.portlet {
 
 .lfr-panel-page .lfr-add-content h2 span {
 	background-color: #D3DADD;
-}
-
-/* ---------- Standard styles defined in the JSR 168 ---------- */
-
-/* ---------- Fonts ---------- */
-
-/* ---------- Font attributes for the 'normal' fragment font ---------- */
-
-.portlet-font {
-}
-
-/* ---------- Font attributes similar to the .portlet-font but the color is lighter ---------- */
-
-.portlet-font-dim {
-}
-
-/* ---------- Messages ---------- */
-
-/* ---------- Status of the current operation ---------- */
-
-.portlet-msg-status {
 }
 
 /* ---------- Help messages, general additional information, etc. ---------- */
@@ -152,156 +127,25 @@ body.portlet {
 	text-align: left;
 }
 
-/* ---------- Sections ---------- */
-
-/* ---------- Table or section header ---------- */
-
-.portlet-section-header {
-}
-
-.portlet-section-header th {
-}
-
-/* ---------- Normal text in a table cell ---------- */
-
-.portlet-section-body {
-}
-
-.portlet-section-body td {
-}
-
-/* ---------- Text in every other row in the cell ---------- */
-
-.portlet-section-alternate {
-}
-
-.portlet-section-alternate td {
-}
-
-.portlet-section-alternate-hover td, .portlet-section-body-hover td {
-}
-
-.portlet-section-body td td, .portlet-section-body-hover td td {
-}
-
-.portlet-section-alternate td td, .portlet-section-alternate-hover td td {
-}
-
 /* ---------- Text in a selected cell range ---------- */
 
-.portlet-section-selected, .portlet-section-selected a {
+.portlet-section-selected,
+.portlet-section-selected a {
 	background: #727C81;
 	color: #FFF;
 	font-weight: bold;
 	text-decoration: none;
 }
 
-.portlet-section-selected a:hover, .portlet-section-selected a:focus {
+.portlet-section-selected a:hover,
+.portlet-section-selected a:focus {
 	background-color: #727C81;
-}
-
-/* ---------- Text of a subheading ---------- */
-
-.portlet-section-subheader {
-}
-
-/* ---------- Table or section footnote ---------- */
-
-.portlet-section-footer {
-}
-
-/* ---------- Text that belongs to the table but does not fall in one of the other categories (e.g. explanatory or help text that is associated with the section) ---------- */
-
-.portlet-section-text {
-}
-
-/* ---------- Forms ---------- */
-
-/* ---------- Text used for the descriptive label of the whole form (not the labels for fields) ---------- */
-
-.portlet-form-label {
-}
-
-/* ---------- Text of the user-input in an input field ---------- */
-
-.portlet-form-input-field {
-}
-
-/* ---------- Text on a button ---------- */
-
-.portlet-form-button {
-}
-
-/* ---------- Text that appears beside a context dependent action icon ---------- */
-
-.portlet-icon-label {
-}
-
-/* ---------- Text that appears beside a 'standard' icon (e.g. Ok, or Cancel) ---------- */
-
-.portlet-dlg-icon-label {
-}
-
-/* ---------- Text for a separator of fields (e.g. checkboxes, etc.) ---------- */
-
-.portlet-form-field-label {
-}
-
-/* ---------- Text for a field (not input field, e.g. checkboxes, etc.) ---------- */
-
-.portlet-form-field {
-}
-
-/* ---------- Menus ---------- */
-
-/* ---------- General menu settings such as background color, margins, etc. ---------- */
-
-.portlet-menu {
-}
-
-/* ---------- Normal, unselected menu item ---------- */
-
-.portlet-menu-item {
-}
-
-/* ---------- Selected menu item ---------- */
-
-.portlet-menu-item-selected {
-}
-
-/* ---------- Normal, unselected menu item when the mouse hovers over it ---------- */
-
-.portlet-menu-item-hover {
-}
-
-/* ---------- Selected menu item when the mouse hovers over it ---------- */
-
-.portlet-menu-item-hover-selected {
-}
-
-/* ---------- Normal, unselected menu item that has sub-menus ---------- */
-
-.portlet-menu-cascade-item {
-}
-
-/* ---------- Selected sub-menu item that has sub-menus ---------- */
-
-.portlet-menu-cascade-item-selected {
-}
-
-/* ---------- Descriptive text for the menu (e.g. in a help context below the menu) ---------- */
-
-.portlet-menu-description {
-}
-
-/* ---------- Menu caption ---------- */
-
-.portlet-menu-caption {
 }
 
 /* ---------- Miscellaneous portlet styles ---------- */
 
-.restricted, .restricted td {
+.restricted,
+.restricted td {
 	background: #FDD;
 	border: none;
 }
@@ -318,7 +162,8 @@ body.portlet {
 	color: #727C81;
 }
 
-.restricted td.col-1, .alt.restricted td.col-1 {
+.restricted td.col-1,
+.alt.restricted td.col-1 {
 	background-image: url(../images/messages/error.png);
 	background-position: 5px 50%;
 	background-repeat: no-repeat;
@@ -327,43 +172,45 @@ body.portlet {
 
 /* ---------- Permissions ---------- */
 
-.results-row.lfr-role .col-1, .results-row.hover.lfr-role .col-1 {
+.results-row.lfr-role .col-1,
+.results-row.hover.lfr-role .col-1 {
 	background-image: url();
 	background-position: 5px 50%;
 	background-repeat: no-repeat;
 	padding-left: 30px;
 }
 
-.results-row.lfr-role-guest .col-1, .results-row.hover.lfr-role-guest .col-1 {
+.results-row.lfr-role-guest .col-1,
+.results-row.hover.lfr-role-guest .col-1 {
 	background-image: url(../images/common/guest_icon.png);
 }
 
-.results-row.lfr-role-regular .col-1, .results-row.hover.lfr-role-regular .col-1 {
+.results-row.lfr-role-regular .col-1,
+.results-row.hover.lfr-role-regular .col-1 {
 	background-image: url(../images/common/user_icon.png);
 }
 
-.results-row.lfr-role-community .col-1, .results-row.hover.lfr-role-community .col-1 {
+.results-row.lfr-role-community .col-1,
+.results-row.hover.lfr-role-community .col-1 {
 	background-image: url(../images/common/community_icon.png);
 }
 
-.results-row.lfr-role-organization .col-1, .results-row.hover.lfr-role-organization .col-1 {
+.results-row.lfr-role-organization .col-1,
+.results-row.hover.lfr-role-organization .col-1 {
 	background-image: url(../images/common/organization_icon.png);
 }
 
-/* ---------- Miscellaneous component styles ---------- */
-
 /* ---------- Add content dialog ---------- */
 
-.lfr-portlet-item, .lfr-portlet-item p a {
+.lfr-portlet-item,
+.lfr-portlet-item p a {
 	font-size: 1em;
 }
 
 /* ---------- Actions button ---------- */
 
-.lfr-actions {
-}
-
-.lfr-actions, .lfr-actions ul {
+.lfr-actions,
+.lfr-actions ul {
 	background: #FFF url(../images/forms/button.png) repeat-x 0 100%;
 	border: 1px solid;
 	border-color: #DEDEDE #BFBFBF #BFBFBF #DEDEDE;
@@ -373,7 +220,9 @@ body.portlet {
 	bottom: -1px;
 }
 
-.lfr-actions .lfr-trigger, .lfr-actions .lfr-trigger, .lfr-actions .lfr-trigger strong {
+.lfr-actions .lfr-trigger,
+.lfr-actions .lfr-trigger,
+.lfr-actions .lfr-trigger strong {
 	background: none;
 }
 
@@ -440,7 +289,8 @@ body.portlet {
 
 /* ---------- Calendar taglib ---------- */
 
-.taglib-calendar tr.portlet-section-header th, .taglib-calendar tr td {
+.taglib-calendar tr.portlet-section-header th,
+.taglib-calendar tr td {
 	border: none;
 }
 
@@ -463,7 +313,8 @@ body.portlet {
 	color: #FFF;
 }
 
-.taglib-calendar .calendar-current-day, .taglib-calendar .calendar-current-day a {
+.taglib-calendar .calendar-current-day,
+.taglib-calendar .calendar-current-day a {
 	background-color: #FFF;
 }
 

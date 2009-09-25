@@ -14,16 +14,6 @@ body.staging {
 	width: 100%;
 }
 
-/* ---------- Banner ---------- */
-
-#banner .logo {
-	margin: 0;
-}
-
-.current-community {
-	display: none;
-}
-
 /* ---------- Alerts and popups ---------- */
 
 .alert-background {

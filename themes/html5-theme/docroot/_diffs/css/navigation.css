@@ -1,41 +1,4 @@
-/* This CSS sets the default styles for the main navigation. */
-
-/* ---------- Main navigation ---------- */
-
-#navigation h1 {
-	display: none;
-}
-
-#navigation ul {
-	margin: 0 auto;
-}
-
-#navigation ul:after {
-	clear: both;
-	content: ".";
-	display: block;
-	height: 0;
-	visibility: hidden;
-}
-
-.ie #navigation ul {
-	height: 1%;
-}
-
-.ie6 #navigation, .ie6 #navigation ul {
-	height: 2em;
-	overflow: visible;
-}
-
-#navigation li {
-	float: left;
-	list-style-type: none;
-	position: relative;
-}
-
-#navigation .child-menu {
-	display: none;
-}
+/* This CSS sets the default styles for the Liferay dock */
 
 /* ---------- Dock without JavaScript ---------- */
 
@@ -296,34 +259,4 @@
 
 .js .controls-hidden .interactive-mode li.toggle-controls a {
 	background-image: url(../images/common/unchecked.png);
-}
-
-/* ---------- Add/remove page ---------- */
-
-.js .delete-tab {
-	background: url(../images/common/remove.png) no-repeat 42%;
-	cursor: pointer;
-	display: block;
-	height: 8px;
-	position: absolute;
-	right: 2px;
-	text-indent: -9999em;
-	top: 2px;
-	width: 8px;
-}
-
-/*------ Navigation portlet ------*/
-
-.nav-menu li a.ancestor {
-	font-weight: bold;
-}
-
-.nav-menu li a.selected {
-	color: #000;
-	font-weight: bold;
-	text-decoration: none;
-}
-
-.nav-menu ul {
-	padding-left: 10px;
 }

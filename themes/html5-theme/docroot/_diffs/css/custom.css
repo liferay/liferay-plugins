@@ -1,11 +1,17 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */ @import url(color_schemes/green.css); @import url(color_schemes/orange.css); /* ---------- Base styles ---------- */
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+@import url(color_schemes/green.css);
+
+@import url(color_schemes/orange.css);
+
+/* ---------- Base styles ---------- */
 
 html {
 	height: 100%;
 }
 
 body {
-	font: 11px/1.6 Arial,Helvetica,Verdana,sans-serif;
+	font: 11px/1.6 Arial, Helvetica, Verdana, sans-serif;
 	margin: 0;
 }
 
@@ -28,7 +34,7 @@ body {
 	top: -1px;
 }
 
-#banner h1.logo {
+#banner .logo {
 	display: block;
 	float: left;
 	font-size: 2em;
@@ -47,7 +53,7 @@ body {
 	zoom: 1;
 }
 
-.logo .current-community {
+#banner .current-community {
 	background: url(../images/dock/my_places_public.png) no-repeat 15px 50%;
 	border-left: 1px solid #D3DADD;
 	color: #D3DADD;
@@ -60,7 +66,11 @@ body {
 	padding-left: 40px;
 }
 
-.guest-community .logo .current-community {
+#banner .current-community {
+	display: none;
+}
+
+.guest-community #banner .current-community {
 	display: none;
 }
 
@@ -78,16 +88,42 @@ body {
 	width: 100%;
 }
 
+.ie6 #navigation,
+.ie6 #navigation ul {
+	height: 2em;
+	overflow: visible;
+}
+
+#navigation h1 {
+	display: none;
+}
+
 #navigation ul {
+	margin: 0 auto;
 	min-height: 2em;
 	width: 90%;
+}
+
+#navigation ul:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+.ie #navigation ul {
+	height: 1%;
 }
 
 #navigation li {
 	border: 1px solid #304049;
 	display: inline;
+	float: left;
+	list-style-type: none;
 	margin: -1px 0 0 -1px;
 	padding: 0;
+	position: relative;
 }
 
 #navigation a {
@@ -104,14 +140,20 @@ body {
 	text-decoration: none;
 }
 
-#navigation li.selected a, #navigation li a:hover, #navigation .child-menu li a {
+#navigation li.selected a,
+#navigation li a:hover,
+#navigation .child-menu li a {
 	background-color: #1E2529;
-	color: #fff;
+	color: #FFF;
 }
 
 #navigation li.selected a span {
 	background: url(../images/navigation/bullet_selected.png) no-repeat 0 50%;
 	padding-left: 10px;
+}
+
+#navigation .child-menu {
+	display: none;
 }
 
 #navigation li:hover .child-menu {
@@ -154,6 +196,18 @@ body {
 }
 
 /* ---------- Add/remove page ---------- */
+
+.js .delete-tab {
+	background: url(../images/common/remove.png) no-repeat 42%;
+	cursor: pointer;
+	display: block;
+	height: 8px;
+	position: absolute;
+	right: 2px;
+	text-indent: -9999em;
+	top: 2px;
+	width: 8px;
+}
 
 .js #navigation .enter-page {
 	background-color: #1E2529;
@@ -219,21 +273,26 @@ body {
 	padding: 5px 20px 2px;
 }
 
-.js #add-page a:hover span {
-}
-
 /*------ Navigation portlet ------*/
 
-.nav-menu-style-1 {
+.nav-menu li a.ancestor {
+	font-weight: bold;
 }
 
-.nav-menu-style-2 {
+.nav-menu li a.selected {
+	color: #000;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.nav-menu ul {
+	padding-left: 10px;
 }
 
 /* ---------- Portlet wrapper and icons ---------- */
 
 .portlet {
-	background: #fff;
+	background: #FFF;
 	border: 2px solid #828F95;
 	margin: 0 0 10px;
 	padding: 3px;
