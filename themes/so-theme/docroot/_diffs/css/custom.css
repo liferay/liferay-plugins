@@ -1458,6 +1458,10 @@ table.calendar {
 	top: 3px;
 }
 
+.tms-portlet-tasks .progress {
+	background-color: #FFD8B2;
+}
+
 /* Today's Events */
 
 .todays-events-portlet h2 {
