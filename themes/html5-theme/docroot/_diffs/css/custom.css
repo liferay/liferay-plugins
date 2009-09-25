@@ -5,8 +5,8 @@ html {
 }
 
 body {
-	background: #fff;
-	font-size: 11px;
+	font: 11px/1.6 Arial,Helvetica,Verdana,sans-serif;
+	margin: 0;
 }
 
 /* ---------- Main content body ---------- */
