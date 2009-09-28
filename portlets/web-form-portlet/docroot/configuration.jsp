@@ -295,7 +295,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 						<c:choose>
 							<c:when test="<%= !fieldsEditingDisabled %>">
-								<aui:input cssClass="options lfr-input-text" helpMessage="add-options-separated-by-commas" label="options" name='<%= "fieldOptions" + formFieldsIndex %>' value="<%= fieldOptions %>" />
+								<aui:input cssClass="options lfr-input-text-container" helpMessage="add-options-separated-by-commas" label="options" name='<%= "fieldOptions" + formFieldsIndex %>' value="<%= fieldOptions %>" />
 							</c:when>
 							<c:when test="<%= Validator.isNotNull(fieldOptions) %>">
 								<tr>
