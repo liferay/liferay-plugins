@@ -683,7 +683,10 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		runtimeContext.setUserAuthentication("wsrp:password");
 
-		if (portletDescription.getDoesUrlTemplateProcessing()) {
+		Boolean doesUrlTemplateProcessing =
+			portletDescription.getDoesUrlTemplateProcessing();
+
+		if (doesUrlTemplateProcessing != null && doesUrlTemplateProcessing) {
 			Templates templates = new Templates();
 
 			templates.setBlockingActionTemplate(_BLOCKING_ACTION_TEMPLATE);

@@ -45,6 +45,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_ServiceDescription_PortType;
@@ -148,8 +149,13 @@ public class ServiceDescriptionServiceImpl
 		portletDescription.setPortletHandle(portlet.getPortletId());
 		portletDescription.setMarkupTypes(getMarkupTypes(portlet));
 
+		HttpServletRequest request = ServletUtil.getRequest();
+
+		ServletContext servletContext =
+			request.getSession().getServletContext();
+
 		String title = PortalUtil.getPortletTitle(
-			portlet, wsrpProducer.getCompanyId(), LocaleUtil.getDefault());
+			portlet, servletContext, LocaleUtil.getDefault());
 
 		portletDescription.setTitle(getLocalizedString(title));
 
