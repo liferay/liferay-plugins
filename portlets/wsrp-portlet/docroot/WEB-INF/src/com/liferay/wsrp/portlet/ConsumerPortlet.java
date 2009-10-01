@@ -686,7 +686,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		Boolean doesUrlTemplateProcessing =
 			portletDescription.getDoesUrlTemplateProcessing();
 
-		if (doesUrlTemplateProcessing != null && doesUrlTemplateProcessing) {
+		if ((doesUrlTemplateProcessing != null) && doesUrlTemplateProcessing) {
 			Templates templates = new Templates();
 
 			templates.setBlockingActionTemplate(_BLOCKING_ACTION_TEMPLATE);
