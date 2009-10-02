@@ -130,9 +130,6 @@ public class WebFormPortlet extends MVCPortlet {
 				SessionErrors.add(
 					actionRequest, CaptchaTextException.class.getName());
 
-				actionResponse.setRenderParameters(
-					actionRequest.getParameterMap());
-
 				return;
 			}
 		}
@@ -159,9 +156,6 @@ public class WebFormPortlet extends MVCPortlet {
 			SessionErrors.add(
 				actionRequest, "validation-script-error",
 				e.getMessage().trim());
-
-			actionResponse.setRenderParameters(
-				actionRequest.getParameterMap());
 
 			return;
 		}
@@ -199,17 +193,11 @@ public class WebFormPortlet extends MVCPortlet {
 			}
 			else {
 				SessionErrors.add(actionRequest, "error");
-
-				actionResponse.setRenderParameters(
-					actionRequest.getParameterMap());
 			}
 		}
 		else {
 			for (String badField : validationErrors) {
 				SessionErrors.add(actionRequest, "error" + badField);
-
-				actionResponse.setRenderParameters(
-					actionRequest.getParameterMap());
 			}
 		}
 
