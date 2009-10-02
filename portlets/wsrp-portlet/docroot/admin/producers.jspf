@@ -37,6 +37,7 @@
 		escapedModel="<%= true %>"
 		keyProperty="wsrpProducerId"
 		modelVar="producer"
+		servletContext="<%= application %>"
 	>
 		<portlet:renderURL var="rowURL">
 			<portlet:param name="jspPage" value="/admin/edit_producer.jsp" />
