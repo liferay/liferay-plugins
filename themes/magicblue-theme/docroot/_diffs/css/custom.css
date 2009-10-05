@@ -1,0 +1,93 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* -------- Global -------- */
+
+body {
+	background: url(../images/custom/body_bg.gif);
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+/* -------- Wrapper -------- */
+
+#wrapper {
+	background: #FFF;
+	margin: 0 auto;
+	padding: 0 2px 2px;
+	width: 764px;
+}
+
+/* -------- Banner -------- */
+
+#banner {
+	background: url(../images/custom/banner_bg.gif) repeat-x;
+	padding: 13px 0 2px;
+}
+
+.js .interactive-mode {
+	right: 0;
+	top: 14px;
+}
+
+/* -------- Logo -------- */
+
+.logo {
+	background: url(../images/custom/logo_bg.jpg) no-repeat;
+	height: 165px;
+	padding: 20px;
+}
+
+/* -------- Navigation -------- */
+
+#navigation {
+	background: #000;
+	height: 26px;
+}
+
+#navigation ul,
+#add-page {
+	float: left;
+}
+
+#navigation a {
+	border-right: 2px solid #FFF;
+	color: #FFF;
+	display: block;
+	float: left;
+	font: bold 12px Tahoma, Arial, sans-serif;
+	padding: 5px 12px;
+	text-decoration: none;
+}
+
+#navigation .cancel-page {
+	display: none;
+}
+
+/* -------- Content Wrapper -------- */
+
+#content-wrapper {
+	padding: 0 10px;
+}
+
+.lfr-grid .lfr-column {
+	padding: 10px;
+}
+
+/* -------- Portlet -------- */
+
+.portlet-title {
+	border-bottom: 1px dotted #333;
+	font: 18px/1.25 "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+}
+
+.portlet-title img {
+	display: none;
+}
+
+.portlet-icons {
+	right: -3px;
+	top: 0;
+}
+
+.portlet-content {
+	padding: 10px 0;
+}
