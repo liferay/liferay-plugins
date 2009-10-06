@@ -24,6 +24,8 @@ MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_CA
 
 long categoryId = BeanParamUtil.getLong(category, request, "categoryId", MBCategoryImpl.DEFAULT_PARENT_CATEGORY_ID);
 
+boolean showCategories = ParamUtil.getBoolean(request, "showCategories", false);
+
 PortletURL tabs1URL = renderResponse.createRenderURL();
 %>
 
@@ -74,13 +76,41 @@ PortletURL tabs1URL = renderResponse.createRenderURL();
 	boolean defaultCategory = (categoryId == MBCategoryImpl.DEFAULT_PARENT_CATEGORY_ID);
 	%>
 
-	<c:if test="<%= (showAddCategoryButton || showPermissionsButton) && !defaultCategory %>">
+	<c:if test="<%= !defaultCategory %>">
 		<ul class="disc">
 			<c:if test="<%= showAddCategoryButton %>">
 				<li>
 					<a href="javascript:;" onClick="<portlet:namespace />addCategory();"><liferay-ui:message key='<%= (category == null) ? "add-category" : "add-subcategory" %>' /></a>
 				</li>
 			</c:if>
+
+			<li>
+			
+				<%
+				PortletURL toggleCategoriesURL = renderResponse.createRenderURL();
+
+				toggleCategoriesURL.setParameter("categoryId", String.valueOf(categoryId));
+				%>
+
+				<c:choose>
+					<c:when test="<%= showCategories %>">
+
+						<%
+						toggleCategoriesURL.setParameter("showCategories", String.valueOf(false));
+						%>
+
+						<a href="<%= toggleCategoriesURL.toString() %>"><liferay-ui:message key="hide-category-controls" /></a>
+					</c:when>
+					<c:otherwise>
+
+						<%
+						toggleCategoriesURL.setParameter("showCategories", String.valueOf(true));
+						%>
+
+						<a href="<%= toggleCategoriesURL.toString() %>"><liferay-ui:message key="show-category-controls" /></a>
+					</c:otherwise>
+				</c:choose>
+			</li>
 
 			<c:if test="<%= showPermissionsButton %>">
 

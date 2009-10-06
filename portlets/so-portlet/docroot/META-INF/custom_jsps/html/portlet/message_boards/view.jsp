@@ -25,6 +25,8 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "general");
 
 String redirect = ParamUtil.getString(request, "redirect");
 
+boolean showCategories = ParamUtil.getBoolean(request, "showCategories", false);
+
 MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_CATEGORY);
 
 long categoryId = BeanParamUtil.getLong(category, request, "categoryId", MBCategoryImpl.DEFAULT_PARENT_CATEGORY_ID);
@@ -74,7 +76,7 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 			</div>
 		</c:if>
 
-		<c:if test="<%= categoryId == MBCategoryImpl.DEFAULT_PARENT_CATEGORY_ID%>">
+		<c:if test="<%= showCategories || categoryId == MBCategoryImpl.DEFAULT_PARENT_CATEGORY_ID %>">
 			<form action="<%= searchURL %>" method="get" name="<portlet:namespace />fm1" onSubmit="submitForm(this); return false;">
 			<liferay-portlet:renderURLParams varImpl="searchURL" />
 			<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escapeAttribute(currentURL) %>" />
