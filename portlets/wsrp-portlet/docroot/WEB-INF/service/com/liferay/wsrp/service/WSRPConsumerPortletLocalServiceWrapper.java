@@ -150,5 +150,9 @@ public class WSRPConsumerPortletLocalServiceWrapper
 			name);
 	}
 
+	public WSRPConsumerPortletLocalService getWrappedWSRPConsumerPortletLocalService() {
+		return _wsrpConsumerPortletLocalService;
+	}
+
 	private WSRPConsumerPortletLocalService _wsrpConsumerPortletLocalService;
 }

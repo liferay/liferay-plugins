@@ -127,6 +127,12 @@ public class WSRPConsumerLocalServiceUtil {
 			registrationProperties, registrationHandle);
 	}
 
+	public static void updateServiceDescription(long wsrpConsumerId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		getService().updateServiceDescription(wsrpConsumerId);
+	}
+
 	public static com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
 		long wsrpConsumerId, java.lang.String adminPortletId,
 		java.lang.String name, java.lang.String url)

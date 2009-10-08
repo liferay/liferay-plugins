@@ -193,5 +193,9 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 		_wsrpConsumer.setRegistrationProperties(registrationProperties);
 	}
 
+	public WSRPConsumer getWrappedWSRPConsumer() {
+		return _wsrpConsumer;
+	}
+
 	private WSRPConsumer _wsrpConsumer;
 }

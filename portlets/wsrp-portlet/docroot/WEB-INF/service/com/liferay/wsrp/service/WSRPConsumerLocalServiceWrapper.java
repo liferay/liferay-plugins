@@ -129,6 +129,12 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 			adminPortletId, registrationProperties, registrationHandle);
 	}
 
+	public void updateServiceDescription(long wsrpConsumerId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		_wsrpConsumerLocalService.updateServiceDescription(wsrpConsumerId);
+	}
+
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
 		long wsrpConsumerId, java.lang.String adminPortletId,
 		java.lang.String name, java.lang.String url)
@@ -136,6 +142,10 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 			com.liferay.portal.SystemException {
 		return _wsrpConsumerLocalService.updateWSRPConsumer(wsrpConsumerId,
 			adminPortletId, name, url);
+	}
+
+	public WSRPConsumerLocalService getWrappedWSRPConsumerLocalService() {
+		return _wsrpConsumerLocalService;
 	}
 
 	private WSRPConsumerLocalService _wsrpConsumerLocalService;

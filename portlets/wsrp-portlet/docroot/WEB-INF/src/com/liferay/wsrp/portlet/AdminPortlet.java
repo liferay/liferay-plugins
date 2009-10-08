@@ -142,6 +142,20 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
+	public void updateServiceDescription(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		checkPermissions(actionRequest);
+
+		try {
+			doUpdateServiceDescription(actionRequest, actionResponse);
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(actionRequest, pe.getClass().getName());
+		}
+	}
+
 	protected void checkPermissions(PortletRequest portletRequest)
 		throws Exception {
 
@@ -154,6 +168,17 @@ public class AdminPortlet extends MVCPortlet {
 		if (!permissionChecker.isCompanyAdmin()) {
 			throw new PrincipalException();
 		}
+	}
+
+	protected void doUpdateServiceDescription(
+		ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long wsrpConsumerId = ParamUtil.getLong(
+			actionRequest, "wsrpConsumerId");
+
+		WSRPConsumerLocalServiceUtil.updateServiceDescription(
+			wsrpConsumerId);
 	}
 
 	protected void doUpdateWSRPConsumer(

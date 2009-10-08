@@ -149,5 +149,9 @@ public class WSRPProducerWrapper implements WSRPProducer {
 		return _wsrpProducer.toXmlString();
 	}
 
+	public WSRPProducer getWrappedWSRPProducer() {
+		return _wsrpProducer;
+	}
+
 	private WSRPProducer _wsrpProducer;
 }

@@ -158,5 +158,9 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 		return _wsrpConsumerPortlet.toXmlString();
 	}
 
+	public WSRPConsumerPortlet getWrappedWSRPConsumerPortlet() {
+		return _wsrpConsumerPortlet;
+	}
+
 	private WSRPConsumerPortlet _wsrpConsumerPortlet;
 }

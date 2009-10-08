@@ -159,6 +159,26 @@ public class WSRPConsumerLocalServiceImpl
 		return wsrpConsumer;
 	}
 
+	public void updateServiceDescription(long wsrpConsumerId)
+		throws PortalException, SystemException {
+
+		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
+			wsrpConsumerId);
+
+		try {
+			WSRPConsumerManager wsrpConsumerManager =
+				WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
+
+			RegistrationContext registrationContext =
+				wsrpConsumer.getRegistrationContext();
+
+			wsrpConsumerManager.updateServiceDescription(registrationContext);
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
+		}
+	}
+
 	public WSRPConsumer updateWSRPConsumer(
 			long wsrpConsumerId, String adminPortletId, String name, String url)
 		throws PortalException, SystemException {

@@ -125,5 +125,9 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 			name, portletIds);
 	}
 
+	public WSRPProducerLocalService getWrappedWSRPProducerLocalService() {
+		return _wsrpProducerLocalService;
+	}
+
 	private WSRPProducerLocalService _wsrpProducerLocalService;
 }
