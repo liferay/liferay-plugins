@@ -69,11 +69,13 @@ public class ProxyServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		String cookie = (String)session.getAttribute(WebKeys.COOKIE);
-
 		URLConnection urlConnection = url.openConnection();
 
-		urlConnection.setRequestProperty("Cookie", cookie);
+		String cookie = (String)session.getAttribute(WebKeys.COOKIE);
+
+		if (cookie != null) {
+			urlConnection.setRequestProperty("Cookie", cookie);
+		}
 
 		urlConnection.connect();
 
