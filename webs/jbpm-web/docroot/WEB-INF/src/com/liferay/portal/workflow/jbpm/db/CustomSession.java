@@ -91,7 +91,7 @@ public class CustomSession {
 	}
 
 	public int countProcessInstances(
-		long processDefinitionId, Boolean finished) {
+		long processDefinitionId, Boolean completed) {
 
 		try {
 			Criteria criteria = _session.createCriteria(
@@ -102,8 +102,8 @@ public class CustomSession {
 			criteria.add(
 				Restrictions.eq("processDefinition.id", processDefinitionId));
 
-			if (finished != null) {
-				if (finished.booleanValue()) {
+			if (completed != null) {
+				if (completed.booleanValue()) {
 					criteria.add(Restrictions.isNotNull("end"));
 				}
 				else {
@@ -122,7 +122,7 @@ public class CustomSession {
 
 	public int countTaskInstances(
 		long processInstanceId, long tokenId, String[] actorIds,
-		boolean pooledActors, Boolean finished) {
+		boolean pooledActors, Boolean completed) {
 
 		if ((actorIds != null) && (actorIds.length == 0)) {
 			return 0;
@@ -148,8 +148,8 @@ public class CustomSession {
 				criteria.add(Restrictions.in("actorId", actorIds));
 			}
 
-			if (finished != null) {
-				if (finished.booleanValue()) {
+			if (completed != null) {
+				if (completed.booleanValue()) {
 					criteria.add(Restrictions.isNotNull("end"));
 				}
 				else {
@@ -205,7 +205,7 @@ public class CustomSession {
 	}
 
 	public List<ProcessInstance> findProcessInstances(
-		long processDefinitionId, Boolean finished, int start, int end,
+		long processDefinitionId, Boolean completed, int start, int end,
 		OrderByComparator orderByComparator) {
 
 		try {
@@ -215,8 +215,8 @@ public class CustomSession {
 			criteria.add(
 				Restrictions.eq("processDefinition.id", processDefinitionId));
 
-			if (finished != null) {
-				if (finished.booleanValue()) {
+			if (completed != null) {
+				if (completed.booleanValue()) {
 					criteria.add(Restrictions.isNotNull("end"));
 				}
 				else {
@@ -236,7 +236,7 @@ public class CustomSession {
 
 	public List<TaskInstance> findTaskInstances(
 		long processInstanceId, long tokenId, String[] actorIds,
-		boolean pooledActors, Boolean finished, int start, int end,
+		boolean pooledActors, Boolean completed, int start, int end,
 		OrderByComparator orderByComparator) {
 
 		if ((actorIds != null) && (actorIds.length == 0)) {
@@ -261,8 +261,8 @@ public class CustomSession {
 				criteria.add(Restrictions.in("actorId", actorIds));
 			}
 
-			if (finished != null) {
-				if (finished.booleanValue()) {
+			if (completed != null) {
+				if (completed.booleanValue()) {
 					criteria.add(Restrictions.isNotNull("end"));
 				}
 				else {

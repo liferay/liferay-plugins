@@ -263,11 +263,11 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 	public int getWorkflowInstanceInfoCount(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			boolean finished)
+			boolean completed)
 		throws WorkflowException {
 
 		return getWorkflowInstanceInfoCount(
-			workflowDefinitionName, workflowDefinitionVersion, finished);
+			workflowDefinitionName, workflowDefinitionVersion, completed);
 	}
 
 	public int getWorkflowInstanceInfoCount(
@@ -279,12 +279,12 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 	public List<WorkflowInstanceInfo> getWorkflowInstanceInfos(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			boolean finished, boolean retrieveChildrenInfo, int start, int end,
+			boolean completed, boolean retrieveChildrenInfo, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		return getWorkflowInstanceInfos(
-			workflowDefinitionName, workflowDefinitionVersion, finished,
+			workflowDefinitionName, workflowDefinitionVersion, completed,
 			retrieveChildrenInfo, start, end, orderByComparator);
 	}
 
@@ -497,7 +497,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 	protected int getWorkflowInstanceInfoCount(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			Boolean finished)
+			Boolean completed)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -509,7 +509,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			CustomSession customSession = new CustomSession(jbpmContext);
 
 			return customSession.countProcessInstances(
-				processDefinition.getId(), finished);
+				processDefinition.getId(), completed);
 		}
 		catch (WorkflowException we) {
 			throw we;
@@ -524,7 +524,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 	protected List<WorkflowInstanceInfo> getWorkflowInstanceInfos(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			boolean retrieveChildrenInfo, Boolean finished, int start, int end,
+			boolean retrieveChildrenInfo, Boolean completed, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
@@ -538,7 +538,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 			List<ProcessInstance> processInstances =
 				customSession.findProcessInstances(
-					processDefinition.getId(), finished, start, end,
+					processDefinition.getId(), completed, start, end,
 					orderByComparator);
 
 			List<WorkflowInstanceInfo> workflowInstanceInfos =
