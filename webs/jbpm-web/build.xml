@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<project name="web" basedir="." default="deploy">
+	<import file="../build-common-web.xml" />
+
+	<property name="original.war.file" value="jbpm-installer-3.2.6.SP1.jar" />
+
+	<target name="merge">
+		<if>
+			<not>
+				<uptodate srcfile="${original.war.file}" targetfile="tmp" />
+			</not>
+			<then>
+				<delete dir="tmp" />
+				<mkdir dir="tmp" />
+
+				<java
+					fork="true"
+					jar="${original.war.file}"
+				>
+					<arg value="jbpm-installer-3.2.6.SP1.xml" />
+				</java>
+
+				<delete includeemptydirs="true">
+					<fileset dir="$${jbossInstallPath}" />
+					<fileset dir="tmp" excludes="lib/jbpm-*.jar" />
+				</delete>
+
+				<move file="tmp/lib" tofile="tmp/WEB-INF/lib" />
+
+				<copy todir="tmp" overwrite="true">
+					<fileset dir="docroot" />
+				</copy>
+			</then>
+		</if>
+
+		<copy todir="tmp" overwrite="false">
+			<fileset dir="docroot" />
+		</copy>
+	</target>
+</project>
