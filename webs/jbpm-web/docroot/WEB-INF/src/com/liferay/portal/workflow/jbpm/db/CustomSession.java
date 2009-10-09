@@ -57,8 +57,8 @@ public class CustomSession {
 	public static String COUNT_PROCESS_DEFINITIONS_BY_NAME =
 		CustomSession.class.getName() + ".countProcessDefinitionsByName";
 
-	public void afterPropertiesSet() {
-		_session = _jbpmContext.getSession();
+	public CustomSession(JbpmContext jbpmContext) {
+		_session = jbpmContext.getSession();
 
 		if (_session != null) {
 			SessionFactoryImplementor sessionFactoryImplementor =
@@ -66,13 +66,6 @@ public class CustomSession {
 
 			_dialect = sessionFactoryImplementor.getDialect();
 		}
-
-		_fieldMap.put("startDate", "start");
-		_fieldMap.put("completionDate", "end");
-		_fieldMap.put("endDate", "end");
-		_fieldMap.put("createDate", "create");
-		_fieldMap.put("taskName", "name");
-		_fieldMap.put("userId", "actorId");
 	}
 
 	public void close() {
@@ -296,10 +289,6 @@ public class CustomSession {
 		}
 	}
 
-	public void setJbpmContext(JbpmContext jbpmContext) {
-		_jbpmContext = jbpmContext;
-	}
-
 	protected void addOrder(
 		Criteria criteria, OrderByComparator orderByComparator) {
 
@@ -376,9 +365,18 @@ public class CustomSession {
 		}
 	}
 
+	private static Map<String, String> _fieldMap;
+
+	static {
+		_fieldMap.put("startDate", "start");
+		_fieldMap.put("completionDate", "end");
+		_fieldMap.put("endDate", "end");
+		_fieldMap.put("createDate", "create");
+		_fieldMap.put("taskName", "name");
+		_fieldMap.put("userId", "actorId");
+	}
+
 	private Dialect _dialect;
-	private Map<String, String> _fieldMap;
-	private JbpmContext _jbpmContext;
 	private Session _session;
 
 }
