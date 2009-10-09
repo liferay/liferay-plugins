@@ -22,6 +22,8 @@
 
 package com.liferay.portal.workflow.jbpm;
 
+import org.jbpm.JbpmConfiguration;
+
 /**
  * <a href="TaskInstanceManagerImpl.java.html"><b><i>View Source</i></b></a>
  *
@@ -29,4 +31,11 @@ package com.liferay.portal.workflow.jbpm;
  * @author Brian Wing Shun Chan
  */
 public class TaskInstanceManagerImpl {
+
+	public void setJbpmConfiguration(JbpmConfiguration jbpmConfiguration) {
+		_jbpmConfiguration = jbpmConfiguration;
+	}
+
+	private JbpmConfiguration _jbpmConfiguration;
+
 }

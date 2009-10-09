@@ -34,8 +34,6 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.dialect.Dialect;
-import org.hibernate.engine.SessionFactoryImplementor;
 
 import org.jbpm.JbpmContext;
 import org.jbpm.JbpmException;
@@ -59,13 +57,6 @@ public class CustomSession {
 
 	public CustomSession(JbpmContext jbpmContext) {
 		_session = jbpmContext.getSession();
-
-		if (_session != null) {
-			SessionFactoryImplementor sessionFactoryImplementor =
-				(SessionFactoryImplementor)_session.getSessionFactory();
-
-			_dialect = sessionFactoryImplementor.getDialect();
-		}
 	}
 
 	public void close() {
@@ -376,7 +367,6 @@ public class CustomSession {
 		_fieldMap.put("userId", "actorId");
 	}
 
-	private Dialect _dialect;
 	private Session _session;
 
 }
