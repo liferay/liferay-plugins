@@ -24,6 +24,7 @@ package com.liferay.wsrp.servlet;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.util.servlet.ServletResponseUtil;
 import com.liferay.wsrp.util.WebKeys;
@@ -74,7 +75,7 @@ public class ProxyServlet extends HttpServlet {
 		String cookie = (String)session.getAttribute(WebKeys.COOKIE);
 
 		if (cookie != null) {
-			urlConnection.setRequestProperty("Cookie", cookie);
+			urlConnection.setRequestProperty(HttpHeaders.COOKIE, cookie);
 		}
 
 		urlConnection.connect();

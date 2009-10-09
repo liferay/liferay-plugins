@@ -174,6 +174,12 @@ public class WSRPConsumerLocalServiceImpl
 
 			wsrpConsumerManager.updateServiceDescription(registrationContext);
 		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (SystemException se) {
+			throw se;
+		}
 		catch (Exception e) {
 			throw new PortalException(e);
 		}
