@@ -104,9 +104,9 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			return subset(solrQuery, response.getResults(), allResults);
 		}
 		catch (Exception e) {
-			_log.error("Error while sending request to Solr", e);
+			_log.error(e, e);
 
-			throw new SearchException(e);
+			throw new SearchException(e.getMessage());
 		}
 	}
 

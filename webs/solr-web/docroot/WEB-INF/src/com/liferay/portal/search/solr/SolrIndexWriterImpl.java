@@ -22,6 +22,8 @@
 
 package com.liferay.portal.search.solr;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.IndexWriter;
@@ -53,7 +55,9 @@ public class SolrIndexWriterImpl implements IndexWriter {
 			}
 		}
 		catch (Exception e) {
-			throw new SearchException(e);
+			_log.error(e, e);
+
+			throw new SearchException(e.getMessage());
 		}
 	}
 
@@ -68,7 +72,9 @@ public class SolrIndexWriterImpl implements IndexWriter {
 			}
 		}
 		catch (Exception e) {
-			throw new SearchException(e);
+			_log.error(e, e);
+
+			throw new SearchException(e.getMessage());
 		}
 	}
 
@@ -84,7 +90,9 @@ public class SolrIndexWriterImpl implements IndexWriter {
 			}
 		}
 		catch (Exception e) {
-			throw new SearchException(e);
+			_log.error(e, e);
+
+			throw new SearchException(e.getMessage());
 		}
 	}
 
@@ -131,6 +139,8 @@ public class SolrIndexWriterImpl implements IndexWriter {
 
 		return solrDoc;
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(SolrIndexWriterImpl.class);
 
 	private boolean _commit;
 	private SolrServer _solrServer;

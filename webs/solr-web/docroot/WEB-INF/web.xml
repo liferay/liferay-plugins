@@ -7,6 +7,6 @@
 		<param-value>/WEB-INF/classes/META-INF/solr-spring.xml</param-value>
 	</context-param>
 	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		<listener-class>com.liferay.portal.kernel.spring.context.PortletContextLoaderListener</listener-class>
 	</listener>
 </web-app>
