@@ -25,6 +25,9 @@ package com.liferay.portal.workflow.jbpm;
 import com.liferay.portal.kernel.resource.ResourceRetriever;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 
+import java.util.Collections;
+import java.util.Map;
+
 import org.jbpm.graph.def.ProcessDefinition;
 
 /**
@@ -38,6 +41,10 @@ public class WorkflowDefinitionImpl implements WorkflowDefinition {
 	public WorkflowDefinitionImpl(ProcessDefinition processDefinition) {
 		_workflowDefinitionName = processDefinition.getName();
 		_workflowDefinitionVersion = processDefinition.getVersion();
+	}
+
+	public Map<String, Object> getAttributes() {
+		return Collections.EMPTY_MAP;
 	}
 
 	public ResourceRetriever getJar() {

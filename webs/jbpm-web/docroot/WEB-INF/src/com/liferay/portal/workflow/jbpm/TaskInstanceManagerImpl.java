@@ -55,7 +55,8 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 
 	public TaskInstanceInfo assignTaskInstanceToRole(
 			long taskInstanceId, long roleId, String comment,
-			Map<String, Object> attributes, long callingUserId)
+			Map<String, Object> attributes, long callingUserId,
+			Map<String, Object> parameters)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -88,7 +89,8 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 
 	public TaskInstanceInfo assignTaskInstanceToUser(
 			long taskInstanceId, UserCredential userCredential, String comment,
-			Map<String, Object> attributes, long callingUserId)
+			Map<String, Object> attributes, long callingUserId,
+			Map<String, Object> parameters)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -112,8 +114,7 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 					"Task has not been assigned to a role");
 			}
 
-			PooledActor pooledActor =
-				(PooledActor)pooledActors.iterator().next();
+			PooledActor pooledActor = pooledActors.iterator().next();
 
 			long roleId = GetterUtil.getLong(pooledActor.getActorId());
 
@@ -142,16 +143,17 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 
 	public TaskInstanceInfo completeTaskInstance(
 			long taskInstanceId, long userId, String comment,
-			Map<String, Object> attributes)
+			Map<String, Object> attributes, Map<String, Object> parameters)
 		throws WorkflowException {
 
 		return completeTaskInstance(
-			taskInstanceId, userId, null, comment, attributes);
+			taskInstanceId, userId, null, comment, attributes, parameters);
 	}
 
 	public TaskInstanceInfo completeTaskInstance(
 			long taskInstanceId, long userId, String activityName,
-			String comment, Map<String, Object> attributes)
+			String comment, Map<String, Object> attributes,
+			Map<String, Object> parameters)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -199,7 +201,7 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 	}
 
 	public List<String> getPossibleNextActivityNames(
-			long taskInstanceId, long userId)
+			long taskInstanceId, long userId, Map<String, Object> parameters)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();

@@ -94,7 +94,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public List<String> getPossibleNextActivityNames(
-			long workflowInstanceId, long userId)
+			long workflowInstanceId, long userId,
+			Map<String, Object> parameters)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -349,16 +350,17 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 	public WorkflowInstanceInfo signalWorkflowInstance(
 			long workflowInstanceId, Map<String, Object> attributes,
-			long callingUserId)
+			long callingUserId, Map<String, Object> parameters)
 		throws WorkflowException {
 
 		return signalWorkflowInstance(
-			workflowInstanceId, null, attributes, callingUserId);
+			workflowInstanceId, null, attributes, callingUserId, parameters);
 	}
 
 	public WorkflowInstanceInfo signalWorkflowInstance(
 			long workflowInstanceId, String activityName,
-			Map<String, Object> attributes, long callingUserId)
+			Map<String, Object> attributes, long callingUserId,
+			Map<String, Object> parameters)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -401,18 +403,19 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 	public WorkflowInstanceInfo startWorkflowInstance(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			Map<String, Object> context, long callingUserId)
+			Map<String, Object> context, long callingUserId,
+			Map<String, Object> parameters)
 		throws WorkflowException {
 
 		return startWorkflowInstance(
 			workflowDefinitionName, workflowDefinitionVersion, context,
-			callingUserId, null);
+			callingUserId, null, parameters);
 	}
 
 	public WorkflowInstanceInfo startWorkflowInstance(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
 			Map<String, Object> context, long callingUserId,
-			String activityName)
+			String activityName, Map<String, Object> parameters)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -453,7 +456,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	public WorkflowInstanceInfo startWorkflowInstance(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
 			String relationType, long relationId, Map<String, Object> context,
-			long callingUserId)
+			long callingUserId, Map<String, Object> parameters)
 		throws WorkflowException {
 
 		throw new WorkflowException(new UnsupportedOperationException());
@@ -462,7 +465,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	public WorkflowInstanceInfo startWorkflowInstance(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
 			String relationType, long relationId, Map<String, Object> context,
-			long callingUserId, String activityName)
+			long callingUserId, String activityName,
+			Map<String, Object> parameters)
 		throws WorkflowException {
 
 		throw new WorkflowException(new UnsupportedOperationException());

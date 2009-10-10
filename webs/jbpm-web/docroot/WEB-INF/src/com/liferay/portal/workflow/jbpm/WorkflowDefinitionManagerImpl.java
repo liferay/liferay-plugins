@@ -34,6 +34,7 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.zip.ZipInputStream;
 
 import org.jbpm.JbpmConfiguration;
@@ -53,7 +54,8 @@ public class WorkflowDefinitionManagerImpl
 	implements WorkflowDefinitionManager {
 
 	public void deployWorkflowDefinition(
-			WorkflowDefinition workflowDefinition, long callingUserId)
+			WorkflowDefinition workflowDefinition, long callingUserId,
+			Map<String, Object> parameters)
 		throws WorkflowException {
 
 		ResourceRetriever resourceRetriever = workflowDefinition.getJar();
