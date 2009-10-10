@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.TransientValue;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
@@ -401,15 +402,19 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		PortletSession portletSession = portletRequest.getPortletSession();
 
-		MarkupServiceHolder markupServiceHolder =
-			(MarkupServiceHolder)portletSession.getAttribute(
-				WebKeys.MARKUP_SERVICE, PortletSession.APPLICATION_SCOPE);
+		TransientValue<WSRP_v2_Markup_PortType> markupServiceTransientValue =
+			(TransientValue<WSRP_v2_Markup_PortType>)
+				portletSession.getAttribute(
+					WebKeys.MARKUP_SERVICE, PortletSession.APPLICATION_SCOPE);
 
-		if (markupServiceHolder == null) {
+		if ((markupServiceTransientValue == null) ||
+			(markupServiceTransientValue.isNull())) {
+
 			WSRP_v2_Markup_PortType markupService =
 				wsrpConsumerManager.getMarkupService();
 
-			markupServiceHolder = new MarkupServiceHolder(markupService);
+			markupServiceTransientValue =
+				new TransientValue<WSRP_v2_Markup_PortType>(markupService);
 
 			ServiceDescription serviceDescription =
 				wsrpConsumerManager.getServiceDescription();
@@ -443,11 +448,11 @@ public class ConsumerPortlet extends GenericPortlet {
 			}
 
 			portletSession.setAttribute(
-				WebKeys.MARKUP_SERVICE, markupServiceHolder,
+				WebKeys.MARKUP_SERVICE, markupServiceTransientValue,
 				PortletSession.APPLICATION_SCOPE);
 		}
 
-		return markupServiceHolder.getMarkupService();
+		return markupServiceTransientValue.getValue();
 	}
 
 	protected PortletMode getPortletMode(String portletMode) {
