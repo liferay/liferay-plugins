@@ -17,5 +17,11 @@
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/org.edorasframework.common-1.3.0.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/org.edorasframework.el-1.3.0.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/org.edorasframework.orm-1.3.0.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/org.edorasframework.process.parent-1.3.0-SNAPSHOT-all.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/org.edorasframework.scopes-1.3.0.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/org.edorasframework.xmlpersister-1.3.0.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>

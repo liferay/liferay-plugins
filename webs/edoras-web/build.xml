@@ -2,4 +2,34 @@
 
 <project name="web" basedir="." default="deploy">
 	<import file="../build-common-web.xml" />
+
+	<property name="original.war.file" value="edoras-1.3.0.zip" />
+
+	<target name="merge">
+		<if>
+			<not>
+				<uptodate srcfile="${original.war.file}" targetfile="tmp" />
+			</not>
+			<then>
+				<delete dir="tmp" />
+				<mkdir dir="tmp" />
+
+				<unzip src="${original.war.file}" dest="tmp" />
+
+				<delete includeemptydirs="true">
+					<fileset dir="tmp" excludes="lib/org.edorasframework.*.jar" />
+				</delete>
+
+				<move file="tmp/lib" tofile="tmp/WEB-INF/lib" />
+
+				<copy todir="tmp" overwrite="true">
+					<fileset dir="docroot" />
+				</copy>
+			</then>
+		</if>
+
+		<copy todir="tmp" overwrite="false">
+			<fileset dir="docroot" />
+		</copy>
+	</target>
 </project>
