@@ -375,5 +375,9 @@ public class WorkflowLogLocalServiceClp implements WorkflowLogLocalService {
 		return (com.liferay.portal.workflow.edoras.model.WorkflowLog)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

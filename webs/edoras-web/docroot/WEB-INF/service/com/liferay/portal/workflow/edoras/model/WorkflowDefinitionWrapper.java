@@ -149,7 +149,7 @@ public class WorkflowDefinitionWrapper implements WorkflowDefinition {
 		_workflowDefinition.setPersistent(persistent);
 	}
 
-	public WorkflowDefinition toEscapedModel() {
+	public com.liferay.portal.workflow.edoras.model.WorkflowDefinition toEscapedModel() {
 		return _workflowDefinition.toEscapedModel();
 	}
 
@@ -194,7 +194,8 @@ public class WorkflowDefinitionWrapper implements WorkflowDefinition {
 		return _workflowDefinition.clone();
 	}
 
-	public int compareTo(WorkflowDefinition workflowDefinition) {
+	public int compareTo(
+		com.liferay.portal.workflow.edoras.model.WorkflowDefinition workflowDefinition) {
 		return _workflowDefinition.compareTo(workflowDefinition);
 	}
 

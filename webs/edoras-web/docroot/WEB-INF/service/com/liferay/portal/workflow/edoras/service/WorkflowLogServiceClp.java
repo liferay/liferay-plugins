@@ -34,5 +34,9 @@ public class WorkflowLogServiceClp implements WorkflowLogService {
 		_classLoaderProxy = classLoaderProxy;
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

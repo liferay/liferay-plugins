@@ -169,7 +169,7 @@ public class WorkflowTaskWrapper implements WorkflowTask {
 		_workflowTask.setRoleId(roleId);
 	}
 
-	public WorkflowTask toEscapedModel() {
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask toEscapedModel() {
 		return _workflowTask.toEscapedModel();
 	}
 
@@ -214,7 +214,8 @@ public class WorkflowTaskWrapper implements WorkflowTask {
 		return _workflowTask.clone();
 	}
 
-	public int compareTo(WorkflowTask workflowTask) {
+	public int compareTo(
+		com.liferay.portal.workflow.edoras.model.WorkflowTask workflowTask) {
 		return _workflowTask.compareTo(workflowTask);
 	}
 

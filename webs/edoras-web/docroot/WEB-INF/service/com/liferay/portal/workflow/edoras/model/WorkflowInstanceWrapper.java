@@ -227,7 +227,7 @@ public class WorkflowInstanceWrapper implements WorkflowInstance {
 		_workflowInstance.setActive(active);
 	}
 
-	public WorkflowInstance toEscapedModel() {
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance toEscapedModel() {
 		return _workflowInstance.toEscapedModel();
 	}
 
@@ -272,7 +272,8 @@ public class WorkflowInstanceWrapper implements WorkflowInstance {
 		return _workflowInstance.clone();
 	}
 
-	public int compareTo(WorkflowInstance workflowInstance) {
+	public int compareTo(
+		com.liferay.portal.workflow.edoras.model.WorkflowInstance workflowInstance) {
 		return _workflowInstance.compareTo(workflowInstance);
 	}
 

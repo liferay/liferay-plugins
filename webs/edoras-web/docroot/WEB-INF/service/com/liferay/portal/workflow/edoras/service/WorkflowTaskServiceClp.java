@@ -34,5 +34,9 @@ public class WorkflowTaskServiceClp implements WorkflowTaskService {
 		_classLoaderProxy = classLoaderProxy;
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

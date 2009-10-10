@@ -34,5 +34,9 @@ public class WorkflowInstanceServiceClp implements WorkflowInstanceService {
 		_classLoaderProxy = classLoaderProxy;
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

@@ -169,7 +169,7 @@ public class WorkflowLogWrapper implements WorkflowLog {
 		_workflowLog.setComment(comment);
 	}
 
-	public WorkflowLog toEscapedModel() {
+	public com.liferay.portal.workflow.edoras.model.WorkflowLog toEscapedModel() {
 		return _workflowLog.toEscapedModel();
 	}
 
@@ -214,7 +214,8 @@ public class WorkflowLogWrapper implements WorkflowLog {
 		return _workflowLog.clone();
 	}
 
-	public int compareTo(WorkflowLog workflowLog) {
+	public int compareTo(
+		com.liferay.portal.workflow.edoras.model.WorkflowLog workflowLog) {
 		return _workflowLog.compareTo(workflowLog);
 	}
 

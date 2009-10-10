@@ -128,7 +128,7 @@ public class WorkflowJobWrapper implements WorkflowJob {
 		_workflowJob.setExceptionCount(exceptionCount);
 	}
 
-	public WorkflowJob toEscapedModel() {
+	public com.liferay.portal.workflow.edoras.model.WorkflowJob toEscapedModel() {
 		return _workflowJob.toEscapedModel();
 	}
 
@@ -173,7 +173,8 @@ public class WorkflowJobWrapper implements WorkflowJob {
 		return _workflowJob.clone();
 	}
 
-	public int compareTo(WorkflowJob workflowJob) {
+	public int compareTo(
+		com.liferay.portal.workflow.edoras.model.WorkflowJob workflowJob) {
 		return _workflowJob.compareTo(workflowJob);
 	}
 

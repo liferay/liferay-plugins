@@ -376,5 +376,9 @@ public class WorkflowTaskLocalServiceClp implements WorkflowTaskLocalService {
 		return (com.liferay.portal.workflow.edoras.model.WorkflowTask)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

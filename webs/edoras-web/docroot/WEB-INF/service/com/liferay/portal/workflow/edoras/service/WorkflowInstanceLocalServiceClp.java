@@ -378,5 +378,9 @@ public class WorkflowInstanceLocalServiceClp
 		return (com.liferay.portal.workflow.edoras.model.WorkflowInstance)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }
