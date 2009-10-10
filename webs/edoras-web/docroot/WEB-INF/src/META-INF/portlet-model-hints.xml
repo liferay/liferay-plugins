@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="com.liferay.portal.workflow.edoras.model.WorkflowDefinition">
+		<field name="workflowDefinitionId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="name" type="String" />
+		<field name="version" type="double" />
+		<field name="designerVersion" type="String" />
+		<field name="modelXml" type="String" />
+		<field name="graphicalXml" type="String" />
+		<field name="persistent" type="boolean" />
+	</model>
+	<model name="com.liferay.portal.workflow.edoras.model.WorkflowInstance">
+		<field name="workflowInstanceId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="setupId" type="String" />
+		<field name="friendlyId" type="String" />
+		<field name="workflowDefinitionId" type="long" />
+		<field name="parentWorkflowInstanceId" type="long" />
+		<field name="className" type="String" />
+		<field name="classPK" type="long" />
+		<field name="attributes" type="String" />
+		<field name="nestedWorkflowDefinitionIds" type="String" />
+		<field name="nestedWorkflowDefinitionVersions" type="String" />
+		<field name="nestedRelatedElements" type="String" />
+		<field name="currentElementName" type="String" />
+		<field name="relatedElementName" type="String" />
+		<field name="finished" type="boolean" />
+		<field name="finishedDated" type="Date" />
+		<field name="active" type="boolean" />
+	</model>
+	<model name="com.liferay.portal.workflow.edoras.model.WorkflowJob">
+		<field name="workflowJobId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="setupId" type="String" />
+		<field name="workflowDefinitionId" type="long" />
+		<field name="workflowInstanceId" type="long" />
+		<field name="elementName" type="String" />
+		<field name="cause" type="String" />
+		<field name="dueDate" type="Date" />
+		<field name="notBeforeDate" type="Date" />
+		<field name="exceptionCount" type="int" />
+	</model>
+	<model name="com.liferay.portal.workflow.edoras.model.WorkflowLog">
+		<field name="workflowLogId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="workflowDefinitionId" type="long" />
+		<field name="workflowInstanceId" type="long" />
+		<field name="workflowTaskId" type="long" />
+		<field name="type" type="int" />
+		<field name="description" type="String" />
+		<field name="activityName" type="String" />
+		<field name="oldState" type="String" />
+		<field name="newState" type="String" />
+		<field name="actionType" type="String" />
+		<field name="comment" type="String" />
+	</model>
+	<model name="com.liferay.portal.workflow.edoras.model.WorkflowTask">
+		<field name="workflowTaskId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="friendlyId" type="String" />
+		<field name="workflowDefinitionId" type="long" />
+		<field name="workflowInstanceId" type="long" />
+		<field name="metaName" type="String" />
+		<field name="relation" type="String" />
+		<field name="dueDate" type="Date" />
+		<field name="completionDate" type="Date" />
+		<field name="state" type="int" />
+		<field name="priority" type="int" />
+		<field name="assigneeUserId" type="long" />
+		<field name="assigneeUserName" type="String" />
+		<field name="roleId" type="long" />
+	</model>
+</model-hints>

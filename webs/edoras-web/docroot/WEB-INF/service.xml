@@ -1,0 +1,219 @@
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.3.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_3_0.dtd">
+
+<service-builder package-path="com.liferay.portal.workflow.edoras">
+	<namespace>Edoras</namespace>
+	<entity name="WorkflowDefinition" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="workflowDefinitionId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="version" type="double" />
+		<column name="designerVersion" type="String" />
+		<column name="modelXml" type="String" />
+		<column name="graphicalXml" type="String" />
+		<column name="persistent" type="boolean" />
+
+		<!-- Order -->
+
+		<order>
+			<order-column name="name" order-by="asc" />
+			<order-column name="version" order-by="desc" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="C_N" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="name" />
+		</finder>
+		<finder name="C_N_V" return-type="WorkflowDefinition" unique="true">
+			<finder-column name="companyId" />
+			<finder-column name="name" />
+			<finder-column name="version" />
+		</finder>
+	</entity>
+	<entity name="WorkflowInstance" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="workflowInstanceId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="setupId" type="String" />
+		<column name="friendlyId" type="String" />
+		<column name="workflowDefinitionId" type="long" />
+		<column name="parentWorkflowInstanceId" type="long" />
+		<column name="className" type="String" />
+		<column name="classPK" type="long" />
+		<column name="attributes" type="String" />
+		<column name="nestedWorkflowDefinitionIds" type="String" />
+		<column name="nestedWorkflowDefinitionVersions" type="String" />
+		<column name="nestedRelatedElements" type="String" />
+		<column name="currentElementName" type="String" />
+		<column name="relatedElementName" type="String" />
+		<column name="finished" type="boolean" />
+		<column name="finishedDated" type="Date" />
+		<column name="active" type="boolean" />
+
+		<!-- Finder methods -->
+
+		<finder name="SetupId" return-type="Collection">
+			<finder-column name="setupId" />
+		</finder>
+		<finder name="WorkflowDefinitionId" return-type="Collection">
+			<finder-column name="workflowDefinitionId" />
+		</finder>
+		<finder name="C_P" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="parentWorkflowInstanceId" />
+		</finder>
+		<finder name="C_FID" return-type="WorkflowInstance" unique="true">
+			<finder-column name="companyId" />
+			<finder-column name="friendlyId" />
+		</finder>
+		<finder name="C_F" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="finished" />
+		</finder>
+		<finder name="C_C" return-type="Collection">
+			<finder-column name="className" />
+			<finder-column name="classPK" />
+		</finder>
+	</entity>
+	<entity name="WorkflowJob" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="workflowJobId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="createDate" type="Date" />
+
+		<!-- Audit fields -->
+
+		<column name="setupId" type="String" />
+		<column name="workflowDefinitionId" type="long" />
+		<column name="workflowInstanceId" type="long" />
+		<column name="elementName" type="String" />
+		<column name="cause" type="String" />
+		<column name="dueDate" type="Date" />
+		<column name="notBeforeDate" type="Date" />
+		<column name="exceptionCount" type="int" />
+
+		<!-- Finder methods -->
+
+		<finder name="SetupId" return-type="Collection">
+			<finder-column name="setupId" />
+		</finder>
+		<finder name="WorkflowDefinitionId" return-type="Collection">
+			<finder-column name="workflowDefinitionId" />
+		</finder>
+		<finder name="WorkflowInstanceId" return-type="Collection">
+			<finder-column name="workflowInstanceId" />
+		</finder>
+	</entity>
+	<entity name="WorkflowLog" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="workflowLogId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="workflowDefinitionId" type="long" />
+		<column name="workflowInstanceId" type="long" />
+		<column name="workflowTaskId" type="long" />
+		<column name="type" type="int" />
+		<column name="description" type="String" />
+		<column name="activityName" type="String" />
+		<column name="oldState" type="String" />
+		<column name="newState" type="String" />
+		<column name="actionType" type="String" />
+		<column name="comment" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="createDate" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="WorkflowInstanceId" return-type="Collection">
+			<finder-column name="workflowInstanceId" />
+		</finder>
+		<finder name="WorkflowTaskId" return-type="Collection">
+			<finder-column name="workflowTaskId" />
+		</finder>
+		<finder name="W_T" return-type="Collection">
+			<finder-column name="workflowInstanceId" />
+			<finder-column name="type" />
+		</finder>
+	</entity>
+	<entity name="WorkflowTask" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="workflowTaskId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="createDate" type="Date" />
+
+		<!-- Audit fields -->
+
+		<column name="friendlyId" type="String" />
+		<column name="workflowDefinitionId" type="long" />
+		<column name="workflowInstanceId" type="long" />
+		<column name="metaName" type="String" />
+		<column name="relation" type="String" />
+		<column name="dueDate" type="Date" />
+		<column name="completionDate" type="Date" />
+		<column name="state" type="int" />
+		<column name="priority" type="int" />
+		<column name="assigneeUserId" type="long" />
+		<column name="assigneeUserName" type="String" />
+		<column name="roleId" type="long" />
+
+		<!-- Finder methods -->
+
+		<finder name="WorkflowInstanceId" return-type="Collection">
+			<finder-column name="workflowInstanceId" />
+		</finder>
+		<finder name="W_S" return-type="Collection">
+			<finder-column name="workflowInstanceId" />
+			<finder-column name="state" />
+		</finder>
+	</entity>
+</service-builder>

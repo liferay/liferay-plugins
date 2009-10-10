@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.portal.workflow.edoras.model.WorkflowDefinition" />
+	<import class="com.liferay.portal.workflow.edoras.model.WorkflowInstance" />
+	<import class="com.liferay.portal.workflow.edoras.model.WorkflowJob" />
+	<import class="com.liferay.portal.workflow.edoras.model.WorkflowLog" />
+	<import class="com.liferay.portal.workflow.edoras.model.WorkflowTask" />
+	<class name="com.liferay.portal.workflow.edoras.model.impl.WorkflowDefinitionImpl" table="Edoras_WorkflowDefinition">
+		<cache usage="read-write" />
+		<id name="workflowDefinitionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="version" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="designerVersion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="modelXml" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="graphicalXml" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="persistent" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.liferay.portal.workflow.edoras.model.impl.WorkflowInstanceImpl" table="Edoras_WorkflowInstance">
+		<cache usage="read-write" />
+		<id name="workflowInstanceId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="setupId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="friendlyId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workflowDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="parentWorkflowInstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="className" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="attributes" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="nestedWorkflowDefinitionIds" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="nestedWorkflowDefinitionVersions" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="nestedRelatedElements" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="currentElementName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="relatedElementName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="finished" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="finishedDated" type="org.hibernate.type.TimestampType" />
+		<property name="active" column="active_" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.liferay.portal.workflow.edoras.model.impl.WorkflowJobImpl" table="Edoras_WorkflowJob">
+		<cache usage="read-write" />
+		<id name="workflowJobId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="setupId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workflowDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="workflowInstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="elementName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="cause" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="dueDate" type="org.hibernate.type.TimestampType" />
+		<property name="notBeforeDate" type="org.hibernate.type.TimestampType" />
+		<property name="exceptionCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.liferay.portal.workflow.edoras.model.impl.WorkflowLogImpl" table="Edoras_WorkflowLog">
+		<cache usage="read-write" />
+		<id name="workflowLogId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="workflowDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="workflowInstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="workflowTaskId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="type" column="type_" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="activityName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="oldState" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="newState" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="actionType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="comment" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.portal.workflow.edoras.model.impl.WorkflowTaskImpl" table="Edoras_WorkflowTask">
+		<cache usage="read-write" />
+		<id name="workflowTaskId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="friendlyId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workflowDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="workflowInstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="metaName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="relation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="dueDate" type="org.hibernate.type.TimestampType" />
+		<property name="completionDate" type="org.hibernate.type.TimestampType" />
+		<property name="state" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="assigneeUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="assigneeUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="roleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+</hibernate-mapping>
