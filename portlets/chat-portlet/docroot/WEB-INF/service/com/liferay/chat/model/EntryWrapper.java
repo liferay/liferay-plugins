@@ -159,5 +159,9 @@ public class EntryWrapper implements Entry {
 		return _entry.toXmlString();
 	}
 
+	public Entry getWrappedEntry() {
+		return _entry;
+	}
+
 	private Entry _entry;
 }

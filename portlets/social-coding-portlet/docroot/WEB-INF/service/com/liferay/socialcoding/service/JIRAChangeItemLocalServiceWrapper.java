@@ -105,5 +105,9 @@ public class JIRAChangeItemLocalServiceWrapper
 		return _jiraChangeItemLocalService.getJIRAChangeItems(jiraChangeGroupId);
 	}
 
+	public JIRAChangeItemLocalService getWrappedJIRAChangeItemLocalService() {
+		return _jiraChangeItemLocalService;
+	}
+
 	private JIRAChangeItemLocalService _jiraChangeItemLocalService;
 }

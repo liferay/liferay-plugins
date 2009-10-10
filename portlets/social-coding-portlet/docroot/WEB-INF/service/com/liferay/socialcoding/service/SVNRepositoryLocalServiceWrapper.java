@@ -113,5 +113,9 @@ public class SVNRepositoryLocalServiceWrapper
 		_svnRepositoryLocalService.updateSVNRepository(url);
 	}
 
+	public SVNRepositoryLocalService getWrappedSVNRepositoryLocalService() {
+		return _svnRepositoryLocalService;
+	}
+
 	private SVNRepositoryLocalService _svnRepositoryLocalService;
 }

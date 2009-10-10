@@ -134,5 +134,9 @@ public class SVNRepositoryWrapper implements SVNRepository {
 		return _svnRepository.getShortURL();
 	}
 
+	public SVNRepository getWrappedSVNRepository() {
+		return _svnRepository;
+	}
+
 	private SVNRepository _svnRepository;
 }

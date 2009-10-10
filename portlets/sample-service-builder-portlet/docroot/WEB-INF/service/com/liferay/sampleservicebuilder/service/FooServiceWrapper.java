@@ -32,5 +32,9 @@ public class FooServiceWrapper implements FooService {
 		_fooService = fooService;
 	}
 
+	public FooService getWrappedFooService() {
+		return _fooService;
+	}
+
 	private FooService _fooService;
 }

@@ -122,5 +122,9 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 		return _entryLocalService.getOldEntries(createDate, start, end);
 	}
 
+	public EntryLocalService getWrappedEntryLocalService() {
+		return _entryLocalService;
+	}
+
 	private EntryLocalService _entryLocalService;
 }

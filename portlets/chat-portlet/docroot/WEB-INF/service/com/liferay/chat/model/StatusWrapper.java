@@ -186,5 +186,9 @@ public class StatusWrapper implements Status {
 		return _status.toXmlString();
 	}
 
+	public Status getWrappedStatus() {
+		return _status;
+	}
+
 	private Status _status;
 }

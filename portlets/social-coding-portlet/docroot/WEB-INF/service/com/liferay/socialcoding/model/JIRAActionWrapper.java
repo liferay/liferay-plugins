@@ -165,5 +165,9 @@ public class JIRAActionWrapper implements JIRAAction {
 		return _jiraAction.toXmlString();
 	}
 
+	public JIRAAction getWrappedJIRAAction() {
+		return _jiraAction;
+	}
+
 	private JIRAAction _jiraAction;
 }

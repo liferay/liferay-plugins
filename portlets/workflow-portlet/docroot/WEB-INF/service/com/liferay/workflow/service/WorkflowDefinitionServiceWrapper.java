@@ -90,5 +90,9 @@ public class WorkflowDefinitionServiceWrapper
 		return _workflowDefinitionService.getDefinition(definitionId);
 	}
 
+	public WorkflowDefinitionService getWrappedWorkflowDefinitionService() {
+		return _workflowDefinitionService;
+	}
+
 	private WorkflowDefinitionService _workflowDefinitionService;
 }

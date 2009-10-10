@@ -101,5 +101,9 @@ public class JIRAChangeGroupLocalServiceWrapper
 			merge);
 	}
 
+	public JIRAChangeGroupLocalService getWrappedJIRAChangeGroupLocalService() {
+		return _jiraChangeGroupLocalService;
+	}
+
 	private JIRAChangeGroupLocalService _jiraChangeGroupLocalService;
 }

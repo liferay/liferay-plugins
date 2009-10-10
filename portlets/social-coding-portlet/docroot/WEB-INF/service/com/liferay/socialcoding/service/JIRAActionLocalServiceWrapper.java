@@ -97,5 +97,9 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService {
 		return _jiraActionLocalService.updateJIRAAction(jiraAction, merge);
 	}
 
+	public JIRAActionLocalService getWrappedJIRAActionLocalService() {
+		return _jiraActionLocalService;
+	}
+
 	private JIRAActionLocalService _jiraActionLocalService;
 }

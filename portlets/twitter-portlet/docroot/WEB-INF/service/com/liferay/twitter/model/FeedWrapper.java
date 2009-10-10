@@ -158,5 +158,9 @@ public class FeedWrapper implements Feed {
 		return _feed.toXmlString();
 	}
 
+	public Feed getWrappedFeed() {
+		return _feed;
+	}
+
 	private Feed _feed;
 }

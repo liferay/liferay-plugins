@@ -118,5 +118,9 @@ public class FooLocalServiceWrapper implements FooLocalService {
 		_fooLocalService.updateFoo(fooId, field1, field2, field3, field4, field5);
 	}
 
+	public FooLocalService getWrappedFooLocalService() {
+		return _fooLocalService;
+	}
+
 	private FooLocalService _fooLocalService;
 }

@@ -156,5 +156,9 @@ public class SVNRevisionLocalServiceWrapper implements SVNRevisionLocalService {
 			svnRepositoryId);
 	}
 
+	public SVNRevisionLocalService getWrappedSVNRevisionLocalService() {
+		return _svnRevisionLocalService;
+	}
+
 	private SVNRevisionLocalService _svnRevisionLocalService;
 }

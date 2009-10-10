@@ -53,5 +53,9 @@ public class WorkflowInstanceServiceWrapper implements WorkflowInstanceService {
 		_workflowInstanceService.signalToken(instanceId, tokenId);
 	}
 
+	public WorkflowInstanceService getWrappedWorkflowInstanceService() {
+		return _workflowInstanceService;
+	}
+
 	private WorkflowInstanceService _workflowInstanceService;
 }

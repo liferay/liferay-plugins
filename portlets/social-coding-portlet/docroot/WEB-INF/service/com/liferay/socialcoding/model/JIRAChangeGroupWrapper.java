@@ -134,5 +134,9 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 		return _jiraChangeGroup.toXmlString();
 	}
 
+	public JIRAChangeGroup getWrappedJIRAChangeGroup() {
+		return _jiraChangeGroup;
+	}
+
 	private JIRAChangeGroup _jiraChangeGroup;
 }

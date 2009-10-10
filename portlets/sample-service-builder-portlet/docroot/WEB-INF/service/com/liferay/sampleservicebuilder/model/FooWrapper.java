@@ -153,5 +153,9 @@ public class FooWrapper implements Foo {
 		return _foo.toXmlString();
 	}
 
+	public Foo getWrappedFoo() {
+		return _foo;
+	}
+
 	private Foo _foo;
 }

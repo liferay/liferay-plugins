@@ -131,5 +131,9 @@ public class MeetupsRegistrationLocalServiceWrapper
 			meetupsEntryId, status, comments);
 	}
 
+	public MeetupsRegistrationLocalService getWrappedMeetupsRegistrationLocalService() {
+		return _meetupsRegistrationLocalService;
+	}
+
 	private MeetupsRegistrationLocalService _meetupsRegistrationLocalService;
 }

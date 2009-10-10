@@ -199,5 +199,9 @@ public class MemberRequestWrapper implements MemberRequest {
 		return _memberRequest.toXmlString();
 	}
 
+	public MemberRequest getWrappedMemberRequest() {
+		return _memberRequest;
+	}
+
 	private MemberRequest _memberRequest;
 }

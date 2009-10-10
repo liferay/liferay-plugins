@@ -250,5 +250,9 @@ public class WorkflowComponentServiceWrapper implements WorkflowComponentService
 			parameterMap);
 	}
 
+	public WorkflowComponentService getWrappedWorkflowComponentService() {
+		return _workflowComponentService;
+	}
+
 	private WorkflowComponentService _workflowComponentService;
 }

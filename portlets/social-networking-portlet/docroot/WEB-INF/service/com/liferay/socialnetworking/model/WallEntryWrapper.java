@@ -174,5 +174,9 @@ public class WallEntryWrapper implements WallEntry {
 		return _wallEntry.toXmlString();
 	}
 
+	public WallEntry getWrappedWallEntry() {
+		return _wallEntry;
+	}
+
 	private WallEntry _wallEntry;
 }

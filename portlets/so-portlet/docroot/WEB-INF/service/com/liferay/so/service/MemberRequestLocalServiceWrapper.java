@@ -181,5 +181,9 @@ public class MemberRequestLocalServiceWrapper
 			receiverUserId);
 	}
 
+	public MemberRequestLocalService getWrappedMemberRequestLocalService() {
+		return _memberRequestLocalService;
+	}
+
 	private MemberRequestLocalService _memberRequestLocalService;
 }

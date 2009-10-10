@@ -183,5 +183,9 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 		return _meetupsRegistration.toXmlString();
 	}
 
+	public MeetupsRegistration getWrappedMeetupsRegistration() {
+		return _meetupsRegistration;
+	}
+
 	private MeetupsRegistration _meetupsRegistration;
 }

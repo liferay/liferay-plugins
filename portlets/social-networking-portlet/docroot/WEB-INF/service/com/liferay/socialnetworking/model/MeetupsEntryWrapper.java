@@ -223,5 +223,9 @@ public class MeetupsEntryWrapper implements MeetupsEntry {
 		return _meetupsEntry.toXmlString();
 	}
 
+	public MeetupsEntry getWrappedMeetupsEntry() {
+		return _meetupsEntry;
+	}
+
 	private MeetupsEntry _meetupsEntry;
 }

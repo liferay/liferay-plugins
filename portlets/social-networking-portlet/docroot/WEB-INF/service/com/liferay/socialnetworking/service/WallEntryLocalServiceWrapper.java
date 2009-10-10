@@ -142,5 +142,9 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService {
 		return _wallEntryLocalService.updateWallEntry(wallEntryId, comments);
 	}
 
+	public WallEntryLocalService getWrappedWallEntryLocalService() {
+		return _wallEntryLocalService;
+	}
+
 	private WallEntryLocalService _wallEntryLocalService;
 }

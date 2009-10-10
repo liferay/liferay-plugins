@@ -135,5 +135,9 @@ public class StatusLocalServiceWrapper implements StatusLocalService {
 			awake, activePanelId, message, playSound);
 	}
 
+	public StatusLocalService getWrappedStatusLocalService() {
+		return _statusLocalService;
+	}
+
 	private StatusLocalService _statusLocalService;
 }

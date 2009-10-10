@@ -189,5 +189,9 @@ public class JIRAIssueWrapper implements JIRAIssue {
 		return _jiraIssue.toXmlString();
 	}
 
+	public JIRAIssue getWrappedJIRAIssue() {
+		return _jiraIssue;
+	}
+
 	private JIRAIssue _jiraIssue;
 }

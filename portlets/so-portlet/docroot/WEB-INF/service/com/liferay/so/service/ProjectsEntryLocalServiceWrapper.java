@@ -134,5 +134,9 @@ public class ProjectsEntryLocalServiceWrapper
 			endDateMonth, endDateDay, endDateYear, current, data);
 	}
 
+	public ProjectsEntryLocalService getWrappedProjectsEntryLocalService() {
+		return _projectsEntryLocalService;
+	}
+
 	private ProjectsEntryLocalService _projectsEntryLocalService;
 }

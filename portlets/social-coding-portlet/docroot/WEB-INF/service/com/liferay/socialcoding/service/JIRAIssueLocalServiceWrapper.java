@@ -230,5 +230,9 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService {
 		_jiraIssueLocalService.updateJIRAIssues(projectId);
 	}
 
+	public JIRAIssueLocalService getWrappedJIRAIssueLocalService() {
+		return _jiraIssueLocalService;
+	}
+
 	private JIRAIssueLocalService _jiraIssueLocalService;
 }

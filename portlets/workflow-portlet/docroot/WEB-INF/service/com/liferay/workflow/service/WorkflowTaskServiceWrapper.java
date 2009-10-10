@@ -39,5 +39,9 @@ public class WorkflowTaskServiceWrapper implements WorkflowTaskService {
 		return _workflowTaskService.updateTask(taskId, transition, parameterMap);
 	}
 
+	public WorkflowTaskService getWrappedWorkflowTaskService() {
+		return _workflowTaskService;
+	}
+
 	private WorkflowTaskService _workflowTaskService;
 }

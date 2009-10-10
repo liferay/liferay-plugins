@@ -110,5 +110,9 @@ public class FeedLocalServiceWrapper implements FeedLocalService {
 		_feedLocalService.updateFeeds(companyId);
 	}
 
+	public FeedLocalService getWrappedFeedLocalService() {
+		return _feedLocalService;
+	}
+
 	private FeedLocalService _feedLocalService;
 }

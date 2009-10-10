@@ -161,5 +161,9 @@ public class SVNRevisionWrapper implements SVNRevision {
 		return _svnRevision.getJIRAIssueAndComments();
 	}
 
+	public SVNRevision getWrappedSVNRevision() {
+		return _svnRevision;
+	}
+
 	private SVNRevision _svnRevision;
 }

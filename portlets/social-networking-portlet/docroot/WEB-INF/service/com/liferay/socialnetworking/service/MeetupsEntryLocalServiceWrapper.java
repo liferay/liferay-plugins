@@ -134,5 +134,9 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 			totalAttendees, maxAttendees, price, thumbnail);
 	}
 
+	public MeetupsEntryLocalService getWrappedMeetupsEntryLocalService() {
+		return _meetupsEntryLocalService;
+	}
+
 	private MeetupsEntryLocalService _meetupsEntryLocalService;
 }

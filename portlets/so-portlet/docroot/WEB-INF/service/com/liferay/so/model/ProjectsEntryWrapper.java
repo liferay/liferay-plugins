@@ -198,5 +198,9 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 		return _projectsEntry.toXmlString();
 	}
 
+	public ProjectsEntry getWrappedProjectsEntry() {
+		return _projectsEntry;
+	}
+
 	private ProjectsEntry _projectsEntry;
 }

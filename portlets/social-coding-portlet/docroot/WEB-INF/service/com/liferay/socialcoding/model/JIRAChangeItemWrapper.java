@@ -158,5 +158,9 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem {
 		return _jiraChangeItem.toXmlString();
 	}
 
+	public JIRAChangeItem getWrappedJIRAChangeItem() {
+		return _jiraChangeItem;
+	}
+
 	private JIRAChangeItem _jiraChangeItem;
 }
