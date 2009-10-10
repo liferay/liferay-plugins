@@ -401,12 +401,15 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		PortletSession portletSession = portletRequest.getPortletSession();
 
-		WSRP_v2_Markup_PortType markupService =
-			(WSRP_v2_Markup_PortType)portletSession.getAttribute(
+		MarkupServiceHolder markupServiceHolder =
+			(MarkupServiceHolder)portletSession.getAttribute(
 				WebKeys.MARKUP_SERVICE, PortletSession.APPLICATION_SCOPE);
 
-		if (markupService == null) {
-			markupService = wsrpConsumerManager.getMarkupService();
+		if (markupServiceHolder == null) {
+			WSRP_v2_Markup_PortType markupService =
+				wsrpConsumerManager.getMarkupService();
+
+			markupServiceHolder = new MarkupServiceHolder(markupService);
 
 			ServiceDescription serviceDescription =
 				wsrpConsumerManager.getServiceDescription();
@@ -440,11 +443,11 @@ public class ConsumerPortlet extends GenericPortlet {
 			}
 
 			portletSession.setAttribute(
-				WebKeys.MARKUP_SERVICE, markupService,
+				WebKeys.MARKUP_SERVICE, markupServiceHolder,
 				PortletSession.APPLICATION_SCOPE);
 		}
 
-		return markupService;
+		return markupServiceHolder.getMarkupService();
 	}
 
 	protected PortletMode getPortletMode(String portletMode) {
