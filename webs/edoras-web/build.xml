@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="web" basedir="." default="deploy">
+<project name="web" basedir="." default="deploy" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="../build-common-web.xml" />
 
 	<property name="original.war.file" value="edoras-1.3.0.zip" />
@@ -17,10 +17,29 @@
 				<unzip src="${original.war.file}" dest="tmp" />
 
 				<delete includeemptydirs="true">
-					<fileset dir="tmp" excludes="lib/org.edorasframework.*.jar" />
+					<fileset dir="tmp" excludes="lib/emf-*.jar,lib/org.edorasframework.*.jar" />
 				</delete>
 
 				<move file="tmp/lib" tofile="tmp/WEB-INF/lib" />
+
+				<tstamp>
+					<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+				</tstamp>
+
+				<for param="jar.file">
+					<path>
+						<fileset dir="tmp/WEB-INF/lib" includes="org.edorasframework.*.jar" />
+					</path>
+					<sequential>
+						<unjar src="@{jar.file}" dest="${tstamp.value}" />
+					</sequential>
+				</for>
+
+				<move todir="tmp/WEB-INF/classes/META-INF">
+					<fileset dir="${tstamp.value}/META-INF" includes="org.edorasframework.*.xml" />
+				</move>
+
+				<delete dir="${tstamp.value}" />
 
 				<copy todir="tmp" overwrite="true">
 					<fileset dir="docroot" />
