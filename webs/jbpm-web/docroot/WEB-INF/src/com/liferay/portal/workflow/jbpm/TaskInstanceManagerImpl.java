@@ -471,7 +471,8 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 			CustomSession customSession = new CustomSession(jbpmContext);
 
 			List<TaskInstance> taskInstances = customSession.findTaskInstances(
-				-1, workflowInstanceId, ArrayUtil.toStringArray(actorIds),
+				-1, workflowInstanceId,
+				actorIds == null? null : ArrayUtil.toStringArray(actorIds),
 				pooledActors, completed, start, end, orderByComparator);
 
 			return toTaskInstanceInfos(taskInstances);

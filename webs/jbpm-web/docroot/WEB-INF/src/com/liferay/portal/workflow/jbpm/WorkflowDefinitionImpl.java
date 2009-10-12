@@ -38,6 +38,14 @@ import org.jbpm.graph.def.ProcessDefinition;
  */
 public class WorkflowDefinitionImpl implements WorkflowDefinition {
 
+	public WorkflowDefinitionImpl(
+		ResourceRetriever resourceRetriever, String workflowDefinitionName,
+		int workflowDefinitionVersion) {
+		_resourceRetriever = resourceRetriever;
+		_workflowDefinitionName = workflowDefinitionName;
+		_workflowDefinitionVersion = workflowDefinitionVersion;
+	}
+
 	public WorkflowDefinitionImpl(ProcessDefinition processDefinition) {
 		_workflowDefinitionName = processDefinition.getName();
 		_workflowDefinitionVersion = processDefinition.getVersion();

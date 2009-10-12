@@ -286,7 +286,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 		return getWorkflowInstanceInfos(
 			workflowDefinitionName, workflowDefinitionVersion, completed,
-			retrieveChildrenInfo, start, end, orderByComparator);
+			Boolean.valueOf(retrieveChildrenInfo), start, end,
+			orderByComparator);
 	}
 
 	public List<WorkflowInstanceInfo> getWorkflowInstanceInfos(
