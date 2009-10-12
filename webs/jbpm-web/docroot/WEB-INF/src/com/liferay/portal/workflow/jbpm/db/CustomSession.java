@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -356,7 +357,8 @@ public class CustomSession {
 		}
 	}
 
-	private static Map<String, String> _fieldMap;
+	private static Map<String, String> _fieldMap =
+		new HashMap<String, String>();
 
 	static {
 		_fieldMap.put("startDate", "start");
