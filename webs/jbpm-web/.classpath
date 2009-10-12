@@ -10,9 +10,17 @@
 	<classpathentry kind="lib" path="/portal/lib/development/servlet-api.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/annotations.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/antlr.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/bsh.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-collections.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/commons-logging.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/dom4j.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/hibernate3.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/javassist.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/log4j.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/slf4j-api.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/slf4j-log4j12.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/spring.jar" />
 	<classpathentry kind="lib" path="/portal/portal-kernel/portal-kernel.jar" />
 	<classpathentry kind="lib" path="/portal/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
