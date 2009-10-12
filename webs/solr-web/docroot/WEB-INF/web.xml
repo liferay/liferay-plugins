@@ -3,7 +3,7 @@
 
 <web-app>
 	<context-param>
-		<param-name>contextConfigLocation</param-name>
+		<param-name>portalContextConfigLocation</param-name>
 		<param-value>/WEB-INF/classes/META-INF/solr-spring.xml</param-value>
 	</context-param>
 	<listener>
