@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+>
+
+	<!-- Listeners -->
+
+	<bean id="messageListener.workflow_definition" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
+		<property name="manager">
+			<bean class="com.liferay.portal.workflow.jbpm.WorkflowDefinitionManagerImpl">
+				<property name="jbpmConfiguration" ref="jbpmConfiguration" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="messageListener.workflow_instance" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
+		<property name="manager">
+			<bean class="com.liferay.portal.workflow.jbpm.WorkflowInstanceManagerImpl">
+				<property name="jbpmConfiguration" ref="jbpmConfiguration" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="messageListener.workflow_task" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
+		<property name="manager">
+			<bean class="com.liferay.portal.workflow.jbpm.TaskInstanceManagerImpl">
+				<property name="jbpmConfiguration" ref="jbpmConfiguration" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Configurator -->
+
+	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator" init-method="init" destroy-method="destroy">
+		<property name="messageListeners">
+			<map key-type="java.lang.String" value-type="java.util.List">
+				<entry key="liferay/workflow_definition">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.workflow_definition" />
+					</list>
+				</entry>
+				<entry key="liferay/workflow_instance">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.workflow_instance" />
+					</list>
+				</entry>
+				<entry key="liferay/workflow_task">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.workflow_task" />
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

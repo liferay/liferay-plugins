@@ -23,8 +23,10 @@
 
 				<delete includeemptydirs="true">
 					<fileset dir="$${jbossInstallPath}" />
-					<fileset dir="tmp" excludes="lib/jbpm-*.jar" />
+					<fileset dir="tmp" excludes="config/hibernate.cfg.*.xml,lib/jbpm-*.jar" />
 				</delete>
+
+				<move file="tmp/config" tofile="tmp/WEB-INF/classes/META-INF" />
 
 				<move file="tmp/lib" tofile="tmp/WEB-INF/lib" />
 
