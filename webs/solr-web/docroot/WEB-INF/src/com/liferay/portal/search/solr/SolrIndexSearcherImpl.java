@@ -60,7 +60,10 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		try {
 			SolrQuery solrQuery = new SolrQuery();
 
-			solrQuery.setQuery(query.toString());
+			String queryString = query.toString();
+			queryString = queryString.replaceAll(":\\*", ":");
+
+			solrQuery.setQuery(queryString);
 			solrQuery.setIncludeScore(true);
 
 			boolean allResults = false;
