@@ -34,11 +34,12 @@ import org.springframework.transaction.TransactionStatus;
  * <a href="TransactionStatusClp.java.html"><b><i>View Source</i></b></a>
  *
  * <p>
- * TODO: add Class-Description here ...
+ * A classloader proxy implementation for a transaction status object created by
+ * the transaction manager within the portal and serialized back and forth
+ * between the portal and portlet classloader.
  * </p>
  *
  * @author Micha Kiener
- *
  */
 public class TransactionStatusClp implements TransactionStatus {
 
