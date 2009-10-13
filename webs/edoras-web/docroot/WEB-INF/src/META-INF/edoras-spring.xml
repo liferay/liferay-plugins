@@ -27,11 +27,11 @@
 		<!-- Data path -->
 
 		<property name="startingLookupPath" value="file:${liferay.home}/data/edoras/*.edsprc" />
-		
+
 		<!-- Hot deploy path -->
 
 		<property name="hotDeployLookupPath" value="/WEB-INF/process/hot-deploy/*.edsprc" />
-		
+
 		<!-- Hot deploy interval in milliseconds -->
 
 		<property name="hotDeployListenerInterval" value="0" />
