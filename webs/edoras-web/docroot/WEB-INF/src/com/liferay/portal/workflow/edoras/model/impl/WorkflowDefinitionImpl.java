@@ -29,7 +29,7 @@ import org.edorasframework.process.api.service.MutableProcessModelDefinition;
 
 /**
  * <a href="WorkflowDefinitionImpl.java.html"><b><i>View Source</i></b></a>
- * 
+ *
  * @author Micha Kiener
  * @author Brian Wing Shun Chan
  */
@@ -43,7 +43,7 @@ public class WorkflowDefinitionImpl
 	public String getGraphicalProcessModelAsXML() {
 		return getGraphicalXml();
 	}
-	
+
 	public String getModelDesignerVersion() {
 		return getDesignerVersion();
 	}
@@ -62,7 +62,13 @@ public class WorkflowDefinitionImpl
 
 	public Long getTenantId() {
 		long tenantId = getCompanyId();
-		return (tenantId == CompanyConstants.SYSTEM ? null : tenantId);
+
+		if (tenantId == CompanyConstants.SYSTEM) {
+			return null;
+		}
+		else {
+			return tenantId;
+		}
 	}
 
 	public void setGraphicalProcessModelAsXML(String xmlModel) {
