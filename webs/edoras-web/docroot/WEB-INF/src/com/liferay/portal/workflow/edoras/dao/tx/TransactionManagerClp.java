@@ -44,13 +44,49 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
  * <a href="TransactionManagerClp.java.html"><b><i>View Source</i></b></a>
  *
  * <p>
- * TODO: add Class-Description here ...
+ * A transaction manager classloader proxy delegating the method invocations to
+ * the transaction manager in the portal implementation. The transaction manager
+ * within the portal must be specified as a Spring bean having id
+ * <code>"liferayTransactionManager"</code>.
  * </p>
  *
  * @author Micha Kiener
  *
  */
 public class TransactionManagerClp implements PlatformTransactionManager {
+
+	public void commit(TransactionStatus status)
+		throws TransactionException {
+		try {
+			_transactionManagerMethods.get("commit").invoke(
+				_transactionManager, unwrapTransactionStatus(status));
+		}
+		catch (Exception e) {
+			throw new TransactionSystemException(
+				"Could not commit transaction via remote transaction manager",
+				e);
+		}
+	}
+
+	protected Object createRemoteTransactionDefinition(
+		TransactionDefinition definition) {
+		return _transactionDefinitionClp.createRemoteObject(definition);
+	}
+
+	public TransactionStatus getTransaction(TransactionDefinition definition)
+		throws TransactionException {
+		Object transactionStatus;
+		try {
+			transactionStatus =
+				_transactionManagerMethods.get("getTransaction").invoke(
+			_transactionManager, createRemoteTransactionDefinition(definition));
+		}
+		catch (Exception e) {
+			throw new TransactionSystemException(
+				"Could not invoke remote transaction manager", e);
+		}
+		return new TransactionStatusClp(transactionStatus);
+	}
 
 	@PostConstruct
 	public void init()
@@ -76,34 +112,6 @@ public class TransactionManagerClp implements PlatformTransactionManager {
 		}
 	}
 
-	public TransactionStatus getTransaction(TransactionDefinition definition)
-		throws TransactionException {
-		Object transactionStatus;
-		try {
-			transactionStatus =
-				_transactionManagerMethods.get("getTransaction").invoke(
-			_transactionManager, createRemoteTransactionDefinition(definition));
-		}
-		catch (Exception e) {
-			throw new TransactionSystemException(
-				"Could not invoke remote transaction manager", e);
-		}
-		return new TransactionStatusClp(transactionStatus);
-	}
-
-	public void commit(TransactionStatus status)
-		throws TransactionException {
-		try {
-			_transactionManagerMethods.get("commit").invoke(
-				_transactionManager, unwrapTransactionStatus(status));
-		}
-		catch (Exception e) {
-			throw new TransactionSystemException(
-				"Could not commit transaction via remote transaction manager",
-				e);
-		}
-	}
-
 	public void rollback(TransactionStatus status)
 		throws TransactionException {
 		try {
@@ -117,17 +125,12 @@ public class TransactionManagerClp implements PlatformTransactionManager {
 		}
 	}
 
-	protected Object createRemoteTransactionDefinition(
-		TransactionDefinition definition) {
-		return _transactionDefinitionClp.createRemoteObject(definition);
-	}
-
 	protected Object unwrapTransactionStatus(
 		TransactionStatus localTransactionStatus) {
 		return ((TransactionStatusClp) localTransactionStatus).getRemoteTransactionStatus();
 	}
 
+	private SimplePojoClp<TransactionDefinition> _transactionDefinitionClp;
 	private Object _transactionManager;
 	private Map<String, Method> _transactionManagerMethods;
-	private SimplePojoClp<TransactionDefinition> _transactionDefinitionClp;
 }
