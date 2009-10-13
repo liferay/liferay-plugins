@@ -4,7 +4,7 @@
 <web-app>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/classes/META-INF/org.edorasframework.common-context.xml,/WEB-INF/classes/META-INF/org.edorasframework.el-context.xml,/WEB-INF/classes/META-INF/org.edorasframework.scopes.core-context.xml,/WEB-INF/classes/META-INF/org.edorasframework.process.core-context.xml,/WEB-INF/classes/META-INF/org.edorasframework.process.workflow-context.xml</param-value>
+		<param-value>/WEB-INF/classes/META-INF/edoras-spring.xml</param-value>
 	</context-param>
 	<listener>
 		<listener-class>com.liferay.portal.kernel.spring.context.PortletContextLoaderListener</listener-class>
