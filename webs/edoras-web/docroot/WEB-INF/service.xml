@@ -34,7 +34,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="C" return-type="Collection">
+		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
 		<finder name="C_N" return-type="Collection">

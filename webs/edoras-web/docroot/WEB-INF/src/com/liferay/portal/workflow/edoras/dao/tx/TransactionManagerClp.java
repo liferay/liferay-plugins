@@ -22,9 +22,11 @@
 
 package com.liferay.portal.workflow.edoras.dao.tx;
 
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.SimplePojoClp;
 
 import java.lang.reflect.Method;
 
@@ -44,93 +46,116 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
  * <a href="TransactionManagerClp.java.html"><b><i>View Source</i></b></a>
  *
  * <p>
- * A transaction manager classloader proxy delegating the method invocations to
+ * A transaction manager class loader proxy delegating the method invocations to
  * the transaction manager in the portal implementation. The transaction manager
  * within the portal must be specified as a Spring bean having id
  * <code>"liferayTransactionManager"</code>.
  * </p>
  *
  * @author Micha Kiener
- *
  */
 public class TransactionManagerClp implements PlatformTransactionManager {
 
-	public void commit(TransactionStatus status)
+	public void commit(TransactionStatus transactionStatus)
 		throws TransactionException {
+
 		try {
-			_transactionManagerMethods.get("commit").invoke(
-				_transactionManager, unwrapTransactionStatus(status));
+			Method method = _transactionManagerMethods.get("commit");
+
+			method.invoke(
+				_transactionManager,
+				unwrapTransactionStatus(transactionStatus));
 		}
 		catch (Exception e) {
-			throw new TransactionSystemException(
-				"Could not commit transaction via remote transaction manager",
-				e);
+			_log.error(e, e);
+
+			throw new TransactionSystemException(e.getMessage());
 		}
 	}
 
-	protected Object createRemoteTransactionDefinition(
-		TransactionDefinition definition) {
-		return _transactionDefinitionClp.createRemoteObject(definition);
-	}
-
-	public TransactionStatus getTransaction(TransactionDefinition definition)
+	public TransactionStatus getTransaction(
+			TransactionDefinition transactionDefinition)
 		throws TransactionException {
-		Object transactionStatus;
+
+		Object transactionStatus = null;
+
 		try {
-			transactionStatus =
-				_transactionManagerMethods.get("getTransaction").invoke(
-			_transactionManager, createRemoteTransactionDefinition(definition));
+			Method method = _transactionManagerMethods.get("getTransaction");
+
+			transactionStatus = method.invoke(
+				_transactionManager,
+				createRemoteTransactionDefinition(transactionDefinition));
 		}
 		catch (Exception e) {
-			throw new TransactionSystemException(
-				"Could not invoke remote transaction manager", e);
+			_log.error(e, e);
+
+			throw new TransactionSystemException(e.getMessage());
 		}
+
 		return new TransactionStatusClp(transactionStatus);
 	}
 
 	@PostConstruct
-	public void init()
-		throws SystemException {
-		_transactionManager =
-			PortalBeanLocatorUtil.locate("liferayTransactionManager");
+	public void init() throws ClassNotFoundException {
+		_transactionManager = PortalBeanLocatorUtil.locate(
+			"liferayTransactionManager");
 
-		_transactionDefinitionClp =
-			new SimplePojoClp<TransactionDefinition>(
-				PortalClassLoaderUtil.getClassLoader(),
-				TransactionDefinition.class,
-				DefaultTransactionDefinition.class,
-				DefaultTransactionDefinition.class.getName());
+		_transactionDefinitionClp = new SimplePojoClp<TransactionDefinition>(
+			DefaultTransactionDefinition.class,
+			PortalClassLoaderUtil.getClassLoader());
 
 		initTransactionManagerMethods();
 	}
 
+	public void rollback(TransactionStatus transactionStatus)
+		throws TransactionException {
+
+		try {
+			Method method = _transactionManagerMethods.get("rollback");
+
+			method.invoke(
+				_transactionManager,
+				unwrapTransactionStatus(transactionStatus));
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new TransactionSystemException(e.getMessage());
+		}
+	}
+
+	protected Object createRemoteTransactionDefinition(
+			TransactionDefinition transactionDefinition)
+		throws IllegalAccessException, InstantiationException {
+
+		return _transactionDefinitionClp.createRemoteObject(
+			transactionDefinition);
+	}
+
 	protected void initTransactionManagerMethods() {
 		_transactionManagerMethods = new HashMap<String, Method>();
+
 		Method[] methods = _transactionManager.getClass().getMethods();
+
 		for (Method method : methods) {
 			_transactionManagerMethods.put(method.getName(), method);
 		}
 	}
 
-	public void rollback(TransactionStatus status)
-		throws TransactionException {
-		try {
-			_transactionManagerMethods.get("rollback").invoke(
-				_transactionManager, unwrapTransactionStatus(status));
-		}
-		catch (Exception e) {
-			throw new TransactionSystemException(
-				"Could not rollback transaction via remote transaction manager",
-				e);
-		}
-	}
-
 	protected Object unwrapTransactionStatus(
 		TransactionStatus localTransactionStatus) {
-		return ((TransactionStatusClp) localTransactionStatus).getRemoteTransactionStatus();
+
+		TransactionStatusClp transactionStatusClp =
+			(TransactionStatusClp)localTransactionStatus;
+
+		return transactionStatusClp.getRemoteTransactionStatus();
 	}
+
+	private static Log _log =
+		LogFactoryUtil.getLog(TransactionManagerClp.class);
 
 	private SimplePojoClp<TransactionDefinition> _transactionDefinitionClp;
 	private Object _transactionManager;
 	private Map<String, Method> _transactionManagerMethods;
+
 }

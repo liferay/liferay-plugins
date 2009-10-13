@@ -42,67 +42,75 @@ import org.edorasframework.process.api.service.ProcessServiceDao;
 public class WorkflowDefinitionDao implements ProcessServiceDao {
 
 	public void clearCache() {
-
 	}
 
 	public <T> void delete(T entity) {
 		long id = 0;
+
 		try {
-			id = ((WorkflowDefinition) entity).getWorkflowDefinitionId();
+			id = ((WorkflowDefinition)entity).getWorkflowDefinitionId();
+
 			WorkflowDefinitionUtil.remove(id);
 		}
-		catch (NoSuchWorkflowDefinitionException e) {
+		catch (NoSuchWorkflowDefinitionException nswde) {
 			throw new ProcessException(
-				"Could not delete workflow definition with id [" + id +
-					"]", e);
+				"Could not delete workflow definition with id " + id, nswde);
 		}
-		catch (SystemException e) {
+		catch (SystemException se) {
 			throw new ProcessException(
-				"Could not delete workflow definition with id [" + id +
-					"]", e);
+				"Could not delete workflow definition with id " + id, se);
 		}
 	}
 
 	public <T> T find(Class<T> clazz, Object identity) {
 		long id = (Long)identity;
+
 		try {
-			return (T) WorkflowDefinitionUtil.findByPrimaryKey(id);
+			return (T)WorkflowDefinitionUtil.findByPrimaryKey(id);
 		}
-		catch (NoSuchWorkflowDefinitionException e) {
+		catch (NoSuchWorkflowDefinitionException nswde) {
 			throw new ProcessException(
-				"Could not load workflow definition with id [" + id + "]", e);
+				"Could not load workflow definition with id " + id, nswde);
 		}
-		catch (SystemException e) {
+		catch (SystemException se) {
 			throw new ProcessException(
-				"Could not load workflow definition with id [" + id + "]", e);
+				"Could not load workflow definition with id " + id, se);
 		}
 	}
 
 	public <T> T find(T entity, Object identity) {
-		return (T) find(WorkflowDefinition.class, identity);
+		return (T)find(WorkflowDefinition.class, identity);
 	}
 
 	public ProcessModelDefinition findModelDefinition(
 		String modelId, int modelVersion, Long tenantId) {
-		long companyId =
-			(tenantId == null ? CompanyConstants.SYSTEM : tenantId.longValue());
-		try {
-			return (ProcessModelDefinition) WorkflowDefinitionUtil.findByC_N_V(
-				companyId, modelId, modelVersion);
-		} catch (SystemException e) {
-			throw new ProcessException("Could not find workflow definition [" +
-				modelId + " / " +
-					modelVersion + "].", e);
+
+		long companyId = CompanyConstants.SYSTEM;
+
+		if (tenantId != null) {
+			companyId = tenantId.longValue();
 		}
-		catch (NoSuchWorkflowDefinitionException e) {
+
+		try {
+			return (ProcessModelDefinition)WorkflowDefinitionUtil.findByC_N_V(
+				companyId, modelId, modelVersion);
+		}
+		catch (NoSuchWorkflowDefinitionException snwde) {
 			throw new ProcessException(
-				"Could not find workflow definition [" +
-				modelId + " / " + modelVersion + "].", e);
+				"Could not find workflow definition with id " + modelId +
+					" and version " + modelVersion,
+				snwde);
+		}
+		catch (SystemException se) {
+			throw new ProcessException(
+				"Could not find workflow definition with id " + modelId +
+					" and version " + modelVersion,
+				se);
 		}
 	}
 
-	public List loadModelDefinitions(
-		Long tenantId) {
+	@SuppressWarnings("unchecked")
+	public List loadModelDefinitions(Long tenantId) {
 		try {
 			if (tenantId == null) {
 				return WorkflowDefinitionUtil.findAll();
@@ -111,9 +119,9 @@ public class WorkflowDefinitionDao implements ProcessServiceDao {
 				return WorkflowDefinitionUtil.findByC(tenantId.longValue());
 			}
 		}
-		catch (SystemException e) {
+		catch (SystemException se) {
 			throw new ProcessException(
-				"Could not fetch workflow definitions.", e);
+				"Could not find workflow definitions", se);
 		}
 	}
 
@@ -129,11 +137,11 @@ public class WorkflowDefinitionDao implements ProcessServiceDao {
 
 	public <T> void save(T entity) {
 		try {
-			WorkflowDefinitionUtil.update((WorkflowDefinition) entity);
+			WorkflowDefinitionUtil.update((WorkflowDefinition)entity);
 		}
-		catch (SystemException e) {
+		catch (SystemException se) {
 			throw new ProcessException(
-				"Could not save / update workflow definition", e);
+				"Could not update workflow definition", se);
 		}
 	}
 

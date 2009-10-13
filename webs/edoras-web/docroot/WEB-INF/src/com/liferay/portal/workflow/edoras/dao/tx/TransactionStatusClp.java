@@ -22,6 +22,9 @@
 
 package com.liferay.portal.workflow.edoras.dao.tx;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.lang.reflect.Method;
 
 import java.util.HashMap;
@@ -29,14 +32,15 @@ import java.util.Map;
 
 import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.TransactionSystemException;
 
 /**
  * <a href="TransactionStatusClp.java.html"><b><i>View Source</i></b></a>
  *
  * <p>
- * A classloader proxy implementation for a transaction status object created by
- * the transaction manager within the portal and serialized back and forth
- * between the portal and portlet classloader.
+ * A class loader proxy implementation for a transaction status object created
+ * by the transaction manager within the portal and serialized back and forth
+ * between the portal and plugin class loader.
  * </p>
  *
  * @author Micha Kiener
@@ -45,20 +49,22 @@ public class TransactionStatusClp implements TransactionStatus {
 
 	public TransactionStatusClp(Object remoteTransactionStatus) {
 		_remoteTransactionStatus = remoteTransactionStatus;
+
 		if (_remoteMethods == null) {
 			initRemoteMethods(remoteTransactionStatus);
 		}
 	}
 
-	public Object createSavepoint()
-		throws TransactionException {
+	public Object createSavepoint() throws TransactionException {
 		try {
-			return _remoteMethods.get("createSavepoint").invoke(
-				_remoteTransactionStatus, null);
+			Method method = _remoteMethods.get("createSavepoint");
+
+			return method.invoke(_remoteTransactionStatus);
 		}
 		catch (Exception e) {
-			throw new IllegalArgumentException(
-				"Could not invoke remote transaction status", e);
+			_log.error(e, e);
+
+			throw new TransactionSystemException(e.getMessage());
 		}
 	}
 
@@ -68,91 +74,111 @@ public class TransactionStatusClp implements TransactionStatus {
 
 	public boolean hasSavepoint() {
 		try {
-			return (Boolean) _remoteMethods.get("hasSavepoint").invoke(
-				_remoteTransactionStatus, null);
+			Method method = _remoteMethods.get("hasSavepoint");
+
+			return (Boolean)method.invoke(_remoteTransactionStatus);
 		}
 		catch (Exception e) {
-			throw new IllegalArgumentException(
-				"Could not invoke remote transaction status", e);
-		}
-	}
+			_log.error(e, e);
 
-	protected void initRemoteMethods(Object remoteTransactionStatus) {
-		_remoteMethods = new HashMap<String, Method>();
-		Method[] methods = TransactionStatus.class.getMethods();
-		for (Method method : methods) {
-			_remoteMethods.put(method.getName(), method);
+			throw new RuntimeException(e.getMessage());
 		}
 	}
 
 	public boolean isCompleted() {
 		try {
-			return (Boolean) _remoteMethods.get("isCompleted").invoke(
-				_remoteTransactionStatus, null);
+			Method method = _remoteMethods.get("isCompleted");
+
+			return (Boolean)method.invoke(_remoteTransactionStatus);
 		}
 		catch (Exception e) {
-			throw new IllegalArgumentException(
-				"Could not invoke remote transaction status", e);
+			_log.error(e, e);
+
+			throw new RuntimeException(e.getMessage());
 		}
 	}
 
 	public boolean isNewTransaction() {
 		try {
-			return (Boolean) _remoteMethods.get("isNewTransaction").invoke(
-				_remoteTransactionStatus, null);
+			Method method = _remoteMethods.get("isNewTransaction");
+
+			return (Boolean)method.invoke(_remoteTransactionStatus);
 		}
 		catch (Exception e) {
-			throw new IllegalArgumentException(
-				"Could not invoke remote transaction status", e);
+			_log.error(e, e);
+
+			throw new RuntimeException(e.getMessage());
 		}
 	}
 
 	public boolean isRollbackOnly() {
 		try {
-			return (Boolean) _remoteMethods.get("isRollbackOnly").invoke(
-				_remoteTransactionStatus, null);
+			Method method = _remoteMethods.get("isRollbackOnly");
+
+			return (Boolean)method.invoke(_remoteTransactionStatus);
 		}
 		catch (Exception e) {
-			throw new IllegalArgumentException(
-				"Could not invoke remote transaction status", e);
+			_log.error(e, e);
+
+			throw new RuntimeException(e.getMessage());
 		}
 	}
 
-	public void releaseSavepoint(Object savepoint)
-		throws TransactionException {
+	public void releaseSavepoint(Object savepoint) throws TransactionException {
 		try {
-			_remoteMethods.get("releaseSavepoint").invoke(
-				_remoteTransactionStatus, null);
+			Method method = _remoteMethods.get("releaseSavepoint");
+
+			method.invoke(_remoteTransactionStatus);
 		}
 		catch (Exception e) {
-			throw new IllegalArgumentException(
-				"Could not invoke remote transaction status", e);
+			_log.error(e, e);
+
+			throw new TransactionSystemException(e.getMessage());
 		}
 	}
 
 	public void rollbackToSavepoint(Object savepoint)
 		throws TransactionException {
+
 		try {
-			_remoteMethods.get("rollbackToSavepoint").invoke(
-				_remoteTransactionStatus, null);
+			Method method = _remoteMethods.get("rollbackToSavepoint");
+
+			method.invoke(_remoteTransactionStatus);
 		}
 		catch (Exception e) {
-			throw new IllegalArgumentException(
-				"Could not invoke remote transaction status", e);
+			_log.error(e, e);
+
+			throw new TransactionSystemException(e.getMessage());
 		}
 	}
 
 	public void setRollbackOnly() {
 		try {
-			_remoteMethods.get("setRollbackOnly").invoke(
-				_remoteTransactionStatus, null);
+			Method method = _remoteMethods.get("setRollbackOnly");
+
+			method.invoke(_remoteTransactionStatus);
 		}
 		catch (Exception e) {
-			throw new IllegalArgumentException(
-				"Could not invoke remote transaction status", e);
+			_log.error(e, e);
+
+			throw new RuntimeException(e.getMessage());
 		}
 	}
 
+	protected void initRemoteMethods(Object remoteTransactionStatus) {
+		_remoteMethods = new HashMap<String, Method>();
+
+		Method[] methods = TransactionStatus.class.getMethods();
+
+		for (Method method : methods) {
+			_remoteMethods.put(method.getName(), method);
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(TransactionStatusClp.class);
+
 	private static Map<String, Method> _remoteMethods;
+
 	private Object _remoteTransactionStatus;
+
 }
