@@ -285,8 +285,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		throws WorkflowException {
 
 		return getWorkflowInstanceInfos(
-			workflowDefinitionName, workflowDefinitionVersion, completed,
-			Boolean.valueOf(retrieveChildrenInfo), start, end,
+			workflowDefinitionName, workflowDefinitionVersion,
+			Boolean.valueOf(completed), retrieveChildrenInfo, start, end,
 			orderByComparator);
 	}
 
@@ -297,8 +297,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		throws WorkflowException {
 
 		return getWorkflowInstanceInfos(
-			workflowDefinitionName, workflowDefinitionVersion,
-			retrieveChildrenInfo, null, start, end, orderByComparator);
+			workflowDefinitionName, workflowDefinitionVersion, null,
+			retrieveChildrenInfo, start, end, orderByComparator);
 	}
 
 	public List<WorkflowInstanceInfo> getWorkflowInstanceInfos(
@@ -529,7 +529,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 	protected List<WorkflowInstanceInfo> getWorkflowInstanceInfos(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			boolean retrieveChildrenInfo, Boolean completed, int start, int end,
+			Boolean completed, boolean retrieveChildrenInfo, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
