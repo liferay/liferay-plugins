@@ -32,7 +32,7 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceHistory;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceInfo;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManager;
-import com.liferay.portal.workflow.jbpm.db.CustomSession;
+import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
 import java.util.ArrayList;
 import java.util.Collections;

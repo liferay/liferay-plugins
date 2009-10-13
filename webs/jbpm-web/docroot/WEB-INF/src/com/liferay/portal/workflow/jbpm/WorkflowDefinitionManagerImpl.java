@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowDefinitionManager;
 import com.liferay.portal.kernel.workflow.WorkflowException;
-import com.liferay.portal.workflow.jbpm.db.CustomSession;
+import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
 import java.io.IOException;
 

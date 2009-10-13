@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.portal.workflow.jbpm.db.comparator;
+package com.liferay.portal.workflow.jbpm.dao.comparator;
 
 import java.util.Comparator;
 

@@ -29,7 +29,7 @@ import com.liferay.portal.kernel.workflow.TaskInstanceInfo;
 import com.liferay.portal.kernel.workflow.TaskInstanceManager;
 import com.liferay.portal.kernel.workflow.UserCredential;
 import com.liferay.portal.kernel.workflow.WorkflowException;
-import com.liferay.portal.workflow.jbpm.db.CustomSession;
+import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
 import java.util.ArrayList;
 import java.util.List;

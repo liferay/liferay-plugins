@@ -20,10 +20,11 @@
  * SOFTWARE.
  */
 
-package com.liferay.portal.workflow.jbpm.db;
+package com.liferay.portal.workflow.jbpm.dao;
 
 import com.liferay.portal.kernel.util.OrderByComparator;
-
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -145,8 +146,10 @@ public class CustomSession {
 			}
 			else if (actorIds != null) {
 				if (pooledActors) {
-					criteria.createCriteria("pooledActors").
-						add(Restrictions.in("actorId", actorIds));
+					Criteria subCriteria = criteria.createCriteria(
+						"pooledActors");
+
+					subCriteria.add(Restrictions.in("actorId", actorIds));
 				}
 				else {
 					criteria.add(Restrictions.in("actorId", actorIds));
@@ -181,14 +184,18 @@ public class CustomSession {
 
 			if (latest) {
 				ProjectionList projectionList = Projections.projectionList();
+
 				projectionList.add(Projections.groupProperty("name"));
 				projectionList.add(Projections.max("version"));
+
 				criteria.setProjection(projectionList);
+
 				addOrder(criteria, orderByComparator, "version");
 			}
 
 			if (name != null) {
 				criteria.add(Restrictions.eq("name", name));
+
 				addOrder(criteria, orderByComparator, "name");
 			}
 
@@ -199,12 +206,14 @@ public class CustomSession {
 			addPagination(criteria, start, end);
 
 			if (latest) {
-				List results = criteria.list();
-				List<String> names = new ArrayList<String>(results.size());
-				for(Object result:results){
-					Object[] values = (Object[]) result;
-					names.add((String) values[0]);
+				List<Object[]> list = criteria.list();
+
+				List<String> names = new ArrayList<String>(list.size());
+
+				for (Object[] array : list) {
+					names.add((String)array[0]);
 				}
+
 				return findProcessDefinitions(names);
 			}
 			else {
@@ -267,8 +276,10 @@ public class CustomSession {
 			}
 			else if (actorIds != null) {
 				if (pooledActors) {
-					criteria.createCriteria("pooledActors").
-						add(Restrictions.in("actorId", actorIds));
+					Criteria subCriteria = criteria.createCriteria(
+						"pooledActors");
+
+					subCriteria.add(Restrictions.in("actorId", actorIds));
 				}
 				else {
 					criteria.add(Restrictions.in("actorId", actorIds));
@@ -296,14 +307,15 @@ public class CustomSession {
 
 	protected void addOrder(
 		Criteria criteria, OrderByComparator orderByComparator,
-		String... escapeFields) {
+		String... skipFields) {
 
 		if (orderByComparator == null) {
 			return;
 		}
 
 		String[] orderByFields = orderByComparator.getOrderByFields();
-		Arrays.sort(escapeFields);
+
+		Arrays.sort(skipFields);
 
 		for (String orderByField : orderByFields) {
 			Order order = null;
@@ -313,20 +325,22 @@ public class CustomSession {
 			if (jbpmField == null) {
 				jbpmField = orderByField;
 			}
-			if (Arrays.binarySearch(escapeFields, jbpmField) < 0) {
+
+			if (Arrays.binarySearch(skipFields, jbpmField) < 0) {
 				if (orderByComparator.isAscending()) {
 					order = Order.asc(jbpmField);
 				}
 				else {
 					order = Order.desc(jbpmField);
 				}
+
 				criteria.addOrder(order);
 			}
 		}
 	}
 
 	protected void addPagination(Criteria criteria, int start, int end) {
-		if (start != -1 && end != -1) {
+		if ((start != QueryUtil.ALL_POS) && (end != QueryUtil.ALL_POS)) {
 			criteria.setFirstResult(start);
 			criteria.setMaxResults(end - start);
 		}
