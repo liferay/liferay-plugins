@@ -1,64 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:sec="http://www.springframework.org/schema/security"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:aop="http://www.springframework.org/schema/aop"
-    xmlns:tx="http://www.springframework.org/schema/tx"
-    xsi:schemaLocation="
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
-        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
-        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.4.xsd">
 
-    
-    <import resource="org.edorasframework.common-context.xml"/>
-    <import resource="org.edorasframework.el-context.xml"/>
-    <import resource="org.edorasframework.scopes.core-context.xml"/>
-    <import resource="org.edorasframework.process.core-context.xml"/>
-    <import resource="org.edorasframework.process.workflow-context.xml"/>
-    
-    
-    
-    <!-- The bean deploying process models during startup and runtime
-         (hot deployment), if activated.
-         Models are being deployed in the following order:
-         - from within the classpath in META-INF/process
-         - from within ${liferay.home}/data/edoras
-         - from within ${liferay.home}/deploy during runtime
-         
-         You can adapt the path' by overwriting this bean. -->
-    <bean id="edsPrcModelDeployer"
-        class="org.edorasframework.process.core.service.ProcessModelDeployerImpl"
-        scope="singleton"
-        lazy-init="true">
-        
-        <!-- The setup to be used for hot deployment. -->
-        <property name="setupId" value="org.edorasframework.process.api.setup.Default" />
-        
-        <!-- The deploy path where models are being looked up and deployed.
-             This is usually within the classpath in order to deploy models
-             being deployed as a jar. -->
-        <property name="deployLookupPath" value="classpath*:/META-INF/process/*.edsprc" />
-        
-        <!-- The path used during the startup to deploy process models.
-             This is usually from the file system and it will overwrite models
-             being deployed from the classpath, if having the same id and version. -->
-        <property name="startingLookupPath" value="file:${liferay.home}/data/edoras/*.edsprc" />
-        
-        <!-- No hot deploy path is provided by default, uncomment, if needed and provide the interval
-             with another value than 0 (5000 for scanning every 5 seconds for instance).
-        <property name="hotDeployLookupPath" value="/WEB-INF/process/hot-deploy/*.edsprc" />
-        -->
-        
-        <!-- Do not listen on the hot deploy path -->
-        <property name="hotDeployListenerInterval" value="0" />
-    </bean>
-    
-    <bean id="edsPrcTest"
-    	class="com.liferay.portal.workflow.edoras.TestWorkflowBean"
-    	scope="singleton" lazy-init="false">
-    	<property name="processModel" value="com.liferay.workflow.edoras.Test1"/>
-    </bean>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.4.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+>
+	<import resource="org.edorasframework.common-context.xml" />
+	<import resource="org.edorasframework.el-context.xml" />
+	<import resource="org.edorasframework.scopes.core-context.xml" />
+	<import resource="org.edorasframework.process.core-context.xml" />
+	<import resource="org.edorasframework.process.workflow-context.xml" />
+
+	<!-- Deployer -->
+
+	<bean id="processModelDeployer" class="org.edorasframework.process.core.service.ProcessModelDeployerImpl">
+		<property name="setupId" value="org.edorasframework.process.api.setup.Default" />
+
+		<!-- Class path -->
+
+		<property name="deployLookupPath" value="classpath*:/META-INF/process/*.edsprc" />
+
+		<!-- Data path -->
+
+		<property name="startingLookupPath" value="file:${liferay.home}/data/edoras/*.edsprc" />
+		
+		<!-- Hot deploy path -->
+
+		<property name="hotDeployLookupPath" value="/WEB-INF/process/hot-deploy/*.edsprc" />
+		
+		<!-- Hot deploy interval in milliseconds -->
+
+		<property name="hotDeployListenerInterval" value="0" />
+	</bean>
 </beans>
