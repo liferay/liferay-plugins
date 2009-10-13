@@ -25,7 +25,7 @@
 	that matches *-edoras.zip.
 	-->
 
-	<bean id="processModelDeployer" class="org.edorasframework.process.core.service.ProcessModelDeployerImpl">
+	<bean id="edsPrcModelDeployer" class="org.edorasframework.process.core.service.ProcessModelDeployerImpl">
 		<property name="setupId" value="org.edorasframework.process.api.setup.Default" />
 		<property name="deployLookupPath" value="classpath*:/META-INF/process/*.edsprc" />
 		<property name="startingLookupPath" value="file:${liferay.home}/data/edoras/*.edsprc" />
