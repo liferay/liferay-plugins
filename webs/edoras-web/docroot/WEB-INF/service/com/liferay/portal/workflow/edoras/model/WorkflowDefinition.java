@@ -28,4 +28,15 @@ package com.liferay.portal.workflow.edoras.model;
  * @author Brian Wing Shun Chan
  */
 public interface WorkflowDefinition extends WorkflowDefinitionModel {
+	public java.lang.String getGraphicalProcessModelAsXML();
+
+	public java.lang.String getModelDesignerVersion();
+
+	public java.lang.String getProcessModelAsXML();
+
+	public java.lang.String getProcessModelId();
+
+	public int getProcessModelVersion();
+
+	public java.lang.Long getTenantId();
 }

@@ -7,7 +7,7 @@ create table Edoras_WorkflowDefinition (
 	createDate DATE null,
 	modifiedDate DATE null,
 	name VARCHAR(75) null,
-	version DOUBLE,
+	version INTEGER,
 	designerVersion VARCHAR(75) null,
 	modelXml VARCHAR(75) null,
 	graphicalXml VARCHAR(75) null,

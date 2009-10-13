@@ -120,11 +120,11 @@ public class WorkflowDefinitionClp extends BaseModelImpl<WorkflowDefinition>
 		_name = name;
 	}
 
-	public double getVersion() {
+	public int getVersion() {
 		return _version;
 	}
 
-	public void setVersion(double version) {
+	public void setVersion(int version) {
 		_version = version;
 	}
 
@@ -162,6 +162,30 @@ public class WorkflowDefinitionClp extends BaseModelImpl<WorkflowDefinition>
 
 	public void setPersistent(boolean persistent) {
 		_persistent = persistent;
+	}
+
+	public java.lang.String getGraphicalProcessModelAsXML() {
+		throw new UnsupportedOperationException();
+	}
+
+	public java.lang.String getModelDesignerVersion() {
+		throw new UnsupportedOperationException();
+	}
+
+	public java.lang.String getProcessModelAsXML() {
+		throw new UnsupportedOperationException();
+	}
+
+	public java.lang.String getProcessModelId() {
+		throw new UnsupportedOperationException();
+	}
+
+	public int getProcessModelVersion() {
+		throw new UnsupportedOperationException();
+	}
+
+	public java.lang.Long getTenantId() {
+		throw new UnsupportedOperationException();
 	}
 
 	public WorkflowDefinition toEscapedModel() {
@@ -370,7 +394,7 @@ public class WorkflowDefinitionClp extends BaseModelImpl<WorkflowDefinition>
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;
-	private double _version;
+	private int _version;
 	private String _designerVersion;
 	private String _modelXml;
 	private String _graphicalXml;

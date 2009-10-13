@@ -103,16 +103,16 @@ public interface WorkflowDefinitionPersistence extends BasePersistence {
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException;
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowDefinition findByC_N_V(
-		long companyId, java.lang.String name, double version)
+		long companyId, java.lang.String name, int version)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException;
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowDefinition fetchByC_N_V(
-		long companyId, java.lang.String name, double version)
+		long companyId, java.lang.String name, int version)
 		throws com.liferay.portal.SystemException;
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowDefinition fetchByC_N_V(
-		long companyId, java.lang.String name, double version,
+		long companyId, java.lang.String name, int version,
 		boolean retrieveFromCache) throws com.liferay.portal.SystemException;
 
 	public java.util.List<Object> findWithDynamicQuery(
@@ -136,8 +136,7 @@ public interface WorkflowDefinitionPersistence extends BasePersistence {
 	public void removeByC_N(long companyId, java.lang.String name)
 		throws com.liferay.portal.SystemException;
 
-	public void removeByC_N_V(long companyId, java.lang.String name,
-		double version)
+	public void removeByC_N_V(long companyId, java.lang.String name, int version)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException;
 
@@ -146,8 +145,8 @@ public interface WorkflowDefinitionPersistence extends BasePersistence {
 	public int countByC_N(long companyId, java.lang.String name)
 		throws com.liferay.portal.SystemException;
 
-	public int countByC_N_V(long companyId, java.lang.String name,
-		double version) throws com.liferay.portal.SystemException;
+	public int countByC_N_V(long companyId, java.lang.String name, int version)
+		throws com.liferay.portal.SystemException;
 
 	public int countAll() throws com.liferay.portal.SystemException;
 }

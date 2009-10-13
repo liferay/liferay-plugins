@@ -85,14 +85,14 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 			FINDER_CLASS_NAME_ENTITY, "fetchByC_N_V",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
-				Double.class.getName()
+				Integer.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_N_V = new FinderPath(WorkflowDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowDefinitionModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countByC_N_V",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
-				Double.class.getName()
+				Integer.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(WorkflowDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowDefinitionModelImpl.FINDER_CACHE_ENABLED,
@@ -111,7 +111,7 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 				new Long(workflowDefinition.getCompanyId()),
 				
 			workflowDefinition.getName(),
-				new Double(workflowDefinition.getVersion())
+				new Integer(workflowDefinition.getVersion())
 			}, workflowDefinition);
 	}
 
@@ -231,7 +231,7 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 				new Long(workflowDefinitionModelImpl.getOriginalCompanyId()),
 				
 			workflowDefinitionModelImpl.getOriginalName(),
-				new Double(workflowDefinitionModelImpl.getOriginalVersion())
+				new Integer(workflowDefinitionModelImpl.getOriginalVersion())
 			});
 
 		EntityCacheUtil.removeResult(WorkflowDefinitionModelImpl.ENTITY_CACHE_ENABLED,
@@ -318,7 +318,7 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 					new Long(workflowDefinitionModelImpl.getOriginalCompanyId()),
 					
 				workflowDefinitionModelImpl.getOriginalName(),
-					new Double(workflowDefinitionModelImpl.getOriginalVersion())
+					new Integer(workflowDefinitionModelImpl.getOriginalVersion())
 				});
 		}
 
@@ -332,7 +332,7 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 					new Long(workflowDefinition.getCompanyId()),
 					
 				workflowDefinition.getName(),
-					new Double(workflowDefinition.getVersion())
+					new Integer(workflowDefinition.getVersion())
 				}, workflowDefinition);
 		}
 
@@ -726,8 +726,7 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public WorkflowDefinition findByC_N_V(long companyId, String name,
-		double version)
-		throws NoSuchWorkflowDefinitionException, SystemException {
+		int version) throws NoSuchWorkflowDefinitionException, SystemException {
 		WorkflowDefinition workflowDefinition = fetchByC_N_V(companyId, name,
 				version);
 
@@ -757,16 +756,16 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public WorkflowDefinition fetchByC_N_V(long companyId, String name,
-		double version) throws SystemException {
+		int version) throws SystemException {
 		return fetchByC_N_V(companyId, name, version, true);
 	}
 
 	public WorkflowDefinition fetchByC_N_V(long companyId, String name,
-		double version, boolean retrieveFromCache) throws SystemException {
+		int version, boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(companyId),
 				
-				name, new Double(version)
+				name, new Integer(version)
 			};
 
 		Object result = null;
@@ -1006,7 +1005,7 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public void removeByC_N_V(long companyId, String name, double version)
+	public void removeByC_N_V(long companyId, String name, int version)
 		throws NoSuchWorkflowDefinitionException, SystemException {
 		WorkflowDefinition workflowDefinition = findByC_N_V(companyId, name,
 				version);
@@ -1082,12 +1081,12 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 		return count.intValue();
 	}
 
-	public int countByC_N_V(long companyId, String name, double version)
+	public int countByC_N_V(long companyId, String name, int version)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(companyId),
 				
-				name, new Double(version)
+				name, new Integer(version)
 			};
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_N_V,

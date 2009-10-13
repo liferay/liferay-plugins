@@ -160,11 +160,11 @@ public class WorkflowDefinitionSoap implements Serializable {
 		_name = name;
 	}
 
-	public double getVersion() {
+	public int getVersion() {
 		return _version;
 	}
 
-	public void setVersion(double version) {
+	public void setVersion(int version) {
 		_version = version;
 	}
 
@@ -211,7 +211,7 @@ public class WorkflowDefinitionSoap implements Serializable {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;
-	private double _version;
+	private int _version;
 	private String _designerVersion;
 	private String _modelXml;
 	private String _graphicalXml;

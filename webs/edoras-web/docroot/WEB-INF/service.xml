@@ -19,7 +19,7 @@
 		<!-- Other fields -->
 
 		<column name="name" type="String" />
-		<column name="version" type="double" />
+		<column name="version" type="int" />
 		<column name="designerVersion" type="String" />
 		<column name="modelXml" type="String" />
 		<column name="graphicalXml" type="String" />

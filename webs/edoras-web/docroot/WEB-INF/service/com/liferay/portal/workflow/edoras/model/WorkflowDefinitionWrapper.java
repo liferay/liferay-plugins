@@ -105,11 +105,11 @@ public class WorkflowDefinitionWrapper implements WorkflowDefinition {
 		_workflowDefinition.setName(name);
 	}
 
-	public double getVersion() {
+	public int getVersion() {
 		return _workflowDefinition.getVersion();
 	}
 
-	public void setVersion(double version) {
+	public void setVersion(int version) {
 		_workflowDefinition.setVersion(version);
 	}
 
@@ -209,6 +209,30 @@ public class WorkflowDefinitionWrapper implements WorkflowDefinition {
 
 	public java.lang.String toXmlString() {
 		return _workflowDefinition.toXmlString();
+	}
+
+	public java.lang.String getGraphicalProcessModelAsXML() {
+		return _workflowDefinition.getGraphicalProcessModelAsXML();
+	}
+
+	public java.lang.String getModelDesignerVersion() {
+		return _workflowDefinition.getModelDesignerVersion();
+	}
+
+	public java.lang.String getProcessModelAsXML() {
+		return _workflowDefinition.getProcessModelAsXML();
+	}
+
+	public java.lang.String getProcessModelId() {
+		return _workflowDefinition.getProcessModelId();
+	}
+
+	public int getProcessModelVersion() {
+		return _workflowDefinition.getProcessModelVersion();
+	}
+
+	public java.lang.Long getTenantId() {
+		return _workflowDefinition.getTenantId();
 	}
 
 	public WorkflowDefinition getWrappedWorkflowDefinition() {

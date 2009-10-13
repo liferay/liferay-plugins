@@ -74,9 +74,9 @@ public interface WorkflowDefinitionModel extends BaseModel<WorkflowDefinition> {
 
 	public void setName(String name);
 
-	public double getVersion();
+	public int getVersion();
 
-	public void setVersion(double version);
+	public void setVersion(int version);
 
 	public String getDesignerVersion();
 

@@ -9,7 +9,7 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="name" type="String" />
-		<field name="version" type="double" />
+		<field name="version" type="int" />
 		<field name="designerVersion" type="String" />
 		<field name="modelXml" type="String" />
 		<field name="graphicalXml" type="String" />

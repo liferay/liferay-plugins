@@ -60,13 +60,13 @@ public class WorkflowDefinitionModelImpl extends BaseModelImpl<WorkflowDefinitio
 			{ "createDate", new Integer(Types.TIMESTAMP) },
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
 			{ "name", new Integer(Types.VARCHAR) },
-			{ "version", new Integer(Types.DOUBLE) },
+			{ "version", new Integer(Types.INTEGER) },
 			{ "designerVersion", new Integer(Types.VARCHAR) },
 			{ "modelXml", new Integer(Types.VARCHAR) },
 			{ "graphicalXml", new Integer(Types.VARCHAR) },
 			{ "persistent", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Edoras_WorkflowDefinition (workflowDefinitionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,version DOUBLE,designerVersion VARCHAR(75) null,modelXml VARCHAR(75) null,graphicalXml VARCHAR(75) null,persistent BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table Edoras_WorkflowDefinition (workflowDefinitionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,version INTEGER,designerVersion VARCHAR(75) null,modelXml VARCHAR(75) null,graphicalXml VARCHAR(75) null,persistent BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Edoras_WorkflowDefinition";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -208,11 +208,11 @@ public class WorkflowDefinitionModelImpl extends BaseModelImpl<WorkflowDefinitio
 		return GetterUtil.getString(_originalName);
 	}
 
-	public double getVersion() {
+	public int getVersion() {
 		return _version;
 	}
 
-	public void setVersion(double version) {
+	public void setVersion(int version) {
 		_version = version;
 
 		if (!_setOriginalVersion) {
@@ -222,7 +222,7 @@ public class WorkflowDefinitionModelImpl extends BaseModelImpl<WorkflowDefinitio
 		}
 	}
 
-	public double getOriginalVersion() {
+	public int getOriginalVersion() {
 		return _originalVersion;
 	}
 
@@ -485,8 +485,8 @@ public class WorkflowDefinitionModelImpl extends BaseModelImpl<WorkflowDefinitio
 	private Date _modifiedDate;
 	private String _name;
 	private String _originalName;
-	private double _version;
-	private double _originalVersion;
+	private int _version;
+	private int _originalVersion;
 	private boolean _setOriginalVersion;
 	private String _designerVersion;
 	private String _modelXml;

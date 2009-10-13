@@ -136,20 +136,20 @@ public class WorkflowDefinitionUtil {
 	}
 
 	public static com.liferay.portal.workflow.edoras.model.WorkflowDefinition findByC_N_V(
-		long companyId, java.lang.String name, double version)
+		long companyId, java.lang.String name, int version)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException {
 		return getPersistence().findByC_N_V(companyId, name, version);
 	}
 
 	public static com.liferay.portal.workflow.edoras.model.WorkflowDefinition fetchByC_N_V(
-		long companyId, java.lang.String name, double version)
+		long companyId, java.lang.String name, int version)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByC_N_V(companyId, name, version);
 	}
 
 	public static com.liferay.portal.workflow.edoras.model.WorkflowDefinition fetchByC_N_V(
-		long companyId, java.lang.String name, double version,
+		long companyId, java.lang.String name, int version,
 		boolean retrieveFromCache) throws com.liferay.portal.SystemException {
 		return getPersistence()
 				   .fetchByC_N_V(companyId, name, version, retrieveFromCache);
@@ -189,7 +189,7 @@ public class WorkflowDefinitionUtil {
 	}
 
 	public static void removeByC_N_V(long companyId, java.lang.String name,
-		double version)
+		int version)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException {
 		getPersistence().removeByC_N_V(companyId, name, version);
@@ -205,7 +205,7 @@ public class WorkflowDefinitionUtil {
 	}
 
 	public static int countByC_N_V(long companyId, java.lang.String name,
-		double version) throws com.liferay.portal.SystemException {
+		int version) throws com.liferay.portal.SystemException {
 		return getPersistence().countByC_N_V(companyId, name, version);
 	}
 

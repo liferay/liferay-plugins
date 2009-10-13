@@ -18,7 +18,7 @@
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="version" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="version" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="designerVersion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="modelXml" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="graphicalXml" type="com.liferay.portal.dao.orm.hibernate.StringType" />
