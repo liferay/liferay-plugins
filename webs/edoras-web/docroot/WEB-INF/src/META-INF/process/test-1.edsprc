@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edsprc:Process xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:edsprc="http://edorasframework.org/tools/eclipse/edsprc" xmi:id="_baTWobcREd6qYqrcj8ZxfA" designerVersion="1.0.0" processId="com.liferay.workflow.edoras.Test1" processVersion="1" persistent="true">
+  <states xmi:type="edsprc:BeginState" xmi:id="_baT9sLcREd6qYqrcj8ZxfA" label="Begin">
+    <flows xmi:type="edsprc:Flow" xmi:id="_qAIXkLcREd6qYqrcj8ZxfA" reference="_nA9QsLcREd6qYqrcj8ZxfA"/>
+  </states>
+  <states xmi:type="edsprc:EndState" xmi:id="_baT9sbcREd6qYqrcj8ZxfA" label="End"/>
+  <activities xmi:type="edsprc:Java" xmi:id="_nA9QsLcREd6qYqrcj8ZxfA" label="Test Java" manual="false" async="false" activityClass="none">
+    <flows xmi:type="edsprc:Flow" xmi:id="_qjwpELcREd6qYqrcj8ZxfA" reference="_baT9sbcREd6qYqrcj8ZxfA"/>
+  </activities>
+</edsprc:Process>
