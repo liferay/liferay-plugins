@@ -71,6 +71,34 @@ public interface WorkflowDefinitionPersistence extends BasePersistence {
 	public com.liferay.portal.workflow.edoras.model.WorkflowDefinition fetchByPrimaryKey(
 		long workflowDefinitionId) throws com.liferay.portal.SystemException;
 
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> findByC(
+		long companyId) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> findByC(
+		long companyId, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> findByC(
+		long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowDefinition findByC_First(
+		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowDefinition findByC_Last(
+		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowDefinition[] findByC_PrevAndNext(
+		long workflowDefinitionId, long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException;
+
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> findByC_N(
 		long companyId, java.lang.String name)
 		throws com.liferay.portal.SystemException;
@@ -133,6 +161,9 @@ public interface WorkflowDefinitionPersistence extends BasePersistence {
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	public void removeByC(long companyId)
+		throws com.liferay.portal.SystemException;
+
 	public void removeByC_N(long companyId, java.lang.String name)
 		throws com.liferay.portal.SystemException;
 
@@ -141,6 +172,9 @@ public interface WorkflowDefinitionPersistence extends BasePersistence {
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException;
 
 	public void removeAll() throws com.liferay.portal.SystemException;
+
+	public int countByC(long companyId)
+		throws com.liferay.portal.SystemException;
 
 	public int countByC_N(long companyId, java.lang.String name)
 		throws com.liferay.portal.SystemException;

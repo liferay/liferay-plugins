@@ -140,7 +140,14 @@
 	</mapped-superclass>
 	<entity class="com.liferay.portal.workflow.edoras.model.impl.WorkflowDefinitionImpl" name="WorkflowDefinition">
 		<table name="Edoras_WorkflowDefinition" />
-		<attributes />
+		<attributes>
+			<transient name="graphicalProcessModelAsXML" />
+			<transient name="modelDesignerVersion" />
+			<transient name="processModelAsXML" />
+			<transient name="processModelId" />
+			<transient name="processModelVersion" />
+			<transient name="tenantId" />
+		</attributes>
 	</entity>
 	<entity class="com.liferay.portal.workflow.edoras.model.impl.WorkflowInstanceImpl" name="WorkflowInstance">
 		<table name="Edoras_WorkflowInstance" />

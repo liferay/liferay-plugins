@@ -1,3 +1,4 @@
+create index IX_A68925A5 on Edoras_WorkflowDefinition (companyId);
 create index IX_9F57E5A4 on Edoras_WorkflowDefinition (companyId, name);
 create unique index IX_8AD6A8E4 on Edoras_WorkflowDefinition (companyId, name, version);
 

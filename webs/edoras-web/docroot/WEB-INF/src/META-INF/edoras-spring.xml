@@ -24,10 +24,36 @@
 	Processes deployed in the hot deploy path must be packaged in a ZIP file
 	that matches *-edoras.zip.
 	-->
-
 	<bean id="edsPrcModelDeployer" class="org.edorasframework.process.core.service.ProcessModelDeployerImpl">
 		<property name="setupId" value="org.edorasframework.process.api.setup.Default" />
 		<property name="deployLookupPath" value="classpath*:/META-INF/process/*.edsprc" />
 		<property name="startingLookupPath" value="file:${liferay.home}/data/edoras/*.edsprc" />
 	</bean>
+	
+	
+	<!--
+	The configuration for the entity factory to use the model beans being
+	created by the service builder of Liferay. 
+	-->
+	<bean id="edsPrcEntityClassNames" class="org.edorasframework.process.core.entity.ProcessEntityClassNameConfigurer">
+        <property name="processDefinitionClass" value="com.liferay.portal.workflow.edoras.model.impl.WorkflowDefinitionImpl"/>
+    </bean>
+    
+    
+    <!-- DAO implementations to use service builder -->
+    
+    <bean id="edsPrcServiceDao" class="com.liferay.portal.workflow.edoras.dao.WorkflowDefinitionDao">
+    </bean>
+    
+    <!--
+    Transaction template based on Spring, injected into the workflow engine, but
+    using the transaction manager from Liferay and service builder.
+    -->
+    <bean id="edsPrcTxTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+    	<property name="transactionManager" ref="portalTransactionManager"/>
+    </bean>
+    <bean id="edsPrcTxTemplateReadOnly" class="org.springframework.transaction.support.TransactionTemplate">
+    	<property name="transactionManager" ref="portalTransactionManager"/>
+    </bean>
+    <bean id="portalTransactionManager" class="com.liferay.portal.workflow.edoras.dao.tx.TransactionManagerClp" />
 </beans>
