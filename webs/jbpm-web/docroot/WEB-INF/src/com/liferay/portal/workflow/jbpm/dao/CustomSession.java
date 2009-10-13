@@ -266,7 +266,7 @@ public class CustomSession {
 
 		try {
 			Criteria criteria = _session.createCriteria(TaskInstance.class);
-
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			if (processInstanceId > 0) {
 				criteria.add(
 					Restrictions.eq("processInstance.id", processInstanceId));

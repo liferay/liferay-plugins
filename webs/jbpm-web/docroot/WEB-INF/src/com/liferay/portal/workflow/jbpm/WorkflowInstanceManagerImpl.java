@@ -165,9 +165,10 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 			Collections.sort(workflowInstanceHistories, orderByComparator);
 
-			workflowInstanceHistories = ListUtil.subList(
-				workflowInstanceHistories, start, end);
-
+			if(start != -1 && end != -1) {
+				workflowInstanceHistories = ListUtil.subList(
+					workflowInstanceHistories, start, end);
+			}
 			return workflowInstanceHistories;
 		}
 		catch (Exception e) {
