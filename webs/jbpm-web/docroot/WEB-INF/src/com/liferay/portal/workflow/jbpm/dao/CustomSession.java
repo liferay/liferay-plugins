@@ -22,9 +22,9 @@
 
 package com.liferay.portal.workflow.jbpm.dao;
 
-import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import java.util.Iterator;
+import com.liferay.portal.kernel.util.OrderByComparator;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -266,7 +266,9 @@ public class CustomSession {
 
 		try {
 			Criteria criteria = _session.createCriteria(TaskInstance.class);
+
 			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
 			if (processInstanceId > 0) {
 				criteria.add(
 					Restrictions.eq("processInstance.id", processInstanceId));

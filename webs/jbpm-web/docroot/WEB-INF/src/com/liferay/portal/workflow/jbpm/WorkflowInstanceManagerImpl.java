@@ -22,6 +22,7 @@
 
 package com.liferay.portal.workflow.jbpm;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -165,10 +166,11 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 			Collections.sort(workflowInstanceHistories, orderByComparator);
 
-			if(start != -1 && end != -1) {
+			if ((start != QueryUtil.ALL_POS) && (end != QueryUtil.ALL_POS)) {
 				workflowInstanceHistories = ListUtil.subList(
 					workflowInstanceHistories, start, end);
 			}
+
 			return workflowInstanceHistories;
 		}
 		catch (Exception e) {
