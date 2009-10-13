@@ -25,6 +25,7 @@ package com.liferay.portal.workflow.jbpm.db;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +34,7 @@ import java.util.Map;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -143,10 +145,12 @@ public class CustomSession {
 			}
 			else if (actorIds != null) {
 				if (pooledActors) {
-					criteria.createCriteria("pooledActors");
+					criteria.createCriteria("pooledActors").
+						add(Restrictions.in("actorId", actorIds));
 				}
-
-				criteria.add(Restrictions.in("actorId", actorIds));
+				else {
+					criteria.add(Restrictions.in("actorId", actorIds));
+				}
 			}
 
 			if (completed != null) {
@@ -176,24 +180,31 @@ public class CustomSession {
 				ProcessDefinition.class);
 
 			if (latest) {
-				criteria.setProjection(
-					Projections.distinct(Projections.groupProperty("name")));
-
-				Order order = Order.desc("version");
-
-				criteria.addOrder(order);
+				ProjectionList projectionList = Projections.projectionList();
+				projectionList.add(Projections.groupProperty("name"));
+				projectionList.add(Projections.max("version"));
+				criteria.setProjection(projectionList);
+				addOrder(criteria, orderByComparator, "version");
 			}
 
 			if (name != null) {
 				criteria.add(Restrictions.eq("name", name));
+				addOrder(criteria, orderByComparator, "name");
+			}
+
+			if (latest == false && name == null) {
+				addOrder(criteria, orderByComparator);
 			}
 
 			addPagination(criteria, start, end);
-			addOrder(criteria, orderByComparator);
 
 			if (latest) {
-				List<String> names = criteria.list();
-
+				List results = criteria.list();
+				List<String> names = new ArrayList<String>(results.size());
+				for(Object result:results){
+					Object[] values = (Object[]) result;
+					names.add((String) values[0]);
+				}
 				return findProcessDefinitions(names);
 			}
 			else {
@@ -256,10 +267,12 @@ public class CustomSession {
 			}
 			else if (actorIds != null) {
 				if (pooledActors) {
-					criteria.createCriteria("pooledActors");
+					criteria.createCriteria("pooledActors").
+						add(Restrictions.in("actorId", actorIds));
 				}
-
-				criteria.add(Restrictions.in("actorId", actorIds));
+				else {
+					criteria.add(Restrictions.in("actorId", actorIds));
+				}
 			}
 
 			if (completed != null) {
@@ -282,13 +295,15 @@ public class CustomSession {
 	}
 
 	protected void addOrder(
-		Criteria criteria, OrderByComparator orderByComparator) {
+		Criteria criteria, OrderByComparator orderByComparator,
+		String... escapeFields) {
 
 		if (orderByComparator == null) {
 			return;
 		}
 
 		String[] orderByFields = orderByComparator.getOrderByFields();
+		Arrays.sort(escapeFields);
 
 		for (String orderByField : orderByFields) {
 			Order order = null;
@@ -298,21 +313,23 @@ public class CustomSession {
 			if (jbpmField == null) {
 				jbpmField = orderByField;
 			}
-
-			if (orderByComparator.isAscending()) {
-				order = Order.asc(jbpmField);
+			if (Arrays.binarySearch(escapeFields, jbpmField) < 0) {
+				if (orderByComparator.isAscending()) {
+					order = Order.asc(jbpmField);
+				}
+				else {
+					order = Order.desc(jbpmField);
+				}
+				criteria.addOrder(order);
 			}
-			else {
-				order = Order.desc(jbpmField);
-			}
-
-			criteria.addOrder(order);
 		}
 	}
 
 	protected void addPagination(Criteria criteria, int start, int end) {
-		criteria.setFirstResult(start);
-		criteria.setMaxResults(end - start);
+		if (start != -1 && end != -1) {
+			criteria.setFirstResult(start);
+			criteria.setMaxResults(end - start);
+		}
 	}
 
 	protected ProcessDefinition findProcessDefinition(String name) {
