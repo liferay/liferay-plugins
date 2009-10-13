@@ -28,13 +28,16 @@ import org.springframework.beans.BeanUtils;
 
 /**
  * <a href="SimplePojoClp.java.html"><b><i>View Source</i></b></a>
- *
+ * 
  * <p>
- * TODO: add Class-Description here ...
+ * A classloader proxy able to serialize simple POJOs between two classloaders.
+ * It only works for simple POJOs following the Java Beans semantics. Note: The
+ * local and remote classes do not have to match or even be derived from each
+ * other, as long as the properties match. Any bean properties that the source
+ * bean exposes but the target bean does not will silently be ignored.
  * </p>
- *
+ * 
  * @author Micha Kiener
- *
  */
 public class SimplePojoClp<T> {
 
