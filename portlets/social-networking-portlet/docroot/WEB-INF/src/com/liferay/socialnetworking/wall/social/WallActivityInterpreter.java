@@ -22,6 +22,7 @@
 
 package com.liferay.socialnetworking.wall.social;
 
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -66,8 +67,8 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 		String link =
 			themeDisplay.getPortalURL() +
 				themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH +
-					receiverUser.getScreenName() + "/profile/-/wall/" +
-						activity.getClassPK();
+					HtmlUtil.escapeURL(receiverUser.getScreenName()) +
+						"/profile/-/wall/" + activity.getClassPK();
 
 		// Title
 
@@ -86,7 +87,7 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 		sb.append("<a href=\"");
 		sb.append(link);
 		sb.append("\">");
-		sb.append(cleanContent(wallEntry.getComments()));
+		sb.append(HtmlUtil.escape(cleanContent(wallEntry.getComments())));
 		sb.append("</a>");
 
 		String body = sb.toString();

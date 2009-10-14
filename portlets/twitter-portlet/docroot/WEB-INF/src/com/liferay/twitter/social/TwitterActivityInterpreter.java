@@ -24,6 +24,7 @@ package com.liferay.twitter.social;
 
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -68,7 +69,7 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
-		sb.append(creatorUser.getScreenName());
+		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
 		sb.append("/profile\">");
 		sb.append(creatorUserName);
 		sb.append("</a>");
@@ -83,11 +84,11 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 		sb = new StringBuilder();
 
 		sb.append("<a href=\"http://twitter.com/");
-		sb.append(creatorUser.getContact().getTwitterSn());
+		sb.append(HtmlUtil.escapeURL(creatorUser.getContact().getTwitterSn()));
 		sb.append("/statuses/");
 		sb.append(activity.getClassPK());
 		sb.append("\" target=\"_blank\">");
-		sb.append(extraData.getString("text"));
+		sb.append(HtmlUtil.escape(extraData.getString("text")));
 		sb.append("</a>");
 
 		String body = sb.toString();

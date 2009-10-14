@@ -22,6 +22,7 @@
 
 package com.liferay.socialnetworking.members.social;
 
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
@@ -67,7 +68,7 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 			sb.append(themeDisplay.getPortalURL());
 			sb.append(themeDisplay.getPathFriendlyURLPublic());
 			sb.append(StringPool.SLASH);
-			sb.append(creatorUser.getScreenName());
+			sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
 			sb.append("/profile");
 
 			link = sb.toString();
@@ -100,7 +101,7 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 			sb.append(themeDisplay.getPathFriendlyURLPublic());
 			sb.append(group.getFriendlyURL());
 			sb.append("/profile\">");
-			sb.append(organization.getName());
+			sb.append(HtmlUtil.escape(organization.getName()));
 			sb.append("</a>");
 
 			String organizationNameURL = sb.toString();

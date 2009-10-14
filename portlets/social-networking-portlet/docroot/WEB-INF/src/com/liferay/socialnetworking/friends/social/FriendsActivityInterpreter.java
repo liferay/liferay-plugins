@@ -22,6 +22,7 @@
 
 package com.liferay.socialnetworking.friends.social;
 
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -65,7 +66,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
-		sb.append(creatorUser.getScreenName());
+		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
 		sb.append("/friends");
 
 		String link = sb.toString();
@@ -81,7 +82,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 			sb.append(themeDisplay.getPortalURL());
 			sb.append(themeDisplay.getPathFriendlyURLPublic());
 			sb.append(StringPool.SLASH);
-			sb.append(creatorUser.getScreenName());
+			sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
 			sb.append("/profile\">");
 			sb.append(creatorUserName);
 			sb.append("</a>");
@@ -94,7 +95,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 			sb.append(themeDisplay.getPortalURL());
 			sb.append(themeDisplay.getPathFriendlyURLPublic());
 			sb.append(StringPool.SLASH);
-			sb.append(receiverUser.getScreenName());
+			sb.append(HtmlUtil.escapeURL(receiverUser.getScreenName()));
 			sb.append("/profile\">");
 			sb.append(receiverUserName);
 			sb.append("</a>");

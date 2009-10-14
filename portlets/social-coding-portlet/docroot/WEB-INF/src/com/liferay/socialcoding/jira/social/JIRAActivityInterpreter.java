@@ -25,6 +25,7 @@ package com.liferay.socialcoding.jira.social;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -124,10 +125,10 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 					extraData.getJSONArray("jiraChangeItems"), themeDisplay));
 		}
 		else if (activityType == JIRAActivityKeys.ADD_COMMENT) {
-			sb.append(cleanContent(jiraAction.getBody()));
+			sb.append(HtmlUtil.escape(cleanContent(jiraAction.getBody())));
 		}
 		else if (activityType == JIRAActivityKeys.ADD_ISSUE) {
-			sb.append(cleanContent(jiraIssue.getSummary()));
+			sb.append(HtmlUtil.escape(cleanContent(jiraIssue.getSummary())));
 		}
 
 		sb.append("</a>");
@@ -168,14 +169,14 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 			sb.append(
 				themeDisplay.translate(
 					"activity-social-coding-jira-add-change-" + field,
-					new Object[] {newString}));
+					new Object[] {HtmlUtil.escape(newString)}));
 			sb.append("<br />");
 		}
 		else if (field.equals("link") && newValue.startsWith("LEP-")) {
 			sb.append(
 				themeDisplay.translate(
 					"activity-social-coding-jira-add-change-" + field,
-					new Object[] {newValue}));
+					new Object[] {HtmlUtil.escape(newValue)}));
 			sb.append("<br />");
 		}
 
