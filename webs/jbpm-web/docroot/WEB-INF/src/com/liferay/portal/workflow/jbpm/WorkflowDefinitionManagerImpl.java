@@ -182,10 +182,6 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
-	public boolean isSupportsVersioning() {
-		return _SUPPORTS_VERSIONING;
-	}
-
 	public void setJbpmConfiguration(JbpmConfiguration jbpmConfiguration) {
 		_jbpmConfiguration = jbpmConfiguration;
 	}
@@ -205,8 +201,6 @@ public class WorkflowDefinitionManagerImpl
 
 		return workflowDefinitions;
 	}
-
-	private static final boolean _SUPPORTS_VERSIONING = true;
 
 	private JbpmConfiguration _jbpmConfiguration;
 
