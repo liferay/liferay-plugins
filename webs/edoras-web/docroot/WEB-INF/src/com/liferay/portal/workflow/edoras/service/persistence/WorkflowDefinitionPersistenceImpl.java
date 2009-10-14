@@ -63,22 +63,22 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 	public static final String FINDER_CLASS_NAME_ENTITY = WorkflowDefinitionImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
-	public static final FinderPath FINDER_PATH_FIND_BY_C = new FinderPath(WorkflowDefinitionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(WorkflowDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowDefinitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByC",
+			FINDER_CLASS_NAME_LIST, "findByCompanyId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_C = new FinderPath(WorkflowDefinitionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_COMPANYID = new FinderPath(WorkflowDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowDefinitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByC",
+			FINDER_CLASS_NAME_LIST, "findByCompanyId",
 			new String[] {
 				Long.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_C = new FinderPath(WorkflowDefinitionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(WorkflowDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowDefinitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByC",
+			FINDER_CLASS_NAME_LIST, "countByCompanyId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_C_N = new FinderPath(WorkflowDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowDefinitionModelImpl.FINDER_CACHE_ENABLED,
@@ -430,11 +430,11 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 		return workflowDefinition;
 	}
 
-	public List<WorkflowDefinition> findByC(long companyId)
+	public List<WorkflowDefinition> findByCompanyId(long companyId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { new Long(companyId) };
 
-		List<WorkflowDefinition> list = (List<WorkflowDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C,
+		List<WorkflowDefinition> list = (List<WorkflowDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -475,8 +475,8 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C, finderArgs,
-					list);
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_COMPANYID,
+					finderArgs, list);
 
 				closeSession(session);
 			}
@@ -485,20 +485,20 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public List<WorkflowDefinition> findByC(long companyId, int start, int end)
-		throws SystemException {
-		return findByC(companyId, start, end, null);
+	public List<WorkflowDefinition> findByCompanyId(long companyId, int start,
+		int end) throws SystemException {
+		return findByCompanyId(companyId, start, end, null);
 	}
 
-	public List<WorkflowDefinition> findByC(long companyId, int start, int end,
-		OrderByComparator obc) throws SystemException {
+	public List<WorkflowDefinition> findByCompanyId(long companyId, int start,
+		int end, OrderByComparator obc) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(companyId),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		List<WorkflowDefinition> list = (List<WorkflowDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_C,
+		List<WorkflowDefinition> list = (List<WorkflowDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_COMPANYID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -564,7 +564,7 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_C,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_COMPANYID,
 					finderArgs, list);
 
 				closeSession(session);
@@ -574,10 +574,10 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public WorkflowDefinition findByC_First(long companyId,
+	public WorkflowDefinition findByCompanyId_First(long companyId,
 		OrderByComparator obc)
 		throws NoSuchWorkflowDefinitionException, SystemException {
-		List<WorkflowDefinition> list = findByC(companyId, 0, 1, obc);
+		List<WorkflowDefinition> list = findByCompanyId(companyId, 0, 1, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
@@ -595,11 +595,13 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public WorkflowDefinition findByC_Last(long companyId, OrderByComparator obc)
+	public WorkflowDefinition findByCompanyId_Last(long companyId,
+		OrderByComparator obc)
 		throws NoSuchWorkflowDefinitionException, SystemException {
-		int count = countByC(companyId);
+		int count = countByCompanyId(companyId);
 
-		List<WorkflowDefinition> list = findByC(companyId, count - 1, count, obc);
+		List<WorkflowDefinition> list = findByCompanyId(companyId, count - 1,
+				count, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
@@ -617,12 +619,12 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public WorkflowDefinition[] findByC_PrevAndNext(long workflowDefinitionId,
-		long companyId, OrderByComparator obc)
+	public WorkflowDefinition[] findByCompanyId_PrevAndNext(
+		long workflowDefinitionId, long companyId, OrderByComparator obc)
 		throws NoSuchWorkflowDefinitionException, SystemException {
 		WorkflowDefinition workflowDefinition = findByPrimaryKey(workflowDefinitionId);
 
-		int count = countByC(companyId);
+		int count = countByCompanyId(companyId);
 
 		Session session = null;
 
@@ -1277,8 +1279,8 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public void removeByC(long companyId) throws SystemException {
-		for (WorkflowDefinition workflowDefinition : findByC(companyId)) {
+	public void removeByCompanyId(long companyId) throws SystemException {
+		for (WorkflowDefinition workflowDefinition : findByCompanyId(companyId)) {
 			remove(workflowDefinition);
 		}
 	}
@@ -1304,10 +1306,10 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public int countByC(long companyId) throws SystemException {
+	public int countByCompanyId(long companyId) throws SystemException {
 		Object[] finderArgs = new Object[] { new Long(companyId) };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_COMPANYID,
 				finderArgs, this);
 
 		if (count == null) {
@@ -1342,8 +1344,8 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					finderArgs, count);
 
 				closeSession(session);
 			}

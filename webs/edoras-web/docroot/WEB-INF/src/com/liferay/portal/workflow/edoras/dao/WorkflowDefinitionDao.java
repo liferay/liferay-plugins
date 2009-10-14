@@ -116,7 +116,8 @@ public class WorkflowDefinitionDao implements ProcessServiceDao {
 				return WorkflowDefinitionUtil.findAll();
 			}
 			else {
-				return WorkflowDefinitionUtil.findByC(tenantId.longValue());
+				return WorkflowDefinitionUtil.findByCompanyId(
+					tenantId.longValue());
 			}
 		}
 		catch (SystemException se) {
