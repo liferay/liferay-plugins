@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.sampletest.job;
+package com.liferay.testmisc.job;
 
 import com.liferay.portal.kernel.job.IntervalJob;
 import com.liferay.portal.kernel.job.JobExecutionContext;

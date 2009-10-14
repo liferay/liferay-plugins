@@ -20,42 +20,39 @@
  * SOFTWARE.
  */
 
-package com.liferay.sampletest.servlet;
+package com.liferay.testmisc.job;
 
+import com.liferay.portal.kernel.job.JobSchedulerUtil;
+import com.liferay.portal.kernel.job.Scheduler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
-
 /**
- * <a href="TestPortletSessionListener.java.html"><b><i>View Source</i></b></a>
+ * <a href="TestScheduler.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
- * @see com.liferay.sampletest.servlet.TestPortletSessionListenerLoader
- *
  */
-public class TestPortletSessionListener implements HttpSessionListener {
+public class TestScheduler implements Scheduler {
 
-	public void sessionCreated(HttpSessionEvent event) {
-		HttpSession ses = event.getSession();
-
+	public void schedule() {
 		if (_log.isInfoEnabled()) {
-			_log.info("Created session " + ses.getId());
+			_log.info("Schedule");
 		}
+
+		JobSchedulerUtil.schedule(_testIntervalJob);
 	}
 
-	public void sessionDestroyed(HttpSessionEvent event) {
-		HttpSession ses = event.getSession();
-
+	public void unschedule() {
 		if (_log.isInfoEnabled()) {
-			_log.info("Destroyed session " + ses.getId());
+			_log.info("Unschedule");
 		}
+
+		JobSchedulerUtil.unschedule(_testIntervalJob);
 	}
 
-	private static Log _log =
-		LogFactoryUtil.getLog(TestPortletSessionListener.class);
+	private static Log _log = LogFactoryUtil.getLog(TestScheduler.class);
+
+	private TestIntervalJob _testIntervalJob = new TestIntervalJob();
 
 }

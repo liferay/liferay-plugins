@@ -20,48 +20,42 @@
  * SOFTWARE.
  */
 
-package com.liferay.sampletest.portlet;
+package com.liferay.testmisc.servlet;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
-import java.io.IOException;
-
-import javax.portlet.PortletException;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-import javax.portlet.filter.FilterChain;
-import javax.portlet.filter.FilterConfig;
-import javax.portlet.filter.RenderFilter;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
 
 /**
- * <a href="TestRenderFilter.java.html"><b><i>View Source</i></b></a>
+ * <a href="TestPortletSessionListener.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
+ * @see com.liferay.testmisc.servlet.TestPortletSessionListenerLoader
+ *
  */
-public class TestRenderFilter implements RenderFilter {
+public class TestPortletSessionListener implements HttpSessionListener {
 
-	public void init(FilterConfig filterConfig) throws PortletException {
-		_log.info("Init");
+	public void sessionCreated(HttpSessionEvent event) {
+		HttpSession ses = event.getSession();
+
+		if (_log.isInfoEnabled()) {
+			_log.info("Created session " + ses.getId());
+		}
 	}
 
-	public void doFilter(
-			RenderRequest renderRequest, RenderResponse renderResponse,
-			FilterChain filterChain)
-		throws IOException, PortletException {
+	public void sessionDestroyed(HttpSessionEvent event) {
+		HttpSession ses = event.getSession();
 
-		_log.info("Before filter");
-
-		filterChain.doFilter(renderRequest, renderResponse);
-
-		_log.info("After filter");
+		if (_log.isInfoEnabled()) {
+			_log.info("Destroyed session " + ses.getId());
+		}
 	}
 
-	public void destroy() {
-		_log.info("Destroy");
-	}
-
-	private static Log _log = LogFactoryUtil.getLog(TestRenderFilter.class);
+	private static Log _log =
+		LogFactoryUtil.getLog(TestPortletSessionListener.class);
 
 }

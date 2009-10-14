@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.sampletest.portlet;
+package com.liferay.testmisc.portlet;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;

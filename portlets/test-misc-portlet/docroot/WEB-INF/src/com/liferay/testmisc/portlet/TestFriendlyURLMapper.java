@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.sampletest.portlet;
+package com.liferay.testmisc.portlet;
 
 import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
@@ -122,8 +122,8 @@ public class TestFriendlyURLMapper extends BaseFriendlyURLMapper {
 		addParam(params, "jspPage", jspPage);
 	}
 
-	private static final String _MAPPING = "sample_test";
+	private static final String _MAPPING = "test_misc";
 
-	private static final String _PORTLET_ID = "1_WAR_sampletestportlet";
+	private static final String _PORTLET_ID = "1_WAR_testmiscportlet";
 
 }

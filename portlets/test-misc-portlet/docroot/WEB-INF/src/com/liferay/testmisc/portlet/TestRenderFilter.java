@@ -20,37 +20,48 @@
  * SOFTWARE.
  */
 
-package com.liferay.sampletest.servlet;
+package com.liferay.testmisc.portlet;
 
-import com.liferay.portal.kernel.servlet.PortletSessionListenerLoader;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import java.io.IOException;
+
+import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+import javax.portlet.filter.FilterChain;
+import javax.portlet.filter.FilterConfig;
+import javax.portlet.filter.RenderFilter;
 
 /**
- * <a href="TestPortletSessionListenerLoader.java.html"><b><i>View Source</i>
- * </b></a>
- *
- * <p>
- * This is a <code>javax.servlet.ServletContextListener</code> that loads a
- * <code>javax.servlet.http.HttpSessionListener</code> and ensures the hot
- * deployed WAR's session events are triggered along with the portal's session
- * events. This is only needed for certain application servers under certain
- * configurations. Otherwise, you can just load the the
- * <code>HttpSessionListener</code> directly in WEB-INF/web.xml.
- * </p>
- *
- * <p>
- * See http://support.liferay.com/browse/LEP-2299.
- * </p>
+ * <a href="TestRenderFilter.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
- * @see com.liferay.sampletest.servlet.TestPortletSessionListener
- *
  */
-public class TestPortletSessionListenerLoader
-	extends PortletSessionListenerLoader {
+public class TestRenderFilter implements RenderFilter {
 
-	public TestPortletSessionListenerLoader() {
-		super(new TestPortletSessionListener());
+	public void init(FilterConfig filterConfig) throws PortletException {
+		_log.info("Init");
 	}
+
+	public void doFilter(
+			RenderRequest renderRequest, RenderResponse renderResponse,
+			FilterChain filterChain)
+		throws IOException, PortletException {
+
+		_log.info("Before filter");
+
+		filterChain.doFilter(renderRequest, renderResponse);
+
+		_log.info("After filter");
+	}
+
+	public void destroy() {
+		_log.info("Destroy");
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(TestRenderFilter.class);
 
 }
