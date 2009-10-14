@@ -24,12 +24,20 @@
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
+<%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
+
+<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.PropsUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
+<%@ page import="com.liferay.portal.kernel.util.Validator" %>
+<%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
+<%@ page import="com.liferay.testhook.hook.model.impl.TestUserImpl" %>
 <%@ page import="com.liferay.testhook.util.TestHookUtil" %>
 
 <portlet:defineObjects />
+
+<h3>portal-properties</h3>
 
 <p>
 	<%= _testProperty("terms.of.use.required", false) %><br />
@@ -45,7 +53,33 @@
 	<%= _testProperty("field.enable.com.liferay.portal.model.Organization.status", true) %>
 </p>
 
+<h3>language-properties</h3>
+
+<p>
+	javax.portlet.title.33=<%= _assertEquals("Blogger", LanguageUtil.get(pageContext, "javax.portlet.title.33")) %>
+</p>
+
+<h3>custom-jsp-dir</h3>
+
+<liferay-util:buffer var="blogsViewJsp">
+	<liferay-util:include page="/html/portlet/blogs/view.jsp" />
+</liferay-util:buffer>
+
+<p>
+	/META-INF/custom_jsps=<%= _assertTrue(blogsViewJsp.contains("Custom Blogs Header")) %>
+</p>
+
+<h3>service</h3>
+
+<p>
+	com.liferay.portal.service.UserLocalService=<%= _assertEquals(TestUserImpl.class.getName(), UserLocalServiceUtil.getUserById(2).getClass().getName()) %>
+</p>
+
 <%!
+private static String _assertEquals(Object expected, Object actual) {
+	return _assertTrue(Validator.equals(expected, actual));
+}
+
 private static String _assertFalse(boolean value) {
 	return _assertTrue(!value);
 }
