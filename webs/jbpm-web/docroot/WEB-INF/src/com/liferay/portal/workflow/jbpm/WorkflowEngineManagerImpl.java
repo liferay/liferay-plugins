@@ -24,6 +24,7 @@ package com.liferay.portal.workflow.jbpm;
 
 import com.liferay.portal.kernel.workflow.WorkflowEngineManager;
 
+import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -34,7 +35,7 @@ import java.util.Map;
 public class WorkflowEngineManagerImpl implements WorkflowEngineManager {
 
 	public Map<String, Object> getAdditionalInformation() {
-		return null;
+		return Collections.EMPTY_MAP;
 	}
 
 	public Object getDelegate() {
@@ -42,11 +43,11 @@ public class WorkflowEngineManagerImpl implements WorkflowEngineManager {
 	}
 
 	public String getVersion() {
-		return null;
+		return "3.2.6 SP1";
 	}
 
 	public String getWorkflowEngineName() {
-		return null;
+		return "jBPM";
 	}
 
 	public boolean isSupportsWorkflowDefinitionVersioning() {
