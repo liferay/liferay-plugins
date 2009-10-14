@@ -444,5 +444,9 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		}
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

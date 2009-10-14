@@ -544,5 +544,9 @@ public class FooLocalServiceClp implements FooLocalService {
 		}
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

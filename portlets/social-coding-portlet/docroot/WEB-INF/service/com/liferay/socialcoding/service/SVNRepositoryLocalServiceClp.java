@@ -446,5 +446,9 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		}
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

@@ -375,5 +375,9 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (com.liferay.socialcoding.model.JIRAAction)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

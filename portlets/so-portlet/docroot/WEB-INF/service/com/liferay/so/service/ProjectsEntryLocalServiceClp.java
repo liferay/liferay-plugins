@@ -571,5 +571,9 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		return (com.liferay.so.model.ProjectsEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

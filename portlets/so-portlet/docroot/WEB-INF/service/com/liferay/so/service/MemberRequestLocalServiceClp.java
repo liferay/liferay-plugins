@@ -772,5 +772,9 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		return (com.liferay.so.model.MemberRequest)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

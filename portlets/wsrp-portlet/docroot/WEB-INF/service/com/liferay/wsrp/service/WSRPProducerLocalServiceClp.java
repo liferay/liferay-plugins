@@ -521,5 +521,9 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		return (com.liferay.wsrp.model.WSRPProducer)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

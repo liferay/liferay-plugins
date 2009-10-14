@@ -34,5 +34,9 @@ public class FooServiceClp implements FooService {
 		_classLoaderProxy = classLoaderProxy;
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

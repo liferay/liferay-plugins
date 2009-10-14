@@ -404,5 +404,9 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (java.util.List<com.liferay.socialcoding.model.JIRAChangeItem>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

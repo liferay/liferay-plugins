@@ -48,7 +48,7 @@ public class ClpSerializer {
 		_classLoader = classLoader;
 	}
 
-	public static Object translateInput(BaseModel oldModel) {
+	public static Object translateInput(BaseModel<?> oldModel) {
 		Class<?> oldModelClass = oldModel.getClass();
 
 		String oldModelClassName = oldModelClass.getName();
@@ -301,8 +301,8 @@ public class ClpSerializer {
 	}
 
 	public static Object translateInput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateInput((BaseModel)obj);
+		if (obj instanceof BaseModel<?>) {
+			return translateInput((BaseModel<?>)obj);
 		}
 		else if (obj instanceof List) {
 			return translateInput((List<Object>)obj);
@@ -312,7 +312,7 @@ public class ClpSerializer {
 		}
 	}
 
-	public static Object translateOutput(BaseModel oldModel) {
+	public static Object translateOutput(BaseModel<?> oldModel) {
 		Class<?> oldModelClass = oldModel.getClass();
 
 		String oldModelClassName = oldModelClass.getName();
@@ -546,8 +546,8 @@ public class ClpSerializer {
 	}
 
 	public static Object translateOutput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateOutput((BaseModel)obj);
+		if (obj instanceof BaseModel<?>) {
+			return translateOutput((BaseModel<?>)obj);
 		}
 		else if (obj instanceof List) {
 			return translateOutput((List<Object>)obj);

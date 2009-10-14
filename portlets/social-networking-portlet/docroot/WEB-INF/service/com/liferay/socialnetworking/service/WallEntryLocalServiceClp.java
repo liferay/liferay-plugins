@@ -618,5 +618,9 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		return (com.liferay.socialnetworking.model.WallEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

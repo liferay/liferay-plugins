@@ -702,5 +702,9 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

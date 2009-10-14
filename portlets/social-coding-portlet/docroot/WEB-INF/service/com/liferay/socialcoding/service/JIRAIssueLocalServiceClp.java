@@ -1088,5 +1088,9 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		}
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

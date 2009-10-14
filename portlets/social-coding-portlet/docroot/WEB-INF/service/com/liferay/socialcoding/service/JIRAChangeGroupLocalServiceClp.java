@@ -378,5 +378,9 @@ public class JIRAChangeGroupLocalServiceClp
 		return (com.liferay.socialcoding.model.JIRAChangeGroup)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public ClassLoaderProxy getClassLoaderProxy() {
+		return _classLoaderProxy;
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }
