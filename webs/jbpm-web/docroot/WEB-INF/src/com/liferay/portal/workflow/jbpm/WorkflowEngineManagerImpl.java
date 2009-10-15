@@ -46,6 +46,10 @@ public class WorkflowEngineManagerImpl implements WorkflowEngineManager {
 		return "3.2.6 SP1";
 	}
 
+	public String getWorkflowEngineKey() {
+		return "jbpm";
+	}
+
 	public String getWorkflowEngineName() {
 		return "jBPM";
 	}
