@@ -55,7 +55,7 @@ public class WorkflowDefinitionManagerImpl
 
 	public void deployWorkflowDefinition(
 			WorkflowDefinition workflowDefinition, long callingUserId,
-			Map<String, Object> parameters)
+			boolean autoIncrementVersionNumber, Map<String, Object> parameters)
 		throws WorkflowException {
 
 		ResourceRetriever resourceRetriever = workflowDefinition.getJar();
