@@ -25,8 +25,8 @@ package com.liferay.portal.workflow.edoras.dao;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException;
+import com.liferay.portal.workflow.edoras.dao.model.WorkflowEntity;
 import com.liferay.portal.workflow.edoras.model.WorkflowDefinition;
-import com.liferay.portal.workflow.edoras.model.impl.WorkflowEntity;
 import com.liferay.portal.workflow.edoras.service.persistence.WorkflowDefinitionUtil;
 
 import java.util.List;
@@ -48,20 +48,24 @@ public class WorkflowDefinitionDao
 	}
 
 	public <T> void delete(T entity) {
-		long id = 0;
+		long primaryKey = 0;
 
 		try {
-			id = ((WorkflowDefinition)entity).getWorkflowDefinitionId();
+			WorkflowDefinition workflowDefinition = (WorkflowDefinition)entity;
 
-			WorkflowDefinitionUtil.remove(id);
+			primaryKey = workflowDefinition.getWorkflowDefinitionId();
+
+			WorkflowDefinitionUtil.remove(primaryKey);
 		}
 		catch (NoSuchWorkflowDefinitionException nswde) {
 			throw new ProcessException(
-				"Could not delete workflow definition with id " + id, nswde);
+				"Could not delete workflow definition with id " + primaryKey,
+				nswde);
 		}
 		catch (SystemException se) {
 			throw new ProcessException(
-				"Could not delete workflow definition with id " + id, se);
+				"Could not delete workflow definition with id " + primaryKey,
+				se);
 		}
 	}
 

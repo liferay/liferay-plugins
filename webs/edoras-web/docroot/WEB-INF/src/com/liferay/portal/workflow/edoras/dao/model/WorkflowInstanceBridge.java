@@ -20,10 +20,10 @@
  * SOFTWARE.
  */
 
-package com.liferay.portal.workflow.edoras.model.impl.wrapped;
+package com.liferay.portal.workflow.edoras.dao.model;
 
 import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
-import com.liferay.portal.workflow.edoras.model.impl.WorkflowEntity;
+import com.liferay.portal.workflow.edoras.model.impl.WorkflowInstanceImpl;
 
 import java.util.List;
 
@@ -35,28 +35,28 @@ import org.edorasframework.process.api.session.ProcessSession;
 import org.edorasframework.process.core.entity.DefaultProcessInstance;
 
 /**
- * <a href="WorkflowInstanceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowInstanceBridge.java.html"><b><i>View Source</i></b></a>
  *
  * @author Micha Kiener
  */
-public class WorkflowInstanceImpl
+public class WorkflowInstanceBridge
 	extends DefaultProcessInstance implements WorkflowEntity {
 
-	public WorkflowInstanceImpl() {
+	public WorkflowInstanceBridge() {
 	}
 
-	public WorkflowInstanceImpl(WorkflowInstance workflowInstance) {
+	public WorkflowInstanceBridge(WorkflowInstance workflowInstance) {
 		_workflowInstance = workflowInstance;
 	}
 
-	public WorkflowInstanceImpl(
-		WorkflowInstanceImpl parentWorkflowInstanceImpl,
+	public WorkflowInstanceBridge(
+		WorkflowInstanceBridge parentWorkflowInstanceBridge,
 		WorkflowInstance workflowInstance, boolean loadChildren) {
 
 		_workflowInstance = workflowInstance;
 
 		initializeFromReading(
-			workflowInstance, parentWorkflowInstanceImpl, loadChildren);
+			workflowInstance, parentWorkflowInstanceBridge, loadChildren);
 	}
 
 	public long getWorkflowDefinitionId() {
@@ -94,14 +94,15 @@ public class WorkflowInstanceImpl
 
 	public void initializeFromReading(
 		WorkflowInstance workflowInstance,
-		WorkflowInstanceImpl parentWorkflowInstanceImpl, boolean loadChildren) {
+		WorkflowInstanceBridge parentWorkflowInstanceBridge,
+		boolean loadChildren) {
 
 		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
 
 		setId(workflowInstance.getPrimaryKey());
 		setTenantId(workflowInstance.getCompanyId());
 
-		Class<?> setupId = WorkflowEntityTransferUtil.getSetupClassForName(
+		Class<?> setupId = WorkflowEntityBridgeUtil.getSetupClassForName(
 			workflowInstance.getSetupId());
 
 		setSetupId(setupId);
@@ -131,7 +132,7 @@ public class WorkflowInstanceImpl
 		setCreatedAt(workflowInstance.getCreateDate());
 		setModifiedAt(workflowInstance.getModifiedDate());
 		setFinishedAt(workflowInstance.getFinishedDated());
-		setParent(parentWorkflowInstanceImpl);
+		setParent(parentWorkflowInstanceBridge);
 		setCurrentElement(workflowInstance.getCurrentElementName());
 		setRelatedElement(workflowInstance.getRelatedElementName());
 		setFinished(workflowInstance.getFinished());
@@ -142,7 +143,7 @@ public class WorkflowInstanceImpl
 
 		if (loadChildren) {
 			List<ProcessInstance> processInstances = (List<ProcessInstance>)
-				WorkflowEntityTransferUtil.transferLoadedObjects(
+				WorkflowEntityBridgeUtil.transferLoadedObjects(
 					workflowInstance.getChildren(), this, loadChildren);
 
 			setChildren(processInstances);
@@ -155,9 +156,7 @@ public class WorkflowInstanceImpl
 
 	public WorkflowInstance unwrap() {
 		if (_workflowInstance == null) {
-			_workflowInstance =
-				new com.liferay.portal.workflow.edoras.model.impl.
-					WorkflowInstanceImpl();
+			_workflowInstance = new WorkflowInstanceImpl();
 		}
 
 		return _workflowInstance;

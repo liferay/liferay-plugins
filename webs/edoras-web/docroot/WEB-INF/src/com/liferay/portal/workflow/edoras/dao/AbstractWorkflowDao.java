@@ -24,7 +24,7 @@ package com.liferay.portal.workflow.edoras.dao;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.workflow.edoras.model.impl.WorkflowEntity;
+import com.liferay.portal.workflow.edoras.dao.model.WorkflowEntity;
 
 import org.edorasframework.process.api.ex.ProcessException;
 

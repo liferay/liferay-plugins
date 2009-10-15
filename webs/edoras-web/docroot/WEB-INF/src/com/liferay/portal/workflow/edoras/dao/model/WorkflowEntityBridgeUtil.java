@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.portal.workflow.edoras.model.impl.wrapped;
+package com.liferay.portal.workflow.edoras.dao.model;
 
 import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
 
@@ -33,12 +33,12 @@ import org.edorasframework.process.api.entity.ProcessInstance;
 import org.edorasframework.process.api.ex.ProcessException;
 
 /**
- * <a href="WorkflowEntityTransferUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowEntityBridgeUtil.java.html"><b><i>View Source</i></b></a>
  *
  *
  * @author Micha Kiener
  */
-public class WorkflowEntityTransferUtil {
+public class WorkflowEntityBridgeUtil {
 
 	public static Class<?> getSetupClassForName(String setupId) {
 		Class<?> setupClass = _setupClassMap.get(setupId);
@@ -46,7 +46,7 @@ public class WorkflowEntityTransferUtil {
 		if (setupClass == null) {
 			try {
 				ClassLoader classLoader =
-					WorkflowEntityTransferUtil.class.getClassLoader();
+					WorkflowEntityBridgeUtil.class.getClassLoader();
 
 				setupClass = classLoader.loadClass(setupId);
 
@@ -63,19 +63,22 @@ public class WorkflowEntityTransferUtil {
 
 	public static List<? extends ProcessInstance> transferLoadedObjects(
 		List<WorkflowInstance> workflowInstances,
-		WorkflowInstanceImpl workflowInstanceImpl, boolean loadChildren) {
+		WorkflowInstanceBridge workflowInstanceImpl, boolean loadChildren) {
 
-		List<ProcessInstance> list = new ArrayList<ProcessInstance>();
+		List<ProcessInstance> processInstances =
+			new ArrayList<ProcessInstance>();
+
 		if (workflowInstances == null) {
-			return list;
+			return processInstances;
 		}
 
-		for (WorkflowInstance inst : workflowInstances) {
-			list.add(new WorkflowInstanceImpl(
-				workflowInstanceImpl, inst, loadChildren));
+		for (WorkflowInstance workflowInstance : workflowInstances) {
+			processInstances.add(
+				new WorkflowInstanceBridge(
+					workflowInstanceImpl, workflowInstance, loadChildren));
 		}
 
-		return list;
+		return processInstances;
 	}
 
 	private static final Map<String, Class<?>> _setupClassMap =

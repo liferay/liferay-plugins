@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.portal.workflow.edoras.model.impl;
+package com.liferay.portal.workflow.edoras.dao.model;
 
 /**
  * <a href="WorkflowEntity.java.html"><b><i>View Source</i></b></a>

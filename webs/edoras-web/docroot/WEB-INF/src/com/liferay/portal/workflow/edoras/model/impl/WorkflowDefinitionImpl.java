@@ -23,6 +23,7 @@
 package com.liferay.portal.workflow.edoras.model.impl;
 
 import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portal.workflow.edoras.dao.model.WorkflowEntity;
 import com.liferay.portal.workflow.edoras.model.WorkflowDefinition;
 
 import org.edorasframework.process.api.service.MutableProcessModelDefinition;
