@@ -24,16 +24,26 @@
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
+<%@ page import="java.util.List" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.kernel.workflow.TaskInstanceManagerUtil" %>
 <%@ page import="com.liferay.portal.kernel.workflow.WorkflowDefinitionManagerUtil" %>
 <%@ page import="com.liferay.portal.kernel.workflow.WorkflowEngineManagerUtil" %>
 <%@ page import="com.liferay.portal.kernel.workflow.WorkflowInstanceManagerUtil" %>
+<%@ page import="com.liferay.portlet.workflow.test.WorkflowEngineManagerTestCase" %>
 
 <portlet:defineObjects />
 
 <h3>WorkflowEngineManager</h3>
+
+<p>
+	getWorkflowEngineKey()=<%= _assertTrue(Validator.isNotNull(WorkflowEngineManagerUtil.getWorkflowEngineKey())) %>
+</p>
+
+<p>
+	getWorkflowEngineName()=<%= _assertTrue(Validator.isNotNull(WorkflowEngineManagerUtil.getWorkflowEngineName())) %>
+</p>
 
 <p>
 	isSupportsWorkflowDefinitionVersioning()=<%= _assertTrue(WorkflowEngineManagerUtil.isSupportsWorkflowDefinitionVersioning()) %>
@@ -74,4 +84,15 @@ private static String _assertTrue(boolean value) {
 private static String _assertTrue(String value) {
 	return _assertTrue(GetterUtil.getBoolean(value));
 }
+%>
+
+<h3>WorkflowEngineManager</h3>
+
+<%
+	List<String> testResults = WorkflowEngineManagerTestCase.runTest();
+	for(String testResult : testResults) {
+%>
+<p><%= testResult %></p>
+<%
+	}
 %>
