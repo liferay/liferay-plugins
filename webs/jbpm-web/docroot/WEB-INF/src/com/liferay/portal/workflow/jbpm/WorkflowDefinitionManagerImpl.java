@@ -62,6 +62,11 @@ public class WorkflowDefinitionManagerImpl
 		String name = workflowDefinition.getWorkflowDefinitionName();
 		int version = workflowDefinition.getWorkflowDefinitionVersion();
 
+		if (!autoIncrementVersionNumber && version <= 0) {
+			throw new WorkflowException(
+				"Workflow definition version number has to be positive.");
+		}
+
 		ProcessDefinition processDefinition = null;
 
 		ZipInputStream processStream = new ZipInputStream(
@@ -87,14 +92,14 @@ public class WorkflowDefinitionManagerImpl
 			processDefinition.setName(name);
 		}
 
-		if (version > 0) {
+		if (!autoIncrementVersionNumber) {
 			processDefinition.setVersion(version);
 		}
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {
-			if (version > 0) {
+			if (!autoIncrementVersionNumber) {
 				GraphSession graphSession = jbpmContext.getGraphSession();
 
 				ProcessDefinition oldProcessDefinition =
