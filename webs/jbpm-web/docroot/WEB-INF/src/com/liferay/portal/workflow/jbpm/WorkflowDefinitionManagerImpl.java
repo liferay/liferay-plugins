@@ -62,9 +62,9 @@ public class WorkflowDefinitionManagerImpl
 		String name = workflowDefinition.getWorkflowDefinitionName();
 		int version = workflowDefinition.getWorkflowDefinitionVersion();
 
-		if (!autoIncrementVersionNumber && version <= 0) {
+		if (!autoIncrementVersionNumber && (version < 0)) {
 			throw new WorkflowException(
-				"Workflow definition version number has to be positive.");
+				"Workflow definition version number must be a positive number");
 		}
 
 		ProcessDefinition processDefinition = null;
