@@ -27,52 +27,56 @@ import com.liferay.portal.kernel.workflow.WorkflowEngineManagerUtil;
 import java.util.List;
 
 /**
- * <a href="WorkflowEngineManagerTestCase.java.html"><b><i>
- * View Source</i></b></a>
+ * <a href="WorkflowEngineManagerTestCase.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Shuyang Zhou
  */
 public class WorkflowEngineManagerTestCase extends BaseTestCase {
 
 	public static List<String> runTest() {
-		return new WorkflowEngineManagerTestCase().callTestMethods();
+		WorkflowEngineManagerTestCase workflowEngineManagerTestCase =
+			new WorkflowEngineManagerTestCase();
+
+		return workflowEngineManagerTestCase.callTestMethods();
 	}
 
 	public void testGetAdditionalInformation() throws Exception {
-		//Dummy test
 	}
 
 	public void testGetDelegate() throws Exception {
-		//Dummy test
 	}
 
 	public void testGetVersion() throws Exception {
 		String version = WorkflowEngineManagerUtil.getVersion();
+
 		if (version == null) {
-			throw new Exception("Unable to get workflow engine version.");
+			throw new Exception("Unable to get workflow engine version");
 		}
 	}
 
 	public void testGetWorkflowEngineKey() throws Exception {
 		String key = WorkflowEngineManagerUtil.getWorkflowEngineKey();
+
 		if (key == null) {
-			throw new Exception("Unable to get workflow engine key.");
+			throw new Exception("Unable to get workflow engine key");
 		}
+
 		if (!key.equals(key.toLowerCase())) {
 			throw new Exception(
-				"workflow engine key has capital character(s):" + key);
+				"Workflow engine key has capital letters " + key);
 		}
 	}
 
 	public void testGetWorkflowEngineName() throws Exception {
 		String name = WorkflowEngineManagerUtil.getWorkflowEngineName();
+
 		if (name == null) {
-			throw new Exception("Unable to get workflow engine name.");
+			throw new Exception("Unable to get workflow engine name");
 		}
 	}
 
 	public void testIsSupportsWorkflowDefinitionVersioning() throws Exception {
-		//Dummy test
 	}
 
 }

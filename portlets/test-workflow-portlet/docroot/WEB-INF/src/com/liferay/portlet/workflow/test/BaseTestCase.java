@@ -35,52 +35,64 @@ import java.util.List;
 public class BaseTestCase {
 
 	public static final String PASSED_KEY = "PASSED";
+
 	public static final String FAILED_KEY = "FAILED";
 
 	public List<String> callTestMethods() {
 		List<String> testResults = new ArrayList<String>();
 
 		Class<? extends BaseTestCase> clazz = getClass();
+
 		Method setUpMethod = null;
-		Method tearDownMethod = null;
+
 		try {
 			setUpMethod = clazz.getMethod("setUp");
 		}
-		catch (Exception ignore) {
+		catch (Exception e) {
 		}
+
+		Method tearDownMethod = null;
 
 		try {
 			tearDownMethod = clazz.getMethod("tearDown");
 		}
-		catch (Exception ignore) {
+		catch (Exception e) {
 		}
 
 		Method[] methods = clazz.getMethods();
+
 		for (Method method : methods) {
 			if (method.getName().startsWith("test")) {
-				StringBuilder result = new StringBuilder();
-				result.append(method.getDeclaringClass().getName());
-				result.append(".");
-				result.append(method.getName());
-				result.append("()=");
+				StringBuilder sb = new StringBuilder();
+
+				sb.append(method.getDeclaringClass().getName());
+				sb.append(".");
+				sb.append(method.getName());
+				sb.append("()=");
+
 				try {
 					if (setUpMethod != null) {
 						setUpMethod.invoke(this);
 					}
+
 					method.invoke(this);
+
 					if (tearDownMethod != null) {
 						tearDownMethod.invoke(this);
 					}
-					result.append(PASSED_KEY);
+
+					sb.append(PASSED_KEY);
 				}
 				catch (Exception e) {
-					result.append(FAILED_KEY);
-					result.append("-message-");
-					result.append(e.getMessage());
+					sb.append(FAILED_KEY);
+					sb.append("-message-");
+					sb.append(e.getMessage());
 				}
-				testResults.add(result.toString());
+
+				testResults.add(sb.toString());
 			}
 		}
+
 		return testResults;
 	}
 

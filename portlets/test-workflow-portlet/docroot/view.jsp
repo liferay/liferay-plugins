@@ -24,75 +24,41 @@
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
+<%@ page import="com.liferay.portal.kernel.json.JSONArray" %>
+<%@ page import="com.liferay.portal.kernel.json.JSONObject" %>
+<%@ page import="com.liferay.portlet.workflow.test.WorkflowTestSuite" %>
+
 <%@ page import="java.util.List" %>
-<%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.Validator" %>
-<%@ page import="com.liferay.portal.kernel.workflow.TaskInstanceManagerUtil" %>
-<%@ page import="com.liferay.portal.kernel.workflow.WorkflowDefinitionManagerUtil" %>
-<%@ page import="com.liferay.portal.kernel.workflow.WorkflowEngineManagerUtil" %>
-<%@ page import="com.liferay.portal.kernel.workflow.WorkflowInstanceManagerUtil" %>
-<%@ page import="com.liferay.portlet.workflow.test.WorkflowEngineManagerTestCase" %>
 
 <portlet:defineObjects />
 
-<h3>WorkflowEngineManager</h3>
+<%
+JSONArray testSuiteResults = WorkflowTestSuite.runTestSuite();
 
-<p>
-	getWorkflowEngineKey()=<%= _assertTrue(Validator.isNotNull(WorkflowEngineManagerUtil.getWorkflowEngineKey())) %>
-</p>
+for (int i = 0; i < testSuiteResults.length(); i++) {
+	JSONObject testSuiteResult = testSuiteResults.getJSONObject(i);
 
-<p>
-	getWorkflowEngineName()=<%= _assertTrue(Validator.isNotNull(WorkflowEngineManagerUtil.getWorkflowEngineName())) %>
-</p>
-
-<p>
-	isSupportsWorkflowDefinitionVersioning()=<%= _assertTrue(WorkflowEngineManagerUtil.isSupportsWorkflowDefinitionVersioning()) %>
-</p>
-
-<h3>WorkflowDefinitionManager</h3>
-
-<p>
-	getWorkflowDefinitionCount()=<%= _assertEquals(0, WorkflowDefinitionManagerUtil.getWorkflowDefinitionCount()) %>
-</p>
-
-<h3>WorkflowInstanceManagerUtil</h3>
-
-<h3>TaskInstanceManagerUtil</h3>
-
-<%!
-private static String _assertEquals(Object expected, Object actual) {
-	return _assertTrue(Validator.equals(expected, actual));
-}
-
-private static String _assertFalse(boolean value) {
-	return _assertTrue(!value);
-}
-
-private static String _assertFalse(String value) {
-	return _assertFalse(GetterUtil.getBoolean(value));
-}
-
-private static String _assertTrue(boolean value) {
-	if (value) {
-		return "PASSED";
-	}
-	else {
-		return "FAILED";
-	}
-}
-
-private static String _assertTrue(String value) {
-	return _assertTrue(GetterUtil.getBoolean(value));
-}
+	String testCaseName = testSuiteResult.getString("name");
 %>
 
-<h3>WorkflowEngineManager</h3>
+	<h3><%= testCaseName %></h3>
 
 <%
-	List<String> testResults = WorkflowEngineManagerTestCase.runTest();
-	for(String testResult : testResults) {
+	JSONArray testCaseResults = testSuiteResult.getJSONArray("testCaseResults");
+
+	for (int j = 0; i < testCaseResults.length(); j++) {
+		JSONObject testCaseResult = testCaseResults.getJSONObject(i);
+
+		String name = testCaseResult.getString("name");
+		String status = testCaseResult.getString("status");
+		String exceptionMessage = testCaseResult.getString("exceptionMessage");
+		String exceptionStackTrace = testCaseResult.getString("exceptionStackTrace");
 %>
-<p><%= testResult %></p>
+
+		<p><%= name %>=<%= status %></p>
+
 <%
 	}
+}
+}
 %>
