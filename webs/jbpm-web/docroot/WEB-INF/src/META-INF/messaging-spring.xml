@@ -17,9 +17,7 @@
 	</bean>
 	<bean id="messageListener.workflow_engine" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
 		<property name="manager">
-			<bean class="com.liferay.portal.workflow.jbpm.WorkflowEngineManagerImpl">
-				<property name="jbpmConfiguration" ref="jbpmConfiguration" />
-			</bean>
+			<bean class="com.liferay.portal.workflow.jbpm.WorkflowEngineManagerImpl" />
 		</property>
 	</bean>
 	<bean id="messageListener.workflow_instance" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
