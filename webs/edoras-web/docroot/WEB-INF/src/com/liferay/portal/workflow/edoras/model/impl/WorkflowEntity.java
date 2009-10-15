@@ -28,7 +28,11 @@ package com.liferay.portal.workflow.edoras.model.impl;
  * @author Micha Kiener
  */
 public interface WorkflowEntity {
+
 	public long getPrimaryKey();
+
 	public boolean setNew(boolean isNew);
+
 	public void setPrimaryKey(long primaryKey);
+
 }

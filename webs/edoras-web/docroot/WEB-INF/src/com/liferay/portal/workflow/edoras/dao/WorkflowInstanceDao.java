@@ -22,7 +22,6 @@
 
 package com.liferay.portal.workflow.edoras.dao;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
 import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
@@ -38,6 +37,7 @@ import org.edorasframework.process.api.entity.MutableProcessInstance;
 import org.edorasframework.process.api.entity.ProcessInstance;
 import org.edorasframework.process.api.ex.ProcessException;
 import org.edorasframework.process.api.session.ProcessSession;
+
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 
@@ -55,66 +55,73 @@ public class WorkflowInstanceDao
 	}
 
 	public <T> void delete(T entity) {
-		long id = 0;
+		long primaryKey = 0;
 
 		try {
-			id = ((WorkflowInstanceImpl) entity).getPrimaryKey();
+			WorkflowInstanceImpl workflowInstanceImpl =
+				(WorkflowInstanceImpl)entity;
 
-			WorkflowInstanceUtil.remove(id);
+			primaryKey = workflowInstanceImpl.getPrimaryKey();
+
+			WorkflowInstanceUtil.remove(primaryKey);
 		}
 		catch (NoSuchWorkflowInstanceException nswie) {
 			throw new ProcessException(
-				"Could not delete workflow instance with id " + id, nswie);
+				"Could not delete workflow instance with id " + primaryKey,
+				nswie);
 		}
 		catch (SystemException se) {
 			throw new ProcessException(
-				"Could not delete workflow instance with id " + id, se);
+				"Could not delete workflow instance with id " + primaryKey, se);
 		}
 	}
 
 	public <T> T find(Class<T> clazz, Object identity) {
-		return (T) loadProcessInstance((Long) identity);
+		return (T)loadProcessInstance((Long)identity);
 	}
 
 	public <T> T find(T entity, Object identity) {
-		return (T) loadProcessInstance((Long) identity);
+		return (T)loadProcessInstance((Long)identity);
 	}
 
 	public <T> T loadAttribute(
 		MutableProcessInstance instance, ObjectIdentity identity,
 		String attributeName) {
 
-		// TODO Auto-generated method stub
+		// TODO
+
 		return null;
 	}
 
 	public List<? extends MutableProcessInstance> loadOpenInstances() {
+		TransactionCallback transactionCallback = new TransactionCallback() {
 
-		return (List<? extends MutableProcessInstance>) getTxTemplateReadOnly().execute(
-			new TransactionCallback() {
-
-			public Object doInTransaction(TransactionStatus status) {
+			public Object doInTransaction(TransactionStatus transactionStatus) {
 				try {
-					List<WorkflowInstance> list =
+					List<WorkflowInstance> workflowInstances =
 						WorkflowInstanceUtil.findByFinished(false);
 
 					return WorkflowEntityTransferUtil.transferLoadedObjects(
-						list, null, true);
+						workflowInstances, null, true);
 				}
 				catch (SystemException se) {
 					throw new ProcessException(
 						"Could not load open workflow instances", se);
 				}
 			}
-		});
+
+		};
+
+		return (List<? extends MutableProcessInstance>)
+			getTxTemplateReadOnly().execute(transactionCallback);
 	}
 
 	public <T extends ProcessInstance> T loadProcessInstance(
 		final long primaryKey) {
 
-		return (T) getTxTemplateReadOnly().execute(new TransactionCallback() {
+		TransactionCallback transactionCallback = new TransactionCallback() {
 
-			public Object doInTransaction(TransactionStatus status) {
+			public Object doInTransaction(TransactionStatus transactionStatus) {
 				try {
 					WorkflowInstance instance =
 						WorkflowInstanceUtil.findByPrimaryKey(primaryKey);
@@ -126,21 +133,25 @@ public class WorkflowInstanceDao
 				}
 				catch (SystemException se) {
 					throw new ProcessException(
-						"Could not load workflow instances with id [" +
-							primaryKey + "]", se);
+						"Could not load workflow instances with id " +
+							primaryKey,
+						se);
 				}
 			}
-		});
+
+		};
+
+		return (T)getTxTemplateReadOnly().execute(transactionCallback);
 	}
 
 	public <T extends ProcessInstance> T loadProcessInstance(
 		String relationType, Long relationId) {
 
-		List<? extends MutableProcessInstance> list =
+		List<? extends MutableProcessInstance>processInstances =
 			loadProcessInstances(relationType, relationId);
 
-		if (list != null && list.size() > 0) {
-			return (T) list.get(0);
+		if ((processInstances != null) && !processInstances.isEmpty()) {
+			return (T)processInstances.get(0);
 		}
 
 		return null;
@@ -149,24 +160,28 @@ public class WorkflowInstanceDao
 	public List<? extends MutableProcessInstance> loadProcessInstances(
 		final String relationType, final Long relationId) {
 
-		return (List<? extends MutableProcessInstance>) getTxTemplateReadOnly().execute(
-			new TransactionCallback() {
+		TransactionCallback transactionCallback = new TransactionCallback() {
 
-			public Object doInTransaction(TransactionStatus arg0) {
+			public Object doInTransaction(TransactionStatus transactionStatus) {
 				try {
-					List<WorkflowInstance> list =
-						WorkflowInstanceUtil.findByC_C(relationType, relationId);
+					List<WorkflowInstance> workflowInstances =
+						WorkflowInstanceUtil.findByC_C(
+							relationType, relationId);
 
 					return WorkflowEntityTransferUtil.transferLoadedObjects(
-						list, null, true);
+						workflowInstances, null, true);
 				}
 				catch (SystemException se) {
 					throw new ProcessException(
-						"Could not load workflow instances based on relation [" +
-							relationType + " / " + relationId + "]", se);
+						"Could not load workflow instances with type " +
+							relationType + " and id " + relationId,
+						se);
 				}
 			}
-		});
+		};
+
+		return (List<? extends MutableProcessInstance>)
+			getTxTemplateReadOnly().execute(transactionCallback);
 	}
 
 	public <T> T merge(T entity) {
@@ -174,9 +189,11 @@ public class WorkflowInstanceDao
 	}
 
 	public ObjectIdentity persistAttribute(
-		Object attribute, MutableProcessInstance instance, String attributeName) {
+		Object attribute, MutableProcessInstance instance,
+		String attributeName) {
 
-		// TODO Auto-generated method stub
+		// TODO
+
 		return null;
 	}
 
@@ -187,27 +204,17 @@ public class WorkflowInstanceDao
 	}
 
 	public <T> void save(T entity) {
-		WorkflowInstanceImpl workflowInstance = (WorkflowInstanceImpl) entity;
+		WorkflowInstanceImpl workflowInstanceImpl= (WorkflowInstanceImpl)entity;
 
-		if (super.checkAndInitializeNewInstance(workflowInstance)) {
-			workflowInstance.initializeForInsert();
+		if (super.checkAndInitializeNewInstance(workflowInstanceImpl)) {
+			workflowInstanceImpl.initializeForInsert();
 		}
 		else {
-			workflowInstance.initializeForUpdate();
+			workflowInstanceImpl.initializeForUpdate();
 		}
 
 		try {
-			WorkflowInstance inst =
-				new com.liferay.portal.workflow.edoras.model.impl.WorkflowInstanceImpl();
-			inst.setNew(true);
-			inst.setPrimaryKey(CounterLocalServiceUtil.increment());
-			
-			WorkflowInstance inst2 = workflowInstance.unwrap();
-			// inst.setAttributes(inst2.getAttributes());
-			// inst.setSetupId(inst2.getSetupId());
-			// inst.setNestedWorkflowDefinitionIds("test");
-
-			WorkflowInstanceUtil.update(inst2);// workflowInstance.unwrap());
+			WorkflowInstanceUtil.update(workflowInstanceImpl.unwrap());
 		}
 		catch (SystemException se) {
 			throw new ProcessException(
@@ -217,29 +224,30 @@ public class WorkflowInstanceDao
 
 	public List<? extends MutableProcessInstance> searchChildInstances(
 		MutableProcessInstance parentInstance, String cause, boolean onlyOpen) {
-		List<WorkflowInstance> list = null;
+
+		List<WorkflowInstance> workflowInstances = null;
 
 		try {
 			if (onlyOpen) {
-				list =
-					WorkflowInstanceUtil.findByC_P_R_F(
-						parentInstance.getTenantId(),
-						parentInstance.getPrimaryKey(), cause, false);
+				workflowInstances = WorkflowInstanceUtil.findByC_P_R_F(
+					parentInstance.getTenantId(),
+					parentInstance.getPrimaryKey(), cause, false);
 			}
 			else {
-				list =
-					WorkflowInstanceUtil.findByC_P_R(
-						parentInstance.getTenantId(),
-						parentInstance.getPrimaryKey(), cause);
+				workflowInstances = WorkflowInstanceUtil.findByC_P_R(
+					parentInstance.getTenantId(),
+					parentInstance.getPrimaryKey(), cause);
 			}
 
-			return (List<? extends MutableProcessInstance>) WorkflowEntityTransferUtil.transferLoadedObjects(
-				list, (WorkflowInstanceImpl) parentInstance, false);
+			return (List<? extends MutableProcessInstance>)
+				WorkflowEntityTransferUtil.transferLoadedObjects(
+					workflowInstances, (WorkflowInstanceImpl)parentInstance,
+					false);
 		}
 		catch (SystemException se) {
 			throw new ProcessException(
-				"Could not load children for workflow instance with id [" +
-					parentInstance.getPrimaryKey() + "]", se);
+				"Could not load children for workflow instance with id " +
+					parentInstance.getPrimaryKey(), se);
 		}
 	}
 

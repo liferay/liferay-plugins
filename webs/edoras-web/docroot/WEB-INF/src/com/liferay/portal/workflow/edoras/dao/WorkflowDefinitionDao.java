@@ -41,8 +41,7 @@ import org.edorasframework.process.api.service.ProcessServiceDao;
  * @author Micha Kiener
  */
 public class WorkflowDefinitionDao
-	extends AbstractWorkflowDao<WorkflowEntity>
-	implements ProcessServiceDao {
+	extends AbstractWorkflowDao<WorkflowEntity> implements ProcessServiceDao {
 
 	public void clearCache() {
 		WorkflowDefinitionUtil.clearCache();
@@ -137,7 +136,8 @@ public class WorkflowDefinitionDao
 	}
 
 	public <T> void save(T entity) {
-		super.checkAndInitializeNewInstance((WorkflowEntity) entity);
+		super.checkAndInitializeNewInstance((WorkflowEntity)entity);
+
 		try {
 			WorkflowDefinitionUtil.update((WorkflowDefinition) entity);
 		}

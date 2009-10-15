@@ -28,7 +28,7 @@ package com.liferay.portal.workflow.edoras.model;
  * @author Brian Wing Shun Chan
  */
 public interface WorkflowInstance extends WorkflowInstanceModel {
-	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getParent();
-
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> getChildren();
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getParent();
 }

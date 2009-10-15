@@ -37,8 +37,7 @@ import org.edorasframework.process.api.ex.ProcessException;
  * @author Brian Wing Shun Chan
  */
 public class WorkflowInstanceImpl
-	extends WorkflowInstanceModelImpl
-	implements WorkflowInstance {
+	extends WorkflowInstanceModelImpl implements WorkflowInstance {
 
 	public WorkflowInstanceImpl() {
 	}
@@ -48,10 +47,11 @@ public class WorkflowInstanceImpl
 			return WorkflowInstanceUtil.findByParentWorkflowInstanceId(
 				getPrimaryKey());
 		}
-		catch (SystemException e) {
+		catch (SystemException se) {
 			throw new ProcessException(
-				"Could not lazily fetch children for workflow instance with id [" +
-					getPrimaryKey() + "]", e);
+				"Could not fetch children for workflow instance with id " +
+					getPrimaryKey(),
+				se);
 		}
 	}
 
@@ -66,8 +66,8 @@ public class WorkflowInstanceImpl
 		}
 		catch (Exception e) {
 			throw new ProcessException(
-				"Could not lazily fetch parent workflow instance with id [" +
-					getParentWorkflowInstanceId() + "]");
+				"Could not fetch parent workflow instance with id " +
+					getParentWorkflowInstanceId());
 		}
 	}
 

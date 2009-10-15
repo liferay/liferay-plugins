@@ -289,12 +289,12 @@ public class WorkflowInstanceWrapper implements WorkflowInstance {
 		return _workflowInstance.toXmlString();
 	}
 
-	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getParent() {
-		return _workflowInstance.getParent();
-	}
-
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> getChildren() {
 		return _workflowInstance.getChildren();
+	}
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getParent() {
+		return _workflowInstance.getParent();
 	}
 
 	public WorkflowInstance getWrappedWorkflowInstance() {

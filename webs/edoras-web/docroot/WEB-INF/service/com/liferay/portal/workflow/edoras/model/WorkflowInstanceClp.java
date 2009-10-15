@@ -242,11 +242,11 @@ public class WorkflowInstanceClp extends BaseModelImpl<WorkflowInstance>
 		_active = active;
 	}
 
-	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getParent() {
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> getChildren() {
 		throw new UnsupportedOperationException();
 	}
 
-	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> getChildren() {
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getParent() {
 		throw new UnsupportedOperationException();
 	}
 

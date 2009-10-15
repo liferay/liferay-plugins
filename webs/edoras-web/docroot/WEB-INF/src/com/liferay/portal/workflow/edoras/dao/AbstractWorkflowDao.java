@@ -37,11 +37,30 @@ import org.springframework.transaction.support.TransactionOperations;
  */
 public class AbstractWorkflowDao<T extends WorkflowEntity> {
 
+	public TransactionOperations getTxTemplate() {
+		return _txTemplate;
+	}
+
+	public TransactionOperations getTxTemplateReadOnly() {
+		return _txTemplateReadOnly;
+	}
+
+	public void setTxTemplate(TransactionOperations txTemplate) {
+		_txTemplate = txTemplate;
+	}
+
+	public void setTxTemplateReadOnly(
+		TransactionOperations txTemplateReadOnly) {
+
+		_txTemplateReadOnly = txTemplateReadOnly;
+	}
+
 	protected boolean checkAndInitializeNewInstance(T entity) {
 		if (entity.getPrimaryKey() == 0) {
 			try {
-				entity.setPrimaryKey(CounterLocalServiceUtil.increment());
 				entity.setNew(true);
+				entity.setPrimaryKey(CounterLocalServiceUtil.increment());
+
 				return true;
 			}
 			catch (SystemException se) {
@@ -52,27 +71,12 @@ public class AbstractWorkflowDao<T extends WorkflowEntity> {
 		}
 		else {
 			entity.setNew(false);
+
 			return false;
 		}
 	}
 
-	public TransactionOperations getTxTemplate() {
-		return _txTemplate;
-	}
-
-	public TransactionOperations getTxTemplateReadOnly() {
-		return _txTemplateReadOnly;
-	}
-
-	public void setTxTemplate(TransactionOperations _txTemplate) {
-		this._txTemplate = _txTemplate;
-	}
-
-	public void setTxTemplateReadOnly(TransactionOperations
-		_txTemplateReadOnly) {
-		this._txTemplateReadOnly = _txTemplateReadOnly;
-	}
-
 	private TransactionOperations _txTemplate;
 	private TransactionOperations _txTemplateReadOnly;
+
 }
