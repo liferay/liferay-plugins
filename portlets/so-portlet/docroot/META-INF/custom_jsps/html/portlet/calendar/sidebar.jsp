@@ -65,7 +65,7 @@ tabs1URL.setParameter("year", String.valueOf(selYear));
 	</ul>
 	<ul class="disc">
 		<li>
-			<a href="<%= redirect.toString() %>"><liferay-ui:message key="back" /></a>
+			<a href="<%= PortalUtil.escapeRedirect(redirect) %>"><liferay-ui:message key="back" /></a>
 		</li>
 	</ul>
 </div>
