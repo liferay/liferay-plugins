@@ -26,6 +26,7 @@ import com.liferay.portal.SystemException;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException;
 import com.liferay.portal.workflow.edoras.model.WorkflowDefinition;
+import com.liferay.portal.workflow.edoras.model.impl.WorkflowEntity;
 import com.liferay.portal.workflow.edoras.service.persistence.WorkflowDefinitionUtil;
 
 import java.util.List;
@@ -39,9 +40,12 @@ import org.edorasframework.process.api.service.ProcessServiceDao;
  *
  * @author Micha Kiener
  */
-public class WorkflowDefinitionDao implements ProcessServiceDao {
+public class WorkflowDefinitionDao
+	extends AbstractWorkflowDao<WorkflowEntity>
+	implements ProcessServiceDao {
 
 	public void clearCache() {
+		WorkflowDefinitionUtil.clearCache();
 	}
 
 	public <T> void delete(T entity) {
@@ -69,8 +73,7 @@ public class WorkflowDefinitionDao implements ProcessServiceDao {
 			return (T)WorkflowDefinitionUtil.findByPrimaryKey(id);
 		}
 		catch (NoSuchWorkflowDefinitionException nswde) {
-			throw new ProcessException(
-				"Could not load workflow definition with id " + id, nswde);
+			return null;
 		}
 		catch (SystemException se) {
 			throw new ProcessException(
@@ -96,10 +99,7 @@ public class WorkflowDefinitionDao implements ProcessServiceDao {
 				companyId, modelId, modelVersion);
 		}
 		catch (NoSuchWorkflowDefinitionException snwde) {
-			throw new ProcessException(
-				"Could not find workflow definition with id " + modelId +
-					" and version " + modelVersion,
-				snwde);
+			return null;
 		}
 		catch (SystemException se) {
 			throw new ProcessException(
@@ -137,8 +137,9 @@ public class WorkflowDefinitionDao implements ProcessServiceDao {
 	}
 
 	public <T> void save(T entity) {
+		super.checkAndInitializeNewInstance((WorkflowEntity) entity);
 		try {
-			WorkflowDefinitionUtil.update((WorkflowDefinition)entity);
+			WorkflowDefinitionUtil.update((WorkflowDefinition) entity);
 		}
 		catch (SystemException se) {
 			throw new ProcessException(

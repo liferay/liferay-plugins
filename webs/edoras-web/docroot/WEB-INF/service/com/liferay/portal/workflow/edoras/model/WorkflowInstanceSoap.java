@@ -47,8 +47,8 @@ public class WorkflowInstanceSoap implements Serializable {
 		soapModel.setFriendlyId(model.getFriendlyId());
 		soapModel.setWorkflowDefinitionId(model.getWorkflowDefinitionId());
 		soapModel.setParentWorkflowInstanceId(model.getParentWorkflowInstanceId());
-		soapModel.setClassName(model.getClassName());
-		soapModel.setClassPK(model.getClassPK());
+		soapModel.setRelationClassName(model.getRelationClassName());
+		soapModel.setRelationClassPK(model.getRelationClassPK());
 		soapModel.setAttributes(model.getAttributes());
 		soapModel.setNestedWorkflowDefinitionIds(model.getNestedWorkflowDefinitionIds());
 		soapModel.setNestedWorkflowDefinitionVersions(model.getNestedWorkflowDefinitionVersions());
@@ -192,20 +192,20 @@ public class WorkflowInstanceSoap implements Serializable {
 		_parentWorkflowInstanceId = parentWorkflowInstanceId;
 	}
 
-	public String getClassName() {
-		return _className;
+	public String getRelationClassName() {
+		return _relationClassName;
 	}
 
-	public void setClassName(String className) {
-		_className = className;
+	public void setRelationClassName(String relationClassName) {
+		_relationClassName = relationClassName;
 	}
 
-	public long getClassPK() {
-		return _classPK;
+	public long getRelationClassPK() {
+		return _relationClassPK;
 	}
 
-	public void setClassPK(long classPK) {
-		_classPK = classPK;
+	public void setRelationClassPK(long relationClassPK) {
+		_relationClassPK = relationClassPK;
 	}
 
 	public String getAttributes() {
@@ -300,8 +300,8 @@ public class WorkflowInstanceSoap implements Serializable {
 	private String _friendlyId;
 	private long _workflowDefinitionId;
 	private long _parentWorkflowInstanceId;
-	private String _className;
-	private long _classPK;
+	private String _relationClassName;
+	private long _relationClassPK;
 	private String _attributes;
 	private String _nestedWorkflowDefinitionIds;
 	private String _nestedWorkflowDefinitionVersions;

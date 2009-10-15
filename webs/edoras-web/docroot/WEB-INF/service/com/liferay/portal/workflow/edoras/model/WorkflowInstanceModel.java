@@ -86,13 +86,13 @@ public interface WorkflowInstanceModel extends BaseModel<WorkflowInstance> {
 
 	public void setParentWorkflowInstanceId(long parentWorkflowInstanceId);
 
-	public String getClassName();
+	public String getRelationClassName();
 
-	public void setClassName(String className);
+	public void setRelationClassName(String relationClassName);
 
-	public long getClassPK();
+	public long getRelationClassPK();
 
-	public void setClassPK(long classPK);
+	public void setRelationClassPK(long relationClassPK);
 
 	public String getAttributes();
 

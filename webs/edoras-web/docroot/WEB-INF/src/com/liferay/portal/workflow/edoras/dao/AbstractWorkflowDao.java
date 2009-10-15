@@ -20,55 +20,59 @@
  * SOFTWARE.
  */
 
-package com.liferay.portal.workflow.edoras.model.impl;
+package com.liferay.portal.workflow.edoras.dao;
 
+import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
-import com.liferay.portal.workflow.edoras.service.persistence.WorkflowInstanceUtil;
-
-import java.util.List;
+import com.liferay.portal.workflow.edoras.model.impl.WorkflowEntity;
 
 import org.edorasframework.process.api.ex.ProcessException;
 
+import org.springframework.transaction.support.TransactionOperations;
+
 /**
- * <a href="WorkflowInstanceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="AbstractWorkflowDao.java.html"><b><i>View Source</i></b></a>
  *
  * @author Micha Kiener
- * @author Brian Wing Shun Chan
  */
-public class WorkflowInstanceImpl
-	extends WorkflowInstanceModelImpl
-	implements WorkflowInstance {
+public class AbstractWorkflowDao<T extends WorkflowEntity> {
 
-	public WorkflowInstanceImpl() {
-	}
-
-	public List<WorkflowInstance> getChildren() {
-		try {
-			return WorkflowInstanceUtil.findByParentWorkflowInstanceId(
-				getPrimaryKey());
+	protected boolean checkAndInitializeNewInstance(T entity) {
+		if (entity.getPrimaryKey() == 0) {
+			try {
+				entity.setPrimaryKey(CounterLocalServiceUtil.increment());
+				entity.setNew(true);
+				return true;
+			}
+			catch (SystemException se) {
+				throw new ProcessException(
+					"Could not obtain a new primary key from counter service",
+					se);
+			}
 		}
-		catch (SystemException e) {
-			throw new ProcessException(
-				"Could not lazily fetch children for workflow instance with id [" +
-					getPrimaryKey() + "]", e);
-		}
-	}
-
-	public WorkflowInstance getParent() {
-		if (getParentWorkflowInstanceId() == 0) {
-			return null;
-		}
-
-		try {
-			return WorkflowInstanceUtil.findByPrimaryKey(
-				getParentWorkflowInstanceId());
-		}
-		catch (Exception e) {
-			throw new ProcessException(
-				"Could not lazily fetch parent workflow instance with id [" +
-					getParentWorkflowInstanceId() + "]");
+		else {
+			entity.setNew(false);
+			return false;
 		}
 	}
 
+	public TransactionOperations getTxTemplate() {
+		return _txTemplate;
+	}
+
+	public TransactionOperations getTxTemplateReadOnly() {
+		return _txTemplateReadOnly;
+	}
+
+	public void setTxTemplate(TransactionOperations _txTemplate) {
+		this._txTemplate = _txTemplate;
+	}
+
+	public void setTxTemplateReadOnly(TransactionOperations
+		_txTemplateReadOnly) {
+		this._txTemplateReadOnly = _txTemplateReadOnly;
+	}
+
+	private TransactionOperations _txTemplate;
+	private TransactionOperations _txTemplateReadOnly;
 }

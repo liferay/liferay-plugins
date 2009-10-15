@@ -130,6 +130,65 @@ public interface WorkflowInstancePersistence extends BasePersistence {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
 
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByParentWorkflowInstanceId(
+		long parentWorkflowInstanceId)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByParentWorkflowInstanceId(
+		long parentWorkflowInstanceId, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByParentWorkflowInstanceId(
+		long parentWorkflowInstanceId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance findByParentWorkflowInstanceId_First(
+		long parentWorkflowInstanceId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance findByParentWorkflowInstanceId_Last(
+		long parentWorkflowInstanceId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance[] findByParentWorkflowInstanceId_PrevAndNext(
+		long workflowInstanceId, long parentWorkflowInstanceId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByFinished(
+		boolean finished) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByFinished(
+		boolean finished, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByFinished(
+		boolean finished, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance findByFinished_First(
+		boolean finished, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance findByFinished_Last(
+		boolean finished, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance[] findByFinished_PrevAndNext(
+		long workflowInstanceId, boolean finished,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
+
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByC_P(
 		long companyId, long parentWorkflowInstanceId)
 		throws com.liferay.portal.SystemException;
@@ -206,32 +265,107 @@ public interface WorkflowInstancePersistence extends BasePersistence {
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
 
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByC_C(
-		java.lang.String className, long classPK)
+		java.lang.String relationClassName, long relationClassPK)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByC_C(
-		java.lang.String className, long classPK, int start, int end)
-		throws com.liferay.portal.SystemException;
+		java.lang.String relationClassName, long relationClassPK, int start,
+		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByC_C(
-		java.lang.String className, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		java.lang.String relationClassName, long relationClassPK, int start,
+		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowInstance findByC_C_First(
-		java.lang.String className, long classPK,
+		java.lang.String relationClassName, long relationClassPK,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowInstance findByC_C_Last(
-		java.lang.String className, long classPK,
+		java.lang.String relationClassName, long relationClassPK,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowInstance[] findByC_C_PrevAndNext(
-		long workflowInstanceId, java.lang.String className, long classPK,
+		long workflowInstanceId, java.lang.String relationClassName,
+		long relationClassPK,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByC_P_R(
+		long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByC_P_R(
+		long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByC_P_R(
+		long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance findByC_P_R_First(
+		long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance findByC_P_R_Last(
+		long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance[] findByC_P_R_PrevAndNext(
+		long workflowInstanceId, long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByC_P_R_F(
+		long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName, boolean finished)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByC_P_R_F(
+		long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName, boolean finished, int start,
+		int end) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByC_P_R_F(
+		long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName, boolean finished, int start,
+		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance findByC_P_R_F_First(
+		long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName, boolean finished,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance findByC_P_R_F_Last(
+		long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName, boolean finished,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance[] findByC_P_R_F_PrevAndNext(
+		long workflowInstanceId, long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName, boolean finished,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
@@ -260,6 +394,12 @@ public interface WorkflowInstancePersistence extends BasePersistence {
 	public void removeByWorkflowDefinitionId(long workflowDefinitionId)
 		throws com.liferay.portal.SystemException;
 
+	public void removeByParentWorkflowInstanceId(long parentWorkflowInstanceId)
+		throws com.liferay.portal.SystemException;
+
+	public void removeByFinished(boolean finished)
+		throws com.liferay.portal.SystemException;
+
 	public void removeByC_P(long companyId, long parentWorkflowInstanceId)
 		throws com.liferay.portal.SystemException;
 
@@ -270,7 +410,15 @@ public interface WorkflowInstancePersistence extends BasePersistence {
 	public void removeByC_F(long companyId, boolean finished)
 		throws com.liferay.portal.SystemException;
 
-	public void removeByC_C(java.lang.String className, long classPK)
+	public void removeByC_C(java.lang.String relationClassName,
+		long relationClassPK) throws com.liferay.portal.SystemException;
+
+	public void removeByC_P_R(long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName)
+		throws com.liferay.portal.SystemException;
+
+	public void removeByC_P_R_F(long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName, boolean finished)
 		throws com.liferay.portal.SystemException;
 
 	public void removeAll() throws com.liferay.portal.SystemException;
@@ -279,6 +427,12 @@ public interface WorkflowInstancePersistence extends BasePersistence {
 		throws com.liferay.portal.SystemException;
 
 	public int countByWorkflowDefinitionId(long workflowDefinitionId)
+		throws com.liferay.portal.SystemException;
+
+	public int countByParentWorkflowInstanceId(long parentWorkflowInstanceId)
+		throws com.liferay.portal.SystemException;
+
+	public int countByFinished(boolean finished)
 		throws com.liferay.portal.SystemException;
 
 	public int countByC_P(long companyId, long parentWorkflowInstanceId)
@@ -290,7 +444,15 @@ public interface WorkflowInstancePersistence extends BasePersistence {
 	public int countByC_F(long companyId, boolean finished)
 		throws com.liferay.portal.SystemException;
 
-	public int countByC_C(java.lang.String className, long classPK)
+	public int countByC_C(java.lang.String relationClassName,
+		long relationClassPK) throws com.liferay.portal.SystemException;
+
+	public int countByC_P_R(long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName)
+		throws com.liferay.portal.SystemException;
+
+	public int countByC_P_R_F(long companyId, long parentWorkflowInstanceId,
+		java.lang.String relatedElementName, boolean finished)
 		throws com.liferay.portal.SystemException;
 
 	public int countAll() throws com.liferay.portal.SystemException;

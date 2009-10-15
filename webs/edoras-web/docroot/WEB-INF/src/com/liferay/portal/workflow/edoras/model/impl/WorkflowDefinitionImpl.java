@@ -35,7 +35,8 @@ import org.edorasframework.process.api.service.MutableProcessModelDefinition;
  */
 public class WorkflowDefinitionImpl
 	extends WorkflowDefinitionModelImpl
-	implements WorkflowDefinition, MutableProcessModelDefinition {
+	implements WorkflowDefinition, MutableProcessModelDefinition,
+	WorkflowEntity {
 
 	public WorkflowDefinitionImpl() {
 	}

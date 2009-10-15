@@ -20,55 +20,63 @@
  * SOFTWARE.
  */
 
-package com.liferay.portal.workflow.edoras.model.impl;
+package com.liferay.portal.workflow.edoras.model.impl.wrapped;
 
-import com.liferay.portal.SystemException;
 import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
-import com.liferay.portal.workflow.edoras.service.persistence.WorkflowInstanceUtil;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.edorasframework.process.api.entity.ProcessInstance;
 import org.edorasframework.process.api.ex.ProcessException;
 
 /**
- * <a href="WorkflowInstanceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowEntityTransferUtil.java.html"><b><i>View Source</i></b></a>
+ *
  *
  * @author Micha Kiener
- * @author Brian Wing Shun Chan
  */
-public class WorkflowInstanceImpl
-	extends WorkflowInstanceModelImpl
-	implements WorkflowInstance {
+public class WorkflowEntityTransferUtil {
 
-	public WorkflowInstanceImpl() {
+	public static Class<?> getSetupClassForName(String setupId) {
+
+		Class<?> setupClass = _setupClassMap.get(setupId);
+		if (setupClass == null) {
+			try {
+				setupClass =
+					WorkflowEntityTransferUtil.class.getClassLoader().loadClass(
+						setupId);
+				_setupClassMap.put(setupId, setupClass);
+			}
+			catch (ClassNotFoundException e) {
+				throw new ProcessException("Could not load setup id class [" +
+					setupId + "]", e);
+			}
+		}
+
+		return setupClass;
 	}
 
-	public List<WorkflowInstance> getChildren() {
-		try {
-			return WorkflowInstanceUtil.findByParentWorkflowInstanceId(
-				getPrimaryKey());
+	public static List<? extends ProcessInstance> transferLoadedObjects(
+
+		List<WorkflowInstance> instanceList,
+		WorkflowInstanceImpl parentInstance, boolean loadChildren) {
+
+		List<ProcessInstance> list = new ArrayList<ProcessInstance>();
+		if (instanceList == null) {
+			return list;
 		}
-		catch (SystemException e) {
-			throw new ProcessException(
-				"Could not lazily fetch children for workflow instance with id [" +
-					getPrimaryKey() + "]", e);
+
+		for (WorkflowInstance inst : instanceList) {
+			list.add(new WorkflowInstanceImpl(
+				parentInstance, inst, loadChildren));
 		}
+
+		return list;
 	}
 
-	public WorkflowInstance getParent() {
-		if (getParentWorkflowInstanceId() == 0) {
-			return null;
-		}
-
-		try {
-			return WorkflowInstanceUtil.findByPrimaryKey(
-				getParentWorkflowInstanceId());
-		}
-		catch (Exception e) {
-			throw new ProcessException(
-				"Could not lazily fetch parent workflow instance with id [" +
-					getParentWorkflowInstanceId() + "]");
-		}
-	}
-
+	private static final Map<String, Class<?>> _setupClassMap =
+		new HashMap<String, Class<?>>();
 }

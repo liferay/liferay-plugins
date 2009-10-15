@@ -63,8 +63,8 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 			{ "friendlyId", new Integer(Types.VARCHAR) },
 			{ "workflowDefinitionId", new Integer(Types.BIGINT) },
 			{ "parentWorkflowInstanceId", new Integer(Types.BIGINT) },
-			{ "className", new Integer(Types.VARCHAR) },
-			{ "classPK", new Integer(Types.BIGINT) },
+			{ "relationClassName", new Integer(Types.VARCHAR) },
+			{ "relationClassPK", new Integer(Types.BIGINT) },
 			{ "attributes", new Integer(Types.VARCHAR) },
 			{ "nestedWorkflowDefinitionIds", new Integer(Types.VARCHAR) },
 			{ "nestedWorkflowDefinitionVersions", new Integer(Types.VARCHAR) },
@@ -75,7 +75,7 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 			{ "finishedDated", new Integer(Types.TIMESTAMP) },
 			{ "active_", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Edoras_WorkflowInstance (workflowInstanceId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,setupId VARCHAR(75) null,friendlyId VARCHAR(75) null,workflowDefinitionId LONG,parentWorkflowInstanceId LONG,className VARCHAR(75) null,classPK LONG,attributes VARCHAR(75) null,nestedWorkflowDefinitionIds VARCHAR(75) null,nestedWorkflowDefinitionVersions VARCHAR(75) null,nestedRelatedElements VARCHAR(75) null,currentElementName VARCHAR(75) null,relatedElementName VARCHAR(75) null,finished BOOLEAN,finishedDated DATE null,active_ BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table Edoras_WorkflowInstance (workflowInstanceId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,setupId VARCHAR(75) null,friendlyId VARCHAR(75) null,workflowDefinitionId LONG,parentWorkflowInstanceId LONG,relationClassName VARCHAR(75) null,relationClassPK LONG,attributes VARCHAR(75) null,nestedWorkflowDefinitionIds VARCHAR(75) null,nestedWorkflowDefinitionVersions VARCHAR(75) null,nestedRelatedElements VARCHAR(75) null,currentElementName VARCHAR(75) null,relatedElementName VARCHAR(75) null,finished BOOLEAN,finishedDated DATE null,active_ BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Edoras_WorkflowInstance";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -100,8 +100,8 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 		model.setFriendlyId(soapModel.getFriendlyId());
 		model.setWorkflowDefinitionId(soapModel.getWorkflowDefinitionId());
 		model.setParentWorkflowInstanceId(soapModel.getParentWorkflowInstanceId());
-		model.setClassName(soapModel.getClassName());
-		model.setClassPK(soapModel.getClassPK());
+		model.setRelationClassName(soapModel.getRelationClassName());
+		model.setRelationClassPK(soapModel.getRelationClassPK());
 		model.setAttributes(soapModel.getAttributes());
 		model.setNestedWorkflowDefinitionIds(soapModel.getNestedWorkflowDefinitionIds());
 		model.setNestedWorkflowDefinitionVersions(soapModel.getNestedWorkflowDefinitionVersions());
@@ -250,20 +250,20 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 		_parentWorkflowInstanceId = parentWorkflowInstanceId;
 	}
 
-	public String getClassName() {
-		return GetterUtil.getString(_className);
+	public String getRelationClassName() {
+		return GetterUtil.getString(_relationClassName);
 	}
 
-	public void setClassName(String className) {
-		_className = className;
+	public void setRelationClassName(String relationClassName) {
+		_relationClassName = relationClassName;
 	}
 
-	public long getClassPK() {
-		return _classPK;
+	public long getRelationClassPK() {
+		return _relationClassPK;
 	}
 
-	public void setClassPK(long classPK) {
-		_classPK = classPK;
+	public void setRelationClassPK(long relationClassPK) {
+		_relationClassPK = relationClassPK;
 	}
 
 	public String getAttributes() {
@@ -368,8 +368,8 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 			model.setFriendlyId(HtmlUtil.escape(getFriendlyId()));
 			model.setWorkflowDefinitionId(getWorkflowDefinitionId());
 			model.setParentWorkflowInstanceId(getParentWorkflowInstanceId());
-			model.setClassName(HtmlUtil.escape(getClassName()));
-			model.setClassPK(getClassPK());
+			model.setRelationClassName(HtmlUtil.escape(getRelationClassName()));
+			model.setRelationClassPK(getRelationClassPK());
 			model.setAttributes(HtmlUtil.escape(getAttributes()));
 			model.setNestedWorkflowDefinitionIds(HtmlUtil.escape(
 					getNestedWorkflowDefinitionIds()));
@@ -417,8 +417,8 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 		clone.setFriendlyId(getFriendlyId());
 		clone.setWorkflowDefinitionId(getWorkflowDefinitionId());
 		clone.setParentWorkflowInstanceId(getParentWorkflowInstanceId());
-		clone.setClassName(getClassName());
-		clone.setClassPK(getClassPK());
+		clone.setRelationClassName(getRelationClassName());
+		clone.setRelationClassPK(getRelationClassPK());
 		clone.setAttributes(getAttributes());
 		clone.setNestedWorkflowDefinitionIds(getNestedWorkflowDefinitionIds());
 		clone.setNestedWorkflowDefinitionVersions(getNestedWorkflowDefinitionVersions());
@@ -497,10 +497,10 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 		sb.append(getWorkflowDefinitionId());
 		sb.append(", parentWorkflowInstanceId=");
 		sb.append(getParentWorkflowInstanceId());
-		sb.append(", className=");
-		sb.append(getClassName());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
+		sb.append(", relationClassName=");
+		sb.append(getRelationClassName());
+		sb.append(", relationClassPK=");
+		sb.append(getRelationClassPK());
 		sb.append(", attributes=");
 		sb.append(getAttributes());
 		sb.append(", nestedWorkflowDefinitionIds=");
@@ -572,12 +572,12 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 		sb.append(getParentWorkflowInstanceId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>className</column-name><column-value><![CDATA[");
-		sb.append(getClassName());
+			"<column><column-name>relationClassName</column-name><column-value><![CDATA[");
+		sb.append(getRelationClassName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
+			"<column><column-name>relationClassPK</column-name><column-value><![CDATA[");
+		sb.append(getRelationClassPK());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>attributes</column-name><column-value><![CDATA[");
@@ -635,8 +635,8 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 	private String _originalFriendlyId;
 	private long _workflowDefinitionId;
 	private long _parentWorkflowInstanceId;
-	private String _className;
-	private long _classPK;
+	private String _relationClassName;
+	private long _relationClassPK;
 	private String _attributes;
 	private String _nestedWorkflowDefinitionIds;
 	private String _nestedWorkflowDefinitionVersions;

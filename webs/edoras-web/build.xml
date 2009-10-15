@@ -17,7 +17,7 @@
 				<unzip src="${original.war.file}" dest="tmp" />
 
 				<delete includeemptydirs="true">
-					<fileset dir="tmp" excludes="lib/emf-*.jar,lib/org.edorasframework.*.jar" />
+					<fileset dir="tmp" excludes="lib/emf-*.jar,lib/org.edorasframework.*.jar,lib/persistence-*.jar" />
 				</delete>
 
 				<move file="tmp/lib" tofile="tmp/WEB-INF/lib" />

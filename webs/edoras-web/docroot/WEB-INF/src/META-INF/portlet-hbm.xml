@@ -38,8 +38,8 @@
 		<property name="friendlyId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="workflowDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="parentWorkflowInstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="className" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="relationClassName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="relationClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="attributes" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="nestedWorkflowDefinitionIds" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="nestedWorkflowDefinitionVersions" type="com.liferay.portal.dao.orm.hibernate.StringType" />

@@ -35,11 +35,20 @@
 
 	<bean id="edsPrcEntityClassNames" class="org.edorasframework.process.core.entity.ProcessEntityClassNameConfigurer">
         <property name="processDefinitionClass" value="com.liferay.portal.workflow.edoras.model.impl.WorkflowDefinitionImpl" />
+        <property name="processInstanceClass" value="com.liferay.portal.workflow.edoras.model.impl.wrapped.WorkflowInstanceImpl" />
     </bean>
+
 
     <!-- DAO implementations -->
 
-    <bean id="edsPrcServiceDao" class="com.liferay.portal.workflow.edoras.dao.WorkflowDefinitionDao" />
+	<bean id="edsPrcDaoTemplate" class="com.liferay.portal.workflow.edoras.dao.AbstractWorkflowDao" abstract="true">
+		<property name="txTemplate" ref="edsPrcTxTemplate"/>
+		<property name="txTemplateReadOnly" ref="edsPrcTxTemplateReadOnly"/>
+	</bean>
+	
+    <bean id="edsPrcServiceDao" class="com.liferay.portal.workflow.edoras.dao.WorkflowDefinitionDao" parent="edsPrcDaoTemplate"/>
+    <bean id="edsPrcDao" class="com.liferay.portal.workflow.edoras.dao.WorkflowInstanceDao" parent="edsPrcDaoTemplate"/>
+
 
     <!--
     Inject Edoras with a transaction template that uses the portal's transaction
@@ -52,6 +61,7 @@
     </bean>
     <bean id="edsPrcTxTemplateReadOnly" class="org.springframework.transaction.support.TransactionTemplate">
     	<property name="transactionManager" ref="portalTransactionManager" />
+    	<property name="readOnly" value="true"/>
     </bean>
     <bean id="portalTransactionManager" class="com.liferay.portal.workflow.edoras.dao.tx.TransactionManagerClp" />
 </beans>

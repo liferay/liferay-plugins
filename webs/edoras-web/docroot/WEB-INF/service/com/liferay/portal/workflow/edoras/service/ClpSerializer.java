@@ -249,17 +249,17 @@ public class ClpSerializer {
 
 					method9.invoke(newModel, value9);
 
-					Method method10 = newModelClass.getMethod("setClassName",
+					Method method10 = newModelClass.getMethod("setRelationClassName",
 							new Class[] { String.class });
 
-					String value10 = oldCplModel.getClassName();
+					String value10 = oldCplModel.getRelationClassName();
 
 					method10.invoke(newModel, value10);
 
-					Method method11 = newModelClass.getMethod("setClassPK",
+					Method method11 = newModelClass.getMethod("setRelationClassPK",
 							new Class[] { Long.TYPE });
 
-					Long value11 = new Long(oldCplModel.getClassPK());
+					Long value11 = new Long(oldCplModel.getRelationClassPK());
 
 					method11.invoke(newModel, value11);
 
@@ -914,19 +914,21 @@ public class ClpSerializer {
 
 					newModel.setParentWorkflowInstanceId(value9.longValue());
 
-					Method method10 = oldModelClass.getMethod("getClassName");
+					Method method10 = oldModelClass.getMethod(
+							"getRelationClassName");
 
 					String value10 = (String)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setClassName(value10);
+					newModel.setRelationClassName(value10);
 
-					Method method11 = oldModelClass.getMethod("getClassPK");
+					Method method11 = oldModelClass.getMethod(
+							"getRelationClassPK");
 
 					Long value11 = (Long)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setClassPK(value11.longValue());
+					newModel.setRelationClassPK(value11.longValue());
 
 					Method method12 = oldModelClass.getMethod("getAttributes");
 

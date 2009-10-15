@@ -42,6 +42,7 @@ public class WorkflowDefinitionManagerImpl
 
 	public void deployWorkflowDefinition(
 			WorkflowDefinition workflowDefinition, long callingUserId,
+			boolean autoIncrementVersionNumber,
 			Map<String, Object> parameters)
 		throws WorkflowException {
 	}

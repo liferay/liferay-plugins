@@ -26,8 +26,8 @@
 		<field name="friendlyId" type="String" />
 		<field name="workflowDefinitionId" type="long" />
 		<field name="parentWorkflowInstanceId" type="long" />
-		<field name="className" type="String" />
-		<field name="classPK" type="long" />
+		<field name="relationClassName" type="String" />
+		<field name="relationClassPK" type="long" />
 		<field name="attributes" type="String" />
 		<field name="nestedWorkflowDefinitionIds" type="String" />
 		<field name="nestedWorkflowDefinitionVersions" type="String" />

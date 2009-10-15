@@ -4,7 +4,7 @@
 <web-app>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/classes/META-INF/edoras-spring.xml</param-value>
+		<param-value>/WEB-INF/classes/META-INF/edoras-spring.xml,/WEB-INF/classes/META-INF/edoras-test-spring.xml</param-value>
 	</context-param>
 	<listener>
 		<listener-class>com.liferay.portal.kernel.spring.context.PortletContextLoaderListener</listener-class>

@@ -129,20 +129,20 @@ public class WorkflowInstanceWrapper implements WorkflowInstance {
 		_workflowInstance.setParentWorkflowInstanceId(parentWorkflowInstanceId);
 	}
 
-	public java.lang.String getClassName() {
-		return _workflowInstance.getClassName();
+	public java.lang.String getRelationClassName() {
+		return _workflowInstance.getRelationClassName();
 	}
 
-	public void setClassName(java.lang.String className) {
-		_workflowInstance.setClassName(className);
+	public void setRelationClassName(java.lang.String relationClassName) {
+		_workflowInstance.setRelationClassName(relationClassName);
 	}
 
-	public long getClassPK() {
-		return _workflowInstance.getClassPK();
+	public long getRelationClassPK() {
+		return _workflowInstance.getRelationClassPK();
 	}
 
-	public void setClassPK(long classPK) {
-		_workflowInstance.setClassPK(classPK);
+	public void setRelationClassPK(long relationClassPK) {
+		_workflowInstance.setRelationClassPK(relationClassPK);
 	}
 
 	public java.lang.String getAttributes() {
@@ -287,6 +287,14 @@ public class WorkflowInstanceWrapper implements WorkflowInstance {
 
 	public java.lang.String toXmlString() {
 		return _workflowInstance.toXmlString();
+	}
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getParent() {
+		return _workflowInstance.getParent();
+	}
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> getChildren() {
+		return _workflowInstance.getChildren();
 	}
 
 	public WorkflowInstance getWrappedWorkflowInstance() {

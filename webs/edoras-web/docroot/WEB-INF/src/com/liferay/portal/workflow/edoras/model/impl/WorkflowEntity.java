@@ -20,15 +20,15 @@
  * SOFTWARE.
  */
 
-package com.liferay.portal.workflow.edoras.model;
+package com.liferay.portal.workflow.edoras.model.impl;
 
 /**
- * <a href="WorkflowInstance.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowEntity.java.html"><b><i>View Source</i></b></a>
  *
- * @author Brian Wing Shun Chan
+ * @author Micha Kiener
  */
-public interface WorkflowInstance extends WorkflowInstanceModel {
-	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getParent();
-
-	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> getChildren();
+public interface WorkflowEntity {
+	public long getPrimaryKey();
+	public boolean setNew(boolean isNew);
+	public void setPrimaryKey(long primaryKey);
 }
