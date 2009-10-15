@@ -47,11 +47,12 @@ public class WorkflowDefinitionDao
 		WorkflowDefinitionUtil.clearCache();
 	}
 
-	public <T> void delete(T entity) {
+	public <T> void delete(T workflowEntity) {
 		long primaryKey = 0;
 
 		try {
-			WorkflowDefinition workflowDefinition = (WorkflowDefinition)entity;
+			WorkflowDefinition workflowDefinition =
+				(WorkflowDefinition)workflowEntity;
 
 			primaryKey = workflowDefinition.getWorkflowDefinitionId();
 
@@ -70,21 +71,21 @@ public class WorkflowDefinitionDao
 	}
 
 	public <T> T find(Class<T> clazz, Object identity) {
-		long id = (Long)identity;
+		long primaryKey = (Long)identity;
 
 		try {
-			return (T)WorkflowDefinitionUtil.findByPrimaryKey(id);
+			return (T)WorkflowDefinitionUtil.findByPrimaryKey(primaryKey);
 		}
 		catch (NoSuchWorkflowDefinitionException nswde) {
 			return null;
 		}
 		catch (SystemException se) {
 			throw new ProcessException(
-				"Could not load workflow definition with id " + id, se);
+				"Could not load workflow definition with id " + primaryKey, se);
 		}
 	}
 
-	public <T> T find(T entity, Object identity) {
+	public <T> T find(T workflowEntity, Object identity) {
 		return (T)find(WorkflowDefinition.class, identity);
 	}
 
@@ -101,7 +102,7 @@ public class WorkflowDefinitionDao
 			return (ProcessModelDefinition)WorkflowDefinitionUtil.findByC_N_V(
 				companyId, modelId, modelVersion);
 		}
-		catch (NoSuchWorkflowDefinitionException snwde) {
+		catch (NoSuchWorkflowDefinitionException nswde) {
 			return null;
 		}
 		catch (SystemException se) {
@@ -129,21 +130,21 @@ public class WorkflowDefinitionDao
 		}
 	}
 
-	public <T> T merge(T entity) {
-		return entity;
+	public <T> T merge(T workflowEntity) {
+		return workflowEntity;
 	}
 
-	public <T> void refresh(T entity) {
+	public <T> void refresh(T workflowEntity) {
 	}
 
-	public void reload(Object entity) {
+	public void reload(Object workflowEntity) {
 	}
 
-	public <T> void save(T entity) {
-		super.checkAndInitializeNewInstance((WorkflowEntity)entity);
+	public <T> void save(T workflowEntity) {
+		super.checkAndInitializeNewInstance((WorkflowEntity)workflowEntity);
 
 		try {
-			WorkflowDefinitionUtil.update((WorkflowDefinition) entity);
+			WorkflowDefinitionUtil.update((WorkflowDefinition)workflowEntity);
 		}
 		catch (SystemException se) {
 			throw new ProcessException(

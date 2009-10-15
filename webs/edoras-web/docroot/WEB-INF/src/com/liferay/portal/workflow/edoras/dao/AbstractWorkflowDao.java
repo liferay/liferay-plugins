@@ -55,11 +55,12 @@ public class AbstractWorkflowDao<T extends WorkflowEntity> {
 		_txTemplateReadOnly = txTemplateReadOnly;
 	}
 
-	protected boolean checkAndInitializeNewInstance(T entity) {
-		if (entity.getPrimaryKey() == 0) {
+	protected boolean checkAndInitializeNewInstance(T workflowEntity) {
+		if (workflowEntity.getPrimaryKey() == 0) {
 			try {
-				entity.setNew(true);
-				entity.setPrimaryKey(CounterLocalServiceUtil.increment());
+				workflowEntity.setNew(true);
+				workflowEntity.setPrimaryKey(
+					CounterLocalServiceUtil.increment());
 
 				return true;
 			}
@@ -70,7 +71,7 @@ public class AbstractWorkflowDao<T extends WorkflowEntity> {
 			}
 		}
 		else {
-			entity.setNew(false);
+			workflowEntity.setNew(false);
 
 			return false;
 		}

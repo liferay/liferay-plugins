@@ -50,8 +50,9 @@ public class WorkflowInstanceBridge
 	}
 
 	public WorkflowInstanceBridge(
+		WorkflowInstance workflowInstance,
 		WorkflowInstanceBridge parentWorkflowInstanceBridge,
-		WorkflowInstance workflowInstance, boolean loadChildren) {
+		boolean loadChildren) {
 
 		_workflowInstance = workflowInstance;
 
@@ -60,17 +61,18 @@ public class WorkflowInstanceBridge
 	}
 
 	public long getWorkflowDefinitionId() {
-		if (_worflowDefinitionId == 0) {
-			ProcessSession processSession =
-				ProcessSystemUtil.getCurrentSession();
-
-			ProcessService processService = processSession.getService();
-
-			ProcessModel processModel = processService.getProcessModel(
-				getProcessModelId(), getProcessModelVersion());
-
-			_worflowDefinitionId = processModel.getRepositoryPK();
+		if (_worflowDefinitionId != 0) {
+			return _worflowDefinitionId;
 		}
+
+		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
+
+		ProcessService processService = processSession.getService();
+
+		ProcessModel processModel = processService.getProcessModel(
+			getProcessModelId(), getProcessModelVersion());
+
+		_worflowDefinitionId = processModel.getRepositoryPK();
 
 		return _worflowDefinitionId;
 	}
@@ -151,7 +153,9 @@ public class WorkflowInstanceBridge
 	}
 
 	public boolean setNew(boolean isNew) {
-		return unwrap().setNew(isNew);
+		WorkflowInstance workflowInstance = unwrap();
+
+		return workflowInstance.setNew(isNew);
 	}
 
 	public WorkflowInstance unwrap() {

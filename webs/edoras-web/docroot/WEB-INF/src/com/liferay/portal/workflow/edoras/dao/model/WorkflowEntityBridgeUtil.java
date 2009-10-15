@@ -43,19 +43,21 @@ public class WorkflowEntityBridgeUtil {
 	public static Class<?> getSetupClassForName(String setupId) {
 		Class<?> setupClass = _setupClassMap.get(setupId);
 
-		if (setupClass == null) {
-			try {
-				ClassLoader classLoader =
-					WorkflowEntityBridgeUtil.class.getClassLoader();
+		if (setupClass != null) {
+			return setupClass;
+		}
 
-				setupClass = classLoader.loadClass(setupId);
+		try {
+			ClassLoader classLoader =
+				WorkflowEntityBridgeUtil.class.getClassLoader();
 
-				_setupClassMap.put(setupId, setupClass);
-			}
-			catch (ClassNotFoundException cnfe) {
-				throw new ProcessException(
-					"Could not load setup id class " + setupId, cnfe);
-			}
+			setupClass = classLoader.loadClass(setupId);
+
+			_setupClassMap.put(setupId, setupClass);
+		}
+		catch (ClassNotFoundException cnfe) {
+			throw new ProcessException(
+				"Could not load setup id class " + setupId, cnfe);
 		}
 
 		return setupClass;
@@ -63,7 +65,7 @@ public class WorkflowEntityBridgeUtil {
 
 	public static List<? extends ProcessInstance> transferLoadedObjects(
 		List<WorkflowInstance> workflowInstances,
-		WorkflowInstanceBridge workflowInstanceImpl, boolean loadChildren) {
+		WorkflowInstanceBridge workflowInstanceBridge, boolean loadChildren) {
 
 		List<ProcessInstance> processInstances =
 			new ArrayList<ProcessInstance>();
@@ -75,7 +77,7 @@ public class WorkflowEntityBridgeUtil {
 		for (WorkflowInstance workflowInstance : workflowInstances) {
 			processInstances.add(
 				new WorkflowInstanceBridge(
-					workflowInstanceImpl, workflowInstance, loadChildren));
+					workflowInstance, workflowInstanceBridge, loadChildren));
 		}
 
 		return processInstances;

@@ -54,12 +54,12 @@ public class WorkflowInstanceDao
 		WorkflowInstanceUtil.clearCache();
 	}
 
-	public <T> void delete(T entity) {
+	public <T> void delete(T workflowEntity) {
 		long primaryKey = 0;
 
 		try {
 			WorkflowInstanceBridge workflowInstanceBridge =
-				(WorkflowInstanceBridge)entity;
+				(WorkflowInstanceBridge)workflowEntity;
 
 			primaryKey = workflowInstanceBridge.getPrimaryKey();
 
@@ -80,7 +80,7 @@ public class WorkflowInstanceDao
 		return (T)loadProcessInstance((Long)identity);
 	}
 
-	public <T> T find(T entity, Object identity) {
+	public <T> T find(T workflowEntity, Object identity) {
 		return (T)loadProcessInstance((Long)identity);
 	}
 
@@ -127,7 +127,7 @@ public class WorkflowInstanceDao
 						WorkflowInstanceUtil.findByPrimaryKey(primaryKey);
 
 					return new WorkflowInstanceBridge(
-						null, workflowInstance, true);
+						workflowInstance, null, true);
 				}
 				catch (NoSuchWorkflowInstanceException nswie) {
 					return null;
@@ -185,8 +185,8 @@ public class WorkflowInstanceDao
 			getTxTemplateReadOnly().execute(transactionCallback);
 	}
 
-	public <T> T merge(T entity) {
-		return entity;
+	public <T> T merge(T workflowEntity) {
+		return workflowEntity;
 	}
 
 	public ObjectIdentity persistAttribute(
@@ -198,15 +198,15 @@ public class WorkflowInstanceDao
 		return null;
 	}
 
-	public <T> void refresh(T entity) {
+	public <T> void refresh(T workflowEntity) {
 	}
 
-	public void reload(Object entity) {
+	public void reload(Object workflowEntity) {
 	}
 
-	public <T> void save(T entity) {
+	public <T> void save(T workflowEntity) {
 		WorkflowInstanceBridge workflowInstanceBridge =
-			(WorkflowInstanceBridge)entity;
+			(WorkflowInstanceBridge)workflowEntity;
 
 		if (super.checkAndInitializeNewInstance(workflowInstanceBridge)) {
 			workflowInstanceBridge.initializeForInsert();
