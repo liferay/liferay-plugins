@@ -28,18 +28,21 @@
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.kernel.workflow.TaskInstanceManagerUtil" %>
 <%@ page import="com.liferay.portal.kernel.workflow.WorkflowDefinitionManagerUtil" %>
+<%@ page import="com.liferay.portal.kernel.workflow.WorkflowEngineManagerUtil" %>
 <%@ page import="com.liferay.portal.kernel.workflow.WorkflowInstanceManagerUtil" %>
 
 <portlet:defineObjects />
+
+<h3>WorkflowEngineManager</h3>
+
+<p>
+	isSupportsWorkflowDefinitionVersioning()=<%= _assertTrue(WorkflowEngineManagerUtil.isSupportsWorkflowDefinitionVersioning()) %>
+</p>
 
 <h3>WorkflowDefinitionManager</h3>
 
 <p>
 	getWorkflowDefinitionCount()=<%= _assertEquals(0, WorkflowDefinitionManagerUtil.getWorkflowDefinitionCount()) %>
-</p>
-
-<p>
-	isSupportsVersioning()=<%= _assertTrue(WorkflowDefinitionManagerUtil.isSupportsVersioning()) %>
 </p>
 
 <h3>WorkflowInstanceManagerUtil</h3>
