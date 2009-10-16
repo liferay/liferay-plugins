@@ -37,6 +37,7 @@
         <property name="processDefinitionClass" value="com.liferay.portal.workflow.edoras.model.impl.WorkflowDefinitionImpl" />
         <property name="processInstanceClass" value="com.liferay.portal.workflow.edoras.model.impl.wrapped.WorkflowInstanceImpl" />
         <property name="processTaskClass" value="com.liferay.portal.workflow.edoras.dao.model.WorkflowTaskBridge" />
+        <property name="processJobClass" value="com.liferay.portal.workflow.edoras.dao.model.WorkflowJobBridge" />
     </bean>
 
 
