@@ -164,54 +164,6 @@ public class WorkflowDefinitionClp extends BaseModelImpl<WorkflowDefinition>
 		_persistent = persistent;
 	}
 
-	public java.lang.String getGraphicalProcessModelAsXML() {
-		throw new UnsupportedOperationException();
-	}
-
-	public java.lang.String getModelDesignerVersion() {
-		throw new UnsupportedOperationException();
-	}
-
-	public java.lang.String getProcessModelAsXML() {
-		throw new UnsupportedOperationException();
-	}
-
-	public java.lang.String getProcessModelId() {
-		throw new UnsupportedOperationException();
-	}
-
-	public int getProcessModelVersion() {
-		throw new UnsupportedOperationException();
-	}
-
-	public java.lang.Long getTenantId() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void setGraphicalProcessModelAsXML(java.lang.String xmlModel) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void setModelDesignerVersion(java.lang.String designerVersion) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void setProcessModelAsXML(java.lang.String xmlModel) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void setProcessModelId(java.lang.String modelId) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void setProcessModelVersion(int modelVersion) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void setTenantId(java.lang.Long tenantId) {
-		throw new UnsupportedOperationException();
-	}
-
 	public WorkflowDefinition toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;

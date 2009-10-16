@@ -22,11 +22,7 @@
 
 package com.liferay.portal.workflow.edoras.model.impl;
 
-import com.liferay.portal.model.CompanyConstants;
-import com.liferay.portal.workflow.edoras.dao.model.WorkflowEntity;
 import com.liferay.portal.workflow.edoras.model.WorkflowDefinition;
-
-import org.edorasframework.process.api.service.MutableProcessModelDefinition;
 
 /**
  * <a href="WorkflowDefinitionImpl.java.html"><b><i>View Source</i></b></a>
@@ -34,72 +30,10 @@ import org.edorasframework.process.api.service.MutableProcessModelDefinition;
  * @author Micha Kiener
  * @author Brian Wing Shun Chan
  */
-public class WorkflowDefinitionImpl
-	extends WorkflowDefinitionModelImpl
-	implements MutableProcessModelDefinition, WorkflowDefinition,
-			   WorkflowEntity {
+public class WorkflowDefinitionImpl extends WorkflowDefinitionModelImpl
+	implements WorkflowDefinition {
 
 	public WorkflowDefinitionImpl() {
-	}
-
-	public String getGraphicalProcessModelAsXML() {
-		return getGraphicalXml();
-	}
-
-	public String getModelDesignerVersion() {
-		return getDesignerVersion();
-	}
-
-	public String getProcessModelAsXML() {
-		return getModelXml();
-	}
-
-	public String getProcessModelId() {
-		return getName();
-	}
-
-	public int getProcessModelVersion() {
-		return getVersion();
-	}
-
-	public Long getTenantId() {
-		long tenantId = getCompanyId();
-
-		if (tenantId == CompanyConstants.SYSTEM) {
-			return null;
-		}
-		else {
-			return tenantId;
-		}
-	}
-
-	public void setGraphicalProcessModelAsXML(String xmlModel) {
-		setGraphicalXml(xmlModel);
-	}
-
-	public void setModelDesignerVersion(String designerVersion) {
-		setDesignerVersion(designerVersion);
-	}
-
-	public void setProcessModelAsXML(String xmlModel) {
-		setModelXml(xmlModel);
-	}
-
-	public void setProcessModelId(String modelId) {
-		setName(modelId);
-	}
-
-	public void setProcessModelVersion(int modelVersion) {
-		setVersion(modelVersion);
-	}
-
-	public void setTenantId(Long tenantId) {
-		if (tenantId == null) {
-			setCompanyId(CompanyConstants.SYSTEM);
-		}
-		else {
-			setCompanyId(tenantId.longValue());
-		}
 	}
 
 }

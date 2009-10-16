@@ -211,54 +211,6 @@ public class WorkflowDefinitionWrapper implements WorkflowDefinition {
 		return _workflowDefinition.toXmlString();
 	}
 
-	public java.lang.String getGraphicalProcessModelAsXML() {
-		return _workflowDefinition.getGraphicalProcessModelAsXML();
-	}
-
-	public java.lang.String getModelDesignerVersion() {
-		return _workflowDefinition.getModelDesignerVersion();
-	}
-
-	public java.lang.String getProcessModelAsXML() {
-		return _workflowDefinition.getProcessModelAsXML();
-	}
-
-	public java.lang.String getProcessModelId() {
-		return _workflowDefinition.getProcessModelId();
-	}
-
-	public int getProcessModelVersion() {
-		return _workflowDefinition.getProcessModelVersion();
-	}
-
-	public java.lang.Long getTenantId() {
-		return _workflowDefinition.getTenantId();
-	}
-
-	public void setGraphicalProcessModelAsXML(java.lang.String xmlModel) {
-		_workflowDefinition.setGraphicalProcessModelAsXML(xmlModel);
-	}
-
-	public void setModelDesignerVersion(java.lang.String designerVersion) {
-		_workflowDefinition.setModelDesignerVersion(designerVersion);
-	}
-
-	public void setProcessModelAsXML(java.lang.String xmlModel) {
-		_workflowDefinition.setProcessModelAsXML(xmlModel);
-	}
-
-	public void setProcessModelId(java.lang.String modelId) {
-		_workflowDefinition.setProcessModelId(modelId);
-	}
-
-	public void setProcessModelVersion(int modelVersion) {
-		_workflowDefinition.setProcessModelVersion(modelVersion);
-	}
-
-	public void setTenantId(java.lang.Long tenantId) {
-		_workflowDefinition.setTenantId(tenantId);
-	}
-
 	public WorkflowDefinition getWrappedWorkflowDefinition() {
 		return _workflowDefinition;
 	}
