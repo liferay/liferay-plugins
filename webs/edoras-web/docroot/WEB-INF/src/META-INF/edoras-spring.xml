@@ -34,10 +34,15 @@
 	<!-- Entity implementations -->
 
 	<bean id="edsPrcEntityClassNames" class="org.edorasframework.process.core.entity.ProcessEntityClassNameConfigurer">
-        <property name="processDefinitionClass" value="com.liferay.portal.workflow.edoras.model.impl.WorkflowDefinitionImpl" />
-        <property name="processInstanceClass" value="com.liferay.portal.workflow.edoras.model.impl.wrapped.WorkflowInstanceImpl" />
+        <property name="processDefinitionClass" value="com.liferay.portal.workflow.edoras.dao.model.WorkflowDefinitionBridge" />
+        <property name="processInstanceClass" value="com.liferay.portal.workflow.edoras.dao.model.WorkflowInstanceBridge" />
         <property name="processTaskClass" value="com.liferay.portal.workflow.edoras.dao.model.WorkflowTaskBridge" />
         <property name="processJobClass" value="com.liferay.portal.workflow.edoras.dao.model.WorkflowJobBridge" />
+        
+        <property name="activityLogClass" value="com.liferay.portal.workflow.edoras.dao.model.ActivityLogBridge"/>
+        <property name="commentLogClass" value="com.liferay.portal.workflow.edoras.dao.model.CommentLogBridge"/>
+        <property name="transitionLogClass" value="com.liferay.portal.workflow.edoras.dao.model.TransitionLogBridge"/>
+        <property name="taskLogClass" value="com.liferay.portal.workflow.edoras.dao.model.TaskLogBridge"/>
     </bean>
 
 
