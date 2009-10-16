@@ -47,10 +47,12 @@ public class WorkflowTaskSoap implements Serializable {
 		soapModel.setRelation(model.getRelation());
 		soapModel.setDueDate(model.getDueDate());
 		soapModel.setCompletionDate(model.getCompletionDate());
+		soapModel.setCompleted(model.getCompleted());
 		soapModel.setState(model.getState());
 		soapModel.setPriority(model.getPriority());
 		soapModel.setAssigneeUserId(model.getAssigneeUserId());
 		soapModel.setAssigneeUserName(model.getAssigneeUserName());
+		soapModel.setAssignedGroup(model.getAssignedGroup());
 		soapModel.setRoleId(model.getRoleId());
 
 		return soapModel;
@@ -184,6 +186,18 @@ public class WorkflowTaskSoap implements Serializable {
 		_completionDate = completionDate;
 	}
 
+	public boolean getCompleted() {
+		return _completed;
+	}
+
+	public boolean isCompleted() {
+		return _completed;
+	}
+
+	public void setCompleted(boolean completed) {
+		_completed = completed;
+	}
+
 	public int getState() {
 		return _state;
 	}
@@ -216,6 +230,14 @@ public class WorkflowTaskSoap implements Serializable {
 		_assigneeUserName = assigneeUserName;
 	}
 
+	public String getAssignedGroup() {
+		return _assignedGroup;
+	}
+
+	public void setAssignedGroup(String assignedGroup) {
+		_assignedGroup = assignedGroup;
+	}
+
 	public long getRoleId() {
 		return _roleId;
 	}
@@ -234,9 +256,11 @@ public class WorkflowTaskSoap implements Serializable {
 	private String _relation;
 	private Date _dueDate;
 	private Date _completionDate;
+	private boolean _completed;
 	private int _state;
 	private int _priority;
 	private long _assigneeUserId;
 	private String _assigneeUserName;
+	private String _assignedGroup;
 	private long _roleId;
 }

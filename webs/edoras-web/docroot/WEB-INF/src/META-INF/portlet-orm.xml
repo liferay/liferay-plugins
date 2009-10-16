@@ -129,10 +129,12 @@
 			<basic name="completionDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="completed" />
 			<basic name="state" />
 			<basic name="priority" />
 			<basic name="assigneeUserId" />
 			<basic name="assigneeUserName" />
+			<basic name="assignedGroup" />
 			<basic name="roleId" />
 			<transient name="assigneeUserUuid" />
 			<transient name="primaryKey" />

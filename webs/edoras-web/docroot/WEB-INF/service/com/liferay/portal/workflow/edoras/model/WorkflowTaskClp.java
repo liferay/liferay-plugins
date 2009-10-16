@@ -136,6 +136,18 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		_completionDate = completionDate;
 	}
 
+	public boolean getCompleted() {
+		return _completed;
+	}
+
+	public boolean isCompleted() {
+		return _completed;
+	}
+
+	public void setCompleted(boolean completed) {
+		_completed = completed;
+	}
+
 	public int getState() {
 		return _state;
 	}
@@ -177,12 +189,24 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		_assigneeUserName = assigneeUserName;
 	}
 
+	public String getAssignedGroup() {
+		return _assignedGroup;
+	}
+
+	public void setAssignedGroup(String assignedGroup) {
+		_assignedGroup = assignedGroup;
+	}
+
 	public long getRoleId() {
 		return _roleId;
 	}
 
 	public void setRoleId(long roleId) {
 		_roleId = roleId;
+	}
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getWorkflowInstance() {
+		throw new UnsupportedOperationException();
 	}
 
 	public WorkflowTask toEscapedModel() {
@@ -204,10 +228,12 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 			model.setRelation(HtmlUtil.escape(getRelation()));
 			model.setDueDate(getDueDate());
 			model.setCompletionDate(getCompletionDate());
+			model.setCompleted(getCompleted());
 			model.setState(getState());
 			model.setPriority(getPriority());
 			model.setAssigneeUserId(getAssigneeUserId());
 			model.setAssigneeUserName(HtmlUtil.escape(getAssigneeUserName()));
+			model.setAssignedGroup(HtmlUtil.escape(getAssignedGroup()));
 			model.setRoleId(getRoleId());
 
 			model = (WorkflowTask)Proxy.newProxyInstance(WorkflowTask.class.getClassLoader(),
@@ -231,10 +257,12 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		clone.setRelation(getRelation());
 		clone.setDueDate(getDueDate());
 		clone.setCompletionDate(getCompletionDate());
+		clone.setCompleted(getCompleted());
 		clone.setState(getState());
 		clone.setPriority(getPriority());
 		clone.setAssigneeUserId(getAssigneeUserId());
 		clone.setAssigneeUserName(getAssigneeUserName());
+		clone.setAssignedGroup(getAssignedGroup());
 		clone.setRoleId(getRoleId());
 
 		return clone;
@@ -305,6 +333,8 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		sb.append(getDueDate());
 		sb.append(", completionDate=");
 		sb.append(getCompletionDate());
+		sb.append(", completed=");
+		sb.append(getCompleted());
 		sb.append(", state=");
 		sb.append(getState());
 		sb.append(", priority=");
@@ -313,6 +343,8 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		sb.append(getAssigneeUserId());
 		sb.append(", assigneeUserName=");
 		sb.append(getAssigneeUserName());
+		sb.append(", assignedGroup=");
+		sb.append(getAssignedGroup());
 		sb.append(", roleId=");
 		sb.append(getRoleId());
 		sb.append("}");
@@ -368,6 +400,10 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		sb.append(getCompletionDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>completed</column-name><column-value><![CDATA[");
+		sb.append(getCompleted());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>state</column-name><column-value><![CDATA[");
 		sb.append(getState());
 		sb.append("]]></column-value></column>");
@@ -382,6 +418,10 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		sb.append(
 			"<column><column-name>assigneeUserName</column-name><column-value><![CDATA[");
 		sb.append(getAssigneeUserName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>assignedGroup</column-name><column-value><![CDATA[");
+		sb.append(getAssignedGroup());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>roleId</column-name><column-value><![CDATA[");
@@ -403,10 +443,12 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 	private String _relation;
 	private Date _dueDate;
 	private Date _completionDate;
+	private boolean _completed;
 	private int _state;
 	private int _priority;
 	private long _assigneeUserId;
 	private String _assigneeUserUuid;
 	private String _assigneeUserName;
+	private String _assignedGroup;
 	private long _roleId;
 }

@@ -120,6 +120,18 @@ public class WorkflowTaskWrapper implements WorkflowTask {
 		_workflowTask.setCompletionDate(completionDate);
 	}
 
+	public boolean getCompleted() {
+		return _workflowTask.getCompleted();
+	}
+
+	public boolean isCompleted() {
+		return _workflowTask.isCompleted();
+	}
+
+	public void setCompleted(boolean completed) {
+		_workflowTask.setCompleted(completed);
+	}
+
 	public int getState() {
 		return _workflowTask.getState();
 	}
@@ -159,6 +171,14 @@ public class WorkflowTaskWrapper implements WorkflowTask {
 
 	public void setAssigneeUserName(java.lang.String assigneeUserName) {
 		_workflowTask.setAssigneeUserName(assigneeUserName);
+	}
+
+	public java.lang.String getAssignedGroup() {
+		return _workflowTask.getAssignedGroup();
+	}
+
+	public void setAssignedGroup(java.lang.String assignedGroup) {
+		_workflowTask.setAssignedGroup(assignedGroup);
 	}
 
 	public long getRoleId() {
@@ -229,6 +249,10 @@ public class WorkflowTaskWrapper implements WorkflowTask {
 
 	public java.lang.String toXmlString() {
 		return _workflowTask.toXmlString();
+	}
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getWorkflowInstance() {
+		return _workflowTask.getWorkflowInstance();
 	}
 
 	public WorkflowTask getWrappedWorkflowTask() {

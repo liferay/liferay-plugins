@@ -100,10 +100,12 @@
 		<property name="relation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="dueDate" type="org.hibernate.type.TimestampType" />
 		<property name="completionDate" type="org.hibernate.type.TimestampType" />
+		<property name="completed" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="state" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="assigneeUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="assigneeUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="assignedGroup" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="roleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 </hibernate-mapping>

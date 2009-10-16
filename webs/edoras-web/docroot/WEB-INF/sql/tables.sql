@@ -81,9 +81,11 @@ create table Edoras_WorkflowTask (
 	relation VARCHAR(75) null,
 	dueDate DATE null,
 	completionDate DATE null,
+	completed BOOLEAN,
 	state INTEGER,
 	priority INTEGER,
 	assigneeUserId LONG,
 	assigneeUserName VARCHAR(75) null,
+	assignedGroup VARCHAR(75) null,
 	roleId LONG
 );

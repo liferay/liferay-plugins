@@ -656,40 +656,54 @@ public class ClpSerializer {
 
 					method9.invoke(newModel, value9);
 
-					Method method10 = newModelClass.getMethod("setState",
-							new Class[] { Integer.TYPE });
+					Method method10 = newModelClass.getMethod("setCompleted",
+							new Class[] { Boolean.TYPE });
 
-					Integer value10 = new Integer(oldCplModel.getState());
+					Boolean value10 = new Boolean(oldCplModel.getCompleted());
 
 					method10.invoke(newModel, value10);
 
-					Method method11 = newModelClass.getMethod("setPriority",
+					Method method11 = newModelClass.getMethod("setState",
 							new Class[] { Integer.TYPE });
 
-					Integer value11 = new Integer(oldCplModel.getPriority());
+					Integer value11 = new Integer(oldCplModel.getState());
 
 					method11.invoke(newModel, value11);
 
-					Method method12 = newModelClass.getMethod("setAssigneeUserId",
-							new Class[] { Long.TYPE });
+					Method method12 = newModelClass.getMethod("setPriority",
+							new Class[] { Integer.TYPE });
 
-					Long value12 = new Long(oldCplModel.getAssigneeUserId());
+					Integer value12 = new Integer(oldCplModel.getPriority());
 
 					method12.invoke(newModel, value12);
 
-					Method method13 = newModelClass.getMethod("setAssigneeUserName",
-							new Class[] { String.class });
+					Method method13 = newModelClass.getMethod("setAssigneeUserId",
+							new Class[] { Long.TYPE });
 
-					String value13 = oldCplModel.getAssigneeUserName();
+					Long value13 = new Long(oldCplModel.getAssigneeUserId());
 
 					method13.invoke(newModel, value13);
 
-					Method method14 = newModelClass.getMethod("setRoleId",
-							new Class[] { Long.TYPE });
+					Method method14 = newModelClass.getMethod("setAssigneeUserName",
+							new Class[] { String.class });
 
-					Long value14 = new Long(oldCplModel.getRoleId());
+					String value14 = oldCplModel.getAssigneeUserName();
 
 					method14.invoke(newModel, value14);
+
+					Method method15 = newModelClass.getMethod("setAssignedGroup",
+							new Class[] { String.class });
+
+					String value15 = oldCplModel.getAssignedGroup();
+
+					method15.invoke(newModel, value15);
+
+					Method method16 = newModelClass.getMethod("setRoleId",
+							new Class[] { Long.TYPE });
+
+					Long value16 = new Long(oldCplModel.getRoleId());
+
+					method16.invoke(newModel, value16);
 
 					return newModel;
 				}
@@ -1306,42 +1320,57 @@ public class ClpSerializer {
 
 					newModel.setCompletionDate(value9);
 
-					Method method10 = oldModelClass.getMethod("getState");
+					Method method10 = oldModelClass.getMethod("getCompleted");
 
-					Integer value10 = (Integer)method10.invoke(oldModel,
+					Boolean value10 = (Boolean)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setState(value10.intValue());
+					newModel.setCompleted(value10.booleanValue());
 
-					Method method11 = oldModelClass.getMethod("getPriority");
+					Method method11 = oldModelClass.getMethod("getState");
 
 					Integer value11 = (Integer)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setPriority(value11.intValue());
+					newModel.setState(value11.intValue());
 
-					Method method12 = oldModelClass.getMethod(
-							"getAssigneeUserId");
+					Method method12 = oldModelClass.getMethod("getPriority");
 
-					Long value12 = (Long)method12.invoke(oldModel,
+					Integer value12 = (Integer)method12.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setAssigneeUserId(value12.longValue());
+					newModel.setPriority(value12.intValue());
 
 					Method method13 = oldModelClass.getMethod(
+							"getAssigneeUserId");
+
+					Long value13 = (Long)method13.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setAssigneeUserId(value13.longValue());
+
+					Method method14 = oldModelClass.getMethod(
 							"getAssigneeUserName");
 
-					String value13 = (String)method13.invoke(oldModel,
+					String value14 = (String)method14.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setAssigneeUserName(value13);
+					newModel.setAssigneeUserName(value14);
 
-					Method method14 = oldModelClass.getMethod("getRoleId");
+					Method method15 = oldModelClass.getMethod(
+							"getAssignedGroup");
 
-					Long value14 = (Long)method14.invoke(oldModel,
+					String value15 = (String)method15.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setRoleId(value14.longValue());
+					newModel.setAssignedGroup(value15);
+
+					Method method16 = oldModelClass.getMethod("getRoleId");
+
+					Long value16 = (Long)method16.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setRoleId(value16.longValue());
 
 					return newModel;
 				}

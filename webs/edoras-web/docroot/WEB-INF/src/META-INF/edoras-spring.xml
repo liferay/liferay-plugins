@@ -36,6 +36,7 @@
 	<bean id="edsPrcEntityClassNames" class="org.edorasframework.process.core.entity.ProcessEntityClassNameConfigurer">
         <property name="processDefinitionClass" value="com.liferay.portal.workflow.edoras.model.impl.WorkflowDefinitionImpl" />
         <property name="processInstanceClass" value="com.liferay.portal.workflow.edoras.model.impl.wrapped.WorkflowInstanceImpl" />
+        <property name="processTaskClass" value="com.liferay.portal.workflow.edoras.dao.model.WorkflowTaskBridge" />
     </bean>
 
 
@@ -63,4 +64,13 @@
     	<property name="transactionManager" ref="portalTransactionManager" />
     </bean>
     <bean id="portalTransactionManager" class="com.liferay.portal.workflow.edoras.dao.tx.TransactionManagerClp" />
+    
+    
+    <!-- Process Scope configuration -->
+    
+    <bean id="edsPrcInstanceMap"
+        class="org.edorasframework.process.core.scope.NoExposingProcessInstanceMap"
+        lazy-init="true"
+        scope="singleton">
+    </bean>
 </beans>

@@ -220,10 +220,12 @@
 		<column name="relation" type="String" />
 		<column name="dueDate" type="Date" />
 		<column name="completionDate" type="Date" />
+		<column name="completed" type="boolean" />
 		<column name="state" type="int" />
 		<column name="priority" type="int" />
 		<column name="assigneeUserId" type="long" />
 		<column name="assigneeUserName" type="String" />
+		<column name="assignedGroup" type="String" />
 		<column name="roleId" type="long" />
 
 		<!-- Finder methods -->

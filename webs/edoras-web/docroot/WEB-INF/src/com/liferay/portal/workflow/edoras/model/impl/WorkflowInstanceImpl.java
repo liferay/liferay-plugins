@@ -67,7 +67,8 @@ public class WorkflowInstanceImpl
 		catch (Exception e) {
 			throw new ProcessException(
 				"Could not fetch parent workflow instance with id " +
-					getParentWorkflowInstanceId());
+					getParentWorkflowInstanceId(),
+				e);
 		}
 	}
 

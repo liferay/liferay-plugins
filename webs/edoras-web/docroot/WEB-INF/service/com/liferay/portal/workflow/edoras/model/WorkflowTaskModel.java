@@ -82,6 +82,12 @@ public interface WorkflowTaskModel extends BaseModel<WorkflowTask> {
 
 	public void setCompletionDate(Date completionDate);
 
+	public boolean getCompleted();
+
+	public boolean isCompleted();
+
+	public void setCompleted(boolean completed);
+
 	public int getState();
 
 	public void setState(int state);
@@ -101,6 +107,10 @@ public interface WorkflowTaskModel extends BaseModel<WorkflowTask> {
 	public String getAssigneeUserName();
 
 	public void setAssigneeUserName(String assigneeUserName);
+
+	public String getAssignedGroup();
+
+	public void setAssignedGroup(String assignedGroup);
 
 	public long getRoleId();
 

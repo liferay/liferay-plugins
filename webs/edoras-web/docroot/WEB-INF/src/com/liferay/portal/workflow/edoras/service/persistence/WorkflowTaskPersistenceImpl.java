@@ -304,10 +304,12 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl
 		workflowTaskImpl.setRelation(workflowTask.getRelation());
 		workflowTaskImpl.setDueDate(workflowTask.getDueDate());
 		workflowTaskImpl.setCompletionDate(workflowTask.getCompletionDate());
+		workflowTaskImpl.setCompleted(workflowTask.isCompleted());
 		workflowTaskImpl.setState(workflowTask.getState());
 		workflowTaskImpl.setPriority(workflowTask.getPriority());
 		workflowTaskImpl.setAssigneeUserId(workflowTask.getAssigneeUserId());
 		workflowTaskImpl.setAssigneeUserName(workflowTask.getAssigneeUserName());
+		workflowTaskImpl.setAssignedGroup(workflowTask.getAssignedGroup());
 		workflowTaskImpl.setRoleId(workflowTask.getRoleId());
 
 		return workflowTaskImpl;

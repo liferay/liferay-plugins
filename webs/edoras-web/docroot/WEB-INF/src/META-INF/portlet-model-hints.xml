@@ -79,10 +79,12 @@
 		<field name="relation" type="String" />
 		<field name="dueDate" type="Date" />
 		<field name="completionDate" type="Date" />
+		<field name="completed" type="boolean" />
 		<field name="state" type="int" />
 		<field name="priority" type="int" />
 		<field name="assigneeUserId" type="long" />
 		<field name="assigneeUserName" type="String" />
+		<field name="assignedGroup" type="String" />
 		<field name="roleId" type="long" />
 	</model>
 </model-hints>

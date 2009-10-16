@@ -20,34 +20,21 @@
  * SOFTWARE.
  */
 
-package com.liferay.portal.workflow.edoras.model.impl;
+package com.liferay.portal.workflow.edoras.dao.model;
 
-import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
-import com.liferay.portal.workflow.edoras.model.WorkflowTask;
-import com.liferay.portal.workflow.edoras.service.persistence.WorkflowInstanceUtil;
 
-import org.edorasframework.process.api.ex.ProcessException;
 
 /**
- * <a href="WorkflowTaskImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowEntityBridge.java.html"><b><i>View Source</i></b></a>
  *
- * @author Brian Wing Shun Chan
+ * @author Micha Kiener
  */
-public class WorkflowTaskImpl
-	extends WorkflowTaskModelImpl implements WorkflowTask {
+public interface WorkflowEntityBridge<T> {
 
-	public WorkflowTaskImpl() {
-	}
+	public T initializeForInsert();
 
-	public WorkflowInstance getWorkflowInstance() {
-		try {
-			return WorkflowInstanceUtil.findByPrimaryKey(getWorkflowInstanceId());
-		}
-		catch (Exception e) {
-			throw new ProcessException(
-				"Could not fetch the workflow instance for task with id [" +
-					getPrimaryKey() + "]",
-				e);
-		}
-	}
+	public T initializeForUpdate();
+
+	public T unwrap();
+
 }
