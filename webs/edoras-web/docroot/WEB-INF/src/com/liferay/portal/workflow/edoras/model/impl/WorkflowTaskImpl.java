@@ -30,7 +30,7 @@ import org.edorasframework.process.api.ex.ProcessException;
 
 /**
  * <a href="WorkflowTaskImpl.java.html"><b><i>View Source</i></b></a>
- * 
+ *
  * @author Micha Kiener
  * @author Brian Wing Shun Chan
  */
@@ -42,13 +42,15 @@ public class WorkflowTaskImpl
 
 	public WorkflowInstance getWorkflowInstance() {
 		try {
-			return WorkflowInstanceUtil.findByPrimaryKey(getWorkflowInstanceId());
+			return WorkflowInstanceUtil.findByPrimaryKey(
+				getWorkflowInstanceId());
 		}
 		catch (Exception e) {
 			throw new ProcessException(
-				"Could not fetch the workflow instance for task with id [" +
-					getPrimaryKey() + "]",
+				"Could not fetch the workflow instance for task with id " +
+					getPrimaryKey(),
 				e);
 		}
 	}
+
 }

@@ -231,12 +231,12 @@ public class WorkflowLogWrapper implements WorkflowLog {
 		return _workflowLog.toXmlString();
 	}
 
-	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getWorkflowInstance() {
-		return _workflowLog.getWorkflowInstance();
-	}
-
 	public com.liferay.portal.workflow.edoras.model.WorkflowTask getTaskInstance() {
 		return _workflowLog.getTaskInstance();
+	}
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getWorkflowInstance() {
+		return _workflowLog.getWorkflowInstance();
 	}
 
 	public WorkflowLog getWrappedWorkflowLog() {

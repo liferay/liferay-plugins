@@ -309,7 +309,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl
 		workflowTaskImpl.setPriority(workflowTask.getPriority());
 		workflowTaskImpl.setAssigneeUserId(workflowTask.getAssigneeUserId());
 		workflowTaskImpl.setAssigneeUserName(workflowTask.getAssigneeUserName());
-		workflowTaskImpl.setAssignedGroup(workflowTask.getAssignedGroup());
+		workflowTaskImpl.setAssignedGroupName(workflowTask.getAssignedGroupName());
 		workflowTaskImpl.setRoleId(workflowTask.getRoleId());
 
 		return workflowTaskImpl;

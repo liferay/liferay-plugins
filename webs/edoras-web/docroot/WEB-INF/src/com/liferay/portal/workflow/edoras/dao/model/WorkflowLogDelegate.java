@@ -28,19 +28,17 @@ import com.liferay.portal.workflow.edoras.model.impl.WorkflowLogImpl;
 
 import org.edorasframework.process.api.ProcessSystemUtil;
 import org.edorasframework.process.api.model.ProcessModel;
+import org.edorasframework.process.api.service.ProcessService;
 import org.edorasframework.process.api.session.ProcessSession;
 import org.edorasframework.process.core.log.model.AbstractProcessLog;
-import org.springframework.util.Assert;
-
 
 /**
- * <a href="WorkflowLogBridge.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowLogDelegate.java.html"><b><i>View Source</i></b></a>
  *
  * @author Micha Kiener
  */
 public class WorkflowLogDelegate<T extends AbstractProcessLog>
 	implements WorkflowEntity {
-
 
 	public long getPrimaryKey() {
 		return _workflowLog.getPrimaryKey();
@@ -49,46 +47,58 @@ public class WorkflowLogDelegate<T extends AbstractProcessLog>
 	public WorkflowLog initializeForInsert(T workflowLog) {
 		unwrap();
 		transferPropertiesForSaving(workflowLog);
+
 		return _workflowLog;
 	}
-	
+
 	public WorkflowLog initializeForUpdate(T workflowLog) {
 		unwrap();
 		transferPropertiesForSaving(workflowLog);
+
 		return _workflowLog;
 	}
 
-	public void initializeFromReading(WorkflowLog workflowLogSource, T workflowLogTarget) {
+	public void initializeFromReading(
+		WorkflowLog workflowLogSource, T workflowLogTarget) {
+
 		_workflowLog = workflowLogSource;
 
 		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
-		Assert.notNull(
-			processSession,
-			"No process session while reading workflow entities.");
+
+		if (processSession == null) {
+			throw new IllegalArgumentException(
+				"No process session while reading workflow entities");
+		}
 
 		workflowLogTarget.setId(workflowLogSource.getPrimaryKey());
 		workflowLogTarget.setTenantId(workflowLogSource.getCompanyId());
 		workflowLogTarget.setCreationTime(workflowLogSource.getCreateDate());
 		workflowLogTarget.setCreationUser(workflowLogSource.getUserName());
 
-		WorkflowInstance workflowInstance = workflowLogSource.getWorkflowInstance();
+		WorkflowInstance workflowInstance =
+			workflowLogSource.getWorkflowInstance();
+
 		WorkflowInstanceBridge workflowInstanceBridge =
 			new WorkflowInstanceBridge(workflowInstance);
+
 		workflowLogTarget.setProcessInstance(workflowInstanceBridge);
 
-		ProcessModel processModel =
-			processSession.getService().getProcessModel(
-				workflowLogSource.getWorkflowDefinitionId());
+		ProcessService processService = processSession.getService();
+
+		ProcessModel processModel = processService.getProcessModel(
+			workflowLogSource.getWorkflowDefinitionId());
+
 		workflowLogTarget.setProcessModel(processModel);
 		workflowLogTarget.setProcessId(processModel.getProcessModelId());
-		workflowLogTarget.setProcessVersion(processModel.getProcessModelVersion());
-		
+		workflowLogTarget.setProcessVersion(
+			processModel.getProcessModelVersion());
+
 		workflowLogTarget.setInformation(workflowLogSource.getDescription());
 	}
 
 	public boolean setNew(boolean isNew) {
 		WorkflowLog workflowLog = unwrap();
-		
+
 		return workflowLog.setNew(isNew);
 	}
 
@@ -121,4 +131,5 @@ public class WorkflowLogDelegate<T extends AbstractProcessLog>
 	}
 
 	private WorkflowLog _workflowLog;
+
 }

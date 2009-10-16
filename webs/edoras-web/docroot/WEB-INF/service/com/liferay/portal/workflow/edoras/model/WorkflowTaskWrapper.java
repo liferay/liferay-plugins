@@ -173,12 +173,12 @@ public class WorkflowTaskWrapper implements WorkflowTask {
 		_workflowTask.setAssigneeUserName(assigneeUserName);
 	}
 
-	public java.lang.String getAssignedGroup() {
-		return _workflowTask.getAssignedGroup();
+	public java.lang.String getAssignedGroupName() {
+		return _workflowTask.getAssignedGroupName();
 	}
 
-	public void setAssignedGroup(java.lang.String assignedGroup) {
-		_workflowTask.setAssignedGroup(assignedGroup);
+	public void setAssignedGroupName(java.lang.String assignedGroupName) {
+		_workflowTask.setAssignedGroupName(assignedGroupName);
 	}
 
 	public long getRoleId() {

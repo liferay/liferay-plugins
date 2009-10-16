@@ -26,7 +26,6 @@ import com.liferay.portal.workflow.edoras.model.WorkflowLog;
 
 import org.edorasframework.process.core.log.model.DefaultCommentLog;
 
-
 /**
  * <a href="CommentLogBridge.java.html"><b><i>View Source</i></b></a>
  *
@@ -38,20 +37,24 @@ public class CommentLogBridge extends DefaultCommentLog
 	public CommentLogBridge() {
 		_workflowLogDelegate = new WorkflowLogDelegate<DefaultCommentLog>();
 	}
-	
+
 	public long getPrimaryKey() {
 		return getId();
 	}
 
 	public WorkflowLog initializeForInsert() {
 		WorkflowLog workflowLog = _workflowLogDelegate.unwrap();
+
 		transferPropertiesForSaving();
+
 		return workflowLog;
 	}
 
 	public WorkflowLog initializeForUpdate() {
 		WorkflowLog workflowLog = _workflowLogDelegate.unwrap();
+
 		transferPropertiesForSaving();
+
 		return workflowLog;
 	}
 
@@ -68,13 +71,15 @@ public class CommentLogBridge extends DefaultCommentLog
 
 	public void setPrimaryKey(long primaryKey) {
 		setId(primaryKey);
+
 		_workflowLogDelegate.setPrimaryKey(primaryKey);
 	}
 
 	public void transferPropertiesForSaving() {
 		WorkflowLog workflowLog = _workflowLogDelegate.unwrap();
+
 		_workflowLogDelegate.transferPropertiesForSaving(this);
-		
+
 		workflowLog.setComment(getComment());
 		workflowLog.setType(getCommentType());
 	}
@@ -84,4 +89,5 @@ public class CommentLogBridge extends DefaultCommentLog
 	}
 
 	private WorkflowLogDelegate<DefaultCommentLog> _workflowLogDelegate;
+
 }

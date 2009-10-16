@@ -84,7 +84,7 @@
 		<field name="priority" type="int" />
 		<field name="assigneeUserId" type="long" />
 		<field name="assigneeUserName" type="String" />
-		<field name="assignedGroup" type="String" />
+		<field name="assignedGroupName" type="String" />
 		<field name="roleId" type="long" />
 	</model>
 </model-hints>

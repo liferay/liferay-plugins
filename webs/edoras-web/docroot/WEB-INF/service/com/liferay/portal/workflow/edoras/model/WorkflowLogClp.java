@@ -185,11 +185,11 @@ public class WorkflowLogClp extends BaseModelImpl<WorkflowLog>
 		_comment = comment;
 	}
 
-	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getWorkflowInstance() {
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask getTaskInstance() {
 		throw new UnsupportedOperationException();
 	}
 
-	public com.liferay.portal.workflow.edoras.model.WorkflowTask getTaskInstance() {
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getWorkflowInstance() {
 		throw new UnsupportedOperationException();
 	}
 

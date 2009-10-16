@@ -105,7 +105,7 @@
 		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="assigneeUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="assigneeUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="assignedGroup" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="assignedGroupName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="roleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 </hibernate-mapping>

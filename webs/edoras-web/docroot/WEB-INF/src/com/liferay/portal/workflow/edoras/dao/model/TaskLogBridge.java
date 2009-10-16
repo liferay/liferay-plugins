@@ -28,8 +28,8 @@ import com.liferay.portal.workflow.edoras.model.WorkflowTask;
 import org.edorasframework.process.core.log.model.DefaultTaskLog;
 
 /**
- * <a href="CommentLogBridge.java.html"><b><i>View Source</i></b></a>
- * 
+ * <a href="TaskLogBridge.java.html"><b><i>View Source</i></b></a>
+ *
  * @author Micha Kiener
  */
 public class TaskLogBridge extends DefaultTaskLog
@@ -45,13 +45,17 @@ public class TaskLogBridge extends DefaultTaskLog
 
 	public WorkflowLog initializeForInsert() {
 		WorkflowLog workflowLog = _workflowLogDelegate.unwrap();
+
 		transferPropertiesForSaving();
+
 		return workflowLog;
 	}
 
 	public WorkflowLog initializeForUpdate() {
 		WorkflowLog workflowLog = _workflowLogDelegate.unwrap();
+
 		transferPropertiesForSaving();
+
 		return workflowLog;
 	}
 
@@ -59,8 +63,10 @@ public class TaskLogBridge extends DefaultTaskLog
 		_workflowLogDelegate.initializeFromReading(workflowLog, this);
 
 		WorkflowTask workflowTask = workflowLog.getTaskInstance();
-		WorkflowTaskBridge workflowTaskBridge =
-			new WorkflowTaskBridge(workflowTask);
+
+		WorkflowTaskBridge workflowTaskBridge = new WorkflowTaskBridge(
+			workflowTask);
+
 		setTask(workflowTaskBridge);
 	}
 
@@ -70,11 +76,13 @@ public class TaskLogBridge extends DefaultTaskLog
 
 	public void setPrimaryKey(long primaryKey) {
 		setId(primaryKey);
+
 		_workflowLogDelegate.setPrimaryKey(primaryKey);
 	}
 
 	public void transferPropertiesForSaving() {
 		WorkflowLog workflowLog = _workflowLogDelegate.unwrap();
+
 		_workflowLogDelegate.transferPropertiesForSaving(this);
 
 		workflowLog.setWorkflowTaskId(getTask().getPrimaryKey());
@@ -85,4 +93,5 @@ public class TaskLogBridge extends DefaultTaskLog
 	}
 
 	private WorkflowLogDelegate<DefaultTaskLog> _workflowLogDelegate;
+
 }

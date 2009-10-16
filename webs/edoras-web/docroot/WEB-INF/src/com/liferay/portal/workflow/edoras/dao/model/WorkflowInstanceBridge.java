@@ -33,7 +33,6 @@ import org.edorasframework.process.api.model.ProcessModel;
 import org.edorasframework.process.api.service.ProcessService;
 import org.edorasframework.process.api.session.ProcessSession;
 import org.edorasframework.process.core.entity.DefaultProcessInstance;
-import org.springframework.util.Assert;
 
 /**
  * <a href="WorkflowInstanceBridge.java.html"><b><i>View Source</i></b></a>
@@ -93,9 +92,9 @@ public class WorkflowInstanceBridge
 
 		return _workflowInstance;
 	}
-	
-	public void initializeFromReading(WorkflowInstance workflowObject) {
-		initializeFromReading(workflowObject, null, true);
+
+	public void initializeFromReading(WorkflowInstance workflowInstance) {
+		initializeFromReading(workflowInstance, null, true);
 	}
 
 	public void initializeFromReading(
@@ -104,11 +103,13 @@ public class WorkflowInstanceBridge
 		boolean loadChildren) {
 
 		_workflowInstance = workflowInstance;
-		
+
 		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
-		Assert.notNull(
-			processSession,
-			"No process session while reading workflow entities.");
+
+		if (processSession == null) {
+			throw new IllegalArgumentException(
+				"No process session while reading workflow entities");
+		}
 
 		setId(workflowInstance.getPrimaryKey());
 		setTenantId(workflowInstance.getCompanyId());

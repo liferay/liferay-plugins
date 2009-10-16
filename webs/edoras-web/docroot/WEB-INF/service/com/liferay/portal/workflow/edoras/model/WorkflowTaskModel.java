@@ -108,9 +108,9 @@ public interface WorkflowTaskModel extends BaseModel<WorkflowTask> {
 
 	public void setAssigneeUserName(String assigneeUserName);
 
-	public String getAssignedGroup();
+	public String getAssignedGroupName();
 
-	public void setAssignedGroup(String assignedGroup);
+	public void setAssignedGroupName(String assignedGroupName);
 
 	public long getRoleId();
 

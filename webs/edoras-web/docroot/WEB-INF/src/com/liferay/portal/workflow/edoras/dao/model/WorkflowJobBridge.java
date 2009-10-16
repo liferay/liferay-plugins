@@ -28,21 +28,18 @@ import com.liferay.portal.workflow.edoras.model.impl.WorkflowJobImpl;
 
 import org.edorasframework.process.core.job.DefaultProcessJob;
 
-
 /**
  * <a href="WorkflowJobBridge.java.html"><b><i>View Source</i></b></a>
- *
  *
  * @author Micha Kiener
  */
 public class WorkflowJobBridge extends DefaultProcessJob
 	implements WorkflowEntity, WorkflowEntityBridge<WorkflowJob> {
 
-
 	public WorkflowJobBridge() {
 
 	}
-	
+
 	public WorkflowJobBridge(WorkflowJob workflowJob) {
 		initializeFromReading(workflowJob);
 	}
@@ -54,43 +51,47 @@ public class WorkflowJobBridge extends DefaultProcessJob
 	public WorkflowJob initializeForInsert() {
 		unwrap();
 		transferPropertiesForSaving();
+
 		return _workflowJob;
 	}
 
 	public WorkflowJob initializeForUpdate() {
 		transferPropertiesForSaving();
+
 		return _workflowJob;
 	}
 
 	public void initializeFromReading(WorkflowJob workflowJob) {
 		_workflowJob = workflowJob;
-		
+
 		setId(workflowJob.getPrimaryKey());
 		setTenantId(workflowJob.getCompanyId());
 
-		Class<?> setupId =
-			WorkflowEntityBridgeUtil.getSetupClassForName(workflowJob.getSetupId());
+		Class<?> setupId = WorkflowEntityBridgeUtil.getSetupClassForName(
+			workflowJob.getSetupId());
 
 		setSetupId(setupId);
 
 		WorkflowInstance workflowInstance = workflowJob.getWorkflowInstance();
+
 		WorkflowInstanceBridge workflowInstanceBridge =
 			new WorkflowInstanceBridge(workflowInstance);
+
 		setProcessInstance(workflowInstanceBridge);
 
 		setElementName(workflowJob.getElementName());
 		setCause(workflowJob.getCause());
-		
+
 		setCreatedAt(workflowJob.getCreateDate());
 		setDueDate(workflowJob.getDueDate());
 		setNotBeforeDate(workflowJob.getNotBeforeDate());
-		
+
 		postLoad();
 	}
 
 	public boolean setNew(boolean isNew) {
 		WorkflowJob workflowJob = unwrap();
-		
+
 		return workflowJob.setNew(isNew);
 	}
 
@@ -104,7 +105,8 @@ public class WorkflowJobBridge extends DefaultProcessJob
 		_workflowJob.setPrimaryKey(getId());
 		_workflowJob.setCompanyId(getTenantId());
 		_workflowJob.setSetupId(getSetupId().getName());
-		_workflowJob.setWorkflowInstanceId(getProcessInstance().getPrimaryKey());
+		_workflowJob.setWorkflowInstanceId(
+			getProcessInstance().getPrimaryKey());
 		_workflowJob.setElementName(getElementName());
 		_workflowJob.setCause(getCause());
 		_workflowJob.setCreateDate(getCreatedAt());
@@ -121,4 +123,5 @@ public class WorkflowJobBridge extends DefaultProcessJob
 	}
 
 	private transient WorkflowJob _workflowJob;
+
 }

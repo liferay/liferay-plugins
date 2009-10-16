@@ -29,8 +29,8 @@ import org.edorasframework.process.api.model.ProcessModel;
 import org.edorasframework.process.core.log.model.DefaultTransitionLog;
 
 /**
- * <a href="CommentLogBridge.java.html"><b><i>View Source</i></b></a>
- * 
+ * <a href="TransitionLogBridge.java.html"><b><i>View Source</i></b></a>
+ *
  * @author Micha Kiener
  */
 public class TransitionLogBridge extends DefaultTransitionLog
@@ -46,13 +46,17 @@ public class TransitionLogBridge extends DefaultTransitionLog
 
 	public WorkflowLog initializeForInsert() {
 		WorkflowLog workflowLog = _workflowLogDelegate.unwrap();
+
 		transferPropertiesForSaving();
+
 		return workflowLog;
 	}
 
 	public WorkflowLog initializeForUpdate() {
 		WorkflowLog workflowLog = _workflowLogDelegate.unwrap();
+
 		transferPropertiesForSaving();
+
 		return workflowLog;
 	}
 
@@ -60,6 +64,7 @@ public class TransitionLogBridge extends DefaultTransitionLog
 		_workflowLogDelegate.initializeFromReading(workflowLog, this);
 
 		ProcessModel processModel = getProcessModel();
+
 		Element oldState = processModel.getElement(workflowLog.getOldState());
 		Element newState = processModel.getElement(workflowLog.getNewState());
 
@@ -72,11 +77,13 @@ public class TransitionLogBridge extends DefaultTransitionLog
 
 	public void setPrimaryKey(long primaryKey) {
 		setId(primaryKey);
+
 		_workflowLogDelegate.setPrimaryKey(primaryKey);
 	}
 
 	public void transferPropertiesForSaving() {
 		WorkflowLog workflowLog = _workflowLogDelegate.unwrap();
+
 		_workflowLogDelegate.transferPropertiesForSaving(this);
 
 		workflowLog.setOldState(getOldStateName());
@@ -88,4 +95,5 @@ public class TransitionLogBridge extends DefaultTransitionLog
 	}
 
 	private WorkflowLogDelegate<DefaultTransitionLog> _workflowLogDelegate;
+
 }

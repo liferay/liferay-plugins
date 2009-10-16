@@ -30,8 +30,8 @@ import com.liferay.portal.workflow.edoras.model.WorkflowDefinition;
  * @author Micha Kiener
  * @author Brian Wing Shun Chan
  */
-public class WorkflowDefinitionImpl extends WorkflowDefinitionModelImpl
-	implements WorkflowDefinition {
+public class WorkflowDefinitionImpl
+	extends WorkflowDefinitionModelImpl implements WorkflowDefinition {
 
 	public WorkflowDefinitionImpl() {
 	}

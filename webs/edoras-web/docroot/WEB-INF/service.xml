@@ -225,7 +225,7 @@
 		<column name="priority" type="int" />
 		<column name="assigneeUserId" type="long" />
 		<column name="assigneeUserName" type="String" />
-		<column name="assignedGroup" type="String" />
+		<column name="assignedGroupName" type="String" />
 		<column name="roleId" type="long" />
 
 		<!-- Finder methods -->

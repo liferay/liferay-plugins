@@ -189,12 +189,12 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		_assigneeUserName = assigneeUserName;
 	}
 
-	public String getAssignedGroup() {
-		return _assignedGroup;
+	public String getAssignedGroupName() {
+		return _assignedGroupName;
 	}
 
-	public void setAssignedGroup(String assignedGroup) {
-		_assignedGroup = assignedGroup;
+	public void setAssignedGroupName(String assignedGroupName) {
+		_assignedGroupName = assignedGroupName;
 	}
 
 	public long getRoleId() {
@@ -233,7 +233,7 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 			model.setPriority(getPriority());
 			model.setAssigneeUserId(getAssigneeUserId());
 			model.setAssigneeUserName(HtmlUtil.escape(getAssigneeUserName()));
-			model.setAssignedGroup(HtmlUtil.escape(getAssignedGroup()));
+			model.setAssignedGroupName(HtmlUtil.escape(getAssignedGroupName()));
 			model.setRoleId(getRoleId());
 
 			model = (WorkflowTask)Proxy.newProxyInstance(WorkflowTask.class.getClassLoader(),
@@ -262,7 +262,7 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		clone.setPriority(getPriority());
 		clone.setAssigneeUserId(getAssigneeUserId());
 		clone.setAssigneeUserName(getAssigneeUserName());
-		clone.setAssignedGroup(getAssignedGroup());
+		clone.setAssignedGroupName(getAssignedGroupName());
 		clone.setRoleId(getRoleId());
 
 		return clone;
@@ -343,8 +343,8 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		sb.append(getAssigneeUserId());
 		sb.append(", assigneeUserName=");
 		sb.append(getAssigneeUserName());
-		sb.append(", assignedGroup=");
-		sb.append(getAssignedGroup());
+		sb.append(", assignedGroupName=");
+		sb.append(getAssignedGroupName());
 		sb.append(", roleId=");
 		sb.append(getRoleId());
 		sb.append("}");
@@ -420,8 +420,8 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		sb.append(getAssigneeUserName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>assignedGroup</column-name><column-value><![CDATA[");
-		sb.append(getAssignedGroup());
+			"<column><column-name>assignedGroupName</column-name><column-value><![CDATA[");
+		sb.append(getAssignedGroupName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>roleId</column-name><column-value><![CDATA[");
@@ -449,6 +449,6 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 	private long _assigneeUserId;
 	private String _assigneeUserUuid;
 	private String _assigneeUserName;
-	private String _assignedGroup;
+	private String _assignedGroupName;
 	private long _roleId;
 }

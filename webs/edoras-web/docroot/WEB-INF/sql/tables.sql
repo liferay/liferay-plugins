@@ -86,6 +86,6 @@ create table Edoras_WorkflowTask (
 	priority INTEGER,
 	assigneeUserId LONG,
 	assigneeUserName VARCHAR(75) null,
-	assignedGroup VARCHAR(75) null,
+	assignedGroupName VARCHAR(75) null,
 	roleId LONG
 );

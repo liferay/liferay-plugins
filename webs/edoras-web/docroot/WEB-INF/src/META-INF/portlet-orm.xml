@@ -134,7 +134,7 @@
 			<basic name="priority" />
 			<basic name="assigneeUserId" />
 			<basic name="assigneeUserName" />
-			<basic name="assignedGroup" />
+			<basic name="assignedGroupName" />
 			<basic name="roleId" />
 			<transient name="assigneeUserUuid" />
 			<transient name="primaryKey" />

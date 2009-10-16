@@ -27,7 +27,6 @@ import com.liferay.portal.workflow.edoras.model.WorkflowLog;
 import org.edorasframework.process.api.model.Activity;
 import org.edorasframework.process.core.log.model.DefaultActivityLog;
 
-
 /**
  * <a href="ActivityLogBridge.java.html"><b><i>View Source</i></b></a>
  *
@@ -39,27 +38,32 @@ public class ActivityLogBridge extends DefaultActivityLog
 	public ActivityLogBridge() {
 		_workflowLogDelegate = new WorkflowLogDelegate<DefaultActivityLog>();
 	}
-	
+
 	public long getPrimaryKey() {
 		return getId();
 	}
 
 	public WorkflowLog initializeForInsert() {
 		WorkflowLog workflowLog = _workflowLogDelegate.unwrap();
+
 		transferPropertiesForSaving();
+
 		return workflowLog;
 	}
 
 	public WorkflowLog initializeForUpdate() {
 		WorkflowLog workflowLog = _workflowLogDelegate.unwrap();
+
 		transferPropertiesForSaving();
+
 		return workflowLog;
 	}
 
 	public void initializeFromReading(WorkflowLog workflowLog) {
 		_workflowLogDelegate.initializeFromReading(workflowLog, this);
-		
+
 		String activityName = workflowLog.getActivityName();
+
 		if (activityName == null) {
 			setActivity(null);
 		}
@@ -74,13 +78,15 @@ public class ActivityLogBridge extends DefaultActivityLog
 
 	public void setPrimaryKey(long primaryKey) {
 		setId(primaryKey);
+
 		_workflowLogDelegate.setPrimaryKey(primaryKey);
 	}
 
 	public void transferPropertiesForSaving() {
 		WorkflowLog workflowLog = _workflowLogDelegate.unwrap();
+
 		_workflowLogDelegate.transferPropertiesForSaving(this);
-		
+
 		workflowLog.setActivityName(getActivityName());
 	}
 
@@ -89,4 +95,5 @@ public class ActivityLogBridge extends DefaultActivityLog
 	}
 
 	private WorkflowLogDelegate<DefaultActivityLog> _workflowLogDelegate;
+
 }

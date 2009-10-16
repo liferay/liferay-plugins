@@ -22,7 +22,6 @@
 
 package com.liferay.portal.workflow.edoras.dao.model;
 
-
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.workflow.edoras.model.WorkflowDefinition;
 import com.liferay.portal.workflow.edoras.model.impl.WorkflowDefinitionImpl;
@@ -30,15 +29,15 @@ import com.liferay.portal.workflow.edoras.model.impl.WorkflowDefinitionImpl;
 import org.edorasframework.process.api.service.MutableProcessModelDefinition;
 import org.edorasframework.process.core.service.DefaultProcessModelDefinition;
 
-
 /**
  * <a href="WorkflowDefinitionBridge.java.html"><b><i>View Source</i></b></a>
  *
  * @author Micha Kiener
  */
-public class WorkflowDefinitionBridge extends DefaultProcessModelDefinition
+public class WorkflowDefinitionBridge
+	extends DefaultProcessModelDefinition
 	implements MutableProcessModelDefinition, WorkflowEntity,
-	WorkflowEntityBridge<WorkflowDefinition> {
+			   WorkflowEntityBridge<WorkflowDefinition> {
 
 	public WorkflowDefinition initializeForInsert() {
 		return null;
@@ -46,6 +45,7 @@ public class WorkflowDefinitionBridge extends DefaultProcessModelDefinition
 
 	public WorkflowDefinition initializeForUpdate() {
 		transferPropertiesForSaving();
+
 		return _workflowDefinition;
 	}
 
@@ -58,8 +58,9 @@ public class WorkflowDefinitionBridge extends DefaultProcessModelDefinition
 		setProcessModelId(workflowDefinition.getName());
 		setProcessModelVersion(workflowDefinition.getVersion());
 		setModelDesignerVersion(workflowDefinition.getDesignerVersion());
-		
+
 		long companyId = workflowDefinition.getCompanyId();
+
 		if (companyId == CompanyConstants.SYSTEM) {
 			setTenantId(null);
 		}
@@ -85,6 +86,7 @@ public class WorkflowDefinitionBridge extends DefaultProcessModelDefinition
 		_workflowDefinition.setDesignerVersion(getModelDesignerVersion());
 
 		Long tenantId = getTenantId();
+
 		if (tenantId == null) {
 			_workflowDefinition.setCompanyId(CompanyConstants.SYSTEM);
 		}
@@ -102,4 +104,5 @@ public class WorkflowDefinitionBridge extends DefaultProcessModelDefinition
 	}
 
 	private transient WorkflowDefinition _workflowDefinition;
+
 }

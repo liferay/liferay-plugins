@@ -52,7 +52,7 @@ public class WorkflowTaskSoap implements Serializable {
 		soapModel.setPriority(model.getPriority());
 		soapModel.setAssigneeUserId(model.getAssigneeUserId());
 		soapModel.setAssigneeUserName(model.getAssigneeUserName());
-		soapModel.setAssignedGroup(model.getAssignedGroup());
+		soapModel.setAssignedGroupName(model.getAssignedGroupName());
 		soapModel.setRoleId(model.getRoleId());
 
 		return soapModel;
@@ -230,12 +230,12 @@ public class WorkflowTaskSoap implements Serializable {
 		_assigneeUserName = assigneeUserName;
 	}
 
-	public String getAssignedGroup() {
-		return _assignedGroup;
+	public String getAssignedGroupName() {
+		return _assignedGroupName;
 	}
 
-	public void setAssignedGroup(String assignedGroup) {
-		_assignedGroup = assignedGroup;
+	public void setAssignedGroupName(String assignedGroupName) {
+		_assignedGroupName = assignedGroupName;
 	}
 
 	public long getRoleId() {
@@ -261,6 +261,6 @@ public class WorkflowTaskSoap implements Serializable {
 	private int _priority;
 	private long _assigneeUserId;
 	private String _assigneeUserName;
-	private String _assignedGroup;
+	private String _assignedGroupName;
 	private long _roleId;
 }

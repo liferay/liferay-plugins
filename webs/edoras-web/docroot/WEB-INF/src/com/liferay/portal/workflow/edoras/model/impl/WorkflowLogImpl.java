@@ -42,27 +42,29 @@ public class WorkflowLogImpl
 	public WorkflowLogImpl() {
 	}
 
-	public WorkflowInstance getWorkflowInstance() {
-		try {
-			return WorkflowInstanceUtil.findByPrimaryKey(getWorkflowInstanceId());
-		}
-		catch (Exception e) {
-			throw new ProcessException(
-				"Could not fetch the workflow instance for log with id [" +
-					getPrimaryKey() + "]",
-				e);
-		}
-	}
-
 	public WorkflowTask getTaskInstance() {
 		try {
 			return WorkflowTaskUtil.findByPrimaryKey(getWorkflowTaskId());
 		}
 		catch (Exception e) {
 			throw new ProcessException(
-				"Could not fetch the workflow task for log with id [" +
-					getPrimaryKey() + "]", e);
+				"Could not fetch the workflow task for log with id " +
+					getPrimaryKey(),
+				e);
 		}
 	}
-	
+
+	public WorkflowInstance getWorkflowInstance() {
+		try {
+			return WorkflowInstanceUtil.findByPrimaryKey(
+				getWorkflowInstanceId());
+		}
+		catch (Exception e) {
+			throw new ProcessException(
+				"Could not fetch the workflow instance for log with id " +
+					getPrimaryKey(),
+				e);
+		}
+	}
+
 }

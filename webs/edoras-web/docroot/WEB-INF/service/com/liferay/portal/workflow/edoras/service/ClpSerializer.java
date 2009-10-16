@@ -691,10 +691,10 @@ public class ClpSerializer {
 
 					method14.invoke(newModel, value14);
 
-					Method method15 = newModelClass.getMethod("setAssignedGroup",
+					Method method15 = newModelClass.getMethod("setAssignedGroupName",
 							new Class[] { String.class });
 
-					String value15 = oldCplModel.getAssignedGroup();
+					String value15 = oldCplModel.getAssignedGroupName();
 
 					method15.invoke(newModel, value15);
 
@@ -1358,12 +1358,12 @@ public class ClpSerializer {
 					newModel.setAssigneeUserName(value14);
 
 					Method method15 = oldModelClass.getMethod(
-							"getAssignedGroup");
+							"getAssignedGroupName");
 
 					String value15 = (String)method15.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setAssignedGroup(value15);
+					newModel.setAssignedGroupName(value15);
 
 					Method method16 = oldModelClass.getMethod("getRoleId");
 

@@ -34,7 +34,6 @@ import org.edorasframework.process.api.session.ProcessSession;
 import org.edorasframework.process.api.task.TaskPriority;
 import org.edorasframework.process.workflow.api.TaskState;
 import org.edorasframework.process.workflow.task.DefaultWorkflowTask;
-import org.springframework.util.Assert;
 
 /**
  * <a href="WorkflowTaskBridge.java.html"><b><i>View Source</i></b></a>
@@ -45,7 +44,6 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 	implements WorkflowEntity, WorkflowEntityBridge<WorkflowTask> {
 
 	public WorkflowTaskBridge() {
-
 	}
 
 	public WorkflowTaskBridge(WorkflowTask workflowTask) {
@@ -61,23 +59,24 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 
 		ProcessService processService = processSession.getService();
 
-		ProcessModel processModel =
-			processService.getProcessModel(
-				getProcessModelId(), getProcessModelVersion());
+		ProcessModel processModel = processService.getProcessModel(
+			getProcessModelId(), getProcessModelVersion());
 
 		_worflowDefinitionId = processModel.getRepositoryPK();
 
 		return _worflowDefinitionId;
 	}
-	
+
 	public WorkflowTask initializeForInsert() {
 		unwrap();
 		transferPropertiesForSaving();
+
 		return _workflowTask;
 	}
 
 	public WorkflowTask initializeForUpdate() {
 		transferPropertiesForSaving();
+
 		return _workflowTask;
 	}
 
@@ -91,52 +90,59 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 		_workflowTask = workflowTask;
 
 		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
-		Assert.notNull(
-			processSession,
-			"No process session while reading workflow entities.");
-		
+
+		if (processSession == null) {
+			throw new IllegalArgumentException(
+				"No process session while reading workflow entities");
+		}
+
 		setId(workflowTask.getPrimaryKey());
 		setTenantId(workflowTask.getCompanyId());
 		setCreationDate(workflowTask.getCreateDate());
 		setDueDate(workflowTask.getDueDate());
 		setCompletionDate(workflowTask.getCompletionDate());
 		setCompleted(workflowTask.getCompleted());
-		
+
 		WorkflowInstance workflowInstance = workflowTask.getWorkflowInstance();
+
 		WorkflowInstanceBridge workflowInstanceBridge =
 			new WorkflowInstanceBridge(workflowInstance);
+
 		setProcessInstance(workflowInstanceBridge);
 
 		setMetaName(workflowTask.getMetaName());
 		setRelation(workflowTask.getRelation());
 
-		ProcessModel processModel =
-			processSession.getService().getProcessModel(
-				workflowTask.getWorkflowDefinitionId());
+		ProcessService processService = processSession.getService();
+
+		ProcessModel processModel = processService.getProcessModel(
+			workflowTask.getWorkflowDefinitionId());
 
 		setProcessModelId(processModel.getProcessModelId());
 		setProcessModelVersion(processModel.getProcessModelVersion());
-		
+
 		setTaskId(workflowTask.getFriendlyId());
 		setAssignee(workflowTask.getAssigneeUserName());
 		setPriority(TaskPriority.getPriority(workflowTask.getPriority()));
-		
+
 		setState(TaskState.getState(workflowTask.getState()));
-		setAssignedGroup(workflowTask.getAssignedGroup());
-		
+		setAssignedGroup(workflowTask.getAssignedGroupName());
+
 		postLoad();
 	}
 
 	public void transferPropertiesForSaving() {
 		unwrap();
+
 		_workflowTask.setPrimaryKey(getPrimaryKey());
 		_workflowTask.setCompanyId(getTenantId());
 		_workflowTask.setCreateDate(getCreationDate());
 		_workflowTask.setDueDate(getDueDate());
 		_workflowTask.setCompletionDate(getCompletionDate());
 		_workflowTask.setCompleted(isCompleted());
-		
+
 		ProcessInstance processInstance = getProcessInstance();
+
 		_workflowTask.setWorkflowInstanceId(processInstance.getPrimaryKey());
 
 		_workflowTask.setMetaName(getMetaName());
@@ -146,7 +152,7 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 
 		_workflowTask.setFriendlyId(getTaskId());
 		_workflowTask.setAssigneeUserName(getAssignee());
-		_workflowTask.setAssignedGroup(getAssignedGroup());
+		_workflowTask.setAssignedGroupName(getAssignedGroup());
 		_workflowTask.setPriority(getPriority().getPriority());
 		_workflowTask.setState(getState().getState());
 	}
@@ -161,4 +167,5 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 
 	private transient long _worflowDefinitionId;
 	private transient WorkflowTask _workflowTask;
+
 }
