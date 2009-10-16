@@ -22,6 +22,7 @@
 
 package com.liferay.portal.workflow.edoras.dao.model;
 
+import com.liferay.portal.workflow.edoras.model.WorkflowDefinition;
 import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ import java.util.Map;
 
 import org.edorasframework.process.api.entity.ProcessInstance;
 import org.edorasframework.process.api.ex.ProcessException;
+import org.edorasframework.process.api.service.ProcessModelDefinition;
 
 /**
  * <a href="WorkflowEntityBridgeUtil.java.html"><b><i>View Source</i></b></a>
@@ -63,7 +65,25 @@ public class WorkflowEntityBridgeUtil {
 		return setupClass;
 	}
 
-	public static List<? extends ProcessInstance> transferLoadedObjects(
+	public static List<? extends ProcessModelDefinition> wrapWorkflowDefinitionList(
+		List<WorkflowDefinition> workflowDefinitions) {
+
+		List<ProcessModelDefinition> processDefinitions =
+			new ArrayList<ProcessModelDefinition>();
+
+		if (workflowDefinitions == null) {
+			return processDefinitions;
+		}
+
+		for (WorkflowDefinition workflowDefinition : workflowDefinitions) {
+			processDefinitions.add(new WorkflowDefinitionBridge(
+				workflowDefinition));
+		}
+
+		return processDefinitions;
+	}
+
+	public static List<? extends ProcessInstance> wrapWorkflowInstanceList(
 		List<WorkflowInstance> workflowInstances,
 		WorkflowInstanceBridge workflowInstanceBridge, boolean loadChildren) {
 

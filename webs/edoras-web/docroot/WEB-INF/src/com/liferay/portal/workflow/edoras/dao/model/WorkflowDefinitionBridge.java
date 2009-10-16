@@ -39,6 +39,14 @@ public class WorkflowDefinitionBridge
 	implements MutableProcessModelDefinition, WorkflowEntity,
 			   WorkflowEntityBridge<WorkflowDefinition> {
 
+	public WorkflowDefinitionBridge() {
+
+	}
+	
+	public WorkflowDefinitionBridge(WorkflowDefinition workflowDefinition) {
+		initializeFromReading(workflowDefinition);
+	}
+
 	public WorkflowDefinition initializeForInsert() {
 		return null;
 	}
