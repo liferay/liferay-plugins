@@ -193,8 +193,8 @@ public class WorkflowDefinitionManagerImpl
 	}
 
 	public void undeployWorkflowDefinition(
-			WorkflowDefinition workflowDefinition,
-			long callingUserId, Map<String, Object> parameters)
+			WorkflowDefinition workflowDefinition, long callingUserId,
+			Map<String, Object> parameters)
 		throws WorkflowException{
 
 		String name = workflowDefinition.getWorkflowDefinitionName();
@@ -204,18 +204,23 @@ public class WorkflowDefinitionManagerImpl
 
 		try {
 			GraphSession graphSession = jbpmContext.getGraphSession();
+
 			ProcessDefinition processDefinition =
 				graphSession.findProcessDefinition(name, version);
+
 			if (processDefinition != null) {
 				List<ProcessInstance> processInstances =
 					graphSession.findProcessInstances(
 						processDefinition.getId());
-				for(ProcessInstance processInstance : processInstances) {
+
+				for (ProcessInstance processInstance : processInstances) {
 					if (!processInstance.hasEnded()) {
 						throw new WorkflowException(
-							"There are stilling running process instances");
+							"Process instance " + processInstance.getId() +
+								" is required");
 					}
 				}
+
 				graphSession.deleteProcessDefinition(processDefinition);
 			}
 		}
