@@ -37,7 +37,6 @@ import org.edorasframework.process.api.entity.MutableProcessInstance;
 import org.edorasframework.process.api.entity.ProcessInstance;
 import org.edorasframework.process.api.ex.ProcessException;
 import org.edorasframework.process.api.session.ProcessSession;
-
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 
@@ -101,7 +100,7 @@ public class WorkflowInstanceDao
 					List<WorkflowInstance> workflowInstances =
 						WorkflowInstanceUtil.findByFinished(false);
 
-					return WorkflowEntityBridgeUtil.transferLoadedObjects(
+					return WorkflowEntityBridgeUtil.wrapWorkflowInstanceList(
 						workflowInstances, null, true);
 				}
 				catch (SystemException se) {
@@ -169,7 +168,7 @@ public class WorkflowInstanceDao
 						WorkflowInstanceUtil.findByC_C(
 							relationType, relationId);
 
-					return WorkflowEntityBridgeUtil.transferLoadedObjects(
+					return WorkflowEntityBridgeUtil.wrapWorkflowInstanceList(
 						workflowInstances, null, true);
 				}
 				catch (SystemException se) {
@@ -243,7 +242,7 @@ public class WorkflowInstanceDao
 			}
 
 			return (List<? extends MutableProcessInstance>)
-				WorkflowEntityBridgeUtil.transferLoadedObjects(
+				WorkflowEntityBridgeUtil.wrapWorkflowInstanceList(
 					workflowInstances,
 					(WorkflowInstanceBridge)parentProcessInstance, false);
 		}

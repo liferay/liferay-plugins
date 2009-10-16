@@ -25,7 +25,8 @@ package com.liferay.portal.workflow.edoras.dao;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException;
-import com.liferay.portal.workflow.edoras.dao.model.WorkflowEntity;
+import com.liferay.portal.workflow.edoras.dao.model.WorkflowDefinitionBridge;
+import com.liferay.portal.workflow.edoras.dao.model.WorkflowEntityBridgeUtil;
 import com.liferay.portal.workflow.edoras.model.WorkflowDefinition;
 import com.liferay.portal.workflow.edoras.service.persistence.WorkflowDefinitionUtil;
 
@@ -41,7 +42,8 @@ import org.edorasframework.process.api.service.ProcessServiceDao;
  * @author Micha Kiener
  */
 public class WorkflowDefinitionDao
-	extends AbstractWorkflowDao<WorkflowEntity> implements ProcessServiceDao {
+	extends AbstractWorkflowDao<WorkflowDefinitionBridge>
+	implements ProcessServiceDao {
 
 	public void clearCache() {
 		WorkflowDefinitionUtil.clearCache();
@@ -74,7 +76,10 @@ public class WorkflowDefinitionDao
 		long primaryKey = (Long)identity;
 
 		try {
-			return (T)WorkflowDefinitionUtil.findByPrimaryKey(primaryKey);
+			WorkflowDefinition workflowDefinition =
+				WorkflowDefinitionUtil.findByPrimaryKey(primaryKey);
+			
+			return (T) new WorkflowDefinitionBridge(workflowDefinition);
 		}
 		catch (NoSuchWorkflowDefinitionException nswde) {
 			return null;
@@ -99,8 +104,11 @@ public class WorkflowDefinitionDao
 		}
 
 		try {
-			return (ProcessModelDefinition)WorkflowDefinitionUtil.findByC_N_V(
+			WorkflowDefinition workflowDefinition =
+				WorkflowDefinitionUtil.findByC_N_V(
 				companyId, modelId, modelVersion);
+			
+			return new WorkflowDefinitionBridge(workflowDefinition);
 		}
 		catch (NoSuchWorkflowDefinitionException nswde) {
 			return null;
@@ -113,16 +121,20 @@ public class WorkflowDefinitionDao
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public List loadModelDefinitions(Long tenantId) {
 		try {
+			List<WorkflowDefinition> workflowDefinitionList = null;
 			if (tenantId == null) {
-				return WorkflowDefinitionUtil.findAll();
+				workflowDefinitionList =
+					WorkflowDefinitionUtil.findAll();
 			}
 			else {
-				return WorkflowDefinitionUtil.findByCompanyId(
+				workflowDefinitionList =
+					WorkflowDefinitionUtil.findByCompanyId(
 					tenantId.longValue());
 			}
+			
+			return WorkflowEntityBridgeUtil.wrapWorkflowDefinitionList(workflowDefinitionList);
 		}
 		catch (SystemException se) {
 			throw new ProcessException(
@@ -141,10 +153,18 @@ public class WorkflowDefinitionDao
 	}
 
 	public <T> void save(T workflowEntity) {
-		super.checkAndInitializeNewInstance((WorkflowEntity)workflowEntity);
+		WorkflowDefinitionBridge workflowDefinitionBridge =
+			(WorkflowDefinitionBridge) workflowEntity;
+
+		if (super.checkAndInitializeNewInstance(workflowDefinitionBridge)) {
+			workflowDefinitionBridge.initializeForInsert();
+		}
+		else {
+			workflowDefinitionBridge.initializeForUpdate();
+		}
 
 		try {
-			WorkflowDefinitionUtil.update((WorkflowDefinition)workflowEntity);
+			WorkflowDefinitionUtil.update(workflowDefinitionBridge.unwrap());
 		}
 		catch (SystemException se) {
 			throw new ProcessException(
