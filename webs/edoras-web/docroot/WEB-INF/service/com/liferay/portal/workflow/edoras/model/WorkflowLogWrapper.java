@@ -235,6 +235,10 @@ public class WorkflowLogWrapper implements WorkflowLog {
 		return _workflowLog.getWorkflowInstance();
 	}
 
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask getTaskInstance() {
+		return _workflowLog.getTaskInstance();
+	}
+
 	public WorkflowLog getWrappedWorkflowLog() {
 		return _workflowLog;
 	}

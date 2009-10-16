@@ -29,4 +29,6 @@ package com.liferay.portal.workflow.edoras.model;
  */
 public interface WorkflowLog extends WorkflowLogModel {
 	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getWorkflowInstance();
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask getTaskInstance();
 }

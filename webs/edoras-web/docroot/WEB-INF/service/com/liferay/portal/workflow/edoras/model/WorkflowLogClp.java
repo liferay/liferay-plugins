@@ -189,6 +189,10 @@ public class WorkflowLogClp extends BaseModelImpl<WorkflowLog>
 		throw new UnsupportedOperationException();
 	}
 
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask getTaskInstance() {
+		throw new UnsupportedOperationException();
+	}
+
 	public WorkflowLog toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;

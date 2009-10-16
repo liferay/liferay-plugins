@@ -24,7 +24,9 @@ package com.liferay.portal.workflow.edoras.model.impl;
 
 import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
 import com.liferay.portal.workflow.edoras.model.WorkflowLog;
+import com.liferay.portal.workflow.edoras.model.WorkflowTask;
 import com.liferay.portal.workflow.edoras.service.persistence.WorkflowInstanceUtil;
+import com.liferay.portal.workflow.edoras.service.persistence.WorkflowTaskUtil;
 
 import org.edorasframework.process.api.ex.ProcessException;
 
@@ -49,6 +51,17 @@ public class WorkflowLogImpl
 				"Could not fetch the workflow instance for log with id [" +
 					getPrimaryKey() + "]",
 				e);
+		}
+	}
+
+	public WorkflowTask getTaskInstance() {
+		try {
+			return WorkflowTaskUtil.findByPrimaryKey(getWorkflowTaskId());
+		}
+		catch (Exception e) {
+			throw new ProcessException(
+				"Could not fetch the workflow task for log with id [" +
+					getPrimaryKey() + "]", e);
 		}
 	}
 	
