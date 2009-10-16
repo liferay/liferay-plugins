@@ -22,17 +22,22 @@
 
 package com.liferay.portal.workflow.edoras.dao.model;
 
+import com.liferay.portal.kernel.dao.orm.Order;
+import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
 import com.liferay.portal.workflow.edoras.model.WorkflowDefinition;
 import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
+import com.liferay.portal.workflow.edoras.model.WorkflowTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.edorasframework.process.api.dao.OrderComparator;
 import org.edorasframework.process.api.entity.ProcessInstance;
 import org.edorasframework.process.api.ex.ProcessException;
 import org.edorasframework.process.api.service.ProcessModelDefinition;
+import org.edorasframework.process.api.task.ProcessTask;
 
 /**
  * <a href="WorkflowEntityBridgeUtil.java.html"><b><i>View Source</i></b></a>
@@ -42,6 +47,37 @@ import org.edorasframework.process.api.service.ProcessModelDefinition;
  */
 public class WorkflowEntityBridgeUtil {
 
+	public static <T> List<Order> createOrderList(Class<?> workflowEntityClass,
+		OrderComparator<T> orderComparator) {
+
+		String[] fields = orderComparator.getFields();
+		boolean[] fieldOrders = orderComparator.getFieldOrders();
+		
+		List<Order> orderList = new ArrayList<Order>(fields.length);
+		for (int ii = 0; ii < fields.length; ii++) {
+			String fieldName = fields[ii];
+			
+			if (fieldOrders[ii]) {
+				orderList.add(OrderFactoryUtil.asc(fieldName));
+			} else {
+				orderList.add(OrderFactoryUtil.desc(fieldName));
+			}
+		}
+		
+		return orderList;
+	}
+	
+	public static String getBridgedPropertyName(
+		Class<?> entityClass, String propertyName) {
+
+		Map<String, String> map = _propertyMappings.get(entityClass);
+		if (map == null) {
+			return propertyName;
+		}
+
+		return map.get(propertyName);
+	}
+	
 	public static Class<?> getSetupClassForName(String setupId) {
 		Class<?> setupClass = _setupClassMap.get(setupId);
 
@@ -103,7 +139,34 @@ public class WorkflowEntityBridgeUtil {
 		return processInstances;
 	}
 
+	public static List<? extends ProcessTask> wrapWorkflowTaskList(
+		List<WorkflowTask> workflowTasks) {
+
+		List<ProcessTask> processTasks = new ArrayList<ProcessTask>();
+
+		if (workflowTasks == null) {
+			return processTasks;
+		}
+
+		for (WorkflowTask workflowTask : workflowTasks) {
+			processTasks.add(new WorkflowTaskBridge(workflowTask));
+		}
+
+		return processTasks;
+	}
+
+	private static final Map<Class<?>, Map<String, String>> _propertyMappings =
+		new HashMap<Class<?>, Map<String, String>>();
 	private static final Map<String, Class<?>> _setupClassMap =
 		new HashMap<String, Class<?>>();
 
+	static {
+		Map<String, String> workflowTaskMappings =
+			new HashMap<String, String>();
+		workflowTaskMappings.put("assignedGroup", "assignedGroupName");
+		workflowTaskMappings.put("creationDate", "createDate");
+		workflowTaskMappings.put("assignee", "assigneeUserName");
+
+		_propertyMappings.put(WorkflowTask.class, workflowTaskMappings);
+	}
 }

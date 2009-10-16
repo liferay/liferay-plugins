@@ -233,6 +233,13 @@
 		<finder name="WorkflowInstanceId" return-type="Collection">
 			<finder-column name="workflowInstanceId" />
 		</finder>
+		<finder name="Completed" return-type="Collection">
+			<finder-column name="completed" />
+		</finder>
+		<finder name="C_C" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="completed" />
+		</finder>
 		<finder name="W_S" return-type="Collection">
 			<finder-column name="workflowInstanceId" />
 			<finder-column name="state" />

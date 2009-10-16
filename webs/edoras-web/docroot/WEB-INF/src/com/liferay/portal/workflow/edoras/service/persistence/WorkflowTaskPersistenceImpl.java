@@ -76,6 +76,38 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl
 	public static final FinderPath FINDER_PATH_COUNT_BY_WORKFLOWINSTANCEID = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByWorkflowInstanceId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_COMPLETED = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByCompleted", new String[] { Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_COMPLETED = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByCompleted",
+			new String[] {
+				Boolean.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_COMPLETED = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByCompleted", new String[] { Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_C_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByC_C",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_C_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByC_C",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_C_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByC_C",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_W_S = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByW_S",
@@ -609,6 +641,522 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	public List<WorkflowTask> findByCompleted(boolean completed)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { Boolean.valueOf(completed) };
+
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPLETED,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.completed = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(completed);
+
+				list = q.list();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowTask>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_COMPLETED,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public List<WorkflowTask> findByCompleted(boolean completed, int start,
+		int end) throws SystemException {
+		return findByCompleted(completed, start, end, null);
+	}
+
+	public List<WorkflowTask> findByCompleted(boolean completed, int start,
+		int end, OrderByComparator obc) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				Boolean.valueOf(completed),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_COMPLETED,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.completed = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("workflowTask.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(completed);
+
+				list = (List<WorkflowTask>)QueryUtil.list(q, getDialect(),
+						start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowTask>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_COMPLETED,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public WorkflowTask findByCompleted_First(boolean completed,
+		OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		List<WorkflowTask> list = findByCompleted(completed, 0, 1, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowTask exists with the key {");
+
+			msg.append("completed=" + completed);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowTaskException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowTask findByCompleted_Last(boolean completed,
+		OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		int count = countByCompleted(completed);
+
+		List<WorkflowTask> list = findByCompleted(completed, count - 1, count,
+				obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowTask exists with the key {");
+
+			msg.append("completed=" + completed);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowTaskException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowTask[] findByCompleted_PrevAndNext(long workflowTaskId,
+		boolean completed, OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		WorkflowTask workflowTask = findByPrimaryKey(workflowTaskId);
+
+		int count = countByCompleted(completed);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append(
+				"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+			query.append("workflowTask.completed = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("workflowTask.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(completed);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					workflowTask);
+
+			WorkflowTask[] array = new WorkflowTaskImpl[3];
+
+			array[0] = (WorkflowTask)objArray[0];
+			array[1] = (WorkflowTask)objArray[1];
+			array[2] = (WorkflowTask)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<WorkflowTask> findByC_C(long companyId, boolean completed)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(companyId), Boolean.valueOf(completed)
+			};
+
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_C,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.companyId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowTask.completed = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(companyId);
+
+				qPos.add(completed);
+
+				list = q.list();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowTask>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_C, finderArgs,
+					list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public List<WorkflowTask> findByC_C(long companyId, boolean completed,
+		int start, int end) throws SystemException {
+		return findByC_C(companyId, completed, start, end, null);
+	}
+
+	public List<WorkflowTask> findByC_C(long companyId, boolean completed,
+		int start, int end, OrderByComparator obc) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(companyId), Boolean.valueOf(completed),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_C_C,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.companyId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowTask.completed = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("workflowTask.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(companyId);
+
+				qPos.add(completed);
+
+				list = (List<WorkflowTask>)QueryUtil.list(q, getDialect(),
+						start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowTask>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_C_C,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public WorkflowTask findByC_C_First(long companyId, boolean completed,
+		OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		List<WorkflowTask> list = findByC_C(companyId, completed, 0, 1, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowTask exists with the key {");
+
+			msg.append("companyId=" + companyId);
+
+			msg.append(", ");
+			msg.append("completed=" + completed);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowTaskException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowTask findByC_C_Last(long companyId, boolean completed,
+		OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		int count = countByC_C(companyId, completed);
+
+		List<WorkflowTask> list = findByC_C(companyId, completed, count - 1,
+				count, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowTask exists with the key {");
+
+			msg.append("companyId=" + companyId);
+
+			msg.append(", ");
+			msg.append("completed=" + completed);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowTaskException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowTask[] findByC_C_PrevAndNext(long workflowTaskId,
+		long companyId, boolean completed, OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		WorkflowTask workflowTask = findByPrimaryKey(workflowTaskId);
+
+		int count = countByC_C(companyId, completed);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append(
+				"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+			query.append("workflowTask.companyId = ?");
+
+			query.append(" AND ");
+
+			query.append("workflowTask.completed = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("workflowTask.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(companyId);
+
+			qPos.add(completed);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					workflowTask);
+
+			WorkflowTask[] array = new WorkflowTaskImpl[3];
+
+			array[0] = (WorkflowTask)objArray[0];
+			array[1] = (WorkflowTask)objArray[1];
+			array[2] = (WorkflowTask)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
 	public List<WorkflowTask> findByW_S(long workflowInstanceId, int state)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -1011,6 +1559,19 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	public void removeByCompleted(boolean completed) throws SystemException {
+		for (WorkflowTask workflowTask : findByCompleted(completed)) {
+			remove(workflowTask);
+		}
+	}
+
+	public void removeByC_C(long companyId, boolean completed)
+		throws SystemException {
+		for (WorkflowTask workflowTask : findByC_C(companyId, completed)) {
+			remove(workflowTask);
+		}
+	}
+
 	public void removeByW_S(long workflowInstanceId, int state)
 		throws SystemException {
 		for (WorkflowTask workflowTask : findByW_S(workflowInstanceId, state)) {
@@ -1064,6 +1625,109 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_WORKFLOWINSTANCEID,
 					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public int countByCompleted(boolean completed) throws SystemException {
+		Object[] finderArgs = new Object[] { Boolean.valueOf(completed) };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_COMPLETED,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(workflowTask) ");
+				query.append("FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.completed = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(completed);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_COMPLETED,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public int countByC_C(long companyId, boolean completed)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(companyId), Boolean.valueOf(completed)
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_C,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(workflowTask) ");
+				query.append("FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.companyId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowTask.completed = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(companyId);
+
+				qPos.add(completed);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_C, finderArgs,
+					count);
 
 				closeSession(session);
 			}

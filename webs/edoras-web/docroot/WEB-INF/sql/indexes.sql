@@ -21,5 +21,7 @@ create index IX_C1960963 on Edoras_WorkflowLog (workflowInstanceId);
 create index IX_15869B12 on Edoras_WorkflowLog (workflowInstanceId, type_);
 create index IX_8F74AAD3 on Edoras_WorkflowLog (workflowTaskId);
 
+create index IX_C799F228 on Edoras_WorkflowTask (companyId, completed);
+create index IX_CF060A46 on Edoras_WorkflowTask (completed);
 create index IX_FCB927B8 on Edoras_WorkflowTask (workflowInstanceId);
 create index IX_3FCEB449 on Edoras_WorkflowTask (workflowInstanceId, state);
