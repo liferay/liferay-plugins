@@ -49,7 +49,6 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 	}
 
 	public WorkflowTaskBridge(WorkflowTask workflowTask) {
-		_workflowTask = workflowTask;
 		initializeFromReading(workflowTask);
 	}
 
@@ -89,10 +88,13 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 	}
 
 	public void initializeFromReading(WorkflowTask workflowTask) {
+		_workflowTask = workflowTask;
+
 		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
 		Assert.notNull(
 			processSession,
 			"No process session while reading workflow entities.");
+
 		
 		setId(workflowTask.getPrimaryKey());
 		setTenantId(workflowTask.getCompanyId());

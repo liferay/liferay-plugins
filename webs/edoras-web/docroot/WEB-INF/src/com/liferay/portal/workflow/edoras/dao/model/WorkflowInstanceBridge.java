@@ -56,8 +56,6 @@ public class WorkflowInstanceBridge
 		WorkflowInstanceBridge parentWorkflowInstanceBridge,
 		boolean loadChildren) {
 
-		_workflowInstance = workflowInstance;
-
 		initializeFromReading(
 			workflowInstance, parentWorkflowInstanceBridge, loadChildren);
 	}
@@ -105,6 +103,8 @@ public class WorkflowInstanceBridge
 		WorkflowInstanceBridge parentWorkflowInstanceBridge,
 		boolean loadChildren) {
 
+		_workflowInstance = workflowInstance;
+		
 		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
 		Assert.notNull(
 			processSession,
