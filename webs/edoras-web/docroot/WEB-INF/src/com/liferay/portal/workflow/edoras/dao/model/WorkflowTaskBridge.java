@@ -94,7 +94,6 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 		Assert.notNull(
 			processSession,
 			"No process session while reading workflow entities.");
-
 		
 		setId(workflowTask.getPrimaryKey());
 		setTenantId(workflowTask.getCompanyId());
