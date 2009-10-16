@@ -41,6 +41,7 @@ import org.jbpm.JbpmConfiguration;
 import org.jbpm.JbpmContext;
 import org.jbpm.db.GraphSession;
 import org.jbpm.graph.def.ProcessDefinition;
+import org.jbpm.graph.exe.ProcessInstance;
 import org.jbpm.jpdl.par.ProcessArchive;
 
 /**
@@ -189,6 +190,39 @@ public class WorkflowDefinitionManagerImpl
 
 	public void setJbpmConfiguration(JbpmConfiguration jbpmConfiguration) {
 		_jbpmConfiguration = jbpmConfiguration;
+	}
+
+	public void undeployWorkflowDefinition(
+			WorkflowDefinition workflowDefinition,
+			long callingUserId, Map<String, Object> parameters)
+		throws WorkflowException{
+
+		String name = workflowDefinition.getWorkflowDefinitionName();
+		int version = workflowDefinition.getWorkflowDefinitionVersion();
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			GraphSession graphSession = jbpmContext.getGraphSession();
+			ProcessDefinition processDefinition =
+				graphSession.findProcessDefinition(name, version);
+			if (processDefinition != null) {
+				List<ProcessInstance> processInstances =
+					graphSession.findProcessInstances(
+						processDefinition.getId());
+				for(ProcessInstance processInstance : processInstances) {
+					if (!processInstance.hasEnded()) {
+						throw new WorkflowException(
+							"There are stilling running process instances");
+					}
+				}
+				graphSession.deleteProcessDefinition(processDefinition);
+			}
+		}
+		finally {
+			jbpmContext.close();
+		}
+
 	}
 
 	protected List<WorkflowDefinition> toWorkflowDefinitions(
