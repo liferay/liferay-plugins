@@ -511,10 +511,10 @@ public class ClpSerializer {
 
 					method7.invoke(newModel, value7);
 
-					Method method8 = newModelClass.getMethod("setType",
+					Method method8 = newModelClass.getMethod("setLogEntityType",
 							new Class[] { Integer.TYPE });
 
-					Integer value8 = new Integer(oldCplModel.getType());
+					Integer value8 = new Integer(oldCplModel.getLogEntityType());
 
 					method8.invoke(newModel, value8);
 
@@ -546,10 +546,10 @@ public class ClpSerializer {
 
 					method12.invoke(newModel, value12);
 
-					Method method13 = newModelClass.getMethod("setActionType",
-							new Class[] { String.class });
+					Method method13 = newModelClass.getMethod("setType",
+							new Class[] { Integer.TYPE });
 
-					String value13 = oldCplModel.getActionType();
+					Integer value13 = new Integer(oldCplModel.getType());
 
 					method13.invoke(newModel, value13);
 
@@ -1182,12 +1182,12 @@ public class ClpSerializer {
 
 					newModel.setWorkflowTaskId(value7.longValue());
 
-					Method method8 = oldModelClass.getMethod("getType");
+					Method method8 = oldModelClass.getMethod("getLogEntityType");
 
 					Integer value8 = (Integer)method8.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setType(value8.intValue());
+					newModel.setLogEntityType(value8.intValue());
 
 					Method method9 = oldModelClass.getMethod("getDescription");
 
@@ -1217,12 +1217,12 @@ public class ClpSerializer {
 
 					newModel.setNewState(value12);
 
-					Method method13 = oldModelClass.getMethod("getActionType");
+					Method method13 = oldModelClass.getMethod("getType");
 
-					String value13 = (String)method13.invoke(oldModel,
+					Integer value13 = (Integer)method13.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setActionType(value13);
+					newModel.setType(value13.intValue());
 
 					Method method14 = oldModelClass.getMethod("getComment");
 

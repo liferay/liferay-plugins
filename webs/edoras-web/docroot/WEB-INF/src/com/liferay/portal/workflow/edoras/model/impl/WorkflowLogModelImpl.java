@@ -62,15 +62,15 @@ public class WorkflowLogModelImpl extends BaseModelImpl<WorkflowLog> {
 			{ "workflowDefinitionId", new Integer(Types.BIGINT) },
 			{ "workflowInstanceId", new Integer(Types.BIGINT) },
 			{ "workflowTaskId", new Integer(Types.BIGINT) },
-			{ "type_", new Integer(Types.INTEGER) },
+			{ "logEntityType", new Integer(Types.INTEGER) },
 			{ "description", new Integer(Types.VARCHAR) },
 			{ "activityName", new Integer(Types.VARCHAR) },
 			{ "oldState", new Integer(Types.VARCHAR) },
 			{ "newState", new Integer(Types.VARCHAR) },
-			{ "actionType", new Integer(Types.VARCHAR) },
+			{ "type_", new Integer(Types.INTEGER) },
 			{ "comment", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Edoras_WorkflowLog (workflowLogId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,workflowDefinitionId LONG,workflowInstanceId LONG,workflowTaskId LONG,type_ INTEGER,description VARCHAR(75) null,activityName VARCHAR(75) null,oldState VARCHAR(75) null,newState VARCHAR(75) null,actionType VARCHAR(75) null,comment VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Edoras_WorkflowLog (workflowLogId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,workflowDefinitionId LONG,workflowInstanceId LONG,workflowTaskId LONG,logEntityType INTEGER,description VARCHAR(75) null,activityName VARCHAR(75) null,oldState VARCHAR(75) null,newState VARCHAR(75) null,type_ INTEGER,comment VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Edoras_WorkflowLog";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -93,12 +93,12 @@ public class WorkflowLogModelImpl extends BaseModelImpl<WorkflowLog> {
 		model.setWorkflowDefinitionId(soapModel.getWorkflowDefinitionId());
 		model.setWorkflowInstanceId(soapModel.getWorkflowInstanceId());
 		model.setWorkflowTaskId(soapModel.getWorkflowTaskId());
-		model.setType(soapModel.getType());
+		model.setLogEntityType(soapModel.getLogEntityType());
 		model.setDescription(soapModel.getDescription());
 		model.setActivityName(soapModel.getActivityName());
 		model.setOldState(soapModel.getOldState());
 		model.setNewState(soapModel.getNewState());
-		model.setActionType(soapModel.getActionType());
+		model.setType(soapModel.getType());
 		model.setComment(soapModel.getComment());
 
 		return model;
@@ -204,12 +204,12 @@ public class WorkflowLogModelImpl extends BaseModelImpl<WorkflowLog> {
 		_workflowTaskId = workflowTaskId;
 	}
 
-	public int getType() {
-		return _type;
+	public int getLogEntityType() {
+		return _logEntityType;
 	}
 
-	public void setType(int type) {
-		_type = type;
+	public void setLogEntityType(int logEntityType) {
+		_logEntityType = logEntityType;
 	}
 
 	public String getDescription() {
@@ -244,12 +244,12 @@ public class WorkflowLogModelImpl extends BaseModelImpl<WorkflowLog> {
 		_newState = newState;
 	}
 
-	public String getActionType() {
-		return GetterUtil.getString(_actionType);
+	public int getType() {
+		return _type;
 	}
 
-	public void setActionType(String actionType) {
-		_actionType = actionType;
+	public void setType(int type) {
+		_type = type;
 	}
 
 	public String getComment() {
@@ -278,12 +278,12 @@ public class WorkflowLogModelImpl extends BaseModelImpl<WorkflowLog> {
 			model.setWorkflowDefinitionId(getWorkflowDefinitionId());
 			model.setWorkflowInstanceId(getWorkflowInstanceId());
 			model.setWorkflowTaskId(getWorkflowTaskId());
-			model.setType(getType());
+			model.setLogEntityType(getLogEntityType());
 			model.setDescription(HtmlUtil.escape(getDescription()));
 			model.setActivityName(HtmlUtil.escape(getActivityName()));
 			model.setOldState(HtmlUtil.escape(getOldState()));
 			model.setNewState(HtmlUtil.escape(getNewState()));
-			model.setActionType(HtmlUtil.escape(getActionType()));
+			model.setType(getType());
 			model.setComment(HtmlUtil.escape(getComment()));
 
 			model = (WorkflowLog)Proxy.newProxyInstance(WorkflowLog.class.getClassLoader(),
@@ -318,12 +318,12 @@ public class WorkflowLogModelImpl extends BaseModelImpl<WorkflowLog> {
 		clone.setWorkflowDefinitionId(getWorkflowDefinitionId());
 		clone.setWorkflowInstanceId(getWorkflowInstanceId());
 		clone.setWorkflowTaskId(getWorkflowTaskId());
-		clone.setType(getType());
+		clone.setLogEntityType(getLogEntityType());
 		clone.setDescription(getDescription());
 		clone.setActivityName(getActivityName());
 		clone.setOldState(getOldState());
 		clone.setNewState(getNewState());
-		clone.setActionType(getActionType());
+		clone.setType(getType());
 		clone.setComment(getComment());
 
 		return clone;
@@ -388,8 +388,8 @@ public class WorkflowLogModelImpl extends BaseModelImpl<WorkflowLog> {
 		sb.append(getWorkflowInstanceId());
 		sb.append(", workflowTaskId=");
 		sb.append(getWorkflowTaskId());
-		sb.append(", type=");
-		sb.append(getType());
+		sb.append(", logEntityType=");
+		sb.append(getLogEntityType());
 		sb.append(", description=");
 		sb.append(getDescription());
 		sb.append(", activityName=");
@@ -398,8 +398,8 @@ public class WorkflowLogModelImpl extends BaseModelImpl<WorkflowLog> {
 		sb.append(getOldState());
 		sb.append(", newState=");
 		sb.append(getNewState());
-		sb.append(", actionType=");
-		sb.append(getActionType());
+		sb.append(", type=");
+		sb.append(getType());
 		sb.append(", comment=");
 		sb.append(getComment());
 		sb.append("}");
@@ -447,8 +447,8 @@ public class WorkflowLogModelImpl extends BaseModelImpl<WorkflowLog> {
 		sb.append(getWorkflowTaskId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
+			"<column><column-name>logEntityType</column-name><column-value><![CDATA[");
+		sb.append(getLogEntityType());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>description</column-name><column-value><![CDATA[");
@@ -467,8 +467,8 @@ public class WorkflowLogModelImpl extends BaseModelImpl<WorkflowLog> {
 		sb.append(getNewState());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>actionType</column-name><column-value><![CDATA[");
-		sb.append(getActionType());
+			"<column><column-name>type</column-name><column-value><![CDATA[");
+		sb.append(getType());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>comment</column-name><column-value><![CDATA[");
@@ -489,12 +489,12 @@ public class WorkflowLogModelImpl extends BaseModelImpl<WorkflowLog> {
 	private long _workflowDefinitionId;
 	private long _workflowInstanceId;
 	private long _workflowTaskId;
-	private int _type;
+	private int _logEntityType;
 	private String _description;
 	private String _activityName;
 	private String _oldState;
 	private String _newState;
-	private String _actionType;
+	private int _type;
 	private String _comment;
 	private transient ExpandoBridge _expandoBridge;
 }

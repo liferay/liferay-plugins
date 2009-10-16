@@ -61,12 +61,12 @@ create table Edoras_WorkflowLog (
 	workflowDefinitionId LONG,
 	workflowInstanceId LONG,
 	workflowTaskId LONG,
-	type_ INTEGER,
+	logEntityType INTEGER,
 	description VARCHAR(75) null,
 	activityName VARCHAR(75) null,
 	oldState VARCHAR(75) null,
 	newState VARCHAR(75) null,
-	actionType VARCHAR(75) null,
+	type_ INTEGER,
 	comment VARCHAR(75) null
 );
 

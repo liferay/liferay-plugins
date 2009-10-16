@@ -30,7 +30,8 @@ import org.edorasframework.process.api.ex.ProcessException;
 
 /**
  * <a href="WorkflowJobImpl.java.html"><b><i>View Source</i></b></a>
- *
+ * 
+ * @author Micha Kiener
  * @author Brian Wing Shun Chan
  */
 public class WorkflowJobImpl

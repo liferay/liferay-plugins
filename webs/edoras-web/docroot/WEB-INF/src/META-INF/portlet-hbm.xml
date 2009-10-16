@@ -78,12 +78,12 @@
 		<property name="workflowDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="workflowInstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="workflowTaskId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="type" column="type_" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="logEntityType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="activityName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="oldState" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="newState" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="actionType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="type" column="type_" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="comment" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.portal.workflow.edoras.model.impl.WorkflowTaskImpl" table="Edoras_WorkflowTask">

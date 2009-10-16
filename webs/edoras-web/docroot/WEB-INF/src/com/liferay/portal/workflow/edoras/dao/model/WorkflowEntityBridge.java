@@ -37,6 +37,8 @@ public interface WorkflowEntityBridge<T> {
 
 	public void initializeFromReading(T workflowObject);
 
+	public void transferPropertiesForSaving();
+	
 	public T unwrap();
 
 }

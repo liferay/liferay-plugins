@@ -80,7 +80,7 @@ public class WorkflowInstanceBridge
 	public WorkflowInstance initializeForInsert() {
 		prePersist();
 		unwrap();
-		transferProperties();
+		transferPropertiesForSaving();
 		postPersist();
 
 		return _workflowInstance;
@@ -88,7 +88,7 @@ public class WorkflowInstanceBridge
 
 	public WorkflowInstance initializeForUpdate() {
 		preUpdate();
-		transferProperties();
+		transferPropertiesForSaving();
 		postPersist();
 
 		return _workflowInstance;
@@ -175,7 +175,7 @@ public class WorkflowInstanceBridge
 		return _workflowInstance;
 	}
 
-	protected void transferProperties() {
+	public void transferPropertiesForSaving() {
 		_workflowInstance.setPrimaryKey(getPrimaryKey());
 		_workflowInstance.setCompanyId(getTenantId());
 		_workflowInstance.setSetupId(getSetupId().getName());

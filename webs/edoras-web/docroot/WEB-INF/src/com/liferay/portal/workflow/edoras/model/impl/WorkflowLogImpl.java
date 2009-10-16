@@ -22,11 +22,16 @@
 
 package com.liferay.portal.workflow.edoras.model.impl;
 
+import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
 import com.liferay.portal.workflow.edoras.model.WorkflowLog;
+import com.liferay.portal.workflow.edoras.service.persistence.WorkflowInstanceUtil;
+
+import org.edorasframework.process.api.ex.ProcessException;
 
 /**
  * <a href="WorkflowLogImpl.java.html"><b><i>View Source</i></b></a>
  *
+ * @author Micha Kiener
  * @author Brian Wing Shun Chan
  */
 public class WorkflowLogImpl
@@ -35,4 +40,16 @@ public class WorkflowLogImpl
 	public WorkflowLogImpl() {
 	}
 
+	public WorkflowInstance getWorkflowInstance() {
+		try {
+			return WorkflowInstanceUtil.findByPrimaryKey(getWorkflowInstanceId());
+		}
+		catch (Exception e) {
+			throw new ProcessException(
+				"Could not fetch the workflow instance for log with id [" +
+					getPrimaryKey() + "]",
+				e);
+		}
+	}
+	
 }

@@ -60,12 +60,12 @@
 		<field name="workflowDefinitionId" type="long" />
 		<field name="workflowInstanceId" type="long" />
 		<field name="workflowTaskId" type="long" />
-		<field name="type" type="int" />
+		<field name="logEntityType" type="int" />
 		<field name="description" type="String" />
 		<field name="activityName" type="String" />
 		<field name="oldState" type="String" />
 		<field name="newState" type="String" />
-		<field name="actionType" type="String" />
+		<field name="type" type="int" />
 		<field name="comment" type="String" />
 	</model>
 	<model name="com.liferay.portal.workflow.edoras.model.WorkflowTask">

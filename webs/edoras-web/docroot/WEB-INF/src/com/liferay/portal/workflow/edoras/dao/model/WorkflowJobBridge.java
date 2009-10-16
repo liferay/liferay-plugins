@@ -53,12 +53,12 @@ public class WorkflowJobBridge extends DefaultProcessJob
 
 	public WorkflowJob initializeForInsert() {
 		unwrap();
-		transferProperties();
+		transferPropertiesForSaving();
 		return _workflowJob;
 	}
 
 	public WorkflowJob initializeForUpdate() {
-		transferProperties();
+		transferPropertiesForSaving();
 		return _workflowJob;
 	}
 
@@ -98,7 +98,7 @@ public class WorkflowJobBridge extends DefaultProcessJob
 		setId(primaryKey);
 	}
 
-	protected void transferProperties() {
+	public void transferPropertiesForSaving() {
 		unwrap();
 
 		_workflowJob.setPrimaryKey(getId());

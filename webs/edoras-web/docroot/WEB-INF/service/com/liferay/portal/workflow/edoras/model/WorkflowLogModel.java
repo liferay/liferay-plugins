@@ -78,9 +78,9 @@ public interface WorkflowLogModel extends BaseModel<WorkflowLog> {
 
 	public void setWorkflowTaskId(long workflowTaskId);
 
-	public int getType();
+	public int getLogEntityType();
 
-	public void setType(int type);
+	public void setLogEntityType(int logEntityType);
 
 	public String getDescription();
 
@@ -98,9 +98,9 @@ public interface WorkflowLogModel extends BaseModel<WorkflowLog> {
 
 	public void setNewState(String newState);
 
-	public String getActionType();
+	public int getType();
 
-	public void setActionType(String actionType);
+	public void setType(int type);
 
 	public String getComment();
 

@@ -173,12 +173,12 @@
 		<column name="workflowDefinitionId" type="long" />
 		<column name="workflowInstanceId" type="long" />
 		<column name="workflowTaskId" type="long" />
-		<column name="type" type="int" />
+		<column name="logEntityType" type="int" />
 		<column name="description" type="String" />
 		<column name="activityName" type="String" />
 		<column name="oldState" type="String" />
 		<column name="newState" type="String" />
-		<column name="actionType" type="String" />
+		<column name="type" type="int" />
 		<column name="comment" type="String" />
 
 		<!-- Order -->

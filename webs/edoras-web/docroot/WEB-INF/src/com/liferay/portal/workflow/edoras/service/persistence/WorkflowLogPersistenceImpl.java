@@ -316,12 +316,12 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 		workflowLogImpl.setWorkflowDefinitionId(workflowLog.getWorkflowDefinitionId());
 		workflowLogImpl.setWorkflowInstanceId(workflowLog.getWorkflowInstanceId());
 		workflowLogImpl.setWorkflowTaskId(workflowLog.getWorkflowTaskId());
-		workflowLogImpl.setType(workflowLog.getType());
+		workflowLogImpl.setLogEntityType(workflowLog.getLogEntityType());
 		workflowLogImpl.setDescription(workflowLog.getDescription());
 		workflowLogImpl.setActivityName(workflowLog.getActivityName());
 		workflowLogImpl.setOldState(workflowLog.getOldState());
 		workflowLogImpl.setNewState(workflowLog.getNewState());
-		workflowLogImpl.setActionType(workflowLog.getActionType());
+		workflowLogImpl.setType(workflowLog.getType());
 		workflowLogImpl.setComment(workflowLog.getComment());
 
 		return workflowLogImpl;

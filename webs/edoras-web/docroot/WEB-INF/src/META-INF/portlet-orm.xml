@@ -98,14 +98,14 @@
 			<basic name="workflowDefinitionId" />
 			<basic name="workflowInstanceId" />
 			<basic name="workflowTaskId" />
-			<basic name="type">
-				<column name="TYPE_" />
-			</basic>
+			<basic name="logEntityType" />
 			<basic name="description" />
 			<basic name="activityName" />
 			<basic name="oldState" />
 			<basic name="newState" />
-			<basic name="actionType" />
+			<basic name="type">
+				<column name="TYPE_" />
+			</basic>
 			<basic name="comment" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />

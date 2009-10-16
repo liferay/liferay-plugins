@@ -72,12 +72,12 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 	
 	public WorkflowTask initializeForInsert() {
 		unwrap();
-		transferProperties();
+		transferPropertiesForSaving();
 		return _workflowTask;
 	}
 
 	public WorkflowTask initializeForUpdate() {
-		transferProperties();
+		transferPropertiesForSaving();
 		return _workflowTask;
 	}
 
@@ -127,7 +127,7 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 		postLoad();
 	}
 
-	protected void transferProperties() {
+	public void transferPropertiesForSaving() {
 		unwrap();
 		_workflowTask.setPrimaryKey(getPrimaryKey());
 		_workflowTask.setCompanyId(getTenantId());

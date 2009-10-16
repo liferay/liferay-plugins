@@ -113,12 +113,12 @@ public class WorkflowLogWrapper implements WorkflowLog {
 		_workflowLog.setWorkflowTaskId(workflowTaskId);
 	}
 
-	public int getType() {
-		return _workflowLog.getType();
+	public int getLogEntityType() {
+		return _workflowLog.getLogEntityType();
 	}
 
-	public void setType(int type) {
-		_workflowLog.setType(type);
+	public void setLogEntityType(int logEntityType) {
+		_workflowLog.setLogEntityType(logEntityType);
 	}
 
 	public java.lang.String getDescription() {
@@ -153,12 +153,12 @@ public class WorkflowLogWrapper implements WorkflowLog {
 		_workflowLog.setNewState(newState);
 	}
 
-	public java.lang.String getActionType() {
-		return _workflowLog.getActionType();
+	public int getType() {
+		return _workflowLog.getType();
 	}
 
-	public void setActionType(java.lang.String actionType) {
-		_workflowLog.setActionType(actionType);
+	public void setType(int type) {
+		_workflowLog.setType(type);
 	}
 
 	public java.lang.String getComment() {
@@ -229,6 +229,10 @@ public class WorkflowLogWrapper implements WorkflowLog {
 
 	public java.lang.String toXmlString() {
 		return _workflowLog.toXmlString();
+	}
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getWorkflowInstance() {
+		return _workflowLog.getWorkflowInstance();
 	}
 
 	public WorkflowLog getWrappedWorkflowLog() {

@@ -45,12 +45,12 @@ public class WorkflowLogSoap implements Serializable {
 		soapModel.setWorkflowDefinitionId(model.getWorkflowDefinitionId());
 		soapModel.setWorkflowInstanceId(model.getWorkflowInstanceId());
 		soapModel.setWorkflowTaskId(model.getWorkflowTaskId());
-		soapModel.setType(model.getType());
+		soapModel.setLogEntityType(model.getLogEntityType());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setActivityName(model.getActivityName());
 		soapModel.setOldState(model.getOldState());
 		soapModel.setNewState(model.getNewState());
-		soapModel.setActionType(model.getActionType());
+		soapModel.setType(model.getType());
 		soapModel.setComment(model.getComment());
 
 		return soapModel;
@@ -168,12 +168,12 @@ public class WorkflowLogSoap implements Serializable {
 		_workflowTaskId = workflowTaskId;
 	}
 
-	public int getType() {
-		return _type;
+	public int getLogEntityType() {
+		return _logEntityType;
 	}
 
-	public void setType(int type) {
-		_type = type;
+	public void setLogEntityType(int logEntityType) {
+		_logEntityType = logEntityType;
 	}
 
 	public String getDescription() {
@@ -208,12 +208,12 @@ public class WorkflowLogSoap implements Serializable {
 		_newState = newState;
 	}
 
-	public String getActionType() {
-		return _actionType;
+	public int getType() {
+		return _type;
 	}
 
-	public void setActionType(String actionType) {
-		_actionType = actionType;
+	public void setType(int type) {
+		_type = type;
 	}
 
 	public String getComment() {
@@ -232,11 +232,11 @@ public class WorkflowLogSoap implements Serializable {
 	private long _workflowDefinitionId;
 	private long _workflowInstanceId;
 	private long _workflowTaskId;
-	private int _type;
+	private int _logEntityType;
 	private String _description;
 	private String _activityName;
 	private String _oldState;
 	private String _newState;
-	private String _actionType;
+	private int _type;
 	private String _comment;
 }
