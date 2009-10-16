@@ -22,7 +22,11 @@
 
 package com.liferay.portal.workflow.edoras.model.impl;
 
+import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
 import com.liferay.portal.workflow.edoras.model.WorkflowJob;
+import com.liferay.portal.workflow.edoras.service.persistence.WorkflowInstanceUtil;
+
+import org.edorasframework.process.api.ex.ProcessException;
 
 /**
  * <a href="WorkflowJobImpl.java.html"><b><i>View Source</i></b></a>
@@ -35,4 +39,14 @@ public class WorkflowJobImpl
 	public WorkflowJobImpl() {
 	}
 
+	public WorkflowInstance getWorkflowInstance() {
+		try {
+			return WorkflowInstanceUtil.findByPrimaryKey(getWorkflowInstanceId());
+		}
+		catch (Exception e) {
+			throw new ProcessException(
+				"Could not fetch the workflow instance for job with id [" +
+					getPrimaryKey() + "]", e);
+		}
+	}
 }

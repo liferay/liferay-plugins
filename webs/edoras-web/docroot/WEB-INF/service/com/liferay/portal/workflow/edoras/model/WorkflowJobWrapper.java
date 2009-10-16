@@ -190,6 +190,10 @@ public class WorkflowJobWrapper implements WorkflowJob {
 		return _workflowJob.toXmlString();
 	}
 
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getWorkflowInstance() {
+		return _workflowJob.getWorkflowInstance();
+	}
+
 	public WorkflowJob getWrappedWorkflowJob() {
 		return _workflowJob;
 	}

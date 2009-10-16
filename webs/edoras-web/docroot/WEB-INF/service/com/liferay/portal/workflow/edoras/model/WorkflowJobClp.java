@@ -142,6 +142,10 @@ public class WorkflowJobClp extends BaseModelImpl<WorkflowJob>
 		_exceptionCount = exceptionCount;
 	}
 
+	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getWorkflowInstance() {
+		throw new UnsupportedOperationException();
+	}
+
 	public WorkflowJob toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
