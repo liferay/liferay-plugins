@@ -24,16 +24,18 @@ package com.liferay.portal.workflow.edoras.dao.model;
 
 
 
+
 /**
  * <a href="WorkflowEntityBridge.java.html"><b><i>View Source</i></b></a>
  *
  * @author Micha Kiener
  */
 public interface WorkflowEntityBridge<T> {
-
 	public T initializeForInsert();
 
 	public T initializeForUpdate();
+
+	public void initializeFromReading(T workflowObject);
 
 	public T unwrap();
 

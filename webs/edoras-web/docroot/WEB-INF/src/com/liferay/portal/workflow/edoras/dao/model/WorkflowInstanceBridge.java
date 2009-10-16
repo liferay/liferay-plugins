@@ -95,6 +95,10 @@ public class WorkflowInstanceBridge
 
 		return _workflowInstance;
 	}
+	
+	public void initializeFromReading(WorkflowInstance workflowObject) {
+		initializeFromReading(workflowObject, null, true);
+	}
 
 	public void initializeFromReading(
 		WorkflowInstance workflowInstance,
