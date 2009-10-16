@@ -227,7 +227,6 @@ public class WorkflowDefinitionManagerImpl
 		finally {
 			jbpmContext.close();
 		}
-
 	}
 
 	protected List<WorkflowDefinition> toWorkflowDefinitions(
