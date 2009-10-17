@@ -68,15 +68,9 @@ public class WorkflowDefinitionManagerImpl
 		return null;
 	}
 
-	public boolean isSupportsVersioning() {
-		return _SUPPORTS_VERSIONING;
-	}
-
 	public void undeployWorkflowDefinition(
 		WorkflowDefinition workflowDefinition, long callingUserId,
 		Map<String, Object> parameters) {
 	}
-
-	private static final boolean _SUPPORTS_VERSIONING = true;
 
 }
