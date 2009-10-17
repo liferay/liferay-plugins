@@ -26,6 +26,8 @@ import com.liferay.portal.kernel.dao.orm.Order;
 import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
 import com.liferay.portal.workflow.edoras.model.WorkflowDefinition;
 import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
+import com.liferay.portal.workflow.edoras.model.WorkflowJob;
+import com.liferay.portal.workflow.edoras.model.WorkflowLog;
 import com.liferay.portal.workflow.edoras.model.WorkflowTask;
 
 import java.util.ArrayList;
@@ -36,8 +38,11 @@ import java.util.Map;
 import org.edorasframework.process.api.dao.OrderComparator;
 import org.edorasframework.process.api.entity.ProcessInstance;
 import org.edorasframework.process.api.ex.ProcessException;
+import org.edorasframework.process.api.job.MutableProcessJob;
+import org.edorasframework.process.api.log.ProcessLogType;
 import org.edorasframework.process.api.service.ProcessModelDefinition;
 import org.edorasframework.process.api.task.ProcessTask;
+import org.edorasframework.process.core.log.model.AbstractProcessLog;
 
 /**
  * <a href="WorkflowEntityBridgeUtil.java.html"><b><i>View Source</i></b></a>
@@ -137,6 +142,61 @@ public class WorkflowEntityBridgeUtil {
 		}
 
 		return processInstances;
+	}
+
+	public static List<MutableProcessJob> wrapWorkflowJobList(
+		List<WorkflowJob> workflowJobs) {
+
+		List<MutableProcessJob> processJobs =
+			new ArrayList<MutableProcessJob>();
+
+		if (workflowJobs == null) {
+			return processJobs;
+		}
+
+		for (WorkflowJob workflowJob : workflowJobs) {
+			processJobs.add(new WorkflowJobBridge(workflowJob));
+		}
+
+		return processJobs;
+	}
+	
+	public static AbstractProcessLog wrapWorkflowLog(WorkflowLog workflowLog) {
+		int logEntityType = workflowLog.getLogEntityType();
+		ProcessLogType logType = ProcessLogType.getLogType(logEntityType);
+
+		switch (logType) {
+			case ACTIVITY:
+				return new ActivityLogBridge(workflowLog);
+				
+			case COMMENT:
+				return new CommentLogBridge(workflowLog);
+				
+			case TRANSITION:
+				return new TransitionLogBridge(workflowLog);
+				
+			case TASK:
+				return new TaskLogBridge(workflowLog);
+		}
+		
+		throw new IllegalArgumentException("The log entity type [" +
+			logEntityType + "] is not valid");
+	}
+	
+	public static List<? extends AbstractProcessLog> wrapWorkflowLogList(
+		List<WorkflowLog> logList) {
+		List<AbstractProcessLog> wrappedLogList =
+			new ArrayList<AbstractProcessLog>();
+		
+		if (logList == null) {
+			return wrappedLogList;
+		}
+
+		for (WorkflowLog workflowLog : logList) {
+			wrappedLogList.add(wrapWorkflowLog(workflowLog));
+		}
+
+		return wrappedLogList;
 	}
 
 	public static List<? extends ProcessTask> wrapWorkflowTaskList(

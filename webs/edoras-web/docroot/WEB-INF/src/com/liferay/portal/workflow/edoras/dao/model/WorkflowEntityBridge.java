@@ -27,7 +27,7 @@ package com.liferay.portal.workflow.edoras.dao.model;
  *
  * @author Micha Kiener
  */
-public interface WorkflowEntityBridge<T> {
+public interface WorkflowEntityBridge<T> extends WorkflowEntity {
 
 	public T initializeForInsert();
 

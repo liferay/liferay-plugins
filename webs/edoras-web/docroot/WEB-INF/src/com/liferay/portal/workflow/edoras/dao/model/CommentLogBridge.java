@@ -38,6 +38,11 @@ public class CommentLogBridge extends DefaultCommentLog
 		_workflowLogDelegate = new WorkflowLogDelegate<DefaultCommentLog>();
 	}
 
+	public CommentLogBridge(WorkflowLog workflowLog) {
+		this();
+		initializeFromReading(workflowLog);
+	}
+
 	public long getPrimaryKey() {
 		return getId();
 	}

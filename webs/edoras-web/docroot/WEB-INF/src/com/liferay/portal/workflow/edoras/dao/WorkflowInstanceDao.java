@@ -47,18 +47,19 @@ import org.springframework.transaction.support.TransactionCallback;
  * @author Micha Kiener
  */
 public class WorkflowInstanceDao
-	extends AbstractWorkflowDao<WorkflowInstanceBridge> implements ProcessDao {
+	extends AbstractWorkflowDao<WorkflowInstance, WorkflowInstanceBridge>
+	implements ProcessDao {
 
 	public void clearCache() {
 		WorkflowInstanceUtil.clearCache();
 	}
 
-	public <T> void delete(T workflowEntity) {
+	public <T> void delete(T workflowInstance) {
 		long primaryKey = 0;
 
 		try {
 			WorkflowInstanceBridge workflowInstanceBridge =
-				(WorkflowInstanceBridge)workflowEntity;
+				(WorkflowInstanceBridge) workflowInstance;
 
 			primaryKey = workflowInstanceBridge.getPrimaryKey();
 
@@ -79,7 +80,7 @@ public class WorkflowInstanceDao
 		return (T)loadProcessInstance((Long)identity);
 	}
 
-	public <T> T find(T workflowEntity, Object identity) {
+	public <T> T find(T workflowInstance, Object identity) {
 		return (T)loadProcessInstance((Long)identity);
 	}
 
@@ -184,8 +185,9 @@ public class WorkflowInstanceDao
 			getTxTemplateReadOnly().execute(transactionCallback);
 	}
 
-	public <T> T merge(T workflowEntity) {
-		return workflowEntity;
+	public <T> T merge(T workflowInstance) {
+
+		return workflowInstance;
 	}
 
 	public ObjectIdentity persistAttribute(
@@ -197,30 +199,14 @@ public class WorkflowInstanceDao
 		return null;
 	}
 
-	public <T> void refresh(T workflowEntity) {
+	public <T> void refresh(T workflowInstance) {
 	}
 
-	public void reload(Object workflowEntity) {
+	public void reload(Object workflowInstance) {
 	}
 
-	public <T> void save(T workflowEntity) {
-		WorkflowInstanceBridge workflowInstanceBridge =
-			(WorkflowInstanceBridge)workflowEntity;
-
-		if (super.checkAndInitializeNewInstance(workflowInstanceBridge)) {
-			workflowInstanceBridge.initializeForInsert();
-		}
-		else {
-			workflowInstanceBridge.initializeForUpdate();
-		}
-
-		try {
-			WorkflowInstanceUtil.update(workflowInstanceBridge.unwrap());
-		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not update workflow instance", se);
-		}
+	public <T> void save(T workflowInstance) {
+		saveInternally((WorkflowInstanceBridge) workflowInstance);
 	}
 
 	public List<? extends MutableProcessInstance> searchChildInstances(
@@ -258,6 +244,13 @@ public class WorkflowInstanceDao
 	}
 
 	public void sessionStarted(ProcessSession session) {
+	}
+
+	protected void saveThroughPersistenceUtil( 
+		WorkflowInstanceBridge workflowEntity)
+		throws SystemException {
+
+		WorkflowInstanceUtil.update(workflowEntity.unwrap());
 	}
 
 }

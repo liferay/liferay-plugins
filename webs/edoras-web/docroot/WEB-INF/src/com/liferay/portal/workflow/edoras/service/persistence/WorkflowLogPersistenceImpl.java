@@ -108,6 +108,30 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 			WorkflowLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByW_T",
 			new String[] { Long.class.getName(), Integer.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_W_T_T = new FinderPath(WorkflowLogModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByW_T_T",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_W_T_T = new FinderPath(WorkflowLogModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByW_T_T",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_W_T_T = new FinderPath(WorkflowLogModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByW_T_T",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName()
+			});
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(WorkflowLogModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findAll", new String[0]);
@@ -896,10 +920,10 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<WorkflowLog> findByW_T(long workflowInstanceId, int type)
-		throws SystemException {
+	public List<WorkflowLog> findByW_T(long workflowInstanceId,
+		int logEntityType) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(workflowInstanceId), new Integer(type)
+				new Long(workflowInstanceId), new Integer(logEntityType)
 			};
 
 		List<WorkflowLog> list = (List<WorkflowLog>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_W_T,
@@ -920,7 +944,7 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 
 				query.append(" AND ");
 
-				query.append("workflowLog.type = ?");
+				query.append("workflowLog.logEntityType = ?");
 
 				query.append(" ");
 
@@ -934,7 +958,7 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(workflowInstanceId);
 
-				qPos.add(type);
+				qPos.add(logEntityType);
 
 				list = q.list();
 			}
@@ -958,15 +982,16 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public List<WorkflowLog> findByW_T(long workflowInstanceId, int type,
-		int start, int end) throws SystemException {
-		return findByW_T(workflowInstanceId, type, start, end, null);
+	public List<WorkflowLog> findByW_T(long workflowInstanceId,
+		int logEntityType, int start, int end) throws SystemException {
+		return findByW_T(workflowInstanceId, logEntityType, start, end, null);
 	}
 
-	public List<WorkflowLog> findByW_T(long workflowInstanceId, int type,
-		int start, int end, OrderByComparator obc) throws SystemException {
+	public List<WorkflowLog> findByW_T(long workflowInstanceId,
+		int logEntityType, int start, int end, OrderByComparator obc)
+		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(workflowInstanceId), new Integer(type),
+				new Long(workflowInstanceId), new Integer(logEntityType),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
@@ -986,6 +1011,309 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 					"SELECT workflowLog FROM WorkflowLog workflowLog WHERE ");
 
 				query.append("workflowLog.workflowInstanceId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowLog.logEntityType = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("workflowLog.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("workflowLog.createDate ASC");
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(workflowInstanceId);
+
+				qPos.add(logEntityType);
+
+				list = (List<WorkflowLog>)QueryUtil.list(q, getDialect(),
+						start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowLog>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_W_T,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public WorkflowLog findByW_T_First(long workflowInstanceId,
+		int logEntityType, OrderByComparator obc)
+		throws NoSuchWorkflowLogException, SystemException {
+		List<WorkflowLog> list = findByW_T(workflowInstanceId, logEntityType,
+				0, 1, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowLog exists with the key {");
+
+			msg.append("workflowInstanceId=" + workflowInstanceId);
+
+			msg.append(", ");
+			msg.append("logEntityType=" + logEntityType);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowLogException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowLog findByW_T_Last(long workflowInstanceId,
+		int logEntityType, OrderByComparator obc)
+		throws NoSuchWorkflowLogException, SystemException {
+		int count = countByW_T(workflowInstanceId, logEntityType);
+
+		List<WorkflowLog> list = findByW_T(workflowInstanceId, logEntityType,
+				count - 1, count, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowLog exists with the key {");
+
+			msg.append("workflowInstanceId=" + workflowInstanceId);
+
+			msg.append(", ");
+			msg.append("logEntityType=" + logEntityType);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowLogException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowLog[] findByW_T_PrevAndNext(long workflowLogId,
+		long workflowInstanceId, int logEntityType, OrderByComparator obc)
+		throws NoSuchWorkflowLogException, SystemException {
+		WorkflowLog workflowLog = findByPrimaryKey(workflowLogId);
+
+		int count = countByW_T(workflowInstanceId, logEntityType);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append(
+				"SELECT workflowLog FROM WorkflowLog workflowLog WHERE ");
+
+			query.append("workflowLog.workflowInstanceId = ?");
+
+			query.append(" AND ");
+
+			query.append("workflowLog.logEntityType = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("workflowLog.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
+			}
+
+			else {
+				query.append("ORDER BY ");
+
+				query.append("workflowLog.createDate ASC");
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(workflowInstanceId);
+
+			qPos.add(logEntityType);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					workflowLog);
+
+			WorkflowLog[] array = new WorkflowLogImpl[3];
+
+			array[0] = (WorkflowLog)objArray[0];
+			array[1] = (WorkflowLog)objArray[1];
+			array[2] = (WorkflowLog)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<WorkflowLog> findByW_T_T(long workflowInstanceId,
+		int logEntityType, int type) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(workflowInstanceId), new Integer(logEntityType),
+				new Integer(type)
+			};
+
+		List<WorkflowLog> list = (List<WorkflowLog>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_W_T_T,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowLog FROM WorkflowLog workflowLog WHERE ");
+
+				query.append("workflowLog.workflowInstanceId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowLog.logEntityType = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowLog.type = ?");
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("workflowLog.createDate ASC");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(workflowInstanceId);
+
+				qPos.add(logEntityType);
+
+				qPos.add(type);
+
+				list = q.list();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowLog>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_W_T_T,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public List<WorkflowLog> findByW_T_T(long workflowInstanceId,
+		int logEntityType, int type, int start, int end)
+		throws SystemException {
+		return findByW_T_T(workflowInstanceId, logEntityType, type, start, end,
+			null);
+	}
+
+	public List<WorkflowLog> findByW_T_T(long workflowInstanceId,
+		int logEntityType, int type, int start, int end, OrderByComparator obc)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(workflowInstanceId), new Integer(logEntityType),
+				new Integer(type),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		List<WorkflowLog> list = (List<WorkflowLog>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_W_T_T,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowLog FROM WorkflowLog workflowLog WHERE ");
+
+				query.append("workflowLog.workflowInstanceId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowLog.logEntityType = ?");
 
 				query.append(" AND ");
 
@@ -1027,6 +1355,8 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(workflowInstanceId);
 
+				qPos.add(logEntityType);
+
 				qPos.add(type);
 
 				list = (List<WorkflowLog>)QueryUtil.list(q, getDialect(),
@@ -1042,7 +1372,7 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_W_T,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_W_T_T,
 					finderArgs, list);
 
 				closeSession(session);
@@ -1052,10 +1382,11 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public WorkflowLog findByW_T_First(long workflowInstanceId, int type,
-		OrderByComparator obc)
+	public WorkflowLog findByW_T_T_First(long workflowInstanceId,
+		int logEntityType, int type, OrderByComparator obc)
 		throws NoSuchWorkflowLogException, SystemException {
-		List<WorkflowLog> list = findByW_T(workflowInstanceId, type, 0, 1, obc);
+		List<WorkflowLog> list = findByW_T_T(workflowInstanceId, logEntityType,
+				type, 0, 1, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
@@ -1063,6 +1394,9 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 			msg.append("No WorkflowLog exists with the key {");
 
 			msg.append("workflowInstanceId=" + workflowInstanceId);
+
+			msg.append(", ");
+			msg.append("logEntityType=" + logEntityType);
 
 			msg.append(", ");
 			msg.append("type=" + type);
@@ -1076,13 +1410,13 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public WorkflowLog findByW_T_Last(long workflowInstanceId, int type,
-		OrderByComparator obc)
+	public WorkflowLog findByW_T_T_Last(long workflowInstanceId,
+		int logEntityType, int type, OrderByComparator obc)
 		throws NoSuchWorkflowLogException, SystemException {
-		int count = countByW_T(workflowInstanceId, type);
+		int count = countByW_T_T(workflowInstanceId, logEntityType, type);
 
-		List<WorkflowLog> list = findByW_T(workflowInstanceId, type, count - 1,
-				count, obc);
+		List<WorkflowLog> list = findByW_T_T(workflowInstanceId, logEntityType,
+				type, count - 1, count, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
@@ -1090,6 +1424,9 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 			msg.append("No WorkflowLog exists with the key {");
 
 			msg.append("workflowInstanceId=" + workflowInstanceId);
+
+			msg.append(", ");
+			msg.append("logEntityType=" + logEntityType);
 
 			msg.append(", ");
 			msg.append("type=" + type);
@@ -1103,12 +1440,13 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public WorkflowLog[] findByW_T_PrevAndNext(long workflowLogId,
-		long workflowInstanceId, int type, OrderByComparator obc)
+	public WorkflowLog[] findByW_T_T_PrevAndNext(long workflowLogId,
+		long workflowInstanceId, int logEntityType, int type,
+		OrderByComparator obc)
 		throws NoSuchWorkflowLogException, SystemException {
 		WorkflowLog workflowLog = findByPrimaryKey(workflowLogId);
 
-		int count = countByW_T(workflowInstanceId, type);
+		int count = countByW_T_T(workflowInstanceId, logEntityType, type);
 
 		Session session = null;
 
@@ -1121,6 +1459,10 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 				"SELECT workflowLog FROM WorkflowLog workflowLog WHERE ");
 
 			query.append("workflowLog.workflowInstanceId = ?");
+
+			query.append(" AND ");
+
+			query.append("workflowLog.logEntityType = ?");
 
 			query.append(" AND ");
 
@@ -1161,6 +1503,8 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(workflowInstanceId);
+
+			qPos.add(logEntityType);
 
 			qPos.add(type);
 
@@ -1326,9 +1670,18 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public void removeByW_T(long workflowInstanceId, int type)
+	public void removeByW_T(long workflowInstanceId, int logEntityType)
 		throws SystemException {
-		for (WorkflowLog workflowLog : findByW_T(workflowInstanceId, type)) {
+		for (WorkflowLog workflowLog : findByW_T(workflowInstanceId,
+				logEntityType)) {
+			remove(workflowLog);
+		}
+	}
+
+	public void removeByW_T_T(long workflowInstanceId, int logEntityType,
+		int type) throws SystemException {
+		for (WorkflowLog workflowLog : findByW_T_T(workflowInstanceId,
+				logEntityType, type)) {
 			remove(workflowLog);
 		}
 	}
@@ -1435,10 +1788,10 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 		return count.intValue();
 	}
 
-	public int countByW_T(long workflowInstanceId, int type)
+	public int countByW_T(long workflowInstanceId, int logEntityType)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(workflowInstanceId), new Integer(type)
+				new Long(workflowInstanceId), new Integer(logEntityType)
 			};
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_W_T,
@@ -1459,7 +1812,7 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 
 				query.append(" AND ");
 
-				query.append("workflowLog.type = ?");
+				query.append("workflowLog.logEntityType = ?");
 
 				query.append(" ");
 
@@ -1469,7 +1822,7 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(workflowInstanceId);
 
-				qPos.add(type);
+				qPos.add(logEntityType);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -1483,6 +1836,69 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_W_T, finderArgs,
 					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public int countByW_T_T(long workflowInstanceId, int logEntityType, int type)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(workflowInstanceId), new Integer(logEntityType),
+				new Integer(type)
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_W_T_T,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(workflowLog) ");
+				query.append("FROM WorkflowLog workflowLog WHERE ");
+
+				query.append("workflowLog.workflowInstanceId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowLog.logEntityType = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowLog.type = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(workflowInstanceId);
+
+				qPos.add(logEntityType);
+
+				qPos.add(type);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_W_T_T,
+					finderArgs, count);
 
 				closeSession(session);
 			}

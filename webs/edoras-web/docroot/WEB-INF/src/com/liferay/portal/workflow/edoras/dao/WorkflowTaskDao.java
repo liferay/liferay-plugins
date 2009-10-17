@@ -48,7 +48,8 @@ import org.edorasframework.process.api.task.TaskDao;
  *
  * @author Micha Kiener
  */
-public class WorkflowTaskDao extends AbstractWorkflowDao<WorkflowTaskBridge>
+public class WorkflowTaskDao
+	extends AbstractWorkflowDao<WorkflowTask, WorkflowTaskBridge>
 	implements TaskDao<WorkflowTaskBridge> {
 
 	public void clearCache() {
@@ -196,24 +197,12 @@ public class WorkflowTaskDao extends AbstractWorkflowDao<WorkflowTaskBridge>
 	}
 
 	public <T> void save(T workflowTask) {
-		WorkflowTaskBridge workflowTaskBridge =
-			(WorkflowTaskBridge) workflowTask;
-
-		if (super.checkAndInitializeNewInstance(workflowTaskBridge)) {
-			workflowTaskBridge.initializeForInsert();
-		}
-		else {
-			workflowTaskBridge.initializeForUpdate();
-		}
-
-		try {
-			WorkflowTaskUtil.update(workflowTaskBridge.unwrap());
-		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not update workflow task",
-			se);
-		}	
+		saveInternally((WorkflowTaskBridge) workflowTask);
 	}
 
+	protected void saveThroughPersistenceUtil(WorkflowTaskBridge workflowTask)
+		throws SystemException {
+
+		WorkflowTaskUtil.update(workflowTask.unwrap());
+	}
 }

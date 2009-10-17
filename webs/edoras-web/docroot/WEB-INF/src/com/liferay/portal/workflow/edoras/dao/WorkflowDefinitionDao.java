@@ -42,7 +42,7 @@ import org.edorasframework.process.api.service.ProcessServiceDao;
  * @author Micha Kiener
  */
 public class WorkflowDefinitionDao
-	extends AbstractWorkflowDao<WorkflowDefinitionBridge>
+	extends AbstractWorkflowDao<WorkflowDefinition, WorkflowDefinitionBridge>
 	implements ProcessServiceDao {
 
 	public void clearCache() {
@@ -90,7 +90,7 @@ public class WorkflowDefinitionDao
 		}
 	}
 
-	public <T> T find(T workflowEntity, Object identity) {
+	public <T> T find(T workflowDefinition, Object identity) {
 		return (T)find(WorkflowDefinition.class, identity);
 	}
 
@@ -142,34 +142,24 @@ public class WorkflowDefinitionDao
 		}
 	}
 
-	public <T> T merge(T workflowEntity) {
-		return workflowEntity;
+	public <T> T merge(T workflowDefinition) {
+		return workflowDefinition;
 	}
 
-	public <T> void refresh(T workflowEntity) {
+	public <T> void refresh(T workflowDefinition) {
 	}
 
-	public void reload(Object workflowEntity) {
+	public void reload(Object workflowDefinition) {
 	}
 
-	public <T> void save(T workflowEntity) {
-		WorkflowDefinitionBridge workflowDefinitionBridge =
-			(WorkflowDefinitionBridge) workflowEntity;
-
-		if (super.checkAndInitializeNewInstance(workflowDefinitionBridge)) {
-			workflowDefinitionBridge.initializeForInsert();
-		}
-		else {
-			workflowDefinitionBridge.initializeForUpdate();
-		}
-
-		try {
-			WorkflowDefinitionUtil.update(workflowDefinitionBridge.unwrap());
-		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not update workflow definition", se);
-		}
+	public <T> void save(T workflowDefinition) {
+		saveInternally((WorkflowDefinitionBridge) workflowDefinition);
 	}
 
+	protected void saveThroughPersistenceUtil(
+		WorkflowDefinitionBridge workflowDefinition)
+		throws SystemException {
+
+		WorkflowDefinitionUtil.update(workflowDefinition.unwrap());
+	}
 }

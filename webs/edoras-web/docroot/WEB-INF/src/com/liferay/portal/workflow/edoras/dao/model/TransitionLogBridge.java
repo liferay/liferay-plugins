@@ -40,6 +40,11 @@ public class TransitionLogBridge extends DefaultTransitionLog
 		_workflowLogDelegate = new WorkflowLogDelegate<DefaultTransitionLog>();
 	}
 
+	public TransitionLogBridge(WorkflowLog workflowLog) {
+		this();
+		initializeFromReading(workflowLog);
+	}
+	
 	public long getPrimaryKey() {
 		return getId();
 	}

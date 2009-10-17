@@ -131,33 +131,64 @@ public interface WorkflowLogPersistence extends BasePersistence {
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowLogException;
 
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowLog> findByW_T(
-		long workflowInstanceId, int type)
+		long workflowInstanceId, int logEntityType)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowLog> findByW_T(
-		long workflowInstanceId, int type, int start, int end)
+		long workflowInstanceId, int logEntityType, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowLog> findByW_T(
-		long workflowInstanceId, int type, int start, int end,
+		long workflowInstanceId, int logEntityType, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowLog findByW_T_First(
-		long workflowInstanceId, int type,
+		long workflowInstanceId, int logEntityType,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowLogException;
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowLog findByW_T_Last(
-		long workflowInstanceId, int type,
+		long workflowInstanceId, int logEntityType,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowLogException;
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowLog[] findByW_T_PrevAndNext(
-		long workflowLogId, long workflowInstanceId, int type,
+		long workflowLogId, long workflowInstanceId, int logEntityType,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowLogException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowLog> findByW_T_T(
+		long workflowInstanceId, int logEntityType, int type)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowLog> findByW_T_T(
+		long workflowInstanceId, int logEntityType, int type, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowLog> findByW_T_T(
+		long workflowInstanceId, int logEntityType, int type, int start,
+		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowLog findByW_T_T_First(
+		long workflowInstanceId, int logEntityType, int type,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowLogException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowLog findByW_T_T_Last(
+		long workflowInstanceId, int logEntityType, int type,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowLogException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowLog[] findByW_T_T_PrevAndNext(
+		long workflowLogId, long workflowInstanceId, int logEntityType,
+		int type, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowLogException;
 
@@ -185,8 +216,11 @@ public interface WorkflowLogPersistence extends BasePersistence {
 	public void removeByWorkflowTaskId(long workflowTaskId)
 		throws com.liferay.portal.SystemException;
 
-	public void removeByW_T(long workflowInstanceId, int type)
+	public void removeByW_T(long workflowInstanceId, int logEntityType)
 		throws com.liferay.portal.SystemException;
+
+	public void removeByW_T_T(long workflowInstanceId, int logEntityType,
+		int type) throws com.liferay.portal.SystemException;
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
@@ -196,7 +230,10 @@ public interface WorkflowLogPersistence extends BasePersistence {
 	public int countByWorkflowTaskId(long workflowTaskId)
 		throws com.liferay.portal.SystemException;
 
-	public int countByW_T(long workflowInstanceId, int type)
+	public int countByW_T(long workflowInstanceId, int logEntityType)
+		throws com.liferay.portal.SystemException;
+
+	public int countByW_T_T(long workflowInstanceId, int logEntityType, int type)
 		throws com.liferay.portal.SystemException;
 
 	public int countAll() throws com.liferay.portal.SystemException;

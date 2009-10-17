@@ -184,49 +184,106 @@ public class WorkflowLogUtil {
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowLog> findByW_T(
-		long workflowInstanceId, int type)
+		long workflowInstanceId, int logEntityType)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findByW_T(workflowInstanceId, type);
+		return getPersistence().findByW_T(workflowInstanceId, logEntityType);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowLog> findByW_T(
-		long workflowInstanceId, int type, int start, int end)
+		long workflowInstanceId, int logEntityType, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findByW_T(workflowInstanceId, type, start, end);
+		return getPersistence()
+				   .findByW_T(workflowInstanceId, logEntityType, start, end);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowLog> findByW_T(
-		long workflowInstanceId, int type, int start, int end,
+		long workflowInstanceId, int logEntityType, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
-				   .findByW_T(workflowInstanceId, type, start, end, obc);
+				   .findByW_T(workflowInstanceId, logEntityType, start, end, obc);
 	}
 
 	public static com.liferay.portal.workflow.edoras.model.WorkflowLog findByW_T_First(
-		long workflowInstanceId, int type,
+		long workflowInstanceId, int logEntityType,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowLogException {
-		return getPersistence().findByW_T_First(workflowInstanceId, type, obc);
+		return getPersistence()
+				   .findByW_T_First(workflowInstanceId, logEntityType, obc);
 	}
 
 	public static com.liferay.portal.workflow.edoras.model.WorkflowLog findByW_T_Last(
-		long workflowInstanceId, int type,
+		long workflowInstanceId, int logEntityType,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowLogException {
-		return getPersistence().findByW_T_Last(workflowInstanceId, type, obc);
+		return getPersistence()
+				   .findByW_T_Last(workflowInstanceId, logEntityType, obc);
 	}
 
 	public static com.liferay.portal.workflow.edoras.model.WorkflowLog[] findByW_T_PrevAndNext(
-		long workflowLogId, long workflowInstanceId, int type,
+		long workflowLogId, long workflowInstanceId, int logEntityType,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowLogException {
 		return getPersistence()
 				   .findByW_T_PrevAndNext(workflowLogId, workflowInstanceId,
-			type, obc);
+			logEntityType, obc);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowLog> findByW_T_T(
+		long workflowInstanceId, int logEntityType, int type)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByW_T_T(workflowInstanceId, logEntityType, type);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowLog> findByW_T_T(
+		long workflowInstanceId, int logEntityType, int type, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByW_T_T(workflowInstanceId, logEntityType, type, start,
+			end);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowLog> findByW_T_T(
+		long workflowInstanceId, int logEntityType, int type, int start,
+		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByW_T_T(workflowInstanceId, logEntityType, type, start,
+			end, obc);
+	}
+
+	public static com.liferay.portal.workflow.edoras.model.WorkflowLog findByW_T_T_First(
+		long workflowInstanceId, int logEntityType, int type,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowLogException {
+		return getPersistence()
+				   .findByW_T_T_First(workflowInstanceId, logEntityType, type,
+			obc);
+	}
+
+	public static com.liferay.portal.workflow.edoras.model.WorkflowLog findByW_T_T_Last(
+		long workflowInstanceId, int logEntityType, int type,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowLogException {
+		return getPersistence()
+				   .findByW_T_T_Last(workflowInstanceId, logEntityType, type,
+			obc);
+	}
+
+	public static com.liferay.portal.workflow.edoras.model.WorkflowLog[] findByW_T_T_PrevAndNext(
+		long workflowLogId, long workflowInstanceId, int logEntityType,
+		int type, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowLogException {
+		return getPersistence()
+				   .findByW_T_T_PrevAndNext(workflowLogId, workflowInstanceId,
+			logEntityType, type, obc);
 	}
 
 	public static java.util.List<Object> findWithDynamicQuery(
@@ -267,9 +324,14 @@ public class WorkflowLogUtil {
 		getPersistence().removeByWorkflowTaskId(workflowTaskId);
 	}
 
-	public static void removeByW_T(long workflowInstanceId, int type)
+	public static void removeByW_T(long workflowInstanceId, int logEntityType)
 		throws com.liferay.portal.SystemException {
-		getPersistence().removeByW_T(workflowInstanceId, type);
+		getPersistence().removeByW_T(workflowInstanceId, logEntityType);
+	}
+
+	public static void removeByW_T_T(long workflowInstanceId,
+		int logEntityType, int type) throws com.liferay.portal.SystemException {
+		getPersistence().removeByW_T_T(workflowInstanceId, logEntityType, type);
 	}
 
 	public static void removeAll() throws com.liferay.portal.SystemException {
@@ -286,9 +348,15 @@ public class WorkflowLogUtil {
 		return getPersistence().countByWorkflowTaskId(workflowTaskId);
 	}
 
-	public static int countByW_T(long workflowInstanceId, int type)
+	public static int countByW_T(long workflowInstanceId, int logEntityType)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().countByW_T(workflowInstanceId, type);
+		return getPersistence().countByW_T(workflowInstanceId, logEntityType);
+	}
+
+	public static int countByW_T_T(long workflowInstanceId, int logEntityType,
+		int type) throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .countByW_T_T(workflowInstanceId, logEntityType, type);
 	}
 
 	public static int countAll() throws com.liferay.portal.SystemException {

@@ -18,6 +18,8 @@ create index IX_9442145A on Edoras_WorkflowJob (workflowDefinitionId);
 create index IX_463D711C on Edoras_WorkflowJob (workflowInstanceId);
 
 create index IX_C1960963 on Edoras_WorkflowLog (workflowInstanceId);
+create index IX_A97BD0CE on Edoras_WorkflowLog (workflowInstanceId, logEntityType);
+create index IX_E700B547 on Edoras_WorkflowLog (workflowInstanceId, logEntityType, type_);
 create index IX_15869B12 on Edoras_WorkflowLog (workflowInstanceId, type_);
 create index IX_8F74AAD3 on Edoras_WorkflowLog (workflowTaskId);
 

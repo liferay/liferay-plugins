@@ -24,10 +24,9 @@ package com.liferay.portal.workflow.edoras.dao;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.workflow.edoras.dao.model.WorkflowEntity;
+import com.liferay.portal.workflow.edoras.dao.model.WorkflowEntityBridge;
 
 import org.edorasframework.process.api.ex.ProcessException;
-
 import org.springframework.transaction.support.TransactionOperations;
 
 /**
@@ -35,7 +34,7 @@ import org.springframework.transaction.support.TransactionOperations;
  *
  * @author Micha Kiener
  */
-public class AbstractWorkflowDao<T extends WorkflowEntity> {
+public abstract class AbstractWorkflowDao<E, T extends WorkflowEntityBridge<E>> {
 
 	public TransactionOperations getTxTemplate() {
 		return _txTemplate;
@@ -76,6 +75,30 @@ public class AbstractWorkflowDao<T extends WorkflowEntity> {
 			return false;
 		}
 	}
+	
+	protected void saveInternally(T workflowEntity) {
+
+		if (checkAndInitializeNewInstance(workflowEntity)) {
+			workflowEntity.initializeForInsert();
+		}
+		else {
+			workflowEntity.initializeForUpdate();
+		}
+
+		try {
+			saveThroughPersistenceUtil(workflowEntity);
+		}
+		catch (SystemException se) {
+			throw new ProcessException(
+				"Could not update workflow entity [" +
+				workflowEntity.getClass().getName() + "] wiht id [" +
+				workflowEntity.getPrimaryKey() + "]",
+			se);
+		}
+	}
+
+	protected abstract void saveThroughPersistenceUtil(T workflowEntity)
+		throws SystemException;
 
 	private TransactionOperations _txTemplate;
 	private TransactionOperations _txTemplateReadOnly;

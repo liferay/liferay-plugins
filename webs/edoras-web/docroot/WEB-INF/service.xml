@@ -197,6 +197,11 @@
 		</finder>
 		<finder name="W_T" return-type="Collection">
 			<finder-column name="workflowInstanceId" />
+			<finder-column name="logEntityType" />
+		</finder>
+		<finder name="W_T_T" return-type="Collection">
+			<finder-column name="workflowInstanceId" />
+			<finder-column name="logEntityType" />
 			<finder-column name="type" />
 		</finder>
 	</entity>
