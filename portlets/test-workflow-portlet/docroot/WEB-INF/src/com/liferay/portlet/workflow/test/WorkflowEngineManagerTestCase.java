@@ -24,7 +24,7 @@ package com.liferay.portlet.workflow.test;
 
 import com.liferay.portal.kernel.workflow.WorkflowEngineManagerUtil;
 
-import java.util.List;
+import javax.servlet.ServletContext;
 
 /**
  * <a href="WorkflowEngineManagerTestCase.java.html"><b><i>View Source</i></b>
@@ -34,17 +34,16 @@ import java.util.List;
  */
 public class WorkflowEngineManagerTestCase extends BaseTestCase {
 
-	public static List<String> runTest() {
-		WorkflowEngineManagerTestCase workflowEngineManagerTestCase =
-			new WorkflowEngineManagerTestCase();
-
-		return workflowEngineManagerTestCase.callTestMethods();
+	public WorkflowEngineManagerTestCase(ServletContext servletContext) {
+		super(servletContext);
 	}
 
 	public void testGetAdditionalInformation() throws Exception {
+		WorkflowEngineManagerUtil.getAdditionalInformation();
 	}
 
 	public void testGetDelegate() throws Exception {
+		WorkflowEngineManagerUtil.getDelegate();
 	}
 
 	public void testGetVersion() throws Exception {
@@ -77,6 +76,7 @@ public class WorkflowEngineManagerTestCase extends BaseTestCase {
 	}
 
 	public void testIsSupportsWorkflowDefinitionVersioning() throws Exception {
+		WorkflowEngineManagerUtil.isSupportsWorkflowDefinitionVersioning();
 	}
 
 }

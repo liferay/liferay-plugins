@@ -33,7 +33,7 @@
 <portlet:defineObjects />
 
 <%
-JSONArray testSuiteResults = WorkflowTestSuite.runTestSuite();
+JSONArray testSuiteResults = WorkflowTestSuite.runTestSuite(application);
 
 for (int i = 0; i < testSuiteResults.length(); i++) {
 	JSONObject testSuiteResult = testSuiteResults.getJSONObject(i);
@@ -46,8 +46,8 @@ for (int i = 0; i < testSuiteResults.length(); i++) {
 <%
 	JSONArray testCaseResults = testSuiteResult.getJSONArray("testCaseResults");
 
-	for (int j = 0; i < testCaseResults.length(); j++) {
-		JSONObject testCaseResult = testCaseResults.getJSONObject(i);
+	for (int j = 0; j < testCaseResults.length(); j++) {
+		JSONObject testCaseResult = testCaseResults.getJSONObject(j);
 
 		String name = testCaseResult.getString("name");
 		String status = testCaseResult.getString("status");
@@ -55,10 +55,12 @@ for (int i = 0; i < testSuiteResults.length(); i++) {
 		String exceptionStackTrace = testCaseResult.getString("exceptionStackTrace");
 %>
 
-		<p><%= name %>=<%= status %></p>
+		<p><%= name %> <%= status %> <%= exceptionMessage %></p>
+		<p><%= exceptionStackTrace %></p>
 
 <%
 	}
-}
+%>
+<%
 }
 %>

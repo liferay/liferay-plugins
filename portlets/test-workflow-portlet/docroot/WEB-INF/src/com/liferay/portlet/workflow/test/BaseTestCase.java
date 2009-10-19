@@ -22,10 +22,16 @@
 
 package com.liferay.portlet.workflow.test;
 
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 import java.lang.reflect.Method;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.servlet.ServletContext;
 
 /**
  * <a href="BaseTestCase.java.html"><b><i>View Source</i></b></a>
@@ -34,14 +40,16 @@ import java.util.List;
  */
 public class BaseTestCase {
 
-	public static final String PASSED_KEY = "PASSED";
+	public BaseTestCase(ServletContext servletContext) {
+		this.servletContext = servletContext;
+	}
 
-	public static final String FAILED_KEY = "FAILED";
-
-	public List<String> callTestMethods() {
-		List<String> testResults = new ArrayList<String>();
+	public JSONObject callTestMethods() {
+		JSONObject testCaseResult = JSONFactoryUtil.createJSONObject();
 
 		Class<? extends BaseTestCase> clazz = getClass();
+		String testCaseName = clazz.getName();
+		testCaseResult.put("name", testCaseName);
 
 		Method setUpMethod = null;
 
@@ -59,17 +67,16 @@ public class BaseTestCase {
 		catch (Exception e) {
 		}
 
+		JSONArray testResults = JSONFactoryUtil.createJSONArray();
+		testCaseResult.put("testCaseResults", testResults);
+
 		Method[] methods = clazz.getMethods();
 
 		for (Method method : methods) {
 			if (method.getName().startsWith("test")) {
-				StringBuilder sb = new StringBuilder();
+				JSONObject testResult = JSONFactoryUtil.createJSONObject();
 
-				sb.append(method.getDeclaringClass().getName());
-				sb.append(".");
-				sb.append(method.getName());
-				sb.append("()=");
-
+				testResult.put("name", method.getName());
 				try {
 					if (setUpMethod != null) {
 						setUpMethod.invoke(this);
@@ -80,20 +87,31 @@ public class BaseTestCase {
 					if (tearDownMethod != null) {
 						tearDownMethod.invoke(this);
 					}
-
-					sb.append(PASSED_KEY);
+					testResult.put("status", PASSED_KEY);
 				}
 				catch (Exception e) {
-					sb.append(FAILED_KEY);
-					sb.append("-message-");
-					sb.append(e.getMessage());
+					Throwable cause = e.getCause();
+					testResult.put("status", FAILED_KEY);
+					testResult.put("exceptionMessage", cause.getMessage());
+					StringWriter stringWriter = new StringWriter();
+					PrintWriter printWriter = new PrintWriter(stringWriter);
+					cause.printStackTrace(printWriter);
+					testResult.put(
+						"exceptionStackTrace", stringWriter.toString());
+					printWriter.close();
 				}
 
-				testResults.add(sb.toString());
+				testResults.put(testResult);
 			}
 		}
 
-		return testResults;
+		return testCaseResult;
 	}
+
+	public static final String PASSED_KEY = "PASSED";
+
+	public static final String FAILED_KEY = "FAILED";
+
+	protected ServletContext servletContext;
 
 }
