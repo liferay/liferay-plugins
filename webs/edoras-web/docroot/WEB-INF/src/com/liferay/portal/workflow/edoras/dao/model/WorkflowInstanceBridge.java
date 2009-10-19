@@ -155,7 +155,7 @@ public class WorkflowInstanceBridge
 
 		if (loadChildren) {
 			List<ProcessInstance> processInstances = (List<ProcessInstance>)
-				WorkflowEntityBridgeUtil.wrapWorkflowInstanceList(
+				WorkflowEntityBridgeUtil.wrapWorkflowInstances(
 					workflowInstance.getChildren(), this, loadChildren);
 
 			setChildren(processInstances);

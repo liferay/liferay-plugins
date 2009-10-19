@@ -54,8 +54,8 @@
 	<!-- DAO implementations -->
 
 	<bean id="edsPrcDao" class="com.liferay.portal.workflow.edoras.dao.WorkflowInstanceDao" parent="edsPrcDaoTemplate" />
-	<bean id="edsPrcLogDao" class="com.liferay.portal.workflow.edoras.dao.WorkflowLogDao" parent="edsPrcDaoTemplate" />
 	<bean id="edsPrcJobQueueDao" class="com.liferay.portal.workflow.edoras.dao.WorkflowJobDao" parent="edsPrcDaoTemplate" />
+	<bean id="edsPrcLogDao" class="com.liferay.portal.workflow.edoras.dao.WorkflowLogDao" parent="edsPrcDaoTemplate" />
 	<bean id="edsPrcServiceDao" class="com.liferay.portal.workflow.edoras.dao.WorkflowDefinitionDao" parent="edsPrcDaoTemplate" />
 	<bean id="edsPrcTaskDao" class="com.liferay.portal.workflow.edoras.dao.WorkflowTaskDao" parent="edsPrcDaoTemplate" />
 
@@ -80,6 +80,5 @@
 		class="org.edorasframework.process.core.scope.NoExposingProcessInstanceMap"
 		lazy-init="true"
 		scope="singleton"
-	>
-	</bean>
+	/>
 </beans>

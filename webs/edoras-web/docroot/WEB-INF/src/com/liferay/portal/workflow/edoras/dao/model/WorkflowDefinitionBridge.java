@@ -40,9 +40,8 @@ public class WorkflowDefinitionBridge
 			   WorkflowEntityBridge<WorkflowDefinition> {
 
 	public WorkflowDefinitionBridge() {
-
 	}
-	
+
 	public WorkflowDefinitionBridge(WorkflowDefinition workflowDefinition) {
 		initializeFromReading(workflowDefinition);
 	}

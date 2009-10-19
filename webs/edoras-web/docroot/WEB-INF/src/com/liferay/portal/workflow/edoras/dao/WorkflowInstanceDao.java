@@ -37,12 +37,12 @@ import org.edorasframework.process.api.entity.MutableProcessInstance;
 import org.edorasframework.process.api.entity.ProcessInstance;
 import org.edorasframework.process.api.ex.ProcessException;
 import org.edorasframework.process.api.session.ProcessSession;
+
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 
 /**
  * <a href="WorkflowInstanceDao.java.html"><b><i>View Source</i></b></a>
- *
  *
  * @author Micha Kiener
  */
@@ -54,25 +54,15 @@ public class WorkflowInstanceDao
 		WorkflowInstanceUtil.clearCache();
 	}
 
-	public <T> void delete(T workflowInstance) {
-		long primaryKey = 0;
-
+	public <T> void delete(T workflowEntityBridge) {
 		try {
 			WorkflowInstanceBridge workflowInstanceBridge =
-				(WorkflowInstanceBridge) workflowInstance;
+				(WorkflowInstanceBridge)workflowEntityBridge;
 
-			primaryKey = workflowInstanceBridge.getPrimaryKey();
-
-			WorkflowInstanceUtil.remove(primaryKey);
+			WorkflowInstanceUtil.remove(workflowInstanceBridge.getPrimaryKey());
 		}
-		catch (NoSuchWorkflowInstanceException nswie) {
-			throw new ProcessException(
-				"Could not delete workflow instance with id " + primaryKey,
-				nswie);
-		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not delete workflow instance with id " + primaryKey, se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
@@ -80,13 +70,13 @@ public class WorkflowInstanceDao
 		return (T)loadProcessInstance((Long)identity);
 	}
 
-	public <T> T find(T workflowInstance, Object identity) {
+	public <T> T find(T workflowEntityBridge, Object identity) {
 		return (T)loadProcessInstance((Long)identity);
 	}
 
 	public <T> T loadAttribute(
-		MutableProcessInstance instance, ObjectIdentity identity,
-		String attributeName) {
+		MutableProcessInstance mutableProcessInstance,
+		ObjectIdentity objectIdentity, String attributeName) {
 
 		// TODO
 
@@ -101,12 +91,11 @@ public class WorkflowInstanceDao
 					List<WorkflowInstance> workflowInstances =
 						WorkflowInstanceUtil.findByFinished(false);
 
-					return WorkflowEntityBridgeUtil.wrapWorkflowInstanceList(
+					return WorkflowEntityBridgeUtil.wrapWorkflowInstances(
 						workflowInstances, null, true);
 				}
-				catch (SystemException se) {
-					throw new ProcessException(
-						"Could not load open workflow instances", se);
+				catch (Exception e) {
+					throw new ProcessException(e.getMessage(), e);
 				}
 			}
 
@@ -132,11 +121,8 @@ public class WorkflowInstanceDao
 				catch (NoSuchWorkflowInstanceException nswie) {
 					return null;
 				}
-				catch (SystemException se) {
-					throw new ProcessException(
-						"Could not load workflow instances with id " +
-							primaryKey,
-						se);
+				catch (Exception e) {
+					throw new ProcessException(e.getMessage(), e);
 				}
 			}
 
@@ -169,14 +155,11 @@ public class WorkflowInstanceDao
 						WorkflowInstanceUtil.findByC_C(
 							relationType, relationId);
 
-					return WorkflowEntityBridgeUtil.wrapWorkflowInstanceList(
+					return WorkflowEntityBridgeUtil.wrapWorkflowInstances(
 						workflowInstances, null, true);
 				}
-				catch (SystemException se) {
-					throw new ProcessException(
-						"Could not load workflow instances with type " +
-							relationType + " and id " + relationId,
-						se);
+				catch (Exception e) {
+					throw new ProcessException(e.getMessage(), e);
 				}
 			}
 		};
@@ -185,13 +168,12 @@ public class WorkflowInstanceDao
 			getTxTemplateReadOnly().execute(transactionCallback);
 	}
 
-	public <T> T merge(T workflowInstance) {
-
-		return workflowInstance;
+	public <T> T merge(T workflowEntityBridge) {
+		return workflowEntityBridge;
 	}
 
 	public ObjectIdentity persistAttribute(
-		Object attribute, MutableProcessInstance instance,
+		Object attribute, MutableProcessInstance mutableProcessInstance,
 		String attributeName) {
 
 		// TODO
@@ -199,58 +181,55 @@ public class WorkflowInstanceDao
 		return null;
 	}
 
-	public <T> void refresh(T workflowInstance) {
+	public <T> void refresh(T workflowEntityBridge) {
 	}
 
-	public void reload(Object workflowInstance) {
+	public void reload(Object workflowEntityBridge) {
 	}
 
-	public <T> void save(T workflowInstance) {
-		saveInternally((WorkflowInstanceBridge) workflowInstance);
+	public <T> void save(T workflowEntityBridge) {
+		saveInternally((WorkflowInstanceBridge)workflowEntityBridge);
 	}
 
 	public List<? extends MutableProcessInstance> searchChildInstances(
-		MutableProcessInstance parentProcessInstance, String cause,
+		MutableProcessInstance mutableProcessInstance, String cause,
 		boolean onlyOpen) {
 
-		List<WorkflowInstance> workflowInstances = null;
-
 		try {
+			List<WorkflowInstance> workflowInstances = null;
+
 			if (onlyOpen) {
 				workflowInstances = WorkflowInstanceUtil.findByC_P_R_F(
-					parentProcessInstance.getTenantId(),
-					parentProcessInstance.getPrimaryKey(), cause, false);
+					mutableProcessInstance.getTenantId(),
+					mutableProcessInstance.getPrimaryKey(), cause, false);
 			}
 			else {
 				workflowInstances = WorkflowInstanceUtil.findByC_P_R(
-					parentProcessInstance.getTenantId(),
-					parentProcessInstance.getPrimaryKey(), cause);
+					mutableProcessInstance.getTenantId(),
+					mutableProcessInstance.getPrimaryKey(), cause);
 			}
 
 			return (List<? extends MutableProcessInstance>)
-				WorkflowEntityBridgeUtil.wrapWorkflowInstanceList(
+				WorkflowEntityBridgeUtil.wrapWorkflowInstances(
 					workflowInstances,
-					(WorkflowInstanceBridge)parentProcessInstance, false);
+					(WorkflowInstanceBridge)mutableProcessInstance, false);
 		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not load children for workflow instance with id " +
-					parentProcessInstance.getPrimaryKey(),
-				se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
-	public void sessionClosing(ProcessSession session) {
+	public void sessionClosing(ProcessSession processSession) {
 	}
 
-	public void sessionStarted(ProcessSession session) {
+	public void sessionStarted(ProcessSession processSession) {
 	}
 
-	protected void saveThroughPersistenceUtil( 
-		WorkflowInstanceBridge workflowEntity)
+	protected void saveThroughPersistenceUtil(
+			WorkflowInstanceBridge workflowInstanceBridge)
 		throws SystemException {
 
-		WorkflowInstanceUtil.update(workflowEntity.unwrap());
+		WorkflowInstanceUtil.update(workflowInstanceBridge.unwrap());
 	}
 
 }

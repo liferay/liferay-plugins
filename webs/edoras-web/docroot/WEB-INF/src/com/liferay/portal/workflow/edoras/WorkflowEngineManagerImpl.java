@@ -24,10 +24,10 @@ package com.liferay.portal.workflow.edoras;
 
 import com.liferay.portal.kernel.workflow.WorkflowEngineManager;
 
+import java.util.Collections;
 import java.util.Map;
 
 import org.edorasframework.process.api.ProcessSystemUtil;
-
 
 /**
  * <a href="WorkflowEngineManagerImpl.java.html"><b><i>View Source</i></b></a>
@@ -37,7 +37,7 @@ import org.edorasframework.process.api.ProcessSystemUtil;
 public class WorkflowEngineManagerImpl implements WorkflowEngineManager {
 
 	public Map<String, Object> getAdditionalInformation() {
-		return null;
+		return Collections.EMPTY_MAP;
 	}
 
 	public Object getDelegate() {
@@ -53,7 +53,7 @@ public class WorkflowEngineManagerImpl implements WorkflowEngineManager {
 	}
 
 	public String getWorkflowEngineName() {
-		return "Edoras Workflow";
+		return "Edoras";
 	}
 
 	public boolean isSupportsWorkflowDefinitionVersioning() {

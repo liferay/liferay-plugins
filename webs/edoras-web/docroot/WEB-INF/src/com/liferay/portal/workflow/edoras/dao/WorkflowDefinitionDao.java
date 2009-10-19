@@ -49,117 +49,104 @@ public class WorkflowDefinitionDao
 		WorkflowDefinitionUtil.clearCache();
 	}
 
-	public <T> void delete(T workflowEntity) {
-		long primaryKey = 0;
-
+	public <T> void delete(T workflowEntityBridge) {
 		try {
-			WorkflowDefinition workflowDefinition =
-				(WorkflowDefinition)workflowEntity;
+			WorkflowDefinitionBridge workflowDefinitionBridge =
+				(WorkflowDefinitionBridge)workflowEntityBridge;
 
-			primaryKey = workflowDefinition.getWorkflowDefinitionId();
-
-			WorkflowDefinitionUtil.remove(primaryKey);
+			WorkflowDefinitionUtil.remove(
+				workflowDefinitionBridge.getPrimaryKey());
 		}
-		catch (NoSuchWorkflowDefinitionException nswde) {
-			throw new ProcessException(
-				"Could not delete workflow definition with id " + primaryKey,
-				nswde);
-		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not delete workflow definition with id " + primaryKey,
-				se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
 	public <T> T find(Class<T> clazz, Object identity) {
-		long primaryKey = (Long)identity;
-
 		try {
+			long primaryKey = (Long)identity;
+
 			WorkflowDefinition workflowDefinition =
 				WorkflowDefinitionUtil.findByPrimaryKey(primaryKey);
-			
-			return (T) new WorkflowDefinitionBridge(workflowDefinition);
+
+			return (T)(new WorkflowDefinitionBridge(workflowDefinition));
 		}
 		catch (NoSuchWorkflowDefinitionException nswde) {
 			return null;
 		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not load workflow definition with id " + primaryKey, se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
-	public <T> T find(T workflowDefinition, Object identity) {
+	public <T> T find(T workflowEntityBridge, Object identity) {
 		return (T)find(WorkflowDefinition.class, identity);
 	}
 
 	public ProcessModelDefinition findModelDefinition(
 		String modelId, int modelVersion, Long tenantId) {
 
-		long companyId = CompanyConstants.SYSTEM;
-
-		if (tenantId != null) {
-			companyId = tenantId.longValue();
-		}
-
 		try {
+			long companyId = CompanyConstants.SYSTEM;
+
+			if (tenantId != null) {
+				companyId = tenantId;
+			}
+
 			WorkflowDefinition workflowDefinition =
 				WorkflowDefinitionUtil.findByC_N_V(
-				companyId, modelId, modelVersion);
-			
+					companyId, modelId, modelVersion);
+
 			return new WorkflowDefinitionBridge(workflowDefinition);
 		}
 		catch (NoSuchWorkflowDefinitionException nswde) {
 			return null;
 		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not find workflow definition with id " + modelId +
-					" and version " + modelVersion,
-				se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public List loadModelDefinitions(Long tenantId) {
 		try {
-			List<WorkflowDefinition> workflowDefinitionList = null;
+			List<WorkflowDefinition> workflowDefinitions = null;
+
 			if (tenantId == null) {
-				workflowDefinitionList =
-					WorkflowDefinitionUtil.findAll();
+				workflowDefinitions = WorkflowDefinitionUtil.findAll();
 			}
 			else {
-				workflowDefinitionList =
-					WorkflowDefinitionUtil.findByCompanyId(
-					tenantId.longValue());
+				workflowDefinitions = WorkflowDefinitionUtil.findByCompanyId(
+					tenantId);
 			}
-			
-			return WorkflowEntityBridgeUtil.wrapWorkflowDefinitionList(workflowDefinitionList);
+
+			return WorkflowEntityBridgeUtil.wrapWorkflowDefinitions(
+				workflowDefinitions);
 		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not find workflow definitions", se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
-	public <T> T merge(T workflowDefinition) {
-		return workflowDefinition;
+	public <T> T merge(T workflowEntityBridge) {
+		return workflowEntityBridge;
 	}
 
-	public <T> void refresh(T workflowDefinition) {
+	public <T> void refresh(T workflowEntityBridge) {
 	}
 
-	public void reload(Object workflowDefinition) {
+	public void reload(Object workflowEntityBridge) {
 	}
 
-	public <T> void save(T workflowDefinition) {
-		saveInternally((WorkflowDefinitionBridge) workflowDefinition);
+	public <T> void save(T workflowEntityBridge) {
+		saveInternally((WorkflowDefinitionBridge)workflowEntityBridge);
 	}
 
 	protected void saveThroughPersistenceUtil(
-		WorkflowDefinitionBridge workflowDefinition)
+			WorkflowDefinitionBridge workflowDefinitionBridge)
 		throws SystemException {
 
-		WorkflowDefinitionUtil.update(workflowDefinition.unwrap());
+		WorkflowDefinitionUtil.update(workflowDefinitionBridge.unwrap());
 	}
+
 }

@@ -47,42 +47,44 @@ import org.edorasframework.process.core.log.model.AbstractProcessLog;
 /**
  * <a href="WorkflowEntityBridgeUtil.java.html"><b><i>View Source</i></b></a>
  *
- *
  * @author Micha Kiener
  */
 public class WorkflowEntityBridgeUtil {
 
-	public static <T> List<Order> createOrderList(Class<?> workflowEntityClass,
-		OrderComparator<T> orderComparator) {
+	public static <T> List<Order> createOrders(
+		Class<?> workflowEntityClass, OrderComparator<T> orderComparator) {
 
 		String[] fields = orderComparator.getFields();
 		boolean[] fieldOrders = orderComparator.getFieldOrders();
-		
-		List<Order> orderList = new ArrayList<Order>(fields.length);
-		for (int ii = 0; ii < fields.length; ii++) {
-			String fieldName = fields[ii];
-			
-			if (fieldOrders[ii]) {
-				orderList.add(OrderFactoryUtil.asc(fieldName));
-			} else {
-				orderList.add(OrderFactoryUtil.desc(fieldName));
+
+		List<Order> orders = new ArrayList<Order>(fields.length);
+
+		for (int i = 0; i < fields.length; i++) {
+			String fieldName = fields[i];
+
+			if (fieldOrders[i]) {
+				orders.add(OrderFactoryUtil.asc(fieldName));
+			}
+			else {
+				orders.add(OrderFactoryUtil.desc(fieldName));
 			}
 		}
-		
-		return orderList;
+
+		return orders;
 	}
-	
+
 	public static String getBridgedPropertyName(
 		Class<?> entityClass, String propertyName) {
 
 		Map<String, String> map = _propertyMappings.get(entityClass);
+
 		if (map == null) {
 			return propertyName;
 		}
 
 		return map.get(propertyName);
 	}
-	
+
 	public static Class<?> getSetupClassForName(String setupId) {
 		Class<?> setupClass = _setupClassMap.get(setupId);
 
@@ -106,8 +108,9 @@ public class WorkflowEntityBridgeUtil {
 		return setupClass;
 	}
 
-	public static List<? extends ProcessModelDefinition> wrapWorkflowDefinitionList(
-		List<WorkflowDefinition> workflowDefinitions) {
+	public static List<? extends ProcessModelDefinition>
+		wrapWorkflowDefinitions(
+			List<WorkflowDefinition> workflowDefinitions) {
 
 		List<ProcessModelDefinition> processDefinitions =
 			new ArrayList<ProcessModelDefinition>();
@@ -117,14 +120,14 @@ public class WorkflowEntityBridgeUtil {
 		}
 
 		for (WorkflowDefinition workflowDefinition : workflowDefinitions) {
-			processDefinitions.add(new WorkflowDefinitionBridge(
-				workflowDefinition));
+			processDefinitions.add(
+				new WorkflowDefinitionBridge(workflowDefinition));
 		}
 
 		return processDefinitions;
 	}
 
-	public static List<? extends ProcessInstance> wrapWorkflowInstanceList(
+	public static List<? extends ProcessInstance> wrapWorkflowInstances(
 		List<WorkflowInstance> workflowInstances,
 		WorkflowInstanceBridge workflowInstanceBridge, boolean loadChildren) {
 
@@ -144,7 +147,7 @@ public class WorkflowEntityBridgeUtil {
 		return processInstances;
 	}
 
-	public static List<MutableProcessJob> wrapWorkflowJobList(
+	public static List<MutableProcessJob> wrapWorkflowJobs(
 		List<WorkflowJob> workflowJobs) {
 
 		List<MutableProcessJob> processJobs =
@@ -160,46 +163,49 @@ public class WorkflowEntityBridgeUtil {
 
 		return processJobs;
 	}
-	
+
 	public static AbstractProcessLog wrapWorkflowLog(WorkflowLog workflowLog) {
 		int logEntityType = workflowLog.getLogEntityType();
-		ProcessLogType logType = ProcessLogType.getLogType(logEntityType);
 
-		switch (logType) {
-			case ACTIVITY:
-				return new ActivityLogBridge(workflowLog);
-				
-			case COMMENT:
-				return new CommentLogBridge(workflowLog);
-				
-			case TRANSITION:
-				return new TransitionLogBridge(workflowLog);
-				
-			case TASK:
-				return new TaskLogBridge(workflowLog);
+		ProcessLogType processLogType = ProcessLogType.getLogType(
+			logEntityType);
+
+		if (processLogType.equals(ProcessLogType.ACTIVITY)) {
+			return new ActivityLogBridge(workflowLog);
 		}
-		
-		throw new IllegalArgumentException("The log entity type [" +
-			logEntityType + "] is not valid");
+		else if (processLogType.equals(ProcessLogType.COMMENT)) {
+			return new CommentLogBridge(workflowLog);
+		}
+		else if (processLogType.equals(ProcessLogType.TASK)) {
+			return new TaskLogBridge(workflowLog);
+		}
+		else if (processLogType.equals(ProcessLogType.TRANSITION)) {
+			return new TransitionLogBridge(workflowLog);
+		}
+		else {
+			throw new IllegalArgumentException(
+				"The log entity type "  + logEntityType + " is invalid");
+		}
 	}
-	
-	public static List<? extends AbstractProcessLog> wrapWorkflowLogList(
-		List<WorkflowLog> logList) {
-		List<AbstractProcessLog> wrappedLogList =
+
+	public static List<? extends AbstractProcessLog> wrapWorkflowLogs(
+		List<WorkflowLog> workflowLogs) {
+
+		List<AbstractProcessLog> processLogs =
 			new ArrayList<AbstractProcessLog>();
-		
-		if (logList == null) {
-			return wrappedLogList;
+
+		if (workflowLogs == null) {
+			return processLogs;
 		}
 
-		for (WorkflowLog workflowLog : logList) {
-			wrappedLogList.add(wrapWorkflowLog(workflowLog));
+		for (WorkflowLog workflowLog : workflowLogs) {
+			processLogs.add(wrapWorkflowLog(workflowLog));
 		}
 
-		return wrappedLogList;
+		return processLogs;
 	}
 
-	public static List<? extends ProcessTask> wrapWorkflowTaskList(
+	public static List<? extends ProcessTask> wrapWorkflowTasks(
 		List<WorkflowTask> workflowTasks) {
 
 		List<ProcessTask> processTasks = new ArrayList<ProcessTask>();
@@ -215,18 +221,20 @@ public class WorkflowEntityBridgeUtil {
 		return processTasks;
 	}
 
-	private static final Map<Class<?>, Map<String, String>> _propertyMappings =
+	private static Map<Class<?>, Map<String, String>> _propertyMappings =
 		new HashMap<Class<?>, Map<String, String>>();
-	private static final Map<String, Class<?>> _setupClassMap =
+	private static Map<String, Class<?>> _setupClassMap =
 		new HashMap<String, Class<?>>();
 
 	static {
 		Map<String, String> workflowTaskMappings =
 			new HashMap<String, String>();
+
 		workflowTaskMappings.put("assignedGroup", "assignedGroupName");
-		workflowTaskMappings.put("creationDate", "createDate");
 		workflowTaskMappings.put("assignee", "assigneeUserName");
+		workflowTaskMappings.put("creationDate", "createDate");
 
 		_propertyMappings.put(WorkflowTask.class, workflowTaskMappings);
 	}
+
 }

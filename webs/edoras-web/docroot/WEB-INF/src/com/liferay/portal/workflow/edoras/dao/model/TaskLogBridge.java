@@ -41,9 +41,10 @@ public class TaskLogBridge extends DefaultTaskLog
 
 	public TaskLogBridge(WorkflowLog workflowLog) {
 		this();
+
 		initializeFromReading(workflowLog);
 	}
-	
+
 	public long getPrimaryKey() {
 		return getId();
 	}

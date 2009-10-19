@@ -27,6 +27,7 @@ import com.liferay.portal.SystemException;
 import com.liferay.portal.workflow.edoras.dao.model.WorkflowEntityBridge;
 
 import org.edorasframework.process.api.ex.ProcessException;
+
 import org.springframework.transaction.support.TransactionOperations;
 
 /**
@@ -34,7 +35,8 @@ import org.springframework.transaction.support.TransactionOperations;
  *
  * @author Micha Kiener
  */
-public abstract class AbstractWorkflowDao<E, T extends WorkflowEntityBridge<E>> {
+public abstract class AbstractWorkflowDao
+	<E, T extends WorkflowEntityBridge<E>> {
 
 	public TransactionOperations getTxTemplate() {
 		return _txTemplate;
@@ -54,50 +56,43 @@ public abstract class AbstractWorkflowDao<E, T extends WorkflowEntityBridge<E>> 
 		_txTemplateReadOnly = txTemplateReadOnly;
 	}
 
-	protected boolean checkAndInitializeNewInstance(T workflowEntity) {
-		if (workflowEntity.getPrimaryKey() == 0) {
+	protected boolean checkAndInitializeNewInstance(T workflowEntityBridge) {
+		if (workflowEntityBridge.getPrimaryKey() == 0) {
 			try {
-				workflowEntity.setNew(true);
-				workflowEntity.setPrimaryKey(
+				workflowEntityBridge.setNew(true);
+				workflowEntityBridge.setPrimaryKey(
 					CounterLocalServiceUtil.increment());
 
 				return true;
 			}
-			catch (SystemException se) {
-				throw new ProcessException(
-					"Could not obtain a new primary key from counter service",
-					se);
+			catch (Exception e) {
+				throw new ProcessException(e.getMessage(), e);
 			}
 		}
 		else {
-			workflowEntity.setNew(false);
+			workflowEntityBridge.setNew(false);
 
 			return false;
 		}
 	}
-	
-	protected void saveInternally(T workflowEntity) {
 
-		if (checkAndInitializeNewInstance(workflowEntity)) {
-			workflowEntity.initializeForInsert();
+	protected void saveInternally(T workflowEntityBridge) {
+		if (checkAndInitializeNewInstance(workflowEntityBridge)) {
+			workflowEntityBridge.initializeForInsert();
 		}
 		else {
-			workflowEntity.initializeForUpdate();
+			workflowEntityBridge.initializeForUpdate();
 		}
 
 		try {
-			saveThroughPersistenceUtil(workflowEntity);
+			saveThroughPersistenceUtil(workflowEntityBridge);
 		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not update workflow entity [" +
-				workflowEntity.getClass().getName() + "] wiht id [" +
-				workflowEntity.getPrimaryKey() + "]",
-			se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
-	protected abstract void saveThroughPersistenceUtil(T workflowEntity)
+	protected abstract void saveThroughPersistenceUtil(T workflowEntityBridge)
 		throws SystemException;
 
 	private TransactionOperations _txTemplate;

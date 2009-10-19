@@ -39,9 +39,7 @@ import org.edorasframework.process.api.dao.QueryContext;
 import org.edorasframework.process.api.entity.ProcessInstance;
 import org.edorasframework.process.api.ex.ProcessException;
 import org.edorasframework.process.api.security.UserCredential;
-import org.edorasframework.process.api.task.ProcessTask;
 import org.edorasframework.process.api.task.TaskDao;
-
 
 /**
  * <a href="WorkflowTaskDao.java.html"><b><i>View Source</i></b></a>
@@ -56,17 +54,15 @@ public class WorkflowTaskDao
 		WorkflowTaskUtil.clearCache();
 	}
 
-	public <T> void delete(T workflowTask) {
-		ProcessTask processTask = (ProcessTask) workflowTask;
-		
+	public <T> void delete(T workflowEntityBridge) {
 		try {
-			WorkflowTaskUtil.remove(processTask.getPrimaryKey());
+			WorkflowTaskBridge workflowTaskBridge =
+				(WorkflowTaskBridge)workflowEntityBridge;
+
+			WorkflowTaskUtil.remove(workflowTaskBridge.getPrimaryKey());
 		}
 		catch (Exception e) {
-			throw new ProcessException(
-				"Could not delete workflow task with id [" +
-					processTask.getPrimaryKey() + "]",
-				e);
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
@@ -75,134 +71,128 @@ public class WorkflowTaskDao
 			WorkflowTaskUtil.removeByWorkflowInstanceId(
 				processInstance.getPrimaryKey());
 		}
-		catch (SystemException e) {
-			throw new ProcessException(
-				"Could not remove tasks for process instance with id [" +
-					processInstance.getPrimaryKey() + "]",
-				e);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
-	public <T> T find(Class<T> entityClass, Object identity) {
-		Long primaryKey = (Long) identity;
-		return (T) getTask(primaryKey.longValue());
+	public <T> T find(Class<T> clazz, Object identity) {
+		return (T)getTask((Long)identity);
 	}
 
-	public <T> T find(T entity, Object identity) {
-		Long primaryKey = (Long) identity;
-		return (T) getTask(primaryKey.longValue());
+	public <T> T find(T workflowEntityBridge, Object identity) {
+		return (T)getTask((Long)identity);
 	}
 
 	public List<WorkflowTaskBridge> getOpenTasks(
 		QueryContext<WorkflowTaskBridge> queryContext) {
 
 		try {
-			List<WorkflowTask> taskList = null;
-			if (queryContext != null && queryContext.isPaging()) {
-				taskList =
-					WorkflowTaskUtil.findByCompleted(false,
-						queryContext.getBeginRowIndex(),
-						queryContext.getEndRowIndex());
+			List<WorkflowTask> workflowTasks = null;
+
+			if ((queryContext != null) && queryContext.isPaging()) {
+				workflowTasks = WorkflowTaskUtil.findByCompleted(
+					false, queryContext.getBeginRowIndex(),
+					queryContext.getEndRowIndex());
 			}
 			else {
-				taskList = WorkflowTaskUtil.findByCompleted(false);
+				workflowTasks = WorkflowTaskUtil.findByCompleted(false);
 			}
-			
-			return (List<WorkflowTaskBridge>) WorkflowEntityBridgeUtil.wrapWorkflowTaskList(taskList);
+
+			return (List<WorkflowTaskBridge>)
+				WorkflowEntityBridgeUtil.wrapWorkflowTasks(workflowTasks);
 		}
-		catch (SystemException se) {
-			throw new ProcessException("Could not load open tasks", se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
 	public WorkflowTaskBridge getTask(long primaryKey) {
 		try {
-			WorkflowTask workflowTask =
-				WorkflowTaskUtil.findByPrimaryKey(primaryKey);
-			
-			WorkflowTaskBridge workflowTaskBridge =
-				new WorkflowTaskBridge(workflowTask);
-			
+			WorkflowTask workflowTask = WorkflowTaskUtil.findByPrimaryKey(
+				primaryKey);
+
+			WorkflowTaskBridge workflowTaskBridge = new WorkflowTaskBridge(
+				workflowTask);
+
 			return workflowTaskBridge;
 		}
-		catch (NoSuchWorkflowTaskException e) {
+		catch (NoSuchWorkflowTaskException nswte) {
 			return null;
 		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not load workflow task with id [" + primaryKey + "]",
-			se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
 	public int getTaskCountForUser(
 		UserCredential userCredential, Boolean completed) {
 
-		// TODO Auto-generated method stub
+		// TODO
+
 		return 0;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<WorkflowTaskBridge> getTasksForInstance(
 		ProcessInstance processInstance, boolean onlyOpenTasks,
 		QueryContext<WorkflowTaskBridge> queryContext) {
 
-		DynamicQuery query =
-			DynamicQueryFactoryUtil.forClass(WorkflowTask.class);
-		
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			WorkflowTask.class);
+
 		if (onlyOpenTasks) {
-			query.add(RestrictionsFactoryUtil.eq("completed", false));
+			dynamicQuery.add(RestrictionsFactoryUtil.eq("completed", false));
 		}
-		
+
 		if (queryContext != null) {
 			if (queryContext.isPaging()) {
-				query.setLimit(
+				dynamicQuery.setLimit(
 					queryContext.getBeginRowIndex(),
 					queryContext.getEndRowIndex());
 			}
-			
-			
+
 			if (queryContext.hasOrder()) {
-				List<Order> orderList =
-					WorkflowEntityBridgeUtil.createOrderList(
-						WorkflowTask.class, queryContext.getOrderComparator());
-				
-				for (Order order : orderList) {
-					query.addOrder(order);
+				List<Order> orders = WorkflowEntityBridgeUtil.createOrders(
+					WorkflowTask.class, queryContext.getOrderComparator());
+
+				for (Order order : orders) {
+					dynamicQuery.addOrder(order);
 				}
 			}
 		}
-		
+
 		try {
-			List taskList = WorkflowTaskUtil.findWithDynamicQuery(query);
-			return (List<WorkflowTaskBridge>) WorkflowEntityBridgeUtil.wrapWorkflowTaskList(taskList);
+			List workflowTasks = WorkflowTaskUtil.findWithDynamicQuery(
+				dynamicQuery);
+
+			return (List<WorkflowTaskBridge>)
+				WorkflowEntityBridgeUtil.wrapWorkflowTasks(workflowTasks);
 		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not find tasks for workflow instance with id [" +
-					processInstance.getPrimaryKey() + "]",
-				se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
-	public <T> T merge(T workflowTask) {
-		return workflowTask;
+	public <T> T merge(T workflowEntityBridge) {
+		return workflowEntityBridge;
 	}
 
-	public <T> void refresh(T workflowTask) {
-		
+	public <T> void refresh(T workflowEntityBridge) {
 	}
 
-	public void reload(Object workflowTask) {
-		
+	public void reload(Object workflowEntityBridge) {
 	}
 
-	public <T> void save(T workflowTask) {
-		saveInternally((WorkflowTaskBridge) workflowTask);
+	public <T> void save(T workflowEntityBridge) {
+		saveInternally((WorkflowTaskBridge)workflowEntityBridge);
 	}
 
-	protected void saveThroughPersistenceUtil(WorkflowTaskBridge workflowTask)
+	protected void saveThroughPersistenceUtil(
+			WorkflowTaskBridge workflowTaskBridge)
 		throws SystemException {
 
-		WorkflowTaskUtil.update(workflowTask.unwrap());
+		WorkflowTaskUtil.update(workflowTaskBridge.unwrap());
 	}
+
 }

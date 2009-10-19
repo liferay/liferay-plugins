@@ -38,9 +38,10 @@ public class ActivityLogBridge extends DefaultActivityLog
 	public ActivityLogBridge() {
 		_workflowLogDelegate = new WorkflowLogDelegate<DefaultActivityLog>();
 	}
-	
+
 	public ActivityLogBridge(WorkflowLog workflowLog) {
 		this();
+
 		initializeFromReading(workflowLog);
 	}
 

@@ -36,7 +36,6 @@ import org.edorasframework.process.api.ex.ProcessException;
 import org.edorasframework.process.api.job.MutableProcessJob;
 import org.edorasframework.process.api.job.queue.JobQueueDao;
 
-
 /**
  * <a href="WorkflowJobDao.java.html"><b><i>View Source</i></b></a>
  *
@@ -50,82 +49,72 @@ public class WorkflowJobDao
 		WorkflowJobUtil.clearCache();
 	}
 
-	public <T> void delete(T entity) {
-		WorkflowJobBridge job = (WorkflowJobBridge) entity;
-
+	public <T> void delete(T workflowEntityBridge) {
 		try {
-			WorkflowJobUtil.remove(job.getPrimaryKey());
+			WorkflowJobBridge workflowJobBridge =
+				(WorkflowJobBridge)workflowEntityBridge;
+
+			WorkflowJobUtil.remove(workflowJobBridge.getPrimaryKey());
 		}
 		catch (Exception e) {
-			throw new ProcessException(
-				"Could not delete workflow job with id [" +
-					job.getPrimaryKey() + "]",
-				e);
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
-	public void deleteJobs(ProcessInstance instance) {
+	public void deleteJobs(ProcessInstance processInstance) {
 		try {
-			WorkflowJobUtil.removeByWorkflowInstanceId(instance.getPrimaryKey());
+			WorkflowJobUtil.removeByWorkflowInstanceId(
+				processInstance.getPrimaryKey());
 		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not remove workflow jobs for workflow instance with id [" +
-					instance.getPrimaryKey() + "]",
-				se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
 	public <T> T find(Class<T> clazz, Object identity) {
-		Long primaryKey = (Long) identity;
-
 		try {
-			WorkflowJob workflowJob =
-				WorkflowJobUtil.findByPrimaryKey(primaryKey.longValue());
+			long primaryKey = (Long)identity;
 
-			return (T) new WorkflowJobBridge(workflowJob);
+			WorkflowJob workflowJob = WorkflowJobUtil.findByPrimaryKey(
+				primaryKey);
+
+			return (T)(new WorkflowJobBridge(workflowJob));
 		}
-		catch (NoSuchWorkflowJobException e) {
+		catch (NoSuchWorkflowJobException nswje) {
 			return null;
 		}
-		catch (SystemException se) {
-			throw new ProcessException("Could not find workflow job with id [" +
-				primaryKey + "]",
-			se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
-	public <T> T find(T entity, Object identity) {
-		return (T) find(WorkflowJob.class, identity);
+	public <T> T find(T workflowEntityBridge, Object identity) {
+		return (T)find(WorkflowJob.class, identity);
 	}
 
 	public List<MutableProcessJob> getJobs(
-		ProcessInstance instance, boolean onlyOpen) {
+		ProcessInstance processInstance, boolean onlyOpen) {
 
 		try {
-			List<WorkflowJob> jobList =
-				WorkflowJobUtil.findByWorkflowInstanceId(instance.getPrimaryKey());
+			List<WorkflowJob> workflowJobs =
+				WorkflowJobUtil.findByWorkflowInstanceId(
+					processInstance.getPrimaryKey());
 
-			return WorkflowEntityBridgeUtil.wrapWorkflowJobList(jobList);
+			return WorkflowEntityBridgeUtil.wrapWorkflowJobs(workflowJobs);
 		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not load open jobs related to workflow instance with id [" +
-					instance.getPrimaryKey() + "]",
-				se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
 	public List<MutableProcessJob> getOpenJobs() {
 		try {
-			List<WorkflowJob> jobList =
-				WorkflowJobUtil.findAll();
+			List<WorkflowJob> workflowJobs = WorkflowJobUtil.findAll();
 
-			return WorkflowEntityBridgeUtil.wrapWorkflowJobList(jobList);
+			return WorkflowEntityBridgeUtil.wrapWorkflowJobs(workflowJobs);
 		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not load open jobs", se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
@@ -133,29 +122,31 @@ public class WorkflowJobDao
 		return WorkflowEntityBridgeUtil.getSetupClassForName(_setupId);
 	}
 
-	public <T> T merge(T entity) {
-		return entity;
+	public <T> T merge(T workflowEntityBridge) {
+		return workflowEntityBridge;
 	}
 
-	public <T> void refresh(T entity) {
+	public <T> void refresh(T workflowEntityBridge) {
 	}
 
-	public void reload(Object entity) {
+	public void reload(Object workflowEntityBridge) {
 	}
 
-	public <T> void save(T workflowJob) {
-		saveInternally((WorkflowJobBridge) workflowJob);
+	public <T> void save(T workflowEntityBridge) {
+		saveInternally((WorkflowJobBridge)workflowEntityBridge);
 	}
 
 	public void setSetupId(Class<?> setupId) {
 		_setupId = setupId.getName();
 	}
-	
-	protected void saveThroughPersistenceUtil(WorkflowJobBridge workflowJob)
+
+	protected void saveThroughPersistenceUtil(
+			WorkflowJobBridge workflowJobBridge)
 		throws SystemException {
 
-		WorkflowJobUtil.update(workflowJob.unwrap());
+		WorkflowJobUtil.update(workflowJobBridge.unwrap());
 	}
 
 	private String _setupId;
+
 }

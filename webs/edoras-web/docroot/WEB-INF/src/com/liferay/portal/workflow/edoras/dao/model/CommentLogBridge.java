@@ -40,6 +40,7 @@ public class CommentLogBridge extends DefaultCommentLog
 
 	public CommentLogBridge(WorkflowLog workflowLog) {
 		this();
+
 		initializeFromReading(workflowLog);
 	}
 

@@ -44,16 +44,10 @@ import org.edorasframework.process.api.log.TaskLog;
 import org.edorasframework.process.api.log.TransitionLog;
 import org.edorasframework.process.core.log.dao.LogUtil;
 
-
 /**
  * <a href="WorkflowLogDao.java.html"><b><i>View Source</i></b></a>
  *
- * <p>
- * TODO: add Class-Description here ...
- * </p>
- *
  * @author Micha Kiener
- *
  */
 public class WorkflowLogDao
 	extends AbstractWorkflowDao<WorkflowLog, WorkflowEntityBridge<WorkflowLog>>
@@ -63,162 +57,151 @@ public class WorkflowLogDao
 		WorkflowLogUtil.clearCache();
 	}
 
-	public <T> void delete(T entity) {
-		WorkflowEntity workflowLog = (WorkflowEntity) entity;
-		
+	public <T> void delete(T workflowEntityBridge) {
 		try {
-			WorkflowLogUtil.remove(workflowLog.getPrimaryKey());
+			WorkflowEntity workflowEntity =
+				(WorkflowEntity)workflowEntityBridge;
+
+			WorkflowLogUtil.remove(workflowEntity.getPrimaryKey());
 		}
 		catch (Exception e) {
-			throw new ProcessException(
-				"Could not delete process log entry with id [" +
-					workflowLog.getPrimaryKey() + "]",
-				e);
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
 	public <T> T find(Class<T> clazz, Object identity) {
-		Long primaryKey = (Long) identity;
-
 		try {
-			WorkflowLog workflowLog =
-				WorkflowLogUtil.findByPrimaryKey(primaryKey);
+			long primaryKey = (Long)identity;
 
-			return (T) WorkflowEntityBridgeUtil.wrapWorkflowLog(workflowLog);
+			WorkflowLog workflowLog = WorkflowLogUtil.findByPrimaryKey(
+				primaryKey);
+
+			return (T)WorkflowEntityBridgeUtil.wrapWorkflowLog(workflowLog);
 		}
-		catch (NoSuchWorkflowLogException e) {
+		catch (NoSuchWorkflowLogException nswle) {
 			return null;
 		}
-		catch (SystemException se) {
-			throw new ProcessException("Could not load log entry with id [" +
-				primaryKey + "]",
-			se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
-	public <T> T find(T workflowLog, Object identity) {
-		return (T) find(workflowLog.getClass(), identity);
+	public <T> T find(T workflowEntityBridge, Object identity) {
+		return (T)find(workflowEntityBridge.getClass(), identity);
 	}
 
-	public <T> T merge(T workflowLog) {
-		return workflowLog;
+	public <T> T merge(T workflowEntityBridge) {
+		return workflowEntityBridge;
 	}
 
-	public <T> void refresh(T entity) {
+	public <T> void refresh(T workflowEntityBridge) {
 	}
 
-	public void reload(Object entity) {
+	public void reload(Object workflowEntityBridge) {
 	}
 
-	public <T> void save(T workflowLog) {
-		saveInternally((WorkflowEntityBridge<WorkflowLog>) workflowLog);
+	public <T> void save(T workflowEntityBridge) {
+		saveInternally((WorkflowEntityBridge<WorkflowLog>)workflowEntityBridge);
 	}
 
 	protected void saveThroughPersistenceUtil(
-		WorkflowEntityBridge<WorkflowLog> workflowLog)
+			WorkflowEntityBridge<WorkflowLog> workflowEntityBridge)
 		throws SystemException {
 
-		WorkflowLogUtil.update(workflowLog.unwrap());
+		WorkflowLogUtil.update(workflowEntityBridge.unwrap());
 	}
 
-	public void deleteLogs(ProcessInstance instance) {
+	public void deleteLogs(ProcessInstance processInstance) {
 		try {
-			WorkflowLogUtil.removeByWorkflowInstanceId(instance.getPrimaryKey());
+			WorkflowLogUtil.removeByWorkflowInstanceId(
+				processInstance.getPrimaryKey());
 		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not delete log entries related to workflow instance with id [" +
-					instance.getPrimaryKey() + "]",
-				se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
 	public List<? extends ActivityLog> getProcessActivities(
-		ProcessInstance instance) {
+		ProcessInstance processInstance) {
 
-		return (List<? extends ActivityLog>) getProcessLogs(
-			ProcessLogType.ACTIVITY, instance);
+		return (List<? extends ActivityLog>)getProcessLogs(
+			ProcessLogType.ACTIVITY, processInstance);
 	}
 
 	public List<? extends CommentLog> getProcessComments(
-		ProcessInstance instance, Integer commentType) {
+		ProcessInstance processInstance, Integer commentType) {
 
-		List<WorkflowLog> logList = null;
 		try {
+			List<WorkflowLog> workflowLogs = null;
+
 			if (commentType == null) {
-				logList =
-					WorkflowLogUtil.findByW_T(
-						instance.getPrimaryKey(),
-						ProcessLogType.COMMENT.getId());
+				workflowLogs = WorkflowLogUtil.findByW_T(
+					processInstance.getPrimaryKey(),
+					ProcessLogType.COMMENT.getId());
 			}
 			else {
-				logList =
-					WorkflowLogUtil.findByW_T_T(
-						instance.getPrimaryKey(),
-						ProcessLogType.COMMENT.getId(), commentType.intValue());
+				workflowLogs = WorkflowLogUtil.findByW_T_T(
+					processInstance.getPrimaryKey(),
+					ProcessLogType.COMMENT.getId(), commentType.intValue());
 			}
 
-			return (List<? extends CommentLog>) WorkflowEntityBridgeUtil.wrapWorkflowLogList(logList);
+			return (List<? extends CommentLog>)
+				WorkflowEntityBridgeUtil.wrapWorkflowLogs(workflowLogs);
 		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not load comment logs for workflow instance with id [" +
-					instance.getPrimaryKey() + "]", se);
-		}
-	}
-
-	public List<? extends ProcessLog> getProcessLogs(
-		ProcessInstance instance, boolean includingChildren,
-		LogEntryFilter filter) {
-
-        return LogUtil.getProcessLogs(this, instance, includingChildren, filter);
-	}
-
-	public List<? extends ProcessLog> getProcessLogs(ProcessInstance instance) {
-
-		try {
-			List<WorkflowLog> logList =
-				WorkflowLogUtil.findByWorkflowInstanceId(instance.getPrimaryKey());
-
-			return WorkflowEntityBridgeUtil.wrapWorkflowLogList(logList);
-		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not load logs for workflow instance with id [" +
-					instance.getPrimaryKey() + "]", se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
 	public List<? extends ProcessLog> getProcessLogs(
-		ProcessLogType type, ProcessInstance instance) {
+		ProcessInstance processInstance, boolean includingChildren,
+		LogEntryFilter logEntryFilter) {
+
+		return LogUtil.getProcessLogs(
+			this, processInstance, includingChildren, logEntryFilter);
+	}
+
+	public List<? extends ProcessLog> getProcessLogs(
+		ProcessInstance processInstance) {
 
 		try {
-			List<WorkflowLog> logList =
-				WorkflowLogUtil.findByW_T(
-					instance.getPrimaryKey(), type.getId());
+			List<WorkflowLog> workflowLogs =
+				WorkflowLogUtil.findByWorkflowInstanceId(
+					processInstance.getPrimaryKey());
 
-			return WorkflowEntityBridgeUtil.wrapWorkflowLogList(logList);
+			return WorkflowEntityBridgeUtil.wrapWorkflowLogs(workflowLogs);
 		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not load [" + type +
-				"] logs for workflow instance with id [" +
-					instance.getPrimaryKey() + "]",
-			se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
-	public List<? extends TaskLog> getProcessTaskLogs(ProcessInstance instance) {
+	public List<? extends ProcessLog> getProcessLogs(
+		ProcessLogType processLogType, ProcessInstance processInstance) {
 
-		return (List<? extends TaskLog>) getProcessLogs(
-			ProcessLogType.TASK, instance);
+		try {
+			List<WorkflowLog> workflowLogs = WorkflowLogUtil.findByW_T(
+				processInstance.getPrimaryKey(), processLogType.getId());
+
+			return WorkflowEntityBridgeUtil.wrapWorkflowLogs(workflowLogs);
+		}
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
+		}
+	}
+
+	public List<? extends TaskLog> getProcessTaskLogs(
+		ProcessInstance processInstance) {
+
+		return (List<? extends TaskLog>)getProcessLogs(
+			ProcessLogType.TASK, processInstance);
 	}
 
 	public List<? extends TransitionLog> getProcessTransitions(
-		ProcessInstance instance) {
+		ProcessInstance processInstance) {
 
-		return (List<? extends TransitionLog>) getProcessLogs(
-			ProcessLogType.TRANSITION, instance);
+		return (List<? extends TransitionLog>)getProcessLogs(
+			ProcessLogType.TRANSITION, processInstance);
 	}
 
 }

@@ -42,9 +42,10 @@ public class TransitionLogBridge extends DefaultTransitionLog
 
 	public TransitionLogBridge(WorkflowLog workflowLog) {
 		this();
+
 		initializeFromReading(workflowLog);
 	}
-	
+
 	public long getPrimaryKey() {
 		return getId();
 	}
