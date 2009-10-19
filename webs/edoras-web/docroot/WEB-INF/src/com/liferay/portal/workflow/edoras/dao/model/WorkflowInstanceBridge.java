@@ -119,12 +119,10 @@ public class WorkflowInstanceBridge
 		ProcessModel processModel = processService.getProcessModel(
 			workflowInstance.getWorkflowDefinitionId());
 
-		Long relationId = null;
+		Long relationClassPK = workflowInstance.getRelationClassPK();
 
-		long relationClassPK = workflowInstance.getRelationClassPK();
-
-		if (relationClassPK > 0) {
-			relationId = Long.valueOf(relationClassPK);
+		if (relationClassPK == 0) {
+			relationClassPK = null;
 		}
 
 		setId(workflowInstance.getPrimaryKey());
@@ -139,7 +137,7 @@ public class WorkflowInstanceBridge
 		setProcessModelVersion(processModel.getProcessModelVersion());
 		setParent(parentWorkflowInstanceBridge);
 		setRelationType(workflowInstance.getRelationClassName());
-		setRelationId(relationId);
+		setRelationId(relationClassPK);
 		setXmlAttributeMap(workflowInstance.getAttributes());
 		setNestedProcessModelIds(
 			workflowInstance.getNestedWorkflowDefinitionIds());

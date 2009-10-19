@@ -59,21 +59,24 @@ public class WorkflowDefinitionBridge
 	public void initializeFromReading(WorkflowDefinition workflowDefinition) {
 		_workflowDefinition = workflowDefinition;
 
+		Long companyId = workflowDefinition.getCompanyId();
+
+		if (companyId == CompanyConstants.SYSTEM) {
+			companyId = null;
+		}
+
 		setPrimaryKey(workflowDefinition.getPrimaryKey());
-		setProcessModelAsXML(workflowDefinition.getModelXml());
-		setGraphicalProcessModelAsXML(workflowDefinition.getGraphicalXml());
+		setTenantId(companyId);
+		//setUserId(workflowDefinition.getUserId());
+		//setUserName(workflowDefinition.getUserName());
+		//setCreateDate(workflowDefinition.getCreateDate());
+		//setModifiedDate(workflowDefinition.getModifiedDate());
 		setProcessModelId(workflowDefinition.getName());
 		setProcessModelVersion(workflowDefinition.getVersion());
 		setModelDesignerVersion(workflowDefinition.getDesignerVersion());
-
-		long companyId = workflowDefinition.getCompanyId();
-
-		if (companyId == CompanyConstants.SYSTEM) {
-			setTenantId(null);
-		}
-		else {
-			setTenantId(companyId);
-		}
+		setProcessModelAsXML(workflowDefinition.getModelXml());
+		setGraphicalProcessModelAsXML(workflowDefinition.getGraphicalXml());
+		//setPersistent(workflowDefinition.isPersistent());
 	}
 
 	public boolean setNew(boolean isNew) {
@@ -85,21 +88,24 @@ public class WorkflowDefinitionBridge
 	public void transferPropertiesForSaving() {
 		unwrap();
 
-		_workflowDefinition.setPrimaryKey(getPrimaryKey());
-		_workflowDefinition.setModelXml(getProcessModelAsXML());
-		_workflowDefinition.setGraphicalXml(getGraphicalProcessModelAsXML());
-		_workflowDefinition.setName(getProcessModelId());
-		_workflowDefinition.setVersion(getProcessModelVersion());
-		_workflowDefinition.setDesignerVersion(getModelDesignerVersion());
-
 		Long tenantId = getTenantId();
 
 		if (tenantId == null) {
-			_workflowDefinition.setCompanyId(CompanyConstants.SYSTEM);
+			tenantId = CompanyConstants.SYSTEM;
 		}
-		else {
-			_workflowDefinition.setCompanyId(tenantId.longValue());
-		}
+
+		_workflowDefinition.setPrimaryKey(getPrimaryKey());
+		_workflowDefinition.setCompanyId(tenantId);
+		//_workflowDefinition.setUserId(getUserId());
+		//_workflowDefinition.setUserName(getUserName());
+		//_workflowDefinition.setCreateDate(getCreateDate());
+		//_workflowDefinition.setModifiedDate(getModifiedDate());
+		_workflowDefinition.setName(getProcessModelId());
+		_workflowDefinition.setVersion(getProcessModelVersion());
+		_workflowDefinition.setDesignerVersion(getModelDesignerVersion());
+		_workflowDefinition.setModelXml(getProcessModelAsXML());
+		_workflowDefinition.setGraphicalXml(getGraphicalProcessModelAsXML());
+		//_workflowDefinition.setPersistent(isPersistent());
 	}
 
 	public WorkflowDefinition unwrap() {
