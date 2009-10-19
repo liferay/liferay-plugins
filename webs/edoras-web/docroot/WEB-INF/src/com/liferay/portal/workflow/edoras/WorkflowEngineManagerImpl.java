@@ -55,6 +55,10 @@ public class WorkflowEngineManagerImpl implements WorkflowEngineManager {
 	public String getWorkflowEngineName() {
 		return "Edoras";
 	}
+	
+	public boolean isSupportGlobalActivities() {
+		return true;
+	}
 
 	public boolean isSupportsWorkflowDefinitionVersioning() {
 		return true;
