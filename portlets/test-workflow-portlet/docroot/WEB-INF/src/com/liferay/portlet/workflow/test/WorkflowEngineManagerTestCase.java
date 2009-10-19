@@ -49,30 +49,21 @@ public class WorkflowEngineManagerTestCase extends BaseTestCase {
 	public void testGetVersion() throws Exception {
 		String version = WorkflowEngineManagerUtil.getVersion();
 
-		if (version == null) {
-			throw new Exception("Unable to get workflow engine version");
-		}
+		assertNotNull(version);
 	}
 
 	public void testGetWorkflowEngineKey() throws Exception {
 		String key = WorkflowEngineManagerUtil.getWorkflowEngineKey();
 
-		if (key == null) {
-			throw new Exception("Unable to get workflow engine key");
-		}
-
-		if (!key.equals(key.toLowerCase())) {
-			throw new Exception(
-				"Workflow engine key has capital letters " + key);
-		}
+		assertNotNull(key);
+		assertEquals(key.toLowerCase(), key);
+		assertEquals(key.trim(), key);
 	}
 
 	public void testGetWorkflowEngineName() throws Exception {
 		String name = WorkflowEngineManagerUtil.getWorkflowEngineName();
 
-		if (name == null) {
-			throw new Exception("Unable to get workflow engine name");
-		}
+		assertNotNull(name);
 	}
 
 	public void testIsSupportsWorkflowDefinitionVersioning() throws Exception {

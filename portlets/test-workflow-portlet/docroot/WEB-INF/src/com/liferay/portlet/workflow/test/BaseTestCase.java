@@ -33,12 +33,22 @@ import java.lang.reflect.Method;
 
 import javax.servlet.ServletContext;
 
+import org.apache.commons.lang.Validate;
+
 /**
  * <a href="BaseTestCase.java.html"><b><i>View Source</i></b></a>
  *
  * @author Shuyang Zhou
  */
 public class BaseTestCase {
+
+	public static void assertEquals(Object expected, Object actual) {
+		Validate.isTrue(expected.equals(actual));
+	}
+
+	public static void assertNotNull(Object object) {
+		Validate.notNull(object);
+	}
 
 	public BaseTestCase(ServletContext servletContext) {
 		this.servletContext = servletContext;
@@ -48,7 +58,9 @@ public class BaseTestCase {
 		JSONObject testCaseResult = JSONFactoryUtil.createJSONObject();
 
 		Class<? extends BaseTestCase> clazz = getClass();
+
 		String testCaseName = clazz.getName();
+
 		testCaseResult.put("name", testCaseName);
 
 		Method setUpMethod = null;
@@ -68,7 +80,8 @@ public class BaseTestCase {
 		}
 
 		JSONArray testResults = JSONFactoryUtil.createJSONArray();
-		testCaseResult.put("testCaseResults", testResults);
+
+		testCaseResult.put("testResults", testResults);
 
 		Method[] methods = clazz.getMethods();
 
@@ -77,6 +90,7 @@ public class BaseTestCase {
 				JSONObject testResult = JSONFactoryUtil.createJSONObject();
 
 				testResult.put("name", method.getName());
+
 				try {
 					if (setUpMethod != null) {
 						setUpMethod.invoke(this);
@@ -87,17 +101,23 @@ public class BaseTestCase {
 					if (tearDownMethod != null) {
 						tearDownMethod.invoke(this);
 					}
-					testResult.put("status", PASSED_KEY);
+
+					testResult.put("status", _STATUS_PASSED);
 				}
 				catch (Exception e) {
 					Throwable cause = e.getCause();
-					testResult.put("status", FAILED_KEY);
+
+					testResult.put("status", _STATUS_FAILED);
 					testResult.put("exceptionMessage", cause.getMessage());
+
 					StringWriter stringWriter = new StringWriter();
 					PrintWriter printWriter = new PrintWriter(stringWriter);
+
 					cause.printStackTrace(printWriter);
+
 					testResult.put(
 						"exceptionStackTrace", stringWriter.toString());
+
 					printWriter.close();
 				}
 
@@ -108,10 +128,10 @@ public class BaseTestCase {
 		return testCaseResult;
 	}
 
-	public static final String PASSED_KEY = "PASSED";
-
-	public static final String FAILED_KEY = "FAILED";
-
 	protected ServletContext servletContext;
+
+	private static final String _STATUS_FAILED = "FAILED";
+
+	private static final String _STATUS_PASSED = "PASSED";
 
 }

@@ -38,23 +38,27 @@ import javax.servlet.ServletContext;
  */
 public class WorkflowTestSuite {
 
-	public void addTestCase(BaseTestCase testCase) {
-		_testCases.add(testCase);
-	}
-
 	public static JSONArray runTestSuite(ServletContext servletContext) {
-		WorkflowTestSuite workflowTestSuite =new WorkflowTestSuite();
+		WorkflowTestSuite workflowTestSuite = new WorkflowTestSuite();
+
 		workflowTestSuite.addTestCase(
 			new WorkflowEngineManagerTestCase(servletContext));
 		workflowTestSuite.addTestCase(
 			new WorkflowDefinitionManagerTestCase(servletContext));
 
-		JSONArray jSONArray = JSONFactoryUtil.createJSONArray();
+		JSONArray testSuiteResult = JSONFactoryUtil.createJSONArray();
+
 		for (BaseTestCase testCase : workflowTestSuite._testCases) {
-			JSONObject jSONObject = testCase.callTestMethods();
-			jSONArray.put(jSONObject);
+			JSONObject testCaseResult = testCase.callTestMethods();
+
+			testSuiteResult.put(testCaseResult);
 		}
-		return jSONArray;
+
+		return testSuiteResult;
+	}
+
+	public void addTestCase(BaseTestCase testCase) {
+		_testCases.add(testCase);
 	}
 
 	private List<BaseTestCase> _testCases = new ArrayList<BaseTestCase>();
