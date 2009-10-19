@@ -99,6 +99,14 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			Map<String, Object> parameters)
 		throws WorkflowException {
 
+		return new ArrayList<String>();
+	}
+
+	public List<String> getPossibleNextPathNames(
+			long workflowInstanceId, long userId,
+			Map<String, Object> parameters)
+		throws WorkflowException {
+
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {
@@ -106,13 +114,13 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 			Set<Transition> transitions = token.getAvailableTransitions();
 
-			List<String> names = new ArrayList<String>(transitions.size());
+			List<String> pathNames = new ArrayList<String>(transitions.size());
 
 			for (Transition transition : transitions) {
-				names.add(transition.getName());
+				pathNames.add(transition.getName());
 			}
 
-			return names;
+			return pathNames;
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -357,12 +365,21 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			long callingUserId, Map<String, Object> parameters)
 		throws WorkflowException {
 
-		return signalWorkflowInstance(
+		return signalWorkflowInstanceByPath(
 			workflowInstanceId, null, attributes, callingUserId, parameters);
 	}
 
-	public WorkflowInstanceInfo signalWorkflowInstance(
+	public WorkflowInstanceInfo signalWorkflowInstanceByActivity(
 			long workflowInstanceId, String activityName,
+			Map<String, Object> attributes, long callingUserId,
+			Map<String, Object> parameters)
+		throws WorkflowException {
+
+		throw new WorkflowException(new UnsupportedOperationException());
+	}
+
+	public WorkflowInstanceInfo signalWorkflowInstanceByPath(
+			long workflowInstanceId, String pathName,
 			Map<String, Object> attributes, long callingUserId,
 			Map<String, Object> parameters)
 		throws WorkflowException {
@@ -386,11 +403,11 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				jbpmContext.save(token);
 			}
 
-			if (Validator.isNull(activityName)) {
+			if (Validator.isNull(pathName)) {
 				token.signal();
 			}
 			else {
-				token.signal(activityName);
+				token.signal(pathName);
 			}
 
 			jbpmContext.save(token);
