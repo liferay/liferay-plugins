@@ -64,27 +64,25 @@ public class WorkflowJobBridge extends DefaultProcessJob
 	public void initializeFromReading(WorkflowJob workflowJob) {
 		_workflowJob = workflowJob;
 
-		setId(workflowJob.getPrimaryKey());
-		setTenantId(workflowJob.getCompanyId());
-
 		Class<?> setupId = WorkflowEntityBridgeUtil.getSetupClassForName(
 			workflowJob.getSetupId());
-
-		setSetupId(setupId);
 
 		WorkflowInstance workflowInstance = workflowJob.getWorkflowInstance();
 
 		WorkflowInstanceBridge workflowInstanceBridge =
 			new WorkflowInstanceBridge(workflowInstance);
 
+		setId(workflowJob.getPrimaryKey());
+		setTenantId(workflowJob.getCompanyId());
+		setCreatedAt(workflowJob.getCreateDate());
+		setSetupId(setupId);
+		//setWorkflowDefinitionId(workflowJob.getWorkflowDefinitionId());
 		setProcessInstance(workflowInstanceBridge);
-
 		setElementName(workflowJob.getElementName());
 		setCause(workflowJob.getCause());
-
-		setCreatedAt(workflowJob.getCreateDate());
 		setDueDate(workflowJob.getDueDate());
 		setNotBeforeDate(workflowJob.getNotBeforeDate());
+		//setExceptionCount(workflowJob.getExceptionCount());
 
 		postLoad();
 	}
@@ -104,14 +102,16 @@ public class WorkflowJobBridge extends DefaultProcessJob
 
 		_workflowJob.setPrimaryKey(getId());
 		_workflowJob.setCompanyId(getTenantId());
+		_workflowJob.setCreateDate(getCreatedAt());
 		_workflowJob.setSetupId(getSetupId().getName());
+		//_workflowJob.setWorkflowDefinitionId(getWorkflowDefinitionId());
 		_workflowJob.setWorkflowInstanceId(
 			getProcessInstance().getPrimaryKey());
 		_workflowJob.setElementName(getElementName());
 		_workflowJob.setCause(getCause());
-		_workflowJob.setCreateDate(getCreatedAt());
 		_workflowJob.setDueDate(getDueDate());
 		_workflowJob.setNotBeforeDate(getNotBeforeDate());
+		//_workflowJob.setExceptionCount(getExceptionCount());
 	}
 
 	public WorkflowJob unwrap() {
