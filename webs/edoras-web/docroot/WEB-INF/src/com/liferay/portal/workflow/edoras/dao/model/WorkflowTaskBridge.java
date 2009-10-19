@@ -96,37 +96,34 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 				"No process session while reading workflow entities");
 		}
 
-		setId(workflowTask.getPrimaryKey());
-		setTenantId(workflowTask.getCompanyId());
-		setCreationDate(workflowTask.getCreateDate());
-		setDueDate(workflowTask.getDueDate());
-		setCompletionDate(workflowTask.getCompletionDate());
-		setCompleted(workflowTask.getCompleted());
+		ProcessService processService = processSession.getService();
+
+		ProcessModel processModel = processService.getProcessModel(
+			workflowTask.getWorkflowDefinitionId());
 
 		WorkflowInstance workflowInstance = workflowTask.getWorkflowInstance();
 
 		WorkflowInstanceBridge workflowInstanceBridge =
 			new WorkflowInstanceBridge(workflowInstance);
 
-		setProcessInstance(workflowInstanceBridge);
-
-		setMetaName(workflowTask.getMetaName());
-		setRelation(workflowTask.getRelation());
-
-		ProcessService processService = processSession.getService();
-
-		ProcessModel processModel = processService.getProcessModel(
-			workflowTask.getWorkflowDefinitionId());
-
+		setId(workflowTask.getPrimaryKey());
+		setTenantId(workflowTask.getCompanyId());
+		setCreationDate(workflowTask.getCreateDate());
+		setTaskId(workflowTask.getFriendlyId());
 		setProcessModelId(processModel.getProcessModelId());
 		setProcessModelVersion(processModel.getProcessModelVersion());
-
-		setTaskId(workflowTask.getFriendlyId());
-		setAssignee(workflowTask.getAssigneeUserName());
-		setPriority(TaskPriority.getPriority(workflowTask.getPriority()));
-
+		setProcessInstance(workflowInstanceBridge);
+		setMetaName(workflowTask.getMetaName());
+		setRelation(workflowTask.getRelation());
+		setDueDate(workflowTask.getDueDate());
+		setCompletionDate(workflowTask.getCompletionDate());
+		setCompleted(workflowTask.getCompleted());
 		setState(TaskState.getState(workflowTask.getState()));
+		setPriority(TaskPriority.getPriority(workflowTask.getPriority()));
+		//setAssigneeUserId(workflowTask.getAssigneeUserId());
+		setAssignee(workflowTask.getAssigneeUserName());
 		setAssignedGroup(workflowTask.getAssignedGroupName());
+		//setRoleId(workflowTask.getRoleId());
 
 		postLoad();
 	}
@@ -134,27 +131,25 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 	public void transferPropertiesForSaving() {
 		unwrap();
 
+		ProcessInstance processInstance = getProcessInstance();
+
 		_workflowTask.setPrimaryKey(getPrimaryKey());
 		_workflowTask.setCompanyId(getTenantId());
 		_workflowTask.setCreateDate(getCreationDate());
+		_workflowTask.setFriendlyId(getTaskId());
+		_workflowTask.setWorkflowDefinitionId(getWorkflowDefinitionId());
+		_workflowTask.setWorkflowInstanceId(processInstance.getPrimaryKey());
+		_workflowTask.setMetaName(getMetaName());
+		_workflowTask.setRelation(getRelation());
 		_workflowTask.setDueDate(getDueDate());
 		_workflowTask.setCompletionDate(getCompletionDate());
 		_workflowTask.setCompleted(isCompleted());
-
-		ProcessInstance processInstance = getProcessInstance();
-
-		_workflowTask.setWorkflowInstanceId(processInstance.getPrimaryKey());
-
-		_workflowTask.setMetaName(getMetaName());
-		_workflowTask.setRelation(getRelation());
-
-		_workflowTask.setWorkflowDefinitionId(getWorkflowDefinitionId());
-
-		_workflowTask.setFriendlyId(getTaskId());
+		_workflowTask.setState(getState().getState());
+		_workflowTask.setPriority(getPriority().getPriority());
+		//_workflowTask.setAssigneeUserId(getAssigneeUserId());
 		_workflowTask.setAssigneeUserName(getAssignee());
 		_workflowTask.setAssignedGroupName(getAssignedGroup());
-		_workflowTask.setPriority(getPriority().getPriority());
-		_workflowTask.setState(getState().getState());
+		//_workflowTask.setRoleId(getRoleId());
 	}
 
 	public WorkflowTask unwrap() {

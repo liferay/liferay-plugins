@@ -22,7 +22,6 @@
 
 package com.liferay.portal.workflow.edoras.model.impl;
 
-import com.liferay.portal.SystemException;
 import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
 import com.liferay.portal.workflow.edoras.service.persistence.WorkflowInstanceUtil;
 
@@ -47,11 +46,8 @@ public class WorkflowInstanceImpl
 			return WorkflowInstanceUtil.findByParentWorkflowInstanceId(
 				getPrimaryKey());
 		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not fetch children for workflow instance with id " +
-					getPrimaryKey(),
-				se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
@@ -65,10 +61,7 @@ public class WorkflowInstanceImpl
 				getParentWorkflowInstanceId());
 		}
 		catch (Exception e) {
-			throw new ProcessException(
-				"Could not fetch parent workflow instance with id " +
-					getParentWorkflowInstanceId(),
-				e);
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 

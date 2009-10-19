@@ -47,10 +47,7 @@ public class WorkflowLogImpl
 			return WorkflowTaskUtil.findByPrimaryKey(getWorkflowTaskId());
 		}
 		catch (Exception e) {
-			throw new ProcessException(
-				"Could not fetch the workflow task for log with id " +
-					getPrimaryKey(),
-				e);
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
@@ -60,10 +57,7 @@ public class WorkflowLogImpl
 				getWorkflowInstanceId());
 		}
 		catch (Exception e) {
-			throw new ProcessException(
-				"Could not fetch the workflow instance for log with id " +
-					getPrimaryKey(),
-				e);
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 

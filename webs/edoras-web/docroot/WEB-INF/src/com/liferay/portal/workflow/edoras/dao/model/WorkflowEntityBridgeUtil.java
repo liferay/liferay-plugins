@@ -52,7 +52,7 @@ import org.edorasframework.process.core.log.model.AbstractProcessLog;
 public class WorkflowEntityBridgeUtil {
 
 	public static <T> List<Order> createOrders(
-		Class<?> workflowEntityClass, OrderComparator<T> orderComparator) {
+		Class<?> clazz, OrderComparator<T> orderComparator) {
 
 		String[] fields = orderComparator.getFields();
 		boolean[] fieldOrders = orderComparator.getFieldOrders();
@@ -74,9 +74,9 @@ public class WorkflowEntityBridgeUtil {
 	}
 
 	public static String getBridgedPropertyName(
-		Class<?> entityClass, String propertyName) {
+		Class<?> clazz, String propertyName) {
 
-		Map<String, String> map = _propertyMappings.get(entityClass);
+		Map<String, String> map = _bridgedPropertyMap.get(clazz);
 
 		if (map == null) {
 			return propertyName;
@@ -112,19 +112,19 @@ public class WorkflowEntityBridgeUtil {
 		wrapWorkflowDefinitions(
 			List<WorkflowDefinition> workflowDefinitions) {
 
-		List<ProcessModelDefinition> processDefinitions =
+		List<ProcessModelDefinition> processModelDefinitions =
 			new ArrayList<ProcessModelDefinition>();
 
 		if (workflowDefinitions == null) {
-			return processDefinitions;
+			return processModelDefinitions;
 		}
 
 		for (WorkflowDefinition workflowDefinition : workflowDefinitions) {
-			processDefinitions.add(
+			processModelDefinitions.add(
 				new WorkflowDefinitionBridge(workflowDefinition));
 		}
 
-		return processDefinitions;
+		return processModelDefinitions;
 	}
 
 	public static List<? extends ProcessInstance> wrapWorkflowInstances(
@@ -150,18 +150,18 @@ public class WorkflowEntityBridgeUtil {
 	public static List<MutableProcessJob> wrapWorkflowJobs(
 		List<WorkflowJob> workflowJobs) {
 
-		List<MutableProcessJob> processJobs =
+		List<MutableProcessJob> mutableProcessJobs =
 			new ArrayList<MutableProcessJob>();
 
 		if (workflowJobs == null) {
-			return processJobs;
+			return mutableProcessJobs;
 		}
 
 		for (WorkflowJob workflowJob : workflowJobs) {
-			processJobs.add(new WorkflowJobBridge(workflowJob));
+			mutableProcessJobs.add(new WorkflowJobBridge(workflowJob));
 		}
 
-		return processJobs;
+		return mutableProcessJobs;
 	}
 
 	public static AbstractProcessLog wrapWorkflowLog(WorkflowLog workflowLog) {
@@ -191,18 +191,18 @@ public class WorkflowEntityBridgeUtil {
 	public static List<? extends AbstractProcessLog> wrapWorkflowLogs(
 		List<WorkflowLog> workflowLogs) {
 
-		List<AbstractProcessLog> processLogs =
+		List<AbstractProcessLog> abstractProcessLogs =
 			new ArrayList<AbstractProcessLog>();
 
 		if (workflowLogs == null) {
-			return processLogs;
+			return abstractProcessLogs;
 		}
 
 		for (WorkflowLog workflowLog : workflowLogs) {
-			processLogs.add(wrapWorkflowLog(workflowLog));
+			abstractProcessLogs.add(wrapWorkflowLog(workflowLog));
 		}
 
-		return processLogs;
+		return abstractProcessLogs;
 	}
 
 	public static List<? extends ProcessTask> wrapWorkflowTasks(
@@ -221,7 +221,7 @@ public class WorkflowEntityBridgeUtil {
 		return processTasks;
 	}
 
-	private static Map<Class<?>, Map<String, String>> _propertyMappings =
+	private static Map<Class<?>, Map<String, String>> _bridgedPropertyMap =
 		new HashMap<Class<?>, Map<String, String>>();
 	private static Map<String, Class<?>> _setupClassMap =
 		new HashMap<String, Class<?>>();
@@ -234,7 +234,7 @@ public class WorkflowEntityBridgeUtil {
 		workflowTaskMappings.put("assignee", "assigneeUserName");
 		workflowTaskMappings.put("creationDate", "createDate");
 
-		_propertyMappings.put(WorkflowTask.class, workflowTaskMappings);
+		_bridgedPropertyMap.put(WorkflowTask.class, workflowTaskMappings);
 	}
 
 }

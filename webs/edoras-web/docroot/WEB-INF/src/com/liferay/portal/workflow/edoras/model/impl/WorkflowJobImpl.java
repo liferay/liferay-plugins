@@ -46,10 +46,7 @@ public class WorkflowJobImpl
 				getWorkflowInstanceId());
 		}
 		catch (Exception e) {
-			throw new ProcessException(
-				"Could not fetch the workflow instance for job with id " +
-					getPrimaryKey(),
-				e);
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
