@@ -53,8 +53,8 @@ public class WorkflowEngineManagerImpl implements WorkflowEngineManager {
 	public String getWorkflowEngineName() {
 		return "jBPM";
 	}
-	
-	public boolean isSupportGlobalActivities() {
+
+	public boolean isSupportsGlobalActivities() {
 		return false;
 	}
 
