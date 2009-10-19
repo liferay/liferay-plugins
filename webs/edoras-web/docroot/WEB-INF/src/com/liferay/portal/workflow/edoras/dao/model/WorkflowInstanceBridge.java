@@ -111,45 +111,46 @@ public class WorkflowInstanceBridge
 				"No process session while reading workflow entities");
 		}
 
-		setId(workflowInstance.getPrimaryKey());
-		setTenantId(workflowInstance.getCompanyId());
-
 		Class<?> setupId = WorkflowEntityBridgeUtil.getSetupClassForName(
 			workflowInstance.getSetupId());
 
-		setSetupId(setupId);
+		ProcessService processService = processSession.getService();
 
-		setBusinessId(workflowInstance.getFriendlyId());
-		setRelationType(workflowInstance.getRelationClassName());
-
-		long relationPK = workflowInstance.getRelationClassPK();
-
-		if (relationPK == 0) {
-			setRelationId(null);
-		}
-		else {
-			setRelationId(relationPK);
-		}
-
-		ProcessModel processModel = processSession.getService().getProcessModel(
+		ProcessModel processModel = processService.getProcessModel(
 			workflowInstance.getWorkflowDefinitionId());
 
+		Long relationId = null;
+
+		long relationClassPK = workflowInstance.getRelationClassPK();
+
+		if (relationClassPK > 0) {
+			relationId = Long.valueOf(relationClassPK);
+		}
+
+		setId(workflowInstance.getPrimaryKey());
+		setTenantId(workflowInstance.getCompanyId());
+		//setUserId(workflowInstance.getUserId());
+		//setUserName(workflowInstance.getUserName());
+		setCreatedAt(workflowInstance.getCreateDate());
+		setModifiedAt(workflowInstance.getModifiedDate());
+		setSetupId(setupId);
+		setBusinessId(workflowInstance.getFriendlyId());
 		setProcessModelId(processModel.getProcessModelId());
 		setProcessModelVersion(processModel.getProcessModelVersion());
+		setParent(parentWorkflowInstanceBridge);
+		setRelationType(workflowInstance.getRelationClassName());
+		setRelationId(relationId);
+		setXmlAttributeMap(workflowInstance.getAttributes());
 		setNestedProcessModelIds(
 			workflowInstance.getNestedWorkflowDefinitionIds());
 		setNestedProcessVersions(
 			workflowInstance.getNestedWorkflowDefinitionVersions());
 		setNestedRelatedElements(workflowInstance.getNestedRelatedElements());
-		setCreatedAt(workflowInstance.getCreateDate());
-		setModifiedAt(workflowInstance.getModifiedDate());
-		setFinishedAt(workflowInstance.getFinishedDated());
-		setParent(parentWorkflowInstanceBridge);
 		setCurrentElement(workflowInstance.getCurrentElementName());
 		setRelatedElement(workflowInstance.getRelatedElementName());
 		setFinished(workflowInstance.getFinished());
+		setFinishedAt(workflowInstance.getFinishedDated());
 		setActive(workflowInstance.getActive());
-		setXmlAttributeMap(workflowInstance.getAttributes());
 
 		postLoad();
 
@@ -177,46 +178,43 @@ public class WorkflowInstanceBridge
 	}
 
 	public void transferPropertiesForSaving() {
-		_workflowInstance.setPrimaryKey(getPrimaryKey());
-		_workflowInstance.setCompanyId(getTenantId());
-		_workflowInstance.setSetupId(getSetupId().getName());
-		_workflowInstance.setFriendlyId(getBusinessId());
-		_workflowInstance.setRelationClassName(getRelationType());
+		long parentWorkflowInstanceId = 0;
+
+		ProcessInstance parentProcessInstance = getParent();
+
+		if (parentProcessInstance != null) {
+			parentWorkflowInstanceId = parentProcessInstance.getPrimaryKey();
+		}
 
 		Long relationId = getRelationId();
 
 		if (relationId == null) {
-			_workflowInstance.setRelationClassPK(0);
-		}
-		else {
-			_workflowInstance.setRelationClassPK(getRelationId());
+			relationId = Long.valueOf(0);
 		}
 
+		_workflowInstance.setPrimaryKey(getPrimaryKey());
+		_workflowInstance.setCompanyId(getTenantId());
+		//_workflowInstance.setUserId(getUserId());
+		//_workflowInstance.setUserName(getUserName());
+		_workflowInstance.setCreateDate(getCreatedAt());
+		_workflowInstance.setModifiedDate(getModifiedAt());
+		_workflowInstance.setSetupId(getSetupId().getName());
+		_workflowInstance.setFriendlyId(getBusinessId());
 		_workflowInstance.setWorkflowDefinitionId(getWorkflowDefinitionId());
+		_workflowInstance.setParentWorkflowInstanceId(parentWorkflowInstanceId);
+		_workflowInstance.setRelationClassName(getRelationType());
+		_workflowInstance.setRelationClassPK(relationId);
+		_workflowInstance.setAttributes(getXmlAttributeMap());
 		_workflowInstance.setNestedWorkflowDefinitionIds(
 			getNestedProcessModelIds());
 		_workflowInstance.setNestedWorkflowDefinitionVersions(
 			getNestedProcessVersions());
 		_workflowInstance.setNestedRelatedElements(getNestedRelatedElements());
-		_workflowInstance.setCreateDate(getCreatedAt());
-		_workflowInstance.setModifiedDate(getModifiedAt());
-		_workflowInstance.setFinishedDated(getFinishedAt());
-
-		ProcessInstance parentProcessInstance = getParent();
-
-		if (parentProcessInstance == null) {
-			_workflowInstance.setParentWorkflowInstanceId(0);
-		}
-		else {
-			_workflowInstance.setParentWorkflowInstanceId(
-				parentProcessInstance.getPrimaryKey());
-		}
-
 		_workflowInstance.setCurrentElementName(getCurrentElement());
 		_workflowInstance.setRelatedElementName(getRelatedElement());
 		_workflowInstance.setFinished(isFinished());
+		_workflowInstance.setFinishedDated(getFinishedAt());
 		_workflowInstance.setActive(isActive());
-		_workflowInstance.setAttributes(getXmlAttributeMap());
 	}
 
 	private transient long _worflowDefinitionId;
