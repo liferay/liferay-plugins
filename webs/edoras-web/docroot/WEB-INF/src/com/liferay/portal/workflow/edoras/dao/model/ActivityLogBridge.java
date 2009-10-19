@@ -25,6 +25,7 @@ package com.liferay.portal.workflow.edoras.dao.model;
 import com.liferay.portal.workflow.edoras.model.WorkflowLog;
 
 import org.edorasframework.process.api.model.Activity;
+import org.edorasframework.process.api.model.ProcessModel;
 import org.edorasframework.process.core.log.model.DefaultActivityLog;
 
 /**
@@ -74,7 +75,9 @@ public class ActivityLogBridge extends DefaultActivityLog
 			setActivity(null);
 		}
 		else {
-			setActivity((Activity) getProcessModel().getElement(activityName));
+			ProcessModel processModel = getProcessModel();
+
+			setActivity((Activity)processModel.getElement(activityName));
 		}
 	}
 

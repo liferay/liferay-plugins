@@ -67,8 +67,8 @@ public class CommentLogBridge extends DefaultCommentLog
 	public void initializeFromReading(WorkflowLog workflowLog) {
 		_workflowLogDelegate.initializeFromReading(workflowLog, this);
 
-		setComment(workflowLog.getComment());
 		setCommentType(workflowLog.getType());
+		setComment(workflowLog.getComment());
 	}
 
 	public boolean setNew(boolean isNew) {
@@ -86,8 +86,8 @@ public class CommentLogBridge extends DefaultCommentLog
 
 		_workflowLogDelegate.transferPropertiesForSaving(this);
 
-		workflowLog.setComment(getComment());
 		workflowLog.setType(getCommentType());
+		workflowLog.setComment(getComment());
 	}
 
 	public WorkflowLog unwrap() {

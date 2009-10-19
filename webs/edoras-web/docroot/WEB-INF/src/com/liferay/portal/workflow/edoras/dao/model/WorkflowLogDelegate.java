@@ -70,10 +70,10 @@ public class WorkflowLogDelegate<T extends AbstractProcessLog>
 				"No process session while reading workflow entities");
 		}
 
-		workflowLogTarget.setId(workflowLogSource.getPrimaryKey());
-		workflowLogTarget.setTenantId(workflowLogSource.getCompanyId());
-		workflowLogTarget.setCreationTime(workflowLogSource.getCreateDate());
-		workflowLogTarget.setCreationUser(workflowLogSource.getUserName());
+		ProcessService processService = processSession.getService();
+
+		ProcessModel processModel = processService.getProcessModel(
+			workflowLogSource.getWorkflowDefinitionId());
 
 		WorkflowInstance workflowInstance =
 			workflowLogSource.getWorkflowInstance();
@@ -81,18 +81,16 @@ public class WorkflowLogDelegate<T extends AbstractProcessLog>
 		WorkflowInstanceBridge workflowInstanceBridge =
 			new WorkflowInstanceBridge(workflowInstance);
 
-		workflowLogTarget.setProcessInstance(workflowInstanceBridge);
-
-		ProcessService processService = processSession.getService();
-
-		ProcessModel processModel = processService.getProcessModel(
-			workflowLogSource.getWorkflowDefinitionId());
-
+		workflowLogTarget.setId(workflowLogSource.getPrimaryKey());
+		workflowLogTarget.setTenantId(workflowLogSource.getCompanyId());
+		//workflowLogTarget.setUserId(workflowLogSource.getUserId());
+		workflowLogTarget.setCreationUser(workflowLogSource.getUserName());
+		workflowLogTarget.setCreationTime(workflowLogSource.getCreateDate());
 		workflowLogTarget.setProcessModel(processModel);
 		workflowLogTarget.setProcessId(processModel.getProcessModelId());
 		workflowLogTarget.setProcessVersion(
 			processModel.getProcessModelVersion());
-
+		workflowLogTarget.setProcessInstance(workflowInstanceBridge);
 		workflowLogTarget.setInformation(workflowLogSource.getDescription());
 	}
 
@@ -107,18 +105,16 @@ public class WorkflowLogDelegate<T extends AbstractProcessLog>
 	}
 
 	public void transferPropertiesForSaving(T workflowLog) {
-		_workflowLog.setLogEntityType(workflowLog.getType().getId());
 		_workflowLog.setPrimaryKey(workflowLog.getId());
 		_workflowLog.setCompanyId(workflowLog.getTenantId());
-		_workflowLog.setCreateDate(workflowLog.getCreationTime());
+		//_workflowLog.setUserId(workflowLog.getUserId());
 		_workflowLog.setUserName(workflowLog.getCreationUser());
-
-		_workflowLog.setWorkflowInstanceId(
-			workflowLog.getProcessInstance().getPrimaryKey());
-
+		_workflowLog.setCreateDate(workflowLog.getCreationTime());
 		_workflowLog.setWorkflowDefinitionId(
 			workflowLog.getProcessModel().getRepositoryPK());
-
+		_workflowLog.setWorkflowInstanceId(
+			workflowLog.getProcessInstance().getPrimaryKey());
+		_workflowLog.setLogEntityType(workflowLog.getType().getId());
 		_workflowLog.setDescription(workflowLog.getInformation());
 	}
 
