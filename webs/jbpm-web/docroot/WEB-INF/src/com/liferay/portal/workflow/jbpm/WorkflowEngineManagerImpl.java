@@ -55,10 +55,7 @@ public class WorkflowEngineManagerImpl implements WorkflowEngineManager {
 	}
 
 	public boolean isSupportsWorkflowDefinitionVersioning() {
-		return _SUPPORTS_WORKFLOW_DEFINITION_VERSIONING;
+		return true;
 	}
-
-	private static final boolean _SUPPORTS_WORKFLOW_DEFINITION_VERSIONING =
-		true;
 
 }
