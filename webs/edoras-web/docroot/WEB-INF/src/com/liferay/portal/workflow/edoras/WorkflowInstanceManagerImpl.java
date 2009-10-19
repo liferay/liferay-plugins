@@ -53,6 +53,13 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 		return null;
 	}
+	
+	public List<String> getPossibleNextPathNames(
+		long workflowInstanceId, long userId, Map<String, Object> parameters)
+		throws WorkflowException {
+
+		return null;
+	}
 
 	public List<WorkflowInstanceHistory> getWorkflowInstanceHistory(
 			long workflowInstanceId, boolean includeChildren, int start,
@@ -143,16 +150,6 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		return null;
 	}
 
-	public WorkflowInstanceInfo signalWorkflowInstance(
-			long workflowInstanceId, String activityName,
-			Map<String, Object> attributes, long callingUserId,
-			Map<String, Object> parameters)
-		throws WorkflowException {
-
-		return null;
-
-	}
-
 	public WorkflowInstanceInfo startWorkflowInstance(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
 			Map<String, Object> context, long callingUserId,
@@ -162,6 +159,25 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		return null;
 	}
 
+	public WorkflowInstanceInfo signalWorkflowInstanceByActivity(
+			long workflowInstanceId, String activityName,
+			Map<String, Object> attributes, long callingUserId,
+			Map<String, Object> parameters)
+		throws WorkflowException {
+
+		return null;
+
+	}
+
+	public WorkflowInstanceInfo signalWorkflowInstanceByPath(
+			long workflowInstanceId, String pathName,
+			Map<String, Object> attributes, long callingUserId,
+			Map<String, Object> parameters)
+		throws WorkflowException {
+
+		return null;
+
+	}
 	public WorkflowInstanceInfo startWorkflowInstance(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
 			Map<String, Object> context, long callingUserId,
