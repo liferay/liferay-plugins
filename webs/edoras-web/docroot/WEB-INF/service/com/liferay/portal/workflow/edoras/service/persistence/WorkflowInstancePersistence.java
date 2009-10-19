@@ -220,19 +220,6 @@ public interface WorkflowInstancePersistence extends BasePersistence {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
 
-	public com.liferay.portal.workflow.edoras.model.WorkflowInstance findByC_FID(
-		long companyId, java.lang.String friendlyId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
-
-	public com.liferay.portal.workflow.edoras.model.WorkflowInstance fetchByC_FID(
-		long companyId, java.lang.String friendlyId)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.portal.workflow.edoras.model.WorkflowInstance fetchByC_FID(
-		long companyId, java.lang.String friendlyId, boolean retrieveFromCache)
-		throws com.liferay.portal.SystemException;
-
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByC_F(
 		long companyId, boolean finished)
 		throws com.liferay.portal.SystemException;
@@ -403,10 +390,6 @@ public interface WorkflowInstancePersistence extends BasePersistence {
 	public void removeByC_P(long companyId, long parentWorkflowInstanceId)
 		throws com.liferay.portal.SystemException;
 
-	public void removeByC_FID(long companyId, java.lang.String friendlyId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
-
 	public void removeByC_F(long companyId, boolean finished)
 		throws com.liferay.portal.SystemException;
 
@@ -436,9 +419,6 @@ public interface WorkflowInstancePersistence extends BasePersistence {
 		throws com.liferay.portal.SystemException;
 
 	public int countByC_P(long companyId, long parentWorkflowInstanceId)
-		throws com.liferay.portal.SystemException;
-
-	public int countByC_FID(long companyId, java.lang.String friendlyId)
 		throws com.liferay.portal.SystemException;
 
 	public int countByC_F(long companyId, boolean finished)

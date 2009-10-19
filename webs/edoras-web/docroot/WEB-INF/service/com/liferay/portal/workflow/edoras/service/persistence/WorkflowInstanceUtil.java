@@ -327,26 +327,6 @@ public class WorkflowInstanceUtil {
 			parentWorkflowInstanceId, obc);
 	}
 
-	public static com.liferay.portal.workflow.edoras.model.WorkflowInstance findByC_FID(
-		long companyId, java.lang.String friendlyId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException {
-		return getPersistence().findByC_FID(companyId, friendlyId);
-	}
-
-	public static com.liferay.portal.workflow.edoras.model.WorkflowInstance fetchByC_FID(
-		long companyId, java.lang.String friendlyId)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().fetchByC_FID(companyId, friendlyId);
-	}
-
-	public static com.liferay.portal.workflow.edoras.model.WorkflowInstance fetchByC_FID(
-		long companyId, java.lang.String friendlyId, boolean retrieveFromCache)
-		throws com.liferay.portal.SystemException {
-		return getPersistence()
-				   .fetchByC_FID(companyId, friendlyId, retrieveFromCache);
-	}
-
 	public static java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findByC_F(
 		long companyId, boolean finished)
 		throws com.liferay.portal.SystemException {
@@ -620,12 +600,6 @@ public class WorkflowInstanceUtil {
 		getPersistence().removeByC_P(companyId, parentWorkflowInstanceId);
 	}
 
-	public static void removeByC_FID(long companyId, java.lang.String friendlyId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException {
-		getPersistence().removeByC_FID(companyId, friendlyId);
-	}
-
 	public static void removeByC_F(long companyId, boolean finished)
 		throws com.liferay.portal.SystemException {
 		getPersistence().removeByC_F(companyId, finished);
@@ -681,11 +655,6 @@ public class WorkflowInstanceUtil {
 	public static int countByC_P(long companyId, long parentWorkflowInstanceId)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().countByC_P(companyId, parentWorkflowInstanceId);
-	}
-
-	public static int countByC_FID(long companyId, java.lang.String friendlyId)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().countByC_FID(companyId, friendlyId);
 	}
 
 	public static int countByC_F(long companyId, boolean finished)

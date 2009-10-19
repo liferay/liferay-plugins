@@ -158,16 +158,6 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
-
-		if (!_setOriginalCompanyId) {
-			_setOriginalCompanyId = true;
-
-			_originalCompanyId = companyId;
-		}
-	}
-
-	public long getOriginalCompanyId() {
-		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -224,14 +214,6 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 
 	public void setFriendlyId(String friendlyId) {
 		_friendlyId = friendlyId;
-
-		if (_originalFriendlyId == null) {
-			_originalFriendlyId = friendlyId;
-		}
-	}
-
-	public String getOriginalFriendlyId() {
-		return GetterUtil.getString(_originalFriendlyId);
 	}
 
 	public long getWorkflowDefinitionId() {
@@ -623,8 +605,6 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 
 	private long _workflowInstanceId;
 	private long _companyId;
-	private long _originalCompanyId;
-	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
@@ -632,7 +612,6 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 	private Date _modifiedDate;
 	private String _setupId;
 	private String _friendlyId;
-	private String _originalFriendlyId;
 	private long _workflowDefinitionId;
 	private long _parentWorkflowInstanceId;
 	private String _relationClassName;

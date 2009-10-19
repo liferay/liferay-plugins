@@ -39,7 +39,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -150,14 +149,6 @@ public class WorkflowInstancePersistenceImpl extends BasePersistenceImpl
 			WorkflowInstanceModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countByC_P",
 			new String[] { Long.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FETCH_BY_C_FID = new FinderPath(WorkflowInstanceModelImpl.ENTITY_CACHE_ENABLED,
-			WorkflowInstanceModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByC_FID",
-			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_FID = new FinderPath(WorkflowInstanceModelImpl.ENTITY_CACHE_ENABLED,
-			WorkflowInstanceModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByC_FID",
-			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_C_F = new FinderPath(WorkflowInstanceModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowInstanceModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByC_F",
@@ -251,13 +242,6 @@ public class WorkflowInstancePersistenceImpl extends BasePersistenceImpl
 		EntityCacheUtil.putResult(WorkflowInstanceModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowInstanceImpl.class, workflowInstance.getPrimaryKey(),
 			workflowInstance);
-
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_FID,
-			new Object[] {
-				new Long(workflowInstance.getCompanyId()),
-				
-			workflowInstance.getFriendlyId()
-			}, workflowInstance);
 	}
 
 	public void cacheResult(List<WorkflowInstance> workflowInstances) {
@@ -369,15 +353,6 @@ public class WorkflowInstancePersistenceImpl extends BasePersistenceImpl
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		WorkflowInstanceModelImpl workflowInstanceModelImpl = (WorkflowInstanceModelImpl)workflowInstance;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_FID,
-			new Object[] {
-				new Long(workflowInstanceModelImpl.getOriginalCompanyId()),
-				
-			workflowInstanceModelImpl.getOriginalFriendlyId()
-			});
-
 		EntityCacheUtil.removeResult(WorkflowInstanceModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowInstanceImpl.class, workflowInstance.getPrimaryKey());
 
@@ -426,10 +401,6 @@ public class WorkflowInstancePersistenceImpl extends BasePersistenceImpl
 		boolean merge) throws SystemException {
 		workflowInstance = toUnwrappedModel(workflowInstance);
 
-		boolean isNew = workflowInstance.isNew();
-
-		WorkflowInstanceModelImpl workflowInstanceModelImpl = (WorkflowInstanceModelImpl)workflowInstance;
-
 		Session session = null;
 
 		try {
@@ -451,30 +422,6 @@ public class WorkflowInstancePersistenceImpl extends BasePersistenceImpl
 		EntityCacheUtil.putResult(WorkflowInstanceModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowInstanceImpl.class, workflowInstance.getPrimaryKey(),
 			workflowInstance);
-
-		if (!isNew &&
-				((workflowInstance.getCompanyId() != workflowInstanceModelImpl.getOriginalCompanyId()) ||
-				!Validator.equals(workflowInstance.getFriendlyId(),
-					workflowInstanceModelImpl.getOriginalFriendlyId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_FID,
-				new Object[] {
-					new Long(workflowInstanceModelImpl.getOriginalCompanyId()),
-					
-				workflowInstanceModelImpl.getOriginalFriendlyId()
-				});
-		}
-
-		if (isNew ||
-				((workflowInstance.getCompanyId() != workflowInstanceModelImpl.getOriginalCompanyId()) ||
-				!Validator.equals(workflowInstance.getFriendlyId(),
-					workflowInstanceModelImpl.getOriginalFriendlyId()))) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_FID,
-				new Object[] {
-					new Long(workflowInstance.getCompanyId()),
-					
-				workflowInstance.getFriendlyId()
-				}, workflowInstance);
-		}
 
 		return workflowInstance;
 	}
@@ -1843,129 +1790,6 @@ public class WorkflowInstancePersistenceImpl extends BasePersistenceImpl
 		}
 		finally {
 			closeSession(session);
-		}
-	}
-
-	public WorkflowInstance findByC_FID(long companyId, String friendlyId)
-		throws NoSuchWorkflowInstanceException, SystemException {
-		WorkflowInstance workflowInstance = fetchByC_FID(companyId, friendlyId);
-
-		if (workflowInstance == null) {
-			StringBuilder msg = new StringBuilder();
-
-			msg.append("No WorkflowInstance exists with the key {");
-
-			msg.append("companyId=" + companyId);
-
-			msg.append(", ");
-			msg.append("friendlyId=" + friendlyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchWorkflowInstanceException(msg.toString());
-		}
-
-		return workflowInstance;
-	}
-
-	public WorkflowInstance fetchByC_FID(long companyId, String friendlyId)
-		throws SystemException {
-		return fetchByC_FID(companyId, friendlyId, true);
-	}
-
-	public WorkflowInstance fetchByC_FID(long companyId, String friendlyId,
-		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(companyId), friendlyId };
-
-		Object result = null;
-
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C_FID,
-					finderArgs, this);
-		}
-
-		if (result == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT workflowInstance FROM WorkflowInstance workflowInstance WHERE ");
-
-				query.append("workflowInstance.companyId = ?");
-
-				query.append(" AND ");
-
-				if (friendlyId == null) {
-					query.append("workflowInstance.friendlyId IS NULL");
-				}
-				else {
-					query.append("workflowInstance.friendlyId = ?");
-				}
-
-				query.append(" ");
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(companyId);
-
-				if (friendlyId != null) {
-					qPos.add(friendlyId);
-				}
-
-				List<WorkflowInstance> list = q.list();
-
-				result = list;
-
-				WorkflowInstance workflowInstance = null;
-
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_FID,
-						finderArgs, list);
-				}
-				else {
-					workflowInstance = list.get(0);
-
-					cacheResult(workflowInstance);
-
-					if ((workflowInstance.getCompanyId() != companyId) ||
-							(workflowInstance.getFriendlyId() == null) ||
-							!workflowInstance.getFriendlyId().equals(friendlyId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_FID,
-							finderArgs, workflowInstance);
-					}
-				}
-
-				return workflowInstance;
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_FID,
-						finderArgs, new ArrayList<WorkflowInstance>());
-				}
-
-				closeSession(session);
-			}
-		}
-		else {
-			if (result instanceof List<?>) {
-				return null;
-			}
-			else {
-				return (WorkflowInstance)result;
-			}
 		}
 	}
 
@@ -3381,13 +3205,6 @@ public class WorkflowInstancePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public void removeByC_FID(long companyId, String friendlyId)
-		throws NoSuchWorkflowInstanceException, SystemException {
-		WorkflowInstance workflowInstance = findByC_FID(companyId, friendlyId);
-
-		remove(workflowInstance);
-	}
-
 	public void removeByC_F(long companyId, boolean finished)
 		throws SystemException {
 		for (WorkflowInstance workflowInstance : findByC_F(companyId, finished)) {
@@ -3670,67 +3487,6 @@ public class WorkflowInstancePersistenceImpl extends BasePersistenceImpl
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_P, finderArgs,
 					count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	public int countByC_FID(long companyId, String friendlyId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(companyId), friendlyId };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_FID,
-				finderArgs, this);
-
-		if (count == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT COUNT(workflowInstance) ");
-				query.append("FROM WorkflowInstance workflowInstance WHERE ");
-
-				query.append("workflowInstance.companyId = ?");
-
-				query.append(" AND ");
-
-				if (friendlyId == null) {
-					query.append("workflowInstance.friendlyId IS NULL");
-				}
-				else {
-					query.append("workflowInstance.friendlyId = ?");
-				}
-
-				query.append(" ");
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(companyId);
-
-				if (friendlyId != null) {
-					qPos.add(friendlyId);
-				}
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_FID,
-					finderArgs, count);
 
 				closeSession(session);
 			}

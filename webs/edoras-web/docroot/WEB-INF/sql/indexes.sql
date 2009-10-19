@@ -3,7 +3,6 @@ create index IX_9F57E5A4 on Edoras_WorkflowDefinition (companyId, name);
 create unique index IX_8AD6A8E4 on Edoras_WorkflowDefinition (companyId, name, version);
 
 create index IX_AD6EBE49 on Edoras_WorkflowInstance (companyId, finished);
-create unique index IX_646BDEBD on Edoras_WorkflowInstance (companyId, friendlyId);
 create index IX_A0E81A10 on Edoras_WorkflowInstance (companyId, parentWorkflowInstanceId);
 create index IX_49CE9600 on Edoras_WorkflowInstance (companyId, parentWorkflowInstanceId, relatedElementName);
 create index IX_88AB9CE6 on Edoras_WorkflowInstance (companyId, parentWorkflowInstanceId, relatedElementName, finished);

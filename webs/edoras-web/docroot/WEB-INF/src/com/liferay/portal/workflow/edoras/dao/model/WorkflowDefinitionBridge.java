@@ -47,7 +47,8 @@ public class WorkflowDefinitionBridge
 	}
 
 	public WorkflowDefinition initializeForInsert() {
-		return null;
+		transferPropertiesForSaving();
+		return _workflowDefinition;
 	}
 
 	public WorkflowDefinition initializeForUpdate() {

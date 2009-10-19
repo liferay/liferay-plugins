@@ -97,10 +97,6 @@
 			<finder-column name="companyId" />
 			<finder-column name="parentWorkflowInstanceId" />
 		</finder>
-		<finder name="C_FID" return-type="WorkflowInstance" unique="true">
-			<finder-column name="companyId" />
-			<finder-column name="friendlyId" />
-		</finder>
 		<finder name="C_F" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="finished" />

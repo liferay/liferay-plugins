@@ -72,7 +72,23 @@
 		<property name="readOnly" value="true" />
 		<property name="transactionManager" ref="portalTransactionManager" />
 	</bean>
-	<bean id="portalTransactionManager" class="com.liferay.portal.workflow.edoras.dao.tx.TransactionManagerClp" />
+	<bean id="portalTransactionManager" class="com.liferay.portal.workflow.edoras.dao.tx.TransactionManagerClp"/>
+	
+	<!--
+	Use AOP to instrument the DAOs by a transaction template managed by Spring. 
+	-->
+	<tx:advice id="transactionAdvice" transaction-manager="portalTransactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="transactionOperation" expression="bean(edsPrc*Dao)"/>
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionOperation"/>
+	</aop:config>
+
 
 	<!-- Process scope -->
 
@@ -81,4 +97,5 @@
 		lazy-init="true"
 		scope="singleton"
 	/>
+	
 </beans>
