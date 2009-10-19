@@ -71,10 +71,10 @@ public class TransitionLogBridge extends DefaultTransitionLog
 
 		ProcessModel processModel = getProcessModel();
 
-		Element oldState =
-			processModel.searchElement(workflowLog.getOldState());
-		Element newState =
-			processModel.searchElement(workflowLog.getNewState());
+		Element oldState = processModel.searchElement(
+			workflowLog.getOldState());
+		Element newState = processModel.searchElement(
+			workflowLog.getNewState());
 
 		setStates(oldState, newState);
 	}

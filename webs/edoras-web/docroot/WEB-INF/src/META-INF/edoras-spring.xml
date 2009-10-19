@@ -34,14 +34,14 @@
 	<!-- Entity implementations -->
 
 	<bean id="edsPrcEntityClassNames" class="org.edorasframework.process.core.entity.ProcessEntityClassNameConfigurer">
-		<property name="activityLogClass" value="com.liferay.portal.workflow.edoras.dao.model.ActivityLogBridge"/>
-		<property name="commentLogClass" value="com.liferay.portal.workflow.edoras.dao.model.CommentLogBridge"/>
+		<property name="activityLogClass" value="com.liferay.portal.workflow.edoras.dao.model.ActivityLogBridge" />
+		<property name="commentLogClass" value="com.liferay.portal.workflow.edoras.dao.model.CommentLogBridge" />
 		<property name="processDefinitionClass" value="com.liferay.portal.workflow.edoras.dao.model.WorkflowDefinitionBridge" />
 		<property name="processInstanceClass" value="com.liferay.portal.workflow.edoras.dao.model.WorkflowInstanceBridge" />
 		<property name="processJobClass" value="com.liferay.portal.workflow.edoras.dao.model.WorkflowJobBridge" />
 		<property name="processTaskClass" value="com.liferay.portal.workflow.edoras.dao.model.WorkflowTaskBridge" />
-		<property name="taskLogClass" value="com.liferay.portal.workflow.edoras.dao.model.TaskLogBridge"/>
-		<property name="transitionLogClass" value="com.liferay.portal.workflow.edoras.dao.model.TransitionLogBridge"/>
+		<property name="taskLogClass" value="com.liferay.portal.workflow.edoras.dao.model.TaskLogBridge" />
+		<property name="transitionLogClass" value="com.liferay.portal.workflow.edoras.dao.model.TransitionLogBridge" />
 	</bean>
 
 	<!-- DAO template -->
@@ -72,23 +72,23 @@
 		<property name="readOnly" value="true" />
 		<property name="transactionManager" ref="portalTransactionManager" />
 	</bean>
-	<bean id="portalTransactionManager" class="com.liferay.portal.workflow.edoras.dao.tx.TransactionManagerClp"/>
-	
+	<bean id="portalTransactionManager" class="com.liferay.portal.workflow.edoras.dao.tx.TransactionManagerClp" />
+
 	<!--
-	Use AOP to instrument the DAOs by a transaction template managed by Spring. 
+	Use AOP to instrument the DAOs by a transaction template managed by Spring.
 	-->
+
 	<tx:advice id="transactionAdvice" transaction-manager="portalTransactionManager">
 		<tx:attributes>
-			<tx:method name="get*" read-only="true"/>
-			<tx:method name="find*" read-only="true"/>
-			<tx:method name="*"/>
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="*" />
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:pointcut id="transactionOperation" expression="bean(edsPrc*Dao)"/>
-		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionOperation"/>
+		<aop:pointcut id="transactionOperation" expression="bean(edsPrc*Dao)" />
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionOperation" />
 	</aop:config>
-
 
 	<!-- Process scope -->
 
@@ -97,5 +97,4 @@
 		lazy-init="true"
 		scope="singleton"
 	/>
-	
 </beans>
