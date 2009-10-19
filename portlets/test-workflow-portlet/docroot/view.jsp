@@ -33,34 +33,36 @@
 <portlet:defineObjects />
 
 <%
-JSONArray testSuiteResults = WorkflowTestSuite.runTestSuite(application);
+JSONArray testSuiteResult = WorkflowTestSuite.runTestSuite(application);
 
-for (int i = 0; i < testSuiteResults.length(); i++) {
-	JSONObject testSuiteResult = testSuiteResults.getJSONObject(i);
+for (int i = 0; i < testSuiteResult.length(); i++) {
+	JSONObject testCaseResult = testSuiteResult.getJSONObject(i);
 
-	String testCaseName = testSuiteResult.getString("name");
+	String testCaseName = testCaseResult.getString("name");
 %>
 
 	<h3><%= testCaseName %></h3>
 
 <%
-	JSONArray testCaseResults = testSuiteResult.getJSONArray("testCaseResults");
+	JSONArray testResults = testCaseResult.getJSONArray("testResults");
 
-	for (int j = 0; j < testCaseResults.length(); j++) {
-		JSONObject testCaseResult = testCaseResults.getJSONObject(j);
+	for (int j = 0; j < testResults.length(); j++) {
+		JSONObject testResult = testResults.getJSONObject(j);
 
-		String name = testCaseResult.getString("name");
-		String status = testCaseResult.getString("status");
-		String exceptionMessage = testCaseResult.getString("exceptionMessage");
-		String exceptionStackTrace = testCaseResult.getString("exceptionStackTrace");
+		String name = testResult.getString("name");
+		String status = testResult.getString("status");
+		String exceptionMessage = testResult.getString("exceptionMessage");
+		String exceptionStackTrace = testResult.getString("exceptionStackTrace");
 %>
 
-		<p><%= name %> <%= status %> <%= exceptionMessage %></p>
-		<p><%= exceptionStackTrace %></p>
+		<p>
+			<%= name %> <%= status %> <%= exceptionMessage %>
+		</p>
+		<p>
+			<%= exceptionStackTrace %>
+		</p>
 
 <%
 	}
-%>
-<%
 }
 %>
