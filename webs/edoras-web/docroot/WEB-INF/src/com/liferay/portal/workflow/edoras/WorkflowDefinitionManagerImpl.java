@@ -33,6 +33,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.edorasframework.process.api.ProcessSystemUtil;
+import org.edorasframework.process.api.service.ProcessModelDeployer;
+import org.edorasframework.process.api.service.ProcessService;
 import org.edorasframework.process.api.setup.ProcessSetup;
 
 /**
@@ -42,21 +44,23 @@ import org.edorasframework.process.api.setup.ProcessSetup;
  * @author Micha Kiener
  * @author Brian Wing Shun Chan
  */
-public class WorkflowDefinitionManagerImpl extends AbstractWorkflowManager
-	implements WorkflowDefinitionManager {
+public class WorkflowDefinitionManagerImpl
+	extends AbstractWorkflowManager implements WorkflowDefinitionManager {
 
 	public void deployWorkflowDefinition(
 			WorkflowDefinition workflowDefinition, long callingUserId,
 			boolean autoIncrementVersionNumber,
 			Map<String, Object> parameters)
 		throws WorkflowException {
-		
-		Class<?> setupId =
-			AdditionalWorkflowParameterUtil.getDeclaredSetupId(parameters);
-		
-		ProcessSetup setup = ProcessSystemUtil.getSetup(setupId);
 
-		setup.getDeployer().deployFromJar(
+		Class<?> setupId = AdditionalWorkflowParameterUtil.getDeclaredSetupId(
+			parameters);
+
+		ProcessSetup processSetup = ProcessSystemUtil.getSetup(setupId);
+
+		ProcessModelDeployer processModelDeployer = processSetup.getDeployer();
+
+		processModelDeployer.deployFromJar(
 			workflowDefinition.getJar().getInputStream(), null);
 	}
 
@@ -71,7 +75,7 @@ public class WorkflowDefinitionManagerImpl extends AbstractWorkflowManager
 
 	public int getWorkflowDefinitionCount(String workflowDefinitionName)
 		throws WorkflowException {
-		
+
 		try {
 			return WorkflowDefinitionUtil.countByName(workflowDefinitionName);
 		}
@@ -85,10 +89,12 @@ public class WorkflowDefinitionManagerImpl extends AbstractWorkflowManager
 		throws WorkflowException {
 
 		 try {
-			List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> workflowDefinitions =
-				WorkflowDefinitionUtil.findAll(start, end, orderByComparator);
+			List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition>
+				workflowDefinitions = WorkflowDefinitionUtil.findAll(
+					start, end, orderByComparator);
 
-			return WorkflowManagerUtil.wrapWorkflowDefinitions(workflowDefinitions);
+			return WorkflowManagerUtil.wrapWorkflowDefinitions(
+				workflowDefinitions);
 		}
 		catch (SystemException e) {
 			throw new WorkflowException(e.getMessage(), e);
@@ -101,11 +107,12 @@ public class WorkflowDefinitionManagerImpl extends AbstractWorkflowManager
 		throws WorkflowException {
 
 		 try {
-			List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> workflowDefinitions =
-				WorkflowDefinitionUtil.findByName(
+			List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition>
+				workflowDefinitions = WorkflowDefinitionUtil.findByName(
 					workflowDefinitionName, start, end, orderByComparator);
 
-			return WorkflowManagerUtil.wrapWorkflowDefinitions(workflowDefinitions);
+			return WorkflowManagerUtil.wrapWorkflowDefinitions(
+				workflowDefinitions);
 		}
 		catch (SystemException e) {
 			throw new WorkflowException(e.getMessage(), e);
@@ -116,15 +123,17 @@ public class WorkflowDefinitionManagerImpl extends AbstractWorkflowManager
 		WorkflowDefinition workflowDefinition, long callingUserId,
 		Map<String, Object> parameters) {
 
-		Class<?> setupId =
-			AdditionalWorkflowParameterUtil.getDeclaredSetupId(parameters);
+		Class<?> setupId = AdditionalWorkflowParameterUtil.getDeclaredSetupId(
+			parameters);
 
-		ProcessSetup setup = ProcessSystemUtil.getSetup(setupId);
-		
-		Long tenantId =
-			AdditionalWorkflowParameterUtil.getDeclaredTenantId(parameters);
+		ProcessSetup processSetup = ProcessSystemUtil.getSetup(setupId);
 
-		setup.getService().undeployProcessModel(
+		ProcessService processService = processSetup.getService();
+
+		Long tenantId = AdditionalWorkflowParameterUtil.getDeclaredTenantId(
+			parameters);
+
+		processService.undeployProcessModel(
 			workflowDefinition.getWorkflowDefinitionName(),
 			workflowDefinition.getWorkflowDefinitionVersion(), tenantId);
 	}

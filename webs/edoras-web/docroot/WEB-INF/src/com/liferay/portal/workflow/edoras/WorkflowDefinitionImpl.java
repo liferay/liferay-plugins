@@ -36,14 +36,16 @@ import java.util.Map;
  * @author Brian Wing Shun Chan
  */
 public class WorkflowDefinitionImpl implements WorkflowDefinition {
-	
+
 	public WorkflowDefinitionImpl(
-		com.liferay.portal.workflow.edoras.model.WorkflowDefinition workflowDefinition) {
-		
+		com.liferay.portal.workflow.edoras.model.WorkflowDefinition
+		workflowDefinition) {
+
 		_workflowDefinitionName = workflowDefinition.getName();
 		_workflowDefinitionVersion = workflowDefinition.getVersion();
-		
+
 		_attributes = new HashMap<String, Object>();
+
 		_attributes.put(
 			AdditionalWorkflowParameterUtil.WF_TENANT_ID,
 			workflowDefinition.getCompanyId());
@@ -68,4 +70,5 @@ public class WorkflowDefinitionImpl implements WorkflowDefinition {
 	private Map<String, Object> _attributes;
 	private String _workflowDefinitionName;
 	private int _workflowDefinitionVersion;
+
 }

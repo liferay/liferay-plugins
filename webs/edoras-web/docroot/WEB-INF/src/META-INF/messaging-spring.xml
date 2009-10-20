@@ -10,19 +10,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.4.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
 >
 
-	<!-- Manager -->
+	<!-- Managers -->
+
 	<bean id="abstractManager" abstract="true">
-		<property name="defaultSetupId" value="org.edorasframework.process.api.setup.Default"/>
+		<property name="defaultSetupId" value="org.edorasframework.process.api.setup.Default" />
 	</bean>
-	<bean id="workflowDefinitionManager" class="com.liferay.portal.workflow.edoras.WorkflowDefinitionManagerImpl" parent="abstractManager"/>
-	<bean id="workflowEngineManager" class="com.liferay.portal.workflow.edoras.WorkflowEngineManagerImpl" parent="abstractManager"/>
-	<bean id="workflowInstanceManager" class="com.liferay.portal.workflow.edoras.WorkflowInstanceManagerImpl" parent="abstractManager"/>
-	<bean id="workflowTaskManager" class="com.liferay.portal.workflow.edoras.TaskInstanceManagerImpl" parent="abstractManager"/>
-	
-	
-	<!--
-	Use AOP to instrument the DAOs by a transaction template managed by Spring.
-	-->
+	<bean id="workflowDefinitionManager" class="com.liferay.portal.workflow.edoras.WorkflowDefinitionManagerImpl" parent="abstractManager" />
+	<bean id="workflowEngineManager" class="com.liferay.portal.workflow.edoras.WorkflowEngineManagerImpl" parent="abstractManager" />
+	<bean id="workflowInstanceManager" class="com.liferay.portal.workflow.edoras.WorkflowInstanceManagerImpl" parent="abstractManager" />
+	<bean id="workflowTaskManager" class="com.liferay.portal.workflow.edoras.TaskInstanceManagerImpl" parent="abstractManager" />
+
+	<!-- Transaction -->
 
 	<tx:advice id="transactionAdvice" transaction-manager="portalTransactionManager">
 		<tx:attributes>
@@ -35,20 +33,19 @@
 		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionOperation" />
 	</aop:config>
 
-
 	<!-- Listeners -->
 
 	<bean id="messageListener.workflow_definition" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
-		<property name="manager" ref="workflowDefinitionManager"/>
+		<property name="manager" ref="workflowDefinitionManager" />
 	</bean>
 	<bean id="messageListener.workflow_engine" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
-		<property name="manager" ref="workflowEngineManager"/>
+		<property name="manager" ref="workflowEngineManager" />
 	</bean>
 	<bean id="messageListener.workflow_instance" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
-		<property name="manager" ref="workflowInstanceManager"/>
+		<property name="manager" ref="workflowInstanceManager" />
 	</bean>
 	<bean id="messageListener.workflow_task" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
-		<property name="manager" ref="workflowTaskManager"/>
+		<property name="manager" ref="workflowTaskManager" />
 	</bean>
 
 	<!-- Configurator -->

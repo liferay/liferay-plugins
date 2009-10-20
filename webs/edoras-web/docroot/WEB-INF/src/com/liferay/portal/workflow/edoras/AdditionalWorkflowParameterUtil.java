@@ -28,32 +28,34 @@ import java.util.Map;
 
 import org.edorasframework.process.api.setup.Default;
 
-
 /**
- * <a href="AdditionalWorkflowParameterConstants.java.html"><b><i>View Source</i></b></a>
+ * <a href="AdditionalWorkflowParameterUtil.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Micha Kiener
  */
 public class AdditionalWorkflowParameterUtil {
+
 	public static final String WF_SETUP_ID = "setupId";
-	
+
 	public static final String WF_TENANT_ID = "tenantId";
-	
+
 	public static Class<?> getDeclaredSetupId(
-		
 		Map<String, Object> additionalParameters) {
+
 		if (additionalParameters == null) {
 			return Default.class;
 		}
-		
-		String setupIdName = (String) additionalParameters.get(WF_SETUP_ID);
+
+		String setupIdName = (String)additionalParameters.get(WF_SETUP_ID);
+
 		if (setupIdName == null) {
 			return Default.class;
 		}
 
 		return WorkflowEntityBridgeUtil.getSetupClassForName(setupIdName);
 	}
-	
+
 	public static Long getDeclaredTenantId(
 		Map<String, Object> additionalParameters) {
 
@@ -61,11 +63,13 @@ public class AdditionalWorkflowParameterUtil {
 			return null;
 		}
 
-		String tenantId = (String) additionalParameters.get(WF_TENANT_ID);
+		String tenantId = (String)additionalParameters.get(WF_TENANT_ID);
+
 		if (tenantId == null) {
 			return null;
 		}
 
 		return Long.valueOf(tenantId);
 	}
+
 }

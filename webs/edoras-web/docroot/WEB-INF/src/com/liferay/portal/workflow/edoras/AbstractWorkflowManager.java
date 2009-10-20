@@ -26,7 +26,6 @@ import com.liferay.portal.workflow.edoras.dao.model.WorkflowEntityBridgeUtil;
 
 import org.edorasframework.process.api.setup.Default;
 
-
 /**
  * <a href="AbstractWorkflowManager.java.html"><b><i>View Source</i></b></a>
  *
@@ -41,15 +40,16 @@ public class AbstractWorkflowManager {
 
 		return _defaultSetupId;
 	}
-	
+
 	public void setDefaultSetupId(Class<?> defaultSetupId) {
 		_defaultSetupId = defaultSetupId;
 	}
-	
+
 	public void setDefaultSetupIdName(String setupIdName) {
-		_defaultSetupId =
-			WorkflowEntityBridgeUtil.getSetupClassForName(setupIdName);
+		_defaultSetupId = WorkflowEntityBridgeUtil.getSetupClassForName(
+			setupIdName);
 	}
-	
+
 	private Class<?> _defaultSetupId;
+
 }

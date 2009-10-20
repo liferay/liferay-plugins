@@ -28,21 +28,13 @@ import com.liferay.portal.model.CompanyConstants;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * <a href="WorkflowManagerUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Micha Kiener
  */
 public class WorkflowManagerUtil {
-	public static Long getTenantId(long companyId) {
-		if (companyId == CompanyConstants.SYSTEM) {
-			return null;
-		}
 
-		return Long.valueOf(companyId);
-	}
-	
 	public static long getCompanyId(Long tenantId) {
 		if (tenantId == null) {
 			return CompanyConstants.SYSTEM;
@@ -50,18 +42,30 @@ public class WorkflowManagerUtil {
 
 		return tenantId.longValue();
 	}
-	
+
+	public static Long getTenantId(long companyId) {
+		if (companyId == CompanyConstants.SYSTEM) {
+			return null;
+		}
+
+		return Long.valueOf(companyId);
+	}
+
 	public static List<WorkflowDefinition> wrapWorkflowDefinitions(
-		List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> workflowDefinitions) {
+		List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition>
+		workflowDefinitions) {
 
 		List<WorkflowDefinition> wrappedDefinitions =
 			new ArrayList<WorkflowDefinition>(workflowDefinitions.size());
 
-		for (com.liferay.portal.workflow.edoras.model.WorkflowDefinition workflowDefinition : workflowDefinitions) {
-			wrappedDefinitions.add(new WorkflowDefinitionImpl(
-				workflowDefinition));
+		for (com.liferay.portal.workflow.edoras.model.WorkflowDefinition
+				workflowDefinition : workflowDefinitions) {
+
+			wrappedDefinitions.add(
+				new WorkflowDefinitionImpl(workflowDefinition));
 		}
-		
+
 		return wrappedDefinitions;
 	}
+
 }

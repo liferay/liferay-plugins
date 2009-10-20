@@ -61,8 +61,8 @@ public class WorkflowDefinitionBridge
 	public void initializeFromReading(WorkflowDefinition workflowDefinition) {
 		_workflowDefinition = workflowDefinition;
 
-		Long tenantId =
-			WorkflowManagerUtil.getTenantId(workflowDefinition.getCompanyId());
+		Long tenantId = WorkflowManagerUtil.getTenantId(
+			workflowDefinition.getCompanyId());
 
 		setPrimaryKey(workflowDefinition.getPrimaryKey());
 		setTenantId(tenantId);

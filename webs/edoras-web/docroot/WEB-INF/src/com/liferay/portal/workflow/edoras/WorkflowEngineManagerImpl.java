@@ -34,8 +34,8 @@ import org.edorasframework.process.api.ProcessSystemUtil;
  *
  * @author Micha Kiener
  */
-public class WorkflowEngineManagerImpl extends AbstractWorkflowManager
-	implements WorkflowEngineManager {
+public class WorkflowEngineManagerImpl
+	extends AbstractWorkflowManager implements WorkflowEngineManager {
 
 	public Map<String, Object> getAdditionalInformation() {
 		return Collections.EMPTY_MAP;
