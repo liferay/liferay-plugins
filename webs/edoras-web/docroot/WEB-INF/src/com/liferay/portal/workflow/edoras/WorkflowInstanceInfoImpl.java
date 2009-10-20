@@ -23,8 +23,12 @@
 package com.liferay.portal.workflow.edoras;
 
 import com.liferay.portal.kernel.workflow.WorkflowInstanceInfo;
+import com.liferay.portal.workflow.edoras.dao.model.WorkflowInstanceBridge;
+import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +45,19 @@ public class WorkflowInstanceInfoImpl implements WorkflowInstanceInfo {
 	public WorkflowInstanceInfoImpl() {
 	}
 
-	public WorkflowInstanceInfoImpl(ProcessInstance processInstance) {
+	public WorkflowInstanceInfoImpl(
+		ProcessInstance processInstance, boolean includeChildren) {
+		
+		initializeFromProcessInstance(processInstance, includeChildren);
+	}
+
+	public WorkflowInstanceInfoImpl(
+		WorkflowInstance workflowInstance, boolean includeChildren) {
+
+		ProcessInstance processInstance =
+			new WorkflowInstanceBridge(workflowInstance, null, includeChildren);
+		
+		initializeFromProcessInstance(processInstance, includeChildren);
 	}
 
 	public List<WorkflowInstanceInfo> getChildren() {
@@ -86,6 +102,36 @@ public class WorkflowInstanceInfoImpl implements WorkflowInstanceInfo {
 
 	public long getWorkflowInstanceId() {
 		return _workflowInstanceId;
+	}
+
+	protected void initializeFromProcessInstance(
+		ProcessInstance processInstance, boolean includeChildren) {
+
+		_context = new HashMap<String, Object>();
+		processInstance.getAttributeMap().copyTo(_context);
+
+		_currentNodeName = processInstance.getCurrentElement();
+		_endDate = processInstance.getFinishedAt();
+		_relationId = processInstance.getRelationId();
+		_relationType = processInstance.getRelationType();
+		_startDate = processInstance.getCreatedAt();
+		_workflowDefinitionName = processInstance.getProcessModelId();
+		_workflowDefinitionVersion = processInstance.getProcessModelVersion();
+		_workflowInstanceId = processInstance.getPrimaryKey();
+
+		if (includeChildren) {
+			List<ProcessInstance> children = processInstance.getChildren();
+			_children = new ArrayList<WorkflowInstanceInfo>(children.size());
+
+			for (ProcessInstance child : children) {
+				_children.add(new WorkflowInstanceInfoImpl(child, true));
+			}
+		}
+
+		ProcessInstance parent = processInstance.getParent();
+		if (parent != null) {
+			_parent = new WorkflowInstanceInfoImpl(parent, false);
+		}
 	}
 
 	private List<WorkflowInstanceInfo> _children;

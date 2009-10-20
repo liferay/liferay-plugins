@@ -47,6 +47,8 @@ public class WorkflowInstanceSoap implements Serializable {
 		soapModel.setFriendlyId(model.getFriendlyId());
 		soapModel.setWorkflowDefinitionId(model.getWorkflowDefinitionId());
 		soapModel.setParentWorkflowInstanceId(model.getParentWorkflowInstanceId());
+		soapModel.setWorkflowDefinitionName(model.getWorkflowDefinitionName());
+		soapModel.setWorkflowDefinitionVersion(model.getWorkflowDefinitionVersion());
 		soapModel.setRelationClassName(model.getRelationClassName());
 		soapModel.setRelationClassPK(model.getRelationClassPK());
 		soapModel.setAttributes(model.getAttributes());
@@ -192,6 +194,22 @@ public class WorkflowInstanceSoap implements Serializable {
 		_parentWorkflowInstanceId = parentWorkflowInstanceId;
 	}
 
+	public String getWorkflowDefinitionName() {
+		return _workflowDefinitionName;
+	}
+
+	public void setWorkflowDefinitionName(String workflowDefinitionName) {
+		_workflowDefinitionName = workflowDefinitionName;
+	}
+
+	public int getWorkflowDefinitionVersion() {
+		return _workflowDefinitionVersion;
+	}
+
+	public void setWorkflowDefinitionVersion(int workflowDefinitionVersion) {
+		_workflowDefinitionVersion = workflowDefinitionVersion;
+	}
+
 	public String getRelationClassName() {
 		return _relationClassName;
 	}
@@ -300,6 +318,8 @@ public class WorkflowInstanceSoap implements Serializable {
 	private String _friendlyId;
 	private long _workflowDefinitionId;
 	private long _parentWorkflowInstanceId;
+	private String _workflowDefinitionName;
+	private int _workflowDefinitionVersion;
 	private String _relationClassName;
 	private long _relationClassPK;
 	private String _attributes;

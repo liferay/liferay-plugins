@@ -129,6 +129,23 @@ public class WorkflowInstanceWrapper implements WorkflowInstance {
 		_workflowInstance.setParentWorkflowInstanceId(parentWorkflowInstanceId);
 	}
 
+	public java.lang.String getWorkflowDefinitionName() {
+		return _workflowInstance.getWorkflowDefinitionName();
+	}
+
+	public void setWorkflowDefinitionName(
+		java.lang.String workflowDefinitionName) {
+		_workflowInstance.setWorkflowDefinitionName(workflowDefinitionName);
+	}
+
+	public int getWorkflowDefinitionVersion() {
+		return _workflowInstance.getWorkflowDefinitionVersion();
+	}
+
+	public void setWorkflowDefinitionVersion(int workflowDefinitionVersion) {
+		_workflowInstance.setWorkflowDefinitionVersion(workflowDefinitionVersion);
+	}
+
 	public java.lang.String getRelationClassName() {
 		return _workflowInstance.getRelationClassName();
 	}

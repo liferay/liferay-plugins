@@ -25,6 +25,8 @@ create table Edoras_WorkflowInstance (
 	friendlyId VARCHAR(75) null,
 	workflowDefinitionId LONG,
 	parentWorkflowInstanceId LONG,
+	workflowDefinitionName VARCHAR(75) null,
+	workflowDefinitionVersion INTEGER,
 	relationClassName VARCHAR(75) null,
 	relationClassPK LONG,
 	attributes VARCHAR(75) null,

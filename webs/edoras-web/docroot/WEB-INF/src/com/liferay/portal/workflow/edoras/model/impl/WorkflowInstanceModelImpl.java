@@ -63,6 +63,8 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 			{ "friendlyId", new Integer(Types.VARCHAR) },
 			{ "workflowDefinitionId", new Integer(Types.BIGINT) },
 			{ "parentWorkflowInstanceId", new Integer(Types.BIGINT) },
+			{ "workflowDefinitionName", new Integer(Types.VARCHAR) },
+			{ "workflowDefinitionVersion", new Integer(Types.INTEGER) },
 			{ "relationClassName", new Integer(Types.VARCHAR) },
 			{ "relationClassPK", new Integer(Types.BIGINT) },
 			{ "attributes", new Integer(Types.VARCHAR) },
@@ -75,7 +77,7 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 			{ "finishedDated", new Integer(Types.TIMESTAMP) },
 			{ "active_", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Edoras_WorkflowInstance (workflowInstanceId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,setupId VARCHAR(75) null,friendlyId VARCHAR(75) null,workflowDefinitionId LONG,parentWorkflowInstanceId LONG,relationClassName VARCHAR(75) null,relationClassPK LONG,attributes VARCHAR(75) null,nestedWorkflowDefinitionIds VARCHAR(75) null,nestedWorkflowDefinitionVersions VARCHAR(75) null,nestedRelatedElements VARCHAR(75) null,currentElementName VARCHAR(75) null,relatedElementName VARCHAR(75) null,finished BOOLEAN,finishedDated DATE null,active_ BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table Edoras_WorkflowInstance (workflowInstanceId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,setupId VARCHAR(75) null,friendlyId VARCHAR(75) null,workflowDefinitionId LONG,parentWorkflowInstanceId LONG,workflowDefinitionName VARCHAR(75) null,workflowDefinitionVersion INTEGER,relationClassName VARCHAR(75) null,relationClassPK LONG,attributes VARCHAR(75) null,nestedWorkflowDefinitionIds VARCHAR(75) null,nestedWorkflowDefinitionVersions VARCHAR(75) null,nestedRelatedElements VARCHAR(75) null,currentElementName VARCHAR(75) null,relatedElementName VARCHAR(75) null,finished BOOLEAN,finishedDated DATE null,active_ BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Edoras_WorkflowInstance";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -100,6 +102,8 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 		model.setFriendlyId(soapModel.getFriendlyId());
 		model.setWorkflowDefinitionId(soapModel.getWorkflowDefinitionId());
 		model.setParentWorkflowInstanceId(soapModel.getParentWorkflowInstanceId());
+		model.setWorkflowDefinitionName(soapModel.getWorkflowDefinitionName());
+		model.setWorkflowDefinitionVersion(soapModel.getWorkflowDefinitionVersion());
 		model.setRelationClassName(soapModel.getRelationClassName());
 		model.setRelationClassPK(soapModel.getRelationClassPK());
 		model.setAttributes(soapModel.getAttributes());
@@ -232,6 +236,22 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 		_parentWorkflowInstanceId = parentWorkflowInstanceId;
 	}
 
+	public String getWorkflowDefinitionName() {
+		return GetterUtil.getString(_workflowDefinitionName);
+	}
+
+	public void setWorkflowDefinitionName(String workflowDefinitionName) {
+		_workflowDefinitionName = workflowDefinitionName;
+	}
+
+	public int getWorkflowDefinitionVersion() {
+		return _workflowDefinitionVersion;
+	}
+
+	public void setWorkflowDefinitionVersion(int workflowDefinitionVersion) {
+		_workflowDefinitionVersion = workflowDefinitionVersion;
+	}
+
 	public String getRelationClassName() {
 		return GetterUtil.getString(_relationClassName);
 	}
@@ -350,6 +370,9 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 			model.setFriendlyId(HtmlUtil.escape(getFriendlyId()));
 			model.setWorkflowDefinitionId(getWorkflowDefinitionId());
 			model.setParentWorkflowInstanceId(getParentWorkflowInstanceId());
+			model.setWorkflowDefinitionName(HtmlUtil.escape(
+					getWorkflowDefinitionName()));
+			model.setWorkflowDefinitionVersion(getWorkflowDefinitionVersion());
 			model.setRelationClassName(HtmlUtil.escape(getRelationClassName()));
 			model.setRelationClassPK(getRelationClassPK());
 			model.setAttributes(HtmlUtil.escape(getAttributes()));
@@ -399,6 +422,8 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 		clone.setFriendlyId(getFriendlyId());
 		clone.setWorkflowDefinitionId(getWorkflowDefinitionId());
 		clone.setParentWorkflowInstanceId(getParentWorkflowInstanceId());
+		clone.setWorkflowDefinitionName(getWorkflowDefinitionName());
+		clone.setWorkflowDefinitionVersion(getWorkflowDefinitionVersion());
 		clone.setRelationClassName(getRelationClassName());
 		clone.setRelationClassPK(getRelationClassPK());
 		clone.setAttributes(getAttributes());
@@ -479,6 +504,10 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 		sb.append(getWorkflowDefinitionId());
 		sb.append(", parentWorkflowInstanceId=");
 		sb.append(getParentWorkflowInstanceId());
+		sb.append(", workflowDefinitionName=");
+		sb.append(getWorkflowDefinitionName());
+		sb.append(", workflowDefinitionVersion=");
+		sb.append(getWorkflowDefinitionVersion());
 		sb.append(", relationClassName=");
 		sb.append(getRelationClassName());
 		sb.append(", relationClassPK=");
@@ -554,6 +583,14 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 		sb.append(getParentWorkflowInstanceId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>workflowDefinitionName</column-name><column-value><![CDATA[");
+		sb.append(getWorkflowDefinitionName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>workflowDefinitionVersion</column-name><column-value><![CDATA[");
+		sb.append(getWorkflowDefinitionVersion());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>relationClassName</column-name><column-value><![CDATA[");
 		sb.append(getRelationClassName());
 		sb.append("]]></column-value></column>");
@@ -614,6 +651,8 @@ public class WorkflowInstanceModelImpl extends BaseModelImpl<WorkflowInstance> {
 	private String _friendlyId;
 	private long _workflowDefinitionId;
 	private long _parentWorkflowInstanceId;
+	private String _workflowDefinitionName;
+	private int _workflowDefinitionVersion;
 	private String _relationClassName;
 	private long _relationClassPK;
 	private String _attributes;

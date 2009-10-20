@@ -86,6 +86,14 @@ public interface WorkflowInstanceModel extends BaseModel<WorkflowInstance> {
 
 	public void setParentWorkflowInstanceId(long parentWorkflowInstanceId);
 
+	public String getWorkflowDefinitionName();
+
+	public void setWorkflowDefinitionName(String workflowDefinitionName);
+
+	public int getWorkflowDefinitionVersion();
+
+	public void setWorkflowDefinitionVersion(int workflowDefinitionVersion);
+
 	public String getRelationClassName();
 
 	public void setRelationClassName(String relationClassName);

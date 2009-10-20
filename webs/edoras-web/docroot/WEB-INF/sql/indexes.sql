@@ -12,6 +12,10 @@ create index IX_6F9AD052 on Edoras_WorkflowInstance (parentWorkflowInstanceId);
 create index IX_FBA55015 on Edoras_WorkflowInstance (relationClassName, relationClassPK);
 create index IX_2BC18F63 on Edoras_WorkflowInstance (setupId);
 create index IX_9AD28E06 on Edoras_WorkflowInstance (workflowDefinitionId);
+create index IX_38E4A536 on Edoras_WorkflowInstance (workflowDefinitionName);
+create index IX_E2F8A09C on Edoras_WorkflowInstance (workflowDefinitionName, finished);
+create index IX_83EB540 on Edoras_WorkflowInstance (workflowDefinitionName, workflowDefinitionVersion);
+create index IX_E5EDAC26 on Edoras_WorkflowInstance (workflowDefinitionName, workflowDefinitionVersion, finished);
 
 create index IX_B772508F on Edoras_WorkflowJob (setupId);
 create index IX_9442145A on Edoras_WorkflowJob (workflowDefinitionId);

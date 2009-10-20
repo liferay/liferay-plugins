@@ -249,82 +249,96 @@ public class ClpSerializer {
 
 					method9.invoke(newModel, value9);
 
-					Method method10 = newModelClass.getMethod("setRelationClassName",
+					Method method10 = newModelClass.getMethod("setWorkflowDefinitionName",
 							new Class[] { String.class });
 
-					String value10 = oldCplModel.getRelationClassName();
+					String value10 = oldCplModel.getWorkflowDefinitionName();
 
 					method10.invoke(newModel, value10);
 
-					Method method11 = newModelClass.getMethod("setRelationClassPK",
-							new Class[] { Long.TYPE });
+					Method method11 = newModelClass.getMethod("setWorkflowDefinitionVersion",
+							new Class[] { Integer.TYPE });
 
-					Long value11 = new Long(oldCplModel.getRelationClassPK());
+					Integer value11 = new Integer(oldCplModel.getWorkflowDefinitionVersion());
 
 					method11.invoke(newModel, value11);
 
-					Method method12 = newModelClass.getMethod("setAttributes",
+					Method method12 = newModelClass.getMethod("setRelationClassName",
 							new Class[] { String.class });
 
-					String value12 = oldCplModel.getAttributes();
+					String value12 = oldCplModel.getRelationClassName();
 
 					method12.invoke(newModel, value12);
 
-					Method method13 = newModelClass.getMethod("setNestedWorkflowDefinitionIds",
-							new Class[] { String.class });
+					Method method13 = newModelClass.getMethod("setRelationClassPK",
+							new Class[] { Long.TYPE });
 
-					String value13 = oldCplModel.getNestedWorkflowDefinitionIds();
+					Long value13 = new Long(oldCplModel.getRelationClassPK());
 
 					method13.invoke(newModel, value13);
 
-					Method method14 = newModelClass.getMethod("setNestedWorkflowDefinitionVersions",
+					Method method14 = newModelClass.getMethod("setAttributes",
 							new Class[] { String.class });
 
-					String value14 = oldCplModel.getNestedWorkflowDefinitionVersions();
+					String value14 = oldCplModel.getAttributes();
 
 					method14.invoke(newModel, value14);
 
-					Method method15 = newModelClass.getMethod("setNestedRelatedElements",
+					Method method15 = newModelClass.getMethod("setNestedWorkflowDefinitionIds",
 							new Class[] { String.class });
 
-					String value15 = oldCplModel.getNestedRelatedElements();
+					String value15 = oldCplModel.getNestedWorkflowDefinitionIds();
 
 					method15.invoke(newModel, value15);
 
-					Method method16 = newModelClass.getMethod("setCurrentElementName",
+					Method method16 = newModelClass.getMethod("setNestedWorkflowDefinitionVersions",
 							new Class[] { String.class });
 
-					String value16 = oldCplModel.getCurrentElementName();
+					String value16 = oldCplModel.getNestedWorkflowDefinitionVersions();
 
 					method16.invoke(newModel, value16);
 
-					Method method17 = newModelClass.getMethod("setRelatedElementName",
+					Method method17 = newModelClass.getMethod("setNestedRelatedElements",
 							new Class[] { String.class });
 
-					String value17 = oldCplModel.getRelatedElementName();
+					String value17 = oldCplModel.getNestedRelatedElements();
 
 					method17.invoke(newModel, value17);
 
-					Method method18 = newModelClass.getMethod("setFinished",
-							new Class[] { Boolean.TYPE });
+					Method method18 = newModelClass.getMethod("setCurrentElementName",
+							new Class[] { String.class });
 
-					Boolean value18 = new Boolean(oldCplModel.getFinished());
+					String value18 = oldCplModel.getCurrentElementName();
 
 					method18.invoke(newModel, value18);
 
-					Method method19 = newModelClass.getMethod("setFinishedDated",
-							new Class[] { Date.class });
+					Method method19 = newModelClass.getMethod("setRelatedElementName",
+							new Class[] { String.class });
 
-					Date value19 = oldCplModel.getFinishedDated();
+					String value19 = oldCplModel.getRelatedElementName();
 
 					method19.invoke(newModel, value19);
 
-					Method method20 = newModelClass.getMethod("setActive",
+					Method method20 = newModelClass.getMethod("setFinished",
 							new Class[] { Boolean.TYPE });
 
-					Boolean value20 = new Boolean(oldCplModel.getActive());
+					Boolean value20 = new Boolean(oldCplModel.getFinished());
 
 					method20.invoke(newModel, value20);
+
+					Method method21 = newModelClass.getMethod("setFinishedDated",
+							new Class[] { Date.class });
+
+					Date value21 = oldCplModel.getFinishedDated();
+
+					method21.invoke(newModel, value21);
+
+					Method method22 = newModelClass.getMethod("setActive",
+							new Class[] { Boolean.TYPE });
+
+					Boolean value22 = new Boolean(oldCplModel.getActive());
+
+					method22.invoke(newModel, value22);
 
 					return newModel;
 				}
@@ -929,89 +943,105 @@ public class ClpSerializer {
 					newModel.setParentWorkflowInstanceId(value9.longValue());
 
 					Method method10 = oldModelClass.getMethod(
-							"getRelationClassName");
+							"getWorkflowDefinitionName");
 
 					String value10 = (String)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setRelationClassName(value10);
+					newModel.setWorkflowDefinitionName(value10);
 
 					Method method11 = oldModelClass.getMethod(
-							"getRelationClassPK");
+							"getWorkflowDefinitionVersion");
 
-					Long value11 = (Long)method11.invoke(oldModel,
+					Integer value11 = (Integer)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setRelationClassPK(value11.longValue());
+					newModel.setWorkflowDefinitionVersion(value11.intValue());
 
-					Method method12 = oldModelClass.getMethod("getAttributes");
+					Method method12 = oldModelClass.getMethod(
+							"getRelationClassName");
 
 					String value12 = (String)method12.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setAttributes(value12);
+					newModel.setRelationClassName(value12);
 
 					Method method13 = oldModelClass.getMethod(
-							"getNestedWorkflowDefinitionIds");
+							"getRelationClassPK");
 
-					String value13 = (String)method13.invoke(oldModel,
+					Long value13 = (Long)method13.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setNestedWorkflowDefinitionIds(value13);
+					newModel.setRelationClassPK(value13.longValue());
 
-					Method method14 = oldModelClass.getMethod(
-							"getNestedWorkflowDefinitionVersions");
+					Method method14 = oldModelClass.getMethod("getAttributes");
 
 					String value14 = (String)method14.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setNestedWorkflowDefinitionVersions(value14);
+					newModel.setAttributes(value14);
 
 					Method method15 = oldModelClass.getMethod(
-							"getNestedRelatedElements");
+							"getNestedWorkflowDefinitionIds");
 
 					String value15 = (String)method15.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setNestedRelatedElements(value15);
+					newModel.setNestedWorkflowDefinitionIds(value15);
 
 					Method method16 = oldModelClass.getMethod(
-							"getCurrentElementName");
+							"getNestedWorkflowDefinitionVersions");
 
 					String value16 = (String)method16.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setCurrentElementName(value16);
+					newModel.setNestedWorkflowDefinitionVersions(value16);
 
 					Method method17 = oldModelClass.getMethod(
-							"getRelatedElementName");
+							"getNestedRelatedElements");
 
 					String value17 = (String)method17.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setRelatedElementName(value17);
+					newModel.setNestedRelatedElements(value17);
 
-					Method method18 = oldModelClass.getMethod("getFinished");
+					Method method18 = oldModelClass.getMethod(
+							"getCurrentElementName");
 
-					Boolean value18 = (Boolean)method18.invoke(oldModel,
+					String value18 = (String)method18.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setFinished(value18.booleanValue());
+					newModel.setCurrentElementName(value18);
 
 					Method method19 = oldModelClass.getMethod(
-							"getFinishedDated");
+							"getRelatedElementName");
 
-					Date value19 = (Date)method19.invoke(oldModel,
+					String value19 = (String)method19.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setFinishedDated(value19);
+					newModel.setRelatedElementName(value19);
 
-					Method method20 = oldModelClass.getMethod("getActive");
+					Method method20 = oldModelClass.getMethod("getFinished");
 
 					Boolean value20 = (Boolean)method20.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setActive(value20.booleanValue());
+					newModel.setFinished(value20.booleanValue());
+
+					Method method21 = oldModelClass.getMethod(
+							"getFinishedDated");
+
+					Date value21 = (Date)method21.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setFinishedDated(value21);
+
+					Method method22 = oldModelClass.getMethod("getActive");
+
+					Boolean value22 = (Boolean)method22.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setActive(value22.booleanValue());
 
 					return newModel;
 				}

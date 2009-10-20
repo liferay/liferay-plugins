@@ -22,6 +22,7 @@
 
 package com.liferay.portal.workflow.edoras;
 
+import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -29,7 +30,9 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceHistory;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceInfo;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManager;
+import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
 import com.liferay.portal.workflow.edoras.model.WorkflowLog;
+import com.liferay.portal.workflow.edoras.service.persistence.WorkflowInstanceUtil;
 import com.liferay.portal.workflow.edoras.service.persistence.WorkflowLogUtil;
 
 import java.util.ArrayList;
@@ -37,11 +40,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.edorasframework.process.api.ProcessSystemUtil;
 import org.edorasframework.process.api.dao.ProcessDao;
 import org.edorasframework.process.api.engine.ProcessEngine;
+import org.edorasframework.process.api.entity.MutableProcessInstance;
 import org.edorasframework.process.api.entity.ProcessInstance;
 import org.edorasframework.process.api.model.Activity;
+import org.edorasframework.process.api.session.ProcessSession;
 import org.edorasframework.process.api.setup.ProcessSetup;
+import org.edorasframework.process.core.util.ProcessUtil;
 
 /**
  * <a href="WorkflowInstanceManagerImpl.java.html"><b><i>View Source</i></b></a>
@@ -209,13 +216,27 @@ public class WorkflowInstanceManagerImpl
 			long workflowInstanceId, boolean retrieveChildrenInfo)
 		throws WorkflowException {
 
-		return null;
+		ProcessInstance processInstance =
+			getSetup().getProcessDao().loadProcessInstance(
+				workflowInstanceId, retrieveChildrenInfo);
+		
+		return new WorkflowInstanceInfoImpl(
+			processInstance, retrieveChildrenInfo);
 	}
 
 	public WorkflowInstanceInfo getWorkflowInstanceInfo(
 			String relationType, long relationId, boolean retrieveChildrenInfo)
 		throws WorkflowException {
 
+		List<? extends MutableProcessInstance> processInstances =
+			getSetup().getProcessDao().loadProcessInstances(
+				relationType, relationId, retrieveChildrenInfo);
+		
+		if (processInstances.size() > 0) {
+			return new WorkflowInstanceInfoImpl(
+				processInstances.get(0), retrieveChildrenInfo);
+		}
+		
 		return null;
 	}
 
@@ -223,7 +244,18 @@ public class WorkflowInstanceManagerImpl
 			String workflowDefinitionName, Integer workflowDefinitionVersion)
 		throws WorkflowException {
 
-		return 0;
+		try {
+			if (workflowDefinitionVersion == null) {
+				return WorkflowInstanceUtil.countByworkflowDefinitionName(workflowDefinitionName);
+			}
+			else {
+				return WorkflowInstanceUtil.countByN_V(
+					workflowDefinitionName, workflowDefinitionVersion);
+			}
+		}
+		catch (SystemException se) {
+			throw new WorkflowException(se.getMessage(), se);
+		}
 	}
 
 	public int getWorkflowInstanceInfoCount(
@@ -231,14 +263,32 @@ public class WorkflowInstanceManagerImpl
 			boolean completed)
 		throws WorkflowException {
 
-		return 0;
+		try {
+			if (workflowDefinitionVersion == null) {
+				return WorkflowInstanceUtil.countByN_F(
+					workflowDefinitionName, completed);
+			}
+			else {
+				return WorkflowInstanceUtil.countByN_V_F(
+					workflowDefinitionName, workflowDefinitionVersion,
+					completed);
+			}
+		}
+		catch (SystemException se) {
+			throw new WorkflowException(se.getMessage(), se);
+		}
 	}
 
 	public int getWorkflowInstanceInfoCount(
 			String relationType, long relationId)
 		throws WorkflowException {
 
-		return 0;
+		try {
+			return WorkflowInstanceUtil.countByC_C(relationType, relationId);
+		}
+		catch (SystemException se) {
+			throw new WorkflowException(se.getMessage(), se);
+		}
 	}
 
 	public List<WorkflowInstanceInfo> getWorkflowInstanceInfos(
@@ -247,7 +297,27 @@ public class WorkflowInstanceManagerImpl
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
-		return null;
+		try {
+			List<WorkflowInstance> workflowInstances = null;
+			if (workflowDefinitionVersion == null) {
+				workflowInstances =
+					WorkflowInstanceUtil.findByN_F(
+						workflowDefinitionName, completed, start, end,
+						orderByComparator);
+			}
+			else {
+				workflowInstances =
+					WorkflowInstanceUtil.findByN_V_F(
+						workflowDefinitionName, workflowDefinitionVersion,
+						completed, start, end, orderByComparator);
+			}
+
+			return WorkflowManagerUtil.wrapWorkflowInstances(
+				workflowInstances, retrieveChildrenInfo);
+		}
+		catch (SystemException se) {
+			throw new WorkflowException(se.getMessage(), se);
+		}
 	}
 
 	public List<WorkflowInstanceInfo> getWorkflowInstanceInfos(
@@ -256,7 +326,26 @@ public class WorkflowInstanceManagerImpl
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
-		return null;
+		try {
+			List<WorkflowInstance> workflowInstances = null;
+			if (workflowDefinitionVersion == null) {
+				workflowInstances =
+					WorkflowInstanceUtil.findByworkflowDefinitionName(
+						workflowDefinitionName, start, end, orderByComparator);
+			}
+			else {
+				workflowInstances =
+					WorkflowInstanceUtil.findByN_V(
+						workflowDefinitionName, workflowDefinitionVersion,
+						start, end, orderByComparator);
+			}
+
+			return WorkflowManagerUtil.wrapWorkflowInstances(
+				workflowInstances, retrieveChildrenInfo);
+		}
+		catch (SystemException se) {
+			throw new WorkflowException(se.getMessage(), se);
+		}
 	}
 
 	public List<WorkflowInstanceInfo> getWorkflowInstanceInfos(
@@ -264,11 +353,25 @@ public class WorkflowInstanceManagerImpl
 			int start, int end, OrderByComparator orderByComparator)
 		throws WorkflowException {
 
-		return null;
+		try {
+			List<WorkflowInstance> workflowInstances =
+				WorkflowInstanceUtil.findByC_C(
+					relationType, relationId, start, end, orderByComparator);
+			
+			return WorkflowManagerUtil.wrapWorkflowInstances(
+				workflowInstances, retrieveChildrenInfo);
+		}
+		catch (SystemException se) {
+			throw new WorkflowException(se.getMessage(), se);
+		}
 	}
 
 	public void removeWorkflowInstance(long workflowInstanceId)
 		throws WorkflowException {
+		
+		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
+
+		ProcessUtil.removeProcessInstance(workflowInstanceId, processSession);
 	}
 
 	public WorkflowInstanceInfo signalWorkflowInstance(
@@ -276,7 +379,19 @@ public class WorkflowInstanceManagerImpl
 			long callingUserId, Map<String, Object> parameters)
 		throws WorkflowException {
 
-		return null;
+		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
+		
+		ProcessInstance processInstance =
+			processSession.getProcessDao().loadProcessInstance(
+				workflowInstanceId, true);
+		
+		if (attributes != null) {
+			processInstance.getAttributeMap().copyFrom(attributes);
+		}
+		
+		processSession.getEngine().executeNextActivity(processInstance);
+		
+		return new WorkflowInstanceInfoImpl(processInstance, true);
 	}
 
 	public WorkflowInstanceInfo signalWorkflowInstanceByActivity(
@@ -285,7 +400,20 @@ public class WorkflowInstanceManagerImpl
 			Map<String, Object> parameters)
 		throws WorkflowException {
 
-		return null;
+		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
+
+		ProcessInstance processInstance =
+			processSession.getProcessDao().loadProcessInstance(
+				workflowInstanceId, true);
+
+		if (attributes != null) {
+			processInstance.getAttributeMap().copyFrom(attributes);
+		}
+
+		processSession.getEngine().executeActivity(
+			activityName, processInstance);
+
+		return new WorkflowInstanceInfoImpl(processInstance, true);
 
 	}
 
@@ -295,8 +423,20 @@ public class WorkflowInstanceManagerImpl
 			Map<String, Object> parameters)
 		throws WorkflowException {
 
-		return null;
+		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
 
+		ProcessInstance processInstance =
+			processSession.getProcessDao().loadProcessInstance(
+				workflowInstanceId, true);
+
+		if (attributes != null) {
+			processInstance.getAttributeMap().copyFrom(attributes);
+		}
+
+		processSession.getEngine().executeActivityByPath(
+			pathName, processInstance);
+
+		return new WorkflowInstanceInfoImpl(processInstance, true);
 	}
 
 	public WorkflowInstanceInfo startWorkflowInstance(
@@ -305,7 +445,15 @@ public class WorkflowInstanceManagerImpl
 			Map<String, Object> parameters)
 		throws WorkflowException {
 
-		return null;
+		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
+
+		ProcessInstance processInstance =
+			processSession.getEngine().createProcessInstance(
+			workflowDefinitionName, workflowDefinitionVersion, context);
+		
+		processSession.getEngine().executeNextActivity(processInstance);
+		
+		return new WorkflowInstanceInfoImpl(processInstance, true);
 	}
 
 	public WorkflowInstanceInfo startWorkflowInstance(
@@ -314,8 +462,16 @@ public class WorkflowInstanceManagerImpl
 			String activityName, Map<String, Object> parameters)
 		throws WorkflowException {
 
-		return null;
+		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
 
+		ProcessInstance processInstance =
+			processSession.getEngine().createProcessInstance(
+				workflowDefinitionName, workflowDefinitionVersion, context);
+
+		processSession.getEngine().executeActivity(
+			activityName, processInstance);
+
+		return new WorkflowInstanceInfoImpl(processInstance, true);
 	}
 
 	public WorkflowInstanceInfo startWorkflowInstance(
@@ -324,7 +480,16 @@ public class WorkflowInstanceManagerImpl
 			long callingUserId, Map<String, Object> parameters)
 		throws WorkflowException {
 
-		return null;
+		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
+
+		ProcessInstance processInstance =
+			processSession.getEngine().createProcessInstance(
+				workflowDefinitionName, workflowDefinitionVersion, context,
+				relationType, relationId);
+
+		processSession.getEngine().executeNextActivity(processInstance);
+
+		return new WorkflowInstanceInfoImpl(processInstance, true);
 	}
 
 	public WorkflowInstanceInfo startWorkflowInstance(
@@ -334,7 +499,17 @@ public class WorkflowInstanceManagerImpl
 			Map<String, Object> parameters)
 		throws WorkflowException {
 
-		return null;
+		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
+
+		ProcessInstance processInstance =
+			processSession.getEngine().createProcessInstance(
+				workflowDefinitionName, workflowDefinitionVersion, context,
+				relationType, relationId);
+
+		processSession.getEngine().executeActivity(
+			activityName, processInstance);
+
+		return new WorkflowInstanceInfoImpl(processInstance, true);
 	}
 
 }

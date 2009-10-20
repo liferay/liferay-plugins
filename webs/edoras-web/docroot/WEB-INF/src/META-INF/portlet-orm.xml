@@ -45,6 +45,8 @@
 			<basic name="friendlyId" />
 			<basic name="workflowDefinitionId" />
 			<basic name="parentWorkflowInstanceId" />
+			<basic name="workflowDefinitionName" />
+			<basic name="workflowDefinitionVersion" />
 			<basic name="relationClassName" />
 			<basic name="relationClassPK" />
 			<basic name="attributes" />

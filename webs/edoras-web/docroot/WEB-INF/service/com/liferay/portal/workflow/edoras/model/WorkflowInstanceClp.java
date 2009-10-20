@@ -144,6 +144,22 @@ public class WorkflowInstanceClp extends BaseModelImpl<WorkflowInstance>
 		_parentWorkflowInstanceId = parentWorkflowInstanceId;
 	}
 
+	public String getWorkflowDefinitionName() {
+		return _workflowDefinitionName;
+	}
+
+	public void setWorkflowDefinitionName(String workflowDefinitionName) {
+		_workflowDefinitionName = workflowDefinitionName;
+	}
+
+	public int getWorkflowDefinitionVersion() {
+		return _workflowDefinitionVersion;
+	}
+
+	public void setWorkflowDefinitionVersion(int workflowDefinitionVersion) {
+		_workflowDefinitionVersion = workflowDefinitionVersion;
+	}
+
 	public String getRelationClassName() {
 		return _relationClassName;
 	}
@@ -269,6 +285,9 @@ public class WorkflowInstanceClp extends BaseModelImpl<WorkflowInstance>
 			model.setFriendlyId(HtmlUtil.escape(getFriendlyId()));
 			model.setWorkflowDefinitionId(getWorkflowDefinitionId());
 			model.setParentWorkflowInstanceId(getParentWorkflowInstanceId());
+			model.setWorkflowDefinitionName(HtmlUtil.escape(
+					getWorkflowDefinitionName()));
+			model.setWorkflowDefinitionVersion(getWorkflowDefinitionVersion());
 			model.setRelationClassName(HtmlUtil.escape(getRelationClassName()));
 			model.setRelationClassPK(getRelationClassPK());
 			model.setAttributes(HtmlUtil.escape(getAttributes()));
@@ -305,6 +324,8 @@ public class WorkflowInstanceClp extends BaseModelImpl<WorkflowInstance>
 		clone.setFriendlyId(getFriendlyId());
 		clone.setWorkflowDefinitionId(getWorkflowDefinitionId());
 		clone.setParentWorkflowInstanceId(getParentWorkflowInstanceId());
+		clone.setWorkflowDefinitionName(getWorkflowDefinitionName());
+		clone.setWorkflowDefinitionVersion(getWorkflowDefinitionVersion());
 		clone.setRelationClassName(getRelationClassName());
 		clone.setRelationClassPK(getRelationClassPK());
 		clone.setAttributes(getAttributes());
@@ -385,6 +406,10 @@ public class WorkflowInstanceClp extends BaseModelImpl<WorkflowInstance>
 		sb.append(getWorkflowDefinitionId());
 		sb.append(", parentWorkflowInstanceId=");
 		sb.append(getParentWorkflowInstanceId());
+		sb.append(", workflowDefinitionName=");
+		sb.append(getWorkflowDefinitionName());
+		sb.append(", workflowDefinitionVersion=");
+		sb.append(getWorkflowDefinitionVersion());
 		sb.append(", relationClassName=");
 		sb.append(getRelationClassName());
 		sb.append(", relationClassPK=");
@@ -460,6 +485,14 @@ public class WorkflowInstanceClp extends BaseModelImpl<WorkflowInstance>
 		sb.append(getParentWorkflowInstanceId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>workflowDefinitionName</column-name><column-value><![CDATA[");
+		sb.append(getWorkflowDefinitionName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>workflowDefinitionVersion</column-name><column-value><![CDATA[");
+		sb.append(getWorkflowDefinitionVersion());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>relationClassName</column-name><column-value><![CDATA[");
 		sb.append(getRelationClassName());
 		sb.append("]]></column-value></column>");
@@ -520,6 +553,8 @@ public class WorkflowInstanceClp extends BaseModelImpl<WorkflowInstance>
 	private String _friendlyId;
 	private long _workflowDefinitionId;
 	private long _parentWorkflowInstanceId;
+	private String _workflowDefinitionName;
+	private int _workflowDefinitionVersion;
 	private String _relationClassName;
 	private long _relationClassPK;
 	private String _attributes;
