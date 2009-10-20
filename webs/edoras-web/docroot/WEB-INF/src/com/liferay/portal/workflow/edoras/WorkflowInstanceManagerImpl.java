@@ -22,7 +22,6 @@
 
 package com.liferay.portal.workflow.edoras;
 
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -38,6 +37,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.edorasframework.process.api.dao.ProcessDao;
+import org.edorasframework.process.api.engine.ProcessEngine;
 import org.edorasframework.process.api.entity.ProcessInstance;
 import org.edorasframework.process.api.model.Activity;
 import org.edorasframework.process.api.setup.ProcessSetup;
@@ -55,8 +56,11 @@ public class WorkflowInstanceManagerImpl
 			long workflowInstanceId, Map<String, Object> context)
 		throws WorkflowException {
 
-		getSetup().getEngine().addProcessInstanceAttributes(
-			workflowInstanceId, context);
+		ProcessSetup processSetup = getSetup();
+
+		ProcessEngine processEngine = processSetup.getEngine();
+
+		processEngine.addProcessInstanceAttributes(workflowInstanceId, context);
 
 		return getWorkflowInstanceInfo(workflowInstanceId, false);
 	}
@@ -66,14 +70,19 @@ public class WorkflowInstanceManagerImpl
 			Map<String, Object> parameters)
 		throws WorkflowException {
 
-		ProcessSetup setup = getSetup();
+		ProcessSetup processSetup = getSetup();
 
-		ProcessInstance instance =
-			setup.getProcessDao().loadProcessInstance(workflowInstanceId, false);
+		ProcessDao processDao = processSetup.getProcessDao();
+
+		ProcessInstance processInstance = processDao.loadProcessInstance(
+			workflowInstanceId, false);
 
 		List<String> activityNames = new ArrayList<String>();
-		List<Activity> activities =
-			getSetup().getEngine().getNextActivities(instance, true);
+
+		ProcessEngine processEngine = processSetup.getEngine();
+
+		List<Activity> activities = processEngine.getNextActivities(
+			processInstance, true);
 
 		for (Activity activity : activities) {
 			activityNames.add(activity.getName());
@@ -86,12 +95,16 @@ public class WorkflowInstanceManagerImpl
 		long workflowInstanceId, long userId, Map<String, Object> parameters)
 		throws WorkflowException {
 
-		ProcessSetup setup = getSetup();
+		ProcessSetup processSetup = getSetup();
 
-		ProcessInstance instance =
-			setup.getProcessDao().loadProcessInstance(workflowInstanceId, false);
+		ProcessDao processDao = processSetup.getProcessDao();
 
-		return setup.getEngine().getNextPathNames(instance);
+		ProcessInstance processInstance = processDao.loadProcessInstance(
+			workflowInstanceId, false);
+
+		ProcessEngine processEngine = processSetup.getEngine();
+
+		return processEngine.getNextPathNames(processInstance);
 	}
 
 	public List<WorkflowInstanceHistory> getWorkflowInstanceHistory(
@@ -101,49 +114,57 @@ public class WorkflowInstanceManagerImpl
 
 		if (!includeChildren) {
 			try {
-				List<WorkflowLog> logs =
+				List<WorkflowLog> workflowLogs =
 					WorkflowLogUtil.findByWorkflowInstanceId(
 						workflowInstanceId, start, end, orderByComparator);
 
-				return WorkflowManagerUtil.wrapWorkflowHistory(logs);
+				return WorkflowManagerUtil.wrapWorkflowHistory(workflowLogs);
 			}
-			catch (SystemException se) {
-				throw new WorkflowException(se.getMessage(), se);
+			catch (Exception e) {
+				throw new WorkflowException(e.getMessage(), e);
 			}
 		}
 
-		ProcessInstance processInstance = getSetup().getProcessDao().loadProcessInstance(
+		ProcessSetup processSetup = getSetup();
+
+		ProcessDao processDao = processSetup.getProcessDao();
+
+		ProcessInstance processInstance = processDao.loadProcessInstance(
 			workflowInstanceId, true);
 
-		List<ProcessInstance> processInstances = new ArrayList<ProcessInstance>();
+		List<ProcessInstance> processInstances =
+			new ArrayList<ProcessInstance>();
+
 		WorkflowManagerUtil.getFlatProcessInstances(
 			processInstance, processInstances);
 
-		List<WorkflowLog> allLogs = new ArrayList<WorkflowLog>();
+		List<WorkflowLog> workflowLogs = new ArrayList<WorkflowLog>();
 
 		try {
-			for (ProcessInstance instance : processInstances) {
-				List<WorkflowLog> logs =
-					WorkflowLogUtil.findByWorkflowInstanceId(instance.getPrimaryKey());
+			for (ProcessInstance curProcessInstance : processInstances) {
+				List<WorkflowLog> curWorkflowLogs =
+					WorkflowLogUtil.findByWorkflowInstanceId(
+							curProcessInstance.getPrimaryKey());
 
-				allLogs.addAll(logs);
+				workflowLogs.addAll(curWorkflowLogs);
 			}
 
-			List<WorkflowInstanceHistory> history =
-				WorkflowManagerUtil.wrapWorkflowHistory(allLogs);
+			List<WorkflowInstanceHistory> workflowInstanceHistory =
+				WorkflowManagerUtil.wrapWorkflowHistory(workflowLogs);
 
 			if (orderByComparator != null) {
-				Collections.sort(history, orderByComparator);
+				Collections.sort(workflowInstanceHistory, orderByComparator);
 			}
 
 			if ((start != QueryUtil.ALL_POS) && (end != QueryUtil.ALL_POS)) {
-				history = ListUtil.subList(history, start, end);
+				workflowInstanceHistory = ListUtil.subList(
+					workflowInstanceHistory, start, end);
 			}
 
-			return history;
+			return workflowInstanceHistory;
 		}
-		catch (SystemException se) {
-			throw new WorkflowException(se.getMessage(), se);
+		catch (Exception e) {
+			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
 
@@ -153,27 +174,33 @@ public class WorkflowInstanceManagerImpl
 
 		try {
 			if (!includeChildren) {
-				return WorkflowLogUtil.countByWorkflowInstanceId(workflowInstanceId);
+				return WorkflowLogUtil.countByWorkflowInstanceId(
+					workflowInstanceId);
 			}
 
-			ProcessInstance processInstance =
-				getSetup().getProcessDao().loadProcessInstance(
-					workflowInstanceId, true);
+			ProcessSetup processSetup = getSetup();
+
+			ProcessDao processDao = processSetup.getProcessDao();
+
+			ProcessInstance processInstance = processDao.loadProcessInstance(
+				workflowInstanceId, true);
 
 			List<ProcessInstance> processInstances =
 				new ArrayList<ProcessInstance>();
+
 			WorkflowManagerUtil.getFlatProcessInstances(
 				processInstance, processInstances);
 
 			int count = 0;
+
 			for (ProcessInstance instance : processInstances) {
-				count +=
-					WorkflowLogUtil.countByWorkflowInstanceId(instance.getPrimaryKey());
+				count += WorkflowLogUtil.countByWorkflowInstanceId(
+					instance.getPrimaryKey());
 			}
 
 			return count;
 		}
-		catch (SystemException e) {
+		catch (Exception e) {
 			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
