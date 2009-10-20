@@ -85,18 +85,17 @@ public class WorkflowInstanceDao
 			List<WorkflowInstance> workflowInstances =
 				WorkflowInstanceUtil.findByFinished(false);
 
-			return (List<? extends MutableProcessInstance>) WorkflowEntityBridgeUtil.wrapWorkflowInstances(
-				workflowInstances, null, true);
+			return (List<? extends MutableProcessInstance>)
+				WorkflowEntityBridgeUtil.wrapWorkflowInstances(
+					workflowInstances, null, true);
 		}
 		catch (Exception e) {
 			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
-	public <T extends ProcessInstance> T loadProcessInstance(
-		final long primaryKey) {
-		
-		return (T) loadProcessInstance(primaryKey, true);
+	public <T extends ProcessInstance> T loadProcessInstance(long primaryKey) {
+		return (T)loadProcessInstance(primaryKey, true);
 	}
 
 	public <T extends ProcessInstance> T loadProcessInstance(
@@ -106,8 +105,11 @@ public class WorkflowInstanceDao
 			WorkflowInstance workflowInstance =
 				WorkflowInstanceUtil.findByPrimaryKey(primaryKey);
 
-			return (T) new WorkflowInstanceBridge(
-				workflowInstance, null, includeChildren);
+			WorkflowInstanceBridge workflowInstanceBridge =
+				new WorkflowInstanceBridge(
+					workflowInstance, null, includeChildren);
+
+			return (T)workflowInstanceBridge;
 		}
 		catch (NoSuchWorkflowInstanceException nswie) {
 			return null;
@@ -131,14 +133,15 @@ public class WorkflowInstanceDao
 	}
 
 	public List<? extends MutableProcessInstance> loadProcessInstances(
-		final String relationType, final Long relationId) {
+		String relationType, Long relationId) {
 
 		try {
 			List<WorkflowInstance> workflowInstances =
 				WorkflowInstanceUtil.findByC_C(relationType, relationId);
 
-			return (List<? extends MutableProcessInstance>) WorkflowEntityBridgeUtil.wrapWorkflowInstances(
-				workflowInstances, null, true);
+			return (List<? extends MutableProcessInstance>)
+				WorkflowEntityBridgeUtil.wrapWorkflowInstances(
+					workflowInstances, null, true);
 		}
 		catch (Exception e) {
 			throw new ProcessException(e.getMessage(), e);

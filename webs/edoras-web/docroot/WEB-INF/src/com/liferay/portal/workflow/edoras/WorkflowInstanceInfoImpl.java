@@ -37,13 +37,11 @@ import org.edorasframework.process.api.entity.ProcessInstance;
  * @author Brian Wing Shun Chan
  */
 public class WorkflowInstanceInfoImpl implements WorkflowInstanceInfo {
-	
+
 	public WorkflowInstanceInfoImpl() {
 	}
 
-	public WorkflowInstanceInfoImpl(
-		ProcessInstance processInstance) {
-		
+	public WorkflowInstanceInfoImpl(ProcessInstance processInstance) {
 	}
 
 	public List<WorkflowInstanceInfo> getChildren() {

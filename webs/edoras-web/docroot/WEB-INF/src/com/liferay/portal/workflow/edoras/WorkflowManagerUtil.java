@@ -46,18 +46,22 @@ public class WorkflowManagerUtil {
 
 		return tenantId.longValue();
 	}
-	
-	public static List<ProcessInstance> getFlatProcessInstanceList(
-		ProcessInstance processInstance, List<ProcessInstance> processInstances) {
+
+	public static List<ProcessInstance> getFlatProcessInstances(
+		ProcessInstance processInstance,
+		List<ProcessInstance> processInstances) {
 
 		if (processInstances == null) {
 			processInstances = new ArrayList<ProcessInstance>();
 		}
 
 		processInstances.add(processInstance);
-		List<ProcessInstance> children = processInstance.getChildren();
-		for (ProcessInstance child : children) {
-			getFlatProcessInstanceList(child, processInstances);
+
+		List<ProcessInstance> childrenProcessInstances =
+			processInstance.getChildren();
+
+		for (ProcessInstance childProcessInstance : childrenProcessInstances) {
+			getFlatProcessInstances(childProcessInstance, processInstances);
 		}
 
 		return processInstances;
@@ -87,18 +91,19 @@ public class WorkflowManagerUtil {
 
 		return wrappedDefinitions;
 	}
-	
+
 	public static List<WorkflowInstanceHistory> wrapWorkflowHistory(
 		List<WorkflowLog> workflowLogs) {
-		
-		List<WorkflowInstanceHistory> history =
+
+		List<WorkflowInstanceHistory> workflowInstanceHistory =
 			new ArrayList<WorkflowInstanceHistory>(workflowLogs.size());
-		
+
 		for (WorkflowLog workflowLog : workflowLogs) {
-			history.add(new WorkflowInstanceHistoryImpl(workflowLog));
+			workflowInstanceHistory.add(
+				new WorkflowInstanceHistoryImpl(workflowLog));
 		}
 
-		return history;
+		return workflowInstanceHistory;
 	}
 
 }

@@ -57,7 +57,7 @@ public class WorkflowInstanceManagerImpl
 
 		getSetup().getEngine().addProcessInstanceAttributes(
 			workflowInstanceId, context);
-		
+
 		return getWorkflowInstanceInfo(workflowInstanceId, false);
 	}
 
@@ -65,16 +65,16 @@ public class WorkflowInstanceManagerImpl
 			long workflowInstanceId, long userId,
 			Map<String, Object> parameters)
 		throws WorkflowException {
-		
+
 		ProcessSetup setup = getSetup();
-		
+
 		ProcessInstance instance =
 			setup.getProcessDao().loadProcessInstance(workflowInstanceId, false);
 
 		List<String> activityNames = new ArrayList<String>();
 		List<Activity> activities =
 			getSetup().getEngine().getNextActivities(instance, true);
-		
+
 		for (Activity activity : activities) {
 			activityNames.add(activity.getName());
 		}
@@ -98,13 +98,13 @@ public class WorkflowInstanceManagerImpl
 			long workflowInstanceId, boolean includeChildren, int start,
 			int end, OrderByComparator orderByComparator)
 		throws WorkflowException {
-		
+
 		if (!includeChildren) {
 			try {
 				List<WorkflowLog> logs =
 					WorkflowLogUtil.findByWorkflowInstanceId(
 						workflowInstanceId, start, end, orderByComparator);
-				
+
 				return WorkflowManagerUtil.wrapWorkflowHistory(logs);
 			}
 			catch (SystemException se) {
@@ -114,24 +114,24 @@ public class WorkflowInstanceManagerImpl
 
 		ProcessInstance processInstance = getSetup().getProcessDao().loadProcessInstance(
 			workflowInstanceId, true);
-		
+
 		List<ProcessInstance> processInstances = new ArrayList<ProcessInstance>();
-		WorkflowManagerUtil.getFlatProcessInstanceList(
+		WorkflowManagerUtil.getFlatProcessInstances(
 			processInstance, processInstances);
-		
+
 		List<WorkflowLog> allLogs = new ArrayList<WorkflowLog>();
-		
+
 		try {
 			for (ProcessInstance instance : processInstances) {
 				List<WorkflowLog> logs =
 					WorkflowLogUtil.findByWorkflowInstanceId(instance.getPrimaryKey());
-				
+
 				allLogs.addAll(logs);
 			}
 
 			List<WorkflowInstanceHistory> history =
 				WorkflowManagerUtil.wrapWorkflowHistory(allLogs);
-			
+
 			if (orderByComparator != null) {
 				Collections.sort(history, orderByComparator);
 			}
@@ -139,7 +139,7 @@ public class WorkflowInstanceManagerImpl
 			if ((start != QueryUtil.ALL_POS) && (end != QueryUtil.ALL_POS)) {
 				history = ListUtil.subList(history, start, end);
 			}
-			
+
 			return history;
 		}
 		catch (SystemException se) {
@@ -162,9 +162,9 @@ public class WorkflowInstanceManagerImpl
 
 			List<ProcessInstance> processInstances =
 				new ArrayList<ProcessInstance>();
-			WorkflowManagerUtil.getFlatProcessInstanceList(
+			WorkflowManagerUtil.getFlatProcessInstances(
 				processInstance, processInstances);
-			
+
 			int count = 0;
 			for (ProcessInstance instance : processInstances) {
 				count +=
