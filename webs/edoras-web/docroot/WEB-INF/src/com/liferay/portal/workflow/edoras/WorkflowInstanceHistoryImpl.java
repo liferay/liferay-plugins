@@ -46,8 +46,8 @@ public class WorkflowInstanceHistoryImpl implements WorkflowInstanceHistory {
 		_createDate = workflowLog.getCreateDate();
 		_description = workflowLog.getDescription();
 		_historyEntryId = workflowLog.getPrimaryKey();
-		_type =
-			ProcessLogType.getLogType(workflowLog.getLogEntityType()).name();
+		_type = ProcessLogType.getLogType(
+			workflowLog.getLogEntityType()).name();
 		_userId = workflowLog.getUserId();
 		_workflowInstanceId = workflowLog.getWorkflowInstanceId();
 	}

@@ -13,8 +13,8 @@
 	<!-- Managers -->
 
 	<bean id="abstractManager" abstract="true">
-		<property name="defaultSetupId" value="org.edorasframework.process.api.setup.Default"/>
-		<property name="useDataTransferObjects" value="true"/>
+		<property name="defaultSetupId" value="org.edorasframework.process.api.setup.Default" />
+		<property name="useDataTransferObjects" value="true" />
 	</bean>
 	<bean id="workflowDefinitionManager" class="com.liferay.portal.workflow.edoras.WorkflowDefinitionManagerImpl" parent="abstractManager" />
 	<bean id="workflowEngineManager" class="com.liferay.portal.workflow.edoras.WorkflowEngineManagerImpl" parent="abstractManager" />
