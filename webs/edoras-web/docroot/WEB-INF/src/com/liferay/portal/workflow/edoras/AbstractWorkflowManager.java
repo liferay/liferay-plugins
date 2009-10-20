@@ -22,47 +22,34 @@
 
 package com.liferay.portal.workflow.edoras;
 
-import com.liferay.portal.kernel.workflow.WorkflowEngineManager;
+import com.liferay.portal.workflow.edoras.dao.model.WorkflowEntityBridgeUtil;
 
-import java.util.Collections;
-import java.util.Map;
+import org.edorasframework.process.api.setup.Default;
 
-import org.edorasframework.process.api.ProcessSystemUtil;
 
 /**
- * <a href="WorkflowEngineManagerImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="AbstractWorkflowManager.java.html"><b><i>View Source</i></b></a>
  *
  * @author Micha Kiener
  */
-public class WorkflowEngineManagerImpl extends AbstractWorkflowManager
-	implements WorkflowEngineManager {
+public class AbstractWorkflowManager {
 
-	public Map<String, Object> getAdditionalInformation() {
-		return Collections.EMPTY_MAP;
+	public Class<?> getDefaultSetupId() {
+		if (_defaultSetupId == null) {
+			_defaultSetupId = Default.class;
+		}
+
+		return _defaultSetupId;
 	}
-
-	public Object getDelegate() {
-		return ProcessSystemUtil.getSessionFactory();
+	
+	public void setDefaultSetupId(Class<?> defaultSetupId) {
+		_defaultSetupId = defaultSetupId;
 	}
-
-	public String getVersion() {
-		return "1.3.0";
+	
+	public void setDefaultSetupIdName(String setupIdName) {
+		_defaultSetupId =
+			WorkflowEntityBridgeUtil.getSetupClassForName(setupIdName);
 	}
-
-	public String getWorkflowEngineKey() {
-		return "edoras";
-	}
-
-	public String getWorkflowEngineName() {
-		return "Edoras";
-	}
-
-	public boolean isSupportsGlobalActivities() {
-		return true;
-	}
-
-	public boolean isSupportsWorkflowDefinitionVersioning() {
-		return true;
-	}
-
+	
+	private Class<?> _defaultSetupId;
 }

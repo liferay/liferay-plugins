@@ -22,47 +22,46 @@
 
 package com.liferay.portal.workflow.edoras;
 
-import com.liferay.portal.kernel.workflow.WorkflowEngineManager;
+import com.liferay.portal.kernel.workflow.WorkflowDefinition;
+import com.liferay.portal.model.CompanyConstants;
 
-import java.util.Collections;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.edorasframework.process.api.ProcessSystemUtil;
 
 /**
- * <a href="WorkflowEngineManagerImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowManagerUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Micha Kiener
  */
-public class WorkflowEngineManagerImpl extends AbstractWorkflowManager
-	implements WorkflowEngineManager {
+public class WorkflowManagerUtil {
+	public static Long getTenantId(long companyId) {
+		if (companyId == CompanyConstants.SYSTEM) {
+			return null;
+		}
 
-	public Map<String, Object> getAdditionalInformation() {
-		return Collections.EMPTY_MAP;
+		return Long.valueOf(companyId);
 	}
+	
+	public static long getCompanyId(Long tenantId) {
+		if (tenantId == null) {
+			return CompanyConstants.SYSTEM;
+		}
 
-	public Object getDelegate() {
-		return ProcessSystemUtil.getSessionFactory();
+		return tenantId.longValue();
 	}
+	
+	public static List<WorkflowDefinition> wrapWorkflowDefinitions(
+		List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> workflowDefinitions) {
 
-	public String getVersion() {
-		return "1.3.0";
+		List<WorkflowDefinition> wrappedDefinitions =
+			new ArrayList<WorkflowDefinition>(workflowDefinitions.size());
+
+		for (com.liferay.portal.workflow.edoras.model.WorkflowDefinition workflowDefinition : workflowDefinitions) {
+			wrappedDefinitions.add(new WorkflowDefinitionImpl(
+				workflowDefinition));
+		}
+		
+		return wrappedDefinitions;
 	}
-
-	public String getWorkflowEngineKey() {
-		return "edoras";
-	}
-
-	public String getWorkflowEngineName() {
-		return "Edoras";
-	}
-
-	public boolean isSupportsGlobalActivities() {
-		return true;
-	}
-
-	public boolean isSupportsWorkflowDefinitionVersioning() {
-		return true;
-	}
-
 }

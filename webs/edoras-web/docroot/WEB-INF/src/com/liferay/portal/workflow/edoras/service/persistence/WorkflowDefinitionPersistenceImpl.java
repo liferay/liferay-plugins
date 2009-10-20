@@ -80,6 +80,23 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 			WorkflowDefinitionModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countByCompanyId",
 			new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_NAME = new FinderPath(WorkflowDefinitionModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowDefinitionModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "findByName",
+			new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_NAME = new FinderPath(WorkflowDefinitionModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowDefinitionModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "findByName",
+			new String[] {
+				String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_NAME = new FinderPath(WorkflowDefinitionModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowDefinitionModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "countByName",
+			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_C_N = new FinderPath(WorkflowDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowDefinitionModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByC_N",
@@ -694,6 +711,289 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	public List<WorkflowDefinition> findByName(String name)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { name };
+
+		List<WorkflowDefinition> list = (List<WorkflowDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_NAME,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowDefinition FROM WorkflowDefinition workflowDefinition WHERE ");
+
+				if (name == null) {
+					query.append("workflowDefinition.name IS NULL");
+				}
+				else {
+					query.append("workflowDefinition.name = ?");
+				}
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("workflowDefinition.name ASC, ");
+				query.append("workflowDefinition.version DESC");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (name != null) {
+					qPos.add(name);
+				}
+
+				list = q.list();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowDefinition>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_NAME, finderArgs,
+					list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public List<WorkflowDefinition> findByName(String name, int start, int end)
+		throws SystemException {
+		return findByName(name, start, end, null);
+	}
+
+	public List<WorkflowDefinition> findByName(String name, int start, int end,
+		OrderByComparator obc) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				name,
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		List<WorkflowDefinition> list = (List<WorkflowDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_NAME,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowDefinition FROM WorkflowDefinition workflowDefinition WHERE ");
+
+				if (name == null) {
+					query.append("workflowDefinition.name IS NULL");
+				}
+				else {
+					query.append("workflowDefinition.name = ?");
+				}
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("workflowDefinition.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("workflowDefinition.name ASC, ");
+					query.append("workflowDefinition.version DESC");
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (name != null) {
+					qPos.add(name);
+				}
+
+				list = (List<WorkflowDefinition>)QueryUtil.list(q,
+						getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowDefinition>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_NAME,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public WorkflowDefinition findByName_First(String name,
+		OrderByComparator obc)
+		throws NoSuchWorkflowDefinitionException, SystemException {
+		List<WorkflowDefinition> list = findByName(name, 0, 1, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowDefinition exists with the key {");
+
+			msg.append("name=" + name);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowDefinitionException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowDefinition findByName_Last(String name, OrderByComparator obc)
+		throws NoSuchWorkflowDefinitionException, SystemException {
+		int count = countByName(name);
+
+		List<WorkflowDefinition> list = findByName(name, count - 1, count, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowDefinition exists with the key {");
+
+			msg.append("name=" + name);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowDefinitionException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowDefinition[] findByName_PrevAndNext(
+		long workflowDefinitionId, String name, OrderByComparator obc)
+		throws NoSuchWorkflowDefinitionException, SystemException {
+		WorkflowDefinition workflowDefinition = findByPrimaryKey(workflowDefinitionId);
+
+		int count = countByName(name);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append(
+				"SELECT workflowDefinition FROM WorkflowDefinition workflowDefinition WHERE ");
+
+			if (name == null) {
+				query.append("workflowDefinition.name IS NULL");
+			}
+			else {
+				query.append("workflowDefinition.name = ?");
+			}
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("workflowDefinition.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
+			}
+
+			else {
+				query.append("ORDER BY ");
+
+				query.append("workflowDefinition.name ASC, ");
+				query.append("workflowDefinition.version DESC");
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			if (name != null) {
+				qPos.add(name);
+			}
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					workflowDefinition);
+
+			WorkflowDefinition[] array = new WorkflowDefinitionImpl[3];
+
+			array[0] = (WorkflowDefinition)objArray[0];
+			array[1] = (WorkflowDefinition)objArray[1];
+			array[2] = (WorkflowDefinition)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
 	public List<WorkflowDefinition> findByC_N(long companyId, String name)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { new Long(companyId), name };
@@ -1285,6 +1585,12 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	public void removeByName(String name) throws SystemException {
+		for (WorkflowDefinition workflowDefinition : findByName(name)) {
+			remove(workflowDefinition);
+		}
+	}
+
 	public void removeByC_N(long companyId, String name)
 		throws SystemException {
 		for (WorkflowDefinition workflowDefinition : findByC_N(companyId, name)) {
@@ -1345,6 +1651,61 @@ public class WorkflowDefinitionPersistenceImpl extends BasePersistenceImpl
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public int countByName(String name) throws SystemException {
+		Object[] finderArgs = new Object[] { name };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_NAME,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(workflowDefinition) ");
+				query.append(
+					"FROM WorkflowDefinition workflowDefinition WHERE ");
+
+				if (name == null) {
+					query.append("workflowDefinition.name IS NULL");
+				}
+				else {
+					query.append("workflowDefinition.name = ?");
+				}
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (name != null) {
+					qPos.add(name);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_NAME,
 					finderArgs, count);
 
 				closeSession(session);

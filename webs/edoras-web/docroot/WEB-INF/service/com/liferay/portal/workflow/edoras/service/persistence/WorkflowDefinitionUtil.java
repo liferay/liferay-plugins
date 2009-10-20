@@ -132,6 +132,49 @@ public class WorkflowDefinitionUtil {
 			companyId, obc);
 	}
 
+	public static java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> findByName(
+		java.lang.String name) throws com.liferay.portal.SystemException {
+		return getPersistence().findByName(name);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> findByName(
+		java.lang.String name, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByName(name, start, end);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> findByName(
+		java.lang.String name, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByName(name, start, end, obc);
+	}
+
+	public static com.liferay.portal.workflow.edoras.model.WorkflowDefinition findByName_First(
+		java.lang.String name,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException {
+		return getPersistence().findByName_First(name, obc);
+	}
+
+	public static com.liferay.portal.workflow.edoras.model.WorkflowDefinition findByName_Last(
+		java.lang.String name,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException {
+		return getPersistence().findByName_Last(name, obc);
+	}
+
+	public static com.liferay.portal.workflow.edoras.model.WorkflowDefinition[] findByName_PrevAndNext(
+		long workflowDefinitionId, java.lang.String name,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException {
+		return getPersistence()
+				   .findByName_PrevAndNext(workflowDefinitionId, name, obc);
+	}
+
 	public static java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> findByC_N(
 		long companyId, java.lang.String name)
 		throws com.liferay.portal.SystemException {
@@ -230,6 +273,11 @@ public class WorkflowDefinitionUtil {
 		getPersistence().removeByCompanyId(companyId);
 	}
 
+	public static void removeByName(java.lang.String name)
+		throws com.liferay.portal.SystemException {
+		getPersistence().removeByName(name);
+	}
+
 	public static void removeByC_N(long companyId, java.lang.String name)
 		throws com.liferay.portal.SystemException {
 		getPersistence().removeByC_N(companyId, name);
@@ -249,6 +297,11 @@ public class WorkflowDefinitionUtil {
 	public static int countByCompanyId(long companyId)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().countByCompanyId(companyId);
+	}
+
+	public static int countByName(java.lang.String name)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByName(name);
 	}
 
 	public static int countByC_N(long companyId, java.lang.String name)

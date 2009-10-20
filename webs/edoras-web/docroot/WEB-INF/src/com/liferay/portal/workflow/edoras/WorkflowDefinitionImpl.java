@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.resource.ResourceRetriever;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -35,13 +36,25 @@ import java.util.Map;
  * @author Brian Wing Shun Chan
  */
 public class WorkflowDefinitionImpl implements WorkflowDefinition {
+	
+	public WorkflowDefinitionImpl(
+		com.liferay.portal.workflow.edoras.model.WorkflowDefinition workflowDefinition) {
+		
+		_workflowDefinitionName = workflowDefinition.getName();
+		_workflowDefinitionVersion = workflowDefinition.getVersion();
+		
+		_attributes = new HashMap<String, Object>();
+		_attributes.put(
+			AdditionalWorkflowParameterUtil.WF_TENANT_ID,
+			workflowDefinition.getCompanyId());
+	}
 
 	public Map<String, Object> getAttributes() {
 		return Collections.EMPTY_MAP;
 	}
 
 	public ResourceRetriever getJar() {
-		return _resourceRetriever;
+		return null;
 	}
 
 	public String getWorkflowDefinitionName() {
@@ -52,8 +65,7 @@ public class WorkflowDefinitionImpl implements WorkflowDefinition {
 		return _workflowDefinitionVersion;
 	}
 
-	private ResourceRetriever _resourceRetriever;
+	private Map<String, Object> _attributes;
 	private String _workflowDefinitionName;
 	private int _workflowDefinitionVersion;
-
 }

@@ -37,7 +37,8 @@ import java.util.Map;
  * @author Micha Kiener
  * @author Brian Wing Shun Chan
  */
-public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
+public class WorkflowInstanceManagerImpl extends AbstractWorkflowManager
+	implements WorkflowInstanceManager {
 
 	public WorkflowInstanceInfo addContextInformation(
 			long workflowInstanceId, Map<String, Object> context)

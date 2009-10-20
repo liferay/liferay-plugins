@@ -37,6 +37,9 @@
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
+		<finder name="Name" return-type="Collection">
+			<finder-column name="name" />
+		</finder>
 		<finder name="C_N" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="name" />

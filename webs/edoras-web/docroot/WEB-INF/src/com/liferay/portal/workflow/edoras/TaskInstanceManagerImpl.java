@@ -37,7 +37,8 @@ import java.util.Map;
  * @author Micha Kiener
  * @author Brian Wing Shun Chan
  */
-public class TaskInstanceManagerImpl implements TaskInstanceManager {
+public class TaskInstanceManagerImpl extends AbstractWorkflowManager
+	implements TaskInstanceManager {
 
 	public TaskInstanceInfo assignTaskInstanceToRole(
 			long taskInstanceId, long roleId, String comment,

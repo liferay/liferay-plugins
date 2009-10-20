@@ -23,8 +23,8 @@
 package com.liferay.portal.workflow.edoras.dao;
 
 import com.liferay.portal.SystemException;
-import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException;
+import com.liferay.portal.workflow.edoras.WorkflowManagerUtil;
 import com.liferay.portal.workflow.edoras.dao.model.WorkflowDefinitionBridge;
 import com.liferay.portal.workflow.edoras.dao.model.WorkflowEntityBridgeUtil;
 import com.liferay.portal.workflow.edoras.model.WorkflowDefinition;
@@ -87,11 +87,7 @@ public class WorkflowDefinitionDao
 		String modelId, int modelVersion, Long tenantId) {
 
 		try {
-			long companyId = CompanyConstants.SYSTEM;
-
-			if (tenantId != null) {
-				companyId = tenantId;
-			}
+			long companyId = WorkflowManagerUtil.getCompanyId(tenantId);
 
 			WorkflowDefinition workflowDefinition =
 				WorkflowDefinitionUtil.findByC_N_V(

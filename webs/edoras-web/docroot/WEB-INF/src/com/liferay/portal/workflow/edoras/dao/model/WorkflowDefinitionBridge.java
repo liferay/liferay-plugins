@@ -22,7 +22,7 @@
 
 package com.liferay.portal.workflow.edoras.dao.model;
 
-import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portal.workflow.edoras.WorkflowManagerUtil;
 import com.liferay.portal.workflow.edoras.model.WorkflowDefinition;
 import com.liferay.portal.workflow.edoras.model.impl.WorkflowDefinitionImpl;
 
@@ -61,14 +61,11 @@ public class WorkflowDefinitionBridge
 	public void initializeFromReading(WorkflowDefinition workflowDefinition) {
 		_workflowDefinition = workflowDefinition;
 
-		Long companyId = workflowDefinition.getCompanyId();
-
-		if (companyId == CompanyConstants.SYSTEM) {
-			companyId = null;
-		}
+		Long tenantId =
+			WorkflowManagerUtil.getTenantId(workflowDefinition.getCompanyId());
 
 		setPrimaryKey(workflowDefinition.getPrimaryKey());
-		setTenantId(companyId);
+		setTenantId(tenantId);
 		//setUserId(workflowDefinition.getUserId());
 		//setUserName(workflowDefinition.getUserName());
 		//setCreateDate(workflowDefinition.getCreateDate());
@@ -90,14 +87,10 @@ public class WorkflowDefinitionBridge
 	public void transferPropertiesForSaving() {
 		unwrap();
 
-		Long tenantId = getTenantId();
-
-		if (tenantId == null) {
-			tenantId = CompanyConstants.SYSTEM;
-		}
+		long companyId = WorkflowManagerUtil.getCompanyId(getTenantId());
 
 		_workflowDefinition.setPrimaryKey(getPrimaryKey());
-		_workflowDefinition.setCompanyId(tenantId);
+		_workflowDefinition.setCompanyId(companyId);
 		//_workflowDefinition.setUserId(getUserId());
 		//_workflowDefinition.setUserName(getUserName());
 		//_workflowDefinition.setCreateDate(getCreateDate());
