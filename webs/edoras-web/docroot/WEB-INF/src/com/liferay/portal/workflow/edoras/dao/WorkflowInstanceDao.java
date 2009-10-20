@@ -38,9 +38,6 @@ import org.edorasframework.process.api.entity.ProcessInstance;
 import org.edorasframework.process.api.ex.ProcessException;
 import org.edorasframework.process.api.session.ProcessSession;
 
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallback;
-
 /**
  * <a href="WorkflowInstanceDao.java.html"><b><i>View Source</i></b></a>
  *
@@ -84,51 +81,40 @@ public class WorkflowInstanceDao
 	}
 
 	public List<? extends MutableProcessInstance> loadOpenInstances() {
-		TransactionCallback transactionCallback = new TransactionCallback() {
+		try {
+			List<WorkflowInstance> workflowInstances =
+				WorkflowInstanceUtil.findByFinished(false);
 
-			public Object doInTransaction(TransactionStatus transactionStatus) {
-				try {
-					List<WorkflowInstance> workflowInstances =
-						WorkflowInstanceUtil.findByFinished(false);
-
-					return WorkflowEntityBridgeUtil.wrapWorkflowInstances(
-						workflowInstances, null, true);
-				}
-				catch (Exception e) {
-					throw new ProcessException(e.getMessage(), e);
-				}
-			}
-
-		};
-
-		return (List<? extends MutableProcessInstance>)
-			getTxTemplateReadOnly().execute(transactionCallback);
+			return (List<? extends MutableProcessInstance>) WorkflowEntityBridgeUtil.wrapWorkflowInstances(
+				workflowInstances, null, true);
+		}
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
+		}
 	}
 
 	public <T extends ProcessInstance> T loadProcessInstance(
 		final long primaryKey) {
+		
+		return (T) loadProcessInstance(primaryKey, true);
+	}
 
-		TransactionCallback transactionCallback = new TransactionCallback() {
+	public <T extends ProcessInstance> T loadProcessInstance(
+		long primaryKey, boolean includeChildren) {
 
-			public Object doInTransaction(TransactionStatus transactionStatus) {
-				try {
-					WorkflowInstance workflowInstance =
-						WorkflowInstanceUtil.findByPrimaryKey(primaryKey);
+		try {
+			WorkflowInstance workflowInstance =
+				WorkflowInstanceUtil.findByPrimaryKey(primaryKey);
 
-					return new WorkflowInstanceBridge(
-						workflowInstance, null, true);
-				}
-				catch (NoSuchWorkflowInstanceException nswie) {
-					return null;
-				}
-				catch (Exception e) {
-					throw new ProcessException(e.getMessage(), e);
-				}
-			}
-
-		};
-
-		return (T)getTxTemplateReadOnly().execute(transactionCallback);
+			return (T) new WorkflowInstanceBridge(
+				workflowInstance, null, includeChildren);
+		}
+		catch (NoSuchWorkflowInstanceException nswie) {
+			return null;
+		}
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
+		}
 	}
 
 	public <T extends ProcessInstance> T loadProcessInstance(
@@ -147,25 +133,16 @@ public class WorkflowInstanceDao
 	public List<? extends MutableProcessInstance> loadProcessInstances(
 		final String relationType, final Long relationId) {
 
-		TransactionCallback transactionCallback = new TransactionCallback() {
+		try {
+			List<WorkflowInstance> workflowInstances =
+				WorkflowInstanceUtil.findByC_C(relationType, relationId);
 
-			public Object doInTransaction(TransactionStatus transactionStatus) {
-				try {
-					List<WorkflowInstance> workflowInstances =
-						WorkflowInstanceUtil.findByC_C(
-							relationType, relationId);
-
-					return WorkflowEntityBridgeUtil.wrapWorkflowInstances(
-						workflowInstances, null, true);
-				}
-				catch (Exception e) {
-					throw new ProcessException(e.getMessage(), e);
-				}
-			}
-		};
-
-		return (List<? extends MutableProcessInstance>)
-			getTxTemplateReadOnly().execute(transactionCallback);
+			return (List<? extends MutableProcessInstance>) WorkflowEntityBridgeUtil.wrapWorkflowInstances(
+				workflowInstances, null, true);
+		}
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
+		}
 	}
 
 	public <T> T merge(T workflowEntityBridge) {

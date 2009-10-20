@@ -23,10 +23,14 @@
 package com.liferay.portal.workflow.edoras;
 
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
+import com.liferay.portal.kernel.workflow.WorkflowInstanceHistory;
 import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portal.workflow.edoras.model.WorkflowLog;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.edorasframework.process.api.entity.ProcessInstance;
 
 /**
  * <a href="WorkflowManagerUtil.java.html"><b><i>View Source</i></b></a>
@@ -41,6 +45,22 @@ public class WorkflowManagerUtil {
 		}
 
 		return tenantId.longValue();
+	}
+	
+	public static List<ProcessInstance> getFlatProcessInstanceList(
+		ProcessInstance processInstance, List<ProcessInstance> processInstances) {
+
+		if (processInstances == null) {
+			processInstances = new ArrayList<ProcessInstance>();
+		}
+
+		processInstances.add(processInstance);
+		List<ProcessInstance> children = processInstance.getChildren();
+		for (ProcessInstance child : children) {
+			getFlatProcessInstanceList(child, processInstances);
+		}
+
+		return processInstances;
 	}
 
 	public static Long getTenantId(long companyId) {
@@ -66,6 +86,19 @@ public class WorkflowManagerUtil {
 		}
 
 		return wrappedDefinitions;
+	}
+	
+	public static List<WorkflowInstanceHistory> wrapWorkflowHistory(
+		List<WorkflowLog> workflowLogs) {
+		
+		List<WorkflowInstanceHistory> history =
+			new ArrayList<WorkflowInstanceHistory>(workflowLogs.size());
+		
+		for (WorkflowLog workflowLog : workflowLogs) {
+			history.add(new WorkflowInstanceHistoryImpl(workflowLog));
+		}
+
+		return history;
 	}
 
 }

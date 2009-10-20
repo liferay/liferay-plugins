@@ -37,6 +37,9 @@ import java.util.Map;
  */
 public class WorkflowDefinitionImpl implements WorkflowDefinition {
 
+	public WorkflowDefinitionImpl() {
+	}
+
 	public WorkflowDefinitionImpl(
 		com.liferay.portal.workflow.edoras.model.WorkflowDefinition
 		workflowDefinition) {

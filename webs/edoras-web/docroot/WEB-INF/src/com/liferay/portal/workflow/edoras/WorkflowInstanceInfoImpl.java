@@ -28,6 +28,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.edorasframework.process.api.entity.ProcessInstance;
+
 /**
  * <a href="WorkflowInstanceInfoImpl.java.html"><b><i>View Source</i></b></a>
  *
@@ -35,6 +37,14 @@ import java.util.Map;
  * @author Brian Wing Shun Chan
  */
 public class WorkflowInstanceInfoImpl implements WorkflowInstanceInfo {
+	
+	public WorkflowInstanceInfoImpl() {
+	}
+
+	public WorkflowInstanceInfoImpl(
+		ProcessInstance processInstance) {
+		
+	}
 
 	public List<WorkflowInstanceInfo> getChildren() {
 		return _children;

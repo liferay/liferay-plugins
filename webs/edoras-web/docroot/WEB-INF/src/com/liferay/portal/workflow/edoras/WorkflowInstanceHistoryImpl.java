@@ -23,10 +23,13 @@
 package com.liferay.portal.workflow.edoras;
 
 import com.liferay.portal.kernel.workflow.WorkflowInstanceHistory;
+import com.liferay.portal.workflow.edoras.model.WorkflowLog;
 
 import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
+
+import org.edorasframework.process.api.log.ProcessLogType;
 
 /**
  * <a href="WorkflowInstanceHistoryImpl.java.html"><b><i>View Source</i></b></a>
@@ -35,6 +38,19 @@ import java.util.Map;
  * @author Brian Wing Shun Chan
  */
 public class WorkflowInstanceHistoryImpl implements WorkflowInstanceHistory {
+
+	public WorkflowInstanceHistoryImpl() {
+	}
+
+	public WorkflowInstanceHistoryImpl(WorkflowLog workflowLog) {
+		_createDate = workflowLog.getCreateDate();
+		_description = workflowLog.getDescription();
+		_historyEntryId = workflowLog.getPrimaryKey();
+		_type =
+			ProcessLogType.getLogType(workflowLog.getLogEntityType()).name();
+		_userId = workflowLog.getUserId();
+		_workflowInstanceId = workflowLog.getWorkflowInstanceId();
+	}
 
 	public Map<String, Object> getAttributes() {
 		return Collections.EMPTY_MAP;

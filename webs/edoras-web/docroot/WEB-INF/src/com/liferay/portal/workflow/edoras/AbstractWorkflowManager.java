@@ -24,7 +24,10 @@ package com.liferay.portal.workflow.edoras;
 
 import com.liferay.portal.workflow.edoras.dao.model.WorkflowEntityBridgeUtil;
 
+import org.edorasframework.process.api.ProcessSystemUtil;
 import org.edorasframework.process.api.setup.Default;
+import org.edorasframework.process.api.setup.ProcessSetup;
+
 
 /**
  * <a href="AbstractWorkflowManager.java.html"><b><i>View Source</i></b></a>
@@ -40,7 +43,15 @@ public class AbstractWorkflowManager {
 
 		return _defaultSetupId;
 	}
-
+	
+	public ProcessSetup getSetup() {
+		return ProcessSystemUtil.getSetup(getDefaultSetupId());
+	}
+	
+	public boolean isUseDataTransferObjects() {
+		return _useDataTransferObjects;
+	}
+	
 	public void setDefaultSetupId(Class<?> defaultSetupId) {
 		_defaultSetupId = defaultSetupId;
 	}
@@ -49,7 +60,11 @@ public class AbstractWorkflowManager {
 		_defaultSetupId = WorkflowEntityBridgeUtil.getSetupClassForName(
 			setupIdName);
 	}
-
+	
+	public void setUseDataTransferObjects(boolean useDataTransferObjects) {
+		_useDataTransferObjects = useDataTransferObjects;
+	}
+	
 	private Class<?> _defaultSetupId;
-
+	private boolean _useDataTransferObjects;
 }
