@@ -74,9 +74,7 @@
 	</bean>
 	<bean id="portalTransactionManager" class="com.liferay.portal.workflow.edoras.dao.tx.TransactionManagerClp" />
 
-	<!--
-	Use AOP to instrument the DAOs by a transaction template managed by Spring.
-	-->
+	<!-- Transaction management -->
 
 	<tx:advice id="transactionAdvice" transaction-manager="portalTransactionManager">
 		<tx:attributes>

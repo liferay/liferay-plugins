@@ -20,7 +20,7 @@
 	<bean id="workflowInstanceManager" class="com.liferay.portal.workflow.edoras.WorkflowInstanceManagerImpl" parent="abstractManager" />
 	<bean id="workflowTaskManager" class="com.liferay.portal.workflow.edoras.TaskInstanceManagerImpl" parent="abstractManager" />
 
-	<!-- Transaction -->
+	<!-- Transaction management -->
 
 	<tx:advice id="transactionAdvice" transaction-manager="portalTransactionManager">
 		<tx:attributes>
