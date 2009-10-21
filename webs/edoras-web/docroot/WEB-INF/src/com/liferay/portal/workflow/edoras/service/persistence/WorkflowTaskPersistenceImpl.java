@@ -76,6 +76,36 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl
 	public static final FinderPath FINDER_PATH_COUNT_BY_WORKFLOWINSTANCEID = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByWorkflowInstanceId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_USERID = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByUserId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_USERID = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByUserId",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByUserId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_ROLEID = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByRoleId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_ROLEID = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByRoleId",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_ROLEID = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByRoleId", new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_COMPLETED = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByCompleted", new String[] { Boolean.class.getName() });
@@ -107,6 +137,57 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByC_C",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_W_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByW_C",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_W_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByW_C",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_W_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByW_C",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_U_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByU_C",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_U_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByU_C",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_U_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByU_C",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_R_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByR_C",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_R_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByR_C",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_R_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByR_C",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_W_S = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
@@ -621,6 +702,493 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(workflowInstanceId);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					workflowTask);
+
+			WorkflowTask[] array = new WorkflowTaskImpl[3];
+
+			array[0] = (WorkflowTask)objArray[0];
+			array[1] = (WorkflowTask)objArray[1];
+			array[2] = (WorkflowTask)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<WorkflowTask> findByUserId(long assigneeUserId)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(assigneeUserId) };
+
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_USERID,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.assigneeUserId = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(assigneeUserId);
+
+				list = q.list();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowTask>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_USERID,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public List<WorkflowTask> findByUserId(long assigneeUserId, int start,
+		int end) throws SystemException {
+		return findByUserId(assigneeUserId, start, end, null);
+	}
+
+	public List<WorkflowTask> findByUserId(long assigneeUserId, int start,
+		int end, OrderByComparator obc) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(assigneeUserId),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_USERID,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.assigneeUserId = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("workflowTask.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(assigneeUserId);
+
+				list = (List<WorkflowTask>)QueryUtil.list(q, getDialect(),
+						start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowTask>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_USERID,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public WorkflowTask findByUserId_First(long assigneeUserId,
+		OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		List<WorkflowTask> list = findByUserId(assigneeUserId, 0, 1, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowTask exists with the key {");
+
+			msg.append("assigneeUserId=" + assigneeUserId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowTaskException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowTask findByUserId_Last(long assigneeUserId,
+		OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		int count = countByUserId(assigneeUserId);
+
+		List<WorkflowTask> list = findByUserId(assigneeUserId, count - 1,
+				count, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowTask exists with the key {");
+
+			msg.append("assigneeUserId=" + assigneeUserId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowTaskException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowTask[] findByUserId_PrevAndNext(long workflowTaskId,
+		long assigneeUserId, OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		WorkflowTask workflowTask = findByPrimaryKey(workflowTaskId);
+
+		int count = countByUserId(assigneeUserId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append(
+				"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+			query.append("workflowTask.assigneeUserId = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("workflowTask.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(assigneeUserId);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					workflowTask);
+
+			WorkflowTask[] array = new WorkflowTaskImpl[3];
+
+			array[0] = (WorkflowTask)objArray[0];
+			array[1] = (WorkflowTask)objArray[1];
+			array[2] = (WorkflowTask)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<WorkflowTask> findByRoleId(long roleId)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(roleId) };
+
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ROLEID,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.roleId = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(roleId);
+
+				list = q.list();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowTask>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ROLEID,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public List<WorkflowTask> findByRoleId(long roleId, int start, int end)
+		throws SystemException {
+		return findByRoleId(roleId, start, end, null);
+	}
+
+	public List<WorkflowTask> findByRoleId(long roleId, int start, int end,
+		OrderByComparator obc) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(roleId),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ROLEID,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.roleId = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("workflowTask.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(roleId);
+
+				list = (List<WorkflowTask>)QueryUtil.list(q, getDialect(),
+						start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowTask>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_ROLEID,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public WorkflowTask findByRoleId_First(long roleId, OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		List<WorkflowTask> list = findByRoleId(roleId, 0, 1, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowTask exists with the key {");
+
+			msg.append("roleId=" + roleId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowTaskException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowTask findByRoleId_Last(long roleId, OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		int count = countByRoleId(roleId);
+
+		List<WorkflowTask> list = findByRoleId(roleId, count - 1, count, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowTask exists with the key {");
+
+			msg.append("roleId=" + roleId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowTaskException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowTask[] findByRoleId_PrevAndNext(long workflowTaskId,
+		long roleId, OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		WorkflowTask workflowTask = findByPrimaryKey(workflowTaskId);
+
+		int count = countByRoleId(roleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append(
+				"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+			query.append("workflowTask.roleId = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("workflowTask.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(roleId);
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
 					workflowTask);
@@ -1157,6 +1725,821 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	public List<WorkflowTask> findByW_C(long workflowInstanceId,
+		boolean completed) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(workflowInstanceId), Boolean.valueOf(completed)
+			};
+
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_W_C,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.workflowInstanceId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowTask.completed = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(workflowInstanceId);
+
+				qPos.add(completed);
+
+				list = q.list();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowTask>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_W_C, finderArgs,
+					list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public List<WorkflowTask> findByW_C(long workflowInstanceId,
+		boolean completed, int start, int end) throws SystemException {
+		return findByW_C(workflowInstanceId, completed, start, end, null);
+	}
+
+	public List<WorkflowTask> findByW_C(long workflowInstanceId,
+		boolean completed, int start, int end, OrderByComparator obc)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(workflowInstanceId), Boolean.valueOf(completed),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_W_C,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.workflowInstanceId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowTask.completed = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("workflowTask.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(workflowInstanceId);
+
+				qPos.add(completed);
+
+				list = (List<WorkflowTask>)QueryUtil.list(q, getDialect(),
+						start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowTask>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_W_C,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public WorkflowTask findByW_C_First(long workflowInstanceId,
+		boolean completed, OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		List<WorkflowTask> list = findByW_C(workflowInstanceId, completed, 0,
+				1, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowTask exists with the key {");
+
+			msg.append("workflowInstanceId=" + workflowInstanceId);
+
+			msg.append(", ");
+			msg.append("completed=" + completed);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowTaskException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowTask findByW_C_Last(long workflowInstanceId,
+		boolean completed, OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		int count = countByW_C(workflowInstanceId, completed);
+
+		List<WorkflowTask> list = findByW_C(workflowInstanceId, completed,
+				count - 1, count, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowTask exists with the key {");
+
+			msg.append("workflowInstanceId=" + workflowInstanceId);
+
+			msg.append(", ");
+			msg.append("completed=" + completed);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowTaskException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowTask[] findByW_C_PrevAndNext(long workflowTaskId,
+		long workflowInstanceId, boolean completed, OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		WorkflowTask workflowTask = findByPrimaryKey(workflowTaskId);
+
+		int count = countByW_C(workflowInstanceId, completed);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append(
+				"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+			query.append("workflowTask.workflowInstanceId = ?");
+
+			query.append(" AND ");
+
+			query.append("workflowTask.completed = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("workflowTask.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(workflowInstanceId);
+
+			qPos.add(completed);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					workflowTask);
+
+			WorkflowTask[] array = new WorkflowTaskImpl[3];
+
+			array[0] = (WorkflowTask)objArray[0];
+			array[1] = (WorkflowTask)objArray[1];
+			array[2] = (WorkflowTask)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<WorkflowTask> findByU_C(long assigneeUserId, boolean completed)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(assigneeUserId), Boolean.valueOf(completed)
+			};
+
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_U_C,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.assigneeUserId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowTask.completed = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(assigneeUserId);
+
+				qPos.add(completed);
+
+				list = q.list();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowTask>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_U_C, finderArgs,
+					list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public List<WorkflowTask> findByU_C(long assigneeUserId, boolean completed,
+		int start, int end) throws SystemException {
+		return findByU_C(assigneeUserId, completed, start, end, null);
+	}
+
+	public List<WorkflowTask> findByU_C(long assigneeUserId, boolean completed,
+		int start, int end, OrderByComparator obc) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(assigneeUserId), Boolean.valueOf(completed),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_U_C,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.assigneeUserId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowTask.completed = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("workflowTask.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(assigneeUserId);
+
+				qPos.add(completed);
+
+				list = (List<WorkflowTask>)QueryUtil.list(q, getDialect(),
+						start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowTask>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_U_C,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public WorkflowTask findByU_C_First(long assigneeUserId, boolean completed,
+		OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		List<WorkflowTask> list = findByU_C(assigneeUserId, completed, 0, 1, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowTask exists with the key {");
+
+			msg.append("assigneeUserId=" + assigneeUserId);
+
+			msg.append(", ");
+			msg.append("completed=" + completed);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowTaskException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowTask findByU_C_Last(long assigneeUserId, boolean completed,
+		OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		int count = countByU_C(assigneeUserId, completed);
+
+		List<WorkflowTask> list = findByU_C(assigneeUserId, completed,
+				count - 1, count, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowTask exists with the key {");
+
+			msg.append("assigneeUserId=" + assigneeUserId);
+
+			msg.append(", ");
+			msg.append("completed=" + completed);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowTaskException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowTask[] findByU_C_PrevAndNext(long workflowTaskId,
+		long assigneeUserId, boolean completed, OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		WorkflowTask workflowTask = findByPrimaryKey(workflowTaskId);
+
+		int count = countByU_C(assigneeUserId, completed);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append(
+				"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+			query.append("workflowTask.assigneeUserId = ?");
+
+			query.append(" AND ");
+
+			query.append("workflowTask.completed = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("workflowTask.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(assigneeUserId);
+
+			qPos.add(completed);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					workflowTask);
+
+			WorkflowTask[] array = new WorkflowTaskImpl[3];
+
+			array[0] = (WorkflowTask)objArray[0];
+			array[1] = (WorkflowTask)objArray[1];
+			array[2] = (WorkflowTask)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<WorkflowTask> findByR_C(long roleId, boolean completed)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(roleId), Boolean.valueOf(completed)
+			};
+
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_C,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.roleId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowTask.completed = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(roleId);
+
+				qPos.add(completed);
+
+				list = q.list();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowTask>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_C, finderArgs,
+					list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public List<WorkflowTask> findByR_C(long roleId, boolean completed,
+		int start, int end) throws SystemException {
+		return findByR_C(roleId, completed, start, end, null);
+	}
+
+	public List<WorkflowTask> findByR_C(long roleId, boolean completed,
+		int start, int end, OrderByComparator obc) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(roleId), Boolean.valueOf(completed),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_R_C,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.roleId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowTask.completed = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+
+					String[] orderByFields = obc.getOrderByFields();
+
+					for (int i = 0; i < orderByFields.length; i++) {
+						query.append("workflowTask.");
+						query.append(orderByFields[i]);
+
+						if (obc.isAscending()) {
+							query.append(" ASC");
+						}
+						else {
+							query.append(" DESC");
+						}
+
+						if ((i + 1) < orderByFields.length) {
+							query.append(", ");
+						}
+					}
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(roleId);
+
+				qPos.add(completed);
+
+				list = (List<WorkflowTask>)QueryUtil.list(q, getDialect(),
+						start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<WorkflowTask>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_R_C,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public WorkflowTask findByR_C_First(long roleId, boolean completed,
+		OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		List<WorkflowTask> list = findByR_C(roleId, completed, 0, 1, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowTask exists with the key {");
+
+			msg.append("roleId=" + roleId);
+
+			msg.append(", ");
+			msg.append("completed=" + completed);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowTaskException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowTask findByR_C_Last(long roleId, boolean completed,
+		OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		int count = countByR_C(roleId, completed);
+
+		List<WorkflowTask> list = findByR_C(roleId, completed, count - 1,
+				count, obc);
+
+		if (list.isEmpty()) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No WorkflowTask exists with the key {");
+
+			msg.append("roleId=" + roleId);
+
+			msg.append(", ");
+			msg.append("completed=" + completed);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWorkflowTaskException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WorkflowTask[] findByR_C_PrevAndNext(long workflowTaskId,
+		long roleId, boolean completed, OrderByComparator obc)
+		throws NoSuchWorkflowTaskException, SystemException {
+		WorkflowTask workflowTask = findByPrimaryKey(workflowTaskId);
+
+		int count = countByR_C(roleId, completed);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append(
+				"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
+
+			query.append("workflowTask.roleId = ?");
+
+			query.append(" AND ");
+
+			query.append("workflowTask.completed = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+
+				String[] orderByFields = obc.getOrderByFields();
+
+				for (int i = 0; i < orderByFields.length; i++) {
+					query.append("workflowTask.");
+					query.append(orderByFields[i]);
+
+					if (obc.isAscending()) {
+						query.append(" ASC");
+					}
+					else {
+						query.append(" DESC");
+					}
+
+					if ((i + 1) < orderByFields.length) {
+						query.append(", ");
+					}
+				}
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(roleId);
+
+			qPos.add(completed);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					workflowTask);
+
+			WorkflowTask[] array = new WorkflowTaskImpl[3];
+
+			array[0] = (WorkflowTask)objArray[0];
+			array[1] = (WorkflowTask)objArray[1];
+			array[2] = (WorkflowTask)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
 	public List<WorkflowTask> findByW_S(long workflowInstanceId, int state)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -1559,6 +2942,18 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	public void removeByUserId(long assigneeUserId) throws SystemException {
+		for (WorkflowTask workflowTask : findByUserId(assigneeUserId)) {
+			remove(workflowTask);
+		}
+	}
+
+	public void removeByRoleId(long roleId) throws SystemException {
+		for (WorkflowTask workflowTask : findByRoleId(roleId)) {
+			remove(workflowTask);
+		}
+	}
+
 	public void removeByCompleted(boolean completed) throws SystemException {
 		for (WorkflowTask workflowTask : findByCompleted(completed)) {
 			remove(workflowTask);
@@ -1568,6 +2963,27 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl
 	public void removeByC_C(long companyId, boolean completed)
 		throws SystemException {
 		for (WorkflowTask workflowTask : findByC_C(companyId, completed)) {
+			remove(workflowTask);
+		}
+	}
+
+	public void removeByW_C(long workflowInstanceId, boolean completed)
+		throws SystemException {
+		for (WorkflowTask workflowTask : findByW_C(workflowInstanceId, completed)) {
+			remove(workflowTask);
+		}
+	}
+
+	public void removeByU_C(long assigneeUserId, boolean completed)
+		throws SystemException {
+		for (WorkflowTask workflowTask : findByU_C(assigneeUserId, completed)) {
+			remove(workflowTask);
+		}
+	}
+
+	public void removeByR_C(long roleId, boolean completed)
+		throws SystemException {
+		for (WorkflowTask workflowTask : findByR_C(roleId, completed)) {
 			remove(workflowTask);
 		}
 	}
@@ -1624,6 +3040,100 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_WORKFLOWINSTANCEID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public int countByUserId(long assigneeUserId) throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(assigneeUserId) };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_USERID,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(workflowTask) ");
+				query.append("FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.assigneeUserId = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(assigneeUserId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public int countByRoleId(long roleId) throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(roleId) };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ROLEID,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(workflowTask) ");
+				query.append("FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.roleId = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(roleId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ROLEID,
 					finderArgs, count);
 
 				closeSession(session);
@@ -1727,6 +3237,174 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_C, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public int countByW_C(long workflowInstanceId, boolean completed)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(workflowInstanceId), Boolean.valueOf(completed)
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_W_C,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(workflowTask) ");
+				query.append("FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.workflowInstanceId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowTask.completed = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(workflowInstanceId);
+
+				qPos.add(completed);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_W_C, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public int countByU_C(long assigneeUserId, boolean completed)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(assigneeUserId), Boolean.valueOf(completed)
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_U_C,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(workflowTask) ");
+				query.append("FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.assigneeUserId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowTask.completed = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(assigneeUserId);
+
+				qPos.add(completed);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_C, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public int countByR_C(long roleId, boolean completed)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(roleId), Boolean.valueOf(completed)
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_C,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(workflowTask) ");
+				query.append("FROM WorkflowTask workflowTask WHERE ");
+
+				query.append("workflowTask.roleId = ?");
+
+				query.append(" AND ");
+
+				query.append("workflowTask.completed = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(roleId);
+
+				qPos.add(completed);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_C, finderArgs,
 					count);
 
 				closeSession(session);

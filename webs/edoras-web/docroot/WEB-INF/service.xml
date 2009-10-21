@@ -255,11 +255,29 @@
 		<finder name="WorkflowInstanceId" return-type="Collection">
 			<finder-column name="workflowInstanceId" />
 		</finder>
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="assigneeUserId" />
+		</finder>
+		<finder name="RoleId" return-type="Collection">
+			<finder-column name="roleId" />
+		</finder>
 		<finder name="Completed" return-type="Collection">
 			<finder-column name="completed" />
 		</finder>
 		<finder name="C_C" return-type="Collection">
 			<finder-column name="companyId" />
+			<finder-column name="completed" />
+		</finder>
+		<finder name="W_C" return-type="Collection">
+			<finder-column name="workflowInstanceId" />
+			<finder-column name="completed" />
+		</finder>
+		<finder name="U_C" return-type="Collection">
+			<finder-column name="assigneeUserId" />
+			<finder-column name="completed" />
+		</finder>
+		<finder name="R_C" return-type="Collection">
+			<finder-column name="roleId" />
 			<finder-column name="completed" />
 		</finder>
 		<finder name="W_S" return-type="Collection">

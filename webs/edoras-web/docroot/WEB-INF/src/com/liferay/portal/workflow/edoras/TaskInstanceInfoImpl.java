@@ -22,11 +22,13 @@
 
 package com.liferay.portal.workflow.edoras;
 
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.TaskInstanceInfo;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
+
+import org.edorasframework.process.workflow.api.WorkflowTask;
 
 /**
  * <a href="TaskInstanceInfoImpl.java.html"><b><i>View Source</i></b></a>
@@ -36,6 +38,29 @@ import java.util.Map;
  */
 public class TaskInstanceInfoImpl implements TaskInstanceInfo {
 
+	public TaskInstanceInfoImpl() {
+
+	}
+
+	public TaskInstanceInfoImpl(WorkflowTask workflowTask) {
+		_assignRoleId =
+			WorkflowManagerUtil.getPrimaryKey(workflowTask.getAssignedRoleId());
+		_assignUserId =
+			WorkflowManagerUtil.getPrimaryKey(workflowTask.getAssignedUserId());
+		_asynchronous = workflowTask.getMetaData().isAsync();
+		_attributes = Collections.emptyMap();
+		_completionDate = workflowTask.getCompletionDate();
+		_createDate = workflowTask.getCreationDate();
+		_description = workflowTask.getMetaData().getDescription();
+		_dueDate = workflowTask.getDueDate();
+		_taskInstanceId = workflowTask.getPrimaryKey();
+		_taskMetaId = workflowTask.getMetaData().getName();
+		_taskName = workflowTask.getMetaData().getLabel();
+		_workflowDefinitionName = workflowTask.getProcessModelId();
+		_workflowDefinitionVersion = workflowTask.getProcessModelVersion();
+		_workflowInstanceId = workflowTask.getProcessInstance().getPrimaryKey();
+	}
+	
 	public long getAssignedRoleId() {
 		return _assignRoleId;
 	}
@@ -69,7 +94,7 @@ public class TaskInstanceInfoImpl implements TaskInstanceInfo {
 	}
 
 	public String getTaskMetaId() {
-		return _TASK_META_ID;
+		return _taskMetaId;
 	}
 
 	public String getTaskName() {
@@ -101,8 +126,6 @@ public class TaskInstanceInfoImpl implements TaskInstanceInfo {
 		}
 	}
 
-	private static final String _TASK_META_ID = StringPool.BLANK;
-
 	private long _assignRoleId;
 	private long _assignUserId;
 	private boolean _asynchronous;
@@ -112,6 +135,7 @@ public class TaskInstanceInfoImpl implements TaskInstanceInfo {
 	private String _description;
 	private Date _dueDate;
 	private long _taskInstanceId;
+	private String _taskMetaId;
 	private String _taskName;
 	private String _workflowDefinitionName;
 	private int _workflowDefinitionVersion;

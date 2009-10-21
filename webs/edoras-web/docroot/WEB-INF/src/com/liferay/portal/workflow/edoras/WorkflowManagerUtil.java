@@ -68,6 +68,14 @@ public class WorkflowManagerUtil {
 
 		return processInstances;
 	}
+	
+	public static long getPrimaryKey(Long primaryKey) {
+		if (primaryKey == null) {
+			return 0;
+		}
+
+		return primaryKey.longValue();
+	}
 
 	public static Long getTenantId(long companyId) {
 		if (companyId == CompanyConstants.SYSTEM) {

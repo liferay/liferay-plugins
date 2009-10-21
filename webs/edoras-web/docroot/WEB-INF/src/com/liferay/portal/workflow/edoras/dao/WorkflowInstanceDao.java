@@ -22,8 +22,17 @@
 
 package com.liferay.portal.workflow.edoras.dao;
 
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.service.persistence.BasePersistenceManagerUtil;
+import com.liferay.portal.service.persistence.ModelIdentity;
 import com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
+import com.liferay.portal.workflow.edoras.dao.identity.AbstractServiceBuilderObjectIdentity;
+import com.liferay.portal.workflow.edoras.dao.identity.ServiceBuilderObjectIdentity;
+import com.liferay.portal.workflow.edoras.dao.identity.ServiceBuilderObjectIdentityLong;
 import com.liferay.portal.workflow.edoras.dao.model.WorkflowEntityBridgeUtil;
 import com.liferay.portal.workflow.edoras.dao.model.WorkflowInstanceBridge;
 import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
@@ -31,12 +40,15 @@ import com.liferay.portal.workflow.edoras.service.persistence.WorkflowInstanceUt
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.edorasframework.process.api.dao.ObjectIdentity;
 import org.edorasframework.process.api.dao.ProcessDao;
 import org.edorasframework.process.api.entity.MutableProcessInstance;
 import org.edorasframework.process.api.entity.ProcessInstance;
 import org.edorasframework.process.api.ex.ProcessException;
 import org.edorasframework.process.api.session.ProcessSession;
+import org.edorasframework.xmlpersister.impl.DefaultXmlPersister;
 
 /**
  * <a href="WorkflowInstanceDao.java.html"><b><i>View Source</i></b></a>
@@ -70,14 +82,37 @@ public class WorkflowInstanceDao
 	public <T> T find(T workflowEntityBridge, Object identity) {
 		return (T)loadProcessInstance((Long)identity);
 	}
+	
+	@PostConstruct
+	public void initialize() {
+		DefaultXmlPersister.registerPersistableClass(ServiceBuilderObjectIdentityLong.class);
+		DefaultXmlPersister.registerPersistableClass(ServiceBuilderObjectIdentity.class);
+	}
 
+	@SuppressWarnings("unchecked")
 	public <T> T loadAttribute(
 		MutableProcessInstance mutableProcessInstance,
 		ObjectIdentity objectIdentity, String attributeName) {
 
-		// TODO
+		AbstractServiceBuilderObjectIdentity identity =
+			(AbstractServiceBuilderObjectIdentity) objectIdentity;
 
-		return null;
+		try {
+			BaseModel attribute =
+				BasePersistenceManagerUtil.findByIdentity(identity.getModelIdentity());
+			
+			return (T) attribute;
+		}
+		catch (NoSuchModelException nsme) {
+			_log.warn("Could not find referenced workflow attribute, "
+				+ "it was silently ignored",
+				nsme);
+			
+			return null;
+		}
+		catch (SystemException se) {
+			throw new ProcessException(se.getMessage(), se);
+		}
 	}
 
 	public List<? extends MutableProcessInstance> loadOpenInstances() {
@@ -158,13 +193,35 @@ public class WorkflowInstanceDao
 		return workflowEntityBridge;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ObjectIdentity persistAttribute(
 		Object attribute, MutableProcessInstance mutableProcessInstance,
 		String attributeName) {
 
-		// TODO
-
-		return null;
+		if (!(attribute instanceof BaseModel)) {
+			return null;
+		}
+			
+		try {
+			BasePersistenceManagerUtil.update((BaseModel) attribute, true);
+			
+			ModelIdentity modelIdentity =
+				BasePersistenceManagerUtil.getIdentity((BaseModel) attribute);
+			
+			if (modelIdentity.getPrimaryKey() instanceof Long) {
+				return new ServiceBuilderObjectIdentityLong(
+					modelIdentity, attributeName, attribute);
+			}
+			else {
+				return new ServiceBuilderObjectIdentity(
+					modelIdentity, attributeName, attribute);
+			}
+		}
+		catch (SystemException se) {
+			throw new ProcessException(
+				"Could not persist entity through service builder",
+			se);
+		}
 	}
 
 	public <T> void refresh(T workflowEntityBridge) {
@@ -218,4 +275,5 @@ public class WorkflowInstanceDao
 		WorkflowInstanceUtil.update(workflowInstanceBridge.unwrap());
 	}
 
+	private static Log _log = LogFactoryUtil.getLog(WorkflowInstanceDao.class);
 }

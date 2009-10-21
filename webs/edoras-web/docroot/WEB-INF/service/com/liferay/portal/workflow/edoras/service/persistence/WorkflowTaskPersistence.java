@@ -100,6 +100,64 @@ public interface WorkflowTaskPersistence extends BasePersistence {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
 
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByUserId(
+		long assigneeUserId) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByUserId(
+		long assigneeUserId, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByUserId(
+		long assigneeUserId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask findByUserId_First(
+		long assigneeUserId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask findByUserId_Last(
+		long assigneeUserId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask[] findByUserId_PrevAndNext(
+		long workflowTaskId, long assigneeUserId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByRoleId(
+		long roleId) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByRoleId(
+		long roleId, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByRoleId(
+		long roleId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask findByRoleId_First(
+		long roleId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask findByRoleId_Last(
+		long roleId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask[] findByRoleId_PrevAndNext(
+		long workflowTaskId, long roleId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
+
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByCompleted(
 		boolean completed) throws com.liferay.portal.SystemException;
 
@@ -159,6 +217,99 @@ public interface WorkflowTaskPersistence extends BasePersistence {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
 
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByW_C(
+		long workflowInstanceId, boolean completed)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByW_C(
+		long workflowInstanceId, boolean completed, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByW_C(
+		long workflowInstanceId, boolean completed, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask findByW_C_First(
+		long workflowInstanceId, boolean completed,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask findByW_C_Last(
+		long workflowInstanceId, boolean completed,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask[] findByW_C_PrevAndNext(
+		long workflowTaskId, long workflowInstanceId, boolean completed,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByU_C(
+		long assigneeUserId, boolean completed)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByU_C(
+		long assigneeUserId, boolean completed, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByU_C(
+		long assigneeUserId, boolean completed, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask findByU_C_First(
+		long assigneeUserId, boolean completed,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask findByU_C_Last(
+		long assigneeUserId, boolean completed,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask[] findByU_C_PrevAndNext(
+		long workflowTaskId, long assigneeUserId, boolean completed,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByR_C(
+		long roleId, boolean completed)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByR_C(
+		long roleId, boolean completed, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByR_C(
+		long roleId, boolean completed, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask findByR_C_First(
+		long roleId, boolean completed,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask findByR_C_Last(
+		long roleId, boolean completed,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
+
+	public com.liferay.portal.workflow.edoras.model.WorkflowTask[] findByR_C_PrevAndNext(
+		long workflowTaskId, long roleId, boolean completed,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.workflow.edoras.NoSuchWorkflowTaskException;
+
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowTask> findByW_S(
 		long workflowInstanceId, int state)
 		throws com.liferay.portal.SystemException;
@@ -211,10 +362,25 @@ public interface WorkflowTaskPersistence extends BasePersistence {
 	public void removeByWorkflowInstanceId(long workflowInstanceId)
 		throws com.liferay.portal.SystemException;
 
+	public void removeByUserId(long assigneeUserId)
+		throws com.liferay.portal.SystemException;
+
+	public void removeByRoleId(long roleId)
+		throws com.liferay.portal.SystemException;
+
 	public void removeByCompleted(boolean completed)
 		throws com.liferay.portal.SystemException;
 
 	public void removeByC_C(long companyId, boolean completed)
+		throws com.liferay.portal.SystemException;
+
+	public void removeByW_C(long workflowInstanceId, boolean completed)
+		throws com.liferay.portal.SystemException;
+
+	public void removeByU_C(long assigneeUserId, boolean completed)
+		throws com.liferay.portal.SystemException;
+
+	public void removeByR_C(long roleId, boolean completed)
 		throws com.liferay.portal.SystemException;
 
 	public void removeByW_S(long workflowInstanceId, int state)
@@ -225,10 +391,25 @@ public interface WorkflowTaskPersistence extends BasePersistence {
 	public int countByWorkflowInstanceId(long workflowInstanceId)
 		throws com.liferay.portal.SystemException;
 
+	public int countByUserId(long assigneeUserId)
+		throws com.liferay.portal.SystemException;
+
+	public int countByRoleId(long roleId)
+		throws com.liferay.portal.SystemException;
+
 	public int countByCompleted(boolean completed)
 		throws com.liferay.portal.SystemException;
 
 	public int countByC_C(long companyId, boolean completed)
+		throws com.liferay.portal.SystemException;
+
+	public int countByW_C(long workflowInstanceId, boolean completed)
+		throws com.liferay.portal.SystemException;
+
+	public int countByU_C(long assigneeUserId, boolean completed)
+		throws com.liferay.portal.SystemException;
+
+	public int countByR_C(long roleId, boolean completed)
 		throws com.liferay.portal.SystemException;
 
 	public int countByW_S(long workflowInstanceId, int state)
