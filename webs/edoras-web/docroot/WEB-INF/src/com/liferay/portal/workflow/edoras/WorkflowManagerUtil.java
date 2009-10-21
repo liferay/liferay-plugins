@@ -135,27 +135,29 @@ public class WorkflowManagerUtil {
 	public static List<WorkflowInstanceInfo> wrapWorkflowInstances(
 		List<WorkflowInstance> workflowInstances, boolean includeChildren) {
 
-		List<WorkflowInstanceInfo> wrappedWorkflowInstances =
+		List<WorkflowInstanceInfo> workflowInstanceInfos =
 			new ArrayList<WorkflowInstanceInfo>(workflowInstances.size());
 
 		for (WorkflowInstance workflowInstance : workflowInstances) {
-			wrappedWorkflowInstances.add(
+			workflowInstanceInfos.add(
 				new WorkflowInstanceInfoImpl(
 					workflowInstance, includeChildren));
 		}
 
-		return wrappedWorkflowInstances;
+		return workflowInstanceInfos;
 	}
 
 	public static List<TaskInstanceInfo> wrapWorkflowTasks(
 		List<WorkflowTask> workflowTasks) {
-		List<TaskInstanceInfo> wrappedWorkflowTasks =
+
+		List<TaskInstanceInfo> taskInstanceInfos =
 			new ArrayList<TaskInstanceInfo>(workflowTasks.size());
 
 		for (WorkflowTask workflowTask : workflowTasks) {
-			wrappedWorkflowTasks.add(new TaskInstanceInfoImpl(workflowTask));
+			taskInstanceInfos.add(new TaskInstanceInfoImpl(workflowTask));
 		}
-		
-		return wrappedWorkflowTasks;
+
+		return taskInstanceInfos;
 	}
+
 }

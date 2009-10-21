@@ -120,6 +120,9 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 		setCompleted(workflowTask.getCompleted());
 		setState(TaskState.getState(workflowTask.getState()));
 		setPriority(TaskPriority.getPriority(workflowTask.getPriority()));
+		//setAsynchronous(workflowTask.isAsynchronous());
+		//setTaskName(workflowTask.getTaskName());
+		//setDescription(workflowTask.getDescription());
 		setAssignedUserId(workflowTask.getAssigneeUserId());
 		setAssignedUser(workflowTask.getAssigneeUserName());
 		setAssignedGroupId(workflowTask.getAssigneeGroupId());
@@ -140,6 +143,10 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 		_workflowTask.setCreateDate(getCreationDate());
 		_workflowTask.setFriendlyId(getTaskId());
 		_workflowTask.setWorkflowDefinitionId(getWorkflowDefinitionId());
+		_workflowTask.setWorkflowDefinitionName(
+			processInstance.getProcessModelId());
+		_workflowTask.setWorkflowDefinitionVersion(
+			processInstance.getProcessModelVersion());
 		_workflowTask.setWorkflowInstanceId(processInstance.getPrimaryKey());
 		_workflowTask.setMetaName(getMetaName());
 		_workflowTask.setRelation(getRelation());
@@ -149,8 +156,8 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 		_workflowTask.setState(getState().getState());
 		_workflowTask.setPriority(getPriority().getPriority());
 		_workflowTask.setAsynchronous(getMetaData().isAsync());
-		_workflowTask.setDescription(getMetaData().getDescription());
 		_workflowTask.setTaskName(getMetaData().getLabel());
+		_workflowTask.setDescription(getMetaData().getDescription());
 		_workflowTask.setAssigneeUserId(getAssignedUserId());
 		_workflowTask.setAssigneeUserName(getAssignee());
 		_workflowTask.setAssigneeGroupId(getAssignedGroupId());

@@ -22,7 +22,6 @@
 
 package com.liferay.portal.workflow.edoras;
 
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.orm.Criterion;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
@@ -63,19 +62,24 @@ public class TaskInstanceManagerImpl
 			Map<String, Object> parameters)
 		throws WorkflowException {
 
-		WorkflowTaskHandler taskHandler =
-			(WorkflowTaskHandler) getSetup().getTaskHandler();
-		
-		MutableWorkflowTask workflowTask = loadWorkflowTask(taskInstanceId);
+		ProcessSetup processSetup = getSetup();
+
+		WorkflowTaskHandler workflowTaskHandler =
+			(WorkflowTaskHandler)processSetup.getTaskHandler();
+
+		MutableWorkflowTask mutableWorkflowTask = loadWorkflowTask(
+			taskInstanceId);
 
 		if (attributes != null) {
-			ProcessInstance processInstance = workflowTask.getProcessInstance();
+			ProcessInstance processInstance =
+				mutableWorkflowTask.getProcessInstance();
+
 			processInstance.getAttributeMap().copyFrom(attributes);
 		}
-		
-		taskHandler.assignTaskToRole(workflowTask, roleId);
-		
-		return new TaskInstanceInfoImpl(workflowTask);
+
+		workflowTaskHandler.assignTaskToRole(mutableWorkflowTask, roleId);
+
+		return new TaskInstanceInfoImpl(mutableWorkflowTask);
 	}
 
 	public TaskInstanceInfo assignTaskInstanceToUser(
@@ -84,19 +88,25 @@ public class TaskInstanceManagerImpl
 			Map<String, Object> parameters)
 		throws WorkflowException {
 
-		WorkflowTaskHandler taskHandler =
-			(WorkflowTaskHandler) getSetup().getTaskHandler();
+		ProcessSetup processSetup = getSetup();
 
-		MutableWorkflowTask workflowTask = loadWorkflowTask(taskInstanceId);
+		WorkflowTaskHandler workflowTaskHandler =
+			(WorkflowTaskHandler)processSetup.getTaskHandler();
+
+		MutableWorkflowTask mutableWorkflowTask = loadWorkflowTask(
+			taskInstanceId);
 
 		if (attributes != null) {
-			ProcessInstance processInstance = workflowTask.getProcessInstance();
+			ProcessInstance processInstance =
+				mutableWorkflowTask.getProcessInstance();
+
 			processInstance.getAttributeMap().copyFrom(attributes);
 		}
-		
-		taskHandler.assignTaskToUser(workflowTask, userCredential.getUserId());
 
-		return new TaskInstanceInfoImpl(workflowTask);
+		workflowTaskHandler.assignTaskToUser(
+			mutableWorkflowTask, userCredential.getUserId());
+
+		return new TaskInstanceInfoImpl(mutableWorkflowTask);
 	}
 
 	public TaskInstanceInfo completeTaskInstance(
@@ -104,19 +114,24 @@ public class TaskInstanceManagerImpl
 			Map<String, Object> attributes, Map<String, Object> parameters)
 		throws WorkflowException {
 
-		WorkflowTaskHandler taskHandler =
-			(WorkflowTaskHandler) getSetup().getTaskHandler();
+		ProcessSetup processSetup = getSetup();
 
-		MutableWorkflowTask workflowTask = loadWorkflowTask(taskInstanceId);
+		WorkflowTaskHandler workflowTaskHandler =
+			(WorkflowTaskHandler)processSetup.getTaskHandler();
+
+		MutableWorkflowTask mutableWorkflowTask = loadWorkflowTask(
+			taskInstanceId);
 
 		if (attributes != null) {
-			ProcessInstance processInstance = workflowTask.getProcessInstance();
+			ProcessInstance processInstance =
+				mutableWorkflowTask.getProcessInstance();
+
 			processInstance.getAttributeMap().copyFrom(attributes);
 		}
-		
-		taskHandler.completeTask(workflowTask);
 
-		return new TaskInstanceInfoImpl(workflowTask);
+		workflowTaskHandler.completeTask(mutableWorkflowTask);
+
+		return new TaskInstanceInfoImpl(mutableWorkflowTask);
 	}
 
 	public TaskInstanceInfo completeTaskInstance(
@@ -125,26 +140,32 @@ public class TaskInstanceManagerImpl
 			Map<String, Object> parameters)
 		throws WorkflowException {
 
-		WorkflowTaskHandler taskHandler =
-			(WorkflowTaskHandler) getSetup().getTaskHandler();
+		ProcessSetup processSetup = getSetup();
 
-		MutableWorkflowTask workflowTask = loadWorkflowTask(taskInstanceId);
+		WorkflowTaskHandler workflowTaskHandler =
+			(WorkflowTaskHandler)processSetup.getTaskHandler();
+
+		MutableWorkflowTask mutableWorkflowTask = loadWorkflowTask(
+			taskInstanceId);
 
 		if (attributes != null) {
-			ProcessInstance processInstance = workflowTask.getProcessInstance();
+			ProcessInstance processInstance =
+				mutableWorkflowTask.getProcessInstance();
+
 			processInstance.getAttributeMap().copyFrom(attributes);
 		}
-		
-		taskHandler.completeTask(workflowTask, pathName);
 
-		return new TaskInstanceInfoImpl(workflowTask);
+		workflowTaskHandler.completeTask(mutableWorkflowTask, pathName);
+
+		return new TaskInstanceInfoImpl(mutableWorkflowTask);
 	}
 
 	public List<String> getPossibleNextPathNames(
 			long taskInstanceId, long userId, Map<String, Object> parameters)
 		throws WorkflowException {
 
-		WorkflowTask workflowTask;
+		WorkflowTask workflowTask = null;
+
 		try {
 			workflowTask = WorkflowTaskUtil.findByPrimaryKey(taskInstanceId);
 		}
@@ -156,9 +177,8 @@ public class TaskInstanceManagerImpl
 
 		ProcessDao processDao = processSetup.getProcessDao();
 
-		ProcessInstance processInstance =
-			processDao.loadProcessInstance(
-				workflowTask.getWorkflowInstanceId(), false);
+		ProcessInstance processInstance = processDao.loadProcessInstance(
+			workflowTask.getWorkflowInstanceId(), false);
 
 		ProcessEngine processEngine = processSetup.getEngine();
 
@@ -169,16 +189,17 @@ public class TaskInstanceManagerImpl
 			UserCredential userCredential)
 		throws WorkflowException {
 
-		DynamicQuery dynamicQuery =
-			createUserCredentialQuery(userCredential, true);
+		DynamicQuery dynamicQuery = getUserCredentialDynamicQuery(
+			userCredential, true);
 
 		try {
-			List<Object> count =
-				WorkflowTaskUtil.findWithDynamicQuery(dynamicQuery);
-			return (Integer) count.get(0);
+			List<Object> count = WorkflowTaskUtil.findWithDynamicQuery(
+				dynamicQuery);
+
+			return (Integer)count.get(0);
 		}
-		catch (SystemException se) {
-			throw new WorkflowException(se.getMessage(), se);
+		catch (Exception e) {
+			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
 
@@ -186,18 +207,19 @@ public class TaskInstanceManagerImpl
 			UserCredential userCredential, boolean completed)
 		throws WorkflowException {
 
-		DynamicQuery dynamicQuery =
-			createUserCredentialQuery(userCredential, true);
+		DynamicQuery dynamicQuery = getUserCredentialDynamicQuery(
+			userCredential, true);
 
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("completed", completed));
 
 		try {
-			List<Object> count =
-				WorkflowTaskUtil.findWithDynamicQuery(dynamicQuery);
-			return (Integer) count.get(0);
+			List<Object> count = WorkflowTaskUtil.findWithDynamicQuery(
+				dynamicQuery);
+
+			return (Integer)count.get(0);
 		}
-		catch (SystemException se) {
-			throw new WorkflowException(se.getMessage(), se);
+		catch (Exception e) {
+			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
 
@@ -205,10 +227,10 @@ public class TaskInstanceManagerImpl
 		throws WorkflowException {
 
 		try {
-			return WorkflowTaskUtil.countByRoleId(roleId);
+			return WorkflowTaskUtil.countByAssigneeRoleId(roleId);
 		}
-		catch (SystemException se) {
-			throw new WorkflowException(se.getMessage(), se);
+		catch (Exception e) {
+			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
 
@@ -216,10 +238,10 @@ public class TaskInstanceManagerImpl
 		throws WorkflowException {
 
 		try {
-			return WorkflowTaskUtil.countByR_C(roleId, completed);
+			return WorkflowTaskUtil.countByARID_C(roleId, completed);
 		}
-		catch (SystemException se) {
-			throw new WorkflowException(se.getMessage(), se);
+		catch (Exception e) {
+			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
 
@@ -229,8 +251,8 @@ public class TaskInstanceManagerImpl
 		try {
 			return WorkflowTaskUtil.countByAssigneeUserId(userId);
 		}
-		catch (SystemException se) {
-			throw new WorkflowException(se.getMessage(), se);
+		catch (Exception e) {
+			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
 
@@ -238,10 +260,10 @@ public class TaskInstanceManagerImpl
 		throws WorkflowException {
 
 		try {
-			return WorkflowTaskUtil.countByA_C(userId, completed);
+			return WorkflowTaskUtil.countByAUID_C(userId, completed);
 		}
-		catch (SystemException se) {
-			throw new WorkflowException(se.getMessage(), se);
+		catch (Exception e) {
+			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
 
@@ -250,10 +272,11 @@ public class TaskInstanceManagerImpl
 		throws WorkflowException {
 
 		try {
-			return WorkflowTaskUtil.countByWorkflowInstanceId(workflowInstanceId);
+			return WorkflowTaskUtil.countByWorkflowInstanceId(
+				workflowInstanceId);
 		}
-		catch (SystemException se) {
-			throw new WorkflowException(se.getMessage(), se);
+		catch (Exception e) {
+			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
 
@@ -264,8 +287,8 @@ public class TaskInstanceManagerImpl
 		try {
 			return WorkflowTaskUtil.countByW_C(workflowInstanceId, completed);
 		}
-		catch (SystemException se) {
-			throw new WorkflowException(se.getMessage(), se);
+		catch (Exception e) {
+			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
 
@@ -275,42 +298,43 @@ public class TaskInstanceManagerImpl
 			int end, OrderByComparator orderByComparator)
 		throws WorkflowException {
 
-		DynamicQuery dynamicQuery =
-			createUserCredentialQuery(userCredential, true);
+		DynamicQuery dynamicQuery = getUserCredentialDynamicQuery(
+			userCredential, true);
 
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("completed", completed));
 
-		applyOrder(dynamicQuery, orderByComparator);
-		
+		addOrder(dynamicQuery, orderByComparator);
+
 		try {
-			List workflowTasks =
-				WorkflowTaskUtil.findWithDynamicQuery(dynamicQuery, start, end);
-			
+			List workflowTasks = WorkflowTaskUtil.findWithDynamicQuery(
+				dynamicQuery, start, end);
+
 			return WorkflowManagerUtil.wrapWorkflowTasks(workflowTasks);
 		}
-		catch (SystemException se) {
-			throw new WorkflowException(se.getMessage(), se);
+		catch (Exception e) {
+			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<TaskInstanceInfo> getTaskInstanceInfosByCredential(
 			UserCredential userCredential, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
-		DynamicQuery dynamicQuery =
-			createUserCredentialQuery(userCredential, true);
+		DynamicQuery dynamicQuery = getUserCredentialDynamicQuery(
+			userCredential, true);
 
-		applyOrder(dynamicQuery, orderByComparator);
+		addOrder(dynamicQuery, orderByComparator);
 
 		try {
-			List workflowTasks =
-				WorkflowTaskUtil.findWithDynamicQuery(dynamicQuery, start, end);
+			List workflowTasks = WorkflowTaskUtil.findWithDynamicQuery(
+				dynamicQuery, start, end);
 
 			return WorkflowManagerUtil.wrapWorkflowTasks(workflowTasks);
 		}
-		catch (SystemException se) {
-			throw new WorkflowException(se.getMessage(), se);
+		catch (Exception e) {
+			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
 
@@ -320,13 +344,12 @@ public class TaskInstanceManagerImpl
 		throws WorkflowException {
 
 		try {
-			List<WorkflowTask> taskList =
-				WorkflowTaskUtil.findByR_C(
-					roleId, completed, start, end, orderByComparator);
-			
-			return WorkflowManagerUtil.wrapWorkflowTasks(taskList);
+			List<WorkflowTask> workflowTasks = WorkflowTaskUtil.findByARID_C(
+				roleId, completed, start, end, orderByComparator);
+
+			return WorkflowManagerUtil.wrapWorkflowTasks(workflowTasks);
 		}
-		catch (SystemException e) {
+		catch (Exception e) {
 			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
@@ -337,13 +360,13 @@ public class TaskInstanceManagerImpl
 		throws WorkflowException {
 
 		try {
-			List<WorkflowTask> taskList =
-				WorkflowTaskUtil.findByRoleId(
+			List<WorkflowTask> workflowTasks =
+				WorkflowTaskUtil.findByAssigneeRoleId(
 					roleId, start, end, orderByComparator);
 
-			return WorkflowManagerUtil.wrapWorkflowTasks(taskList);
+			return WorkflowManagerUtil.wrapWorkflowTasks(workflowTasks);
 		}
-		catch (SystemException e) {
+		catch (Exception e) {
 			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
@@ -354,13 +377,12 @@ public class TaskInstanceManagerImpl
 		throws WorkflowException {
 
 		try {
-			List<WorkflowTask> taskList =
-				WorkflowTaskUtil.findByA_C(
-					userId, completed, start, end, orderByComparator);
+			List<WorkflowTask> workflowTasks = WorkflowTaskUtil.findByAUID_C(
+				userId, completed, start, end, orderByComparator);
 
-			return WorkflowManagerUtil.wrapWorkflowTasks(taskList);
+			return WorkflowManagerUtil.wrapWorkflowTasks(workflowTasks);
 		}
-		catch (SystemException e) {
+		catch (Exception e) {
 			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
@@ -371,13 +393,13 @@ public class TaskInstanceManagerImpl
 		throws WorkflowException {
 
 		try {
-			List<WorkflowTask> taskList =
+			List<WorkflowTask> workflowTasks =
 				WorkflowTaskUtil.findByAssigneeUserId(
 					userId, start, end, orderByComparator);
 
-			return WorkflowManagerUtil.wrapWorkflowTasks(taskList);
+			return WorkflowManagerUtil.wrapWorkflowTasks(workflowTasks);
 		}
-		catch (SystemException e) {
+		catch (Exception e) {
 			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
@@ -388,14 +410,12 @@ public class TaskInstanceManagerImpl
 		throws WorkflowException {
 
 		try {
-			List<WorkflowTask> taskList =
-				WorkflowTaskUtil.findByW_C(
-					workflowInstanceId, completed, start, end,
-					orderByComparator);
+			List<WorkflowTask> workflowTasks = WorkflowTaskUtil.findByW_C(
+				workflowInstanceId, completed, start, end, orderByComparator);
 
-			return WorkflowManagerUtil.wrapWorkflowTasks(taskList);
+			return WorkflowManagerUtil.wrapWorkflowTasks(workflowTasks);
 		}
-		catch (SystemException e) {
+		catch (Exception e) {
 			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
@@ -406,65 +426,66 @@ public class TaskInstanceManagerImpl
 		throws WorkflowException {
 
 		try {
-			List<WorkflowTask> taskList =
+			List<WorkflowTask> workflowTasks =
 				WorkflowTaskUtil.findByWorkflowInstanceId(
 					workflowInstanceId, start, end, orderByComparator);
 
-			return WorkflowManagerUtil.wrapWorkflowTasks(taskList);
+			return WorkflowManagerUtil.wrapWorkflowTasks(workflowTasks);
 		}
-		catch (SystemException e) {
+		catch (Exception e) {
 			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
-	
-	protected void applyOrder(
+
+	protected void addOrder(
 		DynamicQuery dynamicQuery, OrderByComparator orderByComparator) {
 
-		boolean ascending = orderByComparator.isAscending();
 		String[] orderByFields = orderByComparator.getOrderByFields();
-		
+
 		for (String fieldName : orderByFields) {
-			if (ascending) {
+			if (orderByComparator.isAscending()) {
 				dynamicQuery.addOrder(OrderFactoryUtil.asc(fieldName));
-			} else {
+			}
+			else {
 				dynamicQuery.addOrder(OrderFactoryUtil.desc(fieldName));
 			}
 		}
 	}
-	
-	protected DynamicQuery createUserCredentialQuery(
-		UserCredential userCredential, boolean createCountQuery) {
 
-		DynamicQuery dynamicQuery =
-			DynamicQueryFactoryUtil.forClass(WorkflowTask.class);
+	protected DynamicQuery getUserCredentialDynamicQuery(
+		UserCredential userCredential, boolean count) {
 
-		if (createCountQuery) {
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			WorkflowTask.class);
+
+		if (count) {
 			dynamicQuery.setProjection(ProjectionFactoryUtil.rowCount());
 		}
 
-		Criterion roleCriterion =
-			RestrictionsFactoryUtil.in(
-				"assigneeRoleId", userCredential.getRoleIds());
-		Criterion userCriterion =
-			RestrictionsFactoryUtil.eq(
-				"assigneeUserId", userCredential.getUserId());
+		Criterion assigneeRoleIdCriterion = RestrictionsFactoryUtil.in(
+			"assigneeRoleId", userCredential.getRoleIds());
+		Criterion assigneeUserIdCriterion = RestrictionsFactoryUtil.eq(
+			"assigneeUserId", userCredential.getUserId());
 
-		dynamicQuery.add(RestrictionsFactoryUtil.or(
-			userCriterion, roleCriterion));
+		dynamicQuery.add(
+			RestrictionsFactoryUtil.or(
+				assigneeUserIdCriterion, assigneeRoleIdCriterion));
 
 		return dynamicQuery;
 	}
 
 	protected MutableWorkflowTask loadWorkflowTask(long workflowTaskId)
 		throws WorkflowException {
+
 		try {
-			WorkflowTask workflowTask =
-				WorkflowTaskUtil.findByPrimaryKey(workflowTaskId);
-			
+			WorkflowTask workflowTask = WorkflowTaskUtil.findByPrimaryKey(
+				workflowTaskId);
+
 			return new WorkflowTaskBridge(workflowTask);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
+
 }

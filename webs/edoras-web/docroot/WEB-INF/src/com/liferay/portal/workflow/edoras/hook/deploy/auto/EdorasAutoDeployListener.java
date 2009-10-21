@@ -22,7 +22,6 @@
 
 package com.liferay.portal.workflow.edoras.hook.deploy.auto;
 
-import com.liferay.portal.kernel.deploy.auto.AutoDeployException;
 import com.liferay.portal.kernel.deploy.auto.BaseAutoDeployListener;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -36,7 +35,7 @@ import java.io.File;
  */
 public class EdorasAutoDeployListener extends BaseAutoDeployListener {
 
-	public void deploy(File file) throws AutoDeployException {
+	public void deploy(File file) {
 		if (_log.isDebugEnabled()) {
 			_log.debug("Invoking deploy for " + file.getPath());
 		}

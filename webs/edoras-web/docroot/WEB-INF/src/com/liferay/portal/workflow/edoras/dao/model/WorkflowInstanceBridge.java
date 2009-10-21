@@ -199,6 +199,9 @@ public class WorkflowInstanceBridge
 		_workflowInstance.setSetupId(getSetupId().getName());
 		_workflowInstance.setFriendlyId(getBusinessId());
 		_workflowInstance.setWorkflowDefinitionId(getWorkflowDefinitionId());
+		_workflowInstance.setWorkflowDefinitionName(getProcessModelId());
+		_workflowInstance.setWorkflowDefinitionVersion(
+			getProcessModelVersion());
 		_workflowInstance.setParentWorkflowInstanceId(parentWorkflowInstanceId);
 		_workflowInstance.setRelationClassName(getRelationType());
 		_workflowInstance.setRelationClassPK(relationId);

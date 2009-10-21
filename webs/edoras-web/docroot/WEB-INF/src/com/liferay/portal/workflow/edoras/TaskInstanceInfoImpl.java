@@ -42,6 +42,28 @@ public class TaskInstanceInfoImpl implements TaskInstanceInfo {
 
 	}
 
+	public TaskInstanceInfoImpl(
+		com.liferay.portal.workflow.edoras.model.WorkflowTask workflowTask) {
+
+		_assignRoleId = WorkflowManagerUtil.getPrimaryKey(
+			workflowTask.getAssigneeRoleId());
+		_assignUserId = WorkflowManagerUtil.getPrimaryKey(
+			workflowTask.getAssigneeUserId());
+		_asynchronous = workflowTask.getAsynchronous();
+		_attributes = Collections.emptyMap();
+		_completionDate = workflowTask.getCompletionDate();
+		_createDate = workflowTask.getCreateDate();
+		_description = workflowTask.getDescription();
+		_dueDate = workflowTask.getDueDate();
+		_taskInstanceId = workflowTask.getPrimaryKey();
+		_taskMetaId = workflowTask.getMetaName();
+		_taskName = workflowTask.getTaskName();
+		_workflowDefinitionName = workflowTask.getWorkflowDefinitionName();
+		_workflowDefinitionVersion =
+			workflowTask.getWorkflowDefinitionVersion();
+		_workflowInstanceId = workflowTask.getWorkflowInstanceId();
+	}
+
 	public TaskInstanceInfoImpl(WorkflowTask workflowTask) {
 		_assignRoleId = WorkflowManagerUtil.getPrimaryKey(
 			workflowTask.getAssignedRoleId());
@@ -61,28 +83,6 @@ public class TaskInstanceInfoImpl implements TaskInstanceInfo {
 		_workflowInstanceId = workflowTask.getProcessInstance().getPrimaryKey();
 	}
 
-	public TaskInstanceInfoImpl(
-		com.liferay.portal.workflow.edoras.model.WorkflowTask workflowTask) {
-
-		_assignRoleId =
-			WorkflowManagerUtil.getPrimaryKey(workflowTask.getAssigneeRoleId());
-		_assignUserId =
-			WorkflowManagerUtil.getPrimaryKey(workflowTask.getAssigneeUserId());
-		_asynchronous = workflowTask.getAsynchronous();
-		_attributes = Collections.emptyMap();
-		_completionDate = workflowTask.getCompletionDate();
-		_createDate = workflowTask.getCreateDate();
-		_description = workflowTask.getDescription();
-		_dueDate = workflowTask.getDueDate();
-		_taskInstanceId = workflowTask.getPrimaryKey();
-		_taskMetaId = workflowTask.getMetaName();
-		_taskName = workflowTask.getTaskName();
-		_workflowDefinitionName = workflowTask.getWorkflowDefinitionName();
-		_workflowDefinitionVersion =
-			workflowTask.getWorkflowDefinitionVersion();
-		_workflowInstanceId = workflowTask.getWorkflowInstanceId();
-	}
-	
 	public long getAssignedRoleId() {
 		return _assignRoleId;
 	}

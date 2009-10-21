@@ -268,7 +268,7 @@
 		<finder name="AssigneeUserId" return-type="Collection">
 			<finder-column name="assigneeUserId" />
 		</finder>
-		<finder name="RoleId" return-type="Collection">
+		<finder name="AssigneeRoleId" return-type="Collection">
 			<finder-column name="assigneeRoleId" />
 		</finder>
 		<finder name="C_C" return-type="Collection">
@@ -283,11 +283,11 @@
 			<finder-column name="workflowInstanceId" />
 			<finder-column name="state" />
 		</finder>
-		<finder name="A_C" return-type="Collection">
+		<finder name="AUID_C" return-type="Collection">
 			<finder-column name="assigneeUserId" />
 			<finder-column name="completed" />
 		</finder>
-		<finder name="R_C" return-type="Collection">
+		<finder name="ARID_C" return-type="Collection">
 			<finder-column name="assigneeRoleId" />
 			<finder-column name="completed" />
 		</finder>
