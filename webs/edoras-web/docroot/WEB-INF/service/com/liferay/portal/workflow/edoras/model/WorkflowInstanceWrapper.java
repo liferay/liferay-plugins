@@ -121,14 +121,6 @@ public class WorkflowInstanceWrapper implements WorkflowInstance {
 		_workflowInstance.setWorkflowDefinitionId(workflowDefinitionId);
 	}
 
-	public long getParentWorkflowInstanceId() {
-		return _workflowInstance.getParentWorkflowInstanceId();
-	}
-
-	public void setParentWorkflowInstanceId(long parentWorkflowInstanceId) {
-		_workflowInstance.setParentWorkflowInstanceId(parentWorkflowInstanceId);
-	}
-
 	public java.lang.String getWorkflowDefinitionName() {
 		return _workflowInstance.getWorkflowDefinitionName();
 	}
@@ -144,6 +136,14 @@ public class WorkflowInstanceWrapper implements WorkflowInstance {
 
 	public void setWorkflowDefinitionVersion(int workflowDefinitionVersion) {
 		_workflowInstance.setWorkflowDefinitionVersion(workflowDefinitionVersion);
+	}
+
+	public long getParentWorkflowInstanceId() {
+		return _workflowInstance.getParentWorkflowInstanceId();
+	}
+
+	public void setParentWorkflowInstanceId(long parentWorkflowInstanceId) {
+		_workflowInstance.setParentWorkflowInstanceId(parentWorkflowInstanceId);
 	}
 
 	public java.lang.String getRelationClassName() {

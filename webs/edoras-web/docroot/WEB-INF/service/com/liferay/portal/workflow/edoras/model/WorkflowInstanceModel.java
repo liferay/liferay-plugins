@@ -82,10 +82,6 @@ public interface WorkflowInstanceModel extends BaseModel<WorkflowInstance> {
 
 	public void setWorkflowDefinitionId(long workflowDefinitionId);
 
-	public long getParentWorkflowInstanceId();
-
-	public void setParentWorkflowInstanceId(long parentWorkflowInstanceId);
-
 	public String getWorkflowDefinitionName();
 
 	public void setWorkflowDefinitionName(String workflowDefinitionName);
@@ -93,6 +89,10 @@ public interface WorkflowInstanceModel extends BaseModel<WorkflowInstance> {
 	public int getWorkflowDefinitionVersion();
 
 	public void setWorkflowDefinitionVersion(int workflowDefinitionVersion);
+
+	public long getParentWorkflowInstanceId();
+
+	public void setParentWorkflowInstanceId(long parentWorkflowInstanceId);
 
 	public String getRelationClassName();
 

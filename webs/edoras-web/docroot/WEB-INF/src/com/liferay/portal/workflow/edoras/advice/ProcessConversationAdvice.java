@@ -25,9 +25,9 @@ package com.liferay.portal.workflow.edoras.advice;
 import com.liferay.portal.workflow.edoras.AbstractWorkflowManager;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+
 import org.edorasframework.process.api.ProcessSystemUtil;
 import org.edorasframework.process.api.session.ProcessSession;
-
 
 /**
  * <a href="ProcessConversationAdvice.java.html"><b><i>View Source</i></b></a>
@@ -36,23 +36,26 @@ import org.edorasframework.process.api.session.ProcessSession;
  */
 public class ProcessConversationAdvice {
 
-    public Object invoke(ProceedingJoinPoint joinPoint)
+	public Object invoke(ProceedingJoinPoint proceedingJoinPoint)
 		throws Throwable {
-    	AbstractWorkflowManager target =
-			(AbstractWorkflowManager) joinPoint.getTarget();
-    	
-    	Class<?> setupId = target.getDefaultSetupId();
 
-		ProcessSession session = null;
+		AbstractWorkflowManager target =
+			(AbstractWorkflowManager)proceedingJoinPoint.getTarget();
+
+		Class<?> setupId = target.getDefaultSetupId();
+
+		ProcessSession processSession = null;
+
 		try {
-			session = ProcessSystemUtil.createSession(setupId);
+			processSession = ProcessSystemUtil.createSession(setupId);
 
-			return joinPoint.proceed();
+			return proceedingJoinPoint.proceed();
 		}
 		finally {
-			if (session != null) {
-				session.close();
+			if (processSession != null) {
+				processSession.close();
 			}
 		}
 	}
+
 }

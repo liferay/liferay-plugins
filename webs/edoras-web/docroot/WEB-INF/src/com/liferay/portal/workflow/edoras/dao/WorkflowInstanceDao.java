@@ -134,7 +134,7 @@ public class WorkflowInstanceDao
 
 	public List<? extends MutableProcessInstance> loadProcessInstances(
 		final String relationType, final Long relationId) {
-		
+
 		return loadProcessInstances(relationType, relationId, false);
 	}
 
@@ -145,8 +145,9 @@ public class WorkflowInstanceDao
 			List<WorkflowInstance> workflowInstances =
 				WorkflowInstanceUtil.findByC_C(relationType, relationId);
 
-			return (List<? extends MutableProcessInstance>) WorkflowEntityBridgeUtil.wrapWorkflowInstances(
-				workflowInstances, null, includeChildren);
+			return (List<? extends MutableProcessInstance>)
+				WorkflowEntityBridgeUtil.wrapWorkflowInstances(
+					workflowInstances, null, includeChildren);
 		}
 		catch (Exception e) {
 			throw new ProcessException(e.getMessage(), e);

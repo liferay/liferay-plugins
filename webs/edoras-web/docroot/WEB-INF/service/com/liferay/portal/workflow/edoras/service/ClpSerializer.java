@@ -242,24 +242,24 @@ public class ClpSerializer {
 
 					method8.invoke(newModel, value8);
 
-					Method method9 = newModelClass.getMethod("setParentWorkflowInstanceId",
-							new Class[] { Long.TYPE });
+					Method method9 = newModelClass.getMethod("setWorkflowDefinitionName",
+							new Class[] { String.class });
 
-					Long value9 = new Long(oldCplModel.getParentWorkflowInstanceId());
+					String value9 = oldCplModel.getWorkflowDefinitionName();
 
 					method9.invoke(newModel, value9);
 
-					Method method10 = newModelClass.getMethod("setWorkflowDefinitionName",
-							new Class[] { String.class });
+					Method method10 = newModelClass.getMethod("setWorkflowDefinitionVersion",
+							new Class[] { Integer.TYPE });
 
-					String value10 = oldCplModel.getWorkflowDefinitionName();
+					Integer value10 = new Integer(oldCplModel.getWorkflowDefinitionVersion());
 
 					method10.invoke(newModel, value10);
 
-					Method method11 = newModelClass.getMethod("setWorkflowDefinitionVersion",
-							new Class[] { Integer.TYPE });
+					Method method11 = newModelClass.getMethod("setParentWorkflowInstanceId",
+							new Class[] { Long.TYPE });
 
-					Integer value11 = new Integer(oldCplModel.getWorkflowDefinitionVersion());
+					Long value11 = new Long(oldCplModel.getParentWorkflowInstanceId());
 
 					method11.invoke(newModel, value11);
 
@@ -936,27 +936,28 @@ public class ClpSerializer {
 					newModel.setWorkflowDefinitionId(value8.longValue());
 
 					Method method9 = oldModelClass.getMethod(
-							"getParentWorkflowInstanceId");
-
-					Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
-
-					newModel.setParentWorkflowInstanceId(value9.longValue());
-
-					Method method10 = oldModelClass.getMethod(
 							"getWorkflowDefinitionName");
 
-					String value10 = (String)method10.invoke(oldModel,
+					String value9 = (String)method9.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setWorkflowDefinitionName(value10);
+					newModel.setWorkflowDefinitionName(value9);
 
-					Method method11 = oldModelClass.getMethod(
+					Method method10 = oldModelClass.getMethod(
 							"getWorkflowDefinitionVersion");
 
-					Integer value11 = (Integer)method11.invoke(oldModel,
+					Integer value10 = (Integer)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setWorkflowDefinitionVersion(value11.intValue());
+					newModel.setWorkflowDefinitionVersion(value10.intValue());
+
+					Method method11 = oldModelClass.getMethod(
+							"getParentWorkflowInstanceId");
+
+					Long value11 = (Long)method11.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setParentWorkflowInstanceId(value11.longValue());
 
 					Method method12 = oldModelClass.getMethod(
 							"getRelationClassName");

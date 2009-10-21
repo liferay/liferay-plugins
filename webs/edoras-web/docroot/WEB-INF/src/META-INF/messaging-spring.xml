@@ -33,14 +33,16 @@
 		<aop:pointcut id="transactionOperation" expression="bean(workflow*Manager)" />
 		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionOperation" />
 	</aop:config>
-	
+
+	<!-- Process conversation -->
+
 	<bean id="processConversationAdvice" class="com.liferay.portal.workflow.edoras.advice.ProcessConversationAdvice" />
 	<aop:config>
-      <aop:aspect ref="processConversationAdvice">
-         <aop:pointcut id="processConversationPointcut" expression="bean(workflow*Manager)"/>
-         <aop:around pointcut-ref="processConversationPointcut" method="invoke"/>
-      </aop:aspect>
-   </aop:config>
+		<aop:aspect ref="processConversationAdvice">
+			<aop:pointcut id="processConversationPointcut" expression="bean(workflow*Manager)" />
+			<aop:around pointcut-ref="processConversationPointcut" method="invoke" />
+		</aop:aspect>
+	</aop:config>
 
 	<!-- Listeners -->
 

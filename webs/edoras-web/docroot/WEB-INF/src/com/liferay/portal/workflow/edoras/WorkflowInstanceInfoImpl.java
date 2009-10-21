@@ -47,16 +47,16 @@ public class WorkflowInstanceInfoImpl implements WorkflowInstanceInfo {
 
 	public WorkflowInstanceInfoImpl(
 		ProcessInstance processInstance, boolean includeChildren) {
-		
+
 		initializeFromProcessInstance(processInstance, includeChildren);
 	}
 
 	public WorkflowInstanceInfoImpl(
 		WorkflowInstance workflowInstance, boolean includeChildren) {
 
-		ProcessInstance processInstance =
-			new WorkflowInstanceBridge(workflowInstance, null, includeChildren);
-		
+		ProcessInstance processInstance = new WorkflowInstanceBridge(
+			workflowInstance, null, includeChildren);
+
 		initializeFromProcessInstance(processInstance, includeChildren);
 	}
 
@@ -107,31 +107,39 @@ public class WorkflowInstanceInfoImpl implements WorkflowInstanceInfo {
 	protected void initializeFromProcessInstance(
 		ProcessInstance processInstance, boolean includeChildren) {
 
+		if (includeChildren) {
+			List<ProcessInstance> childProcessInstances =
+				processInstance.getChildren();
+
+			_children = new ArrayList<WorkflowInstanceInfo>(
+				childProcessInstances.size());
+
+			for (ProcessInstance childProcessInstance : childProcessInstances) {
+				_children.add(
+					new WorkflowInstanceInfoImpl(childProcessInstance, true));
+			}
+		}
+
 		_context = new HashMap<String, Object>();
+
 		processInstance.getAttributeMap().copyTo(_context);
 
 		_currentNodeName = processInstance.getCurrentElement();
 		_endDate = processInstance.getFinishedAt();
+
+		ProcessInstance parentProcessInstance = processInstance.getParent();
+
+		if (parentProcessInstance != null) {
+			_parent = new WorkflowInstanceInfoImpl(
+				parentProcessInstance, false);
+		}
+
 		_relationId = processInstance.getRelationId();
 		_relationType = processInstance.getRelationType();
 		_startDate = processInstance.getCreatedAt();
 		_workflowDefinitionName = processInstance.getProcessModelId();
 		_workflowDefinitionVersion = processInstance.getProcessModelVersion();
 		_workflowInstanceId = processInstance.getPrimaryKey();
-
-		if (includeChildren) {
-			List<ProcessInstance> children = processInstance.getChildren();
-			_children = new ArrayList<WorkflowInstanceInfo>(children.size());
-
-			for (ProcessInstance child : children) {
-				_children.add(new WorkflowInstanceInfoImpl(child, true));
-			}
-		}
-
-		ProcessInstance parent = processInstance.getParent();
-		if (parent != null) {
-			_parent = new WorkflowInstanceInfoImpl(parent, false);
-		}
 	}
 
 	private List<WorkflowInstanceInfo> _children;

@@ -59,10 +59,10 @@ public class WorkflowManagerUtil {
 
 		processInstances.add(processInstance);
 
-		List<ProcessInstance> childrenProcessInstances =
+		List<ProcessInstance> childProcessInstances =
 			processInstance.getChildren();
 
-		for (ProcessInstance childProcessInstance : childrenProcessInstances) {
+		for (ProcessInstance childProcessInstance : childProcessInstances) {
 			getFlatProcessInstances(childProcessInstance, processInstances);
 		}
 
@@ -75,6 +75,20 @@ public class WorkflowManagerUtil {
 		}
 
 		return Long.valueOf(companyId);
+	}
+
+	public static List<WorkflowInstanceInfo> wrapProcessInstances(
+		List<ProcessInstance> processInstances, boolean includeChildren) {
+
+		List<WorkflowInstanceInfo> workflowInstances =
+			new ArrayList<WorkflowInstanceInfo>(processInstances.size());
+
+		for (ProcessInstance processInstance : processInstances) {
+			workflowInstances.add(
+				new WorkflowInstanceInfoImpl(processInstance, includeChildren));
+		}
+
+		return workflowInstances;
 	}
 
 	public static List<WorkflowDefinition> wrapWorkflowDefinitions(
@@ -107,21 +121,7 @@ public class WorkflowManagerUtil {
 
 		return workflowInstanceHistory;
 	}
-	
-	public static List<WorkflowInstanceInfo> wrapProcessInstances(
-		List<ProcessInstance> processInstances, boolean includeChildren) {
-		
-		List<WorkflowInstanceInfo> workflowInstances =
-			new ArrayList<WorkflowInstanceInfo>(processInstances.size());
-		
-		for (ProcessInstance processInstance : processInstances) {
-			workflowInstances.add(new WorkflowInstanceInfoImpl(
-				processInstance, includeChildren));
-		}
-		
-		return workflowInstances;
-	}
-	
+
 	public static List<WorkflowInstanceInfo> wrapWorkflowInstances(
 		List<WorkflowInstance> workflowInstances, boolean includeChildren) {
 
@@ -129,8 +129,9 @@ public class WorkflowManagerUtil {
 			new ArrayList<WorkflowInstanceInfo>(workflowInstances.size());
 
 		for (WorkflowInstance workflowInstance : workflowInstances) {
-			wrappedWorkflowInstances.add(new WorkflowInstanceInfoImpl(
-				workflowInstance, includeChildren));
+			wrappedWorkflowInstances.add(
+				new WorkflowInstanceInfoImpl(
+					workflowInstance, includeChildren));
 		}
 
 		return wrappedWorkflowInstances;

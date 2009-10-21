@@ -69,9 +69,9 @@
 		<column name="setupId" type="String" />
 		<column name="friendlyId" type="String" />
 		<column name="workflowDefinitionId" type="long" />
-		<column name="parentWorkflowInstanceId" type="long" />
 		<column name="workflowDefinitionName" type="String" />
 		<column name="workflowDefinitionVersion" type="int" />
+		<column name="parentWorkflowInstanceId" type="long" />
 		<column name="relationClassName" type="String" />
 		<column name="relationClassPK" type="long" />
 		<column name="attributes" type="String" />
@@ -92,21 +92,13 @@
 		<finder name="WorkflowDefinitionId" return-type="Collection">
 			<finder-column name="workflowDefinitionId" />
 		</finder>
+		<finder name="WorkflowDefinitionName" return-type="Collection">
+			<finder-column name="workflowDefinitionName" />
+		</finder>
 		<finder name="ParentWorkflowInstanceId" return-type="Collection">
 			<finder-column name="parentWorkflowInstanceId" />
 		</finder>
 		<finder name="Finished" return-type="Collection">
-			<finder-column name="finished" />
-		</finder>
-		<finder name="workflowDefinitionName" return-type="Collection">
-			<finder-column name="workflowDefinitionName" />
-		</finder>
-		<finder name="N_V" return-type="Collection">
-			<finder-column name="workflowDefinitionName" />
-			<finder-column name="workflowDefinitionVersion" />
-		</finder>
-		<finder name="N_F" return-type="Collection">
-			<finder-column name="workflowDefinitionName" />
 			<finder-column name="finished" />
 		</finder>
 		<finder name="C_P" return-type="Collection">
@@ -117,19 +109,27 @@
 			<finder-column name="companyId" />
 			<finder-column name="finished" />
 		</finder>
+		<finder name="N_V" return-type="Collection">
+			<finder-column name="workflowDefinitionName" />
+			<finder-column name="workflowDefinitionVersion" />
+		</finder>
+		<finder name="N_F" return-type="Collection">
+			<finder-column name="workflowDefinitionName" />
+			<finder-column name="finished" />
+		</finder>
 		<finder name="C_C" return-type="Collection">
 			<finder-column name="relationClassName" />
 			<finder-column name="relationClassPK" />
-		</finder>
-		<finder name="N_V_F" return-type="Collection">
-			<finder-column name="workflowDefinitionName" />
-			<finder-column name="workflowDefinitionVersion" />
-			<finder-column name="finished" />
 		</finder>
 		<finder name="C_P_R" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="parentWorkflowInstanceId" />
 			<finder-column name="relatedElementName" />
+		</finder>
+		<finder name="N_V_F" return-type="Collection">
+			<finder-column name="workflowDefinitionName" />
+			<finder-column name="workflowDefinitionVersion" />
+			<finder-column name="finished" />
 		</finder>
 		<finder name="C_P_R_F" return-type="Collection">
 			<finder-column name="companyId" />
