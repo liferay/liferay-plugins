@@ -635,89 +635,138 @@ public class ClpSerializer {
 
 					method4.invoke(newModel, value4);
 
-					Method method5 = newModelClass.getMethod("setWorkflowInstanceId",
-							new Class[] { Long.TYPE });
+					Method method5 = newModelClass.getMethod("setWorkflowDefinitionName",
+							new Class[] { String.class });
 
-					Long value5 = new Long(oldCplModel.getWorkflowInstanceId());
+					String value5 = oldCplModel.getWorkflowDefinitionName();
 
 					method5.invoke(newModel, value5);
 
-					Method method6 = newModelClass.getMethod("setMetaName",
-							new Class[] { String.class });
+					Method method6 = newModelClass.getMethod("setWorkflowDefinitionVersion",
+							new Class[] { Integer.TYPE });
 
-					String value6 = oldCplModel.getMetaName();
+					Integer value6 = new Integer(oldCplModel.getWorkflowDefinitionVersion());
 
 					method6.invoke(newModel, value6);
 
-					Method method7 = newModelClass.getMethod("setRelation",
-							new Class[] { String.class });
+					Method method7 = newModelClass.getMethod("setWorkflowInstanceId",
+							new Class[] { Long.TYPE });
 
-					String value7 = oldCplModel.getRelation();
+					Long value7 = new Long(oldCplModel.getWorkflowInstanceId());
 
 					method7.invoke(newModel, value7);
 
-					Method method8 = newModelClass.getMethod("setDueDate",
-							new Class[] { Date.class });
+					Method method8 = newModelClass.getMethod("setMetaName",
+							new Class[] { String.class });
 
-					Date value8 = oldCplModel.getDueDate();
+					String value8 = oldCplModel.getMetaName();
 
 					method8.invoke(newModel, value8);
 
-					Method method9 = newModelClass.getMethod("setCompletionDate",
-							new Class[] { Date.class });
+					Method method9 = newModelClass.getMethod("setRelation",
+							new Class[] { String.class });
 
-					Date value9 = oldCplModel.getCompletionDate();
+					String value9 = oldCplModel.getRelation();
 
 					method9.invoke(newModel, value9);
 
-					Method method10 = newModelClass.getMethod("setCompleted",
-							new Class[] { Boolean.TYPE });
+					Method method10 = newModelClass.getMethod("setDueDate",
+							new Class[] { Date.class });
 
-					Boolean value10 = new Boolean(oldCplModel.getCompleted());
+					Date value10 = oldCplModel.getDueDate();
 
 					method10.invoke(newModel, value10);
 
-					Method method11 = newModelClass.getMethod("setState",
-							new Class[] { Integer.TYPE });
+					Method method11 = newModelClass.getMethod("setCompletionDate",
+							new Class[] { Date.class });
 
-					Integer value11 = new Integer(oldCplModel.getState());
+					Date value11 = oldCplModel.getCompletionDate();
 
 					method11.invoke(newModel, value11);
 
-					Method method12 = newModelClass.getMethod("setPriority",
-							new Class[] { Integer.TYPE });
+					Method method12 = newModelClass.getMethod("setCompleted",
+							new Class[] { Boolean.TYPE });
 
-					Integer value12 = new Integer(oldCplModel.getPriority());
+					Boolean value12 = new Boolean(oldCplModel.getCompleted());
 
 					method12.invoke(newModel, value12);
 
-					Method method13 = newModelClass.getMethod("setAssigneeUserId",
-							new Class[] { Long.TYPE });
+					Method method13 = newModelClass.getMethod("setState",
+							new Class[] { Integer.TYPE });
 
-					Long value13 = new Long(oldCplModel.getAssigneeUserId());
+					Integer value13 = new Integer(oldCplModel.getState());
 
 					method13.invoke(newModel, value13);
 
-					Method method14 = newModelClass.getMethod("setAssigneeUserName",
-							new Class[] { String.class });
+					Method method14 = newModelClass.getMethod("setPriority",
+							new Class[] { Integer.TYPE });
 
-					String value14 = oldCplModel.getAssigneeUserName();
+					Integer value14 = new Integer(oldCplModel.getPriority());
 
 					method14.invoke(newModel, value14);
 
-					Method method15 = newModelClass.getMethod("setAssignedGroupName",
-							new Class[] { String.class });
+					Method method15 = newModelClass.getMethod("setAsynchronous",
+							new Class[] { Boolean.TYPE });
 
-					String value15 = oldCplModel.getAssignedGroupName();
+					Boolean value15 = new Boolean(oldCplModel.getAsynchronous());
 
 					method15.invoke(newModel, value15);
 
-					Method method16 = newModelClass.getMethod("setRoleId",
-							new Class[] { Long.TYPE });
+					Method method16 = newModelClass.getMethod("setTaskName",
+							new Class[] { String.class });
 
-					Long value16 = new Long(oldCplModel.getRoleId());
+					String value16 = oldCplModel.getTaskName();
 
 					method16.invoke(newModel, value16);
+
+					Method method17 = newModelClass.getMethod("setDescription",
+							new Class[] { String.class });
+
+					String value17 = oldCplModel.getDescription();
+
+					method17.invoke(newModel, value17);
+
+					Method method18 = newModelClass.getMethod("setAssigneeUserId",
+							new Class[] { Long.TYPE });
+
+					Long value18 = new Long(oldCplModel.getAssigneeUserId());
+
+					method18.invoke(newModel, value18);
+
+					Method method19 = newModelClass.getMethod("setAssigneeUserName",
+							new Class[] { String.class });
+
+					String value19 = oldCplModel.getAssigneeUserName();
+
+					method19.invoke(newModel, value19);
+
+					Method method20 = newModelClass.getMethod("setAssigneeGroupId",
+							new Class[] { Long.TYPE });
+
+					Long value20 = new Long(oldCplModel.getAssigneeGroupId());
+
+					method20.invoke(newModel, value20);
+
+					Method method21 = newModelClass.getMethod("setAssigneeGroupName",
+							new Class[] { String.class });
+
+					String value21 = oldCplModel.getAssigneeGroupName();
+
+					method21.invoke(newModel, value21);
+
+					Method method22 = newModelClass.getMethod("setAssigneeRoleId",
+							new Class[] { Long.TYPE });
+
+					Long value22 = new Long(oldCplModel.getAssigneeRoleId());
+
+					method22.invoke(newModel, value22);
+
+					Method method23 = newModelClass.getMethod("setAssigneeRoleName",
+							new Class[] { String.class });
+
+					String value23 = oldCplModel.getAssigneeRoleName();
+
+					method23.invoke(newModel, value23);
 
 					return newModel;
 				}
@@ -1318,90 +1367,146 @@ public class ClpSerializer {
 					newModel.setWorkflowDefinitionId(value4.longValue());
 
 					Method method5 = oldModelClass.getMethod(
+							"getWorkflowDefinitionName");
+
+					String value5 = (String)method5.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setWorkflowDefinitionName(value5);
+
+					Method method6 = oldModelClass.getMethod(
+							"getWorkflowDefinitionVersion");
+
+					Integer value6 = (Integer)method6.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setWorkflowDefinitionVersion(value6.intValue());
+
+					Method method7 = oldModelClass.getMethod(
 							"getWorkflowInstanceId");
 
-					Long value5 = (Long)method5.invoke(oldModel, (Object[])null);
+					Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
 
-					newModel.setWorkflowInstanceId(value5.longValue());
+					newModel.setWorkflowInstanceId(value7.longValue());
 
-					Method method6 = oldModelClass.getMethod("getMetaName");
+					Method method8 = oldModelClass.getMethod("getMetaName");
 
-					String value6 = (String)method6.invoke(oldModel,
+					String value8 = (String)method8.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setMetaName(value6);
+					newModel.setMetaName(value8);
 
-					Method method7 = oldModelClass.getMethod("getRelation");
+					Method method9 = oldModelClass.getMethod("getRelation");
 
-					String value7 = (String)method7.invoke(oldModel,
+					String value9 = (String)method9.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setRelation(value7);
+					newModel.setRelation(value9);
 
-					Method method8 = oldModelClass.getMethod("getDueDate");
+					Method method10 = oldModelClass.getMethod("getDueDate");
 
-					Date value8 = (Date)method8.invoke(oldModel, (Object[])null);
+					Date value10 = (Date)method10.invoke(oldModel,
+							(Object[])null);
 
-					newModel.setDueDate(value8);
+					newModel.setDueDate(value10);
 
-					Method method9 = oldModelClass.getMethod(
+					Method method11 = oldModelClass.getMethod(
 							"getCompletionDate");
 
-					Date value9 = (Date)method9.invoke(oldModel, (Object[])null);
-
-					newModel.setCompletionDate(value9);
-
-					Method method10 = oldModelClass.getMethod("getCompleted");
-
-					Boolean value10 = (Boolean)method10.invoke(oldModel,
+					Date value11 = (Date)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setCompleted(value10.booleanValue());
+					newModel.setCompletionDate(value11);
 
-					Method method11 = oldModelClass.getMethod("getState");
+					Method method12 = oldModelClass.getMethod("getCompleted");
 
-					Integer value11 = (Integer)method11.invoke(oldModel,
+					Boolean value12 = (Boolean)method12.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setState(value11.intValue());
+					newModel.setCompleted(value12.booleanValue());
 
-					Method method12 = oldModelClass.getMethod("getPriority");
+					Method method13 = oldModelClass.getMethod("getState");
 
-					Integer value12 = (Integer)method12.invoke(oldModel,
+					Integer value13 = (Integer)method13.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setPriority(value12.intValue());
+					newModel.setState(value13.intValue());
 
-					Method method13 = oldModelClass.getMethod(
+					Method method14 = oldModelClass.getMethod("getPriority");
+
+					Integer value14 = (Integer)method14.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setPriority(value14.intValue());
+
+					Method method15 = oldModelClass.getMethod("getAsynchronous");
+
+					Boolean value15 = (Boolean)method15.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setAsynchronous(value15.booleanValue());
+
+					Method method16 = oldModelClass.getMethod("getTaskName");
+
+					String value16 = (String)method16.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setTaskName(value16);
+
+					Method method17 = oldModelClass.getMethod("getDescription");
+
+					String value17 = (String)method17.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setDescription(value17);
+
+					Method method18 = oldModelClass.getMethod(
 							"getAssigneeUserId");
 
-					Long value13 = (Long)method13.invoke(oldModel,
+					Long value18 = (Long)method18.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setAssigneeUserId(value13.longValue());
+					newModel.setAssigneeUserId(value18.longValue());
 
-					Method method14 = oldModelClass.getMethod(
+					Method method19 = oldModelClass.getMethod(
 							"getAssigneeUserName");
 
-					String value14 = (String)method14.invoke(oldModel,
+					String value19 = (String)method19.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setAssigneeUserName(value14);
+					newModel.setAssigneeUserName(value19);
 
-					Method method15 = oldModelClass.getMethod(
-							"getAssignedGroupName");
+					Method method20 = oldModelClass.getMethod(
+							"getAssigneeGroupId");
 
-					String value15 = (String)method15.invoke(oldModel,
+					Long value20 = (Long)method20.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setAssignedGroupName(value15);
+					newModel.setAssigneeGroupId(value20.longValue());
 
-					Method method16 = oldModelClass.getMethod("getRoleId");
+					Method method21 = oldModelClass.getMethod(
+							"getAssigneeGroupName");
 
-					Long value16 = (Long)method16.invoke(oldModel,
+					String value21 = (String)method21.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setRoleId(value16.longValue());
+					newModel.setAssigneeGroupName(value21);
+
+					Method method22 = oldModelClass.getMethod(
+							"getAssigneeRoleId");
+
+					Long value22 = (Long)method22.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setAssigneeRoleId(value22.longValue());
+
+					Method method23 = oldModelClass.getMethod(
+							"getAssigneeRoleName");
+
+					String value23 = (String)method23.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setAssigneeRoleName(value23);
 
 					return newModel;
 				}

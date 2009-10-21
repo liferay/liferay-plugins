@@ -96,6 +96,22 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		_workflowDefinitionId = workflowDefinitionId;
 	}
 
+	public String getWorkflowDefinitionName() {
+		return _workflowDefinitionName;
+	}
+
+	public void setWorkflowDefinitionName(String workflowDefinitionName) {
+		_workflowDefinitionName = workflowDefinitionName;
+	}
+
+	public int getWorkflowDefinitionVersion() {
+		return _workflowDefinitionVersion;
+	}
+
+	public void setWorkflowDefinitionVersion(int workflowDefinitionVersion) {
+		_workflowDefinitionVersion = workflowDefinitionVersion;
+	}
+
 	public long getWorkflowInstanceId() {
 		return _workflowInstanceId;
 	}
@@ -164,6 +180,34 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		_priority = priority;
 	}
 
+	public boolean getAsynchronous() {
+		return _asynchronous;
+	}
+
+	public boolean isAsynchronous() {
+		return _asynchronous;
+	}
+
+	public void setAsynchronous(boolean asynchronous) {
+		_asynchronous = asynchronous;
+	}
+
+	public String getTaskName() {
+		return _taskName;
+	}
+
+	public void setTaskName(String taskName) {
+		_taskName = taskName;
+	}
+
+	public String getDescription() {
+		return _description;
+	}
+
+	public void setDescription(String description) {
+		_description = description;
+	}
+
 	public long getAssigneeUserId() {
 		return _assigneeUserId;
 	}
@@ -189,20 +233,36 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		_assigneeUserName = assigneeUserName;
 	}
 
-	public String getAssignedGroupName() {
-		return _assignedGroupName;
+	public long getAssigneeGroupId() {
+		return _assigneeGroupId;
 	}
 
-	public void setAssignedGroupName(String assignedGroupName) {
-		_assignedGroupName = assignedGroupName;
+	public void setAssigneeGroupId(long assigneeGroupId) {
+		_assigneeGroupId = assigneeGroupId;
 	}
 
-	public long getRoleId() {
-		return _roleId;
+	public String getAssigneeGroupName() {
+		return _assigneeGroupName;
 	}
 
-	public void setRoleId(long roleId) {
-		_roleId = roleId;
+	public void setAssigneeGroupName(String assigneeGroupName) {
+		_assigneeGroupName = assigneeGroupName;
+	}
+
+	public long getAssigneeRoleId() {
+		return _assigneeRoleId;
+	}
+
+	public void setAssigneeRoleId(long assigneeRoleId) {
+		_assigneeRoleId = assigneeRoleId;
+	}
+
+	public String getAssigneeRoleName() {
+		return _assigneeRoleName;
+	}
+
+	public void setAssigneeRoleName(String assigneeRoleName) {
+		_assigneeRoleName = assigneeRoleName;
 	}
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowInstance getWorkflowInstance() {
@@ -223,6 +283,9 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 			model.setCreateDate(getCreateDate());
 			model.setFriendlyId(HtmlUtil.escape(getFriendlyId()));
 			model.setWorkflowDefinitionId(getWorkflowDefinitionId());
+			model.setWorkflowDefinitionName(HtmlUtil.escape(
+					getWorkflowDefinitionName()));
+			model.setWorkflowDefinitionVersion(getWorkflowDefinitionVersion());
 			model.setWorkflowInstanceId(getWorkflowInstanceId());
 			model.setMetaName(HtmlUtil.escape(getMetaName()));
 			model.setRelation(HtmlUtil.escape(getRelation()));
@@ -231,10 +294,15 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 			model.setCompleted(getCompleted());
 			model.setState(getState());
 			model.setPriority(getPriority());
+			model.setAsynchronous(getAsynchronous());
+			model.setTaskName(HtmlUtil.escape(getTaskName()));
+			model.setDescription(HtmlUtil.escape(getDescription()));
 			model.setAssigneeUserId(getAssigneeUserId());
 			model.setAssigneeUserName(HtmlUtil.escape(getAssigneeUserName()));
-			model.setAssignedGroupName(HtmlUtil.escape(getAssignedGroupName()));
-			model.setRoleId(getRoleId());
+			model.setAssigneeGroupId(getAssigneeGroupId());
+			model.setAssigneeGroupName(HtmlUtil.escape(getAssigneeGroupName()));
+			model.setAssigneeRoleId(getAssigneeRoleId());
+			model.setAssigneeRoleName(HtmlUtil.escape(getAssigneeRoleName()));
 
 			model = (WorkflowTask)Proxy.newProxyInstance(WorkflowTask.class.getClassLoader(),
 					new Class[] { WorkflowTask.class },
@@ -252,6 +320,8 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		clone.setCreateDate(getCreateDate());
 		clone.setFriendlyId(getFriendlyId());
 		clone.setWorkflowDefinitionId(getWorkflowDefinitionId());
+		clone.setWorkflowDefinitionName(getWorkflowDefinitionName());
+		clone.setWorkflowDefinitionVersion(getWorkflowDefinitionVersion());
 		clone.setWorkflowInstanceId(getWorkflowInstanceId());
 		clone.setMetaName(getMetaName());
 		clone.setRelation(getRelation());
@@ -260,10 +330,15 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		clone.setCompleted(getCompleted());
 		clone.setState(getState());
 		clone.setPriority(getPriority());
+		clone.setAsynchronous(getAsynchronous());
+		clone.setTaskName(getTaskName());
+		clone.setDescription(getDescription());
 		clone.setAssigneeUserId(getAssigneeUserId());
 		clone.setAssigneeUserName(getAssigneeUserName());
-		clone.setAssignedGroupName(getAssignedGroupName());
-		clone.setRoleId(getRoleId());
+		clone.setAssigneeGroupId(getAssigneeGroupId());
+		clone.setAssigneeGroupName(getAssigneeGroupName());
+		clone.setAssigneeRoleId(getAssigneeRoleId());
+		clone.setAssigneeRoleName(getAssigneeRoleName());
 
 		return clone;
 	}
@@ -323,6 +398,10 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		sb.append(getFriendlyId());
 		sb.append(", workflowDefinitionId=");
 		sb.append(getWorkflowDefinitionId());
+		sb.append(", workflowDefinitionName=");
+		sb.append(getWorkflowDefinitionName());
+		sb.append(", workflowDefinitionVersion=");
+		sb.append(getWorkflowDefinitionVersion());
 		sb.append(", workflowInstanceId=");
 		sb.append(getWorkflowInstanceId());
 		sb.append(", metaName=");
@@ -339,14 +418,24 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		sb.append(getState());
 		sb.append(", priority=");
 		sb.append(getPriority());
+		sb.append(", asynchronous=");
+		sb.append(getAsynchronous());
+		sb.append(", taskName=");
+		sb.append(getTaskName());
+		sb.append(", description=");
+		sb.append(getDescription());
 		sb.append(", assigneeUserId=");
 		sb.append(getAssigneeUserId());
 		sb.append(", assigneeUserName=");
 		sb.append(getAssigneeUserName());
-		sb.append(", assignedGroupName=");
-		sb.append(getAssignedGroupName());
-		sb.append(", roleId=");
-		sb.append(getRoleId());
+		sb.append(", assigneeGroupId=");
+		sb.append(getAssigneeGroupId());
+		sb.append(", assigneeGroupName=");
+		sb.append(getAssigneeGroupName());
+		sb.append(", assigneeRoleId=");
+		sb.append(getAssigneeRoleId());
+		sb.append(", assigneeRoleName=");
+		sb.append(getAssigneeRoleName());
 		sb.append("}");
 
 		return sb.toString();
@@ -378,6 +467,14 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		sb.append(
 			"<column><column-name>workflowDefinitionId</column-name><column-value><![CDATA[");
 		sb.append(getWorkflowDefinitionId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>workflowDefinitionName</column-name><column-value><![CDATA[");
+		sb.append(getWorkflowDefinitionName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>workflowDefinitionVersion</column-name><column-value><![CDATA[");
+		sb.append(getWorkflowDefinitionVersion());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>workflowInstanceId</column-name><column-value><![CDATA[");
@@ -412,6 +509,18 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		sb.append(getPriority());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>asynchronous</column-name><column-value><![CDATA[");
+		sb.append(getAsynchronous());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>taskName</column-name><column-value><![CDATA[");
+		sb.append(getTaskName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>description</column-name><column-value><![CDATA[");
+		sb.append(getDescription());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>assigneeUserId</column-name><column-value><![CDATA[");
 		sb.append(getAssigneeUserId());
 		sb.append("]]></column-value></column>");
@@ -420,12 +529,20 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 		sb.append(getAssigneeUserName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>assignedGroupName</column-name><column-value><![CDATA[");
-		sb.append(getAssignedGroupName());
+			"<column><column-name>assigneeGroupId</column-name><column-value><![CDATA[");
+		sb.append(getAssigneeGroupId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>roleId</column-name><column-value><![CDATA[");
-		sb.append(getRoleId());
+			"<column><column-name>assigneeGroupName</column-name><column-value><![CDATA[");
+		sb.append(getAssigneeGroupName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>assigneeRoleId</column-name><column-value><![CDATA[");
+		sb.append(getAssigneeRoleId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>assigneeRoleName</column-name><column-value><![CDATA[");
+		sb.append(getAssigneeRoleName());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -438,6 +555,8 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 	private Date _createDate;
 	private String _friendlyId;
 	private long _workflowDefinitionId;
+	private String _workflowDefinitionName;
+	private int _workflowDefinitionVersion;
 	private long _workflowInstanceId;
 	private String _metaName;
 	private String _relation;
@@ -446,9 +565,14 @@ public class WorkflowTaskClp extends BaseModelImpl<WorkflowTask>
 	private boolean _completed;
 	private int _state;
 	private int _priority;
+	private boolean _asynchronous;
+	private String _taskName;
+	private String _description;
 	private long _assigneeUserId;
 	private String _assigneeUserUuid;
 	private String _assigneeUserName;
-	private String _assignedGroupName;
-	private long _roleId;
+	private long _assigneeGroupId;
+	private String _assigneeGroupName;
+	private long _assigneeRoleId;
+	private String _assigneeRoleName;
 }

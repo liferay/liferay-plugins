@@ -26,12 +26,12 @@ create index IX_A97BD0CE on Edoras_WorkflowLog (workflowInstanceId, logEntityTyp
 create index IX_E700B547 on Edoras_WorkflowLog (workflowInstanceId, logEntityType, type_);
 create index IX_8F74AAD3 on Edoras_WorkflowLog (workflowTaskId);
 
+create index IX_DE3DCC29 on Edoras_WorkflowTask (assigneeRoleId);
+create index IX_A8A76772 on Edoras_WorkflowTask (assigneeRoleId, completed);
 create index IX_DE3F84FE on Edoras_WorkflowTask (assigneeUserId);
 create index IX_63B1477D on Edoras_WorkflowTask (assigneeUserId, completed);
 create index IX_C799F228 on Edoras_WorkflowTask (companyId, completed);
 create index IX_CF060A46 on Edoras_WorkflowTask (completed);
-create index IX_BC5FA03A on Edoras_WorkflowTask (roleId);
-create index IX_FBA50EC1 on Edoras_WorkflowTask (roleId, completed);
 create index IX_FCB927B8 on Edoras_WorkflowTask (workflowInstanceId);
 create index IX_B1508C83 on Edoras_WorkflowTask (workflowInstanceId, completed);
 create index IX_3FCEB449 on Edoras_WorkflowTask (workflowInstanceId, state);

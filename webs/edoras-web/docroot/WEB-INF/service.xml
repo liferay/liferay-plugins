@@ -237,6 +237,8 @@
 
 		<column name="friendlyId" type="String" />
 		<column name="workflowDefinitionId" type="long" />
+		<column name="workflowDefinitionName" type="String" />
+		<column name="workflowDefinitionVersion" type="int" />
 		<column name="workflowInstanceId" type="long" />
 		<column name="metaName" type="String" />
 		<column name="relation" type="String" />
@@ -245,10 +247,15 @@
 		<column name="completed" type="boolean" />
 		<column name="state" type="int" />
 		<column name="priority" type="int" />
+		<column name="asynchronous" type="boolean" />
+		<column name="taskName" type="String" />
+		<column name="description" type="String" />
 		<column name="assigneeUserId" type="long" />
 		<column name="assigneeUserName" type="String" />
-		<column name="assignedGroupName" type="String" />
-		<column name="roleId" type="long" />
+		<column name="assigneeGroupId" type="long" />
+		<column name="assigneeGroupName" type="String" />
+		<column name="assigneeRoleId" type="long" />
+		<column name="assigneeRoleName" type="String" />
 
 		<!-- Finder methods -->
 
@@ -262,7 +269,7 @@
 			<finder-column name="assigneeUserId" />
 		</finder>
 		<finder name="RoleId" return-type="Collection">
-			<finder-column name="roleId" />
+			<finder-column name="assigneeRoleId" />
 		</finder>
 		<finder name="C_C" return-type="Collection">
 			<finder-column name="companyId" />
@@ -281,7 +288,7 @@
 			<finder-column name="completed" />
 		</finder>
 		<finder name="R_C" return-type="Collection">
-			<finder-column name="roleId" />
+			<finder-column name="assigneeRoleId" />
 			<finder-column name="completed" />
 		</finder>
 	</entity>

@@ -383,6 +383,8 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		workflowTaskImpl.setCreateDate(workflowTask.getCreateDate());
 		workflowTaskImpl.setFriendlyId(workflowTask.getFriendlyId());
 		workflowTaskImpl.setWorkflowDefinitionId(workflowTask.getWorkflowDefinitionId());
+		workflowTaskImpl.setWorkflowDefinitionName(workflowTask.getWorkflowDefinitionName());
+		workflowTaskImpl.setWorkflowDefinitionVersion(workflowTask.getWorkflowDefinitionVersion());
 		workflowTaskImpl.setWorkflowInstanceId(workflowTask.getWorkflowInstanceId());
 		workflowTaskImpl.setMetaName(workflowTask.getMetaName());
 		workflowTaskImpl.setRelation(workflowTask.getRelation());
@@ -391,10 +393,15 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		workflowTaskImpl.setCompleted(workflowTask.isCompleted());
 		workflowTaskImpl.setState(workflowTask.getState());
 		workflowTaskImpl.setPriority(workflowTask.getPriority());
+		workflowTaskImpl.setAsynchronous(workflowTask.isAsynchronous());
+		workflowTaskImpl.setTaskName(workflowTask.getTaskName());
+		workflowTaskImpl.setDescription(workflowTask.getDescription());
 		workflowTaskImpl.setAssigneeUserId(workflowTask.getAssigneeUserId());
 		workflowTaskImpl.setAssigneeUserName(workflowTask.getAssigneeUserName());
-		workflowTaskImpl.setAssignedGroupName(workflowTask.getAssignedGroupName());
-		workflowTaskImpl.setRoleId(workflowTask.getRoleId());
+		workflowTaskImpl.setAssigneeGroupId(workflowTask.getAssigneeGroupId());
+		workflowTaskImpl.setAssigneeGroupName(workflowTask.getAssigneeGroupName());
+		workflowTaskImpl.setAssigneeRoleId(workflowTask.getAssigneeRoleId());
+		workflowTaskImpl.setAssigneeRoleName(workflowTask.getAssigneeRoleName());
 
 		return workflowTaskImpl;
 	}
@@ -1193,9 +1200,9 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public List<WorkflowTask> findByRoleId(long roleId)
+	public List<WorkflowTask> findByRoleId(long assigneeRoleId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(roleId) };
+		Object[] finderArgs = new Object[] { new Long(assigneeRoleId) };
 
 		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ROLEID,
 				finderArgs, this);
@@ -1211,7 +1218,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 				query.append(
 					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
 
-				query.append("workflowTask.roleId = ?");
+				query.append("workflowTask.assigneeRoleId = ?");
 
 				query.append(" ");
 
@@ -1219,7 +1226,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(roleId);
+				qPos.add(assigneeRoleId);
 
 				list = q.list();
 			}
@@ -1243,15 +1250,15 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		return list;
 	}
 
-	public List<WorkflowTask> findByRoleId(long roleId, int start, int end)
-		throws SystemException {
-		return findByRoleId(roleId, start, end, null);
+	public List<WorkflowTask> findByRoleId(long assigneeRoleId, int start,
+		int end) throws SystemException {
+		return findByRoleId(assigneeRoleId, start, end, null);
 	}
 
-	public List<WorkflowTask> findByRoleId(long roleId, int start, int end,
-		OrderByComparator obc) throws SystemException {
+	public List<WorkflowTask> findByRoleId(long assigneeRoleId, int start,
+		int end, OrderByComparator obc) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(roleId),
+				new Long(assigneeRoleId),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
@@ -1270,7 +1277,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 				query.append(
 					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
 
-				query.append("workflowTask.roleId = ?");
+				query.append("workflowTask.assigneeRoleId = ?");
 
 				query.append(" ");
 
@@ -1300,7 +1307,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(roleId);
+				qPos.add(assigneeRoleId);
 
 				list = (List<WorkflowTask>)QueryUtil.list(q, getDialect(),
 						start, end);
@@ -1325,16 +1332,17 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		return list;
 	}
 
-	public WorkflowTask findByRoleId_First(long roleId, OrderByComparator obc)
+	public WorkflowTask findByRoleId_First(long assigneeRoleId,
+		OrderByComparator obc)
 		throws NoSuchWorkflowTaskException, SystemException {
-		List<WorkflowTask> list = findByRoleId(roleId, 0, 1, obc);
+		List<WorkflowTask> list = findByRoleId(assigneeRoleId, 0, 1, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WorkflowTask exists with the key {");
 
-			msg.append("roleId=" + roleId);
+			msg.append("assigneeRoleId=" + assigneeRoleId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1345,18 +1353,20 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public WorkflowTask findByRoleId_Last(long roleId, OrderByComparator obc)
+	public WorkflowTask findByRoleId_Last(long assigneeRoleId,
+		OrderByComparator obc)
 		throws NoSuchWorkflowTaskException, SystemException {
-		int count = countByRoleId(roleId);
+		int count = countByRoleId(assigneeRoleId);
 
-		List<WorkflowTask> list = findByRoleId(roleId, count - 1, count, obc);
+		List<WorkflowTask> list = findByRoleId(assigneeRoleId, count - 1,
+				count, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WorkflowTask exists with the key {");
 
-			msg.append("roleId=" + roleId);
+			msg.append("assigneeRoleId=" + assigneeRoleId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1368,11 +1378,11 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 	}
 
 	public WorkflowTask[] findByRoleId_PrevAndNext(long workflowTaskId,
-		long roleId, OrderByComparator obc)
+		long assigneeRoleId, OrderByComparator obc)
 		throws NoSuchWorkflowTaskException, SystemException {
 		WorkflowTask workflowTask = findByPrimaryKey(workflowTaskId);
 
-		int count = countByRoleId(roleId);
+		int count = countByRoleId(assigneeRoleId);
 
 		Session session = null;
 
@@ -1384,7 +1394,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 			query.append(
 				"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
 
-			query.append("workflowTask.roleId = ?");
+			query.append("workflowTask.assigneeRoleId = ?");
 
 			query.append(" ");
 
@@ -1414,7 +1424,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			qPos.add(roleId);
+			qPos.add(assigneeRoleId);
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
 					workflowTask);
@@ -2521,10 +2531,10 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public List<WorkflowTask> findByR_C(long roleId, boolean completed)
+	public List<WorkflowTask> findByR_C(long assigneeRoleId, boolean completed)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(roleId), Boolean.valueOf(completed)
+				new Long(assigneeRoleId), Boolean.valueOf(completed)
 			};
 
 		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_C,
@@ -2541,7 +2551,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 				query.append(
 					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
 
-				query.append("workflowTask.roleId = ?");
+				query.append("workflowTask.assigneeRoleId = ?");
 
 				query.append(" AND ");
 
@@ -2553,7 +2563,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(roleId);
+				qPos.add(assigneeRoleId);
 
 				qPos.add(completed);
 
@@ -2579,15 +2589,15 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		return list;
 	}
 
-	public List<WorkflowTask> findByR_C(long roleId, boolean completed,
+	public List<WorkflowTask> findByR_C(long assigneeRoleId, boolean completed,
 		int start, int end) throws SystemException {
-		return findByR_C(roleId, completed, start, end, null);
+		return findByR_C(assigneeRoleId, completed, start, end, null);
 	}
 
-	public List<WorkflowTask> findByR_C(long roleId, boolean completed,
+	public List<WorkflowTask> findByR_C(long assigneeRoleId, boolean completed,
 		int start, int end, OrderByComparator obc) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(roleId), Boolean.valueOf(completed),
+				new Long(assigneeRoleId), Boolean.valueOf(completed),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
@@ -2606,7 +2616,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 				query.append(
 					"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
 
-				query.append("workflowTask.roleId = ?");
+				query.append("workflowTask.assigneeRoleId = ?");
 
 				query.append(" AND ");
 
@@ -2640,7 +2650,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(roleId);
+				qPos.add(assigneeRoleId);
 
 				qPos.add(completed);
 
@@ -2667,17 +2677,17 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		return list;
 	}
 
-	public WorkflowTask findByR_C_First(long roleId, boolean completed,
+	public WorkflowTask findByR_C_First(long assigneeRoleId, boolean completed,
 		OrderByComparator obc)
 		throws NoSuchWorkflowTaskException, SystemException {
-		List<WorkflowTask> list = findByR_C(roleId, completed, 0, 1, obc);
+		List<WorkflowTask> list = findByR_C(assigneeRoleId, completed, 0, 1, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WorkflowTask exists with the key {");
 
-			msg.append("roleId=" + roleId);
+			msg.append("assigneeRoleId=" + assigneeRoleId);
 
 			msg.append(", ");
 			msg.append("completed=" + completed);
@@ -2691,20 +2701,20 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public WorkflowTask findByR_C_Last(long roleId, boolean completed,
+	public WorkflowTask findByR_C_Last(long assigneeRoleId, boolean completed,
 		OrderByComparator obc)
 		throws NoSuchWorkflowTaskException, SystemException {
-		int count = countByR_C(roleId, completed);
+		int count = countByR_C(assigneeRoleId, completed);
 
-		List<WorkflowTask> list = findByR_C(roleId, completed, count - 1,
-				count, obc);
+		List<WorkflowTask> list = findByR_C(assigneeRoleId, completed,
+				count - 1, count, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WorkflowTask exists with the key {");
 
-			msg.append("roleId=" + roleId);
+			msg.append("assigneeRoleId=" + assigneeRoleId);
 
 			msg.append(", ");
 			msg.append("completed=" + completed);
@@ -2719,11 +2729,11 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 	}
 
 	public WorkflowTask[] findByR_C_PrevAndNext(long workflowTaskId,
-		long roleId, boolean completed, OrderByComparator obc)
+		long assigneeRoleId, boolean completed, OrderByComparator obc)
 		throws NoSuchWorkflowTaskException, SystemException {
 		WorkflowTask workflowTask = findByPrimaryKey(workflowTaskId);
 
-		int count = countByR_C(roleId, completed);
+		int count = countByR_C(assigneeRoleId, completed);
 
 		Session session = null;
 
@@ -2735,7 +2745,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 			query.append(
 				"SELECT workflowTask FROM WorkflowTask workflowTask WHERE ");
 
-			query.append("workflowTask.roleId = ?");
+			query.append("workflowTask.assigneeRoleId = ?");
 
 			query.append(" AND ");
 
@@ -2769,7 +2779,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			qPos.add(roleId);
+			qPos.add(assigneeRoleId);
 
 			qPos.add(completed);
 
@@ -2936,8 +2946,8 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public void removeByRoleId(long roleId) throws SystemException {
-		for (WorkflowTask workflowTask : findByRoleId(roleId)) {
+	public void removeByRoleId(long assigneeRoleId) throws SystemException {
+		for (WorkflowTask workflowTask : findByRoleId(assigneeRoleId)) {
 			remove(workflowTask);
 		}
 	}
@@ -2970,9 +2980,9 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public void removeByR_C(long roleId, boolean completed)
+	public void removeByR_C(long assigneeRoleId, boolean completed)
 		throws SystemException {
-		for (WorkflowTask workflowTask : findByR_C(roleId, completed)) {
+		for (WorkflowTask workflowTask : findByR_C(assigneeRoleId, completed)) {
 			remove(workflowTask);
 		}
 	}
@@ -3126,8 +3136,8 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		return count.intValue();
 	}
 
-	public int countByRoleId(long roleId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(roleId) };
+	public int countByRoleId(long assigneeRoleId) throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(assigneeRoleId) };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ROLEID,
 				finderArgs, this);
@@ -3143,7 +3153,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 				query.append("SELECT COUNT(workflowTask) ");
 				query.append("FROM WorkflowTask workflowTask WHERE ");
 
-				query.append("workflowTask.roleId = ?");
+				query.append("workflowTask.assigneeRoleId = ?");
 
 				query.append(" ");
 
@@ -3151,7 +3161,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(roleId);
+				qPos.add(assigneeRoleId);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -3397,10 +3407,10 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		return count.intValue();
 	}
 
-	public int countByR_C(long roleId, boolean completed)
+	public int countByR_C(long assigneeRoleId, boolean completed)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(roleId), Boolean.valueOf(completed)
+				new Long(assigneeRoleId), Boolean.valueOf(completed)
 			};
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_C,
@@ -3417,7 +3427,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 				query.append("SELECT COUNT(workflowTask) ");
 				query.append("FROM WorkflowTask workflowTask WHERE ");
 
-				query.append("workflowTask.roleId = ?");
+				query.append("workflowTask.assigneeRoleId = ?");
 
 				query.append(" AND ");
 
@@ -3429,7 +3439,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(roleId);
+				qPos.add(assigneeRoleId);
 
 				qPos.add(completed);
 

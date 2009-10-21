@@ -22,12 +22,14 @@
 
 package com.liferay.portal.workflow.edoras;
 
+import com.liferay.portal.kernel.workflow.TaskInstanceInfo;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceHistory;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceInfo;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
 import com.liferay.portal.workflow.edoras.model.WorkflowLog;
+import com.liferay.portal.workflow.edoras.model.WorkflowTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -145,4 +147,15 @@ public class WorkflowManagerUtil {
 		return wrappedWorkflowInstances;
 	}
 
+	public static List<TaskInstanceInfo> wrapWorkflowTasks(
+		List<WorkflowTask> workflowTasks) {
+		List<TaskInstanceInfo> wrappedWorkflowTasks =
+			new ArrayList<TaskInstanceInfo>(workflowTasks.size());
+
+		for (WorkflowTask workflowTask : workflowTasks) {
+			wrappedWorkflowTasks.add(new TaskInstanceInfoImpl(workflowTask));
+		}
+		
+		return wrappedWorkflowTasks;
+	}
 }

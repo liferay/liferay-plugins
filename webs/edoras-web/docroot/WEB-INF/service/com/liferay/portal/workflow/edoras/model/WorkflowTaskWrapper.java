@@ -80,6 +80,23 @@ public class WorkflowTaskWrapper implements WorkflowTask {
 		_workflowTask.setWorkflowDefinitionId(workflowDefinitionId);
 	}
 
+	public java.lang.String getWorkflowDefinitionName() {
+		return _workflowTask.getWorkflowDefinitionName();
+	}
+
+	public void setWorkflowDefinitionName(
+		java.lang.String workflowDefinitionName) {
+		_workflowTask.setWorkflowDefinitionName(workflowDefinitionName);
+	}
+
+	public int getWorkflowDefinitionVersion() {
+		return _workflowTask.getWorkflowDefinitionVersion();
+	}
+
+	public void setWorkflowDefinitionVersion(int workflowDefinitionVersion) {
+		_workflowTask.setWorkflowDefinitionVersion(workflowDefinitionVersion);
+	}
+
 	public long getWorkflowInstanceId() {
 		return _workflowTask.getWorkflowInstanceId();
 	}
@@ -148,6 +165,34 @@ public class WorkflowTaskWrapper implements WorkflowTask {
 		_workflowTask.setPriority(priority);
 	}
 
+	public boolean getAsynchronous() {
+		return _workflowTask.getAsynchronous();
+	}
+
+	public boolean isAsynchronous() {
+		return _workflowTask.isAsynchronous();
+	}
+
+	public void setAsynchronous(boolean asynchronous) {
+		_workflowTask.setAsynchronous(asynchronous);
+	}
+
+	public java.lang.String getTaskName() {
+		return _workflowTask.getTaskName();
+	}
+
+	public void setTaskName(java.lang.String taskName) {
+		_workflowTask.setTaskName(taskName);
+	}
+
+	public java.lang.String getDescription() {
+		return _workflowTask.getDescription();
+	}
+
+	public void setDescription(java.lang.String description) {
+		_workflowTask.setDescription(description);
+	}
+
 	public long getAssigneeUserId() {
 		return _workflowTask.getAssigneeUserId();
 	}
@@ -173,20 +218,36 @@ public class WorkflowTaskWrapper implements WorkflowTask {
 		_workflowTask.setAssigneeUserName(assigneeUserName);
 	}
 
-	public java.lang.String getAssignedGroupName() {
-		return _workflowTask.getAssignedGroupName();
+	public long getAssigneeGroupId() {
+		return _workflowTask.getAssigneeGroupId();
 	}
 
-	public void setAssignedGroupName(java.lang.String assignedGroupName) {
-		_workflowTask.setAssignedGroupName(assignedGroupName);
+	public void setAssigneeGroupId(long assigneeGroupId) {
+		_workflowTask.setAssigneeGroupId(assigneeGroupId);
 	}
 
-	public long getRoleId() {
-		return _workflowTask.getRoleId();
+	public java.lang.String getAssigneeGroupName() {
+		return _workflowTask.getAssigneeGroupName();
 	}
 
-	public void setRoleId(long roleId) {
-		_workflowTask.setRoleId(roleId);
+	public void setAssigneeGroupName(java.lang.String assigneeGroupName) {
+		_workflowTask.setAssigneeGroupName(assigneeGroupName);
+	}
+
+	public long getAssigneeRoleId() {
+		return _workflowTask.getAssigneeRoleId();
+	}
+
+	public void setAssigneeRoleId(long assigneeRoleId) {
+		_workflowTask.setAssigneeRoleId(assigneeRoleId);
+	}
+
+	public java.lang.String getAssigneeRoleName() {
+		return _workflowTask.getAssigneeRoleName();
+	}
+
+	public void setAssigneeRoleName(java.lang.String assigneeRoleName) {
+		_workflowTask.setAssigneeRoleName(assigneeRoleName);
 	}
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowTask toEscapedModel() {

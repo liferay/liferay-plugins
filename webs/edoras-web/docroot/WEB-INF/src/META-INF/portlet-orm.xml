@@ -122,6 +122,8 @@
 			</basic>
 			<basic name="friendlyId" />
 			<basic name="workflowDefinitionId" />
+			<basic name="workflowDefinitionName" />
+			<basic name="workflowDefinitionVersion" />
 			<basic name="workflowInstanceId" />
 			<basic name="metaName" />
 			<basic name="relation" />
@@ -134,10 +136,15 @@
 			<basic name="completed" />
 			<basic name="state" />
 			<basic name="priority" />
+			<basic name="asynchronous" />
+			<basic name="taskName" />
+			<basic name="description" />
 			<basic name="assigneeUserId" />
 			<basic name="assigneeUserName" />
-			<basic name="assignedGroupName" />
-			<basic name="roleId" />
+			<basic name="assigneeGroupId" />
+			<basic name="assigneeGroupName" />
+			<basic name="assigneeRoleId" />
+			<basic name="assigneeRoleName" />
 			<transient name="assigneeUserUuid" />
 			<transient name="primaryKey" />
 		</attributes>

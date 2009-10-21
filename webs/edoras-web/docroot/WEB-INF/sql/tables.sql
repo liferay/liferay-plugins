@@ -78,6 +78,8 @@ create table Edoras_WorkflowTask (
 	createDate DATE null,
 	friendlyId VARCHAR(75) null,
 	workflowDefinitionId LONG,
+	workflowDefinitionName VARCHAR(75) null,
+	workflowDefinitionVersion INTEGER,
 	workflowInstanceId LONG,
 	metaName VARCHAR(75) null,
 	relation VARCHAR(75) null,
@@ -86,8 +88,13 @@ create table Edoras_WorkflowTask (
 	completed BOOLEAN,
 	state INTEGER,
 	priority INTEGER,
+	asynchronous BOOLEAN,
+	taskName VARCHAR(75) null,
+	description VARCHAR(75) null,
 	assigneeUserId LONG,
 	assigneeUserName VARCHAR(75) null,
-	assignedGroupName VARCHAR(75) null,
-	roleId LONG
+	assigneeGroupId LONG,
+	assigneeGroupName VARCHAR(75) null,
+	assigneeRoleId LONG,
+	assigneeRoleName VARCHAR(75) null
 );

@@ -42,6 +42,8 @@ public class WorkflowTaskSoap implements Serializable {
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setFriendlyId(model.getFriendlyId());
 		soapModel.setWorkflowDefinitionId(model.getWorkflowDefinitionId());
+		soapModel.setWorkflowDefinitionName(model.getWorkflowDefinitionName());
+		soapModel.setWorkflowDefinitionVersion(model.getWorkflowDefinitionVersion());
 		soapModel.setWorkflowInstanceId(model.getWorkflowInstanceId());
 		soapModel.setMetaName(model.getMetaName());
 		soapModel.setRelation(model.getRelation());
@@ -50,10 +52,15 @@ public class WorkflowTaskSoap implements Serializable {
 		soapModel.setCompleted(model.getCompleted());
 		soapModel.setState(model.getState());
 		soapModel.setPriority(model.getPriority());
+		soapModel.setAsynchronous(model.getAsynchronous());
+		soapModel.setTaskName(model.getTaskName());
+		soapModel.setDescription(model.getDescription());
 		soapModel.setAssigneeUserId(model.getAssigneeUserId());
 		soapModel.setAssigneeUserName(model.getAssigneeUserName());
-		soapModel.setAssignedGroupName(model.getAssignedGroupName());
-		soapModel.setRoleId(model.getRoleId());
+		soapModel.setAssigneeGroupId(model.getAssigneeGroupId());
+		soapModel.setAssigneeGroupName(model.getAssigneeGroupName());
+		soapModel.setAssigneeRoleId(model.getAssigneeRoleId());
+		soapModel.setAssigneeRoleName(model.getAssigneeRoleName());
 
 		return soapModel;
 	}
@@ -146,6 +153,22 @@ public class WorkflowTaskSoap implements Serializable {
 		_workflowDefinitionId = workflowDefinitionId;
 	}
 
+	public String getWorkflowDefinitionName() {
+		return _workflowDefinitionName;
+	}
+
+	public void setWorkflowDefinitionName(String workflowDefinitionName) {
+		_workflowDefinitionName = workflowDefinitionName;
+	}
+
+	public int getWorkflowDefinitionVersion() {
+		return _workflowDefinitionVersion;
+	}
+
+	public void setWorkflowDefinitionVersion(int workflowDefinitionVersion) {
+		_workflowDefinitionVersion = workflowDefinitionVersion;
+	}
+
 	public long getWorkflowInstanceId() {
 		return _workflowInstanceId;
 	}
@@ -214,6 +237,34 @@ public class WorkflowTaskSoap implements Serializable {
 		_priority = priority;
 	}
 
+	public boolean getAsynchronous() {
+		return _asynchronous;
+	}
+
+	public boolean isAsynchronous() {
+		return _asynchronous;
+	}
+
+	public void setAsynchronous(boolean asynchronous) {
+		_asynchronous = asynchronous;
+	}
+
+	public String getTaskName() {
+		return _taskName;
+	}
+
+	public void setTaskName(String taskName) {
+		_taskName = taskName;
+	}
+
+	public String getDescription() {
+		return _description;
+	}
+
+	public void setDescription(String description) {
+		_description = description;
+	}
+
 	public long getAssigneeUserId() {
 		return _assigneeUserId;
 	}
@@ -230,20 +281,36 @@ public class WorkflowTaskSoap implements Serializable {
 		_assigneeUserName = assigneeUserName;
 	}
 
-	public String getAssignedGroupName() {
-		return _assignedGroupName;
+	public long getAssigneeGroupId() {
+		return _assigneeGroupId;
 	}
 
-	public void setAssignedGroupName(String assignedGroupName) {
-		_assignedGroupName = assignedGroupName;
+	public void setAssigneeGroupId(long assigneeGroupId) {
+		_assigneeGroupId = assigneeGroupId;
 	}
 
-	public long getRoleId() {
-		return _roleId;
+	public String getAssigneeGroupName() {
+		return _assigneeGroupName;
 	}
 
-	public void setRoleId(long roleId) {
-		_roleId = roleId;
+	public void setAssigneeGroupName(String assigneeGroupName) {
+		_assigneeGroupName = assigneeGroupName;
+	}
+
+	public long getAssigneeRoleId() {
+		return _assigneeRoleId;
+	}
+
+	public void setAssigneeRoleId(long assigneeRoleId) {
+		_assigneeRoleId = assigneeRoleId;
+	}
+
+	public String getAssigneeRoleName() {
+		return _assigneeRoleName;
+	}
+
+	public void setAssigneeRoleName(String assigneeRoleName) {
+		_assigneeRoleName = assigneeRoleName;
 	}
 
 	private long _workflowTaskId;
@@ -251,6 +318,8 @@ public class WorkflowTaskSoap implements Serializable {
 	private Date _createDate;
 	private String _friendlyId;
 	private long _workflowDefinitionId;
+	private String _workflowDefinitionName;
+	private int _workflowDefinitionVersion;
 	private long _workflowInstanceId;
 	private String _metaName;
 	private String _relation;
@@ -259,8 +328,13 @@ public class WorkflowTaskSoap implements Serializable {
 	private boolean _completed;
 	private int _state;
 	private int _priority;
+	private boolean _asynchronous;
+	private String _taskName;
+	private String _description;
 	private long _assigneeUserId;
 	private String _assigneeUserName;
-	private String _assignedGroupName;
-	private long _roleId;
+	private long _assigneeGroupId;
+	private String _assigneeGroupName;
+	private long _assigneeRoleId;
+	private String _assigneeRoleName;
 }

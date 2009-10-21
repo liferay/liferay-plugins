@@ -97,6 +97,8 @@
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="friendlyId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="workflowDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="workflowDefinitionName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workflowDefinitionVersion" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="workflowInstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="metaName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="relation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -105,9 +107,14 @@
 		<property name="completed" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="state" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="asynchronous" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="taskName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="assigneeUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="assigneeUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="assignedGroupName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="roleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="assigneeGroupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="assigneeGroupName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="assigneeRoleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="assigneeRoleName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

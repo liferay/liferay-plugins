@@ -62,6 +62,14 @@ public interface WorkflowTaskModel extends BaseModel<WorkflowTask> {
 
 	public void setWorkflowDefinitionId(long workflowDefinitionId);
 
+	public String getWorkflowDefinitionName();
+
+	public void setWorkflowDefinitionName(String workflowDefinitionName);
+
+	public int getWorkflowDefinitionVersion();
+
+	public void setWorkflowDefinitionVersion(int workflowDefinitionVersion);
+
 	public long getWorkflowInstanceId();
 
 	public void setWorkflowInstanceId(long workflowInstanceId);
@@ -96,6 +104,20 @@ public interface WorkflowTaskModel extends BaseModel<WorkflowTask> {
 
 	public void setPriority(int priority);
 
+	public boolean getAsynchronous();
+
+	public boolean isAsynchronous();
+
+	public void setAsynchronous(boolean asynchronous);
+
+	public String getTaskName();
+
+	public void setTaskName(String taskName);
+
+	public String getDescription();
+
+	public void setDescription(String description);
+
 	public long getAssigneeUserId();
 
 	public void setAssigneeUserId(long assigneeUserId);
@@ -108,13 +130,21 @@ public interface WorkflowTaskModel extends BaseModel<WorkflowTask> {
 
 	public void setAssigneeUserName(String assigneeUserName);
 
-	public String getAssignedGroupName();
+	public long getAssigneeGroupId();
 
-	public void setAssignedGroupName(String assignedGroupName);
+	public void setAssigneeGroupId(long assigneeGroupId);
 
-	public long getRoleId();
+	public String getAssigneeGroupName();
 
-	public void setRoleId(long roleId);
+	public void setAssigneeGroupName(String assigneeGroupName);
+
+	public long getAssigneeRoleId();
+
+	public void setAssigneeRoleId(long assigneeRoleId);
+
+	public String getAssigneeRoleName();
+
+	public void setAssigneeRoleName(String assigneeRoleName);
 
 	public WorkflowTask toEscapedModel();
 

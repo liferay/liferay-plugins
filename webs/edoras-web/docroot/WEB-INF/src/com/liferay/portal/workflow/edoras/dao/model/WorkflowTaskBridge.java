@@ -120,10 +120,12 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 		setCompleted(workflowTask.getCompleted());
 		setState(TaskState.getState(workflowTask.getState()));
 		setPriority(TaskPriority.getPriority(workflowTask.getPriority()));
-		//setAssigneeUserId(workflowTask.getAssigneeUserId());
-		setAssignee(workflowTask.getAssigneeUserName());
-		setAssignedGroup(workflowTask.getAssignedGroupName());
-		//setRoleId(workflowTask.getRoleId());
+		setAssignedUserId(workflowTask.getAssigneeUserId());
+		setAssignedUser(workflowTask.getAssigneeUserName());
+		setAssignedGroupId(workflowTask.getAssigneeGroupId());
+		setAssignedGroup(workflowTask.getAssigneeGroupName());
+		setAssignedRoleId(workflowTask.getAssigneeRoleId());
+		setAssignedRole(workflowTask.getAssigneeRoleName());
 
 		postLoad();
 	}
@@ -146,10 +148,15 @@ public class WorkflowTaskBridge extends DefaultWorkflowTask
 		_workflowTask.setCompleted(isCompleted());
 		_workflowTask.setState(getState().getState());
 		_workflowTask.setPriority(getPriority().getPriority());
-		//_workflowTask.setAssigneeUserId(getAssigneeUserId());
+		_workflowTask.setAsynchronous(getMetaData().isAsync());
+		_workflowTask.setDescription(getMetaData().getDescription());
+		_workflowTask.setTaskName(getMetaData().getLabel());
+		_workflowTask.setAssigneeUserId(getAssignedUserId());
 		_workflowTask.setAssigneeUserName(getAssignee());
-		_workflowTask.setAssignedGroupName(getAssignedGroup());
-		//_workflowTask.setRoleId(getRoleId());
+		_workflowTask.setAssigneeGroupId(getAssignedGroupId());
+		_workflowTask.setAssigneeGroupName(getAssignedGroup());
+		_workflowTask.setAssigneeRoleId(getAssignedRoleId());
+		_workflowTask.setAssigneeRoleName(getAssignedRole());
 	}
 
 	public WorkflowTask unwrap() {

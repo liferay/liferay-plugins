@@ -76,6 +76,8 @@
 		<field name="createDate" type="Date" />
 		<field name="friendlyId" type="String" />
 		<field name="workflowDefinitionId" type="long" />
+		<field name="workflowDefinitionName" type="String" />
+		<field name="workflowDefinitionVersion" type="int" />
 		<field name="workflowInstanceId" type="long" />
 		<field name="metaName" type="String" />
 		<field name="relation" type="String" />
@@ -84,9 +86,14 @@
 		<field name="completed" type="boolean" />
 		<field name="state" type="int" />
 		<field name="priority" type="int" />
+		<field name="asynchronous" type="boolean" />
+		<field name="taskName" type="String" />
+		<field name="description" type="String" />
 		<field name="assigneeUserId" type="long" />
 		<field name="assigneeUserName" type="String" />
-		<field name="assignedGroupName" type="String" />
-		<field name="roleId" type="long" />
+		<field name="assigneeGroupId" type="long" />
+		<field name="assigneeGroupName" type="String" />
+		<field name="assigneeRoleId" type="long" />
+		<field name="assigneeRoleName" type="String" />
 	</model>
 </model-hints>
