@@ -22,44 +22,44 @@
 
 package com.liferay.portal.workflow.edoras.dao.identity;
 
-import com.liferay.portal.service.persistence.ModelIdentity;
-
 import java.io.Serializable;
 
 import org.edorasframework.process.core.dao.xml.ProcessXmlPersister;
 import org.edorasframework.xmlpersister.XmlPersistable;
 
-
+@XmlPersistable("RefObjectSB")
 /**
- * <a href="ServiceBuilderObjectIdentity.java.html"><b><i>View Source</i></b></a>
+ * <a href="ServiceBuilderObjectIdentity.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Micha Kiener
  */
-@XmlPersistable("RefObjectSB")
 public class ServiceBuilderObjectIdentity
 	extends AbstractServiceBuilderObjectIdentity {
 
 	public ServiceBuilderObjectIdentity() {
-
 	}
-	
+
 	public ServiceBuilderObjectIdentity(
-		ModelIdentity modelIdentity, String attributeName, Object instance) {
+		String servletContextName, String className, Serializable primaryKey,
+		String attributeName, Object instance) {
 
-		super(modelIdentity, attributeName, instance);
+		super(
+			servletContextName, className, primaryKey, attributeName, instance);
 	}
 
-	@Override
 	protected Serializable getPrimaryKeyFromString(String primaryKey) {
-		ProcessXmlPersister persister = ProcessXmlPersister.getInstance();
+		ProcessXmlPersister processXmlPersister =
+			ProcessXmlPersister.getInstance();
 
-		return persister.readObject(primaryKey);
+		return processXmlPersister.readObject(primaryKey);
 	}
 
-	@Override
 	protected String getStringFromPrimaryKey(Serializable primaryKey) {
-		ProcessXmlPersister persister = ProcessXmlPersister.getInstance();
+		ProcessXmlPersister processXmlPersister =
+			ProcessXmlPersister.getInstance();
 
-		return persister.persistObject(primaryKey);
+		return processXmlPersister.persistObject(primaryKey);
 	}
+
 }

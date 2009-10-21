@@ -22,7 +22,7 @@
 
 package com.liferay.portal.workflow.edoras;
 
-import com.liferay.portal.PortalException;
+import com.liferay.portal.NoSuchModelException;
 
 /**
  * <a href="NoSuchWorkflowInstanceException.java.html"><b><i>View Source</i></b>
@@ -30,7 +30,7 @@ import com.liferay.portal.PortalException;
  *
  * @author Brian Wing Shun Chan
  */
-public class NoSuchWorkflowInstanceException extends PortalException {
+public class NoSuchWorkflowInstanceException extends NoSuchModelException {
 
 	public NoSuchWorkflowInstanceException() {
 		super();

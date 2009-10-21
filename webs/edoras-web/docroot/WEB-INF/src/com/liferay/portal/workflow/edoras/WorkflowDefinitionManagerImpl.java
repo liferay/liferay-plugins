@@ -22,7 +22,6 @@
 
 package com.liferay.portal.workflow.edoras;
 
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowDefinitionManager;
@@ -48,10 +47,9 @@ public class WorkflowDefinitionManagerImpl
 	extends AbstractWorkflowManager implements WorkflowDefinitionManager {
 
 	public void deployWorkflowDefinition(
-			WorkflowDefinition workflowDefinition, long callingUserId,
-			boolean autoIncrementVersionNumber,
-			Map<String, Object> parameters)
-		throws WorkflowException {
+		WorkflowDefinition workflowDefinition, long callingUserId,
+		boolean autoIncrementVersionNumber,
+		Map<String, Object> parameters) {
 
 		Class<?> setupId = AdditionalWorkflowParameterUtil.getDeclaredSetupId(
 			parameters);
@@ -68,7 +66,7 @@ public class WorkflowDefinitionManagerImpl
 		try {
 			return WorkflowDefinitionUtil.countAll();
 		}
-		catch (SystemException e) {
+		catch (Exception e) {
 			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
@@ -79,7 +77,7 @@ public class WorkflowDefinitionManagerImpl
 		try {
 			return WorkflowDefinitionUtil.countByName(workflowDefinitionName);
 		}
-		catch (SystemException e) {
+		catch (Exception e) {
 			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
@@ -96,7 +94,7 @@ public class WorkflowDefinitionManagerImpl
 			return WorkflowManagerUtil.wrapWorkflowDefinitions(
 				workflowDefinitions);
 		}
-		catch (SystemException e) {
+		catch (Exception e) {
 			throw new WorkflowException(e.getMessage(), e);
 		}
 	}
@@ -114,7 +112,7 @@ public class WorkflowDefinitionManagerImpl
 			return WorkflowManagerUtil.wrapWorkflowDefinitions(
 				workflowDefinitions);
 		}
-		catch (SystemException e) {
+		catch (Exception e) {
 			throw new WorkflowException(e.getMessage(), e);
 		}
 	}

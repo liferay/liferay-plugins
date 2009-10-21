@@ -22,40 +22,37 @@
 
 package com.liferay.portal.workflow.edoras.dao.identity;
 
-import com.liferay.portal.service.persistence.ModelIdentity;
-
 import java.io.Serializable;
 
 import org.edorasframework.xmlpersister.XmlPersistable;
 
-
+@XmlPersistable("RefObjectLong")
 /**
- * <a href="ServiceBuilderObjectIdentity.java.html"><b><i>View Source</i></b></a>
+ * <a href="ServiceBuilderObjectIdentityLong.java.html"><b><i>View Source</i>
+ * </b></a>
  *
  * @author Micha Kiener
  */
-@XmlPersistable("RefObjectLong")
 public class ServiceBuilderObjectIdentityLong
 	extends AbstractServiceBuilderObjectIdentity {
 
 	public ServiceBuilderObjectIdentityLong() {
-
 	}
-	
+
 	public ServiceBuilderObjectIdentityLong(
-		ModelIdentity modelIdentity, String attributeName, Object instance) {
+		String servletContextName, String className, Serializable primaryKey,
+		String attributeName, Object instance) {
 
-		super(modelIdentity, attributeName, instance);
+		super(
+			servletContextName, className, primaryKey, attributeName, instance);
 	}
-	
-	@Override
+
 	protected Serializable getPrimaryKeyFromString(String primaryKey) {
 		return Long.valueOf(primaryKey);
 	}
 
-	@Override
 	protected String getStringFromPrimaryKey(Serializable primaryKey) {
 		return primaryKey.toString();
 	}
-	
+
 }

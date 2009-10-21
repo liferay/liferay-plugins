@@ -142,7 +142,7 @@ public class WorkflowDefinitionDao
 			WorkflowDefinitionBridge workflowDefinitionBridge)
 		throws SystemException {
 
-		WorkflowDefinitionUtil.update(workflowDefinitionBridge.unwrap());
+		WorkflowDefinitionUtil.update(workflowDefinitionBridge.unwrap(), false);
 	}
 
 }

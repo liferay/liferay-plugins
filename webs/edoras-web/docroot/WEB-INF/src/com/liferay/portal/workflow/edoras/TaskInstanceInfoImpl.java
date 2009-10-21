@@ -43,10 +43,10 @@ public class TaskInstanceInfoImpl implements TaskInstanceInfo {
 	}
 
 	public TaskInstanceInfoImpl(WorkflowTask workflowTask) {
-		_assignRoleId =
-			WorkflowManagerUtil.getPrimaryKey(workflowTask.getAssignedRoleId());
-		_assignUserId =
-			WorkflowManagerUtil.getPrimaryKey(workflowTask.getAssignedUserId());
+		_assignRoleId = WorkflowManagerUtil.getPrimaryKey(
+			workflowTask.getAssignedRoleId());
+		_assignUserId = WorkflowManagerUtil.getPrimaryKey(
+			workflowTask.getAssignedUserId());
 		_asynchronous = workflowTask.getMetaData().isAsync();
 		_attributes = Collections.emptyMap();
 		_completionDate = workflowTask.getCompletionDate();
@@ -60,7 +60,7 @@ public class TaskInstanceInfoImpl implements TaskInstanceInfo {
 		_workflowDefinitionVersion = workflowTask.getProcessModelVersion();
 		_workflowInstanceId = workflowTask.getProcessInstance().getPrimaryKey();
 	}
-	
+
 	public long getAssignedRoleId() {
 		return _assignRoleId;
 	}

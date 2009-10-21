@@ -68,7 +68,7 @@ public class WorkflowManagerUtil {
 
 		return processInstances;
 	}
-	
+
 	public static long getPrimaryKey(Long primaryKey) {
 		if (primaryKey == null) {
 			return 0;

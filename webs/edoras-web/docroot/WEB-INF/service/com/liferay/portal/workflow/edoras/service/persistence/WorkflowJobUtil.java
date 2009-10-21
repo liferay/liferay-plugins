@@ -22,12 +22,42 @@
 
 package com.liferay.portal.workflow.edoras.service.persistence;
 
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.workflow.edoras.model.WorkflowJob;
+
+import java.util.List;
+
 /**
  * <a href="WorkflowJobUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class WorkflowJobUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static WorkflowJob remove(WorkflowJob workflowJob)
+		throws SystemException {
+		return getPersistence().remove(workflowJob);
+	}
+
+	public static WorkflowJob update(WorkflowJob workflowJob, boolean merge)
+		throws SystemException {
+		return getPersistence().update(workflowJob, merge);
+	}
+
 	public static void cacheResult(
 		com.liferay.portal.workflow.edoras.model.WorkflowJob workflowJob) {
 		getPersistence().cacheResult(workflowJob);
@@ -36,10 +66,6 @@ public class WorkflowJobUtil {
 	public static void cacheResult(
 		java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowJob> workflowJobs) {
 		getPersistence().cacheResult(workflowJobs);
-	}
-
-	public static void clearCache() {
-		getPersistence().clearCache();
 	}
 
 	public static com.liferay.portal.workflow.edoras.model.WorkflowJob create(
@@ -52,24 +78,6 @@ public class WorkflowJobUtil {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowJobException {
 		return getPersistence().remove(workflowJobId);
-	}
-
-	public static com.liferay.portal.workflow.edoras.model.WorkflowJob remove(
-		com.liferay.portal.workflow.edoras.model.WorkflowJob workflowJob)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(workflowJob);
-	}
-
-	public static com.liferay.portal.workflow.edoras.model.WorkflowJob update(
-		com.liferay.portal.workflow.edoras.model.WorkflowJob workflowJob)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(workflowJob);
-	}
-
-	public static com.liferay.portal.workflow.edoras.model.WorkflowJob update(
-		com.liferay.portal.workflow.edoras.model.WorkflowJob workflowJob,
-		boolean merge) throws com.liferay.portal.SystemException {
-		return getPersistence().update(workflowJob, merge);
 	}
 
 	public static com.liferay.portal.workflow.edoras.model.WorkflowJob updateImpl(
@@ -228,18 +236,6 @@ public class WorkflowJobUtil {
 		return getPersistence()
 				   .findByWorkflowInstanceId_PrevAndNext(workflowJobId,
 			workflowInstanceId, obc);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowJob> findAll()

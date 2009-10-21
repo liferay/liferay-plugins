@@ -144,7 +144,7 @@ public class WorkflowJobDao
 			WorkflowJobBridge workflowJobBridge)
 		throws SystemException {
 
-		WorkflowJobUtil.update(workflowJobBridge.unwrap());
+		WorkflowJobUtil.update(workflowJobBridge.unwrap(), false);
 	}
 
 	private String _setupId;

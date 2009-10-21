@@ -192,7 +192,7 @@ public class WorkflowTaskDao
 			WorkflowTaskBridge workflowTaskBridge)
 		throws SystemException {
 
-		WorkflowTaskUtil.update(workflowTaskBridge.unwrap());
+		WorkflowTaskUtil.update(workflowTaskBridge.unwrap(), false);
 	}
 
 }

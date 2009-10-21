@@ -59,8 +59,7 @@ public class WorkflowInstanceManagerImpl
 	extends AbstractWorkflowManager implements WorkflowInstanceManager {
 
 	public WorkflowInstanceInfo addContextInformation(
-			long workflowInstanceId, Map<String, Object> context)
-		throws WorkflowException {
+		long workflowInstanceId, Map<String, Object> context) {
 
 		ProcessSetup processSetup = getSetup();
 
@@ -72,9 +71,7 @@ public class WorkflowInstanceManagerImpl
 	}
 
 	public List<String> getPossibleNextActivityNames(
-			long workflowInstanceId, long userId,
-			Map<String, Object> parameters)
-		throws WorkflowException {
+		long workflowInstanceId, long userId, Map<String, Object> parameters) {
 
 		ProcessSetup processSetup = getSetup();
 
@@ -98,8 +95,7 @@ public class WorkflowInstanceManagerImpl
 	}
 
 	public List<String> getPossibleNextPathNames(
-		long workflowInstanceId, long userId, Map<String, Object> parameters)
-		throws WorkflowException {
+		long workflowInstanceId, long userId, Map<String, Object> parameters) {
 
 		ProcessSetup processSetup = getSetup();
 
@@ -212,8 +208,7 @@ public class WorkflowInstanceManagerImpl
 	}
 
 	public WorkflowInstanceInfo getWorkflowInstanceInfo(
-			long workflowInstanceId, boolean retrieveChildrenInfo)
-		throws WorkflowException {
+		long workflowInstanceId, boolean retrieveChildrenInfo) {
 
 		ProcessSetup processSetup = getSetup();
 
@@ -227,8 +222,7 @@ public class WorkflowInstanceManagerImpl
 	}
 
 	public WorkflowInstanceInfo getWorkflowInstanceInfo(
-			String relationType, long relationId, boolean retrieveChildrenInfo)
-		throws WorkflowException {
+		String relationType, long relationId, boolean retrieveChildrenInfo) {
 
 		ProcessSetup processSetup = getSetup();
 
@@ -372,18 +366,15 @@ public class WorkflowInstanceManagerImpl
 		}
 	}
 
-	public void removeWorkflowInstance(long workflowInstanceId)
-		throws WorkflowException {
-
+	public void removeWorkflowInstance(long workflowInstanceId) {
 		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
 
 		ProcessUtil.removeProcessInstance(workflowInstanceId, processSession);
 	}
 
 	public WorkflowInstanceInfo signalWorkflowInstance(
-			long workflowInstanceId, Map<String, Object> attributes,
-			long callingUserId, Map<String, Object> parameters)
-		throws WorkflowException {
+		long workflowInstanceId, Map<String, Object> attributes,
+		long callingUserId, Map<String, Object> parameters) {
 
 		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
 
@@ -404,10 +395,9 @@ public class WorkflowInstanceManagerImpl
 	}
 
 	public WorkflowInstanceInfo signalWorkflowInstanceByActivity(
-			long workflowInstanceId, String activityName,
-			Map<String, Object> attributes, long callingUserId,
-			Map<String, Object> parameters)
-		throws WorkflowException {
+		long workflowInstanceId, String activityName,
+		Map<String, Object> attributes, long callingUserId,
+		Map<String, Object> parameters) {
 
 		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
 
@@ -429,10 +419,9 @@ public class WorkflowInstanceManagerImpl
 	}
 
 	public WorkflowInstanceInfo signalWorkflowInstanceByPath(
-			long workflowInstanceId, String pathName,
-			Map<String, Object> attributes, long callingUserId,
-			Map<String, Object> parameters)
-		throws WorkflowException {
+		long workflowInstanceId, String pathName,
+		Map<String, Object> attributes, long callingUserId,
+		Map<String, Object> parameters) {
 
 		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
 
@@ -453,10 +442,9 @@ public class WorkflowInstanceManagerImpl
 	}
 
 	public WorkflowInstanceInfo startWorkflowInstance(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			Map<String, Object> context, long callingUserId,
-			Map<String, Object> parameters)
-		throws WorkflowException {
+		String workflowDefinitionName, Integer workflowDefinitionVersion,
+		Map<String, Object> context, long callingUserId,
+		Map<String, Object> parameters) {
 
 		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
 
@@ -471,10 +459,9 @@ public class WorkflowInstanceManagerImpl
 	}
 
 	public WorkflowInstanceInfo startWorkflowInstance(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			Map<String, Object> context, long callingUserId,
-			String activityName, Map<String, Object> parameters)
-		throws WorkflowException {
+		String workflowDefinitionName, Integer workflowDefinitionVersion,
+		Map<String, Object> context, long callingUserId,
+		String activityName, Map<String, Object> parameters) {
 
 		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
 
@@ -489,10 +476,9 @@ public class WorkflowInstanceManagerImpl
 	}
 
 	public WorkflowInstanceInfo startWorkflowInstance(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			String relationType, long relationId, Map<String, Object> context,
-			long callingUserId, Map<String, Object> parameters)
-		throws WorkflowException {
+		String workflowDefinitionName, Integer workflowDefinitionVersion,
+		String relationType, long relationId, Map<String, Object> context,
+		long callingUserId, Map<String, Object> parameters) {
 
 		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
 
@@ -508,11 +494,10 @@ public class WorkflowInstanceManagerImpl
 	}
 
 	public WorkflowInstanceInfo startWorkflowInstance(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			String relationType, long relationId, Map<String, Object> context,
-			long callingUserId, String activityName,
-			Map<String, Object> parameters)
-		throws WorkflowException {
+		String workflowDefinitionName, Integer workflowDefinitionVersion,
+		String relationType, long relationId, Map<String, Object> context,
+		long callingUserId, String activityName,
+		Map<String, Object> parameters) {
 
 		ProcessSession processSession = ProcessSystemUtil.getCurrentSession();
 

@@ -22,17 +22,14 @@
 
 package com.liferay.portal.workflow.edoras.dao.identity;
 
-import com.liferay.portal.service.persistence.ModelIdentity;
-import com.liferay.portal.service.persistence.ModelIdentityImpl;
-
 import java.io.Serializable;
 
 import org.edorasframework.process.core.dao.jpa.DefaultObjectIdentity;
 import org.edorasframework.xmlpersister.XmlPersistedAttribute;
 
-
 /**
- * <a href="ServiceBuilderObjectIdentity.java.html"><b><i>View Source</i></b></a>
+ * <a href="AbstractServiceBuilderObjectIdentity.java.html"><b><i>View Source
+ * </i></b></a>
  *
  * @author Micha Kiener
  */
@@ -40,47 +37,29 @@ public abstract class AbstractServiceBuilderObjectIdentity
 	extends DefaultObjectIdentity {
 
 	public AbstractServiceBuilderObjectIdentity() {
-
-	}
-	
-	public AbstractServiceBuilderObjectIdentity(
-		ModelIdentity modelIdentity, String attributeName, Object instance) {
-		
-		this(modelIdentity.getContextName(), attributeName,
-			modelIdentity.getPrimaryKey(), modelIdentity.getModelClassName(),
-			instance);
 	}
 
 	public AbstractServiceBuilderObjectIdentity(
-		String contextName, String attibuteName, Serializable primaryKey,
-		String typeName, Object instance) {
+		String servletContextName, String className, Serializable primaryKey,
+		String attributeName, Object instance) {
 
-		setAttributeName(attibuteName);
-		setTypeName(typeName);
-		setAttribute(instance);
+		_servletContextName = servletContextName;
+
+		setTypeName(className);
 		setPrimaryKey(getStringFromPrimaryKey(primaryKey));
-		
-		_contextName = contextName;
+		setAttributeName(attributeName);
+		setAttribute(instance);
 	}
-	
-	public String getContextName() {
-		return _contextName;
-	}
-	
-	public ModelIdentity getModelIdentity() {
-		ModelIdentityImpl modelIdentity = new ModelIdentityImpl();
 
-		modelIdentity.setContextName(getContextName());
-		modelIdentity.setModelClassName(getTypeName());
-		modelIdentity.setPrimaryKey(getPrimaryKeyFromString(getPrimaryKey()));
-
-		return modelIdentity;
+	public String getServletContextName() {
+		return _servletContextName;
 	}
+
+	protected abstract Serializable getPrimaryKeyFromString(String primaryKey);
 
 	protected abstract String getStringFromPrimaryKey(Serializable primaryKey);
 
-	protected abstract Serializable getPrimaryKeyFromString(String primaryKey);
-	
-    @XmlPersistedAttribute("ctx")
-	private String _contextName;
+	@XmlPersistedAttribute("ctx")
+	private String _servletContextName;
+
 }

@@ -22,6 +22,7 @@
 
 package com.liferay.portal.workflow.edoras.service.persistence;
 
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
@@ -47,6 +48,8 @@ import com.liferay.portal.workflow.edoras.model.WorkflowLog;
 import com.liferay.portal.workflow.edoras.model.impl.WorkflowLogImpl;
 import com.liferay.portal.workflow.edoras.model.impl.WorkflowLogModelImpl;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -56,7 +59,7 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  */
-public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
+public class WorkflowLogPersistenceImpl extends BasePersistenceImpl<WorkflowLog>
 	implements WorkflowLogPersistence {
 	public static final String FINDER_CLASS_NAME_ENTITY = WorkflowLogImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
@@ -170,6 +173,11 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 		return workflowLog;
 	}
 
+	public WorkflowLog remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
+	}
+
 	public WorkflowLog remove(long workflowLogId)
 		throws NoSuchWorkflowLogException, SystemException {
 		Session session = null;
@@ -256,43 +264,6 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 		return workflowLog;
 	}
 
-	public WorkflowLog update(WorkflowLog workflowLog)
-		throws SystemException {
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Using the deprecated update(WorkflowLog workflowLog) method. Use update(WorkflowLog workflowLog, boolean merge) instead.");
-		}
-
-		return update(workflowLog, false);
-	}
-
-	public WorkflowLog update(WorkflowLog workflowLog, boolean merge)
-		throws SystemException {
-		boolean isNew = workflowLog.isNew();
-
-		for (ModelListener<WorkflowLog> listener : listeners) {
-			if (isNew) {
-				listener.onBeforeCreate(workflowLog);
-			}
-			else {
-				listener.onBeforeUpdate(workflowLog);
-			}
-		}
-
-		workflowLog = updateImpl(workflowLog, merge);
-
-		for (ModelListener<WorkflowLog> listener : listeners) {
-			if (isNew) {
-				listener.onAfterCreate(workflowLog);
-			}
-			else {
-				listener.onAfterUpdate(workflowLog);
-			}
-		}
-
-		return workflowLog;
-	}
-
 	public WorkflowLog updateImpl(
 		com.liferay.portal.workflow.edoras.model.WorkflowLog workflowLog,
 		boolean merge) throws SystemException {
@@ -351,6 +322,11 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 		return workflowLogImpl;
 	}
 
+	public WorkflowLog findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
 	public WorkflowLog findByPrimaryKey(long workflowLogId)
 		throws NoSuchWorkflowLogException, SystemException {
 		WorkflowLog workflowLog = fetchByPrimaryKey(workflowLogId);
@@ -366,6 +342,11 @@ public class WorkflowLogPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return workflowLog;
+	}
+
+	public WorkflowLog fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	public WorkflowLog fetchByPrimaryKey(long workflowLogId)

@@ -27,8 +27,8 @@ import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.BaseModel;
-import com.liferay.portal.service.persistence.BasePersistenceManagerUtil;
-import com.liferay.portal.service.persistence.ModelIdentity;
+import com.liferay.portal.service.persistence.BasePersistence;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
 import com.liferay.portal.workflow.edoras.dao.identity.AbstractServiceBuilderObjectIdentity;
 import com.liferay.portal.workflow.edoras.dao.identity.ServiceBuilderObjectIdentity;
@@ -37,6 +37,8 @@ import com.liferay.portal.workflow.edoras.dao.model.WorkflowEntityBridgeUtil;
 import com.liferay.portal.workflow.edoras.dao.model.WorkflowInstanceBridge;
 import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
 import com.liferay.portal.workflow.edoras.service.persistence.WorkflowInstanceUtil;
+
+import java.io.Serializable;
 
 import java.util.List;
 
@@ -82,36 +84,41 @@ public class WorkflowInstanceDao
 	public <T> T find(T workflowEntityBridge, Object identity) {
 		return (T)loadProcessInstance((Long)identity);
 	}
-	
+
 	@PostConstruct
 	public void initialize() {
-		DefaultXmlPersister.registerPersistableClass(ServiceBuilderObjectIdentityLong.class);
-		DefaultXmlPersister.registerPersistableClass(ServiceBuilderObjectIdentity.class);
+		DefaultXmlPersister.registerPersistableClass(
+			ServiceBuilderObjectIdentity.class);
+		DefaultXmlPersister.registerPersistableClass(
+			ServiceBuilderObjectIdentityLong.class);
 	}
 
-	@SuppressWarnings("unchecked")
 	public <T> T loadAttribute(
 		MutableProcessInstance mutableProcessInstance,
 		ObjectIdentity objectIdentity, String attributeName) {
 
-		AbstractServiceBuilderObjectIdentity identity =
-			(AbstractServiceBuilderObjectIdentity) objectIdentity;
+		AbstractServiceBuilderObjectIdentity sbObjectIdentity =
+			(AbstractServiceBuilderObjectIdentity)objectIdentity;
 
 		try {
-			BaseModel attribute =
-				BasePersistenceManagerUtil.findByIdentity(identity.getModelIdentity());
-			
-			return (T) attribute;
+			BasePersistence<?> basePersistence = PortalUtil.getBasePersistence(
+				sbObjectIdentity.getServletContextName(),
+				sbObjectIdentity.getTypeName());
+
+			BaseModel<?> baseModel = basePersistence.findByPrimaryKey(
+				sbObjectIdentity.getPrimaryKey());
+
+			return (T)baseModel;
 		}
 		catch (NoSuchModelException nsme) {
-			_log.warn("Could not find referenced workflow attribute, "
-				+ "it was silently ignored",
-				nsme);
-			
+			if (_log.isWarnEnabled()) {
+				_log.warn("Could not find referenced attribute", nsme);
+			}
+
 			return null;
 		}
-		catch (SystemException se) {
-			throw new ProcessException(se.getMessage(), se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
@@ -201,26 +208,34 @@ public class WorkflowInstanceDao
 		if (!(attribute instanceof BaseModel)) {
 			return null;
 		}
-			
+
 		try {
-			BasePersistenceManagerUtil.update((BaseModel) attribute, true);
-			
-			ModelIdentity modelIdentity =
-				BasePersistenceManagerUtil.getIdentity((BaseModel) attribute);
-			
-			if (modelIdentity.getPrimaryKey() instanceof Long) {
+			BaseModel<?> baseModel = (BaseModel<?>)attribute;
+
+			String servletContextName = PortalUtil.getServletContextName(
+				baseModel);
+			String className = baseModel.getClass().getName();
+
+			BasePersistence basePersistence = PortalUtil.getBasePersistence(
+				servletContextName, className);
+
+			basePersistence.update(baseModel, true);
+
+			Serializable primaryKeyObj = baseModel.getPrimaryKeyObj();
+
+			if (primaryKeyObj instanceof Long) {
 				return new ServiceBuilderObjectIdentityLong(
-					modelIdentity, attributeName, attribute);
+					servletContextName, className, primaryKeyObj, attributeName,
+					attribute);
 			}
 			else {
 				return new ServiceBuilderObjectIdentity(
-					modelIdentity, attributeName, attribute);
+					servletContextName, className, primaryKeyObj, attributeName,
+					attribute);
 			}
 		}
-		catch (SystemException se) {
-			throw new ProcessException(
-				"Could not persist entity through service builder",
-			se);
+		catch (Exception e) {
+			throw new ProcessException(e.getMessage(), e);
 		}
 	}
 
@@ -272,8 +287,9 @@ public class WorkflowInstanceDao
 			WorkflowInstanceBridge workflowInstanceBridge)
 		throws SystemException {
 
-		WorkflowInstanceUtil.update(workflowInstanceBridge.unwrap());
+		WorkflowInstanceUtil.update(workflowInstanceBridge.unwrap(), false);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(WorkflowInstanceDao.class);
+
 }

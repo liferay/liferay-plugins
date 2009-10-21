@@ -23,6 +23,7 @@
 package com.liferay.portal.workflow.edoras.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
+import com.liferay.portal.workflow.edoras.model.WorkflowDefinition;
 
 /**
  * <a href="WorkflowDefinitionPersistence.java.html"><b><i>View Source</i></b>
@@ -30,14 +31,12 @@ import com.liferay.portal.service.persistence.BasePersistence;
  *
  * @author Brian Wing Shun Chan
  */
-public interface WorkflowDefinitionPersistence extends BasePersistence {
+public interface WorkflowDefinitionPersistence extends BasePersistence<WorkflowDefinition> {
 	public void cacheResult(
 		com.liferay.portal.workflow.edoras.model.WorkflowDefinition workflowDefinition);
 
 	public void cacheResult(
 		java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> workflowDefinitions);
-
-	public void clearCache();
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowDefinition create(
 		long workflowDefinitionId);
@@ -46,18 +45,6 @@ public interface WorkflowDefinitionPersistence extends BasePersistence {
 		long workflowDefinitionId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException;
-
-	public com.liferay.portal.workflow.edoras.model.WorkflowDefinition remove(
-		com.liferay.portal.workflow.edoras.model.WorkflowDefinition workflowDefinition)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.portal.workflow.edoras.model.WorkflowDefinition update(
-		com.liferay.portal.workflow.edoras.model.WorkflowDefinition workflowDefinition)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.portal.workflow.edoras.model.WorkflowDefinition update(
-		com.liferay.portal.workflow.edoras.model.WorkflowDefinition workflowDefinition,
-		boolean merge) throws com.liferay.portal.SystemException;
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowDefinition updateImpl(
 		com.liferay.portal.workflow.edoras.model.WorkflowDefinition workflowDefinition,
@@ -172,14 +159,6 @@ public interface WorkflowDefinitionPersistence extends BasePersistence {
 	public com.liferay.portal.workflow.edoras.model.WorkflowDefinition fetchByC_N_V(
 		long companyId, java.lang.String name, int version,
 		boolean retrieveFromCache) throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> findAll()
 		throws com.liferay.portal.SystemException;

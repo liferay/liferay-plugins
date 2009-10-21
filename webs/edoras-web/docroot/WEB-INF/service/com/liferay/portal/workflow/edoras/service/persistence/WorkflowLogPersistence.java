@@ -23,20 +23,19 @@
 package com.liferay.portal.workflow.edoras.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
+import com.liferay.portal.workflow.edoras.model.WorkflowLog;
 
 /**
  * <a href="WorkflowLogPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public interface WorkflowLogPersistence extends BasePersistence {
+public interface WorkflowLogPersistence extends BasePersistence<WorkflowLog> {
 	public void cacheResult(
 		com.liferay.portal.workflow.edoras.model.WorkflowLog workflowLog);
 
 	public void cacheResult(
 		java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowLog> workflowLogs);
-
-	public void clearCache();
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowLog create(
 		long workflowLogId);
@@ -45,18 +44,6 @@ public interface WorkflowLogPersistence extends BasePersistence {
 		long workflowLogId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowLogException;
-
-	public com.liferay.portal.workflow.edoras.model.WorkflowLog remove(
-		com.liferay.portal.workflow.edoras.model.WorkflowLog workflowLog)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.portal.workflow.edoras.model.WorkflowLog update(
-		com.liferay.portal.workflow.edoras.model.WorkflowLog workflowLog)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.portal.workflow.edoras.model.WorkflowLog update(
-		com.liferay.portal.workflow.edoras.model.WorkflowLog workflowLog,
-		boolean merge) throws com.liferay.portal.SystemException;
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowLog updateImpl(
 		com.liferay.portal.workflow.edoras.model.WorkflowLog workflowLog,
@@ -191,14 +178,6 @@ public interface WorkflowLogPersistence extends BasePersistence {
 		int type, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowLogException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowLog> findAll()
 		throws com.liferay.portal.SystemException;

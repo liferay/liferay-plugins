@@ -22,12 +22,43 @@
 
 package com.liferay.portal.workflow.edoras.service.persistence;
 
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.workflow.edoras.model.WorkflowDefinition;
+
+import java.util.List;
+
 /**
  * <a href="WorkflowDefinitionUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class WorkflowDefinitionUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static WorkflowDefinition remove(
+		WorkflowDefinition workflowDefinition) throws SystemException {
+		return getPersistence().remove(workflowDefinition);
+	}
+
+	public static WorkflowDefinition update(
+		WorkflowDefinition workflowDefinition, boolean merge)
+		throws SystemException {
+		return getPersistence().update(workflowDefinition, merge);
+	}
+
 	public static void cacheResult(
 		com.liferay.portal.workflow.edoras.model.WorkflowDefinition workflowDefinition) {
 		getPersistence().cacheResult(workflowDefinition);
@@ -36,10 +67,6 @@ public class WorkflowDefinitionUtil {
 	public static void cacheResult(
 		java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> workflowDefinitions) {
 		getPersistence().cacheResult(workflowDefinitions);
-	}
-
-	public static void clearCache() {
-		getPersistence().clearCache();
 	}
 
 	public static com.liferay.portal.workflow.edoras.model.WorkflowDefinition create(
@@ -52,24 +79,6 @@ public class WorkflowDefinitionUtil {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowDefinitionException {
 		return getPersistence().remove(workflowDefinitionId);
-	}
-
-	public static com.liferay.portal.workflow.edoras.model.WorkflowDefinition remove(
-		com.liferay.portal.workflow.edoras.model.WorkflowDefinition workflowDefinition)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(workflowDefinition);
-	}
-
-	public static com.liferay.portal.workflow.edoras.model.WorkflowDefinition update(
-		com.liferay.portal.workflow.edoras.model.WorkflowDefinition workflowDefinition)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(workflowDefinition);
-	}
-
-	public static com.liferay.portal.workflow.edoras.model.WorkflowDefinition update(
-		com.liferay.portal.workflow.edoras.model.WorkflowDefinition workflowDefinition,
-		boolean merge) throws com.liferay.portal.SystemException {
-		return getPersistence().update(workflowDefinition, merge);
 	}
 
 	public static com.liferay.portal.workflow.edoras.model.WorkflowDefinition updateImpl(
@@ -238,18 +247,6 @@ public class WorkflowDefinitionUtil {
 		boolean retrieveFromCache) throws com.liferay.portal.SystemException {
 		return getPersistence()
 				   .fetchByC_N_V(companyId, name, version, retrieveFromCache);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowDefinition> findAll()

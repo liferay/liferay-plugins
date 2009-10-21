@@ -23,20 +23,19 @@
 package com.liferay.portal.workflow.edoras.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
+import com.liferay.portal.workflow.edoras.model.WorkflowInstance;
 
 /**
  * <a href="WorkflowInstancePersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public interface WorkflowInstancePersistence extends BasePersistence {
+public interface WorkflowInstancePersistence extends BasePersistence<WorkflowInstance> {
 	public void cacheResult(
 		com.liferay.portal.workflow.edoras.model.WorkflowInstance workflowInstance);
 
 	public void cacheResult(
 		java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> workflowInstances);
-
-	public void clearCache();
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowInstance create(
 		long workflowInstanceId);
@@ -45,18 +44,6 @@ public interface WorkflowInstancePersistence extends BasePersistence {
 		long workflowInstanceId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
-
-	public com.liferay.portal.workflow.edoras.model.WorkflowInstance remove(
-		com.liferay.portal.workflow.edoras.model.WorkflowInstance workflowInstance)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.portal.workflow.edoras.model.WorkflowInstance update(
-		com.liferay.portal.workflow.edoras.model.WorkflowInstance workflowInstance)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.portal.workflow.edoras.model.WorkflowInstance update(
-		com.liferay.portal.workflow.edoras.model.WorkflowInstance workflowInstance,
-		boolean merge) throws com.liferay.portal.SystemException;
 
 	public com.liferay.portal.workflow.edoras.model.WorkflowInstance updateImpl(
 		com.liferay.portal.workflow.edoras.model.WorkflowInstance workflowInstance,
@@ -484,14 +471,6 @@ public interface WorkflowInstancePersistence extends BasePersistence {
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.workflow.edoras.NoSuchWorkflowInstanceException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.portal.workflow.edoras.model.WorkflowInstance> findAll()
 		throws com.liferay.portal.SystemException;

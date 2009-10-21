@@ -104,13 +104,6 @@ public class WorkflowLogDao
 		saveInternally((WorkflowEntityBridge<WorkflowLog>)workflowEntityBridge);
 	}
 
-	protected void saveThroughPersistenceUtil(
-			WorkflowEntityBridge<WorkflowLog> workflowEntityBridge)
-		throws SystemException {
-
-		WorkflowLogUtil.update(workflowEntityBridge.unwrap());
-	}
-
 	public void deleteLogs(ProcessInstance processInstance) {
 		try {
 			WorkflowLogUtil.removeByWorkflowInstanceId(
@@ -202,6 +195,13 @@ public class WorkflowLogDao
 
 		return (List<? extends TransitionLog>)getProcessLogs(
 			ProcessLogType.TRANSITION, processInstance);
+	}
+
+	protected void saveThroughPersistenceUtil(
+			WorkflowEntityBridge<WorkflowLog> workflowEntityBridge)
+		throws SystemException {
+
+		WorkflowLogUtil.update(workflowEntityBridge.unwrap(), false);
 	}
 
 }
