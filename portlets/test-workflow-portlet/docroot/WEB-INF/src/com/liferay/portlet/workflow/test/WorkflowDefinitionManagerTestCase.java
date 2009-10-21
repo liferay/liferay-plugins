@@ -25,7 +25,6 @@ package com.liferay.portlet.workflow.test;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.resource.ByteArrayResourceRetriever;
 import com.liferay.portal.kernel.resource.ResourceRetriever;
-import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.DefaultWorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
@@ -72,13 +71,13 @@ public class WorkflowDefinitionManagerTestCase extends BaseTestCase {
 			String name = zipEntry.getName();
 
 			if (name.equals(_WORKFLOW_DEFINITION_NAME_1 + ".jar")) {
-				_workflowDefinitionContent1 = FileUtil.getBytes(zipInputStream);
+				_workflowDefinitionContent1 = readContent(zipInputStream);
 			}
 			else if (name.equals(_WORKFLOW_DEFINITION_NAME_2 + ".jar")) {
-				_workflowDefinitionContent2 = FileUtil.getBytes(zipInputStream);
+				_workflowDefinitionContent2 = readContent(zipInputStream);
 			}
 			else if (name.equals(_WORKFLOW_DEFINITION_NAME_3 + ".jar")) {
-				_workflowDefinitionContent3 = FileUtil.getBytes(zipInputStream);
+				_workflowDefinitionContent3 = readContent(zipInputStream);
 			}
 		}
 

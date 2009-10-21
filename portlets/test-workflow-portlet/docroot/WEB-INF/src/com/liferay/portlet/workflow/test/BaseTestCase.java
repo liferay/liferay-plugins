@@ -26,6 +26,9 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -46,8 +49,16 @@ public class BaseTestCase {
 		Validate.isTrue(expected.equals(actual));
 	}
 
+	public static void assertFalse(boolean value) {
+		Validate.isTrue(!value);
+	}
+
 	public static void assertNotNull(Object object) {
 		Validate.notNull(object);
+	}
+
+	public static void assertTrue(boolean value) {
+		Validate.isTrue(value);
 	}
 
 	public BaseTestCase(ServletContext servletContext) {
@@ -128,6 +139,16 @@ public class BaseTestCase {
 		return testCaseResult;
 	}
 
+	protected byte[] readContent(InputStream inputStream) throws IOException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		int b = -1;
+		while ((b = inputStream.read()) != -1) {
+			baos.write(b);
+		}
+		baos.close();
+		return baos.toByteArray();
+	}
+	
 	protected ServletContext servletContext;
 
 	private static final String _STATUS_FAILED = "FAILED";
