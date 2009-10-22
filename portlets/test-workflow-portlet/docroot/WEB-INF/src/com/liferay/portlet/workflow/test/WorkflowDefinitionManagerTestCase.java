@@ -71,13 +71,13 @@ public class WorkflowDefinitionManagerTestCase extends BaseTestCase {
 			String name = zipEntry.getName();
 
 			if (name.equals(_WORKFLOW_DEFINITION_NAME_1 + ".jar")) {
-				_workflowDefinitionContent1 = readContent(zipInputStream);
+				_workflowDefinitionContent1 = readBytes(zipInputStream);
 			}
 			else if (name.equals(_WORKFLOW_DEFINITION_NAME_2 + ".jar")) {
-				_workflowDefinitionContent2 = readContent(zipInputStream);
+				_workflowDefinitionContent2 = readBytes(zipInputStream);
 			}
 			else if (name.equals(_WORKFLOW_DEFINITION_NAME_3 + ".jar")) {
-				_workflowDefinitionContent3 = readContent(zipInputStream);
+				_workflowDefinitionContent3 = readBytes(zipInputStream);
 			}
 		}
 

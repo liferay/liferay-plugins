@@ -61,6 +61,21 @@ public class BaseTestCase {
 		Validate.isTrue(value);
 	}
 
+	public static byte[] readBytes(InputStream inputStream) throws IOException {
+		ByteArrayOutputStream byteArrayOutputStream =
+			new ByteArrayOutputStream();
+
+		int i = -1;
+
+		while ((i = inputStream.read()) != -1) {
+			byteArrayOutputStream.write(i);
+		}
+
+		byteArrayOutputStream.close();
+
+		return byteArrayOutputStream.toByteArray();
+	}
+
 	public BaseTestCase(ServletContext servletContext) {
 		this.servletContext = servletContext;
 	}
@@ -139,16 +154,6 @@ public class BaseTestCase {
 		return testCaseResult;
 	}
 
-	protected byte[] readContent(InputStream inputStream) throws IOException {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		int b = -1;
-		while ((b = inputStream.read()) != -1) {
-			baos.write(b);
-		}
-		baos.close();
-		return baos.toByteArray();
-	}
-	
 	protected ServletContext servletContext;
 
 	private static final String _STATUS_FAILED = "FAILED";
