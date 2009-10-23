@@ -109,21 +109,21 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 	public static final FinderPath FINDER_PATH_COUNT_BY_ASSIGNEEUSERID = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByAssigneeUserId", new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_ROLEID = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_ASSIGNEEROLEID = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByRoleId", new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_ROLEID = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+			"findByAssigneeRoleId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_ASSIGNEEROLEID = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByRoleId",
+			"findByAssigneeRoleId",
 			new String[] {
 				Long.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_ROLEID = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_ASSIGNEEROLEID = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByRoleId", new String[] { Long.class.getName() });
+			"countByAssigneeRoleId", new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_C_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByC_C",
@@ -175,39 +175,39 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByW_S",
 			new String[] { Long.class.getName(), Integer.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_A_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_AUID_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByA_C",
+			"findByAUID_C",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_A_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_AUID_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByA_C",
+			"findByAUID_C",
 			new String[] {
 				Long.class.getName(), Boolean.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_A_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_AUID_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByA_C",
+			"countByAUID_C",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_R_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_ARID_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByR_C",
+			"findByARID_C",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_R_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_ARID_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByR_C",
+			"findByARID_C",
 			new String[] {
 				Long.class.getName(), Boolean.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_R_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_ARID_C = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByR_C",
+			"countByARID_C",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(WorkflowTaskModelImpl.ENTITY_CACHE_ENABLED,
 			WorkflowTaskModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
@@ -1200,11 +1200,11 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public List<WorkflowTask> findByRoleId(long assigneeRoleId)
+	public List<WorkflowTask> findByAssigneeRoleId(long assigneeRoleId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { new Long(assigneeRoleId) };
 
-		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ROLEID,
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ASSIGNEEROLEID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1240,7 +1240,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ROLEID,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ASSIGNEEROLEID,
 					finderArgs, list);
 
 				closeSession(session);
@@ -1250,20 +1250,20 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		return list;
 	}
 
-	public List<WorkflowTask> findByRoleId(long assigneeRoleId, int start,
-		int end) throws SystemException {
-		return findByRoleId(assigneeRoleId, start, end, null);
+	public List<WorkflowTask> findByAssigneeRoleId(long assigneeRoleId,
+		int start, int end) throws SystemException {
+		return findByAssigneeRoleId(assigneeRoleId, start, end, null);
 	}
 
-	public List<WorkflowTask> findByRoleId(long assigneeRoleId, int start,
-		int end, OrderByComparator obc) throws SystemException {
+	public List<WorkflowTask> findByAssigneeRoleId(long assigneeRoleId,
+		int start, int end, OrderByComparator obc) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(assigneeRoleId),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ROLEID,
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ASSIGNEEROLEID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1322,7 +1322,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_ROLEID,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_ASSIGNEEROLEID,
 					finderArgs, list);
 
 				closeSession(session);
@@ -1332,10 +1332,10 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		return list;
 	}
 
-	public WorkflowTask findByRoleId_First(long assigneeRoleId,
+	public WorkflowTask findByAssigneeRoleId_First(long assigneeRoleId,
 		OrderByComparator obc)
 		throws NoSuchWorkflowTaskException, SystemException {
-		List<WorkflowTask> list = findByRoleId(assigneeRoleId, 0, 1, obc);
+		List<WorkflowTask> list = findByAssigneeRoleId(assigneeRoleId, 0, 1, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
@@ -1353,13 +1353,13 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public WorkflowTask findByRoleId_Last(long assigneeRoleId,
+	public WorkflowTask findByAssigneeRoleId_Last(long assigneeRoleId,
 		OrderByComparator obc)
 		throws NoSuchWorkflowTaskException, SystemException {
-		int count = countByRoleId(assigneeRoleId);
+		int count = countByAssigneeRoleId(assigneeRoleId);
 
-		List<WorkflowTask> list = findByRoleId(assigneeRoleId, count - 1,
-				count, obc);
+		List<WorkflowTask> list = findByAssigneeRoleId(assigneeRoleId,
+				count - 1, count, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
@@ -1377,12 +1377,12 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public WorkflowTask[] findByRoleId_PrevAndNext(long workflowTaskId,
-		long assigneeRoleId, OrderByComparator obc)
+	public WorkflowTask[] findByAssigneeRoleId_PrevAndNext(
+		long workflowTaskId, long assigneeRoleId, OrderByComparator obc)
 		throws NoSuchWorkflowTaskException, SystemException {
 		WorkflowTask workflowTask = findByPrimaryKey(workflowTaskId);
 
-		int count = countByRoleId(assigneeRoleId);
+		int count = countByAssigneeRoleId(assigneeRoleId);
 
 		Session session = null;
 
@@ -2260,13 +2260,13 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public List<WorkflowTask> findByA_C(long assigneeUserId, boolean completed)
-		throws SystemException {
+	public List<WorkflowTask> findByAUID_C(long assigneeUserId,
+		boolean completed) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(assigneeUserId), Boolean.valueOf(completed)
 			};
 
-		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_A_C,
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_AUID_C,
 				finderArgs, this);
 
 		if (list == null) {
@@ -2308,8 +2308,8 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_A_C, finderArgs,
-					list);
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_AUID_C,
+					finderArgs, list);
 
 				closeSession(session);
 			}
@@ -2318,20 +2318,21 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		return list;
 	}
 
-	public List<WorkflowTask> findByA_C(long assigneeUserId, boolean completed,
-		int start, int end) throws SystemException {
-		return findByA_C(assigneeUserId, completed, start, end, null);
+	public List<WorkflowTask> findByAUID_C(long assigneeUserId,
+		boolean completed, int start, int end) throws SystemException {
+		return findByAUID_C(assigneeUserId, completed, start, end, null);
 	}
 
-	public List<WorkflowTask> findByA_C(long assigneeUserId, boolean completed,
-		int start, int end, OrderByComparator obc) throws SystemException {
+	public List<WorkflowTask> findByAUID_C(long assigneeUserId,
+		boolean completed, int start, int end, OrderByComparator obc)
+		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(assigneeUserId), Boolean.valueOf(completed),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_A_C,
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_AUID_C,
 				finderArgs, this);
 
 		if (list == null) {
@@ -2396,7 +2397,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_A_C,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_AUID_C,
 					finderArgs, list);
 
 				closeSession(session);
@@ -2406,10 +2407,11 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		return list;
 	}
 
-	public WorkflowTask findByA_C_First(long assigneeUserId, boolean completed,
-		OrderByComparator obc)
+	public WorkflowTask findByAUID_C_First(long assigneeUserId,
+		boolean completed, OrderByComparator obc)
 		throws NoSuchWorkflowTaskException, SystemException {
-		List<WorkflowTask> list = findByA_C(assigneeUserId, completed, 0, 1, obc);
+		List<WorkflowTask> list = findByAUID_C(assigneeUserId, completed, 0, 1,
+				obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
@@ -2430,12 +2432,12 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public WorkflowTask findByA_C_Last(long assigneeUserId, boolean completed,
-		OrderByComparator obc)
+	public WorkflowTask findByAUID_C_Last(long assigneeUserId,
+		boolean completed, OrderByComparator obc)
 		throws NoSuchWorkflowTaskException, SystemException {
-		int count = countByA_C(assigneeUserId, completed);
+		int count = countByAUID_C(assigneeUserId, completed);
 
-		List<WorkflowTask> list = findByA_C(assigneeUserId, completed,
+		List<WorkflowTask> list = findByAUID_C(assigneeUserId, completed,
 				count - 1, count, obc);
 
 		if (list.isEmpty()) {
@@ -2457,12 +2459,12 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public WorkflowTask[] findByA_C_PrevAndNext(long workflowTaskId,
+	public WorkflowTask[] findByAUID_C_PrevAndNext(long workflowTaskId,
 		long assigneeUserId, boolean completed, OrderByComparator obc)
 		throws NoSuchWorkflowTaskException, SystemException {
 		WorkflowTask workflowTask = findByPrimaryKey(workflowTaskId);
 
-		int count = countByA_C(assigneeUserId, completed);
+		int count = countByAUID_C(assigneeUserId, completed);
 
 		Session session = null;
 
@@ -2531,13 +2533,13 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public List<WorkflowTask> findByR_C(long assigneeRoleId, boolean completed)
-		throws SystemException {
+	public List<WorkflowTask> findByARID_C(long assigneeRoleId,
+		boolean completed) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(assigneeRoleId), Boolean.valueOf(completed)
 			};
 
-		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_C,
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ARID_C,
 				finderArgs, this);
 
 		if (list == null) {
@@ -2579,8 +2581,8 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_C, finderArgs,
-					list);
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ARID_C,
+					finderArgs, list);
 
 				closeSession(session);
 			}
@@ -2589,20 +2591,21 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		return list;
 	}
 
-	public List<WorkflowTask> findByR_C(long assigneeRoleId, boolean completed,
-		int start, int end) throws SystemException {
-		return findByR_C(assigneeRoleId, completed, start, end, null);
+	public List<WorkflowTask> findByARID_C(long assigneeRoleId,
+		boolean completed, int start, int end) throws SystemException {
+		return findByARID_C(assigneeRoleId, completed, start, end, null);
 	}
 
-	public List<WorkflowTask> findByR_C(long assigneeRoleId, boolean completed,
-		int start, int end, OrderByComparator obc) throws SystemException {
+	public List<WorkflowTask> findByARID_C(long assigneeRoleId,
+		boolean completed, int start, int end, OrderByComparator obc)
+		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(assigneeRoleId), Boolean.valueOf(completed),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_R_C,
+		List<WorkflowTask> list = (List<WorkflowTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ARID_C,
 				finderArgs, this);
 
 		if (list == null) {
@@ -2667,7 +2670,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_R_C,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_ARID_C,
 					finderArgs, list);
 
 				closeSession(session);
@@ -2677,10 +2680,11 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		return list;
 	}
 
-	public WorkflowTask findByR_C_First(long assigneeRoleId, boolean completed,
-		OrderByComparator obc)
+	public WorkflowTask findByARID_C_First(long assigneeRoleId,
+		boolean completed, OrderByComparator obc)
 		throws NoSuchWorkflowTaskException, SystemException {
-		List<WorkflowTask> list = findByR_C(assigneeRoleId, completed, 0, 1, obc);
+		List<WorkflowTask> list = findByARID_C(assigneeRoleId, completed, 0, 1,
+				obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
@@ -2701,12 +2705,12 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public WorkflowTask findByR_C_Last(long assigneeRoleId, boolean completed,
-		OrderByComparator obc)
+	public WorkflowTask findByARID_C_Last(long assigneeRoleId,
+		boolean completed, OrderByComparator obc)
 		throws NoSuchWorkflowTaskException, SystemException {
-		int count = countByR_C(assigneeRoleId, completed);
+		int count = countByARID_C(assigneeRoleId, completed);
 
-		List<WorkflowTask> list = findByR_C(assigneeRoleId, completed,
+		List<WorkflowTask> list = findByARID_C(assigneeRoleId, completed,
 				count - 1, count, obc);
 
 		if (list.isEmpty()) {
@@ -2728,12 +2732,12 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public WorkflowTask[] findByR_C_PrevAndNext(long workflowTaskId,
+	public WorkflowTask[] findByARID_C_PrevAndNext(long workflowTaskId,
 		long assigneeRoleId, boolean completed, OrderByComparator obc)
 		throws NoSuchWorkflowTaskException, SystemException {
 		WorkflowTask workflowTask = findByPrimaryKey(workflowTaskId);
 
-		int count = countByR_C(assigneeRoleId, completed);
+		int count = countByARID_C(assigneeRoleId, completed);
 
 		Session session = null;
 
@@ -2946,8 +2950,9 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public void removeByRoleId(long assigneeRoleId) throws SystemException {
-		for (WorkflowTask workflowTask : findByRoleId(assigneeRoleId)) {
+	public void removeByAssigneeRoleId(long assigneeRoleId)
+		throws SystemException {
+		for (WorkflowTask workflowTask : findByAssigneeRoleId(assigneeRoleId)) {
 			remove(workflowTask);
 		}
 	}
@@ -2973,16 +2978,16 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		}
 	}
 
-	public void removeByA_C(long assigneeUserId, boolean completed)
+	public void removeByAUID_C(long assigneeUserId, boolean completed)
 		throws SystemException {
-		for (WorkflowTask workflowTask : findByA_C(assigneeUserId, completed)) {
+		for (WorkflowTask workflowTask : findByAUID_C(assigneeUserId, completed)) {
 			remove(workflowTask);
 		}
 	}
 
-	public void removeByR_C(long assigneeRoleId, boolean completed)
+	public void removeByARID_C(long assigneeRoleId, boolean completed)
 		throws SystemException {
-		for (WorkflowTask workflowTask : findByR_C(assigneeRoleId, completed)) {
+		for (WorkflowTask workflowTask : findByARID_C(assigneeRoleId, completed)) {
 			remove(workflowTask);
 		}
 	}
@@ -3136,10 +3141,11 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		return count.intValue();
 	}
 
-	public int countByRoleId(long assigneeRoleId) throws SystemException {
+	public int countByAssigneeRoleId(long assigneeRoleId)
+		throws SystemException {
 		Object[] finderArgs = new Object[] { new Long(assigneeRoleId) };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ROLEID,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ASSIGNEEROLEID,
 				finderArgs, this);
 
 		if (count == null) {
@@ -3173,7 +3179,7 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ROLEID,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ASSIGNEEROLEID,
 					finderArgs, count);
 
 				closeSession(session);
@@ -3351,13 +3357,13 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		return count.intValue();
 	}
 
-	public int countByA_C(long assigneeUserId, boolean completed)
+	public int countByAUID_C(long assigneeUserId, boolean completed)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(assigneeUserId), Boolean.valueOf(completed)
 			};
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_A_C,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_AUID_C,
 				finderArgs, this);
 
 		if (count == null) {
@@ -3397,8 +3403,8 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_C, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_AUID_C,
+					finderArgs, count);
 
 				closeSession(session);
 			}
@@ -3407,13 +3413,13 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 		return count.intValue();
 	}
 
-	public int countByR_C(long assigneeRoleId, boolean completed)
+	public int countByARID_C(long assigneeRoleId, boolean completed)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(assigneeRoleId), Boolean.valueOf(completed)
 			};
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_C,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ARID_C,
 				finderArgs, this);
 
 		if (count == null) {
@@ -3453,8 +3459,8 @@ public class WorkflowTaskPersistenceImpl extends BasePersistenceImpl<WorkflowTas
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_C, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ARID_C,
+					finderArgs, count);
 
 				closeSession(session);
 			}
