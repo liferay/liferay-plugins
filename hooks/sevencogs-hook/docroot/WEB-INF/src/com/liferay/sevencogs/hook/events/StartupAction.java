@@ -406,9 +406,9 @@ public class StartupAction extends SimpleAction {
 
 		addPortletId(layout, "1_WAR_socialnetworkingportlet", "column-1");
 		addPortletId(layout, PortletKeys.REQUESTS, "column-1");
-		addPortletId(layout, "4_WAR_socialnetworkingportlet", "column-1");
+		addPortletId(layout, "2_WAR_socialnetworkingportlet", "column-1");
 		addPortletId(layout, PortletKeys.ACTIVITIES, "column-2");
-		addPortletId(layout, "5_WAR_socialnetworkingportlet", "column-2");
+		addPortletId(layout, "3_WAR_socialnetworkingportlet", "column-2");
 
 		// Blog layout
 
@@ -439,7 +439,7 @@ public class StartupAction extends SimpleAction {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		addPortletId(layout, "6_WAR_socialnetworkingportlet", "column-2");
+		addPortletId(layout, "4_WAR_socialnetworkingportlet", "column-2");
 
 		portletId = addPortletId(layout, PortletKeys.IFRAME, "column-1");
 
