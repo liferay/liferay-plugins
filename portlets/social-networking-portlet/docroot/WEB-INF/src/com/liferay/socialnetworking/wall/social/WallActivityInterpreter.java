@@ -30,6 +30,8 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
+import com.liferay.portlet.social.model.SocialRelationConstants;
+import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.socialnetworking.model.WallEntry;
 import com.liferay.socialnetworking.service.WallEntryLocalServiceUtil;
 
@@ -56,6 +58,13 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		User receiverUser = UserLocalServiceUtil.getUserById(
 			activity.getReceiverUserId());
+
+		if (!SocialRelationLocalServiceUtil.hasRelation(
+			themeDisplay.getUserId(), activity.getReceiverUserId(),
+			SocialRelationConstants.TYPE_BI_FRIEND)) {
+
+			return null;
+		}
 
 		int activityType = activity.getType();
 
