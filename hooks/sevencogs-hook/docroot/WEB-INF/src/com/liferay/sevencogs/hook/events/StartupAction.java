@@ -315,7 +315,7 @@ public class StartupAction extends SimpleAction {
 
 		SocialRequest socialRequest = SocialRequestLocalServiceUtil.addRequest(
 			user.getUserId(), 0, User.class.getName(), user.getUserId(),
-			_SOCIAL_NETWORKING_FRIENDS_REQUEST_KEYS_ADD_FRIEND, StringPool.BLANK,
+			_SN_FRIENDS_REQUEST_KEYS_ADD_FRIEND, StringPool.BLANK,
 			receiverUser.getUserId());
 
 		if (confirm) {
@@ -1700,7 +1700,7 @@ public class StartupAction extends SimpleAction {
 		return portletSetup;
 	}
 
-	private static final int _SOCIAL_NETWORKING_FRIENDS_REQUEST_KEYS_ADD_FRIEND = 1;
+	private static final int _SN_FRIENDS_REQUEST_KEYS_ADD_FRIEND = 1;
 
 	private Map<String, AssetCategory> _assetCategories;
 
