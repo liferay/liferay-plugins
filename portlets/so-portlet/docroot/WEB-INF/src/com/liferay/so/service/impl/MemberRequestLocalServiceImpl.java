@@ -213,6 +213,14 @@ public class MemberRequestLocalServiceImpl
 		return memberRequest;
 	}
 
+	protected String getMemberRequestCreateAccountURL(
+			String key, ThemeDisplay themeDisplay)
+		throws Exception {
+
+		return getMemberRequestURL(key, themeDisplay) +
+			"&p_p_id=58&_58_struts_action=%2Flogin%2Fcreate_account";
+	}
+
 	protected String getMemberRequestURL(String key, ThemeDisplay themeDisplay)
 		throws Exception {
 
@@ -237,6 +245,8 @@ public class MemberRequestLocalServiceImpl
 		long companyId = memberRequest.getCompanyId();
 
 		String url = getMemberRequestURL(memberRequest.getKey(), themeDisplay);
+		String createAccountUrl = getMemberRequestCreateAccountURL(
+			memberRequest.getKey(), themeDisplay);
 
 		Group group =
 			GroupLocalServiceUtil.getGroup(memberRequest.getGroupId());
@@ -267,8 +277,19 @@ public class MemberRequestLocalServiceImpl
 		String subject = StringUtil.read(
 			classLoader,
 			"com/liferay/so/invitemembers/dependencies/subject.tmpl");
-		String body = StringUtil.read(
-			classLoader, "com/liferay/so/invitemembers/dependencies/body.tmpl");
+		String body = StringPool.BLANK;
+
+		if (memberRequest.getReceiverUserId() > 0) {
+			body = StringUtil.read(
+				classLoader,
+				"com/liferay/so/invitemembers/dependencies/body.tmpl");
+		}
+		else {
+			body = StringUtil.read(
+				classLoader,
+				"com/liferay/so/invitemembers/dependencies/" +
+					"body_create_account.tmpl");
+		}
 
 		subject = StringUtil.replace(
 			subject,
@@ -288,14 +309,16 @@ public class MemberRequestLocalServiceImpl
 				"[$ADMIN_NAME$]",
 				"[$MEMBER_REQUEST_GROUP$]",
 				"[$MEMBER_REQUEST_USER$]",
-				"[$MEMBER_REQUEST_URL$]"
+				"[$MEMBER_REQUEST_URL$]",
+				"[$MEMBER_REQUEST_CREATE_ACCOUNT_URL$]"
 			},
 			new String[] {
 				fromAddress,
 				fromName,
 				group.getDescriptiveName(),
 				user.getFullName(),
-				url
+				url,
+				createAccountUrl
 			});
 
 		InternetAddress from = new InternetAddress(fromAddress, fromName);
