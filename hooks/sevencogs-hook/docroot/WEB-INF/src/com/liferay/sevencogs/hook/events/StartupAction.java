@@ -315,7 +315,7 @@ public class StartupAction extends SimpleAction {
 
 		SocialRequest socialRequest = SocialRequestLocalServiceUtil.addRequest(
 			user.getUserId(), 0, User.class.getName(), user.getUserId(),
-			_WOL_FRIENDS_REQUEST_KEYS_ADD_FRIEND, StringPool.BLANK,
+			_SOCIAL_NETWORKING_FRIENDS_REQUEST_KEYS_ADD_FRIEND, StringPool.BLANK,
 			receiverUser.getUserId());
 
 		if (confirm) {
@@ -404,11 +404,11 @@ public class StartupAction extends SimpleAction {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		addPortletId(layout, "1_WAR_wolportlet", "column-1");
+		addPortletId(layout, "1_WAR_socialnetworkingportlet", "column-1");
 		addPortletId(layout, PortletKeys.REQUESTS, "column-1");
-		addPortletId(layout, "4_WAR_wolportlet", "column-1");
+		addPortletId(layout, "4_WAR_socialnetworkingportlet", "column-1");
 		addPortletId(layout, PortletKeys.ACTIVITIES, "column-2");
-		addPortletId(layout, "5_WAR_wolportlet", "column-2");
+		addPortletId(layout, "5_WAR_socialnetworkingportlet", "column-2");
 
 		// Blog layout
 
@@ -421,7 +421,7 @@ public class StartupAction extends SimpleAction {
 
 		layout = addLayout(group, "Social", true, "/social", "2_columns_ii");
 
-		addPortletId(layout, "1_WAR_wolportlet", "column-1");
+		addPortletId(layout, "1_WAR_socialnetworkingportlet", "column-1");
 		addPortletId(layout, PortletKeys.REQUESTS, "column-1");
 
 		portletId = addPortletId(
@@ -439,7 +439,7 @@ public class StartupAction extends SimpleAction {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		addPortletId(layout, "6_WAR_wolportlet", "column-2");
+		addPortletId(layout, "6_WAR_socialnetworkingportlet", "column-2");
 
 		portletId = addPortletId(layout, PortletKeys.IFRAME, "column-1");
 
@@ -1700,7 +1700,7 @@ public class StartupAction extends SimpleAction {
 		return portletSetup;
 	}
 
-	private static final int _WOL_FRIENDS_REQUEST_KEYS_ADD_FRIEND = 1;
+	private static final int _SOCIAL_NETWORKING_FRIENDS_REQUEST_KEYS_ADD_FRIEND = 1;
 
 	private Map<String, AssetCategory> _assetCategories;
 
