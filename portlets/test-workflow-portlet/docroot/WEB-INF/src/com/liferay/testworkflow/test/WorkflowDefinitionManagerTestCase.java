@@ -70,13 +70,13 @@ public class WorkflowDefinitionManagerTestCase extends BaseTestCase {
 		while ((zipEntry = zipInputStream.getNextEntry()) != null) {
 			String name = zipEntry.getName();
 
-			if (name.equals(_WORKFLOW_DEFINITION_NAME_1 + ".jar")) {
+			if (name.equals(_WORKFLOW_DEFINITION_JAR_1)) {
 				_workflowDefinitionContent1 = readBytes(zipInputStream);
 			}
-			else if (name.equals(_WORKFLOW_DEFINITION_NAME_2 + ".jar")) {
+			else if (name.equals(_WORKFLOW_DEFINITION_JAR_2)) {
 				_workflowDefinitionContent2 = readBytes(zipInputStream);
 			}
-			else if (name.equals(_WORKFLOW_DEFINITION_NAME_3 + ".jar")) {
+			else if (name.equals(_WORKFLOW_DEFINITION_JAR_3)) {
 				_workflowDefinitionContent3 = readBytes(zipInputStream);
 			}
 		}
@@ -90,7 +90,7 @@ public class WorkflowDefinitionManagerTestCase extends BaseTestCase {
 
 	public void testDeployWorkflowDefinition() throws Exception {
 
-		// TestWorkflowDefinition1
+		// Test Workflow Definition 1
 
 		WorkflowDefinition workflowDefinition1_1 = _getWorkflowDefinition(
 			_WORKFLOW_DEFINITION_NAME_1, 1, _workflowDefinitionContent1);
@@ -193,7 +193,7 @@ public class WorkflowDefinitionManagerTestCase extends BaseTestCase {
 		assertEquals(_WORKFLOW_DEFINITION_NAME_2, workflowDefinitionName2);
 		assertEquals(2, workflowDefinitionVersion2);
 
-		// TestWorkflowDefinition1
+		// Test Workflow Definition 1
 
 		WorkflowDefinition workflowDefinition1 = workflowDefinitions.get(2);
 
@@ -240,7 +240,7 @@ public class WorkflowDefinitionManagerTestCase extends BaseTestCase {
 
 	public void testGetWorkflowDefinitionsByName() throws Exception {
 
-		// Get all workflow definitions with name TestWorkflowDefinition1
+		// Get all workflow definitions with name Test Workflow Definition 1
 
 		OrderByComparator orderByComparator =
 			new WorkflowDefinitionNameComparator();
@@ -291,7 +291,7 @@ public class WorkflowDefinitionManagerTestCase extends BaseTestCase {
 		assertEquals(_WORKFLOW_DEFINITION_NAME_1, workflowDefinitionName1_1);
 		assertEquals(1, workflowDefinitionVersion1_1);
 
-		// Get all workflow definitions with name TestWorkflowDefinition1 by
+		// Get all workflow definitions with name Test Workflow Definition 1 by
 		// range
 
 		workflowDefinitions =
@@ -326,7 +326,7 @@ public class WorkflowDefinitionManagerTestCase extends BaseTestCase {
 
 	public void testUndeployWorkflowDefinition() throws Exception {
 
-		// TestWorkflowDefinition1
+		// Test Workflow Definition 1
 
 		WorkflowDefinition testDefinition1_1 = _getWorkflowDefinition(
 			_WORKFLOW_DEFINITION_NAME_1, 1, null);
@@ -389,14 +389,20 @@ public class WorkflowDefinitionManagerTestCase extends BaseTestCase {
 			workflowDefinitionVersion, null);
 	}
 
+	private static String _WORKFLOW_DEFINITION_JAR_1 = "test1.jar";
+
+	private static String _WORKFLOW_DEFINITION_JAR_2 = "test2.jar";
+
+	private static String _WORKFLOW_DEFINITION_JAR_3 = "test3.jar";
+
 	private static String _WORKFLOW_DEFINITION_NAME_1 =
-		"TestWorkflowDefinition1";
+		"Test Workflow Definition 1";
 
 	private static String _WORKFLOW_DEFINITION_NAME_2 =
-		"TestWorkflowDefinition2";
+		"Test Workflow Definition 2";
 
 	private static String _WORKFLOW_DEFINITION_NAME_3 =
-		"TestWorkflowDefinition3";
+		"Test Workflow Definition 3";
 
 	private byte[] _workflowDefinitionContent1;
 	private byte[] _workflowDefinitionContent2;
