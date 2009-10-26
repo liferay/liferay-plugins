@@ -85,7 +85,7 @@ PortletURL tabs1URL = renderResponse.createRenderURL();
 			</c:if>
 
 			<li>
-			
+
 				<%
 				PortletURL toggleCategoriesURL = renderResponse.createRenderURL();
 
