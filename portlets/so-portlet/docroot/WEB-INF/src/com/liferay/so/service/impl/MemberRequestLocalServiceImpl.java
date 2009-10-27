@@ -53,7 +53,6 @@ import javax.mail.internet.InternetAddress;
  * </a>
  *
  * @author Ryan	Park
- *
  */
 public class MemberRequestLocalServiceImpl
 	extends MemberRequestLocalServiceBaseImpl {
@@ -168,11 +167,15 @@ public class MemberRequestLocalServiceImpl
 	public boolean hasPendingMemberRequest(long groupId, long receiverUserId)
 		throws SystemException {
 
-		MemberRequest memberRequest =
-			memberRequestPersistence.fetchByG_R_S(
-				groupId, receiverUserId, InviteMembersConstants.STATUS_PENDING);
+		MemberRequest memberRequest = memberRequestPersistence.fetchByG_R_S(
+			groupId, receiverUserId, InviteMembersConstants.STATUS_PENDING);
 
-		return (memberRequest != null);
+		if (memberRequest != null) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	public MemberRequest updateMemberRequest(
@@ -213,15 +216,15 @@ public class MemberRequestLocalServiceImpl
 		return memberRequest;
 	}
 
-	protected String getMemberRequestCreateAccountURL(
+	protected String getCreateAccountURL(
 			String key, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		return getMemberRequestURL(key, themeDisplay) +
+		return getLoginURL(key, themeDisplay) +
 			"&p_p_id=58&_58_struts_action=%2Flogin%2Fcreate_account";
 	}
 
-	protected String getMemberRequestURL(String key, ThemeDisplay themeDisplay)
+	protected String getLoginURL(String key, ThemeDisplay themeDisplay)
 		throws Exception {
 
 		Group group = GroupLocalServiceUtil.getGroup(
@@ -232,8 +235,8 @@ public class MemberRequestLocalServiceImpl
 
 		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 
-		return PortalUtil.getLayoutFriendlyURL(layout, themeDisplay) +
-			"?key=" + key;
+		return PortalUtil.getLayoutFriendlyURL(layout, themeDisplay) + "?key=" +
+			key;
 	}
 
 	protected void sendEmail(
@@ -243,20 +246,16 @@ public class MemberRequestLocalServiceImpl
 
 		long companyId = memberRequest.getCompanyId();
 
-		String url = getMemberRequestURL(memberRequest.getKey(), themeDisplay);
-		String createAccountUrl = getMemberRequestCreateAccountURL(
-			memberRequest.getKey(), themeDisplay);
-
-		Group group =
-			GroupLocalServiceUtil.getGroup(memberRequest.getGroupId());
+		Group group = GroupLocalServiceUtil.getGroup(
+			memberRequest.getGroupId());
 
 		User user = UserLocalServiceUtil.getUser(memberRequest.getUserId());
 
 		User receiverUser = null;
 
 		if (memberRequest.getReceiverUserId() > 0) {
-			receiverUser =
-				UserLocalServiceUtil.getUser(memberRequest.getReceiverUserId());
+			receiverUser = UserLocalServiceUtil.getUser(
+				memberRequest.getReceiverUserId());
 		}
 
 		String fromName = PrefsPropsUtil.getString(
@@ -276,19 +275,25 @@ public class MemberRequestLocalServiceImpl
 		String subject = StringUtil.read(
 			classLoader,
 			"com/liferay/so/invitemembers/dependencies/subject.tmpl");
+
 		String body = StringPool.BLANK;
 
 		if (memberRequest.getReceiverUserId() > 0) {
 			body = StringUtil.read(
 				classLoader,
-				"com/liferay/so/invitemembers/dependencies/body.tmpl");
+				"com/liferay/so/invitemembers/dependencies/" +
+					"existing_user_body.tmpl");
 		}
 		else {
 			body = StringUtil.read(
 				classLoader,
 				"com/liferay/so/invitemembers/dependencies/" +
-					"body_create_account.tmpl");
+					"new_user_body.tmpl");
 		}
+
+		String createAccountURL = getCreateAccountURL(
+			memberRequest.getKey(), themeDisplay);
+		String loginURL = getLoginURL(memberRequest.getKey(), themeDisplay);
 
 		subject = StringUtil.replace(
 			subject,
@@ -306,18 +311,18 @@ public class MemberRequestLocalServiceImpl
 			new String[] {
 				"[$ADMIN_ADDRESS$]",
 				"[$ADMIN_NAME$]",
+				"[$MEMBER_REQUEST_CREATE_ACCOUNT_URL$]",
 				"[$MEMBER_REQUEST_GROUP$]",
-				"[$MEMBER_REQUEST_USER$]",
-				"[$MEMBER_REQUEST_URL$]",
-				"[$MEMBER_REQUEST_CREATE_ACCOUNT_URL$]"
+				"[$MEMBER_REQUEST_LOGIN_URL$]",
+				"[$MEMBER_REQUEST_USER$]"
 			},
 			new String[] {
 				fromAddress,
 				fromName,
+				createAccountURL,
 				group.getDescriptiveName(),
-				user.getFullName(),
-				url,
-				createAccountUrl
+				loginURL,
+				user.getFullName()
 			});
 
 		InternetAddress from = new InternetAddress(fromAddress, fromName);
@@ -334,7 +339,7 @@ public class MemberRequestLocalServiceImpl
 		throws PortalException {
 
 		if (memberRequest.getStatus() !=
-			InviteMembersConstants.STATUS_PENDING) {
+				InviteMembersConstants.STATUS_PENDING) {
 
 			throw new MemberRequestAlreadyUsedException();
 		}
