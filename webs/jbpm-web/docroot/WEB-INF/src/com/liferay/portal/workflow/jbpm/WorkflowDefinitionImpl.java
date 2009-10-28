@@ -22,8 +22,9 @@
 
 package com.liferay.portal.workflow.jbpm;
 
-import com.liferay.portal.kernel.resource.ResourceRetriever;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
+
+import java.io.InputStream;
 
 import java.util.Collections;
 import java.util.Map;
@@ -39,37 +40,36 @@ import org.jbpm.graph.def.ProcessDefinition;
 public class WorkflowDefinitionImpl implements WorkflowDefinition {
 
 	public WorkflowDefinitionImpl(ProcessDefinition processDefinition) {
-		_workflowDefinitionName = processDefinition.getName();
-		_workflowDefinitionVersion = processDefinition.getVersion();
+		_name = processDefinition.getName();
+		_version = processDefinition.getVersion();
 	}
 
 	public WorkflowDefinitionImpl(
-		ResourceRetriever resourceRetriever, String workflowDefinitionName,
-		int workflowDefinitionVersion) {
+		String name, int version, InputStream inputStream) {
 
-		_resourceRetriever = resourceRetriever;
-		_workflowDefinitionName = workflowDefinitionName;
-		_workflowDefinitionVersion = workflowDefinitionVersion;
+		_name = name;
+		_version = version;
+		_inputStream = inputStream;
 	}
 
-	public Map<String, Object> getAttributes() {
+	public InputStream getInputStream() {
+		return _inputStream;
+	}
+
+	public String getName() {
+		return _name;
+	}
+
+	public Map<String, Object> getOptionalAttributes() {
 		return Collections.EMPTY_MAP;
 	}
 
-	public ResourceRetriever getJar() {
-		return _resourceRetriever;
+	public int getVersion() {
+		return _version;
 	}
 
-	public String getWorkflowDefinitionName() {
-		return _workflowDefinitionName;
-	}
-
-	public int getWorkflowDefinitionVersion() {
-		return _workflowDefinitionVersion;
-	}
-
-	private ResourceRetriever _resourceRetriever;
-	private String _workflowDefinitionName;
-	private int _workflowDefinitionVersion;
+	private InputStream _inputStream;
+	private String _name;
+	private int _version;
 
 }
