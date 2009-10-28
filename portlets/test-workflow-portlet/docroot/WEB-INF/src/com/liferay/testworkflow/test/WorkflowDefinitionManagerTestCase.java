@@ -24,7 +24,6 @@ package com.liferay.testworkflow.test;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.workflow.DefaultWorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowDefinitionManagerUtil;
 import com.liferay.portal.kernel.workflow.WorkflowEngineManagerUtil;
@@ -90,45 +89,27 @@ public class WorkflowDefinitionManagerTestCase extends BaseTestCase {
 
 		// Test Workflow Definition 1
 
-		WorkflowDefinition workflowDefinition1_1 = _getWorkflowDefinition(
-			_NAME_1, 1, _bytes1);
+		WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
+			_user.getUserId(), _NAME_1, new ByteArrayInputStream(_bytes1));
 
 		WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-			workflowDefinition1_1, _user.getUserId(), false, null);
-
-		WorkflowDefinition testDefinition1_2 = _getWorkflowDefinition(
-			_NAME_1, 2, _bytes1);
+			_user.getUserId(), _NAME_1, new ByteArrayInputStream(_bytes1));
 
 		WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-			testDefinition1_2, _user.getUserId(), false, null);
-
-		WorkflowDefinition testDefinition1_3 = _getWorkflowDefinition(
-			_NAME_1, 3, _bytes1);
-
-		WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-			testDefinition1_3, _user.getUserId(), false, null);
+			_user.getUserId(), _NAME_1, new ByteArrayInputStream(_bytes1));
 
 		// TestWorkflowDefinition2
 
-		WorkflowDefinition testDefinition2_1 = _getWorkflowDefinition(
-			_NAME_2, 1, _bytes2);
+		WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
+			_user.getUserId(), _NAME_2, new ByteArrayInputStream(_bytes2));
 
 		WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-			testDefinition2_1, _user.getUserId(), false, null);
-
-		WorkflowDefinition testDefinition2_2 = _getWorkflowDefinition(
-			_NAME_2, 2, _bytes2);
-
-		WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-			testDefinition2_2, _user.getUserId(), false, null);
+			_user.getUserId(), _NAME_2, new ByteArrayInputStream(_bytes2));
 
 		// TestWorkflowDefinition3
 
-		WorkflowDefinition testDefinition3_1 = _getWorkflowDefinition(
-			_NAME_3, 1, _bytes3);
-
 		WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-			testDefinition3_1, _user.getUserId(), false, null);
+			_user.getUserId(), _NAME_3, new ByteArrayInputStream(_bytes3));
 	}
 
 	public void testGetWorkflowDefinitionCount() throws Exception {
@@ -306,56 +287,31 @@ public class WorkflowDefinitionManagerTestCase extends BaseTestCase {
 
 		// Test Workflow Definition 1
 
-		WorkflowDefinition testDefinition1_1 = _getWorkflowDefinition(
-			_NAME_1, 1, null);
+		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
+			_user.getUserId(), _NAME_1, 1);
 
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			testDefinition1_1, _user.getUserId(), null);
-
-		WorkflowDefinition testDefinition1_2 = _getWorkflowDefinition(
-			_NAME_1, 2, null);
+			_user.getUserId(), _NAME_1, 2);
 
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			testDefinition1_2, _user.getUserId(), null);
-
-		WorkflowDefinition testDefinition1_3 = _getWorkflowDefinition(
-			_NAME_1, 3, null);
-
-		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			testDefinition1_3, _user.getUserId(), null);
+			_user.getUserId(), _NAME_1, 3);
 
 		// TestWorkflowDefinition2
 
-		WorkflowDefinition testDefinition2_1 = _getWorkflowDefinition(
-			_NAME_2, 1, null);
+		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
+			_user.getUserId(), _NAME_2, 1);
 
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			testDefinition2_1, _user.getUserId(), null);
-
-		WorkflowDefinition testDefinition2_2 = _getWorkflowDefinition(
-			_NAME_2, 2, null);
-
-		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			testDefinition2_2, _user.getUserId(), null);
+			_user.getUserId(), _NAME_2, 2);
 
 		// TestWorkflowDefinition3
 
-		WorkflowDefinition testDefinition3_1 = _getWorkflowDefinition(
-			_NAME_3, 1, null);
-
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			testDefinition3_1, _user.getUserId(), null);
+			_user.getUserId(), _NAME_3, 1);
 
 		int count = WorkflowDefinitionManagerUtil.getWorkflowDefinitionCount();
 
 		assertEquals(0, count);
-	}
-
-	private WorkflowDefinition _getWorkflowDefinition(
-		String name, int version, byte[] bytes) {
-
-		return new DefaultWorkflowDefinition(
-			name, version, new ByteArrayInputStream(bytes), null);
 	}
 
 	private static String _JAR_1 = "test1.jar";

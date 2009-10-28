@@ -27,8 +27,8 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.TaskInstanceInfo;
 import com.liferay.portal.kernel.workflow.TaskInstanceManager;
-import com.liferay.portal.kernel.workflow.UserCredential;
 import com.liferay.portal.kernel.workflow.WorkflowException;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
 import java.util.ArrayList;
@@ -88,7 +88,7 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 	}
 
 	public TaskInstanceInfo assignTaskInstanceToUser(
-			long taskInstanceId, UserCredential userCredential, String comment,
+			long taskInstanceId, long userId, String comment,
 			Map<String, Object> attributes, long callingUserId,
 			Map<String, Object> parameters)
 		throws WorkflowException {
@@ -118,16 +118,13 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 
 			long roleId = GetterUtil.getLong(pooledActor.getActorId());
 
-			Set<Long> roleIds = userCredential.getRoleIds();
-
-			if (!roleIds.contains(roleId)) {
+			if (!RoleLocalServiceUtil.hasUserRole(userId, roleId)) {
 				throw new WorkflowException(
-					userCredential.getUserId() +
-						" does not have the role to be assigned to task " +
-							taskInstanceId);
+					userId + " does not have the role to be assigned to task " +
+						taskInstanceId);
 			}
 
-			taskInstance.setActorId(String.valueOf(userCredential.getUserId()));
+			taskInstance.setActorId(String.valueOf(userId));
 
 			jbpmContext.save(taskInstance);
 
@@ -244,29 +241,6 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 		}
 	}
 
-	public int getTaskInstanceInfoCountByCredential(
-			UserCredential userCredential)
-		throws WorkflowException {
-
-		return getTaskInstanceInfoCountByCredential(userCredential, false);
-	}
-
-	public int getTaskInstanceInfoCountByCredential(
-			UserCredential userCredential, boolean completed)
-		throws WorkflowException {
-
-		long[] roleIds = ArrayUtil.toArray(
-			userCredential.getRoleIds().toArray(new Long[0]));
-
-		int pooledActorCount =
-			getTaskInstanceInfoCount(roleIds, true, completed);
-
-		int singleActorCount = getTaskInstanceInfoCount(
-			new long[] {userCredential.getUserId()}, false, completed);
-
-		return pooledActorCount + singleActorCount;
-	}
-
 	public int getTaskInstanceInfoCountByRole(long roleId)
 		throws WorkflowException {
 
@@ -317,62 +291,6 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 		finally {
 			jbpmContext.close();
 		}
-	}
-
-	public List<TaskInstanceInfo> getTaskInstanceInfosByCredential(
-			UserCredential userCredential, boolean completed, int start,
-			int end, OrderByComparator orderByComparator)
-		throws WorkflowException {
-
-		long[] roleIds = ArrayUtil.toArray(
-			userCredential.getRoleIds().toArray(new Long[0]));
-
-		List<TaskInstanceInfo> pooledActorTaskInstanceInfos =
-			getTaskInstanceInfos(
-				-1, roleIds, true, completed, start, end, orderByComparator);
-
-		List<TaskInstanceInfo> singleActorTaskInstanceInfos =
-			getTaskInstanceInfos(
-				-1, new long[] {userCredential.getUserId()}, false, completed,
-				start, end, orderByComparator);
-
-		List<TaskInstanceInfo> taskInstanceInfos =
-			new ArrayList<TaskInstanceInfo>(
-				pooledActorTaskInstanceInfos.size() +
-					singleActorTaskInstanceInfos.size());
-
-		taskInstanceInfos.addAll(pooledActorTaskInstanceInfos);
-		taskInstanceInfos.addAll(singleActorTaskInstanceInfos);
-
-		return taskInstanceInfos;
-	}
-
-	public List<TaskInstanceInfo> getTaskInstanceInfosByCredential(
-			UserCredential userCredential, int start, int end,
-			OrderByComparator orderByComparator)
-		throws WorkflowException {
-
-		long[] roleIds = ArrayUtil.toArray(
-			userCredential.getRoleIds().toArray(new Long[0]));
-
-		List<TaskInstanceInfo> pooledActorTaskInstanceInfos =
-			getTaskInstanceInfos(
-				-1, roleIds, true, null, start, end, orderByComparator);
-
-		List<TaskInstanceInfo> singleActorTaskInstanceInfos =
-			getTaskInstanceInfos(
-				-1, new long[] {userCredential.getUserId()}, false, null, start,
-				end, orderByComparator);
-
-		List<TaskInstanceInfo> taskInstanceInfos =
-			new ArrayList<TaskInstanceInfo>(
-				pooledActorTaskInstanceInfos.size() +
-					singleActorTaskInstanceInfos.size());
-
-		taskInstanceInfos.addAll(pooledActorTaskInstanceInfos);
-		taskInstanceInfos.addAll(singleActorTaskInstanceInfos);
-
-		return taskInstanceInfos;
 	}
 
 	public List<TaskInstanceInfo> getTaskInstanceInfosByRole(

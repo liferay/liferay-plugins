@@ -30,10 +30,10 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.zip.ZipInputStream;
 
 import org.jbpm.JbpmConfiguration;
@@ -53,22 +53,13 @@ import org.jbpm.jpdl.par.ProcessArchive;
 public class WorkflowDefinitionManagerImpl
 	implements WorkflowDefinitionManager {
 
-	public void deployWorkflowDefinition(
-			WorkflowDefinition workflowDefinition, long callingUserId,
-			boolean autoIncrementVersionNumber, Map<String, Object> parameters)
+	public WorkflowDefinition deployWorkflowDefinition(
+			long userId, String name, InputStream inputStream)
 		throws WorkflowException {
-
-		if ((!autoIncrementVersionNumber) &&
-			(workflowDefinition.getVersion() < 0)) {
-
-			throw new WorkflowException(
-				"Workflow definition version number must be a positive number");
-		}
 
 		ProcessDefinition processDefinition = null;
 
-		ZipInputStream processStream = new ZipInputStream(
-			workflowDefinition.getInputStream());
+		ZipInputStream processStream = new ZipInputStream(inputStream);
 
 		try {
 			ProcessArchive processArchive = new ProcessArchive(processStream);
@@ -86,33 +77,40 @@ public class WorkflowDefinitionManagerImpl
 			}
 		}
 
-		if (Validator.isNotNull(workflowDefinition.getName())) {
-			processDefinition.setName(workflowDefinition.getName());
-		}
-
-		if (!autoIncrementVersionNumber) {
-			processDefinition.setVersion(workflowDefinition.getVersion());
+		if (Validator.isNotNull(name)) {
+			processDefinition.setName(name);
 		}
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {
-			if (!autoIncrementVersionNumber) {
-				GraphSession graphSession = jbpmContext.getGraphSession();
+			jbpmContext.deployProcessDefinition(processDefinition);
+		}
+		finally {
+			jbpmContext.close();
+		}
 
-				ProcessDefinition oldProcessDefinition =
-					graphSession.findProcessDefinition(
-						workflowDefinition.getName(),
-						workflowDefinition.getVersion());
+		return new WorkflowDefinitionImpl(processDefinition);
+	}
 
-				if (oldProcessDefinition != null) {
-					graphSession.deleteProcessDefinition(oldProcessDefinition);
-				}
+	public WorkflowDefinition getWorkflowDefinition(String name, int version)
+		throws WorkflowException{
 
-				graphSession.saveProcessDefinition(processDefinition);
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			GraphSession graphSession = jbpmContext.getGraphSession();
+
+			ProcessDefinition processDefinition =
+				graphSession.findProcessDefinition(name, version);
+
+			if (processDefinition != null) {
+				return new WorkflowDefinitionImpl(processDefinition);
 			}
 			else {
-				jbpmContext.deployProcessDefinition(processDefinition);
+				throw new WorkflowException(
+					"No WorkflowDefinition exists with the key {name=" + name +
+						", version=" + version + "}");
 			}
 		}
 		finally {
@@ -133,14 +131,14 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
-	public int getWorkflowDefinitionCount(String workflowDefinitionName) {
+	public int getWorkflowDefinitionCount(String name) {
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {
 			CustomSession customSession = new CustomSession(jbpmContext);
 
 			return customSession.countProcessDefinitions(
-				workflowDefinitionName, false);
+				name, false);
 		}
 		finally {
 			jbpmContext.close();
@@ -167,8 +165,7 @@ public class WorkflowDefinitionManagerImpl
 	}
 
 	public List<WorkflowDefinition> getWorkflowDefinitions(
-		String workflowDefinitionName, int start, int end,
-		OrderByComparator orderByComparator) {
+		String name, int start, int end, OrderByComparator orderByComparator) {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
@@ -177,7 +174,7 @@ public class WorkflowDefinitionManagerImpl
 
 			List<ProcessDefinition> processDefinitions =
 				customSession.findProcessDefinitions(
-					workflowDefinitionName, false, start, end,
+					name, false, start, end,
 				orderByComparator);
 
 			return toWorkflowDefinitions(processDefinitions);
@@ -192,8 +189,7 @@ public class WorkflowDefinitionManagerImpl
 	}
 
 	public void undeployWorkflowDefinition(
-			WorkflowDefinition workflowDefinition, long callingUserId,
-			Map<String, Object> parameters)
+			long userId, String name, int version)
 		throws WorkflowException{
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -202,9 +198,7 @@ public class WorkflowDefinitionManagerImpl
 			GraphSession graphSession = jbpmContext.getGraphSession();
 
 			ProcessDefinition processDefinition =
-				graphSession.findProcessDefinition(
-					workflowDefinition.getName(),
-					workflowDefinition.getVersion());
+				graphSession.findProcessDefinition(name, version);
 
 			if (processDefinition != null) {
 				List<ProcessInstance> processInstances =
