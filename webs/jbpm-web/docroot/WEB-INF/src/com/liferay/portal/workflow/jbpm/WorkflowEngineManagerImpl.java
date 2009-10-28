@@ -34,32 +34,29 @@ import java.util.Map;
  */
 public class WorkflowEngineManagerImpl implements WorkflowEngineManager {
 
-	public Map<String, Object> getAdditionalInformation() {
-		return Collections.EMPTY_MAP;
+	public String getKey() {
+		return _KEY;
 	}
 
-	public Object getDelegate() {
-		return null;
+	public String getName() {
+		return _NAME;
+	}
+
+	public Map<String, Object> getOptionalAttributes() {
+		return _OPTIONAL_ATTRIBUTES;
 	}
 
 	public String getVersion() {
-		return "3.2.6 SP1";
+		return _VERSION;
 	}
 
-	public String getWorkflowEngineKey() {
-		return "jbpm";
-	}
+	private static final String _KEY = "jbpm";
 
-	public String getWorkflowEngineName() {
-		return "jBPM";
-	}
+	private static final String _NAME = "jBPM";
 
-	public boolean isSupportsGlobalActivities() {
-		return false;
-	}
+	private static final Map<String, Object> _OPTIONAL_ATTRIBUTES =
+		Collections.EMPTY_MAP;
 
-	public boolean isSupportsWorkflowDefinitionVersioning() {
-		return true;
-	}
+	private static final String _VERSION = "3.2.6 SP1";
 
 }

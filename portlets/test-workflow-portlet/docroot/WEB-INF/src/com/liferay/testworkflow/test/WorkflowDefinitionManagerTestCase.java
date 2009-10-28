@@ -58,12 +58,10 @@ public class WorkflowDefinitionManagerTestCase extends BaseTestCase {
 
 		_user = UserLocalServiceUtil.getDefaultUser(companyId);
 
-		String workflowEngineKey =
-			WorkflowEngineManagerUtil.getWorkflowEngineKey();
-
 		ZipInputStream zipInputStream = new ZipInputStream(
 			servletContext.getResourceAsStream(
-				"WEB-INF/tests/" + workflowEngineKey + "-web.zip"));
+				"WEB-INF/tests/" + WorkflowEngineManagerUtil.getKey() +
+					"-web.zip"));
 
 		ZipEntry zipEntry = null;
 

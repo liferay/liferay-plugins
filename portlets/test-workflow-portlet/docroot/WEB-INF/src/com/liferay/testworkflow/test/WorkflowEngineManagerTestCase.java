@@ -38,36 +38,28 @@ public class WorkflowEngineManagerTestCase extends BaseTestCase {
 		super(servletContext);
 	}
 
-	public void testGetAdditionalInformation() throws Exception {
-		WorkflowEngineManagerUtil.getAdditionalInformation();
-	}
-
-	public void testGetDelegate() throws Exception {
-		WorkflowEngineManagerUtil.getDelegate();
-	}
-
-	public void testGetVersion() throws Exception {
-		String version = WorkflowEngineManagerUtil.getVersion();
-
-		assertNotNull(version);
-	}
-
-	public void testGetWorkflowEngineKey() throws Exception {
-		String key = WorkflowEngineManagerUtil.getWorkflowEngineKey();
+	public void testGetKey() throws Exception {
+		String key = WorkflowEngineManagerUtil.getKey();
 
 		assertNotNull(key);
 		assertEquals(key.toLowerCase(), key);
 		assertEquals(key.trim(), key);
 	}
 
-	public void testGetWorkflowEngineName() throws Exception {
-		String name = WorkflowEngineManagerUtil.getWorkflowEngineName();
+	public void testGetName() throws Exception {
+		String name = WorkflowEngineManagerUtil.getName();
 
 		assertNotNull(name);
 	}
 
-	public void testIsSupportsWorkflowDefinitionVersioning() throws Exception {
-		WorkflowEngineManagerUtil.isSupportsWorkflowDefinitionVersioning();
+	public void testGetOptionalAttributes() throws Exception {
+		WorkflowEngineManagerUtil.getOptionalAttributes();
+	}
+
+	public void testGetVersion() throws Exception {
+		String version = WorkflowEngineManagerUtil.getVersion();
+
+		assertNotNull(version);
 	}
 
 }
