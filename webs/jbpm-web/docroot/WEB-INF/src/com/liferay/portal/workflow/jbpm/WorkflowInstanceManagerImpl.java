@@ -95,9 +95,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public List<String> getPossibleNextActivityNames(
-			long workflowInstanceId, long userId,
-			Map<String, Object> parameters)
-		throws WorkflowException {
+		long workflowInstanceId, long userId, Map<String, Object> parameters) {
 
 		return new ArrayList<String>();
 	}
@@ -320,9 +318,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		throw new WorkflowException(new UnsupportedOperationException());
 	}
 
-	public void removeWorkflowInstance(long workflowInstanceId)
-		throws WorkflowException {
-
+	public void removeWorkflowInstance(long workflowInstanceId) {
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {

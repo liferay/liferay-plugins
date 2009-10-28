@@ -121,7 +121,7 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
-	public int getWorkflowDefinitionCount() throws WorkflowException {
+	public int getWorkflowDefinitionCount() {
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {

@@ -200,7 +200,7 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 		}
 	}
 
-	public List<String> getPossibleNextActivityNames(
+	public List<String> getPossibleNextPathNames(
 			long taskInstanceId, long userId, Map<String, Object> parameters)
 		throws WorkflowException {
 
