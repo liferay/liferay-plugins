@@ -22,7 +22,6 @@
 
 package com.liferay.portal.workflow.jbpm;
 
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowInstance;
 
 import java.util.ArrayList;
@@ -91,14 +90,6 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
 		return _parent;
 	}
 
-	public long getRelationId() {
-		return _RELATION_ID;
-	}
-
-	public String getRelationType() {
-		return _RELATION_TYPE;
-	}
-
 	public Date getStartDate() {
 		return _startDate;
 	}
@@ -118,10 +109,6 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
 	public void setParent(WorkflowInstance parent) {
 		_parent = parent;
 	}
-
-	private static final long _RELATION_ID = -1;
-
-	private static final String _RELATION_TYPE = StringPool.BLANK;
 
 	private List<WorkflowInstance> _children;
 	private Map<String, Object> _context;
