@@ -400,6 +400,8 @@ public class CustomSession {
 		_fieldMap.put("createDate", "create");
 		_fieldMap.put("taskName", "name");
 		_fieldMap.put("userId", "actorId");
+		_fieldMap.put("workflowLogId", "id");
+		_fieldMap.put("workflowInstanceId", "id");
 	}
 
 	private Session _session;
