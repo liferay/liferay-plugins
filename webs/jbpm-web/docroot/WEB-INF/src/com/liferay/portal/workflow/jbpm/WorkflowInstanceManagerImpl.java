@@ -149,13 +149,6 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		}
 	}
 
-	public WorkflowInstanceInfo getWorkflowInstanceInfo(
-			String relationType, long relationId, boolean retrieveChildrenInfo)
-		throws WorkflowException {
-
-		throw new WorkflowException(new UnsupportedOperationException());
-	}
-
 	public int getWorkflowInstanceInfoCount(
 			String workflowDefinitionName, Integer workflowDefinitionVersion)
 		throws WorkflowException {
@@ -171,13 +164,6 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 		return getWorkflowInstanceInfoCount(
 			workflowDefinitionName, workflowDefinitionVersion, completed);
-	}
-
-	public int getWorkflowInstanceInfoCount(
-			String relationType, long relationId)
-		throws WorkflowException {
-
-		throw new WorkflowException(new UnsupportedOperationException());
 	}
 
 	public List<WorkflowInstanceInfo> getWorkflowInstanceInfos(
@@ -201,14 +187,6 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		return getWorkflowInstanceInfos(
 			workflowDefinitionName, workflowDefinitionVersion, null,
 			retrieveChildrenInfo, start, end, orderByComparator);
-	}
-
-	public List<WorkflowInstanceInfo> getWorkflowInstanceInfos(
-			String relationType, long relationId, boolean retrieveChildrenInfo,
-			int start, int end, OrderByComparator orderByComparator)
-		throws WorkflowException {
-
-		throw new WorkflowException(new UnsupportedOperationException());
 	}
 
 	public void removeWorkflowInstance(long workflowInstanceId) {
@@ -361,25 +339,6 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		finally {
 			jbpmContext.close();
 		}
-	}
-
-	public WorkflowInstanceInfo startWorkflowInstance(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			String relationType, long relationId, Map<String, Object> context,
-			long callingUserId, Map<String, Object> parameters)
-		throws WorkflowException {
-
-		throw new WorkflowException(new UnsupportedOperationException());
-	}
-
-	public WorkflowInstanceInfo startWorkflowInstance(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			String relationType, long relationId, Map<String, Object> context,
-			long callingUserId, String activityName,
-			Map<String, Object> parameters)
-		throws WorkflowException {
-
-		throw new WorkflowException(new UnsupportedOperationException());
 	}
 
 	protected ProcessDefinition getProcessDefinition(
