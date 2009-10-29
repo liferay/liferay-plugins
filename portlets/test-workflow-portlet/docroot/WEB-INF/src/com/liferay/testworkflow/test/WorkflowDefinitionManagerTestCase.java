@@ -59,8 +59,8 @@ public class WorkflowDefinitionManagerTestCase extends BaseTestCase {
 
 		ZipInputStream zipInputStream = new ZipInputStream(
 			servletContext.getResourceAsStream(
-				"WEB-INF/tests/" + WorkflowEngineManagerUtil.getKey() +
-					"-web.zip"));
+				"WEB-INF/bundles/" + WorkflowEngineManagerUtil.getKey() +
+					"-tests.zip"));
 
 		ZipEntry zipEntry = null;
 
