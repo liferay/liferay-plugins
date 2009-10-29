@@ -23,7 +23,7 @@
 package com.liferay.portal.workflow.jbpm;
 
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.workflow.WorkflowInstanceInfo;
+import com.liferay.portal.kernel.workflow.WorkflowInstance;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,19 +37,19 @@ import org.jbpm.graph.exe.ProcessInstance;
 import org.jbpm.graph.exe.Token;
 
 /**
- * <a href="WorkflowInstanceInfoImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowInstanceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  */
-public class WorkflowInstanceInfoImpl implements WorkflowInstanceInfo {
+public class WorkflowInstanceImpl implements WorkflowInstance {
 
-	public WorkflowInstanceInfoImpl(Token token){
+	public WorkflowInstanceImpl(Token token){
 		ProcessInstance processInstance = token.getProcessInstance();
 		ProcessDefinition processDefinition =
 			processInstance.getProcessDefinition();
 
-		_children = new ArrayList<WorkflowInstanceInfo>();
+		_children = new ArrayList<WorkflowInstance>();
 
 		_context = processInstance.getContextInstance().getVariables(token);
 
@@ -67,11 +67,11 @@ public class WorkflowInstanceInfoImpl implements WorkflowInstanceInfo {
 		_workflowInstanceId = token.getId();
 	}
 
-	public void addChild(WorkflowInstanceInfo child) {
+	public void addChild(WorkflowInstance child) {
 		_children.add(child);
 	}
 
-	public List<WorkflowInstanceInfo> getChildren() {
+	public List<WorkflowInstance> getChildren() {
 		return _children;
 	}
 
@@ -87,7 +87,7 @@ public class WorkflowInstanceInfoImpl implements WorkflowInstanceInfo {
 		return _endDate;
 	}
 
-	public WorkflowInstanceInfo getParent() {
+	public WorkflowInstance getParent() {
 		return _parent;
 	}
 
@@ -115,7 +115,7 @@ public class WorkflowInstanceInfoImpl implements WorkflowInstanceInfo {
 		return _workflowInstanceId;
 	}
 
-	public void setParent(WorkflowInstanceInfo parent) {
+	public void setParent(WorkflowInstance parent) {
 		_parent = parent;
 	}
 
@@ -123,11 +123,11 @@ public class WorkflowInstanceInfoImpl implements WorkflowInstanceInfo {
 
 	private static final String _RELATION_TYPE = StringPool.BLANK;
 
-	private List<WorkflowInstanceInfo> _children;
+	private List<WorkflowInstance> _children;
 	private Map<String, Object> _context;
 	private String _currentNodeName;
 	private Date _endDate;
-	private WorkflowInstanceInfo _parent;
+	private WorkflowInstance _parent;
 	private Date _startDate;
 	private String _workflowDefinitionName;
 	private int _workflowDefinitionVersion;

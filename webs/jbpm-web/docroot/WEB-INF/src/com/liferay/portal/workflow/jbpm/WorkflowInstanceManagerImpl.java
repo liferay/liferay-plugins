@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowException;
-import com.liferay.portal.kernel.workflow.WorkflowInstanceInfo;
+import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManager;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
@@ -55,7 +55,7 @@ import org.jbpm.graph.exe.Token;
  */
 public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
-	public WorkflowInstanceInfo addContextInformation(
+	public WorkflowInstance addContextInformation(
 			long workflowInstanceId, Map<String, Object> context)
 		throws WorkflowException {
 
@@ -78,7 +78,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				jbpmContext.save(token);
 			}
 
-			return new WorkflowInstanceInfoImpl(token);
+			return new WorkflowInstanceImpl(token);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -122,7 +122,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		}
 	}
 
-	public WorkflowInstanceInfo getWorkflowInstanceInfo(
+	public WorkflowInstance getWorkflowInstance(
 			long workflowInstanceId, boolean retrieveChildrenInfo)
 		throws WorkflowException {
 
@@ -131,15 +131,14 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		try {
 			Token token = jbpmContext.loadToken(workflowInstanceId);
 
-			WorkflowInstanceInfoImpl workflowInstanceInfoImpl =
-				new WorkflowInstanceInfoImpl(token);
+			WorkflowInstanceImpl workflowInstanceImpl =
+				new WorkflowInstanceImpl(token);
 
 			if (retrieveChildrenInfo) {
-				populateChildrenWorkflowInstanceInfos(
-					token, workflowInstanceInfoImpl);
+				populateChildrenWorkflowInstances(token, workflowInstanceImpl);
 			}
 
-			return workflowInstanceInfoImpl;
+			return workflowInstanceImpl;
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -149,42 +148,42 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		}
 	}
 
-	public int getWorkflowInstanceInfoCount(
+	public int getWorkflowInstanceCount(
 			String workflowDefinitionName, Integer workflowDefinitionVersion)
 		throws WorkflowException {
 
-		return getWorkflowInstanceInfoCount(
+		return getWorkflowInstanceCount(
 			workflowDefinitionName, workflowDefinitionVersion, Boolean.FALSE);
 	}
 
-	public int getWorkflowInstanceInfoCount(
+	public int getWorkflowInstanceCount(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
 			boolean completed)
 		throws WorkflowException {
 
-		return getWorkflowInstanceInfoCount(
+		return getWorkflowInstanceCount(
 			workflowDefinitionName, workflowDefinitionVersion, completed);
 	}
 
-	public List<WorkflowInstanceInfo> getWorkflowInstanceInfos(
+	public List<WorkflowInstance> getWorkflowInstances(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
 			boolean completed, boolean retrieveChildrenInfo, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
-		return getWorkflowInstanceInfos(
+		return getWorkflowInstances(
 			workflowDefinitionName, workflowDefinitionVersion,
 			Boolean.valueOf(completed), retrieveChildrenInfo, start, end,
 			orderByComparator);
 	}
 
-	public List<WorkflowInstanceInfo> getWorkflowInstanceInfos(
+	public List<WorkflowInstance> getWorkflowInstances(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
 			boolean retrieveChildrenInfo, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
-		return getWorkflowInstanceInfos(
+		return getWorkflowInstances(
 			workflowDefinitionName, workflowDefinitionVersion, null,
 			retrieveChildrenInfo, start, end, orderByComparator);
 	}
@@ -227,7 +226,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		_jbpmConfiguration = jbpmConfiguration;
 	}
 
-	public WorkflowInstanceInfo signalWorkflowInstance(
+	public WorkflowInstance signalWorkflowInstance(
 			long workflowInstanceId, Map<String, Object> attributes,
 			long callingUserId, Map<String, Object> parameters)
 		throws WorkflowException {
@@ -236,7 +235,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			workflowInstanceId, null, attributes, callingUserId, parameters);
 	}
 
-	public WorkflowInstanceInfo signalWorkflowInstanceByActivity(
+	public WorkflowInstance signalWorkflowInstanceByActivity(
 			long workflowInstanceId, String activityName,
 			Map<String, Object> attributes, long callingUserId,
 			Map<String, Object> parameters)
@@ -245,7 +244,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		throw new WorkflowException(new UnsupportedOperationException());
 	}
 
-	public WorkflowInstanceInfo signalWorkflowInstanceByPath(
+	public WorkflowInstance signalWorkflowInstanceByPath(
 			long workflowInstanceId, String pathName,
 			Map<String, Object> attributes, long callingUserId,
 			Map<String, Object> parameters)
@@ -279,7 +278,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 			jbpmContext.save(token);
 
-			return new WorkflowInstanceInfoImpl(token);
+			return new WorkflowInstanceImpl(token);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -289,7 +288,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		}
 	}
 
-	public WorkflowInstanceInfo startWorkflowInstance(
+	public WorkflowInstance startWorkflowInstance(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
 			Map<String, Object> context, long callingUserId,
 			Map<String, Object> parameters)
@@ -300,7 +299,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			callingUserId, null, parameters);
 	}
 
-	public WorkflowInstanceInfo startWorkflowInstance(
+	public WorkflowInstance startWorkflowInstance(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
 			Map<String, Object> context, long callingUserId,
 			String activityName, Map<String, Object> parameters)
@@ -331,7 +330,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 			jbpmContext.save(processInstance);
 
-			return new WorkflowInstanceInfoImpl(processInstance.getRootToken());
+			return new WorkflowInstanceImpl(processInstance.getRootToken());
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -368,7 +367,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				" and version " + workflowDefinitionVersion);
 	}
 
-	protected int getWorkflowInstanceInfoCount(
+	protected int getWorkflowInstanceCount(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
 			Boolean completed)
 		throws WorkflowException {
@@ -395,7 +394,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		}
 	}
 
-	protected List<WorkflowInstanceInfo> getWorkflowInstanceInfos(
+	protected List<WorkflowInstance> getWorkflowInstances(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
 			Boolean completed, boolean retrieveChildrenInfo, int start, int end,
 			OrderByComparator orderByComparator)
@@ -414,24 +413,24 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 					processDefinition.getId(), completed, start, end,
 					orderByComparator);
 
-			List<WorkflowInstanceInfo> workflowInstanceInfos =
-				new ArrayList<WorkflowInstanceInfo>(processInstances.size());
+			List<WorkflowInstance> workflowInstances =
+				new ArrayList<WorkflowInstance>(processInstances.size());
 
 			for (ProcessInstance processInstance : processInstances) {
 				Token token = processInstance.getRootToken();
 
-				WorkflowInstanceInfoImpl workflowInstanceInfoImpl =
-					new WorkflowInstanceInfoImpl(token);
+				WorkflowInstanceImpl workflowInstanceImpl =
+					new WorkflowInstanceImpl(token);
 
 				if (retrieveChildrenInfo) {
-					populateChildrenWorkflowInstanceInfos(
-						token, workflowInstanceInfoImpl);
+					populateChildrenWorkflowInstances(
+						token, workflowInstanceImpl);
 				}
 
-				workflowInstanceInfos.add(workflowInstanceInfoImpl);
+				workflowInstances.add(workflowInstanceImpl);
 			}
 
-			return workflowInstanceInfos;
+			return workflowInstances;
 		}
 		catch (WorkflowException we) {
 			throw we;
@@ -444,38 +443,36 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		}
 	}
 
-	protected void populateChildrenWorkflowInstanceInfos(
-		Token token, WorkflowInstanceInfoImpl workflowInstanceInfoImpl) {
+	protected void populateChildrenWorkflowInstances(
+		Token token, WorkflowInstanceImpl workflowInstanceImpl) {
 
-		Stack<ObjectValuePair<Token, WorkflowInstanceInfoImpl>>
+		Stack<ObjectValuePair<Token, WorkflowInstanceImpl>>
 			objectValuePairs =
-				new Stack<ObjectValuePair<Token, WorkflowInstanceInfoImpl>>();
+				new Stack<ObjectValuePair<Token, WorkflowInstanceImpl>>();
 
 		objectValuePairs.push(
-			new ObjectValuePair<Token, WorkflowInstanceInfoImpl>(
-				token, workflowInstanceInfoImpl));
+			new ObjectValuePair<Token, WorkflowInstanceImpl>(
+				token, workflowInstanceImpl));
 
 		while (!objectValuePairs.isEmpty()) {
-			ObjectValuePair<Token, WorkflowInstanceInfoImpl> objectValuePair =
+			ObjectValuePair<Token, WorkflowInstanceImpl> objectValuePair =
 				objectValuePairs.pop();
 
 			Token parentToken = objectValuePair.getKey();
-			WorkflowInstanceInfoImpl parentWorkflowInstanceInfoImpl =
+			WorkflowInstanceImpl parentWorkflowInstanceImpl =
 				objectValuePair.getValue();
 
 			for (Token childToken : parentToken.getChildren().values()) {
-				WorkflowInstanceInfoImpl childWorkflowInstanceInfoImpl =
-					new WorkflowInstanceInfoImpl(childToken);
+				WorkflowInstanceImpl childWorkflowInstanceImpl =
+					new WorkflowInstanceImpl(childToken);
 
-				parentWorkflowInstanceInfoImpl.addChild(
-					childWorkflowInstanceInfoImpl);
+				parentWorkflowInstanceImpl.addChild(childWorkflowInstanceImpl);
 
-				childWorkflowInstanceInfoImpl.setParent(
-					parentWorkflowInstanceInfoImpl);
+				childWorkflowInstanceImpl.setParent(parentWorkflowInstanceImpl);
 
 				objectValuePairs.push(
-					new ObjectValuePair<Token, WorkflowInstanceInfoImpl>(
-						childToken, childWorkflowInstanceInfoImpl));
+					new ObjectValuePair<Token, WorkflowInstanceImpl>(
+						childToken, childWorkflowInstanceImpl));
 			}
 		}
 	}
