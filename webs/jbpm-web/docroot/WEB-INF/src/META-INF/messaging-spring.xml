@@ -27,6 +27,13 @@
 			</bean>
 		</property>
 	</bean>
+	<bean id="messageListener.workflow_log" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
+		<property name="manager">
+			<bean class="com.liferay.portal.workflow.jbpm.WorkflowLogManagerImpl">
+				<property name="jbpmConfiguration" ref="jbpmConfiguration" />
+			</bean>
+		</property>
+	</bean>
 	<bean id="messageListener.workflow_task" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
 		<property name="manager">
 			<bean class="com.liferay.portal.workflow.jbpm.TaskInstanceManagerImpl">
@@ -53,6 +60,11 @@
 				<entry key="liferay/workflow_instance">
 					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
 						<ref bean="messageListener.workflow_instance" />
+					</list>
+				</entry>
+				<entry key="liferay/workflow_log">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.workflow_log" />
 					</list>
 				</entry>
 				<entry key="liferay/workflow_task">

@@ -22,21 +22,17 @@
 
 package com.liferay.portal.workflow.jbpm;
 
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowException;
-import com.liferay.portal.kernel.workflow.WorkflowInstanceHistory;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceInfo;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManager;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -46,12 +42,10 @@ import org.jbpm.JbpmConfiguration;
 import org.jbpm.JbpmContext;
 import org.jbpm.context.exe.ContextInstance;
 import org.jbpm.db.GraphSession;
-import org.jbpm.db.LoggingSession;
 import org.jbpm.graph.def.ProcessDefinition;
 import org.jbpm.graph.def.Transition;
 import org.jbpm.graph.exe.ProcessInstance;
 import org.jbpm.graph.exe.Token;
-import org.jbpm.logging.log.ProcessLog;
 
 /**
  * <a href="WorkflowInstanceManagerImpl.java.html"><b><i>View Source</i></b></a>
@@ -119,107 +113,6 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			}
 
 			return pathNames;
-		}
-		catch (Exception e) {
-			throw new WorkflowException(e);
-		}
-		finally {
-			jbpmContext.close();
-		}
-	}
-
-	public List<WorkflowInstanceHistory> getWorkflowInstanceHistory(
-			long workflowInstanceId, boolean includeChildren, int start,
-			int end, OrderByComparator orderByComparator)
-		throws WorkflowException {
-
-		List<WorkflowInstanceHistory> workflowInstanceHistories =
-			new ArrayList<WorkflowInstanceHistory>();
-
-		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
-
-		try {
-			LoggingSession loggingSession = jbpmContext.getLoggingSession();
-
-			Token token = jbpmContext.loadToken(workflowInstanceId);
-
-			List<ProcessLog> processLogs = loggingSession.findLogsByToken(
-				token);
-
-			for (ProcessLog processLog : processLogs) {
-				workflowInstanceHistories.add(
-					new WorkflowInstanceHistoryImpl(processLog));
-			}
-
-			if (includeChildren) {
-				Stack<Token> tokens = new Stack<Token>();
-
-				tokens.addAll(token.getChildren().values());
-
-				while (!tokens.isEmpty()) {
-					Token childToken = tokens.pop();
-
-					processLogs = loggingSession.findLogsByToken(childToken);
-
-					for (ProcessLog processLog : processLogs) {
-						workflowInstanceHistories.add(
-							new WorkflowInstanceHistoryImpl(processLog));
-					}
-
-					tokens.addAll(childToken.getChildren().values());
-				}
-			}
-
-			Collections.sort(workflowInstanceHistories, orderByComparator);
-
-			if ((start != QueryUtil.ALL_POS) && (end != QueryUtil.ALL_POS)) {
-				workflowInstanceHistories = ListUtil.subList(
-					workflowInstanceHistories, start, end);
-			}
-
-			return workflowInstanceHistories;
-		}
-		catch (Exception e) {
-			throw new WorkflowException(e);
-		}
-		finally {
-			jbpmContext.close();
-		}
-	}
-
-	public int getWorkflowInstanceHistoryCount(
-			long workflowInstanceId, boolean includeChildren)
-		throws WorkflowException {
-
-		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
-
-		try {
-			LoggingSession loggingSession = jbpmContext.getLoggingSession();
-
-			Token token = jbpmContext.loadToken(workflowInstanceId);
-
-			List<ProcessLog> processLogs = loggingSession.findLogsByToken(
-				token);
-
-			int count = processLogs.size();
-
-			if (includeChildren) {
-				Stack<Token> tokenStack = new Stack<Token>();
-
-				tokenStack.addAll(token.getChildren().values());
-
-				while (tokenStack.isEmpty() == false) {
-					Token childToken = tokenStack.pop();
-
-					processLogs = loggingSession.findLogsByToken(childToken);
-
-					count += processLogs.size();
-
-					tokenStack.addAll(childToken.getChildren().values());
-				}
-			}
-
-			return count;
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);

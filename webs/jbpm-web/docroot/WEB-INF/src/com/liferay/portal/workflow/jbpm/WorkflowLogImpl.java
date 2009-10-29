@@ -23,33 +23,31 @@
 package com.liferay.portal.workflow.jbpm;
 
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.workflow.WorkflowInstanceHistory;
+import com.liferay.portal.kernel.workflow.WorkflowLog;
 
 import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
 
+import org.jbpm.graph.exe.Token;
 import org.jbpm.logging.log.ProcessLog;
 
 /**
- * <a href="WorkflowInstanceHistoryImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowLogImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  */
-public class WorkflowInstanceHistoryImpl implements WorkflowInstanceHistory {
+public class WorkflowLogImpl implements WorkflowLog {
 
-	public WorkflowInstanceHistoryImpl(ProcessLog processLog) {
+	public WorkflowLogImpl(ProcessLog processLog) {
+		Token token = processLog.getToken();
+
 		_createDate = processLog.getDate();
 		_description = processLog.toString();
-		_historyEntryId = processLog.getId();
-		_type = processLog.getClass().getName();
 		_userId = GetterUtil.getLong(processLog.getActorId(), -1);
-		_workflowInstanceId = processLog.getToken().getId();
-	}
-
-	public Map<String, Object> getAttributes() {
-		return Collections.EMPTY_MAP;
+		_workflowInstanceId = token.getId();
+		_workflowLogId = processLog.getId();
 	}
 
 	public Date getCreateDate() {
@@ -60,12 +58,8 @@ public class WorkflowInstanceHistoryImpl implements WorkflowInstanceHistory {
 		return _description;
 	}
 
-	public long getHistoryEntryId() {
-		return _historyEntryId;
-	}
-
-	public String getType() {
-		return _type;
+	public Map<String, Object> getOptionalAttributes() {
+		return Collections.EMPTY_MAP;
 	}
 
 	public long getUserId() {
@@ -76,11 +70,14 @@ public class WorkflowInstanceHistoryImpl implements WorkflowInstanceHistory {
 		return _workflowInstanceId;
 	}
 
+	public long getWorkflowLogId() {
+		return _workflowLogId;
+	}
+
 	private Date _createDate;
 	private String _description;
-	private long _historyEntryId;
-	private String _type;
 	private Long _userId;
 	private long _workflowInstanceId;
+	private long _workflowLogId;
 
 }
