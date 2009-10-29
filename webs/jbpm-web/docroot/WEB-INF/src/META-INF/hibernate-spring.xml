@@ -9,5 +9,10 @@
 		<property name="dataSource">
 			<bean class="com.liferay.portal.kernel.util.InfrastructureUtil" factory-method="getDataSource" />
 		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
 	</bean>
 </beans>
