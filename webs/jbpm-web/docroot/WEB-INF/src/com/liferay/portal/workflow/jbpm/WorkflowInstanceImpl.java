@@ -43,7 +43,7 @@ import org.jbpm.graph.exe.Token;
  */
 public class WorkflowInstanceImpl implements WorkflowInstance {
 
-	public WorkflowInstanceImpl(Token token){
+	public WorkflowInstanceImpl(Token token) {
 		ProcessInstance processInstance = token.getProcessInstance();
 		ProcessDefinition processDefinition =
 			processInstance.getProcessDefinition();
