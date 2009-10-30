@@ -226,7 +226,10 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				ContextInstance contextInstance =
 					processInstance.getContextInstance();
 
-				contextInstance.addVariables(context);
+				for (Map.Entry<String, Object> entry : context.entrySet()) {
+					contextInstance.setVariableLocally(
+						entry.getKey(), entry.getValue(), token);
+				}
 
 				jbpmContext.save(token);
 			}
@@ -306,7 +309,10 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				ContextInstance contextInstance =
 					processInstance.getContextInstance();
 
-				contextInstance.addVariables(context);
+				for (Map.Entry<String, Object> entry : context.entrySet()) {
+					contextInstance.setVariableLocally(
+						entry.getKey(), entry.getValue(), token);
+				}
 
 				jbpmContext.save(token);
 			}
