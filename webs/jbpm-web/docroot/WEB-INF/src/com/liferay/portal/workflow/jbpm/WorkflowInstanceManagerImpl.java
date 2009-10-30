@@ -55,140 +55,7 @@ import org.jbpm.graph.exe.Token;
  */
 public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
-	public WorkflowInstance addContextInformation(
-			long workflowInstanceId, Map<String, Object> context)
-		throws WorkflowException {
-
-		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
-
-		try {
-			Token token = jbpmContext.loadToken(workflowInstanceId);
-
-			if (context != null) {
-				ProcessInstance processInstance = token.getProcessInstance();
-
-				ContextInstance contextInstance =
-					processInstance.getContextInstance();
-
-				for (Map.Entry<String, Object> entry : context.entrySet()) {
-					contextInstance.setVariableLocally(
-						entry.getKey(), entry.getValue(), token);
-				}
-
-				jbpmContext.save(token);
-			}
-
-			return new WorkflowInstanceImpl(token);
-		}
-		catch (Exception e) {
-			throw new WorkflowException(e);
-		}
-		finally {
-			jbpmContext.close();
-		}
-	}
-
-	public List<String> getPossibleNextActivityNames(
-		long workflowInstanceId, long userId, Map<String, Object> parameters) {
-
-		return new ArrayList<String>();
-	}
-
-	public List<String> getPossibleNextPathNames(
-			long workflowInstanceId, long userId,
-			Map<String, Object> parameters)
-		throws WorkflowException {
-
-		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
-
-		try {
-			Token token = jbpmContext.loadToken(workflowInstanceId);
-
-			Set<Transition> transitions = token.getAvailableTransitions();
-
-			List<String> pathNames = new ArrayList<String>(transitions.size());
-
-			for (Transition transition : transitions) {
-				pathNames.add(transition.getName());
-			}
-
-			return pathNames;
-		}
-		catch (Exception e) {
-			throw new WorkflowException(e);
-		}
-		finally {
-			jbpmContext.close();
-		}
-	}
-
-	public WorkflowInstance getWorkflowInstance(
-			long workflowInstanceId, boolean retrieveChildrenInfo)
-		throws WorkflowException {
-
-		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
-
-		try {
-			Token token = jbpmContext.loadToken(workflowInstanceId);
-
-			WorkflowInstanceImpl workflowInstanceImpl =
-				new WorkflowInstanceImpl(token);
-
-			if (retrieveChildrenInfo) {
-				populateChildrenWorkflowInstances(token, workflowInstanceImpl);
-			}
-
-			return workflowInstanceImpl;
-		}
-		catch (Exception e) {
-			throw new WorkflowException(e);
-		}
-		finally {
-			jbpmContext.close();
-		}
-	}
-
-	public int getWorkflowInstanceCount(
-			String workflowDefinitionName, Integer workflowDefinitionVersion)
-		throws WorkflowException {
-
-		return getWorkflowInstanceCount(
-			workflowDefinitionName, workflowDefinitionVersion, Boolean.FALSE);
-	}
-
-	public int getWorkflowInstanceCount(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			boolean completed)
-		throws WorkflowException {
-
-		return getWorkflowInstanceCount(
-			workflowDefinitionName, workflowDefinitionVersion, completed);
-	}
-
-	public List<WorkflowInstance> getWorkflowInstances(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			boolean completed, boolean retrieveChildrenInfo, int start, int end,
-			OrderByComparator orderByComparator)
-		throws WorkflowException {
-
-		return getWorkflowInstances(
-			workflowDefinitionName, workflowDefinitionVersion,
-			Boolean.valueOf(completed), retrieveChildrenInfo, start, end,
-			orderByComparator);
-	}
-
-	public List<WorkflowInstance> getWorkflowInstances(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			boolean retrieveChildrenInfo, int start, int end,
-			OrderByComparator orderByComparator)
-		throws WorkflowException {
-
-		return getWorkflowInstances(
-			workflowDefinitionName, workflowDefinitionVersion, null,
-			retrieveChildrenInfo, start, end, orderByComparator);
-	}
-
-	public void removeWorkflowInstance(long workflowInstanceId) {
+	public void deleteWorkflowInstance(long workflowInstanceId) {
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {
@@ -203,8 +70,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				}
 				else if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Unable to remove a sub workflow instance with id " +
-							workflowInstanceId + ". You can only remove a " +
+						"Unable to delete a child workflow instance " +
+							workflowInstanceId + ". You can only delete a " +
 								"root workflow instance.");
 				}
 			}
@@ -212,10 +79,127 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to remove workflow instance with id " +
-						workflowInstanceId,
+					"Unable to delete workflow instance " + workflowInstanceId,
 					e);
 			}
+		}
+		finally {
+			jbpmContext.close();
+		}
+	}
+
+	public List<String> getNextTransitionNames(
+			long userId, long workflowInstanceId)
+		throws WorkflowException {
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			Token token = jbpmContext.loadToken(workflowInstanceId);
+
+			Set<Transition> transitions = token.getAvailableTransitions();
+
+			List<String> transitionNames = new ArrayList<String>(
+				transitions.size());
+
+			for (Transition transition : transitions) {
+				transitionNames.add(transition.getName());
+			}
+
+			return transitionNames;
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+		finally {
+			jbpmContext.close();
+		}
+	}
+
+	public WorkflowInstance getWorkflowInstance(long workflowInstanceId)
+		throws WorkflowException {
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			Token token = jbpmContext.loadToken(workflowInstanceId);
+
+			WorkflowInstanceImpl workflowInstanceImpl =
+				new WorkflowInstanceImpl(token);
+
+			populateChildrenWorkflowInstances(token, workflowInstanceImpl);
+
+			return workflowInstanceImpl;
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+		finally {
+			jbpmContext.close();
+		}
+	}
+
+	public int getWorkflowInstanceCount(
+			String workflowDefinitionName, Integer workflowDefinitionVersion,
+			Boolean completed)
+		throws WorkflowException {
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			ProcessDefinition processDefinition = getProcessDefinition(
+				jbpmContext, workflowDefinitionName, workflowDefinitionVersion);
+
+			CustomSession customSession = new CustomSession(jbpmContext);
+
+			return customSession.countProcessInstances(
+				processDefinition.getId(), completed);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+		finally {
+			jbpmContext.close();
+		}
+	}
+
+	public List<WorkflowInstance> getWorkflowInstances(
+			String workflowDefinitionName, Integer workflowDefinitionVersion,
+			Boolean completed, int start, int end,
+			OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			ProcessDefinition processDefinition = getProcessDefinition(
+				jbpmContext, workflowDefinitionName, workflowDefinitionVersion);
+
+			CustomSession customSession = new CustomSession(jbpmContext);
+
+			List<ProcessInstance> processInstances =
+				customSession.findProcessInstances(
+					processDefinition.getId(), completed, start, end,
+					orderByComparator);
+
+			List<WorkflowInstance> workflowInstances =
+				new ArrayList<WorkflowInstance>(processInstances.size());
+
+			for (ProcessInstance processInstance : processInstances) {
+				Token token = processInstance.getRootToken();
+
+				WorkflowInstanceImpl workflowInstanceImpl =
+					new WorkflowInstanceImpl(token);
+
+				populateChildrenWorkflowInstances(token, workflowInstanceImpl);
+
+				workflowInstances.add(workflowInstanceImpl);
+			}
+
+			return workflowInstances;
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
 		}
 		finally {
 			jbpmContext.close();
@@ -227,27 +211,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public WorkflowInstance signalWorkflowInstance(
-			long workflowInstanceId, Map<String, Object> attributes,
-			long callingUserId, Map<String, Object> parameters)
-		throws WorkflowException {
-
-		return signalWorkflowInstanceByPath(
-			workflowInstanceId, null, attributes, callingUserId, parameters);
-	}
-
-	public WorkflowInstance signalWorkflowInstanceByActivity(
-			long workflowInstanceId, String activityName,
-			Map<String, Object> attributes, long callingUserId,
-			Map<String, Object> parameters)
-		throws WorkflowException {
-
-		throw new WorkflowException(new UnsupportedOperationException());
-	}
-
-	public WorkflowInstance signalWorkflowInstanceByPath(
-			long workflowInstanceId, String pathName,
-			Map<String, Object> attributes, long callingUserId,
-			Map<String, Object> parameters)
+			long userId, long workflowInstanceId, String transitionName,
+			Map<String, Object> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -255,25 +220,22 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		try {
 			Token token = jbpmContext.loadToken(workflowInstanceId);
 
-			if (attributes != null) {
+			if (context != null) {
 				ProcessInstance processInstance = token.getProcessInstance();
 
 				ContextInstance contextInstance =
 					processInstance.getContextInstance();
 
-				for (Map.Entry<String, Object> entry : attributes.entrySet()) {
-					contextInstance.setVariableLocally(
-						entry.getKey(), entry.getValue(), token);
-				}
+				contextInstance.addVariables(context);
 
 				jbpmContext.save(token);
 			}
 
-			if (Validator.isNull(pathName)) {
+			if (Validator.isNull(transitionName)) {
 				token.signal();
 			}
 			else {
-				token.signal(pathName);
+				token.signal(transitionName);
 			}
 
 			jbpmContext.save(token);
@@ -289,20 +251,9 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public WorkflowInstance startWorkflowInstance(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			Map<String, Object> context, long callingUserId,
-			Map<String, Object> parameters)
-		throws WorkflowException {
-
-		return startWorkflowInstance(
-			workflowDefinitionName, workflowDefinitionVersion, context,
-			callingUserId, null, parameters);
-	}
-
-	public WorkflowInstance startWorkflowInstance(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			Map<String, Object> context, long callingUserId,
-			String activityName, Map<String, Object> parameters)
+			long userId, String workflowDefinitionName,
+			Integer workflowDefinitionVersion, String transitionName,
+			Map<String, Object> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -321,8 +272,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				contextInstance.addVariables(context);
 			}
 
-			if (Validator.isNotNull(activityName)) {
-				processInstance.signal(activityName);
+			if (Validator.isNotNull(transitionName)) {
+				processInstance.signal(transitionName);
 			}
 			else {
 				processInstance.signal();
@@ -331,6 +282,36 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			jbpmContext.save(processInstance);
 
 			return new WorkflowInstanceImpl(processInstance.getRootToken());
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+		finally {
+			jbpmContext.close();
+		}
+	}
+
+	public WorkflowInstance updateContext(
+			long workflowInstanceId, Map<String, Object> context)
+		throws WorkflowException {
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			Token token = jbpmContext.loadToken(workflowInstanceId);
+
+			if (context != null) {
+				ProcessInstance processInstance = token.getProcessInstance();
+
+				ContextInstance contextInstance =
+					processInstance.getContextInstance();
+
+				contextInstance.addVariables(context);
+
+				jbpmContext.save(token);
+			}
+
+			return new WorkflowInstanceImpl(token);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -365,82 +346,6 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		throw new WorkflowException(
 			"No workflow definition with name " + workflowDefinitionName +
 				" and version " + workflowDefinitionVersion);
-	}
-
-	protected int getWorkflowInstanceCount(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			Boolean completed)
-		throws WorkflowException {
-
-		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
-
-		try {
-			ProcessDefinition processDefinition = getProcessDefinition(
-				jbpmContext, workflowDefinitionName, workflowDefinitionVersion);
-
-			CustomSession customSession = new CustomSession(jbpmContext);
-
-			return customSession.countProcessInstances(
-				processDefinition.getId(), completed);
-		}
-		catch (WorkflowException we) {
-			throw we;
-		}
-		catch (Exception e) {
-			throw new WorkflowException(e);
-		}
-		finally {
-			jbpmContext.close();
-		}
-	}
-
-	protected List<WorkflowInstance> getWorkflowInstances(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			Boolean completed, boolean retrieveChildrenInfo, int start, int end,
-			OrderByComparator orderByComparator)
-		throws WorkflowException {
-
-		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
-
-		try {
-			ProcessDefinition processDefinition = getProcessDefinition(
-				jbpmContext, workflowDefinitionName, workflowDefinitionVersion);
-
-			CustomSession customSession = new CustomSession(jbpmContext);
-
-			List<ProcessInstance> processInstances =
-				customSession.findProcessInstances(
-					processDefinition.getId(), completed, start, end,
-					orderByComparator);
-
-			List<WorkflowInstance> workflowInstances =
-				new ArrayList<WorkflowInstance>(processInstances.size());
-
-			for (ProcessInstance processInstance : processInstances) {
-				Token token = processInstance.getRootToken();
-
-				WorkflowInstanceImpl workflowInstanceImpl =
-					new WorkflowInstanceImpl(token);
-
-				if (retrieveChildrenInfo) {
-					populateChildrenWorkflowInstances(
-						token, workflowInstanceImpl);
-				}
-
-				workflowInstances.add(workflowInstanceImpl);
-			}
-
-			return workflowInstances;
-		}
-		catch (WorkflowException we) {
-			throw we;
-		}
-		catch (Exception e) {
-			throw new WorkflowException(e);
-		}
-		finally {
-			jbpmContext.close();
-		}
 	}
 
 	protected void populateChildrenWorkflowInstances(

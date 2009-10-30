@@ -25,9 +25,9 @@ package com.liferay.portal.workflow.jbpm;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.workflow.TaskInstanceInfo;
-import com.liferay.portal.kernel.workflow.TaskInstanceManager;
 import com.liferay.portal.kernel.workflow.WorkflowException;
+import com.liferay.portal.kernel.workflow.WorkflowTask;
+import com.liferay.portal.kernel.workflow.WorkflowTaskManager;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
@@ -46,17 +46,16 @@ import org.jbpm.taskmgmt.exe.PooledActor;
 import org.jbpm.taskmgmt.exe.TaskInstance;
 
 /**
- * <a href="TaskInstanceManagerImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowTaskManagerImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  */
-public class TaskInstanceManagerImpl implements TaskInstanceManager {
+public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
-	public TaskInstanceInfo assignTaskInstanceToRole(
-			long taskInstanceId, long roleId, String comment,
-			Map<String, Object> attributes, long callingUserId,
-			Map<String, Object> parameters)
+	public WorkflowTask assignWorkflowTaskToRole(
+			long userId, long workflowTaskId, long roleId, String comment,
+			Map<String, Object> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -65,19 +64,19 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 			TaskMgmtSession taskMgmtSession = jbpmContext.getTaskMgmtSession();
 
 			TaskInstance taskInstance = taskMgmtSession.loadTaskInstance(
-				taskInstanceId);
-
-			if (attributes != null) {
-				taskInstance.addVariables(attributes);
-			}
-
-			taskInstance.addComment(comment);
+				workflowTaskId);
 
 			taskInstance.setPooledActors(String.valueOf(roleId));
 
+			taskInstance.addComment(comment);
+
+			if (context != null) {
+				taskInstance.addVariables(context);
+			}
+
 			jbpmContext.save(taskInstance);
 
-			return new TaskInstanceInfoImpl(taskInstance);
+			return new WorkflowTaskImpl(taskInstance);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -87,10 +86,9 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 		}
 	}
 
-	public TaskInstanceInfo assignTaskInstanceToUser(
-			long taskInstanceId, long userId, String comment,
-			Map<String, Object> attributes, long callingUserId,
-			Map<String, Object> parameters)
+	public WorkflowTask assignWorkflowTaskToUser(
+			long userId, long workflowTaskId, long assigneeUserId,
+			String comment, Map<String, Object> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -99,36 +97,37 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 			TaskMgmtSession taskMgmtSession = jbpmContext.getTaskMgmtSession();
 
 			TaskInstance taskInstance = taskMgmtSession.loadTaskInstance(
-				taskInstanceId);
-
-			if (attributes != null) {
-				taskInstance.addVariables(attributes);
-			}
-
-			taskInstance.addComment(comment);
+				workflowTaskId);
 
 			Set<PooledActor> pooledActors = taskInstance.getPooledActors();
 
 			if ((pooledActors == null) || pooledActors.isEmpty()) {
 				throw new WorkflowException(
-					"Task has not been assigned to a role");
+					"Workflow task " + workflowTaskId +
+						" has not been assigned to a role");
 			}
 
 			PooledActor pooledActor = pooledActors.iterator().next();
 
 			long roleId = GetterUtil.getLong(pooledActor.getActorId());
 
-			if (!RoleLocalServiceUtil.hasUserRole(userId, roleId)) {
+			if (!RoleLocalServiceUtil.hasUserRole(assigneeUserId, roleId)) {
 				throw new WorkflowException(
-					userId + " does not have the role to be assigned to task " +
-						taskInstanceId);
+					"Workflow task " + workflowTaskId +
+						" cannot be assigned to user " + assigneeUserId);
 			}
 
-			taskInstance.setActorId(String.valueOf(userId));
+			taskInstance.setActorId(String.valueOf(assigneeUserId));
+
+			taskInstance.addComment(comment);
+
+			if (context != null) {
+				taskInstance.addVariables(context);
+			}
 
 			jbpmContext.save(taskInstance);
 
-			return new TaskInstanceInfoImpl(taskInstance);
+			return new WorkflowTaskImpl(taskInstance);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -138,19 +137,9 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 		}
 	}
 
-	public TaskInstanceInfo completeTaskInstance(
-			long taskInstanceId, long userId, String comment,
-			Map<String, Object> attributes, Map<String, Object> parameters)
-		throws WorkflowException {
-
-		return completeTaskInstance(
-			taskInstanceId, userId, null, comment, attributes, parameters);
-	}
-
-	public TaskInstanceInfo completeTaskInstance(
-			long taskInstanceId, long userId, String activityName,
-			String comment, Map<String, Object> attributes,
-			Map<String, Object> parameters)
+	public WorkflowTask completeWorkflowTask(
+			long userId, long workflowTaskId, String transitionName,
+			String comment, Map<String, Object> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -159,35 +148,32 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 			TaskMgmtSession taskMgmtSession = jbpmContext.getTaskMgmtSession();
 
 			TaskInstance taskInstance = taskMgmtSession.loadTaskInstance(
-				taskInstanceId);
+				workflowTaskId);
 
 			long actorId = GetterUtil.getLong(taskInstance.getActorId());
 
 			if (actorId != userId) {
 				throw new WorkflowException(
-					"Task instance " + taskInstanceId +
+					"Workflow task " + workflowTaskId +
 						" is not assigned to user " + userId);
-			}
-
-			if (attributes != null) {
-				taskInstance.addVariables(attributes);
 			}
 
 			taskInstance.addComment(comment);
 
-			if (activityName == null) {
+			if (context != null) {
+				taskInstance.addVariables(context);
+			}
+
+			if (transitionName == null) {
 				taskInstance.end();
 			}
 			else {
-				taskInstance.end(activityName);
+				taskInstance.end(transitionName);
 			}
 
 			jbpmContext.save(taskInstance);
 
-			return new TaskInstanceInfoImpl(taskInstance);
-		}
-		catch (WorkflowException we) {
-			throw we;
+			return new WorkflowTaskImpl(taskInstance);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -197,8 +183,7 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 		}
 	}
 
-	public List<String> getPossibleNextPathNames(
-			long taskInstanceId, long userId, Map<String, Object> parameters)
+	public List<String> getNextTransitionNames(long userId, long workflowTaskId)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -207,13 +192,13 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 			TaskMgmtSession taskMgmtSession = jbpmContext.getTaskMgmtSession();
 
 			TaskInstance taskInstance = taskMgmtSession.loadTaskInstance(
-				taskInstanceId);
+				workflowTaskId);
 
 			long actorId = GetterUtil.getLong(taskInstance.getActorId());
 
 			if (actorId != userId) {
 				throw new WorkflowException(
-					"Task instance " + taskInstanceId +
+					"Workflow task " + workflowTaskId +
 						" is not assigned to user " + userId);
 			}
 
@@ -230,9 +215,6 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 
 			return transitionNames;
 		}
-		catch (WorkflowException we) {
-			throw we;
-		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
 		}
@@ -241,40 +223,20 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 		}
 	}
 
-	public int getTaskInstanceInfoCountByRole(long roleId)
+	public int getWorkflowTaskByRole(long roleId, Boolean completed)
 		throws WorkflowException {
 
-		return getTaskInstanceInfoCountByRole(roleId, false);
+		return getWorkflowTaskCount(new long[] {roleId}, true, completed);
 	}
 
-	public int getTaskInstanceInfoCountByRole(long roleId, boolean completed)
+	public int getWorkflowTaskByUser(long userId, Boolean completed)
 		throws WorkflowException {
 
-		return getTaskInstanceInfoCount(new long[] {roleId}, true, completed);
+		return getWorkflowTaskCount(new long[] {userId}, false, completed);
 	}
 
-	public int getTaskInstanceInfoCountByUser(long userId)
-		throws WorkflowException {
-
-		return getTaskInstanceInfoCountByUser(userId, false);
-	}
-
-	public int getTaskInstanceInfoCountByUser(long userId, boolean completed)
-		throws WorkflowException {
-
-		return getTaskInstanceInfoCount(new long[] {userId}, false, completed);
-	}
-
-	public int getTaskInstanceInfoCountByWorkflowInstance(
-			long workflowInstanceId)
-		throws WorkflowException {
-
-		return getTaskInstanceInfoCountByWorkflowInstance(
-			workflowInstanceId, false);
-	}
-
-	public int getTaskInstanceInfoCountByWorkflowInstance(
-			long workflowInstanceId, boolean completed)
+	public int getWorkflowTaskByWorkflowInstance(
+			long workflowInstanceId, Boolean completed)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -293,62 +255,33 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 		}
 	}
 
-	public List<TaskInstanceInfo> getTaskInstanceInfosByRole(
-			long roleId, boolean completed, int start, int end,
+	public List<WorkflowTask> getWorkflowTasksByRole(
+			long roleId, Boolean completed, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
-		return getTaskInstanceInfos(
+		return getWorkflowTasks(
 			-1, new long[] {roleId}, true, completed, start, end,
 			orderByComparator);
 	}
 
-	public List<TaskInstanceInfo> getTaskInstanceInfosByRole(
-			long roleId, int start, int end,
+	public List<WorkflowTask> getWorkflowTasksByUser(
+			long userId, Boolean completed, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
-		return getTaskInstanceInfos(
-			-1, new long[] {roleId}, true, null, start, end, orderByComparator);
-	}
-
-	public List<TaskInstanceInfo> getTaskInstanceInfosByUser(
-			long userId, boolean completed, int start, int end,
-			OrderByComparator orderByComparator)
-		throws WorkflowException {
-
-		return getTaskInstanceInfos(
+		return getWorkflowTasks(
 			-1, new long[] {userId}, false, completed, start, end,
 			orderByComparator);
 	}
 
-	public List<TaskInstanceInfo> getTaskInstanceInfosByUser(
-			long userId, int start, int end,
+	public List<WorkflowTask> getWorkflowTasksByWorkflowInstance(
+			long workflowInstanceId, Boolean completed, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
-		return getTaskInstanceInfos(
-			-1, new long[] {userId}, false, null, start, end,
-			orderByComparator);
-	}
-
-	public List<TaskInstanceInfo> getTaskInstanceInfosByWorkflowInstance(
-			long workflowInstanceId, boolean completed, int start, int end,
-			OrderByComparator orderByComparator)
-		throws WorkflowException {
-
-		return getTaskInstanceInfos(
+		return getWorkflowTasks(
 			workflowInstanceId, null, false, completed, start, end,
-			orderByComparator);
-	}
-
-	public List<TaskInstanceInfo> getTaskInstanceInfosByWorkflowInstance(
-			long workflowInstanceId, int start, int end,
-			OrderByComparator orderByComparator)
-		throws WorkflowException {
-
-		return getTaskInstanceInfos(
-			workflowInstanceId, null, false, null, start, end,
 			orderByComparator);
 	}
 
@@ -356,7 +289,7 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 		_jbpmConfiguration = jbpmConfiguration;
 	}
 
-	protected int getTaskInstanceInfoCount(
+	protected int getWorkflowTaskCount(
 			long[] actorIds, boolean pooledActors, Boolean completed)
 		throws WorkflowException {
 
@@ -377,7 +310,7 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 		}
 	}
 
-	protected List<TaskInstanceInfo> getTaskInstanceInfos(
+	protected List<WorkflowTask> getWorkflowTasks(
 			long workflowInstanceId, long[] actorIds, boolean pooledActors,
 			Boolean completed, int start, int end,
 			OrderByComparator orderByComparator)
@@ -398,7 +331,7 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 				-1, workflowInstanceId, actorIdStringArray, pooledActors,
 				completed, start, end, orderByComparator);
 
-			return toTaskInstanceInfos(taskInstances);
+			return toWorkflowTasks(taskInstances);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -408,14 +341,14 @@ public class TaskInstanceManagerImpl implements TaskInstanceManager {
 		}
 	}
 
-	protected List<TaskInstanceInfo> toTaskInstanceInfos(
+	protected List<WorkflowTask> toWorkflowTasks(
 		List<TaskInstance> taskInstances) {
 
-		List<TaskInstanceInfo> taskInstanceInfos =
-			new ArrayList<TaskInstanceInfo>(taskInstances.size());
+		List<WorkflowTask> taskInstanceInfos =
+			new ArrayList<WorkflowTask>(taskInstances.size());
 
 		for (TaskInstance taskInstance : taskInstances) {
-			taskInstanceInfos.add(new TaskInstanceInfoImpl(taskInstance));
+			taskInstanceInfos.add(new WorkflowTaskImpl(taskInstance));
 		}
 
 		return taskInstanceInfos;

@@ -109,8 +109,8 @@ public class WorkflowDefinitionManagerImpl
 			}
 			else {
 				throw new WorkflowException(
-					"No WorkflowDefinition exists with the key {name=" + name +
-						", version=" + version + "}");
+					"No workflow definition with name " + name +
+						" and version " + version);
 			}
 		}
 		finally {

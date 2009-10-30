@@ -36,7 +36,7 @@
 	</bean>
 	<bean id="messageListener.workflow_task" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
 		<property name="manager">
-			<bean class="com.liferay.portal.workflow.jbpm.TaskInstanceManagerImpl">
+			<bean class="com.liferay.portal.workflow.jbpm.WorkflowTaskManagerImpl">
 				<property name="jbpmConfiguration" ref="jbpmConfiguration" />
 			</bean>
 		</property>

@@ -23,8 +23,7 @@
 package com.liferay.portal.workflow.jbpm;
 
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.workflow.TaskInstanceInfo;
+import com.liferay.portal.kernel.workflow.WorkflowTask;
 
 import java.util.Date;
 import java.util.Map;
@@ -36,14 +35,14 @@ import org.jbpm.taskmgmt.exe.PooledActor;
 import org.jbpm.taskmgmt.exe.TaskInstance;
 
 /**
- * <a href="TaskInstanceInfoImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowTaskImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  */
-public class TaskInstanceInfoImpl implements TaskInstanceInfo {
+public class WorkflowTaskImpl implements WorkflowTask {
 
-	public TaskInstanceInfoImpl(TaskInstance taskInstance) {
+	public WorkflowTaskImpl(TaskInstance taskInstance) {
 		ProcessInstance processInstance = taskInstance.getProcessInstance();
 		ProcessDefinition processDefinition =
 			processInstance.getProcessDefinition();
@@ -53,33 +52,30 @@ public class TaskInstanceInfoImpl implements TaskInstanceInfo {
 		if ((pooledActors != null) && !pooledActors.isEmpty()) {
 			PooledActor pooledActor = pooledActors.iterator().next();
 
-			_assignRoleId = GetterUtil.getLong(pooledActor.getActorId());
+			_assigneeRoleId = GetterUtil.getLong(pooledActor.getActorId());
 		}
 
-		_assignUserId = GetterUtil.getLong(taskInstance.getActorId());
+		_assigneeUserId = GetterUtil.getLong(taskInstance.getActorId());
 		_asynchronous = !taskInstance.isBlocking();
-		_attributes = taskInstance.getVariables();
+		_optionalAttributes = taskInstance.getVariables();
 		_completionDate = taskInstance.getEnd();
 		_createDate = taskInstance.getCreate();
 		_description = taskInstance.getDescription();
 		_dueDate = taskInstance.getDueDate();
-		_taskName = taskInstance.getName();
-		_taskInstanceId = taskInstance.getId();
+		_name = taskInstance.getName();
+		_workflowDefinitionId = processDefinition.getId();
 		_workflowDefinitionName = processDefinition.getName();
 		_workflowDefinitionVersion = processDefinition.getVersion();
 		_workflowInstanceId = processInstance.getId();
+		_workflowTaskId = taskInstance.getId();
 	}
 
-	public long getAssignedRoleId() {
-		return _assignRoleId;
+	public long getAssigneeRoleId() {
+		return _assigneeRoleId;
 	}
 
-	public long getAssignedUserId() {
-		return _assignUserId;
-	}
-
-	public Map<String, Object> getAttributes() {
-		return _attributes;
+	public long getAssigneeUserId() {
+		return _assigneeUserId;
 	}
 
 	public Date getCompletionDate() {
@@ -98,16 +94,16 @@ public class TaskInstanceInfoImpl implements TaskInstanceInfo {
 		return _dueDate;
 	}
 
-	public long getTaskInstanceId() {
-		return _taskInstanceId;
+	public String getName() {
+		return _name;
 	}
 
-	public String getTaskMetaId() {
-		return _TASK_META_ID;
+	public Map<String, Object> getOptionalAttributes() {
+		return _optionalAttributes;
 	}
 
-	public String getTaskName() {
-		return _taskName;
+	public long getWorkflowDefinitionId() {
+		return _workflowDefinitionId;
 	}
 
 	public String getWorkflowDefinitionName() {
@@ -120,6 +116,10 @@ public class TaskInstanceInfoImpl implements TaskInstanceInfo {
 
 	public long getWorkflowInstanceId() {
 		return _workflowInstanceId;
+	}
+
+	public long getWorkflowTaskId() {
+		return _workflowTaskId;
 	}
 
 	public boolean isAsynchronous() {
@@ -135,20 +135,19 @@ public class TaskInstanceInfoImpl implements TaskInstanceInfo {
 		}
 	}
 
-	private static final String _TASK_META_ID = StringPool.BLANK;
-
-	private long _assignRoleId;
-	private long _assignUserId;
+	private long _assigneeRoleId;
+	private long _assigneeUserId;
 	private boolean _asynchronous;
-	private Map<String, Object> _attributes;
 	private Date _completionDate;
 	private Date _createDate;
 	private String _description;
 	private Date _dueDate;
-	private long _taskInstanceId;
-	private String _taskName;
+	private String _name;
+	private Map<String, Object> _optionalAttributes;
+	private long _workflowDefinitionId;
 	private String _workflowDefinitionName;
 	private int _workflowDefinitionVersion;
 	private long _workflowInstanceId;
+	private long _workflowTaskId;
 
 }
