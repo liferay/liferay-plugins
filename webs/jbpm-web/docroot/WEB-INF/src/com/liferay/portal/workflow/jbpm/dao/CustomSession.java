@@ -394,14 +394,15 @@ public class CustomSession {
 		new HashMap<String, String>();
 
 	static {
-		_fieldMap.put("startDate", "start");
 		_fieldMap.put("completionDate", "end");
-		_fieldMap.put("endDate", "end");
 		_fieldMap.put("createDate", "create");
-		_fieldMap.put("taskName", "name");
+		_fieldMap.put("endDate", "end");
+		_fieldMap.put("startDate", "start");
 		_fieldMap.put("userId", "actorId");
+		_fieldMap.put("workflowDefinitionId", "id");
 		_fieldMap.put("workflowLogId", "id");
 		_fieldMap.put("workflowInstanceId", "id");
+		_fieldMap.put("workflowTaskId", "id");
 	}
 
 	private Session _session;
