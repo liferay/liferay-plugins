@@ -223,19 +223,19 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
-	public int getWorkflowTaskByRole(long roleId, Boolean completed)
+	public int getWorkflowTaskCountByRole(long roleId, Boolean completed)
 		throws WorkflowException {
 
 		return getWorkflowTaskCount(new long[] {roleId}, true, completed);
 	}
 
-	public int getWorkflowTaskByUser(long userId, Boolean completed)
+	public int getWorkflowTaskCountByUser(long userId, Boolean completed)
 		throws WorkflowException {
 
 		return getWorkflowTaskCount(new long[] {userId}, false, completed);
 	}
 
-	public int getWorkflowTaskByWorkflowInstance(
+	public int getWorkflowTaskCountByWorkflowInstance(
 			long workflowInstanceId, Boolean completed)
 		throws WorkflowException {
 
