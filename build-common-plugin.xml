@@ -347,6 +347,10 @@ Please find a solution that does not require portal-impl.jar.
 		</antcall>
 
 		<antcall target="build-lang-native2ascii">
+			<param name="lang.code" value="gl" />
+		</antcall>
+
+		<antcall target="build-lang-native2ascii">
 			<param name="lang.code" value="de" />
 		</antcall>
 
