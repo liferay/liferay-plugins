@@ -25,6 +25,7 @@ package com.liferay.testworkflow.test;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.MethodComparator;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -35,7 +36,6 @@ import java.io.StringWriter;
 import java.lang.reflect.Method;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 import javax.servlet.ServletContext;
 
@@ -113,7 +113,8 @@ public class BaseTestCase {
 		testCaseResult.put("testResults", testResults);
 
 		Method[] methods = clazz.getMethods();
-		methods = sortMethodByNameAndArgs(methods);
+
+		Arrays.sort(methods, new MethodComparator());
 
 		for (Method method : methods) {
 			if (method.getName().startsWith("test")) {
@@ -156,42 +157,6 @@ public class BaseTestCase {
 		}
 
 		return testCaseResult;
-	}
-
-	private Method[] sortMethodByNameAndArgs(Method[] methods) {
-		Arrays.sort(methods, new Comparator<Method>() {
-
-			public int compare(Method method1, Method method2) {
-				String name1 = method1.getName();
-				String name2 = method2.getName();
-				int result = name1.compareTo(name2);
-				if (result != 0){
-					return result;
-				}
-
-				Class<?>[] args1 = method1.getParameterTypes();
-				Class<?>[] args2 = method2.getParameterTypes();
-				int index = 0;
-				while (index < args1.length && index < args2.length) {
-					String argName1 = args1[index].getName();
-					String argName2 = args2[index].getName();
-					result = argName1.compareTo(argName2);
-					if (result != 0) {
-						return result;
-					}
-					index++;
-				}
-
-				if (index < args1.length -1) {
-					return -1;
-				}
-				else {
-					return 1;
-				}
-
-			}
-		});
-		return methods;
 	}
 
 	protected ServletContext servletContext;
