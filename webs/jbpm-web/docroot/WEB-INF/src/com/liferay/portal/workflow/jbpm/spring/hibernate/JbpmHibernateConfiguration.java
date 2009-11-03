@@ -22,10 +22,10 @@
 
 package com.liferay.portal.workflow.jbpm.spring.hibernate;
 
+import com.liferay.portal.kernel.dao.db.DB;
+import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.tools.sql.DB;
-import com.liferay.portal.util.PortalUtil;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.orm.hibernate3.LocalSessionFactoryBean;
@@ -38,7 +38,7 @@ import org.springframework.orm.hibernate3.LocalSessionFactoryBean;
 public class JbpmHibernateConfiguration extends LocalSessionFactoryBean {
 
 	public JbpmHibernateConfiguration() {
-		DB db = PortalUtil.getDB();
+		DB db = DBFactoryUtil.getDB();
 
 		String type = db.getType();
 
