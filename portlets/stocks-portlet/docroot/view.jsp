@@ -150,18 +150,18 @@
 						<c:if test="<%= stocks.isChangeAvailable() && stocks.isPreviousCloseAvailable() %>">
 							<c:if test="<%= stocks.getChange() < 0 %>">
 								<span class="portlet-msg-error">
-								<strong><%= decimalFormat.format(stocks.getChange()) %> / <%= decimalFormat.format(stocks.getChange() / stocks.getPreviousClose()) %>%</strong>
+								<strong><%= decimalFormat.format(stocks.getChange()) %> / <%= decimalFormat.format(stocks.getChange() / stocks.getPreviousClose() * 100) %>%</strong>
 								</span>
 							</c:if>
 
 							<c:if test="<%= stocks.getChange() > 0 %>">
 								<span class="portlet-msg-success">
-								<strong>+<%= decimalFormat.format(stocks.getChange()) %> / <%= decimalFormat.format(stocks.getChange() / stocks.getPreviousClose()) %>%</strong>
+								<strong>+<%= decimalFormat.format(stocks.getChange()) %> / <%= decimalFormat.format(stocks.getChange() / stocks.getPreviousClose() * 100) %>%</strong>
 								</span>
 							</c:if>
 
 							<c:if test="<%= stocks.getChange() == 0 %>">
-								<strong><%= decimalFormat.format(stocks.getChange()) %> / <%= decimalFormat.format(stocks.getChange() / stocks.getPreviousClose()) %>%</strong>
+								<strong><%= decimalFormat.format(stocks.getChange()) %> / <%= decimalFormat.format(stocks.getChange() / stocks.getPreviousClose() * 100) %>%</strong>
 							</c:if>
 						</c:if>
 
