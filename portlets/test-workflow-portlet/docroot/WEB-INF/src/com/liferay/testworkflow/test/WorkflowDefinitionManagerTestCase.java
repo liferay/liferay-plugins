@@ -112,6 +112,95 @@ public class WorkflowDefinitionManagerTestCase extends BaseTestCase {
 			_user.getUserId(), _NAME_3, new ByteArrayInputStream(_bytes3));
 	}
 
+	public void testGetWorkflowDefinition() throws Exception {
+
+		// TestWorkflowDefinition1 version1
+
+		WorkflowDefinition workflowDefinition1_1 =
+			WorkflowDefinitionManagerUtil.getWorkflowDefinition(_NAME_1, 1);
+		String name1_1 = workflowDefinition1_1.getName();
+		Integer version1_1 = workflowDefinition1_1.getVersion();
+		assertEquals(_NAME_1, name1_1);
+		assertEquals(1, version1_1);
+
+		// TestWorkflowDefinition1 version2
+
+		WorkflowDefinition workflowDefinition1_2 =
+			WorkflowDefinitionManagerUtil.getWorkflowDefinition(_NAME_1, 2);
+		String name1_2 = workflowDefinition1_2.getName();
+		Integer version1_2 = workflowDefinition1_2.getVersion();
+		assertEquals(_NAME_1, name1_2);
+		assertEquals(2, version1_2);
+
+		// TestWorkflowDefinition1 version3
+
+		WorkflowDefinition workflowDefinition1_3 =
+			WorkflowDefinitionManagerUtil.getWorkflowDefinition(_NAME_1, 3);
+		String name1_3 = workflowDefinition1_3.getName();
+		Integer version1_3 = workflowDefinition1_3.getVersion();
+		assertEquals(_NAME_1, name1_3);
+		assertEquals(3, version1_3);
+
+		// TestWorkflowDefinition1 version4
+
+		boolean catchedException = false;
+		try{
+			WorkflowDefinitionManagerUtil.getWorkflowDefinition(_NAME_1, 4);
+		}catch(Exception we) {
+			catchedException = true;
+		}
+		assertTrue(catchedException);
+		catchedException = false;
+
+		// TestWorkflowDefinition2 version1
+
+		WorkflowDefinition workflowDefinition2_1 =
+			WorkflowDefinitionManagerUtil.getWorkflowDefinition(_NAME_2, 1);
+		String name2_1 = workflowDefinition2_1.getName();
+		Integer version2_1 = workflowDefinition2_1.getVersion();
+		assertEquals(_NAME_2, name2_1);
+		assertEquals(1, version2_1);
+
+		// TestWorkflowDefinition2 version2
+
+		WorkflowDefinition workflowDefinition2_2 =
+			WorkflowDefinitionManagerUtil.getWorkflowDefinition(_NAME_2, 2);
+		String name2_2 = workflowDefinition2_2.getName();
+		Integer version2_2 = workflowDefinition2_2.getVersion();
+		assertEquals(_NAME_2, name2_2);
+		assertEquals(2, version2_2);
+
+		// TestWorkflowDefinition2 version3
+
+		try{
+			WorkflowDefinitionManagerUtil.getWorkflowDefinition(_NAME_2, 3);
+		}catch(Exception we) {
+			catchedException = true;
+		}
+		assertTrue(catchedException);
+		catchedException = false;
+
+		// TestWorkflowDefinition3 version1
+
+		WorkflowDefinition workflowDefinition3_1 =
+			WorkflowDefinitionManagerUtil.getWorkflowDefinition(_NAME_3, 1);
+		String name3_1 = workflowDefinition3_1.getName();
+		Integer version3_1 = workflowDefinition3_1.getVersion();
+		assertEquals(_NAME_3, name3_1);
+		assertEquals(1, version3_1);
+
+		// TestWorkflowDefinition3 version2
+
+		try{
+			WorkflowDefinitionManagerUtil.getWorkflowDefinition(_NAME_3, 2);
+		}catch(Exception we) {
+			catchedException = true;
+		}
+		assertTrue(catchedException);
+		catchedException = false;
+
+	}
+
 	public void testGetWorkflowDefinitionCount() throws Exception {
 		int count = WorkflowDefinitionManagerUtil.getWorkflowDefinitionCount();
 
