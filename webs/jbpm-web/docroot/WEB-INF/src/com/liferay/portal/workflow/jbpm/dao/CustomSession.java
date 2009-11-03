@@ -403,7 +403,6 @@ public class CustomSession {
 		_fieldMap.put("workflowLogId", "id");
 		_fieldMap.put("workflowInstanceId", "id");
 		_fieldMap.put("workflowTaskId", "id");
-		_fieldMap.put("taskName", "name");
 	}
 
 	private Session _session;
