@@ -35,21 +35,21 @@
 				<delete file="${workflow.engine}-tests/${test.name}.jar" />
 
 				<delete dir="@{test.dir}/classes" />
-				<mkdir dir="@{test.dir}/classes/classes" />
+				<mkdir dir="@{test.dir}/classes" />
 
 				<javac
 					classpathref="plugin.classpath"
 					compiler="${javac.compiler}"
 					debug="${javac.debug}"
 					deprecation="${javac.deprecation}"
-					destdir="@{test.dir}/classes/classes"
+					destdir="@{test.dir}/classes"
 					nowarn="${javac.nowarn}"
 					srcdir="@{test.dir}/src"
 				/>
 
 				<jar jarfile="${workflow.engine}-tests/${test.name}.jar">
-					<fileset dir="@{test.dir}/classes" />
-					<fileset dir="@{test.dir}/src" />
+					<fileset dir="@{test.dir}" includes="classes/**,src/**/*.java" />
+					<fileset dir="@{test.dir}/src" includes="processdefinition.xml" />
 				</jar>
 			</sequential>
 		</for>
