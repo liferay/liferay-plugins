@@ -64,6 +64,14 @@ public class BaseTestCase {
 		Validate.isTrue(value);
 	}
 
+	public static void fail() {
+		throw new IllegalArgumentException();
+	}
+
+	public static void fail(String message) {
+		throw new IllegalArgumentException(message);
+	}
+
 	public static byte[] readBytes(InputStream inputStream) throws IOException {
 		ByteArrayOutputStream byteArrayOutputStream =
 			new ByteArrayOutputStream();
