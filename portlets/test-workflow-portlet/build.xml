@@ -35,14 +35,14 @@
 				<delete file="${workflow.engine}-tests/${test.name}.jar" />
 
 				<delete dir="@{test.dir}/classes" />
-				<mkdir dir="@{test.dir}/classes" />
+				<mkdir dir="@{test.dir}/classes/classes" />
 
 				<javac
 					classpathref="plugin.classpath"
 					compiler="${javac.compiler}"
 					debug="${javac.debug}"
 					deprecation="${javac.deprecation}"
-					destdir="@{test.dir}/classes"
+					destdir="@{test.dir}/classes/classes"
 					nowarn="${javac.nowarn}"
 					srcdir="@{test.dir}/src"
 				/>
