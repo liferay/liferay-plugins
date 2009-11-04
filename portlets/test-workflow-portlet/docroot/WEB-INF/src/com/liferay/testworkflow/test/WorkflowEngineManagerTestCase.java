@@ -24,8 +24,6 @@ package com.liferay.testworkflow.test;
 
 import com.liferay.portal.kernel.workflow.WorkflowEngineManagerUtil;
 
-import javax.servlet.ServletContext;
-
 /**
  * <a href="WorkflowEngineManagerTestCase.java.html"><b><i>View Source</i></b>
  * </a>
@@ -33,10 +31,6 @@ import javax.servlet.ServletContext;
  * @author Shuyang Zhou
  */
 public class WorkflowEngineManagerTestCase extends BaseTestCase {
-
-	public WorkflowEngineManagerTestCase(ServletContext servletContext) {
-		super(servletContext);
-	}
 
 	public void testGetKey() throws Exception {
 		String key = WorkflowEngineManagerUtil.getKey();

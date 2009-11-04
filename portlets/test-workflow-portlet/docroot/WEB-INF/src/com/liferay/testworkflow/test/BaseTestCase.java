@@ -26,6 +26,10 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.MethodComparator;
+import com.liferay.portal.kernel.workflow.WorkflowEngineManagerUtil;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -34,8 +38,11 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 
 import java.util.Arrays;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 import javax.servlet.ServletContext;
 
@@ -46,7 +53,7 @@ import org.apache.commons.lang.Validate;
  *
  * @author Shuyang Zhou
  */
-public class BaseTestCase {
+public abstract class BaseTestCase {
 
 	public static void assertEquals(Object expected, Object actual) {
 		Validate.isTrue(expected.equals(actual));
@@ -58,6 +65,10 @@ public class BaseTestCase {
 
 	public static void assertNotNull(Object object) {
 		Validate.notNull(object);
+	}
+
+	public static void assertNull(Object object) {
+		Validate.isTrue(object == null);
 	}
 
 	public static void assertTrue(boolean value) {
@@ -87,11 +98,50 @@ public class BaseTestCase {
 		return byteArrayOutputStream.toByteArray();
 	}
 
-	public BaseTestCase(ServletContext servletContext) {
-		this.servletContext = servletContext;
+	public static void setUpClass() throws Exception {
+		long companyId = PortalUtil.getDefaultCompanyId();
+
+		USER = UserLocalServiceUtil.getDefaultUser(companyId);
+
+		ZipInputStream zipInputStream = new ZipInputStream(
+			SERVLET_CONTEXT.getResourceAsStream(
+				"WEB-INF/bundles/" + WorkflowEngineManagerUtil.getKey() +
+					"-tests.zip"));
+
+		ZipEntry zipEntry = null;
+
+		while ((zipEntry = zipInputStream.getNextEntry()) != null) {
+			String name = zipEntry.getName();
+
+			if (name.equals(_JAR_1)) {
+				BYTES_1 = readBytes(zipInputStream);
+			}
+			else if (name.equals(_JAR_2)) {
+				BYTES_2 = readBytes(zipInputStream);
+			}
+			else if (name.equals(_JAR_3)) {
+				BYTES_3 = readBytes(zipInputStream);
+			}
+			else if (name.equals(_JAR_4)) {
+				BYTES_4 = readBytes(zipInputStream);
+			}
+		}
+
+		zipInputStream.close();
+
+		assertNotNull(BYTES_1);
+		assertNotNull(BYTES_2);
+		assertNotNull(BYTES_3);
+		assertNotNull(BYTES_4);
+
 	}
 
-	public JSONObject callTestMethods() {
+	public JSONObject callTestMethods(ServletContext servletContext) {
+		if (servletContext == null) {
+			throw new IllegalArgumentException("ServletContext is null");
+		}
+
+		SERVLET_CONTEXT = servletContext;
 		JSONObject testCaseResult = JSONFactoryUtil.createJSONObject();
 
 		Class<? extends BaseTestCase> clazz = getClass();
@@ -124,6 +174,21 @@ public class BaseTestCase {
 
 		Arrays.sort(methods, new MethodComparator());
 
+		try {
+			Method method = clazz.getMethod("setUpClass");
+			if (Modifier.isStatic(method.getModifiers())) {
+				method.invoke(null);
+			}
+		}
+		catch(NoSuchMethodException nsme) {
+		}
+		catch(Exception e) {
+			JSONObject testResult = JSONFactoryUtil.createJSONObject();
+			testResult.put("name", "setUpClass");
+			setupErrorMessage(e, testResult);
+			testResults.put(testResult);
+		}
+
 		for (Method method : methods) {
 			if (method.getName().startsWith("test")) {
 				JSONObject testResult = JSONFactoryUtil.createJSONObject();
@@ -144,33 +209,63 @@ public class BaseTestCase {
 					testResult.put("status", _STATUS_PASSED);
 				}
 				catch (Exception e) {
-					Throwable cause = e.getCause();
-
-					testResult.put("status", _STATUS_FAILED);
-					testResult.put("exceptionMessage", cause.getMessage());
-
-					StringWriter stringWriter = new StringWriter();
-					PrintWriter printWriter = new PrintWriter(stringWriter);
-
-					cause.printStackTrace(printWriter);
-
-					testResult.put(
-						"exceptionStackTrace", stringWriter.toString());
-
-					printWriter.close();
+					setupErrorMessage(e, testResult);
 				}
 
 				testResults.put(testResult);
 			}
 		}
 
+		try {
+			Method method = clazz.getMethod("tearDownClass");
+			if (Modifier.isStatic(method.getModifiers())) {
+				method.invoke(null);
+			}
+		}
+		catch(NoSuchMethodException nsme) {
+		}
+		catch(Exception e) {
+			JSONObject testResult = JSONFactoryUtil.createJSONObject();
+			testResult.put("name", "tearDownClass");
+			setupErrorMessage(e, testResult);
+			testResults.put(testResult);
+		}
+
 		return testCaseResult;
 	}
 
-	protected ServletContext servletContext;
+	private void setupErrorMessage(Exception exception, JSONObject testResult) {
+		Throwable cause = exception.getCause();
+		testResult.put("status", _STATUS_FAILED);
+		testResult.put("exceptionMessage", cause.getMessage());
 
+		StringWriter stringWriter = new StringWriter();
+		PrintWriter printWriter = new PrintWriter(stringWriter);
+
+		cause.printStackTrace(printWriter);
+
+		testResult.put("exceptionStackTrace", stringWriter.toString());
+
+		printWriter.close();
+	}
+
+	public static final String NAME_1 = "Test Workflow Definition 1";
+	public static final String NAME_2 = "Test Workflow Definition 2";
+	public static final String NAME_3 = "Test Workflow Definition 3";
+	public static final String NAME_4 = "Test Workflow Definition 4";
+
+	protected static byte[] BYTES_1;
+	protected static byte[] BYTES_2;
+	protected static byte[] BYTES_3;
+	protected static byte[] BYTES_4;
+	protected static ServletContext SERVLET_CONTEXT;
+	protected static User USER;
+
+	private static final String _JAR_1 = "test1.jar";
+	private static final String _JAR_2 = "test2.jar";
+	private static final String _JAR_3 = "test3.jar";
+	private static final String _JAR_4 = "test4.jar";
 	private static final String _STATUS_FAILED = "FAILED";
-
 	private static final String _STATUS_PASSED = "PASSED";
 
 }

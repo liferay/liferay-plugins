@@ -42,14 +42,17 @@ public class WorkflowTestSuite {
 		WorkflowTestSuite workflowTestSuite = new WorkflowTestSuite();
 
 		workflowTestSuite.addTestCase(
-			new WorkflowEngineManagerTestCase(servletContext));
+			new WorkflowEngineManagerTestCase());
 		workflowTestSuite.addTestCase(
-			new WorkflowDefinitionManagerTestCase(servletContext));
+			new WorkflowDefinitionManagerTestCase());
+		workflowTestSuite.addTestCase(
+			new WorkflowInstanceManagerTestCase());
 
 		JSONArray testSuiteResult = JSONFactoryUtil.createJSONArray();
 
 		for (BaseTestCase testCase : workflowTestSuite._testCases) {
-			JSONObject testCaseResult = testCase.callTestMethods();
+			JSONObject testCaseResult =
+				testCase.callTestMethods(servletContext);
 
 			testSuiteResult.put(testCaseResult);
 		}
