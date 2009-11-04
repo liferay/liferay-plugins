@@ -46,7 +46,7 @@ public class WorkflowTestSuite {
 		workflowTestSuite.addTestCase(
 			new WorkflowDefinitionManagerTestCase());
 		workflowTestSuite.addTestCase(
-			new WorkflowInstanceManagerTestCase());
+			new WorkflowLogManagerTestCase());
 
 		JSONArray testSuiteResult = JSONFactoryUtil.createJSONArray();
 
