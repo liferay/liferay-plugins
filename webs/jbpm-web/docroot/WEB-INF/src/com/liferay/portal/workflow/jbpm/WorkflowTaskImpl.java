@@ -31,6 +31,7 @@ import java.util.Set;
 
 import org.jbpm.graph.def.ProcessDefinition;
 import org.jbpm.graph.exe.ProcessInstance;
+import org.jbpm.graph.exe.Token;
 import org.jbpm.taskmgmt.exe.PooledActor;
 import org.jbpm.taskmgmt.exe.TaskInstance;
 
@@ -43,6 +44,7 @@ import org.jbpm.taskmgmt.exe.TaskInstance;
 public class WorkflowTaskImpl implements WorkflowTask {
 
 	public WorkflowTaskImpl(TaskInstance taskInstance) {
+		Token token = taskInstance.getToken();
 		ProcessInstance processInstance = taskInstance.getProcessInstance();
 		ProcessDefinition processDefinition =
 			processInstance.getProcessDefinition();
@@ -66,7 +68,7 @@ public class WorkflowTaskImpl implements WorkflowTask {
 		_workflowDefinitionId = processDefinition.getId();
 		_workflowDefinitionName = processDefinition.getName();
 		_workflowDefinitionVersion = processDefinition.getVersion();
-		_workflowInstanceId = processInstance.getId();
+		_workflowInstanceId = token.getId();
 		_workflowTaskId = taskInstance.getId();
 	}
 
