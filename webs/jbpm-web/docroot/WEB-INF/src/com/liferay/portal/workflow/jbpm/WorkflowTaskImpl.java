@@ -44,10 +44,10 @@ import org.jbpm.taskmgmt.exe.TaskInstance;
 public class WorkflowTaskImpl implements WorkflowTask {
 
 	public WorkflowTaskImpl(TaskInstance taskInstance) {
-		Token token = taskInstance.getToken();
 		ProcessInstance processInstance = taskInstance.getProcessInstance();
 		ProcessDefinition processDefinition =
 			processInstance.getProcessDefinition();
+		Token token = taskInstance.getToken();
 
 		Set<PooledActor> pooledActors = taskInstance.getPooledActors();
 
