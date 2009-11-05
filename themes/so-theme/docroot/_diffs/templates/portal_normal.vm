@@ -55,6 +55,12 @@ $theme.include($top_messages_include)
 	<div id="footer"></div>
 </div>
 
+#if (!$layout.getFriendlyURL().equals("/home"))
+	<script type="text/javascript">
+		Liferay.Layout = null;
+	</script>
+#end
+
 </body>
 
 $theme.include($bottom_include)

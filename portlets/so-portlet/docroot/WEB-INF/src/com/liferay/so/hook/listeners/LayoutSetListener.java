@@ -28,6 +28,7 @@ import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSet;
+import com.liferay.portal.model.LayoutTemplate;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.Resource;
 import com.liferay.portal.model.ResourceConstants;
@@ -41,7 +42,11 @@ import com.liferay.portal.service.PermissionLocalServiceUtil;
 import com.liferay.portal.service.ResourceLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.so.util.PortletPropsKeys;
+import com.liferay.so.util.PortletPropsValues;
+import com.liferay.util.portlet.PortletProps;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -88,7 +93,10 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		// Home
 
-		Layout layout = addLayout(group, "Home", "/home", "3_columns");
+		Layout layout = addLayout(
+			group, "Home", "/home", PortletPropsValues.SITE_LAYOUT_TEMPLATE);
+
+		addPortlets(group, layout);
 
 		updatePortletTitle(layout, "39_INSTANCE_abcd", "Feeds");
 		updatePortletTitle(layout, "1_WAR_wysiwygportlet", "Welcome");
@@ -166,7 +174,10 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		// Home
 
-		Layout layout = addLayout(group, "Home", "/home", "3_columns");
+		Layout layout = addLayout(
+			group, "Home", "/home", PortletPropsValues.USER_LAYOUT_TEMPLATE);
+
+		addPortlets(group, layout);
 
 		updatePortletTitle(layout, "29", "sites");
 
@@ -209,6 +220,30 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		layoutTypePortlet.setLayoutTemplateId(0, layouteTemplateId, false);
 
 		return LayoutLocalServiceUtil.updateLayout(
+			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
+			layout.getTypeSettings());
+	}
+
+	protected void addPortlets(Group group, Layout layout) throws Exception {
+		String propsKeyPrefix = PortletPropsKeys.SITE_LAYOUT_PORTLETS;
+
+		if (group.isUser()) {
+			propsKeyPrefix = PortletPropsKeys.USER_LAYOUT_PORTLETS;
+		}
+
+		LayoutTypePortlet layoutTypePortlet =
+			(LayoutTypePortlet)layout.getLayoutType();
+
+		LayoutTemplate layoutTemplate = layoutTypePortlet.getLayoutTemplate();
+
+		List<String> columns = layoutTemplate.getColumns();
+
+		for (String column : columns) {
+			layoutTypePortlet.setPortletIds(
+				column, PortletProps.get(propsKeyPrefix + column));
+		}
+
+		LayoutLocalServiceUtil.updateLayout(
 			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
 			layout.getTypeSettings());
 	}

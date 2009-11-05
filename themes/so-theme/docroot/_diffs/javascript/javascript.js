@@ -32,5 +32,3 @@ jQuery(document).ready(
 		LiferayInc.init();
 	}
 );
-
-Liferay.Layout = null;
