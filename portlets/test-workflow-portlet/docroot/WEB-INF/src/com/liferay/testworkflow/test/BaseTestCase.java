@@ -60,6 +60,10 @@ public class BaseTestCase {
 		Validate.notNull(object);
 	}
 
+	public static void assertNull(Object object) {
+		Validate.isTrue(object == null);
+	}
+
 	public static void assertTrue(boolean value) {
 		Validate.isTrue(value);
 	}
