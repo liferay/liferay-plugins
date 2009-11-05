@@ -225,10 +225,10 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 	}
 
 	protected void addPortlets(Group group, Layout layout) throws Exception {
-		String propsKeyPrefix = PortletPropsKeys.SITE_LAYOUT_PORTLETS;
+		String prefix = PortletPropsKeys.SITE_LAYOUT_PORTLETS;
 
 		if (group.isUser()) {
-			propsKeyPrefix = PortletPropsKeys.USER_LAYOUT_PORTLETS;
+			prefix = PortletPropsKeys.USER_LAYOUT_PORTLETS;
 		}
 
 		LayoutTypePortlet layoutTypePortlet =
@@ -240,7 +240,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		for (String column : columns) {
 			layoutTypePortlet.setPortletIds(
-				column, PortletProps.get(propsKeyPrefix + column));
+				column, PortletProps.get(prefix + column));
 		}
 
 		LayoutLocalServiceUtil.updateLayout(
