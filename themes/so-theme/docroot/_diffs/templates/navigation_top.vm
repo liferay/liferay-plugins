@@ -17,6 +17,15 @@
 					<a class="heading" href="$themeDisplay.getPathFriendlyURLPublic()/$user.getScreenName()/home">#language ("my-home")</a>
 				</li>
 
+				#if ($show_add_content && ($layout.getFriendlyURL().equals("/home")))
+					<li class="add-content">
+						<a href="javascript:void(0);" onclick="$add_content_url">$add_content_text</a>
+					</li>
+					<li class="layout">
+						<a href="javascript:void(0);" onclick="$layout_url">$layout_text</a>
+					</li>
+				#end
+
 				#if ($permissionChecker.isOmniadmin())
 					<li class="control-panel">
 						<a class="heading" href="$my_account_url">#language ("control-panel")</a>

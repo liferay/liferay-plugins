@@ -86,6 +86,7 @@ body #banner h1.logo a {
 }
 
 #navigation-top li {
+	border-left: 1px solid #B0BAFF;
 	display: inline;
 	float: left;
 }
@@ -107,6 +108,10 @@ body #banner h1.logo a {
 	z-index: 20;
 }
 
+#navigation-top .child-menu li {
+	border: none;
+}
+
 #navigation-top .child-menu li a {
 	border-top: 1px solid #B0BAFF;
 	width: 224px;
@@ -116,23 +121,14 @@ body #banner h1.logo a {
 	background: #F6F9FB;
 }
 
-#navigation-top .control-panel,
-#navigation-top .my-profile {
-	border-left: 1px solid #B0BAFF;
+#navigation-top .my-home {
+	border-left: none;
 }
 
 #navigation-top .my-search {
 	background: none;
 	margin-right: 15px;
 	padding-top: 2px;
-}
-
-#navigation-top .my-sites {
-	border-left: 1px solid #B0BAFF;
-}
-
-#navigation-top .sign-out {
-	border-left: 1px solid #B0BAFF;
 }
 
 #navigation-top .sign-out a {
@@ -198,7 +194,12 @@ body #banner h1.logo a {
 }
 
 .portlet-icons {
-	display: none;
+	right: 2px;
+	top: 2px;
+}
+
+.lfr-actions.portlet-options .lfr-trigger strong {
+	padding: 2px 1px 1px;
 }
 
 .portlet-content .so-portlet-configuration {
@@ -1050,12 +1051,6 @@ table.calendar {
 
 /* Contacts */
 
-.contacts-portlet .control .add-entry {
-	position: absolute;
-	right: 0;
-	top: -40px;
-}
-
 .ie6 .contacts-portlet .control .add-entry {
 	position: static;
 }
@@ -1221,7 +1216,7 @@ table.calendar {
 	font-size: 11px;
 }
 
-.portlet-recent-documents img {
+.portlet-recent-documents .portlet-content img {
 	padding: 0 5px 8px 0;
 }
 
