@@ -179,8 +179,6 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		addPortlets(group, layout);
 
-		updatePortletTitle(layout, "29", "sites");
-
 		updatePermissions(layout, false);
 
 		// Profile
