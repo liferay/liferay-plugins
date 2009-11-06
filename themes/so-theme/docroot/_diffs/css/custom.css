@@ -71,6 +71,11 @@ body #banner h1.logo a {
 	height: 31px;
 }
 
+#navigation-top .content-controls {
+	background: none;
+	margin-right: 5px;
+}
+
 #navigation-top .left-side {
 	background-position: left 31px;
 	width: 3px;
@@ -121,8 +126,7 @@ body #banner h1.logo a {
 	background: #F6F9FB;
 }
 
-#navigation-top .my-home,
-#navigation-top .sign-in {
+#navigation-top .no-border {
 	border-left: none;
 }
 

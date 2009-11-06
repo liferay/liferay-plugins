@@ -1,9 +1,42 @@
+#set ($show_add_content = ($show_add_content && ($layout.getFriendlyURL().equals("/home"))))
+#set ($show_control_panel = $permissionChecker.isOmniadmin())
+
 <div id="navigation-top">
 	#if ($is_signed_in)
 		<div class="my-search">$theme.search()</div>
 	#end
+
+	#if ($show_control_panel || $show_add_content)
+		<div class="content-controls">
+			<div class="left-side"></div>
+			<div class="items">
+				<ul>
+					#if ($show_control_panel)
+						<li class="control-panel no-border">
+							<a class="heading" href="$my_account_url">#language ("control-panel")</a>
+						</li>
+					#end
+
+					#if ($show_add_content)
+						<li class="add-content
+							#if (!$show_control_panel)
+								no-border
+							#end
+						">
+							<a href="javascript:void(0);" onclick="$add_content_url">$add_content_text</a>
+						</li>
+						<li class="layout">
+							<a href="javascript:void(0);" onclick="$layout_url">$layout_text</a>
+						</li>
+					#end
+				</ul>
+			</div>
+			<div class="right-side"></div>
+		</div>
+	#end
+
 	<div class="left-side"></div>
-	<div>
+	<div class="items">
 		<ul>
 			#set ($my_places_url = $portletURLFactory.create($request, "49", $page.getPlid(), "ACTION_PHASE"))
 
@@ -13,24 +46,9 @@
 			$my_places_url.setParameter("struts_action", "/my_places/view")
 
 			#if ($show_sign_out)
-				<li class="my-home">
+				<li class="my-home no-border">
 					<a class="heading" href="$themeDisplay.getPathFriendlyURLPublic()/$user.getScreenName()/home">#language ("my-home")</a>
 				</li>
-
-				#if ($show_add_content && ($layout.getFriendlyURL().equals("/home")))
-					<li class="add-content">
-						<a href="javascript:void(0);" onclick="$add_content_url">$add_content_text</a>
-					</li>
-					<li class="layout">
-						<a href="javascript:void(0);" onclick="$layout_url">$layout_text</a>
-					</li>
-				#end
-
-				#if ($permissionChecker.isOmniadmin())
-					<li class="control-panel">
-						<a class="heading" href="$my_account_url">#language ("control-panel")</a>
-					</li>
-				#end
 
 				<li class="my-profile">
 					<a class="heading" href="$themeDisplay.getPathFriendlyURLPublic()/$user.getScreenName()/profile">#language ("my-profile")</a>
@@ -60,7 +78,7 @@
 					<a class="heading" href="$sign_out_url">$sign_out_text</a>
 				</li>
 			#else
-				<li class="sign-in">
+				<li class="sign-in no-border">
 					<a class="heading" href="$sign_in_url">$sign_in_text</a>
 				</li>
 			#end
