@@ -98,8 +98,6 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		addPortlets(group, layout);
 
-		removePortletBorder(layout, "1_WAR_soportlet");
-
 		configureRSS(layout);
 
 		updatePermissions(layout, true);

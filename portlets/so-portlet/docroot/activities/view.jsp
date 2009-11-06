@@ -25,9 +25,11 @@ String tabs1 = ParamUtil.getString(request, "tabs1", "my-sites");
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("tabs1", tabs1);
+
+Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 %>
 
-<c:if test="<%= !themeDisplay.isStateExclusive() %>">
+<c:if test="<%= group.isUser() %>">
 	<liferay-ui:tabs
 		names="my-sites,my-friends,me"
 		url="<%= portletURL.toString() %>"
@@ -40,8 +42,6 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 List<SocialActivity> activities = null;
 int total = 0;
 
-Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
-
 User curUser = null;
 
 if (group.isUser()) {
@@ -51,7 +51,11 @@ else {
 	curUser = user;
 }
 
-if (tabs1.equals("my-sites")) {
+if (group.isCommunity()) {
+	activities = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
+	total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
+}
+else if (tabs1.equals("my-sites")) {
 	activities = SocialActivityLocalServiceUtil.getUserGroupsActivities(curUser.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
 	total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(curUser.getUserId());
 }
@@ -73,10 +77,7 @@ rssURL.setParameter("rss", "1");
 
 <liferay-ui:social-activities
 	activities="<%= activities %>"
-	feedEnabled="<%= true %>"
-	feedTitle='<%= LanguageUtil.format(pageContext, "subscribe-to-these-activities", user.getFirstName()) %>'
-	feedLink="<%= rssURL.toString() %>"
-	feedLinkMessage='<%= LanguageUtil.format(pageContext, "subscribe-to-these-activities", user.getFirstName()) %>'
+	feedEnabled="<%= false %>"
 />
 
 <c:if test="<%= (!activities.isEmpty()) && !themeDisplay.isStateExclusive() %>">
