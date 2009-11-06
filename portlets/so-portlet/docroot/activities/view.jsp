@@ -22,11 +22,11 @@
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "my-sites");
 
+Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
+
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("tabs1", tabs1);
-
-Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 %>
 
 <c:if test="<%= group.isUser() %>">
