@@ -34,6 +34,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 
 import java.util.Arrays;
 
@@ -46,7 +47,7 @@ import org.apache.commons.lang.Validate;
  *
  * @author Shuyang Zhou
  */
-public class BaseTestCase {
+public abstract class BaseTestCase {
 
 	public static void assertEquals(Object expected, Object actual) {
 		Validate.isTrue(expected.equals(actual));
@@ -91,11 +92,13 @@ public class BaseTestCase {
 		return byteArrayOutputStream.toByteArray();
 	}
 
-	public BaseTestCase(ServletContext servletContext) {
-		this.servletContext = servletContext;
-	}
+	public JSONObject callTestMethods(ServletContext servletContext) {
+		if (servletContext == null) {
+			throw new IllegalArgumentException("ServletContext is null");
+		}
 
-	public JSONObject callTestMethods() {
+		SERVLET_CONTEXT = servletContext;
+
 		JSONObject testCaseResult = JSONFactoryUtil.createJSONObject();
 
 		Class<? extends BaseTestCase> clazz = getClass();
@@ -128,6 +131,21 @@ public class BaseTestCase {
 
 		Arrays.sort(methods, new MethodComparator());
 
+		try {
+			Method method = clazz.getMethod("setUpClass");
+			if (Modifier.isStatic(method.getModifiers())) {
+				method.invoke(null);
+			}
+		}
+		catch(NoSuchMethodException nsme) {
+		}
+		catch(Exception e) {
+			JSONObject testResult = JSONFactoryUtil.createJSONObject();
+			testResult.put("name", "setUpClass");
+			setupErrorMessage(e, testResult);
+			testResults.put(testResult);
+		}
+
 		for (Method method : methods) {
 			if (method.getName().startsWith("test")) {
 				JSONObject testResult = JSONFactoryUtil.createJSONObject();
@@ -148,30 +166,47 @@ public class BaseTestCase {
 					testResult.put("status", _STATUS_PASSED);
 				}
 				catch (Exception e) {
-					Throwable cause = e.getCause();
-
-					testResult.put("status", _STATUS_FAILED);
-					testResult.put("exceptionMessage", cause.getMessage());
-
-					StringWriter stringWriter = new StringWriter();
-					PrintWriter printWriter = new PrintWriter(stringWriter);
-
-					cause.printStackTrace(printWriter);
-
-					testResult.put(
-						"exceptionStackTrace", stringWriter.toString());
-
-					printWriter.close();
+					setupErrorMessage(e, testResult);
 				}
 
 				testResults.put(testResult);
 			}
 		}
 
+		try {
+			Method method = clazz.getMethod("tearDownClass");
+			if (Modifier.isStatic(method.getModifiers())) {
+				method.invoke(null);
+			}
+		}
+		catch(NoSuchMethodException nsme) {
+		}
+		catch(Exception e) {
+			JSONObject testResult = JSONFactoryUtil.createJSONObject();
+			testResult.put("name", "tearDownClass");
+			setupErrorMessage(e, testResult);
+			testResults.put(testResult);
+		}
+
 		return testCaseResult;
 	}
 
-	protected ServletContext servletContext;
+	private void setupErrorMessage(Exception exception, JSONObject testResult) {
+		Throwable cause = exception.getCause();
+		testResult.put("status", _STATUS_FAILED);
+		testResult.put("exceptionMessage", cause.getMessage());
+
+		StringWriter stringWriter = new StringWriter();
+		PrintWriter printWriter = new PrintWriter(stringWriter);
+
+		cause.printStackTrace(printWriter);
+
+		testResult.put("exceptionStackTrace", stringWriter.toString());
+
+		printWriter.close();
+	}
+
+	protected static ServletContext SERVLET_CONTEXT;
 
 	private static final String _STATUS_FAILED = "FAILED";
 
