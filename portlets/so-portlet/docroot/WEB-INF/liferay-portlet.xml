@@ -12,10 +12,12 @@
 		<header-portlet-css>/invite_members/css.jsp</header-portlet-css>
 		<header-portlet-javascript>/invite_members/javascript.js</header-portlet-javascript>
 		<css-class-wrapper>so-portlet-invite-members</css-class-wrapper>
+		<system>true</system>
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
 		<css-class-wrapper>so-portlet-members</css-class-wrapper>
+		<system>true</system>
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
@@ -24,6 +26,7 @@
 		<header-portlet-javascript>/profiles/javascript.js</header-portlet-javascript>
 		<footer-portal-javascript>/html/js/liferay/service.js</footer-portal-javascript>
 		<css-class-wrapper>so-portlet-profiles</css-class-wrapper>
+		<system>true</system>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
