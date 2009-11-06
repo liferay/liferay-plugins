@@ -98,9 +98,6 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		addPortlets(group, layout);
 
-		updatePortletTitle(layout, "39_INSTANCE_abcd", "Feeds");
-		updatePortletTitle(layout, "1_WAR_wysiwygportlet", "Welcome");
-
 		removePortletBorder(layout, "1_WAR_soportlet");
 
 		configureRSS(layout);
@@ -249,8 +246,6 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 	protected void configureAssetPublisher(Layout layout) throws Exception {
 		String portletId = "101_INSTANCE_abcd";
 
-		updatePortletTitle(layout, portletId, "related-content");
-
 		PortletPreferences portletSetup =
 			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 				layout, portletId);
@@ -357,33 +352,6 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		PermissionLocalServiceUtil.setRolePermissions(
 			role.getRoleId(), actionIds, resource.getResourceId());
-	}
-
-	protected void updatePortletTitle(
-			Layout layout, String portletId, String title)
-		throws Exception {
-
-		PortletPreferences portletSetup =
-			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-				layout, portletId);
-
-		Locale[] locales = LanguageUtil.getAvailableLocales();
-
-		for (Locale locale : locales) {
-			String languageId = LocaleUtil.toLanguageId(locale);
-
-			if (Validator.isNotNull(languageId)) {
-				String localizedTitle = LanguageUtil.get(locale, title);
-
-				portletSetup.setValue(
-					"portlet-setup-title-" + languageId, localizedTitle);
-			}
-		}
-
-		portletSetup.setValue(
-			"portlet-setup-use-custom-title", String.valueOf(Boolean.TRUE));
-
-		portletSetup.store();
 	}
 
 }
