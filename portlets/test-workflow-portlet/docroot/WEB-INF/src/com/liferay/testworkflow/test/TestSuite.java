@@ -22,17 +22,46 @@
 
 package com.liferay.testworkflow.test;
 
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletContext;
+
 /**
- * <a href="WorkflowTestSuite.java.html"><b><i>View Source</i></b></a>
+ * <a href="TestSuite.java.html"><b><i>View Source</i></b></a>
  *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  */
-public class WorkflowTestSuite extends TestSuite {
+public class TestSuite {
 
-	public WorkflowTestSuite() {
-		addTestCase(WorkflowEngineManagerTestCase.class);
-		addTestCase(WorkflowDefinitionManagerTestCase.class);
-	};
+	public void addTestCase(Class<? extends TestCase> testCaseClass) {
+		_testCaseClasses.add(testCaseClass);
+	}
+
+	public JSONArray runTestSuite(ServletContext servletContext)
+		throws Exception {
+
+		JSONArray testSuiteResult = JSONFactoryUtil.createJSONArray();
+
+		for (Class<?> testCaseClass : _testCaseClasses) {
+			TestCase testCase = (TestCase)testCaseClass.newInstance();
+
+			testCase.setServletContext(servletContext);
+
+			JSONObject testCaseResult = testCase.runTests();
+
+			testSuiteResult.put(testCaseResult);
+		}
+
+		return testSuiteResult;
+	}
+
+	private List<Class<? extends TestCase>> _testCaseClasses =
+		new ArrayList<Class<? extends TestCase>>();
 
 }

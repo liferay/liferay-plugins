@@ -30,7 +30,7 @@ import com.liferay.portal.kernel.workflow.WorkflowEngineManagerUtil;
  *
  * @author Shuyang Zhou
  */
-public class WorkflowEngineManagerTestCase extends BaseWorkflowTestCase {
+public class WorkflowEngineManagerTestCase extends WorkflowTestCase {
 
 	public void testGetKey() throws Exception {
 		String key = WorkflowEngineManagerUtil.getKey();

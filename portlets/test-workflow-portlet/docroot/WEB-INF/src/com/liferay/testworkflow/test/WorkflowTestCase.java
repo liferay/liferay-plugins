@@ -31,24 +31,19 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 /**
- * <a href="BaseWorkflowTestCase.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowTestCase.java.html"><b><i>View Source</i></b></a>
  *
  * @author Shuyang Zhou
  */
-public class BaseWorkflowTestCase extends BaseTestCase {
+public class WorkflowTestCase extends TestCase {
 
-	public static void setUpClass() throws Exception {
-
-		if (SERVLET_CONTEXT == null) {
-			throw new IllegalArgumentException("ServletContext is null");
-		}
-
+	public void setUp() throws Exception {
 		long companyId = PortalUtil.getDefaultCompanyId();
 
-		USER = UserLocalServiceUtil.getDefaultUser(companyId);
+		user = UserLocalServiceUtil.getDefaultUser(companyId);
 
 		ZipInputStream zipInputStream = new ZipInputStream(
-			SERVLET_CONTEXT.getResourceAsStream(
+			servletContext.getResourceAsStream(
 				"WEB-INF/bundles/" + WorkflowEngineManagerUtil.getKey() +
 					"-tests.zip"));
 
@@ -58,42 +53,52 @@ public class BaseWorkflowTestCase extends BaseTestCase {
 			String name = zipEntry.getName();
 
 			if (name.equals(_JAR_1)) {
-				BYTES_1 = readBytes(zipInputStream);
+				definitionBytes1 = readBytes(zipInputStream);
 			}
 			else if (name.equals(_JAR_2)) {
-				BYTES_2 = readBytes(zipInputStream);
+				definitionBytes2 = readBytes(zipInputStream);
 			}
 			else if (name.equals(_JAR_3)) {
-				BYTES_3 = readBytes(zipInputStream);
+				definitionBytes3 = readBytes(zipInputStream);
 			}
 			else if (name.equals(_JAR_4)) {
-				BYTES_4 = readBytes(zipInputStream);
+				definitionBytes4 = readBytes(zipInputStream);
 			}
 		}
 
 		zipInputStream.close();
 
-		assertNotNull(BYTES_1);
-		assertNotNull(BYTES_2);
-		assertNotNull(BYTES_3);
-		assertNotNull(BYTES_4);
+		assertNotNull(definitionBytes1);
+		assertNotNull(definitionBytes2);
+		assertNotNull(definitionBytes3);
+		assertNotNull(definitionBytes4);
 
 	}
 
-	public static final String NAME_1 = "Test Workflow Definition 1";
-	public static final String NAME_2 = "Test Workflow Definition 2";
-	public static final String NAME_3 = "Test Workflow Definition 3";
-	public static final String NAME_4 = "Test Workflow Definition 4";
+	protected static final String DEFINITION_NAME_1 =
+		"Test Workflow Definition 1";
 
-	protected static byte[] BYTES_1;
-	protected static byte[] BYTES_2;
-	protected static byte[] BYTES_3;
-	protected static byte[] BYTES_4;
-	protected static User USER;
+	protected static final String DEFINITION_NAME_2 =
+		"Test Workflow Definition 2";
+
+	protected static final String DEFINITION_NAME_3 =
+		"Test Workflow Definition 3";
+
+	protected static final String DEFINITION_NAME_4 =
+		"Test Workflow Definition 4";
+
+	protected byte[] definitionBytes1;
+	protected byte[] definitionBytes2;
+	protected byte[] definitionBytes3;
+	protected byte[] definitionBytes4;
+	protected User user;
 
 	private static final String _JAR_1 = "test1.jar";
+
 	private static final String _JAR_2 = "test2.jar";
+
 	private static final String _JAR_3 = "test3.jar";
+
 	private static final String _JAR_4 = "test4.jar";
 
 }

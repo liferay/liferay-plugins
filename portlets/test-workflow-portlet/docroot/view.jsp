@@ -33,7 +33,9 @@
 <portlet:defineObjects />
 
 <%
-JSONArray testSuiteResult = WorkflowTestSuite.runTestSuite(application);
+WorkflowTestSuite workflowTestSuite = new WorkflowTestSuite();
+
+JSONArray testSuiteResult = workflowTestSuite.runTestSuite(application);
 
 for (int i = 0; i < testSuiteResult.length(); i++) {
 	JSONObject testCaseResult = testSuiteResult.getJSONObject(i);
