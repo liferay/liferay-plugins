@@ -32,6 +32,7 @@
 
 <%@ page import="com.liferay.client.json.ipgeocoder.model.IPInfo" %>
 <%@ page import="com.liferay.client.json.ipgeocoder.util.IPGeocoderUtil" %>
+<%@ page import="com.liferay.portal.NoSuchUserException" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchEntry" %>

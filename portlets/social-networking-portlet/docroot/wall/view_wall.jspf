@@ -100,7 +100,16 @@
 		for (int i = 0; i < results.size(); i++) {
 			WallEntry wallEntry = results.get(i);
 
-			User wallUser = UserLocalServiceUtil.getUserById(wallEntry.getUserId());
+			User wallUser = null;
+
+			try {
+				wallUser = UserLocalServiceUtil.getUserById(wallEntry.getUserId());
+			}
+			catch (NoSuchUserException nsue) {
+				WallEntryLocalServiceUtil.deleteWallEntry(wallEntry.getWallEntryId());
+
+				continue;
+			}
 		%>
 
 			<c:if test="<%= i != 0 %>">
