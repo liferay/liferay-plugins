@@ -62,7 +62,7 @@ long classPK = ((Long)request.getAttribute("view.jsp-classPK")).longValue();
 
 			titleLink.attr(
 				{
-					'href': '<%= themeDisplay.getPortalURL() + "/document/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(fileEntry.getTitle()) %>'
+					'href': '<%= themeDisplay.getPathMain() %>/document_library/get_file?p_l_id=<%= themeDisplay.getPlid() %>&folderId=<%= fileEntry.getFolderId() %>&name=<%= HttpUtil.encodeURL(fileEntry.getName()) %>'
 				}
 			);
 		</script>
