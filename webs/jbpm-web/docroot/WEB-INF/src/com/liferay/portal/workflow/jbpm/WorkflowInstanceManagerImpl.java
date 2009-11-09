@@ -124,12 +124,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		try {
 			Token token = jbpmContext.loadToken(workflowInstanceId);
 
-			WorkflowInstanceImpl workflowInstanceImpl =
-				new WorkflowInstanceImpl(token);
-
-			populateChildrenWorkflowInstances(token, workflowInstanceImpl);
-
-			return workflowInstanceImpl;
+			return getWorkflowInstance(token);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -188,12 +183,9 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			for (ProcessInstance processInstance : processInstances) {
 				Token token = processInstance.getRootToken();
 
-				WorkflowInstanceImpl workflowInstanceImpl =
-					new WorkflowInstanceImpl(token);
+				WorkflowInstance workflowInstance = getWorkflowInstance(token);
 
-				populateChildrenWorkflowInstances(token, workflowInstanceImpl);
-
-				workflowInstances.add(workflowInstanceImpl);
+				workflowInstances.add(workflowInstance);
 			}
 
 			return workflowInstances;
@@ -243,7 +235,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 			jbpmContext.save(token);
 
-			return new WorkflowInstanceImpl(token);
+			return getWorkflowInstance(token);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -284,7 +276,9 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 			jbpmContext.save(processInstance);
 
-			return new WorkflowInstanceImpl(processInstance.getRootToken());
+			Token token = processInstance.getRootToken();
+
+			return getWorkflowInstance(token);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -317,7 +311,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				jbpmContext.save(token);
 			}
 
-			return new WorkflowInstanceImpl(token);
+			return getWorkflowInstance(token);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -352,6 +346,15 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		throw new WorkflowException(
 			"No workflow definition with name " + workflowDefinitionName +
 				" and version " + workflowDefinitionVersion);
+	}
+
+	protected WorkflowInstance getWorkflowInstance(Token token) {
+		WorkflowInstanceImpl workflowInstanceImpl =
+			new WorkflowInstanceImpl(token);
+
+		populateChildrenWorkflowInstances(token, workflowInstanceImpl);
+
+		return workflowInstanceImpl;
 	}
 
 	protected void populateChildrenWorkflowInstances(
