@@ -94,7 +94,7 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 			>
 				<div>
 					<div class="result-title">
-						<a href="<%= rowHREF %>"><%= _getFileEntryImage(fileEntry, themeDisplay) %><%= fileEntry.getTitle() %></a>
+						<a href="<%= rowHREF %>"><%= _getFileEntryImage(fileEntry, themeDisplay) %><%= fileEntry.getTitleWithExtension() %></a>
 					</div>
 
 					<div class="result-data">
