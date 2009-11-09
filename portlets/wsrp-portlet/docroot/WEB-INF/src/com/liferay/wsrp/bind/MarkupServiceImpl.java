@@ -283,8 +283,14 @@ public class MarkupServiceImpl
 		NamedString[] formParameters  = interactionParams.getFormParameters();
 
 		if (formParameters != null) {
+			MarkupParams markupParams =
+				performBlockingInteraction.getMarkupParams();
+
+			NavigationalContext navigationalContext =
+				markupParams.getNavigationalContext();
+
 			String namespace = PortalUtil.getPortletNamespace(
-				getPortletId(portletContext));
+				getPortletId(portletContext, navigationalContext));
 
 			for (NamedString formParameter : formParameters) {
 				httpOptions.addPart(
@@ -399,6 +405,30 @@ public class MarkupServiceImpl
 		return portletContext.getPortletHandle();
 	}
 
+	protected String getPortletId(PortletContext portletContext,
+			NavigationalContext navigationalContext)
+		throws Exception {
+
+		String portletId = getPortletId(portletContext);
+
+		String opaqueValue = null;
+
+		if (navigationalContext != null) {
+			opaqueValue = navigationalContext.getOpaqueValue();
+
+			Map<String, String[]> parameterMap =
+				HttpUtil.parameterMapFromString(opaqueValue);
+
+			if (parameterMap.containsKey(
+					_STRUTS_ACTION_PORTLET_CONFIGURATION)) {
+
+				portletId = PortletKeys.PORTLET_CONFIGURATION;
+			}
+		}
+
+		return portletId;
+	}
+
 	protected String getPortletMode(MarkupParams markupParams)
 		throws Exception {
 
@@ -445,25 +475,10 @@ public class MarkupServiceImpl
 		sb.append("p_l_id=");
 		sb.append(layout.getPlid());
 
-		String portletId = getPortletId(portletContext);
-
 		NavigationalContext navigationalContext =
 			markupParams.getNavigationalContext();
 
-		String opaqueValue = null;
-
-		if (navigationalContext != null) {
-			opaqueValue = navigationalContext.getOpaqueValue();
-
-			Map<String, String[]> parameterMap =
-				HttpUtil.parameterMapFromString(opaqueValue);
-
-			if (parameterMap.containsKey(
-					_STRUTS_ACTION_PORTLET_CONFIGURATION)) {
-
-				portletId = PortletKeys.PORTLET_CONFIGURATION;
-			}
-		}
+		String portletId = getPortletId(portletContext, navigationalContext);
 
 		sb.append("&p_p_id=");
 		sb.append(HttpUtil.encodeURL(portletId));
@@ -481,23 +496,30 @@ public class MarkupServiceImpl
 		sb.append("&p_p_mode=");
 		sb.append(HttpUtil.encodeURL(portletMode));
 
+		String opaqueValue = null;
+
+		if (navigationalContext != null) {
+			opaqueValue = navigationalContext.getOpaqueValue();
+		}
+
 		if (Validator.isNotNull(opaqueValue)) {
 			sb.append(StringPool.AMPERSAND);
 			sb.append(opaqueValue);
 		}
 
-		MessageElement[] formParameters = ExtensionUtil.getMessageElements(
-			markupParams.getExtensions());
+		if (lifecycle.equals("0")) {
+			MessageElement[] formParameters = ExtensionUtil.getMessageElements(
+				markupParams.getExtensions());
 
-		if (formParameters != null) {
-			String namespace = PortalUtil.getPortletNamespace(
-				getPortletId(portletContext));
+			if (formParameters != null) {
+				String namespace = PortalUtil.getPortletNamespace(portletId);
 
-			for (MessageElement formParameter : formParameters) {
-				sb.append(StringPool.AMPERSAND);
-				sb.append(namespace + formParameter.getName());
-				sb.append(StringPool.EQUAL);
-				sb.append(HttpUtil.encodeURL(formParameter.getValue()));
+				for (MessageElement formParameter : formParameters) {
+					sb.append(StringPool.AMPERSAND);
+					sb.append(namespace + formParameter.getName());
+					sb.append(StringPool.EQUAL);
+					sb.append(HttpUtil.encodeURL(formParameter.getValue()));
+				}
 			}
 		}
 
