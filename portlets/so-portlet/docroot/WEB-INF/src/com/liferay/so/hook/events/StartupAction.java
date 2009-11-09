@@ -51,7 +51,9 @@ import com.liferay.portlet.messageboards.model.MBCategory;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
+import com.liferay.so.util.PortletPropsValues;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -314,6 +316,28 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected void setupRuntime(long companyId) throws Exception {
+		List<Portlet> portlets = PortletLocalServiceUtil.getPortlets();
+
+		List<String> applicationsAllowed =
+			Arrays.asList(PortletPropsValues.APPLICATIONS_ALLOWED);
+
+		List<String> controlPanelItems =
+			Arrays.asList(PortletPropsValues.CONTROL_PANEL_ITEMS);
+
+		for (Portlet portlet : portlets) {
+			String portletId = portlet.getPortletId();
+
+			if (applicationsAllowed.contains(portletId)) {
+				portlet.setSystem(false);
+			}
+			else {
+				portlet.setSystem(true);
+			}
+
+			if (!controlPanelItems.contains(portletId)) {
+				portlet.setControlPanelEntryCategory(StringPool.BLANK);
+			}
+		}
 
 		// Directory portlet
 

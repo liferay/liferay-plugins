@@ -28,6 +28,12 @@ import com.liferay.util.portlet.PortletProps;
  */
  public class PortletPropsValues {
 
+	public static final String[] APPLICATIONS_ALLOWED =
+		PortletProps.getArray(PortletPropsKeys.APPLICATIONS_ALLOWED);
+
+	public static final String[] CONTROL_PANEL_ITEMS =
+		PortletProps.getArray(PortletPropsKeys.CONTROL_PANEL_ITEMS);
+
 	public static final String SITE_LAYOUT_TEMPLATE = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.SITE_LAYOUT_TEMPLATE));
 

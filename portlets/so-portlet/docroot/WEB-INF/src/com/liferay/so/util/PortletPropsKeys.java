@@ -24,6 +24,10 @@ package com.liferay.so.util;
  */
 public interface PortletPropsKeys {
 
+	public static final String APPLICATIONS_ALLOWED = "applications.allowed";
+
+	public static final String CONTROL_PANEL_ITEMS = "control.panel.items";
+
 	public static final String SITE_LAYOUT_PORTLETS = "site.layout.portlets.";
 
 	public static final String SITE_LAYOUT_TEMPLATE = "site.layout.template";

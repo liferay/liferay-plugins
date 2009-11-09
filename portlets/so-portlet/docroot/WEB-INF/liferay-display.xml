@@ -2,10 +2,10 @@
 <!DOCTYPE display PUBLIC "-//Liferay//DTD Display 5.2.0//EN" "http://www.liferay.com/dtd/liferay-display_5_2_0.dtd">
 
 <display>
-	<category name="category.social.office">
+	<category name="category.collaboration">
 		<portlet id="1" />
-		<portlet id="2" />
-		<portlet id="3" />
-		<portlet id="4" />
+	</category>
+	<category name="category.community">
+		<portlet id="1" />
 	</category>
 </display>
