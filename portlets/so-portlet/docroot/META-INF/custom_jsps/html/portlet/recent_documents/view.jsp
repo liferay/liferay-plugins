@@ -45,7 +45,7 @@ List<DLFileEntry> fileEntries = DLFileEntryLocalServiceUtil.getGroupFileEntries(
 
 			<tr>
 				<td>
-					<a href="<%= rowURL.toString() %>"><img align="left" border="0" src="<%= themeDisplay.getPathThemeImages() %>/document_library/<%= DLUtil.getFileExtension(fileEntry.getName()) %>.png" /><%= fileEntry.getTitleWithExtension() %></a>
+					<a href="<%= rowURL.toString() %>"><img align="left" border="0" src="<%= themeDisplay.getPathThemeImages() %>/document_library/<%= DLUtil.getFileExtension(fileEntry.getTitle()) %>.png" /><%= fileEntry.getTitle() %></a>
 				</td>
 			</tr>
 
