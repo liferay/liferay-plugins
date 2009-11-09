@@ -48,7 +48,7 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
 		ProcessDefinition processDefinition =
 			processInstance.getProcessDefinition();
 
-		_children = new ArrayList<WorkflowInstance>();
+		_childrenWorkflowInstances = new ArrayList<WorkflowInstance>();
 
 		_context = processInstance.getContextInstance().getVariables(token);
 
@@ -66,12 +66,14 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
 		_workflowInstanceId = token.getId();
 	}
 
-	public void addChild(WorkflowInstance child) {
-		_children.add(child);
+	public void addChildWorkflowInstance(
+		WorkflowInstance childWorkflowInstance) {
+
+		_childrenWorkflowInstances.add(childWorkflowInstance);
 	}
 
-	public List<WorkflowInstance> getChildren() {
-		return _children;
+	public List<WorkflowInstance> getChildrenWorkflowInstances() {
+		return _childrenWorkflowInstances;
 	}
 
 	public Map<String, Object> getContext() {
@@ -86,8 +88,8 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
 		return _endDate;
 	}
 
-	public WorkflowInstance getParent() {
-		return _parent;
+	public WorkflowInstance getParentWorkflowInstance() {
+		return _parentWorkflowInstance;
 	}
 
 	public Date getStartDate() {
@@ -106,15 +108,17 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
 		return _workflowInstanceId;
 	}
 
-	public void setParent(WorkflowInstance parent) {
-		_parent = parent;
+	public void setParentWorkflowInstance(
+		WorkflowInstance parentWorkflowInstance) {
+
+		_parentWorkflowInstance = parentWorkflowInstance;
 	}
 
-	private List<WorkflowInstance> _children;
+	private List<WorkflowInstance> _childrenWorkflowInstances;
 	private Map<String, Object> _context;
 	private String _currentNodeName;
 	private Date _endDate;
-	private WorkflowInstance _parent;
+	private WorkflowInstance _parentWorkflowInstance;
 	private Date _startDate;
 	private String _workflowDefinitionName;
 	private int _workflowDefinitionVersion;

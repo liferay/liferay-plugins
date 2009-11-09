@@ -377,9 +377,11 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				WorkflowInstanceImpl childWorkflowInstanceImpl =
 					new WorkflowInstanceImpl(childToken);
 
-				parentWorkflowInstanceImpl.addChild(childWorkflowInstanceImpl);
+				parentWorkflowInstanceImpl.addChildWorkflowInstance(
+					childWorkflowInstanceImpl);
 
-				childWorkflowInstanceImpl.setParent(parentWorkflowInstanceImpl);
+				childWorkflowInstanceImpl.setParentWorkflowInstance(
+					parentWorkflowInstanceImpl);
 
 				objectValuePairs.push(
 					new ObjectValuePair<Token, WorkflowInstanceImpl>(
