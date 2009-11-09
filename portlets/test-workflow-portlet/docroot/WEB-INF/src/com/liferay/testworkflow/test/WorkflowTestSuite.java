@@ -33,6 +33,9 @@ public class WorkflowTestSuite extends TestSuite {
 	public WorkflowTestSuite() {
 		addTestCase(WorkflowEngineManagerTestCase.class);
 		addTestCase(WorkflowDefinitionManagerTestCase.class);
+		addTestCase(WorkflowInstanceManagerTestCase.class);
+		addTestCase(WorkflowTaskManagerTestCase.class);
+		addTestCase(WorkflowLogManagerTestCase.class);
 	};
 
 }
