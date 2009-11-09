@@ -29,6 +29,7 @@ import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.Portlet;
+import com.liferay.portal.model.PortletApp;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
@@ -325,6 +326,12 @@ public class StartupAction extends SimpleAction {
 			Arrays.asList(PortletPropsValues.CONTROL_PANEL_ITEMS);
 
 		for (Portlet portlet : portlets) {
+			PortletApp portletApp = portlet.getPortletApp();
+
+			if (portletApp.isWARFile()) {
+				continue;
+			}
+
 			String portletId = portlet.getPortletId();
 
 			if (applicationsAllowed.contains(portletId)) {
