@@ -45,64 +45,70 @@ public class WorkflowLogManagerTestCase extends WorkflowTestCase {
 
 	public void setUp() throws Exception {
 		super.setUp();
+
 		_workflowDefinition =
 			WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-				user.getUserId(), DEFINITION_NAME_3,
+				defaultUserId, DEFINITION_NAME_3,
 				new ByteArrayInputStream(definitionBytes3));
 	}
 
 	public void tearDown() throws Exception {
+		super.tearDown();
 
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			user.getUserId(), DEFINITION_NAME_3,
+			defaultUserId, DEFINITION_NAME_3,
 			_workflowDefinition.getVersion());
-
 	}
 
 	public void testGetWorkflowLogCount() throws Exception {
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				user.getUserId(), _workflowDefinition.getName(),
+				defaultUserId, _workflowDefinition.getName(),
 				_workflowDefinition.getVersion(), null, null);
 
-		int countForRoot =
-			WorkflowLogManagerUtil.getWorkflowLogCount(
-				workflowInstance.getWorkflowInstanceId(), false);
-		assertTrue(countForRoot > 0);
+		int rootCount = WorkflowLogManagerUtil.getWorkflowLogCount(
+			workflowInstance.getWorkflowInstanceId(), false);
 
-		int countForAll =
-			WorkflowLogManagerUtil.getWorkflowLogCount(
-				workflowInstance.getWorkflowInstanceId(), true);
-		assertTrue(countForAll > 0);
+		assertTrue(rootCount > 0);
 
-		assertTrue(countForAll > countForRoot);
+		int allCount = WorkflowLogManagerUtil.getWorkflowLogCount(
+			workflowInstance.getWorkflowInstanceId(), true);
 
-		workflowInstance =
-			WorkflowInstanceManagerUtil.getWorkflowInstance(
-				workflowInstance.getWorkflowInstanceId());
+		assertTrue(allCount > 0);
+
+		assertTrue(allCount > rootCount);
 
 		List<WorkflowInstance> childrenWorkflowInstances =
-			workflowInstance.getChildren();
+			workflowInstance.getChildrenWorkflowInstances();
+
 		assertEquals(3, childrenWorkflowInstances.size());
 
-		int countForChild1 =
-			WorkflowLogManagerUtil.getWorkflowLogCount(
-				childrenWorkflowInstances.get(0).getWorkflowInstanceId(), true);
-		assertTrue(countForChild1 > 0);
+		WorkflowInstance childWorkflowInstance1 = childrenWorkflowInstances.get(
+			0);
 
-		int countForChild2 =
-			WorkflowLogManagerUtil.getWorkflowLogCount(
-				childrenWorkflowInstances.get(1).getWorkflowInstanceId(), true);
-		assertTrue(countForChild1 > 0);
+		int childCount1 = WorkflowLogManagerUtil.getWorkflowLogCount(
+			childWorkflowInstance1.getWorkflowInstanceId(), true);
 
-		int countForChild3 =
-			WorkflowLogManagerUtil.getWorkflowLogCount(
-				childrenWorkflowInstances.get(2).getWorkflowInstanceId(), true);
-		assertTrue(countForChild1 > 0);
+		assertTrue(childCount1 > 0);
+
+		WorkflowInstance childWorkflowInstance2 = childrenWorkflowInstances.get(
+			1);
+
+		int childCount2 = WorkflowLogManagerUtil.getWorkflowLogCount(
+			childWorkflowInstance2.getWorkflowInstanceId(), true);
+
+		assertTrue(childCount2 > 0);
+
+		WorkflowInstance childWorkflowInstance3 = childrenWorkflowInstances.get(
+			2);
+
+		int childCount3 = WorkflowLogManagerUtil.getWorkflowLogCount(
+			childWorkflowInstance3.getWorkflowInstanceId(), true);
+
+		assertTrue(childCount3 > 0);
 
 		assertEquals(
-			countForAll,
-			countForRoot + countForChild1 + countForChild2 + countForChild3);
+			allCount, rootCount + childCount1 + childCount2 + childCount3);
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
 			workflowInstance.getWorkflowInstanceId());
@@ -111,76 +117,95 @@ public class WorkflowLogManagerTestCase extends WorkflowTestCase {
 	public void testGetWorkflowLogs() throws Exception {
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				user.getUserId(), _workflowDefinition.getName(),
+				defaultUserId, _workflowDefinition.getName(),
 				_workflowDefinition.getVersion(), null, null);
 
-		long rootWorkflowInstanceId = workflowInstance.getWorkflowInstanceId();
-
-		List<WorkflowLog> logsForRoot =
+		List<WorkflowLog> rootWorkflowLogs =
 			WorkflowLogManagerUtil.getWorkflowLogs(
-				rootWorkflowInstanceId, false, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, new WorkflowLogCreateDateComparator(true));
-		assertTrue(logsForRoot.size() > 0);
+				workflowInstance.getWorkflowInstanceId(), false,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new WorkflowLogCreateDateComparator(true));
 
-		for(WorkflowLog log : logsForRoot) {
-			assertEquals(rootWorkflowInstanceId, log.getWorkflowInstanceId());
+		assertTrue(!rootWorkflowLogs.isEmpty());
+
+		for (WorkflowLog workflowLog : rootWorkflowLogs) {
+			assertEquals(
+				workflowInstance.getWorkflowInstanceId(),
+				workflowLog.getWorkflowInstanceId());
 		}
-		List<WorkflowLog> logsForAll =
+
+		List<WorkflowLog> allWorkflowLogs =
 			WorkflowLogManagerUtil.getWorkflowLogs(
-				rootWorkflowInstanceId, true, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, new WorkflowLogCreateDateComparator(true));
-		assertTrue(logsForAll.size() > 0);
+				workflowInstance.getWorkflowInstanceId(), true,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new WorkflowLogCreateDateComparator(true));
 
-		assertTrue(logsForAll.size() > logsForRoot.size());
-
-		workflowInstance =
-			WorkflowInstanceManagerUtil.getWorkflowInstance(
-				workflowInstance.getWorkflowInstanceId());
+		assertTrue(!allWorkflowLogs.isEmpty());
+		assertTrue(allWorkflowLogs.size() > rootWorkflowLogs.size());
 
 		List<WorkflowInstance> childrenWorkflowInstances =
-			workflowInstance.getChildren();
+			workflowInstance.getChildrenWorkflowInstances();
+
 		assertEquals(3, childrenWorkflowInstances.size());
 
-		long childWorkflowInstanceId1 =
-			childrenWorkflowInstances.get(0).getWorkflowInstanceId();
-		List<WorkflowLog> logsForChild1 =
+		WorkflowInstance childWorkflowInstance1 = childrenWorkflowInstances.get(
+			0);
+
+		List<WorkflowLog> childWorkflowLogs1 =
 			WorkflowLogManagerUtil.getWorkflowLogs(
-				childWorkflowInstanceId1, true, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, new WorkflowLogCreateDateComparator(true));
-		assertTrue(logsForChild1.size() > 0);
-		for(WorkflowLog log : logsForChild1) {
-			assertEquals(childWorkflowInstanceId1, log.getWorkflowInstanceId());
+				childWorkflowInstance1.getWorkflowInstanceId(), true,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new WorkflowLogCreateDateComparator(true));
+
+		assertTrue(!childWorkflowLogs1.isEmpty());
+
+		for (WorkflowLog workflowLog : childWorkflowLogs1) {
+			assertEquals(
+				childWorkflowInstance1.getWorkflowInstanceId(),
+				workflowLog.getWorkflowInstanceId());
 		}
 
-		long childWorkflowInstanceId2 =
-			childrenWorkflowInstances.get(1).getWorkflowInstanceId();
-		List<WorkflowLog> logsForChild2 =
+		WorkflowInstance childWorkflowInstance2 = childrenWorkflowInstances.get(
+			1);
+
+		List<WorkflowLog> childWorkflowLogs2 =
 			WorkflowLogManagerUtil.getWorkflowLogs(
-				childWorkflowInstanceId2, true, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, new WorkflowLogCreateDateComparator(true));
-		assertTrue(logsForChild2.size() > 0);
-		for(WorkflowLog log : logsForChild2) {
-			assertEquals(childWorkflowInstanceId2, log.getWorkflowInstanceId());
+				childWorkflowInstance2.getWorkflowInstanceId(), true,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new WorkflowLogCreateDateComparator(true));
+
+		assertTrue(!childWorkflowLogs2.isEmpty());
+
+		for (WorkflowLog workflowLog : childWorkflowLogs2) {
+			assertEquals(
+				childWorkflowInstance2.getWorkflowInstanceId(),
+				workflowLog.getWorkflowInstanceId());
 		}
 
-		long childWorkflowInstanceId3 =
-			childrenWorkflowInstances.get(2).getWorkflowInstanceId();
-		List<WorkflowLog> logsForChild3 =
+		WorkflowInstance childWorkflowInstance3 = childrenWorkflowInstances.get(
+			2);
+
+		List<WorkflowLog> childWorkflowLogs3 =
 			WorkflowLogManagerUtil.getWorkflowLogs(
-				childWorkflowInstanceId3, true, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, new WorkflowLogCreateDateComparator(true));
-		assertTrue(logsForChild3.size() > 0);
-		for(WorkflowLog log : logsForChild3) {
-			assertEquals(childWorkflowInstanceId3, log.getWorkflowInstanceId());
+				childWorkflowInstance3.getWorkflowInstanceId(), true,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new WorkflowLogCreateDateComparator(true));
+
+		assertTrue(!childWorkflowLogs2.isEmpty());
+
+		for (WorkflowLog workflowLog : childWorkflowLogs3) {
+			assertEquals(
+				childWorkflowInstance3.getWorkflowInstanceId(),
+				workflowLog.getWorkflowInstanceId());
 		}
 
 		assertEquals(
-			logsForAll.size(),
-			logsForRoot.size() + logsForChild1.size() + logsForChild2.size() +
-				logsForChild3.size());
+			allWorkflowLogs.size(),
+			rootWorkflowLogs.size() + childWorkflowLogs1.size() +
+				childWorkflowLogs2.size() + childWorkflowLogs3.size());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			rootWorkflowInstanceId);
+			workflowInstance.getWorkflowInstanceId());
 	}
 
 	private WorkflowDefinition _workflowDefinition;

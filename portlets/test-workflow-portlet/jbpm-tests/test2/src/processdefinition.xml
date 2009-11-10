@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <process-definition xmlns="urn:jbpm.org:jpdl-3.2" name="test2">
-	<description>Test Workflow Definition 2</description>
+	<description>Workflow Definition 2</description>
 	<swimlane name="testSwimlane1">
 		<assignment actor-id="100" />
 	</swimlane>

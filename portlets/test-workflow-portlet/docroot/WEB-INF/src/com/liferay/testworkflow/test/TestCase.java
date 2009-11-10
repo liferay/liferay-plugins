@@ -173,6 +173,12 @@ public class TestCase {
 		this.servletContext = servletContext;
 	}
 
+	public void setUp() throws Exception {
+	}
+
+	public void tearDown() throws Exception {
+	}
+
 	protected ServletContext servletContext;
 
 	private static final String _STATUS_FAILED = "FAILED";

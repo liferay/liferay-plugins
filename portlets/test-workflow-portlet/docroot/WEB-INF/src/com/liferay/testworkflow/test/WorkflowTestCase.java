@@ -38,9 +38,14 @@ import java.util.zip.ZipInputStream;
 public class WorkflowTestCase extends TestCase {
 
 	public void setUp() throws Exception {
+		super.setUp();
+
 		long companyId = PortalUtil.getDefaultCompanyId();
 
-		user = UserLocalServiceUtil.getDefaultUser(companyId);
+		defaultUser = UserLocalServiceUtil.getDefaultUser(companyId);
+		defaultUserId = defaultUser.getUserId();
+
+		guestRoleId = defaultUser.getRoleIds()[0];
 
 		ZipInputStream zipInputStream = new ZipInputStream(
 			servletContext.getResourceAsStream(
@@ -75,23 +80,21 @@ public class WorkflowTestCase extends TestCase {
 
 	}
 
-	protected static final String DEFINITION_NAME_1 =
-		"Test Workflow Definition 1";
+	protected static final String DEFINITION_NAME_1 = "Workflow Definition 1";
 
-	protected static final String DEFINITION_NAME_2 =
-		"Test Workflow Definition 2";
+	protected static final String DEFINITION_NAME_2 = "Workflow Definition 2";
 
-	protected static final String DEFINITION_NAME_3 =
-		"Test Workflow Definition 3";
+	protected static final String DEFINITION_NAME_3 = "Workflow Definition 3";
 
-	protected static final String DEFINITION_NAME_4 =
-		"Test Workflow Definition 4";
+	protected static final String DEFINITION_NAME_4 = "Workflow Definition 4";
 
 	protected byte[] definitionBytes1;
 	protected byte[] definitionBytes2;
 	protected byte[] definitionBytes3;
 	protected byte[] definitionBytes4;
-	protected User user;
+	protected long guestRoleId;
+	protected User defaultUser;
+	protected long defaultUserId;
 
 	private static final String _JAR_1 = "test1.jar";
 

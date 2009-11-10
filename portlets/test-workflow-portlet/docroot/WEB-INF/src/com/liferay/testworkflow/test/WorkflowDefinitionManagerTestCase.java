@@ -43,46 +43,46 @@ public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {
 
 	public void testDeployWorkflowDefinition() throws Exception {
 
-		// Test Workflow Definition 1
+		// Workflow definition 1
 
 		_workflowDefinition1_1 =
 			WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-				user.getUserId(), DEFINITION_NAME_1,
+				defaultUserId, DEFINITION_NAME_1,
 				new ByteArrayInputStream(definitionBytes1));
 
 		_workflowDefinition1_2 =
 			WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-				user.getUserId(), DEFINITION_NAME_1,
+				defaultUserId, DEFINITION_NAME_1,
 				new ByteArrayInputStream(definitionBytes1));
 
 		_workflowDefinition1_3 =
 			WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-				user.getUserId(), DEFINITION_NAME_1,
+				defaultUserId, DEFINITION_NAME_1,
 				new ByteArrayInputStream(definitionBytes1));
 
-		// Test Workflow Definition 2
+		// Workflow definition 2
 
 		_workflowDefinition2_1 =
 			WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-				user.getUserId(), DEFINITION_NAME_2,
+				defaultUserId, DEFINITION_NAME_2,
 				new ByteArrayInputStream(definitionBytes2));
 
 		_workflowDefinition2_2 =
 			WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-				user.getUserId(), DEFINITION_NAME_2,
+				defaultUserId, DEFINITION_NAME_2,
 				new ByteArrayInputStream(definitionBytes2));
 
-		// Test Workflow Definition 3
+		// Workflow definition 3
 
 		_workflowDefinition3_1 =
 			WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-				user.getUserId(), DEFINITION_NAME_3,
+				defaultUserId, DEFINITION_NAME_3,
 				new ByteArrayInputStream(definitionBytes3));
 	}
 
 	public void testGetWorkflowDefinition() throws Exception {
 
-		// Test Workflow Definition 1
+		// Workflow definition 1
 
 		// Version 1
 
@@ -135,7 +135,7 @@ public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {
 		catch (WorkflowException we) {
 		}
 
-		// Test Workflow Definition 2
+		// Workflow definition 2
 
 		// Version 1
 
@@ -175,7 +175,7 @@ public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {
 		catch (WorkflowException we) {
 		}
 
-		// Test Workflow Definition 3
+		// Workflow definition 3
 
 		// Version 1
 
@@ -228,7 +228,7 @@ public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {
 
 	public void testGetWorkflowDefinitions() throws Exception {
 
-		// Get all workflow definitions
+		// All workflow definitions
 
 		OrderByComparator orderByComparator =
 			new WorkflowDefinitionNameComparator();
@@ -239,7 +239,7 @@ public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(3, workflowDefinitions.size());
 
-		// Test Workflow Definition 3
+		// Workflow definition 3
 
 		WorkflowDefinition workflowDefinition3 = workflowDefinitions.get(0);
 
@@ -249,7 +249,7 @@ public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {
 		assertEquals(DEFINITION_NAME_3, name3);
 		assertEquals(_workflowDefinition3_1.getVersion(), version3);
 
-		// Test Workflow Definition 2
+		// Workflow definition 2
 
 		WorkflowDefinition workflowDefinition2 = workflowDefinitions.get(1);
 
@@ -259,7 +259,7 @@ public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {
 		assertEquals(DEFINITION_NAME_2, name2);
 		assertEquals(_workflowDefinition2_2.getVersion(), version2);
 
-		// Test Workflow Definition 1
+		// Workflow definition 1
 
 		WorkflowDefinition workflowDefinition1 = workflowDefinitions.get(2);
 
@@ -269,7 +269,7 @@ public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {
 		assertEquals(DEFINITION_NAME_1, name1);
 		assertEquals(_workflowDefinition1_3.getVersion(), version1);
 
-		// Get all workflow definitions by range
+		// All workflow definitions by range
 
 		workflowDefinitions =
 			WorkflowDefinitionManagerUtil.getWorkflowDefinitions(
@@ -277,7 +277,7 @@ public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(2, workflowDefinitions.size());
 
-		// Test Workflow Definition 3
+		// Workflow definition 3
 
 		workflowDefinition3 = workflowDefinitions.get(0);
 
@@ -287,7 +287,7 @@ public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {
 		assertEquals(DEFINITION_NAME_3, name3);
 		assertEquals(_workflowDefinition3_1.getVersion(), version3);
 
-		// Test Workflow Definition 2
+		// Workflow definition 2
 
 		workflowDefinition2 = workflowDefinitions.get(1);
 
@@ -300,7 +300,7 @@ public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {
 
 	public void testGetWorkflowDefinitionsByName() throws Exception {
 
-		// Get all workflow definitions with name Test Workflow Definition 1
+		// All versions of workflow definition 1
 
 		OrderByComparator orderByComparator =
 			new WorkflowDefinitionNameComparator();
@@ -345,8 +345,7 @@ public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {
 		assertEquals(DEFINITION_NAME_1, name1_1);
 		assertEquals(_workflowDefinition1_1.getVersion(), version1_1);
 
-		// Get all workflow definitions with name Test Workflow Definition 1 by
-		// range
+		// All versions of workflow definition 1 by range
 
 		workflowDefinitions =
 			WorkflowDefinitionManagerUtil.getWorkflowDefinitions(
@@ -376,34 +375,34 @@ public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {
 
 	public void testUndeployWorkflowDefinition() throws Exception {
 
-		// Test Workflow Definition 1
+		// Workflow definition 1
 
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			user.getUserId(), _workflowDefinition1_1.getName(),
+			defaultUserId, _workflowDefinition1_1.getName(),
 			_workflowDefinition1_1.getVersion());
 
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			user.getUserId(), _workflowDefinition1_2.getName(),
+			defaultUserId, _workflowDefinition1_2.getName(),
 			_workflowDefinition1_2.getVersion());
 
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			user.getUserId(), _workflowDefinition1_3.getName(),
+			defaultUserId, _workflowDefinition1_3.getName(),
 			_workflowDefinition1_3.getVersion());
 
-		// Test Workflow Definition 2
+		// Workflow definition 2
 
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			user.getUserId(), _workflowDefinition2_1.getName(),
+			defaultUserId, _workflowDefinition2_1.getName(),
 			_workflowDefinition2_1.getVersion());
 
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			user.getUserId(), _workflowDefinition2_2.getName(),
+			defaultUserId, _workflowDefinition2_2.getName(),
 			_workflowDefinition2_2.getVersion());
 
-		// Test Workflow Definition 3
+		// Workflow definition 3
 
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			user.getUserId(), _workflowDefinition3_1.getName(),
+			defaultUserId, _workflowDefinition3_1.getName(),
 			_workflowDefinition3_1.getVersion());
 
 		int count = WorkflowDefinitionManagerUtil.getWorkflowDefinitionCount();
