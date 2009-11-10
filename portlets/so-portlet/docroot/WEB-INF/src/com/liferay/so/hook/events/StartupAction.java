@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
@@ -54,10 +55,10 @@ import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.so.util.PortletPropsValues;
 
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 /**
  * <a href="StartupAction.java.html"><b><i>View Source</i></b></a>
@@ -317,13 +318,12 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected void setupRuntime(long companyId) throws Exception {
+		Set<String> applicationsAllowed = SetUtil.fromArray(
+			PortletPropsValues.APPLICATIONS_ALLOWED);
+		Set<String> controlPanelItems = SetUtil.fromArray(
+			PortletPropsValues.CONTROL_PANEL_ITEMS);
+
 		List<Portlet> portlets = PortletLocalServiceUtil.getPortlets();
-
-		List<String> applicationsAllowed =
-			Arrays.asList(PortletPropsValues.APPLICATIONS_ALLOWED);
-
-		List<String> controlPanelItems =
-			Arrays.asList(PortletPropsValues.CONTROL_PANEL_ITEMS);
 
 		for (Portlet portlet : portlets) {
 			PortletApp portletApp = portlet.getPortletApp();
