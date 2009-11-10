@@ -72,6 +72,10 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
 		_childrenWorkflowInstances.add(childWorkflowInstance);
 	}
 
+	public int getChildrenWorkflowInstanceCount() {
+		return _childrenWorkflowInstances.size();
+	}
+
 	public List<WorkflowInstance> getChildrenWorkflowInstances() {
 		return _childrenWorkflowInstances;
 	}
@@ -90,6 +94,15 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
 
 	public WorkflowInstance getParentWorkflowInstance() {
 		return _parentWorkflowInstance;
+	}
+
+	public long getParentWorkflowInstanceId() {
+		if (_parentWorkflowInstance != null) {
+			return _parentWorkflowInstance.getWorkflowInstanceId();
+		}
+		else {
+			return 0;
+		}
 	}
 
 	public Date getStartDate() {

@@ -30,9 +30,11 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManager;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowInstanceCurrentNodeNameComparator;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -391,6 +393,10 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 						childToken, childWorkflowInstanceImpl));
 			}
 		}
+
+		Collections.sort(
+			workflowInstanceImpl.getChildrenWorkflowInstances(),
+			new WorkflowInstanceCurrentNodeNameComparator(true));
 	}
 
 	private static Log _log =
