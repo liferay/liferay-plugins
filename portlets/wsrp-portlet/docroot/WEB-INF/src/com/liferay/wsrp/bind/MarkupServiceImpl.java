@@ -405,16 +405,15 @@ public class MarkupServiceImpl
 		return portletContext.getPortletHandle();
 	}
 
-	protected String getPortletId(PortletContext portletContext,
+	protected String getPortletId(
+			PortletContext portletContext,
 			NavigationalContext navigationalContext)
 		throws Exception {
 
 		String portletId = getPortletId(portletContext);
 
-		String opaqueValue = null;
-
 		if (navigationalContext != null) {
-			opaqueValue = navigationalContext.getOpaqueValue();
+			String opaqueValue = navigationalContext.getOpaqueValue();
 
 			Map<String, String[]> parameterMap =
 				HttpUtil.parameterMapFromString(opaqueValue);
