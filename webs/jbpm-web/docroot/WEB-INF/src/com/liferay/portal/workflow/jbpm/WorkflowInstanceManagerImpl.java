@@ -378,7 +378,13 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			WorkflowInstanceImpl parentWorkflowInstanceImpl =
 				objectValuePair.getValue();
 
-			for (Token childToken : parentToken.getChildren().values()) {
+			Map<String, Token> children = parentToken.getChildren();
+
+			if (children == null) {
+				continue;
+			}
+
+			for (Token childToken : children.values()) {
 				WorkflowInstanceImpl childWorkflowInstanceImpl =
 					new WorkflowInstanceImpl(childToken);
 
