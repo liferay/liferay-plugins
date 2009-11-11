@@ -18,7 +18,7 @@
 %>
 
 <%
-if (rootFolderId <= 0 || rootFolder == null) {
+if ((rootFolderId <= 0) || (rootFolder == null)) {
 	ServiceContext serviceContext = ServiceContextFactory.getInstance(DLFolder.class.getName(), renderRequest);
 
 	rootFolder = DLFolderLocalServiceUtil.addFolder(themeDisplay.getUserId(), scopeGroupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "Documents Home", "", serviceContext);
