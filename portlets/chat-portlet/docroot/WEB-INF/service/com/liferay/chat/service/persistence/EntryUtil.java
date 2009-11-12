@@ -22,12 +22,43 @@
 
 package com.liferay.chat.service.persistence;
 
+import com.liferay.chat.model.Entry;
+
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import java.util.List;
+
 /**
  * <a href="EntryUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class EntryUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static Entry remove(Entry entry) throws SystemException {
+		return getPersistence().remove(entry);
+	}
+
+	public static Entry update(Entry entry, boolean merge)
+		throws SystemException {
+		return getPersistence().update(entry, merge);
+	}
+
 	public static void cacheResult(com.liferay.chat.model.Entry entry) {
 		getPersistence().cacheResult(entry);
 	}
@@ -35,10 +66,6 @@ public class EntryUtil {
 	public static void cacheResult(
 		java.util.List<com.liferay.chat.model.Entry> entries) {
 		getPersistence().cacheResult(entries);
-	}
-
-	public static void clearCache() {
-		getPersistence().clearCache();
 	}
 
 	public static com.liferay.chat.model.Entry create(long entryId) {
@@ -49,24 +76,6 @@ public class EntryUtil {
 		throws com.liferay.chat.NoSuchEntryException,
 			com.liferay.portal.SystemException {
 		return getPersistence().remove(entryId);
-	}
-
-	public static com.liferay.chat.model.Entry remove(
-		com.liferay.chat.model.Entry entry)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(entry);
-	}
-
-	public static com.liferay.chat.model.Entry update(
-		com.liferay.chat.model.Entry entry)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(entry);
-	}
-
-	public static com.liferay.chat.model.Entry update(
-		com.liferay.chat.model.Entry entry, boolean merge)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(entry, merge);
 	}
 
 	public static com.liferay.chat.model.Entry updateImpl(
@@ -395,18 +404,6 @@ public class EntryUtil {
 			content, obc);
 	}
 
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
-	}
-
 	public static java.util.List<com.liferay.chat.model.Entry> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
@@ -502,6 +499,11 @@ public class EntryUtil {
 	}
 
 	public static EntryPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (EntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.chat.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					EntryPersistence.class.getName());
+		}
+
 		return _persistence;
 	}
 

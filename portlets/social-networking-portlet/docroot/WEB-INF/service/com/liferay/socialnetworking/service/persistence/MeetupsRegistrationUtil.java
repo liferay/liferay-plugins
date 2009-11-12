@@ -22,12 +22,45 @@
 
 package com.liferay.socialnetworking.service.persistence;
 
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import com.liferay.socialnetworking.model.MeetupsRegistration;
+
+import java.util.List;
+
 /**
  * <a href="MeetupsRegistrationUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class MeetupsRegistrationUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static MeetupsRegistration remove(
+		MeetupsRegistration meetupsRegistration) throws SystemException {
+		return getPersistence().remove(meetupsRegistration);
+	}
+
+	public static MeetupsRegistration update(
+		MeetupsRegistration meetupsRegistration, boolean merge)
+		throws SystemException {
+		return getPersistence().update(meetupsRegistration, merge);
+	}
+
 	public static void cacheResult(
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration) {
 		getPersistence().cacheResult(meetupsRegistration);
@@ -36,10 +69,6 @@ public class MeetupsRegistrationUtil {
 	public static void cacheResult(
 		java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> meetupsRegistrations) {
 		getPersistence().cacheResult(meetupsRegistrations);
-	}
-
-	public static void clearCache() {
-		getPersistence().clearCache();
 	}
 
 	public static com.liferay.socialnetworking.model.MeetupsRegistration create(
@@ -52,24 +81,6 @@ public class MeetupsRegistrationUtil {
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialnetworking.NoSuchMeetupsRegistrationException {
 		return getPersistence().remove(meetupsRegistrationId);
-	}
-
-	public static com.liferay.socialnetworking.model.MeetupsRegistration remove(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(meetupsRegistration);
-	}
-
-	public static com.liferay.socialnetworking.model.MeetupsRegistration update(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(meetupsRegistration);
-	}
-
-	public static com.liferay.socialnetworking.model.MeetupsRegistration update(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration,
-		boolean merge) throws com.liferay.portal.SystemException {
-		return getPersistence().update(meetupsRegistration, merge);
 	}
 
 	public static com.liferay.socialnetworking.model.MeetupsRegistration updateImpl(
@@ -201,18 +212,6 @@ public class MeetupsRegistrationUtil {
 			meetupsEntryId, status, obc);
 	}
 
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
-	}
-
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
@@ -269,6 +268,11 @@ public class MeetupsRegistrationUtil {
 	}
 
 	public static MeetupsRegistrationPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (MeetupsRegistrationPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialnetworking.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					MeetupsRegistrationPersistence.class.getName());
+		}
+
 		return _persistence;
 	}
 

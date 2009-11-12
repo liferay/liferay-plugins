@@ -22,6 +22,8 @@
 
 package com.liferay.chat.service.persistence;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+
 /**
  * <a href="EntryFinderUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -47,6 +49,11 @@ public class EntryFinderUtil {
 	}
 
 	public static EntryFinder getFinder() {
+		if (_finder == null) {
+			_finder = (EntryFinder)PortletBeanLocatorUtil.locate(com.liferay.chat.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					EntryFinder.class.getName());
+		}
+
 		return _finder;
 	}
 

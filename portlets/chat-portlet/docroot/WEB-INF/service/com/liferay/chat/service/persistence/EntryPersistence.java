@@ -22,6 +22,8 @@
 
 package com.liferay.chat.service.persistence;
 
+import com.liferay.chat.model.Entry;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -29,31 +31,17 @@ import com.liferay.portal.service.persistence.BasePersistence;
  *
  * @author Brian Wing Shun Chan
  */
-public interface EntryPersistence extends BasePersistence {
+public interface EntryPersistence extends BasePersistence<Entry> {
 	public void cacheResult(com.liferay.chat.model.Entry entry);
 
 	public void cacheResult(
 		java.util.List<com.liferay.chat.model.Entry> entries);
-
-	public void clearCache();
 
 	public com.liferay.chat.model.Entry create(long entryId);
 
 	public com.liferay.chat.model.Entry remove(long entryId)
 		throws com.liferay.chat.NoSuchEntryException,
 			com.liferay.portal.SystemException;
-
-	public com.liferay.chat.model.Entry remove(
-		com.liferay.chat.model.Entry entry)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.chat.model.Entry update(
-		com.liferay.chat.model.Entry entry)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.chat.model.Entry update(
-		com.liferay.chat.model.Entry entry, boolean merge)
-		throws com.liferay.portal.SystemException;
 
 	public com.liferay.chat.model.Entry updateImpl(
 		com.liferay.chat.model.Entry entry, boolean merge)
@@ -269,14 +257,6 @@ public interface EntryPersistence extends BasePersistence {
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.chat.NoSuchEntryException,
 			com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.chat.model.Entry> findAll()
 		throws com.liferay.portal.SystemException;

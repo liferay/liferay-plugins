@@ -25,8 +25,9 @@ package com.liferay.so.service.base;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.dao.db.DB;
+import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.so.model.MemberRequest;
 import com.liferay.so.service.MemberRequestLocalService;
@@ -142,19 +143,21 @@ public abstract class MemberRequestLocalServiceBaseImpl
 
 	protected void runSQL(String sql) throws SystemException {
 		try {
-			PortalUtil.runSQL(sql);
+			DB db = DBFactoryUtil.getDB();
+
+			db.runSQL(sql);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
 		}
 	}
 
-	@BeanReference(name = "com.liferay.so.service.MemberRequestLocalService.impl")
+	@BeanReference(name = "com.liferay.so.service.MemberRequestLocalService")
 	protected MemberRequestLocalService memberRequestLocalService;
-	@BeanReference(name = "com.liferay.so.service.persistence.MemberRequestPersistence.impl")
+	@BeanReference(name = "com.liferay.so.service.persistence.MemberRequestPersistence")
 	protected MemberRequestPersistence memberRequestPersistence;
-	@BeanReference(name = "com.liferay.so.service.ProjectsEntryLocalService.impl")
+	@BeanReference(name = "com.liferay.so.service.ProjectsEntryLocalService")
 	protected ProjectsEntryLocalService projectsEntryLocalService;
-	@BeanReference(name = "com.liferay.so.service.persistence.ProjectsEntryPersistence.impl")
+	@BeanReference(name = "com.liferay.so.service.persistence.ProjectsEntryPersistence")
 	protected ProjectsEntryPersistence projectsEntryPersistence;
 }

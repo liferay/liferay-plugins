@@ -25,8 +25,9 @@ package com.liferay.wsrp.service.base;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.dao.db.DB;
+import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.service.WSRPConsumerLocalService;
@@ -162,23 +163,25 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 
 	protected void runSQL(String sql) throws SystemException {
 		try {
-			PortalUtil.runSQL(sql);
+			DB db = DBFactoryUtil.getDB();
+
+			db.runSQL(sql);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
 		}
 	}
 
-	@BeanReference(name = "com.liferay.wsrp.service.WSRPConsumerLocalService.impl")
+	@BeanReference(name = "com.liferay.wsrp.service.WSRPConsumerLocalService")
 	protected WSRPConsumerLocalService wsrpConsumerLocalService;
-	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPConsumerPersistence.impl")
+	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPConsumerPersistence")
 	protected WSRPConsumerPersistence wsrpConsumerPersistence;
-	@BeanReference(name = "com.liferay.wsrp.service.WSRPConsumerPortletLocalService.impl")
+	@BeanReference(name = "com.liferay.wsrp.service.WSRPConsumerPortletLocalService")
 	protected WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService;
-	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPConsumerPortletPersistence.impl")
+	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPConsumerPortletPersistence")
 	protected WSRPConsumerPortletPersistence wsrpConsumerPortletPersistence;
-	@BeanReference(name = "com.liferay.wsrp.service.WSRPProducerLocalService.impl")
+	@BeanReference(name = "com.liferay.wsrp.service.WSRPProducerLocalService")
 	protected WSRPProducerLocalService wsrpProducerLocalService;
-	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPProducerPersistence.impl")
+	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPProducerPersistence")
 	protected WSRPProducerPersistence wsrpProducerPersistence;
 }

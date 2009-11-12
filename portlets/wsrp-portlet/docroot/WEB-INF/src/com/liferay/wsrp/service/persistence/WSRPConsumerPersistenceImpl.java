@@ -22,6 +22,7 @@
 
 package com.liferay.wsrp.service.persistence;
 
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
@@ -48,6 +49,8 @@ import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.model.impl.WSRPConsumerImpl;
 import com.liferay.wsrp.model.impl.WSRPConsumerModelImpl;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -57,7 +60,7 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  */
-public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
+public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsumer>
 	implements WSRPConsumerPersistence {
 	public static final String FINDER_CLASS_NAME_ENTITY = WSRPConsumerImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
@@ -114,6 +117,11 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 		wsrpConsumer.setPrimaryKey(wsrpConsumerId);
 
 		return wsrpConsumer;
+	}
+
+	public WSRPConsumer remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
 	}
 
 	public WSRPConsumer remove(long wsrpConsumerId)
@@ -202,43 +210,6 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 		return wsrpConsumer;
 	}
 
-	public WSRPConsumer update(WSRPConsumer wsrpConsumer)
-		throws SystemException {
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Using the deprecated update(WSRPConsumer wsrpConsumer) method. Use update(WSRPConsumer wsrpConsumer, boolean merge) instead.");
-		}
-
-		return update(wsrpConsumer, false);
-	}
-
-	public WSRPConsumer update(WSRPConsumer wsrpConsumer, boolean merge)
-		throws SystemException {
-		boolean isNew = wsrpConsumer.isNew();
-
-		for (ModelListener<WSRPConsumer> listener : listeners) {
-			if (isNew) {
-				listener.onBeforeCreate(wsrpConsumer);
-			}
-			else {
-				listener.onBeforeUpdate(wsrpConsumer);
-			}
-		}
-
-		wsrpConsumer = updateImpl(wsrpConsumer, merge);
-
-		for (ModelListener<WSRPConsumer> listener : listeners) {
-			if (isNew) {
-				listener.onAfterCreate(wsrpConsumer);
-			}
-			else {
-				listener.onAfterUpdate(wsrpConsumer);
-			}
-		}
-
-		return wsrpConsumer;
-	}
-
 	public WSRPConsumer updateImpl(
 		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer, boolean merge)
 		throws SystemException {
@@ -291,6 +262,11 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 		return wsrpConsumerImpl;
 	}
 
+	public WSRPConsumer findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
 	public WSRPConsumer findByPrimaryKey(long wsrpConsumerId)
 		throws NoSuchConsumerException, SystemException {
 		WSRPConsumer wsrpConsumer = fetchByPrimaryKey(wsrpConsumerId);
@@ -307,6 +283,11 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return wsrpConsumer;
+	}
+
+	public WSRPConsumer fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	public WSRPConsumer fetchByPrimaryKey(long wsrpConsumerId)
@@ -842,11 +823,11 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPConsumerPersistence.impl")
+	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPConsumerPersistence")
 	protected com.liferay.wsrp.service.persistence.WSRPConsumerPersistence wsrpConsumerPersistence;
-	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPConsumerPortletPersistence.impl")
+	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPConsumerPortletPersistence")
 	protected com.liferay.wsrp.service.persistence.WSRPConsumerPortletPersistence wsrpConsumerPortletPersistence;
-	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPProducerPersistence.impl")
+	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPProducerPersistence")
 	protected com.liferay.wsrp.service.persistence.WSRPProducerPersistence wsrpProducerPersistence;
 	private static Log _log = LogFactoryUtil.getLog(WSRPConsumerPersistenceImpl.class);
 }

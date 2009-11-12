@@ -22,6 +22,7 @@
 
 package com.liferay.twitter.service.persistence;
 
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
@@ -49,6 +50,8 @@ import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.model.impl.FeedImpl;
 import com.liferay.twitter.model.impl.FeedModelImpl;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -58,7 +61,7 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  */
-public class FeedPersistenceImpl extends BasePersistenceImpl
+public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	implements FeedPersistence {
 	public static final String FINDER_CLASS_NAME_ENTITY = FeedImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
@@ -116,6 +119,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 		feed.setPrimaryKey(feedId);
 
 		return feed;
+	}
+
+	public Feed remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
 	}
 
 	public Feed remove(long feedId) throws NoSuchFeedException, SystemException {
@@ -206,41 +214,6 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 		return feed;
 	}
 
-	public Feed update(Feed feed) throws SystemException {
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Using the deprecated update(Feed feed) method. Use update(Feed feed, boolean merge) instead.");
-		}
-
-		return update(feed, false);
-	}
-
-	public Feed update(Feed feed, boolean merge) throws SystemException {
-		boolean isNew = feed.isNew();
-
-		for (ModelListener<Feed> listener : listeners) {
-			if (isNew) {
-				listener.onBeforeCreate(feed);
-			}
-			else {
-				listener.onBeforeUpdate(feed);
-			}
-		}
-
-		feed = updateImpl(feed, merge);
-
-		for (ModelListener<Feed> listener : listeners) {
-			if (isNew) {
-				listener.onAfterCreate(feed);
-			}
-			else {
-				listener.onAfterUpdate(feed);
-			}
-		}
-
-		return feed;
-	}
-
 	public Feed updateImpl(com.liferay.twitter.model.Feed feed, boolean merge)
 		throws SystemException {
 		feed = toUnwrappedModel(feed);
@@ -319,6 +292,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 		return feedImpl;
 	}
 
+	public Feed findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
 	public Feed findByPrimaryKey(long feedId)
 		throws NoSuchFeedException, SystemException {
 		Feed feed = fetchByPrimaryKey(feedId);
@@ -333,6 +311,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return feed;
+	}
+
+	public Feed fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	public Feed fetchByPrimaryKey(long feedId) throws SystemException {
@@ -880,7 +863,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	@BeanReference(name = "com.liferay.twitter.service.persistence.FeedPersistence.impl")
+	@BeanReference(name = "com.liferay.twitter.service.persistence.FeedPersistence")
 	protected com.liferay.twitter.service.persistence.FeedPersistence feedPersistence;
 	private static Log _log = LogFactoryUtil.getLog(FeedPersistenceImpl.class);
 }

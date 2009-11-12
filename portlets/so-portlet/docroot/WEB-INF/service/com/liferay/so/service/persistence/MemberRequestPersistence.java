@@ -24,36 +24,24 @@ package com.liferay.so.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.so.model.MemberRequest;
+
 /**
  * <a href="MemberRequestPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public interface MemberRequestPersistence extends BasePersistence {
+public interface MemberRequestPersistence extends BasePersistence<MemberRequest> {
 	public void cacheResult(com.liferay.so.model.MemberRequest memberRequest);
 
 	public void cacheResult(
 		java.util.List<com.liferay.so.model.MemberRequest> memberRequests);
-
-	public void clearCache();
 
 	public com.liferay.so.model.MemberRequest create(long memberRequestId);
 
 	public com.liferay.so.model.MemberRequest remove(long memberRequestId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.so.NoSuchMemberRequestException;
-
-	public com.liferay.so.model.MemberRequest remove(
-		com.liferay.so.model.MemberRequest memberRequest)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.so.model.MemberRequest update(
-		com.liferay.so.model.MemberRequest memberRequest)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.so.model.MemberRequest update(
-		com.liferay.so.model.MemberRequest memberRequest, boolean merge)
-		throws com.liferay.portal.SystemException;
 
 	public com.liferay.so.model.MemberRequest updateImpl(
 		com.liferay.so.model.MemberRequest memberRequest, boolean merge)
@@ -150,14 +138,6 @@ public interface MemberRequestPersistence extends BasePersistence {
 	public com.liferay.so.model.MemberRequest fetchByG_R_S(long groupId,
 		long receiverUserId, int status, boolean retrieveFromCache)
 		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.so.model.MemberRequest> findAll()
 		throws com.liferay.portal.SystemException;

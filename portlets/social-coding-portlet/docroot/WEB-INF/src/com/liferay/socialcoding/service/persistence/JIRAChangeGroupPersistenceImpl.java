@@ -22,6 +22,7 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
@@ -48,6 +49,8 @@ import com.liferay.socialcoding.model.JIRAChangeGroup;
 import com.liferay.socialcoding.model.impl.JIRAChangeGroupImpl;
 import com.liferay.socialcoding.model.impl.JIRAChangeGroupModelImpl;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -58,7 +61,7 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  */
-public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
+public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChangeGroup>
 	implements JIRAChangeGroupPersistence {
 	public static final String FINDER_CLASS_NAME_ENTITY = JIRAChangeGroupImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
@@ -135,6 +138,11 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 		jiraChangeGroup.setPrimaryKey(jiraChangeGroupId);
 
 		return jiraChangeGroup;
+	}
+
+	public JIRAChangeGroup remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
 	}
 
 	public JIRAChangeGroup remove(long jiraChangeGroupId)
@@ -224,43 +232,6 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 		return jiraChangeGroup;
 	}
 
-	public JIRAChangeGroup update(JIRAChangeGroup jiraChangeGroup)
-		throws SystemException {
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Using the deprecated update(JIRAChangeGroup jiraChangeGroup) method. Use update(JIRAChangeGroup jiraChangeGroup, boolean merge) instead.");
-		}
-
-		return update(jiraChangeGroup, false);
-	}
-
-	public JIRAChangeGroup update(JIRAChangeGroup jiraChangeGroup, boolean merge)
-		throws SystemException {
-		boolean isNew = jiraChangeGroup.isNew();
-
-		for (ModelListener<JIRAChangeGroup> listener : listeners) {
-			if (isNew) {
-				listener.onBeforeCreate(jiraChangeGroup);
-			}
-			else {
-				listener.onBeforeUpdate(jiraChangeGroup);
-			}
-		}
-
-		jiraChangeGroup = updateImpl(jiraChangeGroup, merge);
-
-		for (ModelListener<JIRAChangeGroup> listener : listeners) {
-			if (isNew) {
-				listener.onAfterCreate(jiraChangeGroup);
-			}
-			else {
-				listener.onAfterUpdate(jiraChangeGroup);
-			}
-		}
-
-		return jiraChangeGroup;
-	}
-
 	public JIRAChangeGroup updateImpl(
 		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup,
 		boolean merge) throws SystemException {
@@ -309,6 +280,11 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 		return jiraChangeGroupImpl;
 	}
 
+	public JIRAChangeGroup findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
 	public JIRAChangeGroup findByPrimaryKey(long jiraChangeGroupId)
 		throws NoSuchJIRAChangeGroupException, SystemException {
 		JIRAChangeGroup jiraChangeGroup = fetchByPrimaryKey(jiraChangeGroupId);
@@ -325,6 +301,11 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return jiraChangeGroup;
+	}
+
+	public JIRAChangeGroup fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	public JIRAChangeGroup fetchByPrimaryKey(long jiraChangeGroupId)
@@ -1204,17 +1185,17 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAActionPersistence.impl")
+	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAActionPersistence")
 	protected com.liferay.socialcoding.service.persistence.JIRAActionPersistence jiraActionPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence.impl")
+	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence")
 	protected com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence jiraChangeGroupPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence.impl")
+	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence")
 	protected com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence jiraChangeItemPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAIssuePersistence.impl")
+	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAIssuePersistence")
 	protected com.liferay.socialcoding.service.persistence.JIRAIssuePersistence jiraIssuePersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence.impl")
+	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence")
 	protected com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence svnRepositoryPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRevisionPersistence.impl")
+	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRevisionPersistence")
 	protected com.liferay.socialcoding.service.persistence.SVNRevisionPersistence svnRevisionPersistence;
 	private static Log _log = LogFactoryUtil.getLog(JIRAChangeGroupPersistenceImpl.class);
 }

@@ -22,6 +22,8 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+
 /**
  * <a href="JIRAActionFinderUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -46,6 +48,11 @@ public class JIRAActionFinderUtil {
 	}
 
 	public static JIRAActionFinder getFinder() {
+		if (_finder == null) {
+			_finder = (JIRAActionFinder)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					JIRAActionFinder.class.getName());
+		}
+
 		return _finder;
 	}
 

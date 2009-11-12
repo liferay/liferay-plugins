@@ -102,7 +102,7 @@ public class JIRAActionLocalServiceUtil {
 	public static JIRAActionLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
-					JIRAActionLocalServiceUtil.class.getName());
+					JIRAActionLocalService.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 

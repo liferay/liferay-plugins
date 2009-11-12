@@ -22,12 +22,44 @@
 
 package com.liferay.so.service.persistence;
 
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import com.liferay.so.model.ProjectsEntry;
+
+import java.util.List;
+
 /**
  * <a href="ProjectsEntryUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class ProjectsEntryUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static ProjectsEntry remove(ProjectsEntry projectsEntry)
+		throws SystemException {
+		return getPersistence().remove(projectsEntry);
+	}
+
+	public static ProjectsEntry update(ProjectsEntry projectsEntry,
+		boolean merge) throws SystemException {
+		return getPersistence().update(projectsEntry, merge);
+	}
+
 	public static void cacheResult(
 		com.liferay.so.model.ProjectsEntry projectsEntry) {
 		getPersistence().cacheResult(projectsEntry);
@@ -36,10 +68,6 @@ public class ProjectsEntryUtil {
 	public static void cacheResult(
 		java.util.List<com.liferay.so.model.ProjectsEntry> projectsEntries) {
 		getPersistence().cacheResult(projectsEntries);
-	}
-
-	public static void clearCache() {
-		getPersistence().clearCache();
 	}
 
 	public static com.liferay.so.model.ProjectsEntry create(
@@ -52,24 +80,6 @@ public class ProjectsEntryUtil {
 		throws com.liferay.portal.SystemException,
 			com.liferay.so.NoSuchProjectsEntryException {
 		return getPersistence().remove(projectsEntryId);
-	}
-
-	public static com.liferay.so.model.ProjectsEntry remove(
-		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(projectsEntry);
-	}
-
-	public static com.liferay.so.model.ProjectsEntry update(
-		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(projectsEntry);
-	}
-
-	public static com.liferay.so.model.ProjectsEntry update(
-		com.liferay.so.model.ProjectsEntry projectsEntry, boolean merge)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(projectsEntry, merge);
 	}
 
 	public static com.liferay.so.model.ProjectsEntry updateImpl(
@@ -131,18 +141,6 @@ public class ProjectsEntryUtil {
 				   .findByUserId_PrevAndNext(projectsEntryId, userId, obc);
 	}
 
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
-	}
-
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
@@ -178,6 +176,11 @@ public class ProjectsEntryUtil {
 	}
 
 	public static ProjectsEntryPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (ProjectsEntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.so.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					ProjectsEntryPersistence.class.getName());
+		}
+
 		return _persistence;
 	}
 

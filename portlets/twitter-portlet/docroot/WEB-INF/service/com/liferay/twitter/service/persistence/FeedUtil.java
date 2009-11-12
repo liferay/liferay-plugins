@@ -22,12 +22,43 @@
 
 package com.liferay.twitter.service.persistence;
 
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import com.liferay.twitter.model.Feed;
+
+import java.util.List;
+
 /**
  * <a href="FeedUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class FeedUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static Feed remove(Feed feed) throws SystemException {
+		return getPersistence().remove(feed);
+	}
+
+	public static Feed update(Feed feed, boolean merge)
+		throws SystemException {
+		return getPersistence().update(feed, merge);
+	}
+
 	public static void cacheResult(com.liferay.twitter.model.Feed feed) {
 		getPersistence().cacheResult(feed);
 	}
@@ -35,10 +66,6 @@ public class FeedUtil {
 	public static void cacheResult(
 		java.util.List<com.liferay.twitter.model.Feed> feeds) {
 		getPersistence().cacheResult(feeds);
-	}
-
-	public static void clearCache() {
-		getPersistence().clearCache();
 	}
 
 	public static com.liferay.twitter.model.Feed create(long feedId) {
@@ -49,24 +76,6 @@ public class FeedUtil {
 		throws com.liferay.portal.SystemException,
 			com.liferay.twitter.NoSuchFeedException {
 		return getPersistence().remove(feedId);
-	}
-
-	public static com.liferay.twitter.model.Feed remove(
-		com.liferay.twitter.model.Feed feed)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(feed);
-	}
-
-	public static com.liferay.twitter.model.Feed update(
-		com.liferay.twitter.model.Feed feed)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(feed);
-	}
-
-	public static com.liferay.twitter.model.Feed update(
-		com.liferay.twitter.model.Feed feed, boolean merge)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(feed, merge);
 	}
 
 	public static com.liferay.twitter.model.Feed updateImpl(
@@ -126,18 +135,6 @@ public class FeedUtil {
 			retrieveFromCache);
 	}
 
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
-	}
-
 	public static java.util.List<com.liferay.twitter.model.Feed> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
@@ -187,6 +184,11 @@ public class FeedUtil {
 	}
 
 	public static FeedPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (FeedPersistence)PortletBeanLocatorUtil.locate(com.liferay.twitter.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					FeedPersistence.class.getName());
+		}
+
 		return _persistence;
 	}
 

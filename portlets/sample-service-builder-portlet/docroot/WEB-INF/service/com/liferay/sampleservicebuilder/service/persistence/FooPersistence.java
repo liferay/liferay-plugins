@@ -24,36 +24,24 @@ package com.liferay.sampleservicebuilder.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.sampleservicebuilder.model.Foo;
+
 /**
  * <a href="FooPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public interface FooPersistence extends BasePersistence {
+public interface FooPersistence extends BasePersistence<Foo> {
 	public void cacheResult(com.liferay.sampleservicebuilder.model.Foo foo);
 
 	public void cacheResult(
 		java.util.List<com.liferay.sampleservicebuilder.model.Foo> foos);
-
-	public void clearCache();
 
 	public com.liferay.sampleservicebuilder.model.Foo create(long fooId);
 
 	public com.liferay.sampleservicebuilder.model.Foo remove(long fooId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.sampleservicebuilder.NoSuchFooException;
-
-	public com.liferay.sampleservicebuilder.model.Foo remove(
-		com.liferay.sampleservicebuilder.model.Foo foo)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.sampleservicebuilder.model.Foo update(
-		com.liferay.sampleservicebuilder.model.Foo foo)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.sampleservicebuilder.model.Foo update(
-		com.liferay.sampleservicebuilder.model.Foo foo, boolean merge)
-		throws com.liferay.portal.SystemException;
 
 	public com.liferay.sampleservicebuilder.model.Foo updateImpl(
 		com.liferay.sampleservicebuilder.model.Foo foo, boolean merge)
@@ -94,14 +82,6 @@ public interface FooPersistence extends BasePersistence {
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.sampleservicebuilder.NoSuchFooException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> findAll()
 		throws com.liferay.portal.SystemException;

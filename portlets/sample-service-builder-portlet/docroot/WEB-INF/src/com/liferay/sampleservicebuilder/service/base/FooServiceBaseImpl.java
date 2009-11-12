@@ -24,8 +24,9 @@ package com.liferay.sampleservicebuilder.service.base;
 
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.dao.db.DB;
+import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.service.base.PrincipalBean;
-import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.sampleservicebuilder.service.FooLocalService;
 import com.liferay.sampleservicebuilder.service.FooService;
@@ -64,17 +65,19 @@ public abstract class FooServiceBaseImpl extends PrincipalBean
 
 	protected void runSQL(String sql) throws SystemException {
 		try {
-			PortalUtil.runSQL(sql);
+			DB db = DBFactoryUtil.getDB();
+
+			db.runSQL(sql);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
 		}
 	}
 
-	@BeanReference(name = "com.liferay.sampleservicebuilder.service.FooLocalService.impl")
+	@BeanReference(name = "com.liferay.sampleservicebuilder.service.FooLocalService")
 	protected FooLocalService fooLocalService;
-	@BeanReference(name = "com.liferay.sampleservicebuilder.service.FooService.impl")
+	@BeanReference(name = "com.liferay.sampleservicebuilder.service.FooService")
 	protected FooService fooService;
-	@BeanReference(name = "com.liferay.sampleservicebuilder.service.persistence.FooPersistence.impl")
+	@BeanReference(name = "com.liferay.sampleservicebuilder.service.persistence.FooPersistence")
 	protected FooPersistence fooPersistence;
 }

@@ -22,7 +22,7 @@
 
 package com.liferay.socialcoding;
 
-import com.liferay.portal.PortalException;
+import com.liferay.portal.NoSuchModelException;
 
 /**
  * <a href="NoSuchJIRAIssueException.java.html"><b><i>View Source</i></b></a>
@@ -30,7 +30,7 @@ import com.liferay.portal.PortalException;
  * @author Brian Wing Shun Chan
  *
  */
-public class NoSuchJIRAIssueException extends PortalException {
+public class NoSuchJIRAIssueException extends NoSuchModelException {
 
 	public NoSuchJIRAIssueException() {
 		super();

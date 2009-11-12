@@ -22,12 +22,42 @@
 
 package com.liferay.sampleservicebuilder.service.persistence;
 
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import com.liferay.sampleservicebuilder.model.Foo;
+
+import java.util.List;
+
 /**
  * <a href="FooUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class FooUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static Foo remove(Foo foo) throws SystemException {
+		return getPersistence().remove(foo);
+	}
+
+	public static Foo update(Foo foo, boolean merge) throws SystemException {
+		return getPersistence().update(foo, merge);
+	}
+
 	public static void cacheResult(
 		com.liferay.sampleservicebuilder.model.Foo foo) {
 		getPersistence().cacheResult(foo);
@@ -38,10 +68,6 @@ public class FooUtil {
 		getPersistence().cacheResult(foos);
 	}
 
-	public static void clearCache() {
-		getPersistence().clearCache();
-	}
-
 	public static com.liferay.sampleservicebuilder.model.Foo create(long fooId) {
 		return getPersistence().create(fooId);
 	}
@@ -50,24 +76,6 @@ public class FooUtil {
 		throws com.liferay.portal.SystemException,
 			com.liferay.sampleservicebuilder.NoSuchFooException {
 		return getPersistence().remove(fooId);
-	}
-
-	public static com.liferay.sampleservicebuilder.model.Foo remove(
-		com.liferay.sampleservicebuilder.model.Foo foo)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(foo);
-	}
-
-	public static com.liferay.sampleservicebuilder.model.Foo update(
-		com.liferay.sampleservicebuilder.model.Foo foo)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(foo);
-	}
-
-	public static com.liferay.sampleservicebuilder.model.Foo update(
-		com.liferay.sampleservicebuilder.model.Foo foo, boolean merge)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(foo, merge);
 	}
 
 	public static com.liferay.sampleservicebuilder.model.Foo updateImpl(
@@ -128,18 +136,6 @@ public class FooUtil {
 		return getPersistence().findByField2_PrevAndNext(fooId, field2, obc);
 	}
 
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
-	}
-
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
@@ -175,6 +171,11 @@ public class FooUtil {
 	}
 
 	public static FooPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (FooPersistence)PortletBeanLocatorUtil.locate(com.liferay.sampleservicebuilder.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					FooPersistence.class.getName());
+		}
+
 		return _persistence;
 	}
 

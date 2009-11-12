@@ -24,37 +24,25 @@ package com.liferay.socialcoding.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.socialcoding.model.JIRAAction;
+
 /**
  * <a href="JIRAActionPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public interface JIRAActionPersistence extends BasePersistence {
+public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	public void cacheResult(
 		com.liferay.socialcoding.model.JIRAAction jiraAction);
 
 	public void cacheResult(
 		java.util.List<com.liferay.socialcoding.model.JIRAAction> jiraActions);
 
-	public void clearCache();
-
 	public com.liferay.socialcoding.model.JIRAAction create(long jiraActionId);
 
 	public com.liferay.socialcoding.model.JIRAAction remove(long jiraActionId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAActionException;
-
-	public com.liferay.socialcoding.model.JIRAAction remove(
-		com.liferay.socialcoding.model.JIRAAction jiraAction)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.socialcoding.model.JIRAAction update(
-		com.liferay.socialcoding.model.JIRAAction jiraAction)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.socialcoding.model.JIRAAction update(
-		com.liferay.socialcoding.model.JIRAAction jiraAction, boolean merge)
-		throws com.liferay.portal.SystemException;
 
 	public com.liferay.socialcoding.model.JIRAAction updateImpl(
 		com.liferay.socialcoding.model.JIRAAction jiraAction, boolean merge)
@@ -155,14 +143,6 @@ public interface JIRAActionPersistence extends BasePersistence {
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAActionException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findAll()
 		throws com.liferay.portal.SystemException;

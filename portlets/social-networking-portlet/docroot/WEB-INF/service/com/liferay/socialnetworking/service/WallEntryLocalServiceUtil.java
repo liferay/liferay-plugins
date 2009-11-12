@@ -148,7 +148,7 @@ public class WallEntryLocalServiceUtil {
 	public static WallEntryLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
-					WallEntryLocalServiceUtil.class.getName());
+					WallEntryLocalService.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 

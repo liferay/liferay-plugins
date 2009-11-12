@@ -22,6 +22,8 @@
 
 package com.liferay.socialnetworking.service.persistence;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+
 /**
  * <a href="WallEntryFinderUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -43,6 +45,11 @@ public class WallEntryFinderUtil {
 	}
 
 	public static WallEntryFinder getFinder() {
+		if (_finder == null) {
+			_finder = (WallEntryFinder)PortletBeanLocatorUtil.locate(com.liferay.socialnetworking.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					WallEntryFinder.class.getName());
+		}
+
 		return _finder;
 	}
 

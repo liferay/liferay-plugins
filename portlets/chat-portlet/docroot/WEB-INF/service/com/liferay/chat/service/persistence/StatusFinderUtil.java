@@ -22,6 +22,8 @@
 
 package com.liferay.chat.service.persistence;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+
 /**
  * <a href="StatusFinderUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -49,6 +51,11 @@ public class StatusFinderUtil {
 	}
 
 	public static StatusFinder getFinder() {
+		if (_finder == null) {
+			_finder = (StatusFinder)PortletBeanLocatorUtil.locate(com.liferay.chat.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					StatusFinder.class.getName());
+		}
+
 		return _finder;
 	}
 

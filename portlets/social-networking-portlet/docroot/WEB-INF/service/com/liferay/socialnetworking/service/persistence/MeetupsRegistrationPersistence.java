@@ -24,20 +24,20 @@ package com.liferay.socialnetworking.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.socialnetworking.model.MeetupsRegistration;
+
 /**
  * <a href="MeetupsRegistrationPersistence.java.html"><b><i>View Source</i></b>
  * </a>
  *
  * @author Brian Wing Shun Chan
  */
-public interface MeetupsRegistrationPersistence extends BasePersistence {
+public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsRegistration> {
 	public void cacheResult(
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration);
 
 	public void cacheResult(
 		java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> meetupsRegistrations);
-
-	public void clearCache();
 
 	public com.liferay.socialnetworking.model.MeetupsRegistration create(
 		long meetupsRegistrationId);
@@ -46,18 +46,6 @@ public interface MeetupsRegistrationPersistence extends BasePersistence {
 		long meetupsRegistrationId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
-
-	public com.liferay.socialnetworking.model.MeetupsRegistration remove(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.socialnetworking.model.MeetupsRegistration update(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.socialnetworking.model.MeetupsRegistration update(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration,
-		boolean merge) throws com.liferay.portal.SystemException;
 
 	public com.liferay.socialnetworking.model.MeetupsRegistration updateImpl(
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration,
@@ -144,14 +132,6 @@ public interface MeetupsRegistrationPersistence extends BasePersistence {
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> findAll()
 		throws com.liferay.portal.SystemException;

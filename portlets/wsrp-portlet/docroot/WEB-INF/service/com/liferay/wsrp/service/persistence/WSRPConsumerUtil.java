@@ -22,12 +22,44 @@
 
 package com.liferay.wsrp.service.persistence;
 
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import com.liferay.wsrp.model.WSRPConsumer;
+
+import java.util.List;
+
 /**
  * <a href="WSRPConsumerUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class WSRPConsumerUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static WSRPConsumer remove(WSRPConsumer wsrpConsumer)
+		throws SystemException {
+		return getPersistence().remove(wsrpConsumer);
+	}
+
+	public static WSRPConsumer update(WSRPConsumer wsrpConsumer, boolean merge)
+		throws SystemException {
+		return getPersistence().update(wsrpConsumer, merge);
+	}
+
 	public static void cacheResult(
 		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer) {
 		getPersistence().cacheResult(wsrpConsumer);
@@ -36,10 +68,6 @@ public class WSRPConsumerUtil {
 	public static void cacheResult(
 		java.util.List<com.liferay.wsrp.model.WSRPConsumer> wsrpConsumers) {
 		getPersistence().cacheResult(wsrpConsumers);
-	}
-
-	public static void clearCache() {
-		getPersistence().clearCache();
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumer create(
@@ -52,24 +80,6 @@ public class WSRPConsumerUtil {
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchConsumerException {
 		return getPersistence().remove(wsrpConsumerId);
-	}
-
-	public static com.liferay.wsrp.model.WSRPConsumer remove(
-		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(wsrpConsumer);
-	}
-
-	public static com.liferay.wsrp.model.WSRPConsumer update(
-		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(wsrpConsumer);
-	}
-
-	public static com.liferay.wsrp.model.WSRPConsumer update(
-		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer, boolean merge)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(wsrpConsumer, merge);
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumer updateImpl(
@@ -131,18 +141,6 @@ public class WSRPConsumerUtil {
 				   .findByCompanyId_PrevAndNext(wsrpConsumerId, companyId, obc);
 	}
 
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
-	}
-
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
@@ -178,6 +176,11 @@ public class WSRPConsumerUtil {
 	}
 
 	public static WSRPConsumerPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (WSRPConsumerPersistence)PortletBeanLocatorUtil.locate(com.liferay.wsrp.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					WSRPConsumerPersistence.class.getName());
+		}
+
 		return _persistence;
 	}
 

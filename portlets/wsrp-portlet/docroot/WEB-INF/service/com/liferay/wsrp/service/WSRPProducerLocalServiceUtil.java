@@ -128,7 +128,7 @@ public class WSRPProducerLocalServiceUtil {
 	public static WSRPProducerLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
-					WSRPProducerLocalServiceUtil.class.getName());
+					WSRPProducerLocalService.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 

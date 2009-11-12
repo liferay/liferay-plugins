@@ -22,6 +22,7 @@
 
 package com.liferay.sampleservicebuilder.service.persistence;
 
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
@@ -48,6 +49,8 @@ import com.liferay.sampleservicebuilder.model.Foo;
 import com.liferay.sampleservicebuilder.model.impl.FooImpl;
 import com.liferay.sampleservicebuilder.model.impl.FooModelImpl;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -57,7 +60,7 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  */
-public class FooPersistenceImpl extends BasePersistenceImpl
+public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	implements FooPersistence {
 	public static final String FINDER_CLASS_NAME_ENTITY = FooImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
@@ -112,6 +115,11 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 		foo.setPrimaryKey(fooId);
 
 		return foo;
+	}
+
+	public Foo remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
 	}
 
 	public Foo remove(long fooId) throws NoSuchFooException, SystemException {
@@ -194,41 +202,6 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 		return foo;
 	}
 
-	public Foo update(Foo foo) throws SystemException {
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Using the deprecated update(Foo foo) method. Use update(Foo foo, boolean merge) instead.");
-		}
-
-		return update(foo, false);
-	}
-
-	public Foo update(Foo foo, boolean merge) throws SystemException {
-		boolean isNew = foo.isNew();
-
-		for (ModelListener<Foo> listener : listeners) {
-			if (isNew) {
-				listener.onBeforeCreate(foo);
-			}
-			else {
-				listener.onBeforeUpdate(foo);
-			}
-		}
-
-		foo = updateImpl(foo, merge);
-
-		for (ModelListener<Foo> listener : listeners) {
-			if (isNew) {
-				listener.onAfterCreate(foo);
-			}
-			else {
-				listener.onAfterUpdate(foo);
-			}
-		}
-
-		return foo;
-	}
-
 	public Foo updateImpl(com.liferay.sampleservicebuilder.model.Foo foo,
 		boolean merge) throws SystemException {
 		foo = toUnwrappedModel(foo);
@@ -277,6 +250,11 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 		return fooImpl;
 	}
 
+	public Foo findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
 	public Foo findByPrimaryKey(long fooId)
 		throws NoSuchFooException, SystemException {
 		Foo foo = fetchByPrimaryKey(fooId);
@@ -291,6 +269,11 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return foo;
+	}
+
+	public Foo fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	public Foo fetchByPrimaryKey(long fooId) throws SystemException {
@@ -812,7 +795,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	@BeanReference(name = "com.liferay.sampleservicebuilder.service.persistence.FooPersistence.impl")
+	@BeanReference(name = "com.liferay.sampleservicebuilder.service.persistence.FooPersistence")
 	protected com.liferay.sampleservicebuilder.service.persistence.FooPersistence fooPersistence;
 	private static Log _log = LogFactoryUtil.getLog(FooPersistenceImpl.class);
 }

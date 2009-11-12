@@ -22,6 +22,8 @@
 
 package com.liferay.chat.service.persistence;
 
+import com.liferay.chat.model.Status;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -29,31 +31,17 @@ import com.liferay.portal.service.persistence.BasePersistence;
  *
  * @author Brian Wing Shun Chan
  */
-public interface StatusPersistence extends BasePersistence {
+public interface StatusPersistence extends BasePersistence<Status> {
 	public void cacheResult(com.liferay.chat.model.Status status);
 
 	public void cacheResult(
 		java.util.List<com.liferay.chat.model.Status> statuses);
-
-	public void clearCache();
 
 	public com.liferay.chat.model.Status create(long statusId);
 
 	public com.liferay.chat.model.Status remove(long statusId)
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.SystemException;
-
-	public com.liferay.chat.model.Status remove(
-		com.liferay.chat.model.Status status)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.chat.model.Status update(
-		com.liferay.chat.model.Status status)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.chat.model.Status update(
-		com.liferay.chat.model.Status status, boolean merge)
-		throws com.liferay.portal.SystemException;
 
 	public com.liferay.chat.model.Status updateImpl(
 		com.liferay.chat.model.Status status, boolean merge)
@@ -160,14 +148,6 @@ public interface StatusPersistence extends BasePersistence {
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.chat.model.Status> findAll()
 		throws com.liferay.portal.SystemException;

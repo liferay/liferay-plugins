@@ -22,12 +22,44 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import com.liferay.socialcoding.model.SVNRepository;
+
+import java.util.List;
+
 /**
  * <a href="SVNRepositoryUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class SVNRepositoryUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static SVNRepository remove(SVNRepository svnRepository)
+		throws SystemException {
+		return getPersistence().remove(svnRepository);
+	}
+
+	public static SVNRepository update(SVNRepository svnRepository,
+		boolean merge) throws SystemException {
+		return getPersistence().update(svnRepository, merge);
+	}
+
 	public static void cacheResult(
 		com.liferay.socialcoding.model.SVNRepository svnRepository) {
 		getPersistence().cacheResult(svnRepository);
@@ -36,10 +68,6 @@ public class SVNRepositoryUtil {
 	public static void cacheResult(
 		java.util.List<com.liferay.socialcoding.model.SVNRepository> svnRepositories) {
 		getPersistence().cacheResult(svnRepositories);
-	}
-
-	public static void clearCache() {
-		getPersistence().clearCache();
 	}
 
 	public static com.liferay.socialcoding.model.SVNRepository create(
@@ -52,24 +80,6 @@ public class SVNRepositoryUtil {
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRepositoryException {
 		return getPersistence().remove(svnRepositoryId);
-	}
-
-	public static com.liferay.socialcoding.model.SVNRepository remove(
-		com.liferay.socialcoding.model.SVNRepository svnRepository)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(svnRepository);
-	}
-
-	public static com.liferay.socialcoding.model.SVNRepository update(
-		com.liferay.socialcoding.model.SVNRepository svnRepository)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(svnRepository);
-	}
-
-	public static com.liferay.socialcoding.model.SVNRepository update(
-		com.liferay.socialcoding.model.SVNRepository svnRepository,
-		boolean merge) throws com.liferay.portal.SystemException {
-		return getPersistence().update(svnRepository, merge);
 	}
 
 	public static com.liferay.socialcoding.model.SVNRepository updateImpl(
@@ -108,18 +118,6 @@ public class SVNRepositoryUtil {
 		return getPersistence().fetchByUrl(url, retrieveFromCache);
 	}
 
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
-	}
-
 	public static java.util.List<com.liferay.socialcoding.model.SVNRepository> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
@@ -156,6 +154,11 @@ public class SVNRepositoryUtil {
 	}
 
 	public static SVNRepositoryPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (SVNRepositoryPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					SVNRepositoryPersistence.class.getName());
+		}
+
 		return _persistence;
 	}
 

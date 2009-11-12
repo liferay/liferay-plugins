@@ -22,6 +22,7 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
@@ -49,6 +50,8 @@ import com.liferay.socialcoding.model.SVNRepository;
 import com.liferay.socialcoding.model.impl.SVNRepositoryImpl;
 import com.liferay.socialcoding.model.impl.SVNRepositoryModelImpl;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -59,7 +62,7 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  */
-public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
+public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNRepository>
 	implements SVNRepositoryPersistence {
 	public static final String FINDER_CLASS_NAME_ENTITY = SVNRepositoryImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
@@ -113,6 +116,11 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 		svnRepository.setPrimaryKey(svnRepositoryId);
 
 		return svnRepository;
+	}
+
+	public SVNRepository remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
 	}
 
 	public SVNRepository remove(long svnRepositoryId)
@@ -206,43 +214,6 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 		return svnRepository;
 	}
 
-	public SVNRepository update(SVNRepository svnRepository)
-		throws SystemException {
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Using the deprecated update(SVNRepository svnRepository) method. Use update(SVNRepository svnRepository, boolean merge) instead.");
-		}
-
-		return update(svnRepository, false);
-	}
-
-	public SVNRepository update(SVNRepository svnRepository, boolean merge)
-		throws SystemException {
-		boolean isNew = svnRepository.isNew();
-
-		for (ModelListener<SVNRepository> listener : listeners) {
-			if (isNew) {
-				listener.onBeforeCreate(svnRepository);
-			}
-			else {
-				listener.onBeforeUpdate(svnRepository);
-			}
-		}
-
-		svnRepository = updateImpl(svnRepository, merge);
-
-		for (ModelListener<SVNRepository> listener : listeners) {
-			if (isNew) {
-				listener.onAfterCreate(svnRepository);
-			}
-			else {
-				listener.onAfterUpdate(svnRepository);
-			}
-		}
-
-		return svnRepository;
-	}
-
 	public SVNRepository updateImpl(
 		com.liferay.socialcoding.model.SVNRepository svnRepository,
 		boolean merge) throws SystemException {
@@ -308,6 +279,11 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 		return svnRepositoryImpl;
 	}
 
+	public SVNRepository findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
 	public SVNRepository findByPrimaryKey(long svnRepositoryId)
 		throws NoSuchSVNRepositoryException, SystemException {
 		SVNRepository svnRepository = fetchByPrimaryKey(svnRepositoryId);
@@ -324,6 +300,11 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return svnRepository;
+	}
+
+	public SVNRepository fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	public SVNRepository fetchByPrimaryKey(long svnRepositoryId)
@@ -724,17 +705,17 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAActionPersistence.impl")
+	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAActionPersistence")
 	protected com.liferay.socialcoding.service.persistence.JIRAActionPersistence jiraActionPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence.impl")
+	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence")
 	protected com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence jiraChangeGroupPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence.impl")
+	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence")
 	protected com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence jiraChangeItemPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAIssuePersistence.impl")
+	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAIssuePersistence")
 	protected com.liferay.socialcoding.service.persistence.JIRAIssuePersistence jiraIssuePersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence.impl")
+	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence")
 	protected com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence svnRepositoryPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRevisionPersistence.impl")
+	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRevisionPersistence")
 	protected com.liferay.socialcoding.service.persistence.SVNRevisionPersistence svnRevisionPersistence;
 	private static Log _log = LogFactoryUtil.getLog(SVNRepositoryPersistenceImpl.class);
 }

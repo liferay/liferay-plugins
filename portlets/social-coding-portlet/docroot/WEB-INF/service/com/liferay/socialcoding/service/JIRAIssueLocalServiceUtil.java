@@ -245,7 +245,7 @@ public class JIRAIssueLocalServiceUtil {
 	public static JIRAIssueLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
-					JIRAIssueLocalServiceUtil.class.getName());
+					JIRAIssueLocalService.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 

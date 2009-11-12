@@ -22,12 +22,44 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import com.liferay.socialcoding.model.JIRAIssue;
+
+import java.util.List;
+
 /**
  * <a href="JIRAIssueUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class JIRAIssueUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static JIRAIssue remove(JIRAIssue jiraIssue)
+		throws SystemException {
+		return getPersistence().remove(jiraIssue);
+	}
+
+	public static JIRAIssue update(JIRAIssue jiraIssue, boolean merge)
+		throws SystemException {
+		return getPersistence().update(jiraIssue, merge);
+	}
+
 	public static void cacheResult(
 		com.liferay.socialcoding.model.JIRAIssue jiraIssue) {
 		getPersistence().cacheResult(jiraIssue);
@@ -36,10 +68,6 @@ public class JIRAIssueUtil {
 	public static void cacheResult(
 		java.util.List<com.liferay.socialcoding.model.JIRAIssue> jiraIssues) {
 		getPersistence().cacheResult(jiraIssues);
-	}
-
-	public static void clearCache() {
-		getPersistence().clearCache();
 	}
 
 	public static com.liferay.socialcoding.model.JIRAIssue create(
@@ -52,24 +80,6 @@ public class JIRAIssueUtil {
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAIssueException {
 		return getPersistence().remove(jiraIssueId);
-	}
-
-	public static com.liferay.socialcoding.model.JIRAIssue remove(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(jiraIssue);
-	}
-
-	public static com.liferay.socialcoding.model.JIRAIssue update(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(jiraIssue);
-	}
-
-	public static com.liferay.socialcoding.model.JIRAIssue update(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue, boolean merge)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(jiraIssue, merge);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAIssue updateImpl(
@@ -629,18 +639,6 @@ public class JIRAIssueUtil {
 			assigneeJiraUserId, status, obc);
 	}
 
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
-	}
-
 	public static java.util.List<com.liferay.socialcoding.model.JIRAIssue> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
@@ -799,6 +797,11 @@ public class JIRAIssueUtil {
 	}
 
 	public static JIRAIssuePersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (JIRAIssuePersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					JIRAIssuePersistence.class.getName());
+		}
+
 		return _persistence;
 	}
 

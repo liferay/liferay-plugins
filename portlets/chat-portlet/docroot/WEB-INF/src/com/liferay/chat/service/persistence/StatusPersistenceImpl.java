@@ -27,6 +27,7 @@ import com.liferay.chat.model.Status;
 import com.liferay.chat.model.impl.StatusImpl;
 import com.liferay.chat.model.impl.StatusModelImpl;
 
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
@@ -48,6 +49,8 @@ import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -57,7 +60,7 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  */
-public class StatusPersistenceImpl extends BasePersistenceImpl
+public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	implements StatusPersistence {
 	public static final String FINDER_CLASS_NAME_ENTITY = StatusImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
@@ -156,6 +159,11 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		return status;
 	}
 
+	public Status remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
+	}
+
 	public Status remove(long statusId)
 		throws NoSuchStatusException, SystemException {
 		Session session = null;
@@ -244,42 +252,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		return status;
 	}
 
-	public Status update(Status status) throws SystemException {
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Using the deprecated update(Status status) method. Use update(Status status, boolean merge) instead.");
-		}
-
-		return update(status, false);
-	}
-
-	public Status update(Status status, boolean merge)
-		throws SystemException {
-		boolean isNew = status.isNew();
-
-		for (ModelListener<Status> listener : listeners) {
-			if (isNew) {
-				listener.onBeforeCreate(status);
-			}
-			else {
-				listener.onBeforeUpdate(status);
-			}
-		}
-
-		status = updateImpl(status, merge);
-
-		for (ModelListener<Status> listener : listeners) {
-			if (isNew) {
-				listener.onAfterCreate(status);
-			}
-			else {
-				listener.onAfterUpdate(status);
-			}
-		}
-
-		return status;
-	}
-
 	public Status updateImpl(com.liferay.chat.model.Status status, boolean merge)
 		throws SystemException {
 		status = toUnwrappedModel(status);
@@ -346,6 +318,11 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		return statusImpl;
 	}
 
+	public Status findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
 	public Status findByPrimaryKey(long statusId)
 		throws NoSuchStatusException, SystemException {
 		Status status = fetchByPrimaryKey(statusId);
@@ -360,6 +337,11 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return status;
+	}
+
+	public Status fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	public Status fetchByPrimaryKey(long statusId) throws SystemException {
@@ -1638,9 +1620,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	@BeanReference(name = "com.liferay.chat.service.persistence.EntryPersistence.impl")
+	@BeanReference(name = "com.liferay.chat.service.persistence.EntryPersistence")
 	protected com.liferay.chat.service.persistence.EntryPersistence entryPersistence;
-	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence.impl")
+	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence")
 	protected com.liferay.chat.service.persistence.StatusPersistence statusPersistence;
 	private static Log _log = LogFactoryUtil.getLog(StatusPersistenceImpl.class);
 }

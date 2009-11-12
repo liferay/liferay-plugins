@@ -24,19 +24,19 @@ package com.liferay.socialcoding.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.socialcoding.model.JIRAChangeGroup;
+
 /**
  * <a href="JIRAChangeGroupPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public interface JIRAChangeGroupPersistence extends BasePersistence {
+public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGroup> {
 	public void cacheResult(
 		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup);
 
 	public void cacheResult(
 		java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> jiraChangeGroups);
-
-	public void clearCache();
 
 	public com.liferay.socialcoding.model.JIRAChangeGroup create(
 		long jiraChangeGroupId);
@@ -45,18 +45,6 @@ public interface JIRAChangeGroupPersistence extends BasePersistence {
 		long jiraChangeGroupId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
-
-	public com.liferay.socialcoding.model.JIRAChangeGroup remove(
-		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.socialcoding.model.JIRAChangeGroup update(
-		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.socialcoding.model.JIRAChangeGroup update(
-		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup,
-		boolean merge) throws com.liferay.portal.SystemException;
 
 	public com.liferay.socialcoding.model.JIRAChangeGroup updateImpl(
 		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup,
@@ -127,14 +115,6 @@ public interface JIRAChangeGroupPersistence extends BasePersistence {
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findAll()
 		throws com.liferay.portal.SystemException;

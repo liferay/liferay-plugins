@@ -108,7 +108,7 @@ public class JIRAChangeItemLocalServiceUtil {
 	public static JIRAChangeItemLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
-					JIRAChangeItemLocalServiceUtil.class.getName());
+					JIRAChangeItemLocalService.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 

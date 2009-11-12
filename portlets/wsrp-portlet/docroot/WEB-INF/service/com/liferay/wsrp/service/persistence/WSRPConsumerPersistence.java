@@ -24,36 +24,24 @@ package com.liferay.wsrp.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.wsrp.model.WSRPConsumer;
+
 /**
  * <a href="WSRPConsumerPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public interface WSRPConsumerPersistence extends BasePersistence {
+public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	public void cacheResult(com.liferay.wsrp.model.WSRPConsumer wsrpConsumer);
 
 	public void cacheResult(
 		java.util.List<com.liferay.wsrp.model.WSRPConsumer> wsrpConsumers);
-
-	public void clearCache();
 
 	public com.liferay.wsrp.model.WSRPConsumer create(long wsrpConsumerId);
 
 	public com.liferay.wsrp.model.WSRPConsumer remove(long wsrpConsumerId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchConsumerException;
-
-	public com.liferay.wsrp.model.WSRPConsumer remove(
-		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.wsrp.model.WSRPConsumer update(
-		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.wsrp.model.WSRPConsumer update(
-		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer, boolean merge)
-		throws com.liferay.portal.SystemException;
 
 	public com.liferay.wsrp.model.WSRPConsumer updateImpl(
 		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer, boolean merge)
@@ -94,14 +82,6 @@ public interface WSRPConsumerPersistence extends BasePersistence {
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchConsumerException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumer> findAll()
 		throws com.liferay.portal.SystemException;

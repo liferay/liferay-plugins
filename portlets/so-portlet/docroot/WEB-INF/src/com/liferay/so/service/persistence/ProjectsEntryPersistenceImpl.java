@@ -22,6 +22,7 @@
 
 package com.liferay.so.service.persistence;
 
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
@@ -48,6 +49,8 @@ import com.liferay.so.model.ProjectsEntry;
 import com.liferay.so.model.impl.ProjectsEntryImpl;
 import com.liferay.so.model.impl.ProjectsEntryModelImpl;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -58,7 +61,7 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  */
-public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl
+public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEntry>
 	implements ProjectsEntryPersistence {
 	public static final String FINDER_CLASS_NAME_ENTITY = ProjectsEntryImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
@@ -118,6 +121,11 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl
 		projectsEntry.setPrimaryKey(projectsEntryId);
 
 		return projectsEntry;
+	}
+
+	public ProjectsEntry remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
 	}
 
 	public ProjectsEntry remove(long projectsEntryId)
@@ -206,43 +214,6 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl
 		return projectsEntry;
 	}
 
-	public ProjectsEntry update(ProjectsEntry projectsEntry)
-		throws SystemException {
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Using the deprecated update(ProjectsEntry projectsEntry) method. Use update(ProjectsEntry projectsEntry, boolean merge) instead.");
-		}
-
-		return update(projectsEntry, false);
-	}
-
-	public ProjectsEntry update(ProjectsEntry projectsEntry, boolean merge)
-		throws SystemException {
-		boolean isNew = projectsEntry.isNew();
-
-		for (ModelListener<ProjectsEntry> listener : listeners) {
-			if (isNew) {
-				listener.onBeforeCreate(projectsEntry);
-			}
-			else {
-				listener.onBeforeUpdate(projectsEntry);
-			}
-		}
-
-		projectsEntry = updateImpl(projectsEntry, merge);
-
-		for (ModelListener<ProjectsEntry> listener : listeners) {
-			if (isNew) {
-				listener.onAfterCreate(projectsEntry);
-			}
-			else {
-				listener.onAfterUpdate(projectsEntry);
-			}
-		}
-
-		return projectsEntry;
-	}
-
 	public ProjectsEntry updateImpl(
 		com.liferay.so.model.ProjectsEntry projectsEntry, boolean merge)
 		throws SystemException {
@@ -298,6 +269,11 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl
 		return projectsEntryImpl;
 	}
 
+	public ProjectsEntry findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
 	public ProjectsEntry findByPrimaryKey(long projectsEntryId)
 		throws NoSuchProjectsEntryException, SystemException {
 		ProjectsEntry projectsEntry = fetchByPrimaryKey(projectsEntryId);
@@ -314,6 +290,11 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return projectsEntry;
+	}
+
+	public ProjectsEntry fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	public ProjectsEntry fetchByPrimaryKey(long projectsEntryId)
@@ -848,9 +829,9 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	@BeanReference(name = "com.liferay.so.service.persistence.MemberRequestPersistence.impl")
+	@BeanReference(name = "com.liferay.so.service.persistence.MemberRequestPersistence")
 	protected com.liferay.so.service.persistence.MemberRequestPersistence memberRequestPersistence;
-	@BeanReference(name = "com.liferay.so.service.persistence.ProjectsEntryPersistence.impl")
+	@BeanReference(name = "com.liferay.so.service.persistence.ProjectsEntryPersistence")
 	protected com.liferay.so.service.persistence.ProjectsEntryPersistence projectsEntryPersistence;
 	private static Log _log = LogFactoryUtil.getLog(ProjectsEntryPersistenceImpl.class);
 }

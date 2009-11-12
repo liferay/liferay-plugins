@@ -24,20 +24,20 @@ package com.liferay.wsrp.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.wsrp.model.WSRPConsumerPortlet;
+
 /**
  * <a href="WSRPConsumerPortletPersistence.java.html"><b><i>View Source</i></b>
  * </a>
  *
  * @author Brian Wing Shun Chan
  */
-public interface WSRPConsumerPortletPersistence extends BasePersistence {
+public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPConsumerPortlet> {
 	public void cacheResult(
 		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet);
 
 	public void cacheResult(
 		java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> wsrpConsumerPortlets);
-
-	public void clearCache();
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet create(
 		long wsrpConsumerPortletId);
@@ -46,18 +46,6 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence {
 		long wsrpConsumerPortletId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchConsumerPortletException;
-
-	public com.liferay.wsrp.model.WSRPConsumerPortlet remove(
-		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.wsrp.model.WSRPConsumerPortlet update(
-		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.wsrp.model.WSRPConsumerPortlet update(
-		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet,
-		boolean merge) throws com.liferay.portal.SystemException;
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet updateImpl(
 		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet,
@@ -100,14 +88,6 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence {
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchConsumerPortletException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findAll()
 		throws com.liferay.portal.SystemException;

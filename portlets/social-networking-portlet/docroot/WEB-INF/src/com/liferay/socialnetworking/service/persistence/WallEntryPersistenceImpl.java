@@ -22,6 +22,7 @@
 
 package com.liferay.socialnetworking.service.persistence;
 
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
@@ -48,6 +49,8 @@ import com.liferay.socialnetworking.model.WallEntry;
 import com.liferay.socialnetworking.model.impl.WallEntryImpl;
 import com.liferay.socialnetworking.model.impl.WallEntryModelImpl;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -57,7 +60,7 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  */
-public class WallEntryPersistenceImpl extends BasePersistenceImpl
+public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	implements WallEntryPersistence {
 	public static final String FINDER_CLASS_NAME_ENTITY = WallEntryImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
@@ -147,6 +150,11 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 		return wallEntry;
 	}
 
+	public WallEntry remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
+	}
+
 	public WallEntry remove(long wallEntryId)
 		throws NoSuchWallEntryException, SystemException {
 		Session session = null;
@@ -231,42 +239,6 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 		return wallEntry;
 	}
 
-	public WallEntry update(WallEntry wallEntry) throws SystemException {
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Using the deprecated update(WallEntry wallEntry) method. Use update(WallEntry wallEntry, boolean merge) instead.");
-		}
-
-		return update(wallEntry, false);
-	}
-
-	public WallEntry update(WallEntry wallEntry, boolean merge)
-		throws SystemException {
-		boolean isNew = wallEntry.isNew();
-
-		for (ModelListener<WallEntry> listener : listeners) {
-			if (isNew) {
-				listener.onBeforeCreate(wallEntry);
-			}
-			else {
-				listener.onBeforeUpdate(wallEntry);
-			}
-		}
-
-		wallEntry = updateImpl(wallEntry, merge);
-
-		for (ModelListener<WallEntry> listener : listeners) {
-			if (isNew) {
-				listener.onAfterCreate(wallEntry);
-			}
-			else {
-				listener.onAfterUpdate(wallEntry);
-			}
-		}
-
-		return wallEntry;
-	}
-
 	public WallEntry updateImpl(
 		com.liferay.socialnetworking.model.WallEntry wallEntry, boolean merge)
 		throws SystemException {
@@ -318,6 +290,11 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 		return wallEntryImpl;
 	}
 
+	public WallEntry findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
 	public WallEntry findByPrimaryKey(long wallEntryId)
 		throws NoSuchWallEntryException, SystemException {
 		WallEntry wallEntry = fetchByPrimaryKey(wallEntryId);
@@ -333,6 +310,11 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return wallEntry;
+	}
+
+	public WallEntry fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	public WallEntry fetchByPrimaryKey(long wallEntryId)
@@ -1508,11 +1490,11 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistence.impl")
+	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistence")
 	protected com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistence meetupsEntryPersistence;
-	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence.impl")
+	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence")
 	protected com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence meetupsRegistrationPersistence;
-	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.WallEntryPersistence.impl")
+	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.WallEntryPersistence")
 	protected com.liferay.socialnetworking.service.persistence.WallEntryPersistence wallEntryPersistence;
 	private static Log _log = LogFactoryUtil.getLog(WallEntryPersistenceImpl.class);
 }

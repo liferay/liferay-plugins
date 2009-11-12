@@ -22,7 +22,7 @@
 
 package com.liferay.socialnetworking;
 
-import com.liferay.portal.PortalException;
+import com.liferay.portal.NoSuchModelException;
 
 /**
  * <a href="NoSuchMeetupsRegistrationException.java.html"><b><i>View Source</i>
@@ -31,7 +31,7 @@ import com.liferay.portal.PortalException;
  * @author Brian Wing Shun Chan
  *
  */
-public class NoSuchMeetupsRegistrationException extends PortalException {
+public class NoSuchMeetupsRegistrationException extends NoSuchModelException {
 
 	public NoSuchMeetupsRegistrationException() {
 		super();

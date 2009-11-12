@@ -103,7 +103,7 @@ public class JIRAChangeGroupLocalServiceUtil {
 	public static JIRAChangeGroupLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
-					JIRAChangeGroupLocalServiceUtil.class.getName());
+					JIRAChangeGroupLocalService.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 

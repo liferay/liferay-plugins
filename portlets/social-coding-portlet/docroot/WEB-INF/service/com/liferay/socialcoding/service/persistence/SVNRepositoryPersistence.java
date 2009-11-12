@@ -24,19 +24,19 @@ package com.liferay.socialcoding.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.socialcoding.model.SVNRepository;
+
 /**
  * <a href="SVNRepositoryPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public interface SVNRepositoryPersistence extends BasePersistence {
+public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository> {
 	public void cacheResult(
 		com.liferay.socialcoding.model.SVNRepository svnRepository);
 
 	public void cacheResult(
 		java.util.List<com.liferay.socialcoding.model.SVNRepository> svnRepositories);
-
-	public void clearCache();
 
 	public com.liferay.socialcoding.model.SVNRepository create(
 		long svnRepositoryId);
@@ -45,18 +45,6 @@ public interface SVNRepositoryPersistence extends BasePersistence {
 		long svnRepositoryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRepositoryException;
-
-	public com.liferay.socialcoding.model.SVNRepository remove(
-		com.liferay.socialcoding.model.SVNRepository svnRepository)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.socialcoding.model.SVNRepository update(
-		com.liferay.socialcoding.model.SVNRepository svnRepository)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.socialcoding.model.SVNRepository update(
-		com.liferay.socialcoding.model.SVNRepository svnRepository,
-		boolean merge) throws com.liferay.portal.SystemException;
 
 	public com.liferay.socialcoding.model.SVNRepository updateImpl(
 		com.liferay.socialcoding.model.SVNRepository svnRepository,
@@ -81,14 +69,6 @@ public interface SVNRepositoryPersistence extends BasePersistence {
 	public com.liferay.socialcoding.model.SVNRepository fetchByUrl(
 		java.lang.String url, boolean retrieveFromCache)
 		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.socialcoding.model.SVNRepository> findAll()
 		throws com.liferay.portal.SystemException;

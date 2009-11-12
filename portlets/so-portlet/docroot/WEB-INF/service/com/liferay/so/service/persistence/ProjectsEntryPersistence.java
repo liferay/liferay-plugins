@@ -24,36 +24,24 @@ package com.liferay.so.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.so.model.ProjectsEntry;
+
 /**
  * <a href="ProjectsEntryPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public interface ProjectsEntryPersistence extends BasePersistence {
+public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry> {
 	public void cacheResult(com.liferay.so.model.ProjectsEntry projectsEntry);
 
 	public void cacheResult(
 		java.util.List<com.liferay.so.model.ProjectsEntry> projectsEntries);
-
-	public void clearCache();
 
 	public com.liferay.so.model.ProjectsEntry create(long projectsEntryId);
 
 	public com.liferay.so.model.ProjectsEntry remove(long projectsEntryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.so.NoSuchProjectsEntryException;
-
-	public com.liferay.so.model.ProjectsEntry remove(
-		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.so.model.ProjectsEntry update(
-		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.so.model.ProjectsEntry update(
-		com.liferay.so.model.ProjectsEntry projectsEntry, boolean merge)
-		throws com.liferay.portal.SystemException;
 
 	public com.liferay.so.model.ProjectsEntry updateImpl(
 		com.liferay.so.model.ProjectsEntry projectsEntry, boolean merge)
@@ -94,14 +82,6 @@ public interface ProjectsEntryPersistence extends BasePersistence {
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.so.NoSuchProjectsEntryException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.so.model.ProjectsEntry> findAll()
 		throws com.liferay.portal.SystemException;

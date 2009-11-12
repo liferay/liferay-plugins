@@ -22,7 +22,7 @@
 
 package com.liferay.wsrp;
 
-import com.liferay.portal.PortalException;
+import com.liferay.portal.NoSuchModelException;
 
 /**
  * <a href="NoSuchProducerException.java.html"><b><i>View Source</i></b></a>
@@ -30,7 +30,7 @@ import com.liferay.portal.PortalException;
  * @author Brian Wing Shun Chan
  *
  */
-public class NoSuchProducerException extends PortalException {
+public class NoSuchProducerException extends NoSuchModelException {
 
 	public NoSuchProducerException() {
 		super();

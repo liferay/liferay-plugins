@@ -27,6 +27,7 @@ import com.liferay.chat.model.Entry;
 import com.liferay.chat.model.impl.EntryImpl;
 import com.liferay.chat.model.impl.EntryModelImpl;
 
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
@@ -48,6 +49,8 @@ import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -57,7 +60,7 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  */
-public class EntryPersistenceImpl extends BasePersistenceImpl
+public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	implements EntryPersistence {
 	public static final String FINDER_CLASS_NAME_ENTITY = EntryImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
@@ -223,6 +226,11 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 		return entry;
 	}
 
+	public Entry remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
+	}
+
 	public Entry remove(long entryId)
 		throws NoSuchEntryException, SystemException {
 		Session session = null;
@@ -305,41 +313,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 		return entry;
 	}
 
-	public Entry update(Entry entry) throws SystemException {
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Using the deprecated update(Entry entry) method. Use update(Entry entry, boolean merge) instead.");
-		}
-
-		return update(entry, false);
-	}
-
-	public Entry update(Entry entry, boolean merge) throws SystemException {
-		boolean isNew = entry.isNew();
-
-		for (ModelListener<Entry> listener : listeners) {
-			if (isNew) {
-				listener.onBeforeCreate(entry);
-			}
-			else {
-				listener.onBeforeUpdate(entry);
-			}
-		}
-
-		entry = updateImpl(entry, merge);
-
-		for (ModelListener<Entry> listener : listeners) {
-			if (isNew) {
-				listener.onAfterCreate(entry);
-			}
-			else {
-				listener.onAfterUpdate(entry);
-			}
-		}
-
-		return entry;
-	}
-
 	public Entry updateImpl(com.liferay.chat.model.Entry entry, boolean merge)
 		throws SystemException {
 		entry = toUnwrappedModel(entry);
@@ -387,6 +360,11 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 		return entryImpl;
 	}
 
+	public Entry findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
 	public Entry findByPrimaryKey(long entryId)
 		throws NoSuchEntryException, SystemException {
 		Entry entry = fetchByPrimaryKey(entryId);
@@ -401,6 +379,11 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return entry;
+	}
+
+	public Entry fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	public Entry fetchByPrimaryKey(long entryId) throws SystemException {
@@ -3006,9 +2989,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	@BeanReference(name = "com.liferay.chat.service.persistence.EntryPersistence.impl")
+	@BeanReference(name = "com.liferay.chat.service.persistence.EntryPersistence")
 	protected com.liferay.chat.service.persistence.EntryPersistence entryPersistence;
-	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence.impl")
+	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence")
 	protected com.liferay.chat.service.persistence.StatusPersistence statusPersistence;
 	private static Log _log = LogFactoryUtil.getLog(EntryPersistenceImpl.class);
 }

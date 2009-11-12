@@ -22,12 +22,44 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import com.liferay.socialcoding.model.JIRAAction;
+
+import java.util.List;
+
 /**
  * <a href="JIRAActionUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class JIRAActionUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static JIRAAction remove(JIRAAction jiraAction)
+		throws SystemException {
+		return getPersistence().remove(jiraAction);
+	}
+
+	public static JIRAAction update(JIRAAction jiraAction, boolean merge)
+		throws SystemException {
+		return getPersistence().update(jiraAction, merge);
+	}
+
 	public static void cacheResult(
 		com.liferay.socialcoding.model.JIRAAction jiraAction) {
 		getPersistence().cacheResult(jiraAction);
@@ -36,10 +68,6 @@ public class JIRAActionUtil {
 	public static void cacheResult(
 		java.util.List<com.liferay.socialcoding.model.JIRAAction> jiraActions) {
 		getPersistence().cacheResult(jiraActions);
-	}
-
-	public static void clearCache() {
-		getPersistence().clearCache();
 	}
 
 	public static com.liferay.socialcoding.model.JIRAAction create(
@@ -52,24 +80,6 @@ public class JIRAActionUtil {
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAActionException {
 		return getPersistence().remove(jiraActionId);
-	}
-
-	public static com.liferay.socialcoding.model.JIRAAction remove(
-		com.liferay.socialcoding.model.JIRAAction jiraAction)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(jiraAction);
-	}
-
-	public static com.liferay.socialcoding.model.JIRAAction update(
-		com.liferay.socialcoding.model.JIRAAction jiraAction)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(jiraAction);
-	}
-
-	public static com.liferay.socialcoding.model.JIRAAction update(
-		com.liferay.socialcoding.model.JIRAAction jiraAction, boolean merge)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(jiraAction, merge);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAAction updateImpl(
@@ -216,18 +226,6 @@ public class JIRAActionUtil {
 		return getPersistence().findByType_PrevAndNext(jiraActionId, type, obc);
 	}
 
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
-	}
-
 	public static java.util.List<com.liferay.socialcoding.model.JIRAAction> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
@@ -283,6 +281,11 @@ public class JIRAActionUtil {
 	}
 
 	public static JIRAActionPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (JIRAActionPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					JIRAActionPersistence.class.getName());
+		}
+
 		return _persistence;
 	}
 

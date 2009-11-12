@@ -24,37 +24,25 @@ package com.liferay.socialcoding.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.socialcoding.model.SVNRevision;
+
 /**
  * <a href="SVNRevisionPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public interface SVNRevisionPersistence extends BasePersistence {
+public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	public void cacheResult(
 		com.liferay.socialcoding.model.SVNRevision svnRevision);
 
 	public void cacheResult(
 		java.util.List<com.liferay.socialcoding.model.SVNRevision> svnRevisions);
 
-	public void clearCache();
-
 	public com.liferay.socialcoding.model.SVNRevision create(long svnRevisionId);
 
 	public com.liferay.socialcoding.model.SVNRevision remove(long svnRevisionId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRevisionException;
-
-	public com.liferay.socialcoding.model.SVNRevision remove(
-		com.liferay.socialcoding.model.SVNRevision svnRevision)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.socialcoding.model.SVNRevision update(
-		com.liferay.socialcoding.model.SVNRevision svnRevision)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.socialcoding.model.SVNRevision update(
-		com.liferay.socialcoding.model.SVNRevision svnRevision, boolean merge)
-		throws com.liferay.portal.SystemException;
 
 	public com.liferay.socialcoding.model.SVNRevision updateImpl(
 		com.liferay.socialcoding.model.SVNRevision svnRevision, boolean merge)
@@ -158,14 +146,6 @@ public interface SVNRevisionPersistence extends BasePersistence {
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRevisionException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.socialcoding.model.SVNRevision> findAll()
 		throws com.liferay.portal.SystemException;

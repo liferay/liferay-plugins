@@ -22,12 +22,44 @@
 
 package com.liferay.socialnetworking.service.persistence;
 
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import com.liferay.socialnetworking.model.WallEntry;
+
+import java.util.List;
+
 /**
  * <a href="WallEntryUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class WallEntryUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static WallEntry remove(WallEntry wallEntry)
+		throws SystemException {
+		return getPersistence().remove(wallEntry);
+	}
+
+	public static WallEntry update(WallEntry wallEntry, boolean merge)
+		throws SystemException {
+		return getPersistence().update(wallEntry, merge);
+	}
+
 	public static void cacheResult(
 		com.liferay.socialnetworking.model.WallEntry wallEntry) {
 		getPersistence().cacheResult(wallEntry);
@@ -36,10 +68,6 @@ public class WallEntryUtil {
 	public static void cacheResult(
 		java.util.List<com.liferay.socialnetworking.model.WallEntry> wallEntries) {
 		getPersistence().cacheResult(wallEntries);
-	}
-
-	public static void clearCache() {
-		getPersistence().clearCache();
 	}
 
 	public static com.liferay.socialnetworking.model.WallEntry create(
@@ -52,24 +80,6 @@ public class WallEntryUtil {
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().remove(wallEntryId);
-	}
-
-	public static com.liferay.socialnetworking.model.WallEntry remove(
-		com.liferay.socialnetworking.model.WallEntry wallEntry)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(wallEntry);
-	}
-
-	public static com.liferay.socialnetworking.model.WallEntry update(
-		com.liferay.socialnetworking.model.WallEntry wallEntry)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(wallEntry);
-	}
-
-	public static com.liferay.socialnetworking.model.WallEntry update(
-		com.liferay.socialnetworking.model.WallEntry wallEntry, boolean merge)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(wallEntry, merge);
 	}
 
 	public static com.liferay.socialnetworking.model.WallEntry updateImpl(
@@ -215,18 +225,6 @@ public class WallEntryUtil {
 				   .findByG_U_PrevAndNext(wallEntryId, groupId, userId, obc);
 	}
 
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
-	}
-
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
@@ -282,6 +280,11 @@ public class WallEntryUtil {
 	}
 
 	public static WallEntryPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (WallEntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialnetworking.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					WallEntryPersistence.class.getName());
+		}
+
 		return _persistence;
 	}
 

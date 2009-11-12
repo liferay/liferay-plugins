@@ -22,12 +22,44 @@
 
 package com.liferay.wsrp.service.persistence;
 
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import com.liferay.wsrp.model.WSRPProducer;
+
+import java.util.List;
+
 /**
  * <a href="WSRPProducerUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class WSRPProducerUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static WSRPProducer remove(WSRPProducer wsrpProducer)
+		throws SystemException {
+		return getPersistence().remove(wsrpProducer);
+	}
+
+	public static WSRPProducer update(WSRPProducer wsrpProducer, boolean merge)
+		throws SystemException {
+		return getPersistence().update(wsrpProducer, merge);
+	}
+
 	public static void cacheResult(
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer) {
 		getPersistence().cacheResult(wsrpProducer);
@@ -36,10 +68,6 @@ public class WSRPProducerUtil {
 	public static void cacheResult(
 		java.util.List<com.liferay.wsrp.model.WSRPProducer> wsrpProducers) {
 		getPersistence().cacheResult(wsrpProducers);
-	}
-
-	public static void clearCache() {
-		getPersistence().clearCache();
 	}
 
 	public static com.liferay.wsrp.model.WSRPProducer create(
@@ -52,24 +80,6 @@ public class WSRPProducerUtil {
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchProducerException {
 		return getPersistence().remove(wsrpProducerId);
-	}
-
-	public static com.liferay.wsrp.model.WSRPProducer remove(
-		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(wsrpProducer);
-	}
-
-	public static com.liferay.wsrp.model.WSRPProducer update(
-		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(wsrpProducer);
-	}
-
-	public static com.liferay.wsrp.model.WSRPProducer update(
-		com.liferay.wsrp.model.WSRPProducer wsrpProducer, boolean merge)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(wsrpProducer, merge);
 	}
 
 	public static com.liferay.wsrp.model.WSRPProducer updateImpl(
@@ -131,18 +141,6 @@ public class WSRPProducerUtil {
 				   .findByCompanyId_PrevAndNext(wsrpProducerId, companyId, obc);
 	}
 
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
-	}
-
 	public static java.util.List<com.liferay.wsrp.model.WSRPProducer> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
@@ -178,6 +176,11 @@ public class WSRPProducerUtil {
 	}
 
 	public static WSRPProducerPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (WSRPProducerPersistence)PortletBeanLocatorUtil.locate(com.liferay.wsrp.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					WSRPProducerPersistence.class.getName());
+		}
+
 		return _persistence;
 	}
 

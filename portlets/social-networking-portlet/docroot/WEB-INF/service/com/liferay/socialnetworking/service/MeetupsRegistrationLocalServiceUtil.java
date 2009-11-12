@@ -131,7 +131,7 @@ public class MeetupsRegistrationLocalServiceUtil {
 	public static MeetupsRegistrationLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
-					MeetupsRegistrationLocalServiceUtil.class.getName());
+					MeetupsRegistrationLocalService.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 

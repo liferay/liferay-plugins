@@ -140,7 +140,7 @@ public class MeetupsEntryLocalServiceUtil {
 	public static MeetupsEntryLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
-					MeetupsEntryLocalServiceUtil.class.getName());
+					MeetupsEntryLocalService.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 

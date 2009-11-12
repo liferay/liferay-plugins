@@ -33,8 +33,9 @@ import com.liferay.chat.service.persistence.StatusPersistence;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.dao.db.DB;
+import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.util.PortalUtil;
 
 import java.util.List;
 
@@ -148,23 +149,25 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService {
 
 	protected void runSQL(String sql) throws SystemException {
 		try {
-			PortalUtil.runSQL(sql);
+			DB db = DBFactoryUtil.getDB();
+
+			db.runSQL(sql);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
 		}
 	}
 
-	@BeanReference(name = "com.liferay.chat.service.EntryLocalService.impl")
+	@BeanReference(name = "com.liferay.chat.service.EntryLocalService")
 	protected EntryLocalService entryLocalService;
-	@BeanReference(name = "com.liferay.chat.service.persistence.EntryPersistence.impl")
+	@BeanReference(name = "com.liferay.chat.service.persistence.EntryPersistence")
 	protected EntryPersistence entryPersistence;
-	@BeanReference(name = "com.liferay.chat.service.persistence.EntryFinder.impl")
+	@BeanReference(name = "com.liferay.chat.service.persistence.EntryFinder")
 	protected EntryFinder entryFinder;
-	@BeanReference(name = "com.liferay.chat.service.StatusLocalService.impl")
+	@BeanReference(name = "com.liferay.chat.service.StatusLocalService")
 	protected StatusLocalService statusLocalService;
-	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence.impl")
+	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence")
 	protected StatusPersistence statusPersistence;
-	@BeanReference(name = "com.liferay.chat.service.persistence.StatusFinder.impl")
+	@BeanReference(name = "com.liferay.chat.service.persistence.StatusFinder")
 	protected StatusFinder statusFinder;
 }

@@ -116,7 +116,7 @@ public class SVNRepositoryLocalServiceUtil {
 	public static SVNRepositoryLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
-					SVNRepositoryLocalServiceUtil.class.getName());
+					SVNRepositoryLocalService.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 

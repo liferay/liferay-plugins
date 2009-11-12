@@ -22,7 +22,7 @@
 
 package com.liferay.chat;
 
-import com.liferay.portal.PortalException;
+import com.liferay.portal.NoSuchModelException;
 
 /**
  * <a href="NoSuchEntryException.java.html"><b><i>View Source</i></b></a>
@@ -30,7 +30,7 @@ import com.liferay.portal.PortalException;
  * @author Brian Wing Shun Chan
  *
  */
-public class NoSuchEntryException extends PortalException {
+public class NoSuchEntryException extends NoSuchModelException {
 
 	public NoSuchEntryException() {
 		super();

@@ -149,7 +149,7 @@ public class WSRPConsumerLocalServiceUtil {
 	public static WSRPConsumerLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
-					WSRPConsumerLocalServiceUtil.class.getName());
+					WSRPConsumerLocalService.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 

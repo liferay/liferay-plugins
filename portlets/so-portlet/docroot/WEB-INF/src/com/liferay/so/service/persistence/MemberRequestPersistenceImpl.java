@@ -22,6 +22,7 @@
 
 package com.liferay.so.service.persistence;
 
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
@@ -49,6 +50,8 @@ import com.liferay.so.model.MemberRequest;
 import com.liferay.so.model.impl.MemberRequestImpl;
 import com.liferay.so.model.impl.MemberRequestModelImpl;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -59,7 +62,7 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  */
-public class MemberRequestPersistenceImpl extends BasePersistenceImpl
+public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequest>
 	implements MemberRequestPersistence {
 	public static final String FINDER_CLASS_NAME_ENTITY = MemberRequestImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
@@ -170,6 +173,11 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl
 		return memberRequest;
 	}
 
+	public MemberRequest remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
+	}
+
 	public MemberRequest remove(long memberRequestId)
 		throws NoSuchMemberRequestException, SystemException {
 		Session session = null;
@@ -264,43 +272,6 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl
 
 		EntityCacheUtil.removeResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
 			MemberRequestImpl.class, memberRequest.getPrimaryKey());
-
-		return memberRequest;
-	}
-
-	public MemberRequest update(MemberRequest memberRequest)
-		throws SystemException {
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Using the deprecated update(MemberRequest memberRequest) method. Use update(MemberRequest memberRequest, boolean merge) instead.");
-		}
-
-		return update(memberRequest, false);
-	}
-
-	public MemberRequest update(MemberRequest memberRequest, boolean merge)
-		throws SystemException {
-		boolean isNew = memberRequest.isNew();
-
-		for (ModelListener<MemberRequest> listener : listeners) {
-			if (isNew) {
-				listener.onBeforeCreate(memberRequest);
-			}
-			else {
-				listener.onBeforeUpdate(memberRequest);
-			}
-		}
-
-		memberRequest = updateImpl(memberRequest, merge);
-
-		for (ModelListener<MemberRequest> listener : listeners) {
-			if (isNew) {
-				listener.onAfterCreate(memberRequest);
-			}
-			else {
-				listener.onAfterUpdate(memberRequest);
-			}
-		}
 
 		return memberRequest;
 	}
@@ -401,6 +372,11 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl
 		return memberRequestImpl;
 	}
 
+	public MemberRequest findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
 	public MemberRequest findByPrimaryKey(long memberRequestId)
 		throws NoSuchMemberRequestException, SystemException {
 		MemberRequest memberRequest = fetchByPrimaryKey(memberRequestId);
@@ -417,6 +393,11 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return memberRequest;
+	}
+
+	public MemberRequest fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	public MemberRequest fetchByPrimaryKey(long memberRequestId)
@@ -1686,9 +1667,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	@BeanReference(name = "com.liferay.so.service.persistence.MemberRequestPersistence.impl")
+	@BeanReference(name = "com.liferay.so.service.persistence.MemberRequestPersistence")
 	protected com.liferay.so.service.persistence.MemberRequestPersistence memberRequestPersistence;
-	@BeanReference(name = "com.liferay.so.service.persistence.ProjectsEntryPersistence.impl")
+	@BeanReference(name = "com.liferay.so.service.persistence.ProjectsEntryPersistence")
 	protected com.liferay.so.service.persistence.ProjectsEntryPersistence projectsEntryPersistence;
 	private static Log _log = LogFactoryUtil.getLog(MemberRequestPersistenceImpl.class);
 }

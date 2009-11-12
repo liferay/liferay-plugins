@@ -139,7 +139,7 @@ public class ProjectsEntryLocalServiceUtil {
 	public static ProjectsEntryLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
-					ProjectsEntryLocalServiceUtil.class.getName());
+					ProjectsEntryLocalService.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 

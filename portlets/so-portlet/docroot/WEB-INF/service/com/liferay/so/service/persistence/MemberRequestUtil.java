@@ -22,12 +22,44 @@
 
 package com.liferay.so.service.persistence;
 
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import com.liferay.so.model.MemberRequest;
+
+import java.util.List;
+
 /**
  * <a href="MemberRequestUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class MemberRequestUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static MemberRequest remove(MemberRequest memberRequest)
+		throws SystemException {
+		return getPersistence().remove(memberRequest);
+	}
+
+	public static MemberRequest update(MemberRequest memberRequest,
+		boolean merge) throws SystemException {
+		return getPersistence().update(memberRequest, merge);
+	}
+
 	public static void cacheResult(
 		com.liferay.so.model.MemberRequest memberRequest) {
 		getPersistence().cacheResult(memberRequest);
@@ -36,10 +68,6 @@ public class MemberRequestUtil {
 	public static void cacheResult(
 		java.util.List<com.liferay.so.model.MemberRequest> memberRequests) {
 		getPersistence().cacheResult(memberRequests);
-	}
-
-	public static void clearCache() {
-		getPersistence().clearCache();
 	}
 
 	public static com.liferay.so.model.MemberRequest create(
@@ -52,24 +80,6 @@ public class MemberRequestUtil {
 		throws com.liferay.portal.SystemException,
 			com.liferay.so.NoSuchMemberRequestException {
 		return getPersistence().remove(memberRequestId);
-	}
-
-	public static com.liferay.so.model.MemberRequest remove(
-		com.liferay.so.model.MemberRequest memberRequest)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(memberRequest);
-	}
-
-	public static com.liferay.so.model.MemberRequest update(
-		com.liferay.so.model.MemberRequest memberRequest)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(memberRequest);
-	}
-
-	public static com.liferay.so.model.MemberRequest update(
-		com.liferay.so.model.MemberRequest memberRequest, boolean merge)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(memberRequest, merge);
 	}
 
 	public static com.liferay.so.model.MemberRequest updateImpl(
@@ -220,18 +230,6 @@ public class MemberRequestUtil {
 			retrieveFromCache);
 	}
 
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
-	}
-
 	public static java.util.List<com.liferay.so.model.MemberRequest> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
@@ -300,6 +298,11 @@ public class MemberRequestUtil {
 	}
 
 	public static MemberRequestPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (MemberRequestPersistence)PortletBeanLocatorUtil.locate(com.liferay.so.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					MemberRequestPersistence.class.getName());
+		}
+
 		return _persistence;
 	}
 

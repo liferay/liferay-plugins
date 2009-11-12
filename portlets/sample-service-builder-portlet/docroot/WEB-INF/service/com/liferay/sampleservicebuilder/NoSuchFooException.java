@@ -22,7 +22,7 @@
 
 package com.liferay.sampleservicebuilder;
 
-import com.liferay.portal.PortalException;
+import com.liferay.portal.NoSuchModelException;
 
 /**
  * <a href="NoSuchFooException.java.html"><b><i>View Source</i></b></a>
@@ -30,7 +30,7 @@ import com.liferay.portal.PortalException;
  * @author Brian Wing Shun Chan
  *
  */
-public class NoSuchFooException extends PortalException {
+public class NoSuchFooException extends NoSuchModelException {
 
 	public NoSuchFooException() {
 		super();

@@ -22,7 +22,7 @@
 
 package com.liferay.twitter;
 
-import com.liferay.portal.PortalException;
+import com.liferay.portal.NoSuchModelException;
 
 /**
  * <a href="NoSuchFeedException.java.html"><b><i>View Source</i></b></a>
@@ -30,7 +30,7 @@ import com.liferay.portal.PortalException;
  * @author Brian Wing Shun Chan
  *
  */
-public class NoSuchFeedException extends PortalException {
+public class NoSuchFeedException extends NoSuchModelException {
 
 	public NoSuchFeedException() {
 		super();

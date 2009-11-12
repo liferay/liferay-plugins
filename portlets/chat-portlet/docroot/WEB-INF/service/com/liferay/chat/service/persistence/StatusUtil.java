@@ -22,12 +22,43 @@
 
 package com.liferay.chat.service.persistence;
 
+import com.liferay.chat.model.Status;
+
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import java.util.List;
+
 /**
  * <a href="StatusUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class StatusUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static Status remove(Status status) throws SystemException {
+		return getPersistence().remove(status);
+	}
+
+	public static Status update(Status status, boolean merge)
+		throws SystemException {
+		return getPersistence().update(status, merge);
+	}
+
 	public static void cacheResult(com.liferay.chat.model.Status status) {
 		getPersistence().cacheResult(status);
 	}
@@ -35,10 +66,6 @@ public class StatusUtil {
 	public static void cacheResult(
 		java.util.List<com.liferay.chat.model.Status> statuses) {
 		getPersistence().cacheResult(statuses);
-	}
-
-	public static void clearCache() {
-		getPersistence().clearCache();
 	}
 
 	public static com.liferay.chat.model.Status create(long statusId) {
@@ -49,24 +76,6 @@ public class StatusUtil {
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.SystemException {
 		return getPersistence().remove(statusId);
-	}
-
-	public static com.liferay.chat.model.Status remove(
-		com.liferay.chat.model.Status status)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(status);
-	}
-
-	public static com.liferay.chat.model.Status update(
-		com.liferay.chat.model.Status status)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(status);
-	}
-
-	public static com.liferay.chat.model.Status update(
-		com.liferay.chat.model.Status status, boolean merge)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(status, merge);
 	}
 
 	public static com.liferay.chat.model.Status updateImpl(
@@ -227,18 +236,6 @@ public class StatusUtil {
 				   .findByM_O_PrevAndNext(statusId, modifiedDate, online, obc);
 	}
 
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
-	}
-
 	public static java.util.List<com.liferay.chat.model.Status> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
@@ -305,6 +302,11 @@ public class StatusUtil {
 	}
 
 	public static StatusPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (StatusPersistence)PortletBeanLocatorUtil.locate(com.liferay.chat.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					StatusPersistence.class.getName());
+		}
+
 		return _persistence;
 	}
 

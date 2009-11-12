@@ -22,6 +22,7 @@
 
 package com.liferay.socialnetworking.service.persistence;
 
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
@@ -48,6 +49,8 @@ import com.liferay.socialnetworking.model.MeetupsRegistration;
 import com.liferay.socialnetworking.model.impl.MeetupsRegistrationImpl;
 import com.liferay.socialnetworking.model.impl.MeetupsRegistrationModelImpl;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -58,7 +61,7 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  */
-public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
+public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<MeetupsRegistration>
 	implements MeetupsRegistrationPersistence {
 	public static final String FINDER_CLASS_NAME_ENTITY = MeetupsRegistrationImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
@@ -149,6 +152,11 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		meetupsRegistration.setPrimaryKey(meetupsRegistrationId);
 
 		return meetupsRegistration;
+	}
+
+	public MeetupsRegistration remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
 	}
 
 	public MeetupsRegistration remove(long meetupsRegistrationId)
@@ -247,43 +255,6 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		return meetupsRegistration;
 	}
 
-	public MeetupsRegistration update(MeetupsRegistration meetupsRegistration)
-		throws SystemException {
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Using the deprecated update(MeetupsRegistration meetupsRegistration) method. Use update(MeetupsRegistration meetupsRegistration, boolean merge) instead.");
-		}
-
-		return update(meetupsRegistration, false);
-	}
-
-	public MeetupsRegistration update(MeetupsRegistration meetupsRegistration,
-		boolean merge) throws SystemException {
-		boolean isNew = meetupsRegistration.isNew();
-
-		for (ModelListener<MeetupsRegistration> listener : listeners) {
-			if (isNew) {
-				listener.onBeforeCreate(meetupsRegistration);
-			}
-			else {
-				listener.onBeforeUpdate(meetupsRegistration);
-			}
-		}
-
-		meetupsRegistration = updateImpl(meetupsRegistration, merge);
-
-		for (ModelListener<MeetupsRegistration> listener : listeners) {
-			if (isNew) {
-				listener.onAfterCreate(meetupsRegistration);
-			}
-			else {
-				listener.onAfterUpdate(meetupsRegistration);
-			}
-		}
-
-		return meetupsRegistration;
-	}
-
 	public MeetupsRegistration updateImpl(
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration,
 		boolean merge) throws SystemException {
@@ -362,6 +333,11 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		return meetupsRegistrationImpl;
 	}
 
+	public MeetupsRegistration findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
 	public MeetupsRegistration findByPrimaryKey(long meetupsRegistrationId)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		MeetupsRegistration meetupsRegistration = fetchByPrimaryKey(meetupsRegistrationId);
@@ -378,6 +354,11 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		}
 
 		return meetupsRegistration;
+	}
+
+	public MeetupsRegistration fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	public MeetupsRegistration fetchByPrimaryKey(long meetupsRegistrationId)
@@ -1462,11 +1443,11 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistence.impl")
+	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistence")
 	protected com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistence meetupsEntryPersistence;
-	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence.impl")
+	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence")
 	protected com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence meetupsRegistrationPersistence;
-	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.WallEntryPersistence.impl")
+	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.WallEntryPersistence")
 	protected com.liferay.socialnetworking.service.persistence.WallEntryPersistence wallEntryPersistence;
 	private static Log _log = LogFactoryUtil.getLog(MeetupsRegistrationPersistenceImpl.class);
 }

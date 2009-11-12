@@ -17,7 +17,7 @@
 
 package com.liferay.so;
 
-import com.liferay.portal.PortalException;
+import com.liferay.portal.NoSuchModelException;
 
 /**
  * <a href="NoSuchProjectsEntryException.java.html"><b><i>View Source</i></b>
@@ -26,7 +26,7 @@ import com.liferay.portal.PortalException;
  * @author Brian Wing Shun Chan
  *
  */
-public class NoSuchProjectsEntryException extends PortalException {
+public class NoSuchProjectsEntryException extends NoSuchModelException {
 
 	public NoSuchProjectsEntryException() {
 		super();

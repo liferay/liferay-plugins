@@ -182,7 +182,7 @@ public class MemberRequestLocalServiceUtil {
 	public static MemberRequestLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
-					MemberRequestLocalServiceUtil.class.getName());
+					MemberRequestLocalService.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 

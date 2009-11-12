@@ -22,12 +22,44 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import com.liferay.socialcoding.model.JIRAChangeItem;
+
+import java.util.List;
+
 /**
  * <a href="JIRAChangeItemUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
 public class JIRAChangeItemUtil {
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static JIRAChangeItem remove(JIRAChangeItem jiraChangeItem)
+		throws SystemException {
+		return getPersistence().remove(jiraChangeItem);
+	}
+
+	public static JIRAChangeItem update(JIRAChangeItem jiraChangeItem,
+		boolean merge) throws SystemException {
+		return getPersistence().update(jiraChangeItem, merge);
+	}
+
 	public static void cacheResult(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem) {
 		getPersistence().cacheResult(jiraChangeItem);
@@ -36,10 +68,6 @@ public class JIRAChangeItemUtil {
 	public static void cacheResult(
 		java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> jiraChangeItems) {
 		getPersistence().cacheResult(jiraChangeItems);
-	}
-
-	public static void clearCache() {
-		getPersistence().clearCache();
 	}
 
 	public static com.liferay.socialcoding.model.JIRAChangeItem create(
@@ -52,24 +80,6 @@ public class JIRAChangeItemUtil {
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException {
 		return getPersistence().remove(jiraChangeItemId);
-	}
-
-	public static com.liferay.socialcoding.model.JIRAChangeItem remove(
-		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(jiraChangeItem);
-	}
-
-	public static com.liferay.socialcoding.model.JIRAChangeItem update(
-		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(jiraChangeItem);
-	}
-
-	public static com.liferay.socialcoding.model.JIRAChangeItem update(
-		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem,
-		boolean merge) throws com.liferay.portal.SystemException {
-		return getPersistence().update(jiraChangeItem, merge);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAChangeItem updateImpl(
@@ -138,18 +148,6 @@ public class JIRAChangeItemUtil {
 			jiraChangeGroupId, obc);
 	}
 
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	public static java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
-	}
-
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
@@ -185,6 +183,11 @@ public class JIRAChangeItemUtil {
 	}
 
 	public static JIRAChangeItemPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (JIRAChangeItemPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					JIRAChangeItemPersistence.class.getName());
+		}
+
 		return _persistence;
 	}
 

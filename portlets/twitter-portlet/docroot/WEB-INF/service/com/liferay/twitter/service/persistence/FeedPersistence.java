@@ -24,36 +24,24 @@ package com.liferay.twitter.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.twitter.model.Feed;
+
 /**
  * <a href="FeedPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public interface FeedPersistence extends BasePersistence {
+public interface FeedPersistence extends BasePersistence<Feed> {
 	public void cacheResult(com.liferay.twitter.model.Feed feed);
 
 	public void cacheResult(
 		java.util.List<com.liferay.twitter.model.Feed> feeds);
-
-	public void clearCache();
 
 	public com.liferay.twitter.model.Feed create(long feedId);
 
 	public com.liferay.twitter.model.Feed remove(long feedId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.twitter.NoSuchFeedException;
-
-	public com.liferay.twitter.model.Feed remove(
-		com.liferay.twitter.model.Feed feed)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.twitter.model.Feed update(
-		com.liferay.twitter.model.Feed feed)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.twitter.model.Feed update(
-		com.liferay.twitter.model.Feed feed, boolean merge)
-		throws com.liferay.portal.SystemException;
 
 	public com.liferay.twitter.model.Feed updateImpl(
 		com.liferay.twitter.model.Feed feed, boolean merge)
@@ -90,14 +78,6 @@ public interface FeedPersistence extends BasePersistence {
 	public com.liferay.twitter.model.Feed fetchByTwitterScreenName(
 		java.lang.String twitterScreenName, boolean retrieveFromCache)
 		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.twitter.model.Feed> findAll()
 		throws com.liferay.portal.SystemException;

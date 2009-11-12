@@ -22,7 +22,7 @@
 
 package com.liferay.socialcoding;
 
-import com.liferay.portal.PortalException;
+import com.liferay.portal.NoSuchModelException;
 
 /**
  * <a href="NoSuchSVNRepositoryException.java.html"><b><i>View Source</i></b>
@@ -31,7 +31,7 @@ import com.liferay.portal.PortalException;
  * @author Brian Wing Shun Chan
  *
  */
-public class NoSuchSVNRepositoryException extends PortalException {
+public class NoSuchSVNRepositoryException extends NoSuchModelException {
 
 	public NoSuchSVNRepositoryException() {
 		super();

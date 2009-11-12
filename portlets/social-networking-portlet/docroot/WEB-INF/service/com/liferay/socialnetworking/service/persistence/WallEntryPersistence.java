@@ -24,37 +24,25 @@ package com.liferay.socialnetworking.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.socialnetworking.model.WallEntry;
+
 /**
  * <a href="WallEntryPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public interface WallEntryPersistence extends BasePersistence {
+public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	public void cacheResult(
 		com.liferay.socialnetworking.model.WallEntry wallEntry);
 
 	public void cacheResult(
 		java.util.List<com.liferay.socialnetworking.model.WallEntry> wallEntries);
 
-	public void clearCache();
-
 	public com.liferay.socialnetworking.model.WallEntry create(long wallEntryId);
 
 	public com.liferay.socialnetworking.model.WallEntry remove(long wallEntryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialnetworking.NoSuchWallEntryException;
-
-	public com.liferay.socialnetworking.model.WallEntry remove(
-		com.liferay.socialnetworking.model.WallEntry wallEntry)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.socialnetworking.model.WallEntry update(
-		com.liferay.socialnetworking.model.WallEntry wallEntry)
-		throws com.liferay.portal.SystemException;
-
-	public com.liferay.socialnetworking.model.WallEntry update(
-		com.liferay.socialnetworking.model.WallEntry wallEntry, boolean merge)
-		throws com.liferay.portal.SystemException;
 
 	public com.liferay.socialnetworking.model.WallEntry updateImpl(
 		com.liferay.socialnetworking.model.WallEntry wallEntry, boolean merge)
@@ -153,14 +141,6 @@ public interface WallEntryPersistence extends BasePersistence {
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.socialnetworking.NoSuchWallEntryException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<Object> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> findAll()
 		throws com.liferay.portal.SystemException;
