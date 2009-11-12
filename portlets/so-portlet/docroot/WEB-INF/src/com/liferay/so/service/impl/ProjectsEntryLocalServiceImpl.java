@@ -79,7 +79,7 @@ public class ProjectsEntryLocalServiceImpl
 		projectsEntry.setEndDate(endDate);
 		projectsEntry.setData(data);
 
-		projectsEntryPersistence.update(projectsEntry);
+		projectsEntryPersistence.update(projectsEntry, false);
 
 		return projectsEntry;
 	}
@@ -125,7 +125,7 @@ public class ProjectsEntryLocalServiceImpl
 		projectsEntry.setEndDate(endDate);
 		projectsEntry.setData(data);
 
-		projectsEntryPersistence.update(projectsEntry);
+		projectsEntryPersistence.update(projectsEntry, false);
 
 		return projectsEntry;
 	}
