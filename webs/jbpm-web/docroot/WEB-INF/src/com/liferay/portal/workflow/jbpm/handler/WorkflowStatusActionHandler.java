@@ -24,6 +24,7 @@ package com.liferay.portal.workflow.jbpm.handler;
 
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.workflow.ContextConstants;
+import com.liferay.portal.kernel.workflow.StatusConstants;
 import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
 import org.jbpm.graph.def.ActionHandler;
@@ -51,7 +52,8 @@ public class WorkflowStatusActionHandler implements ActionHandler {
 			ContextConstants.ENTRY_CLASS_PK);
 
 		WorkflowStatusManagerUtil.updateStatus(
-			companyId, groupId, userId, className, classPK, status);
+			companyId, groupId, userId, className, classPK,
+			StatusConstants.fromLabel(status));
 	}
 
 	private String status;
