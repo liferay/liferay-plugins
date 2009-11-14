@@ -22,11 +22,13 @@
 
 package com.liferay.portal.workflow.jbpm.handler;
 
+import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.workflow.ContextConstants;
 import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
 import org.jbpm.graph.def.ActionHandler;
 import org.jbpm.graph.exe.ExecutionContext;
+import org.jbpm.taskmgmt.exe.TaskInstance;
 
 /**
  * <a href="WorkflowStatusActionHandler.java.html"><b><i>View Source</i></b></a>
@@ -36,17 +38,13 @@ import org.jbpm.graph.exe.ExecutionContext;
 public class WorkflowStatusActionHandler implements ActionHandler {
 
 	public void execute(ExecutionContext executionContext) throws Exception {
-		long userId = 0;
-
-		if (executionContext.getTaskInstance() != null) {
-			userId = Long.valueOf(
-				executionContext.getTaskInstance().getActorId());
-		}
+		TaskInstance taskInstance = executionContext.getTaskInstance();
 
 		long companyId = (Long)executionContext.getVariable(
 			ContextConstants.COMPANY_ID);
 		long groupId = (Long)executionContext.getVariable(
 			ContextConstants.GROUP_ID);
+		long userId = BeanPropertiesUtil.getLong(taskInstance, "actorId");
 		String className = (String)executionContext.getVariable(
 			ContextConstants.ENTRY_CLASS_NAME);
 		long classPK = (Long)executionContext.getVariable(
