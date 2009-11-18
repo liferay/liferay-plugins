@@ -91,7 +91,7 @@ public class GroupListener extends BaseModelListener<Group> {
 	}
 
 	protected void copyLayout(Layout sourceLayout, Layout targetLayout)
-		throws Exception{
+		throws Exception {
 
 		long companyId = targetLayout.getCompanyId();
 
