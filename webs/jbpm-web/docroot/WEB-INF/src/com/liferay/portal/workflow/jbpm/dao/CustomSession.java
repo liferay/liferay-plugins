@@ -398,6 +398,7 @@ public class CustomSession {
 		_fieldMap.put("createDate", "create");
 		_fieldMap.put("endDate", "end");
 		_fieldMap.put("startDate", "start");
+		_fieldMap.put("state", "currentNodeName");
 		_fieldMap.put("userId", "actorId");
 		_fieldMap.put("workflowDefinitionId", "id");
 		_fieldMap.put("workflowLogId", "id");

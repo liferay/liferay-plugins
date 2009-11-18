@@ -58,9 +58,9 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
 
 		_context = Collections.unmodifiableMap(_context);
 
-		_currentNodeName = token.getNode().getName();
 		_endDate = token.getEnd();
 		_startDate = token.getStart();
+		_state = token.getNode().getName();
 		_workflowDefinitionName = processDefinition.getName();
 		_workflowDefinitionVersion = processDefinition.getVersion();
 		_workflowInstanceId = token.getId();
@@ -84,10 +84,6 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
 		return _context;
 	}
 
-	public String getCurrentNodeName() {
-		return _currentNodeName;
-	}
-
 	public Date getEndDate() {
 		return _endDate;
 	}
@@ -107,6 +103,10 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
 
 	public Date getStartDate() {
 		return _startDate;
+	}
+
+	public String getState() {
+		return _state;
 	}
 
 	public String getWorkflowDefinitionName() {
@@ -129,10 +129,10 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
 
 	private List<WorkflowInstance> _childrenWorkflowInstances;
 	private Map<String, Object> _context;
-	private String _currentNodeName;
 	private Date _endDate;
 	private WorkflowInstance _parentWorkflowInstance;
 	private Date _startDate;
+	private String _state;
 	private String _workflowDefinitionName;
 	private int _workflowDefinitionVersion;
 	private long _workflowInstanceId;
