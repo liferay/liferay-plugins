@@ -19,4 +19,5 @@
 
 <%
 dlLinkToViewURL = true;
+includeSystemPortlets = true;
 %>
