@@ -342,7 +342,6 @@ public class MarkupServiceImpl
 
 	protected Extension[] getConfigurationURLExtension(String rawContent) {
 		int x = rawContent.indexOf("<div id=\"wsrp-configuration-url\">");
-
 		int y = rawContent.indexOf("</div>", x);
 
 		String configurationURL = rawContent.substring(x + 33, y);
@@ -371,7 +370,6 @@ public class MarkupServiceImpl
 		}
 
 		return rawContent.substring(x + 5, y);
-
 	}
 
 	protected Layout getLayout(

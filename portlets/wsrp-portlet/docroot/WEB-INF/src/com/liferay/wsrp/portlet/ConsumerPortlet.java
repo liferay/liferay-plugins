@@ -129,6 +129,51 @@ public class ConsumerPortlet extends GenericPortlet {
 
 	public static final String PORTLET_NAME_PREFIX = "WSRP_";
 
+	public void doProcessEvent(
+			EventRequest eventRequest, EventResponse eventResponse)
+		throws Exception {
+
+		WSRPConsumerPortlet wsrpConsumerPortlet = getWSRPConsumerPortlet();
+
+		WSRPConsumer wsrpConsumer =
+			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
+				wsrpConsumerPortlet.getWsrpConsumerId());
+
+		WSRPConsumerManager wsrpConsumerManager =
+			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
+
+		EventParams eventParams = new EventParams();
+		MarkupParams markupParams = new MarkupParams();
+		PortletContext portletContext = new PortletContext();
+		RuntimeContext runtimeContext = new RuntimeContext();
+		UserContext userContext = new UserContext();
+
+		initContexts(
+			eventRequest, eventResponse, wsrpConsumerPortlet,
+			wsrpConsumerManager, eventParams, markupParams, portletContext,
+			runtimeContext, userContext);
+
+		HandleEvents handleEvents = new HandleEvents();
+
+		handleEvents.setEventParams(eventParams);
+		handleEvents.setMarkupParams(markupParams);
+		handleEvents.setPortletContext(portletContext);
+		handleEvents.setRegistrationContext(
+			wsrpConsumer.getRegistrationContext());
+		handleEvents.setRuntimeContext(runtimeContext);
+		handleEvents.setUserContext(userContext);
+
+		WSRP_v2_Markup_PortType markupService = getMarkupService(
+			eventRequest, wsrpConsumerManager, wsrpConsumer);
+
+		HandleEventsResponse handleEventsResponse =
+			markupService.handleEvents(handleEvents);
+
+		processHandleEventsResponse(
+			eventRequest, eventResponse, wsrpConsumerManager,
+			handleEventsResponse);
+	}
+
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
@@ -261,51 +306,6 @@ public class ConsumerPortlet extends GenericPortlet {
 			blockingInteractionResponse);
 	}
 
-	public void doProcessEvent(
-			EventRequest eventRequest, EventResponse eventResponse)
-		throws Exception {
-
-		WSRPConsumerPortlet wsrpConsumerPortlet = getWSRPConsumerPortlet();
-
-		WSRPConsumer wsrpConsumer =
-			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
-				wsrpConsumerPortlet.getWsrpConsumerId());
-
-		WSRPConsumerManager wsrpConsumerManager =
-			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
-
-		EventParams eventParams = new EventParams();
-		MarkupParams markupParams = new MarkupParams();
-		PortletContext portletContext = new PortletContext();
-		RuntimeContext runtimeContext = new RuntimeContext();
-		UserContext userContext = new UserContext();
-
-		initContexts(
-			eventRequest, eventResponse, wsrpConsumerPortlet,
-			wsrpConsumerManager, eventParams, markupParams, portletContext,
-			runtimeContext, userContext);
-
-		HandleEvents handleEvents = new HandleEvents();
-
-		handleEvents.setEventParams(eventParams);
-		handleEvents.setMarkupParams(markupParams);
-		handleEvents.setPortletContext(portletContext);
-		handleEvents.setRegistrationContext(
-			wsrpConsumer.getRegistrationContext());
-		handleEvents.setRuntimeContext(runtimeContext);
-		handleEvents.setUserContext(userContext);
-
-		WSRP_v2_Markup_PortType markupService = getMarkupService(
-			eventRequest, wsrpConsumerManager, wsrpConsumer);
-
-		HandleEventsResponse handleEventsResponse =
-			markupService.handleEvents(handleEvents);
-
-		processHandleEventsResponse(
-			eventRequest, eventResponse, wsrpConsumerManager,
-			handleEventsResponse);
-	}
-
 	protected void doRender(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
@@ -331,15 +331,17 @@ public class ConsumerPortlet extends GenericPortlet {
 		MessageElement[] messageElements =
 			ExtensionUtil.getMessageElements(markupContext.getExtensions());
 
-		if (messageElements != null && messageElements.length > 0) {
-			if (messageElements[0].getName().equals("configurationURL")) {
+		if ((messageElements != null) && (messageElements.length > 0)) {
+			MessageElement messageElement = messageElements[0];
+
+			if (messageElement.getName().equals("configurationURL")) {
 				PortletDisplay portletDisplay =
 					themeDisplay.getPortletDisplay();
 
-				String configurationURL = messageElements[0].getValue();
+				String configurationURL = messageElement.getValue();
 
-				configurationURL =
-					rewriteURLs(renderResponse, configurationURL);
+				configurationURL = rewriteURLs(
+					renderResponse, configurationURL);
 
 				portletDisplay.setURLConfiguration(configurationURL);
 			}
