@@ -55,6 +55,20 @@ public class ExtensionUtil {
 		return new Extension(messageElementsArray);
 	}
 
+	public static Extension[] getExtensions(String localPart, String value) {
+		MessageElement messageElement = new MessageElement(
+			"liferay", localPart);
+
+		messageElement.setValue(value);
+
+		MessageElement[] messageElementsArray =
+			new MessageElement[] {messageElement};
+
+		Extension extension = new Extension(messageElementsArray);
+
+		return new Extension[] {extension};
+	}
+
 	public static Extension[] getExtensions(
 		List<MessageElement> messageElements) {
 
