@@ -46,6 +46,7 @@ import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortletKeys;
+import com.liferay.portlet.PortletPreferencesThreadLocal;
 import com.liferay.portlet.calendar.model.CalEvent;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
@@ -79,16 +80,23 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected void doRun(long companyId) throws Exception {
-		setupRuntime(companyId);
+		try {
+			PortletPreferencesThreadLocal.setStrict(false);
 
-		if (isFirstRun(companyId)) {
-			return;
+			setupRuntime(companyId);
+
+			if (isFirstRun(companyId)) {
+				return;
+			}
+
+			setupCompany(companyId);
+			setupPermissions(companyId);
+			setupLayouts(companyId);
+			setupUsers(companyId);
 		}
-
-		setupCompany(companyId);
-		setupPermissions(companyId);
-		setupLayouts(companyId);
-		setupUsers(companyId);
+		finally {
+			PortletPreferencesThreadLocal.setStrict(true);
+		}
 	}
 
 	protected boolean isFirstRun(long companyId) throws Exception {
