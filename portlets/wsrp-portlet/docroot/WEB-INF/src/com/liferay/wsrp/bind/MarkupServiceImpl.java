@@ -225,12 +225,19 @@ public class MarkupServiceImpl
 
 		httpOptions.setLocation(getURL(getMarkup, wsrpProducer));
 
-		String content = getContent(httpOptions);
+		String rawContent = getRawContent(httpOptions);
+
+		String content = getContent(rawContent);
 
 		MarkupContext markupContext = new MarkupContext();
 
 		markupContext.setItemString(content);
 		markupContext.setRequiresRewriting(true);
+
+		Extension[] configurationURLExtension =
+			getConfigurationURLExtension(rawContent);
+
+		markupContext.setExtensions(configurationURLExtension);
 
 		MarkupResponse markupResponse = new MarkupResponse();
 
@@ -301,12 +308,19 @@ public class MarkupServiceImpl
 
 		httpOptions.setPost(true);
 
-		String content = getContent(httpOptions);
+		String rawContent = getRawContent(httpOptions);
+
+		String content = getContent(rawContent);
 
 		MarkupContext markupContext = new MarkupContext();
 
 		markupContext.setItemString(content);
 		markupContext.setRequiresRewriting(true);
+
+		Extension[] configurationURLExtension =
+			getConfigurationURLExtension(rawContent);
+
+		markupContext.setExtensions(configurationURLExtension);
 
 		BlockingInteractionResponse blockingInteractionResponse =
 			new BlockingInteractionResponse();
@@ -326,44 +340,38 @@ public class MarkupServiceImpl
 		return null;
 	}
 
-	protected String getContent(Http.Options httpOptions)
-		throws Exception {
+	protected Extension[] getConfigurationURLExtension(String rawContent) {
+		int x = rawContent.indexOf("<div id=\"wsrp-configuration-url\">");
 
-		HttpSession session = ServletUtil.getSession();
+		int y = rawContent.indexOf("</div>", x);
 
-		Cookie[] cookies = (Cookie[])session.getAttribute(WebKeys.COOKIES);
+		String configurationURL = rawContent.substring(x + 33, y);
 
-		if (cookies != null) {
-			httpOptions.setCookies(cookies);
-		}
+		return ExtensionUtil.getExtensions(
+			"configurationURL", configurationURL);
+	}
 
-		String content = HttpUtil.URLtoString(httpOptions);
-
-		cookies = HttpUtil.getCookies();
-
-		if (cookies != null) {
-			session.setAttribute(WebKeys.COOKIES, cookies);
-		}
-
-		int x = content.indexOf("portlet-content-container");
+	protected String getContent(String rawContent) {
+		int x = rawContent.indexOf("portlet-content-container");
 
 		if (x == -1) {
-			return content;
+			return rawContent;
 		}
 
-		x = content.indexOf("<div>", x);
+		x = rawContent.indexOf("<div>", x);
 
 		if (x == -1) {
-			return content;
+			return rawContent;
 		}
 
-		int y = content.indexOf("</div></div></div></div>", x);
+		int y = rawContent.indexOf("</div></div></div></div>", x);
 
 		if (y == -1) {
-			return content;
+			return rawContent;
 		}
 
-		return content.substring(x + 5, y);
+		return rawContent.substring(x + 5, y);
+
 	}
 
 	protected Layout getLayout(
@@ -434,6 +442,26 @@ public class MarkupServiceImpl
 		String portletMode = markupParams.getMode();
 
 		return portletMode.substring(5);
+	}
+
+	protected String getRawContent(Http.Options httpOptions) throws Exception {
+		HttpSession session = ServletUtil.getSession();
+
+		Cookie[] cookies = (Cookie[])session.getAttribute(WebKeys.COOKIES);
+
+		if (cookies != null) {
+			httpOptions.setCookies(cookies);
+		}
+
+		String rawContent = HttpUtil.URLtoString(httpOptions);
+
+		cookies = HttpUtil.getCookies();
+
+		if (cookies != null) {
+			session.setAttribute(WebKeys.COOKIES, cookies);
+		}
+
+		return rawContent;
 	}
 
 	protected String getURL(GetMarkup getMarkup, WSRPProducer wsrpProducer)
