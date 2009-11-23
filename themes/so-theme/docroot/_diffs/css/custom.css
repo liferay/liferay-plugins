@@ -1147,7 +1147,8 @@ table.calendar {
 	white-space: nowrap;
 }
 
-.portlet-document-library .file-lock a {
+.portlet-document-library .file-lock a,
+.portlet-document-library .file-lock div {
 	display: block;
 	height: 16px;
 	width: 16px;
@@ -1157,12 +1158,16 @@ table.calendar {
 	opacity: 0;
 }
 
-.portlet-document-library .file-lock .lock {
-	background: url(../images/custom/unlock.png) no-repeat;
+.portlet-document-library .file-lock .locked {
+	background: url(../images/custom/lock.png) no-repeat;
 }
 
-.portlet-document-library .file-lock .unlock {
-	background: url(../images/custom/lock.png) no-repeat;
+.portlet-document-library .file-lock .unlockable {
+	background: url(../images/custom/lock_key.png) no-repeat;
+}
+
+.portlet-document-library .file-lock .unlocked {
+	background: url(../images/custom/unlock.png) no-repeat;
 }
 
 .portlet-document-library .webdav-url {

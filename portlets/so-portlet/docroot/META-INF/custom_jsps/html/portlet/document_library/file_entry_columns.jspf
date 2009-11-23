@@ -78,10 +78,13 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 					<div class="file-lock">
 						<c:choose>
 							<c:when test="<%= hasLock.booleanValue() %>">
-								<a class="unlock" href="javascript:;" onClick="submitForm(document.hrefFm, '<%= lockURL %>');"><span><liferay-ui:message key="unlock" /></span></a>
+								<a class="unlockable" href="javascript:;" onClick="submitForm(document.hrefFm, '<%= lockURL %>');"><span><liferay-ui:message key="unlock" /></span></a>
+							</c:when>
+							<c:when test="<%= isLocked.booleanValue() %>">
+								<div class="locked"><span><liferay-ui:message key="unlock" /></span></div>
 							</c:when>
 							<c:otherwise>
-								<a class="lock" href="javascript:;" onClick="submitForm(document.hrefFm, '<%= lockURL %>');"><span><liferay-ui:message key="lock" /></span></a>
+								<a class="unlocked" href="javascript:;" onClick="submitForm(document.hrefFm, '<%= lockURL %>');"><span><liferay-ui:message key="lock" /></span></a>
 							</c:otherwise>
 						</c:choose>
 					</div>
