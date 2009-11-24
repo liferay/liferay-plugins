@@ -175,10 +175,6 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 					actionRequest,
 					"fieldValidationErrorMessage" + formFieldsIndex);
 
-				if (fieldType.equals("paragraph")) {
-					fieldOptional = true;
-				}
-
 				if ((Validator.isNotNull(fieldValidationScript) ^
 					(Validator.isNotNull(fieldValidationErrorMessage)))) {
 
