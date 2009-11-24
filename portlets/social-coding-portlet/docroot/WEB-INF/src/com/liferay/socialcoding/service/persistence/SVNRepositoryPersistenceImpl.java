@@ -389,7 +389,15 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 					query.append("svnRepository.url IS NULL");
 				}
 				else {
+					if (url.equals(StringPool.BLANK)) {
+						query.append("(svnRepository.url IS NULL OR ");
+					}
+
 					query.append("svnRepository.url = ?");
+
+					if (url.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -615,7 +623,15 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 					query.append("svnRepository.url IS NULL");
 				}
 				else {
+					if (url.equals(StringPool.BLANK)) {
+						query.append("(svnRepository.url IS NULL OR ");
+					}
+
 					query.append("svnRepository.url = ?");
+
+					if (url.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");

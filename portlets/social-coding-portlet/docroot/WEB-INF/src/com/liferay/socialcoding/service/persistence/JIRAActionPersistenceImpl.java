@@ -367,7 +367,15 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 					query.append("jiraAction.jiraUserId IS NULL");
 				}
 				else {
+					if (jiraUserId.equals(StringPool.BLANK)) {
+						query.append("(jiraAction.jiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraAction.jiraUserId = ?");
+
+					if (jiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -437,7 +445,15 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 					query.append("jiraAction.jiraUserId IS NULL");
 				}
 				else {
+					if (jiraUserId.equals(StringPool.BLANK)) {
+						query.append("(jiraAction.jiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraAction.jiraUserId = ?");
+
+					if (jiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -566,7 +582,15 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 				query.append("jiraAction.jiraUserId IS NULL");
 			}
 			else {
+				if (jiraUserId.equals(StringPool.BLANK)) {
+					query.append("(jiraAction.jiraUserId IS NULL OR ");
+				}
+
 				query.append("jiraAction.jiraUserId = ?");
+
+				if (jiraUserId.equals(StringPool.BLANK)) {
+					query.append(")");
+				}
 			}
 
 			query.append(" ");
@@ -907,7 +931,15 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 					query.append("jiraAction.type IS NULL");
 				}
 				else {
+					if (type.equals(StringPool.BLANK)) {
+						query.append("(jiraAction.type IS NULL OR ");
+					}
+
 					query.append("jiraAction.type = ?");
+
+					if (type.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -977,7 +1009,15 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 					query.append("jiraAction.type IS NULL");
 				}
 				else {
+					if (type.equals(StringPool.BLANK)) {
+						query.append("(jiraAction.type IS NULL OR ");
+					}
+
 					query.append("jiraAction.type = ?");
+
+					if (type.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -1103,7 +1143,15 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 				query.append("jiraAction.type IS NULL");
 			}
 			else {
+				if (type.equals(StringPool.BLANK)) {
+					query.append("(jiraAction.type IS NULL OR ");
+				}
+
 				query.append("jiraAction.type = ?");
+
+				if (type.equals(StringPool.BLANK)) {
+					query.append(")");
+				}
 			}
 
 			query.append(" ");
@@ -1336,7 +1384,15 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 					query.append("jiraAction.jiraUserId IS NULL");
 				}
 				else {
+					if (jiraUserId.equals(StringPool.BLANK)) {
+						query.append("(jiraAction.jiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraAction.jiraUserId = ?");
+
+					if (jiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -1437,7 +1493,15 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 					query.append("jiraAction.type IS NULL");
 				}
 				else {
+					if (type.equals(StringPool.BLANK)) {
+						query.append("(jiraAction.type IS NULL OR ");
+					}
+
 					query.append("jiraAction.type = ?");
+
+					if (type.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");

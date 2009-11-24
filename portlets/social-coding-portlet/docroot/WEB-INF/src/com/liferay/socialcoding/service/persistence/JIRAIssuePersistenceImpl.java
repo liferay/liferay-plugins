@@ -836,7 +836,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.key IS NULL");
 				}
 				else {
+					if (key.equals(StringPool.BLANK)) {
+						query.append("(jiraIssue.key IS NULL OR ");
+					}
+
 					query.append("jiraIssue.key = ?");
+
+					if (key.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -920,7 +928,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.reporterJiraUserId IS NULL");
 				}
 				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.reporterJiraUserId = ?");
+
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -989,7 +1006,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.reporterJiraUserId IS NULL");
 				}
 				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.reporterJiraUserId = ?");
+
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -1117,7 +1143,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				query.append("jiraIssue.reporterJiraUserId IS NULL");
 			}
 			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append("(jiraIssue.reporterJiraUserId IS NULL OR ");
+				}
+
 				query.append("jiraIssue.reporterJiraUserId = ?");
+
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(")");
+				}
 			}
 
 			query.append(" ");
@@ -1198,7 +1232,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.assigneeJiraUserId IS NULL");
 				}
 				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.assigneeJiraUserId = ?");
+
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -1267,7 +1310,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.assigneeJiraUserId IS NULL");
 				}
 				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.assigneeJiraUserId = ?");
+
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -1395,7 +1447,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				query.append("jiraIssue.assigneeJiraUserId IS NULL");
 			}
 			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append("(jiraIssue.assigneeJiraUserId IS NULL OR ");
+				}
+
 				query.append("jiraIssue.assigneeJiraUserId = ?");
+
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(")");
+				}
 			}
 
 			query.append(" ");
@@ -1785,7 +1845,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.reporterJiraUserId IS NULL");
 				}
 				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.reporterJiraUserId = ?");
+
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -1864,7 +1933,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.reporterJiraUserId IS NULL");
 				}
 				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.reporterJiraUserId = ?");
+
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -2006,7 +2084,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				query.append("jiraIssue.reporterJiraUserId IS NULL");
 			}
 			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append("(jiraIssue.reporterJiraUserId IS NULL OR ");
+				}
+
 				query.append("jiraIssue.reporterJiraUserId = ?");
+
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(")");
+				}
 			}
 
 			query.append(" ");
@@ -2097,7 +2183,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.assigneeJiraUserId IS NULL");
 				}
 				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.assigneeJiraUserId = ?");
+
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -2176,7 +2271,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.assigneeJiraUserId IS NULL");
 				}
 				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.assigneeJiraUserId = ?");
+
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -2318,7 +2422,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				query.append("jiraIssue.assigneeJiraUserId IS NULL");
 			}
 			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append("(jiraIssue.assigneeJiraUserId IS NULL OR ");
+				}
+
 				query.append("jiraIssue.assigneeJiraUserId = ?");
+
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(")");
+				}
 			}
 
 			query.append(" ");
@@ -2418,7 +2530,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.reporterJiraUserId IS NULL");
 				}
 				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.reporterJiraUserId = ?");
+
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -2511,7 +2632,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.reporterJiraUserId IS NULL");
 				}
 				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.reporterJiraUserId = ?");
+
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -2672,7 +2802,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				query.append("jiraIssue.reporterJiraUserId IS NULL");
 			}
 			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append("(jiraIssue.reporterJiraUserId IS NULL OR ");
+				}
+
 				query.append("jiraIssue.reporterJiraUserId = ?");
+
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(")");
+				}
 			}
 
 			query.append(" ");
@@ -2776,7 +2914,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.assigneeJiraUserId IS NULL");
 				}
 				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.assigneeJiraUserId = ?");
+
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -2869,7 +3016,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.assigneeJiraUserId IS NULL");
 				}
 				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.assigneeJiraUserId = ?");
+
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -3030,7 +3186,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				query.append("jiraIssue.assigneeJiraUserId IS NULL");
 			}
 			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append("(jiraIssue.assigneeJiraUserId IS NULL OR ");
+				}
+
 				query.append("jiraIssue.assigneeJiraUserId = ?");
+
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(")");
+				}
 			}
 
 			query.append(" ");
@@ -3127,7 +3291,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.reporterJiraUserId IS NULL");
 				}
 				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.reporterJiraUserId = ?");
+
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" AND ");
@@ -3136,7 +3309,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.status IS NULL");
 				}
 				else {
+					if (status.equals(StringPool.BLANK)) {
+						query.append("(jiraIssue.status IS NULL OR ");
+					}
+
 					query.append("jiraIssue.status = ?");
+
+					if (status.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -3222,7 +3403,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.reporterJiraUserId IS NULL");
 				}
 				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.reporterJiraUserId = ?");
+
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" AND ");
@@ -3231,7 +3421,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.status IS NULL");
 				}
 				else {
+					if (status.equals(StringPool.BLANK)) {
+						query.append("(jiraIssue.status IS NULL OR ");
+					}
+
 					query.append("jiraIssue.status = ?");
+
+					if (status.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -3383,7 +3581,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				query.append("jiraIssue.reporterJiraUserId IS NULL");
 			}
 			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append("(jiraIssue.reporterJiraUserId IS NULL OR ");
+				}
+
 				query.append("jiraIssue.reporterJiraUserId = ?");
+
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(")");
+				}
 			}
 
 			query.append(" AND ");
@@ -3392,7 +3598,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				query.append("jiraIssue.status IS NULL");
 			}
 			else {
+				if (status.equals(StringPool.BLANK)) {
+					query.append("(jiraIssue.status IS NULL OR ");
+				}
+
 				query.append("jiraIssue.status = ?");
+
+				if (status.equals(StringPool.BLANK)) {
+					query.append(")");
+				}
 			}
 
 			query.append(" ");
@@ -3489,7 +3703,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.assigneeJiraUserId IS NULL");
 				}
 				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.assigneeJiraUserId = ?");
+
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" AND ");
@@ -3498,7 +3721,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.status IS NULL");
 				}
 				else {
+					if (status.equals(StringPool.BLANK)) {
+						query.append("(jiraIssue.status IS NULL OR ");
+					}
+
 					query.append("jiraIssue.status = ?");
+
+					if (status.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -3584,7 +3815,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.assigneeJiraUserId IS NULL");
 				}
 				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.assigneeJiraUserId = ?");
+
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" AND ");
@@ -3593,7 +3833,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.status IS NULL");
 				}
 				else {
+					if (status.equals(StringPool.BLANK)) {
+						query.append("(jiraIssue.status IS NULL OR ");
+					}
+
 					query.append("jiraIssue.status = ?");
+
+					if (status.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -3745,7 +3993,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				query.append("jiraIssue.assigneeJiraUserId IS NULL");
 			}
 			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append("(jiraIssue.assigneeJiraUserId IS NULL OR ");
+				}
+
 				query.append("jiraIssue.assigneeJiraUserId = ?");
+
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(")");
+				}
 			}
 
 			query.append(" AND ");
@@ -3754,7 +4010,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				query.append("jiraIssue.status IS NULL");
 			}
 			else {
+				if (status.equals(StringPool.BLANK)) {
+					query.append("(jiraIssue.status IS NULL OR ");
+				}
+
 				query.append("jiraIssue.status = ?");
+
+				if (status.equals(StringPool.BLANK)) {
+					query.append(")");
+				}
 			}
 
 			query.append(" ");
@@ -4102,7 +4366,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.key IS NULL");
 				}
 				else {
+					if (key.equals(StringPool.BLANK)) {
+						query.append("(jiraIssue.key IS NULL OR ");
+					}
+
 					query.append("jiraIssue.key = ?");
+
+					if (key.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -4157,7 +4429,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.reporterJiraUserId IS NULL");
 				}
 				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.reporterJiraUserId = ?");
+
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -4212,7 +4493,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.assigneeJiraUserId IS NULL");
 				}
 				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.assigneeJiraUserId = ?");
+
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -4336,7 +4626,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.reporterJiraUserId IS NULL");
 				}
 				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.reporterJiraUserId = ?");
+
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -4401,7 +4700,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.assigneeJiraUserId IS NULL");
 				}
 				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.assigneeJiraUserId = ?");
+
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -4475,7 +4783,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.reporterJiraUserId IS NULL");
 				}
 				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.reporterJiraUserId = ?");
+
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -4553,7 +4870,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.assigneeJiraUserId IS NULL");
 				}
 				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.assigneeJiraUserId = ?");
+
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -4624,7 +4950,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.reporterJiraUserId IS NULL");
 				}
 				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.reporterJiraUserId = ?");
+
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" AND ");
@@ -4633,7 +4968,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.status IS NULL");
 				}
 				else {
+					if (status.equals(StringPool.BLANK)) {
+						query.append("(jiraIssue.status IS NULL OR ");
+					}
+
 					query.append("jiraIssue.status = ?");
+
+					if (status.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -4704,7 +5047,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.assigneeJiraUserId IS NULL");
 				}
 				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(
+							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+					}
+
 					query.append("jiraIssue.assigneeJiraUserId = ?");
+
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" AND ");
@@ -4713,7 +5065,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					query.append("jiraIssue.status IS NULL");
 				}
 				else {
+					if (status.equals(StringPool.BLANK)) {
+						query.append("(jiraIssue.status IS NULL OR ");
+					}
+
 					query.append("jiraIssue.status = ?");
+
+					if (status.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");

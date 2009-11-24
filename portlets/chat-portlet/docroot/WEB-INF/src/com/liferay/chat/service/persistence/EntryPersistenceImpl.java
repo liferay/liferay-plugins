@@ -2068,7 +2068,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 					query.append("entry.content IS NULL");
 				}
 				else {
+					if (content.equals(StringPool.BLANK)) {
+						query.append("(entry.content IS NULL OR ");
+					}
+
 					query.append("entry.content = ?");
+
+					if (content.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -2152,7 +2160,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 					query.append("entry.content IS NULL");
 				}
 				else {
+					if (content.equals(StringPool.BLANK)) {
+						query.append("(entry.content IS NULL OR ");
+					}
+
 					query.append("entry.content = ?");
+
+					if (content.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -2304,7 +2320,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				query.append("entry.content IS NULL");
 			}
 			else {
+				if (content.equals(StringPool.BLANK)) {
+					query.append("(entry.content IS NULL OR ");
+				}
+
 				query.append("entry.content = ?");
+
+				if (content.equals(StringPool.BLANK)) {
+					query.append(")");
+				}
 			}
 
 			query.append(" ");
@@ -2895,7 +2919,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 					query.append("entry.content IS NULL");
 				}
 				else {
+					if (content.equals(StringPool.BLANK)) {
+						query.append("(entry.content IS NULL OR ");
+					}
+
 					query.append("entry.content = ?");
+
+					if (content.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");

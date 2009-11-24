@@ -502,7 +502,15 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 					query.append("feed.twitterScreenName IS NULL");
 				}
 				else {
+					if (twitterScreenName.equals(StringPool.BLANK)) {
+						query.append("(feed.twitterScreenName IS NULL OR ");
+					}
+
 					query.append("feed.twitterScreenName = ?");
+
+					if (twitterScreenName.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -773,7 +781,15 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 					query.append("feed.twitterScreenName IS NULL");
 				}
 				else {
+					if (twitterScreenName.equals(StringPool.BLANK)) {
+						query.append("(feed.twitterScreenName IS NULL OR ");
+					}
+
 					query.append("feed.twitterScreenName = ?");
+
+					if (twitterScreenName.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");

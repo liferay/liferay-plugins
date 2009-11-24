@@ -482,7 +482,15 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 					query.append("memberRequest.key IS NULL");
 				}
 				else {
+					if (key.equals(StringPool.BLANK)) {
+						query.append("(memberRequest.key IS NULL OR ");
+					}
+
 					query.append("memberRequest.key = ?");
+
+					if (key.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -1411,7 +1419,15 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 					query.append("memberRequest.key IS NULL");
 				}
 				else {
+					if (key.equals(StringPool.BLANK)) {
+						query.append("(memberRequest.key IS NULL OR ");
+					}
+
 					query.append("memberRequest.key = ?");
+
+					if (key.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");

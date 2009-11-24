@@ -368,7 +368,15 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 					query.append("svnRevision.svnUserId IS NULL");
 				}
 				else {
+					if (svnUserId.equals(StringPool.BLANK)) {
+						query.append("(svnRevision.svnUserId IS NULL OR ");
+					}
+
 					query.append("svnRevision.svnUserId = ?");
+
+					if (svnUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -438,7 +446,15 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 					query.append("svnRevision.svnUserId IS NULL");
 				}
 				else {
+					if (svnUserId.equals(StringPool.BLANK)) {
+						query.append("(svnRevision.svnUserId IS NULL OR ");
+					}
+
 					query.append("svnRevision.svnUserId = ?");
+
+					if (svnUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -568,7 +584,15 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				query.append("svnRevision.svnUserId IS NULL");
 			}
 			else {
+				if (svnUserId.equals(StringPool.BLANK)) {
+					query.append("(svnRevision.svnUserId IS NULL OR ");
+				}
+
 				query.append("svnRevision.svnUserId = ?");
+
+				if (svnUserId.equals(StringPool.BLANK)) {
+					query.append(")");
+				}
 			}
 
 			query.append(" ");
@@ -912,7 +936,15 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 					query.append("svnRevision.svnUserId IS NULL");
 				}
 				else {
+					if (svnUserId.equals(StringPool.BLANK)) {
+						query.append("(svnRevision.svnUserId IS NULL OR ");
+					}
+
 					query.append("svnRevision.svnUserId = ?");
+
+					if (svnUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" AND ");
@@ -989,7 +1021,15 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 					query.append("svnRevision.svnUserId IS NULL");
 				}
 				else {
+					if (svnUserId.equals(StringPool.BLANK)) {
+						query.append("(svnRevision.svnUserId IS NULL OR ");
+					}
+
 					query.append("svnRevision.svnUserId = ?");
+
+					if (svnUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" AND ");
@@ -1132,7 +1172,15 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				query.append("svnRevision.svnUserId IS NULL");
 			}
 			else {
+				if (svnUserId.equals(StringPool.BLANK)) {
+					query.append("(svnRevision.svnUserId IS NULL OR ");
+				}
+
 				query.append("svnRevision.svnUserId = ?");
+
+				if (svnUserId.equals(StringPool.BLANK)) {
+					query.append(")");
+				}
 			}
 
 			query.append(" AND ");
@@ -1374,7 +1422,15 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 					query.append("svnRevision.svnUserId IS NULL");
 				}
 				else {
+					if (svnUserId.equals(StringPool.BLANK)) {
+						query.append("(svnRevision.svnUserId IS NULL OR ");
+					}
+
 					query.append("svnRevision.svnUserId = ?");
+
+					if (svnUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" ");
@@ -1477,7 +1533,15 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 					query.append("svnRevision.svnUserId IS NULL");
 				}
 				else {
+					if (svnUserId.equals(StringPool.BLANK)) {
+						query.append("(svnRevision.svnUserId IS NULL OR ");
+					}
+
 					query.append("svnRevision.svnUserId = ?");
+
+					if (svnUserId.equals(StringPool.BLANK)) {
+						query.append(")");
+					}
 				}
 
 				query.append(" AND ");
