@@ -424,8 +424,8 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 					labelName.hide();
 					optionalControl.hide();
 
-					optionalControl.all('input[type="hidden"]').attr('value', 'true');
 					optionalControl.all('input[type="checkbox"]').attr('checked', 'true');
+					optionalControl.all('input[type="hidden"]').attr('value', 'true');
 				}
 				else {
 					optionalControl.show();
