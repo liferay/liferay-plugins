@@ -17,9 +17,9 @@
 
 package com.liferay.so.hook.upgrade;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
@@ -43,18 +43,14 @@ import javax.portlet.PortletPreferences;
  * <a href="UpgradeProcess_1_5_1.java.html"><b><i>View Source</i></b></a>
  *
  * @author Ryan Park
- *
  */
 public class UpgradeProcess_1_5_1 extends UpgradeProcess {
+
 	public int getThreshold() {
 		return 151;
 	}
 
 	protected void doUpgrade() throws Exception {
-		if (_log.isInfoEnabled()) {
-			_log.info("Running " + UpgradeProcess_1_5_1.class.getName());
-		}
-
 		updateGroups();
 	}
 
@@ -83,7 +79,8 @@ public class UpgradeProcess_1_5_1 extends UpgradeProcess {
 	}
 
 	protected void updateGroups() throws Exception {
-		List<Group> groups = GroupLocalServiceUtil.getGroups(-1, -1);
+		List<Group> groups = GroupLocalServiceUtil.getGroups(
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (Group group : groups) {
 			Layout layout = null;
@@ -105,9 +102,7 @@ public class UpgradeProcess_1_5_1 extends UpgradeProcess {
 		}
 	}
 
-	protected void updateLayouts(Group group)
-		throws Exception {
-
+	protected void updateLayouts(Group group) throws Exception {
 		if (!group.isCommunity()) {
 			return;
 		}
@@ -128,22 +123,24 @@ public class UpgradeProcess_1_5_1 extends UpgradeProcess {
 
 		boolean privateLayout = group.hasPrivateLayouts();
 
-		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
+		List<Layout> sourceLayouts = LayoutLocalServiceUtil.getLayouts(
 			group.getGroupId(), privateLayout);
 
-		for (Layout layout : layouts) {
+		for (Layout sourceLayout : sourceLayouts) {
 			Layout targetLayout = LayoutLocalServiceUtil.addLayout(
 				group.getCreatorUserId(), group.getGroupId(), !privateLayout,
 				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-				layout.getName("en_US"), StringPool.BLANK, StringPool.BLANK,
-				LayoutConstants.TYPE_PORTLET, false, layout.getFriendlyURL());
+				sourceLayout.getName(LocaleUtil.getDefault().toString()),
+				StringPool.BLANK, StringPool.BLANK,
+				LayoutConstants.TYPE_PORTLET, false,
+				sourceLayout.getFriendlyURL());
 
 			LayoutLocalServiceUtil.updateLayout(
 				targetLayout.getGroupId(), targetLayout.isPrivateLayout(),
-				targetLayout.getLayoutId(), layout.getTypeSettings());
+				targetLayout.getLayoutId(), sourceLayout.getTypeSettings());
 
 			LayoutTypePortlet sourceLayoutTypePortlet =
-				(LayoutTypePortlet)layout.getLayoutType();
+				(LayoutTypePortlet)sourceLayout.getLayoutType();
 
 			List<Portlet> sourcePortlets =
 				sourceLayoutTypePortlet.getAllPortlets();
@@ -159,8 +156,8 @@ public class UpgradeProcess_1_5_1 extends UpgradeProcess {
 				PortletPreferences sourcePreferences =
 					PortletPreferencesLocalServiceUtil.getPreferences(
 						companyId, PortletKeys.PREFS_OWNER_ID_DEFAULT,
-						PortletKeys.PREFS_OWNER_TYPE_LAYOUT, layout.getPlid(),
-						sourcePortletId);
+						PortletKeys.PREFS_OWNER_TYPE_LAYOUT,
+						sourceLayout.getPlid(), sourcePortletId);
 
 				PortletPreferencesLocalServiceUtil.updatePreferences(
 					PortletKeys.PREFS_OWNER_ID_DEFAULT,
@@ -168,10 +165,8 @@ public class UpgradeProcess_1_5_1 extends UpgradeProcess {
 					sourcePortletId, sourcePreferences);
 			}
 
-			LayoutLocalServiceUtil.deleteLayout(layout.getPlid());
+			LayoutLocalServiceUtil.deleteLayout(sourceLayout.getPlid());
 		}
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(UpgradeProcess_1_5_1.class);
 
 }
