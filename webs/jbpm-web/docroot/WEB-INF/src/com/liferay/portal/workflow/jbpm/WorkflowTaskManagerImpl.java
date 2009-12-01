@@ -223,6 +223,26 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
+	public WorkflowTask getWorkflowTask(long workflowTaskId)
+			throws WorkflowException {
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			TaskMgmtSession taskMgmtSession = jbpmContext.getTaskMgmtSession();
+
+			TaskInstance taskInstance = taskMgmtSession.loadTaskInstance(
+				workflowTaskId);
+
+			return new WorkflowTaskImpl(taskInstance);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+		finally {
+			jbpmContext.close();
+		}
+	}
+
 	public int getWorkflowTaskCountByRole(long roleId, Boolean completed)
 		throws WorkflowException {
 
