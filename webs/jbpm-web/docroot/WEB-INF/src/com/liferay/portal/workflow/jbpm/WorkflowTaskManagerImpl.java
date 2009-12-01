@@ -224,7 +224,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public WorkflowTask getWorkflowTask(long workflowTaskId)
-			throws WorkflowException {
+		throws WorkflowException {
+
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {
