@@ -24,10 +24,13 @@ package com.liferay.portal.workflow.jbpm;
 
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManager;
+import com.liferay.portal.model.Role;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
@@ -288,6 +291,25 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		return getWorkflowTaskCount(new long[] {userId}, false, completed);
 	}
 
+	public int getWorkflowTaskCountByUserRoles(long userId, Boolean completed)
+		throws WorkflowException {
+
+		try {
+			List<Role> roles = RoleLocalServiceUtil.getUserRoles(userId);
+
+			long[] roleIds = StringUtil.split(
+				ListUtil.toString(roles, "roleId"), 0L);
+
+			return getWorkflowTaskCount(roleIds, true, completed);
+		}
+		catch (WorkflowException we) {
+			throw we;
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
 	public int getWorkflowTaskCountByWorkflowInstance(
 			long workflowInstanceId, Boolean completed)
 		throws WorkflowException {
@@ -326,6 +348,28 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		return getWorkflowTasks(
 			-1, new long[] {userId}, false, completed, start, end,
 			orderByComparator);
+	}
+
+	public List<WorkflowTask> getWorkflowTasksByUserRoles(
+			long userId, Boolean completed, int start, int end,
+			OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		try {
+			List<Role> roles = RoleLocalServiceUtil.getUserRoles(userId);
+
+			long[] roleIds = StringUtil.split(
+				ListUtil.toString(roles, "roleId"), 0L);
+
+			return getWorkflowTasks(
+				-1, roleIds, true, completed, start, end, orderByComparator);
+		}
+		catch (WorkflowException we) {
+			throw we;
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
 	}
 
 	public List<WorkflowTask> getWorkflowTasksByWorkflowInstance(
