@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
@@ -28,6 +29,7 @@ import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutTemplate;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.Portlet;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
@@ -51,31 +53,38 @@ public class UpgradeProcess_1_5_1 extends UpgradeProcess {
 	}
 
 	protected void doUpgrade() throws Exception {
+		if (isFirstRun()) {
+			return;
+		}
+
 		updateGroups();
 	}
 
-	protected void addPortlets(Group group, Layout layout) throws Exception {
-		String prefix = PortletPropsKeys.SITE_LAYOUT_PORTLETS;
+	protected boolean isFirstRun() throws Exception {
+		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
-		if (group.isUser()) {
-			prefix = PortletPropsKeys.USER_LAYOUT_PORTLETS;
+		if (companies.isEmpty() || companies.size() > 1) {
+			return false;
 		}
+
+		Company company = companies.get(0);
+
+		long companyId = company.getCompanyId();
+
+		Group group = GroupLocalServiceUtil.getGroup(
+			companyId, GroupConstants.GUEST);
+
+		Layout layout = LayoutLocalServiceUtil.getLayout(
+			group.getGroupId(), false, 1);
 
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
 
-		LayoutTemplate layoutTemplate = layoutTypePortlet.getLayoutTemplate();
-
-		List<String> columns = layoutTemplate.getColumns();
-
-		for (String column : columns) {
-			layoutTypePortlet.setPortletIds(
-				column, PortletProps.get(prefix + column));
+		if (!layoutTypePortlet.hasPortletId("47")) {
+			return false;
 		}
 
-		LayoutLocalServiceUtil.updateLayout(
-			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
-			layout.getTypeSettings());
+		return true;
 	}
 
 	protected void updateGroups() throws Exception {
@@ -97,7 +106,7 @@ public class UpgradeProcess_1_5_1 extends UpgradeProcess {
 				continue;
 			}
 
-			addPortlets(group, layout);
+			updatePortlets(group, layout);
 			updateLayouts(group);
 		}
 	}
@@ -167,6 +176,30 @@ public class UpgradeProcess_1_5_1 extends UpgradeProcess {
 
 			LayoutLocalServiceUtil.deleteLayout(sourceLayout.getPlid());
 		}
+	}
+
+	protected void updatePortlets(Group group, Layout layout) throws Exception {
+		String prefix = PortletPropsKeys.SITE_LAYOUT_PORTLETS;
+
+		if (group.isUser()) {
+			prefix = PortletPropsKeys.USER_LAYOUT_PORTLETS;
+		}
+
+		LayoutTypePortlet layoutTypePortlet =
+			(LayoutTypePortlet)layout.getLayoutType();
+
+		LayoutTemplate layoutTemplate = layoutTypePortlet.getLayoutTemplate();
+
+		List<String> columns = layoutTemplate.getColumns();
+
+		for (String column : columns) {
+			layoutTypePortlet.setPortletIds(
+				column, PortletProps.get(prefix + column));
+		}
+
+		LayoutLocalServiceUtil.updateLayout(
+			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
+			layout.getTypeSettings());
 	}
 
 }
