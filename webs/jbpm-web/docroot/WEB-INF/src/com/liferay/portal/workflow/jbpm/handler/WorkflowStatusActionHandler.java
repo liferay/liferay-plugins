@@ -45,7 +45,8 @@ public class WorkflowStatusActionHandler implements ActionHandler {
 			ContextConstants.COMPANY_ID);
 		long groupId = (Long)executionContext.getVariable(
 			ContextConstants.GROUP_ID);
-		long userId = BeanPropertiesUtil.getLong(taskInstance, "actorId");
+		long userId = Long.valueOf(
+			BeanPropertiesUtil.getString(taskInstance, "actorId"));
 		String className = (String)executionContext.getVariable(
 			ContextConstants.ENTRY_CLASS_NAME);
 		long classPK = (Long)executionContext.getVariable(
