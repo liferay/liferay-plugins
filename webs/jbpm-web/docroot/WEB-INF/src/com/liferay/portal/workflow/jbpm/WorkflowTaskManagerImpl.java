@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManager;
 import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
 import java.util.ArrayList;
@@ -214,6 +215,37 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			}
 
 			return transitionNames;
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+		finally {
+			jbpmContext.close();
+		}
+	}
+
+	public long[] getPooledActorsIds(long workflowTaskId)
+		throws WorkflowException {
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			TaskMgmtSession taskMgmtSession = jbpmContext.getTaskMgmtSession();
+
+			TaskInstance taskInstance = taskMgmtSession.loadTaskInstance(
+				workflowTaskId);
+
+			Set<PooledActor> pooledActors =	taskInstance.getPooledActors();
+
+			if (pooledActors == null || pooledActors.isEmpty()) {
+				return null;
+			}
+
+			PooledActor pooledActor = pooledActors.iterator().next();
+
+			long roleId = GetterUtil.getLong(pooledActor.getActorId());
+
+			return UserLocalServiceUtil.getRoleUserIds(roleId);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
