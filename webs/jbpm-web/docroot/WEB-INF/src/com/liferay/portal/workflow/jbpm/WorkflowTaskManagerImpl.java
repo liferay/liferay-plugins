@@ -237,7 +237,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			Set<PooledActor> pooledActors =	taskInstance.getPooledActors();
 
-			if (pooledActors == null || pooledActors.isEmpty()) {
+			if ((pooledActors == null) || pooledActors.isEmpty()) {
 				return null;
 			}
 
