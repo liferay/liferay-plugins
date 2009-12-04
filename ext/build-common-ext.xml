@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+
+<project name="build-common-ext">
+	<property name="project.dir" value="../.." />
+
+	<import file="../build-common-plugin.xml" />
+
+	<target name="clean">
+		<if>
+			<or>
+				<not>
+					<available file="${app.server.zip.name}" />
+				</not>
+				<not>
+					<available file="${ext.work.dir}" />
+				</not>
+			</or>
+			<then>
+						<fail>
+.
+
+The properties "app.server.dir", "app.server.zip.name", and "ext.work.dir" are
+not properly specified.
+
+The directory denoted by the property "ext.work.dir" will be deleted and the zip
+file denoted by the property "app.server.zip.name" will be unzipped into this
+directory. The property "app.server.dir" must point to the application server
+directory that was unzipped into "ext.work.dir".
+
+For example, if "ext.work.dir" points to "C:\ext-work", and
+"app.server.zip.name" points to "C:\files\liferay-portal-tomcat-6.0-${lp.version}.zip",
+then "app.server.dir" should point to
+"C:\ext-work\liferay-portal-${lp.version}\tomcat-6.0.18".
+						</fail>
+			</then>
+		</if>
+
+		<delete includeemptydirs="true">
+			<fileset dir="docroot/WEB-INF" includes="ext-*/classes/**,ext-*/ext-*.jar" />
+		</delete>
+
+		<delete file="${plugin.file}" />
+
+		<delete dir="${app.server.dir}" />
+
+		<unzip src="${app.server.zip.name}" dest="${ext.work.dir}" />
+	</target>
+
+	<target name="compile">
+		<antcall target="compile-with-global-class-loader">
+			<param name="module.name" value="service" />
+		</antcall>
+
+		<antcall target="compile-with-global-class-loader">
+			<param name="module.name" value="util-bridges" />
+		</antcall>
+
+		<antcall target="compile-with-global-class-loader">
+			<param name="module.name" value="util-java" />
+		</antcall>
+
+		<antcall target="compile-with-portal-class-loader">
+			<param name="module.name" value="util-taglib" />
+		</antcall>
+
+		<antcall target="compile-with-portal-class-loader">
+			<param name="module.name" value="impl" />
+		</antcall>
+
+		<delete>
+			<fileset dir="docroot/WEB-INF/ext-impl/classes" includes="portal-*.properties,system-*.properties" />
+		</delete>
+	</target>
+
+	<target name="compile-with-global-class-loader">
+		<mkdir dir="docroot/WEB-INF/ext-${module.name}/classes" />
+
+		<path id="plugin-lib.classpath">
+			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
+			<pathelement location="docroot/WEB-INF/ext-${module.name}/classes" />
+		</path>
+
+		<antcall target="compile-java">
+			<param name="javac.classpathref" value="plugin.classpath" />
+			<param name="javac.destdir" value="docroot/WEB-INF/ext-${module.name}/classes" />
+			<param name="javac.srcdir" value="docroot/WEB-INF/ext-${module.name}/src" />
+			<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
+		</antcall>
+	</target>
+
+	<target name="compile-with-portal-class-loader">
+		<mkdir dir="docroot/WEB-INF/ext-${module.name}/classes" />
+
+		<path id="plugin-lib.classpath">
+			<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
+			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
+			<fileset dir="docroot/WEB-INF/ext-lib/portal" includes="*.jar" />
+			<pathelement location="docroot/WEB-INF/ext-${module.name}/classes" />
+		</path>
+
+		<antcall target="compile-java">
+			<param name="javac.classpathref" value="plugin.classpath" />
+			<param name="javac.destdir" value="docroot/WEB-INF/ext-${module.name}/classes" />
+			<param name="javac.srcdir" value="docroot/WEB-INF/ext-${module.name}/src" />
+			<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
+		</antcall>
+	</target>
+
+	<target name="war" depends="compile">
+		<zip
+			basedir="docroot/WEB-INF/ext-service/classes"
+			destfile="docroot/WEB-INF/ext-service/ext-service.jar"
+			whenempty="create"
+		/>
+
+		<antcall target="war-util">
+			<param name="util.suffix" value="bridges" />
+		</antcall>
+
+		<antcall target="war-util">
+			<param name="util.suffix" value="java" />
+		</antcall>
+
+		<antcall target="war-util">
+			<param name="util.suffix" value="taglib" />
+		</antcall>
+
+		<zip
+			basedir="docroot/WEB-INF/ext-impl/classes"
+			destfile="docroot/WEB-INF/ext-impl/ext-impl.jar"
+			excludes="portal-*.properties,system-*.properties"
+			whenempty="create"
+		/>
+
+		<zip destfile="${plugin.file}">
+			<zipfileset
+				dir="docroot"
+				excludes="build.xml,**/portal-*.properties,**/system-*.properties"
+			/>
+			<zipfileset
+				dir="docroot/WEB-INF/ext-impl/src"
+				includes="portal-*.properties,system-*.properties"
+				prefix="WEB-INF/ext-web/docroot/WEB-INF/classes"
+			/>
+		</zip>
+	</target>
+
+	<target name="war-util">
+		<zip
+			basedir="docroot/WEB-INF/ext-util-${util.suffix}/classes"
+			destfile="docroot/WEB-INF/ext-util-${util.suffix}/ext-util-${util.suffix}.jar"
+			whenempty="create"
+		/>
+
+		<copy
+			file="docroot/WEB-INF/ext-util-${util.suffix}/ext-util-${util.suffix}.jar"
+			todir="docroot/WEB-INF/ext-impl/classes/com/liferay/portal/deploy/dependencies"
+		/>
+	</target>
+
+	<target name="deploy" depends="war">
+		<copy todir="${app.server.lib.global.dir}" overwrite="yes">
+			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
+			<fileset dir="docroot/WEB-INF/ext-service" includes="*.jar" />
+		</copy>
+
+		<copy todir="${app.server.lib.portal.dir}" overwrite="yes">
+			<fileset dir="docroot/WEB-INF/ext-lib/portal" includes="*.jar" />
+			<fileset dir="docroot/WEB-INF/ext-impl" includes="*.jar" />
+		</copy>
+
+		<copy todir="${app.server.portal.dir}" overwrite="yes">
+			<fileset dir="docroot/WEB-INF/ext-web/docroot" />
+		</copy>
+
+		<antcall target="deploy-properties" />
+	</target>
+
+	<target name="deploy-properties">
+		<copy todir="${app.server.classes.portal.dir}" overwrite="yes">
+			<fileset dir="docroot/WEB-INF/ext-impl/src" includes="portal-*.properties,system-*.properties" />
+		</copy>
+	</target>
+</project>

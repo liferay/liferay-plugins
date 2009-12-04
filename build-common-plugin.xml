@@ -178,37 +178,12 @@ Please find a solution that does not require portal-impl.jar.
 					</then>
 				</if>
 
-				<if>
-					<equals arg1="${javac.compiler}" arg2="modern" />
-					<then>
-						<javac
-							classpathref="plugin.classpath"
-							compiler="${javac.compiler}"
-							debug="${javac.debug}"
-							deprecation="${javac.deprecation}"
-							destdir="docroot/WEB-INF/classes"
-							fork="${javac.fork}"
-							memoryMaximumSize="${javac.memoryMaximumSize}"
-							nowarn="${javac.nowarn}"
-							srcdir="docroot/WEB-INF/src"
-						/>
-					</then>
-					<else>
-						<javac
-							classpathref="plugin.classpath"
-							compiler="${javac.compiler}"
-							debug="${javac.debug}"
-							deprecation="${javac.deprecation}"
-							destdir="docroot/WEB-INF/classes"
-							nowarn="${javac.nowarn}"
-							srcdir="docroot/WEB-INF/src"
-						/>
-					</else>
-				</if>
-
-				<copy todir="docroot/WEB-INF/classes">
-					<fileset dir="docroot/WEB-INF/src" excludes="**/*.java" />
-				</copy>
+				<antcall target="compile-java">
+					<param name="javac.classpathref" value="plugin.classpath" />
+					<param name="javac.destdir" value="docroot/WEB-INF/classes" />
+					<param name="javac.srcdir" value="docroot/WEB-INF/src" />
+					<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
+				</antcall>
 			</then>
 		</if>
 

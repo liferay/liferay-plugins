@@ -21,33 +21,12 @@
 			<pathelement location="classes" />
 		</path>
 
-		<if>
-			<equals arg1="${javac.compiler}" arg2="modern" />
-			<then>
-				<javac
-					classpathref="plugin.classpath"
-					compiler="${javac.compiler}"
-					debug="${javac.debug}"
-					deprecation="${javac.deprecation}"
-					destdir="classes"
-					fork="${javac.fork}"
-					memoryMaximumSize="${javac.memoryMaximumSize}"
-					nowarn="${javac.nowarn}"
-					srcdir="src"
-				/>
-			</then>
-			<else>
-				<javac
-					classpathref="plugin.classpath"
-					compiler="${javac.compiler}"
-					debug="${javac.debug}"
-					deprecation="${javac.deprecation}"
-					destdir="classes"
-					nowarn="${javac.nowarn}"
-					srcdir="src"
-				/>
-			</else>
-		</if>
+		<antcall target="compile-java">
+			<param name="javac.classpathref" value="plugin.classpath" />
+			<param name="javac.destdir" value="classes" />
+			<param name="javac.srcdir" value="src" />
+			<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
+		</antcall>
 	</target>
 
 	<target name="jar" depends="compile">

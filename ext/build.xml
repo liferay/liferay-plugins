@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<project name="ext" basedir="." default="deploy" xmlns:antelope="antlib:ise.antelope.tasks">
+	<property name="project.dir" value=".." />
+
+	<import file="../build-common-plugins.xml" />
+
+	<target name="create">
+		<if>
+			<equals arg1="${ext.name}" arg2="$${ext.name}" />
+			<then>
+				<echo message="This task must be called by create.bat." />
+			</then>
+			<else>
+				<if>
+					<available file="${ext.name}-ext" />
+					<then>
+						<echo message="${ext.name}-ext already exists." />
+					</then>
+					<else>
+						<unzip src="ext.zip" dest="${ext.name}-ext" />
+
+						<replace dir="${ext.name}-ext">
+							<replacefilter token="@ext.name@" value="${ext.name}" />
+							<replacefilter token="@ext.display.name@" value="${ext.display.name}" />
+						</replace>
+					</else>
+				</if>
+			</else>
+		</if>
+	</target>
+</project>
