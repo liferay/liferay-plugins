@@ -279,6 +279,12 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
+	public int getWorkflowTaskCount(Boolean completed)
+		throws WorkflowException {
+
+		return getWorkflowTaskCount(null, false, completed);
+	}
+
 	public int getWorkflowTaskCountByRole(long roleId, Boolean completed)
 		throws WorkflowException {
 
@@ -328,6 +334,14 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		finally {
 			jbpmContext.close();
 		}
+	}
+
+	public List<WorkflowTask> getWorkflowTasks(
+		Boolean completed, int start, int end,
+		OrderByComparator orderByComparator) throws WorkflowException {
+
+		return getWorkflowTasks(
+			-1, null, false, completed, start, end,	orderByComparator);
 	}
 
 	public List<WorkflowTask> getWorkflowTasksByRole(
@@ -395,9 +409,15 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		try {
 			CustomSession customSession = new CustomSession(jbpmContext);
 
-			return customSession.countTaskInstances(
-				-1, -1, ArrayUtil.toStringArray(actorIds), pooledActors,
-				completed);
+			if (actorIds != null) {
+				return customSession.countTaskInstances(
+					-1, -1, ArrayUtil.toStringArray(actorIds), pooledActors,
+					completed);
+			}
+			else {
+				return customSession.countTaskInstances(
+					-1, -1, null, pooledActors,	completed);
+			}
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
