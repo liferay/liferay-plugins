@@ -337,8 +337,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public List<WorkflowTask> getWorkflowTasks(
-		Boolean completed, int start, int end,
-		OrderByComparator orderByComparator) throws WorkflowException {
+			Boolean completed, int start, int end,
+			OrderByComparator orderByComparator)
+		throws WorkflowException {
 
 		return getWorkflowTasks(
 			-1, null, false, completed, start, end,	orderByComparator);
