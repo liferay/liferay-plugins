@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>@portlet.name@</portlet-name>
 		<display-name>@portlet.display.name@</display-name>
-		<portlet-class>com.sample.jsp.portlet.JSPPortlet</portlet-class>
+		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/view.jsp</value>
