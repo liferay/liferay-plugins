@@ -25,6 +25,7 @@ package com.liferay.socialcoding.model;
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
@@ -233,7 +234,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{jiraIssueId=");
 		sb.append(getJiraIssueId());
@@ -263,7 +264,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.socialcoding.model.JIRAIssue");

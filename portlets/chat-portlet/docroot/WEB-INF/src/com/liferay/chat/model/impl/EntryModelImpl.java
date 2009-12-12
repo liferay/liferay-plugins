@@ -29,6 +29,7 @@ import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -61,6 +62,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> {
 		};
 	public static final String TABLE_SQL_CREATE = "create table Chat_Entry (entryId LONG not null primary key,createDate LONG,fromUserId LONG,toUserId LONG,content VARCHAR(1000) null)";
 	public static final String TABLE_SQL_DROP = "drop table Chat_Entry";
+	public static final String ORDER_BY_JPQL = " ORDER BY entry.createDate DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY Chat_Entry.createDate DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -266,7 +269,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{entryId=");
 		sb.append(getEntryId());
@@ -284,7 +287,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> {
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.chat.model.Entry");

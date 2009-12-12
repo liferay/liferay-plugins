@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -67,6 +68,8 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 		};
 	public static final String TABLE_SQL_CREATE = "create table jiraissue (id LONG not null primary key,created DATE null,updated DATE null,project LONG,pkey VARCHAR(75) null,summary VARCHAR(75) null,description VARCHAR(75) null,reporter VARCHAR(75) null,assignee VARCHAR(75) null,resolution VARCHAR(75) null,issuestatus VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table jiraissue";
+	public static final String ORDER_BY_JPQL = " ORDER BY jiraIssue.modifiedDate DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY jiraissue.updated DESC";
 	public static final String DATA_SOURCE = "jiraDataSource";
 	public static final String SESSION_FACTORY = "jiraSessionFactory";
 	public static final String TX_MANAGER = "jiraTransactionManager";
@@ -324,7 +327,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{jiraIssueId=");
 		sb.append(getJiraIssueId());
@@ -354,7 +357,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.socialcoding.model.JIRAIssue");

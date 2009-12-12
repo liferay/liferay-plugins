@@ -25,6 +25,7 @@ package com.liferay.sampleservicebuilder.model.impl;
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -61,6 +62,8 @@ public class FooModelImpl extends BaseModelImpl<Foo> {
 		};
 	public static final String TABLE_SQL_CREATE = "create table SSB_Foo (fooId LONG not null primary key,field1 VARCHAR(75) null,field2 BOOLEAN,field3 INTEGER,field4 DATE null,field5 VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table SSB_Foo";
+	public static final String ORDER_BY_JPQL = " ORDER BY foo.field1 ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY SSB_Foo.field1 ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -255,7 +258,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{fooId=");
 		sb.append(getFooId());
@@ -275,7 +278,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> {
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.sampleservicebuilder.model.Foo");

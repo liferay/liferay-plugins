@@ -25,6 +25,7 @@ package com.liferay.socialcoding.model.impl;
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -61,6 +62,8 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 		};
 	public static final String TABLE_SQL_CREATE = "create table SC_SVNRevision (svnRevisionId LONG not null primary key,svnUserId VARCHAR(75) null,createDate DATE null,svnRepositoryId LONG,revisionNumber LONG,comments STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table SC_SVNRevision";
+	public static final String ORDER_BY_JPQL = " ORDER BY svnRevision.revisionNumber DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY SC_SVNRevision.revisionNumber DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -262,7 +265,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{svnRevisionId=");
 		sb.append(getSvnRevisionId());
@@ -282,7 +285,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.socialcoding.model.SVNRevision");

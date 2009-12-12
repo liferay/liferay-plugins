@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
@@ -167,12 +168,11 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 
 			if (wallEntry == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No WallEntry exists with the primary key " +
-						wallEntryId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + wallEntryId);
 				}
 
-				throw new NoSuchWallEntryException(
-					"No WallEntry exists with the primary key " + wallEntryId);
+				throw new NoSuchWallEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+					wallEntryId);
 			}
 
 			return remove(wallEntry);
@@ -301,12 +301,11 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 
 		if (wallEntry == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No WallEntry exists with the primary key " +
-					wallEntryId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + wallEntryId);
 			}
 
-			throw new NoSuchWallEntryException(
-				"No WallEntry exists with the primary key " + wallEntryId);
+			throw new NoSuchWallEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				wallEntryId);
 		}
 
 		return wallEntry;
@@ -359,19 +358,17 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
+				query.append(_SQL_SELECT_WALLENTRY_WHERE);
 
-				query.append("wallEntry.groupId = ?");
+				query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
-				query.append(" ");
+				query.append(WallEntryModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("wallEntry.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -421,43 +418,31 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
-
-				query.append("wallEntry.groupId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_WALLENTRY_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("wallEntry.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("wallEntry.createDate DESC");
+					query.append(WallEntryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -491,11 +476,12 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		List<WallEntry> list = findByGroupId(groupId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No WallEntry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("groupId=" + groupId);
+			msg.append("groupId=");
+			msg.append(groupId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -513,11 +499,12 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		List<WallEntry> list = findByGroupId(groupId, count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No WallEntry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("groupId=" + groupId);
+			msg.append("groupId=");
+			msg.append(groupId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -540,43 +527,31 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
-
-			query.append("wallEntry.groupId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_WALLENTRY_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("wallEntry.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("wallEntry.createDate DESC");
+				query.append(WallEntryModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -613,19 +588,17 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
+				query.append(_SQL_SELECT_WALLENTRY_WHERE);
 
-				query.append("wallEntry.userId = ?");
+				query.append(_FINDER_COLUMN_USERID_USERID_2);
 
-				query.append(" ");
+				query.append(WallEntryModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("wallEntry.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -675,43 +648,31 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
-
-				query.append("wallEntry.userId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_WALLENTRY_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("wallEntry.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_USERID_USERID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("wallEntry.createDate DESC");
+					query.append(WallEntryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -745,11 +706,12 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		List<WallEntry> list = findByUserId(userId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No WallEntry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("userId=" + userId);
+			msg.append("userId=");
+			msg.append(userId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -767,11 +729,12 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		List<WallEntry> list = findByUserId(userId, count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No WallEntry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("userId=" + userId);
+			msg.append("userId=");
+			msg.append(userId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -793,43 +756,31 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
-
-			query.append("wallEntry.userId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_WALLENTRY_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("wallEntry.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_USERID_USERID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("wallEntry.createDate DESC");
+				query.append(WallEntryModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -867,23 +818,19 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(4);
 
-				query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
+				query.append(_SQL_SELECT_WALLENTRY_WHERE);
 
-				query.append("wallEntry.groupId = ?");
+				query.append(_FINDER_COLUMN_G_U_GROUPID_2);
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_G_U_USERID_2);
 
-				query.append("wallEntry.userId = ?");
+				query.append(WallEntryModelImpl.ORDER_BY_JPQL);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				query.append("ORDER BY ");
-
-				query.append("wallEntry.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -935,47 +882,33 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
-
-				query.append("wallEntry.groupId = ?");
-
-				query.append(" AND ");
-
-				query.append("wallEntry.userId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(4 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(4);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_WALLENTRY_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("wallEntry.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_G_U_GROUPID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
+				query.append(_FINDER_COLUMN_G_U_USERID_2);
 
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("wallEntry.createDate DESC");
+					query.append(WallEntryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1011,14 +944,15 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		List<WallEntry> list = findByG_U(groupId, userId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No WallEntry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("groupId=" + groupId);
+			msg.append("groupId=");
+			msg.append(groupId);
 
-			msg.append(", ");
-			msg.append("userId=" + userId);
+			msg.append(", userId=");
+			msg.append(userId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1036,14 +970,15 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		List<WallEntry> list = findByG_U(groupId, userId, count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No WallEntry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("groupId=" + groupId);
+			msg.append("groupId=");
+			msg.append(groupId);
 
-			msg.append(", ");
-			msg.append("userId=" + userId);
+			msg.append(", userId=");
+			msg.append(userId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1066,47 +1001,33 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT wallEntry FROM WallEntry wallEntry WHERE ");
-
-			query.append("wallEntry.groupId = ?");
-
-			query.append(" AND ");
-
-			query.append("wallEntry.userId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(4 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_WALLENTRY_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("wallEntry.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_G_U_GROUPID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
+			query.append(_FINDER_COLUMN_G_U_USERID_2);
 
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("wallEntry.createDate DESC");
+				query.append(WallEntryModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1197,39 +1118,25 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT wallEntry FROM WallEntry wallEntry ");
+				StringBundler query = null;
+				String sql = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(2 +
+							(obc.getOrderByFields().length * 3));
 
-					String[] orderByFields = obc.getOrderByFields();
+					query.append(_SQL_SELECT_WALLENTRY);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("wallEntry.");
-						query.append(orderByFields[i]);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+					sql = query.toString();
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("wallEntry.createDate DESC");
+					sql = _SQL_SELECT_WALLENTRY.concat(WallEntryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				if (obc == null) {
 					list = (List<WallEntry>)QueryUtil.list(q, getDialect(),
@@ -1298,16 +1205,15 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(wallEntry) ");
-				query.append("FROM WallEntry wallEntry WHERE ");
+				query.append(_SQL_COUNT_WALLENTRY_WHERE);
 
-				query.append("wallEntry.groupId = ?");
+				query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1345,16 +1251,15 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(wallEntry) ");
-				query.append("FROM WallEntry wallEntry WHERE ");
+				query.append(_SQL_COUNT_WALLENTRY_WHERE);
 
-				query.append("wallEntry.userId = ?");
+				query.append(_FINDER_COLUMN_USERID_USERID_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1392,20 +1297,17 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT COUNT(wallEntry) ");
-				query.append("FROM WallEntry wallEntry WHERE ");
+				query.append(_SQL_COUNT_WALLENTRY_WHERE);
 
-				query.append("wallEntry.groupId = ?");
+				query.append(_FINDER_COLUMN_G_U_GROUPID_2);
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_G_U_USERID_2);
 
-				query.append("wallEntry.userId = ?");
+				String sql = query.toString();
 
-				query.append(" ");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1445,8 +1347,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(
-						"SELECT COUNT(wallEntry) FROM WallEntry wallEntry");
+				Query q = session.createQuery(_SQL_COUNT_WALLENTRY);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -1496,5 +1397,16 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	protected com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence meetupsRegistrationPersistence;
 	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.WallEntryPersistence")
 	protected com.liferay.socialnetworking.service.persistence.WallEntryPersistence wallEntryPersistence;
+	private static final String _SQL_SELECT_WALLENTRY = "SELECT wallEntry FROM WallEntry wallEntry";
+	private static final String _SQL_SELECT_WALLENTRY_WHERE = "SELECT wallEntry FROM WallEntry wallEntry WHERE ";
+	private static final String _SQL_COUNT_WALLENTRY = "SELECT COUNT(wallEntry) FROM WallEntry wallEntry";
+	private static final String _SQL_COUNT_WALLENTRY_WHERE = "SELECT COUNT(wallEntry) FROM WallEntry wallEntry WHERE ";
+	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "wallEntry.groupId = ?";
+	private static final String _FINDER_COLUMN_USERID_USERID_2 = "wallEntry.userId = ?";
+	private static final String _FINDER_COLUMN_G_U_GROUPID_2 = "wallEntry.groupId = ? AND ";
+	private static final String _FINDER_COLUMN_G_U_USERID_2 = "wallEntry.userId = ?";
+	private static final String _ORDER_BY_ENTITY_ALIAS = "wallEntry.";
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No WallEntry exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No WallEntry exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(WallEntryPersistenceImpl.class);
 }

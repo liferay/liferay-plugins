@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -68,6 +69,8 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 		};
 	public static final String TABLE_SQL_CREATE = "create table SN_MeetupsRegistration (meetupsRegistrationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,meetupsEntryId LONG,status INTEGER,comments STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table SN_MeetupsRegistration";
+	public static final String ORDER_BY_JPQL = " ORDER BY meetupsRegistration.modifiedDate DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY SN_MeetupsRegistration.modifiedDate DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -324,7 +327,7 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{meetupsRegistrationId=");
 		sb.append(getMeetupsRegistrationId());
@@ -350,7 +353,7 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.socialnetworking.model.MeetupsRegistration");

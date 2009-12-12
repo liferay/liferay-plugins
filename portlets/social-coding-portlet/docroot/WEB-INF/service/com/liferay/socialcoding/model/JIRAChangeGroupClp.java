@@ -25,6 +25,7 @@ package com.liferay.socialcoding.model;
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
@@ -164,7 +165,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(9);
 
 		sb.append("{jiraChangeGroupId=");
 		sb.append(getJiraChangeGroupId());
@@ -180,7 +181,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(16);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.socialcoding.model.JIRAChangeGroup");

@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -60,6 +61,8 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
 		};
 	public static final String TABLE_SQL_CREATE = "create table changegroup (id LONG not null primary key,author VARCHAR(75) null,created DATE null,issueid LONG)";
 	public static final String TABLE_SQL_DROP = "drop table changegroup";
+	public static final String ORDER_BY_JPQL = " ORDER BY jiraChangeGroup.createDate DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY changegroup.created DESC";
 	public static final String DATA_SOURCE = "jiraDataSource";
 	public static final String SESSION_FACTORY = "jiraSessionFactory";
 	public static final String TX_MANAGER = "jiraTransactionManager";
@@ -233,7 +236,7 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(9);
 
 		sb.append("{jiraChangeGroupId=");
 		sb.append(getJiraChangeGroupId());
@@ -249,7 +252,7 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(16);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.socialcoding.model.JIRAChangeGroup");

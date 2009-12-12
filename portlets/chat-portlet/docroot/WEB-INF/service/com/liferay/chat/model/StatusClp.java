@@ -25,6 +25,7 @@ package com.liferay.chat.model;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
@@ -220,7 +221,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{statusId=");
 		sb.append(getStatusId());
@@ -244,7 +245,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.chat.model.Status");

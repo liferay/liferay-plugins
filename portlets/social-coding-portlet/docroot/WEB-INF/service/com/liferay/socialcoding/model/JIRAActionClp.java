@@ -25,6 +25,7 @@ package com.liferay.socialcoding.model;
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
@@ -204,7 +205,7 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{jiraActionId=");
 		sb.append(getJiraActionId());
@@ -228,7 +229,7 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.socialcoding.model.JIRAAction");

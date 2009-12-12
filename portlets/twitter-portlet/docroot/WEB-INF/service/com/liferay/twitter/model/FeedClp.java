@@ -25,6 +25,7 @@ package com.liferay.twitter.model;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
@@ -191,7 +192,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{feedId=");
 		sb.append(getFeedId());
@@ -211,7 +212,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.twitter.model.Feed");

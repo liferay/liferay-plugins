@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -136,11 +137,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 			if (feed == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No Feed exists with the primary key " + feedId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + feedId);
 				}
 
-				throw new NoSuchFeedException(
-					"No Feed exists with the primary key " + feedId);
+				throw new NoSuchFeedException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+					feedId);
 			}
 
 			return remove(feed);
@@ -303,11 +304,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 		if (feed == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No Feed exists with the primary key " + feedId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + feedId);
 			}
 
-			throw new NoSuchFeedException(
-				"No Feed exists with the primary key " + feedId);
+			throw new NoSuchFeedException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				feedId);
 		}
 
 		return feed;
@@ -350,11 +351,12 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		Feed feed = fetchByTwitterUserId(twitterUserId);
 
 		if (feed == null) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No Feed exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("twitterUserId=" + twitterUserId);
+			msg.append("twitterUserId=");
+			msg.append(twitterUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -390,15 +392,15 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT feed FROM Feed feed WHERE ");
+				query.append(_SQL_SELECT_FEED_WHERE);
 
-				query.append("feed.twitterUserId = ?");
+				query.append(_FINDER_COLUMN_TWITTERUSERID_TWITTERUSERID_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -454,11 +456,12 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		Feed feed = fetchByTwitterScreenName(twitterScreenName);
 
 		if (feed == null) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No Feed exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("twitterScreenName=" + twitterScreenName);
+			msg.append("twitterScreenName=");
+			msg.append(twitterScreenName);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -494,28 +497,25 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT feed FROM Feed feed WHERE ");
+				query.append(_SQL_SELECT_FEED_WHERE);
 
 				if (twitterScreenName == null) {
-					query.append("feed.twitterScreenName IS NULL");
+					query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_1);
 				}
 				else {
 					if (twitterScreenName.equals(StringPool.BLANK)) {
-						query.append("(feed.twitterScreenName IS NULL OR ");
+						query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_3);
 					}
-
-					query.append("feed.twitterScreenName = ?");
-
-					if (twitterScreenName.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -633,33 +633,23 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT feed FROM Feed feed ");
+				StringBundler query = null;
+				String sql = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(2 +
+							(obc.getOrderByFields().length * 3));
 
-					String[] orderByFields = obc.getOrderByFields();
+					query.append(_SQL_SELECT_FEED);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("feed.");
-						query.append(orderByFields[i]);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+					sql = query.toString();
 				}
 
-				Query q = session.createQuery(query.toString());
+				sql = _SQL_SELECT_FEED;
+
+				Query q = session.createQuery(sql);
 
 				if (obc == null) {
 					list = (List<Feed>)QueryUtil.list(q, getDialect(), start,
@@ -724,16 +714,15 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(feed) ");
-				query.append("FROM Feed feed WHERE ");
+				query.append(_SQL_COUNT_FEED_WHERE);
 
-				query.append("feed.twitterUserId = ?");
+				query.append(_FINDER_COLUMN_TWITTERUSERID_TWITTERUSERID_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -772,29 +761,25 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(feed) ");
-				query.append("FROM Feed feed WHERE ");
+				query.append(_SQL_COUNT_FEED_WHERE);
 
 				if (twitterScreenName == null) {
-					query.append("feed.twitterScreenName IS NULL");
+					query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_1);
 				}
 				else {
 					if (twitterScreenName.equals(StringPool.BLANK)) {
-						query.append("(feed.twitterScreenName IS NULL OR ");
+						query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_3);
 					}
-
-					query.append("feed.twitterScreenName = ?");
-
-					if (twitterScreenName.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -834,8 +819,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(
-						"SELECT COUNT(feed) FROM Feed feed");
+				Query q = session.createQuery(_SQL_COUNT_FEED);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -881,5 +865,19 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 	@BeanReference(name = "com.liferay.twitter.service.persistence.FeedPersistence")
 	protected com.liferay.twitter.service.persistence.FeedPersistence feedPersistence;
+	private static final String _SQL_SELECT_FEED = "SELECT feed FROM Feed feed";
+	private static final String _SQL_SELECT_FEED_WHERE = "SELECT feed FROM Feed feed WHERE ";
+	private static final String _SQL_COUNT_FEED = "SELECT COUNT(feed) FROM Feed feed";
+	private static final String _SQL_COUNT_FEED_WHERE = "SELECT COUNT(feed) FROM Feed feed WHERE ";
+	private static final String _FINDER_COLUMN_TWITTERUSERID_TWITTERUSERID_2 = "feed.twitterUserId = ?";
+	private static final String _FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_1 =
+		"feed.twitterScreenName IS NULL";
+	private static final String _FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_2 =
+		"feed.twitterScreenName = ?";
+	private static final String _FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_3 =
+		"(feed.twitterScreenName IS NULL OR feed.twitterScreenName = ?)";
+	private static final String _ORDER_BY_ENTITY_ALIAS = "feed.";
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Feed exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Feed exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(FeedPersistenceImpl.class);
 }

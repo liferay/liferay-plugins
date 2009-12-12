@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
@@ -140,12 +141,11 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 
 			if (projectsEntry == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No ProjectsEntry exists with the primary key " +
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 						projectsEntryId);
 				}
 
-				throw new NoSuchProjectsEntryException(
-					"No ProjectsEntry exists with the primary key " +
+				throw new NoSuchProjectsEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 					projectsEntryId);
 			}
 
@@ -280,12 +280,10 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 
 		if (projectsEntry == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No ProjectsEntry exists with the primary key " +
-					projectsEntryId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + projectsEntryId);
 			}
 
-			throw new NoSuchProjectsEntryException(
-				"No ProjectsEntry exists with the primary key " +
+			throw new NoSuchProjectsEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 				projectsEntryId);
 		}
 
@@ -339,20 +337,17 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append(
-					"SELECT projectsEntry FROM ProjectsEntry projectsEntry WHERE ");
+				query.append(_SQL_SELECT_PROJECTSENTRY_WHERE);
 
-				query.append("projectsEntry.userId = ?");
+				query.append(_FINDER_COLUMN_USERID_USERID_2);
 
-				query.append(" ");
+				query.append(ProjectsEntryModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("projectsEntry.endDate ASC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -402,44 +397,31 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT projectsEntry FROM ProjectsEntry projectsEntry WHERE ");
-
-				query.append("projectsEntry.userId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_PROJECTSENTRY_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("projectsEntry.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_USERID_USERID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("projectsEntry.endDate ASC");
+					query.append(ProjectsEntryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -473,11 +455,12 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		List<ProjectsEntry> list = findByUserId(userId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No ProjectsEntry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("userId=" + userId);
+			msg.append("userId=");
+			msg.append(userId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -495,11 +478,12 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		List<ProjectsEntry> list = findByUserId(userId, count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No ProjectsEntry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("userId=" + userId);
+			msg.append("userId=");
+			msg.append(userId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -522,44 +506,31 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append(
-				"SELECT projectsEntry FROM ProjectsEntry projectsEntry WHERE ");
-
-			query.append("projectsEntry.userId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_PROJECTSENTRY_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("projectsEntry.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_USERID_USERID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("projectsEntry.endDate ASC");
+				query.append(ProjectsEntryModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -648,40 +619,25 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT projectsEntry FROM ProjectsEntry projectsEntry ");
+				StringBundler query = null;
+				String sql = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(2 +
+							(obc.getOrderByFields().length * 3));
 
-					String[] orderByFields = obc.getOrderByFields();
+					query.append(_SQL_SELECT_PROJECTSENTRY);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("projectsEntry.");
-						query.append(orderByFields[i]);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+					sql = query.toString();
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("projectsEntry.endDate ASC");
+					sql = _SQL_SELECT_PROJECTSENTRY.concat(ProjectsEntryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				if (obc == null) {
 					list = (List<ProjectsEntry>)QueryUtil.list(q, getDialect(),
@@ -737,16 +693,15 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(projectsEntry) ");
-				query.append("FROM ProjectsEntry projectsEntry WHERE ");
+				query.append(_SQL_COUNT_PROJECTSENTRY_WHERE);
 
-				query.append("projectsEntry.userId = ?");
+				query.append(_FINDER_COLUMN_USERID_USERID_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -784,8 +739,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(
-						"SELECT COUNT(projectsEntry) FROM ProjectsEntry projectsEntry");
+				Query q = session.createQuery(_SQL_COUNT_PROJECTSENTRY);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -833,5 +787,13 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	protected com.liferay.so.service.persistence.MemberRequestPersistence memberRequestPersistence;
 	@BeanReference(name = "com.liferay.so.service.persistence.ProjectsEntryPersistence")
 	protected com.liferay.so.service.persistence.ProjectsEntryPersistence projectsEntryPersistence;
+	private static final String _SQL_SELECT_PROJECTSENTRY = "SELECT projectsEntry FROM ProjectsEntry projectsEntry";
+	private static final String _SQL_SELECT_PROJECTSENTRY_WHERE = "SELECT projectsEntry FROM ProjectsEntry projectsEntry WHERE ";
+	private static final String _SQL_COUNT_PROJECTSENTRY = "SELECT COUNT(projectsEntry) FROM ProjectsEntry projectsEntry";
+	private static final String _SQL_COUNT_PROJECTSENTRY_WHERE = "SELECT COUNT(projectsEntry) FROM ProjectsEntry projectsEntry WHERE ";
+	private static final String _FINDER_COLUMN_USERID_USERID_2 = "projectsEntry.userId = ?";
+	private static final String _ORDER_BY_ENTITY_ALIAS = "projectsEntry.";
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No ProjectsEntry exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No ProjectsEntry exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(ProjectsEntryPersistenceImpl.class);
 }

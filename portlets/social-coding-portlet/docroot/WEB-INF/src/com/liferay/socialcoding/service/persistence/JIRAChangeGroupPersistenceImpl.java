@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
@@ -157,12 +158,11 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 			if (jiraChangeGroup == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No JIRAChangeGroup exists with the primary key " +
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 						jiraChangeGroupId);
 				}
 
-				throw new NoSuchJIRAChangeGroupException(
-					"No JIRAChangeGroup exists with the primary key " +
+				throw new NoSuchJIRAChangeGroupException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 					jiraChangeGroupId);
 			}
 
@@ -291,12 +291,10 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 		if (jiraChangeGroup == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No JIRAChangeGroup exists with the primary key " +
-					jiraChangeGroupId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + jiraChangeGroupId);
 			}
 
-			throw new NoSuchJIRAChangeGroupException(
-				"No JIRAChangeGroup exists with the primary key " +
+			throw new NoSuchJIRAChangeGroupException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 				jiraChangeGroupId);
 		}
 
@@ -350,33 +348,27 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append(
-					"SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup WHERE ");
+				query.append(_SQL_SELECT_JIRACHANGEGROUP_WHERE);
 
 				if (jiraUserId == null) {
-					query.append("jiraChangeGroup.jiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1);
 				}
 				else {
 					if (jiraUserId.equals(StringPool.BLANK)) {
-						query.append("(jiraChangeGroup.jiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
 					}
-
-					query.append("jiraChangeGroup.jiraUserId = ?");
-
-					if (jiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(JIRAChangeGroupModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("jiraChangeGroup.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -428,57 +420,41 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup WHERE ");
-
-				if (jiraUserId == null) {
-					query.append("jiraChangeGroup.jiraUserId IS NULL");
-				}
-				else {
-					if (jiraUserId.equals(StringPool.BLANK)) {
-						query.append("(jiraChangeGroup.jiraUserId IS NULL OR ");
-					}
-
-					query.append("jiraChangeGroup.jiraUserId = ?");
-
-					if (jiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_JIRACHANGEGROUP_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraChangeGroup.");
-						query.append(orderByFields[i]);
-
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
+				if (jiraUserId == null) {
+					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1);
+				}
+				else {
+					if (jiraUserId.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
 					}
 				}
 
-				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraChangeGroup.createDate DESC");
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
-				Query q = session.createQuery(query.toString());
+				else {
+					query.append(JIRAChangeGroupModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -515,11 +491,12 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		List<JIRAChangeGroup> list = findByJiraUserId(jiraUserId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAChangeGroup exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("jiraUserId=" + jiraUserId);
+			msg.append("jiraUserId=");
+			msg.append(jiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -539,11 +516,12 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 				count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAChangeGroup exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("jiraUserId=" + jiraUserId);
+			msg.append("jiraUserId=");
+			msg.append(jiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -566,57 +544,41 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append(
-				"SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup WHERE ");
-
-			if (jiraUserId == null) {
-				query.append("jiraChangeGroup.jiraUserId IS NULL");
-			}
-			else {
-				if (jiraUserId.equals(StringPool.BLANK)) {
-					query.append("(jiraChangeGroup.jiraUserId IS NULL OR ");
-				}
-
-				query.append("jiraChangeGroup.jiraUserId = ?");
-
-				if (jiraUserId.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_JIRACHANGEGROUP_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("jiraChangeGroup.");
-					query.append(orderByFields[i]);
-
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
+			if (jiraUserId == null) {
+				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1);
+			}
+			else {
+				if (jiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
 				}
 			}
 
-			else {
-				query.append("ORDER BY ");
-
-				query.append("jiraChangeGroup.createDate DESC");
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
-			Query q = session.createQuery(query.toString());
+			else {
+				query.append(JIRAChangeGroupModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -656,20 +618,17 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append(
-					"SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup WHERE ");
+				query.append(_SQL_SELECT_JIRACHANGEGROUP_WHERE);
 
-				query.append("jiraChangeGroup.jiraIssueId = ?");
+				query.append(_FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2);
 
-				query.append(" ");
+				query.append(JIRAChangeGroupModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("jiraChangeGroup.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -719,44 +678,31 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup WHERE ");
-
-				query.append("jiraChangeGroup.jiraIssueId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_JIRACHANGEGROUP_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraChangeGroup.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraChangeGroup.createDate DESC");
+					query.append(JIRAChangeGroupModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -791,11 +737,12 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		List<JIRAChangeGroup> list = findByJiraIssueId(jiraIssueId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAChangeGroup exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("jiraIssueId=" + jiraIssueId);
+			msg.append("jiraIssueId=");
+			msg.append(jiraIssueId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -815,11 +762,12 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 				count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAChangeGroup exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("jiraIssueId=" + jiraIssueId);
+			msg.append("jiraIssueId=");
+			msg.append(jiraIssueId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -842,44 +790,31 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append(
-				"SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup WHERE ");
-
-			query.append("jiraChangeGroup.jiraIssueId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_JIRACHANGEGROUP_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("jiraChangeGroup.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("jiraChangeGroup.createDate DESC");
+				query.append(JIRAChangeGroupModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -968,40 +903,25 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup ");
+				StringBundler query = null;
+				String sql = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(2 +
+							(obc.getOrderByFields().length * 3));
 
-					String[] orderByFields = obc.getOrderByFields();
+					query.append(_SQL_SELECT_JIRACHANGEGROUP);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraChangeGroup.");
-						query.append(orderByFields[i]);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+					sql = query.toString();
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraChangeGroup.createDate DESC");
+					sql = _SQL_SELECT_JIRACHANGEGROUP.concat(JIRAChangeGroupModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				if (obc == null) {
 					list = (List<JIRAChangeGroup>)QueryUtil.list(q,
@@ -1063,29 +983,25 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(jiraChangeGroup) ");
-				query.append("FROM JIRAChangeGroup jiraChangeGroup WHERE ");
+				query.append(_SQL_COUNT_JIRACHANGEGROUP_WHERE);
 
 				if (jiraUserId == null) {
-					query.append("jiraChangeGroup.jiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1);
 				}
 				else {
 					if (jiraUserId.equals(StringPool.BLANK)) {
-						query.append("(jiraChangeGroup.jiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
 					}
-
-					query.append("jiraChangeGroup.jiraUserId = ?");
-
-					if (jiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1125,16 +1041,15 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(jiraChangeGroup) ");
-				query.append("FROM JIRAChangeGroup jiraChangeGroup WHERE ");
+				query.append(_SQL_COUNT_JIRACHANGEGROUP_WHERE);
 
-				query.append("jiraChangeGroup.jiraIssueId = ?");
+				query.append(_FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1172,8 +1087,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(
-						"SELECT COUNT(jiraChangeGroup) FROM JIRAChangeGroup jiraChangeGroup");
+				Query q = session.createQuery(_SQL_COUNT_JIRACHANGEGROUP);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -1229,5 +1143,16 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	protected com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence svnRepositoryPersistence;
 	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRevisionPersistence")
 	protected com.liferay.socialcoding.service.persistence.SVNRevisionPersistence svnRevisionPersistence;
+	private static final String _SQL_SELECT_JIRACHANGEGROUP = "SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup";
+	private static final String _SQL_SELECT_JIRACHANGEGROUP_WHERE = "SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup WHERE ";
+	private static final String _SQL_COUNT_JIRACHANGEGROUP = "SELECT COUNT(jiraChangeGroup) FROM JIRAChangeGroup jiraChangeGroup";
+	private static final String _SQL_COUNT_JIRACHANGEGROUP_WHERE = "SELECT COUNT(jiraChangeGroup) FROM JIRAChangeGroup jiraChangeGroup WHERE ";
+	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1 = "jiraChangeGroup.jiraUserId IS NULL";
+	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2 = "jiraChangeGroup.jiraUserId = ?";
+	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3 = "(jiraChangeGroup.jiraUserId IS NULL OR jiraChangeGroup.jiraUserId = ?)";
+	private static final String _FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2 = "jiraChangeGroup.jiraIssueId = ?";
+	private static final String _ORDER_BY_ENTITY_ALIAS = "jiraChangeGroup.";
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No JIRAChangeGroup exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No JIRAChangeGroup exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(JIRAChangeGroupPersistenceImpl.class);
 }

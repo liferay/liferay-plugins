@@ -25,6 +25,7 @@ package com.liferay.socialcoding.model.impl;
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -57,6 +58,8 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
 		};
 	public static final String TABLE_SQL_CREATE = "create table SC_SVNRepository (svnRepositoryId LONG not null primary key,url VARCHAR(200) null,revisionNumber LONG)";
 	public static final String TABLE_SQL_DROP = "drop table SC_SVNRepository";
+	public static final String ORDER_BY_JPQL = " ORDER BY svnRepository.url ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY SC_SVNRepository.url ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -223,7 +226,7 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(7);
 
 		sb.append("{svnRepositoryId=");
 		sb.append(getSvnRepositoryId());
@@ -237,7 +240,7 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.socialcoding.model.SVNRepository");

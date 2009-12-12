@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -69,6 +70,8 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 		};
 	public static final String TABLE_SQL_CREATE = "create table SO_ProjectsEntry (projectsEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,description STRING null,startDate DATE null,endDate DATE null,data_ VARCHAR(1000) null)";
 	public static final String TABLE_SQL_DROP = "drop table SO_ProjectsEntry";
+	public static final String ORDER_BY_JPQL = " ORDER BY projectsEntry.endDate ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY SO_ProjectsEntry.endDate ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -323,7 +326,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{projectsEntryId=");
 		sb.append(getProjectsEntryId());
@@ -353,7 +356,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.so.model.ProjectsEntry");

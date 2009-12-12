@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
@@ -167,12 +168,10 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 			if (svnRevision == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No SVNRevision exists with the primary key " +
-						svnRevisionId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + svnRevisionId);
 				}
 
-				throw new NoSuchSVNRevisionException(
-					"No SVNRevision exists with the primary key " +
+				throw new NoSuchSVNRevisionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 					svnRevisionId);
 			}
 
@@ -301,12 +300,11 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 		if (svnRevision == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No SVNRevision exists with the primary key " +
-					svnRevisionId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + svnRevisionId);
 			}
 
-			throw new NoSuchSVNRevisionException(
-				"No SVNRevision exists with the primary key " + svnRevisionId);
+			throw new NoSuchSVNRevisionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				svnRevisionId);
 		}
 
 		return svnRevision;
@@ -359,33 +357,27 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append(
-					"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
+				query.append(_SQL_SELECT_SVNREVISION_WHERE);
 
 				if (svnUserId == null) {
-					query.append("svnRevision.svnUserId IS NULL");
+					query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_1);
 				}
 				else {
 					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append("(svnRevision.svnUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_3);
 					}
-
-					query.append("svnRevision.svnUserId = ?");
-
-					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("svnRevision.revisionNumber DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -437,57 +429,41 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
-
-				if (svnUserId == null) {
-					query.append("svnRevision.svnUserId IS NULL");
-				}
-				else {
-					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append("(svnRevision.svnUserId IS NULL OR ");
-					}
-
-					query.append("svnRevision.svnUserId = ?");
-
-					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_SVNREVISION_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("svnRevision.");
-						query.append(orderByFields[i]);
-
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
+				if (svnUserId == null) {
+					query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_1);
+				}
+				else {
+					if (svnUserId.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_2);
 					}
 				}
 
-				else {
-					query.append("ORDER BY ");
-
-					query.append("svnRevision.revisionNumber DESC");
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
-				Query q = session.createQuery(query.toString());
+				else {
+					query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -524,11 +500,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		List<SVNRevision> list = findBySVNUserId(svnUserId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No SVNRevision exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("svnUserId=" + svnUserId);
+			msg.append("svnUserId=");
+			msg.append(svnUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -548,11 +525,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No SVNRevision exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("svnUserId=" + svnUserId);
+			msg.append("svnUserId=");
+			msg.append(svnUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -575,57 +553,41 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append(
-				"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
-
-			if (svnUserId == null) {
-				query.append("svnRevision.svnUserId IS NULL");
-			}
-			else {
-				if (svnUserId.equals(StringPool.BLANK)) {
-					query.append("(svnRevision.svnUserId IS NULL OR ");
-				}
-
-				query.append("svnRevision.svnUserId = ?");
-
-				if (svnUserId.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_SVNREVISION_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("svnRevision.");
-					query.append(orderByFields[i]);
-
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
+			if (svnUserId == null) {
+				query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_1);
+			}
+			else {
+				if (svnUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_2);
 				}
 			}
 
-			else {
-				query.append("ORDER BY ");
-
-				query.append("svnRevision.revisionNumber DESC");
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
-			Query q = session.createQuery(query.toString());
+			else {
+				query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -665,20 +627,17 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append(
-					"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
+				query.append(_SQL_SELECT_SVNREVISION_WHERE);
 
-				query.append("svnRevision.svnRepositoryId = ?");
+				query.append(_FINDER_COLUMN_SVNREPOSITORYID_SVNREPOSITORYID_2);
 
-				query.append(" ");
+				query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("svnRevision.revisionNumber DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -728,44 +687,31 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
-
-				query.append("svnRevision.svnRepositoryId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_SVNREVISION_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("svnRevision.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_SVNREPOSITORYID_SVNREPOSITORYID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("svnRevision.revisionNumber DESC");
+					query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -801,11 +747,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No SVNRevision exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("svnRepositoryId=" + svnRepositoryId);
+			msg.append("svnRepositoryId=");
+			msg.append(svnRepositoryId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -825,11 +772,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No SVNRevision exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("svnRepositoryId=" + svnRepositoryId);
+			msg.append("svnRepositoryId=");
+			msg.append(svnRepositoryId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -852,44 +800,31 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append(
-				"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
-
-			query.append("svnRevision.svnRepositoryId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_SVNREVISION_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("svnRevision.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_SVNREPOSITORYID_SVNREPOSITORYID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("svnRevision.revisionNumber DESC");
+				query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -927,37 +862,29 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(4);
 
-				query.append(
-					"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
+				query.append(_SQL_SELECT_SVNREVISION_WHERE);
 
 				if (svnUserId == null) {
-					query.append("svnRevision.svnUserId IS NULL");
+					query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_1);
 				}
 				else {
 					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append("(svnRevision.svnUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_3);
 					}
-
-					query.append("svnRevision.svnUserId = ?");
-
-					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_2);
 					}
 				}
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_SVNU_SVNR_SVNREPOSITORYID_2);
 
-				query.append("svnRevision.svnRepositoryId = ?");
+				query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				query.append("ORDER BY ");
-
-				query.append("svnRevision.revisionNumber DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1012,61 +939,43 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
-
-				if (svnUserId == null) {
-					query.append("svnRevision.svnUserId IS NULL");
-				}
-				else {
-					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append("(svnRevision.svnUserId IS NULL OR ");
-					}
-
-					query.append("svnRevision.svnUserId = ?");
-
-					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" AND ");
-
-				query.append("svnRevision.svnRepositoryId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(4 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(4);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_SVNREVISION_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("svnRevision.");
-						query.append(orderByFields[i]);
-
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
+				if (svnUserId == null) {
+					query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_1);
+				}
+				else {
+					if (svnUserId.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_2);
 					}
 				}
 
-				else {
-					query.append("ORDER BY ");
+				query.append(_FINDER_COLUMN_SVNU_SVNR_SVNREPOSITORYID_2);
 
-					query.append("svnRevision.revisionNumber DESC");
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
-				Query q = session.createQuery(query.toString());
+				else {
+					query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1106,14 +1015,15 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No SVNRevision exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("svnUserId=" + svnUserId);
+			msg.append("svnUserId=");
+			msg.append(svnUserId);
 
-			msg.append(", ");
-			msg.append("svnRepositoryId=" + svnRepositoryId);
+			msg.append(", svnRepositoryId=");
+			msg.append(svnRepositoryId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1133,14 +1043,15 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No SVNRevision exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("svnUserId=" + svnUserId);
+			msg.append("svnUserId=");
+			msg.append(svnUserId);
 
-			msg.append(", ");
-			msg.append("svnRepositoryId=" + svnRepositoryId);
+			msg.append(", svnRepositoryId=");
+			msg.append(svnRepositoryId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1163,61 +1074,43 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append(
-				"SELECT svnRevision FROM SVNRevision svnRevision WHERE ");
-
-			if (svnUserId == null) {
-				query.append("svnRevision.svnUserId IS NULL");
-			}
-			else {
-				if (svnUserId.equals(StringPool.BLANK)) {
-					query.append("(svnRevision.svnUserId IS NULL OR ");
-				}
-
-				query.append("svnRevision.svnUserId = ?");
-
-				if (svnUserId.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" AND ");
-
-			query.append("svnRevision.svnRepositoryId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(4 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_SVNREVISION_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("svnRevision.");
-					query.append(orderByFields[i]);
-
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
+			if (svnUserId == null) {
+				query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_1);
+			}
+			else {
+				if (svnUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_2);
 				}
 			}
 
-			else {
-				query.append("ORDER BY ");
+			query.append(_FINDER_COLUMN_SVNU_SVNR_SVNREPOSITORYID_2);
 
-				query.append("svnRevision.revisionNumber DESC");
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
-			Query q = session.createQuery(query.toString());
+			else {
+				query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1310,39 +1203,25 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT svnRevision FROM SVNRevision svnRevision ");
+				StringBundler query = null;
+				String sql = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(2 +
+							(obc.getOrderByFields().length * 3));
 
-					String[] orderByFields = obc.getOrderByFields();
+					query.append(_SQL_SELECT_SVNREVISION);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("svnRevision.");
-						query.append(orderByFields[i]);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+					sql = query.toString();
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("svnRevision.revisionNumber DESC");
+					sql = _SQL_SELECT_SVNREVISION.concat(SVNRevisionModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				if (obc == null) {
 					list = (List<SVNRevision>)QueryUtil.list(q, getDialect(),
@@ -1413,29 +1292,25 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(svnRevision) ");
-				query.append("FROM SVNRevision svnRevision WHERE ");
+				query.append(_SQL_COUNT_SVNREVISION_WHERE);
 
 				if (svnUserId == null) {
-					query.append("svnRevision.svnUserId IS NULL");
+					query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_1);
 				}
 				else {
 					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append("(svnRevision.svnUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_3);
 					}
-
-					query.append("svnRevision.svnUserId = ?");
-
-					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1476,16 +1351,15 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(svnRevision) ");
-				query.append("FROM SVNRevision svnRevision WHERE ");
+				query.append(_SQL_COUNT_SVNREVISION_WHERE);
 
-				query.append("svnRevision.svnRepositoryId = ?");
+				query.append(_FINDER_COLUMN_SVNREPOSITORYID_SVNREPOSITORYID_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1524,33 +1398,27 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT COUNT(svnRevision) ");
-				query.append("FROM SVNRevision svnRevision WHERE ");
+				query.append(_SQL_COUNT_SVNREVISION_WHERE);
 
 				if (svnUserId == null) {
-					query.append("svnRevision.svnUserId IS NULL");
+					query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_1);
 				}
 				else {
 					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append("(svnRevision.svnUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_3);
 					}
-
-					query.append("svnRevision.svnUserId = ?");
-
-					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_2);
 					}
 				}
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_SVNU_SVNR_SVNREPOSITORYID_2);
 
-				query.append("svnRevision.svnRepositoryId = ?");
+				String sql = query.toString();
 
-				query.append(" ");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1592,8 +1460,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(
-						"SELECT COUNT(svnRevision) FROM SVNRevision svnRevision");
+				Query q = session.createQuery(_SQL_COUNT_SVNREVISION);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -1649,5 +1516,21 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	protected com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence svnRepositoryPersistence;
 	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRevisionPersistence")
 	protected com.liferay.socialcoding.service.persistence.SVNRevisionPersistence svnRevisionPersistence;
+	private static final String _SQL_SELECT_SVNREVISION = "SELECT svnRevision FROM SVNRevision svnRevision";
+	private static final String _SQL_SELECT_SVNREVISION_WHERE = "SELECT svnRevision FROM SVNRevision svnRevision WHERE ";
+	private static final String _SQL_COUNT_SVNREVISION = "SELECT COUNT(svnRevision) FROM SVNRevision svnRevision";
+	private static final String _SQL_COUNT_SVNREVISION_WHERE = "SELECT COUNT(svnRevision) FROM SVNRevision svnRevision WHERE ";
+	private static final String _FINDER_COLUMN_SVNUSERID_SVNUSERID_1 = "svnRevision.svnUserId IS NULL";
+	private static final String _FINDER_COLUMN_SVNUSERID_SVNUSERID_2 = "svnRevision.svnUserId = ?";
+	private static final String _FINDER_COLUMN_SVNUSERID_SVNUSERID_3 = "(svnRevision.svnUserId IS NULL OR svnRevision.svnUserId = ?)";
+	private static final String _FINDER_COLUMN_SVNREPOSITORYID_SVNREPOSITORYID_2 =
+		"svnRevision.svnRepositoryId = ?";
+	private static final String _FINDER_COLUMN_SVNU_SVNR_SVNUSERID_1 = "svnRevision.svnUserId IS NULL AND ";
+	private static final String _FINDER_COLUMN_SVNU_SVNR_SVNUSERID_2 = "svnRevision.svnUserId = ? AND ";
+	private static final String _FINDER_COLUMN_SVNU_SVNR_SVNUSERID_3 = "(svnRevision.svnUserId IS NULL OR svnRevision.svnUserId = ?) AND ";
+	private static final String _FINDER_COLUMN_SVNU_SVNR_SVNREPOSITORYID_2 = "svnRevision.svnRepositoryId = ?";
+	private static final String _ORDER_BY_ENTITY_ALIAS = "svnRevision.";
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No SVNRevision exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SVNRevision exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(SVNRevisionPersistenceImpl.class);
 }

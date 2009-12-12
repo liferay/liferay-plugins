@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
@@ -165,12 +166,10 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 			if (jiraAction == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No JIRAAction exists with the primary key " +
-						jiraActionId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + jiraActionId);
 				}
 
-				throw new NoSuchJIRAActionException(
-					"No JIRAAction exists with the primary key " +
+				throw new NoSuchJIRAActionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 					jiraActionId);
 			}
 
@@ -300,12 +299,11 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 		if (jiraAction == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No JIRAAction exists with the primary key " +
-					jiraActionId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + jiraActionId);
 			}
 
-			throw new NoSuchJIRAActionException(
-				"No JIRAAction exists with the primary key " + jiraActionId);
+			throw new NoSuchJIRAActionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				jiraActionId);
 		}
 
 		return jiraAction;
@@ -358,33 +356,27 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append(
-					"SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
+				query.append(_SQL_SELECT_JIRAACTION_WHERE);
 
 				if (jiraUserId == null) {
-					query.append("jiraAction.jiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1);
 				}
 				else {
 					if (jiraUserId.equals(StringPool.BLANK)) {
-						query.append("(jiraAction.jiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
 					}
-
-					query.append("jiraAction.jiraUserId = ?");
-
-					if (jiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(JIRAActionModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("jiraAction.modifiedDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -436,57 +428,41 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
-
-				if (jiraUserId == null) {
-					query.append("jiraAction.jiraUserId IS NULL");
-				}
-				else {
-					if (jiraUserId.equals(StringPool.BLANK)) {
-						query.append("(jiraAction.jiraUserId IS NULL OR ");
-					}
-
-					query.append("jiraAction.jiraUserId = ?");
-
-					if (jiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_JIRAACTION_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraAction.");
-						query.append(orderByFields[i]);
-
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
+				if (jiraUserId == null) {
+					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1);
+				}
+				else {
+					if (jiraUserId.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
 					}
 				}
 
-				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraAction.modifiedDate DESC");
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
-				Query q = session.createQuery(query.toString());
+				else {
+					query.append(JIRAActionModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -523,11 +499,12 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		List<JIRAAction> list = findByJiraUserId(jiraUserId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAAction exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("jiraUserId=" + jiraUserId);
+			msg.append("jiraUserId=");
+			msg.append(jiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -547,11 +524,12 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 				obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAAction exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("jiraUserId=" + jiraUserId);
+			msg.append("jiraUserId=");
+			msg.append(jiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -574,56 +552,41 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
-
-			if (jiraUserId == null) {
-				query.append("jiraAction.jiraUserId IS NULL");
-			}
-			else {
-				if (jiraUserId.equals(StringPool.BLANK)) {
-					query.append("(jiraAction.jiraUserId IS NULL OR ");
-				}
-
-				query.append("jiraAction.jiraUserId = ?");
-
-				if (jiraUserId.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_JIRAACTION_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("jiraAction.");
-					query.append(orderByFields[i]);
-
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
+			if (jiraUserId == null) {
+				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1);
+			}
+			else {
+				if (jiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
 				}
 			}
 
-			else {
-				query.append("ORDER BY ");
-
-				query.append("jiraAction.modifiedDate DESC");
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
-			Query q = session.createQuery(query.toString());
+			else {
+				query.append(JIRAActionModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -663,20 +626,17 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append(
-					"SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
+				query.append(_SQL_SELECT_JIRAACTION_WHERE);
 
-				query.append("jiraAction.jiraIssueId = ?");
+				query.append(_FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2);
 
-				query.append(" ");
+				query.append(JIRAActionModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("jiraAction.modifiedDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -726,44 +686,31 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
-
-				query.append("jiraAction.jiraIssueId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_JIRAACTION_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraAction.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraAction.modifiedDate DESC");
+					query.append(JIRAActionModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -798,11 +745,12 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		List<JIRAAction> list = findByJiraIssueId(jiraIssueId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAAction exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("jiraIssueId=" + jiraIssueId);
+			msg.append("jiraIssueId=");
+			msg.append(jiraIssueId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -822,11 +770,12 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 				count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAAction exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("jiraIssueId=" + jiraIssueId);
+			msg.append("jiraIssueId=");
+			msg.append(jiraIssueId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -849,43 +798,31 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
-
-			query.append("jiraAction.jiraIssueId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_JIRAACTION_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("jiraAction.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("jiraAction.modifiedDate DESC");
+				query.append(JIRAActionModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -922,33 +859,27 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append(
-					"SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
+				query.append(_SQL_SELECT_JIRAACTION_WHERE);
 
 				if (type == null) {
-					query.append("jiraAction.type IS NULL");
+					query.append(_FINDER_COLUMN_TYPE_TYPE_1);
 				}
 				else {
 					if (type.equals(StringPool.BLANK)) {
-						query.append("(jiraAction.type IS NULL OR ");
+						query.append(_FINDER_COLUMN_TYPE_TYPE_3);
 					}
-
-					query.append("jiraAction.type = ?");
-
-					if (type.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_TYPE_TYPE_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(JIRAActionModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("jiraAction.modifiedDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1000,57 +931,41 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
-
-				if (type == null) {
-					query.append("jiraAction.type IS NULL");
-				}
-				else {
-					if (type.equals(StringPool.BLANK)) {
-						query.append("(jiraAction.type IS NULL OR ");
-					}
-
-					query.append("jiraAction.type = ?");
-
-					if (type.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_JIRAACTION_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraAction.");
-						query.append(orderByFields[i]);
-
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
+				if (type == null) {
+					query.append(_FINDER_COLUMN_TYPE_TYPE_1);
+				}
+				else {
+					if (type.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_TYPE_TYPE_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_TYPE_TYPE_2);
 					}
 				}
 
-				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraAction.modifiedDate DESC");
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
-				Query q = session.createQuery(query.toString());
+				else {
+					query.append(JIRAActionModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1086,11 +1001,12 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		List<JIRAAction> list = findByType(type, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAAction exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("type=" + type);
+			msg.append("type=");
+			msg.append(type);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1108,11 +1024,12 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		List<JIRAAction> list = findByType(type, count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAAction exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("type=" + type);
+			msg.append("type=");
+			msg.append(type);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1135,56 +1052,41 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT jiraAction FROM JIRAAction jiraAction WHERE ");
-
-			if (type == null) {
-				query.append("jiraAction.type IS NULL");
-			}
-			else {
-				if (type.equals(StringPool.BLANK)) {
-					query.append("(jiraAction.type IS NULL OR ");
-				}
-
-				query.append("jiraAction.type = ?");
-
-				if (type.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_JIRAACTION_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("jiraAction.");
-					query.append(orderByFields[i]);
-
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
+			if (type == null) {
+				query.append(_FINDER_COLUMN_TYPE_TYPE_1);
+			}
+			else {
+				if (type.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_TYPE_TYPE_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_TYPE_TYPE_2);
 				}
 			}
 
-			else {
-				query.append("ORDER BY ");
-
-				query.append("jiraAction.modifiedDate DESC");
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
-			Query q = session.createQuery(query.toString());
+			else {
+				query.append(JIRAActionModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1275,39 +1177,25 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT jiraAction FROM JIRAAction jiraAction ");
+				StringBundler query = null;
+				String sql = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(2 +
+							(obc.getOrderByFields().length * 3));
 
-					String[] orderByFields = obc.getOrderByFields();
+					query.append(_SQL_SELECT_JIRAACTION);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraAction.");
-						query.append(orderByFields[i]);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+					sql = query.toString();
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraAction.modifiedDate DESC");
+					sql = _SQL_SELECT_JIRAACTION.concat(JIRAActionModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				if (obc == null) {
 					list = (List<JIRAAction>)QueryUtil.list(q, getDialect(),
@@ -1375,29 +1263,25 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(jiraAction) ");
-				query.append("FROM JIRAAction jiraAction WHERE ");
+				query.append(_SQL_COUNT_JIRAACTION_WHERE);
 
 				if (jiraUserId == null) {
-					query.append("jiraAction.jiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1);
 				}
 				else {
 					if (jiraUserId.equals(StringPool.BLANK)) {
-						query.append("(jiraAction.jiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
 					}
-
-					query.append("jiraAction.jiraUserId = ?");
-
-					if (jiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1437,16 +1321,15 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(jiraAction) ");
-				query.append("FROM JIRAAction jiraAction WHERE ");
+				query.append(_SQL_COUNT_JIRAACTION_WHERE);
 
-				query.append("jiraAction.jiraIssueId = ?");
+				query.append(_FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1484,29 +1367,25 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(jiraAction) ");
-				query.append("FROM JIRAAction jiraAction WHERE ");
+				query.append(_SQL_COUNT_JIRAACTION_WHERE);
 
 				if (type == null) {
-					query.append("jiraAction.type IS NULL");
+					query.append(_FINDER_COLUMN_TYPE_TYPE_1);
 				}
 				else {
 					if (type.equals(StringPool.BLANK)) {
-						query.append("(jiraAction.type IS NULL OR ");
+						query.append(_FINDER_COLUMN_TYPE_TYPE_3);
 					}
-
-					query.append("jiraAction.type = ?");
-
-					if (type.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_TYPE_TYPE_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1546,8 +1425,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(
-						"SELECT COUNT(jiraAction) FROM JIRAAction jiraAction");
+				Query q = session.createQuery(_SQL_COUNT_JIRAACTION);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -1603,5 +1481,19 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	protected com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence svnRepositoryPersistence;
 	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRevisionPersistence")
 	protected com.liferay.socialcoding.service.persistence.SVNRevisionPersistence svnRevisionPersistence;
+	private static final String _SQL_SELECT_JIRAACTION = "SELECT jiraAction FROM JIRAAction jiraAction";
+	private static final String _SQL_SELECT_JIRAACTION_WHERE = "SELECT jiraAction FROM JIRAAction jiraAction WHERE ";
+	private static final String _SQL_COUNT_JIRAACTION = "SELECT COUNT(jiraAction) FROM JIRAAction jiraAction";
+	private static final String _SQL_COUNT_JIRAACTION_WHERE = "SELECT COUNT(jiraAction) FROM JIRAAction jiraAction WHERE ";
+	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1 = "jiraAction.jiraUserId IS NULL";
+	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2 = "jiraAction.jiraUserId = ?";
+	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3 = "(jiraAction.jiraUserId IS NULL OR jiraAction.jiraUserId = ?)";
+	private static final String _FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2 = "jiraAction.jiraIssueId = ?";
+	private static final String _FINDER_COLUMN_TYPE_TYPE_1 = "jiraAction.type IS NULL";
+	private static final String _FINDER_COLUMN_TYPE_TYPE_2 = "jiraAction.type = ?";
+	private static final String _FINDER_COLUMN_TYPE_TYPE_3 = "(jiraAction.type IS NULL OR jiraAction.type = ?)";
+	private static final String _ORDER_BY_ENTITY_ALIAS = "jiraAction.";
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No JIRAAction exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No JIRAAction exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(JIRAActionPersistenceImpl.class);
 }

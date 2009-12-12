@@ -43,6 +43,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
@@ -242,12 +243,11 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			if (entry == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No Entry exists with the primary key " +
-						entryId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + entryId);
 				}
 
-				throw new NoSuchEntryException(
-					"No Entry exists with the primary key " + entryId);
+				throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+					entryId);
 			}
 
 			return remove(entry);
@@ -371,11 +371,11 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 		if (entry == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No Entry exists with the primary key " + entryId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + entryId);
 			}
 
-			throw new NoSuchEntryException(
-				"No Entry exists with the primary key " + entryId);
+			throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				entryId);
 		}
 
 		return entry;
@@ -426,19 +426,17 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT entry FROM Entry entry WHERE ");
+				query.append(_SQL_SELECT_ENTRY_WHERE);
 
-				query.append("entry.createDate = ?");
+				query.append(_FINDER_COLUMN_CREATEDATE_CREATEDATE_2);
 
-				query.append(" ");
+				query.append(EntryModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("entry.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -488,43 +486,31 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT entry FROM Entry entry WHERE ");
-
-				query.append("entry.createDate = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_ENTRY_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("entry.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_CREATEDATE_CREATEDATE_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("entry.createDate DESC");
+					query.append(EntryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -557,11 +543,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		List<Entry> list = findByCreateDate(createDate, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No Entry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("createDate=" + createDate);
+			msg.append("createDate=");
+			msg.append(createDate);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -579,11 +566,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		List<Entry> list = findByCreateDate(createDate, count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No Entry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("createDate=" + createDate);
+			msg.append("createDate=");
+			msg.append(createDate);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -605,43 +593,31 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT entry FROM Entry entry WHERE ");
-
-			query.append("entry.createDate = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_ENTRY_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("entry.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_CREATEDATE_CREATEDATE_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("entry.createDate DESC");
+				query.append(EntryModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -678,19 +654,17 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT entry FROM Entry entry WHERE ");
+				query.append(_SQL_SELECT_ENTRY_WHERE);
 
-				query.append("entry.fromUserId = ?");
+				query.append(_FINDER_COLUMN_FROMUSERID_FROMUSERID_2);
 
-				query.append(" ");
+				query.append(EntryModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("entry.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -740,43 +714,31 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT entry FROM Entry entry WHERE ");
-
-				query.append("entry.fromUserId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_ENTRY_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("entry.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_FROMUSERID_FROMUSERID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("entry.createDate DESC");
+					query.append(EntryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -809,11 +771,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		List<Entry> list = findByFromUserId(fromUserId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No Entry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("fromUserId=" + fromUserId);
+			msg.append("fromUserId=");
+			msg.append(fromUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -831,11 +794,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		List<Entry> list = findByFromUserId(fromUserId, count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No Entry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("fromUserId=" + fromUserId);
+			msg.append("fromUserId=");
+			msg.append(fromUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -857,43 +821,31 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT entry FROM Entry entry WHERE ");
-
-			query.append("entry.fromUserId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_ENTRY_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("entry.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_FROMUSERID_FROMUSERID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("entry.createDate DESC");
+				query.append(EntryModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -929,19 +881,17 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT entry FROM Entry entry WHERE ");
+				query.append(_SQL_SELECT_ENTRY_WHERE);
 
-				query.append("entry.toUserId = ?");
+				query.append(_FINDER_COLUMN_TOUSERID_TOUSERID_2);
 
-				query.append(" ");
+				query.append(EntryModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("entry.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -991,43 +941,31 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT entry FROM Entry entry WHERE ");
-
-				query.append("entry.toUserId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_ENTRY_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("entry.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_TOUSERID_TOUSERID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("entry.createDate DESC");
+					query.append(EntryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1060,11 +998,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		List<Entry> list = findByToUserId(toUserId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No Entry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("toUserId=" + toUserId);
+			msg.append("toUserId=");
+			msg.append(toUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1082,11 +1021,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		List<Entry> list = findByToUserId(toUserId, count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No Entry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("toUserId=" + toUserId);
+			msg.append("toUserId=");
+			msg.append(toUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1108,43 +1048,31 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT entry FROM Entry entry WHERE ");
-
-			query.append("entry.toUserId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_ENTRY_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("entry.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_TOUSERID_TOUSERID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("entry.createDate DESC");
+				query.append(EntryModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1183,23 +1111,19 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(4);
 
-				query.append("SELECT entry FROM Entry entry WHERE ");
+				query.append(_SQL_SELECT_ENTRY_WHERE);
 
-				query.append("entry.createDate = ?");
+				query.append(_FINDER_COLUMN_C_F_CREATEDATE_2);
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_C_F_FROMUSERID_2);
 
-				query.append("entry.fromUserId = ?");
+				query.append(EntryModelImpl.ORDER_BY_JPQL);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				query.append("ORDER BY ");
-
-				query.append("entry.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1251,47 +1175,33 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT entry FROM Entry entry WHERE ");
-
-				query.append("entry.createDate = ?");
-
-				query.append(" AND ");
-
-				query.append("entry.fromUserId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(4 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(4);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_ENTRY_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("entry.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_C_F_CREATEDATE_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
+				query.append(_FINDER_COLUMN_C_F_FROMUSERID_2);
 
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("entry.createDate DESC");
+					query.append(EntryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1326,14 +1236,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		List<Entry> list = findByC_F(createDate, fromUserId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No Entry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("createDate=" + createDate);
+			msg.append("createDate=");
+			msg.append(createDate);
 
-			msg.append(", ");
-			msg.append("fromUserId=" + fromUserId);
+			msg.append(", fromUserId=");
+			msg.append(fromUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1352,14 +1263,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No Entry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("createDate=" + createDate);
+			msg.append("createDate=");
+			msg.append(createDate);
 
-			msg.append(", ");
-			msg.append("fromUserId=" + fromUserId);
+			msg.append(", fromUserId=");
+			msg.append(fromUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1382,47 +1294,33 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT entry FROM Entry entry WHERE ");
-
-			query.append("entry.createDate = ?");
-
-			query.append(" AND ");
-
-			query.append("entry.fromUserId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(4 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_ENTRY_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("entry.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_C_F_CREATEDATE_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
+			query.append(_FINDER_COLUMN_C_F_FROMUSERID_2);
 
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("entry.createDate DESC");
+				query.append(EntryModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1463,23 +1361,19 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(4);
 
-				query.append("SELECT entry FROM Entry entry WHERE ");
+				query.append(_SQL_SELECT_ENTRY_WHERE);
 
-				query.append("entry.createDate = ?");
+				query.append(_FINDER_COLUMN_C_T_CREATEDATE_2);
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_C_T_TOUSERID_2);
 
-				query.append("entry.toUserId = ?");
+				query.append(EntryModelImpl.ORDER_BY_JPQL);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				query.append("ORDER BY ");
-
-				query.append("entry.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1531,47 +1425,33 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT entry FROM Entry entry WHERE ");
-
-				query.append("entry.createDate = ?");
-
-				query.append(" AND ");
-
-				query.append("entry.toUserId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(4 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(4);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_ENTRY_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("entry.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_C_T_CREATEDATE_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
+				query.append(_FINDER_COLUMN_C_T_TOUSERID_2);
 
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("entry.createDate DESC");
+					query.append(EntryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1606,14 +1486,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		List<Entry> list = findByC_T(createDate, toUserId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No Entry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("createDate=" + createDate);
+			msg.append("createDate=");
+			msg.append(createDate);
 
-			msg.append(", ");
-			msg.append("toUserId=" + toUserId);
+			msg.append(", toUserId=");
+			msg.append(toUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1631,14 +1512,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		List<Entry> list = findByC_T(createDate, toUserId, count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No Entry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("createDate=" + createDate);
+			msg.append("createDate=");
+			msg.append(createDate);
 
-			msg.append(", ");
-			msg.append("toUserId=" + toUserId);
+			msg.append(", toUserId=");
+			msg.append(toUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1661,47 +1543,33 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT entry FROM Entry entry WHERE ");
-
-			query.append("entry.createDate = ?");
-
-			query.append(" AND ");
-
-			query.append("entry.toUserId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(4 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_ENTRY_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("entry.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_C_T_CREATEDATE_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
+			query.append(_FINDER_COLUMN_C_T_TOUSERID_2);
 
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("entry.createDate DESC");
+				query.append(EntryModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1742,27 +1610,21 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(5);
 
-				query.append("SELECT entry FROM Entry entry WHERE ");
+				query.append(_SQL_SELECT_ENTRY_WHERE);
 
-				query.append("entry.createDate = ?");
+				query.append(_FINDER_COLUMN_C_F_T_CREATEDATE_2);
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_C_F_T_FROMUSERID_2);
 
-				query.append("entry.fromUserId = ?");
+				query.append(_FINDER_COLUMN_C_F_T_TOUSERID_2);
 
-				query.append(" AND ");
+				query.append(EntryModelImpl.ORDER_BY_JPQL);
 
-				query.append("entry.toUserId = ?");
+				String sql = query.toString();
 
-				query.append(" ");
-
-				query.append("ORDER BY ");
-
-				query.append("entry.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1817,51 +1679,35 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT entry FROM Entry entry WHERE ");
-
-				query.append("entry.createDate = ?");
-
-				query.append(" AND ");
-
-				query.append("entry.fromUserId = ?");
-
-				query.append(" AND ");
-
-				query.append("entry.toUserId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(5 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(5);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_ENTRY_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("entry.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_C_F_T_CREATEDATE_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
+				query.append(_FINDER_COLUMN_C_F_T_FROMUSERID_2);
 
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				query.append(_FINDER_COLUMN_C_F_T_TOUSERID_2);
+
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("entry.createDate DESC");
+					query.append(EntryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1900,17 +1746,18 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(8);
 
-			msg.append("No Entry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("createDate=" + createDate);
+			msg.append("createDate=");
+			msg.append(createDate);
 
-			msg.append(", ");
-			msg.append("fromUserId=" + fromUserId);
+			msg.append(", fromUserId=");
+			msg.append(fromUserId);
 
-			msg.append(", ");
-			msg.append("toUserId=" + toUserId);
+			msg.append(", toUserId=");
+			msg.append(toUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1930,17 +1777,18 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(8);
 
-			msg.append("No Entry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("createDate=" + createDate);
+			msg.append("createDate=");
+			msg.append(createDate);
 
-			msg.append(", ");
-			msg.append("fromUserId=" + fromUserId);
+			msg.append(", fromUserId=");
+			msg.append(fromUserId);
 
-			msg.append(", ");
-			msg.append("toUserId=" + toUserId);
+			msg.append(", toUserId=");
+			msg.append(toUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1963,51 +1811,35 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT entry FROM Entry entry WHERE ");
-
-			query.append("entry.createDate = ?");
-
-			query.append(" AND ");
-
-			query.append("entry.fromUserId = ?");
-
-			query.append(" AND ");
-
-			query.append("entry.toUserId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(5 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_ENTRY_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("entry.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_C_F_T_CREATEDATE_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
+			query.append(_FINDER_COLUMN_C_F_T_FROMUSERID_2);
 
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			query.append(_FINDER_COLUMN_C_F_T_TOUSERID_2);
+
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("entry.createDate DESC");
+				query.append(EntryModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2052,40 +1884,31 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(5);
 
-				query.append("SELECT entry FROM Entry entry WHERE ");
+				query.append(_SQL_SELECT_ENTRY_WHERE);
 
-				query.append("entry.fromUserId = ?");
+				query.append(_FINDER_COLUMN_F_T_C_FROMUSERID_2);
 
-				query.append(" AND ");
-
-				query.append("entry.toUserId = ?");
-
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_F_T_C_TOUSERID_2);
 
 				if (content == null) {
-					query.append("entry.content IS NULL");
+					query.append(_FINDER_COLUMN_F_T_C_CONTENT_1);
 				}
 				else {
 					if (content.equals(StringPool.BLANK)) {
-						query.append("(entry.content IS NULL OR ");
+						query.append(_FINDER_COLUMN_F_T_C_CONTENT_3);
 					}
-
-					query.append("entry.content = ?");
-
-					if (content.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_F_T_C_CONTENT_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(EntryModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("entry.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2144,64 +1967,45 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT entry FROM Entry entry WHERE ");
-
-				query.append("entry.fromUserId = ?");
-
-				query.append(" AND ");
-
-				query.append("entry.toUserId = ?");
-
-				query.append(" AND ");
-
-				if (content == null) {
-					query.append("entry.content IS NULL");
-				}
-				else {
-					if (content.equals(StringPool.BLANK)) {
-						query.append("(entry.content IS NULL OR ");
-					}
-
-					query.append("entry.content = ?");
-
-					if (content.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(5 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(5);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_ENTRY_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("entry.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_F_T_C_FROMUSERID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
+				query.append(_FINDER_COLUMN_F_T_C_TOUSERID_2);
 
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
+				if (content == null) {
+					query.append(_FINDER_COLUMN_F_T_C_CONTENT_1);
+				}
+				else {
+					if (content.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_F_T_C_CONTENT_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_F_T_C_CONTENT_2);
 					}
 				}
 
-				else {
-					query.append("ORDER BY ");
-
-					query.append("entry.createDate DESC");
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
-				Query q = session.createQuery(query.toString());
+				else {
+					query.append(EntryModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2241,17 +2045,18 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		List<Entry> list = findByF_T_C(fromUserId, toUserId, content, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(8);
 
-			msg.append("No Entry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("fromUserId=" + fromUserId);
+			msg.append("fromUserId=");
+			msg.append(fromUserId);
 
-			msg.append(", ");
-			msg.append("toUserId=" + toUserId);
+			msg.append(", toUserId=");
+			msg.append(toUserId);
 
-			msg.append(", ");
-			msg.append("content=" + content);
+			msg.append(", content=");
+			msg.append(content);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -2271,17 +2076,18 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(8);
 
-			msg.append("No Entry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("fromUserId=" + fromUserId);
+			msg.append("fromUserId=");
+			msg.append(fromUserId);
 
-			msg.append(", ");
-			msg.append("toUserId=" + toUserId);
+			msg.append(", toUserId=");
+			msg.append(toUserId);
 
-			msg.append(", ");
-			msg.append("content=" + content);
+			msg.append(", content=");
+			msg.append(content);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -2304,64 +2110,45 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT entry FROM Entry entry WHERE ");
-
-			query.append("entry.fromUserId = ?");
-
-			query.append(" AND ");
-
-			query.append("entry.toUserId = ?");
-
-			query.append(" AND ");
-
-			if (content == null) {
-				query.append("entry.content IS NULL");
-			}
-			else {
-				if (content.equals(StringPool.BLANK)) {
-					query.append("(entry.content IS NULL OR ");
-				}
-
-				query.append("entry.content = ?");
-
-				if (content.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(5 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_ENTRY_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("entry.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_F_T_C_FROMUSERID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
+			query.append(_FINDER_COLUMN_F_T_C_TOUSERID_2);
 
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
+			if (content == null) {
+				query.append(_FINDER_COLUMN_F_T_C_CONTENT_1);
+			}
+			else {
+				if (content.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_F_T_C_CONTENT_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_F_T_C_CONTENT_2);
 				}
 			}
 
-			else {
-				query.append("ORDER BY ");
-
-				query.append("entry.createDate DESC");
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
-			Query q = session.createQuery(query.toString());
+			else {
+				query.append(EntryModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2454,39 +2241,25 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT entry FROM Entry entry ");
+				StringBundler query = null;
+				String sql = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(2 +
+							(obc.getOrderByFields().length * 3));
 
-					String[] orderByFields = obc.getOrderByFields();
+					query.append(_SQL_SELECT_ENTRY);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("entry.");
-						query.append(orderByFields[i]);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+					sql = query.toString();
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("entry.createDate DESC");
+					sql = _SQL_SELECT_ENTRY.concat(EntryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				if (obc == null) {
 					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
@@ -2582,16 +2355,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(entry) ");
-				query.append("FROM Entry entry WHERE ");
+				query.append(_SQL_COUNT_ENTRY_WHERE);
 
-				query.append("entry.createDate = ?");
+				query.append(_FINDER_COLUMN_CREATEDATE_CREATEDATE_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2629,16 +2401,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(entry) ");
-				query.append("FROM Entry entry WHERE ");
+				query.append(_SQL_COUNT_ENTRY_WHERE);
 
-				query.append("entry.fromUserId = ?");
+				query.append(_FINDER_COLUMN_FROMUSERID_FROMUSERID_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2676,16 +2447,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(entry) ");
-				query.append("FROM Entry entry WHERE ");
+				query.append(_SQL_COUNT_ENTRY_WHERE);
 
-				query.append("entry.toUserId = ?");
+				query.append(_FINDER_COLUMN_TOUSERID_TOUSERID_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2726,20 +2496,17 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT COUNT(entry) ");
-				query.append("FROM Entry entry WHERE ");
+				query.append(_SQL_COUNT_ENTRY_WHERE);
 
-				query.append("entry.createDate = ?");
+				query.append(_FINDER_COLUMN_C_F_CREATEDATE_2);
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_C_F_FROMUSERID_2);
 
-				query.append("entry.fromUserId = ?");
+				String sql = query.toString();
 
-				query.append(" ");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2782,20 +2549,17 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT COUNT(entry) ");
-				query.append("FROM Entry entry WHERE ");
+				query.append(_SQL_COUNT_ENTRY_WHERE);
 
-				query.append("entry.createDate = ?");
+				query.append(_FINDER_COLUMN_C_T_CREATEDATE_2);
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_C_T_TOUSERID_2);
 
-				query.append("entry.toUserId = ?");
+				String sql = query.toString();
 
-				query.append(" ");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2838,24 +2602,19 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(4);
 
-				query.append("SELECT COUNT(entry) ");
-				query.append("FROM Entry entry WHERE ");
+				query.append(_SQL_COUNT_ENTRY_WHERE);
 
-				query.append("entry.createDate = ?");
+				query.append(_FINDER_COLUMN_C_F_T_CREATEDATE_2);
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_C_F_T_FROMUSERID_2);
 
-				query.append("entry.fromUserId = ?");
+				query.append(_FINDER_COLUMN_C_F_T_TOUSERID_2);
 
-				query.append(" AND ");
+				String sql = query.toString();
 
-				query.append("entry.toUserId = ?");
-
-				query.append(" ");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2902,37 +2661,29 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(4);
 
-				query.append("SELECT COUNT(entry) ");
-				query.append("FROM Entry entry WHERE ");
+				query.append(_SQL_COUNT_ENTRY_WHERE);
 
-				query.append("entry.fromUserId = ?");
+				query.append(_FINDER_COLUMN_F_T_C_FROMUSERID_2);
 
-				query.append(" AND ");
-
-				query.append("entry.toUserId = ?");
-
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_F_T_C_TOUSERID_2);
 
 				if (content == null) {
-					query.append("entry.content IS NULL");
+					query.append(_FINDER_COLUMN_F_T_C_CONTENT_1);
 				}
 				else {
 					if (content.equals(StringPool.BLANK)) {
-						query.append("(entry.content IS NULL OR ");
+						query.append(_FINDER_COLUMN_F_T_C_CONTENT_3);
 					}
-
-					query.append("entry.content = ?");
-
-					if (content.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_F_T_C_CONTENT_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2976,8 +2727,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(
-						"SELECT COUNT(entry) FROM Entry entry");
+				Query q = session.createQuery(_SQL_COUNT_ENTRY);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -3025,5 +2775,27 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	protected com.liferay.chat.service.persistence.EntryPersistence entryPersistence;
 	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence")
 	protected com.liferay.chat.service.persistence.StatusPersistence statusPersistence;
+	private static final String _SQL_SELECT_ENTRY = "SELECT entry FROM Entry entry";
+	private static final String _SQL_SELECT_ENTRY_WHERE = "SELECT entry FROM Entry entry WHERE ";
+	private static final String _SQL_COUNT_ENTRY = "SELECT COUNT(entry) FROM Entry entry";
+	private static final String _SQL_COUNT_ENTRY_WHERE = "SELECT COUNT(entry) FROM Entry entry WHERE ";
+	private static final String _FINDER_COLUMN_CREATEDATE_CREATEDATE_2 = "entry.createDate = ?";
+	private static final String _FINDER_COLUMN_FROMUSERID_FROMUSERID_2 = "entry.fromUserId = ?";
+	private static final String _FINDER_COLUMN_TOUSERID_TOUSERID_2 = "entry.toUserId = ?";
+	private static final String _FINDER_COLUMN_C_F_CREATEDATE_2 = "entry.createDate = ? AND ";
+	private static final String _FINDER_COLUMN_C_F_FROMUSERID_2 = "entry.fromUserId = ?";
+	private static final String _FINDER_COLUMN_C_T_CREATEDATE_2 = "entry.createDate = ? AND ";
+	private static final String _FINDER_COLUMN_C_T_TOUSERID_2 = "entry.toUserId = ?";
+	private static final String _FINDER_COLUMN_C_F_T_CREATEDATE_2 = "entry.createDate = ? AND ";
+	private static final String _FINDER_COLUMN_C_F_T_FROMUSERID_2 = "entry.fromUserId = ? AND ";
+	private static final String _FINDER_COLUMN_C_F_T_TOUSERID_2 = "entry.toUserId = ?";
+	private static final String _FINDER_COLUMN_F_T_C_FROMUSERID_2 = "entry.fromUserId = ? AND ";
+	private static final String _FINDER_COLUMN_F_T_C_TOUSERID_2 = "entry.toUserId = ? AND ";
+	private static final String _FINDER_COLUMN_F_T_C_CONTENT_1 = "entry.content IS NULL";
+	private static final String _FINDER_COLUMN_F_T_C_CONTENT_2 = "entry.content = ?";
+	private static final String _FINDER_COLUMN_F_T_C_CONTENT_3 = "(entry.content IS NULL OR entry.content = ?)";
+	private static final String _ORDER_BY_ENTITY_ALIAS = "entry.";
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Entry exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Entry exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(EntryPersistenceImpl.class);
 }

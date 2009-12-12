@@ -24,6 +24,7 @@ package com.liferay.sampleservicebuilder.model;
 
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
@@ -182,7 +183,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{fooId=");
 		sb.append(getFooId());
@@ -202,7 +203,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.sampleservicebuilder.model.Foo");

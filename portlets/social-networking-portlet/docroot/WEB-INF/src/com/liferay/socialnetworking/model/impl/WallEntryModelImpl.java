@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -66,6 +67,8 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 		};
 	public static final String TABLE_SQL_CREATE = "create table SN_WallEntry (wallEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,comments STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table SN_WallEntry";
+	public static final String ORDER_BY_JPQL = " ORDER BY wallEntry.createDate DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY SN_WallEntry.createDate DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -289,7 +292,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{wallEntryId=");
 		sb.append(getWallEntryId());
@@ -313,7 +316,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.socialnetworking.model.WallEntry");

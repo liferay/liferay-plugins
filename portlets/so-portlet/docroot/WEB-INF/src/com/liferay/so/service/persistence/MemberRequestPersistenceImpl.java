@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -190,12 +191,11 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 			if (memberRequest == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No MemberRequest exists with the primary key " +
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 						memberRequestId);
 				}
 
-				throw new NoSuchMemberRequestException(
-					"No MemberRequest exists with the primary key " +
+				throw new NoSuchMemberRequestException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 					memberRequestId);
 			}
 
@@ -383,12 +383,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 		if (memberRequest == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No MemberRequest exists with the primary key " +
-					memberRequestId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + memberRequestId);
 			}
 
-			throw new NoSuchMemberRequestException(
-				"No MemberRequest exists with the primary key " +
+			throw new NoSuchMemberRequestException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 				memberRequestId);
 		}
 
@@ -434,11 +432,12 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		MemberRequest memberRequest = fetchByKey(key);
 
 		if (memberRequest == null) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No MemberRequest exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("key=" + key);
+			msg.append("key=");
+			msg.append(key);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -473,33 +472,27 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append(
-					"SELECT memberRequest FROM MemberRequest memberRequest WHERE ");
+				query.append(_SQL_SELECT_MEMBERREQUEST_WHERE);
 
 				if (key == null) {
-					query.append("memberRequest.key IS NULL");
+					query.append(_FINDER_COLUMN_KEY_KEY_1);
 				}
 				else {
 					if (key.equals(StringPool.BLANK)) {
-						query.append("(memberRequest.key IS NULL OR ");
+						query.append(_FINDER_COLUMN_KEY_KEY_3);
 					}
-
-					query.append("memberRequest.key = ?");
-
-					if (key.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_KEY_KEY_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(MemberRequestModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("memberRequest.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -566,20 +559,17 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append(
-					"SELECT memberRequest FROM MemberRequest memberRequest WHERE ");
+				query.append(_SQL_SELECT_MEMBERREQUEST_WHERE);
 
-				query.append("memberRequest.receiverUserId = ?");
+				query.append(_FINDER_COLUMN_RECEIVERUSERID_RECEIVERUSERID_2);
 
-				query.append(" ");
+				query.append(MemberRequestModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("memberRequest.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -629,44 +619,31 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT memberRequest FROM MemberRequest memberRequest WHERE ");
-
-				query.append("memberRequest.receiverUserId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_MEMBERREQUEST_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("memberRequest.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_RECEIVERUSERID_RECEIVERUSERID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("memberRequest.createDate DESC");
+					query.append(MemberRequestModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -702,11 +679,12 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No MemberRequest exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("receiverUserId=" + receiverUserId);
+			msg.append("receiverUserId=");
+			msg.append(receiverUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -726,11 +704,12 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No MemberRequest exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("receiverUserId=" + receiverUserId);
+			msg.append("receiverUserId=");
+			msg.append(receiverUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -753,44 +732,31 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append(
-				"SELECT memberRequest FROM MemberRequest memberRequest WHERE ");
-
-			query.append("memberRequest.receiverUserId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_MEMBERREQUEST_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("memberRequest.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_RECEIVERUSERID_RECEIVERUSERID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("memberRequest.createDate DESC");
+				query.append(MemberRequestModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -830,24 +796,19 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(4);
 
-				query.append(
-					"SELECT memberRequest FROM MemberRequest memberRequest WHERE ");
+				query.append(_SQL_SELECT_MEMBERREQUEST_WHERE);
 
-				query.append("memberRequest.receiverUserId = ?");
+				query.append(_FINDER_COLUMN_R_S_RECEIVERUSERID_2);
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_R_S_STATUS_2);
 
-				query.append("memberRequest.status = ?");
+				query.append(MemberRequestModelImpl.ORDER_BY_JPQL);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				query.append("ORDER BY ");
-
-				query.append("memberRequest.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -899,48 +860,33 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT memberRequest FROM MemberRequest memberRequest WHERE ");
-
-				query.append("memberRequest.receiverUserId = ?");
-
-				query.append(" AND ");
-
-				query.append("memberRequest.status = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(4 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(4);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_MEMBERREQUEST_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("memberRequest.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_R_S_RECEIVERUSERID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
+				query.append(_FINDER_COLUMN_R_S_STATUS_2);
 
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("memberRequest.createDate DESC");
+					query.append(MemberRequestModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -977,14 +923,15 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		List<MemberRequest> list = findByR_S(receiverUserId, status, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No MemberRequest exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("receiverUserId=" + receiverUserId);
+			msg.append("receiverUserId=");
+			msg.append(receiverUserId);
 
-			msg.append(", ");
-			msg.append("status=" + status);
+			msg.append(", status=");
+			msg.append(status);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1004,14 +951,15 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No MemberRequest exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("receiverUserId=" + receiverUserId);
+			msg.append("receiverUserId=");
+			msg.append(receiverUserId);
 
-			msg.append(", ");
-			msg.append("status=" + status);
+			msg.append(", status=");
+			msg.append(status);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1034,48 +982,33 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append(
-				"SELECT memberRequest FROM MemberRequest memberRequest WHERE ");
-
-			query.append("memberRequest.receiverUserId = ?");
-
-			query.append(" AND ");
-
-			query.append("memberRequest.status = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(4 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_MEMBERREQUEST_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("memberRequest.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_R_S_RECEIVERUSERID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
+			query.append(_FINDER_COLUMN_R_S_STATUS_2);
 
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("memberRequest.createDate DESC");
+				query.append(MemberRequestModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1108,17 +1041,18 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				status);
 
 		if (memberRequest == null) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(8);
 
-			msg.append("No MemberRequest exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("groupId=" + groupId);
+			msg.append("groupId=");
+			msg.append(groupId);
 
-			msg.append(", ");
-			msg.append("receiverUserId=" + receiverUserId);
+			msg.append(", receiverUserId=");
+			msg.append(receiverUserId);
 
-			msg.append(", ");
-			msg.append("status=" + status);
+			msg.append(", status=");
+			msg.append(status);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1156,28 +1090,21 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(5);
 
-				query.append(
-					"SELECT memberRequest FROM MemberRequest memberRequest WHERE ");
+				query.append(_SQL_SELECT_MEMBERREQUEST_WHERE);
 
-				query.append("memberRequest.groupId = ?");
+				query.append(_FINDER_COLUMN_G_R_S_GROUPID_2);
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_G_R_S_RECEIVERUSERID_2);
 
-				query.append("memberRequest.receiverUserId = ?");
+				query.append(_FINDER_COLUMN_G_R_S_STATUS_2);
 
-				query.append(" AND ");
+				query.append(MemberRequestModelImpl.ORDER_BY_JPQL);
 
-				query.append("memberRequest.status = ?");
+				String sql = query.toString();
 
-				query.append(" ");
-
-				query.append("ORDER BY ");
-
-				query.append("memberRequest.createDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1298,40 +1225,25 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT memberRequest FROM MemberRequest memberRequest ");
+				StringBundler query = null;
+				String sql = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(2 +
+							(obc.getOrderByFields().length * 3));
 
-					String[] orderByFields = obc.getOrderByFields();
+					query.append(_SQL_SELECT_MEMBERREQUEST);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("memberRequest.");
-						query.append(orderByFields[i]);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+					sql = query.toString();
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("memberRequest.createDate DESC");
+					sql = _SQL_SELECT_MEMBERREQUEST.concat(MemberRequestModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				if (obc == null) {
 					list = (List<MemberRequest>)QueryUtil.list(q, getDialect(),
@@ -1410,29 +1322,25 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(memberRequest) ");
-				query.append("FROM MemberRequest memberRequest WHERE ");
+				query.append(_SQL_COUNT_MEMBERREQUEST_WHERE);
 
 				if (key == null) {
-					query.append("memberRequest.key IS NULL");
+					query.append(_FINDER_COLUMN_KEY_KEY_1);
 				}
 				else {
 					if (key.equals(StringPool.BLANK)) {
-						query.append("(memberRequest.key IS NULL OR ");
+						query.append(_FINDER_COLUMN_KEY_KEY_3);
 					}
-
-					query.append("memberRequest.key = ?");
-
-					if (key.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_KEY_KEY_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1473,16 +1381,15 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(memberRequest) ");
-				query.append("FROM MemberRequest memberRequest WHERE ");
+				query.append(_SQL_COUNT_MEMBERREQUEST_WHERE);
 
-				query.append("memberRequest.receiverUserId = ?");
+				query.append(_FINDER_COLUMN_RECEIVERUSERID_RECEIVERUSERID_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1523,20 +1430,17 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT COUNT(memberRequest) ");
-				query.append("FROM MemberRequest memberRequest WHERE ");
+				query.append(_SQL_COUNT_MEMBERREQUEST_WHERE);
 
-				query.append("memberRequest.receiverUserId = ?");
+				query.append(_FINDER_COLUMN_R_S_RECEIVERUSERID_2);
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_R_S_STATUS_2);
 
-				query.append("memberRequest.status = ?");
+				String sql = query.toString();
 
-				query.append(" ");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1579,24 +1483,19 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(4);
 
-				query.append("SELECT COUNT(memberRequest) ");
-				query.append("FROM MemberRequest memberRequest WHERE ");
+				query.append(_SQL_COUNT_MEMBERREQUEST_WHERE);
 
-				query.append("memberRequest.groupId = ?");
+				query.append(_FINDER_COLUMN_G_R_S_GROUPID_2);
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_G_R_S_RECEIVERUSERID_2);
 
-				query.append("memberRequest.receiverUserId = ?");
+				query.append(_FINDER_COLUMN_G_R_S_STATUS_2);
 
-				query.append(" AND ");
+				String sql = query.toString();
 
-				query.append("memberRequest.status = ?");
-
-				query.append(" ");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1638,8 +1537,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(
-						"SELECT COUNT(memberRequest) FROM MemberRequest memberRequest");
+				Query q = session.createQuery(_SQL_COUNT_MEMBERREQUEST);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -1687,5 +1585,21 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	protected com.liferay.so.service.persistence.MemberRequestPersistence memberRequestPersistence;
 	@BeanReference(name = "com.liferay.so.service.persistence.ProjectsEntryPersistence")
 	protected com.liferay.so.service.persistence.ProjectsEntryPersistence projectsEntryPersistence;
+	private static final String _SQL_SELECT_MEMBERREQUEST = "SELECT memberRequest FROM MemberRequest memberRequest";
+	private static final String _SQL_SELECT_MEMBERREQUEST_WHERE = "SELECT memberRequest FROM MemberRequest memberRequest WHERE ";
+	private static final String _SQL_COUNT_MEMBERREQUEST = "SELECT COUNT(memberRequest) FROM MemberRequest memberRequest";
+	private static final String _SQL_COUNT_MEMBERREQUEST_WHERE = "SELECT COUNT(memberRequest) FROM MemberRequest memberRequest WHERE ";
+	private static final String _FINDER_COLUMN_KEY_KEY_1 = "memberRequest.key IS NULL";
+	private static final String _FINDER_COLUMN_KEY_KEY_2 = "memberRequest.key = ?";
+	private static final String _FINDER_COLUMN_KEY_KEY_3 = "(memberRequest.key IS NULL OR memberRequest.key = ?)";
+	private static final String _FINDER_COLUMN_RECEIVERUSERID_RECEIVERUSERID_2 = "memberRequest.receiverUserId = ?";
+	private static final String _FINDER_COLUMN_R_S_RECEIVERUSERID_2 = "memberRequest.receiverUserId = ? AND ";
+	private static final String _FINDER_COLUMN_R_S_STATUS_2 = "memberRequest.status = ?";
+	private static final String _FINDER_COLUMN_G_R_S_GROUPID_2 = "memberRequest.groupId = ? AND ";
+	private static final String _FINDER_COLUMN_G_R_S_RECEIVERUSERID_2 = "memberRequest.receiverUserId = ? AND ";
+	private static final String _FINDER_COLUMN_G_R_S_STATUS_2 = "memberRequest.status = ?";
+	private static final String _ORDER_BY_ENTITY_ALIAS = "memberRequest.";
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No MemberRequest exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No MemberRequest exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(MemberRequestPersistenceImpl.class);
 }

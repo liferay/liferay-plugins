@@ -43,6 +43,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
@@ -176,12 +177,11 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 			if (status == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No Status exists with the primary key " +
-						statusId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + statusId);
 				}
 
-				throw new NoSuchStatusException(
-					"No Status exists with the primary key " + statusId);
+				throw new NoSuchStatusException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+					statusId);
 			}
 
 			return remove(status);
@@ -329,11 +329,11 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 		if (status == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No Status exists with the primary key " + statusId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + statusId);
 			}
 
-			throw new NoSuchStatusException(
-				"No Status exists with the primary key " + statusId);
+			throw new NoSuchStatusException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				statusId);
 		}
 
 		return status;
@@ -377,11 +377,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		Status status = fetchByUserId(userId);
 
 		if (status == null) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No Status exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("userId=" + userId);
+			msg.append("userId=");
+			msg.append(userId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -416,15 +417,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT status FROM Status status WHERE ");
+				query.append(_SQL_SELECT_STATUS_WHERE);
 
-				query.append("status.userId = ?");
+				query.append(_FINDER_COLUMN_USERID_USERID_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -488,15 +489,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT status FROM Status status WHERE ");
+				query.append(_SQL_SELECT_STATUS_WHERE);
 
-				query.append("status.modifiedDate = ?");
+				query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -546,37 +547,27 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT status FROM Status status WHERE ");
-
-				query.append("status.modifiedDate = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
-
-					String[] orderByFields = obc.getOrderByFields();
-
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("status.");
-						query.append(orderByFields[i]);
-
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(2);
 				}
 
-				Query q = session.createQuery(query.toString());
+				query.append(_SQL_SELECT_STATUS_WHERE);
+
+				query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
+
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -609,11 +600,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		List<Status> list = findByModifiedDate(modifiedDate, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No Status exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("modifiedDate=" + modifiedDate);
+			msg.append("modifiedDate=");
+			msg.append(modifiedDate);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -632,11 +624,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No Status exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("modifiedDate=" + modifiedDate);
+			msg.append("modifiedDate=");
+			msg.append(modifiedDate);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -659,37 +652,27 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT status FROM Status status WHERE ");
-
-			query.append("status.modifiedDate = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
-
-				String[] orderByFields = obc.getOrderByFields();
-
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("status.");
-					query.append(orderByFields[i]);
-
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(2);
 			}
 
-			Query q = session.createQuery(query.toString());
+			query.append(_SQL_SELECT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
+
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -725,15 +708,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT status FROM Status status WHERE ");
+				query.append(_SQL_SELECT_STATUS_WHERE);
 
-				query.append("status.online = ?");
+				query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -783,37 +766,27 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT status FROM Status status WHERE ");
-
-				query.append("status.online = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
-
-					String[] orderByFields = obc.getOrderByFields();
-
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("status.");
-						query.append(orderByFields[i]);
-
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(2);
 				}
 
-				Query q = session.createQuery(query.toString());
+				query.append(_SQL_SELECT_STATUS_WHERE);
+
+				query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
+
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -846,11 +819,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		List<Status> list = findByOnline(online, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No Status exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("online=" + online);
+			msg.append("online=");
+			msg.append(online);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -868,11 +842,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		List<Status> list = findByOnline(online, count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No Status exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("online=" + online);
+			msg.append("online=");
+			msg.append(online);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -894,37 +869,27 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT status FROM Status status WHERE ");
-
-			query.append("status.online = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
-
-				String[] orderByFields = obc.getOrderByFields();
-
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("status.");
-					query.append(orderByFields[i]);
-
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(2);
 			}
 
-			Query q = session.createQuery(query.toString());
+			query.append(_SQL_SELECT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
+
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -963,19 +928,17 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT status FROM Status status WHERE ");
+				query.append(_SQL_SELECT_STATUS_WHERE);
 
-				query.append("status.modifiedDate = ?");
+				query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_M_O_ONLINE_2);
 
-				query.append("status.online = ?");
+				String sql = query.toString();
 
-				query.append(" ");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1027,41 +990,29 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT status FROM Status status WHERE ");
-
-				query.append("status.modifiedDate = ?");
-
-				query.append(" AND ");
-
-				query.append("status.online = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
-
-					String[] orderByFields = obc.getOrderByFields();
-
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("status.");
-						query.append(orderByFields[i]);
-
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+					query = new StringBundler(4 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
 				}
 
-				Query q = session.createQuery(query.toString());
+				query.append(_SQL_SELECT_STATUS_WHERE);
+
+				query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
+
+				query.append(_FINDER_COLUMN_M_O_ONLINE_2);
+
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1096,14 +1047,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		List<Status> list = findByM_O(modifiedDate, online, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No Status exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("modifiedDate=" + modifiedDate);
+			msg.append("modifiedDate=");
+			msg.append(modifiedDate);
 
-			msg.append(", ");
-			msg.append("online=" + online);
+			msg.append(", online=");
+			msg.append(online);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1122,14 +1074,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No Status exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("modifiedDate=" + modifiedDate);
+			msg.append("modifiedDate=");
+			msg.append(modifiedDate);
 
-			msg.append(", ");
-			msg.append("online=" + online);
+			msg.append(", online=");
+			msg.append(online);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1152,41 +1105,29 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT status FROM Status status WHERE ");
-
-			query.append("status.modifiedDate = ?");
-
-			query.append(" AND ");
-
-			query.append("status.online = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
-
-				String[] orderByFields = obc.getOrderByFields();
-
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("status.");
-					query.append(orderByFields[i]);
-
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+				query = new StringBundler(4 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
 			}
 
-			Query q = session.createQuery(query.toString());
+			query.append(_SQL_SELECT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
+
+			query.append(_FINDER_COLUMN_M_O_ONLINE_2);
+
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1275,33 +1216,23 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT status FROM Status status ");
+				StringBundler query = null;
+				String sql = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(2 +
+							(obc.getOrderByFields().length * 3));
 
-					String[] orderByFields = obc.getOrderByFields();
+					query.append(_SQL_SELECT_STATUS);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("status.");
-						query.append(orderByFields[i]);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+					sql = query.toString();
 				}
 
-				Query q = session.createQuery(query.toString());
+				sql = _SQL_SELECT_STATUS;
+
+				Query q = session.createQuery(sql);
 
 				if (obc == null) {
 					list = (List<Status>)QueryUtil.list(q, getDialect(), start,
@@ -1378,16 +1309,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(status) ");
-				query.append("FROM Status status WHERE ");
+				query.append(_SQL_COUNT_STATUS_WHERE);
 
-				query.append("status.userId = ?");
+				query.append(_FINDER_COLUMN_USERID_USERID_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1425,16 +1355,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(status) ");
-				query.append("FROM Status status WHERE ");
+				query.append(_SQL_COUNT_STATUS_WHERE);
 
-				query.append("status.modifiedDate = ?");
+				query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1472,16 +1401,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(status) ");
-				query.append("FROM Status status WHERE ");
+				query.append(_SQL_COUNT_STATUS_WHERE);
 
-				query.append("status.online = ?");
+				query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1522,20 +1450,17 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT COUNT(status) ");
-				query.append("FROM Status status WHERE ");
+				query.append(_SQL_COUNT_STATUS_WHERE);
 
-				query.append("status.modifiedDate = ?");
+				query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_M_O_ONLINE_2);
 
-				query.append("status.online = ?");
+				String sql = query.toString();
 
-				query.append(" ");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1575,8 +1500,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(
-						"SELECT COUNT(status) FROM Status status");
+				Query q = session.createQuery(_SQL_COUNT_STATUS);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -1624,5 +1548,17 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	protected com.liferay.chat.service.persistence.EntryPersistence entryPersistence;
 	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence")
 	protected com.liferay.chat.service.persistence.StatusPersistence statusPersistence;
+	private static final String _SQL_SELECT_STATUS = "SELECT status FROM Status status";
+	private static final String _SQL_SELECT_STATUS_WHERE = "SELECT status FROM Status status WHERE ";
+	private static final String _SQL_COUNT_STATUS = "SELECT COUNT(status) FROM Status status";
+	private static final String _SQL_COUNT_STATUS_WHERE = "SELECT COUNT(status) FROM Status status WHERE ";
+	private static final String _FINDER_COLUMN_USERID_USERID_2 = "status.userId = ?";
+	private static final String _FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2 = "status.modifiedDate = ?";
+	private static final String _FINDER_COLUMN_ONLINE_ONLINE_2 = "status.online = ?";
+	private static final String _FINDER_COLUMN_M_O_MODIFIEDDATE_2 = "status.modifiedDate = ? AND ";
+	private static final String _FINDER_COLUMN_M_O_ONLINE_2 = "status.online = ?";
+	private static final String _ORDER_BY_ENTITY_ALIAS = "status.";
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Status exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Status exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(StatusPersistenceImpl.class);
 }

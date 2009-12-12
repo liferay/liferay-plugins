@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
@@ -136,12 +137,11 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 
 			if (meetupsEntry == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No MeetupsEntry exists with the primary key " +
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 						meetupsEntryId);
 				}
 
-				throw new NoSuchMeetupsEntryException(
-					"No MeetupsEntry exists with the primary key " +
+				throw new NoSuchMeetupsEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 					meetupsEntryId);
 			}
 
@@ -278,12 +278,10 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 
 		if (meetupsEntry == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No MeetupsEntry exists with the primary key " +
-					meetupsEntryId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + meetupsEntryId);
 			}
 
-			throw new NoSuchMeetupsEntryException(
-				"No MeetupsEntry exists with the primary key " +
+			throw new NoSuchMeetupsEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 				meetupsEntryId);
 		}
 
@@ -337,20 +335,17 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append(
-					"SELECT meetupsEntry FROM MeetupsEntry meetupsEntry WHERE ");
+				query.append(_SQL_SELECT_MEETUPSENTRY_WHERE);
 
-				query.append("meetupsEntry.companyId = ?");
+				query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
-				query.append(" ");
+				query.append(MeetupsEntryModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("meetupsEntry.startDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -400,44 +395,31 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT meetupsEntry FROM MeetupsEntry meetupsEntry WHERE ");
-
-				query.append("meetupsEntry.companyId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_MEETUPSENTRY_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("meetupsEntry.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("meetupsEntry.startDate DESC");
+					query.append(MeetupsEntryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -472,11 +454,12 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		List<MeetupsEntry> list = findByCompanyId(companyId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No MeetupsEntry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("companyId=" + companyId);
+			msg.append("companyId=");
+			msg.append(companyId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -496,11 +479,12 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 				obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No MeetupsEntry exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("companyId=" + companyId);
+			msg.append("companyId=");
+			msg.append(companyId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -523,44 +507,31 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append(
-				"SELECT meetupsEntry FROM MeetupsEntry meetupsEntry WHERE ");
-
-			query.append("meetupsEntry.companyId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_MEETUPSENTRY_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("meetupsEntry.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("meetupsEntry.startDate DESC");
+				query.append(MeetupsEntryModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -649,40 +620,25 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT meetupsEntry FROM MeetupsEntry meetupsEntry ");
+				StringBundler query = null;
+				String sql = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(2 +
+							(obc.getOrderByFields().length * 3));
 
-					String[] orderByFields = obc.getOrderByFields();
+					query.append(_SQL_SELECT_MEETUPSENTRY);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("meetupsEntry.");
-						query.append(orderByFields[i]);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+					sql = query.toString();
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("meetupsEntry.startDate DESC");
+					sql = _SQL_SELECT_MEETUPSENTRY.concat(MeetupsEntryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				if (obc == null) {
 					list = (List<MeetupsEntry>)QueryUtil.list(q, getDialect(),
@@ -738,16 +694,15 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(meetupsEntry) ");
-				query.append("FROM MeetupsEntry meetupsEntry WHERE ");
+				query.append(_SQL_COUNT_MEETUPSENTRY_WHERE);
 
-				query.append("meetupsEntry.companyId = ?");
+				query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -785,8 +740,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(
-						"SELECT COUNT(meetupsEntry) FROM MeetupsEntry meetupsEntry");
+				Query q = session.createQuery(_SQL_COUNT_MEETUPSENTRY);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -836,5 +790,13 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	protected com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence meetupsRegistrationPersistence;
 	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.WallEntryPersistence")
 	protected com.liferay.socialnetworking.service.persistence.WallEntryPersistence wallEntryPersistence;
+	private static final String _SQL_SELECT_MEETUPSENTRY = "SELECT meetupsEntry FROM MeetupsEntry meetupsEntry";
+	private static final String _SQL_SELECT_MEETUPSENTRY_WHERE = "SELECT meetupsEntry FROM MeetupsEntry meetupsEntry WHERE ";
+	private static final String _SQL_COUNT_MEETUPSENTRY = "SELECT COUNT(meetupsEntry) FROM MeetupsEntry meetupsEntry";
+	private static final String _SQL_COUNT_MEETUPSENTRY_WHERE = "SELECT COUNT(meetupsEntry) FROM MeetupsEntry meetupsEntry WHERE ";
+	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "meetupsEntry.companyId = ?";
+	private static final String _ORDER_BY_ENTITY_ALIAS = "meetupsEntry.";
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No MeetupsEntry exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No MeetupsEntry exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(MeetupsEntryPersistenceImpl.class);
 }

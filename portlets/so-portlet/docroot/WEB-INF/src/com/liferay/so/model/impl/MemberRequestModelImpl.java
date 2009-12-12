@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -68,6 +69,8 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
 		};
 	public static final String TABLE_SQL_CREATE = "create table SO_MemberRequest (memberRequestId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,key_ VARCHAR(75) null,receiverUserId LONG,status INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table SO_MemberRequest";
+	public static final String ORDER_BY_JPQL = " ORDER BY memberRequest.createDate DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY SO_MemberRequest.createDate DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -361,7 +364,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{memberRequestId=");
 		sb.append(getMemberRequestId());
@@ -389,7 +392,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.so.model.MemberRequest");

@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -64,6 +65,8 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 		};
 	public static final String TABLE_SQL_CREATE = "create table jiraaction (id LONG not null primary key,author VARCHAR(75) null,created DATE null,updated DATE null,issueid LONG,actiontype VARCHAR(75) null,actionbody VARCHAR(75) null,actionlevel VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table jiraaction";
+	public static final String ORDER_BY_JPQL = " ORDER BY jiraAction.modifiedDate DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY jiraaction.updated DESC";
 	public static final String DATA_SOURCE = "jiraDataSource";
 	public static final String SESSION_FACTORY = "jiraSessionFactory";
 	public static final String TX_MANAGER = "jiraTransactionManager";
@@ -280,7 +283,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{jiraActionId=");
 		sb.append(getJiraActionId());
@@ -304,7 +307,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	}
 
 	public String toXmlString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.socialcoding.model.JIRAAction");

@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -135,12 +136,11 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 
 			if (svnRepository == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No SVNRepository exists with the primary key " +
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 						svnRepositoryId);
 				}
 
-				throw new NoSuchSVNRepositoryException(
-					"No SVNRepository exists with the primary key " +
+				throw new NoSuchSVNRepositoryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 					svnRepositoryId);
 			}
 
@@ -290,12 +290,10 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 
 		if (svnRepository == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No SVNRepository exists with the primary key " +
-					svnRepositoryId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + svnRepositoryId);
 			}
 
-			throw new NoSuchSVNRepositoryException(
-				"No SVNRepository exists with the primary key " +
+			throw new NoSuchSVNRepositoryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 				svnRepositoryId);
 		}
 
@@ -341,11 +339,12 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		SVNRepository svnRepository = fetchByUrl(url);
 
 		if (svnRepository == null) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No SVNRepository exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("url=" + url);
+			msg.append("url=");
+			msg.append(url);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -380,33 +379,27 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append(
-					"SELECT svnRepository FROM SVNRepository svnRepository WHERE ");
+				query.append(_SQL_SELECT_SVNREPOSITORY_WHERE);
 
 				if (url == null) {
-					query.append("svnRepository.url IS NULL");
+					query.append(_FINDER_COLUMN_URL_URL_1);
 				}
 				else {
 					if (url.equals(StringPool.BLANK)) {
-						query.append("(svnRepository.url IS NULL OR ");
+						query.append(_FINDER_COLUMN_URL_URL_3);
 					}
-
-					query.append("svnRepository.url = ?");
-
-					if (url.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_URL_URL_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(SVNRepositoryModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("svnRepository.url ASC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -524,40 +517,25 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"SELECT svnRepository FROM SVNRepository svnRepository ");
+				StringBundler query = null;
+				String sql = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(2 +
+							(obc.getOrderByFields().length * 3));
 
-					String[] orderByFields = obc.getOrderByFields();
+					query.append(_SQL_SELECT_SVNREPOSITORY);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("svnRepository.");
-						query.append(orderByFields[i]);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+					sql = query.toString();
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("svnRepository.url ASC");
+					sql = _SQL_SELECT_SVNREPOSITORY.concat(SVNRepositoryModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				if (obc == null) {
 					list = (List<SVNRepository>)QueryUtil.list(q, getDialect(),
@@ -614,29 +592,25 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(svnRepository) ");
-				query.append("FROM SVNRepository svnRepository WHERE ");
+				query.append(_SQL_COUNT_SVNREPOSITORY_WHERE);
 
 				if (url == null) {
-					query.append("svnRepository.url IS NULL");
+					query.append(_FINDER_COLUMN_URL_URL_1);
 				}
 				else {
 					if (url.equals(StringPool.BLANK)) {
-						query.append("(svnRepository.url IS NULL OR ");
+						query.append(_FINDER_COLUMN_URL_URL_3);
 					}
-
-					query.append("svnRepository.url = ?");
-
-					if (url.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_URL_URL_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -676,8 +650,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(
-						"SELECT COUNT(svnRepository) FROM SVNRepository svnRepository");
+				Query q = session.createQuery(_SQL_COUNT_SVNREPOSITORY);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -733,5 +706,15 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	protected com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence svnRepositoryPersistence;
 	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRevisionPersistence")
 	protected com.liferay.socialcoding.service.persistence.SVNRevisionPersistence svnRevisionPersistence;
+	private static final String _SQL_SELECT_SVNREPOSITORY = "SELECT svnRepository FROM SVNRepository svnRepository";
+	private static final String _SQL_SELECT_SVNREPOSITORY_WHERE = "SELECT svnRepository FROM SVNRepository svnRepository WHERE ";
+	private static final String _SQL_COUNT_SVNREPOSITORY = "SELECT COUNT(svnRepository) FROM SVNRepository svnRepository";
+	private static final String _SQL_COUNT_SVNREPOSITORY_WHERE = "SELECT COUNT(svnRepository) FROM SVNRepository svnRepository WHERE ";
+	private static final String _FINDER_COLUMN_URL_URL_1 = "svnRepository.url IS NULL";
+	private static final String _FINDER_COLUMN_URL_URL_2 = "svnRepository.url = ?";
+	private static final String _FINDER_COLUMN_URL_URL_3 = "(svnRepository.url IS NULL OR svnRepository.url = ?)";
+	private static final String _ORDER_BY_ENTITY_ALIAS = "svnRepository.";
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No SVNRepository exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SVNRepository exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(SVNRepositoryPersistenceImpl.class);
 }

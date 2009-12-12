@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.CalendarUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -324,12 +325,11 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 			if (jiraIssue == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No JIRAIssue exists with the primary key " +
-						jiraIssueId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + jiraIssueId);
 				}
 
-				throw new NoSuchJIRAIssueException(
-					"No JIRAIssue exists with the primary key " + jiraIssueId);
+				throw new NoSuchJIRAIssueException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+					jiraIssueId);
 			}
 
 			return remove(jiraIssue);
@@ -484,12 +484,11 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 		if (jiraIssue == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No JIRAIssue exists with the primary key " +
-					jiraIssueId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + jiraIssueId);
 			}
 
-			throw new NoSuchJIRAIssueException(
-				"No JIRAIssue exists with the primary key " + jiraIssueId);
+			throw new NoSuchJIRAIssueException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				jiraIssueId);
 		}
 
 		return jiraIssue;
@@ -542,19 +541,17 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-				query.append("jiraIssue.projectId = ?");
+				query.append(_FINDER_COLUMN_PROJECTID_PROJECTID_2);
 
-				query.append(" ");
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("jiraIssue.modifiedDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -604,43 +601,31 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraIssue.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_PROJECTID_PROJECTID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraIssue.modifiedDate DESC");
+					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -674,11 +659,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		List<JIRAIssue> list = findByProjectId(projectId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("projectId=" + projectId);
+			msg.append("projectId=");
+			msg.append(projectId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -696,11 +682,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		List<JIRAIssue> list = findByProjectId(projectId, count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("projectId=" + projectId);
+			msg.append("projectId=");
+			msg.append(projectId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -723,43 +710,31 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-			query.append("jiraIssue.projectId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("jiraIssue.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_PROJECTID_PROJECTID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("jiraIssue.modifiedDate DESC");
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -789,11 +764,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		JIRAIssue jiraIssue = fetchByKey(key);
 
 		if (jiraIssue == null) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("key=" + key);
+			msg.append("key=");
+			msg.append(key);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -828,32 +804,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
 				if (key == null) {
-					query.append("jiraIssue.key IS NULL");
+					query.append(_FINDER_COLUMN_KEY_KEY_1);
 				}
 				else {
 					if (key.equals(StringPool.BLANK)) {
-						query.append("(jiraIssue.key IS NULL OR ");
+						query.append(_FINDER_COLUMN_KEY_KEY_3);
 					}
-
-					query.append("jiraIssue.key = ?");
-
-					if (key.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_KEY_KEY_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("jiraIssue.modifiedDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -920,33 +891,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
 				if (reporterJiraUserId == null) {
-					query.append("jiraIssue.reporterJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_1);
 				}
 				else {
 					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.reporterJiraUserId = ?");
-
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("jiraIssue.modifiedDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -998,57 +963,41 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-				if (reporterJiraUserId == null) {
-					query.append("jiraIssue.reporterJiraUserId IS NULL");
-				}
-				else {
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.reporterJiraUserId IS NULL OR ");
-					}
-
-					query.append("jiraIssue.reporterJiraUserId = ?");
-
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraIssue.");
-						query.append(orderByFields[i]);
-
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
+				if (reporterJiraUserId == null) {
+					query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_1);
+				}
+				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_2);
 					}
 				}
 
-				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraIssue.modifiedDate DESC");
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
-				Query q = session.createQuery(query.toString());
+				else {
+					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1085,11 +1034,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("reporterJiraUserId=" + reporterJiraUserId);
+			msg.append("reporterJiraUserId=");
+			msg.append(reporterJiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1108,11 +1058,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("reporterJiraUserId=" + reporterJiraUserId);
+			msg.append("reporterJiraUserId=");
+			msg.append(reporterJiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1135,56 +1086,41 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-			if (reporterJiraUserId == null) {
-				query.append("jiraIssue.reporterJiraUserId IS NULL");
-			}
-			else {
-				if (reporterJiraUserId.equals(StringPool.BLANK)) {
-					query.append("(jiraIssue.reporterJiraUserId IS NULL OR ");
-				}
-
-				query.append("jiraIssue.reporterJiraUserId = ?");
-
-				if (reporterJiraUserId.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("jiraIssue.");
-					query.append(orderByFields[i]);
-
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
+			if (reporterJiraUserId == null) {
+				query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_1);
+			}
+			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_2);
 				}
 			}
 
-			else {
-				query.append("ORDER BY ");
-
-				query.append("jiraIssue.modifiedDate DESC");
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
-			Query q = session.createQuery(query.toString());
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1224,33 +1160,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
 				if (assigneeJiraUserId == null) {
-					query.append("jiraIssue.assigneeJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_1);
 				}
 				else {
 					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.assigneeJiraUserId = ?");
-
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("jiraIssue.modifiedDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1302,57 +1232,41 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-				if (assigneeJiraUserId == null) {
-					query.append("jiraIssue.assigneeJiraUserId IS NULL");
-				}
-				else {
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
-					}
-
-					query.append("jiraIssue.assigneeJiraUserId = ?");
-
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraIssue.");
-						query.append(orderByFields[i]);
-
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
+				if (assigneeJiraUserId == null) {
+					query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_1);
+				}
+				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_2);
 					}
 				}
 
-				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraIssue.modifiedDate DESC");
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
-				Query q = session.createQuery(query.toString());
+				else {
+					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1389,11 +1303,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("assigneeJiraUserId=" + assigneeJiraUserId);
+			msg.append("assigneeJiraUserId=");
+			msg.append(assigneeJiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1412,11 +1327,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(4);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("assigneeJiraUserId=" + assigneeJiraUserId);
+			msg.append("assigneeJiraUserId=");
+			msg.append(assigneeJiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1439,56 +1355,41 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-			if (assigneeJiraUserId == null) {
-				query.append("jiraIssue.assigneeJiraUserId IS NULL");
-			}
-			else {
-				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-					query.append("(jiraIssue.assigneeJiraUserId IS NULL OR ");
-				}
-
-				query.append("jiraIssue.assigneeJiraUserId = ?");
-
-				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("jiraIssue.");
-					query.append(orderByFields[i]);
-
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
+			if (assigneeJiraUserId == null) {
+				query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_1);
+			}
+			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_2);
 				}
 			}
 
-			else {
-				query.append("ORDER BY ");
-
-				query.append("jiraIssue.modifiedDate DESC");
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
-			Query q = session.createQuery(query.toString());
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1528,28 +1429,24 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(4);
 
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
 				if (modifiedDate == null) {
-					query.append("jiraIssue.modifiedDate > null");
+					query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_1);
 				}
 				else {
-					query.append("jiraIssue.modifiedDate > ?");
+					query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_2);
 				}
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_MD_P_PROJECTID_2);
 
-				query.append("jiraIssue.projectId = ?");
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				query.append("ORDER BY ");
-
-				query.append("jiraIssue.modifiedDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1603,52 +1500,38 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-				if (modifiedDate == null) {
-					query.append("jiraIssue.modifiedDate > null");
-				}
-				else {
-					query.append("jiraIssue.modifiedDate > ?");
-				}
-
-				query.append(" AND ");
-
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(4 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(4);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraIssue.");
-						query.append(orderByFields[i]);
+				if (modifiedDate == null) {
+					query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_1);
+				}
+				else {
+					query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_2);
+				}
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
+				query.append(_FINDER_COLUMN_MD_P_PROJECTID_2);
 
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraIssue.modifiedDate DESC");
+					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1686,14 +1569,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		List<JIRAIssue> list = findByMD_P(modifiedDate, projectId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("modifiedDate=" + modifiedDate);
+			msg.append("modifiedDate=");
+			msg.append(modifiedDate);
 
-			msg.append(", ");
-			msg.append("projectId=" + projectId);
+			msg.append(", projectId=");
+			msg.append(projectId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1712,14 +1596,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("modifiedDate=" + modifiedDate);
+			msg.append("modifiedDate=");
+			msg.append(modifiedDate);
 
-			msg.append(", ");
-			msg.append("projectId=" + projectId);
+			msg.append(", projectId=");
+			msg.append(projectId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1742,52 +1627,38 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-			if (modifiedDate == null) {
-				query.append("jiraIssue.modifiedDate > null");
-			}
-			else {
-				query.append("jiraIssue.modifiedDate > ?");
-			}
-
-			query.append(" AND ");
-
-			query.append("jiraIssue.projectId = ?");
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(4 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("jiraIssue.");
-					query.append(orderByFields[i]);
+			if (modifiedDate == null) {
+				query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_1);
+			}
+			else {
+				query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_2);
+			}
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
+			query.append(_FINDER_COLUMN_MD_P_PROJECTID_2);
 
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
-				}
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
 			else {
-				query.append("ORDER BY ");
-
-				query.append("jiraIssue.modifiedDate DESC");
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
 			}
 
-			Query q = session.createQuery(query.toString());
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1833,37 +1704,29 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(4);
 
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_P_RJUI_PROJECTID_2);
 
 				if (reporterJiraUserId == null) {
-					query.append("jiraIssue.reporterJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_1);
 				}
 				else {
 					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.reporterJiraUserId = ?");
-
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("jiraIssue.modifiedDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1921,61 +1784,43 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
-
-				if (reporterJiraUserId == null) {
-					query.append("jiraIssue.reporterJiraUserId IS NULL");
-				}
-				else {
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.reporterJiraUserId IS NULL OR ");
-					}
-
-					query.append("jiraIssue.reporterJiraUserId = ?");
-
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(4 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(4);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraIssue.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_P_RJUI_PROJECTID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
+				if (reporterJiraUserId == null) {
+					query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_1);
+				}
+				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_2);
 					}
 				}
 
-				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraIssue.modifiedDate DESC");
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
-				Query q = session.createQuery(query.toString());
+				else {
+					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2015,14 +1860,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("projectId=" + projectId);
+			msg.append("projectId=");
+			msg.append(projectId);
 
-			msg.append(", ");
-			msg.append("reporterJiraUserId=" + reporterJiraUserId);
+			msg.append(", reporterJiraUserId=");
+			msg.append(reporterJiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -2042,14 +1888,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("projectId=" + projectId);
+			msg.append("projectId=");
+			msg.append(projectId);
 
-			msg.append(", ");
-			msg.append("reporterJiraUserId=" + reporterJiraUserId);
+			msg.append(", reporterJiraUserId=");
+			msg.append(reporterJiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -2072,60 +1919,43 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-			query.append("jiraIssue.projectId = ?");
-
-			query.append(" AND ");
-
-			if (reporterJiraUserId == null) {
-				query.append("jiraIssue.reporterJiraUserId IS NULL");
-			}
-			else {
-				if (reporterJiraUserId.equals(StringPool.BLANK)) {
-					query.append("(jiraIssue.reporterJiraUserId IS NULL OR ");
-				}
-
-				query.append("jiraIssue.reporterJiraUserId = ?");
-
-				if (reporterJiraUserId.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(4 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("jiraIssue.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_P_RJUI_PROJECTID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
+			if (reporterJiraUserId == null) {
+				query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_1);
+			}
+			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_2);
 				}
 			}
 
-			else {
-				query.append("ORDER BY ");
-
-				query.append("jiraIssue.modifiedDate DESC");
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
-			Query q = session.createQuery(query.toString());
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2171,37 +2001,29 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(4);
 
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_P_AJUI_PROJECTID_2);
 
 				if (assigneeJiraUserId == null) {
-					query.append("jiraIssue.assigneeJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_1);
 				}
 				else {
 					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.assigneeJiraUserId = ?");
-
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("jiraIssue.modifiedDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2259,61 +2081,43 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
-
-				if (assigneeJiraUserId == null) {
-					query.append("jiraIssue.assigneeJiraUserId IS NULL");
-				}
-				else {
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
-					}
-
-					query.append("jiraIssue.assigneeJiraUserId = ?");
-
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(4 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(4);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraIssue.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_P_AJUI_PROJECTID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
+				if (assigneeJiraUserId == null) {
+					query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_1);
+				}
+				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_2);
 					}
 				}
 
-				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraIssue.modifiedDate DESC");
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
-				Query q = session.createQuery(query.toString());
+				else {
+					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2353,14 +2157,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("projectId=" + projectId);
+			msg.append("projectId=");
+			msg.append(projectId);
 
-			msg.append(", ");
-			msg.append("assigneeJiraUserId=" + assigneeJiraUserId);
+			msg.append(", assigneeJiraUserId=");
+			msg.append(assigneeJiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -2380,14 +2185,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(6);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("projectId=" + projectId);
+			msg.append("projectId=");
+			msg.append(projectId);
 
-			msg.append(", ");
-			msg.append("assigneeJiraUserId=" + assigneeJiraUserId);
+			msg.append(", assigneeJiraUserId=");
+			msg.append(assigneeJiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -2410,60 +2216,43 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-			query.append("jiraIssue.projectId = ?");
-
-			query.append(" AND ");
-
-			if (assigneeJiraUserId == null) {
-				query.append("jiraIssue.assigneeJiraUserId IS NULL");
-			}
-			else {
-				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-					query.append("(jiraIssue.assigneeJiraUserId IS NULL OR ");
-				}
-
-				query.append("jiraIssue.assigneeJiraUserId = ?");
-
-				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(4 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("jiraIssue.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_P_AJUI_PROJECTID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
+			if (assigneeJiraUserId == null) {
+				query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_1);
+			}
+			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_2);
 				}
 			}
 
-			else {
-				query.append("ORDER BY ");
-
-				query.append("jiraIssue.modifiedDate DESC");
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
-			Query q = session.createQuery(query.toString());
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2509,46 +2298,36 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(5);
 
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
 				if (modifiedDate == null) {
-					query.append("jiraIssue.modifiedDate > null");
+					query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_1);
 				}
 				else {
-					query.append("jiraIssue.modifiedDate > ?");
+					query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_2);
 				}
 
-				query.append(" AND ");
-
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_MD_P_RJUI_PROJECTID_2);
 
 				if (reporterJiraUserId == null) {
-					query.append("jiraIssue.reporterJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_1);
 				}
 				else {
 					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.reporterJiraUserId = ?");
-
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("jiraIssue.modifiedDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2611,70 +2390,50 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-				if (modifiedDate == null) {
-					query.append("jiraIssue.modifiedDate > null");
-				}
-				else {
-					query.append("jiraIssue.modifiedDate > ?");
-				}
-
-				query.append(" AND ");
-
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
-
-				if (reporterJiraUserId == null) {
-					query.append("jiraIssue.reporterJiraUserId IS NULL");
-				}
-				else {
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.reporterJiraUserId IS NULL OR ");
-					}
-
-					query.append("jiraIssue.reporterJiraUserId = ?");
-
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(5 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(5);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraIssue.");
-						query.append(orderByFields[i]);
+				if (modifiedDate == null) {
+					query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_1);
+				}
+				else {
+					query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_2);
+				}
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
+				query.append(_FINDER_COLUMN_MD_P_RJUI_PROJECTID_2);
 
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
+				if (reporterJiraUserId == null) {
+					query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_1);
+				}
+				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_2);
 					}
 				}
 
-				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraIssue.modifiedDate DESC");
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
-				Query q = session.createQuery(query.toString());
+				else {
+					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2718,17 +2477,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				reporterJiraUserId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(8);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("modifiedDate=" + modifiedDate);
+			msg.append("modifiedDate=");
+			msg.append(modifiedDate);
 
-			msg.append(", ");
-			msg.append("projectId=" + projectId);
+			msg.append(", projectId=");
+			msg.append(projectId);
 
-			msg.append(", ");
-			msg.append("reporterJiraUserId=" + reporterJiraUserId);
+			msg.append(", reporterJiraUserId=");
+			msg.append(reporterJiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -2748,17 +2508,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				reporterJiraUserId, count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(8);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("modifiedDate=" + modifiedDate);
+			msg.append("modifiedDate=");
+			msg.append(modifiedDate);
 
-			msg.append(", ");
-			msg.append("projectId=" + projectId);
+			msg.append(", projectId=");
+			msg.append(projectId);
 
-			msg.append(", ");
-			msg.append("reporterJiraUserId=" + reporterJiraUserId);
+			msg.append(", reporterJiraUserId=");
+			msg.append(reporterJiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -2781,69 +2542,50 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-			if (modifiedDate == null) {
-				query.append("jiraIssue.modifiedDate > null");
-			}
-			else {
-				query.append("jiraIssue.modifiedDate > ?");
-			}
-
-			query.append(" AND ");
-
-			query.append("jiraIssue.projectId = ?");
-
-			query.append(" AND ");
-
-			if (reporterJiraUserId == null) {
-				query.append("jiraIssue.reporterJiraUserId IS NULL");
-			}
-			else {
-				if (reporterJiraUserId.equals(StringPool.BLANK)) {
-					query.append("(jiraIssue.reporterJiraUserId IS NULL OR ");
-				}
-
-				query.append("jiraIssue.reporterJiraUserId = ?");
-
-				if (reporterJiraUserId.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(5 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("jiraIssue.");
-					query.append(orderByFields[i]);
+			if (modifiedDate == null) {
+				query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_1);
+			}
+			else {
+				query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_2);
+			}
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
+			query.append(_FINDER_COLUMN_MD_P_RJUI_PROJECTID_2);
 
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
+			if (reporterJiraUserId == null) {
+				query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_1);
+			}
+			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_2);
 				}
 			}
 
-			else {
-				query.append("ORDER BY ");
-
-				query.append("jiraIssue.modifiedDate DESC");
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
-			Query q = session.createQuery(query.toString());
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2893,46 +2635,36 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(5);
 
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
 				if (modifiedDate == null) {
-					query.append("jiraIssue.modifiedDate > null");
+					query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_1);
 				}
 				else {
-					query.append("jiraIssue.modifiedDate > ?");
+					query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_2);
 				}
 
-				query.append(" AND ");
-
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_MD_P_AJUI_PROJECTID_2);
 
 				if (assigneeJiraUserId == null) {
-					query.append("jiraIssue.assigneeJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_1);
 				}
 				else {
 					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.assigneeJiraUserId = ?");
-
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("jiraIssue.modifiedDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2995,70 +2727,50 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-				if (modifiedDate == null) {
-					query.append("jiraIssue.modifiedDate > null");
-				}
-				else {
-					query.append("jiraIssue.modifiedDate > ?");
-				}
-
-				query.append(" AND ");
-
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
-
-				if (assigneeJiraUserId == null) {
-					query.append("jiraIssue.assigneeJiraUserId IS NULL");
-				}
-				else {
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
-					}
-
-					query.append("jiraIssue.assigneeJiraUserId = ?");
-
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(5 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(5);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraIssue.");
-						query.append(orderByFields[i]);
+				if (modifiedDate == null) {
+					query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_1);
+				}
+				else {
+					query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_2);
+				}
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
+				query.append(_FINDER_COLUMN_MD_P_AJUI_PROJECTID_2);
 
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
+				if (assigneeJiraUserId == null) {
+					query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_1);
+				}
+				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_2);
 					}
 				}
 
-				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraIssue.modifiedDate DESC");
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 				}
 
-				Query q = session.createQuery(query.toString());
+				else {
+					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -3102,17 +2814,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				assigneeJiraUserId, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(8);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("modifiedDate=" + modifiedDate);
+			msg.append("modifiedDate=");
+			msg.append(modifiedDate);
 
-			msg.append(", ");
-			msg.append("projectId=" + projectId);
+			msg.append(", projectId=");
+			msg.append(projectId);
 
-			msg.append(", ");
-			msg.append("assigneeJiraUserId=" + assigneeJiraUserId);
+			msg.append(", assigneeJiraUserId=");
+			msg.append(assigneeJiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -3132,17 +2845,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				assigneeJiraUserId, count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(8);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("modifiedDate=" + modifiedDate);
+			msg.append("modifiedDate=");
+			msg.append(modifiedDate);
 
-			msg.append(", ");
-			msg.append("projectId=" + projectId);
+			msg.append(", projectId=");
+			msg.append(projectId);
 
-			msg.append(", ");
-			msg.append("assigneeJiraUserId=" + assigneeJiraUserId);
+			msg.append(", assigneeJiraUserId=");
+			msg.append(assigneeJiraUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -3165,69 +2879,50 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-			if (modifiedDate == null) {
-				query.append("jiraIssue.modifiedDate > null");
-			}
-			else {
-				query.append("jiraIssue.modifiedDate > ?");
-			}
-
-			query.append(" AND ");
-
-			query.append("jiraIssue.projectId = ?");
-
-			query.append(" AND ");
-
-			if (assigneeJiraUserId == null) {
-				query.append("jiraIssue.assigneeJiraUserId IS NULL");
-			}
-			else {
-				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-					query.append("(jiraIssue.assigneeJiraUserId IS NULL OR ");
-				}
-
-				query.append("jiraIssue.assigneeJiraUserId = ?");
-
-				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(5 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("jiraIssue.");
-					query.append(orderByFields[i]);
+			if (modifiedDate == null) {
+				query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_1);
+			}
+			else {
+				query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_2);
+			}
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
+			query.append(_FINDER_COLUMN_MD_P_AJUI_PROJECTID_2);
 
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
+			if (assigneeJiraUserId == null) {
+				query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_1);
+			}
+			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_2);
 				}
 			}
 
-			else {
-				query.append("ORDER BY ");
-
-				query.append("jiraIssue.modifiedDate DESC");
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 			}
 
-			Query q = session.createQuery(query.toString());
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -3279,54 +2974,41 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(5);
 
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_P_RJUI_S_PROJECTID_2);
 
 				if (reporterJiraUserId == null) {
-					query.append("jiraIssue.reporterJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_1);
 				}
 				else {
 					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.reporterJiraUserId = ?");
-
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_2);
 					}
 				}
-
-				query.append(" AND ");
 
 				if (status == null) {
-					query.append("jiraIssue.status IS NULL");
+					query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_1);
 				}
 				else {
 					if (status.equals(StringPool.BLANK)) {
-						query.append("(jiraIssue.status IS NULL OR ");
+						query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_3);
 					}
-
-					query.append("jiraIssue.status = ?");
-
-					if (status.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("jiraIssue.modifiedDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -3391,78 +3073,55 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
-
-				if (reporterJiraUserId == null) {
-					query.append("jiraIssue.reporterJiraUserId IS NULL");
-				}
-				else {
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.reporterJiraUserId IS NULL OR ");
-					}
-
-					query.append("jiraIssue.reporterJiraUserId = ?");
-
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" AND ");
-
-				if (status == null) {
-					query.append("jiraIssue.status IS NULL");
-				}
-				else {
-					if (status.equals(StringPool.BLANK)) {
-						query.append("(jiraIssue.status IS NULL OR ");
-					}
-
-					query.append("jiraIssue.status = ?");
-
-					if (status.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(5 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(5);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraIssue.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_P_RJUI_S_PROJECTID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
+				if (reporterJiraUserId == null) {
+					query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_1);
+				}
+				else {
+					if (reporterJiraUserId.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_2);
 					}
 				}
 
+				if (status == null) {
+					query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_1);
+				}
 				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraIssue.modifiedDate DESC");
+					if (status.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_2);
+					}
 				}
 
-				Query q = session.createQuery(query.toString());
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				}
+
+				else {
+					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -3506,17 +3165,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				status, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(8);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("projectId=" + projectId);
+			msg.append("projectId=");
+			msg.append(projectId);
 
-			msg.append(", ");
-			msg.append("reporterJiraUserId=" + reporterJiraUserId);
+			msg.append(", reporterJiraUserId=");
+			msg.append(reporterJiraUserId);
 
-			msg.append(", ");
-			msg.append("status=" + status);
+			msg.append(", status=");
+			msg.append(status);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -3536,17 +3196,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				status, count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(8);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("projectId=" + projectId);
+			msg.append("projectId=");
+			msg.append(projectId);
 
-			msg.append(", ");
-			msg.append("reporterJiraUserId=" + reporterJiraUserId);
+			msg.append(", reporterJiraUserId=");
+			msg.append(reporterJiraUserId);
 
-			msg.append(", ");
-			msg.append("status=" + status);
+			msg.append(", status=");
+			msg.append(status);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -3569,77 +3230,55 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-			query.append("jiraIssue.projectId = ?");
-
-			query.append(" AND ");
-
-			if (reporterJiraUserId == null) {
-				query.append("jiraIssue.reporterJiraUserId IS NULL");
-			}
-			else {
-				if (reporterJiraUserId.equals(StringPool.BLANK)) {
-					query.append("(jiraIssue.reporterJiraUserId IS NULL OR ");
-				}
-
-				query.append("jiraIssue.reporterJiraUserId = ?");
-
-				if (reporterJiraUserId.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" AND ");
-
-			if (status == null) {
-				query.append("jiraIssue.status IS NULL");
-			}
-			else {
-				if (status.equals(StringPool.BLANK)) {
-					query.append("(jiraIssue.status IS NULL OR ");
-				}
-
-				query.append("jiraIssue.status = ?");
-
-				if (status.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(5 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("jiraIssue.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_P_RJUI_S_PROJECTID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
+			if (reporterJiraUserId == null) {
+				query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_1);
+			}
+			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_2);
 				}
 			}
 
+			if (status == null) {
+				query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_1);
+			}
 			else {
-				query.append("ORDER BY ");
-
-				query.append("jiraIssue.modifiedDate DESC");
+				if (status.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_2);
+				}
 			}
 
-			Query q = session.createQuery(query.toString());
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			}
+
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -3691,54 +3330,41 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(5);
 
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_P_AJUI_S_PROJECTID_2);
 
 				if (assigneeJiraUserId == null) {
-					query.append("jiraIssue.assigneeJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_1);
 				}
 				else {
 					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.assigneeJiraUserId = ?");
-
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_2);
 					}
 				}
-
-				query.append(" AND ");
 
 				if (status == null) {
-					query.append("jiraIssue.status IS NULL");
+					query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_1);
 				}
 				else {
 					if (status.equals(StringPool.BLANK)) {
-						query.append("(jiraIssue.status IS NULL OR ");
+						query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_3);
 					}
-
-					query.append("jiraIssue.status = ?");
-
-					if (status.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_2);
 					}
 				}
 
-				query.append(" ");
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
 
-				query.append("ORDER BY ");
+				String sql = query.toString();
 
-				query.append("jiraIssue.modifiedDate DESC");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -3803,78 +3429,55 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
-
-				if (assigneeJiraUserId == null) {
-					query.append("jiraIssue.assigneeJiraUserId IS NULL");
-				}
-				else {
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
-					}
-
-					query.append("jiraIssue.assigneeJiraUserId = ?");
-
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" AND ");
-
-				if (status == null) {
-					query.append("jiraIssue.status IS NULL");
-				}
-				else {
-					if (status.equals(StringPool.BLANK)) {
-						query.append("(jiraIssue.status IS NULL OR ");
-					}
-
-					query.append("jiraIssue.status = ?");
-
-					if (status.equals(StringPool.BLANK)) {
-						query.append(")");
-					}
-				}
-
-				query.append(" ");
+				StringBundler query = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(5 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(5);
+				}
 
-					String[] orderByFields = obc.getOrderByFields();
+				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraIssue.");
-						query.append(orderByFields[i]);
+				query.append(_FINDER_COLUMN_P_AJUI_S_PROJECTID_2);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
+				if (assigneeJiraUserId == null) {
+					query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_1);
+				}
+				else {
+					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_2);
 					}
 				}
 
+				if (status == null) {
+					query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_1);
+				}
 				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraIssue.modifiedDate DESC");
+					if (status.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_2);
+					}
 				}
 
-				Query q = session.createQuery(query.toString());
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				}
+
+				else {
+					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -3918,17 +3521,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				status, 0, 1, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(8);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("projectId=" + projectId);
+			msg.append("projectId=");
+			msg.append(projectId);
 
-			msg.append(", ");
-			msg.append("assigneeJiraUserId=" + assigneeJiraUserId);
+			msg.append(", assigneeJiraUserId=");
+			msg.append(assigneeJiraUserId);
 
-			msg.append(", ");
-			msg.append("status=" + status);
+			msg.append(", status=");
+			msg.append(status);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -3948,17 +3552,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				status, count - 1, count, obc);
 
 		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+			StringBundler msg = new StringBundler(8);
 
-			msg.append("No JIRAIssue exists with the key {");
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("projectId=" + projectId);
+			msg.append("projectId=");
+			msg.append(projectId);
 
-			msg.append(", ");
-			msg.append("assigneeJiraUserId=" + assigneeJiraUserId);
+			msg.append(", assigneeJiraUserId=");
+			msg.append(assigneeJiraUserId);
 
-			msg.append(", ");
-			msg.append("status=" + status);
+			msg.append(", status=");
+			msg.append(status);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -3981,77 +3586,55 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		try {
 			session = openSession();
 
-			StringBuilder query = new StringBuilder();
-
-			query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ");
-
-			query.append("jiraIssue.projectId = ?");
-
-			query.append(" AND ");
-
-			if (assigneeJiraUserId == null) {
-				query.append("jiraIssue.assigneeJiraUserId IS NULL");
-			}
-			else {
-				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-					query.append("(jiraIssue.assigneeJiraUserId IS NULL OR ");
-				}
-
-				query.append("jiraIssue.assigneeJiraUserId = ?");
-
-				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" AND ");
-
-			if (status == null) {
-				query.append("jiraIssue.status IS NULL");
-			}
-			else {
-				if (status.equals(StringPool.BLANK)) {
-					query.append("(jiraIssue.status IS NULL OR ");
-				}
-
-				query.append("jiraIssue.status = ?");
-
-				if (status.equals(StringPool.BLANK)) {
-					query.append(")");
-				}
-			}
-
-			query.append(" ");
+			StringBundler query = null;
 
 			if (obc != null) {
-				query.append("ORDER BY ");
+				query = new StringBundler(5 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
 
-				String[] orderByFields = obc.getOrderByFields();
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
 
-				for (int i = 0; i < orderByFields.length; i++) {
-					query.append("jiraIssue.");
-					query.append(orderByFields[i]);
+			query.append(_FINDER_COLUMN_P_AJUI_S_PROJECTID_2);
 
-					if (obc.isAscending()) {
-						query.append(" ASC");
-					}
-					else {
-						query.append(" DESC");
-					}
-
-					if ((i + 1) < orderByFields.length) {
-						query.append(", ");
-					}
+			if (assigneeJiraUserId == null) {
+				query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_1);
+			}
+			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_2);
 				}
 			}
 
+			if (status == null) {
+				query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_1);
+			}
 			else {
-				query.append("ORDER BY ");
-
-				query.append("jiraIssue.modifiedDate DESC");
+				if (status.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_2);
+				}
 			}
 
-			Query q = session.createQuery(query.toString());
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			}
+
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -4148,39 +3731,25 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT jiraIssue FROM JIRAIssue jiraIssue ");
+				StringBundler query = null;
+				String sql = null;
 
 				if (obc != null) {
-					query.append("ORDER BY ");
+					query = new StringBundler(2 +
+							(obc.getOrderByFields().length * 3));
 
-					String[] orderByFields = obc.getOrderByFields();
+					query.append(_SQL_SELECT_JIRAISSUE);
 
-					for (int i = 0; i < orderByFields.length; i++) {
-						query.append("jiraIssue.");
-						query.append(orderByFields[i]);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
 
-						if (obc.isAscending()) {
-							query.append(" ASC");
-						}
-						else {
-							query.append(" DESC");
-						}
-
-						if ((i + 1) < orderByFields.length) {
-							query.append(", ");
-						}
-					}
+					sql = query.toString();
 				}
 
 				else {
-					query.append("ORDER BY ");
-
-					query.append("jiraIssue.modifiedDate DESC");
+					sql = _SQL_SELECT_JIRAISSUE.concat(JIRAIssueModelImpl.ORDER_BY_JPQL);
 				}
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				if (obc == null) {
 					list = (List<JIRAIssue>)QueryUtil.list(q, getDialect(),
@@ -4310,16 +3879,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(jiraIssue) ");
-				query.append("FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
 
-				query.append("jiraIssue.projectId = ?");
+				query.append(_FINDER_COLUMN_PROJECTID_PROJECTID_2);
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -4357,29 +3925,25 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(jiraIssue) ");
-				query.append("FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
 
 				if (key == null) {
-					query.append("jiraIssue.key IS NULL");
+					query.append(_FINDER_COLUMN_KEY_KEY_1);
 				}
 				else {
 					if (key.equals(StringPool.BLANK)) {
-						query.append("(jiraIssue.key IS NULL OR ");
+						query.append(_FINDER_COLUMN_KEY_KEY_3);
 					}
-
-					query.append("jiraIssue.key = ?");
-
-					if (key.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_KEY_KEY_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -4420,30 +3984,25 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(jiraIssue) ");
-				query.append("FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
 
 				if (reporterJiraUserId == null) {
-					query.append("jiraIssue.reporterJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_1);
 				}
 				else {
 					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.reporterJiraUserId = ?");
-
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -4484,30 +4043,25 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(2);
 
-				query.append("SELECT COUNT(jiraIssue) ");
-				query.append("FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
 
 				if (assigneeJiraUserId == null) {
-					query.append("jiraIssue.assigneeJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_1);
 				}
 				else {
 					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.assigneeJiraUserId = ?");
-
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -4548,25 +4102,22 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT COUNT(jiraIssue) ");
-				query.append("FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
 
 				if (modifiedDate == null) {
-					query.append("jiraIssue.modifiedDate > null");
+					query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_1);
 				}
 				else {
-					query.append("jiraIssue.modifiedDate > ?");
+					query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_2);
 				}
 
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_MD_P_PROJECTID_2);
 
-				query.append("jiraIssue.projectId = ?");
+				String sql = query.toString();
 
-				query.append(" ");
-
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -4613,34 +4164,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT COUNT(jiraIssue) ");
-				query.append("FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
 
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_P_RJUI_PROJECTID_2);
 
 				if (reporterJiraUserId == null) {
-					query.append("jiraIssue.reporterJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_1);
 				}
 				else {
 					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.reporterJiraUserId = ?");
-
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -4687,34 +4231,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(3);
 
-				query.append("SELECT COUNT(jiraIssue) ");
-				query.append("FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
 
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_P_AJUI_PROJECTID_2);
 
 				if (assigneeJiraUserId == null) {
-					query.append("jiraIssue.assigneeJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_1);
 				}
 				else {
 					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.assigneeJiraUserId = ?");
-
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -4761,43 +4298,34 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(4);
 
-				query.append("SELECT COUNT(jiraIssue) ");
-				query.append("FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
 
 				if (modifiedDate == null) {
-					query.append("jiraIssue.modifiedDate > null");
+					query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_1);
 				}
 				else {
-					query.append("jiraIssue.modifiedDate > ?");
+					query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_2);
 				}
 
-				query.append(" AND ");
-
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_MD_P_RJUI_PROJECTID_2);
 
 				if (reporterJiraUserId == null) {
-					query.append("jiraIssue.reporterJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_1);
 				}
 				else {
 					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.reporterJiraUserId = ?");
-
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -4848,43 +4376,34 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(4);
 
-				query.append("SELECT COUNT(jiraIssue) ");
-				query.append("FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
 
 				if (modifiedDate == null) {
-					query.append("jiraIssue.modifiedDate > null");
+					query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_1);
 				}
 				else {
-					query.append("jiraIssue.modifiedDate > ?");
+					query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_2);
 				}
 
-				query.append(" AND ");
-
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_MD_P_AJUI_PROJECTID_2);
 
 				if (assigneeJiraUserId == null) {
-					query.append("jiraIssue.assigneeJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_1);
 				}
 				else {
 					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.assigneeJiraUserId = ?");
-
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -4937,51 +4456,39 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(4);
 
-				query.append("SELECT COUNT(jiraIssue) ");
-				query.append("FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
 
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_P_RJUI_S_PROJECTID_2);
 
 				if (reporterJiraUserId == null) {
-					query.append("jiraIssue.reporterJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_1);
 				}
 				else {
 					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.reporterJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.reporterJiraUserId = ?");
-
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_2);
 					}
 				}
-
-				query.append(" AND ");
 
 				if (status == null) {
-					query.append("jiraIssue.status IS NULL");
+					query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_1);
 				}
 				else {
 					if (status.equals(StringPool.BLANK)) {
-						query.append("(jiraIssue.status IS NULL OR ");
+						query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_3);
 					}
-
-					query.append("jiraIssue.status = ?");
-
-					if (status.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -5034,51 +4541,39 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				StringBuilder query = new StringBuilder();
+				StringBundler query = new StringBundler(4);
 
-				query.append("SELECT COUNT(jiraIssue) ");
-				query.append("FROM JIRAIssue jiraIssue WHERE ");
+				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
 
-				query.append("jiraIssue.projectId = ?");
-
-				query.append(" AND ");
+				query.append(_FINDER_COLUMN_P_AJUI_S_PROJECTID_2);
 
 				if (assigneeJiraUserId == null) {
-					query.append("jiraIssue.assigneeJiraUserId IS NULL");
+					query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_1);
 				}
 				else {
 					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(
-							"(jiraIssue.assigneeJiraUserId IS NULL OR ");
+						query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_3);
 					}
-
-					query.append("jiraIssue.assigneeJiraUserId = ?");
-
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_2);
 					}
 				}
-
-				query.append(" AND ");
 
 				if (status == null) {
-					query.append("jiraIssue.status IS NULL");
+					query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_1);
 				}
 				else {
 					if (status.equals(StringPool.BLANK)) {
-						query.append("(jiraIssue.status IS NULL OR ");
+						query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_3);
 					}
-
-					query.append("jiraIssue.status = ?");
-
-					if (status.equals(StringPool.BLANK)) {
-						query.append(")");
+					else {
+						query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_2);
 					}
 				}
 
-				query.append(" ");
+				String sql = query.toString();
 
-				Query q = session.createQuery(query.toString());
+				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -5124,8 +4619,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(
-						"SELECT COUNT(jiraIssue) FROM JIRAIssue jiraIssue");
+				Query q = session.createQuery(_SQL_COUNT_JIRAISSUE);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -5181,5 +4675,65 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	protected com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence svnRepositoryPersistence;
 	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRevisionPersistence")
 	protected com.liferay.socialcoding.service.persistence.SVNRevisionPersistence svnRevisionPersistence;
+	private static final String _SQL_SELECT_JIRAISSUE = "SELECT jiraIssue FROM JIRAIssue jiraIssue";
+	private static final String _SQL_SELECT_JIRAISSUE_WHERE = "SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ";
+	private static final String _SQL_COUNT_JIRAISSUE = "SELECT COUNT(jiraIssue) FROM JIRAIssue jiraIssue";
+	private static final String _SQL_COUNT_JIRAISSUE_WHERE = "SELECT COUNT(jiraIssue) FROM JIRAIssue jiraIssue WHERE ";
+	private static final String _FINDER_COLUMN_PROJECTID_PROJECTID_2 = "jiraIssue.projectId = ?";
+	private static final String _FINDER_COLUMN_KEY_KEY_1 = "jiraIssue.key IS NULL";
+	private static final String _FINDER_COLUMN_KEY_KEY_2 = "jiraIssue.key = ?";
+	private static final String _FINDER_COLUMN_KEY_KEY_3 = "(jiraIssue.key IS NULL OR jiraIssue.key = ?)";
+	private static final String _FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_1 =
+		"jiraIssue.reporterJiraUserId IS NULL";
+	private static final String _FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_2 =
+		"jiraIssue.reporterJiraUserId = ?";
+	private static final String _FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_3 =
+		"(jiraIssue.reporterJiraUserId IS NULL OR jiraIssue.reporterJiraUserId = ?)";
+	private static final String _FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_1 =
+		"jiraIssue.assigneeJiraUserId IS NULL";
+	private static final String _FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_2 =
+		"jiraIssue.assigneeJiraUserId = ?";
+	private static final String _FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_3 =
+		"(jiraIssue.assigneeJiraUserId IS NULL OR jiraIssue.assigneeJiraUserId = ?)";
+	private static final String _FINDER_COLUMN_MD_P_MODIFIEDDATE_1 = "jiraIssue.modifiedDate > NULL AND ";
+	private static final String _FINDER_COLUMN_MD_P_MODIFIEDDATE_2 = "jiraIssue.modifiedDate > ? AND ";
+	private static final String _FINDER_COLUMN_MD_P_PROJECTID_2 = "jiraIssue.projectId = ?";
+	private static final String _FINDER_COLUMN_P_RJUI_PROJECTID_2 = "jiraIssue.projectId = ? AND ";
+	private static final String _FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_1 = "jiraIssue.reporterJiraUserId IS NULL";
+	private static final String _FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_2 = "jiraIssue.reporterJiraUserId = ?";
+	private static final String _FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_3 = "(jiraIssue.reporterJiraUserId IS NULL OR jiraIssue.reporterJiraUserId = ?)";
+	private static final String _FINDER_COLUMN_P_AJUI_PROJECTID_2 = "jiraIssue.projectId = ? AND ";
+	private static final String _FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_1 = "jiraIssue.assigneeJiraUserId IS NULL";
+	private static final String _FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_2 = "jiraIssue.assigneeJiraUserId = ?";
+	private static final String _FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_3 = "(jiraIssue.assigneeJiraUserId IS NULL OR jiraIssue.assigneeJiraUserId = ?)";
+	private static final String _FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_1 = "jiraIssue.modifiedDate > NULL AND ";
+	private static final String _FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_2 = "jiraIssue.modifiedDate > ? AND ";
+	private static final String _FINDER_COLUMN_MD_P_RJUI_PROJECTID_2 = "jiraIssue.projectId = ? AND ";
+	private static final String _FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_1 = "jiraIssue.reporterJiraUserId IS NULL";
+	private static final String _FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_2 = "jiraIssue.reporterJiraUserId = ?";
+	private static final String _FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_3 = "(jiraIssue.reporterJiraUserId IS NULL OR jiraIssue.reporterJiraUserId = ?)";
+	private static final String _FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_1 = "jiraIssue.modifiedDate > NULL AND ";
+	private static final String _FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_2 = "jiraIssue.modifiedDate > ? AND ";
+	private static final String _FINDER_COLUMN_MD_P_AJUI_PROJECTID_2 = "jiraIssue.projectId = ? AND ";
+	private static final String _FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_1 = "jiraIssue.assigneeJiraUserId IS NULL";
+	private static final String _FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_2 = "jiraIssue.assigneeJiraUserId = ?";
+	private static final String _FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_3 = "(jiraIssue.assigneeJiraUserId IS NULL OR jiraIssue.assigneeJiraUserId = ?)";
+	private static final String _FINDER_COLUMN_P_RJUI_S_PROJECTID_2 = "jiraIssue.projectId = ? AND ";
+	private static final String _FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_1 = "jiraIssue.reporterJiraUserId IS NULL AND ";
+	private static final String _FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_2 = "jiraIssue.reporterJiraUserId = ? AND ";
+	private static final String _FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_3 = "(jiraIssue.reporterJiraUserId IS NULL OR jiraIssue.reporterJiraUserId = ?) AND ";
+	private static final String _FINDER_COLUMN_P_RJUI_S_STATUS_1 = "jiraIssue.status IS NULL";
+	private static final String _FINDER_COLUMN_P_RJUI_S_STATUS_2 = "jiraIssue.status = ?";
+	private static final String _FINDER_COLUMN_P_RJUI_S_STATUS_3 = "(jiraIssue.status IS NULL OR jiraIssue.status = ?)";
+	private static final String _FINDER_COLUMN_P_AJUI_S_PROJECTID_2 = "jiraIssue.projectId = ? AND ";
+	private static final String _FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_1 = "jiraIssue.assigneeJiraUserId IS NULL AND ";
+	private static final String _FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_2 = "jiraIssue.assigneeJiraUserId = ? AND ";
+	private static final String _FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_3 = "(jiraIssue.assigneeJiraUserId IS NULL OR jiraIssue.assigneeJiraUserId = ?) AND ";
+	private static final String _FINDER_COLUMN_P_AJUI_S_STATUS_1 = "jiraIssue.status IS NULL";
+	private static final String _FINDER_COLUMN_P_AJUI_S_STATUS_2 = "jiraIssue.status = ?";
+	private static final String _FINDER_COLUMN_P_AJUI_S_STATUS_3 = "(jiraIssue.status IS NULL OR jiraIssue.status = ?)";
+	private static final String _ORDER_BY_ENTITY_ALIAS = "jiraIssue.";
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No JIRAIssue exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No JIRAIssue exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(JIRAIssuePersistenceImpl.class);
 }
