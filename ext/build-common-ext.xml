@@ -70,6 +70,19 @@ then "app.server.dir" should point to
 		<delete>
 			<fileset dir="docroot/WEB-INF/ext-impl/classes" includes="portal-*.properties,system-*.properties" />
 		</delete>
+
+		<if>
+			<available file="docroot/WEB-INF/ext-web/docroot/WEB-INF/lib" />
+			<then>
+						<fail>
+.
+
+"docroot\WEB-INF\ext-web\docroot\WEB-INF\lib" must not exist. Put JAR files in
+"docroot\WEB-INF\ext-lib\portal" that need to be accessible to the portal class
+loader.
+						</fail>
+			</then>
+		</if>
 	</target>
 
 	<target name="compile-with-global-class-loader">
@@ -132,6 +145,16 @@ then "app.server.dir" should point to
 			whenempty="create"
 		/>
 
+		<java
+			classname="com.liferay.portal.tools.ExtInfoBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			maxmemory="256m"
+			newenvironment="true"
+		>
+			<arg line="docroot/WEB-INF docroot/WEB-INF ${plugin.name}" />
+		</java>
+
 		<zip destfile="${plugin.file}">
 			<zipfileset
 				dir="docroot"
@@ -143,6 +166,8 @@ then "app.server.dir" should point to
 				prefix="WEB-INF/ext-web/docroot/WEB-INF/classes"
 			/>
 		</zip>
+
+		<delete file="docroot/WEB-INF/ext-${plugin.name}.xml" />
 	</target>
 
 	<target name="war-util">
@@ -154,7 +179,7 @@ then "app.server.dir" should point to
 
 		<copy
 			file="docroot/WEB-INF/ext-util-${util.suffix}/ext-util-${util.suffix}.jar"
-			todir="docroot/WEB-INF/ext-impl/classes/com/liferay/portal/deploy/dependencies"
+			tofile="docroot/WEB-INF/ext-impl/classes/com/liferay/portal/deploy/dependencies/ext-${plugin.name}-util-${util.suffix}.jar"
 		/>
 	</target>
 
@@ -172,6 +197,12 @@ then "app.server.dir" should point to
 		<copy todir="${app.server.portal.dir}" overwrite="yes">
 			<fileset dir="docroot/WEB-INF/ext-web/docroot" />
 		</copy>
+
+		<unzip src="${plugin.file}" dest="${app.server.portal.dir}">
+			<patternset>
+				<include name="WEB-INF/ext-${plugin.name}.xml" />
+			</patternset>
+		</unzip>
 
 		<antcall target="deploy-properties" />
 	</target>
