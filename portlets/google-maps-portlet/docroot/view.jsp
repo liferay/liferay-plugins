@@ -32,6 +32,12 @@
 		directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("directionsAddress"), directionsAddress);
 		%>
 
+		<style>
+			.maps-content img {
+ 				behavior:expression(this.pngSet=true);
+  			}
+		</style>
+
 		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= license %>&amp;sensor=false" type="text/javascript"></script>
 
 		<script type="text/javascript">
@@ -143,7 +149,7 @@
 			<div style="padding-top: 5px;"></div>
 		</c:if>
 
-		<div id="<portlet:namespace />map" style="height: <%= height %>px; width: 100%;"></div>
+		<div class="maps-content" id="<portlet:namespace />map" style="height: <%= height %>px; width: 100%;"></div>
 
 		</form>
 	</c:when>
