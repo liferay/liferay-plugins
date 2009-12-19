@@ -33,8 +33,8 @@
 		%>
 
 		<style>
-			.maps-content img {
- 				behavior:expression(this.pngSet=true);
+			.ie6 .maps-content img {
+ 				behavior: expression(this.pngSet=true);
   			}
 		</style>
 
