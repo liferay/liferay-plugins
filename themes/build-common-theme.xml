@@ -37,12 +37,27 @@
 		</java>
 
 		<if>
+			<equals arg1="${theme.type}" arg2="$${theme.type}" />
+			<then>
+				<property name="theme.type" value="vm" />
+			</then>
+		</if>
+
+		<if>
 			<equals arg1="${theme.parent}" arg2="_unstyled" />
 			<then>
 				<copy todir="docroot" overwrite="yes">
 					<fileset
 						dir="${app.server.portal.dir}/html/themes/_unstyled"
-						excludes="templates/init.vm"
+						excludes="templates/**"
+					/>
+				</copy>
+
+				<copy todir="docroot/templates" overwrite="yes">
+					<fileset
+						dir="${app.server.portal.dir}/html/themes/_unstyled/templates"
+						excludes="init.${theme.type}"
+						includes="*.${theme.type}"
 					/>
 				</copy>
 			</then>
@@ -52,7 +67,15 @@
 					<copy todir="docroot" overwrite="yes">
 						<fileset
 							dir="${app.server.portal.dir}/html/themes/_unstyled"
-							excludes="templates/init.vm"
+							excludes="templates/**"
+						/>
+					</copy>
+
+					<copy todir="docroot/templates" overwrite="yes">
+						<fileset
+							dir="${app.server.portal.dir}/html/themes/_unstyled/templates"
+							excludes="init.${theme.type}"
+							includes="*.${theme.type}"
 						/>
 					</copy>
 
@@ -69,7 +92,14 @@
 					<copy todir="docroot" overwrite="yes">
 						<fileset
 							dir="${app.server.portal.dir}/html/themes/classic"
-							excludes="_diffs/**"
+							excludes="_diffs/**,templates/**"
+						/>
+					</copy>
+
+					<copy todir="docroot/templates" overwrite="yes">
+						<fileset
+							dir="${app.server.portal.dir}/html/themes/classic/templates"
+							includes="*.${theme.type}"
 						/>
 					</copy>
 				</then>
