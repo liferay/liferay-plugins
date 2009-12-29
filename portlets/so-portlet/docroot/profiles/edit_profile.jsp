@@ -20,9 +20,20 @@
 <%@ include file="/init.jsp" %>
 
 <script type="text/javascript">
+	function <portlet:namespace />deleteUserPortrait(deleteUserPortraitURL) {
+		jQuery.ajax(
+			{
+				url: deleteUserPortraitURL,
+				success: function(result) {
+					jQuery('#<portlet:namespace />avatar').attr('src', '<%= themeDisplay.getPathImage() + "/user_" + (user.isFemale() ? "female" : "male") + "_portrait?img_id=0" %>');
+				},
+				type: 'POST'
+			}
+		);
+	}
+
 	function <%= PortalUtil.getPortletNamespace(PortletKeys.MY_ACCOUNT) %>changePortrait(newPortraitURL) {
 		jQuery('#<portlet:namespace />avatar').attr('src', newPortraitURL);
-		jQuery('.avatar').attr('src', newPortraitURL);
 	}
 
 	function <portlet:namespace />editUserPortrait(editUserPortraitURL) {
@@ -81,6 +92,12 @@
 
 		<div class="profile-controls">
 			<a href="javascript:;" onClick="<portlet:namespace />editUserPortrait('<%= editUserPortraitURL %>');"><liferay-ui:message key="change-picture" /></a>
+
+			<portlet:actionURL name="deleteUserPortrait" var="deleteUserPortraitURL">
+				<portlet:param name="userId" value="<%= String.valueOf(user.getUserId()) %>" />
+			</portlet:actionURL>
+
+			<a href="javascript:;" onClick="<portlet:namespace />deleteUserPortrait('<%= deleteUserPortraitURL %>');"><liferay-ui:message key="delete-picture" /></a>
 
 			<a href="javascript:;" onClick="Liferay.SO.Profiles.displayUserProfile(<%= user.getUserId() %>);"><liferay-ui:message key="cancel-edit" /></a>
 		</div>

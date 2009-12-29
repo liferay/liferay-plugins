@@ -108,6 +108,15 @@ public class ProfilesPortlet extends MVCPortlet {
 			SocialRelationConstants.TYPE_BI_FRIEND);
 	}
 
+	public void deleteUserPortrait(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long userId = ParamUtil.getLong(actionRequest, "userId");
+
+		UserServiceUtil.deletePortrait(userId);
+	}
+
 	public void updateUserProfile(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
