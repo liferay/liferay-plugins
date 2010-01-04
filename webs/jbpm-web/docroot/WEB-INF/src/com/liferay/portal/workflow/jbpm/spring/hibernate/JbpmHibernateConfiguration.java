@@ -63,7 +63,11 @@ public class JbpmHibernateConfiguration extends LocalSessionFactoryBean {
 			_log.info("Loading " + configLocation);
 		}
 
-		setConfigLocation(new ClassPathResource(configLocation));
+		ClassPathResource[] resources = new ClassPathResource[] {
+			new ClassPathResource(configLocation),
+			new ClassPathResource("/META-INF/hibernate-ext.cfg.xml")};
+
+		setConfigLocations(resources);
 	}
 
 	private static final String _JBPM_TYPE_HYPERSONIC = "hsqldb";

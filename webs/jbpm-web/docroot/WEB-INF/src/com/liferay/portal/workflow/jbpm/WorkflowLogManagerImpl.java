@@ -29,16 +29,17 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowLog;
 import com.liferay.portal.kernel.workflow.WorkflowLogManager;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Stack;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 import org.jbpm.JbpmConfiguration;
 import org.jbpm.JbpmContext;
-import org.jbpm.db.LoggingSession;
-import org.jbpm.graph.exe.Token;
-import org.jbpm.logging.log.ProcessLog;
 
 /**
  * <a href="WorkflowLogManagerImpl.java.html"><b><i>View Source</i></b></a>
@@ -49,43 +50,21 @@ import org.jbpm.logging.log.ProcessLog;
 public class WorkflowLogManagerImpl implements WorkflowLogManager {
 
 	public List<WorkflowLog> getWorkflowLogs(
-			long workflowInstanceId, boolean includeChildren, int start,
-			int end, OrderByComparator orderByComparator)
+			long workflowInstanceId, int start,	int end,
+			OrderByComparator orderByComparator)
 		throws WorkflowException {
-
-		List<WorkflowLog> workflowLogs = new ArrayList<WorkflowLog>();
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {
-			LoggingSession loggingSession = jbpmContext.getLoggingSession();
+			Session session = jbpmContext.getSession();
 
-			Token token = jbpmContext.loadToken(workflowInstanceId);
+			Criteria criteria = session.createCriteria(WorkflowLogImpl.class);
 
-			List<ProcessLog> processLogs = loggingSession.findLogsByToken(
-				token);
+			criteria.add(
+				Restrictions.eq("taskInstance.id", workflowInstanceId));
 
-			for (ProcessLog processLog : processLogs) {
-				workflowLogs.add(new WorkflowLogImpl(processLog));
-			}
-
-			if (includeChildren) {
-				Stack<Token> tokens = new Stack<Token>();
-
-				tokens.addAll(token.getChildren().values());
-
-				while (!tokens.isEmpty()) {
-					Token childToken = tokens.pop();
-
-					processLogs = loggingSession.findLogsByToken(childToken);
-
-					for (ProcessLog processLog : processLogs) {
-						workflowLogs.add(new WorkflowLogImpl(processLog));
-					}
-
-					tokens.addAll(childToken.getChildren().values());
-				}
-			}
+			List<WorkflowLog> workflowLogs = criteria.list();
 
 			Collections.sort(workflowLogs, orderByComparator);
 
@@ -103,36 +82,27 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 		}
 	}
 
-	public int getWorkflowLogCount(
-			long workflowInstanceId, boolean includeChildren)
+	public int getWorkflowLogCount(long workflowInstanceId)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {
-			LoggingSession loggingSession = jbpmContext.getLoggingSession();
+			Session session = jbpmContext.getSession();
 
-			Token token = jbpmContext.loadToken(workflowInstanceId);
+			Criteria criteria = session.createCriteria(WorkflowLogImpl.class);
 
-			List<ProcessLog> processLogs = loggingSession.findLogsByToken(
-				token);
+			criteria.add(
+				Restrictions.eq("taskInstance.id", workflowInstanceId));
 
-			int count = processLogs.size();
+			criteria.setProjection(Projections.rowCount());
 
-			if (includeChildren) {
-				Stack<Token> tokenStack = new Stack<Token>();
+			Iterator<Integer> it = criteria.list().iterator();
 
-				tokenStack.addAll(token.getChildren().values());
+			int count = 0;
 
-				while (tokenStack.isEmpty() == false) {
-					Token childToken = tokenStack.pop();
-
-					processLogs = loggingSession.findLogsByToken(childToken);
-
-					count += processLogs.size();
-
-					tokenStack.addAll(childToken.getChildren().values());
-				}
+			if (it.hasNext()) {
+				count = it.next();
 			}
 
 			return count;

@@ -22,44 +22,47 @@
 
 package com.liferay.portal.workflow.jbpm;
 
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.workflow.WorkflowLog;
 
-import java.util.Collections;
 import java.util.Date;
-import java.util.Map;
 
-import org.jbpm.graph.exe.Token;
-import org.jbpm.logging.log.ProcessLog;
+import org.jbpm.taskmgmt.exe.TaskInstance;
 
 /**
  * <a href="WorkflowLogImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
+ * @author Marcellus Tavares
  */
 public class WorkflowLogImpl implements WorkflowLog {
 
-	public WorkflowLogImpl(ProcessLog processLog) {
-		Token token = processLog.getToken();
-
-		_createDate = processLog.getDate();
-		_description = processLog.toString();
-		_userId = GetterUtil.getLong(processLog.getActorId(), -1);
-		_workflowInstanceId = token.getId();
-		_workflowLogId = processLog.getId();
+	public String getComment() {
+		return _comment;
 	}
 
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
-	public String getDescription() {
-		return _description;
+	public String getPreviousState() {
+		return _previousState;
 	}
 
-	public Map<String, Object> getOptionalAttributes() {
-		return Collections.EMPTY_MAP;
+	public long getPreviousUserId() {
+		return _previousUserId;
+	}
+
+	public String getState() {
+		return _state;
+	}
+
+	public TaskInstance getTaskInstance() {
+		return _taskInstance;
+	}
+
+	public int getType() {
+		return _type;
 	}
 
 	public long getUserId() {
@@ -67,17 +70,57 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 
 	public long getWorkflowInstanceId() {
-		return _workflowInstanceId;
+		return _taskInstance.getId();
 	}
 
 	public long getWorkflowLogId() {
 		return _workflowLogId;
 	}
 
+	public void setComment(String comment) {
+		_comment = comment;
+	}
+
+	public void setCreateDate(Date createDate) {
+		_createDate = createDate;
+	}
+
+	public void setPreviousUserId(long previousUserId) {
+		_previousUserId = previousUserId;
+	}
+
+	public void setPreviousState(String previousState) {
+		_previousState = previousState;
+	}
+
+	public void setState(String state) {
+		_state = state;
+	}
+
+	public void setTaskInstance(TaskInstance taskInstance) {
+		_taskInstance = taskInstance;
+	}
+
+	public void setType(int type) {
+		_type = type;
+	}
+
+	public void setUserId(long userId) {
+		_userId = userId;
+	}
+
+	public void setWorkflowLogId(long workflowLogId) {
+		_workflowLogId = workflowLogId;
+	}
+
+	private String _comment;
 	private Date _createDate;
-	private String _description;
-	private Long _userId;
-	private long _workflowInstanceId;
+	private String _previousState;
+	private long _previousUserId;
+	private String _state;
+	private TaskInstance _taskInstance;
+	private int _type;
+	private long _userId;
 	private long _workflowLogId;
 
 }

@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowException;
+import com.liferay.portal.kernel.workflow.WorkflowLog;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManager;
 import com.liferay.portal.model.Role;
@@ -36,6 +37,7 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -121,6 +123,20 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 						" cannot be assigned to user " + assigneeUserId);
 			}
 
+			// Log
+
+			WorkflowLogImpl workflowLog = new WorkflowLogImpl();
+
+			workflowLog.setComment(comment);
+			workflowLog.setCreateDate(new Date());
+			workflowLog.setPreviousUserId(
+				GetterUtil.getLong(taskInstance.getActorId()));
+			workflowLog.setTaskInstance(taskInstance);
+			workflowLog.setType(WorkflowLog.TASK_ASSIGN);
+			workflowLog.setUserId(assigneeUserId);
+
+			jbpmContext.getSession().save(workflowLog);
+
 			taskInstance.setActorId(String.valueOf(assigneeUserId));
 
 			taskInstance.addComment(comment);
@@ -162,6 +178,19 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 						" is not assigned to user " + userId);
 			}
 
+			// Log
+
+			WorkflowLogImpl workflowLog = new WorkflowLogImpl();
+
+			workflowLog.setCreateDate(new Date());
+			workflowLog.setComment(comment);
+			workflowLog.setPreviousState(
+				taskInstance.getToken().getNode().getName());
+			workflowLog.setTaskInstance(taskInstance);
+			workflowLog.setType(WorkflowLog.TRANSITION);
+			workflowLog.setUserId(
+				GetterUtil.getLong(taskInstance.getActorId()));
+
 			taskInstance.addComment(comment);
 
 			if (context != null) {
@@ -176,6 +205,11 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			}
 
 			jbpmContext.save(taskInstance);
+
+			workflowLog.setState(
+				taskInstance.getToken().getNode().getName());
+
+			jbpmContext.getSession().save(workflowLog);
 
 			return new WorkflowTaskImpl(taskInstance);
 		}
