@@ -97,12 +97,12 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 
 			criteria.setProjection(Projections.rowCount());
 
-			Iterator<Integer> it = criteria.list().iterator();
+			Iterator<Integer> itr = criteria.list().iterator();
 
 			int count = 0;
 
-			if (it.hasNext()) {
-				count = it.next();
+			if (itr.hasNext()) {
+				count = itr.next();
 			}
 
 			return count;

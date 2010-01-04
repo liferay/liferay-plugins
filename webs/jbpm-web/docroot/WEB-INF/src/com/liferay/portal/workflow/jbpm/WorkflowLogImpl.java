@@ -85,12 +85,12 @@ public class WorkflowLogImpl implements WorkflowLog {
 		_createDate = createDate;
 	}
 
-	public void setPreviousUserId(long previousUserId) {
-		_previousUserId = previousUserId;
-	}
-
 	public void setPreviousState(String previousState) {
 		_previousState = previousState;
+	}
+
+	public void setPreviousUserId(long previousUserId) {
+		_previousUserId = previousUserId;
 	}
 
 	public void setState(String state) {

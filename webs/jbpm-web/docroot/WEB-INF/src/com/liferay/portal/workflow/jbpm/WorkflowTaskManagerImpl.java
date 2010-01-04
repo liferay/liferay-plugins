@@ -42,10 +42,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hibernate.Session;
+
 import org.jbpm.JbpmConfiguration;
 import org.jbpm.JbpmContext;
 import org.jbpm.db.TaskMgmtSession;
+import org.jbpm.graph.def.Node;
 import org.jbpm.graph.def.Transition;
+import org.jbpm.graph.exe.Token;
 import org.jbpm.graph.node.TaskNode;
 import org.jbpm.taskmgmt.def.Task;
 import org.jbpm.taskmgmt.exe.PooledActor;
@@ -105,6 +109,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			TaskInstance taskInstance = taskMgmtSession.loadTaskInstance(
 				workflowTaskId);
 
+			String oldActorId = taskInstance.getActorId();
+
 			Set<PooledActor> pooledActors = taskInstance.getPooledActors();
 
 			if ((pooledActors == null) || pooledActors.isEmpty()) {
@@ -123,20 +129,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 						" cannot be assigned to user " + assigneeUserId);
 			}
 
-			// Log
-
-			WorkflowLogImpl workflowLog = new WorkflowLogImpl();
-
-			workflowLog.setComment(comment);
-			workflowLog.setCreateDate(new Date());
-			workflowLog.setPreviousUserId(
-				GetterUtil.getLong(taskInstance.getActorId()));
-			workflowLog.setTaskInstance(taskInstance);
-			workflowLog.setType(WorkflowLog.TASK_ASSIGN);
-			workflowLog.setUserId(assigneeUserId);
-
-			jbpmContext.getSession().save(workflowLog);
-
 			taskInstance.setActorId(String.valueOf(assigneeUserId));
 
 			taskInstance.addComment(comment);
@@ -146,6 +138,19 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			}
 
 			jbpmContext.save(taskInstance);
+
+			WorkflowLogImpl workflowLogImpl = new WorkflowLogImpl();
+
+			workflowLogImpl.setComment(comment);
+			workflowLogImpl.setCreateDate(new Date());
+			workflowLogImpl.setPreviousUserId(GetterUtil.getLong(oldActorId));
+			workflowLogImpl.setTaskInstance(taskInstance);
+			workflowLogImpl.setType(WorkflowLog.TASK_ASSIGN);
+			workflowLogImpl.setUserId(assigneeUserId);
+
+			Session session = jbpmContext.getSession();
+
+			session.save(workflowLogImpl);
 
 			return new WorkflowTaskImpl(taskInstance);
 		}
@@ -170,6 +175,10 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			TaskInstance taskInstance = taskMgmtSession.loadTaskInstance(
 				workflowTaskId);
 
+			Token oldToken = taskInstance.getToken();
+
+			Node oldNode = oldToken.getNode();
+
 			long actorId = GetterUtil.getLong(taskInstance.getActorId());
 
 			if (actorId != userId) {
@@ -177,19 +186,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					"Workflow task " + workflowTaskId +
 						" is not assigned to user " + userId);
 			}
-
-			// Log
-
-			WorkflowLogImpl workflowLog = new WorkflowLogImpl();
-
-			workflowLog.setCreateDate(new Date());
-			workflowLog.setComment(comment);
-			workflowLog.setPreviousState(
-				taskInstance.getToken().getNode().getName());
-			workflowLog.setTaskInstance(taskInstance);
-			workflowLog.setType(WorkflowLog.TRANSITION);
-			workflowLog.setUserId(
-				GetterUtil.getLong(taskInstance.getActorId()));
 
 			taskInstance.addComment(comment);
 
@@ -206,10 +202,23 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			jbpmContext.save(taskInstance);
 
-			workflowLog.setState(
-				taskInstance.getToken().getNode().getName());
+			Token token = taskInstance.getToken();
 
-			jbpmContext.getSession().save(workflowLog);
+			Node node = token.getNode();
+
+			WorkflowLogImpl workflowLogImpl = new WorkflowLogImpl();
+
+			workflowLogImpl.setCreateDate(new Date());
+			workflowLogImpl.setComment(comment);
+			workflowLogImpl.setPreviousState(oldNode.getName());
+			workflowLogImpl.setState(node.getName());
+			workflowLogImpl.setTaskInstance(taskInstance);
+			workflowLogImpl.setType(WorkflowLog.TRANSITION);
+			workflowLogImpl.setUserId(actorId);
+
+			Session session = jbpmContext.getSession();
+
+			session.save(workflowLogImpl);
 
 			return new WorkflowTaskImpl(taskInstance);
 		}

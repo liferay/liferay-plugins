@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.orm.hibernate3.LocalSessionFactoryBean;
 
 /**
@@ -63,7 +64,7 @@ public class JbpmHibernateConfiguration extends LocalSessionFactoryBean {
 			_log.info("Loading " + configLocation);
 		}
 
-		ClassPathResource[] resources = new ClassPathResource[] {
+		Resource[] resources = new ClassPathResource[] {
 			new ClassPathResource(configLocation),
 			new ClassPathResource("/META-INF/hibernate-ext.cfg.xml")};
 
