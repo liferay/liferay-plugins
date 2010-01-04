@@ -22,6 +22,7 @@
 
 package com.liferay.sampleservicebuilder.model;
 
+import com.liferay.portal.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -44,6 +45,30 @@ public interface FooModel extends BaseModel<Foo> {
 	public long getFooId();
 
 	public void setFooId(long fooId);
+
+	public long getCompanyId();
+
+	public void setCompanyId(long companyId);
+
+	public long getUserId();
+
+	public void setUserId(long userId);
+
+	public String getUserUuid() throws SystemException;
+
+	public void setUserUuid(String userUuid);
+
+	public String getUserName();
+
+	public void setUserName(String userName);
+
+	public Date getCreateDate();
+
+	public void setCreateDate(Date createDate);
+
+	public Date getModifiedDate();
+
+	public void setModifiedDate(Date modifiedDate);
 
 	public String getField1();
 

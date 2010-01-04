@@ -77,8 +77,8 @@ public interface FooLocalService {
 		com.liferay.sampleservicebuilder.model.Foo foo, boolean merge)
 		throws com.liferay.portal.SystemException;
 
-	public void addFoo(java.lang.String field1, boolean field2, int field3,
-		java.util.Date field4, java.lang.String field5)
+	public void addFoo(long userId, java.lang.String field1, boolean field2,
+		int field3, java.util.Date field4, java.lang.String field5)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 

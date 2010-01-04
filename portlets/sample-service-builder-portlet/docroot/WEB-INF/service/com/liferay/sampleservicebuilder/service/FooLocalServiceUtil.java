@@ -92,11 +92,12 @@ public class FooLocalServiceUtil {
 		return getService().updateFoo(foo, merge);
 	}
 
-	public static void addFoo(java.lang.String field1, boolean field2,
-		int field3, java.util.Date field4, java.lang.String field5)
+	public static void addFoo(long userId, java.lang.String field1,
+		boolean field2, int field3, java.util.Date field4,
+		java.lang.String field5)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		getService().addFoo(field1, field2, field3, field4, field5);
+		getService().addFoo(userId, field1, field2, field3, field4, field5);
 	}
 
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(

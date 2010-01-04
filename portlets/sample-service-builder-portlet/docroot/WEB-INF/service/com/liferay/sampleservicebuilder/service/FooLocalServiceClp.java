@@ -369,36 +369,39 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.sampleservicebuilder.model.Foo)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void addFoo(java.lang.String field1, boolean field2, int field3,
-		java.util.Date field4, java.lang.String field5)
+	public void addFoo(long userId, java.lang.String field1, boolean field2,
+		int field3, java.util.Date field4, java.lang.String field5)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(field1);
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object paramObj1 = ClpSerializer.translateInput(field1);
 
 		if (field1 == null) {
-			paramObj0 = new NullWrapper("java.lang.String");
+			paramObj1 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj1 = new BooleanWrapper(field2);
+		Object paramObj2 = new BooleanWrapper(field2);
 
-		Object paramObj2 = new IntegerWrapper(field3);
+		Object paramObj3 = new IntegerWrapper(field3);
 
-		Object paramObj3 = ClpSerializer.translateInput(field4);
+		Object paramObj4 = ClpSerializer.translateInput(field4);
 
 		if (field4 == null) {
-			paramObj3 = new NullWrapper("java.util.Date");
+			paramObj4 = new NullWrapper("java.util.Date");
 		}
 
-		Object paramObj4 = ClpSerializer.translateInput(field5);
+		Object paramObj5 = ClpSerializer.translateInput(field5);
 
 		if (field5 == null) {
-			paramObj4 = new NullWrapper("java.lang.String");
+			paramObj5 = new NullWrapper("java.lang.String");
 		}
 
 		try {
 			_classLoaderProxy.invoke("addFoo",
 				new Object[] {
-					paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+					paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+					paramObj5
 				});
 		}
 		catch (Throwable t) {

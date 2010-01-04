@@ -8,6 +8,11 @@
 		<id name="fooId" type="long">
 			<generator class="assigned" />
 		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="field1" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="field2" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="field3" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />

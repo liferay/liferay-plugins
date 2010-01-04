@@ -38,6 +38,11 @@ public class FooSoap implements Serializable {
 		FooSoap soapModel = new FooSoap();
 
 		soapModel.setFooId(model.getFooId());
+		soapModel.setCompanyId(model.getCompanyId());
+		soapModel.setUserId(model.getUserId());
+		soapModel.setUserName(model.getUserName());
+		soapModel.setCreateDate(model.getCreateDate());
+		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setField1(model.getField1());
 		soapModel.setField2(model.getField2());
 		soapModel.setField3(model.getField3());
@@ -103,6 +108,46 @@ public class FooSoap implements Serializable {
 		_fooId = fooId;
 	}
 
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
+	public long getUserId() {
+		return _userId;
+	}
+
+	public void setUserId(long userId) {
+		_userId = userId;
+	}
+
+	public String getUserName() {
+		return _userName;
+	}
+
+	public void setUserName(String userName) {
+		_userName = userName;
+	}
+
+	public Date getCreateDate() {
+		return _createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		_createDate = createDate;
+	}
+
+	public Date getModifiedDate() {
+		return _modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		_modifiedDate = modifiedDate;
+	}
+
 	public String getField1() {
 		return _field1;
 	}
@@ -148,6 +193,11 @@ public class FooSoap implements Serializable {
 	}
 
 	private long _fooId;
+	private long _companyId;
+	private long _userId;
+	private String _userName;
+	private Date _createDate;
+	private Date _modifiedDate;
 	private String _field1;
 	private boolean _field2;
 	private int _field3;

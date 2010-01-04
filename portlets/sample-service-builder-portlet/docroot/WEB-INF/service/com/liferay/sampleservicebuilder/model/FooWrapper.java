@@ -48,6 +48,55 @@ public class FooWrapper implements Foo {
 		_foo.setFooId(fooId);
 	}
 
+	public long getCompanyId() {
+		return _foo.getCompanyId();
+	}
+
+	public void setCompanyId(long companyId) {
+		_foo.setCompanyId(companyId);
+	}
+
+	public long getUserId() {
+		return _foo.getUserId();
+	}
+
+	public void setUserId(long userId) {
+		_foo.setUserId(userId);
+	}
+
+	public java.lang.String getUserUuid()
+		throws com.liferay.portal.SystemException {
+		return _foo.getUserUuid();
+	}
+
+	public void setUserUuid(java.lang.String userUuid) {
+		_foo.setUserUuid(userUuid);
+	}
+
+	public java.lang.String getUserName() {
+		return _foo.getUserName();
+	}
+
+	public void setUserName(java.lang.String userName) {
+		_foo.setUserName(userName);
+	}
+
+	public java.util.Date getCreateDate() {
+		return _foo.getCreateDate();
+	}
+
+	public void setCreateDate(java.util.Date createDate) {
+		_foo.setCreateDate(createDate);
+	}
+
+	public java.util.Date getModifiedDate() {
+		return _foo.getModifiedDate();
+	}
+
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_foo.setModifiedDate(modifiedDate);
+	}
+
 	public java.lang.String getField1() {
 		return _foo.getField1();
 	}

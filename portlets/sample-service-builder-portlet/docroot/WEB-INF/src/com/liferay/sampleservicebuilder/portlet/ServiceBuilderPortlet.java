@@ -28,6 +28,8 @@ import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.sampleservicebuilder.service.FooLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -80,6 +82,9 @@ public class ServiceBuilderPortlet extends MVCPortlet {
 	}
 
 	protected void addFoo(ActionRequest actionRequest) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		String field1 = ParamUtil.getString(actionRequest, "field1");
 		boolean field2 = ParamUtil.getBoolean(actionRequest, "field2");
 		int field3 = ParamUtil.getInteger(actionRequest, "field3");
@@ -100,7 +105,8 @@ public class ServiceBuilderPortlet extends MVCPortlet {
 			dateMonth, dateDay, dateYear, dateHour, dateMinute,
 			new PortalException());
 
-		FooLocalServiceUtil.addFoo(field1, field2, field3, field4, field5);
+		FooLocalServiceUtil.addFoo(
+			themeDisplay.getUserId(), field1, field2, field3, field4, field5);
 	}
 
 	protected void deleteFoo(ActionRequest actionRequest) throws Exception {

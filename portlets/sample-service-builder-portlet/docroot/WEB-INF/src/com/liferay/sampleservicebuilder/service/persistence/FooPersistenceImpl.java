@@ -242,6 +242,11 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		fooImpl.setPrimaryKey(foo.getPrimaryKey());
 
 		fooImpl.setFooId(foo.getFooId());
+		fooImpl.setCompanyId(foo.getCompanyId());
+		fooImpl.setUserId(foo.getUserId());
+		fooImpl.setUserName(foo.getUserName());
+		fooImpl.setCreateDate(foo.getCreateDate());
+		fooImpl.setModifiedDate(foo.getModifiedDate());
 		fooImpl.setField1(foo.getField1());
 		fooImpl.setField2(foo.isField2());
 		fooImpl.setField3(foo.getField3());
@@ -759,6 +764,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 	@BeanReference(name = "com.liferay.sampleservicebuilder.service.persistence.FooPersistence")
 	protected com.liferay.sampleservicebuilder.service.persistence.FooPersistence fooPersistence;
+	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
+	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
 	private static final String _SQL_SELECT_FOO = "SELECT foo FROM Foo foo";
 	private static final String _SQL_SELECT_FOO_WHERE = "SELECT foo FROM Foo foo WHERE ";
 	private static final String _SQL_COUNT_FOO = "SELECT COUNT(foo) FROM Foo foo";

@@ -27,6 +27,7 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.User;
 import com.liferay.sampleservicebuilder.model.Foo;
 import com.liferay.sampleservicebuilder.service.base.FooLocalServiceBaseImpl;
 import com.liferay.sampleservicebuilder.service.persistence.FooUtil;
@@ -43,14 +44,22 @@ import java.util.List;
 public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 
 	public void addFoo(
-			String field1, boolean field2, int field3, Date field4,
+			long userId, String field1, boolean field2, int field3, Date field4,
 			String field5)
 		throws PortalException, SystemException {
+
+		User user = userLocalService.getUserById(userId);
+		Date now = new Date();
 
 		long fooId = CounterLocalServiceUtil.increment();
 
 		Foo foo = FooUtil.create(fooId);
 
+		foo.setCompanyId(user.getCompanyId());
+		foo.setUserId(user.getUserId());
+		foo.setUserName(user.getFullName());
+		foo.setCreateDate(now);
+		foo.setModifiedDate(now);
 		foo.setField1(field1);
 		foo.setField2(field2);
 		foo.setField3(field3);
@@ -77,6 +86,7 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 
 		Foo foo = FooUtil.findByPrimaryKey(fooId);
 
+		foo.setModifiedDate(new Date());
 		foo.setField1(field1);
 		foo.setField2(field2);
 		foo.setField3(field3);

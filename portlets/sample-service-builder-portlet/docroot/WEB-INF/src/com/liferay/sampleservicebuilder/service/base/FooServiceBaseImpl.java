@@ -26,7 +26,10 @@ import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
+import com.liferay.portal.service.UserLocalService;
+import com.liferay.portal.service.UserService;
 import com.liferay.portal.service.base.PrincipalBean;
+import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.sampleservicebuilder.service.FooLocalService;
 import com.liferay.sampleservicebuilder.service.FooService;
@@ -63,6 +66,30 @@ public abstract class FooServiceBaseImpl extends PrincipalBean
 		this.fooPersistence = fooPersistence;
 	}
 
+	public UserLocalService getUserLocalService() {
+		return userLocalService;
+	}
+
+	public void setUserLocalService(UserLocalService userLocalService) {
+		this.userLocalService = userLocalService;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public UserPersistence getUserPersistence() {
+		return userPersistence;
+	}
+
+	public void setUserPersistence(UserPersistence userPersistence) {
+		this.userPersistence = userPersistence;
+	}
+
 	protected void runSQL(String sql) throws SystemException {
 		try {
 			DB db = DBFactoryUtil.getDB();
@@ -80,4 +107,10 @@ public abstract class FooServiceBaseImpl extends PrincipalBean
 	protected FooService fooService;
 	@BeanReference(name = "com.liferay.sampleservicebuilder.service.persistence.FooPersistence")
 	protected FooPersistence fooPersistence;
+	@BeanReference(name = "com.liferay.portal.service.UserLocalService")
+	protected UserLocalService userLocalService;
+	@BeanReference(name = "com.liferay.portal.service.UserService")
+	protected UserService userService;
+	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
+	protected UserPersistence userPersistence;
 }

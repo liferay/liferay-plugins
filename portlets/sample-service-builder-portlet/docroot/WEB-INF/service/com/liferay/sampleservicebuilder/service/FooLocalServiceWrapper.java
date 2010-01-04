@@ -92,11 +92,11 @@ public class FooLocalServiceWrapper implements FooLocalService {
 		return _fooLocalService.updateFoo(foo, merge);
 	}
 
-	public void addFoo(java.lang.String field1, boolean field2, int field3,
-		java.util.Date field4, java.lang.String field5)
+	public void addFoo(long userId, java.lang.String field1, boolean field2,
+		int field3, java.util.Date field4, java.lang.String field5)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_fooLocalService.addFoo(field1, field2, field3, field4, field5);
+		_fooLocalService.addFoo(userId, field1, field2, field3, field4, field5);
 	}
 
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(

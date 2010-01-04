@@ -3,6 +3,11 @@
 <model-hints>
 	<model name="com.liferay.sampleservicebuilder.model.Foo">
 		<field name="fooId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
 		<field name="field1" type="String" />
 		<field name="field2" type="boolean" />
 		<field name="field3" type="int" />
