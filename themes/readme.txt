@@ -1,4 +1,3 @@
-To view more information about developing themes that will be extended from the
-default Classic theme, please view this wiki entry:
+To view more information about developing themes, please view this wiki entry:
 
-http://wiki.liferay.com/index.php/Themes#Developing_a_Theme
+http://www.liferay.com/web/guest/community/wiki/-/wiki/Main/Themes#section-Themes-DevelopingATheme
