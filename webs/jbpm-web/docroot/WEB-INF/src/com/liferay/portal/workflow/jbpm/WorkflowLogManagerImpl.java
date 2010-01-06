@@ -50,7 +50,7 @@ import org.jbpm.JbpmContext;
 public class WorkflowLogManagerImpl implements WorkflowLogManager {
 
 	public List<WorkflowLog> getWorkflowLogs(
-			long workflowInstanceId, int start,	int end,
+			long workflowTaskId, int start,	int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
@@ -62,7 +62,7 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 			Criteria criteria = session.createCriteria(WorkflowLogImpl.class);
 
 			criteria.add(
-				Restrictions.eq("taskInstance.id", workflowInstanceId));
+				Restrictions.eq("taskInstance.id", workflowTaskId));
 
 			List<WorkflowLog> workflowLogs = criteria.list();
 
@@ -82,7 +82,7 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 		}
 	}
 
-	public int getWorkflowLogCount(long workflowInstanceId)
+	public int getWorkflowLogCount(long workflowTaskId)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -93,7 +93,7 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 			Criteria criteria = session.createCriteria(WorkflowLogImpl.class);
 
 			criteria.add(
-				Restrictions.eq("taskInstance.id", workflowInstanceId));
+				Restrictions.eq("taskInstance.id", workflowTaskId));
 
 			criteria.setProjection(Projections.rowCount());
 
