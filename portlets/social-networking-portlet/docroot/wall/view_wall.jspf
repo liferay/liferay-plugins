@@ -152,14 +152,8 @@
 							postMessage = LanguageUtil.format(pageContext, "write-on-x-wall", wallUser.getFirstName());
 						}
 
-						Group wallGroup = wallUser.getGroup();
-
-						Long wallUserPlid = wallGroup.getDefaultPublicPlid();
-
-						Layout wallUserLayout = LayoutLocalServiceUtil.getLayout(wallUserPlid);
-
-						String wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallUserLayout.getFriendlyURL() + "/-/wall/" + wallUser.getScreenName();
-						String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallUserLayout.getFriendlyURL() + "/-/wall";
+						String wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/profile/-/wall/" + wallUser.getScreenName();
+						String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/profile/-/wall";
 						String deleteHREF = "javascript:" + renderResponse.getNamespace() + "deleteWallEntry(" + wallEntry.getWallEntryId() + ");";
 						%>
 
@@ -203,15 +197,8 @@
 							<%= LanguageUtil.format(pageContext, (user2.isMale() ? "x-needs-to-approve-you-as-his-friend" : "x-needs-to-approve-you-as-her-friend"), user2.getFirstName()) %>
 						</c:when>
 						<c:otherwise>
-							<%
-							Group user2Group = user2.getGroup();
-
-							Long user2Plid = user2Group.getDefaultPublicPlid();
-
-							Layout user2Layout = LayoutLocalServiceUtil.getLayout(user2Plid);
-							%>
 							<liferay-portlet:actionURL var="addAsFriendURL" name="addFriend" portletName="1_WAR_socialnetworkingportlet">
-								<liferay-portlet:param name="redirect" value='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + user2Layout.getFriendlyURL() %>' />
+								<liferay-portlet:param name="redirect" value='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + "/profile" %>' />
 							</liferay-portlet:actionURL>
 
 							<a href="<%= addAsFriendURL %>"><%= LanguageUtil.format(pageContext, "ask-x-to-be-your-friend", user2.getFirstName()) %></a>
