@@ -35,15 +35,19 @@ then "app.server.dir" should point to
 			</then>
 		</if>
 
+		<antcall target="clean-generated" />
+
+		<delete dir="${app.server.dir}" />
+
+		<unzip src="${app.server.zip.name}" dest="${ext.work.dir}" />
+	</target>
+
+	<target name="clean-generated">
 		<delete includeemptydirs="true">
 			<fileset dir="docroot/WEB-INF" includes="ext-*/classes/**,ext-*/ext-*.jar" />
 		</delete>
 
 		<delete file="${plugin.file}" />
-
-		<delete dir="${app.server.dir}" />
-
-		<unzip src="${app.server.zip.name}" dest="${ext.work.dir}" />
 	</target>
 
 	<target name="compile">
