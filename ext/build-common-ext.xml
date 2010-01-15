@@ -199,8 +199,27 @@ loader.
 		</copy>
 
 		<copy todir="${app.server.portal.dir}" overwrite="yes">
-			<fileset dir="docroot/WEB-INF/ext-web/docroot" />
+			<fileset dir="docroot/WEB-INF/ext-web/docroot" excludes="WEB-INF/web.xml" />
 		</copy>
+
+		<if>
+			<available file="docroot/WEB-INF/ext-web/docroot/WEB-INF/web.xml" />
+			<then>
+				<java
+					classname="com.liferay.portal.tools.WebXMLBuilder"
+					classpathref="portal.classpath"
+					fork="true"
+					newenvironment="true"
+				>
+					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+					<arg value="${app.server.portal.dir}/WEB-INF/web.xml" />
+					<arg value="docroot/WEB-INF/ext-web/docroot/WEB-INF/web.xml" />
+					<arg value="${app.server.portal.dir}/WEB-INF/web.xml.merged" />
+				</java>
+
+				<move file="${app.server.portal.dir}/WEB-INF/web.xml.merged" tofile="${app.server.portal.dir}/WEB-INF/web.xml" />
+			</then>
+		</if>
 
 		<unzip src="${plugin.file}" dest="${app.server.portal.dir}">
 			<patternset>
