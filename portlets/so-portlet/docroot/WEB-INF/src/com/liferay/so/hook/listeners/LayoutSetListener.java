@@ -41,6 +41,7 @@ import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.PermissionLocalServiceUtil;
 import com.liferay.portal.service.ResourceLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.so.util.PortletPropsKeys;
 import com.liferay.so.util.PortletPropsValues;
@@ -202,10 +203,13 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			privateLayout = true;
 		}
 
+		ServiceContext serviceContext = new ServiceContext();
+
 		Layout layout = LayoutLocalServiceUtil.addLayout(
 			group.getCreatorUserId(), group.getGroupId(), privateLayout,
 			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, name, StringPool.BLANK,
-			StringPool.BLANK, LayoutConstants.TYPE_PORTLET, false, friendlyURL);
+			StringPool.BLANK, LayoutConstants.TYPE_PORTLET, false, friendlyURL,
+			serviceContext);
 
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
