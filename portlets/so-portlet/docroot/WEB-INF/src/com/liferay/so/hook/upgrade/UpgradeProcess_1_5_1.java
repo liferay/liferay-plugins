@@ -33,7 +33,6 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
-import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.so.util.PortletPropsKeys;
 import com.liferay.util.portlet.PortletProps;
@@ -136,8 +135,6 @@ public class UpgradeProcess_1_5_1 extends UpgradeProcess {
 		List<Layout> sourceLayouts = LayoutLocalServiceUtil.getLayouts(
 			group.getGroupId(), privateLayout);
 
-		ServiceContext serviceContext = new ServiceContext();
-
 		for (Layout sourceLayout : sourceLayouts) {
 			Layout targetLayout = LayoutLocalServiceUtil.addLayout(
 				group.getCreatorUserId(), group.getGroupId(), !privateLayout,
@@ -145,7 +142,7 @@ public class UpgradeProcess_1_5_1 extends UpgradeProcess {
 				sourceLayout.getName(LocaleUtil.getDefault().toString()),
 				StringPool.BLANK, StringPool.BLANK,
 				LayoutConstants.TYPE_PORTLET, false,
-				sourceLayout.getFriendlyURL(), serviceContext);
+				sourceLayout.getFriendlyURL());
 
 			LayoutLocalServiceUtil.updateLayout(
 				targetLayout.getGroupId(), targetLayout.isPrivateLayout(),
