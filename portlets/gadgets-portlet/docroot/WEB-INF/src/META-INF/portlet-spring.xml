@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<bean id="com.liferay.gadgets.service.GadgetsEntryLocalService" class="com.liferay.gadgets.service.impl.GadgetsEntryLocalServiceImpl" />
+	<bean id="com.liferay.gadgets.service.GadgetsEntryLocalServiceUtil" class="com.liferay.gadgets.service.GadgetsEntryLocalServiceUtil">
+		<property name="service" ref="com.liferay.gadgets.service.GadgetsEntryLocalService" />
+	</bean>
+	<bean id="com.liferay.gadgets.service.persistence.GadgetsEntryPersistence" class="com.liferay.gadgets.service.persistence.GadgetsEntryPersistenceImpl" parent="basePersistence" />
+</beans>

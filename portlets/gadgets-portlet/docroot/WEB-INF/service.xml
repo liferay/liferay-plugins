@@ -1,0 +1,39 @@
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.liferay.gadgets">
+	<namespace>Gadgets</namespace>
+	<entity name="GadgetsEntry" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="gadgetEntryId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="url" type="String" />
+		<column name="xml" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="name" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+	</entity>
+	<exceptions>
+		<exception>GadgetsEntryName</exception>
+		<exception>GadgetsEntryURL</exception>
+	</exceptions>
+</service-builder>
