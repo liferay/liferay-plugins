@@ -1,0 +1,1 @@
+create index IX_5BB24417 on OpenSocial_OpenSocialGadget (companyId);
