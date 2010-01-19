@@ -25,7 +25,8 @@ package com.liferay.opensocial;
 import com.liferay.portal.PortalException;
 
 /**
- * <a href="OpenSocialGadgetURLException.java.html"><b><i>View Source</i></b></a>
+ * <a href="OpenSocialGadgetURLException.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
  */

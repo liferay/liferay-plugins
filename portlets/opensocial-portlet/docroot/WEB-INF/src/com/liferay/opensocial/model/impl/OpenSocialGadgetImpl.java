@@ -29,8 +29,10 @@ import com.liferay.opensocial.model.OpenSocialGadget;
  *
  * @author Brian Wing Shun Chan
  */
-public class OpenSocialGadgetImpl extends OpenSocialGadgetModelImpl
-	implements OpenSocialGadget {
+public class OpenSocialGadgetImpl
+	extends OpenSocialGadgetModelImpl implements OpenSocialGadget {
+
 	public OpenSocialGadgetImpl() {
 	}
+
 }

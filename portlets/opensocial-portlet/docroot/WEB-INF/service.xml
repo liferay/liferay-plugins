@@ -36,5 +36,4 @@
 		<exception>OpenSocialGadgetName</exception>
 		<exception>OpenSocialGadgetURL</exception>
 	</exceptions>
-
 </service-builder>
