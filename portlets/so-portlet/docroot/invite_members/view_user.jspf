@@ -28,13 +28,21 @@ List<MemberRequest> memberRequests = MemberRequestLocalServiceUtil.getReceiverSt
 
 	<%
 	for (MemberRequest memberRequest : memberRequests) {
-		User curUser = UserLocalServiceUtil.getUser(memberRequest.getUserId());
-		Group curGroup = GroupLocalServiceUtil.getGroup(memberRequest.getGroupId());
+		Group curGroup = null;
+
+		try {
+			curGroup = GroupLocalServiceUtil.getGroup(memberRequest.getGroupId());
+		}
+		catch (Exception e) {
+			MemberRequestLocalServiceUtil.deleteMemberRequest(memberRequest);
+
+			continue;
+		}
 	%>
 
 		<tr>
 			<td valign="top" width="99%">
-				<%= themeDisplay.translate("x-has-invited-you-to-join-x", new Object[] {curUser.getFullName(), curGroup.getDescriptiveName()}) %>
+				<%= themeDisplay.translate("x-has-invited-you-to-join-x", new Object[] {memberRequest.getUserName(), curGroup.getDescriptiveName()}) %>
 
 				<div class="controls">
 					<portlet:actionURL name="updateInvite" var="confirmURL">

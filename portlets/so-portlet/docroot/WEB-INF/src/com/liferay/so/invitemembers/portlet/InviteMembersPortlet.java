@@ -17,6 +17,7 @@
 
 package com.liferay.so.invitemembers.portlet;
 
+import com.liferay.portal.NoSuchGroupException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -41,6 +42,7 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 import java.io.IOException;
 
 import java.util.List;
+import java.util.Iterator;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -93,6 +95,22 @@ public class InviteMembersPortlet extends MVCPortlet {
 					themeDisplay.getUserId(),
 					InviteMembersConstants.STATUS_PENDING, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS);
+
+			Iterator<MemberRequest> itr = memberRequests.iterator();
+
+			while (itr.hasNext()) {
+				MemberRequest memberRequest = itr.next();
+
+				try {
+					GroupLocalServiceUtil.getGroup(memberRequest.getGroupId());
+				}
+				catch (NoSuchGroupException nsge) {
+					MemberRequestLocalServiceUtil.deleteMemberRequest(
+						memberRequest);
+
+					itr.remove();
+				}
+			}
 
 			if (group.isUser() && memberRequests.isEmpty()) {
 				renderRequest.setAttribute(
