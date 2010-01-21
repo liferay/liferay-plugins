@@ -21,7 +21,9 @@ import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.User;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.so.util.WebKeys;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,9 +38,14 @@ public class LoginPostAction extends Action {
 
 	public void run(HttpServletRequest request, HttpServletResponse response) {
 		try {
+			ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
 			User user = PortalUtil.getUser(request);
 
-			String redirect = "/web/" + user.getScreenName() + "/home";
+			String redirect =
+				themeDisplay.getPathFriendlyURLPublic() + "/" +
+					user.getScreenName() + "/home";
 
 			response.sendRedirect(redirect);
 		}

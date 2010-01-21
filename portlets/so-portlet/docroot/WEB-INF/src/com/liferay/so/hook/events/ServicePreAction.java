@@ -108,7 +108,9 @@ public class ServicePreAction extends Action {
 		try {
 			User user = themeDisplay.getUser();
 
-			String redirect = "/web/" + user.getScreenName() + "/home";
+			String redirect =
+				themeDisplay.getPathFriendlyURLPublic() + "/" +
+					user.getScreenName() + "/home";
 
 			response.sendRedirect(redirect);
 		}
@@ -157,7 +159,8 @@ public class ServicePreAction extends Action {
 
 			User user = UserLocalServiceUtil.getUser(userId);
 
-			return "/web/" + user.getScreenName() + "/profile";
+			return themeDisplay.getPathFriendlyURLPublic() + "/" +
+				user.getScreenName() + "/profile";
 		}
 
 		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
