@@ -21,7 +21,6 @@
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
-String callingPageURL = ParamUtil.getString(request, "callingPageURL");
 
 Group group = (Group)request.getAttribute(WebKeys.GROUP);
 
@@ -37,66 +36,45 @@ String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 		submitForm(document.<portlet:namespace />fm);
 	}
 
-	jQuery(
-		function() {
-			var form = jQuery(document.<portlet:namespace />fm1);
-			form.ajaxForm(
-				{
-					target: ".ui-dialog-content",
-					type: "POST",
-					success: function() {
+	<c:if test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
+		jQuery(
+			function() {
+				jQuery(document.<portlet:namespace />fm).ajaxForm(
+					{
+						target: ".ui-dialog-content",
+						type: "POST",
+						success: function() {
+							var siteList = jQuery('.so-portlet-sites .results-grid');
 
-						var dialog = jQuery('.site-dialog').find('.ui-dialog-content');
+							siteList.html('<div class="loading-animation" />');
+							siteList.load(themeDisplay.getLayoutURL() + ' .so-portlet-sites .taglib-search-iterator', {t:(+new Date())});
 
-						var cmd = jQuery(document.<portlet:namespace />fm1.<portlet:namespace /><%= Constants.CMD %>);
-						cmd.val("<%= group == null ? Constants.ADD : Constants.UPDATE %>");
-
-						if(dialog.find('.portlet-msg-success').length) {
-							if(<%= group == null ? false : true %>) {
-								dialog.dialog('close');
+							if (jQuery('.contacts-portlet').length > 0) {
+								Liferay.Contacts.loadEntries(false);
 							}
 						}
-
-						var pageURLVal = jQuery('#<portlet:namespace />pageURL').val();
-						var popupURLVal = jQuery('#<portlet:namespace />popupURL').val();
-
-						jQuery('[name=<portlet:namespace />pageURL]').val(pageURLVal);
-						jQuery('[name=<portlet:namespace />redirect]').val(popupURLVal);
-
-						var siteList = jQuery('.portlet-communities .site-list');
-
-						siteList.html('<div class="loading-animation" />');
-						siteList.load(pageURLVal + " .site-list", {t:(+new Date())});
-
-						var contactsPortlet = jQuery('.contacts-portlet');
-
-						if (contactsPortlet.length > 0) {
-							Liferay.Contacts.loadEntries(false);
-						}
 					}
-				}
-			)
-		}
-	)
+				);
+			}
+		);
+	</c:if>
 </script>
 
-<form action="<portlet:actionURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="struts_action" value="/communities/edit_community" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm1">
-<c:choose>
-	<c:when test="<%= groupId == 0 %>">
-		<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
-	</c:when>
-	<c:otherwise>
-		<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	</c:otherwise>
-</c:choose>
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
-<input name="<portlet:namespace />callingPageURL" type="hidden" value="<%= HtmlUtil.escape(callingPageURL) %>" />
+<form action="<portlet:actionURL windowState="<%= windowState.toString() %>"><portlet:param name="struts_action" value="/communities/edit_community" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm">
+<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= group == null ? Constants.ADD : Constants.UPDATE %>" />
+<input name="<portlet:namespace />redirect" type="hidden" value="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) ? StringPool.BLANK : HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />groupId" type="hidden" value="<%= groupId %>" />
-<input name="<portlet:namespace />friendlyURL" type="hidden" value="<%= friendlyURL %>" />
+<input name="<portlet:namespace />friendlyURL" type="hidden" value="<%= HtmlUtil.escapeAttribute(friendlyURL) %>" />
 <input name="<portlet:namespace />active" type="hidden" value="1" />
 
+<c:if test="<%= !portletName.equals(PortletKeys.ADMIN_SERVER) && !portletName.equals(PortletKeys.COMMUNITIES) %>">
+	<liferay-util:include page="/html/portlet/communities/toolbar.jsp">
+		<liferay-util:param name="toolbarItem" value='<%= (group == null) ? "add" : "view-all" %>' />
+	</liferay-util:include>
+</c:if>
+
 <liferay-ui:error exception="<%= DuplicateGroupException.class %>" message="please-enter-a-unique-name" />
-<liferay-ui:error exception="<%= GroupNameException.class %>" message="please-enter-a-valid-name.-the-name-can-not-contain-a-comma,-an-asterisk,-be-blank-or-be-a-number" />
+<liferay-ui:error exception="<%= GroupNameException.class %>" message="please-enter-a-valid-name" />
 <liferay-ui:error exception="<%= RequiredGroupException.class %>" message="old-group-name-is-a-required-system-group" />
 <liferay-ui:success	key="request_processed" message="your-request-processed-successfully" />
 
@@ -132,14 +110,23 @@ String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 
 <br />
 
-<input type="submit" value="<liferay-ui:message key="save" />" />
+<c:choose>
+	<c:when test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
+		<input type="submit" value="<liferay-ui:message key="save" />" />
 
-<input type="button" value="<liferay-ui:message key="cancel" />" onClick="Liferay.Popup.close(this);" />
+		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="Liferay.SO.Sites.closePopup();" />
+	</c:when>
+	<c:otherwise>
+		<input type="button" value="<liferay-ui:message key="save" />" onClick="<portlet:namespace />saveGroup();" />
+
+		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>';" />
+	</c:otherwise>
+</c:choose>
 
 </form>
 
-<c:if test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
+<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) || windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
 	<script type="text/javascript">
-		Liferay.Util.focusFormField(document.<portlet:namespace />fm1.<portlet:namespace />name);
+		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 	</script>
 </c:if>

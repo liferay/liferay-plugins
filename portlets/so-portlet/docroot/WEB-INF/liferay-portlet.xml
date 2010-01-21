@@ -28,6 +28,12 @@
 		<css-class-wrapper>so-portlet-profiles</css-class-wrapper>
 		<system>true</system>
 	</portlet>
+	<portlet>
+		<portlet-name>5</portlet-name>
+		<header-portlet-javascript>/sites/javascript.js</header-portlet-javascript>
+		<footer-portal-javascript>/html/js/liferay/service.js</footer-portal-javascript>
+		<css-class-wrapper>so-portlet-sites</css-class-wrapper>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

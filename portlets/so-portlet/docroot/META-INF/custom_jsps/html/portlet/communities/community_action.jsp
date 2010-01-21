@@ -22,55 +22,99 @@
 <%
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-Group group = (Group)row.getObject();
+Object[] objArray = (Object[])row.getObject();
+
+Group group = (Group)objArray[0];
+String tabs1 = (String)objArray[1];
 %>
 
-<div class="actions">
-	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.UPDATE) %>">
-		<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
-			<portlet:param name="struts_action" value="/communities/edit_community" />
-			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-		</portlet:renderURL>
-
-		<a class="edit-site" href="<%= editURL %>"><liferay-ui:message key="edit" /></a>
-	</c:if>
-
-	<c:choose>
-		<c:when test="<%= !GroupLocalServiceUtil.hasUserGroup(user.getUserId(), group.getGroupId()) %>">
-			<c:if test="<%= group.getType() == GroupConstants.TYPE_COMMUNITY_OPEN %>">
-				<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="joinURL">
-					<portlet:param name="struts_action" value="/communities/edit_community_assignments" />
-					<portlet:param name="<%= Constants.CMD %>" value="group_users" />
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-					<portlet:param name="addUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
-				</portlet:actionURL>
-
-				<a class="join-site" href="javascript:;" onclick="return (submitForm(document.hrefFm, '<%= joinURL %>'));"><liferay-ui:message key="join" /></a>
-			</c:if>
-		</c:when>
-		<c:when test="<%= !GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.DELETE) %>">
-			<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="leaveURL">
-				<portlet:param name="struts_action" value="/communities/edit_community_assignments" />
-				<portlet:param name="<%= Constants.CMD %>" value="group_users" />
+<c:if test="<%= !group.getName().equals(GroupConstants.GUEST) %>">
+	<liferay-ui:icon-menu>
+		<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.UPDATE) %>">
+			<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
+				<portlet:param name="struts_action" value="/communities/edit_community" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 				<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-				<portlet:param name="removeUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
+			</portlet:renderURL>
+
+			<liferay-ui:icon image="edit" url="<%= editURL %>" />
+		</c:if>
+
+		<c:if test="<%= permissionChecker.isCommunityOwner(group.getGroupId()) || GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.ASSIGN_USER_ROLES) %>">
+			<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="assignUserRolesURL">
+				<portlet:param name="struts_action" value="/communities/edit_user_roles" />
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+			</portlet:renderURL>
+
+			<liferay-ui:icon image="assign_user_roles" url="<%= assignUserRolesURL %>" />
+		</c:if>
+
+		<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.ASSIGN_MEMBERS) %>">
+			<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="assignMembersURL">
+				<portlet:param name="struts_action" value="/communities/edit_community_assignments" />
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+			</portlet:renderURL>
+
+			<liferay-ui:icon image="assign" message="assign-members" url="<%= assignMembersURL %>" />
+		</c:if>
+
+		<c:choose>
+			<c:when test='<%= tabs1.equals("communities-owned") || tabs1.equals("communities-joined") %>'>
+				<c:if test="<%= (group.getType() == GroupConstants.TYPE_COMMUNITY_OPEN) || (group.getType() == GroupConstants.TYPE_COMMUNITY_RESTRICTED) %>">
+					<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="leaveURL">
+						<portlet:param name="struts_action" value="/communities/edit_community_assignments" />
+						<portlet:param name="<%= Constants.CMD %>" value="group_users" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
+						<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+						<portlet:param name="removeUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
+					</portlet:actionURL>
+
+					<liferay-ui:icon image="leave" url="<%= leaveURL %>" />
+				</c:if>
+			</c:when>
+			<c:otherwise>
+				<c:choose>
+					<c:when test="<%= !GroupLocalServiceUtil.hasUserGroup(user.getUserId(), group.getGroupId()) %>">
+						<c:if test="<%= group.getType() == GroupConstants.TYPE_COMMUNITY_OPEN %>">
+							<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="joinURL">
+								<portlet:param name="struts_action" value="/communities/edit_community_assignments" />
+								<portlet:param name="<%= Constants.CMD %>" value="group_users" />
+								<portlet:param name="redirect" value="<%= currentURL %>" />
+								<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+								<portlet:param name="addUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
+							</portlet:actionURL>
+
+							<liferay-ui:icon image="join" url="<%= joinURL %>" />
+						</c:if>
+					</c:when>
+					<c:otherwise>
+						<c:if test="<%= (group.getType() == GroupConstants.TYPE_COMMUNITY_OPEN) || (group.getType() == GroupConstants.TYPE_COMMUNITY_RESTRICTED) %>">
+							<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="leaveURL">
+								<portlet:param name="struts_action" value="/communities/edit_community_assignments" />
+								<portlet:param name="<%= Constants.CMD %>" value="group_users" />
+								<portlet:param name="redirect" value="<%= currentURL %>" />
+								<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+								<portlet:param name="removeUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
+							</portlet:actionURL>
+
+							<liferay-ui:icon image="leave" url="<%= leaveURL %>" />
+						</c:if>
+					</c:otherwise>
+				</c:choose>
+			</c:otherwise>
+		</c:choose>
+
+		<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.DELETE) %>">
+			<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
+				<portlet:param name="struts_action" value="/communities/edit_community" />
+				<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 			</portlet:actionURL>
 
-			<a class="leave-site" href="javascript:;" onclick="return (submitForm(document.hrefFm, '<%= leaveURL %>'));"><liferay-ui:message key="leave" /></a>
-		</c:when>
-	</c:choose>
-
-	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.DELETE) %>">
-		<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
-			<portlet:param name="struts_action" value="/communities/edit_community" />
-			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-		</portlet:actionURL>
-
-		<a class="delete-site" href="javascript:;" onclick="return (confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this" />') && submitForm(document.hrefFm, '<%= deleteURL %>'));"><liferay-ui:message key="delete" /></a>
-	</c:if>
-</div>
+			<liferay-ui:icon-delete url="<%= deleteURL %>" />
+		</c:if>
+	</liferay-ui:icon-menu>
+</c:if>

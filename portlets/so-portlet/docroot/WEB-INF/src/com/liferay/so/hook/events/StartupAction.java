@@ -354,9 +354,16 @@ public class StartupAction extends SimpleAction {
 			}
 		}
 
-		// Directory portlet
+		// Communities portlet
 
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
+			PortletKeys.COMMUNITIES);
+
+		portlet.setAddDefaultResource(true);
+
+		// Directory portlet
+
+		portlet = PortletLocalServiceUtil.getPortletById(
 			PortletKeys.DIRECTORY);
 
 		portlet.setAddDefaultResource(true);

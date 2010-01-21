@@ -1005,60 +1005,6 @@ table.calendar {
 	background: #7F80A4;
 }
 
-/* Communities */
-
-.portlet-communities .site-list .col-1 a {
-	font-size: 11px;
-	font-weight: bold;
-}
-
-.portlet-communities .site-list .col-2 a {
-	font-size: 10px;
-	margin-left: 5px;
-}
-
-.portlet-communities .taglib-page-iterator .search-results {
-	display: none;
-}
-
-.portlet-communities th {
-	display: none;
-}
-
-.portlet-communities .control-wrapper {
-	margin-top: 1em;
-	position: relative;
-}
-
-.ie6 .portlet-communities .control-wrapper {
-	background: #E8EFF4;
-	height: 22px;
-	margin-bottom: 1em;
-}
-
-.portlet-communities .add-site {
-	background: transparent url(../images/arrows/01_plus.png) no-repeat 100% 50%;
-	display: block;
-	font-size: 11px;
-	padding: 0 16px 0 0;
-	position: absolute;
-	right: 5px;
-	top: 3px;
-}
-
-.portlet-communities .actions {
-	width: 80px;
-}
-
-.portlet-communities .description {
-	display: none;
-}
-
-.portlet-communities .description-toggle {
-	position: relative;
-	top: 1px;
-}
-
 /* Contacts */
 
 .ie6 .contacts-portlet .control .add-entry {
@@ -1437,6 +1383,60 @@ table.calendar {
 
 .so-portlet-profiles #projectsEntries .ctrl-holder.last {
 	margin-bottom: 25px;
+}
+
+/* SO: Sites */
+
+.so-portlet-sites .results-grid .col-1 a {
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.so-portlet-sites .results-grid .col-2 a {
+	font-size: 10px;
+	margin-left: 5px;
+}
+
+.so-portlet-sites .taglib-page-iterator .search-results {
+	display: none;
+}
+
+.so-portlet-sites th {
+	display: none;
+}
+
+.so-portlet-sites .control-wrapper {
+	margin-top: 1em;
+	position: relative;
+}
+
+.ie6 .so-portlet-sites .control-wrapper {
+	background: #E8EFF4;
+	height: 22px;
+	margin-bottom: 1em;
+}
+
+.so-portlet-sites .add-site {
+	background: transparent url(../images/arrows/01_plus.png) no-repeat 100% 50%;
+	display: block;
+	font-size: 11px;
+	padding: 0 16px 0 0;
+	position: absolute;
+	right: 5px;
+	top: 3px;
+}
+
+.so-portlet-sites .actions {
+	width: 80px;
+}
+
+.so-portlet-sites .description {
+	display: none;
+}
+
+.so-portlet-sites .description-toggle {
+	position: relative;
+	top: 1px;
 }
 
 /* RSS */
