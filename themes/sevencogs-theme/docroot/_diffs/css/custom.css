@@ -1,16 +1,24 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */ 
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-/* ---------- Base styles ---------- */
+/* ---------- Body ---------- */
 
 body {
 	background: #F2F2EB;
-	font: 12px "Helvetica Neue", Arial, sans-serif;
+	font: 12px Helvetica Neue, Arial, sans-serif;
 }
+
+body.html-editor.portlet.portlet-blogs {
+	background: #FFF;
+}
+
+/* ---------- Wrapper ---------- */
 
 #wrapper {
 	margin: 0 auto;
 	width: 960px;
 }
+
+/* ---------- Banner and Navigation ---------- */
 
 #banner {
 	background: transparent url(../images/custom/banner_bg.png) no-repeat 0 center;
@@ -29,21 +37,11 @@ body {
 	top: 20px;
 }
 
-#banner .sign-in {
-	right: 30px;
-	color: #FFF;
-	text-decoration: none;
-}
-
 #navigation {
 	background: transparent url(../images/custom/tab_link.png) repeat-x;
 	height: 33px;
 	padding-right: 108px;
 	position: relative;
-}
-
-#navigation .aui-sortable-proxy {
-	background: none;
 }
 
 #navigation ul {
@@ -71,7 +69,64 @@ body {
 	color: white;
 }
 
-/* ---------- Main navigation ---------- */
+#add-page {
+	bottom: 100%;
+	position: absolute;
+	right: 10px;
+	top: 4px;
+}
+
+#add-page a {
+	background: url(../images/common/add.png) no-repeat 5px 50%;
+	color: #FFF;
+	display: block;
+	padding: 7px 20px 7px 25px;
+	text-decoration: none;
+}
+
+#navigation .enter-page {
+	background: #849FD6;
+	padding: 3px 0 3px 5px;
+}
+
+.ie7 #navigation .enter-page {
+	padding-bottom: 1px;
+}
+
+#navigation .cancel-page {
+	display: none;
+}
+
+#navigation .save-page {
+	display: inline;
+	position: relative;
+	top: 1px;
+}
+
+.ie7 #navigation .save-page {
+	position: relative;
+	top: -5px;
+}
+
+.ie7 #navigation input {
+	position: relative;
+	top: -1px;
+}
+
+.js .interactive-mode {
+	background: none;
+	right: 10px;
+	top: 0;
+}
+
+.js .interactive-mode h2 span {
+	background: none;
+	border-right: none;
+}
+
+.js .interactive-mode h2 {
+	background: url(../images/custom/right_bg.png) no-repeat scroll 100% 0;
+}
 
 /* ---------- Content Wrapper ---------- */
 
@@ -83,7 +138,7 @@ body {
 	padding: 0 10px 10px;
 }
 
-/* ---------- Portlet wrapper and icons ---------- */
+/* ---------- Portlets ---------- */
 
 .portlet {
 	margin: 10px 0 10px 10px;
@@ -95,226 +150,4 @@ body {
 	color: #000;
 	padding: 8px 0 5px 2px;
 	text-transform: uppercase;
-}
-
-/* ---------- Menus ---------- */
-
-.lfr-actions.portlet-options .lfr-trigger strong span, .visible.portlet-options .lfr-trigger strong span {
-	background-image: url(../images/portlet/options.png);
-}
-
-.lfr-actions.portlet-options:hover, .lfr-actions.portlet-options:hover ul {
-	background: transparent;
-}
-
-.lfr-menu-list {
-	z-index: 450;
-}
-
-.aui-menu-content, .lfr-menu-list ul {
-	background: #ccc9c9 url(../images/application/menu_bg.png) repeat-x 0 0;
-	border: 1px solid;
-	border-color: #aeafb1 #777879 #777879 #aeafb1;
-	padding: 2px 0;
-}
-
-.aui-menu-content {
-	min-width: 150px;
-}
-
-.aui-menugroup-content h4 {
-	background: #d2d6de;
-	border-width: 0;
-	color: #5b677d;
-	font-size: 1em;
-	font-weight: bold;
-	margin: 0;
-	padding: 5px 3px;
-	text-shadow: 1px 1px #fff;
-}
-
-.aui-menugroup-content ul, .lfr-menu-list ul ul {
-	display: block;
-	min-width: 0;
-}
-
-.aui-menu-content li, .lfr-menu-list ul li {
-	border-bottom: 1px solid #bcbbbb;
-	border-top: 1px solid #eee;
-	display: block;
-	margin: 0;
-	padding: 0;
-}
-
-.ie7 .aui-menu-content li {
-	z-index: 10;
-}
-
-.aui-menu-content li.first, .lfr-menu-list ul li.first {
-	border-top-width: 0;
-}
-
-.aui-menu-content li.last, .lfr-menu-list ul li.last {
-	border-bottom-width: 0;
-}
-
-.aui-menu-content li a, .lfr-menu-list ul li a {
-	color: #2C2F34;
-	display: block;
-	padding: 4px 5px;
-	text-decoration: none;
-}
-
-.aui-menu-content li a:hover, .lfr-menu-list ul a:hover {
-	background-color: #5b677d;
-	color: #fff;
-	text-shadow: -1px -1px #2c2f34;
-}
-
-.aui-menu-content a, .lfr-menu-list li a, .lfr-actions .lfr-trigger, .lfr-actions .lfr-trigger strong {
-	font-weight: bold;
-	text-shadow: 1px 1px #fff;
-}
-
-/* ---------- Dockbar ---------- */
-
-.dockbar {
-	background: #97a1ae url(../images/dockbar/dockbar_bg.png) repeat-x 0 0;
-	border-color: #636364;
-}
-
-.dockbar a {
-	color: #2c2f34;
-	font-weight: bold;
-	text-shadow: 1px 1px #fff;
-}
-
-.dockbar .menu-button-active {
-	background: #5c94da url(../images/dockbar/button_active_bg.png) repeat-x 0 0;
-}
-
-.dockbar .menu-button-active a {
-	color: #fff;
-	text-shadow: -1px -1px #2C2F34;
-}
-
-.aui-toolbar li {
-	vertical-align: middle;
-}
-
-.my-places-menu .current-site {
-	border: solid #1d4280;
-	border-width: 1px 0;
-}
-
-.my-places-menu .current-site a {
-	background-color: #3068ba;
-	color: #fff;
-	text-shadow: 1px 1px #333;
-}
-
-.my-places-menu .current-site .site-type {
-	color: #fff;
-}
-
-.my-places-menu .current-site a:hover, .my-places-menu a:hover .site-type {
-	color: #fff;
-	text-shadow: 1px 1px #333;
-}
-
-.ie7 .my-places-menu .site-type {
-	float: none;
-}
-
-.add-content-menu .add-page a {
-	background: url(../images/navigation/add_page.png) no-repeat 3px 50%;
-	padding-left: 25px;
-}
-
-.add-content-menu .add-application a {
-	background: url(../images/common/portlet.png) no-repeat 3px 50%;
-	padding-left: 25px;
-}
-
-.manage-content-menu li a {
-	background: url() no-repeat 3px 50%;
-	padding-left: 25px;
-}
-
-.manage-content-menu .manage-page a {
-	background-image: url(../images/dock/page_settings.png);
-}
-
-.manage-content-menu .page-layout a {
-	background-image: url(../images/dock/layout.png);
-}
-
-.manage-content-menu .sitemap a {
-	background-image: url(../images/common/sitemap.png);
-}
-
-.manage-content-menu .settings a {
-	background-image: url(../images/common/configuration.png);
-}
-
-.manage-content-menu .control-panel a {
-	background-image: url(../images/dock/control_panel.png);
-}
-
-.aui-underlay-content {
-	background-color: #f4f3f3;
-	border: 1px solid #aeafb1;
-	border-top-width: 0;
-}
-
-.add-application {
-	left: 10px !important;
-}
-
-.manage-layouts {
-	left: 60px !important;
-}
-
-/* ---------- Tabs ---------- */
-
-/* ---------- Misc. ---------- */
-
-/* ---------- Drop shadows ---------- */
-
-.aui-menu-content, body > .lfr-menu-list ul, .aui-underlay-content, .aui-dialog-content {
-	-moz-box-shadow: 2px 4px 7px rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: 2px 4px 7px rgba(0, 0, 0, 0.5);
-	box-shadow: 2px 4px 7px rgba(0, 0, 0, 0.5);
-}
-
-.dockbar .menu-button-active .menu-button {
-	-moz-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.7);
-	-webkit-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.7);
-	box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.7);
-}
-
-.my-places-menu .current-site a {
-	-moz-box-shadow: inset 0 5px 15px rgba(255, 255, 255, 0.5);
-	-webkit-box-shadow: inset 0 5px 15px rgba(255, 255, 255, 0.5);
-	box-shadow: inset 0 5px 15px rgba(255, 255, 255, 0.5);
-}
-
-/* ---------- Rounded corners ---------- */
-
-.aui-menu-content {
-	-moz-border-radius-bottomleft: 4px;
-	-webkit-border-bottom-left-radius: 4px;
-	border-bottom-left-radius: 4px;
-	-moz-border-radius-bottomright: 4px;
-	-webkit-border-bottom-right-radius: 4px;
-	border-bottom-right-radius: 4px;
-}
-
-.aui-underlay-content {
-	-moz-border-radius-bottomleft: 8px;
-	-webkit-border-bottom-left-radius: 8px;
-	border-bottom-left-radius: 8px;
-	-moz-border-radius-bottomright: 8px;
-	-webkit-border-bottom-right-radius: 8px;
-	border-bottom-right-radius: 8px;
 }
