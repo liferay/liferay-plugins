@@ -120,6 +120,32 @@ public class StartupAction extends SimpleAction {
 		}
 	}
 
+	protected AssetCategory addAssetCategory(
+			long userId, long parentCategoryId, String title, long vocabularyId,
+			ServiceContext serviceContext)
+		throws Exception {
+
+		Map<Locale, String> titleMap = new HashMap<Locale, String>();
+
+		titleMap.put(Locale.US, title);
+
+		return AssetCategoryLocalServiceUtil.addCategory(
+			null, userId, parentCategoryId, titleMap, vocabularyId, null,
+			serviceContext);
+	}
+
+	protected AssetVocabulary addAssetVocabulary(
+			long userId, String title, ServiceContext serviceContext)
+		throws Exception {
+
+		Map<Locale, String> titleMap = new HashMap<Locale, String>();
+
+		titleMap.put(Locale.US, title);
+
+		return AssetVocabularyLocalServiceUtil.addVocabulary(
+			null, userId, titleMap, null, null, serviceContext);
+	}
+
 	protected BlogsEntry addBlogsEntry(
 			long userId, String title, String fileName,
 			ServiceContext serviceContext)
@@ -128,7 +154,7 @@ public class StartupAction extends SimpleAction {
 		String content = getString("/blogs/" + fileName);
 
 		return BlogsEntryLocalServiceUtil.addEntry(
-			userId, title, content, 1, 1, 2008, 0,0, true, new String[0],
+			null, userId, title, content, 1, 1, 2008, 0, 0, true, new String[0],
 			serviceContext);
 	}
 
@@ -144,7 +170,7 @@ public class StartupAction extends SimpleAction {
 
 		try {
 			return DLFileEntryLocalServiceUtil.addFileEntry(
-				userId, groupId, folderId, name, title, description,
+				null, userId, groupId, folderId, name, title, description,
 				StringPool.BLANK, bytes, serviceContext);
 		}
 		catch (DuplicateFileException dfe) {
@@ -164,7 +190,7 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setAddGuestPermissions(false);
 
 		return DLFolderLocalServiceUtil.addFolder(
-			userId, groupId, 0, name, description, serviceContext);
+			null, userId, groupId, 0, name, description, serviceContext);
 	}
 
 	protected IGImage addIGImage(
@@ -175,7 +201,7 @@ public class StartupAction extends SimpleAction {
 		InputStream is = getInputStream("/images/" + name);
 
 		return IGImageLocalServiceUtil.addImage(
-			userId, serviceContext.getScopeGroupId(), folderId, name,
+			null, userId, serviceContext.getScopeGroupId(), folderId, name,
 			StringPool.BLANK, name, is, "image/png", serviceContext);
 	}
 
@@ -715,7 +741,7 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setScopeGroupId(group.getGroupId());
 
 		IGFolder igFolder = IGFolderLocalServiceUtil.addFolder(
-			defaultUserId, 0, "Web Content", "Images used for content",
+			null, defaultUserId, 0, "Web Content", "Images used for content",
 			serviceContext);
 
 		IGImage cellBgIGImage = addIGImage(
@@ -910,38 +936,31 @@ public class StartupAction extends SimpleAction {
 
 		// Asset
 
-		AssetVocabulary topicAssetVocabulary =
-			AssetVocabularyLocalServiceUtil.addVocabulary(
-				null, defaultUserId, "Topic", serviceContext);
+		AssetVocabulary topicAssetVocabulary = addAssetVocabulary(
+			defaultUserId, "Topic", serviceContext);
 
-		AssetVocabulary imageAssetVocabulary =
-			AssetVocabularyLocalServiceUtil.addVocabulary(
-				null, defaultUserId, "Image Type", serviceContext);
+		AssetVocabulary imageAssetVocabulary = addAssetVocabulary(
+			defaultUserId, "Image Type", serviceContext);
 
-		AssetCategory iconAssetCategory =
-			AssetCategoryLocalServiceUtil.addCategory(
-				null, defaultUserId, 0, "Icon",
-				imageAssetVocabulary.getVocabularyId(), null, serviceContext);
+		AssetCategory iconAssetCategory = addAssetCategory(
+			defaultUserId, 0, "Icon", imageAssetVocabulary.getVocabularyId(),
+			serviceContext);
 
-		AssetCategory bannerAssetCategory =
-			AssetCategoryLocalServiceUtil.addCategory(
-				null, defaultUserId, 0, "Banner",
-				imageAssetVocabulary.getVocabularyId(), null, serviceContext);
+		AssetCategory bannerAssetCategory = addAssetCategory(
+			defaultUserId, 0, "Banner", imageAssetVocabulary.getVocabularyId(),
+			serviceContext);
 
-		AssetCategory learningAssetCategory =
-			AssetCategoryLocalServiceUtil.addCategory(
-				null, defaultUserId, 0, "Learning",
-				topicAssetVocabulary.getVocabularyId(), null, serviceContext);
+		AssetCategory learningAssetCategory = addAssetCategory(
+			defaultUserId, 0, "Learning",
+			topicAssetVocabulary.getVocabularyId(), serviceContext);
 
-		AssetCategory productsAssetCategory =
-			AssetCategoryLocalServiceUtil.addCategory(
-				null, defaultUserId, 0, "Products",
-				topicAssetVocabulary.getVocabularyId(), null, serviceContext);
+		AssetCategory productsAssetCategory = addAssetCategory(
+			defaultUserId, 0, "Products",
+			topicAssetVocabulary.getVocabularyId(), serviceContext);
 
-		AssetCategory liferayAssetCategory =
-			AssetCategoryLocalServiceUtil.addCategory(
-				null, defaultUserId, 0, "Liferay",
-				topicAssetVocabulary.getVocabularyId(), null, serviceContext);
+		AssetCategory liferayAssetCategory = addAssetCategory(
+			defaultUserId, 0, "Liferay", topicAssetVocabulary.getVocabularyId(),
+			serviceContext);
 
 		_assetCategories = new HashMap<String, AssetCategory>();
 
@@ -961,8 +980,8 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setScopeGroupId(group.getGroupId());
 
 		IGFolder igFolder = IGFolderLocalServiceUtil.addFolder(
-			defaultUserId, 0, "7Cogs Web Content", "Images used for content",
-			serviceContext);
+			null, defaultUserId, 0, "7Cogs Web Content",
+			"Images used for content", serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"add"});
 		serviceContext.setAssetCategoryIds(
