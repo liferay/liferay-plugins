@@ -42,6 +42,7 @@ import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.OrganizationConstants;
+import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
@@ -52,9 +53,11 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.PermissionLocalServiceUtil;
+import com.liferay.portal.service.ResourceLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -223,8 +226,8 @@ public class StartupAction extends SimpleAction {
 
 		String content = getString("/journal/articles/" + fileName);
 
-		serviceContext.setAddCommunityPermissions(false);
-		serviceContext.setAddGuestPermissions(false);
+		serviceContext.setAddCommunityPermissions(true);
+		serviceContext.setAddGuestPermissions(true);
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
@@ -330,9 +333,23 @@ public class StartupAction extends SimpleAction {
 		portletId = layoutTypePortlet.addPortletId(
 			0, portletId, columnId, -1, false);
 
+		addResources(layout, portletId);
 		updateLayout(layout);
 
 		return portletId;
+	}
+
+	protected void addResources(Layout layout, String portletId)
+		throws Exception{
+
+		String rootPortletId = PortletConstants.getRootPortletId(portletId);
+
+		String portletPrimaryKey = PortletPermissionUtil.getPrimaryKey(
+			layout.getPlid(), portletId);
+
+		ResourceLocalServiceUtil.addResources(
+			layout.getCompanyId(), layout.getGroupId(), 0, rootPortletId,
+			portletPrimaryKey, true, true, true);
 	}
 
 	protected void addSocialRequest(
