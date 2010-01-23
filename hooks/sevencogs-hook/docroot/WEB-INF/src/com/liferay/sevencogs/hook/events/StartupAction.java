@@ -295,6 +295,8 @@ public class StartupAction extends SimpleAction {
 
 		layoutTypePortlet.setLayoutTemplateId(0, layouteTemplateId, false);
 
+		addResources(layout, PortletKeys.DOCKBAR);
+
 		return layout;
 	}
 
