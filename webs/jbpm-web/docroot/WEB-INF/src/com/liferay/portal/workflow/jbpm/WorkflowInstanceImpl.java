@@ -22,14 +22,44 @@
 
 package com.liferay.portal.workflow.jbpm;
 
-import com.liferay.portal.kernel.workflow.DefaultWorkflowLog;
+import com.liferay.portal.kernel.workflow.DefaultWorkflowInstance;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.jbpm.graph.def.ProcessDefinition;
+import org.jbpm.graph.exe.ProcessInstance;
+import org.jbpm.graph.exe.Token;
 
 /**
- * <a href="WorkflowLogImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowInstanceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
- * @author Marcellus Tavares
  */
-public class WorkflowLogImpl extends DefaultWorkflowLog {
+public class WorkflowInstanceImpl extends DefaultWorkflowInstance {
+
+	public WorkflowInstanceImpl(Token token) {
+		ProcessInstance processInstance = token.getProcessInstance();
+		ProcessDefinition processDefinition =
+			processInstance.getProcessDefinition();
+
+		Map<String, Object> context =
+			processInstance.getContextInstance().getVariables(token);
+
+		if (context == null) {
+			context = new HashMap<String, Object>();
+		}
+
+		setContext(Collections.unmodifiableMap(context));
+
+		setEndDate(token.getEnd());
+		setStartDate(token.getStart());
+		setState(token.getNode().getName());
+		setWorkflowDefinitionName(processDefinition.getName());
+		setWorkflowDefinitionVersion(processDefinition.getVersion());
+		setWorkflowInstanceId(token.getId());
+	}
+
 }

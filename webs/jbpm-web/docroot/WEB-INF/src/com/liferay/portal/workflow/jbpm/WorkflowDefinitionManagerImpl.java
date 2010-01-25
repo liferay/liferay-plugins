@@ -25,8 +25,6 @@ package com.liferay.portal.workflow.jbpm;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
-import com.liferay.portal.kernel.workflow.WorkflowDefinitionImpl;
-
 import com.liferay.portal.kernel.workflow.WorkflowDefinitionManager;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
@@ -92,8 +90,7 @@ public class WorkflowDefinitionManagerImpl
 			jbpmContext.close();
 		}
 
-		return new WorkflowDefinitionImpl(
-			processDefinition.getName(), processDefinition.getVersion());
+		return new WorkflowDefinitionImpl(processDefinition);
 	}
 
 	public WorkflowDefinition getWorkflowDefinition(String name, int version)
@@ -108,7 +105,7 @@ public class WorkflowDefinitionManagerImpl
 				graphSession.findProcessDefinition(name, version);
 
 			if (processDefinition != null) {
-				return new WorkflowDefinitionImpl(name, version);
+				return new WorkflowDefinitionImpl(processDefinition);
 			}
 			else {
 				throw new WorkflowException(
@@ -232,7 +229,7 @@ public class WorkflowDefinitionManagerImpl
 
 		for (ProcessDefinition processDefinition : processDefinitions) {
 			WorkflowDefinition workflowDefinition = new WorkflowDefinitionImpl(
-				processDefinition.getName(), processDefinition.getVersion());
+				processDefinition);
 
 			workflowDefinitions.add(workflowDefinition);
 		}

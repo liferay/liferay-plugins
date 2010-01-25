@@ -35,7 +35,6 @@ import com.liferay.portal.model.Role;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
-import com.liferay.portal.workflow.jbpm.util.WorkflowObjectUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -86,8 +85,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			}
 
 			jbpmContext.save(taskInstance);
-			
-			return WorkflowObjectUtil.createWorkflowTask(taskInstance);
+
+			return new WorkflowTaskImpl(taskInstance);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -145,15 +144,15 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			workflowLogImpl.setComment(comment);
 			workflowLogImpl.setCreateDate(new Date());
 			workflowLogImpl.setPreviousUserId(GetterUtil.getLong(oldActorId));
-			workflowLogImpl.setTaskInstance(taskInstance);
 			workflowLogImpl.setType(WorkflowLog.TASK_ASSIGN);
 			workflowLogImpl.setUserId(assigneeUserId);
+			workflowLogImpl.setWorkflowInstanceId(taskInstance.getId());
 
 			Session session = jbpmContext.getSession();
 
 			session.save(workflowLogImpl);
 
-			return WorkflowObjectUtil.createWorkflowTask(taskInstance);
+			return new WorkflowTaskImpl(taskInstance);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -213,15 +212,15 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			workflowLogImpl.setComment(comment);
 			workflowLogImpl.setPreviousState(oldNode.getName());
 			workflowLogImpl.setState(node.getName());
-			workflowLogImpl.setTaskInstance(taskInstance);
 			workflowLogImpl.setType(WorkflowLog.TRANSITION);
 			workflowLogImpl.setUserId(actorId);
+			workflowLogImpl.setWorkflowInstanceId(taskInstance.getId());
 
 			Session session = jbpmContext.getSession();
 
 			session.save(workflowLogImpl);
 
-			return WorkflowObjectUtil.createWorkflowTask(taskInstance);
+			return new WorkflowTaskImpl(taskInstance);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -313,7 +312,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			TaskInstance taskInstance = taskMgmtSession.loadTaskInstance(
 				workflowTaskId);
 
-			return WorkflowObjectUtil.createWorkflowTask(taskInstance);
+			return new WorkflowTaskImpl(taskInstance);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -510,8 +509,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			new ArrayList<WorkflowTask>(taskInstances.size());
 
 		for (TaskInstance taskInstance : taskInstances) {
-			taskInstanceInfos.add(
-				WorkflowObjectUtil.createWorkflowTask(taskInstance));
+			taskInstanceInfos.add(new WorkflowTaskImpl(taskInstance));
 		}
 
 		return taskInstanceInfos;

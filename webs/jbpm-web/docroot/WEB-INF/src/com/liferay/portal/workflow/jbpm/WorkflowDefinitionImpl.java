@@ -22,14 +22,21 @@
 
 package com.liferay.portal.workflow.jbpm;
 
-import com.liferay.portal.kernel.workflow.DefaultWorkflowLog;
+import com.liferay.portal.kernel.workflow.DefaultWorkflowDefinition;
+
+import org.jbpm.graph.def.ProcessDefinition;
 
 /**
- * <a href="WorkflowLogImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowDefinitionImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
- * @author Marcellus Tavares
  */
-public class WorkflowLogImpl extends DefaultWorkflowLog {
+public class WorkflowDefinitionImpl extends DefaultWorkflowDefinition {
+
+	public WorkflowDefinitionImpl(ProcessDefinition processDefinition) {
+		setName(processDefinition.getName());
+		setVersion(processDefinition.getVersion());
+	}
+
 }
