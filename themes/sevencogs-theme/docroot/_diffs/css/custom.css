@@ -1,24 +1,16 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */ 
 
-/* ---------- Body ---------- */
+/* ---------- Base styles ---------- */
 
 body {
 	background: #F2F2EB;
-	font: 12px Helvetica Neue, Arial, sans-serif;
+	font: 12px "Helvetica Neue", Arial, sans-serif;
 }
-
-body.html-editor.portlet.portlet-blogs {
-	background: #FFF;
-}
-
-/* ---------- Wrapper ---------- */
 
 #wrapper {
 	margin: 0 auto;
 	width: 960px;
 }
-
-/* ---------- Banner and Navigation ---------- */
 
 #banner {
 	background: transparent url(../images/custom/banner_bg.png) no-repeat 0 center;
@@ -37,11 +29,21 @@ body.html-editor.portlet.portlet-blogs {
 	top: 20px;
 }
 
+#banner .sign-in {
+	right: 30px;
+	color: #FFF;
+	text-decoration: none;
+}
+
 #navigation {
 	background: transparent url(../images/custom/tab_link.png) repeat-x;
 	height: 33px;
 	padding-right: 108px;
 	position: relative;
+}
+
+#navigation .aui-sortable-proxy {
+	background: none;
 }
 
 #navigation ul {
@@ -69,76 +71,17 @@ body.html-editor.portlet.portlet-blogs {
 	color: white;
 }
 
-#add-page {
-	bottom: 100%;
-	position: absolute;
-	right: 10px;
-	top: 4px;
-}
-
-#add-page a {
-	background: url(../images/common/add.png) no-repeat 5px 50%;
-	color: #FFF;
-	display: block;
-	padding: 7px 20px 7px 25px;
-	text-decoration: none;
-}
-
-#navigation .enter-page {
-	background: #849FD6;
-	padding: 3px 0 3px 5px;
-}
-
-.ie7 #navigation .enter-page {
-	padding-bottom: 1px;
-}
-
-#navigation .cancel-page {
-	display: none;
-}
-
-#navigation .save-page {
-	display: inline;
-	position: relative;
-	top: 1px;
-}
-
-.ie7 #navigation .save-page {
-	position: relative;
-	top: -5px;
-}
-
-.ie7 #navigation input {
-	position: relative;
-	top: -1px;
-}
-
-.js .interactive-mode {
-	background: none;
-	right: 10px;
-	top: 0;
-}
-
-.js .interactive-mode h2 span {
-	background: none;
-	border-right: none;
-}
-
-.js .interactive-mode h2 {
-	background: url(../images/custom/right_bg.png) no-repeat scroll 100% 0;
-}
-
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
-	background: #FFF url(../images/custom/content_wrapper_bg.gif) repeat-x;
+	background: #FFF;
 	border: 5px solid #0E1744;
 	border-color: #141424;
 	border-top: 0;
 	padding: 0 10px 10px;
 }
 
-/* ---------- Portlets ---------- */
+/* ---------- Portlet wrapper and icons ---------- */
 
 .portlet {
 	margin: 10px 0 10px 10px;
