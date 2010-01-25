@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManager;
 import com.liferay.portal.kernel.workflow.comparator.WorkflowInstanceStateComparator;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
+import com.liferay.portal.workflow.jbpm.util.WorkflowObjectUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -351,8 +352,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	protected WorkflowInstance getWorkflowInstance(Token token) {
-		WorkflowInstanceImpl workflowInstanceImpl =
-			new WorkflowInstanceImpl(token);
+		WorkflowInstance workflowInstanceImpl =
+			WorkflowObjectUtil.createWorkflowInstance(token);
 
 		populateChildrenWorkflowInstances(token, workflowInstanceImpl);
 
@@ -360,22 +361,23 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	protected void populateChildrenWorkflowInstances(
-		Token token, WorkflowInstanceImpl workflowInstanceImpl) {
+		Token token, WorkflowInstance workflowInstance) {
 
-		Stack<ObjectValuePair<Token, WorkflowInstanceImpl>>
+		Stack<ObjectValuePair<Token, WorkflowInstance>>
 			objectValuePairs =
-				new Stack<ObjectValuePair<Token, WorkflowInstanceImpl>>();
+				new Stack<ObjectValuePair<Token, WorkflowInstance>>();
 
 		objectValuePairs.push(
-			new ObjectValuePair<Token, WorkflowInstanceImpl>(
-				token, workflowInstanceImpl));
+			new ObjectValuePair<Token, WorkflowInstance>(
+				token, workflowInstance));
 
 		while (!objectValuePairs.isEmpty()) {
-			ObjectValuePair<Token, WorkflowInstanceImpl> objectValuePair =
+			ObjectValuePair<Token, WorkflowInstance> objectValuePair =
 				objectValuePairs.pop();
 
 			Token parentToken = objectValuePair.getKey();
-			WorkflowInstanceImpl parentWorkflowInstanceImpl =
+			
+			WorkflowInstance parentWorkflowInstance =
 				objectValuePair.getValue();
 
 			Map<String, Token> children = parentToken.getChildren();
@@ -385,23 +387,23 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			}
 
 			for (Token childToken : children.values()) {
-				WorkflowInstanceImpl childWorkflowInstanceImpl =
-					new WorkflowInstanceImpl(childToken);
+				WorkflowInstance childWorkflowInstance =
+					WorkflowObjectUtil.createWorkflowInstance(childToken);
 
-				parentWorkflowInstanceImpl.addChildWorkflowInstance(
-					childWorkflowInstanceImpl);
+				parentWorkflowInstance.addChildWorkflowInstance(
+					childWorkflowInstance);
 
-				childWorkflowInstanceImpl.setParentWorkflowInstance(
-					parentWorkflowInstanceImpl);
+				childWorkflowInstance.setParentWorkflowInstance(
+					parentWorkflowInstance);
 
 				objectValuePairs.push(
-					new ObjectValuePair<Token, WorkflowInstanceImpl>(
-						childToken, childWorkflowInstanceImpl));
+					new ObjectValuePair<Token, WorkflowInstance>(
+						childToken, childWorkflowInstance));
 			}
 		}
 
 		Collections.sort(
-			workflowInstanceImpl.getChildrenWorkflowInstances(),
+			workflowInstance.getChildrenWorkflowInstances(),
 			new WorkflowInstanceStateComparator(true));
 	}
 

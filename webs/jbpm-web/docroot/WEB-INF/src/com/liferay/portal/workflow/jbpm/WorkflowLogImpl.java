@@ -24,6 +24,7 @@ package com.liferay.portal.workflow.jbpm;
 
 import com.liferay.portal.kernel.workflow.WorkflowLog;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.jbpm.taskmgmt.exe.TaskInstance;
@@ -35,7 +36,7 @@ import org.jbpm.taskmgmt.exe.TaskInstance;
  * @author Brian Wing Shun Chan
  * @author Marcellus Tavares
  */
-public class WorkflowLogImpl implements WorkflowLog {
+public class WorkflowLogImpl implements WorkflowLog, Serializable {
 
 	public String getComment() {
 		return _comment;

@@ -35,6 +35,7 @@ import com.liferay.portal.model.Role;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
+import com.liferay.portal.workflow.jbpm.util.WorkflowObjectUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -85,8 +86,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			}
 
 			jbpmContext.save(taskInstance);
-
-			return new WorkflowTaskImpl(taskInstance);
+			
+			return WorkflowObjectUtil.createWorkflowTask(taskInstance);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -152,7 +153,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			session.save(workflowLogImpl);
 
-			return new WorkflowTaskImpl(taskInstance);
+			return WorkflowObjectUtil.createWorkflowTask(taskInstance);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -220,7 +221,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			session.save(workflowLogImpl);
 
-			return new WorkflowTaskImpl(taskInstance);
+			return WorkflowObjectUtil.createWorkflowTask(taskInstance);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -312,7 +313,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			TaskInstance taskInstance = taskMgmtSession.loadTaskInstance(
 				workflowTaskId);
 
-			return new WorkflowTaskImpl(taskInstance);
+			return WorkflowObjectUtil.createWorkflowTask(taskInstance);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -509,7 +510,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			new ArrayList<WorkflowTask>(taskInstances.size());
 
 		for (TaskInstance taskInstance : taskInstances) {
-			taskInstanceInfos.add(new WorkflowTaskImpl(taskInstance));
+			taskInstanceInfos.add(
+				WorkflowObjectUtil.createWorkflowTask(taskInstance));
 		}
 
 		return taskInstanceInfos;
