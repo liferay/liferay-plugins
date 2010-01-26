@@ -24,6 +24,8 @@ package com.liferay.portal.workflow.jbpm;
 
 import com.liferay.portal.kernel.workflow.DefaultWorkflowLog;
 
+import org.jbpm.taskmgmt.exe.TaskInstance;
+
 /**
  * <a href="WorkflowLogImpl.java.html"><b><i>View Source</i></b></a>
  *
@@ -32,4 +34,19 @@ import com.liferay.portal.kernel.workflow.DefaultWorkflowLog;
  * @author Marcellus Tavares
  */
 public class WorkflowLogImpl extends DefaultWorkflowLog {
+
+	public TaskInstance getTaskInstance() {
+		return _taskInstance;
+	}
+
+	public long getWorkflowInstanceId() {
+		return _taskInstance.getId();
+	}
+
+	public void setTaskInstance(TaskInstance taskInstance) {
+		_taskInstance = taskInstance;
+	}
+
+	private TaskInstance _taskInstance;
+
 }

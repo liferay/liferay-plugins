@@ -144,9 +144,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			workflowLogImpl.setComment(comment);
 			workflowLogImpl.setCreateDate(new Date());
 			workflowLogImpl.setPreviousUserId(GetterUtil.getLong(oldActorId));
+			workflowLogImpl.setTaskInstance(taskInstance);
 			workflowLogImpl.setType(WorkflowLog.TASK_ASSIGN);
 			workflowLogImpl.setUserId(assigneeUserId);
-			workflowLogImpl.setWorkflowInstanceId(taskInstance.getId());
 
 			Session session = jbpmContext.getSession();
 
@@ -212,9 +212,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			workflowLogImpl.setComment(comment);
 			workflowLogImpl.setPreviousState(oldNode.getName());
 			workflowLogImpl.setState(node.getName());
+			workflowLogImpl.setTaskInstance(taskInstance);
 			workflowLogImpl.setType(WorkflowLog.TRANSITION);
 			workflowLogImpl.setUserId(actorId);
-			workflowLogImpl.setWorkflowInstanceId(taskInstance.getId());
 
 			Session session = jbpmContext.getSession();
 
