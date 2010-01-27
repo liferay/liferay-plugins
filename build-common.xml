@@ -117,7 +117,9 @@ ECJ was automatically installed. Please rerun your task.
 			classpathref="portal.classpath"
 			fork="true"
 			newenvironment="true"
-		/>
+		>
+			<jvmarg value="-Xmx128m" />
+		</java>
 
 		<delete file="ServiceBuilder.temp" />
 	</target>
