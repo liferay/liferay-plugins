@@ -1,4 +1,4 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */ 
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 /* ---------- Base styles ---------- */
 
@@ -30,8 +30,8 @@ body {
 }
 
 #banner .sign-in {
-	right: 30px;
 	color: #FFF;
+	right: 30px;
 	text-decoration: none;
 }
 
@@ -51,6 +51,10 @@ body {
 	height: 33px;
 	margin: 0 10px 0;
 	position: relative;
+}
+
+#navigation li {
+	list-style: none;
 }
 
 #navigation li a {
