@@ -10,6 +10,10 @@ body {
 	overflow: hidden;
 }
 
+#banner .logo {
+	margin: 0;
+}
+
 #banner .logo a {
 	margin: 10px auto;
 }
