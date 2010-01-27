@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
-import com.liferay.portal.kernel.search.DocumentSummary;
+import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
@@ -139,16 +139,16 @@ public class Indexer implements com.liferay.portal.kernel.search.Indexer {
 		return _CLASS_NAMES;
 	}
 
-	public DocumentSummary getDocumentSummary(
+	public Summary getSummary(
 		Document doc, String snippet, PortletURL portletURL) {
 
 		return null;
 	}
 
-	public void reIndex(String className, long classPK) throws SearchException {
+	public void reindex(String className, long classPK) throws SearchException {
 	}
 
-	public void reIndex(String[] ids) throws SearchException {
+	public void reindex(String[] ids) throws SearchException {
 		try {
 			MailDiskManager.reIndex(ids);
 		}
