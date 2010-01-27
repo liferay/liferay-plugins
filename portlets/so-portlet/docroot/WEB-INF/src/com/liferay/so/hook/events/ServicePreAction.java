@@ -95,6 +95,10 @@ public class ServicePreAction extends Action {
 
 		Layout layout = themeDisplay.getLayout();
 
+		if (Validator.isNull(layout)) {
+			return;
+		}
+
 		if (layout.getLayoutId() != 1) {
 			return;
 		}
