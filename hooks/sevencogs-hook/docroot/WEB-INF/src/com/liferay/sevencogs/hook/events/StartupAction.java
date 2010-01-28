@@ -775,6 +775,10 @@ public class StartupAction extends SimpleAction {
 			defaultUserId, igFolder.getFolderId(), "sevencogs_ad.png",
 			serviceContext);
 
+		IGImage sevenCogsMobileAdIGImage = addIGImage(
+			defaultUserId, igFolder.getFolderId(), "sevencogs_mobile_ad.png",
+			serviceContext);
+
 		IGImage sharedWorkspacesIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "shared_workspaces.png",
 			serviceContext);
@@ -841,18 +845,53 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setAssetTagNames(new String[] {"liferay", "7cogs"});
 
 		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "7 Cogs Ad", "7cogs_ad.xml",
-			serviceContext);
+			defaultUserId, group.getGroupId(), "7 Cogs Ad",
+			"sample_site_ad.xml", serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
 			new String[] {
 				"[$GROUP_ID$]",
-				"[$SEVEN_COGS_IG_IMAGE_UUID$]"
+				"[$GROUP_URL$]",
+				"[$IG_IMAGE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
+				"/web/7cogs/home",
 				String.valueOf(sevenCogsAdIGImage.getUuid())
+			});
+
+		JournalArticleLocalServiceUtil.updateContent(
+			group.getGroupId(), journalArticle.getArticleId(),
+			journalArticle.getVersion(), content);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// 7Cogs Mobile Ad content portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
+
+		removePortletBorder(layout, portletId);
+
+		serviceContext.setAssetTagNames(new String[] {"liferay", "7cogs"});
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "7 Cogs Mobile Ad",
+			"sample_site_ad.xml", serviceContext);
+
+		content = StringUtil.replace(
+			journalArticle.getContent(),
+			new String[] {
+				"[$GROUP_ID$]",
+				"[$GROUP_URL$]",
+				"[$IG_IMAGE_UUID$]"
+			},
+			new String[] {
+				String.valueOf(group.getGroupId()),
+				"/web/7cogs-mobile/home",
+				String.valueOf(sevenCogsMobileAdIGImage.getUuid())
 			});
 
 		JournalArticleLocalServiceUtil.updateContent(
