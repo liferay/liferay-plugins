@@ -34,13 +34,22 @@ import com.liferay.portal.kernel.search.IndexSearcher;
 import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
@@ -49,12 +58,150 @@ import org.apache.solr.common.SolrDocumentList;
  * <a href="SolrIndexSearcherImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Bruno Farache
- *
+ * @author Zsolt Berentey
+ * 
  */
 public class SolrIndexSearcherImpl implements IndexSearcher {
 
 	public Hits search(
 			long companyId, Query query, Sort[] sorts, int start, int end)
+		throws SearchException {
+
+		try {
+			SolrQuery solrQuery = _translateQuery(query, sorts, start, end);
+
+			QueryResponse response = _solrServer.query(solrQuery);
+
+			boolean allResults = false;
+			
+			if (solrQuery.getRows() == 0) {
+				allResults = true;
+			}
+			
+			Hits subset =
+				subset(solrQuery, response, allResults);
+
+			return subset;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new SearchException(e.getMessage());
+		}
+	}
+
+	public void setSolrServer(SolrServer solrServer) {
+		_solrServer = solrServer;
+	}
+
+	protected String getSnippet(
+		SolrDocument doc, Set<String> queryTerms,
+		Map<String, Map<String, List<String>>> highlights) {
+
+		if (Validator.isNull(highlights)) {
+			return StringPool.BLANK;
+		}
+
+		String key = (String) doc.getFieldValue(Field.UID);
+		List<String> snippets = highlights.get(key).get(Field.CONTENT);
+
+		String snippet = StringUtil.merge(snippets, "...");
+
+		if (Validator.isNotNull(snippet)) {
+			snippet = snippet + "...";
+		}
+		else {
+			snippet = StringPool.BLANK;
+		}
+
+		Matcher m = Pattern.compile("<em>(.*?)</em>").matcher(snippet);
+		
+		while (m.find()) {
+			queryTerms.add(m.group(1));
+		}
+
+		snippet = StringUtil.replace(snippet, "<em>", "");
+		snippet = StringUtil.replace(snippet, "</em>", "");
+		
+		return snippet;
+	}
+
+	protected Hits subset(
+			SolrQuery solrQuery, QueryResponse response, boolean allResults)
+		throws Exception {
+
+		long startTime = System.currentTimeMillis();
+
+		Hits subset = new HitsImpl();
+
+		SolrDocumentList results = response.getResults();
+
+		long length = results.getNumFound();
+
+		if (allResults && (length > 0)) {
+			solrQuery.setRows((int)length);
+
+			results = _solrServer.query(solrQuery).getResults();
+
+			return subset(solrQuery, response, false);
+		}
+
+		float maxScore = results.getMaxScore();
+
+		int subsetTotal = results.size();
+
+		Document[] subsetDocs = new DocumentImpl[subsetTotal];
+		String[] subsetSnippets = new String[subsetTotal];
+		float[] subsetScores = new float[subsetTotal];
+
+		int j = 0;
+
+		Map<String, Map<String, List<String>>> highlights =
+			response.getHighlighting();
+		
+		Set<String> queryTerms = new HashSet<String>();
+
+		for (SolrDocument solrDocument : results) {
+			Document doc = new DocumentImpl();
+
+			Collection<String> names = solrDocument.getFieldNames();
+
+			for (String name : names) {
+				Field field = new Field(
+					name, solrDocument.getFieldValue(name).toString(), false);
+
+				doc.add(field);
+			}
+
+			float score = Float.valueOf(
+				solrDocument.getFieldValue("score").toString());
+
+			subsetDocs[j] = doc;
+			subsetSnippets[j] =	getSnippet(
+				solrDocument, queryTerms, highlights);
+			
+			subsetScores[j] = score / maxScore;
+
+			j++;
+		}
+
+		subset.setLength((int)length);
+		subset.setDocs(subsetDocs);
+		subset.setScores(subsetScores);
+		subset.setSnippets(subsetSnippets);
+		subset.setStart(startTime);
+		subset.setQueryTerms(queryTerms.toArray(new String[queryTerms.size()]));
+
+		float searchTime =
+			(float)(System.currentTimeMillis() - startTime) / Time.SECOND;
+
+		subset.setSearchTime(searchTime);
+
+		return subset;
+	}
+
+	private SolrQuery _translateQuery(
+			Query query, Sort[] sorts, int start, int end)
 		throws SearchException {
 
 		try {
@@ -68,12 +215,8 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 			solrQuery.setIncludeScore(true);
 
-			boolean allResults = false;
-
 			if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
 				solrQuery.setRows(0);
-
-				allResults = true;
 			}
 			else {
 				solrQuery.setStart(start);
@@ -104,9 +247,11 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				}
 			}
 
-			QueryResponse response = _solrServer.query(solrQuery);
+			solrQuery.setHighlightFragsize(80);
+			solrQuery.setHighlightSnippets(3);
+			solrQuery.setHighlight(true);
 
-			return subset(solrQuery, response.getResults(), allResults);
+			return solrQuery;
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -115,73 +260,8 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		}
 	}
 
-	public void setSolrServer(SolrServer solrServer) {
-		_solrServer = solrServer;
-	}
-
-	protected Hits subset(
-			SolrQuery solrQuery, SolrDocumentList results, boolean allResults)
-		throws Exception {
-
-		long startTime = System.currentTimeMillis();
-
-		Hits subset = new HitsImpl();
-
-		long length = results.getNumFound();
-
-		if (allResults && (length > 0)) {
-			solrQuery.setRows((int)length);
-
-			results = _solrServer.query(solrQuery).getResults();
-
-			return subset(solrQuery, results, false);
-		}
-
-		float maxScore = results.getMaxScore();
-
-		int subsetTotal = results.size();
-
-		Document[] subsetDocs = new DocumentImpl[subsetTotal];
-		float[] subsetScores = new float[subsetTotal];
-
-		int j = 0;
-
-		for (SolrDocument solrDocument : results) {
-			Document doc = new DocumentImpl();
-
-			Collection<String> names = solrDocument.getFieldNames();
-
-			for (String name : names) {
-				Field field = new Field(
-					name, solrDocument.getFieldValue(name).toString(), false);
-
-				doc.add(field);
-			}
-
-			float score = Float.valueOf(
-				solrDocument.getFieldValue("score").toString());
-
-			subsetDocs[j] = doc;
-			subsetScores[j] = score / maxScore;
-
-			j++;
-		}
-
-		subset.setLength((int)length);
-		subset.setDocs(subsetDocs);
-		subset.setScores(subsetScores);
-		subset.setStart(startTime);
-
-		float searchTime =
-			(float)(System.currentTimeMillis() - startTime) / Time.SECOND;
-
-		subset.setSearchTime(searchTime);
-
-		return subset;
-	}
-
 	private static Log _log =
-		 LogFactoryUtil.getLog(SolrIndexSearcherImpl.class);
+		LogFactoryUtil.getLog(SolrIndexSearcherImpl.class);
 
 	private SolrServer _solrServer;
 

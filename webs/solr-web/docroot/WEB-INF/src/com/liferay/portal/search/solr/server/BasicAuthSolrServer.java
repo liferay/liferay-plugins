@@ -28,6 +28,7 @@ import java.net.MalformedURLException;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpState;
+import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.solr.client.solrj.ResponseParser;
@@ -63,7 +64,8 @@ public class BasicAuthSolrServer extends SolrServer {
 		_username = username;
 		_password = password;
 
-		HttpClient httpClient = new HttpClient();
+		HttpClient httpClient =
+			new HttpClient(new MultiThreadedHttpConnectionManager());
 
 		if (_username != null && _password != null) {
 			if (authScope == null) {
