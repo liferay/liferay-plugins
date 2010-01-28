@@ -1441,6 +1441,38 @@ public class StartupAction extends SimpleAction {
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
+
+		// 7Cogs, Inc. Mobile organization
+
+		parentOrganizationId = organization.getOrganizationId();
+		name = "7Cogs, Inc. Mobile";
+
+		organization = OrganizationLocalServiceUtil.addOrganization(
+			userId, parentOrganizationId, name, type, recursable, regionId,
+			countryId, statusId, comments, serviceContext);
+
+		// Group
+
+		group = organization.getGroup();
+
+		GroupLocalServiceUtil.updateFriendlyURL(
+			group.getGroupId(), "/7cogs-mobile");
+
+		serviceContext.setScopeGroupId(group.getGroupId());
+
+		// Layout set
+
+		LayoutSetLocalServiceUtil.updateLogo(
+			group.getGroupId(), false, true,
+			getInputStream("/images/seven_cogs_log.png"));
+
+		LayoutSetLocalServiceUtil.updateLookAndFeel(
+			group.getGroupId(), false,
+			"sevencogsmobile_WAR_sevencogsmobiletheme", "01", "", false);
+
+		// Home layout
+
+		layout = addLayout(group, "Home", false, "/home", "1_column");
 	}
 
 	protected void setupRoles(long companyId, long defaultUserId)
