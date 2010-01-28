@@ -59,7 +59,6 @@ import org.apache.solr.common.SolrDocumentList;
  *
  * @author Bruno Farache
  * @author Zsolt Berentey
- *
  */
 public class SolrIndexSearcherImpl implements IndexSearcher {
 
@@ -177,10 +176,8 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				solrDocument.getFieldValue("score").toString());
 
 			subsetDocs[j] = doc;
-
 			subsetSnippets[j] = getSnippet(
 				solrDocument, queryTerms, highlights);
-
 			subsetScores[j] = score / maxScore;
 
 			j++;
