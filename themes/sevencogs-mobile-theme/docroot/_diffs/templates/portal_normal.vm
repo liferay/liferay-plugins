@@ -1,55 +1,44 @@
-<!DOCTYPE html>
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.1//EN" "http://www.wapforum.org/DTD/xhtml-mobile11.dtd">
 
 #parse ($init)
 
-<html dir="#language ("lang.dir")">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 	<title>$the_title - $company_name</title>
+	<link rel="stylesheet" href="$css_folder/main.css" type="text/css" title="$company_name style" />
+	
+	<style type="text/css" media="screen">
+	#logo {
+		background: url($company_logo);
+		display: block;
+		font-size: 0;
+		height: ${company_logo_height}px;
+		line-height: 0;
+		overflow: hidden;
+		text-indent: -9999em;
+		width: ${company_logo_width}px;
+	}
+</style>
 
-	$theme.include($top_head_include)
 </head>
 
-<body class="$css_class">
+<body>
 
-#if($is_signed_in)
-	#dockbar()
+#if ($has_navigation)
+	#parse ("$full_templates_path/navigation.vm")
 #end
 
-<div id="wrapper">
-	<div id="banner">
-		<h1 class="logo">
-			<a class="png" href="$company_url">$the_title - $company_name</a>
-		</h1>
+<div class="section">
+	<h1 class="is-img" id="logo">
+		company name
+	</h1>
 
-		#if(!$is_signed_in)
-			<a class="sign-in" href="$sign_in_url" id="liferaySignInLink">$sign_in_text</a>
-		#end
+	$theme.include($content_include)
 
-		#if ($update_available_url)
-			<div class="popup-alert-notice">
-				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
-			</div>
-		#end
-
-		#if ($has_navigation)
-			#parse ("$full_templates_path/navigation.vm")
-		#end
-	</div>
-
-	#if ($selectable)
-		$theme.include($content_include)
-	#else
-		$portletDisplay.recycle()
-
-		$portletDisplay.setTitle($the_title)
-
-		$theme.wrapPortlet("portlet.vm", $content_include)
-	#end
 </div>
 
 </body>
-
-$theme.include($bottom_include)
 
 </html>

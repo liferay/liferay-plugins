@@ -1,101 +1,79 @@
-/* ---------- Global ---------- */
-
 body {
+	background: #151316;
+	border: 0 solid #1b1b2f;
+	border-width: 0 2px;
+	color: #FFF;
+	font: 16px/20px Verdana, Arial, Helvetica, sans-serif;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
 	margin: 0;
-	min-height: 480px;
 }
 
-#banner {
-	background: #000 url(../images/custom/banner_bg.jpg) center top;
-	overflow: hidden;
+h1,
+h2 {
+	font-size: 12px;
+	line-height: 16px;
+	margin-bottom: 4px;
 }
 
-#banner .logo {
+.is-img {
+	line-height: 0;
+}
+
+h2 {
+	color: #ACACAC;
+	text-transform: uppercase;
+}
+
+#nav {
+	background: #1D1E32;
+	list-style: none;
 	margin: 0;
+	padding: 0 10px;
 }
 
-#banner .logo a {
-	margin: 10px auto;
-}
-
-.portlet {
-	border-bottom: 1px solid #DDD;
-	color: #555;
-	padding: 1em 0.5em;
-}
-
-/* ---------- Navigation ---------- */
-
-#navigation table {
-	border-spacing: 0;
-	width: 100%;
-}
-
-#navigation th {
-	padding: 0;
-	vertical-align: bottom;
-}
-
-#navigation a {
-	-moz-border-radius-topleft: 4px;
-	-moz-border-radius-topright: 4px;
-	-webkit-border-top-left-radius: 4px;
-	-webkit-border-top-right-radius: 4px;
-	background: #070A0B url(../images/custom/tabs_bg.png) repeat-x top;
-	color: #83B1C0;
+#nav:after {
+	clear: both;
+	content: ".";
 	display: block;
-	font: bold 1.3em/2.4 Helvetica, Arial, sans-serif;
-	margin-right: 1px;
-	text-align: center;
+	height: 0;
+	visibility: hidden;
+}
+
+* html #nav {
+	height: 1%;
+}
+
+* + html #nav {
+	height: 1%;
+}
+
+#nav li {
+	float: left;
+}
+
+#nav a {
+	color: #FFF;
+	display: block;
+	font-weight: bold;
+	line-height: 34px;
+	padding: 0 11px;
 	text-decoration: none;
+	text-transform: uppercase;
 }
 
-#navigation a.selected {
-	background: #222E34 url(../images/custom/selected_tab.png) repeat-x top;
-	color: #F3F3F3;
-	padding: 4px 0 0;
-	text-shadow: 0 0 2px #888;
+#nav a.selected {
+	background: #2C2E4D;
 }
 
-/* ---------- Calendar ---------- */
-
-.portlet-calendar .calendar-container {
-	border: 0;
-	width: auto;
-}
-
-.portlet-calendar .calendar-container .taglib-calendar {
-	float: none;
-}
-
-.portlet-calendar .calendar-day {
-	width: 100%;
-}
-
-.portlet-calendar .calendar-container,
-.portlet-calendar .taglib-calendar {
-	width: 100%;
-}
-
-.portlet-calendar form > table > tbody > tr > td {
-	display: block;
-	width: 100%;
-}
-
-.portlet-calendar .calendar-day .day-text {
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	background: #EEE;
-	color: #222;
-	text-align: center;
-	text-shadow: 2px 2px 1px #BBB;
-}
-
-.portlet-calendar .portlet-section-header {
-	background: #EEE;
-}
-
-.portlet-calendar .day-number {
-	font-size: 64px;
-	text-align: center;
+.section {
+	padding: 8px 18px;
 }
