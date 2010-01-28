@@ -47,9 +47,9 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServer;
-import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
@@ -59,7 +59,7 @@ import org.apache.solr.common.SolrDocumentList;
  *
  * @author Bruno Farache
  * @author Zsolt Berentey
- * 
+ *
  */
 public class SolrIndexSearcherImpl implements IndexSearcher {
 
@@ -73,13 +73,12 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			QueryResponse response = _solrServer.query(solrQuery);
 
 			boolean allResults = false;
-			
+
 			if (solrQuery.getRows() == 0) {
 				allResults = true;
 			}
-			
-			Hits subset =
-				subset(solrQuery, response, allResults);
+
+			Hits subset = subset(solrQuery, response, allResults);
 
 			return subset;
 		}
@@ -103,6 +102,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		}
 
 		String key = (String) doc.getFieldValue(Field.UID);
+
 		List<String> snippets = highlights.get(key).get(Field.CONTENT);
 
 		String snippet = StringUtil.merge(snippets, "...");
@@ -115,14 +115,14 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		}
 
 		Matcher m = Pattern.compile("<em>(.*?)</em>").matcher(snippet);
-		
+
 		while (m.find()) {
 			queryTerms.add(m.group(1));
 		}
 
 		snippet = StringUtil.replace(snippet, "<em>", "");
 		snippet = StringUtil.replace(snippet, "</em>", "");
-		
+
 		return snippet;
 	}
 
@@ -158,7 +158,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 		Map<String, Map<String, List<String>>> highlights =
 			response.getHighlighting();
-		
+
 		Set<String> queryTerms = new HashSet<String>();
 
 		for (SolrDocument solrDocument : results) {
@@ -177,9 +177,10 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				solrDocument.getFieldValue("score").toString());
 
 			subsetDocs[j] = doc;
-			subsetSnippets[j] =	getSnippet(
+
+			subsetSnippets[j] = getSnippet(
 				solrDocument, queryTerms, highlights);
-			
+
 			subsetScores[j] = score / maxScore;
 
 			j++;
@@ -260,8 +261,8 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		}
 	}
 
-	private static Log _log =
-		LogFactoryUtil.getLog(SolrIndexSearcherImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		SolrIndexSearcherImpl.class);
 
 	private SolrServer _solrServer;
 

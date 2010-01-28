@@ -64,8 +64,8 @@ public class BasicAuthSolrServer extends SolrServer {
 		_username = username;
 		_password = password;
 
-		HttpClient httpClient =
-			new HttpClient(new MultiThreadedHttpConnectionManager());
+		HttpClient httpClient = new HttpClient(
+			new MultiThreadedHttpConnectionManager());
 
 		if (_username != null && _password != null) {
 			if (authScope == null) {
