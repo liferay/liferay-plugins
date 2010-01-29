@@ -98,16 +98,17 @@ public class BasicAuthSolrServer extends SolrServer {
 		return _server.getParser();
 	}
 
-	public NamedList<Object> request(SolrRequest request)
+	public NamedList<Object> request(SolrRequest solrRequest)
 		throws IOException, SolrServerException {
 
-		return _server.request(request);
+		return _server.request(solrRequest);
 	}
 
-	public NamedList<Object> request(SolrRequest request, ResponseParser parser)
+	public NamedList<Object> request(
+			SolrRequest solrRequest, ResponseParser responseParser)
 		throws IOException, SolrServerException {
 
-		return _server.request(request, parser);
+		return _server.request(solrRequest, responseParser);
 	}
 
 	public void setAllowCompression(boolean compression) {
@@ -142,8 +143,8 @@ public class BasicAuthSolrServer extends SolrServer {
 		_server.setMaxTotalConnections(maxTotalConnections);
 	}
 
-	public void setParser(ResponseParser parser) {
-		_server.setParser(parser);
+	public void setParser(ResponseParser responseParser) {
+		_server.setParser(responseParser);
 	}
 
 	public void setSoTimeout(int soTimeout) {

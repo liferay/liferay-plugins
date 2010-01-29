@@ -39,30 +39,30 @@ import org.apache.solr.common.util.NamedList;
  */
 public class BroadcastWriterSolrServer extends SolrServer {
 
-	public BroadcastWriterSolrServer(SolrServerWrapper... serverWrappers) {
-		_serverWrappers = serverWrappers;
+	public BroadcastWriterSolrServer(SolrServerWrapper... solrServerWrappers) {
+		_solrServerWrappers = solrServerWrappers;
 	}
 
-	public NamedList<Object> request(SolrRequest request)
+	public NamedList<Object> request(SolrRequest solrRequest)
 		throws SolrServerException {
 
 		NamedList<Object> response = null;
 
-		if (!(request instanceof UpdateRequest)) {
+		if (!(solrRequest instanceof UpdateRequest)) {
 			throw new IllegalStateException(
 				"This SolrServer should be used only to update requests");
 		}
 
-		for (SolrServerWrapper serverWrapper : _serverWrappers) {
+		for (SolrServerWrapper solrServerWrapper : _solrServerWrappers) {
 			try {
-				SolrServer server = serverWrapper.getServer();
+				SolrServer server = solrServerWrapper.getServer();
 
-				response = server.request(request);
+				response = server.request(solrRequest);
 			}
 			catch (Exception e) {
 				_log.error(
 					"Could not send request to server " +
-						serverWrapper.getId(),
+						solrServerWrapper.getId(),
 					e);
 			}
 		}
@@ -77,6 +77,6 @@ public class BroadcastWriterSolrServer extends SolrServer {
 	private static Log _log =
 		LogFactoryUtil.getLog(BroadcastWriterSolrServer.class);
 
-	private SolrServerWrapper[] _serverWrappers;
+	private SolrServerWrapper[] _solrServerWrappers;
 
 }

@@ -32,9 +32,9 @@ import org.apache.solr.client.solrj.SolrServer;
  */
 public class SolrServerWrapper {
 
-	public SolrServerWrapper(String id, SolrServer server) {
+	public SolrServerWrapper(String id, SolrServer solrServer) {
 		_id = id;
-		_server = server;
+		_solrServer = solrServer;
 	}
 
 	public String getId() {
@@ -42,10 +42,10 @@ public class SolrServerWrapper {
 	}
 
 	public SolrServer getServer() {
-		return _server;
+		return _solrServer;
 	}
 
 	private String _id;
-	private SolrServer _server;
+	private SolrServer _solrServer;
 
 }

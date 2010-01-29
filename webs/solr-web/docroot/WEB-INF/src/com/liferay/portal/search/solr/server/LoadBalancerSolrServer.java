@@ -40,31 +40,33 @@ import org.apache.solr.common.util.NamedList;
  */
 public class LoadBalancerSolrServer extends SolrServer {
 
-	public LoadBalancerSolrServer(SolrServerFactory factory) {
-		_factory = factory;
+	public LoadBalancerSolrServer(SolrServerFactory solrServerFactory) {
+		_solrServerFactory = solrServerFactory;
 	}
 
-	public NamedList<Object> request(SolrRequest request)
+	public NamedList<Object> request(SolrRequest solrRequest)
 		throws SolrServerException {
 
-		List<SolrServerWrapper> serverWrappers = _factory.getLiveServers();
+		List<SolrServerWrapper> solrServerWrappers =
+			_solrServerFactory.getLiveServers();
 
-		for (SolrServerWrapper serverWrapper : serverWrappers) {
-			SolrServer server = _factory.getLiveServer(serverWrapper);
+		for (SolrServerWrapper solrServerWrapper : solrServerWrappers) {
+			SolrServer solrServer = _solrServerFactory.getLiveServer(
+				solrServerWrapper);
 
-			if (server == null) {
+			if (solrServer == null) {
 				continue;
 			}
 
 			try {
-				return server.request(request);
+				return solrServer.request(solrRequest);
 			}
 			catch (SolrException se) {
 				throw se;
 			}
 			catch (SolrServerException sse) {
 				if (sse.getRootCause() instanceof IOException) {
-					_factory.killServer(serverWrapper);
+					_solrServerFactory.killServer(solrServerWrapper);
 				}
 				else {
 					throw sse;
@@ -78,6 +80,6 @@ public class LoadBalancerSolrServer extends SolrServer {
 		throw new SolrServerException("No server available");
 	}
 
-	private SolrServerFactory _factory;
+	private SolrServerFactory _solrServerFactory;
 
 }

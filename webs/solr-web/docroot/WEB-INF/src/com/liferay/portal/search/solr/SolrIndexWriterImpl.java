@@ -44,11 +44,11 @@ import org.apache.solr.common.SolrInputDocument;
  */
 public class SolrIndexWriterImpl implements IndexWriter {
 
-	public void addDocument(long companyId, Document doc)
+	public void addDocument(long companyId, Document document)
 		throws SearchException {
 
 		try {
-			_solrServer.add(getSolrDocument(doc));
+			_solrServer.add(getSolrDocument(document));
 
 			if (_commit) {
 				_solrServer.commit();
@@ -104,24 +104,24 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		_solrServer = solrServer;
 	}
 
-	public void updateDocument(long companyId, String uid, Document doc)
+	public void updateDocument(long companyId, String uid, Document document)
 		throws SearchException {
 
 		deleteDocument(companyId, uid);
 
-		addDocument(companyId, doc);
+		addDocument(companyId, document);
 	}
 
-	protected SolrInputDocument getSolrDocument(Document doc) {
-		SolrInputDocument solrDoc = new SolrInputDocument();
+	protected SolrInputDocument getSolrDocument(Document document) {
+		SolrInputDocument solrInputDocument = new SolrInputDocument();
 
-		Collection<Field> fields = doc.getFields().values();
+		Collection<Field> fields = document.getFields().values();
 
 		for (Field field : fields) {
 			String name = field.getName();
 			float boost = field.getBoost();
 
-			StringBuffer sb = new StringBuffer();
+			StringBuilder sb = new StringBuilder();
 
 			for (String value : field.getValues()) {
 				if (Validator.isNull(value)) {
@@ -133,11 +133,11 @@ public class SolrIndexWriterImpl implements IndexWriter {
 			}
 
 			if (sb.length() > 0) {
-				solrDoc.addField(name, sb.toString().trim(), boost);
+				solrInputDocument.addField(name, sb.toString().trim(), boost);
 			}
 		}
 
-		return solrDoc;
+		return solrInputDocument;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(SolrIndexWriterImpl.class);

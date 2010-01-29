@@ -37,8 +37,8 @@ import org.apache.solr.client.solrj.SolrServer;
  */
 public class SolrServerFactoryImpl implements SolrServerFactory {
 
-	public SolrServerFactoryImpl(Map<String, SolrServer> servers) {
-		for (Map.Entry<String, SolrServer> entry : servers.entrySet()) {
+	public SolrServerFactoryImpl(Map<String, SolrServer> solrServers) {
+		for (Map.Entry<String, SolrServer> entry : solrServers.entrySet()) {
 			String id = entry.getKey();
 			SolrServer solrServer = entry.getValue();
 
@@ -46,9 +46,9 @@ public class SolrServerFactoryImpl implements SolrServerFactory {
 		}
 	}
 
-	public SolrServer getDeadServer(SolrServerWrapper serverWrapper) {
+	public SolrServer getDeadServer(SolrServerWrapper solrServerWrapper) {
 		synchronized (this) {
-			String id = serverWrapper.getId();
+			String id = solrServerWrapper.getId();
 
 			if (_deadServers.containsKey(id)) {
 				return _deadServers.get(id).getServer();
@@ -64,9 +64,9 @@ public class SolrServerFactoryImpl implements SolrServerFactory {
 		}
 	}
 
-	public SolrServer getLiveServer(SolrServerWrapper serverWrapper) {
+	public SolrServer getLiveServer(SolrServerWrapper solrServerWrapper) {
 		synchronized (this) {
-			String id = serverWrapper.getId();
+			String id = solrServerWrapper.getId();
 
 			if (_liveServers.containsKey(id)) {
 				return _liveServers.get(id).getServer();
@@ -82,25 +82,25 @@ public class SolrServerFactoryImpl implements SolrServerFactory {
 		}
 	}
 
-	public void killServer(SolrServerWrapper serverWrapper) {
+	public void killServer(SolrServerWrapper solrServerWrapper) {
 		synchronized (this) {
-			if (_deadServers.containsKey(serverWrapper.getId())) {
+			if (_deadServers.containsKey(solrServerWrapper.getId())) {
 				return;
 			}
 
-			_deadServers.put(serverWrapper.getId(), serverWrapper);
-			_liveServers.remove(serverWrapper.getId());
+			_deadServers.put(solrServerWrapper.getId(), solrServerWrapper);
+			_liveServers.remove(solrServerWrapper.getId());
 		}
 	}
 
-	public void startServer(SolrServerWrapper serverWrapper) {
+	public void startServer(SolrServerWrapper solrServerWrapper) {
 		synchronized (this) {
-			if (_liveServers.containsKey(serverWrapper.getId())) {
+			if (_liveServers.containsKey(solrServerWrapper.getId())) {
 				return;
 			}
 
-			_deadServers.remove(serverWrapper.getId());
-			_liveServers.put(serverWrapper.getId(), serverWrapper);
+			_deadServers.remove(solrServerWrapper.getId());
+			_liveServers.put(solrServerWrapper.getId(), solrServerWrapper);
 		}
 	}
 

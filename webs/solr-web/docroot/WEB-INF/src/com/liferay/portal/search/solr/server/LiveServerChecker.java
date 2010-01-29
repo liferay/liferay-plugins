@@ -38,28 +38,31 @@ import org.apache.solr.client.solrj.response.SolrPingResponse;
  */
 public class LiveServerChecker {
 
-	public LiveServerChecker(final SolrServerFactory factory, Long delay) {
-		ScheduledExecutorService executor =
+	public LiveServerChecker(
+		final SolrServerFactory solrServerFactory, Long delay) {
+
+		ScheduledExecutorService scheduledExecutorService =
 			Executors.newSingleThreadScheduledExecutor();
 
 		Runnable runnable = new Runnable() {
 
 			public void run() {
-				Collection<SolrServerWrapper> serverWrappers =
-					factory.getDeadServers();
+				Collection<SolrServerWrapper> solrServerWrappers =
+					solrServerFactory.getDeadServers();
 
-				for (SolrServerWrapper serverWrapper : serverWrappers) {
-					SolrServer server = factory.getDeadServer(serverWrapper);
+				for (SolrServerWrapper solrServerWrapper : solrServerWrappers) {
+					SolrServer solrServer = solrServerFactory.getDeadServer(
+						solrServerWrapper);
 
-					if (server == null) {
+					if (solrServer == null) {
 						continue;
 					}
 
 					try {
-						SolrPingResponse response = server.ping();
+						SolrPingResponse solrPingResponse = solrServer.ping();
 
-						if (response.getStatus() == 0) {
-							factory.startServer(serverWrapper);
+						if (solrPingResponse.getStatus() == 0) {
+							solrServerFactory.startServer(solrServerWrapper);
 						}
 					}
 					catch (Exception e) {
@@ -69,7 +72,8 @@ public class LiveServerChecker {
 
 		};
 
-		executor.scheduleWithFixedDelay(runnable, 0, delay, TimeUnit.SECONDS);
+		scheduledExecutorService.scheduleWithFixedDelay(
+			runnable, 0, delay, TimeUnit.SECONDS);
 	}
 
 }
