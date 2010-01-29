@@ -9,7 +9,7 @@ if [ -z "$1" ]; then
 	echo The first hello-world is your extension environment name. A new directory will
 	echo be created based on the extension environment name.
 	echo
-	echo The second "Hello World" is the extension environment's display name. The
+	echo The second "Hello World" is the extension environment\'s display name. The
 	echo quotation marks are only needed because there is a space in the display name.
 
 	exit 127
