@@ -31,8 +31,10 @@ body {
 
 #banner .sign-in {
 	color: #FFF;
+	position: absolute;
 	right: 30px;
 	text-decoration: none;
+	top: 20px;
 }
 
 #navigation {
@@ -54,6 +56,7 @@ body {
 }
 
 #navigation li {
+	float: left;
 	list-style: none;
 }
 
