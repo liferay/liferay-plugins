@@ -533,12 +533,6 @@ public class StartupAction extends SimpleAction {
 
 		addPortletId(layout, PortletKeys.CALENDAR, "column-2");
 
-		// Email layout
-
-		layout = addLayout(group, "Email", true, "/email", "1_column");
-
-		addPortletId(layout, "1_WAR_mailportlet", "column-1");
-
 		return user;
 	}
 
@@ -986,7 +980,7 @@ public class StartupAction extends SimpleAction {
 
 		LayoutSetLocalServiceUtil.updateLogo(
 			group.getGroupId(), false, true,
-			getInputStream("/images/seven_cogs_log.png"));
+			getInputStream("/images/seven_cogs_logo.png"));
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
 			group.getGroupId(), false, "sevencogs_WAR_sevencogstheme", "01", "",
@@ -1503,15 +1497,79 @@ public class StartupAction extends SimpleAction {
 
 		LayoutSetLocalServiceUtil.updateLogo(
 			group.getGroupId(), false, true,
-			getInputStream("/images/seven_cogs_log.png"));
+			getInputStream("/images/seven_cogs_mobile_logo.png"));
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
 			group.getGroupId(), false,
 			"sevencogsmobile_WAR_sevencogsmobiletheme", "01", "", false);
 
+		// Image gallery
+
+		serviceContext.setScopeGroupId(group.getGroupId());
+
+		igFolder = IGFolderLocalServiceUtil.addFolder(
+			null, defaultUserId, 0, "7Cogs Mobile Content",
+			"Images used for mobile content", serviceContext);
+
+		serviceContext.setAssetTagNames(null);
+		serviceContext.setAssetCategoryIds(null);
+
+		IGImage mobileProduct1IGImage = addIGImage(
+			defaultUserId, igFolder.getFolderId(), "mobile_product_1.png",
+			serviceContext);
+
+		IGImage mobileProduct2IGImage = addIGImage(
+			defaultUserId, igFolder.getFolderId(), "mobile_product_2.png",
+			serviceContext);
+
 		// Home layout
 
 		layout = addLayout(group, "Home", false, "/home", "1_column");
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-1");
+
+		removePortletBorder(layout, portletId);
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Mobile Welcome",
+			"mobile_welcome.xml", serviceContext);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// Products layout
+
+		layout = addLayout(group, "Products", false, "/products", "1_column");
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-1");
+
+		removePortletBorder(layout, portletId);
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Mobile Products",
+			"mobile_products.xml", serviceContext);
+
+		content = StringUtil.replace(
+			journalArticle.getContent(),
+			new String[] {
+				"[$GROUP_ID$]",
+				"[$IG_IMAGE_1_UUID$]",
+				"[$IG_IMAGE_2_UUID$]"
+			},
+			new String[] {
+				String.valueOf(group.getGroupId()),
+				String.valueOf(mobileProduct1IGImage.getUuid()),
+				String.valueOf(mobileProduct2IGImage.getUuid())
+			});
+
+		JournalArticleLocalServiceUtil.updateContent(
+			group.getGroupId(), journalArticle.getArticleId(),
+			journalArticle.getVersion(), content);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
 	}
 
 	protected void setupRoles(long companyId, long defaultUserId)
