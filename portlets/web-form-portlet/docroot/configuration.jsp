@@ -239,7 +239,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 						<c:choose>
 							<c:when test="<%= !fieldsEditingDisabled %>">
-								<aui:input cssClass="lfr-input-text-container label-name" label="name" name='<%= "fieldLabel" + formFieldsIndex %>' onchange="jQuery(this).parent().parent().parent().find('.field-label').html(jQuery(this).val())" size="50" value="<%= fieldLabel %>" />
+								<aui:input cssClass="lfr-input-text-container label-name" label="name" name='<%= "fieldLabel" + formFieldsIndex %>' onchange="AUI().one(this).get('parentNode.parentNode.parentNode.parentNode').one('.field-label').html(AUI().one(this).val())" size="50" value="<%= fieldLabel %>" />
 							</c:when>
 							<c:otherwise>
 								<table class="editing-disabled">
