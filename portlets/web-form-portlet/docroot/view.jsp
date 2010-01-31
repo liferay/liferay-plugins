@@ -160,7 +160,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 	</aui:fieldset>
 </aui:form>
 
-<script>
+<script type="text/javascript">
 	AUI().use(
 		'event',
 		'node',
