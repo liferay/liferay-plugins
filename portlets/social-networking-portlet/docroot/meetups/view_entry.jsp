@@ -174,16 +174,28 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 		%>
 
 		<script type="text/javascript">
-			AUI().ready(
-				function () {
-					jQuery('.social-networking-portlet-meetups .response').hover(
-						function() {
-							jQuery(this).addClass('hovering');
-						},
-						function() {
-							jQuery(this).removeClass('hovering');
-						}
-					);
+			AUI().use(
+				'aui-base'
+				function(A) {
+					var meetups = A.one('.social-networking-portlet-meetups');
+
+					if (meetups) {
+						meetups.delegate(
+							'mouseenter',
+							function(event) {
+								event.currentTarget.addClass('hovering');
+							},
+							'.response'
+						);
+
+						meetups.delegate(
+							'mouseleave',
+							function(event) {
+								event.currentTarget.removeClass('hovering');
+							},
+							'.response'
+						);
+					}
 				}
 			);
 		</script>
