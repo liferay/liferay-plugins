@@ -40,12 +40,12 @@ public class GadgetsEntryWrapper implements GadgetsEntry {
 		_gadgetsEntry.setPrimaryKey(pk);
 	}
 
-	public long getGadgetEntryId() {
-		return _gadgetsEntry.getGadgetEntryId();
+	public long getGadgetsEntryId() {
+		return _gadgetsEntry.getGadgetsEntryId();
 	}
 
-	public void setGadgetEntryId(long gadgetEntryId) {
-		_gadgetsEntry.setGadgetEntryId(gadgetEntryId);
+	public void setGadgetsEntryId(long gadgetsEntryId) {
+		_gadgetsEntry.setGadgetsEntryId(gadgetsEntryId);
 	}
 
 	public long getCompanyId() {

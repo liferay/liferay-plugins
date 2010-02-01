@@ -53,7 +53,7 @@ import java.util.List;
 public class GadgetsEntryModelImpl extends BaseModelImpl<GadgetsEntry> {
 	public static final String TABLE_NAME = "Gadgets_GadgetsEntry";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "gadgetEntryId", new Integer(Types.BIGINT) },
+			{ "gadgetsEntryId", new Integer(Types.BIGINT) },
 			{ "companyId", new Integer(Types.BIGINT) },
 			{ "createDate", new Integer(Types.TIMESTAMP) },
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
@@ -61,7 +61,7 @@ public class GadgetsEntryModelImpl extends BaseModelImpl<GadgetsEntry> {
 			{ "url", new Integer(Types.VARCHAR) },
 			{ "xml", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Gadgets_GadgetsEntry (gadgetEntryId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url VARCHAR(75) null,xml VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Gadgets_GadgetsEntry (gadgetsEntryId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url VARCHAR(75) null,xml VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Gadgets_GadgetsEntry";
 	public static final String ORDER_BY_JPQL = " ORDER BY gadgetsEntry.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Gadgets_GadgetsEntry.name ASC";
@@ -78,7 +78,7 @@ public class GadgetsEntryModelImpl extends BaseModelImpl<GadgetsEntry> {
 	public static GadgetsEntry toModel(GadgetsEntrySoap soapModel) {
 		GadgetsEntry model = new GadgetsEntryImpl();
 
-		model.setGadgetEntryId(soapModel.getGadgetEntryId());
+		model.setGadgetsEntryId(soapModel.getGadgetsEntryId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
@@ -106,23 +106,23 @@ public class GadgetsEntryModelImpl extends BaseModelImpl<GadgetsEntry> {
 	}
 
 	public long getPrimaryKey() {
-		return _gadgetEntryId;
+		return _gadgetsEntryId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setGadgetEntryId(pk);
+		setGadgetsEntryId(pk);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_gadgetEntryId);
+		return new Long(_gadgetsEntryId);
 	}
 
-	public long getGadgetEntryId() {
-		return _gadgetEntryId;
+	public long getGadgetsEntryId() {
+		return _gadgetsEntryId;
 	}
 
-	public void setGadgetEntryId(long gadgetEntryId) {
-		_gadgetEntryId = gadgetEntryId;
+	public void setGadgetsEntryId(long gadgetsEntryId) {
+		_gadgetsEntryId = gadgetsEntryId;
 	}
 
 	public long getCompanyId() {
@@ -183,7 +183,7 @@ public class GadgetsEntryModelImpl extends BaseModelImpl<GadgetsEntry> {
 			model.setNew(isNew());
 			model.setEscapedModel(true);
 
-			model.setGadgetEntryId(getGadgetEntryId());
+			model.setGadgetsEntryId(getGadgetsEntryId());
 			model.setCompanyId(getCompanyId());
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
@@ -215,7 +215,7 @@ public class GadgetsEntryModelImpl extends BaseModelImpl<GadgetsEntry> {
 	public Object clone() {
 		GadgetsEntryImpl clone = new GadgetsEntryImpl();
 
-		clone.setGadgetEntryId(getGadgetEntryId());
+		clone.setGadgetsEntryId(getGadgetsEntryId());
 		clone.setCompanyId(getCompanyId());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
@@ -269,8 +269,8 @@ public class GadgetsEntryModelImpl extends BaseModelImpl<GadgetsEntry> {
 	public String toString() {
 		StringBundler sb = new StringBundler(15);
 
-		sb.append("{gadgetEntryId=");
-		sb.append(getGadgetEntryId());
+		sb.append("{gadgetsEntryId=");
+		sb.append(getGadgetsEntryId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", createDate=");
@@ -296,8 +296,8 @@ public class GadgetsEntryModelImpl extends BaseModelImpl<GadgetsEntry> {
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>gadgetEntryId</column-name><column-value><![CDATA[");
-		sb.append(getGadgetEntryId());
+			"<column><column-name>gadgetsEntryId</column-name><column-value><![CDATA[");
+		sb.append(getGadgetsEntryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -329,7 +329,7 @@ public class GadgetsEntryModelImpl extends BaseModelImpl<GadgetsEntry> {
 		return sb.toString();
 	}
 
-	private long _gadgetEntryId;
+	private long _gadgetsEntryId;
 	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;

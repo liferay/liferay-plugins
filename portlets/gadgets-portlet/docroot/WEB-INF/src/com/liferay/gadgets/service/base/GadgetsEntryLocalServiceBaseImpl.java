@@ -50,13 +50,13 @@ public abstract class GadgetsEntryLocalServiceBaseImpl
 		return gadgetsEntryPersistence.update(gadgetsEntry, false);
 	}
 
-	public GadgetsEntry createGadgetsEntry(long gadgetEntryId) {
-		return gadgetsEntryPersistence.create(gadgetEntryId);
+	public GadgetsEntry createGadgetsEntry(long gadgetsEntryId) {
+		return gadgetsEntryPersistence.create(gadgetsEntryId);
 	}
 
-	public void deleteGadgetsEntry(long gadgetEntryId)
+	public void deleteGadgetsEntry(long gadgetsEntryId)
 		throws PortalException, SystemException {
-		gadgetsEntryPersistence.remove(gadgetEntryId);
+		gadgetsEntryPersistence.remove(gadgetsEntryId);
 	}
 
 	public void deleteGadgetsEntry(GadgetsEntry gadgetsEntry)
@@ -75,9 +75,9 @@ public abstract class GadgetsEntryLocalServiceBaseImpl
 			start, end);
 	}
 
-	public GadgetsEntry getGadgetsEntry(long gadgetEntryId)
+	public GadgetsEntry getGadgetsEntry(long gadgetsEntryId)
 		throws PortalException, SystemException {
-		return gadgetsEntryPersistence.findByPrimaryKey(gadgetEntryId);
+		return gadgetsEntryPersistence.findByPrimaryKey(gadgetsEntryId);
 	}
 
 	public List<GadgetsEntry> getGadgetsEntries(int start, int end)

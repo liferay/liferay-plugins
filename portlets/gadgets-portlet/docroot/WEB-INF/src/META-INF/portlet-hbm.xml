@@ -5,7 +5,7 @@
 	<import class="com.liferay.gadgets.model.GadgetsEntry" />
 	<class name="com.liferay.gadgets.model.impl.GadgetsEntryImpl" table="Gadgets_GadgetsEntry">
 		<cache usage="read-write" />
-		<id name="gadgetEntryId" type="long">
+		<id name="gadgetsEntryId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />

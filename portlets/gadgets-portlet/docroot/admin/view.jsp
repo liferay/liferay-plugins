@@ -42,29 +42,29 @@ PortletURL portletURL = renderResponse.createRenderURL();
 		className="com.liferay.gadgets.model.GadgetsEntry"
 		escapedModel="<%= false %>"
 		keyProperty="gadgetsEntryId"
-		modelVar="gadget"
+		modelVar="gadgetsEntry"
 	>
 		<portlet:renderURL var="rowURL">
-			<portlet:param name="jspPage" value="/admin/edit_gadget.jsp" />
+			<portlet:param name="jspPage" value="/admin/edit_entry.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="gadgetsEntryId" value="<%= String.valueOf(gadget.getGadgetsEntryId()) %>" />
+			<portlet:param name="gadgetsEntryId" value="<%= String.valueOf(gadgetsEntry.getGadgetsEntryId()) %>" />
 		</portlet:renderURL>
 
 		<liferay-ui:search-container-column-text
 			href="<%= rowURL %>"
-			name="gadget"
+			name="gadgetsEntry"
 			property="name"
 		/>
 
 		<liferay-ui:search-container-column-jsp
 			align="right"
-			path="/admin/gadget_action.jsp"
+			path="/admin/entry_action.jsp"
 			valign="top"
 		/>
 	</liferay-ui:search-container-row>
 
 	<div>
-		<input type="button" value="<liferay-ui:message key="add-gadget" />" onClick="location.href = '<portlet:renderURL><portlet:param name="jspPage" value="/admin/edit_gadget.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
+		<input type="button" value="<liferay-ui:message key="add-gadget" />" onClick="location.href = '<portlet:renderURL><portlet:param name="jspPage" value="/admin/edit_entry.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
 	</div>
 
 	<br />

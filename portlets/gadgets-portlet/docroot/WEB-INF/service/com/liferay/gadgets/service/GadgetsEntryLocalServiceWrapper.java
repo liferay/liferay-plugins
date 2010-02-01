@@ -41,14 +41,14 @@ public class GadgetsEntryLocalServiceWrapper implements GadgetsEntryLocalService
 	}
 
 	public com.liferay.gadgets.model.GadgetsEntry createGadgetsEntry(
-		long gadgetEntryId) {
-		return _gadgetsEntryLocalService.createGadgetsEntry(gadgetEntryId);
+		long gadgetsEntryId) {
+		return _gadgetsEntryLocalService.createGadgetsEntry(gadgetsEntryId);
 	}
 
-	public void deleteGadgetsEntry(long gadgetEntryId)
+	public void deleteGadgetsEntry(long gadgetsEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_gadgetsEntryLocalService.deleteGadgetsEntry(gadgetEntryId);
+		_gadgetsEntryLocalService.deleteGadgetsEntry(gadgetsEntryId);
 	}
 
 	public void deleteGadgetsEntry(
@@ -71,10 +71,10 @@ public class GadgetsEntryLocalServiceWrapper implements GadgetsEntryLocalService
 	}
 
 	public com.liferay.gadgets.model.GadgetsEntry getGadgetsEntry(
-		long gadgetEntryId)
+		long gadgetsEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _gadgetsEntryLocalService.getGadgetsEntry(gadgetEntryId);
+		return _gadgetsEntryLocalService.getGadgetsEntry(gadgetsEntryId);
 	}
 
 	public java.util.List<com.liferay.gadgets.model.GadgetsEntry> getGadgetsEntries(

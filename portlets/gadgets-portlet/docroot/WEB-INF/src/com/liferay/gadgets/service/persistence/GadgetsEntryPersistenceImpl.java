@@ -111,11 +111,11 @@ public class GadgetsEntryPersistenceImpl extends BasePersistenceImpl<GadgetsEntr
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
-	public GadgetsEntry create(long gadgetEntryId) {
+	public GadgetsEntry create(long gadgetsEntryId) {
 		GadgetsEntry gadgetsEntry = new GadgetsEntryImpl();
 
 		gadgetsEntry.setNew(true);
-		gadgetsEntry.setPrimaryKey(gadgetEntryId);
+		gadgetsEntry.setPrimaryKey(gadgetsEntryId);
 
 		return gadgetsEntry;
 	}
@@ -125,7 +125,7 @@ public class GadgetsEntryPersistenceImpl extends BasePersistenceImpl<GadgetsEntr
 		return remove(((Long)primaryKey).longValue());
 	}
 
-	public GadgetsEntry remove(long gadgetEntryId)
+	public GadgetsEntry remove(long gadgetsEntryId)
 		throws NoSuchEntryException, SystemException {
 		Session session = null;
 
@@ -133,15 +133,16 @@ public class GadgetsEntryPersistenceImpl extends BasePersistenceImpl<GadgetsEntr
 			session = openSession();
 
 			GadgetsEntry gadgetsEntry = (GadgetsEntry)session.get(GadgetsEntryImpl.class,
-					new Long(gadgetEntryId));
+					new Long(gadgetsEntryId));
 
 			if (gadgetsEntry == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + gadgetEntryId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+						gadgetsEntryId);
 				}
 
 				throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					gadgetEntryId);
+					gadgetsEntryId);
 			}
 
 			return remove(gadgetsEntry);
@@ -248,7 +249,7 @@ public class GadgetsEntryPersistenceImpl extends BasePersistenceImpl<GadgetsEntr
 		gadgetsEntryImpl.setNew(gadgetsEntry.isNew());
 		gadgetsEntryImpl.setPrimaryKey(gadgetsEntry.getPrimaryKey());
 
-		gadgetsEntryImpl.setGadgetEntryId(gadgetsEntry.getGadgetEntryId());
+		gadgetsEntryImpl.setGadgetsEntryId(gadgetsEntry.getGadgetsEntryId());
 		gadgetsEntryImpl.setCompanyId(gadgetsEntry.getCompanyId());
 		gadgetsEntryImpl.setCreateDate(gadgetsEntry.getCreateDate());
 		gadgetsEntryImpl.setModifiedDate(gadgetsEntry.getModifiedDate());
@@ -264,17 +265,17 @@ public class GadgetsEntryPersistenceImpl extends BasePersistenceImpl<GadgetsEntr
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
-	public GadgetsEntry findByPrimaryKey(long gadgetEntryId)
+	public GadgetsEntry findByPrimaryKey(long gadgetsEntryId)
 		throws NoSuchEntryException, SystemException {
-		GadgetsEntry gadgetsEntry = fetchByPrimaryKey(gadgetEntryId);
+		GadgetsEntry gadgetsEntry = fetchByPrimaryKey(gadgetsEntryId);
 
 		if (gadgetsEntry == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + gadgetEntryId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + gadgetsEntryId);
 			}
 
 			throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				gadgetEntryId);
+				gadgetsEntryId);
 		}
 
 		return gadgetsEntry;
@@ -285,10 +286,10 @@ public class GadgetsEntryPersistenceImpl extends BasePersistenceImpl<GadgetsEntr
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
-	public GadgetsEntry fetchByPrimaryKey(long gadgetEntryId)
+	public GadgetsEntry fetchByPrimaryKey(long gadgetsEntryId)
 		throws SystemException {
 		GadgetsEntry gadgetsEntry = (GadgetsEntry)EntityCacheUtil.getResult(GadgetsEntryModelImpl.ENTITY_CACHE_ENABLED,
-				GadgetsEntryImpl.class, gadgetEntryId, this);
+				GadgetsEntryImpl.class, gadgetsEntryId, this);
 
 		if (gadgetsEntry == null) {
 			Session session = null;
@@ -297,7 +298,7 @@ public class GadgetsEntryPersistenceImpl extends BasePersistenceImpl<GadgetsEntr
 				session = openSession();
 
 				gadgetsEntry = (GadgetsEntry)session.get(GadgetsEntryImpl.class,
-						new Long(gadgetEntryId));
+						new Long(gadgetsEntryId));
 			}
 			catch (Exception e) {
 				throw processException(e);
@@ -485,10 +486,10 @@ public class GadgetsEntryPersistenceImpl extends BasePersistenceImpl<GadgetsEntr
 		}
 	}
 
-	public GadgetsEntry[] findByCompanyId_PrevAndNext(long gadgetEntryId,
+	public GadgetsEntry[] findByCompanyId_PrevAndNext(long gadgetsEntryId,
 		long companyId, OrderByComparator obc)
 		throws NoSuchEntryException, SystemException {
-		GadgetsEntry gadgetsEntry = findByPrimaryKey(gadgetEntryId);
+		GadgetsEntry gadgetsEntry = findByPrimaryKey(gadgetsEntryId);
 
 		int count = countByCompanyId(companyId);
 

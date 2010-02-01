@@ -1,6 +1,6 @@
 
 create table Gadgets_GadgetsEntry (
-	gadgetEntryId LONG not null primary key,
+	gadgetsEntryId LONG not null primary key,
 	companyId LONG,
 	createDate DATE null,
 	modifiedDate DATE null,

@@ -6,7 +6,7 @@
 
 		<!-- PK fields -->
 
-		<column name="gadgetEntryId" type="long" primary="true" />
+		<column name="gadgetsEntryId" type="long" primary="true" />
 
 		<!-- Audit fields -->
 

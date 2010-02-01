@@ -9,7 +9,7 @@
 	</persistence-unit-metadata>
 	<mapped-superclass class="com.liferay.gadgets.model.impl.GadgetsEntryModelImpl">
 		<attributes>
-			<id name="gadgetEntryId" />
+			<id name="gadgetsEntryId" />
 			<basic name="companyId" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>

@@ -41,9 +41,9 @@ public interface GadgetsEntryModel extends BaseModel<GadgetsEntry> {
 
 	public void setPrimaryKey(long pk);
 
-	public long getGadgetEntryId();
+	public long getGadgetsEntryId();
 
-	public void setGadgetEntryId(long gadgetEntryId);
+	public void setGadgetsEntryId(long gadgetsEntryId);
 
 	public long getCompanyId();
 

@@ -41,9 +41,9 @@ public interface GadgetsEntryLocalService {
 		throws com.liferay.portal.SystemException;
 
 	public com.liferay.gadgets.model.GadgetsEntry createGadgetsEntry(
-		long gadgetEntryId);
+		long gadgetsEntryId);
 
-	public void deleteGadgetsEntry(long gadgetEntryId)
+	public void deleteGadgetsEntry(long gadgetsEntryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
@@ -62,7 +62,7 @@ public interface GadgetsEntryLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.gadgets.model.GadgetsEntry getGadgetsEntry(
-		long gadgetEntryId)
+		long gadgetsEntryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 

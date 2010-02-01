@@ -37,7 +37,7 @@ public class GadgetsEntrySoap implements Serializable {
 	public static GadgetsEntrySoap toSoapModel(GadgetsEntry model) {
 		GadgetsEntrySoap soapModel = new GadgetsEntrySoap();
 
-		soapModel.setGadgetEntryId(model.getGadgetEntryId());
+		soapModel.setGadgetsEntryId(model.getGadgetsEntryId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
@@ -89,19 +89,19 @@ public class GadgetsEntrySoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _gadgetEntryId;
+		return _gadgetsEntryId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setGadgetEntryId(pk);
+		setGadgetsEntryId(pk);
 	}
 
-	public long getGadgetEntryId() {
-		return _gadgetEntryId;
+	public long getGadgetsEntryId() {
+		return _gadgetsEntryId;
 	}
 
-	public void setGadgetEntryId(long gadgetEntryId) {
-		_gadgetEntryId = gadgetEntryId;
+	public void setGadgetsEntryId(long gadgetsEntryId) {
+		_gadgetsEntryId = gadgetsEntryId;
 	}
 
 	public long getCompanyId() {
@@ -152,7 +152,7 @@ public class GadgetsEntrySoap implements Serializable {
 		_xml = xml;
 	}
 
-	private long _gadgetEntryId;
+	private long _gadgetsEntryId;
 	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;

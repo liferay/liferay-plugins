@@ -66,10 +66,10 @@ public class ClpSerializer {
 
 					Object newModel = newModelClass.newInstance();
 
-					Method method0 = newModelClass.getMethod("setGadgetEntryId",
+					Method method0 = newModelClass.getMethod("setGadgetsEntryId",
 							new Class[] { Long.TYPE });
 
-					Long value0 = new Long(oldCplModel.getGadgetEntryId());
+					Long value0 = new Long(oldCplModel.getGadgetsEntryId());
 
 					method0.invoke(newModel, value0);
 
@@ -169,11 +169,12 @@ public class ClpSerializer {
 				try {
 					GadgetsEntryClp newModel = new GadgetsEntryClp();
 
-					Method method0 = oldModelClass.getMethod("getGadgetEntryId");
+					Method method0 = oldModelClass.getMethod(
+							"getGadgetsEntryId");
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setGadgetEntryId(value0.longValue());
+					newModel.setGadgetsEntryId(value0.longValue());
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 

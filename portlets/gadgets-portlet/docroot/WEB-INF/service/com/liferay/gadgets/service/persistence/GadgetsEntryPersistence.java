@@ -37,9 +37,9 @@ public interface GadgetsEntryPersistence extends BasePersistence<GadgetsEntry> {
 	public void cacheResult(
 		java.util.List<com.liferay.gadgets.model.GadgetsEntry> gadgetsEntries);
 
-	public com.liferay.gadgets.model.GadgetsEntry create(long gadgetEntryId);
+	public com.liferay.gadgets.model.GadgetsEntry create(long gadgetsEntryId);
 
-	public com.liferay.gadgets.model.GadgetsEntry remove(long gadgetEntryId)
+	public com.liferay.gadgets.model.GadgetsEntry remove(long gadgetsEntryId)
 		throws com.liferay.gadgets.NoSuchEntryException,
 			com.liferay.portal.SystemException;
 
@@ -48,12 +48,12 @@ public interface GadgetsEntryPersistence extends BasePersistence<GadgetsEntry> {
 		throws com.liferay.portal.SystemException;
 
 	public com.liferay.gadgets.model.GadgetsEntry findByPrimaryKey(
-		long gadgetEntryId)
+		long gadgetsEntryId)
 		throws com.liferay.gadgets.NoSuchEntryException,
 			com.liferay.portal.SystemException;
 
 	public com.liferay.gadgets.model.GadgetsEntry fetchByPrimaryKey(
-		long gadgetEntryId) throws com.liferay.portal.SystemException;
+		long gadgetsEntryId) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.gadgets.model.GadgetsEntry> findByCompanyId(
 		long companyId) throws com.liferay.portal.SystemException;
@@ -78,7 +78,7 @@ public interface GadgetsEntryPersistence extends BasePersistence<GadgetsEntry> {
 			com.liferay.portal.SystemException;
 
 	public com.liferay.gadgets.model.GadgetsEntry[] findByCompanyId_PrevAndNext(
-		long gadgetEntryId, long companyId,
+		long gadgetsEntryId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.gadgets.NoSuchEntryException,
 			com.liferay.portal.SystemException;

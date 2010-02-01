@@ -71,15 +71,15 @@ public class GadgetsEntryUtil {
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry create(
-		long gadgetEntryId) {
-		return getPersistence().create(gadgetEntryId);
+		long gadgetsEntryId) {
+		return getPersistence().create(gadgetsEntryId);
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry remove(
-		long gadgetEntryId)
+		long gadgetsEntryId)
 		throws com.liferay.gadgets.NoSuchEntryException,
 			com.liferay.portal.SystemException {
-		return getPersistence().remove(gadgetEntryId);
+		return getPersistence().remove(gadgetsEntryId);
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry updateImpl(
@@ -89,15 +89,15 @@ public class GadgetsEntryUtil {
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry findByPrimaryKey(
-		long gadgetEntryId)
+		long gadgetsEntryId)
 		throws com.liferay.gadgets.NoSuchEntryException,
 			com.liferay.portal.SystemException {
-		return getPersistence().findByPrimaryKey(gadgetEntryId);
+		return getPersistence().findByPrimaryKey(gadgetsEntryId);
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry fetchByPrimaryKey(
-		long gadgetEntryId) throws com.liferay.portal.SystemException {
-		return getPersistence().fetchByPrimaryKey(gadgetEntryId);
+		long gadgetsEntryId) throws com.liferay.portal.SystemException {
+		return getPersistence().fetchByPrimaryKey(gadgetsEntryId);
 	}
 
 	public static java.util.List<com.liferay.gadgets.model.GadgetsEntry> findByCompanyId(
@@ -133,12 +133,12 @@ public class GadgetsEntryUtil {
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry[] findByCompanyId_PrevAndNext(
-		long gadgetEntryId, long companyId,
+		long gadgetsEntryId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.gadgets.NoSuchEntryException,
 			com.liferay.portal.SystemException {
 		return getPersistence()
-				   .findByCompanyId_PrevAndNext(gadgetEntryId, companyId, obc);
+				   .findByCompanyId_PrevAndNext(gadgetsEntryId, companyId, obc);
 	}
 
 	public static java.util.List<com.liferay.gadgets.model.GadgetsEntry> findAll()

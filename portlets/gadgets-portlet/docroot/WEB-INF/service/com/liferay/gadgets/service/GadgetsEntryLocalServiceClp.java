@@ -72,8 +72,8 @@ public class GadgetsEntryLocalServiceClp implements GadgetsEntryLocalService {
 	}
 
 	public com.liferay.gadgets.model.GadgetsEntry createGadgetsEntry(
-		long gadgetEntryId) {
-		Object paramObj0 = new LongWrapper(gadgetEntryId);
+		long gadgetsEntryId) {
+		Object paramObj0 = new LongWrapper(gadgetsEntryId);
 
 		Object returnObj = null;
 
@@ -94,10 +94,10 @@ public class GadgetsEntryLocalServiceClp implements GadgetsEntryLocalService {
 		return (com.liferay.gadgets.model.GadgetsEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteGadgetsEntry(long gadgetEntryId)
+	public void deleteGadgetsEntry(long gadgetsEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		Object paramObj0 = new LongWrapper(gadgetEntryId);
+		Object paramObj0 = new LongWrapper(gadgetsEntryId);
 
 		try {
 			_classLoaderProxy.invoke("deleteGadgetsEntry",
@@ -227,10 +227,10 @@ public class GadgetsEntryLocalServiceClp implements GadgetsEntryLocalService {
 	}
 
 	public com.liferay.gadgets.model.GadgetsEntry getGadgetsEntry(
-		long gadgetEntryId)
+		long gadgetsEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		Object paramObj0 = new LongWrapper(gadgetEntryId);
+		Object paramObj0 = new LongWrapper(gadgetsEntryId);
 
 		Object returnObj = null;
 
