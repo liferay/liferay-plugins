@@ -51,7 +51,7 @@
 	int buddiesCount = buddies.size();
 	%>
 
-	<div class="portlet-chat">
+	<div class="portlet-chat" id="chatBar">
 		<div class="chat-bar">
 			<div class="chat-sound"></div>
 

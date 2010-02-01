@@ -57,13 +57,11 @@ AUI().use(
 				instance._tabsContainer = Liferay.Chat.Manager.getContainer()
 			}
 			else {
-				instance._tabsContainer = jQuery(options.container);
+				instance._tabsContainer = A.one(options.container);
 			}
 
 			instance._chatProperties = {};
 			instance._eventsSuspended = false;
-
-			instance._eventObj = jQuery(instance);
 
 			instance._panelId = options.panelId;
 			instance._panelTitle = options.panelTitle;
@@ -81,34 +79,16 @@ AUI().use(
 				instance.setTitle(options.panelTitle);
 			}
 
-			instance._popupTrigger.disableSelection();
+			instance._popupTrigger.unselectable();
 		};
 
 		Liferay.Chat.Panel.prototype = {
-			bind: function(event, fn, scope) {
-				var instance = this;
-
-				if (event && fn) {
-					var method = function(event) {
-						fn.apply(scope || instance, arguments);
-					};
-
-					instance._eventObj.bind(event, method);
-				}
-			},
-
 			close: function() {
 				var instance = this;
 
 				instance._panel.remove();
 
-				instance.trigger('close', instance);
-			},
-
-			get: function(key) {
-				var instance = this;
-
-				return instance._chatProperties[key];
+				instance.fire('close');
 			},
 
 			getPanel: function() {
@@ -129,7 +109,7 @@ AUI().use(
 				instance.set('selected', false);
 				instance._panel.removeClass('selected');
 
-				instance.trigger('hide', instance);
+				instance.fire('hide');
 			},
 
 			resumeEvents: function(){
@@ -138,18 +118,10 @@ AUI().use(
 				instance._eventsSuspended = false;
 			},
 
-			set: function(key, value) {
-				var instance = this;
-
-				instance._chatProperties[key] = value;
-
-				return value;
-			},
-
 			setTitle: function(value) {
 				var instance = this;
 
-				instance._popupTrigger.find('.trigger-name').text(value);
+				instance._popupTrigger.one('.trigger-name').text(value);
 				instance._popupTitle.text(value);
 			},
 
@@ -159,7 +131,7 @@ AUI().use(
 				instance.set('selected', true);
 				instance._panel.addClass('selected');
 
-				instance.trigger('show', instance);
+				instance.fire('show');
 			},
 
 			suspendEvents: function(){
@@ -179,47 +151,30 @@ AUI().use(
 				}
 			},
 
-			trigger: function(event, data){
-				var instance = this;
-
-				if (instance._eventsSuspended == false) {
-					instance._eventObj.triggerHandler(event, data);
-				}
-			},
-
 			_createPanel: function(fromMarkup) {
 				var instance = this;
 
 				var panel;
 				var panelHTML = '';
 
-				var markup = instance.get('panelHTML');
-
-				if (markup) {
-					panelHTML = markup;
-				}
-
 				if (fromMarkup) {
-					panelHTML = fromMarkup;
+					panel = A.one(fromMarkup);
+				}
+				else {
+					panel = A.Node.create(instance.get('panelHTML'));
 				}
 
-				panel = jQuery(panelHTML);
+				instance._popup = panel.one('.chat-panel');
+				instance._popupTitle = panel.one('.panel-title');
+				instance._textBox = panel.one('textarea');
+				instance._popupTrigger = panel.one('.panel-trigger');
 
-				instance._popup = panel.find('.chat-panel');
-				instance._popupTitle = panel.find('.panel-title');
-				instance._textBox = panel.find('textarea');
-				instance._popupTrigger = panel.find('.panel-trigger');
+				instance._popupTrigger.on('click', instance.toggle, instance);
 
-				instance._popupTrigger.click(
-					function(event) {
-						instance.toggle();
-					}
-				);
-
-				panel.find('.panel-button').bind(
+				panel.all('.panel-button').on(
 					'click',
 					function(event) {
-						var target = jQuery(event.target);
+						var target = event.currentTarget;
 
 						if (target.hasClass('minimize')) {
 							instance.hide();
@@ -255,14 +210,16 @@ AUI().use(
 			}
 		};
 
+		A.augment(Liferay.Chat.Panel, A.Attribute);
+
 		Liferay.Chat.Conversation = function(options) {
 			var instance = this;
 
-			Liferay.Chat.Panel.superclass.constructor.call(instance, options);
+			Liferay.Chat.Conversation.superclass.constructor.call(instance, options);
 
-			instance._chatInput = instance._panel.find('.panel-input textarea');
-			instance._chatOutput = instance._panel.find('.panel-output');
-			instance._statusMessage = instance._panel.find('.panel-profile');
+			instance._chatInput = instance._panel.one('.panel-input textarea');
+			instance._chatOutput = instance._panel.one('.panel-output');
+			instance._statusMessage = instance._panel.one('.panel-profile');
 
 			instance._created = Liferay.Chat.Util.getCurrentTimestamp();
 			instance._lastMessageTime = 0;
@@ -273,13 +230,13 @@ AUI().use(
 
 			instance._stopTypingTask = new A.DelayedTask(instance.setTyping, instance, [false]);
 
-			instance._heightMonitor = jQuery('<pre class="chat-height-monitor" />');
+			instance._heightMonitor = A.Node.create('<pre class="chat-height-monitor" />');
 			instance._heightMonitor.appendTo(document.body);
 
-			instance._unreadMessagesContainer = instance._panel.find('.unread');
+			instance._unreadMessagesContainer = instance._panel.one('.unread');
 
-			if (!instance._unreadMessagesContainer.length) {
-				instance._unreadMessagesContainer = jQuery('<div class="unread" />');
+			if (!instance._unreadMessagesContainer) {
+				instance._unreadMessagesContainer = A.Node.create('<div class="unread" />');
 				instance._popupTrigger.append(instance._unreadMessagesContainer);
 			}
 
@@ -287,11 +244,8 @@ AUI().use(
 				instance._statusMessage.text(options.statusMessage);
 			}
 
-			instance._chatInput.bind('keyup focus',
-				function(event) {
-					instance._keystroke(event, this);
-				}
-			);
+			instance._chatInput.on('keyup', instance._keystroke, instance);
+			instance._chatInput.on('focus', instance._keystroke, instance);
 		};
 
 		A.extend(
@@ -354,7 +308,7 @@ AUI().use(
 					Liferay.Chat.Panel.prototype.show.call(instance);
 					instance.setAsRead();
 
-					var outputEl = instance._chatOutput[0];
+					var outputEl = instance._chatOutput.getDOM();
 
 					outputEl.scrollTop = outputEl.scrollHeight;
 				},
@@ -400,15 +354,15 @@ AUI().use(
 				_autoSize: function() {
 					var instance = this;
 
-					var heightMonitorEl = instance._heightMonitor[0];
+					var heightMonitorEl = instance._heightMonitor.getDOM();
 
 					if (!instance._chatInputWidth) {
-						instance._chatInputWidth = instance._chatInput.outerWidth();
+						instance._chatInputWidth = instance._chatInput.get('offsetWidth');
 
-						instance._heightMonitor.width(instance._chatInputWidth);
+						instance._heightMonitor.setStyle('width', instance._chatInputWidth);
 					}
 
-					var chatInputEl = instance._chatInput[0];
+					var chatInputEl = instance._chatInput.getDOM();
 
 					var content = Liferay.Util.escapeHTML(chatInputEl.value);
 					var textNode = document.createTextNode(content);
@@ -433,6 +387,7 @@ AUI().use(
 
 					height = Math.min(height, 64);
 					chatInputEl.style.overflowY = 'auto';
+
 					if (height != instance._lastHeight) {
 						instance._lastHeight = height;
 
@@ -446,11 +401,11 @@ AUI().use(
 				_keystroke: function(event) {
 					var instance = this;
 
-					var chatInputEl = instance._chatInput[0];
-					var outputEl = instance._chatOutput[0];
+					var chatInputEl = instance._chatInput;
+					var outputEl = instance._chatOutput;
 					var userId = instance._panelId;
 
-					var chatInputEl = instance._chatInput[0];
+					var chatInputEl = instance._chatInput.getDOM();
 					var content = chatInputEl.value.replace(/\n|\r/gim, '');
 
 					if (event.type == 'keyup') {
@@ -555,13 +510,15 @@ AUI().use(
 									'<span class="text">' + content + '</span>'
 								'</p>';
 
-					output[0].innerHTML += message;
+					var outputEl = output.getDOM();
+
+					outputEl.innerHTML += message;
 
 					instance._lastMessageTime = entry.createDate;
 
 					setTimeout(
 						function() {
-							output[0].scrollTop = output[0].scrollHeight - output[0].clientHeight;
+							outputEl.scrollTop = outputEl.scrollHeight - outputEl.clientHeight;
 					}, 1);
 				}
 			}
@@ -571,23 +528,23 @@ AUI().use(
 			init: function() {
 				var instance = this;
 
-				instance._chatContainer = jQuery('.portlet-chat');
-				instance._tabsContainer = instance._chatContainer.find('.chat-tabs');
+				instance._chatContainer = A.one('#chatBar');
+				instance._tabsContainer = instance._chatContainer.one('.chat-tabs');
 
-				instance._activePanelId = jQuery('#activePanelId').val() || '';
-				instance._portletId = jQuery('#chatPortletId').val();
+				instance._activePanelId = A.one('#activePanelId').val() || '';
+				instance._portletId = A.one('#chatPortletId').val();
 
 				instance._closedChats = {};
 
 				instance._created = Liferay.Chat.Util.getCurrentTimestamp();
 
-				instance._myStatus = instance._chatContainer.find('.status-message');
+				instance._myStatus = instance._chatContainer.one('.status-message');
 
 				instance._sendTask = new A.DelayedTask(instance.send, instance);
 				instance._saveSettingsDelay = 100;
 
 				instance._sound = new SWFObject('/chat-portlet/alert.swf', 'alertsound', '0', '0', '8');
-				instance._soundContainer = instance._chatContainer.find('.chat-sound');
+				instance._soundContainer = instance._chatContainer.one('.chat-sound');
 
 				instance._updatePresenceTask = new A.DelayedTask(instance._updatePresence, instance);
 				instance._updatePresenceDelay = 30000;
@@ -663,7 +620,7 @@ AUI().use(
 				var instance = this;
 
 			 	if (instance._playSound) {
-			 		instance._sound.write(instance._soundContainer[0]);
+			 		instance._sound.write(instance._soundContainer.getDOM());
 			 	}
 			},
 
@@ -678,9 +635,9 @@ AUI().use(
 
 				instance._panels[panelName] = panel;
 
-				panel.bind('close', instance._onPanelClose, instance);
-				panel.bind('hide', instance._onPanelHide, instance);
-				panel.bind('show', instance._onPanelShow, instance);
+				panel.on('close', instance._onPanelClose, instance);
+				panel.on('hide', instance._onPanelHide, instance);
+				panel.on('show', instance._onPanelShow, instance);
 			},
 
 			_createBuddyListPanel: function() {
@@ -695,18 +652,19 @@ AUI().use(
 
 				instance._addPanel('buddylist', buddylist);
 
-				instance._onlineBuddies = buddylist.getPanel().find('.online-users');
+				instance._onlineBuddies = buddylist.getPanel().one('.online-users');
 
-				if (instance._onlineBuddies.length) {
+				if (instance._onlineBuddies) {
 
-					var buddyList = A.one(instance._onlineBuddies[0]);
+					var buddyList = instance._onlineBuddies;
 
 					if (buddyList) {
 						buddyList.delegate(
 							'click',
 							function(event) {
 								instance._createChatFromUser(event.currentTarget);
-							}
+							},
+							'li'
 						);
 					}
 				}
@@ -719,8 +677,10 @@ AUI().use(
 				var buddies = instance._buddies;
 				var userId = user;
 
-				if (user.tagName || user.jquery) {
-					userId = jQuery(user).attr('userId');
+				user = A.one(user);
+
+				if (user) {
+					userId = user.getAttribute('userId');
 				}
 
 				if (!isNaN(Number(userId))) {
@@ -792,21 +752,17 @@ AUI().use(
 				instance._addPanel('settings', settings);
 
 				var settingsPanel = settings.getPanel();
-				var saveSettings = settingsPanel.find('#saveSettings');
+				var saveSettings = settingsPanel.one('#saveSettings');
 
-				instance._statusMessageObj = settingsPanel.find('#statusMessage');
-				instance._onlineObj = settingsPanel.find('#onlineStatus');
-				instance._playSoundObj = settingsPanel.find('#playSound');
+				instance._statusMessageObj = settingsPanel.one('#statusMessage');
+				instance._onlineObj = settingsPanel.one('#onlineStatus');
+				instance._playSoundObj = settingsPanel.one('#playSound');
 
 				instance._statusMessage = instance._statusMessageObj.val() || '';
-				instance._online = instance._onlineObj.is(':checked') ? 1 : 0;
-				instance._playSound = instance._playSoundObj.is(':checked') ? 1 : 0;
+				instance._online = instance._onlineObj.get('checked') ? 1 : 0;
+				instance._playSound = instance._playSoundObj.get('checked') ? 1 : 0;
 
-				saveSettings.click(
-					function(event) {
-						instance._updateSettings();
-					}
-				);
+				saveSettings.on('click', instance._updateSettings, instance);
 			},
 
 			_getSettings: function() {
@@ -870,8 +826,10 @@ AUI().use(
 				return (createDate > initDate && createDate > closedDate);
 			},
 
-			_onPanelClose: function(event, panel) {
+			_onPanelClose: function(event) {
 				var instance = this;
+
+				var panel = event.target;
 
 				var userId = panel._panelId;
 
@@ -887,15 +845,19 @@ AUI().use(
 				instance._saveSettings();
 			},
 
-			_onPanelHide: function(event, panel) {
+			_onPanelHide: function(event) {
 				var instance = this;
+
+				var panel = event.target;
 
 				instance._activePanelId = '';
 				instance._saveSettings();
 			},
 
-			_onPanelShow: function(event, panel) {
+			_onPanelShow: function(event) {
 				var instance = this;
+
+				var panel = event.target;
 
 				for (var i in instance._panels) {
 					if (instance._panels[i] != panel) {
@@ -904,7 +866,7 @@ AUI().use(
 				}
 
 				if (panel instanceof Liferay.Chat.Conversation) {
-					panel._chatInput.trigger('focus');
+					panel._chatInput.focus();
 				}
 
 				instance._activePanelId = panel._panelId;
@@ -1068,8 +1030,8 @@ AUI().use(
 				var settingsPanel = settings.getPanel();
 
 				instance._statusMessage = instance._statusMessageObj.val();
-				instance._online = instance._onlineObj.is(':checked') ? 1 : 0;
-				instance._playSound = instance._playSoundObj.is(':checked') ? 1 : 0;
+				instance._online = instance._onlineObj.get('checked') ? 1 : 0;
+				instance._playSound = instance._playSoundObj.get('checked') ? 1 : 0;
 
 				instance._activePanelId = '';
 
@@ -1095,81 +1057,6 @@ AUI().use(
 			_settings: {}
 		};
 
-		Liferay.Chat.FixBadBrowsers = function() {
-			var chatBar = jQuery('.chat-bar');
-			var position = chatBar.css('position');
-
-			if (position == 'absolute') {
-				var win = jQuery(window);
-				var body = jQuery(document.body);
-
-				var chatBarHeight = chatBar.outerHeight();
-				var chatBarWidth = chatBar.outerWidth();
-				var frame = Liferay.Util.viewport.frame();
-				var maxPageScroll = (Liferay.Util.viewport.page().y - frame.y) + chatBarHeight;
-
-				var zIndex = chatBar.css('zIndex');
-
-				var iframe = jQuery('<iframe class="lfr-shim" frameborder="0" src="javascript:false;" />');
-				var iframeEl = iframe[0];
-
-				iframeEl.style.filter = 'alpha(opacity=0)';
-		        iframeEl.frameBorder = 0;
-
-				iframe.width(chatBarWidth);
-				iframe.height(chatBarHeight);
-				iframe.css(
-					{
-						border: 0,
-						zIndex: zIndex
-					}
-				);
-
-				chatBar.css('zIndex', zIndex + 100);
-
-				win.bind(
-					'scroll resize',
-					function(event) {
-						if (event.type == 'resize') {
-							frame = Liferay.Util.viewport.frame();
-						}
-
-						var scrollTop = win.scrollTop();
-
-						if ((event.type == 'resize') ||
-							((event.type == 'scroll') && (scrollTop < maxPageScroll))) {
-
-							chatBar.css('top', (scrollTop + frame.y) - chatBarHeight);
-							iframe.css('top', ((scrollTop + frame.y) - chatBarHeight));
-						}
-					}
-				);
-
-				body.append(iframe);
-			}
-		};
-
-		jQuery.fn.extend(
-			{
-				disableSelection: function() {
-					return this.attr('unselectable', 'on').css('MozUserSelect', 'none').bind('selectstart.ui', function() {
-							return false;
-						}
-					);
-				},
-
-				enableSelection: function() {
-					return this.attr('unselectable', 'off').css('MozUserSelect', '').unbind('selectstart.ui');
-				}
-			}
-		);
-
-		A.on(
-			'domready',
-			function() {
-				Liferay.Chat.Manager.init();
-				Liferay.Chat.FixBadBrowsers();
-			}
-		);
+		A.on('domready', Liferay.Chat.Manager.init, Liferay.Chat.Manager);
 	}
 );
