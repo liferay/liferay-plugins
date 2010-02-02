@@ -400,7 +400,8 @@ textarea.focus {
 	margin-right: .5em;
 }
 
-.taglib-search-iterator .result-data {
+.taglib-search-iterator .result-data,
+.taglib-search-iterator .result-description {
 	color: #777;
 	font-size: 10px;
 }
