@@ -39,6 +39,10 @@
 
 <body class="$css_class">
 
+#if($is_signed_in)
+	#dockbar()
+#end
+
 $theme.include($top_messages_include)
 
 <div id="wrapper">
@@ -46,8 +50,6 @@ $theme.include($top_messages_include)
 		<h1 class="logo">
 			<a class="png" href="$company_url">$company_name</a>
 		</h1>
-
-		#parse ("$full_templates_path/dock.vm")
 
 		#if ($group_id == $guestGroup.getGroupId())
 			<div class="search">

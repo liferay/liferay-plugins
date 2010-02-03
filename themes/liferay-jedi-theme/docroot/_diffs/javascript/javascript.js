@@ -1,62 +1,50 @@
-var LiferayJedi = function () {
-	var $ = jQuery;
-	return {
-		init: function() {
-			var instance = this;
+AUI().ready(
+	'aui-base',
+	function(A) {
+		if (Liferay.Browser.isIe()) {
+			A.all('#footer ul li:last-child').addClass('last-child');
+		}
 
-			instance.handleSearchForm();
-			instance.dropDownMenu();
-			instance.handleLastChild();
-		},
+		var searchForm = A.one('#banner .search'),
+			searchInput = searchForm.one('input[type=image]'),
+			searchLink = A.Node.create('<a class="search-input-link" href="javascript:;"></a>'),
+			hideTask = new A.DelayedTask(
+				function(event) {
+					var childMenu = this.one('.child-menu');
 
-		handleSearchForm: function() {
-			var searchForm = $('#banner .search');
-
-			var searchInput = searchForm.find('input[type=image]');
-			var searchLink = $('<a class="search-input-link" href="javascript:;"></a>');
-
-			searchLink.click(
-				function() {
-					$(this).parents('form')[0].submit();
-				}
-			);
-
-			searchInput.hide();
-			searchInput.before(searchLink);
-		},
-
-		handleLastChild: function () {
-			var instance = this;
-
-			$('#footer ul li:last').addClass('last-child');
-		},
-
-		dropDownMenu: function() {
-			$(".parent-nav-item").hoverIntent(
-				{
-					interval: 25,
-					timeout: 0,
-					over: function () {
-						var instance = $(this);
-						var child = $('.child-menu', this);
-
-						instance.addClass("init");
-						child.slideDown(100);
-					},
-					out: function () {
-						var instance = $(this);
-						var child = $('.child-menu', this);
-						child.slideUp(50);
-						instance.removeClass("init");
+					if (childMenu) {
+						childMenu.addClass('init');
+						childMenu.setStyle('display', 'none');
 					}
 				}
 			);
-		}
-	};
-}();
 
-jQuery(document).ready(
-	function() {
-		LiferayJedi.init();
+		A.all('.parent-nav-item').on(
+			{
+				mouseenter: function(event) {
+					var childMenu = this.one('.child-menu');
+
+					if (childMenu) {
+						childMenu.removeClass('init');
+						childMenu.setStyle('display', 'block');
+					}
+				},
+				
+				mouseleave: function(event) {
+					hideTask.delay(25, null, this, event);
+				}
+			}
+		);
+
+		searchLink.on(
+			'click',
+			function() {
+				this.ancestor('form').submit();
+			}
+		);
+
+		searchInput.hide();
+
+		searchInput.placeBefore(searchLink);
 	}
 );

@@ -11,6 +11,10 @@
 
 <body>
 
+#if($is_signed_in)
+	#dockbar()
+#end
+
 #if ($has_navigation)
 	#parse ("$full_templates_path/navigation.vm")
 #end

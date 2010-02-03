@@ -1,36 +1,30 @@
-var Chitchat = function() {
-	var $ = jQuery;
+AUI().ready(
+	'aui-base',
+	function(A) {
+		var hideTask = new A.DelayedTask(
+			function(event) {
+				var childMenu = this.one('.child-menu');
 
-	return {
-		init: function() {
-			var instance = this;
-
-			this.handleDropDown();
-		},
-
-		handleDropDown: function() {
-			$('#navigation li').hoverIntent(
-				{
-					interval: 25,
-					timeout: 0,
-					over: function() {
-						var menuItem = $(this);
-
-						menuItem.find(".child-menu").show();
-					},
-					out: function() {
-						var menuItem = $(this);
-
-						menuItem.find(".child-menu").hide();
-					}
+				if (childMenu) {
+					childMenu.setStyle('display', 'none');
 				}
-			);
-		}
-	};
-}();
+			}
+		);
 
-jQuery(document).ready(
-	function() {
-		Chitchat.init();
+		A.all('#navigation li').on(
+			{
+				mouseenter: function(event) {
+					var childMenu = this.one('.child-menu');
+
+					if (childMenu) {
+						childMenu.setStyle('display', 'block');
+					}
+				},
+				
+				mouseleave: function(event) {
+					hideTask.delay(25, null, this, event);
+				}
+			}
+		);
 	}
 );

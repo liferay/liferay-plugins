@@ -25,6 +25,10 @@
 
 <body class="$css_class" onload="initScreen();" onorientationchange="initScreen();">
 
+#if($is_signed_in)
+	#dockbar()
+#end
+
 $theme.include($top_messages_include)
 
 <div id="wrapper">
@@ -37,8 +41,6 @@ $theme.include($top_messages_include)
 					$community_name
 				</span>
 			</h1>
-
-			#parse ("$full_templates_path/dock.vm")
 
 			#if ($update_available_url)
 				<div class="popup-alert-notice">

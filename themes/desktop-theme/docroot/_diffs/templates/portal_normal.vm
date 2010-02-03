@@ -23,6 +23,10 @@
 
 <body class="$css_class" id="$css_id">
 
+#if($is_signed_in)
+	#dockbar()
+#end
+
 $theme.include($top_messages_include)
 
 <div id="wrapper">

@@ -31,7 +31,9 @@
 #if (!$isIphone)
 	$theme.include($top_messages_include)
 
-	#parse ("$full_templates_path/dock.vm")
+	#if($is_signed_in)
+		#dockbar()
+	#end
 #end
 
 <div id="wrap">

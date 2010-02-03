@@ -39,6 +39,10 @@
 
 <body class="$css_class">
 
+#if($is_signed_in)
+	#dockbar()
+#end
+
 $theme.include($top_messages_include)
 
 <div id="wrapper">
@@ -50,8 +54,6 @@ $theme.include($top_messages_include)
 		<div class="search">
 			$theme.journalContentSearch()
 		</div>
-
-		#parse ("$full_templates_path/dock.vm")
 
 		#if ($update_available_url)
 			<div class="popup-alert-notice">
