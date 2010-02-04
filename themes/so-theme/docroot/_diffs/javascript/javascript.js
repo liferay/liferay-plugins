@@ -1,32 +1,34 @@
-AUI().ready(
-	'aui-base',
-	function(A) {
-		var hideTask = new A.DelayedTask(
-			function(event) {
-				var childMenu = this.one('.child-menu');
+var LiferayInc = function() {
+	var $ = jQuery;
+	
+	return {
+		init: function() {
+			var instance = this;
 
-				if (childMenu) {
-					childMenu.removeClass('open');
-					childMenu.setStyle('display', 'none');
-				}
-			}
-		);
+			instance.handleMySitesDropDown();
+		},
 
-		A.all('#navigation-top .my-sites').on(
-			{
-				mouseenter: function(event) {
-					var childMenu = this.one('.child-menu');
-
-					if (childMenu) {
-						childMenu.addClass('open');
-						childMenu.setStyle('display', 'block');
+		handleMySitesDropDown: function() {
+			$('#navigation-top .my-sites').hoverIntent(
+				{
+					interval: 0,
+					timeout: 500,
+					over: function() {
+						$(this).addClass('open');
+						$('.child-menu', $(this)).show();
+					},
+					out: function() {
+						$(this).removeClass('open');
+						$('.child-menu', $(this)).hide();
 					}
-				},
-				
-				mouseleave: function(event) {
-					hideTask.delay(25, null, this, event);
 				}
-			}
-		);
+			);
+		}
+	};
+}();
+
+jQuery(document).ready(
+	function() {
+		LiferayInc.init();
 	}
 );
