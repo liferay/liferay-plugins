@@ -18,6 +18,27 @@
 %>
 
 <%
+Lock lock = null;
+
+boolean isLocked = false;
+boolean hasLock = false;
+
+if (fileEntry != null) {
+	folder = fileEntry.getFolder();
+
+	try {
+		lock = LockLocalServiceUtil.getLock(DLFileEntry.class.getName(), DLUtil.getLockId(fileEntry.getFolderId(), fileEntry.getName()));
+
+		isLocked = true;
+
+		if (lock.getUserId() == user.getUserId()) {
+			hasLock = true;
+		}
+	}
+	catch (Exception e) {
+	}
+}
+
 for (int j = 0; j < fileEntryColumns.length; j++) {
 	String fileEntryColumn = fileEntryColumns[j];
 %>
@@ -44,32 +65,9 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 				name="<%= fileEntryColumn %>"
 			>
 				<c:if test="<%= DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE) %>">
-
-					<%
-					Lock lock = null;
-					Boolean isLocked = Boolean.FALSE;
-					Boolean hasLock = Boolean.FALSE;
-
-					if (fileEntry != null) {
-						folder = fileEntry.getFolder();
-
-						try {
-							lock = LockLocalServiceUtil.getLock(DLFileEntry.class.getName(), DLUtil.getLockId(fileEntry.getFolderId(), fileEntry.getName()));
-
-							isLocked = Boolean.TRUE;
-
-							if (lock.getUserId() == user.getUserId()) {
-								hasLock = Boolean.TRUE;
-							}
-						}
-						catch (Exception e) {
-						}
-					}
-					%>
-
 					<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="lockURL">
 						<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
-						<portlet:param name="<%= Constants.CMD %>" value="<%= isLocked.booleanValue() ? Constants.UNLOCK : Constants.LOCK %>" />
+						<portlet:param name="<%= Constants.CMD %>" value="<%= isLocked ? Constants.UNLOCK : Constants.LOCK %>" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
 						<portlet:param name="name" value="<%= fileEntry.getName() %>" />
@@ -77,10 +75,10 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 
 					<div class="file-lock">
 						<c:choose>
-							<c:when test="<%= hasLock.booleanValue() %>">
+							<c:when test="<%= hasLock %>">
 								<a class="unlockable" href="javascript:;" onClick="submitForm(document.hrefFm, '<%= lockURL %>');"><span><liferay-ui:message key="unlock" /></span></a>
 							</c:when>
-							<c:when test="<%= isLocked.booleanValue() %>">
+							<c:when test="<%= isLocked %>">
 								<div class="locked"><span><liferay-ui:message key="unlock" /></span></div>
 							</c:when>
 							<c:otherwise>
@@ -141,6 +139,18 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 							%>
 
 							<%= sb.toString() %>
+						</div>
+					</c:if>
+
+					<c:if test="<%= (lock != null) && DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE) %>">
+						<div class="result-data">
+							<span class="<%= hasLock ? "has-lock" : "locked" %>">
+								<liferay-ui:message key="locked-by" />: <%= lock.getUserName() %>
+
+								<c:if test="<%= hasLock %>">
+									(<liferay-ui:message key="you" />)
+								</c:if>
+							</span>
 						</div>
 					</c:if>
 				</div>

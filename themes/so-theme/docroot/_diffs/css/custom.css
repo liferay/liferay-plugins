@@ -1089,6 +1089,14 @@ table.calendar {
 	text-indent: -9999em;
 }
 
+.portlet-document-library .result-data .locked {
+	color: #8F0920;
+}
+
+.portlet-document-library .result-data .has-lock {
+	color: #11801C;
+}
+
 .portlet-document-library .file-data span {
 	margin-right: 1em;
 	white-space: nowrap;
