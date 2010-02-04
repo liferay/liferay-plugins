@@ -41,8 +41,8 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
-import java.util.List;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
