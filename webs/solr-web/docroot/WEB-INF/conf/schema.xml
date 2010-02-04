@@ -69,7 +69,7 @@
 		<field name="url" type="text" indexed="true" stored="true" />
 		<field name="userName" type="text" indexed="true" stored="true" />
 		<field name="version" type="text" indexed="true" stored="true" />
-		<dynamicField name="*"  type="string" indexed="true" stored="true" />
+		<dynamicField name="*"  type="string" indexed="true" multiValued="true" stored="true" />
 	</fields>
 	<uniqueKey>uid</uniqueKey>
 	<defaultSearchField>content</defaultSearchField>

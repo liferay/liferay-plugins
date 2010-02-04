@@ -121,19 +121,12 @@ public class SolrIndexWriterImpl implements IndexWriter {
 			String name = field.getName();
 			float boost = field.getBoost();
 
-			StringBuilder sb = new StringBuilder();
-
 			for (String value : field.getValues()) {
 				if (Validator.isNull(value)) {
 					continue;
 				}
 
-				sb.append(value);
-				sb.append(StringPool.SPACE);
-			}
-
-			if (sb.length() > 0) {
-				solrInputDocument.addField(name, sb.toString().trim(), boost);
+				solrInputDocument.addField(name, value.trim(), boost);
 			}
 		}
 
