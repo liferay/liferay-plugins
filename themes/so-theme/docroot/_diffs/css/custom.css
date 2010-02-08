@@ -94,6 +94,8 @@ body #banner h1.logo a {
 	border-left: 1px solid #B0BAFF;
 	display: inline;
 	float: left;
+	position: relative;
+	z-index: 1;
 }
 
 #navigation-top li a {
