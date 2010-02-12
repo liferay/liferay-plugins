@@ -7,7 +7,7 @@
 <head>
 	<title>$the_title - $company_name</title>
 	<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
-	<meta name="apple-touch-fullscreen" content="YES" /> 
+	<meta name="apple-touch-fullscreen" content="YES" />
 
 	$theme.include($top_head_include)
 

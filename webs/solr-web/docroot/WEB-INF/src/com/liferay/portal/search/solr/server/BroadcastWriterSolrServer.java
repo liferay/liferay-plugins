@@ -74,8 +74,8 @@ public class BroadcastWriterSolrServer extends SolrServer {
 		return response;
 	}
 
-	private static Log _log =
-		LogFactoryUtil.getLog(BroadcastWriterSolrServer.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		BroadcastWriterSolrServer.class);
 
 	private SolrServerWrapper[] _solrServerWrappers;
 

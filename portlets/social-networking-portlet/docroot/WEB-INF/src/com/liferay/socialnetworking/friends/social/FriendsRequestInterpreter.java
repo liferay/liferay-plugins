@@ -113,7 +113,7 @@ public class FriendsRequestInterpreter extends BaseSocialRequestInterpreter {
 		User.class.getName()
 	};
 
-	private static Log _log =
-		LogFactoryUtil.getLog(FriendsRequestInterpreter.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		FriendsRequestInterpreter.class);
 
 }

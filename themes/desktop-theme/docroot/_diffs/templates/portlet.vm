@@ -63,15 +63,15 @@
 								<a href="$portlet_back_url" class="portlet-icon-back">#language ("return-to-full-page")</a>
 							#else
 								#if ($portlet_display.isShowMinIcon())
-									<span class="icon-min"><a href="javascript: Desktop.portletMinimize('$portlet_display.getId()');"></a></span>
+									<span class="icon-min"><a href="javascript:Desktop.portletMinimize('$portlet_display.getId()');"></a></span>
 								#end
 
 								#if ($portlet_display.isShowMaxIcon())
-									<span class="icon-max"><a href="javascript: submitForm(document.hrefFm,'$portlet_display.getURLMax()')"></a></span>
+									<span class="icon-max"><a href="javascript:submitForm(document.hrefFm,'$portlet_display.getURLMax()')"></a></span>
 								#end
 
 								#if ($portlet_display.isShowCloseIcon())
-									<span class="icon-close"><a href="javascript: Desktop.portletRemove('$portlet_display.getId()', '$portlet_column_pos');"></a></span>
+									<span class="icon-close"><a href="javascript:Desktop.portletRemove('$portlet_display.getId()', '$portlet_column_pos');"></a></span>
 								#end
 							#end
 						</span>

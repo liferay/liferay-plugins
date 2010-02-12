@@ -22,13 +22,13 @@
 
 package com.liferay.rubyconsole.portlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.scripting.ScriptingException;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.scripting.ScriptingException;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.log.Log;
 import com.liferay.util.bridges.ruby.RubyPortlet;
 
 import java.io.IOException;
@@ -40,8 +40,6 @@ import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
-
-import org.apache.bsf.BSFException;
 
 /**
  * <a href="RubyConsolePortlet.java.html"><b><i>View Source</i></b></a>

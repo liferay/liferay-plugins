@@ -105,7 +105,7 @@ public class FoodItemComponentImpl {
 		return doc.asXML();
 	}
 
-	private static Log _log =
-		LogFactoryUtil.getLog(FoodItemComponentImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		FoodItemComponentImpl.class);
 
 }

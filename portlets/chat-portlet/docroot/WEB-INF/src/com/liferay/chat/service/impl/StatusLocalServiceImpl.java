@@ -141,7 +141,7 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 		return status;
 	}
 
-	private static Log _log =
-		LogFactoryUtil.getLog(StatusLocalServiceImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		StatusLocalServiceImpl.class);
 
 }

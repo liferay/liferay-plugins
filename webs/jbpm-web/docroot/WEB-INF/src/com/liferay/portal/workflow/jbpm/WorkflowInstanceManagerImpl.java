@@ -405,8 +405,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			new WorkflowInstanceStateComparator(true));
 	}
 
-	private static Log _log =
-		LogFactoryUtil.getLog(WorkflowInstanceManagerImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		WorkflowInstanceManagerImpl.class);
 
 	private JbpmConfiguration _jbpmConfiguration;
 

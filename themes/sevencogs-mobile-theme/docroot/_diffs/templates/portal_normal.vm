@@ -8,20 +8,19 @@
 <head>
 	<title>$the_title - $company_name</title>
 	<link rel="stylesheet" href="$css_folder/main.css" type="text/css" title="$company_name style" />
-	
-	<style type="text/css" media="screen">
-	#logo {
-		background: url($company_logo);
-		display: block;
-		font-size: 0;
-		height: ${company_logo_height}px;
-		line-height: 0;
-		overflow: hidden;
-		text-indent: -9999em;
-		width: ${company_logo_width}px;
-	}
-</style>
 
+	<style type="text/css" media="screen">
+		#logo {
+			background: url($company_logo);
+			display: block;
+			font-size: 0;
+			height: ${company_logo_height}px;
+			line-height: 0;
+			overflow: hidden;
+			text-indent: -9999em;
+			width: ${company_logo_width}px;
+		}
+	</style>
 </head>
 
 <body>

@@ -67,7 +67,7 @@ public class IPGeocoderMessageListener implements MessageListener {
 			message.getResponseDestinationName(), message);
 	}
 
-	private static Log _log =
-		LogFactoryUtil.getLog(IPGeocoderMessageListener.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		IPGeocoderMessageListener.class);
 
 }

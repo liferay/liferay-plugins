@@ -108,7 +108,7 @@ public class ProfilesRequestInterpreter extends BaseSocialRequestInterpreter {
 		User.class.getName()
 	};
 
-	private static Log _log =
-		LogFactoryUtil.getLog(ProfilesRequestInterpreter.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		ProfilesRequestInterpreter.class);
 
 }

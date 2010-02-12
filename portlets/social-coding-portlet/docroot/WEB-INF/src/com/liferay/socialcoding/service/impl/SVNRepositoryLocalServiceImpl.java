@@ -131,7 +131,7 @@ public class SVNRepositoryLocalServiceImpl
 		}
 	}
 
-	private static Log _log =
-		LogFactoryUtil.getLog(SVNRepositoryLocalServiceImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		SVNRepositoryLocalServiceImpl.class);
 
 }

@@ -153,7 +153,7 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 		Group.class.getName(), Organization.class.getName()
 	};
 
-	private static Log _log =
-		LogFactoryUtil.getLog(MembersRequestInterpreter.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		MembersRequestInterpreter.class);
 
 }

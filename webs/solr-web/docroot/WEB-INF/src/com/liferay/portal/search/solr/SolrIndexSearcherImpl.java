@@ -250,8 +250,8 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		}
 	}
 
-	private static Log _log =
-		LogFactoryUtil.getLog(SolrIndexSearcherImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		SolrIndexSearcherImpl.class);
 
 	private SolrServer _solrServer;
 

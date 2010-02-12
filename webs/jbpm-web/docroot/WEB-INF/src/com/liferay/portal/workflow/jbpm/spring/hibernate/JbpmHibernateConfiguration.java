@@ -77,7 +77,7 @@ public class JbpmHibernateConfiguration extends LocalSessionFactoryBean {
 
 	private static final String _JBPM_TYPE_SQLSERVER = "mssql";
 
-	private static Log _log =
-		LogFactoryUtil.getLog(JbpmHibernateConfiguration.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		JbpmHibernateConfiguration.class);
 
 }

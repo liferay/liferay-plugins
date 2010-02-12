@@ -56,7 +56,7 @@ public class LoginPostAction extends Action {
 		}
 	}
 
-	private static Log _log =
-		LogFactoryUtil.getLog(LoginPostAction.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		LoginPostAction.class);
 
 }
