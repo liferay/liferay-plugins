@@ -94,13 +94,20 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 				name="<%= fileEntryColumn %>"
 			>
 				<div>
+					<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="viewURL">
+						<portlet:param name="struts_action" value="/document_library/view_file_entry" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
+						<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
+						<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
+					</portlet:renderURL>
+
 					<div class="result-title">
-						<a href="<%= rowHREF %>"><%= _getFileEntryImage(fileEntry, themeDisplay) %><%= fileEntry.getTitleWithExtension() %></a>
+						<a href="<%= viewURL %>"><%= _getFileEntryImage(fileEntry, themeDisplay) %><%= fileEntry.getTitleWithExtension() %></a>
 					</div>
 
 					<c:if test="<%= Validator.isNotNull(fileEntry.getDescription()) %>">
 						<div class="result-description">
-							<a href="<%= rowHREF %>"><%= StringUtil.shorten(fileEntry.getDescription(), 120) %></a>
+							<a href="<%= viewURL %>"><%= StringUtil.shorten(fileEntry.getDescription(), 120) %></a>
 						</div>
 					</c:if>
 
