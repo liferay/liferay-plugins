@@ -22,7 +22,7 @@
 
 package com.liferay.sampleservicebuilder.portlet;
 
-import com.liferay.portal.PortalException;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;

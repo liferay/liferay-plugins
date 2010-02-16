@@ -34,7 +34,7 @@ public class FeedLocalServiceWrapper implements FeedLocalService {
 
 	public com.liferay.twitter.model.Feed addFeed(
 		com.liferay.twitter.model.Feed feed)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _feedLocalService.addFeed(feed);
 	}
 
@@ -43,70 +43,71 @@ public class FeedLocalServiceWrapper implements FeedLocalService {
 	}
 
 	public void deleteFeed(long feedId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_feedLocalService.deleteFeed(feedId);
 	}
 
 	public void deleteFeed(com.liferay.twitter.model.Feed feed)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		_feedLocalService.deleteFeed(feed);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _feedLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _feedLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public com.liferay.twitter.model.Feed getFeed(long feedId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _feedLocalService.getFeed(feedId);
 	}
 
 	public java.util.List<com.liferay.twitter.model.Feed> getFeeds(int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _feedLocalService.getFeeds(start, end);
 	}
 
-	public int getFeedsCount() throws com.liferay.portal.SystemException {
+	public int getFeedsCount()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _feedLocalService.getFeedsCount();
 	}
 
 	public com.liferay.twitter.model.Feed updateFeed(
 		com.liferay.twitter.model.Feed feed)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _feedLocalService.updateFeed(feed);
 	}
 
 	public com.liferay.twitter.model.Feed updateFeed(
 		com.liferay.twitter.model.Feed feed, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _feedLocalService.updateFeed(feed, merge);
 	}
 
 	public void updateFeed(long userId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_feedLocalService.updateFeed(userId);
 	}
 
 	public void updateFeeds()
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_feedLocalService.updateFeeds();
 	}
 
 	public void updateFeeds(long companyId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_feedLocalService.updateFeeds(companyId);
 	}
 

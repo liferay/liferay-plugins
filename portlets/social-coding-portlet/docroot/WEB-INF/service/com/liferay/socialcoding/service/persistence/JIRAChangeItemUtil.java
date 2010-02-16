@@ -22,9 +22,9 @@
 
 package com.liferay.socialcoding.service.persistence;
 
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.socialcoding.model.JIRAChangeItem;
 
@@ -77,37 +77,40 @@ public class JIRAChangeItemUtil {
 
 	public static com.liferay.socialcoding.model.JIRAChangeItem remove(
 		long jiraChangeItemId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException {
 		return getPersistence().remove(jiraChangeItemId);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAChangeItem updateImpl(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem,
-		boolean merge) throws com.liferay.portal.SystemException {
+		boolean merge)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(jiraChangeItem, merge);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAChangeItem findByPrimaryKey(
 		long jiraChangeItemId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException {
 		return getPersistence().findByPrimaryKey(jiraChangeItemId);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAChangeItem fetchByPrimaryKey(
-		long jiraChangeItemId) throws com.liferay.portal.SystemException {
+		long jiraChangeItemId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(jiraChangeItemId);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> findByJiraChangeGroupId(
-		long jiraChangeGroupId) throws com.liferay.portal.SystemException {
+		long jiraChangeGroupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByJiraChangeGroupId(jiraChangeGroupId);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> findByJiraChangeGroupId(
 		long jiraChangeGroupId, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .findByJiraChangeGroupId(jiraChangeGroupId, start, end);
 	}
@@ -115,7 +118,7 @@ public class JIRAChangeItemUtil {
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> findByJiraChangeGroupId(
 		long jiraChangeGroupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .findByJiraChangeGroupId(jiraChangeGroupId, start, end, obc);
 	}
@@ -123,7 +126,7 @@ public class JIRAChangeItemUtil {
 	public static com.liferay.socialcoding.model.JIRAChangeItem findByJiraChangeGroupId_First(
 		long jiraChangeGroupId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException {
 		return getPersistence()
 				   .findByJiraChangeGroupId_First(jiraChangeGroupId, obc);
@@ -132,7 +135,7 @@ public class JIRAChangeItemUtil {
 	public static com.liferay.socialcoding.model.JIRAChangeItem findByJiraChangeGroupId_Last(
 		long jiraChangeGroupId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException {
 		return getPersistence()
 				   .findByJiraChangeGroupId_Last(jiraChangeGroupId, obc);
@@ -141,7 +144,7 @@ public class JIRAChangeItemUtil {
 	public static com.liferay.socialcoding.model.JIRAChangeItem[] findByJiraChangeGroupId_PrevAndNext(
 		long jiraChangeItemId, long jiraChangeGroupId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException {
 		return getPersistence()
 				   .findByJiraChangeGroupId_PrevAndNext(jiraChangeItemId,
@@ -149,36 +152,39 @@ public class JIRAChangeItemUtil {
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> findAll()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> findAll(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end, obc);
 	}
 
 	public static void removeByJiraChangeGroupId(long jiraChangeGroupId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByJiraChangeGroupId(jiraChangeGroupId);
 	}
 
-	public static void removeAll() throws com.liferay.portal.SystemException {
+	public static void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
 	}
 
 	public static int countByJiraChangeGroupId(long jiraChangeGroupId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByJiraChangeGroupId(jiraChangeGroupId);
 	}
 
-	public static int countAll() throws com.liferay.portal.SystemException {
+	public static int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();
 	}
 

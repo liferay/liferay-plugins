@@ -22,10 +22,10 @@
 
 package com.liferay.sampleservicebuilder.service;
 
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.Isolation;
 import com.liferay.portal.kernel.annotation.Transactional;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * <a href="FooService.java.html"><b><i>View Source</i></b></a>

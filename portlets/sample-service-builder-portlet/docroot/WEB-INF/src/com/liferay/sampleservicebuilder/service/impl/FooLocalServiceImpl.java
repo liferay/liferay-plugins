@@ -23,9 +23,9 @@
 package com.liferay.sampleservicebuilder.service.impl;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.User;
 import com.liferay.sampleservicebuilder.model.Foo;

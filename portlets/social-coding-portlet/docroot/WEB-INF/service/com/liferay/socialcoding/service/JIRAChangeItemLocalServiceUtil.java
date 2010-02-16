@@ -34,7 +34,7 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
 public class JIRAChangeItemLocalServiceUtil {
 	public static com.liferay.socialcoding.model.JIRAChangeItem addJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addJIRAChangeItem(jiraChangeItem);
 	}
 
@@ -44,60 +44,63 @@ public class JIRAChangeItemLocalServiceUtil {
 	}
 
 	public static void deleteJIRAChangeItem(long jiraChangeItemId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteJIRAChangeItem(jiraChangeItemId);
 	}
 
 	public static void deleteJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteJIRAChangeItem(jiraChangeItem);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAChangeItem getJIRAChangeItem(
 		long jiraChangeItemId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getJIRAChangeItem(jiraChangeItemId);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getJIRAChangeItems(start, end);
 	}
 
 	public static int getJIRAChangeItemsCount()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getJIRAChangeItemsCount();
 	}
 
 	public static com.liferay.socialcoding.model.JIRAChangeItem updateJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateJIRAChangeItem(jiraChangeItem);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAChangeItem updateJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem,
-		boolean merge) throws com.liferay.portal.SystemException {
+		boolean merge)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateJIRAChangeItem(jiraChangeItem, merge);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(
-		long jiraChangeGroupId) throws com.liferay.portal.SystemException {
+		long jiraChangeGroupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getJIRAChangeItems(jiraChangeGroupId);
 	}
 

@@ -43,68 +43,74 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 
 	public com.liferay.socialcoding.model.JIRAChangeItem remove(
 		long jiraChangeItemId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException;
 
 	public com.liferay.socialcoding.model.JIRAChangeItem updateImpl(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem,
-		boolean merge) throws com.liferay.portal.SystemException;
+		boolean merge)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.socialcoding.model.JIRAChangeItem findByPrimaryKey(
 		long jiraChangeItemId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException;
 
 	public com.liferay.socialcoding.model.JIRAChangeItem fetchByPrimaryKey(
-		long jiraChangeItemId) throws com.liferay.portal.SystemException;
+		long jiraChangeItemId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> findByJiraChangeGroupId(
-		long jiraChangeGroupId) throws com.liferay.portal.SystemException;
+		long jiraChangeGroupId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> findByJiraChangeGroupId(
 		long jiraChangeGroupId, int start, int end)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> findByJiraChangeGroupId(
 		long jiraChangeGroupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.socialcoding.model.JIRAChangeItem findByJiraChangeGroupId_First(
 		long jiraChangeGroupId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException;
 
 	public com.liferay.socialcoding.model.JIRAChangeItem findByJiraChangeGroupId_Last(
 		long jiraChangeGroupId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException;
 
 	public com.liferay.socialcoding.model.JIRAChangeItem[] findByJiraChangeGroupId_PrevAndNext(
 		long jiraChangeItemId, long jiraChangeGroupId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException;
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> findAll()
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> findAll(
-		int start, int end) throws com.liferay.portal.SystemException;
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void removeByJiraChangeGroupId(long jiraChangeGroupId)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void removeAll() throws com.liferay.portal.SystemException;
+	public void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByJiraChangeGroupId(long jiraChangeGroupId)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countAll() throws com.liferay.portal.SystemException;
+	public int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

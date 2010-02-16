@@ -22,9 +22,9 @@
 
 package com.liferay.sampleservicebuilder.service.persistence;
 
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.sampleservicebuilder.model.Foo;
 
@@ -73,57 +73,58 @@ public class FooUtil {
 	}
 
 	public static com.liferay.sampleservicebuilder.model.Foo remove(long fooId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.sampleservicebuilder.NoSuchFooException {
 		return getPersistence().remove(fooId);
 	}
 
 	public static com.liferay.sampleservicebuilder.model.Foo updateImpl(
 		com.liferay.sampleservicebuilder.model.Foo foo, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(foo, merge);
 	}
 
 	public static com.liferay.sampleservicebuilder.model.Foo findByPrimaryKey(
 		long fooId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.sampleservicebuilder.NoSuchFooException {
 		return getPersistence().findByPrimaryKey(fooId);
 	}
 
 	public static com.liferay.sampleservicebuilder.model.Foo fetchByPrimaryKey(
-		long fooId) throws com.liferay.portal.SystemException {
+		long fooId) throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(fooId);
 	}
 
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> findByField2(
-		boolean field2) throws com.liferay.portal.SystemException {
+		boolean field2)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByField2(field2);
 	}
 
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> findByField2(
 		boolean field2, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByField2(field2, start, end);
 	}
 
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> findByField2(
 		boolean field2, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByField2(field2, start, end, obc);
 	}
 
 	public static com.liferay.sampleservicebuilder.model.Foo findByField2_First(
 		boolean field2, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.sampleservicebuilder.NoSuchFooException {
 		return getPersistence().findByField2_First(field2, obc);
 	}
 
 	public static com.liferay.sampleservicebuilder.model.Foo findByField2_Last(
 		boolean field2, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.sampleservicebuilder.NoSuchFooException {
 		return getPersistence().findByField2_Last(field2, obc);
 	}
@@ -131,42 +132,45 @@ public class FooUtil {
 	public static com.liferay.sampleservicebuilder.model.Foo[] findByField2_PrevAndNext(
 		long fooId, boolean field2,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.sampleservicebuilder.NoSuchFooException {
 		return getPersistence().findByField2_PrevAndNext(fooId, field2, obc);
 	}
 
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> findAll()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
 
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> findAll(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end, obc);
 	}
 
 	public static void removeByField2(boolean field2)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByField2(field2);
 	}
 
-	public static void removeAll() throws com.liferay.portal.SystemException {
+	public static void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
 	}
 
 	public static int countByField2(boolean field2)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByField2(field2);
 	}
 
-	public static int countAll() throws com.liferay.portal.SystemException {
+	public static int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();
 	}
 

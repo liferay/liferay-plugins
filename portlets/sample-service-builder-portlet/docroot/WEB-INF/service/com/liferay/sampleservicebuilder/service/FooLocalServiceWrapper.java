@@ -34,7 +34,7 @@ public class FooLocalServiceWrapper implements FooLocalService {
 
 	public com.liferay.sampleservicebuilder.model.Foo addFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.addFoo(foo);
 	}
 
@@ -43,78 +43,80 @@ public class FooLocalServiceWrapper implements FooLocalService {
 	}
 
 	public void deleteFoo(long fooId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_fooLocalService.deleteFoo(fooId);
 	}
 
 	public void deleteFoo(com.liferay.sampleservicebuilder.model.Foo foo)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		_fooLocalService.deleteFoo(foo);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public com.liferay.sampleservicebuilder.model.Foo getFoo(long fooId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.getFoo(fooId);
 	}
 
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.getFoos(start, end);
 	}
 
-	public int getFoosCount() throws com.liferay.portal.SystemException {
+	public int getFoosCount()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.getFoosCount();
 	}
 
 	public com.liferay.sampleservicebuilder.model.Foo updateFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.updateFoo(foo);
 	}
 
 	public com.liferay.sampleservicebuilder.model.Foo updateFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.updateFoo(foo, merge);
 	}
 
 	public void addFoo(long userId, java.lang.String field1, boolean field2,
 		int field3, java.util.Date field4, java.lang.String field5)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_fooLocalService.addFoo(userId, field1, field2, field3, field4, field5);
 	}
 
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.getFoos(obc);
 	}
 
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.getFoos(start, end, obc);
 	}
 
 	public void updateFoo(long fooId, java.lang.String field1, boolean field2,
 		int field3, java.util.Date field4, java.lang.String field5)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_fooLocalService.updateFoo(fooId, field1, field2, field3, field4, field5);
 	}
 

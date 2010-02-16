@@ -22,7 +22,7 @@
 
 package com.liferay.twitter;
 
-import com.liferay.portal.PortalException;
+import com.liferay.portal.kernel.exception.PortalException;
 
 /**
  * <a href="FeedTwitterScreenNameException.java.html"><b><i>View Source</i></b>

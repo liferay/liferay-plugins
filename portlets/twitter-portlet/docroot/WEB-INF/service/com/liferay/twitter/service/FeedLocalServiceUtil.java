@@ -33,7 +33,7 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
 public class FeedLocalServiceUtil {
 	public static com.liferay.twitter.model.Feed addFeed(
 		com.liferay.twitter.model.Feed feed)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addFeed(feed);
 	}
 
@@ -42,70 +42,72 @@ public class FeedLocalServiceUtil {
 	}
 
 	public static void deleteFeed(long feedId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteFeed(feedId);
 	}
 
 	public static void deleteFeed(com.liferay.twitter.model.Feed feed)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteFeed(feed);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.twitter.model.Feed getFeed(long feedId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getFeed(feedId);
 	}
 
 	public static java.util.List<com.liferay.twitter.model.Feed> getFeeds(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getFeeds(start, end);
 	}
 
-	public static int getFeedsCount() throws com.liferay.portal.SystemException {
+	public static int getFeedsCount()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getFeedsCount();
 	}
 
 	public static com.liferay.twitter.model.Feed updateFeed(
 		com.liferay.twitter.model.Feed feed)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateFeed(feed);
 	}
 
 	public static com.liferay.twitter.model.Feed updateFeed(
 		com.liferay.twitter.model.Feed feed, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateFeed(feed, merge);
 	}
 
 	public static void updateFeed(long userId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().updateFeed(userId);
 	}
 
 	public static void updateFeeds()
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().updateFeeds();
 	}
 
 	public static void updateFeeds(long companyId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().updateFeeds(companyId);
 	}
 

@@ -34,7 +34,7 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
 public class GadgetsEntryLocalServiceUtil {
 	public static com.liferay.gadgets.model.GadgetsEntry addGadgetsEntry(
 		com.liferay.gadgets.model.GadgetsEntry gadgetsEntry)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addGadgetsEntry(gadgetsEntry);
 	}
 
@@ -44,84 +44,85 @@ public class GadgetsEntryLocalServiceUtil {
 	}
 
 	public static void deleteGadgetsEntry(long gadgetsEntryId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteGadgetsEntry(gadgetsEntryId);
 	}
 
 	public static void deleteGadgetsEntry(
 		com.liferay.gadgets.model.GadgetsEntry gadgetsEntry)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteGadgetsEntry(gadgetsEntry);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry getGadgetsEntry(
 		long gadgetsEntryId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getGadgetsEntry(gadgetsEntryId);
 	}
 
 	public static java.util.List<com.liferay.gadgets.model.GadgetsEntry> getGadgetsEntries(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getGadgetsEntries(start, end);
 	}
 
 	public static int getGadgetsEntriesCount()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getGadgetsEntriesCount();
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry updateGadgetsEntry(
 		com.liferay.gadgets.model.GadgetsEntry gadgetsEntry)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateGadgetsEntry(gadgetsEntry);
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry updateGadgetsEntry(
 		com.liferay.gadgets.model.GadgetsEntry gadgetsEntry, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateGadgetsEntry(gadgetsEntry, merge);
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry addGadgetsEntry(
 		long companyId, java.lang.String name, java.lang.String url,
 		java.lang.String xml)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().addGadgetsEntry(companyId, name, url, xml);
 	}
 
 	public static java.util.List<com.liferay.gadgets.model.GadgetsEntry> getGadgetsEntries(
 		long companyId, int start, int end)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getGadgetsEntries(companyId, start, end);
 	}
 
 	public static int getGadgetsEntriesCount(long companyId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getGadgetsEntriesCount(companyId);
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry updateGadgetsEntry(
 		long gadgetsEntryId, java.lang.String name, java.lang.String xml)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateGadgetsEntry(gadgetsEntryId, name, xml);
 	}
 

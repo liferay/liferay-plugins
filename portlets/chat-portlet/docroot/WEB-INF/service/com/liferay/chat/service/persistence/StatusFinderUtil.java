@@ -32,13 +32,13 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 public class StatusFinderUtil {
 	public static java.util.List<Object[]> findByModifiedDate(long userId,
 		long modifiedDate, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder().findByModifiedDate(userId, modifiedDate, start, end);
 	}
 
 	public static java.util.List<Object[]> findBySocialRelationType(
 		long userId, int type, long modifiedDate, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .findBySocialRelationType(userId, type, modifiedDate, start,
 			end);
@@ -46,7 +46,7 @@ public class StatusFinderUtil {
 
 	public static java.util.List<Object[]> findByUsersGroups(long userId,
 		long modifiedDate, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder().findByUsersGroups(userId, modifiedDate, start, end);
 	}
 

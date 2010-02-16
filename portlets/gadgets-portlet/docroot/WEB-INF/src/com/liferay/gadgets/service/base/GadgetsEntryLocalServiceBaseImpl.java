@@ -26,12 +26,12 @@ import com.liferay.gadgets.model.GadgetsEntry;
 import com.liferay.gadgets.service.GadgetsEntryLocalService;
 import com.liferay.gadgets.service.persistence.GadgetsEntryPersistence;
 
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.List;
 

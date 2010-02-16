@@ -43,66 +43,72 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 
 	public com.liferay.socialnetworking.model.MeetupsEntry remove(
 		long meetupsEntryId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchMeetupsEntryException;
 
 	public com.liferay.socialnetworking.model.MeetupsEntry updateImpl(
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry,
-		boolean merge) throws com.liferay.portal.SystemException;
+		boolean merge)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.socialnetworking.model.MeetupsEntry findByPrimaryKey(
 		long meetupsEntryId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchMeetupsEntryException;
 
 	public com.liferay.socialnetworking.model.MeetupsEntry fetchByPrimaryKey(
-		long meetupsEntryId) throws com.liferay.portal.SystemException;
+		long meetupsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByCompanyId(
-		long companyId) throws com.liferay.portal.SystemException;
+		long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByCompanyId(
 		long companyId, int start, int end)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.socialnetworking.model.MeetupsEntry findByCompanyId_First(
 		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchMeetupsEntryException;
 
 	public com.liferay.socialnetworking.model.MeetupsEntry findByCompanyId_Last(
 		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchMeetupsEntryException;
 
 	public com.liferay.socialnetworking.model.MeetupsEntry[] findByCompanyId_PrevAndNext(
 		long meetupsEntryId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchMeetupsEntryException;
 
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findAll()
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findAll(
-		int start, int end) throws com.liferay.portal.SystemException;
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void removeByCompanyId(long companyId)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void removeAll() throws com.liferay.portal.SystemException;
+	public void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByCompanyId(long companyId)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countAll() throws com.liferay.portal.SystemException;
+	public int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

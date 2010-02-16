@@ -37,7 +37,7 @@ public class SVNRepositoryLocalServiceWrapper
 
 	public com.liferay.socialcoding.model.SVNRepository addSVNRepository(
 		com.liferay.socialcoding.model.SVNRepository svnRepository)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _svnRepositoryLocalService.addSVNRepository(svnRepository);
 	}
 
@@ -47,69 +47,71 @@ public class SVNRepositoryLocalServiceWrapper
 	}
 
 	public void deleteSVNRepository(long svnRepositoryId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_svnRepositoryLocalService.deleteSVNRepository(svnRepositoryId);
 	}
 
 	public void deleteSVNRepository(
 		com.liferay.socialcoding.model.SVNRepository svnRepository)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		_svnRepositoryLocalService.deleteSVNRepository(svnRepository);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _svnRepositoryLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _svnRepositoryLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public com.liferay.socialcoding.model.SVNRepository getSVNRepository(
 		long svnRepositoryId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _svnRepositoryLocalService.getSVNRepository(svnRepositoryId);
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.SVNRepository> getSVNRepositories(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _svnRepositoryLocalService.getSVNRepositories(start, end);
 	}
 
 	public int getSVNRepositoriesCount()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _svnRepositoryLocalService.getSVNRepositoriesCount();
 	}
 
 	public com.liferay.socialcoding.model.SVNRepository updateSVNRepository(
 		com.liferay.socialcoding.model.SVNRepository svnRepository)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _svnRepositoryLocalService.updateSVNRepository(svnRepository);
 	}
 
 	public com.liferay.socialcoding.model.SVNRepository updateSVNRepository(
 		com.liferay.socialcoding.model.SVNRepository svnRepository,
-		boolean merge) throws com.liferay.portal.SystemException {
+		boolean merge)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _svnRepositoryLocalService.updateSVNRepository(svnRepository,
 			merge);
 	}
 
 	public com.liferay.socialcoding.model.SVNRepository getSVNRepository(
 		java.lang.String url)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _svnRepositoryLocalService.getSVNRepository(url);
 	}
 
 	public void updateSVNRepository(java.lang.String url)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_svnRepositoryLocalService.updateSVNRepository(url);
 	}
 

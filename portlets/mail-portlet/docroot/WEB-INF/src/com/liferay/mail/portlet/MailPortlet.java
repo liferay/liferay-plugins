@@ -24,8 +24,8 @@ package com.liferay.mail.portlet;
 
 import com.liferay.mail.model.MailAccount;
 import com.liferay.mail.util.MailBoxManager;
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;

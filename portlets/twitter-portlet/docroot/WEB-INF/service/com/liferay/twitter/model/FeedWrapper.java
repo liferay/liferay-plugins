@@ -57,7 +57,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	public java.lang.String getTwitterUserUuid()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _feed.getTwitterUserUuid();
 	}
 

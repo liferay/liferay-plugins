@@ -36,7 +36,7 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService {
 
 	public com.liferay.socialcoding.model.JIRAAction addJIRAAction(
 		com.liferay.socialcoding.model.JIRAAction jiraAction)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _jiraActionLocalService.addJIRAAction(jiraAction);
 	}
 
@@ -46,54 +46,56 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService {
 	}
 
 	public void deleteJIRAAction(long jiraActionId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_jiraActionLocalService.deleteJIRAAction(jiraActionId);
 	}
 
 	public void deleteJIRAAction(
 		com.liferay.socialcoding.model.JIRAAction jiraAction)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		_jiraActionLocalService.deleteJIRAAction(jiraAction);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _jiraActionLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _jiraActionLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public com.liferay.socialcoding.model.JIRAAction getJIRAAction(
 		long jiraActionId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _jiraActionLocalService.getJIRAAction(jiraActionId);
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> getJIRAActions(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _jiraActionLocalService.getJIRAActions(start, end);
 	}
 
-	public int getJIRAActionsCount() throws com.liferay.portal.SystemException {
+	public int getJIRAActionsCount()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _jiraActionLocalService.getJIRAActionsCount();
 	}
 
 	public com.liferay.socialcoding.model.JIRAAction updateJIRAAction(
 		com.liferay.socialcoding.model.JIRAAction jiraAction)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _jiraActionLocalService.updateJIRAAction(jiraAction);
 	}
 
 	public com.liferay.socialcoding.model.JIRAAction updateJIRAAction(
 		com.liferay.socialcoding.model.JIRAAction jiraAction, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _jiraActionLocalService.updateJIRAAction(jiraAction, merge);
 	}
 

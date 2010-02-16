@@ -22,9 +22,9 @@
 
 package com.liferay.twitter.service.persistence;
 
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.twitter.model.Feed;
 
@@ -73,113 +73,117 @@ public class FeedUtil {
 	}
 
 	public static com.liferay.twitter.model.Feed remove(long feedId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.twitter.NoSuchFeedException {
 		return getPersistence().remove(feedId);
 	}
 
 	public static com.liferay.twitter.model.Feed updateImpl(
 		com.liferay.twitter.model.Feed feed, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(feed, merge);
 	}
 
 	public static com.liferay.twitter.model.Feed findByPrimaryKey(long feedId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.twitter.NoSuchFeedException {
 		return getPersistence().findByPrimaryKey(feedId);
 	}
 
 	public static com.liferay.twitter.model.Feed fetchByPrimaryKey(long feedId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(feedId);
 	}
 
 	public static com.liferay.twitter.model.Feed findByTwitterUserId(
 		long twitterUserId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.twitter.NoSuchFeedException {
 		return getPersistence().findByTwitterUserId(twitterUserId);
 	}
 
 	public static com.liferay.twitter.model.Feed fetchByTwitterUserId(
-		long twitterUserId) throws com.liferay.portal.SystemException {
+		long twitterUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByTwitterUserId(twitterUserId);
 	}
 
 	public static com.liferay.twitter.model.Feed fetchByTwitterUserId(
 		long twitterUserId, boolean retrieveFromCache)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .fetchByTwitterUserId(twitterUserId, retrieveFromCache);
 	}
 
 	public static com.liferay.twitter.model.Feed findByTwitterScreenName(
 		java.lang.String twitterScreenName)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.twitter.NoSuchFeedException {
 		return getPersistence().findByTwitterScreenName(twitterScreenName);
 	}
 
 	public static com.liferay.twitter.model.Feed fetchByTwitterScreenName(
 		java.lang.String twitterScreenName)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByTwitterScreenName(twitterScreenName);
 	}
 
 	public static com.liferay.twitter.model.Feed fetchByTwitterScreenName(
 		java.lang.String twitterScreenName, boolean retrieveFromCache)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .fetchByTwitterScreenName(twitterScreenName,
 			retrieveFromCache);
 	}
 
 	public static java.util.List<com.liferay.twitter.model.Feed> findAll()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
 
 	public static java.util.List<com.liferay.twitter.model.Feed> findAll(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
 	public static java.util.List<com.liferay.twitter.model.Feed> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end, obc);
 	}
 
 	public static void removeByTwitterUserId(long twitterUserId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.twitter.NoSuchFeedException {
 		getPersistence().removeByTwitterUserId(twitterUserId);
 	}
 
 	public static void removeByTwitterScreenName(
 		java.lang.String twitterScreenName)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.twitter.NoSuchFeedException {
 		getPersistence().removeByTwitterScreenName(twitterScreenName);
 	}
 
-	public static void removeAll() throws com.liferay.portal.SystemException {
+	public static void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
 	}
 
 	public static int countByTwitterUserId(long twitterUserId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByTwitterUserId(twitterUserId);
 	}
 
 	public static int countByTwitterScreenName(
 		java.lang.String twitterScreenName)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByTwitterScreenName(twitterScreenName);
 	}
 
-	public static int countAll() throws com.liferay.portal.SystemException {
+	public static int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();
 	}
 

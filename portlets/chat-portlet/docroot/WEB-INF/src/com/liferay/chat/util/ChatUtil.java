@@ -24,8 +24,8 @@ package com.liferay.chat.util;
 
 import com.liferay.chat.service.StatusLocalServiceUtil;
 import com.liferay.chat.util.comparator.BuddyComparator;
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 

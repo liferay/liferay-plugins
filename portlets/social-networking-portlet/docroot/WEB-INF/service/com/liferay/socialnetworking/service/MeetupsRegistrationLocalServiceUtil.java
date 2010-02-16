@@ -34,7 +34,7 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
 public class MeetupsRegistrationLocalServiceUtil {
 	public static com.liferay.socialnetworking.model.MeetupsRegistration addMeetupsRegistration(
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addMeetupsRegistration(meetupsRegistration);
 	}
 
@@ -44,81 +44,83 @@ public class MeetupsRegistrationLocalServiceUtil {
 	}
 
 	public static void deleteMeetupsRegistration(long meetupsRegistrationId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteMeetupsRegistration(meetupsRegistrationId);
 	}
 
 	public static void deleteMeetupsRegistration(
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteMeetupsRegistration(meetupsRegistration);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.socialnetworking.model.MeetupsRegistration getMeetupsRegistration(
 		long meetupsRegistrationId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getMeetupsRegistration(meetupsRegistrationId);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getMeetupsRegistrations(start, end);
 	}
 
 	public static int getMeetupsRegistrationsCount()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getMeetupsRegistrationsCount();
 	}
 
 	public static com.liferay.socialnetworking.model.MeetupsRegistration updateMeetupsRegistration(
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateMeetupsRegistration(meetupsRegistration);
 	}
 
 	public static com.liferay.socialnetworking.model.MeetupsRegistration updateMeetupsRegistration(
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration,
-		boolean merge) throws com.liferay.portal.SystemException {
+		boolean merge)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateMeetupsRegistration(meetupsRegistration, merge);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
 		long meetupsEntryId, int status, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getMeetupsRegistrations(meetupsEntryId, status, start, end);
 	}
 
 	public static com.liferay.socialnetworking.model.MeetupsRegistration getMeetupsRegistration(
 		long userId, long meetupsEntryId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getMeetupsRegistration(userId, meetupsEntryId);
 	}
 
 	public static int getMeetupsRegistrationsCount(long meetupsEntryId,
-		int status) throws com.liferay.portal.SystemException {
+		int status) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getMeetupsRegistrationsCount(meetupsEntryId, status);
 	}
 
 	public static com.liferay.socialnetworking.model.MeetupsRegistration updateMeetupsRegistration(
 		long userId, long meetupsEntryId, int status, java.lang.String comments)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateMeetupsRegistration(userId, meetupsEntryId, status,
 			comments);

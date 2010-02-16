@@ -29,13 +29,13 @@ package com.liferay.socialcoding.service.persistence;
  */
 public interface JIRAIssueFinder {
 	public int countByCD_P(java.util.Date createDate, long projectId)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByCD_P(
 		java.util.Date createDate, long projectId)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByCD_P(
 		java.util.Date createDate, long projectId, int start, int end)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

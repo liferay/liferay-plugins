@@ -22,9 +22,9 @@
 
 package com.liferay.socialcoding.service.persistence;
 
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.socialcoding.model.SVNRevision;
 
@@ -77,51 +77,53 @@ public class SVNRevisionUtil {
 
 	public static com.liferay.socialcoding.model.SVNRevision remove(
 		long svnRevisionId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRevisionException {
 		return getPersistence().remove(svnRevisionId);
 	}
 
 	public static com.liferay.socialcoding.model.SVNRevision updateImpl(
 		com.liferay.socialcoding.model.SVNRevision svnRevision, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(svnRevision, merge);
 	}
 
 	public static com.liferay.socialcoding.model.SVNRevision findByPrimaryKey(
 		long svnRevisionId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRevisionException {
 		return getPersistence().findByPrimaryKey(svnRevisionId);
 	}
 
 	public static com.liferay.socialcoding.model.SVNRevision fetchByPrimaryKey(
-		long svnRevisionId) throws com.liferay.portal.SystemException {
+		long svnRevisionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(svnRevisionId);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.SVNRevision> findBySVNUserId(
-		java.lang.String svnUserId) throws com.liferay.portal.SystemException {
+		java.lang.String svnUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findBySVNUserId(svnUserId);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.SVNRevision> findBySVNUserId(
 		java.lang.String svnUserId, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findBySVNUserId(svnUserId, start, end);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.SVNRevision> findBySVNUserId(
 		java.lang.String svnUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findBySVNUserId(svnUserId, start, end, obc);
 	}
 
 	public static com.liferay.socialcoding.model.SVNRevision findBySVNUserId_First(
 		java.lang.String svnUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRevisionException {
 		return getPersistence().findBySVNUserId_First(svnUserId, obc);
 	}
@@ -129,7 +131,7 @@ public class SVNRevisionUtil {
 	public static com.liferay.socialcoding.model.SVNRevision findBySVNUserId_Last(
 		java.lang.String svnUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRevisionException {
 		return getPersistence().findBySVNUserId_Last(svnUserId, obc);
 	}
@@ -137,20 +139,21 @@ public class SVNRevisionUtil {
 	public static com.liferay.socialcoding.model.SVNRevision[] findBySVNUserId_PrevAndNext(
 		long svnRevisionId, java.lang.String svnUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRevisionException {
 		return getPersistence()
 				   .findBySVNUserId_PrevAndNext(svnRevisionId, svnUserId, obc);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.SVNRevision> findBySVNRepositoryId(
-		long svnRepositoryId) throws com.liferay.portal.SystemException {
+		long svnRepositoryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findBySVNRepositoryId(svnRepositoryId);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.SVNRevision> findBySVNRepositoryId(
 		long svnRepositoryId, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .findBySVNRepositoryId(svnRepositoryId, start, end);
 	}
@@ -158,7 +161,7 @@ public class SVNRevisionUtil {
 	public static java.util.List<com.liferay.socialcoding.model.SVNRevision> findBySVNRepositoryId(
 		long svnRepositoryId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .findBySVNRepositoryId(svnRepositoryId, start, end, obc);
 	}
@@ -166,7 +169,7 @@ public class SVNRevisionUtil {
 	public static com.liferay.socialcoding.model.SVNRevision findBySVNRepositoryId_First(
 		long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRevisionException {
 		return getPersistence().findBySVNRepositoryId_First(svnRepositoryId, obc);
 	}
@@ -174,7 +177,7 @@ public class SVNRevisionUtil {
 	public static com.liferay.socialcoding.model.SVNRevision findBySVNRepositoryId_Last(
 		long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRevisionException {
 		return getPersistence().findBySVNRepositoryId_Last(svnRepositoryId, obc);
 	}
@@ -182,7 +185,7 @@ public class SVNRevisionUtil {
 	public static com.liferay.socialcoding.model.SVNRevision[] findBySVNRepositoryId_PrevAndNext(
 		long svnRevisionId, long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRevisionException {
 		return getPersistence()
 				   .findBySVNRepositoryId_PrevAndNext(svnRevisionId,
@@ -191,13 +194,13 @@ public class SVNRevisionUtil {
 
 	public static java.util.List<com.liferay.socialcoding.model.SVNRevision> findBySVNU_SVNR(
 		java.lang.String svnUserId, long svnRepositoryId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findBySVNU_SVNR(svnUserId, svnRepositoryId);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.SVNRevision> findBySVNU_SVNR(
 		java.lang.String svnUserId, long svnRepositoryId, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .findBySVNU_SVNR(svnUserId, svnRepositoryId, start, end);
 	}
@@ -205,7 +208,7 @@ public class SVNRevisionUtil {
 	public static java.util.List<com.liferay.socialcoding.model.SVNRevision> findBySVNU_SVNR(
 		java.lang.String svnUserId, long svnRepositoryId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .findBySVNU_SVNR(svnUserId, svnRepositoryId, start, end, obc);
 	}
@@ -213,7 +216,7 @@ public class SVNRevisionUtil {
 	public static com.liferay.socialcoding.model.SVNRevision findBySVNU_SVNR_First(
 		java.lang.String svnUserId, long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRevisionException {
 		return getPersistence()
 				   .findBySVNU_SVNR_First(svnUserId, svnRepositoryId, obc);
@@ -222,7 +225,7 @@ public class SVNRevisionUtil {
 	public static com.liferay.socialcoding.model.SVNRevision findBySVNU_SVNR_Last(
 		java.lang.String svnUserId, long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRevisionException {
 		return getPersistence()
 				   .findBySVNU_SVNR_Last(svnUserId, svnRepositoryId, obc);
@@ -231,7 +234,7 @@ public class SVNRevisionUtil {
 	public static com.liferay.socialcoding.model.SVNRevision[] findBySVNU_SVNR_PrevAndNext(
 		long svnRevisionId, java.lang.String svnUserId, long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRevisionException {
 		return getPersistence()
 				   .findBySVNU_SVNR_PrevAndNext(svnRevisionId, svnUserId,
@@ -239,56 +242,61 @@ public class SVNRevisionUtil {
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.SVNRevision> findAll()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.SVNRevision> findAll(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.SVNRevision> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end, obc);
 	}
 
 	public static void removeBySVNUserId(java.lang.String svnUserId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeBySVNUserId(svnUserId);
 	}
 
 	public static void removeBySVNRepositoryId(long svnRepositoryId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeBySVNRepositoryId(svnRepositoryId);
 	}
 
 	public static void removeBySVNU_SVNR(java.lang.String svnUserId,
-		long svnRepositoryId) throws com.liferay.portal.SystemException {
+		long svnRepositoryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeBySVNU_SVNR(svnUserId, svnRepositoryId);
 	}
 
-	public static void removeAll() throws com.liferay.portal.SystemException {
+	public static void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
 	}
 
 	public static int countBySVNUserId(java.lang.String svnUserId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countBySVNUserId(svnUserId);
 	}
 
 	public static int countBySVNRepositoryId(long svnRepositoryId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countBySVNRepositoryId(svnRepositoryId);
 	}
 
 	public static int countBySVNU_SVNR(java.lang.String svnUserId,
-		long svnRepositoryId) throws com.liferay.portal.SystemException {
+		long svnRepositoryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countBySVNU_SVNR(svnUserId, svnRepositoryId);
 	}
 
-	public static int countAll() throws com.liferay.portal.SystemException {
+	public static int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();
 	}
 

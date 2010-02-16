@@ -34,7 +34,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 
 	public com.liferay.chat.model.Entry addEntry(
 		com.liferay.chat.model.Entry entry)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _entryLocalService.addEntry(entry);
 	}
 
@@ -43,82 +43,83 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 	}
 
 	public void deleteEntry(long entryId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_entryLocalService.deleteEntry(entryId);
 	}
 
 	public void deleteEntry(com.liferay.chat.model.Entry entry)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		_entryLocalService.deleteEntry(entry);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _entryLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _entryLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public com.liferay.chat.model.Entry getEntry(long entryId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _entryLocalService.getEntry(entryId);
 	}
 
 	public java.util.List<com.liferay.chat.model.Entry> getEntries(int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _entryLocalService.getEntries(start, end);
 	}
 
-	public int getEntriesCount() throws com.liferay.portal.SystemException {
+	public int getEntriesCount()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _entryLocalService.getEntriesCount();
 	}
 
 	public com.liferay.chat.model.Entry updateEntry(
 		com.liferay.chat.model.Entry entry)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _entryLocalService.updateEntry(entry);
 	}
 
 	public com.liferay.chat.model.Entry updateEntry(
 		com.liferay.chat.model.Entry entry, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _entryLocalService.updateEntry(entry, merge);
 	}
 
 	public com.liferay.chat.model.Entry addEntry(long fromUserId,
 		long toUserId, java.lang.String content)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _entryLocalService.addEntry(fromUserId, toUserId, content);
 	}
 
 	public com.liferay.chat.model.Entry addEntry(long createDate,
 		long fromUserId, long toUserId, java.lang.String content)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _entryLocalService.addEntry(createDate, fromUserId, toUserId,
 			content);
 	}
 
 	public void deleteEntries(long userId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		_entryLocalService.deleteEntries(userId);
 	}
 
 	public java.util.List<com.liferay.chat.model.Entry> getNewEntries(
 		long userId, long createDate, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _entryLocalService.getNewEntries(userId, createDate, start, end);
 	}
 
 	public java.util.List<com.liferay.chat.model.Entry> getOldEntries(
 		long createDate, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _entryLocalService.getOldEntries(createDate, start, end);
 	}
 

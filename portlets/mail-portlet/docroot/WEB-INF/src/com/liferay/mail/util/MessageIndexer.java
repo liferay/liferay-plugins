@@ -22,7 +22,7 @@
 
 package com.liferay.mail.util;
 
-import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;

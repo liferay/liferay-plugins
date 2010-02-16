@@ -22,9 +22,9 @@
 
 package com.liferay.socialcoding.service.persistence;
 
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.socialcoding.model.SVNRepository;
 
@@ -77,79 +77,85 @@ public class SVNRepositoryUtil {
 
 	public static com.liferay.socialcoding.model.SVNRepository remove(
 		long svnRepositoryId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRepositoryException {
 		return getPersistence().remove(svnRepositoryId);
 	}
 
 	public static com.liferay.socialcoding.model.SVNRepository updateImpl(
 		com.liferay.socialcoding.model.SVNRepository svnRepository,
-		boolean merge) throws com.liferay.portal.SystemException {
+		boolean merge)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(svnRepository, merge);
 	}
 
 	public static com.liferay.socialcoding.model.SVNRepository findByPrimaryKey(
 		long svnRepositoryId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRepositoryException {
 		return getPersistence().findByPrimaryKey(svnRepositoryId);
 	}
 
 	public static com.liferay.socialcoding.model.SVNRepository fetchByPrimaryKey(
-		long svnRepositoryId) throws com.liferay.portal.SystemException {
+		long svnRepositoryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(svnRepositoryId);
 	}
 
 	public static com.liferay.socialcoding.model.SVNRepository findByUrl(
 		java.lang.String url)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRepositoryException {
 		return getPersistence().findByUrl(url);
 	}
 
 	public static com.liferay.socialcoding.model.SVNRepository fetchByUrl(
-		java.lang.String url) throws com.liferay.portal.SystemException {
+		java.lang.String url)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByUrl(url);
 	}
 
 	public static com.liferay.socialcoding.model.SVNRepository fetchByUrl(
 		java.lang.String url, boolean retrieveFromCache)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByUrl(url, retrieveFromCache);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.SVNRepository> findAll()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.SVNRepository> findAll(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.SVNRepository> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end, obc);
 	}
 
 	public static void removeByUrl(java.lang.String url)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRepositoryException {
 		getPersistence().removeByUrl(url);
 	}
 
-	public static void removeAll() throws com.liferay.portal.SystemException {
+	public static void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
 	}
 
 	public static int countByUrl(java.lang.String url)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByUrl(url);
 	}
 
-	public static int countAll() throws com.liferay.portal.SystemException {
+	public static int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();
 	}
 

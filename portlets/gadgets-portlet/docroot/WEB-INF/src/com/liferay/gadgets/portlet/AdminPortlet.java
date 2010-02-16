@@ -23,7 +23,7 @@
 package com.liferay.gadgets.portlet;
 
 import com.liferay.gadgets.service.GadgetsEntryLocalServiceUtil;
-import com.liferay.portal.PortalException;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;

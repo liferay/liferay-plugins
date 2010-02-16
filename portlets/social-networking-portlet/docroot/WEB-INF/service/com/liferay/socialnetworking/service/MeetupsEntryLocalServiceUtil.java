@@ -34,7 +34,7 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
 public class MeetupsEntryLocalServiceUtil {
 	public static com.liferay.socialnetworking.model.MeetupsEntry addMeetupsEntry(
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addMeetupsEntry(meetupsEntry);
 	}
 
@@ -44,55 +44,57 @@ public class MeetupsEntryLocalServiceUtil {
 	}
 
 	public static void deleteMeetupsEntry(long meetupsEntryId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteMeetupsEntry(meetupsEntryId);
 	}
 
 	public static void deleteMeetupsEntry(
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteMeetupsEntry(meetupsEntry);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.socialnetworking.model.MeetupsEntry getMeetupsEntry(
 		long meetupsEntryId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getMeetupsEntry(meetupsEntryId);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntries(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getMeetupsEntries(start, end);
 	}
 
 	public static int getMeetupsEntriesCount()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getMeetupsEntriesCount();
 	}
 
 	public static com.liferay.socialnetworking.model.MeetupsEntry updateMeetupsEntry(
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateMeetupsEntry(meetupsEntry);
 	}
 
 	public static com.liferay.socialnetworking.model.MeetupsEntry updateMeetupsEntry(
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry,
-		boolean merge) throws com.liferay.portal.SystemException {
+		boolean merge)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateMeetupsEntry(meetupsEntry, merge);
 	}
 
@@ -102,8 +104,8 @@ public class MeetupsEntryLocalServiceUtil {
 		int startDateHour, int startDateMinute, int endDateMonth,
 		int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
 		int totalAttendees, int maxAttendees, double price, byte[] thumbnail)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addMeetupsEntry(userId, title, description, startDateMonth,
 			startDateDay, startDateYear, startDateHour, startDateMinute,
@@ -112,7 +114,8 @@ public class MeetupsEntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntries(
-		long companyId) throws com.liferay.portal.SystemException {
+		long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getMeetupsEntries(companyId);
 	}
 
@@ -123,8 +126,8 @@ public class MeetupsEntryLocalServiceUtil {
 		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
 		int endDateMinute, int totalAttendees, int maxAttendees, double price,
 		byte[] thumbnail)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateMeetupsEntry(userId, meetupsEntryId, title,
 			description, startDateMonth, startDateDay, startDateYear,

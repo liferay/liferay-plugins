@@ -65,7 +65,7 @@ public class EntryWrapper implements Entry {
 	}
 
 	public java.lang.String getFromUserUuid()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _entry.getFromUserUuid();
 	}
 
@@ -82,7 +82,7 @@ public class EntryWrapper implements Entry {
 	}
 
 	public java.lang.String getToUserUuid()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _entry.getToUserUuid();
 	}
 

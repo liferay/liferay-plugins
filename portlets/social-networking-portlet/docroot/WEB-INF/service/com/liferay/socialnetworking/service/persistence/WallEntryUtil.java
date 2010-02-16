@@ -22,9 +22,9 @@
 
 package com.liferay.socialnetworking.service.persistence;
 
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.socialnetworking.model.WallEntry;
 
@@ -77,57 +77,59 @@ public class WallEntryUtil {
 
 	public static com.liferay.socialnetworking.model.WallEntry remove(
 		long wallEntryId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().remove(wallEntryId);
 	}
 
 	public static com.liferay.socialnetworking.model.WallEntry updateImpl(
 		com.liferay.socialnetworking.model.WallEntry wallEntry, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(wallEntry, merge);
 	}
 
 	public static com.liferay.socialnetworking.model.WallEntry findByPrimaryKey(
 		long wallEntryId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByPrimaryKey(wallEntryId);
 	}
 
 	public static com.liferay.socialnetworking.model.WallEntry fetchByPrimaryKey(
-		long wallEntryId) throws com.liferay.portal.SystemException {
+		long wallEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(wallEntryId);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByGroupId(
-		long groupId) throws com.liferay.portal.SystemException {
+		long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByGroupId(groupId);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByGroupId(
 		long groupId, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByGroupId(groupId, start, end);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByGroupId(groupId, start, end, obc);
 	}
 
 	public static com.liferay.socialnetworking.model.WallEntry findByGroupId_First(
 		long groupId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByGroupId_First(groupId, obc);
 	}
 
 	public static com.liferay.socialnetworking.model.WallEntry findByGroupId_Last(
 		long groupId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByGroupId_Last(groupId, obc);
 	}
@@ -135,40 +137,40 @@ public class WallEntryUtil {
 	public static com.liferay.socialnetworking.model.WallEntry[] findByGroupId_PrevAndNext(
 		long wallEntryId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence()
 				   .findByGroupId_PrevAndNext(wallEntryId, groupId, obc);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByUserId(
-		long userId) throws com.liferay.portal.SystemException {
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByUserId(userId);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByUserId(
 		long userId, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByUserId(userId, start, end);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByUserId(userId, start, end, obc);
 	}
 
 	public static com.liferay.socialnetworking.model.WallEntry findByUserId_First(
 		long userId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByUserId_First(userId, obc);
 	}
 
 	public static com.liferay.socialnetworking.model.WallEntry findByUserId_Last(
 		long userId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByUserId_Last(userId, obc);
 	}
@@ -176,34 +178,35 @@ public class WallEntryUtil {
 	public static com.liferay.socialnetworking.model.WallEntry[] findByUserId_PrevAndNext(
 		long wallEntryId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(wallEntryId, userId, obc);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByG_U(
-		long groupId, long userId) throws com.liferay.portal.SystemException {
+		long groupId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByG_U(groupId, userId);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByG_U(
 		long groupId, long userId, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByG_U(groupId, userId, start, end);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByG_U(
 		long groupId, long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByG_U(groupId, userId, start, end, obc);
 	}
 
 	public static com.liferay.socialnetworking.model.WallEntry findByG_U_First(
 		long groupId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByG_U_First(groupId, userId, obc);
 	}
@@ -211,7 +214,7 @@ public class WallEntryUtil {
 	public static com.liferay.socialnetworking.model.WallEntry findByG_U_Last(
 		long groupId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByG_U_Last(groupId, userId, obc);
 	}
@@ -219,63 +222,66 @@ public class WallEntryUtil {
 	public static com.liferay.socialnetworking.model.WallEntry[] findByG_U_PrevAndNext(
 		long wallEntryId, long groupId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence()
 				   .findByG_U_PrevAndNext(wallEntryId, groupId, userId, obc);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findAll()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findAll(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end, obc);
 	}
 
 	public static void removeByGroupId(long groupId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByGroupId(groupId);
 	}
 
 	public static void removeByUserId(long userId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByUserId(userId);
 	}
 
 	public static void removeByG_U(long groupId, long userId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByG_U(groupId, userId);
 	}
 
-	public static void removeAll() throws com.liferay.portal.SystemException {
+	public static void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
 	}
 
 	public static int countByGroupId(long groupId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByGroupId(groupId);
 	}
 
 	public static int countByUserId(long userId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByUserId(userId);
 	}
 
 	public static int countByG_U(long groupId, long userId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByG_U(groupId, userId);
 	}
 
-	public static int countAll() throws com.liferay.portal.SystemException {
+	public static int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();
 	}
 

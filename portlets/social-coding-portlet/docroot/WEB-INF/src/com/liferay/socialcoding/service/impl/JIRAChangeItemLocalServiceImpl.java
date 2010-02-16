@@ -22,8 +22,8 @@
 
 package com.liferay.socialcoding.service.impl;
 
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.socialcoding.model.JIRAChangeItem;
 import com.liferay.socialcoding.service.base.JIRAChangeItemLocalServiceBaseImpl;
 

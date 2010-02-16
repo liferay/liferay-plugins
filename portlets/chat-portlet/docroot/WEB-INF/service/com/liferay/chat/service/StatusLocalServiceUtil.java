@@ -33,7 +33,7 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
 public class StatusLocalServiceUtil {
 	public static com.liferay.chat.model.Status addStatus(
 		com.liferay.chat.model.Status status)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addStatus(status);
 	}
 
@@ -42,93 +42,94 @@ public class StatusLocalServiceUtil {
 	}
 
 	public static void deleteStatus(long statusId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteStatus(statusId);
 	}
 
 	public static void deleteStatus(com.liferay.chat.model.Status status)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteStatus(status);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.chat.model.Status getStatus(long statusId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getStatus(statusId);
 	}
 
 	public static java.util.List<com.liferay.chat.model.Status> getStatuses(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getStatuses(start, end);
 	}
 
 	public static int getStatusesCount()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getStatusesCount();
 	}
 
 	public static com.liferay.chat.model.Status updateStatus(
 		com.liferay.chat.model.Status status)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateStatus(status);
 	}
 
 	public static com.liferay.chat.model.Status updateStatus(
 		com.liferay.chat.model.Status status, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateStatus(status, merge);
 	}
 
 	public static java.util.List<Object[]> getAllStatuses(long userId,
 		long modifiedDate, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getAllStatuses(userId, modifiedDate, start, end);
 	}
 
 	public static java.util.List<Object[]> getGroupStatuses(long userId,
 		long modifiedDate, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getGroupStatuses(userId, modifiedDate, start, end);
 	}
 
 	public static java.util.List<Object[]> getSocialStatuses(long userId,
 		int type, long modifiedDate, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getSocialStatuses(userId, type, modifiedDate, start, end);
 	}
 
 	public static com.liferay.chat.model.Status getUserStatus(long userId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getUserStatus(userId);
 	}
 
 	public static com.liferay.chat.model.Status updateStatus(long userId,
 		long modifiedDate)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateStatus(userId, modifiedDate);
 	}
 
 	public static com.liferay.chat.model.Status updateStatus(long userId,
 		long modifiedDate, int online, int awake,
 		java.lang.String activePanelId, java.lang.String message, int playSound)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateStatus(userId, modifiedDate, online, awake,
 			activePanelId, message, playSound);

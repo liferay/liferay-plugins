@@ -31,19 +31,19 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
  */
 public class JIRAChangeGroupFinderUtil {
 	public static int countByCD_P(java.util.Date createDate, long projectId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder().countByCD_P(createDate, projectId);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findByCD_P(
 		java.util.Date createDate, long projectId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder().findByCD_P(createDate, projectId);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findByCD_P(
 		java.util.Date createDate, long projectId, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder().findByCD_P(createDate, projectId, start, end);
 	}
 

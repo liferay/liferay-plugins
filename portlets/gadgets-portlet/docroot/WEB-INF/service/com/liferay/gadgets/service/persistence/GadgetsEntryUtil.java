@@ -24,9 +24,9 @@ package com.liferay.gadgets.service.persistence;
 
 import com.liferay.gadgets.model.GadgetsEntry;
 
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.List;
 
@@ -78,57 +78,59 @@ public class GadgetsEntryUtil {
 	public static com.liferay.gadgets.model.GadgetsEntry remove(
 		long gadgetsEntryId)
 		throws com.liferay.gadgets.NoSuchEntryException,
-			com.liferay.portal.SystemException {
+			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().remove(gadgetsEntryId);
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry updateImpl(
 		com.liferay.gadgets.model.GadgetsEntry gadgetsEntry, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(gadgetsEntry, merge);
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry findByPrimaryKey(
 		long gadgetsEntryId)
 		throws com.liferay.gadgets.NoSuchEntryException,
-			com.liferay.portal.SystemException {
+			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByPrimaryKey(gadgetsEntryId);
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry fetchByPrimaryKey(
-		long gadgetsEntryId) throws com.liferay.portal.SystemException {
+		long gadgetsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(gadgetsEntryId);
 	}
 
 	public static java.util.List<com.liferay.gadgets.model.GadgetsEntry> findByCompanyId(
-		long companyId) throws com.liferay.portal.SystemException {
+		long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByCompanyId(companyId);
 	}
 
 	public static java.util.List<com.liferay.gadgets.model.GadgetsEntry> findByCompanyId(
 		long companyId, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByCompanyId(companyId, start, end);
 	}
 
 	public static java.util.List<com.liferay.gadgets.model.GadgetsEntry> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByCompanyId(companyId, start, end, obc);
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry findByCompanyId_First(
 		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.gadgets.NoSuchEntryException,
-			com.liferay.portal.SystemException {
+			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByCompanyId_First(companyId, obc);
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry findByCompanyId_Last(
 		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.gadgets.NoSuchEntryException,
-			com.liferay.portal.SystemException {
+			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByCompanyId_Last(companyId, obc);
 	}
 
@@ -136,42 +138,45 @@ public class GadgetsEntryUtil {
 		long gadgetsEntryId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.gadgets.NoSuchEntryException,
-			com.liferay.portal.SystemException {
+			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(gadgetsEntryId, companyId, obc);
 	}
 
 	public static java.util.List<com.liferay.gadgets.model.GadgetsEntry> findAll()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
 
 	public static java.util.List<com.liferay.gadgets.model.GadgetsEntry> findAll(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
 	public static java.util.List<com.liferay.gadgets.model.GadgetsEntry> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end, obc);
 	}
 
 	public static void removeByCompanyId(long companyId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByCompanyId(companyId);
 	}
 
-	public static void removeAll() throws com.liferay.portal.SystemException {
+	public static void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
 	}
 
 	public static int countByCompanyId(long companyId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByCompanyId(companyId);
 	}
 
-	public static int countAll() throws com.liferay.portal.SystemException {
+	public static int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();
 	}
 
