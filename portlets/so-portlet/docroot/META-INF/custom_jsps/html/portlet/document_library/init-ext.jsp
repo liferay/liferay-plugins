@@ -42,5 +42,5 @@ mergedView = true;
 
 showAddFileShortcutButton = false;
 
-Format longDateFormatDateTime = FastDateFormatFactoryUtil.getSimpleDateFormat("EEE, MMM d yyyy hh:mm aaa");
+Format longDateFormatDateTime = FastDateFormatFactoryUtil.getSimpleDateFormat("EEE, MMM d yyyy h:mm aaa");
 %>

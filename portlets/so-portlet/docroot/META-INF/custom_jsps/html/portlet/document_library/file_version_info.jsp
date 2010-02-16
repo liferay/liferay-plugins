@@ -45,6 +45,7 @@ String rowHREF = themeDisplay.getPathMain() + "/document_library/get_file?p_l_id
 		<span><liferay-ui:message key="by" />: <%= fileVersion.getUserName() %></span>
 		<span><liferay-ui:message key="modified" />: <%= dateFormatDateTime.format(fileVersion.getCreateDate()) %></span>
 		<span><liferay-ui:message key="size" />: <%= TextFormatter.formatKB(fileVersion.getSize(), locale) %>k</span>
+		<span><a class="comments" href="javascript:;"><liferay-ui:message key="show-comments" /></a></span>
 	</div>
 
 	<c:if test="<%= conversions.length > 0 %>">
@@ -54,4 +55,21 @@ String rowHREF = themeDisplay.getPathMain() + "/document_library/get_file?p_l_id
 	<c:if test='<%= strutsAction.equals("/document_library/edit_file_entry") %>'>
 		<liferay-util:include page="/html/portlet/document_library/file_version_action.jsp" />
 	</c:if>
+
+	<div class="result-comments" style="display: none;">
+		<portlet:actionURL var="discussionURL">
+			<portlet:param name="struts_action" value="/document_library/edit_file_entry_discussion" />
+		</portlet:actionURL>
+
+		<liferay-ui:discussion
+			formName='<%= "fm2" + fileVersion.getFileVersionId() %>'
+			formAction="<%= discussionURL %>"
+			className="<%= DLFileVersion.class.getName() %>"
+			classPK="<%= fileVersion.getFileVersionId() %>"
+			userId="<%= fileVersion.getUserId() %>"
+			subject="<%= fileEntry.getTitle() %>"
+			redirect="<%= currentURL %>"
+			ratingsEnabled="<%= enableCommentRatings %>"
+		/>
+	</div>
 </div>

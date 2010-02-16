@@ -163,6 +163,23 @@ portletURL.setParameter("name", name);
 					<portlet:namespace />updateRowsChecked(this);
 				}
 			);
+
+			jQuery('.portlet-document-library .result-data a.comments').click(
+				function(event) {
+					event = jQuery(event.currentTarget);
+
+					var comments = event.parents('.result-data').siblings('.result-comments');
+
+					if (comments.hasClass('show')) {
+						event.html('<liferay-ui:message key="show-comments" />');
+						comments.hide().removeClass('show');
+					}
+					else {
+						event.html('<liferay-ui:message key="hide-comments" />');
+						comments.show().addClass('show');
+					}
+				}
+			);
 		}
 	);
 </script>
@@ -445,16 +462,29 @@ portletURL.setParameter("name", name);
 							<portlet:param name="struts_action" value="/document_library/edit_file_entry_discussion" />
 						</portlet:actionURL>
 
-						<liferay-ui:discussion
-							formName="fm2"
-							formAction="<%= discussionURL %>"
-							className="<%= DLFileEntry.class.getName() %>"
-							classPK="<%= fileEntry.getFileEntryId() %>"
-							userId="<%= fileEntry.getUserId() %>"
-							subject="<%= fileEntry.getTitle() %>"
-							redirect="<%= currentURL %>"
-							ratingsEnabled="<%= enableCommentRatings %>"
-						/>
+						<%
+						List<DLFileVersion> fileVersions = DLFileVersionLocalServiceUtil.getFileVersions(folderId, name);
+
+						for (DLFileVersion fileVersion : fileVersions) {
+						%>
+
+							<h3><liferay-ui:message key="revision" /> <%= fileVersion.getVersion() %></h3>
+
+							<liferay-ui:discussion
+								formName='<%= "fm2" + fileVersion.getFileVersionId() %>'
+								formAction="<%= discussionURL %>"
+								className="<%= DLFileVersion.class.getName() %>"
+								classPK="<%= fileVersion.getFileVersionId() %>"
+								userId="<%= fileVersion.getUserId() %>"
+								subject="<%= fileEntry.getTitle() %>"
+								redirect="<%= currentURL %>"
+								ratingsEnabled="<%= enableCommentRatings %>"
+							/>
+
+						<%
+						}
+						%>
+
 					</c:if>
 				</c:when>
 			</c:choose>
@@ -477,7 +507,6 @@ portletURL.setParameter("name", name);
 							<%
 							for (int i = 0; i < conversions.length; i++) {
 								String conversion = conversions[i];
-
 							%>
 
 								<span>
@@ -492,6 +521,7 @@ portletURL.setParameter("name", name);
 							<%
 							}
 							%>
+
 						</span>
 					</li>
 				</ul>
