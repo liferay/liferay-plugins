@@ -1130,6 +1130,82 @@ table.calendar {
 	margin-top: 1em;
 }
 
+.portlet-document-library .layout-table {
+	width: 100%;
+}
+
+.portlet-document-library .layout-table td {
+	vertical-align: top;
+}
+
+.portlet-document-library .layout-table h2 {
+	font-size: 1.3em;
+	margin: 0 0 10px;
+}
+
+.portlet-document-library .layout-table-content {
+	padding-right: 10px;
+}
+
+.portlet-document-library .layout-table-side {
+	border-left: 1px solid #CCC;
+	padding-left: 10px;
+	width: 225px;
+}
+
+.portlet-document-library .taglib-tags-summary {
+	margin-bottom: 1em;
+}
+
+.portlet-document-library .document-action-list {
+	border-bottom: 1px solid #CCC;
+	margin: 1em 0;
+	padding: 0 0 1em 0;
+}
+
+.portlet-document-library .document-action-list li {
+	background: transparent none no-repeat 2px 50%;
+	color: #CCC;
+	list-style-type: none;
+	padding: 1px 0 1px 25px;
+}
+
+.portlet-document-library .document-action-list .action-download {
+	background-image: url(../images/common/download.png);
+}
+
+.portlet-document-library .document-action-list .action-lock {
+	background-image: url(../images/common/lock.png);
+}
+
+.portlet-document-library .document-action-list .action-unlock {
+	background-image: url(../images/common/unlock.png);
+}
+
+.portlet-document-library .document-action-list .action-upload {
+	background-image: url(../images/arrows/02_up.png);
+}
+
+.portlet-document-library .document-action-list .action-edit-office {
+	background-image: url(../images/common/edit.png);
+}
+
+.portlet-document-library .document-action-list .action-save-office {
+	background-image: url(../images/common/post.png);
+}
+
+.portlet-document-library .document-action-list .action-move {
+	background-image: url(../images/arrows/02_right.png);
+}
+
+.portlet-document-library .document-action-list .action-permissions {
+	background-image: url(../images/common/permissions.png);
+}
+
+.portlet-document-library .document-action-list .action-delete {
+	background-image: url(../images/common/delete.png);
+}
+
 /* Log In */
 
 .portlet-login {
