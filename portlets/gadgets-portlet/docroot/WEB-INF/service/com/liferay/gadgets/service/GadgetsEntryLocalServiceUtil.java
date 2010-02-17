@@ -106,6 +106,12 @@ public class GadgetsEntryLocalServiceUtil {
 		return getService().addGadgetsEntry(companyId, name, url, xml);
 	}
 
+	public static void destroyGadgetsEntries()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().destroyGadgetsEntries();
+	}
+
 	public static java.util.List<com.liferay.gadgets.model.GadgetsEntry> getGadgetsEntries(
 		long companyId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -117,6 +123,12 @@ public class GadgetsEntryLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getGadgetsEntriesCount(companyId);
+	}
+
+	public static void initGadgetsEntries()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().initGadgetsEntries();
 	}
 
 	public static com.liferay.gadgets.model.GadgetsEntry updateGadgetsEntry(

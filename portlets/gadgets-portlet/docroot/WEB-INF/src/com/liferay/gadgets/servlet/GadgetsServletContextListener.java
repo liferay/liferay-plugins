@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
@@ -20,29 +19,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ include file="/init.jsp" %>
+package com.liferay.gadgets.servlet;
 
-<%
-ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
+import com.liferay.gadgets.service.GadgetsEntryLocalServiceUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
-GadgetsEntry gadgetsEntry = (GadgetsEntry)row.getObject();
-%>
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
-<liferay-ui:icon-menu>
-	<portlet:renderURL var="editURL">
-		<portlet:param name="jspPage" value="/admin/edit_entry.jsp" />
-		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="gadgetsEntryId" value="<%= String.valueOf(gadgetsEntry.getGadgetsEntryId()) %>" />
-	</portlet:renderURL>
+/**
+ * <a href="GadgetsServletContextListener.java.html">
+ * <b><i>View Source</i></b></a>
+ *
+ * @author Michael Young
+ *
+ */
+public class GadgetsServletContextListener implements ServletContextListener {
 
-	<liferay-ui:icon image="edit" url="<%= editURL %>" />
+	public void contextDestroyed(ServletContextEvent arg0) {
+		try {
+			GadgetsEntryLocalServiceUtil.destroyGadgetsEntries();
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+	}
 
-	<portlet:actionURL name="deleteGadgetsEntry" var="deleteURL">
-		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="gadgetsEntryId" value="<%= String.valueOf(gadgetsEntry.getGadgetsEntryId()) %>" />
-	</portlet:actionURL>
+	public void contextInitialized(ServletContextEvent arg0) {
+		try {
+			GadgetsEntryLocalServiceUtil.initGadgetsEntries();
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+	}
 
-	<liferay-ui:icon-delete url="<%= deleteURL %>" />
-</liferay-ui:icon-menu>
+	private static Log _log = LogFactoryUtil.getLog(
+		GadgetsServletContextListener.class);
+
+}

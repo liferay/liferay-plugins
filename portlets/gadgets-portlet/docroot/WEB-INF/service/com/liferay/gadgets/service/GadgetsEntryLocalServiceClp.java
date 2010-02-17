@@ -434,6 +434,31 @@ public class GadgetsEntryLocalServiceClp implements GadgetsEntryLocalService {
 		return (com.liferay.gadgets.model.GadgetsEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public void destroyGadgetsEntries()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_classLoaderProxy.invoke("destroyGadgetsEntries", new Object[0]);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public java.util.List<com.liferay.gadgets.model.GadgetsEntry> getGadgetsEntries(
 		long companyId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -501,6 +526,31 @@ public class GadgetsEntryLocalServiceClp implements GadgetsEntryLocalService {
 		}
 
 		return ((Integer)returnObj).intValue();
+	}
+
+	public void initGadgetsEntries()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_classLoaderProxy.invoke("initGadgetsEntries", new Object[0]);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
 	}
 
 	public com.liferay.gadgets.model.GadgetsEntry updateGadgetsEntry(

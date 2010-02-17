@@ -7,6 +7,9 @@
 		<control-panel-entry-category>portal</control-panel-entry-category>
 		<css-class-wrapper>gadgets-portlet-admin</css-class-wrapper>
 	</portlet>
+	<portlet>
+		<portlet-name>2</portlet-name>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>
