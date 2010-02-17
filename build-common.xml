@@ -88,6 +88,7 @@ ECJ was automatically installed. Please rerun your task.
 					deprecation="${javac.deprecation}"
 					destdir="${javac.destdir}"
 					fork="${javac.fork}"
+					includeAntRuntime="false"
 					memoryMaximumSize="${javac.memoryMaximumSize}"
 					nowarn="${javac.nowarn}"
 					srcdir="${javac.srcdir}"
@@ -100,6 +101,7 @@ ECJ was automatically installed. Please rerun your task.
 					debug="${javac.debug}"
 					deprecation="${javac.deprecation}"
 					destdir="${javac.destdir}"
+					includeAntRuntime="false"
 					nowarn="${javac.nowarn}"
 					srcdir="${javac.srcdir}"
 				/>

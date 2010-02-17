@@ -18,6 +18,7 @@
 			debug="${javac.debug}"
 			deprecation="${javac.deprecation}"
 			destdir="docroot/WEB-INF/classes"
+			includeAntRuntime="false"
 			nowarn="${javac.nowarn}"
 			srcdir="docroot/WEB-INF/src"
 		/>

@@ -471,6 +471,7 @@ Please find a solution that does not require portal-impl.jar.
 			debug="${javac.debug}"
 			deprecation="${javac.deprecation}"
 			destdir="docroot/WEB-INF/service-classes"
+			includeAntRuntime="false"
 			nowarn="${javac.nowarn}"
 			srcdir="docroot/WEB-INF/service"
 		/>

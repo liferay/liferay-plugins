@@ -43,6 +43,7 @@
 					debug="${javac.debug}"
 					deprecation="${javac.deprecation}"
 					destdir="@{test.dir}/classes"
+					includeAntRuntime="false"
 					nowarn="${javac.nowarn}"
 					srcdir="@{test.dir}/src"
 				/>
