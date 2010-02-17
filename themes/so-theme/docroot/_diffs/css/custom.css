@@ -1115,15 +1115,15 @@ table.calendar {
 }
 
 .portlet-document-library .file-lock .locked {
-	background: url(../images/custom/lock.png) no-repeat;
+	background: url(../images/custom/lock_break.png) no-repeat;
 }
 
 .portlet-document-library .file-lock .unlockable {
-	background: url(../images/custom/lock_key.png) no-repeat;
+	background: url(../images/common/lock.png) no-repeat;
 }
 
 .portlet-document-library .file-lock .unlocked {
-	background: url(../images/custom/unlock.png) no-repeat;
+	background: url(../images/custom/lock_open.png) no-repeat;
 }
 
 .portlet-document-library .webdav-url {
@@ -1171,7 +1171,7 @@ table.calendar {
 }
 
 .portlet-document-library .document-action-list .action-download {
-	background-image: url(../images/common/download.png);
+	background-image: url(../images/custom/arrow_down_2.png);
 }
 
 .portlet-document-library .document-action-list .action-lock {
@@ -1183,19 +1183,19 @@ table.calendar {
 }
 
 .portlet-document-library .document-action-list .action-upload {
-	background-image: url(../images/arrows/02_up.png);
+	background-image: url(../images/custom/arrow_up_2.png);
 }
 
 .portlet-document-library .document-action-list .action-edit-office {
-	background-image: url(../images/common/edit.png);
+	background-image: url(../images/custom/online_edit.png);
 }
 
 .portlet-document-library .document-action-list .action-save-office {
-	background-image: url(../images/common/post.png);
+	background-image: url(../images/custom/online_save.png);
 }
 
 .portlet-document-library .document-action-list .action-move {
-	background-image: url(../images/arrows/02_right.png);
+	background-image: url(../images/custom/arrow_right_2.png);
 }
 
 .portlet-document-library .document-action-list .action-permissions {
