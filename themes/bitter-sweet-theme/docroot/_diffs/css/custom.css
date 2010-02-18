@@ -5,6 +5,7 @@
 body {
 	background: #698E00 url(../images/custom/body_bg.png) center top;
 	color: #333;
+	font: 12px Lucida Sans Unicode, sans-serif;
 	margin: 0 auto;
 	padding: 0 20px;
 	width: 960px;
@@ -18,17 +19,16 @@ body {
 	position: relative;
 }
 
+#banner .sign-in {
+	position: absolute;
+	right: 24px;
+	top: 18px;
+}
+
 /* ---------- Logo ---------- */
 
 #banner .logo {
 	padding: 18px 24px;
-}
-
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	right: 18px;
-	top: 20px;
 }
 
 /* ---------- Navigation ---------- */
@@ -36,30 +36,26 @@ body {
 #navigation {
 	background: url(../images/custom/navigation_bg.png) 0 100%;
 	border-bottom: 2px solid #97DB8C;
+	font: bold 12px/12px Arial, Helvetica, sans-serif;
 	height: 38px;
 }
 
 #navigation ul {
 	float: right;
+	margin: 0;
+	list-style: none;
 }
 
-#add-page {
+#navigation li,
+#navigation a {
 	float: left;
 }
 
-#navigation a,
-#navigation .enter-page {
+#navigation a {
 	color: #553;
-	display: inline;
-	float: left;
-	font: bold 12px Arial, Helvetica, sans-serif;
-	height: 14px;
-	padding: 12px 20px;
+	display: block;
+	padding: 12px 20px 14px;
 	text-decoration: none;
-}
-
-#navigation .enter-page {
-	padding: 6px 0;
 }
 
 #navigation a:hover {
@@ -70,23 +66,6 @@ body {
 #navigation .selected a {
 	border-bottom: 4px solid #97DB8C;
 	padding-bottom: 10px;
-}
-
-#navigation .save-page,
-#navigation .save-page:hover {
-	background: none;
-	border-right: 0;
-	display: inline;
-	float: none;
-}
-
-.ie #navigation .save-page {
-	position: relative;
-	top: -6px;
-}
-
-#navigation .cancel-page {
-	display: none;
 }
 
 /* ---------- Content Wrapper ---------- */
@@ -113,70 +92,14 @@ body {
 	padding: 0 16px;
 }
 
-.portlet-title img {
-	display: none;
-}
-
-.portlet-icons a {
-	color: #FFF;
-}
-
 .portlet-content {
-	font: 12px Lucida Sans Unicode, sans-serif;
 	padding: 12px 18px;
-}
-
-/* ---------- Portler Calendar ---------- */
-
-.portlet-calendar .calendar-day .day-text,
-.portlet-calendar .results-header {
-	background: #E2F4AE;
-}
-
-.portlet-calendar .calendar-day .day-text,
-.portlet-calendar .results-header th,
-.portlet-calendar .results-header td {
-	color: #333;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs {
-	border-bottom: 1px solid #445205;
-}
-
-.ui-tabs li a,
-.ui-tabs li span,
-.ui-tabs li a:hover,
-.ui-tabs li span:hover {
-	background: #E2F4AE;
-	border: 1px solid #445205;
-	color: #333;
-	margin-left: -1px;
-	padding: 6px 8px;
-}
-
-.ui-tabs li.current a,
-.ui-tabs li.current span,
-.ui-tabs li.current a:hover,
-.ui-tabs li.current span:hover {
-	background: #95A938;
-	border: 1px solid #445205;
-	color: #FFF;
-}
-
-/* ---------- Input ------------ */
-
-input[type="submit"],
-input[type="button"],
-input[type="reset"] {
-	background: #E8F6BF;
-	border: 1px solid #97DB8C;
 }
 
 /* ---------- Footer ---------- */
 
 #footer {
-	background: url(../images/custom/footer_bg.gif);
-	height: 39px;
+	background: #8BBE2E url(../images/custom/footer_bg.gif) repeat-x;
+	padding: 20px 10px;
+	text-align: right;
 }
