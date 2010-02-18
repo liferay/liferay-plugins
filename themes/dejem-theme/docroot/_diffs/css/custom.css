@@ -22,6 +22,14 @@ body {
 	line-height: 60px;
 	overflow: hidden;
 	padding: 0 25px;
+	position: relative;
+}
+
+#banner .sign-in {
+	color: #FFF;
+	position: absolute;
+	right: 25px;
+	top: 0;
 }
 
 /* -------- Logo -------- */
@@ -35,7 +43,7 @@ body {
 
 /* -------- Navigation -------- */
 
-#wrapper #navigation {
+#navigation {
 	background: #261C1C url(../images/custom/banner_bg.png) bottom;
 	font-size: 14px;
 	height: 53px;
@@ -44,25 +52,18 @@ body {
 }
 
 #navigation ul {
-	float: left;
-	padding: 0;
-}
-
-#navigation li {
-	list-style-type: none;
+	list-style: none;
 	margin: 0;
 }
 
 #navigation li,
-#navigation-breadcrumb li,
-#navigation-children li {
+#navigation a {
 	float: left;
 }
 
 #navigation a {
 	color: #CCC7C2;
 	display: block;
-	float: left;
 	padding: 0 15px;
 	text-decoration: none;
 }
@@ -73,14 +74,6 @@ body {
 
 #navigation .selected a {
 	color: #FFF;
-}
-
-#navigation .cancel-page,
-#navigation .save-page {
-	border: 0;
-	display: inline;
-	float: none;
-	padding: 3px;
 }
 
 /* -------- Content-Wrapper -------- */
