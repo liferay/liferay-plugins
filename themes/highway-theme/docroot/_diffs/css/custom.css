@@ -25,10 +25,10 @@ body {
 	position: relative;
 }
 
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	right: 10px;
+#banner .sign-in {
+	color: #FFF;
+	position: absolute;
+	right: 20px;
 	top: 10px;
 }
 
@@ -40,19 +40,19 @@ body {
 	padding: 0 64px;
 }
 
-#navigation ul,
-#add-page {
-	float: left;
+#navigation ul {
+	list-style: none;
+	margin: 0;
 }
 
-#navigation li {
-	width: auto;
+#navigation li,
+#navigation a {
+	float: left;
 }
 
 #navigation a {
 	color: #FF3;
 	display: block;
-	float: left;
 	font: 18px/101px Arial, Helvetica, sans-serif;
 	height: 101px;
 	padding: 0 36px;
@@ -63,39 +63,11 @@ body {
 	background: url(../images/custom/navigation_item_hover.gif);
 }
 
-#navigation .enter-page a {
-	background: none;
-	display: inline;
-	float: none;
-}
-
-#navigation .enter-page a.cancel-page {
-	display: none;
-}
-
-#navigation .save-page {
-	display: inline;
-	float: none;
-}
-
-.ie7 .save-page {
-	position: relative;
-	top: -2px;
-}
-
-#navigation .cancel-page {
-	display: none;
-}
-
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
 	background: url(../images/custom/content_wrapper_bg.gif) repeat-x;
 	padding: 24px;
-}
-
-.ie #content-wrapper {
-	zoom: 1;
 }
 
 /* ---------- Portlet ---------- */
@@ -108,57 +80,6 @@ body {
 	border-bottom: 2px solid #CCC;
 	font: 16px Arial, Helvetica, sans-serif;
 	padding: 0 0 9px;
-}
-
-/* ---------- Calendar ---------- */
-
-.portlet-calendar .calendar-day .day-text,
-.portlet-calendar .results-header {
-	background: url(../images/custom/navigation_item_hover.gif) -56px -24px;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs {
-	border-bottom: 1px solid #C6A146;
-}
-
-.ui-tabs li a,
-.ui-tabs li.current a,
-.ui-tabs li a:hover,
-.ui-tabs li span,
-.ui-tabs li.current span,
-.ui-tabs li span:hover {
-	background: url(../images/custom/navigation_bg.jpg) -56px -14px;
-	border: 1px solid #C6A146;
-	color: #FF3;
-	margin: 0 0 0 -1px;
-	padding: 8px 12px;
-}
-
-.ui-tabs li a:hover,
-.ui-tabs li span:hover {
-	background: url(../images/custom/navigation_item_hover.gif) -56px -24px;
-	color: #FF0;
-	text-decoration: none;
-}
-
-.ui-tabs li.current a,
-.ui-tabs li.current span {
-	background: url(../images/custom/navigation_item_hover.gif) -56px -34px;
-	color: #FFF;
-	font-weight: normal;
-}
-
-.ui-tabs li.current a:hover,
-.ui-tabs li.current span:hover {
-	background: url(../images/custom/navigation_item_hover.gif) -56px -34px;
-	color: #FFF;
-	font-weight: normal;
-}
-
-.ui-tabs li.current:hover {
-	background: transparent;
 }
 
 /* ---------- Footer ---------- */
