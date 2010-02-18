@@ -19,37 +19,39 @@ body {
 
 #banner {
 	background: url(../images/custom/banner_bg.png) no-repeat;
-	padding: 36px;
+	padding: 36px 36px 16px;
 	position: relative;
 }
 
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	right: 36px;
+#banner .sign-in {
+	position: absolute;
 	top: 36px;
+	right: 36px;
 }
 
 /* ---------- Navigation ---------- */
 
 #navigation {
 	background: url(../images/custom/navigation_bg.png);
+	font: bold 12px Arial, Helvetica, sans-serif;
 	height: 40px;
 	padding: 0 18px;
 }
 
-#navigation ul,
-#add-page {
+#navigation ul {
+	list-style: none;
+	margin: 0;
+}
+
+#navigation li,
+#navigation a {
 	float: left;
 }
 
-#navigation a,
-#navigation .enter-page {
+#navigation a {
 	border-right: 1px solid #95A938;
 	color: #FAFCF8;
 	display: block;
-	float: left;
-	font: bold 12px Arial, Helvetica, sans-serif;
 	height: 15px;
 	overflow: hidden;
 	padding: 12px 15px 13px;
@@ -61,59 +63,24 @@ body {
 	background: url(../images/custom/navigation_item_hover.png);
 }
 
-#navigation .enter-page {
-	height: 24px;
-	padding: 7px 15px;
-}
-
-#navigation .save-page,
-#navigation .save-page:hover {
-	background: none;
-	border-right: 0;
-	display: inline;
-	float: none;
-	padding: 5px 9px;
-}
-
-.ie7 #navigation .save-page {
-	position: relative;
-	top: -7px;
-}
-
-#navigation .cancel-page {
-	display: none;
-}
-
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
-	background: url(../images/custom/content_wrapper_bg.png) no-repeat left top;
-	padding: 18px 36px;
-}
-
-.ie7 #content-wrapper {
-	zoom: 1;
+	background: url(../images/custom/content_wrapper_bg.png) no-repeat;
+	padding: 32px 36px;
 }
 
 /* ---------- Portlet ---------- */
 
 .portlet {
 	border-bottom: 1px solid #E5E5E5;
-	margin: 0 0 12px;
+	margin: 0 0 24px;
 }
 
 .portlet-title {
 	color: #95A938;
 	font: bold 13px Arial, Helvetica, sans-serif;
-	margin: 15px 5px 5px 0;
-}
-
-.portlet-title img {
-	display: none;
-}
-
-.portlet-icons {
-	top: 0;
+	margin: 0 5px 5px 0;
 }
 
 .portlet-content {
@@ -123,47 +90,11 @@ body {
 	padding: 0 0 10px;
 }
 
-/* ---------- Portlet Calendar ---------- */
-
-.portlet-calendar .calendar-day .day-text,
-.portlet-calendar .results-header {
-	background: #95A938;
-}
-
-.portlet-calendar .day-number,
-.portlet-calendar .portlet-section-body td,
-.calendar-panel {
-	color: #000;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs {
-	border-bottom: 1px solid #445205;
-}
-
-.ui-tabs li a,
-.ui-tabs li span,
-.ui-tabs li a:hover,
-.ui-tabs li span:hover {
-	background: #95A938;
-	border: 1px solid #445205;
-	color: #FEC;
-	margin-left: -1px;
-}
-
-.ui-tabs li.current a,
-.ui-tabs li.current span,
-.ui-tabs li.current a:hover,
-.ui-tabs li.current span:hover {
-	background: #95A938;
-	border: 1px solid #445205;
-	color: #FFF;
-}
-
 /* ---------- Footer ---------- */
 
 #footer {
 	background: url(../images/custom/footer_bg.png);
-	height: 119px;
+	height: 61px;
+	padding: 23px 36px 35px;
+	text-align: right;
 }
