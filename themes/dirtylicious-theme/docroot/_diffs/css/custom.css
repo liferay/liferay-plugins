@@ -31,6 +31,12 @@ body {
 	width: 900px;
 }
 
+#banner .sign-in {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
 /* ---------- Logo ---------- */
 
 #banner .logo {
