@@ -8,7 +8,7 @@ html {
 }
 
 body {
-	background: url(../images/custom/body_bg.gif) repeat-x left top;
+	background: url(../images/custom/body_bg.gif) repeat-x;
 	padding: 50px 0;
 }
 
@@ -17,6 +17,7 @@ body {
 #wrapper {
 	background: #FFF;
 	border: 10px solid #FFF;
+	font: 1.2em Lucida Sans Unicode, Lucida Grande, sans-serif;
 	margin: 0 auto;
 	width: 960px;
 }
@@ -31,11 +32,10 @@ body {
 	position: relative;
 }
 
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	right: 15px;
-	top: 15px;
+#banner .sign-in {
+	position: absolute;
+	top: 17px;
+	right: 35px;
 }
 
 /* ---------- Navigation ---------- */
@@ -44,46 +44,33 @@ body {
 	background: url(../images/custom/navigation_bg.gif);
 	border: 1px solid #CFDEE7;
 	border-color: #DFEEF7 #CFDEE7;
+	font: bold 12px Arial, Helvetica, sans-serif;
 	height: 41px;
 }
 
-#navigation ul,
-#add-page {
+#navigation ul {
+	list-style: none;
+	margin: 0;
+}
+
+#navigation li,
+#navigation a {
 	float: left;
 }
 
-#navigation a,
-#navigation .enter-page {
+#navigation a {
 	border-right: 1px solid #AFBEC7;
 	color: #456;
 	display: block;
-	float: left;
-	font: bold 12px Arial, Helvetica, sans-serif;
 	height: 41px;
 	line-height: 41px;
 	padding: 0 20px;
 	text-decoration: none;
 }
 
+#navigation .selected a,
 #navigation a:hover {
 	background: url(../images/custom/navigation_bg.gif) left bottom;
-}
-
-#navigation .save-page,
-#navigation .save-page:hover {
-	background: none;
-	border-right: 0;
-	display: inline;
-	float: none;
-}
-
-.ie7 #navigation .save-page {
-	position: relative;
-	top: -6px;
-}
-
-#navigation .cancel-page {
-	display: none;
 }
 
 /* ---------- Content Wrapper ---------- */
@@ -107,48 +94,8 @@ body {
 	font: normal 22px Tahoma, sans-serif;
 }
 
-.portlet-title img {
-	display: none;
-}
-
 .portlet-content {
-	font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
 	padding: 0;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs {
-	border-bottom: 1px solid #C5D6E0;
-}
-
-.ui-tabs li a,
-.tabs li span,
-.ui-tabs li.current a,
-.tabs li.current span {
-	background: #E7ECEF;
-	border: 1px solid #C5D6E0;
-	color: #000;
-	font-weight: normal;
-	height: 7px;
-	margin: 0 -1px 0 0;
-}
-
-.ui-tabs li a:hover,
-.tabs li span:hover,
-.ui-tabs li.current a:hover,
-.tabs li.current span:hover {
-	background: #A1A9AD;
-	color: #FFF;
-}
-
-.ui-tabs li.current a,
-.ui-tabs li.current span {
-	background: #F2F7FA;
-}
-
-.ui-tabs li.current:hover {
-	background: transparent;
 }
 
 /* ---------- Footer ---------- */
@@ -156,4 +103,6 @@ body {
 #footer {
 	background: #ADBFCB url(../images/custom/footer_bg.gif) repeat-x;
 	min-height: 39px;
+	padding: 12px;
+	text-align: right;
 }
