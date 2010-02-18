@@ -16,7 +16,6 @@ body {
 	border-color: #E4E4E4 #CFCFCF #CCC;
 	margin: 0 auto;
 	padding: 10px;
-	position: relative;
 	width: 940px;
 }
 
@@ -29,16 +28,16 @@ body {
 	position: relative;
 }
 
+#banner .sign-in {
+	position: absolute;
+	top: 10px;
+	right: 40px;
+}
+
 /* ---------- Logo ---------- */
 
 #banner .logo a {
 	margin: 0 auto;
-}
-
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	right: 10px;
 }
 
 /* ---------- Navigation ---------- */
@@ -50,17 +49,20 @@ body {
 	height: 44px;
 }
 
-#navigation ul,
-#add-page {
+#navigation ul {
+	list-style: none;
+	margin: 0;
+}
+
+#navigation li,
+#navigation a {
 	float: left;
 }
 
-#navigation a,
-#navigation .enter-page {
+#navigation a {
 	border-right: 1px solid #CECECE;
 	color: #888;
 	display: block;
-	float: left;
 	height: 36px;
 	padding: 4px 60px 4px 10px;
 	text-decoration: none;
@@ -75,30 +77,6 @@ body {
 	background: #E3E3E3;
 }
 
-#navigation .save-page,
-#navigation .save-page:hover {
-	background: none;
-	border-right: 0;
-	display: inline;
-	float: none;
-	padding: 5px 8px;
-}
-
-.ie7 #navigation .save-page {
-	position: relative;
-	top: -10px;
-}
-
-#navigation .cancel-page {
-	display: none;
-}
-
-/* ---------- Content Wrapper ---------- */
-
-.lfr-grid .lfr-column {
-	padding: 0;
-}
-
 /* ---------- Portlet ---------- */
 
 .portlet {
@@ -108,33 +86,15 @@ body {
 }
 
 .portlet-topper {
-	padding: 0 0 12px;
+	padding: 0 0 6px;
 }
 
 .portlet-title {
-	font: bold 12px Arial, Helvetica, sans-serif;
-}
-
-.portlet-title img {
-	display: none;
+	font-weight: bold;
+	font-size: 12px;
 }
 
 .portlet-content {
 	color: #666;
-	font: 11px Arial, Helvetica, sans-serif;
 	padding: 3px 0 6px;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs {
-	border-bottom: 1px solid #A0A9AD;
-}
-
-.ui-tabs li a,
-.tabs li span {
-	background: #CEDAE0;
-	border: 1px solid #A0A9AD;
-	color: #000;
-	margin: 0 -1px 0 0;
 }
