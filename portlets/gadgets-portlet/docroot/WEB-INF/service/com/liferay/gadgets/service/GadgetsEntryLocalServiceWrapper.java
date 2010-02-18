@@ -53,8 +53,7 @@ public class GadgetsEntryLocalServiceWrapper implements GadgetsEntryLocalService
 
 	public void deleteGadgetsEntry(
 		com.liferay.gadgets.model.GadgetsEntry gadgetsEntry)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		_gadgetsEntryLocalService.deleteGadgetsEntry(gadgetsEntry);
 	}
 
@@ -117,14 +116,12 @@ public class GadgetsEntryLocalServiceWrapper implements GadgetsEntryLocalService
 
 	public java.util.List<com.liferay.gadgets.model.GadgetsEntry> getGadgetsEntries(
 		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _gadgetsEntryLocalService.getGadgetsEntries(companyId, start, end);
 	}
 
 	public int getGadgetsEntriesCount(long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _gadgetsEntryLocalService.getGadgetsEntriesCount(companyId);
 	}
 

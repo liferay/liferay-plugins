@@ -25,6 +25,8 @@ package com.liferay.gadgets.servlet;
 import com.liferay.gadgets.service.GadgetsEntryLocalServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.PortalInitable;
+import com.liferay.portal.kernel.util.PortalInitableUtil;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -36,9 +38,10 @@ import javax.servlet.ServletContextListener;
  * @author Michael Young
  *
  */
-public class GadgetsServletContextListener implements ServletContextListener {
+public class GadgetsServletContextListener
+	implements PortalInitable, ServletContextListener {
 
-	public void contextDestroyed(ServletContextEvent arg0) {
+	public void contextDestroyed(ServletContextEvent event) {
 		try {
 			GadgetsEntryLocalServiceUtil.destroyGadgetsEntries();
 		}
@@ -47,7 +50,11 @@ public class GadgetsServletContextListener implements ServletContextListener {
 		}
 	}
 
-	public void contextInitialized(ServletContextEvent arg0) {
+	public void contextInitialized(ServletContextEvent event) {
+		PortalInitableUtil.init(this);
+	}
+
+	public void portalInit() {
 		try {
 			GadgetsEntryLocalServiceUtil.initGadgetsEntries();
 		}

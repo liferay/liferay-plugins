@@ -40,9 +40,10 @@ import javax.portlet.RenderResponse;
  * <a href="GadgetsPortlet.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael Young
- *
  */
 public class GadgetsPortlet extends GenericPortlet {
+
+	public static final String PORTLET_NAME_PREFIX = "GADGETS_";
 
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
@@ -83,12 +84,9 @@ public class GadgetsPortlet extends GenericPortlet {
 			portletName.substring(pos + 1));
 
 		GadgetsEntry gadgetsEntry =
-			GadgetsEntryLocalServiceUtil.getGadgetsEntry(
-				gadgetsEntryId);
+			GadgetsEntryLocalServiceUtil.getGadgetsEntry(gadgetsEntryId);
 
 		return gadgetsEntry;
 	}
-
-	public static final String PORTLET_NAME_PREFIX = "GADGETS_";
 
 }

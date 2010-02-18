@@ -51,8 +51,7 @@ public class GadgetsEntryLocalServiceUtil {
 
 	public static void deleteGadgetsEntry(
 		com.liferay.gadgets.model.GadgetsEntry gadgetsEntry)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteGadgetsEntry(gadgetsEntry);
 	}
 
@@ -114,14 +113,12 @@ public class GadgetsEntryLocalServiceUtil {
 
 	public static java.util.List<com.liferay.gadgets.model.GadgetsEntry> getGadgetsEntries(
 		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getGadgetsEntries(companyId, start, end);
 	}
 
 	public static int getGadgetsEntriesCount(long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getGadgetsEntriesCount(companyId);
 	}
 

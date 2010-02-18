@@ -90,6 +90,12 @@ public class GadgetsEntryLocalServiceImpl
 		return gadgetsEntry;
 	}
 
+	public void deleteGadgetsEntry(GadgetsEntry gadgetsEntry)
+		throws SystemException {
+
+		gadgetsEntryPersistence.remove(gadgetsEntry);
+	}
+
 	public void deleteGadgetsEntry(long gadgetsEntryId)
 		throws PortalException, SystemException {
 
@@ -99,17 +105,10 @@ public class GadgetsEntryLocalServiceImpl
 		deleteGadgetsEntry(gadgetsEntry);
 	}
 
-	public void deleteGadgetsEntry(GadgetsEntry gadgetsEntry)
-		throws PortalException, SystemException {
-
-		gadgetsEntryPersistence.remove(gadgetsEntry);
-	}
-
 	public void destroyGadgetsEntries()
 		throws PortalException, SystemException {
 
-		List<GadgetsEntry> gadgetsEntries =
-			gadgetsEntryPersistence.findAll();
+		List<GadgetsEntry> gadgetsEntries = gadgetsEntryPersistence.findAll();
 
 		for (GadgetsEntry gadgetsEntry : gadgetsEntries) {
 			destroyGadgetsEntry(gadgetsEntry);
@@ -118,14 +117,14 @@ public class GadgetsEntryLocalServiceImpl
 
 	public List<GadgetsEntry> getGadgetsEntries(
 			long companyId, int start, int end)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		return gadgetsEntryPersistence.findByCompanyId(
 			companyId, start, end);
 	}
 
 	public int getGadgetsEntriesCount(long companyId)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		return gadgetsEntryPersistence.countByCompanyId(companyId);
 	}
@@ -133,9 +132,9 @@ public class GadgetsEntryLocalServiceImpl
 	public void initGadgetsEntries()
 		throws PortalException, SystemException {
 
-		for (GadgetsEntry gadgetsEntry :
-				gadgetsEntryPersistence.findAll()) {
+		List<GadgetsEntry> gadgetsEntries = gadgetsEntryPersistence.findAll();
 
+		for (GadgetsEntry gadgetsEntry : gadgetsEntries) {
 			initGadgetsEntry(gadgetsEntry);
 		}
 	}
@@ -160,6 +159,30 @@ public class GadgetsEntryLocalServiceImpl
 		return gadgetsEntry;
 	}
 
+	protected void addPortletExtraInfo(
+		Portlet portlet, PortletApp portletApp, String title) {
+
+		Set<String> mimeTypePortletModes = new HashSet<String>();
+
+		mimeTypePortletModes.add(PortletMode.VIEW.toString());
+
+		portlet.getPortletModes().put(
+			ContentTypes.TEXT_HTML, mimeTypePortletModes);
+
+		Set<String> mimeTypeWindowStates = new HashSet<String>();
+
+		mimeTypeWindowStates.add(WindowState.MAXIMIZED.toString());
+		mimeTypeWindowStates.add(WindowState.MINIMIZED.toString());
+		mimeTypeWindowStates.add(WindowState.NORMAL.toString());
+
+		portlet.getWindowStates().put(
+			ContentTypes.TEXT_HTML, mimeTypeWindowStates);
+
+		PortletInfo portletInfo = new PortletInfo(title, title, title, title);
+
+		portlet.setPortletInfo(portletInfo);
+	}
+
 	protected void destroyGadgetsEntry(GadgetsEntry gadgetsEntry)
 		throws PortalException, SystemException {
 
@@ -181,11 +204,8 @@ public class GadgetsEntryLocalServiceImpl
 		}
 	}
 
-	protected Portlet getPortlet(GadgetsEntry gadgetsEntry)
-		throws Exception {
-
-		Portlet portlet = _portletsPool.get(
-			gadgetsEntry.getGadgetsEntryId());
+	protected Portlet getPortlet(GadgetsEntry gadgetsEntry) throws Exception {
+		Portlet portlet = _portletsPool.get(gadgetsEntry.getGadgetsEntryId());
 
 		if (portlet != null) {
 			return portlet;
@@ -201,7 +221,7 @@ public class GadgetsEntryLocalServiceImpl
 		String portletId = PortalUtil.getJsSafePortletId(sb.toString());
 
 		portlet = PortletLocalServiceUtil.newPortlet(
-				gadgetsEntry.getCompanyId(), portletId);
+			gadgetsEntry.getCompanyId(), portletId);
 
 		portlet.setTimestamp(System.currentTimeMillis());
 
@@ -221,8 +241,7 @@ public class GadgetsEntryLocalServiceImpl
 
 		addPortletExtraInfo(portlet, portletApp, gadgetsEntry.getName());
 
-		_portletsPool.put(
-			gadgetsEntry.getGadgetsEntryId(), portlet);
+		_portletsPool.put(gadgetsEntry.getGadgetsEntryId(), portlet);
 
 		PortletBag portletBag = PortletBagPool.get(_GADGETS_PORTLET_ID);
 
@@ -236,33 +255,7 @@ public class GadgetsEntryLocalServiceImpl
 		return portlet;
 	}
 
-	protected void addPortletExtraInfo(
-		Portlet portlet, PortletApp portletApp, String title) {
-
-		Set<String> mimeTypePortletModes = new HashSet<String>();
-
-		mimeTypePortletModes.add(PortletMode.VIEW.toString());
-
-		portlet.getPortletModes().put(
-			ContentTypes.TEXT_HTML, mimeTypePortletModes);
-
-		Set<String> mimeTypeWindowStates = new HashSet<String>();
-
-		mimeTypeWindowStates.add(WindowState.MAXIMIZED.toString());
-		mimeTypeWindowStates.add(WindowState.MINIMIZED.toString());
-		mimeTypeWindowStates.add(WindowState.NORMAL.toString());
-
-		portlet.getWindowStates().put(
-			ContentTypes.TEXT_HTML, mimeTypeWindowStates);
-
-		PortletInfo portletInfo = new PortletInfo(
-			title, title, title, title);
-
-		portlet.setPortletInfo(portletInfo);
-	}
-
-	protected void initGadgetsEntry(
-			GadgetsEntry gadgetsEntry)
+	protected void initGadgetsEntry(GadgetsEntry gadgetsEntry)
 		throws PortalException, SystemException {
 
 		try {
@@ -287,7 +280,7 @@ public class GadgetsEntryLocalServiceImpl
 			throw new GadgetsEntryNameException();
 		}
 	}
-	
+
 	private static final String _GADGETS_CATEGORY = "category.gadgets";
 
 	private static final String _GADGETS_PORTLET_ID = "2_WAR_gadgetsportlet";

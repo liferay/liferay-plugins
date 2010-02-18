@@ -22,7 +22,6 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
-		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Gadgets</title>
 			<short-title>Gadgets</short-title>

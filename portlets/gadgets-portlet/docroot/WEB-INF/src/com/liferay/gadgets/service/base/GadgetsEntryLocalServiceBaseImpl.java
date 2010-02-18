@@ -60,7 +60,7 @@ public abstract class GadgetsEntryLocalServiceBaseImpl
 	}
 
 	public void deleteGadgetsEntry(GadgetsEntry gadgetsEntry)
-		throws PortalException, SystemException {
+		throws SystemException {
 		gadgetsEntryPersistence.remove(gadgetsEntry);
 	}
 
