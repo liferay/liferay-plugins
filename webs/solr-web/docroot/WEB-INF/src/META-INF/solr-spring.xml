@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans
+	default-destroy-method="destroy"
+	default-init-method="afterPropertiesSet"
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
@@ -26,7 +28,7 @@
 	<bean id="messageListener.solr_writer" class="com.liferay.portal.kernel.search.messaging.SearchWriterMessageListener">
 		<property name="searchEngine" ref="searchEngine.solr" />
 	</bean>
-	<bean id="messagingConfigurator.solr" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator" depends-on="searchEngine.solr" init-method="init" destroy-method="destroy">
+	<bean id="messagingConfigurator.solr" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator" depends-on="searchEngine.solr">
 		<property name="messageListeners">
 			<map key-type="java.lang.String" value-type="java.util.List">
 				<entry key="liferay/search_reader">
