@@ -21,14 +21,10 @@ body {
 	position: relative;
 }
 
-/* ---------- Logo ---------- */
-
-#banner .logo a {
-}
-
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
+#banner .sign-in {
+	position: absolute;
+	right: 32px;
+	top: 32px;
 }
 
 /* ---------- Navigation ---------- */
@@ -38,13 +34,17 @@ body {
 	height: 44px;
 }
 
-#navigation ul,
-#add-page {
+#navigation ul {
+	list-style: none;
+	margin: 0;
+}
+
+#navigation li,
+#navigation a {
 	float: left;
 }
 
-#navigation a,
-#navigation .enter-page {
+#navigation a {
 	color: #420;
 	display: block;
 	float: left;
@@ -58,34 +58,10 @@ body {
 	color: #000;
 }
 
-#navigation .selected a {
-}
-
-#navigation .save-page,
-#navigation .save-page:hover {
-	background: none;
-	border-right: 0;
-	display: inline;
-	float: none;
-}
-
-.ie7 #navigation .save-page {
-	position: relative;
-	top: -5px;
-}
-
-#navigation .cancel-page {
-	display: none;
-}
-
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
 	padding: 12px;
-}
-
-.lfr-grid .lfr-column {
-	padding: 0 6px;
 }
 
 /* ---------- Portlet ---------- */
@@ -95,16 +71,9 @@ body {
 	margin: 0 0 25px;
 }
 
-.portlet-topper {
-}
-
 .portlet-title {
 	color: #654;
 	font: 14px Lucida Sans Unicode, Lucida Grande, sans-serif;
-}
-
-.portlet-title img {
-	display: none;
 }
 
 .portlet-content {
@@ -112,50 +81,8 @@ body {
 	padding: 12px 0;
 }
 
-/* ---------- Calendar ---------- */
-
-.portlet-calendar .calendar-day .day-text,
-.portlet-calendar .results-header {
-	background-color: #A98;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs {
-	border-bottom: 1px solid #A98;
-}
-
-.ui-tabs li a,
-.ui-tabs li.current a,
-.ui-tabs li a:hover,
-.ui-tabs li span,
-.ui-tabs li.current span,
-.ui-tabs li span:hover {
-	background: #CCC3AF;
-	border: 1px solid #A98;
-	color: #554;
-	margin: 0 0 0 -1px;
-	padding: 8px 12px;
-}
-
-.ui-tabs li.current a,
-.ui-tabs li.current span {
-	background: #987;
-	color: #EEE;
-	font-weight: normal;
-}
-
-.ui-tabs li a:hover,
-.ui-tabs li span:hover {
-	background: #D6CCB9;
-	color: #654;
-}
-
-.ui-tabs li.current:hover {
-	background: transparent;
-}
-
-/* ---------- Footer ---------- */
+/* ---------- Portlet ---------- */
 
 #footer {
+	padding: 12px;
 }
