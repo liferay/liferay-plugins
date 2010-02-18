@@ -21,6 +21,18 @@ body.blue {
 	width: 940px;
 }
 
+/* -------- Banner -------- */
+
+#banner {
+	position: relative;
+}
+
+#banner .sign-in {
+	position: absolute;
+	right: 20px;
+	top: 0;
+}
+
 /* -------- Logo -------- */
 
 .logo {
@@ -51,14 +63,19 @@ body.blue {
 }
 
 #navigation ul {
-	float: left;
+	list-style: none;
+	margin: 0;
 	padding: 0 0 0 25px;
+}
+
+#navigation li,
+#navigation a {
+	float: left;
 }
 
 #navigation a {
 	color: #383838;
 	display: block;
-	float: left;
 	font-family: Frutiger, Frutiger Linotype, Univers, Calibri, Gill Sans, Gill Sans MT, Myriad Pro, Myriad, DejaVu Sans Condensed, Liberation Sans, Nimbus Sans L, Tahoma, Geneva, Helvetica Neue, Helvetica, Arial, sans-serif;
 	line-height: 36px;
 	padding: 0 25px;
