@@ -19,43 +19,16 @@ a {
 	position: relative;
 }
 
+#banner .sign-in {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+
 /* ---------- Logo ---------- */
 
 #banner .logo {
 	padding: 30px 0 30px 30px;
-}
-
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	background: url(../images/custom/dock_bg.png) repeat-x;
-	min-width: 100px;
-	right: 0;
-	top: 0;
-}
-
-.js .interactive-mode h2 {
-	background: url(../images/custom/dock_bg.png) repeat-x;
-	padding: 0;
-}
-
-.js .interactive-mode h2 span {
-	background: url(../images/custom/dock_bg.png) repeat-x;
-	border: none;
-	color: #FFF;
-	font-size: 12px;
-	font-weight: normal;
-	padding: 10px 20px 8px;
-	text-align: center;
-}
-
-.js .interactive-mode ul,
-.js .interactive-mode li {
-	border: 0;
-}
-
-.js .interactive-mode ul {
-	background: url(../images/custom/portlet_bg.png) no-repeat 100% 0;
 }
 
 /* ---------- Navigation ---------- */
@@ -69,13 +42,19 @@ a {
 	padding: 0 10px;
 }
 
-.ie6 #navigation {
-	padding-bottom: 8px;
+#navigation ul {
+	float: right;
+	list-style: none;
+	margin: 0;
 }
 
-#navigation ul,
-#add-page {
-	float: right;
+#navigation li,
+#navigation a {
+	float: left;
+}
+
+#navigation li {
+	padding: 0 10px;
 }
 
 #navigation a {
@@ -86,37 +65,15 @@ a {
 	color: #00467F;
 }
 
-#navigation ul li {
-	display: block;
-	padding: 0 10px;
-}
-
-#navigation ul li.selected {
+#navigation .selected {
 	background: #E7F1FE;
 	border-left: 1px solid #A8C8F2;
 	border-right: 1px solid #A8C8F2;
 	padding: 0 10px;
 }
 
-#navigation ul li.selected a {
+#navigation .selected a {
 	color: #00467F;
-}
-
-#add-page span {
-	padding: 0 10px;
-}
-
-.ie7 .save-page {
-	position: relative;
-	top: -5px;
-}
-
-.ie6 .enter-page {
-	padding: 5px 0;
-}
-
-.save-page {
-	margin-left: 10px;
 }
 
 /* ---------- Content Wrapper ---------- */
@@ -140,11 +97,6 @@ a {
 	background: #98BDEE url(../images/custom/portlet_bg.png) no-repeat;
 }
 
-.portlet-icons {
-	right: 15px;
-	top: 15px;
-}
-
 .portlet-title {
 	color: #082F64;
 	font-size: 18px;
@@ -157,137 +109,12 @@ a {
 	display: none;
 }
 
-.portlet-footer-wrapper {
-	background: url(../images/custom/portlet_footer_bg.png) no-repeat;
-}
-
-.portlet-footer {
-	background: url(../images/custom/portlet_footer_bg.png) no-repeat 100% 0;
-	height: 4px;
-	margin-left: 70px;
-}
-
 .portlet-content {
 	padding: 12px 20px 15px;
-}
-
-.ie6 .portlet-content,
-.ie7 .portlet-content {
-	zoom: 1;
-}
-
-.ui-autocomplete-even,
-.results-row td {
-	background: #FFF;
-}
-
-.ui-autocomplete-odd,
-.results-row.alt td {
-	background: #EDF5FF;
-}
-
-.results-row.hover td {
-	background: #E6F0FE;
-}
-
-.results-header,
-.results-header th,
-.results-header td,
-.portlet-calendar .calendar-day .day-text,
-#wrapper .results-header th a:hover,
-#wrapper .results-header td a:hover,
-#wrapper .taglib-calendar tr td a:hover {
-	background: #86B2ED;
-	color: #FFF;
-}
-
-#wrapper .results-header th a,
-#wrapper .results-header td a {
-	color: #DDD;
-}
-
-.portlet-section-body {
-	background: #FFF;
-}
-
-body.portal-iframe,
-.portal-iframe #content-wrapper {
-	background: #FFF;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs {
-	background: none;
-	border-bottom: none;
-}
-
-.ui-tabs li {
-	border: none;
-}
-
-#wrapper .ui-tabs li a {
-	color: #9A8479;
-	font-size: 11px;
-	font-weight: normal;
-	top: 0;
-}
-
-#wrapper .ui-tabs li {
-	background: none;
-}
-
-#wrapper .ui-tabs li a,
-#wrapper .ui-tabs li span {
-	background: none;
-	padding: 5px 10px;
-	top: 0;
-}
-
-.ie6 .portlet .ui-tabs li a,
-.ie6 .portlet .ui-tabs li span {
-	height: 10px;
-}
-
-.exp-tabs li.exp-selected a,
-.exp-tabs li.exp-selected span {
-	border-top: 0;
-	font-size: 11px;
-	font-weight: normal;
-}
-
-#wrapper .ui-tabs li a:hover,
-#wrapper .ui-tabs li span:hover,
-#wrapper .ui-tabs li a,
-.tabs li span {
-	border: none;
-}
-
-#wrapper .ui-tabs li.current a:hover,
-#wrapper .ui-tabs li a:hover,
-#wrapper .ui-tabs li span:hover {
-	color: #00467F;
-	text-decoration: none;
-}
-
-#wrapper .ui-tabs li.current a:hover,
-#wrapper .ui-tabs li.current a,
-#wrapper .ui-tabs li.current span {
-	background: #FFF;
-	border-left: 1px solid #A8C8F2;
-	border-right: 1px solid #A8C8F2;
-	color: #00467F;
-}
-
-.ie6 .ui-tabs li.current a,
-.ie6 .ui-tabs li.current span,
-.ie6 .ui-tabs li a,
-.ie6 .ui-tabs li span {
-	padding-bottom: 5px;
 }
 
 /* ---------- Footer ---------- */
 
 #footer {
-	margin-bottom: 30px;
+	margin: 10px 15px 30px;
 }
