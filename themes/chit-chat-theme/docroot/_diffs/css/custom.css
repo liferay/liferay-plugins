@@ -24,54 +24,16 @@ a {
 	position: relative;
 }
 
+#banner .sign-in {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
 /* ---------- Logo ---------- */
 
 #banner .logo {
 	padding: 14px 0;
-}
-
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	background: none;
-	right: 0;
-	top: 0;
-	z-index: 1500;
-}
-
-.js .interactive-mode h2 {
-	background: url(../images/custom/dock_bg.png) no-repeat 100% 0;
-	padding-right: 30px;
-}
-
-.js .interactive-mode h2 span {
-	background: url(../images/custom/dock_bg.png) no-repeat;
-	border: none;
-	font-size: 12px;
-	font-weight: normal;
-	padding: 17px 0 23px 30px;
-	text-align: center;
-}
-
-.js .interactive-mode ul {
-	background: #271E14;
-	border-color: #473E34 #170E04 #170E04 #372E24;
-}
-
-.js .interactive-mode li {
-	border: none;
-}
-
-.js .interactive-mode a {
-	color: #FFF;
-}
-
-/* ---------- Search ---------- */
-
-#page-search {
-	position: absolute;
-	right: 0;
-	top: 62px;
 }
 
 /* ---------- Navigation ---------- */
@@ -84,12 +46,12 @@ a {
 	z-index: 10;
 }
 
-.ie6 #navigation {
-	padding-bottom: 60px;
+#navigation ul {
+	list-style: none;
 }
 
-#navigation ul,
-#add-page {
+#navigation li,
+#navigation a {
 	float: left;
 }
 
@@ -109,96 +71,12 @@ a {
 	text-decoration: none;
 }
 
-#navigation li.selected a:hover {
+#navigation .selected a:hover {
 	color: #FFF;
 }
 
-#navigation li.selected a {
+#navigation .selected a {
 	color: #AFC336;
-}
-
-#add-page {
-	font-size: 12px;
-	padding: 17px 12px;
-}
-
-#add-page a {
-	color: #FFF;
-}
-
-#add-page a:hover {
-	color: #AFC336;
-	text-decoration: none;
-}
-
-#wrapper a.save-page {
-	display: inline;
-}
-
-#wrapper .cancel-page {
-	display: none;
-}
-
-.enter-page {
-	padding-top: 14px;
-}
-
-/* ---------- Child Navigation ---------- */
-
-#navigation .child-menu {
-	background: url(../images/custom/child_navigation_bg.png) no-repeat 0 100%;
-	left: -6px;
-	padding: 0 0 20px;
-	position: absolute;
-	top: 50px;
-	width: 218px;
-}
-
-.ie6 #navigation .child-menu {
-	background: #AFC336;
-	left: 0;
-	padding: 0 0 6px;
-	width: 200px;
-}
-
-#navigation ul.child-menu {
-	height: auto;
-}
-
-#navigation .child-menu li {
-	background: url(../images/custom/child_menu_item.png) no-repeat 0 100%;
-	display: block;
-	float: none;
-	height: auto;
-	padding: 5px 22px 5px 18px;
-}
-
-.ie6 #navigation .child-menu li {
-	padding: 3px 13px;
-}
-
-#navigation .child-menu li a {
-	background: none;
-	color: #FFF;
-	display: block;
-	font-size: 11px;
-	line-height: 14px;
-	padding: 0;
-	text-transform: none;
-}
-
-#navigation .child-menu li a:hover {
-	color: #000;
-}
-
-.ie7 .save-page {
-	position: relative;
-	top: -6px;
-}
-
-.ie6 .save-page {
-	position: relative;
-	top: 1px;
 }
 
 /* ---------- Content Wrapper ---------- */
@@ -209,10 +87,6 @@ a {
 	margin: 0 0 0 9px;
 	width: 962px;
 	z-index: 1;
-}
-
-.lfr-grid .lfr-column {
-	padding: 0;
 }
 
 /* ---------- Portlet ---------- */
@@ -234,113 +108,12 @@ a {
 	padding: 6px 15px;
 }
 
-.portlet-title img {
-	display: none;
-}
-
-.ui-autocomplete-even,
-.results-row td {
-	background: #EAF0F6;
-}
-
-.ui-autocomplete-odd,
-.results-row.alt td {
-	background: #E2EAF3;
-}
-
-.results-row.hover td {
-	background: #FFF;
-}
-
-.results-header,
-.results-header th,
-.results-header td,
-.portlet-calendar .calendar-day .day-text,
-.taglib-calendar tr td a:hover {
-	background: #6D98C1;
-}
-
-body.portal-iframe,
-.portal-iframe #content-wrapper {
-	background: #FFF;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs {
-	border: none;
-}
-
-.ui-tabs li {
-	border-bottom: 1px dotted #D3D3D3;
-	border-top: 1px dotted #D3D3D3;
-}
-
-#wrapper .ui-tabs li a {
-	color: #9A8479;
-	font-size: 10px;
-	font-weight: normal;
-	padding: 5px 0;
-	top: 0;
-}
-
-#wrapper .ui-tabs li {
-	background: none;
-	padding-bottom: 0;
-}
-
-#wrapper .ui-tabs li a,
-#wrapper .ui-tabs li span {
-	background: url(../images/custom/tabs.png) no-repeat;
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-#wrapper .ui-tabs li span {
-	font-size: 10px;
-	padding: 5px 10px;
-	top: 0;
-}
-
-.ie6 .portlet .ui-tabs li a,
-.ie6 .portlet .ui-tabs li span {
-	height: 10px;
-}
-
-#wrapper .ui-tabs li a:hover,
-#wrapper .ui-tabs li span:hover,
-#wrapper .ui-tabs li a,
-.tabs li span,
-.ui-tabs li.current a,
-.ui-tabs li.current span {
-	border: none;
-}
-
-#wrapper .ui-tabs li.current a:hover,
-#wrapper .ui-tabs li.current a,
-#wrapper .ui-tabs li.current span,
-#wrapper .ui-tabs li a:hover,
-#wrapper .ui-tabs li span:hover {
-	background: none;
-	color: #000;
-	text-decoration: none;
-}
-
-.ui-tabs li.current {
-	padding-top: 0;
-}
-
-.ie6 .ui-tabs li.current a,
-.ie6 .ui-tabs li.current span,
-.ie6 .ui-tabs li a,
-.ie6 .ui-tabs li span {
-	padding-bottom: 5px;
-}
-
 /* ---------- Footer ---------- */
 
 #footer {
 	background: url(../images/custom/footer_bg.png) no-repeat;
-	height: 32px;
+	height: 20px;
 	margin: 0 0 50px 9px;
+	padding: 0 32px 12px 24px;
+	text-align: right;
 }
