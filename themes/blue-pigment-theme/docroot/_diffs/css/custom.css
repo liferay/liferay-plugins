@@ -10,11 +10,6 @@ a {
 	color: #006;
 }
 
-a:hover {
-	color: #006;
-	text-decoration: none;
-}
-
 /* ---------- Banner ---------- */
 
 #banner {
@@ -24,12 +19,11 @@ a:hover {
 	position: relative;
 }
 
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	right: 50px;
-	top: 40px;
-	z-index: 30;
+#banner .sign-in {
+	color: #FFF;
+	position: absolute;
+	right: 40px;
+	top: 30px;
 }
 
 /* ---------- Navigation ---------- */
@@ -40,21 +34,22 @@ a:hover {
 	padding: 0 40px;
 }
 
-#navigation ul,
-#add-page {
+#navigation ul {
 	float: left;
+	list-style: none;
+	margin: 0;
 }
 
 #navigation li {
+	float: left;
 	height: 64px;
 }
 
-#navigation li.selected {
+#navigation .selected {
 	background: url(../images/custom/navigation_item_current.jpg) no-repeat center bottom;
 }
 
-#navigation a,
-#navigation .enter-page {
+#navigation a {
 	color: #FFF;
 	display: block;
 	float: left;
@@ -66,25 +61,9 @@ a:hover {
 	text-transform: uppercase;
 }
 
-#navigation .enter-page input {
-	padding: 1px;
-}
-
 #navigation .selected a,
 #navigation a:hover {
 	color: #333;
-}
-
-#navigation .save-page,
-#navigation .save-page:hover {
-	background: none;
-	border-right: 0;
-	display: inline;
-	float: none;
-}
-
-#navigation .cancel-page {
-	display: none;
 }
 
 /* ---------- Content Wrapper ---------- */
@@ -93,7 +72,6 @@ a:hover {
 	background: #1183DA;
 	border-bottom: 5px solid #86CC15;
 	padding: 10px 40px;
-	zoom: 1;
 }
 
 /* ---------- Portlet ---------- */
@@ -115,56 +93,18 @@ a:hover {
 	letter-spacing: -2px;
 }
 
-.portlet-title img {
-	display: none;
-}
-
 .portlet-content {
 	color: #FFF;
 	font: 12px/1.7 Verdana, Tahoma, sans-serif;
 }
 
-/* ---------- Calendar ---------- */
-
-.portlet-calendar .calendar-day .day-text,
-.portlet-calendar .results-header {
-	background: #114B78;
-}
-
-.portlet-calendar .day-number,
-.portlet-calendar .portlet-section-body td,
-.calendar-panel {
-	color: #000;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs {
-	border-bottom: 2px solid #186BAB;
-}
-
-.ui-tabs li a,
-.ui-tabs li span,
-.ui-tabs li.current a,
-.ui-tabs li.current span {
-	background: #114B78;
-	border: 2px solid #186BAB;
-	color: #DDD;
-	margin: 0 0 -2px 0;
-	top: auto;
-}
-
-.ui-tabs li a:hover,
-.ui-tabs li span:hover,
-.ui-tabs li.current a:hover,
-.ui-tabs li.current span:hover {
-	background: #0A2B45;
-	color: #FFF;
-	text-decoration: none;
-}
-
 /* ---------- Footer ---------- */
 
 #footer {
-	padding: 30px 0;
+	padding: 20px 45px;
+}
+
+#footer,
+#footer a {
+	color: #FFF;
 }
