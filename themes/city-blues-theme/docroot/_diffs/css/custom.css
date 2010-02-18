@@ -31,50 +31,10 @@ a:hover {
 	position: relative;
 }
 
-/* ---------- Logo ---------- */
-
-#wrapper #banner .logo a {
-	background: url(../images/custom/logo.png) no-repeat;
-	height: 60px;
-	width: 219px;
-}
-
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	background: #040028 url(../images/custom/dock_left_bg.png) no-repeat;
-	min-width: 0;
-	padding: 0 0 1px 6px;
-	right: 5px;
-	top: 66px;
-}
-
-.js .interactive-mode h2 {
-	background: transparent url(../images/custom/dock_right_bg.png) no-repeat 100% 0;
-	margin-left: 18px;
-	padding: 0;
-}
-
-.js .interactive-mode h2 span {
-	background: none;
-	border: none;
-	color: #5780A6;
-	min-width: 0;
-	padding: 10px 10px 4px;
-}
-
-.js .interactive-mode ul {
-	background: #040028;
-	border: none;
-	border-color: #555;
-}
-
-.js .interactive-mode li {
-	border-color: #555;
-}
-
-.js .interactive-mode h2 span:hover {
-	color: #5780A6;
+#banner .sign-in {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 /* ---------- Navigation ---------- */
@@ -86,95 +46,45 @@ a:hover {
 	position: relative;
 }
 
-.ie6 #navigation {
-	padding-bottom: 150px;
-}
-
 #navigation ul {
 	float: left;
-	line-height: 26px;
+	list-style: none;
+	margin: 0;
+}
+
+#navigation li,
+#navigation a,
+#navigation span {
+	float: left;
+}
+
+#navigation a,
+#navigation span {
+	display: block;
 }
 
 #navigation a {
-	background: transparent url(../images/custom/navigation_item.png) no-repeat;
-	color: #5780A6;
-	margin-right: 6px;
-	padding: 6px 1px 5px 7px;
-}
-
-.ie6 #navigation a {
-	background: url(../images/custom/navigation_item_ie6.png) no-repeat;
-}
-
-.ie6 #navigation li {
-	background: url(../images/custom/navigation_item_ie6.png) no-repeat 100% 100%;
-}
-
-.ie6 #navigation a:hover {
-	color: #000;
-}
-
-.ie6 #navigation li.selected {
-	background: url(../images/custom/navigation_item_ie6.png) no-repeat 100% 100%;
-}
-
-#navigation li {
 	background: #F3F3F3 url(../images/custom/navigation_item.png) no-repeat 100% 100%;
-}
-
-#navigation li:hover {
-	background: #4F4C68 url(../images/custom/navigation_item.png) no-repeat 100% 100%;
-}
-
-#navigation li.selected {
-	background: #040028 url(../images/custom/navigation_item.png) no-repeat 100% 100%;
+	height: 26px;
+	overflow: hidden;
 }
 
 #navigation a:hover {
-	color: #AAA;
+	background: #4F4C68 url(../images/custom/navigation_item.png) no-repeat 100% 100%;
 }
 
-#navigation #add-page {
-	float: left;
+#navigation .selected a {
+	background: #040028 url(../images/custom/navigation_item.png) no-repeat 100% 100%;
 }
 
-#navigation #add-page a {
-	background: url(../images/custom/add_page_bg.png) no-repeat 0 100%;
-	display: block;
-	height: 26px;
-	padding: 0;
-	width: 27px;
+#navigation a span {
+	background: transparent url(../images/custom/navigation_item.png) no-repeat;
+	color: #5780A6;
+	padding: 5px 12px;
 }
 
-#navigation #add-page a:hover {
-	background: url(../images/custom/add_page_bg.png) no-repeat;
-}
-
-#add-page span {
-	display: none;
-}
-
-.enter-page {
-	background: #FFF;
-}
-
-.enter-page input {
-	padding: 0;
-}
-
-.ie .enter-page input {
-	position: relative;
-	top: 4px;
-}
-
-.cancel-page {
-	display: none;
-}
-
-.ie6 #navigation .enter-page a {
-	background: none;
-	position: relative;
-	top: 3px;
+#navigation a:hover span {
+	color: #CCC;
 }
 
 /* ---------- Content Wrapper ---------- */
@@ -184,14 +94,6 @@ a:hover {
 	margin-bottom: 20px;
 	min-height: 600px;
 	padding: 0 10px 10px;
-}
-
-.ie6 #content-wrapper {
-	height: 600px;
-}
-
-.lfr-grid .lfr-column {
-	padding: 0 3px;
 }
 
 /* ---------- Portlet ---------- */
@@ -206,10 +108,6 @@ a:hover {
 	height: 24px;
 }
 
-.ie6 .portlet-topper {
-	background: transparent url(../images/custom/portlet_bg_ie6.png) no-repeat 100% -24px;
-}
-
 .portlet-title {
 	background: transparent url(../images/custom/portlet_bg.png) no-repeat;
 	color: #EEE;
@@ -219,132 +117,11 @@ a:hover {
 	padding-left: 7px;
 }
 
-.ie6 .portlet-title {
-	background: transparent url(../images/custom/portlet_bg_ie6.png) no-repeat;
-}
-
 .portlet-title span {
 	margin-top: 10px;
 }
 
-.portlet-title img {
-	display: none;
-}
-
-.portlet-content,
-.portlet-minimized {
+.portlet-content {
 	background: #DDD;
 	padding: 0;
-}
-
-.portlet-content-container {
-	background: #DDD;
-	padding: 0 8px 20px;
-}
-
-.results-header,
-.portlet-calendar .calendar-day .day-text,
-.taglib-calendar tr td a:hover {
-	background-color: #555272;
-}
-
-.portlet-msg-success,
-.portlet-msg-error {
-	margin-top: 0;
-}
-
-.portlet-section-body,
-.calendar-header {
-	background: #FFF;
-}
-
-.portlet-footer-wrapper,
-.portlet-footer {
-	height: 10px;
-}
-
-.portlet-footer-wrapper {
-	background: url(../images/custom/portlet_bg.png) 0 100%;
-	border-top: 1px solid #FFF;
-}
-
-.ie6 .portlet-footer-wrapper {
-	background: url(../images/custom/portlet_bg_ie6.png) 0 100%;
-}
-
-.portlet-footer {
-	background: url(../images/custom/portlet_bg.png) 100% -48px;
-	margin-left: 6px;
-}
-
-.ie6 .portlet-footer {
-	background: url(../images/custom/portlet_bg_ie6.png) 100% -48px;
-}
-
-body.portal-iframe,
-.portal-iframe #content-wrapper {
-	background: #DDD;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs,
-.ui-tabs li a,
-.tabs li span {
-	border: none;
-	color: #5780A6;
-	line-height: 24px;
-	padding: 0;
-	top: 0;
-}
-
-.ui-tabs li a {
-	background: #FFF;
-	border-right: 1px solid #EEE;
-	border-width: 0 1px 0 0;
-	padding: 0 10px;
-}
-
-.ui-tabs li a:hover {
-	background: #FFF;
-	color: #000;
-	text-decoration: none;
-}
-
-.ui-tabs li.first a,
-.ui-tabs li.first a:hover {
-	background: transparent url(../images/custom/tabs.png) no-repeat;
-	padding-left: 15px;
-}
-
-.ui-tabs li.last {
-	background: url(../images/custom/tabs.png) no-repeat 100% 100%;
-}
-
-.ui-tabs li.last a {
-	border: none;
-	margin-right: 5px;
-}
-
-.ie6 .ui-tabs li.last a {
-	margin-right: 1px;
-}
-
-.ui-tabs li.current a,
-.ui-tabs li.current span {
-	border: none;
-	border-right: 1px solid #EEE;
-	color: #000;
-	font-weight: normal;
-	text-decoration: none;
-}
-
-.ui-tabs li.current:hover,
-.ui-tabs li.current a:hover {
-	background-color: #FFF;
-}
-
-.ui-tabs li.current.first:hover,
-.ui-tabs li.current.first a:hover {
-	background-color: transparent;
 }
