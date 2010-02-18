@@ -10,6 +10,7 @@ body {
 
 a {
 	color: #009;
+	outline: 0;
 	text-decoration: none;
 }
 
@@ -21,7 +22,7 @@ a:hover {
 
 #wrapper {
 	margin: 0 auto;
-	width: 1000px;
+	width: 960px;
 }
 
 /* ---------- Banner ---------- */
@@ -31,9 +32,11 @@ a:hover {
 	position: relative;
 }
 
-.ie6 #banner {
-	position: relative;
-	z-index: 500;
+#banner .sign-in {
+	color: #FFF;
+	position: absolute;
+	right: 20px;
+	top: 0px;
 }
 
 /* ---------- Logo ---------- */
@@ -46,343 +49,103 @@ a:hover {
 	margin: 0 auto;
 }
 
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	background: none;
-	right: 35px;
-	top: 0;
-}
-
-.js.ie6 .interactive-mode {
-	right: 75px;
-	z-index: 1500;
-}
-
-.js .interactive-mode h2 {
-	background: none;
-	padding: 0;
-}
-
-.js .interactive-mode h2 span {
-	background: none;
-	border: none;
-	line-height: 39px;
-	min-width: 130px;
-	padding: 0 20px 20px 0;
-}
-
-.js.ie6 .interactive-mode h2 span {
-	padding: 0 20px 0 0;
-}
-
-.js .interactive-mode ul {
-	background: #B4CAED url(../images/custom/dock_bg.png) repeat-x 0 100%;
-	border: 1px solid #000;
-}
-
-.js .interactive-mode .lfr-dock-list li {
-	background: none;
-	border: none;
-}
-
 /* ---------- Navigation ---------- */
 
 #navigation {
 	font-size: 15px;
 	font-weight: bold;
-	height: 40px;
-	line-height: 40px;
+	margin: 0 10px;
 	position: relative;
 }
 
-#navigation ul,
-#add-page {
+#navigation ul {
+	background: url(../images/custom/navigation_bg.png) no-repeat;
+	height: 40px;
+	list-style: none;
+	margin: 0;
+	padding: 0 20px;
+}
+
+#navigation li,
+#navigation a,
+#navigation span {
 	float: left;
 }
 
-#navigation a:hover {
-	color: #FFF;
-}
-
-#banner #navigation ul {
-	background: url(../images/custom/navigation_bg.png) no-repeat;
-	height: 100%;
-	padding: 0 20px;
-	width: 940px;
-}
-
-#navigation li a {
-	color: #000;
-	padding: 11px 0;
-}
-
-.ie #navigation li a {
-	padding: 0;
-}
-
-#navigation li span {
-	margin-left: 14px;
-	padding: 11px 14px 11px 0;
-}
-
-#navigation li.selected a {
-	background: url(../images/custom/navigation_item_selected.png) no-repeat;
-}
-
-#navigation li.selected span {
-	background: url(../images/custom/navigation_item_selected.png) no-repeat 100% 0;
-	color: #FFF;
-}
-
-#banner #navigation ul.child-menu {
-	background: #B4CAED url(../images/custom/dock_bg.png) repeat-x 0 100%;
-	border: 1px solid #000;
-	font-size: 12px;
-	height: auto;
-	left: 0;
-	line-height: 1em;
-	padding: 10px 0 0 10px;
-	position: absolute;
-	top: 40px;
-	width: 200px;
-}
-
-#navigation .child-menu ul,
-#navigation .child-menu li {
-	background: none;
+#navigation a,
+#navigation span {
 	display: block;
-	float: none;
-	height: 20px;
 }
 
-#navigation ul.child-menu li a {
-	background: none;
-	padding: 0;
+#navigation a {
+	padding-left: 18px;
 }
 
-#add-page {
-	padding: 0;
-}
-
-#navigation #add-page a {
-	background: url(../images/custom/add_page_bg.png) no-repeat;
+#navigation span {
+	padding-right: 18px;
+	line-height: 33px;
 	height: 40px;
-	left: -35px;
-	padding: 0;
-	position: absolute;
-	width: 30px;
+	color: #000;
 }
 
-#navigation #add-page a:hover {
-	background: url(../images/custom/add_page_bg.png) no-repeat 0 100%;
+#navigation a:hover span {
+	color: #FFF;
 }
 
-#add-page span {
-	display: none;
+#navigation .selected a {
+	background: url(../images/custom/navigation_item_selected.png) no-repeat left top;
 }
 
-#navigation li.selected a.save-page {
-	background: none;
-}
-
-.enter-page input,
-#navigation .enter-page a.save-page {
-	padding: 0;
-}
-
-.js #navigation li span.delete-tab {
-	background: url(../images/common/remove.png) no-repeat scroll 42% 50%;
-	padding: 0;
-}
-
-.ie6 .enter-page {
-	padding-top: 10px;
-}
-
-.ie6 #navigation {
-	position: relative;
-	z-index: 1000;
-}
-
-.ie7 .enter-page {
-	line-height: 38px;
-}
-
-/* ---------- Content Wrapper ---------- */
-
-.ie6 #content-wrapper {
-	position: relative;
-	z-index: 1;
+#navigation .selected span {
+	background: url(../images/custom/navigation_item_selected.png) no-repeat right top;
+	color: #FFF;
 }
 
 /* ---------- Portlet ---------- */
 
-.lfr-grid .lfr-column {
-	padding: 0;
-}
-
-.active-area {
-	background: #5B8BD9;
-}
-
-.portlet-title img {
-	display: none;
-}
-
-.portlet-icons {
-	right: 30px;
-	top: 29px;
-}
-
+.portlet,
+.portlet-topper,
+.portlet-title,
 .portlet-content {
-	background: #FFF url(../images/custom/portlet_content_bg_left.png) repeat-y;
-	height: 100%;
-	padding: 0 0 0 20px;
-}
-
-.portlet-content-container {
-	background: url(../images/custom/portlet_content_bg_right.png) repeat-y 100% 0;
-	height: 100%;
-	padding: 10px 30px 1px 10px;
+	background: #FFF url(../images/custom/portlet_bg.png) left bottom;
 }
 
 .portlet-topper {
-	background: url(../images/custom/portlet_bg.png) no-repeat 0 -60px;
-	height: 59px;
+	background-position: right top;
+	padding-right: 50px;
 }
 
 .portlet-title {
-	background: url(../images/custom/portlet_bg.png) no-repeat 100% 0;
+	background-position: left top;
 	color: #FFF;
 	font-size: 15px;
-	height: 29px;
-	margin-left: 40px;
-	padding-top: 30px;
+	height: 39px;
+	line-height: 39px;
+	padding-left: 32px;
+	padding-top: 20px;
 }
 
-.portlet-title span {
-	padding-top: 30px;
+.portlet-content {
+	background-position: right bottom;
+	margin-left: 32px;
+	padding: 10px 32px 20px 0;
+}
+
+.portlet-title {
 }
 
 a.portlet-icon-back {
 	color: #FFF;
 }
 
-.portlet-footer-wrapper {
-	background: url(../images/custom/portlet_bg.png) no-repeat 0 -120px;
-	height: 40px;
+/* ---------- Footer ---------- */
+
+#footer {
+	padding: 0 32px;
+	text-align: right;
 }
 
-.portlet-footer {
-	background: url(../images/custom/portlet_bg.png) no-repeat 100% 100%;
-	height: 40px;
-	margin-left: 40px;
-}
-
-.portlet-msg-success {
-	margin-top: 0;
-}
-
-.ui-autocomplete-even,
-.results-row td {
-	background: #DDF;
-}
-
-.ui-autocomplete-odd,
-.results-row.alt td {
-	background: #CCF;
-}
-
-.results-row.hover td {
-	background: #EEF;
-}
-
-.results-header,
-.results-header th,
-.results-header td,
-.portlet-calendar .calendar-day .day-text,
-.taglib-calendar tr td a:hover {
-	background: url(../images/custom/tabs.png) repeat-x;
-}
-
-.taglib-calendar tr td a,
-.taglib-calendar tr td a:hover,
-.results-header th,
-.results-header td,
-.portlet-calendar .calendar-day .day-text {
-	color: #000;
-}
-
-body.portal-iframe,
-.portal-iframe #content-wrapper {
-	background: #FFF;
-}
-
-.taglib-calendar tr td a,
-.portlet-calendar .calendar-container .taglib-calendar {
-	background: transparent;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs {
-	border-bottom: none;
-	font-size: 11px;
-	height: 21px;
-}
-
-.ui-tabs li a,
-.tabs li span {
-	background: url(../images/custom/tabs.png) repeat-x;
-	color: #000;
-	font-weight: normal;
-	padding: 6px 10px;
-	top: 0;
-}
-
-.ie6 .ui-tabs li a,
-.ie6 .tabs li span {
-	background-image: url(../images/custom/tabs.png);
-	border-bottom: none;
-}
-
-.ui-tabs li a,
-.tabs li span,
-.ui-tabs li.current a,
-.ui-tabs li.current span {
-	border: none;
-}
-
-.ui-tabs li.current:hover,
-.ui-tabs li.current a:hover,
-.ui-tabs li.current a,
-.ui-tabs li.current span {
-	background: url(../images/custom/tabs_current.png) repeat-x;
+#footer,
+#footer a {
 	color: #FFF;
-	text-decoration: none;
-}
-
-.ui-tabs li a:hover,
-.ui-tabs li span:hover {
-	background-image: url(../images/custom/tabs.png);
-	color: #FFF;
-	text-decoration: none;
-}
-
-.ui-tabs li.first a,
-.ui-tabs li.first span {
-	border-left: 0;
-}
-
-.ui-tabs li.current {
-	padding-top: 0;
-}
-
-.ie6 .ui-tabs li.current a,
-.ie6 .ui-tabs li.current span,
-.ie6 .ui-tabs li a,
-.ie6 .tabs li span {
-	border-bottom: none;
-	padding-bottom: 5px;
 }
