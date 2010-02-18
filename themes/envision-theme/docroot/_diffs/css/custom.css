@@ -22,11 +22,11 @@ body {
 	position: relative;
 }
 
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	right: 30px;
-	top: 30px;
+#banner .sign-in {
+	color: #FFF;
+	position: absolute;
+	right: 45px;
+	top: 35px;
 }
 
 /* ---------- Navigation ---------- */
@@ -36,6 +36,16 @@ body {
 	height: 37px;
 	margin: 0 25px;
 	position: relative;
+}
+
+#navigation ul {
+	list-style: none;
+	margin: 0;
+}
+
+#navigation li,
+#navigation a {
+	float: left;
 }
 
 #navigation a {
@@ -54,39 +64,6 @@ body {
 	color: #FFF;
 }
 
-#navigation #add-page {
-	position: absolute;
-	right: 0;
-	top: 0;
-}
-
-#navigation .enter-page {
-	margin-top: 6px;
-}
-
-.ie7 #navigation .enter-page {
-	position: relative;
-	top: -1px;
-}
-
-#navigation .save-page {
-	display: inline;
-	float: none;
-}
-
-.ie7 #navigation .save-page {
-	position: relative;
-	top: -4px;
-}
-
-#navigation .save-page:hover {
-	background: none;
-}
-
-#navigation .cancel-page {
-	display: none;
-}
-
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
@@ -96,63 +73,22 @@ body {
 /* ---------- Portlet ---------- */
 
 .portlet {
-	margin: 0 0 12px;
+	margin: 0 0 24px;
 }
 
-/* ---------- Calendar ---------- */
-
-.portlet-calendar .calendar-day .day-text,
-.portlet-calendar .results-header {
-	background-color: #71A0BF;
+.portlet-title {
+	font-weight: bold;
 }
 
-/* ---------- Tabs ---------- */
-
-.ui-tabs {
-	border-bottom: 1px solid #53758C;
-}
-
-.ui-tabs li a,
-.ui-tabs li.current a,
-.ui-tabs li a:hover,
-.ui-tabs li span,
-.ui-tabs li.current span,
-.ui-tabs li span:hover {
-	background: #71A0BF;
-	border: 1px solid #53758C;
-	color: #CFC;
-	margin: 0 0 0 -1px;
-	padding: 8px 12px;
-}
-
-.ui-tabs li a:hover,
-.ui-tabs li span:hover {
-	background: #71A0BF;
-	color: #FF0;
-	text-decoration: none;
-}
-
-.ui-tabs li.current a,
-.ui-tabs li.current span {
-	background: #A7D4F2;
-	color: #333;
-	font-weight: normal;
-}
-
-.ui-tabs li.current a:hover,
-.ui-tabs li.current span:hover {
-	background: #A7D4F2;
-	color: #333;
-	font-weight: normal;
-}
-
-.ui-tabs li.current:hover {
-	background: transparent;
+.portlet-content {
+	padding: 0;
 }
 
 /* ---------- Footer ---------- */
 
 #footer {
 	background: url(../images/custom/footer_bg.png);
-	height: 65px;
+	height: 25px;
+	padding: 20px 40px;
+	text-align: right;
 }
