@@ -38,6 +38,10 @@ body {
 	right: 35px;
 }
 
+#banner .logo {
+	margin: 0;
+}
+
 /* ---------- Navigation ---------- */
 
 #navigation {
