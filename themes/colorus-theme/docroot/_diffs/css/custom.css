@@ -19,21 +19,21 @@ body {
 #banner {
 	background: url(../images/custom/banner_bg.jpg) no-repeat;
 	height: 257px;
-	padding: 120px 0 0;
+	padding: 108px 130px 0;
 	position: relative;
+}
+
+#banner .sign-in {
+	color: #FFF;
+	position: absolute;
+	right: 148px;
+	top: 50px;
 }
 
 /* ---------- Logo ---------- */
 
 #banner .logo a {
 	margin: 0 auto;
-}
-
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	right: 112px;
-	top: 44px;
 }
 
 /* ---------- Navigation ---------- */
@@ -45,16 +45,16 @@ body {
 	z-index: 22;
 }
 
-#navigation ul,
-#navigation li,
-#add-page,
-#navigation .enter-page {
-	display: inline;
-	float: none;
+#navigation ul {
+	list-style: none;
+	margin: 0;
 }
 
-#navigation a,
-#navigation .enter-page {
+#navigation li {
+	display: inline;
+}
+
+#navigation a {
 	background: #003;
 	color: #FFF;
 	font: bold 14px/14px Tahoma, Arial, sans-serif;
@@ -64,35 +64,8 @@ body {
 	text-decoration: none;
 }
 
-#navigation .enter-page {
-	background: transparent;
-	padding: 0;
-}
-
-#navigation .cancel-page {
-	display: none;
-}
-
-#navigation .save-page {
-	padding-bottom: 2px;
-}
-
-#navigation input {
-	height: 17px;
-	margin-right: 4px;
-}
-
-.ie #navigation input {
-	position: relative;
-	top: 1px;
-}
-
 #navigation a:hover {
 	background: #228;
-}
-
-#navigation input[type="text"] {
-	padding: 0;
 }
 
 /* ---------- Content Wrapper ---------- */
@@ -100,13 +73,6 @@ body {
 #content-wrapper {
 	margin: 0 auto;
 	width: 880px;
-}
-
-.portlet a {
-	color: #FFF;
-}
-
-.lfr-grid .lfr-column {
 }
 
 /* ---------- Portlet ---------- */
@@ -128,58 +94,13 @@ body {
 	padding: 0;
 }
 
-.portlet-section-header {
-	background: transparent;
-}
-
-.ui-autocomplete-odd,
-.results-row.alt td {
-	background-color: #003;
-}
-
-.ui-autocomplete-even,
-.results-row td {
-	background-color: #225;
-}
-
-.results-row.hover td {
-	background-color: #447;
-}
-
-/* ---------- Calendar ---------- */
-
-.portlet-calendar .calendar-container .taglib-calendar table,
-.portlet-calendar .portlet-section-body.results-row,
-.portlet-calendar .calendar-day .day-number,
-.taglib-calendar a {
-	color: #000;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs {
-	border-bottom: 1px solid #228;
-}
-
-.ui-tabs li a,
-.ui-tabs li a:hover,
-.ui-tabs li span,
-.ui-tabs li span:hover {
-	background: #003;
-	border: 1px solid #228;
-}
-
-.ui-tabs li a:hover,
-.ui-tabs li span:hover {
-}
-
-.ui-tabs li.current:hover {
-	background: transparent;
+.portlet a {
+	color: #FFF;
 }
 
 /* ---------- Footer ---------- */
 
 #footer {
 	background: url(../images/custom/footer_bg.jpg) no-repeat center top;
-	padding: 59px 0 0;
+	padding: 60px 0;
 }
