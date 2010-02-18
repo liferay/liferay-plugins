@@ -12,39 +12,15 @@
 
 #banner {
 	background: url(../images/custom/banner_bg.png) left bottom;
-	padding: 11px 7px 0;
+	overflow: hidden;
+	padding: 6px 24px;
 	position: relative;
 }
 
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	background: transparent none;
-	right: 10px;
-	top: 11px;
-}
-
-.js .interactive-mode h2,
-.js .interactive-mode h2 span {
-	background-image: url(../images/custom/dock_bg.png);
-}
-
-.js .interactive-mode h2 {
-	background-position: right bottom;
-	padding: 0 30px;
-}
-
-.js .interactive-mode h2 span {
-	border-right: 0;
-	color: #000;
-	display: block;
-	height: 25px;
-	line-height: 23px;
-	padding: 0 20px 0 30px;
-}
-
-.js .lfr-dock.expanded .lfr-dock-list-container {
-	margin: 0 0 0 30px;
+#banner .sign-in {
+	position: absolute;
+	right: 24px;
+	top: 6px;
 }
 
 /* ---------- Page search ---------- */
@@ -63,16 +39,19 @@
 	padding: 9px 24px;
 }
 
-#navigation ul,
-#add-page {
+#navigation ul {
+	list-style: none;
+	margin: 0;
+}
+
+#navigation li,
+#navigation a {
 	float: left;
 }
 
-#navigation a,
-#navigation .enter-page {
+#navigation a {
 	color: #FFF;
 	display: block;
-	float: left;
 	font: 11px/23px Lucida Sans Unicode, Lucida Grande, sans-serif;
 	padding: 1px 12px;
 	text-decoration: none;
@@ -92,36 +71,11 @@
 	padding: 0 11px;
 }
 
-#navigation .save-page,
-#navigation .save-page:hover {
-	background: none;
-	border: 0;
-	display: inline;
-	float: none;
-	padding: 4px;
-}
-
-#navigation .cancel-page {
-	display: none;
-}
-
-#navigation input[type="text"] {
-	padding: 1px;
-}
-
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
 	background: url(../images/custom/content_wrapper_bg.png) repeat-y center top;
 	padding: 10px;
-}
-
-.ie #content-wrapper {
-	zoom: 1;
-}
-
-#column-1 {
-	border-right: 1px solid #D7D7D7;
 }
 
 /* ---------- Portlet ---------- */
@@ -142,76 +96,8 @@
 	height: 25px;
 }
 
-.firefox .portlet-title img,
-.safari .portlet-title img {
-	margin-top: -2px;
-}
-
-.ie .portlet-title img {
-	padding-top: 1px;
-}
-
-.portlet-icons {
-	right: 0;
-}
-
 .portlet-content {
 	padding: 10px;
-}
-
-/* ---------- Calendar ---------- */
-
-.portlet-calendar .calendar-day .day-text,
-.results-header {
-	background-color: #D9E1EC;
-}
-
-.portlet-calendar .calendar-day .day-text,
-.results-header th,
-.results-header td {
-	color: #000;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs {
-	border-bottom: 1px solid #2B5A79;
-}
-
-.ui-tabs li {
-	background: url(../images/custom/tabs.png) no-repeat left -100px;
-	margin: 0 9px 0 0;
-}
-
-.ui-tabs li a,
-.ui-tabs li a:hover,
-.ui-tabs li span,
-.ui-tabs li span:hover {
-	background: url(../images/custom/tabs.png) no-repeat right -300px;
-	border: 0;
-	height: 10px;
-	padding: 8px 12px;
-	text-decoration: none;
-	top: 0;
-}
-
-.ui-tabs li a:hover,
-.ui-tabs li span:hover {
-	color: #FF0;
-}
-
-.ui-tabs li.current,
-.ui-tabs li.current:hover {
-	background: url(../images/custom/tabs.png) no-repeat left top;
-}
-
-.ui-tabs li.current a,
-.ui-tabs li.current a:hover,
-.ui-tabs li.current span,
-.ui-tabs li.current span:hover {
-	background: url(../images/custom/tabs.png) no-repeat right -200px;
-	border: 0;
-	color: #FFF;
 }
 
 /* ---------- Footer ---------- */
@@ -221,12 +107,12 @@
 	padding: 0 0 0 3px;
 }
 
-#footer .language {
+#footer .powered-by {
 	background: url(../images/custom/footer_bg.png) no-repeat right top;
-	padding: 8px 5px 2.5px;
+	padding: 8px 5px;
 	text-align: right;
 }
 
-#footer .language a {
+#footer .powered-by a {
 	margin-right: 5px;
 }
