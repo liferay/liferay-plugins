@@ -24,10 +24,10 @@ body {
 	position: relative;
 }
 
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	right: 9px;
+#banner .sign-in {
+	position: absolute;
+	right: 10px;
+	top: -34px;
 }
 
 /* ---------- Navigation ---------- */
@@ -35,18 +35,20 @@ body {
 #navigation {
 	position: absolute;
 	top: 0;
+}#navigation ul {
+	list-style: none;
+	margin: 0;
 }
 
-#navigation ul,
-#add-page {
+#navigation li,
+#navigation a {
 	float: left;
 }
 
 #navigation a,
-#navigation .enter-page {
+#banner .sign-in {
 	color: #DA1C5C;
 	display: block;
-	float: left;
 	font-size: 11px;
 	line-height: 32px;
 	padding: 0 16px;
@@ -55,23 +57,6 @@ body {
 
 #navigation .selected a {
 	color: #FFF;
-}
-
-#navigation .save-page,
-#navigation .save-page:hover {
-	background: none;
-	border-right: 0;
-	display: inline;
-	float: none;
-}
-
-.ie7 .save-page {
-	position: relative;
-	top: -5px;
-}
-
-#navigation .cancel-page {
-	display: none;
 }
 
 /* ---------- Content Wrapper ---------- */
@@ -93,23 +78,11 @@ body {
 	line-height: 1.4em;
 }
 
-/* ---------- Calendar ---------- */
-
-.portlet-calendar .calendar-day .day-text,
-.portlet-calendar .results-header {
-	background: #58383B;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs li a,
-.ui-tabs li span {
-	background: #58383B;
-}
-
 /* ---------- Footer ---------- */
 
 #footer {
 	background: #231F20 url(../images/custom/footer_bg.jpg) repeat-x;
-	height: 162px;
+	height: 142px;
+	padding: 10px 10px 10px 162px;
+	text-align: right;
 }
