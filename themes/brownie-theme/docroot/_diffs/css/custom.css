@@ -21,6 +21,14 @@ a:hover {
 
 #banner {
 	background: url(../images/custom/banner_bg.png) repeat-x;
+	position: relative;
+}
+
+#banner .sign-in {
+	color: #FFF;
+	position: absolute;
+	right: 20px;
+	top: 20px;
 }
 
 /* ---------- Logo ---------- */
@@ -36,37 +44,46 @@ a:hover {
 	top: 15%;
 }
 
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	background: none;
-	right: 0;
-	top: 85px;
-	width: 160px;
-}
-
-.js .interactive-mode h2 span {
-	background: none;
-	border: 0;
-	color: #69C;
-	padding: 10px 0 0;
-	text-align: center;
-}
-
-.js .interactive-mode h2 {
-	background: url(../images/custom/dock_bg.png) 0 100% transparent;
-	height: 30px;
-	padding: 0 5px;
-}
-
-.lfr-dock .user-greeting span {
-	line-height: 1.5em;
-}
-
 /* ---------- Navigation ---------- */
 
 #navigation {
 	background: #4E3318;
+}
+
+#navigation ul {
+	color: #FFF;
+	font-size: 1.1em;
+	font-weight: bold;
+	list-style: none;
+	margin: 0 auto;
+	min-height: 2em;
+	position: relative;
+	text-transform: uppercase;
+	width: 1024px;
+}
+
+#navigation ul:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	line-height: 0;
+	visibility: hidden;
+}
+
+.ie6 #navigation ul,
+.ie7 #navigation ul {
+	height: 1%;
+}
+
+#navigation li,
+#navigation a {
+	float: left;
+	line-height: 30px;
+}
+
+#navigation a:hover {
+	background: url(../images/custom/navigation_item_hover.png) no-repeat 50% 100%;
 }
 
 #navigation a {
@@ -76,52 +93,9 @@ a:hover {
 	text-decoration: none;
 }
 
-#navigation li {
-	line-height: 30px;
-}
-
-#navigation li a:hover {
-	background: url(../images/custom/navigation_item_hover.png) no-repeat 50% 100%;
-}
-
 #navigation .selected a,
 #navigation .selected a:hover {
 	background: url(../images/custom/navigation_item_selected.png) no-repeat 50% 100%;
-}
-
-#navigation ul {
-	color: #FFF;
-	font-size: 1.1em;
-	font-weight: bold;
-	min-height: 2em;
-	position: relative;
-	text-transform: uppercase;
-	width: 1024px;
-}
-
-#add-page a {
-	background: url(../images/custom/add_page_bg.png) no-repeat;
-	font-weight: bold;
-	height: 24px;
-	padding: 0;
-	position: absolute;
-	right: 0;
-	text-align: center;
-	width: 110px;
-	z-index: 18;
-}
-
-#add-page a:hover {
-	background: url(../images/custom/add_page_hover_bg.png) no-repeat;
-}
-
-.ie7 .save-page {
-	position: relative;
-	top: -5px;
-}
-
-.enter-page .cancel-page {
-	display: none;
 }
 
 /* ---------- Content Wrapper ---------- */
@@ -129,10 +103,6 @@ a:hover {
 #content-wrapper {
 	margin: 0 auto;
 	width: 1024px;
-}
-
-#column-center {
-	padding: 0;
 }
 
 /* ---------- Portlet ---------- */
@@ -158,63 +128,4 @@ a:hover {
 .portlet-content {
 	border: 1px solid #CCC;
 	border-top: none;
-}
-
-#content-wrapper a:hover {
-	text-decoration: none;
-}
-
-.portlet-communities .lfr-theme-list h3 {
-	background-color: #88715A;
-}
-
-.portlet-communities .lfr-current-theme {
-	background-color: #FFFDD3;
-}
-
-.lfr-actions.portlet-options .lfr-trigger {
-	position: relative;
-	right: 2px;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs li a,
-.tabs li span {
-	background: #FFF none;
-	border: 0;
-	color: #222;
-}
-
-.ui-tabs li.current a:hover {
-	color: #369;
-}
-
-.ui-tabs li a:hover,
-.ui-tabs li span:hover {
-	background: url(../images/custom/tabs_hover.png) no-repeat 50% 100%;
-	color: #222;
-}
-
-/* ---------- Portlet Calendar ---------- */
-
-.portlet-calendar .calendar-day .day-text,
-.portlet-calendar .results-header {
-	background: #88715A;
-}
-
-.portlet-calendar .calendar-day .day-text,
-.portlet-calendar .results-header th,
-.portlet-calendar .results-header td {
-	color: #222;
-}
-
-.taglib-calendar tr td a {
-	background: #F5E9DC;
-}
-
-.taglib-calendar tr td a:hover {
-	background: #F7F1EB;
-	color: #369;
-	text-decoration: none;
 }
