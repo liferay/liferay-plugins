@@ -6,8 +6,11 @@ body {
 	background: #698E00 url(../images/custom/body_bg.png) center top;
 	color: #333;
 	font: 12px Lucida Sans Unicode, sans-serif;
+}
+
+#wrapper {
 	margin: 0 auto;
-	padding: 0 20px;
+	padding: 0;
 	width: 960px;
 }
 
@@ -28,6 +31,7 @@ body {
 /* ---------- Logo ---------- */
 
 #banner .logo {
+	margin: 0;
 	padding: 18px 24px;
 }
 
