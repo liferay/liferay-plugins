@@ -19,6 +19,10 @@ a {
 	position: relative;
 }
 
+#banner .logo {
+	margin: 0;
+}
+
 #banner .sign-in {
 	color: #FFF;
 	position: absolute;
@@ -107,4 +111,8 @@ a {
 #footer,
 #footer a {
 	color: #FFF;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	color: #000;
 }
