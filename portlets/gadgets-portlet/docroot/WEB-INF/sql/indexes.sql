@@ -1,1 +1,0 @@
-create index IX_E3F55A9F on Gadgets_GadgetsEntry (companyId);
