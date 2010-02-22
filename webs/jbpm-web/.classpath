@@ -4,11 +4,11 @@
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/src" />
 	<classpathentry kind="src" path="/portal" />
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
+	<classpathentry kind="lib" path="/portal/lib/development/annotations.jar" />
 	<classpathentry kind="lib" path="/portal/lib/development/activation.jar" />
 	<classpathentry kind="lib" path="/portal/lib/development/jsp-api.jar" />
 	<classpathentry kind="lib" path="/portal/lib/development/mail.jar" />
 	<classpathentry kind="lib" path="/portal/lib/development/servlet-api.jar" />
-	<classpathentry kind="lib" path="/portal/lib/global/annotations.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/antlr.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/bsh.jar" />
@@ -20,7 +20,15 @@
 	<classpathentry kind="lib" path="/portal/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/slf4j-api.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/slf4j-log4j12.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/spring.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/spring-asm.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/spring-beans.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/spring-context.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/spring-core.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/spring-expression.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/spring-jdbc.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/spring-orm.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/spring-transaction.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/spring-web.jar" />
 	<classpathentry kind="lib" path="/portal/portal-kernel/portal-kernel.jar" />
 	<classpathentry kind="lib" path="/portal/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
