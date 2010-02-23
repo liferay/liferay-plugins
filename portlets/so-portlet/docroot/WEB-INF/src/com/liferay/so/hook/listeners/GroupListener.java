@@ -28,6 +28,7 @@ import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 
 import java.util.List;
@@ -77,12 +78,15 @@ public class GroupListener extends BaseModelListener<Group> {
 		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
 			group.getGroupId(), !privateLayout);
 
+		ServiceContext serviceContext = new ServiceContext();
+
 		for (Layout layout : layouts) {
 			Layout targetLayout = LayoutLocalServiceUtil.addLayout(
 				group.getCreatorUserId(), group.getGroupId(), privateLayout,
 				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
 				layout.getName("en_US"), StringPool.BLANK, StringPool.BLANK,
-				LayoutConstants.TYPE_PORTLET, false, layout.getFriendlyURL());
+				LayoutConstants.TYPE_PORTLET, false, layout.getFriendlyURL(),
+				serviceContext);
 
 			copyLayout(layout, targetLayout);
 
