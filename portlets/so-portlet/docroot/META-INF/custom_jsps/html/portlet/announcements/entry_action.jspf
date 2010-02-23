@@ -45,7 +45,7 @@
 
 	<c:if test='<%= themeDisplay.isSignedIn() %>'>
 		<span class="control-entry">
-			<a href="<%= "javascript:" + renderResponse.getNamespace() + "handleEntry(" + entry.getEntryId() + ");" %>"><liferay-ui:message key='<%= ((flagValue == AnnouncementsFlagImpl.NOT_HIDDEN) ? "mark-as-read" : "show") %>' /></a>
+			<a href="<%= "javascript:" + renderResponse.getNamespace() + "handleEntry(" + entry.getEntryId() + ");" %>"><liferay-ui:message key='<%= ((flagValue == AnnouncementsFlagConstants.NOT_HIDDEN) ? "mark-as-read" : "show") %>' /></a>
 		</span>
 	</c:if>
 </span>
