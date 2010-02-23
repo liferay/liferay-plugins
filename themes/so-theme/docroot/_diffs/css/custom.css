@@ -161,6 +161,21 @@ body #banner h1.logo a {
 
 #navigation ul {
 	float: right;
+	margin: 0 auto;
+}
+
+#navigation ul:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+#navigation li {
+	float: left;
+	list-style-type: none;
+	position: relative;
 }
 
 #navigation a {
@@ -171,14 +186,23 @@ body #banner h1.logo a {
 	padding: 2px 15px;
 }
 
-#navigation li {
-	position: static;
-}
-
 #navigation li.selected a,
 #navigation li a:hover {
 	border-top: 3px solid #7F80A4;
 	color: #3E3639;
+}
+
+.ie #navigation ul {
+	height: 1%;
+}
+
+.ie6 #navigation, .ie6 #navigation ul {
+	height: 2em;
+	overflow: visible;
+}
+
+#navigation .child-menu {
+	display: none;
 }
 
 /* ---------- Portal tool tips ---------- */
