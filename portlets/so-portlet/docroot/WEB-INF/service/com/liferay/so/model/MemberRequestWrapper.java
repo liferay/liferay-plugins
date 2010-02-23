@@ -73,7 +73,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	public java.lang.String getUserUuid()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequest.getUserUuid();
 	}
 
@@ -122,7 +122,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	public java.lang.String getReceiverUserUuid()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequest.getReceiverUserUuid();
 	}
 

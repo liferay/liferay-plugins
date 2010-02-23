@@ -22,11 +22,11 @@
 
 package com.liferay.so.service;
 
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.Isolation;
 import com.liferay.portal.kernel.annotation.Propagation;
 import com.liferay.portal.kernel.annotation.Transactional;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * <a href="ProjectsEntryLocalService.java.html"><b><i>View Source</i></b></a>
@@ -38,70 +38,71 @@ import com.liferay.portal.kernel.annotation.Transactional;
 public interface ProjectsEntryLocalService {
 	public com.liferay.so.model.ProjectsEntry addProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.so.model.ProjectsEntry createProjectsEntry(
 		long projectsEntryId);
 
 	public void deleteProjectsEntry(long projectsEntryId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.exception.PortalException;
 
 	public void deleteProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException;
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.so.model.ProjectsEntry getProjectsEntry(
 		long projectsEntryId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.so.model.ProjectsEntry> getProjectsEntries(
-		int start, int end) throws com.liferay.portal.SystemException;
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getProjectsEntriesCount()
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry, boolean merge)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.so.model.ProjectsEntry addProjectsEntry(long userId,
 		java.lang.String title, java.lang.String description,
 		int startDateMonth, int startDateDay, int startDateYear,
 		int endDateMonth, int endDateDay, int endDateYear, boolean current,
 		java.lang.String data)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.so.model.ProjectsEntry> getUserProjectsEntries(
-		long userId) throws com.liferay.portal.SystemException;
+		long userId) throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getUserProjectsEntriesCount(long userId)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
 		long projectsEntryId, java.lang.String title,
 		java.lang.String description, int startDateMonth, int startDateDay,
 		int startDateYear, int endDateMonth, int endDateDay, int endDateYear,
 		boolean current, java.lang.String data)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

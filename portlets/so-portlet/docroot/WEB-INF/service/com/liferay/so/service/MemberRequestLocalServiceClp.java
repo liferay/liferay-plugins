@@ -41,7 +41,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 	public com.liferay.so.model.MemberRequest addMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(memberRequest);
 
 		if (memberRequest == null) {
@@ -55,8 +55,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -95,8 +95,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	}
 
 	public void deleteMemberRequest(long memberRequestId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(memberRequestId);
 
 		try {
@@ -104,12 +104,12 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.PortalException) {
-				throw (com.liferay.portal.PortalException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -124,7 +124,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 	public void deleteMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(memberRequest);
 
 		if (memberRequest == null) {
@@ -136,8 +136,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -152,7 +152,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
@@ -167,8 +167,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -185,7 +185,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
@@ -204,8 +204,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -222,8 +222,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 	public com.liferay.so.model.MemberRequest getMemberRequest(
 		long memberRequestId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(memberRequestId);
 
 		Object returnObj = null;
@@ -233,12 +233,12 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.PortalException) {
-				throw (com.liferay.portal.PortalException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -254,7 +254,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	}
 
 	public java.util.List<com.liferay.so.model.MemberRequest> getMemberRequests(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new IntegerWrapper(start);
 
 		Object paramObj1 = new IntegerWrapper(end);
@@ -266,8 +267,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -283,7 +284,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	}
 
 	public int getMemberRequestsCount()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
@@ -291,8 +292,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					new Object[0]);
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -309,7 +310,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 	public com.liferay.so.model.MemberRequest updateMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(memberRequest);
 
 		if (memberRequest == null) {
@@ -323,8 +324,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -341,7 +342,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 	public com.liferay.so.model.MemberRequest updateMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(memberRequest);
 
 		if (memberRequest == null) {
@@ -357,8 +358,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -377,8 +378,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		long groupId, long receiverUserId,
 		java.lang.String receiverEmailAddress,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
 
 		Object paramObj1 = new LongWrapper(groupId);
@@ -406,12 +407,12 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					});
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.PortalException) {
-				throw (com.liferay.portal.PortalException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -429,8 +430,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	public void addMemberRequests(long userId, long groupId,
 		long[] receiverUserIds,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
 
 		Object paramObj1 = new LongWrapper(groupId);
@@ -452,12 +453,12 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 				new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.PortalException) {
-				throw (com.liferay.portal.PortalException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -473,8 +474,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	public void addMemberRequests(long userId, long groupId,
 		java.lang.String[] emailAddresses,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
 
 		Object paramObj1 = new LongWrapper(groupId);
@@ -496,12 +497,12 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 				new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.PortalException) {
-				throw (com.liferay.portal.PortalException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -516,8 +517,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 	public com.liferay.so.model.MemberRequest getMemberRequest(long groupId,
 		long receiverUserId, int status)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
 
 		Object paramObj1 = new LongWrapper(receiverUserId);
@@ -531,12 +532,12 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.PortalException) {
-				throw (com.liferay.portal.PortalException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -553,7 +554,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 	public java.util.List<com.liferay.so.model.MemberRequest> getReceiverMemberRequest(
 		long receiverUserId, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(receiverUserId);
 
 		Object paramObj1 = new IntegerWrapper(start);
@@ -567,8 +568,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -584,7 +585,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	}
 
 	public int getReceiverMemberRequestCount(long receiverUserId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(receiverUserId);
 
 		Object returnObj = null;
@@ -594,8 +595,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -612,7 +613,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 	public java.util.List<com.liferay.so.model.MemberRequest> getReceiverStatusMemberRequest(
 		long receiverUserId, int status, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(receiverUserId);
 
 		Object paramObj1 = new IntegerWrapper(status);
@@ -628,8 +629,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -645,7 +646,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	}
 
 	public int getReceiverStatusMemberRequestCount(long receiverUserId,
-		int status) throws com.liferay.portal.SystemException {
+		int status) throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(receiverUserId);
 
 		Object paramObj1 = new IntegerWrapper(status);
@@ -657,8 +658,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -674,7 +675,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	}
 
 	public boolean hasPendingMemberRequest(long groupId, long receiverUserId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
 
 		Object paramObj1 = new LongWrapper(receiverUserId);
@@ -686,8 +687,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -735,8 +736,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 	public com.liferay.so.model.MemberRequest updateMemberRequest(
 		java.lang.String key, long receiverUserId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(key);
 
 		if (key == null) {
@@ -752,12 +753,12 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.PortalException) {
-				throw (com.liferay.portal.PortalException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

@@ -40,70 +40,70 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	public com.liferay.so.model.ProjectsEntry create(long projectsEntryId);
 
 	public com.liferay.so.model.ProjectsEntry remove(long projectsEntryId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchProjectsEntryException;
-
-	public com.liferay.so.model.ProjectsEntry update(
-		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.SystemException;
 
 	public com.liferay.so.model.ProjectsEntry updateImpl(
 		com.liferay.so.model.ProjectsEntry projectsEntry, boolean merge)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.so.model.ProjectsEntry findByPrimaryKey(
 		long projectsEntryId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchProjectsEntryException;
 
 	public com.liferay.so.model.ProjectsEntry fetchByPrimaryKey(
-		long projectsEntryId) throws com.liferay.portal.SystemException;
+		long projectsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
-		long userId) throws com.liferay.portal.SystemException;
+		long userId) throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
 		long userId, int start, int end)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.so.model.ProjectsEntry findByUserId_First(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchProjectsEntryException;
 
 	public com.liferay.so.model.ProjectsEntry findByUserId_Last(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchProjectsEntryException;
 
 	public com.liferay.so.model.ProjectsEntry[] findByUserId_PrevAndNext(
 		long projectsEntryId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchProjectsEntryException;
 
 	public java.util.List<com.liferay.so.model.ProjectsEntry> findAll()
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.so.model.ProjectsEntry> findAll(
-		int start, int end) throws com.liferay.portal.SystemException;
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.so.model.ProjectsEntry> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void removeByUserId(long userId)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void removeAll() throws com.liferay.portal.SystemException;
+	public void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByUserId(long userId)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countAll() throws com.liferay.portal.SystemException;
+	public int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

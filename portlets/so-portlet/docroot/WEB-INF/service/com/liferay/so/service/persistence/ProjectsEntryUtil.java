@@ -22,9 +22,9 @@
 
 package com.liferay.so.service.persistence;
 
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.so.model.ProjectsEntry;
 
@@ -77,63 +77,58 @@ public class ProjectsEntryUtil {
 
 	public static com.liferay.so.model.ProjectsEntry remove(
 		long projectsEntryId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchProjectsEntryException {
 		return getPersistence().remove(projectsEntryId);
 	}
 
-	public static com.liferay.so.model.ProjectsEntry update(
-		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(projectsEntry);
-	}
-
 	public static com.liferay.so.model.ProjectsEntry updateImpl(
 		com.liferay.so.model.ProjectsEntry projectsEntry, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(projectsEntry, merge);
 	}
 
 	public static com.liferay.so.model.ProjectsEntry findByPrimaryKey(
 		long projectsEntryId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchProjectsEntryException {
 		return getPersistence().findByPrimaryKey(projectsEntryId);
 	}
 
 	public static com.liferay.so.model.ProjectsEntry fetchByPrimaryKey(
-		long projectsEntryId) throws com.liferay.portal.SystemException {
+		long projectsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(projectsEntryId);
 	}
 
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
-		long userId) throws com.liferay.portal.SystemException {
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByUserId(userId);
 	}
 
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
 		long userId, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByUserId(userId, start, end);
 	}
 
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByUserId(userId, start, end, obc);
 	}
 
 	public static com.liferay.so.model.ProjectsEntry findByUserId_First(
 		long userId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchProjectsEntryException {
 		return getPersistence().findByUserId_First(userId, obc);
 	}
 
 	public static com.liferay.so.model.ProjectsEntry findByUserId_Last(
 		long userId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchProjectsEntryException {
 		return getPersistence().findByUserId_Last(userId, obc);
 	}
@@ -141,43 +136,46 @@ public class ProjectsEntryUtil {
 	public static com.liferay.so.model.ProjectsEntry[] findByUserId_PrevAndNext(
 		long projectsEntryId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchProjectsEntryException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(projectsEntryId, userId, obc);
 	}
 
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findAll()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
 
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findAll(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end, obc);
 	}
 
 	public static void removeByUserId(long userId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByUserId(userId);
 	}
 
-	public static void removeAll() throws com.liferay.portal.SystemException {
+	public static void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
 	}
 
 	public static int countByUserId(long userId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByUserId(userId);
 	}
 
-	public static int countAll() throws com.liferay.portal.SystemException {
+	public static int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();
 	}
 

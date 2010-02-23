@@ -34,7 +34,7 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
 public class ProjectsEntryLocalServiceUtil {
 	public static com.liferay.so.model.ProjectsEntry addProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addProjectsEntry(projectsEntry);
 	}
 
@@ -44,55 +44,56 @@ public class ProjectsEntryLocalServiceUtil {
 	}
 
 	public static void deleteProjectsEntry(long projectsEntryId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteProjectsEntry(projectsEntryId);
 	}
 
 	public static void deleteProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteProjectsEntry(projectsEntry);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.so.model.ProjectsEntry getProjectsEntry(
 		long projectsEntryId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getProjectsEntry(projectsEntryId);
 	}
 
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> getProjectsEntries(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getProjectsEntries(start, end);
 	}
 
 	public static int getProjectsEntriesCount()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getProjectsEntriesCount();
 	}
 
 	public static com.liferay.so.model.ProjectsEntry updateProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateProjectsEntry(projectsEntry);
 	}
 
 	public static com.liferay.so.model.ProjectsEntry updateProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateProjectsEntry(projectsEntry, merge);
 	}
 
@@ -101,8 +102,8 @@ public class ProjectsEntryLocalServiceUtil {
 		int startDateMonth, int startDateDay, int startDateYear,
 		int endDateMonth, int endDateDay, int endDateYear, boolean current,
 		java.lang.String data)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addProjectsEntry(userId, title, description,
 			startDateMonth, startDateDay, startDateYear, endDateMonth,
@@ -110,12 +111,12 @@ public class ProjectsEntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> getUserProjectsEntries(
-		long userId) throws com.liferay.portal.SystemException {
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getUserProjectsEntries(userId);
 	}
 
 	public static int getUserProjectsEntriesCount(long userId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getUserProjectsEntriesCount(userId);
 	}
 
@@ -124,8 +125,8 @@ public class ProjectsEntryLocalServiceUtil {
 		java.lang.String description, int startDateMonth, int startDateDay,
 		int startDateYear, int endDateMonth, int endDateDay, int endDateYear,
 		boolean current, java.lang.String data)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateProjectsEntry(projectsEntryId, title, description,
 			startDateMonth, startDateDay, startDateYear, endDateMonth,

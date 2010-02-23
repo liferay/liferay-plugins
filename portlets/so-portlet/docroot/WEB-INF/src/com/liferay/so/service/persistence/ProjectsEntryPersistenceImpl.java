@@ -23,7 +23,6 @@
 package com.liferay.so.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
-import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -34,6 +33,7 @@ import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -212,16 +212,6 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			ProjectsEntryImpl.class, projectsEntry.getPrimaryKey());
 
 		return projectsEntry;
-	}
-
-	public ProjectsEntry update(ProjectsEntry projectsEntry)
-		throws SystemException {
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Using the deprecated update(ProjectsEntry projectsEntry) method. Use update(ProjectsEntry projectsEntry, boolean merge) instead.");
-		}
-
-		return update(projectsEntry, false);
 	}
 
 	public ProjectsEntry updateImpl(

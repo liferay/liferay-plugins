@@ -37,7 +37,7 @@ public class MemberRequestLocalServiceWrapper
 
 	public com.liferay.so.model.MemberRequest addMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.addMemberRequest(memberRequest);
 	}
 
@@ -47,55 +47,56 @@ public class MemberRequestLocalServiceWrapper
 	}
 
 	public void deleteMemberRequest(long memberRequestId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_memberRequestLocalService.deleteMemberRequest(memberRequestId);
 	}
 
 	public void deleteMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		_memberRequestLocalService.deleteMemberRequest(memberRequest);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public com.liferay.so.model.MemberRequest getMemberRequest(
 		long memberRequestId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.getMemberRequest(memberRequestId);
 	}
 
 	public java.util.List<com.liferay.so.model.MemberRequest> getMemberRequests(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.getMemberRequests(start, end);
 	}
 
 	public int getMemberRequestsCount()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.getMemberRequestsCount();
 	}
 
 	public com.liferay.so.model.MemberRequest updateMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.updateMemberRequest(memberRequest);
 	}
 
 	public com.liferay.so.model.MemberRequest updateMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.updateMemberRequest(memberRequest,
 			merge);
 	}
@@ -104,8 +105,8 @@ public class MemberRequestLocalServiceWrapper
 		long groupId, long receiverUserId,
 		java.lang.String receiverEmailAddress,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.addMemberRequest(userId, groupId,
 			receiverUserId, receiverEmailAddress, themeDisplay);
 	}
@@ -113,8 +114,8 @@ public class MemberRequestLocalServiceWrapper
 	public void addMemberRequests(long userId, long groupId,
 		long[] receiverUserIds,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_memberRequestLocalService.addMemberRequests(userId, groupId,
 			receiverUserIds, themeDisplay);
 	}
@@ -122,47 +123,47 @@ public class MemberRequestLocalServiceWrapper
 	public void addMemberRequests(long userId, long groupId,
 		java.lang.String[] emailAddresses,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_memberRequestLocalService.addMemberRequests(userId, groupId,
 			emailAddresses, themeDisplay);
 	}
 
 	public com.liferay.so.model.MemberRequest getMemberRequest(long groupId,
 		long receiverUserId, int status)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.getMemberRequest(groupId,
 			receiverUserId, status);
 	}
 
 	public java.util.List<com.liferay.so.model.MemberRequest> getReceiverMemberRequest(
 		long receiverUserId, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.getReceiverMemberRequest(receiverUserId,
 			start, end);
 	}
 
 	public int getReceiverMemberRequestCount(long receiverUserId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.getReceiverMemberRequestCount(receiverUserId);
 	}
 
 	public java.util.List<com.liferay.so.model.MemberRequest> getReceiverStatusMemberRequest(
 		long receiverUserId, int status, int start, int end)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.getReceiverStatusMemberRequest(receiverUserId,
 			status, start, end);
 	}
 
 	public int getReceiverStatusMemberRequestCount(long receiverUserId,
-		int status) throws com.liferay.portal.SystemException {
+		int status) throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.getReceiverStatusMemberRequestCount(receiverUserId,
 			status);
 	}
 
 	public boolean hasPendingMemberRequest(long groupId, long receiverUserId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.hasPendingMemberRequest(groupId,
 			receiverUserId);
 	}
@@ -175,8 +176,8 @@ public class MemberRequestLocalServiceWrapper
 
 	public com.liferay.so.model.MemberRequest updateMemberRequest(
 		java.lang.String key, long receiverUserId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.updateMemberRequest(key,
 			receiverUserId);
 	}

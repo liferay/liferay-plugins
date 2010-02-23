@@ -41,7 +41,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 
 	public com.liferay.so.model.ProjectsEntry addProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(projectsEntry);
 
 		if (projectsEntry == null) {
@@ -55,8 +55,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -95,8 +95,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	}
 
 	public void deleteProjectsEntry(long projectsEntryId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(projectsEntryId);
 
 		try {
@@ -104,12 +104,12 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.PortalException) {
-				throw (com.liferay.portal.PortalException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -124,7 +124,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 
 	public void deleteProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(projectsEntry);
 
 		if (projectsEntry == null) {
@@ -136,8 +136,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -152,7 +152,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
@@ -167,8 +167,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -185,7 +185,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.SystemException {
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
@@ -204,8 +204,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -222,8 +222,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 
 	public com.liferay.so.model.ProjectsEntry getProjectsEntry(
 		long projectsEntryId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(projectsEntryId);
 
 		Object returnObj = null;
@@ -233,12 +233,12 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.PortalException) {
-				throw (com.liferay.portal.PortalException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -254,7 +254,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	}
 
 	public java.util.List<com.liferay.so.model.ProjectsEntry> getProjectsEntries(
-		int start, int end) throws com.liferay.portal.SystemException {
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new IntegerWrapper(start);
 
 		Object paramObj1 = new IntegerWrapper(end);
@@ -266,8 +267,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -283,7 +284,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	}
 
 	public int getProjectsEntriesCount()
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
@@ -291,8 +292,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 					new Object[0]);
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -309,7 +310,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 
 	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(projectsEntry);
 
 		if (projectsEntry == null) {
@@ -323,8 +324,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -341,7 +342,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 
 	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry, boolean merge)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(projectsEntry);
 
 		if (projectsEntry == null) {
@@ -357,8 +358,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -378,8 +379,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		int startDateMonth, int startDateDay, int startDateYear,
 		int endDateMonth, int endDateDay, int endDateYear, boolean current,
 		java.lang.String data)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
 
 		Object paramObj1 = ClpSerializer.translateInput(title);
@@ -425,12 +426,12 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 					});
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.PortalException) {
-				throw (com.liferay.portal.PortalException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -446,7 +447,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	}
 
 	public java.util.List<com.liferay.so.model.ProjectsEntry> getUserProjectsEntries(
-		long userId) throws com.liferay.portal.SystemException {
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
 
 		Object returnObj = null;
@@ -456,8 +457,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -473,7 +474,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	}
 
 	public int getUserProjectsEntriesCount(long userId)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
 
 		Object returnObj = null;
@@ -483,8 +484,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -504,8 +505,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		java.lang.String description, int startDateMonth, int startDateDay,
 		int startDateYear, int endDateMonth, int endDateDay, int endDateYear,
 		boolean current, java.lang.String data)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(projectsEntryId);
 
 		Object paramObj1 = ClpSerializer.translateInput(title);
@@ -551,12 +552,12 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 					});
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.PortalException) {
-				throw (com.liferay.portal.PortalException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

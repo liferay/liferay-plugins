@@ -40,146 +40,148 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	public com.liferay.so.model.MemberRequest create(long memberRequestId);
 
 	public com.liferay.so.model.MemberRequest remove(long memberRequestId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException;
-
-	public com.liferay.so.model.MemberRequest update(
-		com.liferay.so.model.MemberRequest memberRequest)
-		throws com.liferay.portal.SystemException;
 
 	public com.liferay.so.model.MemberRequest updateImpl(
 		com.liferay.so.model.MemberRequest memberRequest, boolean merge)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.so.model.MemberRequest findByPrimaryKey(
 		long memberRequestId)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException;
 
 	public com.liferay.so.model.MemberRequest fetchByPrimaryKey(
-		long memberRequestId) throws com.liferay.portal.SystemException;
+		long memberRequestId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.so.model.MemberRequest findByKey(java.lang.String key)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException;
 
 	public com.liferay.so.model.MemberRequest fetchByKey(java.lang.String key)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.so.model.MemberRequest fetchByKey(java.lang.String key,
-		boolean retrieveFromCache) throws com.liferay.portal.SystemException;
+		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.so.model.MemberRequest> findByReceiverUserId(
-		long receiverUserId) throws com.liferay.portal.SystemException;
+		long receiverUserId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.so.model.MemberRequest> findByReceiverUserId(
 		long receiverUserId, int start, int end)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.so.model.MemberRequest> findByReceiverUserId(
 		long receiverUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.so.model.MemberRequest findByReceiverUserId_First(
 		long receiverUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException;
 
 	public com.liferay.so.model.MemberRequest findByReceiverUserId_Last(
 		long receiverUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException;
 
 	public com.liferay.so.model.MemberRequest[] findByReceiverUserId_PrevAndNext(
 		long memberRequestId, long receiverUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException;
 
 	public java.util.List<com.liferay.so.model.MemberRequest> findByR_S(
 		long receiverUserId, int status)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.so.model.MemberRequest> findByR_S(
 		long receiverUserId, int status, int start, int end)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.so.model.MemberRequest> findByR_S(
 		long receiverUserId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.so.model.MemberRequest findByR_S_First(
 		long receiverUserId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException;
 
 	public com.liferay.so.model.MemberRequest findByR_S_Last(
 		long receiverUserId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException;
 
 	public com.liferay.so.model.MemberRequest[] findByR_S_PrevAndNext(
 		long memberRequestId, long receiverUserId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException;
 
 	public com.liferay.so.model.MemberRequest findByG_R_S(long groupId,
 		long receiverUserId, int status)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException;
 
 	public com.liferay.so.model.MemberRequest fetchByG_R_S(long groupId,
 		long receiverUserId, int status)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.so.model.MemberRequest fetchByG_R_S(long groupId,
 		long receiverUserId, int status, boolean retrieveFromCache)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.so.model.MemberRequest> findAll()
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.so.model.MemberRequest> findAll(
-		int start, int end) throws com.liferay.portal.SystemException;
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.so.model.MemberRequest> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void removeByKey(java.lang.String key)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException;
 
 	public void removeByReceiverUserId(long receiverUserId)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void removeByR_S(long receiverUserId, int status)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void removeByG_R_S(long groupId, long receiverUserId, int status)
-		throws com.liferay.portal.SystemException,
+		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException;
 
-	public void removeAll() throws com.liferay.portal.SystemException;
+	public void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByKey(java.lang.String key)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByReceiverUserId(long receiverUserId)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByR_S(long receiverUserId, int status)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByG_R_S(long groupId, long receiverUserId, int status)
-		throws com.liferay.portal.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countAll() throws com.liferay.portal.SystemException;
+	public int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
 }
