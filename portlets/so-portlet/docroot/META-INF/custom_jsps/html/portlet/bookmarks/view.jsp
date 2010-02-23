@@ -20,96 +20,39 @@
 <%@ include file="/html/portlet/bookmarks/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "folders");
-
-PortletPreferences preferences = renderRequest.getPreferences();
-
-String portletResource = ParamUtil.getString(request, "portletResource");
-
-if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
-}
-
-BookmarksFolder rootFolder = null;
-
-long rootFolderId = PrefsParamUtil.getLong(preferences, request, "rootFolderId", BookmarksFolderImpl.DEFAULT_PARENT_FOLDER_ID);
-
-if (rootFolderId == BookmarksFolderImpl.DEFAULT_PARENT_FOLDER_ID) {
-	BookmarksFolder dynamicRootFolder = null;
-
-	int count = BookmarksFolderLocalServiceUtil.getFoldersCount(scopeGroupId, BookmarksFolderImpl.DEFAULT_PARENT_FOLDER_ID);
-
-	if (count > 1) {
-		List<BookmarksFolder> folders = BookmarksFolderLocalServiceUtil.getFolders(scopeGroupId, BookmarksFolderImpl.DEFAULT_PARENT_FOLDER_ID, -1, -1);
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(BookmarksFolder.class.getName(), renderRequest);
-
-		dynamicRootFolder = BookmarksFolderLocalServiceUtil.addFolder(themeDisplay.getUserId(), BookmarksFolderImpl.DEFAULT_PARENT_FOLDER_ID, LanguageUtil.get(pageContext, "bookmarks"), "", serviceContext);
-
-		long dynamicRootFolderId = dynamicRootFolder.getFolderId();
-
-		for (BookmarksFolder folder : folders) {
-			BookmarksFolderLocalServiceUtil.updateFolder(folder.getFolderId(), dynamicRootFolderId, folder.getName(), folder.getDescription(), false, serviceContext);
-		}
-	}
-	else if (count == 1) {
-		List<BookmarksFolder> folders = BookmarksFolderLocalServiceUtil.getFolders(scopeGroupId, BookmarksFolderImpl.DEFAULT_PARENT_FOLDER_ID, 0, 1);
-
-		dynamicRootFolder = folders.get(0);
-	}
-	else {
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(BookmarksFolder.class.getName(), renderRequest);
-
-		dynamicRootFolder = BookmarksFolderLocalServiceUtil.addFolder(themeDisplay.getUserId(), BookmarksFolderImpl.DEFAULT_PARENT_FOLDER_ID, LanguageUtil.get(pageContext, "bookmarks"), "", serviceContext);
-	}
-
-	rootFolderId = dynamicRootFolder.getFolderId();
-
-	rootFolder = BookmarksFolderLocalServiceUtil.getFolder(rootFolderId);
-
-	preferences.setValue("rootFolderId", String.valueOf(rootFolderId));
-
-	preferences.store();
-}
+String topLink = ParamUtil.getString(request, "topLink", "bookmarks-home");
 
 BookmarksFolder folder = (BookmarksFolder)request.getAttribute(WebKeys.BOOKMARKS_FOLDER);
 
-long defaultFolderId = GetterUtil.getLong(preferences.getValue("rootFolderId", StringPool.BLANK), BookmarksFolderImpl.DEFAULT_PARENT_FOLDER_ID);
+long defaultFolderId = GetterUtil.getLong(preferences.getValue("rootFolderId", StringPool.BLANK), BookmarksFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 long folderId = BeanParamUtil.getLong(folder, request, "folderId", defaultFolderId);
 
-if ((folder == null) && (defaultFolderId != BookmarksFolderImpl.DEFAULT_PARENT_FOLDER_ID)) {
+if ((folder == null) && (defaultFolderId != BookmarksFolderConstants.DEFAULT_PARENT_FOLDER_ID)) {
 	try {
 		folder = BookmarksFolderLocalServiceUtil.getFolder(folderId);
 	}
 	catch (NoSuchFolderException nsfe) {
-		folderId = BookmarksFolderImpl.DEFAULT_PARENT_FOLDER_ID;
+		folderId = BookmarksFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 	}
 }
+
+int foldersCount = BookmarksFolderLocalServiceUtil.getFoldersCount(scopeGroupId, folderId);
+int entriesCount = BookmarksEntryLocalServiceUtil.getEntriesCount(scopeGroupId, folderId);
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setWindowState(WindowState.MAXIMIZED);
 
 portletURL.setParameter("struts_action", "/bookmarks/view");
-portletURL.setParameter("tabs1", tabs1);
+portletURL.setParameter("topLink", topLink);
 portletURL.setParameter("folderId", String.valueOf(folderId));
-%>
 
-<%
-String orderByCol = ParamUtil.getString(request, "orderByCol");
-String orderByType = ParamUtil.getString(request, "orderByType");
+request.setAttribute("view.jsp-folder", folder);
 
-if (Validator.isNotNull(orderByCol) && Validator.isNotNull(orderByType)) {
-	portalPrefs.setValue(PortletKeys.BOOKMARKS, "entries-order-by-col", orderByCol);
-	portalPrefs.setValue(PortletKeys.BOOKMARKS, "entries-order-by-type", orderByType);
-}
-else {
-	orderByCol = portalPrefs.getValue(PortletKeys.BOOKMARKS, "entries-order-by-col", "name");
-	orderByType = portalPrefs.getValue(PortletKeys.BOOKMARKS, "entries-order-by-type", "asc");
-}
+request.setAttribute("view.jsp-folderId", String.valueOf(folderId));
 
-OrderByComparator orderByComparator = BookmarksUtil.getEntriesOrderByComparator(orderByCol, orderByType);
+request.setAttribute("view.jsp-viewFolder", Boolean.TRUE.toString());
 %>
 
 <liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" varImpl="searchURL">
@@ -127,9 +70,14 @@ OrderByComparator orderByComparator = BookmarksUtil.getEntriesOrderByComparator(
 	curParam="cur1"
 	iteratorURL="<%= portletURL %>"
 >
+
+	<%
+	OrderByComparator orderByComparator = BookmarksUtil.getEntriesOrderByComparator("name", "asc");
+	%>
+
 	<liferay-ui:search-container-results
-		results="<%= BookmarksEntryLocalServiceUtil.getEntries(folder.getFolderId(), searchContainer.getStart(), searchContainer.getEnd(), orderByComparator) %>"
-		total="<%= BookmarksEntryLocalServiceUtil.getEntriesCount(folder.getFolderId()) %>"
+		results="<%= BookmarksEntryLocalServiceUtil.getEntries(scopeGroupId, folderId, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator) %>"
+		total="<%= BookmarksEntryLocalServiceUtil.getEntriesCount(scopeGroupId, folderId) %>"
 	/>
 
 	<liferay-ui:search-container-row
@@ -170,7 +118,7 @@ OrderByComparator orderByComparator = BookmarksUtil.getEntriesOrderByComparator(
 		</div>
 	</c:if>
 
-	<c:if test="<%= BookmarksEntryLocalServiceUtil.getEntriesCount(folder.getFolderId()) <= 0 %>">
+	<c:if test="<%= BookmarksEntryLocalServiceUtil.getEntriesCount(scopeGroupId, folderId) <= 0 %>">
 		<liferay-ui:message key="there-are-no-entries" />
 	</c:if>
 
