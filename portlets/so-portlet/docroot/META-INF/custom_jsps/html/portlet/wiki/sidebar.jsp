@@ -69,7 +69,7 @@
 					%>
 
 						<li>
-							<a <%= (node != null) && (node.getNodeId() == curNode.getNodeId()) ? "class=\"node-current\"" : "" %> href="<portlet:renderURL><portlet:param name="struts_action" value="/wiki/view" /><portlet:param name="nodeName" value="<%= curNode.getName() %>" /><portlet:param name="title" value="<%= WikiPageImpl.FRONT_PAGE %>" /></portlet:renderURL>"><nobr><%= curNode.getName() %></nobr></a>
+							<a <%= (node != null) && (node.getNodeId() == curNode.getNodeId()) ? "class=\"node-current\"" : "" %> href="<portlet:renderURL><portlet:param name="struts_action" value="/wiki/view" /><portlet:param name="nodeName" value="<%= curNode.getName() %>" /><portlet:param name="title" value="<%= WikiPageConstants.FRONT_PAGE %>" /></portlet:renderURL>"><nobr><%= curNode.getName() %></nobr></a>
 						</li>
 
 					<%
@@ -99,10 +99,10 @@
 						PortletURL frontPageURL = PortletURLUtil.clone(portletURL, renderResponse);
 
 						frontPageURL.setParameter("struts_action", "/wiki/view");
-						frontPageURL.setParameter("title", WikiPageImpl.FRONT_PAGE);
+						frontPageURL.setParameter("title", WikiPageConstants.FRONT_PAGE);
 						%>
 
-						<a href="<%= frontPageURL.toString() %>"><nobr><%= WikiPageImpl.FRONT_PAGE %></nobr></a>
+						<a href="<%= frontPageURL.toString() %>"><nobr><%= WikiPageConstants.FRONT_PAGE %></nobr></a>
 					</li>
 					<li>
 
