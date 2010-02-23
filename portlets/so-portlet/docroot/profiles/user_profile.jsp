@@ -495,15 +495,15 @@ else {
 							<%
 							StringBuilder sb = new StringBuilder();
 
-							List<TagsEntry> tagsEntries = TagsEntryLocalServiceUtil.getEntries(User.class.getName(), curUser.getUserId(), true);
+							List<AssetTag> tags = AssetTagLocalServiceUtil.getTags(User.class.getName(), curUser.getUserId());
 
-							Iterator itr = tagsEntries.iterator();
+							Iterator itr = tags.iterator();
 
 							while (itr.hasNext()) {
-								TagsEntry tagsEntry = (TagsEntry)itr.next();
+								AssetTag tag = (AssetTag)itr.next();
 
 								sb.append("<nobr>");
-								sb.append(tagsEntry.getName());
+								sb.append(tag.getName());
 								sb.append("</nobr>");
 
 								if (itr.hasNext()) {
