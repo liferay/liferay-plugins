@@ -112,7 +112,7 @@ request.setAttribute("view.jsp-viewFolder", Boolean.TRUE.toString());
 		/>
 	</liferay-ui:search-container-row>
 
-	<c:if test="<%= BookmarksFolderPermission.contains(permissionChecker, folder, ActionKeys.ADD_ENTRY) %>">
+	<c:if test="<%= BookmarksFolderPermission.contains(permissionChecker, scopeGroupId, folderId, ActionKeys.ADD_ENTRY) %>">
 		<div class="control-wrapper">
 			<a href="javascript:;" onClick="<portlet:namespace />addEntry();"><liferay-ui:message key="add-entry" /></a>
 		</div>
