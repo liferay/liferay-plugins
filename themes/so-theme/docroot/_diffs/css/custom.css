@@ -290,21 +290,9 @@ body #banner h1.logo a {
 
 /* Actions */
 
-.lfr-actions .lfr-trigger strong {
-	min-width: 35px;
-}
-
-.ie .lfr-actions .lfr-trigger strong {
+.lfr-actions {
 	width: 35px;
-}
-
-.lfr-actions .lfr-trigger strong span {
-	display: block;
-	font-size: 0;
-	height: 15px;
 	overflow: hidden;
-	padding: 2px 0;
-	text-indent: -9999em;
 }
 
 /* Autocomplete */
