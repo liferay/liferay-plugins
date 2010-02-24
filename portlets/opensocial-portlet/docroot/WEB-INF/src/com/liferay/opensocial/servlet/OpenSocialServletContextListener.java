@@ -32,11 +32,10 @@ import com.liferay.portal.kernel.util.PortalInitable;
 import com.liferay.portal.kernel.util.PortalInitableUtil;
 
 /**
- * <a href="GadgetsServletContextListener.java.html">
- * <b><i>View Source</i></b></a>
+ * <a href="OpenSocialServletContextListener.java.html"><b><i>View Source</i>
+ * </b></a>
  *
  * @author Michael Young
- *
  */
 public class OpenSocialServletContextListener
 	implements PortalInitable, ServletContextListener {
