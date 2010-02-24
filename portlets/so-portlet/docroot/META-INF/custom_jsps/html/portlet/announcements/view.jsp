@@ -35,17 +35,22 @@ Group group = themeDisplay.getScopeGroup();
 	<c:when test='<%= tabs1.equals("manage-entries") %>'>
 
 		<%
-		int x = html.indexOf("<td class=\"lfr-label\">");
-		int y = html.indexOf("</td>", x);
+		int x = html.indexOf("<select name=\"_84_distributionScope\"");
+		int y = html.indexOf("</select>", x);
 		%>
 
 		<%= html.substring(0, x) %>
 
-		<td class="lfr-label">
-			<liferay-ui:message key="to" />
-		</td>
+		<span class="aui-field aui-field-select aui-field-menu">
+			<span class="aui-field-content">
+				<label class="aui-field-label" for="<portlet:namespace />distributionScope">To</label>
+				<span class="aui-field-element">
+					<%= html.substring(x, y + 9) %>
+				</span>
+			</span>
+		</span>
 
-		<%= html.substring(y + 5) %>
+		<%= html.substring(y + 9) %>
 
 		<c:if test="<%= Validator.isNull(distributionScope) && group.isCommunity() %>">
 			<script type="text/javascript">

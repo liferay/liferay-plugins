@@ -19,7 +19,11 @@
 
 <%@ include file="/html/portlet/announcements/init.jsp" %>
 
-<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, plid, PortletKeys.ANNOUNCEMENTS, ActionKeys.ADD_ENTRY) %>">
+<%
+String tabs1 = ParamUtil.getString(request, "tabs1", "entries");
+%>
+
+<c:if test='<%= PortletPermissionUtil.contains(permissionChecker, plid, PortletKeys.ANNOUNCEMENTS, ActionKeys.ADD_ENTRY) && tabs1.equals("entries") %>'>
 	<div class="edit-controls">
 		<input type="button" value='<liferay-ui:message key="add-entry" />' onClick="location.href = '<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/announcements/edit_entry" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>'" />
 

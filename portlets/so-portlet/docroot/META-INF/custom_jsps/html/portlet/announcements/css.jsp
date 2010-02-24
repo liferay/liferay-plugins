@@ -75,10 +75,6 @@
 	font-size: 11px;
 }
 
-.portlet-announcements .read-entries .entry-content {
-	display: none;
-}
-
 .portlet-announcements .entry-scope {
 	background: #E8EFF4;
 	border: 1px solid #B0BAFF;

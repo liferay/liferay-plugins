@@ -24,14 +24,48 @@
 </liferay-util:buffer>
 
 <%
-int x = html.indexOf("<td class=\"lfr-label\">");
-int y = html.indexOf("</td>", x);
+String tabs1 = ParamUtil.getString(request, "tabs1", "entries");
+
+String distributionScope = ParamUtil.getString(request, "distributionScope");
+
+Group group = themeDisplay.getScopeGroup();
 %>
 
-<%= html.substring(0, x) %>
+<c:choose>
+	<c:when test='<%= tabs1.equals("manage-entries") && !group.isCommunity() %>'>
 
-<td class="lfr-label">
-	<liferay-ui:message key="to" />
-</td>
+		<%
+		int x = html.indexOf("<select name=\"_84_distributionScope\"");
+		int y = html.indexOf("</select>", x);
+		%>
 
-<%= html.substring(y + 5) %>
+		<%= html.substring(0, x) %>
+
+		<span class="aui-field aui-field-select aui-field-menu">
+			<span class="aui-field-content">
+				<label class="aui-field-label" for="<portlet:namespace />distributionScope">To</label>
+				<span class="aui-field-element">
+					<%= html.substring(x, y + 9) %>
+				</span>
+			</span>
+		</span>
+
+		<%= html.substring(y + 9) %>
+	</c:when>
+	<c:when test="<%= Validator.isNull(distributionScope) && group.isCommunity() %>">
+
+		<%
+		int x = html.indexOf("<div class=\"aui-fieldset-content");
+		int y = html.indexOf(">", x);
+		%>
+
+		<%= html.substring(0, y + 1) %>
+
+		<label class="aui-field-label" for="<portlet:namespace />distributionScope">To</label>
+
+		<%= html.substring(y + 1) %>
+	</c:when>
+	<c:otherwise>
+		<%= html %>
+	</c:otherwise>
+</c:choose>
