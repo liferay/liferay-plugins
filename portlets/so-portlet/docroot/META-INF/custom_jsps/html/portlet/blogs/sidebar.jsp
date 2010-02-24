@@ -27,7 +27,7 @@
 	</div>
 
 	<%
-	List<BlogsEntry> results = BlogsEntryLocalServiceUtil.getGroupEntries(scopeGroupId, false, 0, 5);
+	List<BlogsEntry> results = BlogsEntryLocalServiceUtil.getGroupEntries(scopeGroupId.longValue(), StatusConstants.APPROVED, 0, 5);
 	%>
 
 	<c:choose>
