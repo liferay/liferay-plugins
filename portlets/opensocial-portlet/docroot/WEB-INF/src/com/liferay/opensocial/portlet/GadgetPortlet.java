@@ -24,6 +24,8 @@ package com.liferay.opensocial.portlet;
 
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
+import com.liferay.opensocial.util.GadgetManager;
+import com.liferay.opensocial.util.GadgetManagerFactory;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -35,6 +37,7 @@ import javax.portlet.GenericPortlet;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.portlet.WindowState;
 
 /**
  * <a href="GadgetPortlet.java.html"><b><i>View Source</i></b></a>
@@ -44,6 +47,14 @@ import javax.portlet.RenderResponse;
 public class GadgetPortlet extends GenericPortlet {
 
 	public static final String PORTLET_NAME_PREFIX = "OPENSOCIAL_";
+
+	public static final String VIEW_CANVAS = "canvas";
+
+	public static final String VIEW_DEFAULT = "default";
+
+	public static final String VIEW_HOME = "home";
+
+	public static final String VIEW_PROFILE = "profile";
 
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
@@ -69,9 +80,37 @@ public class GadgetPortlet extends GenericPortlet {
 
 		Gadget gadget = getGadget();
 
+		GadgetManager gadgetManager =
+			GadgetManagerFactory.getGadgetManager(gadget);
+
 		renderResponse.setContentType(ContentTypes.TEXT_HTML_UTF8);
 
-		PortletResponseUtil.write(renderResponse, gadget.getXml());
+		String content =
+			getContent(renderRequest, renderResponse, gadgetManager);
+
+		PortletResponseUtil.write(renderResponse, content);
+	}
+
+	protected String getContent(
+		RenderRequest renderRequest, RenderResponse renderResponse,
+		GadgetManager gadgetManager) {
+
+		WindowState windowState = renderRequest.getWindowState();
+
+		String content = null;
+
+		if (windowState == WindowState.MAXIMIZED) {
+			content = gadgetManager.getContent(VIEW_CANVAS);
+		}
+		else if (windowState == WindowState.NORMAL) {
+			content = gadgetManager.getContent(VIEW_PROFILE);
+		}
+
+		if (content == null) {
+			content = gadgetManager.getContent(VIEW_DEFAULT);
+		}
+
+		return content;
 	}
 
 	protected Gadget getGadget() throws Exception {

@@ -6,5 +6,5 @@ create table OpenSocial_Gadget (
 	modifiedDate DATE null,
 	name VARCHAR(75) null,
 	url VARCHAR(75) null,
-	xml VARCHAR(75) null
+	xml STRING null
 );
