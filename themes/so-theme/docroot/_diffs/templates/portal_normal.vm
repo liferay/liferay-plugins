@@ -7,6 +7,8 @@
 <head>
 	<title>$the_title - $company_name</title>
 
+	<script type="text/javascript" src="$javascript_folder/jquery.js"></script>
+
 	$theme.include($top_head_include)
 </head>
 
