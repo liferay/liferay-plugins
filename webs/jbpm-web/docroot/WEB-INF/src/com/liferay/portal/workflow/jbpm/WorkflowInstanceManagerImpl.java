@@ -70,11 +70,12 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 					CustomSession customSession = new CustomSession(
 						jbpmContext);
 
-					customSession.deleteWorkflowLogs(
-						token.getProcessInstance().getId());
+					ProcessInstance processInstance =
+						token.getProcessInstance();
 
-					graphSession.deleteProcessInstance(
-						token.getProcessInstance());
+					customSession.deleteWorkflowLogs(processInstance.getId());
+
+					graphSession.deleteProcessInstance(processInstance);
 				}
 				else if (_log.isWarnEnabled()) {
 					_log.warn(
@@ -150,10 +151,10 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {
+			CustomSession customSession = new CustomSession(jbpmContext);
+
 			ProcessDefinition processDefinition = getProcessDefinition(
 				jbpmContext, workflowDefinitionName, workflowDefinitionVersion);
-
-			CustomSession customSession = new CustomSession(jbpmContext);
 
 			return customSession.countProcessInstances(
 				processDefinition.getId(), completed);
@@ -175,10 +176,10 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {
+			CustomSession customSession = new CustomSession(jbpmContext);
+
 			ProcessDefinition processDefinition = getProcessDefinition(
 				jbpmContext, workflowDefinitionName, workflowDefinitionVersion);
-
-			CustomSession customSession = new CustomSession(jbpmContext);
 
 			List<ProcessInstance> processInstances =
 				customSession.findProcessInstances(
