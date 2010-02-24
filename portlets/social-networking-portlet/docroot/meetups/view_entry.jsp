@@ -73,9 +73,18 @@ portletURL.setParameter("jspPage", "/meetups/view_entry.jsp");
 portletURL.setParameter("tabs1", tabs1);
 portletURL.setParameter("redirect", redirect);
 portletURL.setParameter("meetupsEntryId", String.valueOf(meetupsEntryId));
+
+String thumbnailURL = "";
+
+if (meetupsEntry.getThumbnailId() == 0) {
+ thumbnailURL = request.getContextPath() + "/meetups/images/calendar.png";
+}
+else {
+	thumbnailURL = themeDisplay.getPathImage() + "/meetups?img_id=" + meetupsEntry.getThumbnailId() + "&t=" + ImageServletTokenUtil.getToken(meetupsEntry.getThumbnailId());
+}
 %>
 
-<img alt="" src="<%= themeDisplay.getPathImage() %>?img_id=<%= meetupsEntry.getThumbnailId() %>&t=<%= ImageServletTokenUtil.getToken(meetupsEntry.getThumbnailId()) %>" style="float: left; margin-right: 10px;" />
+<img alt="" src="<%= thumbnailURL %>" style="float: left; margin-right: 10px;" />
 
 <h4>
 	<%= meetupsEntry.getTitle() %>
