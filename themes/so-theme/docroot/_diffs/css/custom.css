@@ -333,6 +333,12 @@ body #banner h1.logo a {
 	text-decoration: none;
 }
 
+/* Detail column */
+
+.detail-column {
+	display: none;
+}
+
 /* Forms */
 
 .lfr-label {
@@ -1560,10 +1566,6 @@ table.calendar {
 
 .so-portlet-sites .actions {
 	width: 80px;
-}
-
-.so-portlet-sites .description {
-	display: none;
 }
 
 .so-portlet-sites .description-toggle {

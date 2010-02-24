@@ -16,22 +16,3 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 %>
-
-<%@ include file="/html/portlet/calendar/init.jsp" %>
-
-<liferay-util:include page="/html/portlet/calendar/sidebar.jsp" />
-
-<liferay-util:buffer var="html">
-	<liferay-util:include page="/html/portlet/calendar/edit_event.portal.jsp" />
-</liferay-util:buffer>
-
-<c:if test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
-
-	<%
-	html = StringUtil.replace(html, "_8_fm", "_8_fm2");
-	html = StringUtil.replace(html, "p_p_state=exclusive", "p_p_state=normal");
-	%>
-
-</c:if>
-
-<%= html %>

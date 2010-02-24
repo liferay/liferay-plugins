@@ -27,13 +27,18 @@ CalEvent event = (CalEvent)request.getAttribute(WebKeys.CALENDAR_EVENT);
 
 <script type="text/javascript">
 	function <portlet:namespace />updatePopup(editURL) {
-		var popup = jQuery('.calendar-dialog .ui-dialog-content');
-
-		<portlet:namespace />displayPopup(popup, editURL, "Calendar Event");
+		if (Liferay.SO.Calendar) {
+			Liferay.SO.Calendar.displayPopup(editURL, "Calendar Event");
+		}
+		else {
+			window.location.href = editURL;
+		}
 	};
 </script>
 
-<liferay-util:include page="/html/portlet/calendar/sidebar.jsp" />
+<c:if test="<%= !windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
+	<liferay-util:include page="/html/portlet/calendar/sidebar.jsp" />
+</c:if>
 
 <liferay-util:include page="/html/portlet/calendar/view_event.portal.jsp" />
 

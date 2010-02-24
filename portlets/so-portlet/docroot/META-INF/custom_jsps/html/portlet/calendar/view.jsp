@@ -66,78 +66,60 @@ portletURL.setParameter("tabs1", tabs1);
 	<%@ include file="/html/portlet/calendar/export_import_action.jsp" %>
 </c:if>
 
-<script type="text/javascript">
-	function <portlet:namespace />displayPopup(popup, popupUrl, popupTitle) {
-		if ((popup == null) || !(popup[0].parentNode && popup[0].parentNode.tagName)) {
-			popup = new Liferay.Popup(
-				{
-					title: popupTitle,
-					className: 'calendar-dialog',
-					resizable: false,
-					height: 'auto',
-					position: [15,15],
-					width: '600px',
-					close: function() {
-						popup = null;
+<aui:script use="aui-dialog">
+	Liferay.namespace('SO');
+
+	Liferay.SO.Calendar = {
+		displayPopup: function(url, title) {
+			var instance = this;
+
+			var popup = instance._getPopup();
+
+			popup.show();
+
+			popup.set('title', title);
+
+			popup.io.set('uri', url);
+			popup.io.start();
+		},
+
+		_getPopup: function() {
+			var instance = this;
+
+			if (!instance._popup) {
+				instance._popup = new A.Dialog(
+					{
+						resizable: false,
+						width: 600,
+						xy: [15,15]
 					}
-				}
-			);
-		}
-		else {
-			var popupContainer = popup.parents('.ui-dialog');
-
-			popupContainer.find('.ui-dialog-title').text(popupTitle);
-
-			var popupHelper = popupContainer.data('ui-helper-drag');
-
-			if (popupHelper) {
-				popupHelper.find('.ui-dialog-title').text(popupTitle);
+				).plug(
+					A.Plugin.IO,
+					{autoLoad: false}
+				).render();
 			}
+
+			return instance._popup;
 		}
-
-		popup.html('<div class="loading-animation" />');
-
-		jQuery.ajax(
-			{
-				url: popupUrl,
-				success: function(message) {
-					popup.html(message);
-				}
-			}
-		);
-
-		return popup;
 	}
 
-	jQuery(
-		function() {
-			var popup;
+	A.all('.portlet-calendar .event-edit a').setAttribute('onClick', '');
 
-			var calendarLinks = jQuery('.portlet-calendar a');
-			var eventEditLinks = jQuery('.portlet-calendar .event-edit a');
+	A.one('.portlet-calendar').delegate(
+		'click',
+		function(event) {
+			var href = event.currentTarget.getAttribute('href');
 
-			calendarLinks.livequery(
-				'click',
-				function() {
-					var event = jQuery(this);
-					var eventURL = event.attr('href');
+			var expr = /_struts_action(=\%2F|\%3D\%252F)calendar(\%2F|\%252F)(edit_event|view_event)/;
 
-					var expr = /_struts_action(=\%2F|\%3D\%252F)calendar(\%2F|\%252F)(edit_event|view_event)/;
+			if (expr.test(href)) {
+				href = href.replace(/p_p_state=(<%= LiferayWindowState.NORMAL %>|<%= LiferayWindowState.MAXIMIZED %>)/gim, 'p_p_state=<%= LiferayWindowState.EXCLUSIVE %>');
 
-					if (expr.test(eventURL)) {
-						eventURL = eventURL.replace(/p_p_state=<%= LiferayWindowState.MAXIMIZED %>/gim, 'p_p_state=<%= LiferayWindowState.EXCLUSIVE %>');
-						eventURL += "&<portlet:namespace />callingPageURL=<%= currentURL %>";
+				Liferay.SO.Calendar.displayPopup(href, "Calendar Event");
 
-						popup = <portlet:namespace />displayPopup(popup, eventURL, "Calendar Event");
-
-						return false;
-					}
-
-					return true;
-				}
-			);
-
-			eventEditLinks.removeAttr('onClick');
-		}
+				event.halt();
+			}
+		},
+		'a'
 	);
-</script>
+</aui:script>
