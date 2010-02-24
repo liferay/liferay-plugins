@@ -126,7 +126,7 @@ pageContext.setAttribute("portletURL", portletURL);
 				<c:if test="<%= Validator.isNotNull(group.getDescription()) %>">
 					<img alt="arrow" class="description-toggle" src="<%= themeDisplay.getPathThemeImage() %>/custom/arrow_right.png" />
 
-					<div class="description">
+					<div class="description aui-helper-hidden">
 						<%= StringUtil.shorten(group.getDescription(), 200) %>
 					</div>
 				</c:if>
@@ -144,3 +144,7 @@ pageContext.setAttribute("portletURL", portletURL);
 </liferay-ui:search-container>
 
 </form>
+
+<script type="text/javascript">
+	Liferay.SO.Sites.init();
+</script>

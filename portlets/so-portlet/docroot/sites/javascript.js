@@ -1,92 +1,82 @@
-Liferay.SO = Liferay.SO || {};
+AUI().use(
+	'aui-dialog',
+	function(A) {
+		Liferay.namespace('SO');
 
-Liferay.SO.Sites = {
-	init: function(params) {
-		var instance = this;
+		Liferay.SO.Sites = {
+			init: function() {
+				var instance = this;
 
-		instance._popup = null;
+				instance._assignEvents();
+			},
 
-		instance._assignEvents();
-	},
+			closePopup: function() {
+				var instance = this;
 
-	closePopup: function() {
-		var instance = this;
-
-		var popup = instance._popup;
-
-		popup.parents('.site-dialog').hide();
-	},
-
-	displayPopup: function(popupUrl, popupTitle) {
-		var instance = this;
-
-		var popup = instance._popup;
-
-		if ((popup == null) || !(popup[0].parentNode && popup[0].parentNode.tagName)) {
-			popup = new Liferay.Popup(
-				{
-					title: popupTitle,
-					className: 'site-dialog',
-					resizable: false,
-					height: 'auto',
-					position: [15,15],
-					width: '600px',
-					close: function() {
-						popup = null;
-					}
+				if (instance._popup) {
+					instance._popup.hide();
 				}
-			);
+			},
+
+			displayPopup: function(url, title) {
+				var instance = this;
+
+				var popup = instance._getPopup();
+
+				popup.show();
+
+				popup.set('title', title);
+
+				popup.io.set('uri', url);
+				popup.io.start();
+			},
+
+			_assignEvents: function() {
+				A.one('.so-portlet-sites').delegate(
+					'click',
+					function(event) {
+						var downImage = 'arrow_down.png';
+						var rightImage = 'arrow_right.png';
+
+						var image = event.currentTarget;
+
+						var description = image.get('parentNode').one('.description');
+						var src = image.get('src');
+
+						if (src.indexOf('down.png') > -1) {
+							description.hide();
+							src = src.replace(downImage, rightImage);
+						}
+						else {
+							description.show();
+							src = src.replace(rightImage, downImage);
+						}
+
+						image.set('src', src);
+					},
+					'.description-toggle'
+				);
+			},
+
+			_getPopup: function() {
+				var instance = this;
+
+				if (!instance._popup) {
+					instance._popup = new A.Dialog(
+						{
+							width: 600,
+							xy: [15,15]
+						}
+					).plug(
+						A.Plugin.IO,
+						{
+							autoLoad: false
+						}
+					).render();
+				}
+
+				return instance._popup;
+			}
 		}
-		else {
-			var popupContainer = popup.parents('.ui-dialog');
-
-			popupContainer.find('.ui-dialog-title').text(popupTitle);
-
-			var popupHelper = popupContainer.data('ui-helper-drag');
-
-			if (popupHelper) {
-				popupHelper.find('.ui-dialog-title').text(popupTitle);
-			}
-
-			popup.parents('.site-dialog').show();
-		}
-
-		popup.html('<div class="loading-animation" />');
-
-		jQuery.ajax(
-			{
-				url: popupUrl,
-				success: function(message) {
-					popup.html(message);
-				}
-			}
-		);
-
-		instance._popup = popup;
-
-		return popup;
-	},
-
-	_assignEvents: function() {
-		var instance = this;
-
-		jQuery('.description-toggle').livequery(
-			'click',
-			function() {
-				var downImage = 'arrow_down.png';
-				var rightImage = 'arrow_right.png';
-
-				if (this.src.indexOf('down.png') > -1) {
-					jQuery(".description", this.parentNode).slideUp();
-
-					this.src = this.src.replace(downImage, rightImage);
-				}
-				else {
-					jQuery(".description", this.parentNode).slideDown();
-
-					this.src = this.src.replace(rightImage, downImage);
-				}
-			}
-		);
 	}
-};
+);

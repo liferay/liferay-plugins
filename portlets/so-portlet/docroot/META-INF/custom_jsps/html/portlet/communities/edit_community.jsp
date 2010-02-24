@@ -41,9 +41,10 @@ String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 			function() {
 				jQuery(document.<portlet:namespace />fm).ajaxForm(
 					{
-						target: ".ui-dialog-content",
 						type: "POST",
 						success: function() {
+							Liferay.SO.Sites.closePopup();
+
 							var siteList = jQuery('.so-portlet-sites .results-grid');
 
 							siteList.html('<div class="loading-animation" />');
