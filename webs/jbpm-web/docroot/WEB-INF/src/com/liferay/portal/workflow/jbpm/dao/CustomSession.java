@@ -24,6 +24,8 @@ package com.liferay.portal.workflow.jbpm.dao;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.workflow.WorkflowLog;
+import com.liferay.portal.workflow.jbpm.WorkflowLogImpl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -171,6 +173,25 @@ public class CustomSession {
 		}
 		catch (Exception e) {
 			throw new JbpmException(e);
+		}
+	}
+
+	public void deleteWorkflowLogs(long processInstanceId) {
+		List<TaskInstance> taskInstances = findTaskInstances(
+			processInstanceId, 0l, null, false, null, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+
+		for (TaskInstance taskInstance : taskInstances) {
+			Criteria criteria = _session.createCriteria(WorkflowLogImpl.class);
+
+			criteria.add(
+				Restrictions.eq("taskInstance.id", taskInstance.getId()));
+
+			List<WorkflowLog> workflowLogs = criteria.list();
+
+			for (WorkflowLog workflowLog : workflowLogs) {
+				_session.delete(workflowLog);
+			}
 		}
 	}
 

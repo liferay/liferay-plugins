@@ -67,6 +67,12 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 			if (token != null) {
 				if (token.isRoot()) {
+					CustomSession customSession = new CustomSession(
+						jbpmContext);
+
+					customSession.deleteWorkflowLogs(
+						token.getProcessInstance().getId());
+
 					graphSession.deleteProcessInstance(
 						token.getProcessInstance());
 				}
