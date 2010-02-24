@@ -9,7 +9,7 @@
 		<listener-class>com.liferay.portal.kernel.spring.context.PortletContextLoaderListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>com.liferay.gadgets.servlet.OpenSocialServletContextListener</listener-class>
+		<listener-class>com.liferay.opensocial.servlet.OpenSocialServletContextListener</listener-class>
 	</listener>
 	<taglib>
 		<taglib-uri>http://java.sun.com/jstl/core_rt</taglib-uri>
