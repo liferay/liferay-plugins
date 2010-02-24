@@ -27,10 +27,12 @@ CalEvent event = (CalEvent)request.getAttribute(WebKeys.CALENDAR_EVENT);
 
 <script type="text/javascript">
 	function <portlet:namespace />updatePopup(editURL) {
-		if (Liferay.SO.Calendar) {
-			Liferay.SO.Calendar.displayPopup(editURL, "Calendar Event");
+		if (Liferay.SO) {
+			Liferay.SO.Calendar.displayPopup(editURL, 'Calendar Event');
 		}
 		else {
+			editURL = editURL.replace(/p_p_state=<%= LiferayWindowState.EXCLUSIVE %>/gim, 'p_p_state=<%= LiferayWindowState.MAXIMIZED %>');
+
 			window.location.href = editURL;
 		}
 	};

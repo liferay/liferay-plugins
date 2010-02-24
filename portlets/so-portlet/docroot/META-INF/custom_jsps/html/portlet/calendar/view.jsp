@@ -70,6 +70,14 @@ portletURL.setParameter("tabs1", tabs1);
 	Liferay.namespace('SO');
 
 	Liferay.SO.Calendar = {
+		closePopup: function() {
+			var instance = this;
+
+			var popup = instance._getPopup();
+
+			popup.hide();
+		},
+
 		displayPopup: function(url, title) {
 			var instance = this;
 
