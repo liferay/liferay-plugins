@@ -1548,6 +1548,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	protected com.liferay.chat.service.persistence.EntryPersistence entryPersistence;
 	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence")
 	protected com.liferay.chat.service.persistence.StatusPersistence statusPersistence;
+	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
+	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
+	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
+	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
 	private static final String _SQL_SELECT_STATUS = "SELECT status FROM Status status";
 	private static final String _SQL_SELECT_STATUS_WHERE = "SELECT status FROM Status status WHERE ";
 	private static final String _SQL_COUNT_STATUS = "SELECT COUNT(status) FROM Status status";

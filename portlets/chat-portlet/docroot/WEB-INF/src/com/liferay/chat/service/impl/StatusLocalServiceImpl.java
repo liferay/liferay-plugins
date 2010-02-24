@@ -24,7 +24,6 @@ package com.liferay.chat.service.impl;
 
 import com.liferay.chat.model.Status;
 import com.liferay.chat.service.base.StatusLocalServiceBaseImpl;
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -92,7 +91,7 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 		Status status = statusPersistence.fetchByUserId(userId);
 
 		if (status == null) {
-			long statusId = CounterLocalServiceUtil.increment();
+			long statusId = counterLocalService.increment();
 
 			status = statusPersistence.create(statusId);
 

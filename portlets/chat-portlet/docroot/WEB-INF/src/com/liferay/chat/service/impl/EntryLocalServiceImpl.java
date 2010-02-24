@@ -24,7 +24,6 @@ package com.liferay.chat.service.impl;
 
 import com.liferay.chat.model.Entry;
 import com.liferay.chat.service.base.EntryLocalServiceBaseImpl;
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -67,7 +66,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 			}
 		}
 
-		long entryId = CounterLocalServiceUtil.increment();
+		long entryId = counterLocalService.increment();
 
 		Entry entry = entryPersistence.create(entryId);
 

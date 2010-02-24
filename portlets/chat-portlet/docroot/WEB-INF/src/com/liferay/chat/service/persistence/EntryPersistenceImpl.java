@@ -2775,6 +2775,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	protected com.liferay.chat.service.persistence.EntryPersistence entryPersistence;
 	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence")
 	protected com.liferay.chat.service.persistence.StatusPersistence statusPersistence;
+	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
+	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
+	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
+	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
 	private static final String _SQL_SELECT_ENTRY = "SELECT entry FROM Entry entry";
 	private static final String _SQL_SELECT_ENTRY_WHERE = "SELECT entry FROM Entry entry WHERE ";
 	private static final String _SQL_COUNT_ENTRY = "SELECT COUNT(entry) FROM Entry entry";
