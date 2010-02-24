@@ -18,15 +18,6 @@
 %>
 
 <%
-List subfolderIds = new ArrayList();
-
-subfolderIds.add(new Long(curFolder.getFolderId()));
-
-DLFolderLocalServiceUtil.getSubfolderIds(subfolderIds, scopeGroupId, curFolder.getFolderId());
-
-int foldersCount = subfolderIds.size() - 1;
-int fileEntriesCount = DLFolderLocalServiceUtil.getFileEntriesAndFileShortcutsCount(subfolderIds);
-
 for (int j = 0; j < folderColumns.length; j++) {
 	String folderColumn = folderColumns[j];
 %>

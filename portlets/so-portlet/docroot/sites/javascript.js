@@ -64,14 +64,13 @@ AUI().use(
 				if (!instance._popup) {
 					instance._popup = new A.Dialog(
 						{
+							resizable: false,
 							width: 600,
 							xy: [15,15]
 						}
 					).plug(
 						A.Plugin.IO,
-						{
-							autoLoad: false
-						}
+						{autoLoad: false}
 					).render();
 				}
 

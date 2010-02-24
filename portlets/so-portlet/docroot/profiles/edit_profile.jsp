@@ -19,6 +19,8 @@
 
 <%@ include file="/init.jsp" %>
 
+<span></span>
+
 <script type="text/javascript">
 	function <portlet:namespace />deleteUserPortrait(deleteUserPortraitURL) {
 		jQuery.ajax(
@@ -349,7 +351,7 @@
 				<liferay-ui:message key="tags" />
 			</td>
 			<td>
-				<liferay-ui:tags-selector
+				<liferay-ui:asset-tags-selector
 					className="<%= User.class.getName() %>"
 					classPK="<%= user.getUserId() %>"
 					hiddenInput="tagsEntries"

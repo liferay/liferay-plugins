@@ -820,7 +820,7 @@ portletURL.setParameter("name", name);
 				}
 				%>
 
-				<liferay-ui:tags-selector
+				<liferay-ui:asset-tags-selector
 					className="<%= DLFileEntry.class.getName() %>"
 					classPK="<%= classPK %>"
 					hiddenInput="tagsEntries"

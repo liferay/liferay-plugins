@@ -19,23 +19,15 @@
 
 <%
 Lock lock = null;
-
 boolean isLocked = false;
 boolean hasLock = false;
 
 if (fileEntry != null) {
-	folder = fileEntry.getFolder();
+	isLocked = LockLocalServiceUtil.isLocked(DLFileEntry.class.getName(), DLUtil.getLockId(fileEntry.getGroupId(), fileEntry.getFolderId(), HtmlUtil.unescape(fileEntry.getName())));
+	hasLock = LockLocalServiceUtil.hasLock(user.getUserId(), DLFileEntry.class.getName(), DLUtil.getLockId(fileEntry.getGroupId(), fileEntry.getFolderId(), HtmlUtil.unescape(fileEntry.getName())));
 
-	try {
-		lock = LockLocalServiceUtil.getLock(DLFileEntry.class.getName(), DLUtil.getLockId(fileEntry.getFolderId(), fileEntry.getName()));
-
-		isLocked = true;
-
-		if (lock.getUserId() == user.getUserId()) {
-			hasLock = true;
-		}
-	}
-	catch (Exception e) {
+	if (isLocked) {
+		lock = LockLocalServiceUtil.getLock(DLFileEntry.class.getName(), DLUtil.getLockId(fileEntry.getGroupId(), fileEntry.getFolderId(), HtmlUtil.unescape(fileEntry.getName())));
 	}
 }
 
@@ -102,7 +94,7 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 					</portlet:renderURL>
 
 					<div class="result-title">
-						<a href="<%= viewURL %>"><%= _getFileEntryImage(fileEntry, themeDisplay) %><%= fileEntry.getTitleWithExtension() %></a>
+						<a href="<%= viewURL %>"><%= _getFileEntryImage(fileEntry, themeDisplay) %><%= fileEntry.getTitle() %></a>
 					</div>
 
 					<c:if test="<%= Validator.isNotNull(fileEntry.getDescription()) %>">
@@ -118,25 +110,23 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 					</div>
 
 					<%
-					List<TagsEntry> tagsEntries = TagsEntryLocalServiceUtil.getEntries(DLFileEntry.class.getName(), fileEntry.getFileEntryId(), true);
+					List<AssetTag> tags = AssetTagLocalServiceUtil.getTags(DLFileEntry.class.getName(), fileEntry.getFileEntryId());
 					%>
 
-					<c:if test="<%= !tagsEntries.isEmpty() %>">
+					<c:if test="<%= !tags.isEmpty() %>">
 						<div class="result-tags">
 							<span><liferay-ui:message key="tags" />:</span>
 
 							<%
-							TagsUtil.addLayoutTagsEntries(request, tagsEntries);
-
 							StringBuilder sb = new StringBuilder();
 
-							Iterator itr = tagsEntries.iterator();
+							Iterator itr = tags.iterator();
 
 							while (itr.hasNext()) {
-								TagsEntry tagsEntry = (TagsEntry)itr.next();
+								AssetTag tag = (AssetTag)itr.next();
 
 								sb.append("<nobr>");
-								sb.append(tagsEntry.getName());
+								sb.append(tag.getName());
 								sb.append("</nobr>");
 
 								if (itr.hasNext()) {

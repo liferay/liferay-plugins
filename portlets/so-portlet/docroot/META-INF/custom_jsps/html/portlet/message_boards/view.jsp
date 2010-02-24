@@ -29,7 +29,7 @@ boolean showCategories = ParamUtil.getBoolean(request, "showCategories", false);
 
 MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_CATEGORY);
 
-long categoryId = BeanParamUtil.getLong(category, request, "categoryId", MBCategoryImpl.DEFAULT_PARENT_CATEGORY_ID);
+long categoryId = BeanParamUtil.getLong(category, request, "categoryId", MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID);
 
 MBCategoryDisplay categoryDisplay = new MBCategoryDisplayImpl(scopeGroupId, categoryId);
 
@@ -72,11 +72,11 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 	<c:when test='<%= tabs1.equals("categories") %>'>
 		<c:if test="<%= category != null %>">
 			<div class="breadcrumbs">
-				<%= MBUtil.getBreadcrumbs(category, null, pageContext, renderRequest, renderResponse) %>
+				List goes here.
 			</div>
 		</c:if>
 
-		<c:if test="<%= showCategories || categoryId == MBCategoryImpl.DEFAULT_PARENT_CATEGORY_ID %>">
+		<c:if test="<%= showCategories || categoryId == MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID %>">
 			<form action="<%= searchURL %>" method="get" name="<portlet:namespace />fm1" onSubmit="submitForm(this); return false;">
 			<liferay-portlet:renderURLParams varImpl="searchURL" />
 			<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escapeAttribute(currentURL) %>" />
@@ -222,53 +222,7 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 
 				resultRows.add(row);
 			}
-
-			boolean showAddCategoryButton = MBCategoryPermission.contains(permissionChecker, scopeGroupId, categoryId, ActionKeys.ADD_CATEGORY);
-			boolean showPermissionsButton = GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS);
-			showSearchCategory = false && (results.size() > 0);
 			%>
-
-			<c:if test="<%= showAddCategoryButton || showPermissionsButton || showSearchCategory %>">
-				<div>
-					<c:if test="<%= showSearchCategory %>">
-						<label for="<portlet:namespace />keywords1"><liferay-ui:message key="search" /></label>
-
-						<input id="<portlet:namespace />keywords1" name="<portlet:namespace />keywords" size="30" type="text" />
-
-						<input type="submit" value="<liferay-ui:message key="search-categories" />" />
-					</c:if>
-
-					<c:if test="<%= showAddCategoryButton %>">
-						<input type="button" value="<liferay-ui:message key='<%= (category == null) ? "add-category" : "add-subcategory" %>' />" onClick="<portlet:namespace />addCategory();" />
-					</c:if>
-
-					<c:if test="<%= showPermissionsButton %>">
-
-						<%
-						String modelResource = "com.liferay.portlet.messageboards";
-						String modelResourceDescription = themeDisplay.getScopeGroupName();
-						String resourcePrimKey = String.valueOf(scopeGroupId);
-
-						if (category != null) {
-							modelResource = MBCategory.class.getName();
-							modelResourceDescription = category.getName();
-							resourcePrimKey = String.valueOf(category.getCategoryId());
-						}
-						%>
-
-						<liferay-security:permissionsURL
-							modelResource="<%= modelResource %>"
-							modelResourceDescription="<%= HtmlUtil.escape(modelResourceDescription) %>"
-							resourcePrimKey="<%= resourcePrimKey %>"
-							var="permissionsURL"
-						/>
-
-						<input type="button" value="<liferay-ui:message key="permissions" />" onClick="location.href = '<%= permissionsURL %>';" />
-					</c:if>
-				</div>
-
-				<br />
-			</c:if>
 
 			<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
 
