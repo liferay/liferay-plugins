@@ -766,6 +766,10 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 	@BeanReference(name = "com.liferay.opensocial.service.persistence.GadgetPersistence")
 	protected com.liferay.opensocial.service.persistence.GadgetPersistence gadgetPersistence;
+	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
+	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
+	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
+	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
 	private static final String _SQL_SELECT_GADGET = "SELECT gadget FROM Gadget gadget";
 	private static final String _SQL_SELECT_GADGET_WHERE = "SELECT gadget FROM Gadget gadget WHERE ";
 	private static final String _SQL_COUNT_GADGET = "SELECT COUNT(gadget) FROM Gadget gadget";

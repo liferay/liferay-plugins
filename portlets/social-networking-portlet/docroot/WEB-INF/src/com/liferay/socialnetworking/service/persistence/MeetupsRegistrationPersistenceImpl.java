@@ -1357,6 +1357,10 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	protected com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence meetupsRegistrationPersistence;
 	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.WallEntryPersistence")
 	protected com.liferay.socialnetworking.service.persistence.WallEntryPersistence wallEntryPersistence;
+	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
+	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
+	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
+	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
 	private static final String _SQL_SELECT_MEETUPSREGISTRATION = "SELECT meetupsRegistration FROM MeetupsRegistration meetupsRegistration";
 	private static final String _SQL_SELECT_MEETUPSREGISTRATION_WHERE = "SELECT meetupsRegistration FROM MeetupsRegistration meetupsRegistration WHERE ";
 	private static final String _SQL_COUNT_MEETUPSREGISTRATION = "SELECT COUNT(meetupsRegistration) FROM MeetupsRegistration meetupsRegistration";

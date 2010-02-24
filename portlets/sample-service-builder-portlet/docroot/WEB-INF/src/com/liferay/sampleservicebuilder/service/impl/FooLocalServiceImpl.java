@@ -22,7 +22,6 @@
 
 package com.liferay.sampleservicebuilder.service.impl;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -51,7 +50,7 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 		User user = userLocalService.getUserById(userId);
 		Date now = new Date();
 
-		long fooId = CounterLocalServiceUtil.increment();
+		long fooId = counterLocalService.increment();
 
 		Foo foo = FooUtil.create(fooId);
 

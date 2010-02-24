@@ -17,7 +17,6 @@
 
 package	com.liferay.so.service.impl;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -66,7 +65,7 @@ public class MemberRequestLocalServiceImpl
 
 		Date now = new Date();
 
-		long memberRequestId = CounterLocalServiceUtil.increment();
+		long memberRequestId = counterLocalService.increment();
 
 		MemberRequest memberRequest = memberRequestPersistence.create(
 			memberRequestId);

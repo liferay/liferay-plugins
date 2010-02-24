@@ -1585,6 +1585,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	protected com.liferay.so.service.persistence.MemberRequestPersistence memberRequestPersistence;
 	@BeanReference(name = "com.liferay.so.service.persistence.ProjectsEntryPersistence")
 	protected com.liferay.so.service.persistence.ProjectsEntryPersistence projectsEntryPersistence;
+	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
+	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
+	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
+	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
 	private static final String _SQL_SELECT_MEMBERREQUEST = "SELECT memberRequest FROM MemberRequest memberRequest";
 	private static final String _SQL_SELECT_MEMBERREQUEST_WHERE = "SELECT memberRequest FROM MemberRequest memberRequest WHERE ";
 	private static final String _SQL_COUNT_MEMBERREQUEST = "SELECT COUNT(memberRequest) FROM MemberRequest memberRequest";

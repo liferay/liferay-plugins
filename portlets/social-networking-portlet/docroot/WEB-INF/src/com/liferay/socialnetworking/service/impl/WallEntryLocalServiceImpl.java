@@ -22,7 +22,6 @@
 
 package com.liferay.socialnetworking.service.impl;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -65,7 +64,7 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		User user = UserLocalServiceUtil.getUserById(userId);
 		Date now = new Date();
 
-		long wallEntryId = CounterLocalServiceUtil.increment();
+		long wallEntryId = counterLocalService.increment();
 
 		WallEntry wallEntry = wallEntryPersistence.create(wallEntryId);
 

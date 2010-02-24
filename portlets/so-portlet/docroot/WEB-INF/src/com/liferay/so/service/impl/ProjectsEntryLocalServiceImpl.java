@@ -17,7 +17,6 @@
 
 package com.liferay.so.service.impl;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
@@ -63,7 +62,7 @@ public class ProjectsEntryLocalServiceImpl
 
 		Date now = new Date();
 
-		long projectsEntryId = CounterLocalServiceUtil.increment();
+		long projectsEntryId = counterLocalService.increment();
 
 		ProjectsEntry projectsEntry = projectsEntryPersistence.create(
 			projectsEntryId);

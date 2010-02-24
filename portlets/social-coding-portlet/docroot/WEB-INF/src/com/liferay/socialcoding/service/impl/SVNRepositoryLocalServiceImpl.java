@@ -22,7 +22,6 @@
 
 package com.liferay.socialcoding.service.impl;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -70,7 +69,7 @@ public class SVNRepositoryLocalServiceImpl
 		SVNRepository svnRepository = svnRepositoryPersistence.fetchByUrl(url);
 
 		if (svnRepository == null) {
-			long svnRepositoryId = CounterLocalServiceUtil.increment();
+			long svnRepositoryId = counterLocalService.increment();
 
 			svnRepository = svnRepositoryPersistence.create(svnRepositoryId);
 

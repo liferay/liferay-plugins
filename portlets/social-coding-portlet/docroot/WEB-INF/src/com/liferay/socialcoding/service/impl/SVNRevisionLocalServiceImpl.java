@@ -22,7 +22,6 @@
 
 package com.liferay.socialcoding.service.impl;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -55,7 +54,7 @@ public class SVNRevisionLocalServiceImpl
 
 		// SVN revision
 
-		long svnRevisionId = CounterLocalServiceUtil.increment();
+		long svnRevisionId = counterLocalService.increment();
 
 		SVNRevision svnRevision = svnRevisionPersistence.create(svnRevisionId);
 

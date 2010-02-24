@@ -22,7 +22,6 @@
 
 package com.liferay.opensocial.service.impl;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.opensocial.GadgetNameException;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.portlet.GadgetPortlet;
@@ -70,7 +69,7 @@ public class GadgetLocalServiceImpl
 
 		validate(name);
 
-		long gadgetId = CounterLocalServiceUtil.increment();
+		long gadgetId = counterLocalService.increment();
 
 		Gadget gadget = gadgetPersistence.create(gadgetId);
 

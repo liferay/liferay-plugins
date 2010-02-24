@@ -764,6 +764,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 	@BeanReference(name = "com.liferay.sampleservicebuilder.service.persistence.FooPersistence")
 	protected com.liferay.sampleservicebuilder.service.persistence.FooPersistence fooPersistence;
+	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
+	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
 	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
 	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
 	private static final String _SQL_SELECT_FOO = "SELECT foo FROM Foo foo";

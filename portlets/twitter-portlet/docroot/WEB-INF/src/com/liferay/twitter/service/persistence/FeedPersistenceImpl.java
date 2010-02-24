@@ -865,6 +865,10 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 	@BeanReference(name = "com.liferay.twitter.service.persistence.FeedPersistence")
 	protected com.liferay.twitter.service.persistence.FeedPersistence feedPersistence;
+	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
+	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
+	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
+	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
 	private static final String _SQL_SELECT_FEED = "SELECT feed FROM Feed feed";
 	private static final String _SQL_SELECT_FEED_WHERE = "SELECT feed FROM Feed feed WHERE ";
 	private static final String _SQL_COUNT_FEED = "SELECT COUNT(feed) FROM Feed feed";

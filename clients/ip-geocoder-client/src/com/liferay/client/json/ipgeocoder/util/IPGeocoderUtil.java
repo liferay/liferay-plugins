@@ -23,7 +23,7 @@
 package com.liferay.client.json.ipgeocoder.util;
 
 import com.liferay.client.json.ipgeocoder.model.IPInfo;
-import com.liferay.portal.PortalException;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;

@@ -22,7 +22,6 @@
 
 package com.liferay.socialnetworking.service.impl;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
@@ -78,7 +77,7 @@ public class MeetupsRegistrationLocalServiceImpl
 				userId, meetupsEntryId);
 
 		if (meetupsRegistration == null) {
-			long meetupsRegistrationId = CounterLocalServiceUtil.increment();
+			long meetupsRegistrationId = counterLocalService.increment();
 
 			meetupsRegistration = meetupsRegistrationPersistence.create(
 				meetupsRegistrationId);

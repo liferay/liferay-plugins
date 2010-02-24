@@ -22,7 +22,6 @@
 
 package com.liferay.twitter.service.impl;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -133,7 +132,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 		if (feed == null) {
 			jsonArray = getUserTimelineJSONArray(twitterScreenName, 0);
 
-			long feedId = CounterLocalServiceUtil.increment();
+			long feedId = counterLocalService.increment();
 
 			feed = feedPersistence.create(feedId);
 

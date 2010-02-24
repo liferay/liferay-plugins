@@ -22,7 +22,6 @@
 
 package com.liferay.socialnetworking.service.impl;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
@@ -70,7 +69,7 @@ public class MeetupsEntryLocalServiceImpl
 
 		Date now = new Date();
 
-		long meetupsEntryId = CounterLocalServiceUtil.increment();
+		long meetupsEntryId = counterLocalService.increment();
 
 		MeetupsEntry meetupsEntry = meetupsEntryPersistence.create(
 			meetupsEntryId);
@@ -87,7 +86,7 @@ public class MeetupsEntryLocalServiceImpl
 		meetupsEntry.setTotalAttendees(totalAttendees);
 		meetupsEntry.setMaxAttendees(maxAttendees);
 		meetupsEntry.setPrice(price);
-		meetupsEntry.setThumbnailId(CounterLocalServiceUtil.increment());
+		meetupsEntry.setThumbnailId(counterLocalService.increment());
 
 		meetupsEntryPersistence.update(meetupsEntry, false);
 
