@@ -6,6 +6,18 @@
 	<import file="../build-common-plugin.xml" />
 
 	<target name="build-db">
+		<echo>
+.
+
+@Deprecated: Support for DBBuilder in Extlets will be deprecated in future
+versions of Liferay.
+
+Extlets are designed to override Liferay's core code and should not be used to
+generate custom tables.
+
+Please migrate custom tables in portlet plugins.
+		</echo>
+
 		<java
 			classname="com.liferay.portal.tools.DBBuilder"
 			classpathref="portal.classpath"
@@ -24,6 +36,18 @@
 	</target>
 
 	<target name="build-service">
+		<echo>
+.
+
+@Deprecated: Support for ServiceBuilder in Extlets will be deprecated in future
+versions of Liferay.
+
+Extlets are designed to override Liferay's core code and should not be used to
+generate custom services.
+
+Please migrate custom services to portlet plugins.
+		</echo>
+
 		<java
 			classname="com.liferay.portal.tools.servicebuilder.ServiceBuilder"
 			classpathref="portal.classpath"
