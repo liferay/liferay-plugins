@@ -178,7 +178,7 @@ public class CustomSession {
 
 	public void deleteWorkflowLogs(long processInstanceId) {
 		List<TaskInstance> taskInstances = findTaskInstances(
-			processInstanceId, l, null, false, null, QueryUtil.ALL_POS,
+			processInstanceId, 1, null, false, null, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 
 		for (TaskInstance taskInstance : taskInstances) {
