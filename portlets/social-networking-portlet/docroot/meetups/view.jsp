@@ -53,14 +53,18 @@ String tabs1 = ParamUtil.getString(request, "tabs1", "all-meetups");
 
 <c:choose>
 	<c:when test='<%= tabs1.equals("all-meetups") %>'>
+
 		<%
-			meetupsEntries = MeetupsEntryLocalServiceUtil.getMeetupsEntriesByCompanyId(themeDisplay.getCompanyId());
+		meetupsEntries = MeetupsEntryLocalServiceUtil.getMeetupsEntriesByCompanyId(themeDisplay.getCompanyId());
 		%>
+
 	</c:when>
 	<c:when test='<%= tabs1.equals("my-meetups") %>'>
+
 		<%
-			meetupsEntries = MeetupsEntryLocalServiceUtil.getMeetupsEntriesByUserId(PortalUtil.getUserId(request));
+		meetupsEntries = MeetupsEntryLocalServiceUtil.getMeetupsEntriesByUserId(PortalUtil.getUserId(request));
 		%>
+		
 	</c:when>
 </c:choose>
 
