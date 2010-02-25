@@ -25,7 +25,6 @@ package com.liferay.socialnetworking.service.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
-
 import com.liferay.socialnetworking.model.MeetupsRegistration;
 import com.liferay.socialnetworking.service.base.MeetupsRegistrationLocalServiceBaseImpl;
 

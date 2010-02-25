@@ -113,15 +113,15 @@ public class MeetupsEntryLocalServiceUtil {
 			totalAttendees, maxAttendees, price, thumbnail);
 	}
 
-	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByCompanyId(
+	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByCompany(
 		long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getMeetupsEntriesByCompanyId(companyId);
+		return getService().getMeetupsEntriesByCompany(companyId);
 	}
 
-	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByUserId(
+	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByUser(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getMeetupsEntriesByUserId(userId);
+		return getService().getMeetupsEntriesByUser(userId);
 	}
 
 	public static com.liferay.socialnetworking.model.MeetupsEntry updateMeetupsEntry(

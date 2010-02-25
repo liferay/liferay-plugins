@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ImageLocalServiceUtil;
-
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.socialnetworking.MeetupsEntryEndDateException;
 import com.liferay.socialnetworking.MeetupsEntryStartDateException;
@@ -114,13 +113,13 @@ public class MeetupsEntryLocalServiceImpl
 		meetupsEntryPersistence.remove(meetupsEntry);
 	}
 
-	public List<MeetupsEntry> getMeetupsEntriesByCompanyId(long companyId)
+	public List<MeetupsEntry> getMeetupsEntriesByCompany(long companyId)
 		throws SystemException {
 
 		return meetupsEntryPersistence.findByCompanyId(companyId);
 	}
 
-	public List<MeetupsEntry> getMeetupsEntriesByUserId(long userId)
+	public List<MeetupsEntry> getMeetupsEntriesByUser(long userId)
 		throws SystemException {
 
 		return meetupsEntryPersistence.findByUserId(userId);
@@ -162,7 +161,7 @@ public class MeetupsEntryLocalServiceImpl
 		if ((thumbnail != null) && (thumbnail.length > 0) &&
 			(meetupsEntry.getThumbnailId() == 0)) {
 
-				meetupsEntry.setThumbnailId(counterLocalService.increment());
+			meetupsEntry.setThumbnailId(counterLocalService.increment());
 		}
 
 		meetupsEntryPersistence.update(meetupsEntry, false);

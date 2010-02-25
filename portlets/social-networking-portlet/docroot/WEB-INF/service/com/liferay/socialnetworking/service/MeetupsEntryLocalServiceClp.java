@@ -465,7 +465,7 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		return (com.liferay.socialnetworking.model.MeetupsEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByCompanyId(
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByCompany(
 		long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);
@@ -473,7 +473,7 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getMeetupsEntriesByCompanyId",
+			returnObj = _classLoaderProxy.invoke("getMeetupsEntriesByCompany",
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
@@ -493,14 +493,14 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		return (java.util.List<com.liferay.socialnetworking.model.MeetupsEntry>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByUserId(
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByUser(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getMeetupsEntriesByUserId",
+			returnObj = _classLoaderProxy.invoke("getMeetupsEntriesByUser",
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {

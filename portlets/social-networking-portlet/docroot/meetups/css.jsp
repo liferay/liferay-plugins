@@ -24,10 +24,6 @@
 
 <%@ include file="/css_init.jsp" %>
 
-.social-networking-portlet-meetups .add-meetup-button {
-	float: right;
-}
-
 .social-networking-portlet-meetups .response {
 	float: left;
 	margin-right: 15px;

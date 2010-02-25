@@ -24,17 +24,23 @@
 
 <%@ include file="/init.jsp" %>
 
+<%
+String tabs1 = ParamUtil.getString(request, "tabs1", "all-meetups");
+
+List<MeetupsEntry> meetupsEntries = null;
+
+if (tabs1.equals("all-meetups")) {
+	meetupsEntries = MeetupsEntryLocalServiceUtil.getMeetupsEntriesByCompanyId(themeDisplay.getCompanyId());
+}
+else if (tabs1.equals("my-meetups")) {
+	meetupsEntries = MeetupsEntryLocalServiceUtil.getMeetupsEntriesByUserId(PortalUtil.getUserId(request));
+}
+%>
+
 <c:if test="<%= permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">
 
 	<%
 	PortletURL portletURL = renderResponse.createRenderURL();
-
-	PortletURL addMeetupsEntryURL = renderResponse.createRenderURL();
-
-	addMeetupsEntryURL.setWindowState(WindowState.MAXIMIZED);
-
-	addMeetupsEntryURL.setParameter("jspPage", "/meetups/edit_entry.jsp");
-	addMeetupsEntryURL.setParameter("redirect", currentURL);
 	%>
 
 	<liferay-ui:tabs
@@ -43,33 +49,18 @@
 		url="<%= portletURL.toString() %>"
 	/>
 
-	<input type="button" value='<liferay-ui:message key="add-meetup" />' onClick='location.href="<%= addMeetupsEntryURL.toString() %>"' class="add-meetup-button" />
-</c:if>
+	<%
+	PortletURL addMeetupsEntryURL = renderResponse.createRenderURL();
 
-<%
-List<MeetupsEntry> meetupsEntries = null;
-String tabs1 = ParamUtil.getString(request, "tabs1", "all-meetups");
-%>
+	addMeetupsEntryURL.setWindowState(WindowState.MAXIMIZED);
 
-<c:choose>
-	<c:when test='<%= tabs1.equals("all-meetups") %>'>
+	addMeetupsEntryURL.setParameter("jspPage", "/meetups/edit_entry.jsp");
+	addMeetupsEntryURL.setParameter("redirect", currentURL);
+	%>
 
-		<%
-		meetupsEntries = MeetupsEntryLocalServiceUtil.getMeetupsEntriesByCompanyId(themeDisplay.getCompanyId());
-		%>
+	<input type="button" value='<liferay-ui:message key="add-meetup" />' onClick='location.href = "<%= addMeetupsEntryURL.toString() %>"' />
 
-	</c:when>
-	<c:when test='<%= tabs1.equals("my-meetups") %>'>
-
-		<%
-		meetupsEntries = MeetupsEntryLocalServiceUtil.getMeetupsEntriesByUserId(PortalUtil.getUserId(request));
-		%>
-		
-	</c:when>
-</c:choose>
-
-<c:if test="<%= meetupsEntries.size() > 0 %>">
-	<br />
+	<br /><br />
 </c:if>
 
 <table class="lfr-table" width="100%">

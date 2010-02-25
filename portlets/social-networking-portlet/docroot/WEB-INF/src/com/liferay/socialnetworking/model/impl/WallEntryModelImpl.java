@@ -223,8 +223,8 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(WallEntry.class.getName(),
-					getPrimaryKey());
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+					WallEntry.class.getName(), getPrimaryKey());
 		}
 
 		return _expandoBridge;

@@ -289,8 +289,8 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(MeetupsEntry.class.getName(),
-					getPrimaryKey());
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+					MeetupsEntry.class.getName(), getPrimaryKey());
 		}
 
 		return _expandoBridge;
