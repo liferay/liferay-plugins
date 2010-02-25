@@ -80,8 +80,8 @@ public class JIRAPortlet extends MVCPortlet {
 
 		try {
 			ExpandoValueLocalServiceUtil.addValue(
-				User.class.getName(), "SC", "jiraUserId", user.getUserId(),
-				jiraUserId);
+				themeDisplay.getCompanyId(), User.class.getName(), "SC",
+				"jiraUserId", user.getUserId(), jiraUserId);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

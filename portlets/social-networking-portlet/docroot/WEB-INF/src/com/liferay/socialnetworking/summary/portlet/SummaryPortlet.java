@@ -236,8 +236,8 @@ public class SummaryPortlet extends MVCPortlet {
 
 		try {
 			ExpandoValueLocalServiceUtil.addValue(
-				User.class.getName(), "SN", "aboutMe", user.getUserId(),
-				aboutMe);
+				themeDisplay.getCompanyId(), User.class.getName(), "SN",
+				"aboutMe", user.getUserId(), aboutMe);
 
 			Contact contact = user.getContact();
 

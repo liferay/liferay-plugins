@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.expando.model.ExpandoRow;
 import com.liferay.portlet.expando.service.ExpandoRowLocalServiceUtil;
@@ -49,8 +50,6 @@ import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
 import com.liferay.webform.util.WebFormUtil;
-
-import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -63,7 +62,6 @@ import javax.mail.internet.InternetAddress;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
@@ -84,6 +82,9 @@ public class WebFormPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(actionRequest);
 
@@ -92,13 +93,17 @@ public class WebFormPortlet extends MVCPortlet {
 
 		if (Validator.isNotNull(databaseTableName)) {
 			ExpandoTableLocalServiceUtil.deleteTable(
-				WebFormUtil.class.getName(), databaseTableName);
+				themeDisplay.getCompanyId(), WebFormUtil.class.getName(),
+				databaseTableName);
 		}
 	}
 
 	public void saveData(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		String portletId = (String)actionRequest.getAttribute(
 			WebKeys.PORTLET_ID);
@@ -181,7 +186,8 @@ public class WebFormPortlet extends MVCPortlet {
 				}
 
 				databaseSuccess = saveDatabase(
-					fieldsMap, preferences, databaseTableName);
+					themeDisplay.getCompanyId(), fieldsMap, preferences,
+					databaseTableName);
 			}
 
 			if (saveToFile) {
@@ -209,8 +215,7 @@ public class WebFormPortlet extends MVCPortlet {
 	}
 
 	public void serveResource(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws IOException, PortletException {
+		ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
 
 		String cmd = ParamUtil.getString(resourceRequest, Constants.CMD);
 
@@ -230,6 +235,9 @@ public class WebFormPortlet extends MVCPortlet {
 	protected void exportData(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(resourceRequest);
@@ -262,12 +270,13 @@ public class WebFormPortlet extends MVCPortlet {
 
 		if (Validator.isNotNull(databaseTableName)) {
 			List<ExpandoRow> rows = ExpandoRowLocalServiceUtil.getRows(
-				WebFormUtil.class.getName(), databaseTableName,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+				themeDisplay.getCompanyId(), WebFormUtil.class.getName(),
+				databaseTableName, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 			for (ExpandoRow row : rows) {
 				for (String fieldName : fieldLabels) {
 					String data = ExpandoValueLocalServiceUtil.getData(
+						themeDisplay.getCompanyId(),
 						WebFormUtil.class.getName(), databaseTableName,
 						fieldName, row.getClassPK(), StringPool.BLANK);
 
@@ -306,12 +315,12 @@ public class WebFormPortlet extends MVCPortlet {
 		return sb.toString();
 	}
 
-	private boolean saveDatabase(
-			Map<String,String> fieldsMap, PortletPreferences preferences,
-			String databaseTableName)
+	protected boolean saveDatabase(
+			long companyId, Map<String,String> fieldsMap,
+			PortletPreferences preferences, String databaseTableName)
 		throws Exception {
 
-		WebFormUtil.checkTable(databaseTableName, preferences);
+		WebFormUtil.checkTable(companyId, databaseTableName, preferences);
 
 		long classPK = CounterLocalServiceUtil.increment(
 			WebFormUtil.class.getName());
@@ -321,8 +330,8 @@ public class WebFormPortlet extends MVCPortlet {
 				String fieldValue = fieldsMap.get(fieldLabel);
 
 				ExpandoValueLocalServiceUtil.addValue(
-					WebFormUtil.class.getName(), databaseTableName, fieldLabel,
-					classPK, fieldValue);
+					companyId, WebFormUtil.class.getName(), databaseTableName,
+					fieldLabel, classPK, fieldValue);
 			}
 
 			return true;

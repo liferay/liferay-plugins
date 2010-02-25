@@ -23,7 +23,7 @@
 %>
 
 <%
-String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "SC", "jiraUserId", user2.getUserId(), StringPool.BLANK);
+String jiraUserId = ExpandoValueLocalServiceUtil.getData(company.getCompanyId(), User.class.getName(), "SC", "jiraUserId", user2.getUserId(), StringPool.BLANK);
 %>
 
 <c:choose>

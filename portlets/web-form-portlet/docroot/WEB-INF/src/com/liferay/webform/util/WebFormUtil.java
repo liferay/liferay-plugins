@@ -66,32 +66,32 @@ public class WebFormUtil {
 	public static final boolean VALIDATION_SCRIPT_ENABLED =
 		GetterUtil.getBoolean(PortletProps.get("validation.script.enabled"));
 
-	public static ExpandoTable addTable(String tableName)
+	public static ExpandoTable addTable(long companyId, String tableName)
 		throws PortalException, SystemException {
 
 		try {
 			ExpandoTableLocalServiceUtil.deleteTable(
-				WebFormUtil.class.getName(), tableName);
+				companyId, WebFormUtil.class.getName(), tableName);
 		}
 		catch (NoSuchTableException nste) {
 		}
 
 		return ExpandoTableLocalServiceUtil.addTable(
-			WebFormUtil.class.getName(), tableName);
+			companyId, WebFormUtil.class.getName(), tableName);
 	}
 
 	public static ExpandoTable checkTable(
-			String tableName, PortletPreferences preferences)
+			long companyId, String tableName, PortletPreferences preferences)
 		throws Exception {
 
 		ExpandoTable expandoTable = null;
 
 		try {
 			expandoTable = ExpandoTableLocalServiceUtil.getTable(
-				WebFormUtil.class.getName(), tableName);
+				companyId, WebFormUtil.class.getName(), tableName);
 		}
 		catch (NoSuchTableException nste) {
-			expandoTable = addTable(tableName);
+			expandoTable = addTable(companyId, tableName);
 
 			int i = 1;
 
@@ -122,11 +122,11 @@ public class WebFormUtil {
 		return portletId + StringPool.UNDERLINE + formId;
 	}
 
-	public static int getTableRowsCount(String tableName)
+	public static int getTableRowsCount(long companyId, String tableName)
 		throws SystemException {
 
 		return ExpandoRowLocalServiceUtil.getRowsCount(
-			WebFormUtil.class.getName(), tableName);
+			companyId, WebFormUtil.class.getName(), tableName);
 	}
 
 	public static String[] split(String s) {

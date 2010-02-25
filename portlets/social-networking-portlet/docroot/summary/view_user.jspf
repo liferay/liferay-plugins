@@ -96,7 +96,7 @@
 			</c:if>
 
 			<%
-			String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "SN", "aboutMe", user2.getUserId(), StringPool.BLANK));
+			String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(company.getCompanyId(), User.class.getName(), "SN", "aboutMe", user2.getUserId(), StringPool.BLANK));
 			%>
 
 			<c:if test="<%= Validator.isNotNull(aboutMe) %>">

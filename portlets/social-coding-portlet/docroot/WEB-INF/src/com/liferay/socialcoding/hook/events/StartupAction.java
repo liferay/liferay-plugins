@@ -51,19 +51,19 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected void doRun(long companyId) throws Exception {
-		setupExpando();
+		setupExpando(companyId);
 	}
 
-	protected void setupExpando() throws Exception {
+	protected void setupExpando(long companyId) throws Exception {
 		ExpandoTable table = null;
 
 		try {
 			table = ExpandoTableLocalServiceUtil.addTable(
-				User.class.getName(), "SC");
+				companyId, User.class.getName(), "SC");
 		}
 		catch (DuplicateTableNameException dtne) {
 			table = ExpandoTableLocalServiceUtil.getTable(
-				User.class.getName(), "SC");
+				companyId, User.class.getName(), "SC");
 		}
 
 		try {
