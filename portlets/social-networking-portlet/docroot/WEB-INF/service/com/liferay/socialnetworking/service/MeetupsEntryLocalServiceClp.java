@@ -465,7 +465,7 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		return (com.liferay.socialnetworking.model.MeetupsEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntries(
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByCompanyId(
 		long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);
@@ -473,7 +473,34 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getMeetupsEntries",
+			returnObj = _classLoaderProxy.invoke("getMeetupsEntriesByCompanyId",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.socialnetworking.model.MeetupsEntry>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getMeetupsEntriesByUserId",
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {

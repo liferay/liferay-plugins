@@ -93,9 +93,13 @@ public interface MeetupsEntryLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntries(
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByCompanyId(
 		long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.socialnetworking.model.MeetupsEntry updateMeetupsEntry(
 		long userId, long meetupsEntryId, java.lang.String title,

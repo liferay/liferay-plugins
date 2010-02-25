@@ -144,6 +144,47 @@ public class MeetupsEntryUtil {
 				   .findByCompanyId_PrevAndNext(meetupsEntryId, companyId, obc);
 	}
 
+	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByUserId(userId);
+	}
+
+	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByUserId(
+		long userId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByUserId(userId, start, end);
+	}
+
+	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByUserId(
+		long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByUserId(userId, start, end, obc);
+	}
+
+	public static com.liferay.socialnetworking.model.MeetupsEntry findByUserId_First(
+		long userId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialnetworking.NoSuchMeetupsEntryException {
+		return getPersistence().findByUserId_First(userId, obc);
+	}
+
+	public static com.liferay.socialnetworking.model.MeetupsEntry findByUserId_Last(
+		long userId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialnetworking.NoSuchMeetupsEntryException {
+		return getPersistence().findByUserId_Last(userId, obc);
+	}
+
+	public static com.liferay.socialnetworking.model.MeetupsEntry[] findByUserId_PrevAndNext(
+		long meetupsEntryId, long userId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialnetworking.NoSuchMeetupsEntryException {
+		return getPersistence()
+				   .findByUserId_PrevAndNext(meetupsEntryId, userId, obc);
+	}
+
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
@@ -166,6 +207,11 @@ public class MeetupsEntryUtil {
 		getPersistence().removeByCompanyId(companyId);
 	}
 
+	public static void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUserId(userId);
+	}
+
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
@@ -174,6 +220,11 @@ public class MeetupsEntryUtil {
 	public static int countByCompanyId(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByCompanyId(companyId);
+	}
+
+	public static int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUserId(userId);
 	}
 
 	public static int countAll()

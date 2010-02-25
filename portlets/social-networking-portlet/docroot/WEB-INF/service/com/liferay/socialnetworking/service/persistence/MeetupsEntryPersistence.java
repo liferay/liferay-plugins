@@ -89,6 +89,34 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchMeetupsEntryException;
 
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByUserId(
+		long userId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByUserId(
+		long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.socialnetworking.model.MeetupsEntry findByUserId_First(
+		long userId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialnetworking.NoSuchMeetupsEntryException;
+
+	public com.liferay.socialnetworking.model.MeetupsEntry findByUserId_Last(
+		long userId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialnetworking.NoSuchMeetupsEntryException;
+
+	public com.liferay.socialnetworking.model.MeetupsEntry[] findByUserId_PrevAndNext(
+		long meetupsEntryId, long userId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialnetworking.NoSuchMeetupsEntryException;
+
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -103,10 +131,16 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	public void removeByCompanyId(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int countByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countAll()

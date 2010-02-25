@@ -115,10 +115,15 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 			maxAttendees, price, thumbnail);
 	}
 
-	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntries(
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByCompanyId(
 		long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _meetupsEntryLocalService.getMeetupsEntries(companyId);
+		return _meetupsEntryLocalService.getMeetupsEntriesByCompanyId(companyId);
+	}
+
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		return _meetupsEntryLocalService.getMeetupsEntriesByUserId(userId);
 	}
 
 	public com.liferay.socialnetworking.model.MeetupsEntry updateMeetupsEntry(

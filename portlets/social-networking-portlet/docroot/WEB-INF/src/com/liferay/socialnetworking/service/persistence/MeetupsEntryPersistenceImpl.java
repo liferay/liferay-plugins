@@ -81,6 +81,21 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(MeetupsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByCompanyId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_USERID = new FinderPath(MeetupsEntryModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByUserId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_USERID = new FinderPath(MeetupsEntryModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByUserId",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(MeetupsEntryModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByUserId", new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(MeetupsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findAll", new String[0]);
@@ -556,6 +571,237 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		}
 	}
 
+	public List<MeetupsEntry> findByUserId(long userId)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(userId) };
+
+		List<MeetupsEntry> list = (List<MeetupsEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_USERID,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(3);
+
+				query.append(_SQL_SELECT_MEETUPSENTRY_WHERE);
+
+				query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+				query.append(MeetupsEntryModelImpl.ORDER_BY_JPQL);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				list = q.list();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<MeetupsEntry>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_USERID,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public List<MeetupsEntry> findByUserId(long userId, int start, int end)
+		throws SystemException {
+		return findByUserId(userId, start, end, null);
+	}
+
+	public List<MeetupsEntry> findByUserId(long userId, int start, int end,
+		OrderByComparator obc) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(userId),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		List<MeetupsEntry> list = (List<MeetupsEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_USERID,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = null;
+
+				if (obc != null) {
+					query = new StringBundler(3 +
+							(obc.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
+
+				query.append(_SQL_SELECT_MEETUPSENTRY_WHERE);
+
+				query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+				if (obc != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				}
+
+				else {
+					query.append(MeetupsEntryModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				list = (List<MeetupsEntry>)QueryUtil.list(q, getDialect(),
+						start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<MeetupsEntry>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_USERID,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public MeetupsEntry findByUserId_First(long userId, OrderByComparator obc)
+		throws NoSuchMeetupsEntryException, SystemException {
+		List<MeetupsEntry> list = findByUserId(userId, 0, 1, obc);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("userId=");
+			msg.append(userId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchMeetupsEntryException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public MeetupsEntry findByUserId_Last(long userId, OrderByComparator obc)
+		throws NoSuchMeetupsEntryException, SystemException {
+		int count = countByUserId(userId);
+
+		List<MeetupsEntry> list = findByUserId(userId, count - 1, count, obc);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("userId=");
+			msg.append(userId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchMeetupsEntryException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public MeetupsEntry[] findByUserId_PrevAndNext(long meetupsEntryId,
+		long userId, OrderByComparator obc)
+		throws NoSuchMeetupsEntryException, SystemException {
+		MeetupsEntry meetupsEntry = findByPrimaryKey(meetupsEntryId);
+
+		int count = countByUserId(userId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBundler query = null;
+
+			if (obc != null) {
+				query = new StringBundler(3 +
+						(obc.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_MEETUPSENTRY_WHERE);
+
+			query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+			if (obc != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			}
+
+			else {
+				query.append(MeetupsEntryModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					meetupsEntry);
+
+			MeetupsEntry[] array = new MeetupsEntryImpl[3];
+
+			array[0] = (MeetupsEntry)objArray[0];
+			array[1] = (MeetupsEntry)objArray[1];
+			array[2] = (MeetupsEntry)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
 	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		Session session = null;
@@ -676,6 +922,12 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		}
 	}
 
+	public void removeByUserId(long userId) throws SystemException {
+		for (MeetupsEntry meetupsEntry : findByUserId(userId)) {
+			remove(meetupsEntry);
+		}
+	}
+
 	public void removeAll() throws SystemException {
 		for (MeetupsEntry meetupsEntry : findAll()) {
 			remove(meetupsEntry);
@@ -719,6 +971,52 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public int countByUserId(long userId) throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(userId) };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_USERID,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(2);
+
+				query.append(_SQL_COUNT_MEETUPSENTRY_WHERE);
+
+				query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID,
 					finderArgs, count);
 
 				closeSession(session);
@@ -799,6 +1097,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	private static final String _SQL_COUNT_MEETUPSENTRY = "SELECT COUNT(meetupsEntry) FROM MeetupsEntry meetupsEntry";
 	private static final String _SQL_COUNT_MEETUPSENTRY_WHERE = "SELECT COUNT(meetupsEntry) FROM MeetupsEntry meetupsEntry WHERE ";
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "meetupsEntry.companyId = ?";
+	private static final String _FINDER_COLUMN_USERID_USERID_2 = "meetupsEntry.userId = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "meetupsEntry.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No MeetupsEntry exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No MeetupsEntry exists with the key {";
