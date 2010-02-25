@@ -46,6 +46,7 @@
 		<portlet-name>7</portlet-name>
 		<friendly-url-mapper-class>com.liferay.socialnetworking.meetups.portlet.MeetupsFriendlyURLMapper</friendly-url-mapper-class>
 		<restore-current-view>false</restore-current-view>
+		<header-portlet-css>/meetups/css.jsp</header-portlet-css>
 		<css-class-wrapper>social-networking-portlet-meetups</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>

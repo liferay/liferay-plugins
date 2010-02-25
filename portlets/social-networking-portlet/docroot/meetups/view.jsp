@@ -25,61 +25,43 @@
 <%@ include file="/init.jsp" %>
 
 <c:if test="<%= permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">
-	<liferay-ui:icon-list>
+	<%
+		PortletURL portletURL = renderResponse.createRenderURL();
 
-		<%
 		PortletURL addMeetupsEntryURL = renderResponse.createRenderURL();
 
 		addMeetupsEntryURL.setWindowState(WindowState.MAXIMIZED);
 
 		addMeetupsEntryURL.setParameter("jspPage", "/meetups/edit_entry.jsp");
 		addMeetupsEntryURL.setParameter("redirect", currentURL);
-		%>
+	%>
 
-		<liferay-ui:icon
-			image="add_article"
-			message="add-meetup"
-			url="<%= addMeetupsEntryURL.toString() %>"
-			method="get"
-		/>
+	<liferay-ui:tabs
+		names="all-meetups,my-meetups"
+		param="tabs1"
+		url="<%= portletURL.toString() %>"
+	/>
 
-		<%
-		PortletURL myMeetupsEntriesURL = renderResponse.createRenderURL();
-
-		myMeetupsEntriesURL.setWindowState(WindowState.MAXIMIZED);
-
-		myMeetupsEntriesURL.setParameter("jspPage", "/meetups/view_entries.jsp");
-		myMeetupsEntriesURL.setParameter("personal", "1");
-		%>
-
-		<liferay-ui:icon
-			image="view"
-			message="my-meetups"
-			url="<%= myMeetupsEntriesURL.toString() %>"
-			method="get"
-		/>
-
-		<%
-		PortletURL allMeetupsEntriesURL = renderResponse.createRenderURL();
-
-		allMeetupsEntriesURL.setWindowState(WindowState.MAXIMIZED);
-
-		allMeetupsEntriesURL.setParameter("jspPage", "/meetups/view_entries.jsp");
-		allMeetupsEntriesURL.setParameter("personal", "0");
-		%>
-
-		<liferay-ui:icon
-			image="view"
-			message="all-meetups"
-			url="<%= allMeetupsEntriesURL.toString() %>"
-			method="get"
-		/>
-	</liferay-ui:icon-list>
+	<input type="button" value='<liferay-ui:message key="add-meetup" />' onClick='location.href="<%= addMeetupsEntryURL.toString() %>"' class="add-meetup-button" />
 </c:if>
 
 <%
-List<MeetupsEntry> meetupsEntries = MeetupsEntryLocalServiceUtil.getMeetupsEntries(themeDisplay.getCompanyId());
+	List<MeetupsEntry> meetupsEntries = null;
+	String tabs1 = ParamUtil.getString(request, "tabs1", "all-meetups");
 %>
+
+<c:choose>
+	<c:when test='<%= tabs1.equals("all-meetups") %>'>
+		<%
+			meetupsEntries = MeetupsEntryLocalServiceUtil.getMeetupsEntriesByCompanyId(themeDisplay.getCompanyId());
+		%>
+	</c:when>
+	<c:when test='<%= tabs1.equals("my-meetups") %>'>
+		<%
+			meetupsEntries = MeetupsEntryLocalServiceUtil.getMeetupsEntriesByUserId(PortalUtil.getUserId(request));
+		%>
+	</c:when>
+</c:choose>
 
 <c:if test="<%= meetupsEntries.size() > 0 %>">
 	<br />
@@ -104,9 +86,18 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 
 			viewMeetupsEntryURL.setParameter("jspPage", "/meetups/view_entry.jsp");
 			viewMeetupsEntryURL.setParameter("meetupsEntryId", String.valueOf(meetupsEntry.getMeetupsEntryId()));
+
+			String thumbnailURL = "";
+
+			if (meetupsEntry.getThumbnailId() == 0) {
+			 thumbnailURL = request.getContextPath() + "/meetups/images/calendar.png";
+			}
+			else {
+				thumbnailURL = themeDisplay.getPathImage() + "/meetups?img_id=" + meetupsEntry.getThumbnailId() + "&t=" + ImageServletTokenUtil.getToken(meetupsEntry.getThumbnailId());
+			}
 			%>
 
-			<a href="<%= viewMeetupsEntryURL %>"><img alt="<liferay-ui:message key="view-meetup" />" src="<%= themeDisplay.getPathImage() %>?img_id=<%= meetupsEntry.getThumbnailId() %>&t=<%= ImageServletTokenUtil.getToken(meetupsEntry.getThumbnailId()) %>" /></a>
+			<a href="<%= viewMeetupsEntryURL %>"><img alt="<liferay-ui:message key="view-meetup" />" src="<%= thumbnailURL %>" /></a>
 		</td>
 		<td valign="top" width="99%">
 			<div>

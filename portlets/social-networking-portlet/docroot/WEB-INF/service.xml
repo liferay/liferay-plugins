@@ -39,6 +39,9 @@
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
 	</entity>
 	<entity name="MeetupsRegistration" local-service="true" remote-service="false">
 

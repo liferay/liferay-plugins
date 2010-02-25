@@ -86,7 +86,10 @@ public class MeetupsEntryLocalServiceImpl
 		meetupsEntry.setTotalAttendees(totalAttendees);
 		meetupsEntry.setMaxAttendees(maxAttendees);
 		meetupsEntry.setPrice(price);
-		meetupsEntry.setThumbnailId(counterLocalService.increment());
+
+		if ((thumbnail != null) && (thumbnail.length > 0)) {
+			meetupsEntry.setThumbnailId(counterLocalService.increment());
+		}
 
 		meetupsEntryPersistence.update(meetupsEntry, false);
 
@@ -111,10 +114,16 @@ public class MeetupsEntryLocalServiceImpl
 		meetupsEntryPersistence.remove(meetupsEntry);
 	}
 
-	public List<MeetupsEntry> getMeetupsEntries(long companyId)
+	public List<MeetupsEntry> getMeetupsEntriesByCompanyId(long companyId)
 		throws SystemException {
 
 		return meetupsEntryPersistence.findByCompanyId(companyId);
+	}
+
+	public List<MeetupsEntry> getMeetupsEntriesByUserId(long userId)
+		throws SystemException {
+
+		return meetupsEntryPersistence.findByUserId(userId);
 	}
 
 	public MeetupsEntry updateMeetupsEntry(
@@ -149,6 +158,12 @@ public class MeetupsEntryLocalServiceImpl
 		meetupsEntry.setTotalAttendees(totalAttendees);
 		meetupsEntry.setMaxAttendees(maxAttendees);
 		meetupsEntry.setPrice(price);
+
+		if ((thumbnail != null) && (thumbnail.length > 0) &&
+			(meetupsEntry.getThumbnailId() == 0)) {
+
+				meetupsEntry.setThumbnailId(counterLocalService.increment());
+		}
 
 		meetupsEntryPersistence.update(meetupsEntry, false);
 
