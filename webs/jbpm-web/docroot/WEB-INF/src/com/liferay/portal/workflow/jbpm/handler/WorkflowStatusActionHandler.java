@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
 import org.jbpm.graph.def.ActionHandler;
 import org.jbpm.graph.exe.ExecutionContext;
+import org.jbpm.taskmgmt.exe.TaskInstance;
 
 /**
  * <a href="WorkflowStatusActionHandler.java.html"><b><i>View Source</i></b></a>
@@ -37,6 +38,12 @@ import org.jbpm.graph.exe.ExecutionContext;
 public class WorkflowStatusActionHandler implements ActionHandler {
 
 	public void execute(ExecutionContext executionContext) throws Exception {
+		TaskInstance taskInstance = executionContext.getTaskInstance();
+
+		if ((userId == 0) && (taskInstance != null)) {
+			userId = Long.parseLong(taskInstance.getActorId());
+		}
+
 		long companyId = (Long)executionContext.getVariable(
 			ContextConstants.COMPANY_ID);
 		long groupId = (Long)executionContext.getVariable(
