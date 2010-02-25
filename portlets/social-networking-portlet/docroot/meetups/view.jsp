@@ -30,10 +30,10 @@ String tabs1 = ParamUtil.getString(request, "tabs1", "all-meetups");
 List<MeetupsEntry> meetupsEntries = null;
 
 if (tabs1.equals("all-meetups")) {
-	meetupsEntries = MeetupsEntryLocalServiceUtil.getMeetupsEntriesByCompanyId(themeDisplay.getCompanyId());
+	meetupsEntries = MeetupsEntryLocalServiceUtil.getMeetupsEntriesByCompany(themeDisplay.getCompanyId());
 }
 else if (tabs1.equals("my-meetups")) {
-	meetupsEntries = MeetupsEntryLocalServiceUtil.getMeetupsEntriesByUserId(PortalUtil.getUserId(request));
+	meetupsEntries = MeetupsEntryLocalServiceUtil.getMeetupsEntriesByUser(PortalUtil.getUserId(request));
 }
 %>
 
