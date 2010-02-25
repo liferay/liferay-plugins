@@ -32,7 +32,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
+
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
@@ -61,7 +61,7 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		// Wall entry
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
-		User user = UserLocalServiceUtil.getUserById(userId);
+		User user = userLocalService.getUserById(userId);
 		Date now = new Date();
 
 		long wallEntryId = counterLocalService.increment();
@@ -188,8 +188,8 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 
 		Group group = GroupLocalServiceUtil.getGroup(wallEntry.getGroupId());
 
-		User user = UserLocalServiceUtil.getUserById(group.getClassPK());
-		User wallEntryUser = UserLocalServiceUtil.getUserById(
+		User user = userLocalService.getUserById(group.getClassPK());
+		User wallEntryUser = userLocalService.getUserById(
 			wallEntry.getUserId());
 
 		String fromName = PrefsPropsUtil.getString(

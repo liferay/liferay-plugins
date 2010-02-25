@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
+
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.socialcoding.NoSuchSVNRevisionException;
@@ -69,7 +69,7 @@ public class SVNRevisionLocalServiceImpl
 		// Social
 
 		try {
-			User user = UserLocalServiceUtil.getUserByScreenName(
+			User user = userLocalService.getUserByScreenName(
 				PortalUtil.getDefaultCompanyId(), svnUserId);
 
 			long userId = user.getUserId();

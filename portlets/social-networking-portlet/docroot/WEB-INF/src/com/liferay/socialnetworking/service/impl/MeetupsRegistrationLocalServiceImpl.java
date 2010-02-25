@@ -25,7 +25,7 @@ package com.liferay.socialnetworking.service.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
+
 import com.liferay.socialnetworking.model.MeetupsRegistration;
 import com.liferay.socialnetworking.service.base.MeetupsRegistrationLocalServiceBaseImpl;
 
@@ -69,7 +69,7 @@ public class MeetupsRegistrationLocalServiceImpl
 			long userId, long meetupsEntryId, int status, String comments)
 		throws PortalException, SystemException {
 
-		User user = UserLocalServiceUtil.getUserById(userId);
+		User user = userLocalService.getUserById(userId);
 		Date now = new Date();
 
 		MeetupsRegistration meetupsRegistration =

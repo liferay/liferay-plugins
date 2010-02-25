@@ -20,7 +20,7 @@ package com.liferay.so.service.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
+
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.ProjectsEntryEndDateException;
 import com.liferay.so.ProjectsEntryStartDateException;
@@ -46,7 +46,7 @@ public class ProjectsEntryLocalServiceImpl
 			int endDateDay, int endDateYear, boolean current, String data)
 		throws PortalException, SystemException {
 
-		User user = UserLocalServiceUtil.getUserById(userId);
+		User user = userLocalService.getUserById(userId);
 
 		Date startDate = PortalUtil.getDate(
 			startDateMonth, startDateDay, startDateYear, user.getTimeZone(),
@@ -103,7 +103,7 @@ public class ProjectsEntryLocalServiceImpl
 		ProjectsEntry projectsEntry = projectsEntryPersistence.findByPrimaryKey(
 			projectsEntryId);
 
-		User user = UserLocalServiceUtil.getUserById(projectsEntry.getUserId());
+		User user = userLocalService.getUserById(projectsEntry.getUserId());
 
 		Date startDate = PortalUtil.getDate(
 			startDateMonth, startDateDay, startDateYear, user.getTimeZone(),

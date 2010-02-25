@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ImageLocalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
+
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.socialnetworking.MeetupsEntryEndDateException;
 import com.liferay.socialnetworking.MeetupsEntryStartDateException;
@@ -55,7 +55,7 @@ public class MeetupsEntryLocalServiceImpl
 			byte[] thumbnail)
 		throws PortalException, SystemException {
 
-		User user = UserLocalServiceUtil.getUserById(userId);
+		User user = userLocalService.getUserById(userId);
 
 		Date startDate = PortalUtil.getDate(
 			startDateMonth, startDateDay, startDateYear, startDateHour,
@@ -135,7 +135,7 @@ public class MeetupsEntryLocalServiceImpl
 			byte[] thumbnail)
 		throws PortalException, SystemException {
 
-		User user = UserLocalServiceUtil.getUserById(userId);
+		User user = userLocalService.getUserById(userId);
 
 		Date startDate = PortalUtil.getDate(
 			startDateMonth, startDateDay, startDateYear, startDateHour,

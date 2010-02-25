@@ -32,7 +32,7 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
+
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -61,7 +61,7 @@ public class MemberRequestLocalServiceImpl
 			String receiverEmailAddress, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
-		User user = UserLocalServiceUtil.getUserById(userId);
+		User user = userLocalService.getUserById(userId);
 
 		Date now = new Date();
 
@@ -104,7 +104,7 @@ public class MemberRequestLocalServiceImpl
 				continue;
 			}
 
-			User user = UserLocalServiceUtil.getUser(receiverUserId);
+			User user = userLocalService.getUser(receiverUserId);
 
 			String emailAddress = user.getEmailAddress();
 
@@ -192,7 +192,7 @@ public class MemberRequestLocalServiceImpl
 		memberRequestPersistence.update(memberRequest, false);
 
 		if (status == InviteMembersConstants.STATUS_ACCEPTED) {
-			UserLocalServiceUtil.addGroupUsers(
+			userLocalService.addGroupUsers(
 				memberRequest.getGroupId(),
 				new long[] {memberRequest.getReceiverUserId()});
 		}
@@ -248,12 +248,12 @@ public class MemberRequestLocalServiceImpl
 		Group group = GroupLocalServiceUtil.getGroup(
 			memberRequest.getGroupId());
 
-		User user = UserLocalServiceUtil.getUser(memberRequest.getUserId());
+		User user = userLocalService.getUser(memberRequest.getUserId());
 
 		User receiverUser = null;
 
 		if (memberRequest.getReceiverUserId() > 0) {
-			receiverUser = UserLocalServiceUtil.getUser(
+			receiverUser = userLocalService.getUser(
 				memberRequest.getReceiverUserId());
 		}
 

@@ -34,7 +34,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
+
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.twitter.FeedTwitterScreenNameException;
@@ -60,7 +60,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 	public void updateFeed(long userId)
 		throws PortalException, SystemException {
 
-		User user = UserLocalServiceUtil.getUserById(userId);
+		User user = userLocalService.getUserById(userId);
 
 		updateFeed(user);
 	}
@@ -78,7 +78,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 
 		userParams.put("contactTwitterSn", Boolean.TRUE);
 
-		List<User> users = UserLocalServiceUtil.search(
+		List<User> users = userLocalService.search(
 			companyId, null, null, userParams, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, (OrderByComparator)null);
 
