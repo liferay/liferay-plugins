@@ -114,7 +114,7 @@ request.setAttribute("view.jsp-viewFolder", Boolean.TRUE.toString());
 
 	<c:if test="<%= BookmarksFolderPermission.contains(permissionChecker, scopeGroupId, folderId, ActionKeys.ADD_ENTRY) %>">
 		<div class="control-wrapper">
-			<a href="javascript:;" onClick="Liferay.SO.Bookmarks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="struts_action" value="/bookmarks/edit_entry" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" /></portlet:renderURL>');"><liferay-ui:message key="add-entry" /></a>
+			<a href="javascript:;" onClick="<portlet:namespace />addEntry();"><liferay-ui:message key="add-entry" /></a>
 		</div>
 	</c:if>
 
@@ -127,48 +127,14 @@ request.setAttribute("view.jsp-viewFolder", Boolean.TRUE.toString());
 
 </form>
 
-<aui:script use="aui-dialog">
-	Liferay.namespace('SO');
+<script type="text/javascript">
+	function <portlet:namespace />addEntry() {
+		var url = '<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/bookmarks/edit_entry" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" /></portlet:renderURL>';
 
-	Liferay.SO.Bookmarks = {
-		closePopup: function() {
-			var instance = this;
-
-			var popup = instance._getPopup();
-
-			popup.hide();
-		},
-
-		displayPopup: function(url, title) {
-			var instance = this;
-
-			var popup = instance._getPopup();
-
-			popup.show();
-
-			popup.set('title', title);
-
-			popup.io.set('uri', url);
-			popup.io.start();
-		},
-
-		_getPopup: function() {
-			var instance = this;
-
-			if (!instance._popup) {
-				instance._popup = new A.Dialog(
-					{
-						resizable: false,
-						width: 550,
-						xy: [15,15]
-					}
-				).plug(
-					A.Plugin.IO,
-					{autoLoad: false}
-				).render();
-			}
-
-			return instance._popup;
+		if (document.<portlet:namespace />fm2.<portlet:namespace />keywords) {
+			url += '&<portlet:namespace />name=' + document.<portlet:namespace />fm2.<portlet:namespace />keywords.value;
 		}
+
+		submitForm(document.hrefFm, url);
 	}
-</aui:script>
+</script>
