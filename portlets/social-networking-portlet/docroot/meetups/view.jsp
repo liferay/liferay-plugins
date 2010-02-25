@@ -25,15 +25,16 @@
 <%@ include file="/init.jsp" %>
 
 <c:if test="<%= permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">
+
 	<%
-		PortletURL portletURL = renderResponse.createRenderURL();
+	PortletURL portletURL = renderResponse.createRenderURL();
 
-		PortletURL addMeetupsEntryURL = renderResponse.createRenderURL();
+	PortletURL addMeetupsEntryURL = renderResponse.createRenderURL();
 
-		addMeetupsEntryURL.setWindowState(WindowState.MAXIMIZED);
+	addMeetupsEntryURL.setWindowState(WindowState.MAXIMIZED);
 
-		addMeetupsEntryURL.setParameter("jspPage", "/meetups/edit_entry.jsp");
-		addMeetupsEntryURL.setParameter("redirect", currentURL);
+	addMeetupsEntryURL.setParameter("jspPage", "/meetups/edit_entry.jsp");
+	addMeetupsEntryURL.setParameter("redirect", currentURL);
 	%>
 
 	<liferay-ui:tabs
@@ -46,8 +47,8 @@
 </c:if>
 
 <%
-	List<MeetupsEntry> meetupsEntries = null;
-	String tabs1 = ParamUtil.getString(request, "tabs1", "all-meetups");
+List<MeetupsEntry> meetupsEntries = null;
+String tabs1 = ParamUtil.getString(request, "tabs1", "all-meetups");
 %>
 
 <c:choose>
