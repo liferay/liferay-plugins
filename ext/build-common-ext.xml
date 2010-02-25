@@ -9,13 +9,11 @@
 		<echo>
 .
 
-@Deprecated: Support for DBBuilder in Extlets will be deprecated in future
-versions of Liferay.
-
-Extlets are designed to override Liferay's core code and should not be used to
-generate custom tables.
-
-Please migrate custom tables in portlet plugins.
+WARNING: Support for ServiceBuilder in EXT plugins will be deprecated in future
+versions. EXT plugins are designed to override the portal's core code that
+cannot be done with hooks, layout templates, portlets, or themes. EXT plugins
+are not meant to contain new custom services. Please migrate your service.xml to
+a portlet plugin.
 		</echo>
 
 		<java
@@ -36,26 +34,30 @@ Please migrate custom tables in portlet plugins.
 	</target>
 
 	<target name="build-service">
+		<path id="service.classpath">
+			<path refid="lib.classpath" />
+			<path refid="portal.classpath" />
+			<!--<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+			<pathelement location="docroot/WEB-INF/classes" />-->
+		</path>
+
 		<echo>
 .
 
-@Deprecated: Support for ServiceBuilder in Extlets will be deprecated in future
-versions of Liferay.
-
-Extlets are designed to override Liferay's core code and should not be used to
-generate custom services.
-
-Please migrate custom services to portlet plugins.
+WARNING: Support for ServiceBuilder in EXT plugins will be deprecated in future
+versions. EXT plugins are designed to override the portal's core code that
+cannot be done with hooks, layout templates, portlets, or themes. EXT plugins
+are not meant to contain new custom services. Please migrate your service.xml to
+a portlet plugin.
 		</echo>
 
 		<java
 			classname="com.liferay.portal.tools.servicebuilder.ServiceBuilder"
-			classpathref="portal.classpath"
+			classpathref="service.classpath"
 			fork="true"
 			maxmemory="256m"
 			newenvironment="true"
 		>
-
 			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
 			<jvmarg value="-Dservice.input.file=${service.file}" />
@@ -79,16 +81,16 @@ Please migrate custom services to portlet plugins.
 		<delete file="ServiceBuilder.temp" />
 	</target>
 
-	<target name="check-property">
+	<target name="check-ext-property">
 		<if>
 			<not>
-				<available file="${property}" />
+				<available file="${property.name}" />
 			</not>
 			<then>
 				<fail>
 .
 
-ERROR: ${property} does not exist!
+${property.name} does not exist!
 
 The properties "app.server.dir", "app.server.zip.name", and "ext.work.dir" are
 not properly specified.
@@ -108,12 +110,12 @@ then "app.server.dir" should point to
 	</target>
 
 	<target name="clean">
-		<antcall target="check-property">
-			<param name="property" value="${app.server.zip.name}" />
+		<antcall target="check-ext-property">
+			<param name="property.name" value="${app.server.zip.name}" />
 		</antcall>
 
-		<antcall target="check-property">
-			<param name="property" value="${ext.work.dir}" />
+		<antcall target="check-ext-property">
+			<param name="property.name" value="${ext.work.dir}" />
 		</antcall>
 
 		<antcall target="clean-generated" />
@@ -190,7 +192,6 @@ loader.
 		<mkdir dir="docroot/WEB-INF/ext-${module.name}/classes" />
 
 		<path id="plugin-lib.classpath">
-			<pathelement location="docroot/WEB-INF/ext-service/classes" />
 			<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
 			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
 			<fileset dir="docroot/WEB-INF/ext-lib/portal" includes="*.jar" />
@@ -209,6 +210,7 @@ loader.
 		<zip
 			basedir="docroot/WEB-INF/ext-service/classes"
 			destfile="docroot/WEB-INF/ext-service/ext-service.jar"
+			whenempty="create"
 		/>
 
 		<antcall target="war-util">

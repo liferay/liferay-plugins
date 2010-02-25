@@ -5,12 +5,27 @@
 
 	<import file="../build-common-plugins.xml" />
 
-	<target name="check-directory">
+	<target name="create">
 		<if>
-			<available file="${ext.name}-ext" />
+			<equals arg1="${ext.name}" arg2="$${ext.name}" />
 			<then>
-				<fail message="${ext.name}-ext already exists." />
+				<fail message="This task must be called by create.bat." />
 			</then>
+			<else>
+				<if>
+					<available file="${ext.name}-ext" />
+					<then>
+						<fail message="${ext.name}-ext already exists." />
+					</then>
+				</if>
+
+				<unzip src="ext.zip" dest="${ext.name}-ext" />
+
+				<replace dir="${ext.name}-ext">
+					<replacefilter token="@ext.name@" value="${ext.name}" />
+					<replacefilter token="@ext.display.name@" value="${ext.display.name}" />
+				</replace>
+			</else>
 		</if>
 	</target>
 
@@ -21,24 +36,26 @@
 				<fail>
 .
 
+Usage: ant upgrade-ext -Dext.dir=C:\ext -Dext.name=hello-world -Dext.display.name="Hello World"
+
 The arguments "ext.dir", "ext.name", and "ext.display.name" are not properly
 specified.
 
-This task will build an extlet from an existing extension environment. The
-files in the directory denoted by "ext.dir" will be copied into the extlet
-"ext.name"-ext. The property "ext.dir" must point to an extension environment
-and the extlet "ext-name"-ext must not already exist in order to proceed.
-
-For example, if the extension environment is in "C:\ext" and the desired extlet
-directory is "liferay-ext" then the proper ant call is
-ant upgrade-ext -Dext.dir=C:\ext -Dext.name=liferay -Dext.display.name="Liferay"
+This task will build an EXT plugin from a legacy EXT environment. The files in
+the directory denoted by "ext.dir" will be copied into the EXT plugin directory
+called "ext.name"-ext. The property "ext.dir" must point to a legacy EXT
+environment and the EXT plugin directory called "ext-name"-ext must not already
+exist.
 				</fail>
 			</then>
 		</if>
 
-		<antcall target="check-directory">
-			<param name="ext.name" value="${ext.name}" />
-		</antcall>
+		<if>
+			<available file="${ext.name}-ext" />
+			<then>
+				<fail message="${ext.name}-ext already exists." />
+			</then>
+		</if>
 
 		<antcall target="create">
 			<param name="ext.name" value="${ext.name}" />
@@ -49,12 +66,12 @@ ant upgrade-ext -Dext.dir=C:\ext -Dext.name=liferay -Dext.display.name="Liferay"
 			<fileset dir="${ext.dir}/ext-impl/src" />
 		</copy>
 
-		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-lib/portal" failonerror="false">
-			<fileset dir="${ext.dir}/ext-lib/portal" />
-		</copy>
-
 		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-lib/global" failonerror="false">
 			<fileset dir="${ext.dir}/ext-lib/global" />
+		</copy>
+
+		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-lib/portal" failonerror="false">
+			<fileset dir="${ext.dir}/ext-lib/portal" />
 		</copy>
 
 		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-service/src" failonerror="false">
@@ -78,38 +95,8 @@ ant upgrade-ext -Dext.dir=C:\ext -Dext.name=liferay -Dext.display.name="Liferay"
 			tofile="${ext.name}-ext/docroot/WEB-INF/ext-web/docroot/WEB-INF/tiles-defs-ext.xml"
 		/>
 
-		<if>
-			<equals arg1="${ext.name}-ext/docroot/WEB-INF/sql" arg2="true" />
-			<then>
-				<touch>
-					<fileset dir="${ext.name}-ext/docroot/WEB-INF/sql" />
-				</touch>
-			</then>
-		</if>
-
 		<copy todir="${ext.name}-ext/docroot/WEB-INF/sql" failonerror="false">
 			<fileset dir="${ext.dir}/sql" />
 		</copy>
-	</target>
-
-	<target name="create">
-		<if>
-			<equals arg1="${ext.name}" arg2="$${ext.name}" />
-			<then>
-				<fail message="This task must be called by create.bat." />
-			</then>
-			<else>
-				<antcall target="check-directory">
-					<param name="ext.name" value="${ext.name}" />
-				</antcall>
-
-				<unzip src="ext.zip" dest="${ext.name}-ext" />
-
-				<replace dir="${ext.name}-ext">
-					<replacefilter token="@ext.name@" value="${ext.name}" />
-					<replacefilter token="@ext.display.name@" value="${ext.display.name}" />
-				</replace>
-			</else>
-		</if>
 	</target>
 </project>
