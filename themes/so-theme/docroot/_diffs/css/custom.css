@@ -99,18 +99,17 @@ body #banner h1.logo a {
 
 #navigation-top li a {
 	display: block;
-	padding: 7px;
+	padding: 8px;
 }
 
 #navigation-top .child-menu {
 	background: #FFF;
 	border: 1px solid #B0BAFF;
 	border-top: none;
-	display: none;
 	position: absolute;
 	right: 0;
 	top: 28px;
-	width: 238px;
+	width: 239px;
 	z-index: 20;
 }
 
@@ -120,7 +119,7 @@ body #banner h1.logo a {
 
 #navigation-top .child-menu li a {
 	border-top: 1px solid #B0BAFF;
-	width: 224px;
+	width: 223px;
 }
 
 #navigation-top .child-menu li a:hover {
@@ -133,7 +132,7 @@ body #banner h1.logo a {
 
 #navigation-top .my-sites a.heading {
 	background: transparent url(../images/custom/menu_arrow.png) no-repeat 7px 14px;
-	padding: 7px 7px 7px 19px;
+	padding: 8px 8px 8px 19px;
 }
 
 #navigation-top .my-search {

@@ -56,7 +56,7 @@
 				<li class="my-sites">
 					<a class="heading" href="javascript:;">#language ("my-sites")</a>
 
-					<ul class="child-menu">
+					<ul class="child-menu aui-helper-hidden">
 						#foreach ($place in $user.getMyPlaces())
 							$my_places_url.setParameter("groupId", $place.getGroupId().toString())
 
