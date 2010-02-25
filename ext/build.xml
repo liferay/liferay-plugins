@@ -5,27 +5,110 @@
 
 	<import file="../build-common-plugins.xml" />
 
+	<target name="check-directory">
+		<if>
+			<available file="${ext.name}-ext" />
+			<then>
+				<fail message="${ext.name}-ext already exists." />
+			</then>
+		</if>
+	</target>
+
+	<target name="upgrade-ext">
+		<if>
+			<equals arg1="${ext.name}" arg2="$${ext.name}" />
+			<then>
+				<fail>
+.
+
+The arguments "ext.dir", "ext.name", and "ext.display.name" are not properly
+specified.
+
+This task will build an extlet from an existing extension environment. The
+files in the directory denoted by "ext.dir" will be copied into the extlet
+"ext.name"-ext. The property "ext.dir" must point to an extension environment
+and the extlet "ext-name"-ext must not already exist in order to proceed.
+
+For example, if the extension environment is in "C:\ext" and the desired extlet
+directory is "liferay-ext" then the proper ant call is
+ant upgrade-ext -Dext.dir=C:\ext -Dext.name=liferay -Dext.display.name="Liferay"
+				</fail>
+			</then>
+		</if>
+
+		<antcall target="check-directory">
+			<param name="ext.name" value="${ext.name}" />
+		</antcall>
+
+		<antcall target="create">
+			<param name="ext.name" value="${ext.name}" />
+			<param name="ext.display.name" value="${ext.display.name}" />
+		</antcall>
+
+		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-impl/src" failonerror="false">
+			<fileset dir="${ext.dir}/ext-impl/src" />
+		</copy>
+
+		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-lib/portal" failonerror="false">
+			<fileset dir="${ext.dir}/ext-lib/portal" />
+		</copy>
+
+		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-lib/global" failonerror="false">
+			<fileset dir="${ext.dir}/ext-lib/global" />
+		</copy>
+
+		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-service/src" failonerror="false">
+			<fileset dir="${ext.dir}/ext-service/src" />
+		</copy>
+
+		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-web/docroot" failonerror="false" overwrite="true">
+			<fileset
+				dir="${ext.dir}/ext-web/docroot"
+				excludes="**/struts-config.xml,**/tiles-defs.xml"
+			/>
+		</copy>
+
+		<copy
+			file="${ext.dir}/ext-web/docroot/WEB-INF/struts-config.xml"
+			tofile="${ext.name}-ext/docroot/WEB-INF/ext-web/docroot/WEB-INF/struts-config-ext.xml"
+		/>
+
+		<copy
+			file="${ext.dir}/ext-web/docroot/WEB-INF/tiles-defs.xml"
+			tofile="${ext.name}-ext/docroot/WEB-INF/ext-web/docroot/WEB-INF/tiles-defs-ext.xml"
+		/>
+
+		<if>
+			<equals arg1="${ext.name}-ext/docroot/WEB-INF/sql" arg2="true" />
+			<then>
+				<touch>
+					<fileset dir="${ext.name}-ext/docroot/WEB-INF/sql" />
+				</touch>
+			</then>
+		</if>
+
+		<copy todir="${ext.name}-ext/docroot/WEB-INF/sql" failonerror="false">
+			<fileset dir="${ext.dir}/sql" />
+		</copy>
+	</target>
+
 	<target name="create">
 		<if>
 			<equals arg1="${ext.name}" arg2="$${ext.name}" />
 			<then>
-				<echo message="This task must be called by create.bat." />
+				<fail message="This task must be called by create.bat." />
 			</then>
 			<else>
-				<if>
-					<available file="${ext.name}-ext" />
-					<then>
-						<echo message="${ext.name}-ext already exists." />
-					</then>
-					<else>
-						<unzip src="ext.zip" dest="${ext.name}-ext" />
+				<antcall target="check-directory">
+					<param name="ext.name" value="${ext.name}" />
+				</antcall>
 
-						<replace dir="${ext.name}-ext">
-							<replacefilter token="@ext.name@" value="${ext.name}" />
-							<replacefilter token="@ext.display.name@" value="${ext.display.name}" />
-						</replace>
-					</else>
-				</if>
+				<unzip src="ext.zip" dest="${ext.name}-ext" />
+
+				<replace dir="${ext.name}-ext">
+					<replacefilter token="@ext.name@" value="${ext.name}" />
+					<replacefilter token="@ext.display.name@" value="${ext.display.name}" />
+				</replace>
 			</else>
 		</if>
 	</target>

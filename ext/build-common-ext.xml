@@ -5,19 +5,66 @@
 
 	<import file="../build-common-plugin.xml" />
 
-	<target name="clean">
+	<target name="build-db">
+		<java
+			classname="com.liferay.portal.tools.DBBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			maxmemory="384m"
+			newenvironment="true"
+		>
+
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+			<jvmarg value="-Dsql.dir=docroot/WEB-INF/sql" />
+			<arg value="${database.name}" />
+			<arg value="${database.types}" />
+		</java>
+
+		<delete file="velocity.log" quiet="true" />
+	</target>
+
+	<target name="build-service">
+		<java
+			classname="com.liferay.portal.tools.servicebuilder.ServiceBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			maxmemory="256m"
+			newenvironment="true"
+		>
+
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+			<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
+			<jvmarg value="-Dservice.input.file=${service.file}" />
+			<jvmarg value="-Dservice.hbm.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-hbm.xml" />
+			<jvmarg value="-Dservice.orm.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-orm.xml" />
+			<jvmarg value="-Dservice.model.hints.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-model-hints.xml" />
+			<jvmarg value="-Dservice.spring.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-spring.xml" />
+			<jvmarg value="-Dservice.api.dir=docroot/WEB-INF/ext-service/src" />
+			<jvmarg value="-Dservice.impl.dir=docroot/WEB-INF/ext-impl/src" />
+			<jvmarg value="-Dservice.json.file=docroot/WEB-INF/ext-web/docroot/html/js/liferay/service.js" />
+			<jvmarg value="-Dservice.remoting.file=docroot/WEB-INF/ext-web/docroot/WEB-INF/remoting-servlet-ext.xml" />
+			<jvmarg value="-Dservice.sql.dir=docroot/WEB-INF/sql" />
+			<jvmarg value="-Dservice.sql.file=portal-tables.sql" />
+			<jvmarg value="-Dservice.sql.indexes.file=indexes.sql" />
+			<jvmarg value="-Dservice.sql.indexes.properties.file=indexes.properties" />
+			<jvmarg value="-Dservice.sql.sequences.file=sequences.sql" />
+			<jvmarg value="-Dservice.bean.locator.util=com.liferay.portal.kernel.bean.PortalBeanLocatorUtil" />
+			<jvmarg value="-Dservice.props.util=com.liferay.portal.util.PropsUtil" />
+		</java>
+
+		<delete file="ServiceBuilder.temp" />
+	</target>
+
+	<target name="check-property">
 		<if>
-			<or>
-				<not>
-					<available file="${app.server.zip.name}" />
-				</not>
-				<not>
-					<available file="${ext.work.dir}" />
-				</not>
-			</or>
+			<not>
+				<available file="${property}" />
+			</not>
 			<then>
-						<fail>
+				<fail>
 .
+
+ERROR: ${property} does not exist!
 
 The properties "app.server.dir", "app.server.zip.name", and "ext.work.dir" are
 not properly specified.
@@ -31,9 +78,19 @@ For example, if "ext.work.dir" points to "C:\ext-work", and
 "app.server.zip.name" points to "C:\files\liferay-portal-tomcat-6.0-${lp.version}.zip",
 then "app.server.dir" should point to
 "C:\ext-work\liferay-portal-${lp.version}\tomcat-6.0.18".
-						</fail>
+				</fail>
 			</then>
 		</if>
+	</target>
+
+	<target name="clean">
+		<antcall target="check-property">
+			<param name="property" value="${app.server.zip.name}" />
+		</antcall>
+
+		<antcall target="check-property">
+			<param name="property" value="${ext.work.dir}" />
+		</antcall>
 
 		<antcall target="clean-generated" />
 
@@ -109,6 +166,7 @@ loader.
 		<mkdir dir="docroot/WEB-INF/ext-${module.name}/classes" />
 
 		<path id="plugin-lib.classpath">
+			<pathelement location="docroot/WEB-INF/ext-service/classes" />
 			<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
 			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
 			<fileset dir="docroot/WEB-INF/ext-lib/portal" includes="*.jar" />
@@ -127,7 +185,6 @@ loader.
 		<zip
 			basedir="docroot/WEB-INF/ext-service/classes"
 			destfile="docroot/WEB-INF/ext-service/ext-service.jar"
-			whenempty="create"
 		/>
 
 		<antcall target="war-util">
