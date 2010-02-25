@@ -80,13 +80,13 @@ public class GadgetPortlet extends GenericPortlet {
 
 		Gadget gadget = getGadget();
 
-		GadgetManager gadgetManager =
-			GadgetManagerFactory.getGadgetManager(gadget);
+		GadgetManager gadgetManager = GadgetManagerFactory.getGadgetManager(
+			gadget);
 
 		renderResponse.setContentType(ContentTypes.TEXT_HTML_UTF8);
 
-		String content =
-			getContent(renderRequest, renderResponse, gadgetManager);
+		String content = getContent(
+			renderRequest, renderResponse, gadgetManager);
 
 		PortletResponseUtil.write(renderResponse, content);
 	}

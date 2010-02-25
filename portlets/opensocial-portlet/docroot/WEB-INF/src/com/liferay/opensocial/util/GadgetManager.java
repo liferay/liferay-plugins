@@ -26,6 +26,7 @@ import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.portlet.GadgetPortlet;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.xml.Attribute;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -40,7 +41,6 @@ import java.util.Map;
  * <a href="GadgetManager.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael Young
- *
  */
 public class GadgetManager {
 
@@ -91,7 +91,7 @@ public class GadgetManager {
 			else {
 				String views = viewAttribute.getText();
 
-				String[] viewArray = views.split(",");
+				String[] viewArray = views.split(StringPool.COMMA);
 
 				for (String view : viewArray) {
 					view = view.toLowerCase().trim();
