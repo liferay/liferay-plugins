@@ -13,15 +13,17 @@ AUI().use(
 			closePopup: function() {
 				var instance = this;
 
-				if (instance._popup) {
-					instance._popup.hide();
+				var popup = instance.getPopup()
+
+				if (popup) {
+					popup.hide();
 				}
 			},
 
 			displayPopup: function(url, title) {
 				var instance = this;
 
-				var popup = instance._getPopup();
+				var popup = instance.getPopup();
 
 				popup.show();
 
@@ -29,6 +31,25 @@ AUI().use(
 
 				popup.io.set('uri', url);
 				popup.io.start();
+			},
+
+			getPopup: function() {
+				var instance = this;
+
+				if (!instance._popup) {
+					instance._popup = new A.Dialog(
+						{
+							resizable: false,
+							width: 600,
+							xy: [15,15]
+						}
+					).plug(
+						A.Plugin.IO,
+						{autoLoad: false}
+					).render();
+				}
+
+				return instance._popup;
 			},
 
 			_assignEvents: function() {
@@ -56,25 +77,6 @@ AUI().use(
 					},
 					'.description-toggle'
 				);
-			},
-
-			_getPopup: function() {
-				var instance = this;
-
-				if (!instance._popup) {
-					instance._popup = new A.Dialog(
-						{
-							resizable: false,
-							width: 600,
-							xy: [15,15]
-						}
-					).plug(
-						A.Plugin.IO,
-						{autoLoad: false}
-					).render();
-				}
-
-				return instance._popup;
 			}
 		}
 	}

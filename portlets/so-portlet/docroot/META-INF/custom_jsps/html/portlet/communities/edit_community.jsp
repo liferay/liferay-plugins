@@ -41,14 +41,13 @@ String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 			function() {
 				jQuery(document.<portlet:namespace />fm).ajaxForm(
 					{
+						target: Liferay.SO.Sites.getPopup().bodyNode.getDOM(),
 						type: "POST",
 						success: function() {
-							Liferay.SO.Sites.closePopup();
-
-							var siteList = jQuery('.so-portlet-sites .results-grid');
+							var siteList = jQuery('.so-portlet-sites form');
 
 							siteList.html('<div class="loading-animation" />');
-							siteList.load(themeDisplay.getLayoutURL() + ' .so-portlet-sites .taglib-search-iterator', {t:(+new Date())});
+							siteList.load(themeDisplay.getLayoutURL() + ' .so-portlet-sites form', {t:(+new Date())});
 
 							if (jQuery('.contacts-portlet').length > 0) {
 								Liferay.Contacts.loadEntries(false);
