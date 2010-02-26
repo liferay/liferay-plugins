@@ -1,7 +1,7 @@
 /* ---------- Wallpaper ---------- */
 
 #maximized.simple {
-	background: #555 url(../../images/color_schemes/simple/wallpaper/maximized.png) no-repeat fixed bottom left;
+	background-color: #555;
 }
 
 #signedIn.simple {

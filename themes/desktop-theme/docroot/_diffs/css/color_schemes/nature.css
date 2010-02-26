@@ -1,7 +1,7 @@
 /* ---------- Wallpaper ---------- */
 
 #maximized {
-	background: #555 url(../../images/wallpaper/maximized.png) no-repeat fixed bottom left;
+	background-color: #555;
 }
 
 #signedIn {
