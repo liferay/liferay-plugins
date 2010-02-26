@@ -30,19 +30,19 @@ String[] conversions = (String[])objArray[2];
 PortletURL redirectURL = (PortletURL)objArray[3];
 Boolean isLocked = (Boolean)objArray[4];
 Boolean hasLock = (Boolean)objArray[5];
+
+boolean showDelete = (!isLocked.booleanValue() || hasLock.booleanValue()) && !fileEntry.getVersion().equals(fileVersion.getVersion());
 %>
 
-<div class="result-data">
-	<c:if test="<%= DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.DELETE) && (!isLocked.booleanValue() || hasLock.booleanValue()) %>">
-		<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
-			<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
-			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-			<portlet:param name="redirect" value="<%= redirectURL.toString() %>" />
-			<portlet:param name="folderId" value="<%= String.valueOf(fileVersion.getFolderId()) %>" />
-			<portlet:param name="name" value="<%= fileVersion.getName() %>" />
-			<portlet:param name="version" value="<%= String.valueOf(fileVersion.getVersion()) %>" />
-		</portlet:actionURL>
+<c:if test="<%= showDelete && DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.DELETE) %>">
+	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
+		<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
+		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+		<portlet:param name="redirect" value="<%= redirectURL.toString() %>" />
+		<portlet:param name="folderId" value="<%= String.valueOf(fileVersion.getFolderId()) %>" />
+		<portlet:param name="name" value="<%= fileVersion.getName() %>" />
+		<portlet:param name="version" value="<%= String.valueOf(fileVersion.getVersion()) %>" />
+	</portlet:actionURL>
 
-		<span><a href="javascript:;" onClick="return (confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this" />') && submitForm(document.hrefFm, '<%= deleteURL %>'));"><liferay-ui:message key="delete" /></a></span>
-	</c:if>
-</div>
+	<span class="right"><a href="javascript:;" onClick="return (confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this" />') && submitForm(document.hrefFm, '<%= deleteURL %>'));"><liferay-ui:message key="delete" /></a></span>
+</c:if>

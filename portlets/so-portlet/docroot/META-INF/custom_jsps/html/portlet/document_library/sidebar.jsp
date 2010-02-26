@@ -71,11 +71,11 @@
 	</h2>
 
 	<%
-	String tabs1 = ParamUtil.getString(request, "tabs1", "folders");
+	String tabs1 = ParamUtil.getString(request, "tabs1", "document-home");
 
 	PortletURL tabs1URL = renderResponse.createRenderURL();
 
-	tabs1URL.setParameter("tabs1", "folders");
+	tabs1URL.setParameter("tabs1", "document-home");
 	%>
 
 	<ul class="disc">

@@ -21,13 +21,7 @@
 folderColumns = new String[] {"name", "lock", "action"};
 fileEntryColumns = folderColumns;
 
-showSubfolders = false;
-
-showFileEntriesSearch = false;
-
 mergedView = true;
-
-showAddFileShortcutButton = false;
 
 Format longDateFormatDateTime = FastDateFormatFactoryUtil.getSimpleDateFormat("EEE, MMM d yyyy h:mm aaa");
 %>

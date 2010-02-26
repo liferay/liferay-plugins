@@ -46,14 +46,12 @@ String rowHREF = themeDisplay.getPathMain() + "/document_library/get_file?p_l_id
 		<span><liferay-ui:message key="modified" />: <%= dateFormatDateTime.format(fileVersion.getCreateDate()) %></span>
 		<span><liferay-ui:message key="size" />: <%= TextFormatter.formatKB(fileVersion.getSize(), locale) %>k</span>
 		<span><a class="comments" href="javascript:;"><liferay-ui:message key="show-comments" /></a></span>
+
+		<liferay-util:include page="/html/portlet/document_library/file_version_action.jsp" />
 	</div>
 
 	<c:if test="<%= conversions.length > 0 %>">
 		<liferay-util:include page="/html/portlet/document_library/file_version_convert_to.jsp" />
-	</c:if>
-
-	<c:if test='<%= strutsAction.equals("/document_library/edit_file_entry") %>'>
-		<liferay-util:include page="/html/portlet/document_library/file_version_action.jsp" />
 	</c:if>
 
 	<div class="result-comments" style="display: none;">

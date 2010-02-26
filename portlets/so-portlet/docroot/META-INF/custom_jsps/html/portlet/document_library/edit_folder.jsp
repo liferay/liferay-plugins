@@ -19,24 +19,12 @@
 
 <%@ include file="/html/portlet/document_library/init.jsp" %>
 
+<%
+DLFolder folder = (DLFolder)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_FOLDER);
+%>
+
 <liferay-util:include page="/html/portlet/document_library/sidebar.jsp" />
 
+<h6><liferay-ui:message key='<%= ((folder == null) ? Constants.ADD : Constants.UPDATE) + "-folder" %>' /></h6>
+
 <liferay-util:include page="/html/portlet/document_library/edit_folder.portal.jsp" />
-
-<script type="text/javascript">
-	var folderLinks = jQuery('.portlet-document-library .breadcrumbs a, #<portlet:namespace />parentFolderName');
-
-	folderLinks.each(
-		function(i) {
-			var folderLink = jQuery(this);
-
-			var folderURL = this.href;
-
-			folderLink.attr(
-				{
-					'href': folderURL.replace('&p_p_state=maximized', '&p_p_state=normal')
-				}
-			);
-		}
-	);
-</script>

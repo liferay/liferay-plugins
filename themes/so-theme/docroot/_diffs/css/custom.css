@@ -232,6 +232,10 @@ body #banner h1.logo a {
 	top: 2px;
 }
 
+.portlet-icons .portlet-options {
+	width: 20px;
+}
+
 .lfr-actions.portlet-options .lfr-trigger strong {
 	padding: 2px 1px 1px;
 }
@@ -1098,6 +1102,23 @@ table.calendar {
 
 /* Document Library */
 
+.portlet-document-library .folder-title {
+	margin-bottom: 0;
+}
+
+.portlet-document-library .no-folder-title {
+	margin-bottom: .3em;
+}
+
+.portlet-document-library .folder-description {
+	color: #999;
+	margin-bottom: 1em;
+}
+
+.portlet-document-library .folder-actions {
+	margin-bottom: 1em;
+}
+
 .portlet-document-library .folder-name img,
 .portlet-document-library .file-name img {
 	margin-right: .5em;
@@ -1121,6 +1142,14 @@ table.calendar {
 	font-size: 0;
 	opacity: 0;
 	text-indent: -9999em;
+}
+
+.portlet-document-library .results-grid {
+	margin-top: 1em;
+}
+
+.portlet-document-library .results-header {
+	display: none;
 }
 
 .portlet-document-library .result-data .locked {
@@ -1163,31 +1192,17 @@ table.calendar {
 	margin-top: 1em;
 }
 
-.portlet-document-library .layout-table {
-	width: 100%;
-}
-
-.portlet-document-library .layout-table td {
-	vertical-align: top;
-}
-
-.portlet-document-library .layout-table h2 {
+.portlet-document-library .layout-container h2 {
 	font-size: 1.3em;
 	margin: 0 0 10px;
 }
 
-.portlet-document-library .layout-table-content {
-	padding-right: 10px;
-}
-
-.portlet-document-library .layout-table-side {
+.portlet-document-library .layout-column-side {
 	border-left: 1px solid #CCC;
-	padding-left: 10px;
-	width: 225px;
 }
 
-.portlet-document-library .taglib-tags-summary {
-	margin-bottom: 1em;
+.portlet-document-library .social-data {
+	margin-top: 1em;
 }
 
 .portlet-document-library .document-action-list {
@@ -1255,6 +1270,10 @@ table.calendar {
 
 .portlet-document-library .upload .edit-version {
 	display: block;
+}
+
+.portlet-document-library .sidebar .file-entries li {
+	height: 17px;
 }
 
 /* Log In */

@@ -16,23 +16,3 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 %>
-
-<ul class="file-entries">
-
-	<%
-	for (DLFileEntry fileEntry : results) {
-		fileEntry = fileEntry.toEscapedModel();
-
-		String rowHREF = themeDisplay.getPathMain() + "/document_library/get_file?p_l_id=" + themeDisplay.getPlid() + "&folderId=" + fileEntry.getFolderId() + "&name=" + HttpUtil.encodeURL(HtmlUtil.unescape(fileEntry.getName()));
-		String fileEntryImage = _getFileEntryImage(fileEntry, themeDisplay);
-	%>
-
-		<li>
-			<a href="<%= rowHREF %>"><%= fileEntryImage %><%= StringUtil.shorten(fileEntry.getTitle(), 25) %></a>
-		</li>
-
-	<%
-	}
-	%>
-
-</ul>
