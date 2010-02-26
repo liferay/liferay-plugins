@@ -213,8 +213,8 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(JIRAAction.class.getName(),
-					getPrimaryKey());
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+					JIRAAction.class.getName(), getPrimaryKey());
 		}
 
 		return _expandoBridge;

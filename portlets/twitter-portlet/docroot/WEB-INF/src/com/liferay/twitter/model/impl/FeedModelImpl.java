@@ -216,8 +216,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(Feed.class.getName(),
-					getPrimaryKey());
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+					Feed.class.getName(), getPrimaryKey());
 		}
 
 		return _expandoBridge;

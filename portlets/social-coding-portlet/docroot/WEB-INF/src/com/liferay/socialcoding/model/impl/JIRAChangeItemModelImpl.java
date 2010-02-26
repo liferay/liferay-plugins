@@ -198,8 +198,8 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(JIRAChangeItem.class.getName(),
-					getPrimaryKey());
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+					JIRAChangeItem.class.getName(), getPrimaryKey());
 		}
 
 		return _expandoBridge;

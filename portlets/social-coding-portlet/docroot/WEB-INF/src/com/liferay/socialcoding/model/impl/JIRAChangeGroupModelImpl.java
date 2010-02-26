@@ -170,8 +170,8 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(JIRAChangeGroup.class.getName(),
-					getPrimaryKey());
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+					JIRAChangeGroup.class.getName(), getPrimaryKey());
 		}
 
 		return _expandoBridge;

@@ -256,8 +256,8 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(ProjectsEntry.class.getName(),
-					getPrimaryKey());
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+					ProjectsEntry.class.getName(), getPrimaryKey());
 		}
 
 		return _expandoBridge;

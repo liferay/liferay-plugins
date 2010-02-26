@@ -164,8 +164,8 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(SVNRepository.class.getName(),
-					getPrimaryKey());
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+					SVNRepository.class.getName(), getPrimaryKey());
 		}
 
 		return _expandoBridge;

@@ -240,8 +240,8 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(Status.class.getName(),
-					getPrimaryKey());
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+					Status.class.getName(), getPrimaryKey());
 		}
 
 		return _expandoBridge;

@@ -195,8 +195,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(Entry.class.getName(),
-					getPrimaryKey());
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+					Entry.class.getName(), getPrimaryKey());
 		}
 
 		return _expandoBridge;

@@ -200,8 +200,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(Gadget.class.getName(),
-					getPrimaryKey());
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+					Gadget.class.getName(), getPrimaryKey());
 		}
 
 		return _expandoBridge;

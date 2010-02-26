@@ -292,8 +292,8 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(MemberRequest.class.getName(),
-					getPrimaryKey());
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+					MemberRequest.class.getName(), getPrimaryKey());
 		}
 
 		return _expandoBridge;
