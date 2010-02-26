@@ -1,0 +1,13 @@
+/* ---------- Wallpaper ---------- */
+
+#maximized.simple {
+	background: #555 url(../../images/color_schemes/simple/wallpaper/maximized.png) no-repeat fixed bottom left;
+}
+
+#signedIn.simple {
+	background: url(../../images/color_schemes/simple/wallpaper/signed_in.jpg) no-repeat fixed 50% 50%;
+}
+
+#signedOut.simple {
+	background: url(../../images/color_schemes/simple/wallpaper/signed_out.jpg) no-repeat fixed 50% 50%;
+}

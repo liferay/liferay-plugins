@@ -6,18 +6,14 @@
 		<version>6.0.0+</version>
 	</compatibility>
 	<theme id="desktop" name="Desktop">
-		<root-path>/</root-path>
-		<templates-path>${root-path}/templates</templates-path>
-		<images-path>${root-path}/images</images-path>
-		<template-extension>vm</template-extension>
-		<color-scheme id="01" name="Liferay">
+		<color-scheme id="01" name="Nature">
 			<default-cs>true</default-cs>
 			<css-class></css-class>
 			<color-scheme-images-path>${images-path}</color-scheme-images-path>
 		</color-scheme>
-		<color-scheme id="02" name="Mac">
-			<css-class>osx</css-class>
-			<color-scheme-images-path>${images-path}/color_schemes/osx</color-scheme-images-path>
+		<color-scheme id="02" name="Simple">
+			<css-class>simple</css-class>
+			<color-scheme-images-path>${images-path}/color_schemes/${css-class}</color-scheme-images-path>
 		</color-scheme>
 	</theme>
 </look-and-feel>

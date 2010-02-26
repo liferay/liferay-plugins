@@ -2,58 +2,54 @@
 
 #parse ($init)
 
-<html dir="#language ("lang.dir")">
+<html dir="#language ("lang.dir")" lang="$w3c_language_id">
 
 <head>
 	<title>$the_title - $company_name</title>
 
 	$theme.include($top_head_include)
-
-	#css ($css_main_file)
-	#js ($js_main_file)
-
-	<script type="text/javascript">
-		// <![CDATA[
-			$page_javascript_1
-			$page_javascript_2
-			$page_javascript_3
-		// ]]>
-	</script>
 </head>
 
-<body class="$css_class" id="$css_id">
+<body
+	class="$css_class"
+	#if ($is_maximized)
+		id="maximized"
+	#elseif ($is_signed_in)
+		id="signedIn"
+	#else
+		id="signedOut"
+	#end
+>
+
+<a class="aui-helper-hidden-accessible" href="#mainContent">#language ("go-to-content")</a>
 
 #if($is_signed_in)
 	#dockbar()
 #end
 
-$theme.include($top_messages_include)
+<div id="main">
+	<div id="banner">
+		#if(!$is_signed_in && !$is_maximized)
+			<div id="signIn">
+				<a href="$sign_in_url">$sign_in_text</a>
+			</div>
+		#end
 
-<div id="wrapper">
-	#if ($has_taskbar)
-		#parse ("$full_templates_path/taskbar.vm")
-	#end
-
-	<div id="main-container">
 		#if ($update_available_url)
 			<div class="popup-alert-notice">
 				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
 			</div>
 		#end
-
-		#if ($selectable)
-			$theme.include($content_include)
-		#else
-			$portletDisplay.recycle()
-
-			$portletDisplay.setTitle($the_title)
-
-			$theme.wrapPortlet("portlet.vm", $content_include)
-		#end
 	</div>
 
-	#if ($has_sidebar)
-		#parse ("$full_templates_path/sidebar.vm")
+	#if ($selectable)
+		$theme.include($content_include)
+	#else
+		$portletDisplay.recycle()
+
+		$portletDisplay.setTitle($the_title)
+
+		$theme.wrapPortlet("portlet.vm", $content_include)
 	#end
 </div>
 

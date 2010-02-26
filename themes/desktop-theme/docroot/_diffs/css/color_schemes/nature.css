@@ -1,0 +1,13 @@
+/* ---------- Wallpaper ---------- */
+
+#maximized {
+	background: #555 url(../../images/wallpaper/maximized.png) no-repeat fixed bottom left;
+}
+
+#signedIn {
+	background: url(../../images/wallpaper/signed_in.jpg) no-repeat fixed bottom left;
+}
+
+#signedOut {
+	background: url(../../images/wallpaper/signed_out.jpg) no-repeat fixed bottom left;
+}

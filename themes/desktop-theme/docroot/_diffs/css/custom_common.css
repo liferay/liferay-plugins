@@ -1,0 +1,47 @@
+@import url(color_schemes/nature.css);
+
+@import url(color_schemes/simple.css);
+
+/* ---------- Base styles ---------- */
+
+#main {
+	min-width: 960px;
+}
+
+#banner {
+	margin-bottom: 10px;
+}
+
+#signIn {
+	border-bottom: 1px solid #EEF0F2;
+	margin: 0 10px;
+	min-width: 960px;
+	padding: 3px;
+	text-align: right;
+}
+
+#signIn a {
+	color: #FFF;
+}
+
+#content-wrapper {
+	margin: 10px 10px 0;
+}
+
+/* ---------- Classic custom_common.css ---------- */
+
+.aui-tab-active:after {
+	border: 10px solid;
+	border-bottom-width: 0;
+	border-color: #333 transparent transparent;
+	bottom: -7px;
+	content: '-';
+	display: block;
+	height: 0;
+	left: 50%;
+	margin-left: -10px;
+	position: absolute;
+	text-indent: -9999px;
+	width: 0;
+	z-index: 20;
+}
