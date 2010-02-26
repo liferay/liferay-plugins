@@ -157,8 +157,8 @@ public class StartupAction extends SimpleAction {
 		String content = getString("/blogs/" + fileName);
 
 		return BlogsEntryLocalServiceUtil.addEntry(
-			null, userId, title, content, 1, 1, 2008, 0, 0, true, new String[0],
-			serviceContext);
+			null, userId, title, content, 1, 1, 2008, 0, 0, true, true,
+			new String[0], serviceContext);
 	}
 
 	protected DLFileEntry addDLFileEntry(
@@ -174,12 +174,13 @@ public class StartupAction extends SimpleAction {
 		try {
 			return DLFileEntryLocalServiceUtil.addFileEntry(
 				null, userId, groupId, folderId, name, title, description,
-				StringPool.BLANK, bytes, serviceContext);
+				StringPool.BLANK, StringPool.BLANK, bytes, serviceContext);
 		}
 		catch (DuplicateFileException dfe) {
 			return DLFileEntryLocalServiceUtil.updateFileEntry(
 				userId, groupId, folderId, folderId, name, null, title,
-				description, StringPool.BLANK, bytes, serviceContext);
+				description, StringPool.BLANK, true, StringPool.BLANK, bytes,
+				serviceContext);
 		}
 	}
 
