@@ -39,7 +39,7 @@ public class WorkflowLogImpl extends DefaultWorkflowLog {
 		return _taskInstance;
 	}
 
-	public long getWorkflowInstanceId() {
+	public long getWorkflowTaskId() {
 		return _taskInstance.getId();
 	}
 
