@@ -36,7 +36,6 @@ import java.io.ByteArrayInputStream;
 import java.util.List;
 
 /**
- *
  * <a href="WorkflowLogManagerTestCase.java.html"><b><i>View Source</i></b></a>
  *
  * @author Shuyang Zhou

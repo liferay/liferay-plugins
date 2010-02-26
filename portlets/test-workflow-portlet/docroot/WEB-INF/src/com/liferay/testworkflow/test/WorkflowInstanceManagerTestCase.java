@@ -203,7 +203,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(1, context1.size());
 		assertEquals("success", context1.get("javaNode11"));
 
-		assertEquals("State1-1", workflowInstance1.getCurrentNodeName());
+		assertEquals("State1-1", workflowInstance1.getState());
 		assertNull(workflowInstance1.getEndDate());
 		assertNull(workflowInstance1.getParentWorkflowInstance());
 		assertNotNull(workflowInstance1.getStartDate());
@@ -230,7 +230,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(1, context2.size());
 		assertEquals("success", context2.get("javaNode21"));
 
-		assertEquals("taskNode3", workflowInstance2.getCurrentNodeName());
+		assertEquals("taskNode3", workflowInstance2.getState());
 		assertNull(workflowInstance2.getEndDate());
 		assertNull(workflowInstance2.getParentWorkflowInstance());
 		assertNotNull(workflowInstance2.getStartDate());
@@ -267,8 +267,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(1, context3_1.size());
 		assertEquals("success", context3_1.get("javaNode31"));
 
-		assertEquals(
-			"taskNode1", childWorkflowInstance3_1.getCurrentNodeName());
+		assertEquals("taskNode1", childWorkflowInstance3_1.getState());
 		assertNull(childWorkflowInstance3_1.getEndDate());
 		assertEquals(
 			workflowInstanceId3,
@@ -294,8 +293,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(1, context3_2.size());
 		assertEquals("success", context3_2.get("javaNode31"));
 
-		assertEquals(
-			"taskNode2", childWorkflowInstance3_2.getCurrentNodeName());
+		assertEquals("taskNode2", childWorkflowInstance3_2.getState());
 		assertNull(childWorkflowInstance3_2.getEndDate());
 		assertEquals(
 			workflowInstanceId3,
@@ -321,8 +319,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(1, context3_3.size());
 		assertEquals("success", context3_3.get("javaNode31"));
 
-		assertEquals(
-			"taskNode3", childWorkflowInstance3_3.getCurrentNodeName());
+		assertEquals("taskNode3", childWorkflowInstance3_3.getState());
 		assertNull(childWorkflowInstance3_3.getEndDate());
 		assertEquals(
 			workflowInstanceId3,
@@ -341,7 +338,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(1, context3.size());
 		assertEquals("success", context3.get("javaNode31"));
 
-		assertEquals("forkNode", workflowInstance3.getCurrentNodeName());
+		assertEquals("forkNode", workflowInstance3.getState());
 		assertNull(workflowInstance3.getEndDate());
 		assertNull(workflowInstance3.getParentWorkflowInstance());
 		assertNotNull(workflowInstance3.getStartDate());
@@ -536,7 +533,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(1, context1.size());
 		assertEquals("success", context1.get("javaNode11"));
 
-		assertEquals("end", workflowInstance1.getCurrentNodeName());
+		assertEquals("end", workflowInstance1.getState());
 		assertNotNull(workflowInstance1.getEndDate());
 		assertNull(workflowInstance1.getParentWorkflowInstance());
 		assertNotNull(workflowInstance1.getStartDate());
@@ -558,7 +555,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(1, context2.size());
 		assertEquals("success", context2.get("javaNode11"));
 
-		assertEquals("end", workflowInstance2.getCurrentNodeName());
+		assertEquals("end", workflowInstance2.getState());
 		assertNotNull(workflowInstance2.getEndDate());
 		assertNull(workflowInstance2.getParentWorkflowInstance());
 		assertNotNull(workflowInstance2.getStartDate());
@@ -588,7 +585,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(1, context3.size());
 		assertEquals("success", context3.get("javaNode11"));
 
-		assertEquals("end", workflowInstance3.getCurrentNodeName());
+		assertEquals("end", workflowInstance3.getState());
 		assertNotNull(workflowInstance3.getEndDate());
 		assertNull(workflowInstance3.getParentWorkflowInstance());
 		assertNotNull(workflowInstance3.getStartDate());
@@ -619,7 +616,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(1, context4.size());
 		assertEquals("success", context4.get("javaNode11"));
 
-		assertEquals("State1-1", workflowInstance4.getCurrentNodeName());
+		assertEquals("State1-1", workflowInstance4.getState());
 		assertNull(workflowInstance4.getEndDate());
 		assertNull(workflowInstance4.getParentWorkflowInstance());
 		assertNotNull(workflowInstance4.getStartDate());
@@ -650,7 +647,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(1, context5.size());
 		assertEquals("success", context5.get("javaNode21"));
 
-		assertEquals("end", workflowInstance5.getCurrentNodeName());
+		assertEquals("end", workflowInstance5.getState());
 		assertNotNull(workflowInstance5.getEndDate());
 		assertNull(workflowInstance5.getParentWorkflowInstance());
 		assertNotNull(workflowInstance5.getStartDate());
@@ -681,7 +678,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(1, context6.size());
 		assertEquals("success", context6.get("javaNode21"));
 
-		assertEquals("taskNode3", workflowInstance6.getCurrentNodeName());
+		assertEquals("taskNode3", workflowInstance6.getState());
 		assertNull(workflowInstance6.getEndDate());
 		assertNull(workflowInstance6.getParentWorkflowInstance());
 		assertNotNull(workflowInstance6.getStartDate());
@@ -721,13 +718,13 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 				defaultUserId, _workflowDefinition4.getName(),
 				_workflowDefinition4.getVersion(), null, null);
 
-		assertEquals("Switch", workflowInstance.getCurrentNodeName());
+		assertEquals("Switch", workflowInstance.getState());
 
 		workflowInstance = WorkflowInstanceManagerUtil.signalWorkflowInstance(
 			defaultUserId, workflowInstance.getWorkflowInstanceId(), "toState1",
 			null);
 
-		assertEquals("State1", workflowInstance.getCurrentNodeName());
+		assertEquals("State1", workflowInstance.getState());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
 			workflowInstance.getWorkflowInstanceId());
@@ -738,13 +735,13 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 			defaultUserId, _workflowDefinition4.getName(),
 			_workflowDefinition4.getVersion(), null, null);
 
-		assertEquals("Switch", workflowInstance.getCurrentNodeName());
+		assertEquals("Switch", workflowInstance.getState());
 
 		workflowInstance = WorkflowInstanceManagerUtil.signalWorkflowInstance(
 			defaultUserId, workflowInstance.getWorkflowInstanceId(), "toState2",
 			null);
 
-		assertEquals("State2", workflowInstance.getCurrentNodeName());
+		assertEquals("State2", workflowInstance.getState());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
 			workflowInstance.getWorkflowInstanceId());
@@ -755,13 +752,13 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 			defaultUserId, _workflowDefinition4.getName(),
 			_workflowDefinition4.getVersion(), null, null);
 
-		assertEquals("Switch", workflowInstance.getCurrentNodeName());
+		assertEquals("Switch", workflowInstance.getState());
 
 		workflowInstance = WorkflowInstanceManagerUtil.signalWorkflowInstance(
 			defaultUserId, workflowInstance.getWorkflowInstanceId(), "toState3",
 			null);
 
-		assertEquals("State3", workflowInstance.getCurrentNodeName());
+		assertEquals("State3", workflowInstance.getState());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
 			workflowInstance.getWorkflowInstanceId());
@@ -785,7 +782,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(1, context1.size());
 		assertEquals("success", context1.get("javaNode11"));
 
-		assertEquals("State1-1", workflowInstance1.getCurrentNodeName());
+		assertEquals("State1-1", workflowInstance1.getState());
 		assertNull(workflowInstance1.getEndDate());
 		assertNull(workflowInstance1.getParentWorkflowInstance());
 		assertNotNull(workflowInstance1.getStartDate());
@@ -811,7 +808,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(1, context2.size());
 		assertEquals("success", context2.get("javaNode21"));
 
-		assertEquals("taskNode3", workflowInstance2.getCurrentNodeName());
+		assertEquals("taskNode3", workflowInstance2.getState());
 		assertNull(workflowInstance2.getEndDate());
 		assertNull(workflowInstance2.getParentWorkflowInstance());
 		assertNotNull(workflowInstance2.getStartDate());
@@ -837,7 +834,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(1, context3.size());
 		assertEquals("success", context3.get("javaNode31"));
 
-		assertEquals("forkNode", workflowInstance3.getCurrentNodeName());
+		assertEquals("forkNode", workflowInstance3.getState());
 		assertNull(workflowInstance3.getEndDate());
 		assertNull(workflowInstance3.getParentWorkflowInstance());
 		assertNotNull(workflowInstance3.getStartDate());
