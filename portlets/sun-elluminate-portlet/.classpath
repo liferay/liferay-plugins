@@ -5,10 +5,10 @@
 	<classpathentry kind="src" path="/portal" />
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
 	<classpathentry kind="lib" path="/portal/lib/development/activation.jar" />
+	<classpathentry kind="lib" path="/portal/lib/development/annotations.jar" />
 	<classpathentry kind="lib" path="/portal/lib/development/jsp-api.jar" />
 	<classpathentry kind="lib" path="/portal/lib/development/mail.jar" />
 	<classpathentry kind="lib" path="/portal/lib/development/servlet-api.jar" />
-	<classpathentry kind="lib" path="/portal/lib/global/annotations.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/log4j.jar" />
@@ -17,17 +17,17 @@
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/activation-1.1.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jaxb-api-2.0.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jaxb-impl-2.0EA3.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jaxb-xjc-2.0EA3.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jaxws-api-2.0.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jaxws-rt-2.0-SNAPSHOT.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jsr173_api-1.0.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jsr181-api-1.0-MR1.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/saaj-api-1.3.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/saaj-impl-1.3.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/sjsxp-1.0.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/stax-api-1.0.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/activation-1.1.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/jaxb-api-2.0.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/jaxb-impl-2.0EA3.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/jaxb-xjc-2.0EA3.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/jaxws-api-2.0.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/jaxws-rt-2.0-SNAPSHOT.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/jsr173_api-1.0.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/jsr181-api-1.0-MR1.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/saaj-api-1.3.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/saaj-impl-1.3.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/sjsxp-1.0.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/stax-api-1.0.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>

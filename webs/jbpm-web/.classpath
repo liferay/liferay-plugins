@@ -4,8 +4,8 @@
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/src" />
 	<classpathentry kind="src" path="/portal" />
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
-	<classpathentry kind="lib" path="/portal/lib/development/annotations.jar" />
 	<classpathentry kind="lib" path="/portal/lib/development/activation.jar" />
+	<classpathentry kind="lib" path="/portal/lib/development/annotations.jar" />
 	<classpathentry kind="lib" path="/portal/lib/development/jsp-api.jar" />
 	<classpathentry kind="lib" path="/portal/lib/development/mail.jar" />
 	<classpathentry kind="lib" path="/portal/lib/development/servlet-api.jar" />
