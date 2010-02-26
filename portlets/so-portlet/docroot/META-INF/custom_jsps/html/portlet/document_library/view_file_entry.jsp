@@ -364,9 +364,9 @@ if (Validator.isNull(fileEntry.getVersion())) {
 			<li class="action-download">
 				<span>
 					<liferay-ui:icon
-						image='<%= "../document_library/" + extension %>'
-						message="<%= extension.toUpperCase() %>"
-						url='<%= themeDisplay.getPathMain() + "/document_library/get_file?p_l_id=" + themeDisplay.getPlid() + "&folderId=" + folderId + "&name=" + HttpUtil.encodeURL(name) %>'
+						image='<%= "../file_system/small/" + extension %>'
+						message="<%= conversion.toUpperCase() %>"
+						url='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/document/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(fileEntry.getTitle()) + "?version=" + fileVersion.getVersion() + "&targetExtension=" + conversion %>'
 						label="<%= true %>"
 					/>
 
@@ -377,9 +377,9 @@ if (Validator.isNull(fileEntry.getVersion())) {
 
 						<span>
 							<liferay-ui:icon
-								image='<%= "../document_library/" + conversion %>'
+								image='<%= "../file_system/small/" + conversion %>'
 								message="<%= conversion.toUpperCase() %>"
-								url='<%= themeDisplay.getPathMain() + "/document_library/get_file?p_l_id=" + themeDisplay.getPlid() + "&folderId=" + folderId + "&name=" + HttpUtil.encodeURL(name) + "&targetExtension=" + conversion %>'
+								url='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/document/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(fileEntry.getTitle()) + "?version=" + fileVersion.getVersion() + "&targetExtension=" + conversion %>'
 								label="<%= true %>"
 							/>
 						</span>
@@ -532,7 +532,7 @@ if (Validator.isNull(fileEntry.getVersion())) {
 						<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
 							<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
 							<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-							<portlet:param name="redirect" value="<%= currentURL %>" />
+							<portlet:param name="redirect" value="<%= redirect %>" />
 							<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
 							<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
 						</portlet:actionURL>
@@ -591,6 +591,18 @@ if (Validator.isNull(fileEntry.getVersion())) {
 				}
 			}
 		);
+	}
+
+	function <portlet:namespace />lock() {
+		submitForm(document.hrefFm, "<portlet:actionURL><portlet:param name="struts_action" value="/document_library/edit_file_entry" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.LOCK %>" /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" /><portlet:param name="name" value="<%= name %>" /></portlet:actionURL>");
+	}
+
+	function <portlet:namespace />selectFolder(folderId, folderName) {
+		submitForm(document.hrefFm, "<portlet:actionURL><portlet:param name="struts_action" value="/document_library/edit_file_entry" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.MOVE %>" /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" /><portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" /></portlet:actionURL>&<portlet:namespace />newFolderId=" + folderId);
+	}
+
+	function <portlet:namespace />unlock() {
+		submitForm(document.hrefFm, "<portlet:actionURL><portlet:param name="struts_action" value="/document_library/edit_file_entry" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UNLOCK %>" /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" /><portlet:param name="name" value="<%= name %>" /></portlet:actionURL>");
 	}
 
 	function <portlet:namespace />updateRowsChecked(element) {
