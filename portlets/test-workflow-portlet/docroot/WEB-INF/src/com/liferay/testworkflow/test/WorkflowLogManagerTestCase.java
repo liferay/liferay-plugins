@@ -70,7 +70,7 @@ public class WorkflowLogManagerTestCase extends WorkflowTestCase {
 				_workflowDefinition.getVersion(), null, null);
 
 		workflowInstance = WorkflowInstanceManagerUtil.getWorkflowInstance(
-				workflowInstance.getWorkflowInstanceId());
+			workflowInstance.getWorkflowInstanceId());
 
 		List<WorkflowInstance> childrenWorkflowInstances =
 			workflowInstance.getChildrenWorkflowInstances();
@@ -78,7 +78,7 @@ public class WorkflowLogManagerTestCase extends WorkflowTestCase {
 		assertEquals(3, childrenWorkflowInstances.size());
 
 		for (WorkflowInstance childWorkflowInstance :
-			childrenWorkflowInstances) {
+				childrenWorkflowInstances) {
 
 			List<WorkflowTask> childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
@@ -116,7 +116,7 @@ public class WorkflowLogManagerTestCase extends WorkflowTestCase {
 				_workflowDefinition.getVersion(), null, null);
 
 		workflowInstance = WorkflowInstanceManagerUtil.getWorkflowInstance(
-				workflowInstance.getWorkflowInstanceId());
+			workflowInstance.getWorkflowInstanceId());
 
 		List<WorkflowInstance> childrenWorkflowInstances =
 			workflowInstance.getChildrenWorkflowInstances();
@@ -124,7 +124,7 @@ public class WorkflowLogManagerTestCase extends WorkflowTestCase {
 		assertEquals(3, childrenWorkflowInstances.size());
 
 		for (WorkflowInstance childWorkflowInstance :
-			childrenWorkflowInstances) {
+				childrenWorkflowInstances) {
 
 			List<WorkflowTask> childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
@@ -148,11 +148,9 @@ public class WorkflowLogManagerTestCase extends WorkflowTestCase {
 				childWorkflowTask.getAssigneeUserId(),
 				childWorkflowTask.getWorkflowTaskId(), null, null, null);
 
-			childWorkflowLogs =
-				WorkflowLogManagerUtil.getWorkflowLogs(
-					childWorkflowTask.getWorkflowTaskId(), QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS,
-					new WorkflowLogCreateDateComparator(true));
+			childWorkflowLogs = WorkflowLogManagerUtil.getWorkflowLogs(
+				childWorkflowTask.getWorkflowTaskId(), QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, new WorkflowLogCreateDateComparator(true));
 
 			assertTrue(!childWorkflowLogs.isEmpty());
 		}
