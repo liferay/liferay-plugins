@@ -406,7 +406,10 @@ public class StartupAction extends SimpleAction {
 
 		long[] userGroupIds = null;
 		boolean sendEmail = false;
+
 		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setScopeGroupId(guestGroup.getGroupId());
 
 		User user = UserLocalServiceUtil.addUser(
 			creatorUserId, companyId, autoPassword, password1, password2,
