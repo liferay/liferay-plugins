@@ -1,94 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jalopy>
-    <internal>
-        <version>6</version>
-    </internal>
-    <printer>
-        <blanklines>
-            <after>
-                <header>1</header>
-                <lastImport>1</lastImport>
-            </after>
-        </blanklines>
-        <comments>
-            <javadoc>
-                <generate>
-                    <class>1</class>
-                </generate>
-                <templates>
-                    <class>/**
+<internal>
+<version>6</version>
+</internal>
+<printer>
+<blanklines>
+<after>
+<header>1</header>
+<lastImport>1</lastImport>
+</after>
+</blanklines>
+<comments>
+<javadoc>
+<generate>
+<class>1</class>
+</generate>
+<templates>
+<class>/**
  * &lt;a href="$fileName$.html"&gt;&lt;b&gt;&lt;i&gt;View Source&lt;/i&gt;&lt;/b&gt;&lt;/a&gt;
  *
  * @author $author$
- *
- */</class>
-                    <interface>/**
+*/</class>
+<interface>/**
  * &lt;a href="$fileName$.html"&gt;&lt;b&gt;&lt;i&gt;View Source&lt;/i&gt;&lt;/b&gt;&lt;/a&gt;
  *
  * @author $author$
- *
- */</interface>
-                </templates>
-            </javadoc>
-            <remove>
-                <javadoc>true</javadoc>
-                <multiline>true</multiline>
-                <singleline>true</singleline>
-            </remove>
-        </comments>
-        <header>
-            <text>/**
+*/</interface>
+</templates>
+</javadoc>
+<remove>
+<multiline>true</multiline>
+<singleline>true</singleline>
+</remove>
+</comments>
+<header>
+<text>/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
  */</text>
-            <use>true</use>
-        </header>
-        <indentation>
-            <sizes>
-                <braceRightAfter>0</braceRightAfter>
-                <tabs>4</tabs>
-            </sizes>
-            <tabs>
-                <enable>true</enable>
-            </tabs>
-        </indentation>
-        <misc>
-            <insertTrailingNewline>false</insertTrailingNewline>
-        </misc>
-        <sorting>
-            <declaration>
-                <enable>false</enable>
-            </declaration>
-        </sorting>
-        <whitespace>
-            <after>
-                <typeCast>false</typeCast>
-            </after>
-        </whitespace>
-        <wrapping>
-            <always>
-                <after>
-                    <braceRight>true</braceRight>
-                </after>
-            </always>
-        </wrapping>
-    </printer>
+<use>true</use>
+</header>
+<indentation>
+<sizes>
+<braceRightAfter>0</braceRightAfter>
+<tabs>4</tabs>
+</sizes>
+<tabs>
+<enable>true</enable>
+</tabs>
+</indentation>
+<misc>
+<insertTrailingNewline>false</insertTrailingNewline>
+</misc>
+<sorting>
+<declaration>
+<enable>false</enable>
+</declaration>
+</sorting>
+<whitespace>
+<after>
+<typeCast>false</typeCast>
+</after>
+</whitespace>
+<wrapping>
+<always>
+<after>
+<braceRight>true</braceRight>
+</after>
+</always>
+</wrapping>
+</printer>
 </jalopy>
-
