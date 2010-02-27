@@ -23,7 +23,7 @@
 
 <a class="aui-helper-hidden-accessible" href="#mainContent">#language ("go-to-content")</a>
 
-#if($is_signed_in)
+#if($is_signed_in && !$is_maximized)
 	#dockbar()
 #end
 
