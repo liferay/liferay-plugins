@@ -20,7 +20,6 @@ package com.liferay.so.service.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
-
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.ProjectsEntryEndDateException;
 import com.liferay.so.ProjectsEntryStartDateException;
