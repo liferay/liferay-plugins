@@ -316,7 +316,7 @@ public class StartupAction extends SimpleAction {
 		return MBMessageLocalServiceUtil.addMessage(
 			userId, userName, groupId, categoryId, threadId, parentMessageId,
 			subject, body, new ArrayList<ObjectValuePair<String, byte[]>>(),
-			false, -1.0, serviceContext);
+			false, -1.0, true, serviceContext);
 	}
 
 	public String addPortletId(Layout layout, String portletId, String columnId)
