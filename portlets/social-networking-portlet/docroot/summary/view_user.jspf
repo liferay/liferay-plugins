@@ -14,6 +14,14 @@
  */
 %>
 
+<%
+String publicServletMapping = PropsUtil.get(PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING);
+Group guestGroup = GroupLocalServiceUtil.getGroup(themeDisplay.getCompanyId(), GroupConstants.GUEST);
+
+String blogsURL = themeDisplay.getPathContext() + publicServletMapping + StringPool.FORWARD_SLASH + user2.getScreenName() + PortletProps.get("summary.blogs.page.friendly.url");
+String mbURL = themeDisplay.getPathContext() + publicServletMapping + guestGroup.getFriendlyURL() + PortletProps.get("summary.message.board.page.friendly.url");
+%>
+
 <c:choose>
 	<c:when test="<%= windowState.equals(WindowState.NORMAL) || !UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
 		<div class="summary-container">
@@ -106,13 +114,13 @@
 				<td>
 
 					<%
-					int mbMessagesCount = MBStatsUserLocalServiceUtil.getStatsUser(14, user2.getUserId()).getMessageCount();
+					int mbMessagesCount = MBStatsUserLocalServiceUtil.getStatsUser(guestGroup.getGroupId(), user2.getUserId()).getMessageCount();
 					%>
 
 					<liferay-ui:icon
 						image="view"
 						message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>'
-						url='<%= themeDisplay.getPathContext() + "/web/guest/community/forums/-/message_boards/recent_posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
+						url='<%= mbURL %>'
 						label="<%= true %>"
 					/>
 				</td>
@@ -134,14 +142,14 @@
 						<liferay-ui:icon
 							image="view"
 							message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>'
-							url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog" %>'
+							url='<%= blogsURL %>'
 							label="<%= true %>"
 						/>
 					</td>
 					<td>
 						<liferay-ui:icon
 							image="rss"
-							url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog/-/blogs/rss" %>'
+							url='<%= blogsURL + "/-/blogs/rss" %>'
 						/>
 					</td>
 				</tr>
