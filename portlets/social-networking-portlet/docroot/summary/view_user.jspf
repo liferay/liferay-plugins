@@ -19,7 +19,7 @@ String publicServletMapping = PropsUtil.get(PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC
 Group guestGroup = GroupLocalServiceUtil.getGroup(themeDisplay.getCompanyId(), GroupConstants.GUEST);
 
 String blogsURL = themeDisplay.getPathContext() + publicServletMapping + StringPool.FORWARD_SLASH + user2.getScreenName() + PortletProps.get("summary.blogs.page.friendly.url");
-String mbURL = themeDisplay.getPathContext() + publicServletMapping + guestGroup.getFriendlyURL() + PortletProps.get("summary.message.board.page.friendly.url");
+String mbURL = themeDisplay.getPathContext() + publicServletMapping + guestGroup.getFriendlyURL() + PortletProps.get("summary.message.board.page.friendly.url") + "/-/message_boards/recent-posts?_19_groupThreadsUserId=" + user2.getUserId();
 %>
 
 <c:choose>
