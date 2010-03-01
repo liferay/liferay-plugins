@@ -149,7 +149,7 @@ public class StartupAction extends SimpleAction {
 		String content = getString("/blogs/" + fileName);
 
 		return BlogsEntryLocalServiceUtil.addEntry(
-			null, userId, title, content, 1, 1, 2008, 0, 0, true, true,
+			null, userId, title, content, 1, 1, 2008, 0, 0, false, false,
 			new String[0], serviceContext);
 	}
 
@@ -316,7 +316,7 @@ public class StartupAction extends SimpleAction {
 		return MBMessageLocalServiceUtil.addMessage(
 			userId, userName, groupId, categoryId, threadId, parentMessageId,
 			subject, body, new ArrayList<ObjectValuePair<String, byte[]>>(),
-			false, -1.0, true, serviceContext);
+			false, -1.0, false, serviceContext);
 	}
 
 	public String addPortletId(Layout layout, String portletId, String columnId)
