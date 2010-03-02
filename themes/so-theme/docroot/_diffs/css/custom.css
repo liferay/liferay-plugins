@@ -6,7 +6,10 @@ body {
 	color: #403638;
 }
 
-a {
+a,
+a:visited,
+a:active {
+	color: #369;
 	text-decoration: none;
 }
 
@@ -224,7 +227,7 @@ body #banner h1.logo a {
 	border-bottom: 4px solid #7F80A4;
 	color: #8F0920;
 	font-size: 18px;
-	padding-bottom: 5px;
+	font-weight: bold;
 }
 
 .portlet-icons {
@@ -319,21 +322,6 @@ body #banner h1.logo a {
 
 .ui-autocomplete-results li {
 	padding: 5px;
-}
-
-/* Breadcrumbs */
-
-.breadcrumbs .last {
-	display: block;
-	font-size: 2.5em;
-	font-weight: bold;
-	line-height: 1em;
-}
-
-.breadcrumbs .last,
-.breadcrumbs .last a {
-	color: #8F0920;
-	text-decoration: none;
 }
 
 /* Detail column */
@@ -539,66 +527,28 @@ textarea.focus {
 	background: #F0F5F7;
 }
 
-/* Popup Forms */
-
-.pop-set {
-	margin-bottom: 2em;
-}
-
-.pop-field {
-	margin-bottom: 1em;
-}
-
-.pop-field span {
-	color: #999;
-	font-weight: bold;
-	display: block;
-}
-
 /* Tabs */
 
-.ui-tabs {
+.aui-tabview-list {
 	background: #E8EFF4;
-	border: none;
-	margin: 0 0 4px;
-	padding: 0 0 0 10px;
 }
 
-.ui-tabs li a,
-.tabs li span {
-	background: transparent;
-	border: none;
-	border-left: 2px solid #E8EFF4;
-	border-right: 2px solid #E8EFF4;
-	color: #369;
-	padding: 5px 15px;
-	top: 0;
+.aui-tab-active {
+	background: #FFF;
+	border: 1px solid #C8C9CA;
 }
 
-.ui-tabs li.current a,
-.ui-tabs li.current span {
-	border: none;
-	border-left: 2px solid #B0BAFF;
-	border-right: 2px solid #B0BAFF;
-	color: #000;
-	font-weight: normal;
+.aui-tab-active,
+.aui-tab-active a {
+	text-shadow: none;
 }
 
-.ui-tabs li a:hover,
-.tabs li span:hover {
-	background: none;
-	color: #369;
-}
+background: #E8EFF4;
 
-.ie6 .ui-tabs li.current a,
-.ie6 .ui-tabs li.current span {
-	padding-bottom: 5px;
-}
+/* Taglib */
 
-.ie6 .ui-tabs li a,
-.ie6 .tabs li span {
-	border-bottom: none;
-	padding-bottom: 5px;
+.taglib-icon .taglib-text {
+	text-decoration: none;
 }
 
 /* ---------- Portlet ---------- */
@@ -1115,6 +1065,11 @@ table.calendar {
 	margin-bottom: .3em;
 }
 
+.portlet-document-library .file-entry-title span {
+	color: #999;
+	font-size: .5em;
+}
+
 .portlet-document-library .folder-description {
 	color: #999;
 	margin-bottom: 1em;
@@ -1580,7 +1535,7 @@ table.calendar {
 	padding: 0 16px 0 0;
 	position: absolute;
 	right: 5px;
-	top: 3px;
+	top: 9px;
 }
 
 .so-portlet-sites .actions {
