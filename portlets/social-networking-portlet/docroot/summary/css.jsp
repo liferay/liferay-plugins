@@ -50,6 +50,7 @@
 
 .social-networking-portlet-summary .summary-container span {
 	color: #3D536C;
+	display: block;
 	font-size: 10px;
 	font-weight: bold;
 	text-transform: uppercase;
