@@ -25,11 +25,17 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "general");
 
 String redirect = ParamUtil.getString(request, "redirect");
 
-boolean showCategories = ParamUtil.getBoolean(request, "showCategories", false);
-
 MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_CATEGORY);
 
-long categoryId = BeanParamUtil.getLong(category, request, "categoryId", MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID);
+long categoryId = BeanParamUtil.getLong(category, request, "mbCategoryId", MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID);
+
+boolean defaultShowCategories = false;
+
+if (categoryId == MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID) {
+	defaultShowCategories = true;
+}
+
+boolean showCategories = ParamUtil.getBoolean(request, "showCategories", defaultShowCategories);
 
 MBCategoryDisplay categoryDisplay = new MBCategoryDisplayImpl(scopeGroupId, categoryId);
 
@@ -61,7 +67,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setParameter("struts_action", "/message_boards/view");
 portletURL.setParameter("tabs1", tabs1);
 portletURL.setParameter("tabs2", tabs2);
-portletURL.setParameter("categoryId", String.valueOf(categoryId));
+portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 %>
 
 <liferay-util:include page="/html/portlet/message_boards/tabs1.jsp" />
@@ -72,7 +78,9 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 	<c:when test='<%= tabs1.equals("categories") %>'>
 		<c:if test="<%= category != null %>">
 			<div class="breadcrumbs">
-				List goes here.
+				<%= getCategoryBreadcrumb(category.getParentCategoryId(), pageContext, renderResponse) %>
+
+				<h6><%= category.getName() %></h6>
 			</div>
 		</c:if>
 
@@ -89,7 +97,7 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 			headerNames.add("category");
 			headerNames.add(StringPool.BLANK);
 
-			SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
+			SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", SearchContainer.DEFAULT_DELTA, portletURL, headerNames, "there-are-no-categories");
 
 			List results = categoryDisplay.getCategories();
 
@@ -117,7 +125,7 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 				PortletURL rowURL = renderResponse.createRenderURL();
 
 				rowURL.setParameter("struts_action", "/message_boards/view");
-				rowURL.setParameter("categoryId", String.valueOf(curCategory.getCategoryId()));
+				rowURL.setParameter("mbCategoryId", String.valueOf(curCategory.getCategoryId()));
 
 				// Name and description
 
@@ -173,7 +181,7 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 						for (int j = 0; j < subcategories.size(); j++) {
 							MBCategory subcategory = (MBCategory)subcategories.get(j);
 
-							rowURL.setParameter("categoryId", String.valueOf(subcategory.getCategoryId()));
+							rowURL.setParameter("mbCategoryId", String.valueOf(subcategory.getCategoryId()));
 
 							sb.append("<a href=\"");
 							sb.append(rowURL);
@@ -187,7 +195,7 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 						}
 
 						if (subcategoriesCount > subcategories.size()) {
-							rowURL.setParameter("categoryId", String.valueOf(curCategory.getCategoryId()));
+							rowURL.setParameter("mbCategoryId", String.valueOf(curCategory.getCategoryId()));
 
 							sb.append(", <a href=\"");
 							sb.append(rowURL);
@@ -201,7 +209,7 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 
 						sb.append("</span>");
 
-						rowURL.setParameter("categoryId", String.valueOf(curCategory.getCategoryId()));
+						rowURL.setParameter("mbCategoryId", String.valueOf(curCategory.getCategoryId()));
 					}
 				}
 
@@ -222,7 +230,44 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 
 				resultRows.add(row);
 			}
+
+			boolean showAddCategoryButton = MBCategoryPermission.contains(permissionChecker, scopeGroupId, categoryId, ActionKeys.ADD_CATEGORY);
+			boolean showPermissionsButton = GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS);
 			%>
+
+			<c:if test="<%= showAddCategoryButton || showPermissionsButton %>">
+				<div>
+					<c:if test="<%= showAddCategoryButton %>">
+						<input type="button" value="<liferay-ui:message key='<%= (category == null) ? "add-category" : "add-subcategory" %>' />" onClick="<portlet:namespace />addCategory();" />
+					</c:if>
+
+					<c:if test="<%= showPermissionsButton %>">
+
+						<%
+						String modelResource = "com.liferay.portlet.messageboards";
+						String modelResourceDescription = themeDisplay.getScopeGroupName();
+						String resourcePrimKey = String.valueOf(scopeGroupId);
+
+						if (category != null) {
+							modelResource = MBCategory.class.getName();
+							modelResourceDescription = category.getName();
+							resourcePrimKey = String.valueOf(category.getCategoryId());
+						}
+						%>
+
+						<liferay-security:permissionsURL
+							modelResource="<%= modelResource %>"
+							modelResourceDescription="<%= HtmlUtil.escape(modelResourceDescription) %>"
+							resourcePrimKey="<%= resourcePrimKey %>"
+							var="permissionsURL"
+						/>
+
+						<input type="button" value="<liferay-ui:message key="permissions" />" onClick="location.href = '<%= permissionsURL %>';" />
+					</c:if>
+				</div>
+
+				<br />
+			</c:if>
 
 			<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
 
@@ -255,13 +300,13 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 			headerNames.add("last-post");
 			headerNames.add(StringPool.BLANK);
 
-			SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur2", SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
+			SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur2", SearchContainer.DEFAULT_DELTA, portletURL, headerNames, "there-are-no-threads");
 
-			int total = MBThreadLocalServiceUtil.getThreadsCount(categoryId);
+			int total = MBThreadLocalServiceUtil.getThreadsCount(scopeGroupId, categoryId, StatusConstants.APPROVED);
 
 			searchContainer.setTotal(total);
 
-			List results = MBThreadLocalServiceUtil.getThreads(categoryId, searchContainer.getStart(), searchContainer.getEnd());
+			List results = MBThreadLocalServiceUtil.getThreads(scopeGroupId, categoryId, StatusConstants.APPROVED, searchContainer.getStart(), searchContainer.getEnd());
 
 			searchContainer.setResults(results);
 
@@ -392,23 +437,11 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 					showAddMessageButton = false;
 				}
 			}
-
-			showSearchThread = false && (results.size() > 0);
 			%>
 
-			<c:if test="<%= showAddMessageButton || showSearchThread %>">
+			<c:if test="<%= showAddMessageButton %>">
 				<div>
-					<c:if test="<%= showSearchThread %>">
-						<label for="<portlet:namespace />keywords2"><liferay-ui:message key="search" /></label>
-
-						<input id="<portlet:namespace />keywords2" name="<portlet:namespace />keywords" size="30" type="text" />
-
-						<input type="submit" value="<liferay-ui:message key="search-this-category" />" />
-					</c:if>
-
-					<c:if test="<%= showAddMessageButton %>">
-						<input type="button" value="<liferay-ui:message key="post-new-thread" />" onClick="<portlet:namespace />addMessage();" />
-					</c:if>
+					<input type="button" value="<liferay-ui:message key="post-new-thread" />" onClick="<portlet:namespace />addMessage();" />
 				</div>
 
 				<br />
@@ -420,7 +453,7 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 
 			<script type="text/javascript">
 				function <portlet:namespace />addMessage() {
-					var url = '<portlet:renderURL><portlet:param name="struts_action" value="/message_boards/edit_message" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="categoryId" value="<%= String.valueOf(categoryId) %>" /></portlet:renderURL>';
+					var url = '<portlet:renderURL><portlet:param name="struts_action" value="/message_boards/edit_message" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="mbCategoryId" value="<%= String.valueOf(categoryId) %>" /></portlet:renderURL>';
 
 					if (document.<portlet:namespace />fm2.<portlet:namespace />keywords) {
 						url += '&<portlet:namespace />subject=' + document.<portlet:namespace />fm2.<portlet:namespace />keywords.value;
@@ -505,7 +538,7 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 				PortletURL rowURL = renderResponse.createRenderURL();
 
 				rowURL.setParameter("struts_action", "/message_boards/view");
-				rowURL.setParameter("categoryId", String.valueOf(curCategory.getCategoryId()));
+				rowURL.setParameter("mbCategoryId", String.valueOf(curCategory.getCategoryId()));
 
 				// Name and description
 
@@ -583,29 +616,29 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 		List results = null;
 
 		if (tabs1.equals("my_posts")) {
-			int total = MBThreadLocalServiceUtil.getGroupThreadsCount(scopeGroupId, groupThreadsUserId);
+			int total = MBThreadLocalServiceUtil.getGroupThreadsCount(scopeGroupId, groupThreadsUserId, StatusConstants.APPROVED);
 
 			searchContainer.setTotal(total);
 
-			results = MBThreadLocalServiceUtil.getGroupThreads(scopeGroupId, groupThreadsUserId, searchContainer.getStart(), searchContainer.getEnd());
+			results = MBThreadLocalServiceUtil.getGroupThreads(scopeGroupId, groupThreadsUserId, StatusConstants.APPROVED, searchContainer.getStart(), searchContainer.getEnd());
 
 			searchContainer.setResults(results);
 		}
 		else if (tabs1.equals("my_subscriptions")) {
-			int total = MBThreadLocalServiceUtil.getGroupThreadsCount(scopeGroupId, groupThreadsUserId, true);
+			int total = MBThreadLocalServiceUtil.getGroupThreadsCount(scopeGroupId, groupThreadsUserId, StatusConstants.APPROVED, true);
 
 			searchContainer.setTotal(total);
 
-			results = MBThreadLocalServiceUtil.getGroupThreads(scopeGroupId, groupThreadsUserId, true, searchContainer.getStart(), searchContainer.getEnd());
+			results = MBThreadLocalServiceUtil.getGroupThreads(scopeGroupId, groupThreadsUserId, StatusConstants.APPROVED, true, searchContainer.getStart(), searchContainer.getEnd());
 
 			searchContainer.setResults(results);
 		}
 		else if (tabs1.equals("recent_posts")) {
-			int total = MBThreadLocalServiceUtil.getGroupThreadsCount(scopeGroupId, groupThreadsUserId, false, false);
+			int total = MBThreadLocalServiceUtil.getGroupThreadsCount(scopeGroupId, groupThreadsUserId, StatusConstants.APPROVED, false, false);
 
 			searchContainer.setTotal(total);
 
-			results = MBThreadLocalServiceUtil.getGroupThreads(scopeGroupId, groupThreadsUserId, false, false, searchContainer.getStart(), searchContainer.getEnd());
+			results = MBThreadLocalServiceUtil.getGroupThreads(scopeGroupId, groupThreadsUserId, StatusConstants.APPROVED, false, false, searchContainer.getStart(), searchContainer.getEnd());
 
 			searchContainer.setResults(results);
 		}
@@ -752,7 +785,7 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 		<c:choose>
 			<c:when test='<%= tabs2.equals("general") %>'>
 				<liferay-ui:message key="num-of-categories" />: <%= numberFormat.format(categoryDisplay.getAllCategoriesCount()) %><br />
-				<liferay-ui:message key="num-of-posts" />: <%= numberFormat.format(MBMessageLocalServiceUtil.getGroupMessagesCount(scopeGroupId)) %><br />
+				<liferay-ui:message key="num-of-posts" />: <%= numberFormat.format(MBMessageLocalServiceUtil.getGroupMessagesCount(scopeGroupId, StatusConstants.APPROVED)) %><br />
 				<liferay-ui:message key="num-of-participants" />: <%= numberFormat.format(MBStatsUserLocalServiceUtil.getStatsUsersByGroupIdCount(scopeGroupId)) %>
 			</c:when>
 			<c:when test='<%= tabs2.equals("top-posters") %>'>

@@ -22,9 +22,15 @@
 <%
 MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_CATEGORY);
 
-long categoryId = BeanParamUtil.getLong(category, request, "categoryId", MBCategoryImpl.DEFAULT_PARENT_CATEGORY_ID);
+long categoryId = BeanParamUtil.getLong(category, request, "mbCategoryId", MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID);
 
-boolean showCategories = ParamUtil.getBoolean(request, "showCategories", false);
+boolean defaultShowCategories = false;
+
+if (categoryId == MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID) {
+	defaultShowCategories = true;
+}
+
+boolean showCategories = ParamUtil.getBoolean(request, "showCategories", defaultShowCategories);
 
 PortletURL tabs1URL = renderResponse.createRenderURL();
 %>
@@ -57,7 +63,7 @@ PortletURL tabs1URL = renderResponse.createRenderURL();
 			PortletURL viewCategoryURL = renderResponse.createRenderURL();
 
 			viewCategoryURL.setParameter("struts_action", "/message_boards/view");
-			viewCategoryURL.setParameter("categoryId", String.valueOf(curCategory.getCategoryId()));
+			viewCategoryURL.setParameter("mbCategoryId", String.valueOf(curCategory.getCategoryId()));
 		%>
 
 			<li>
@@ -73,7 +79,7 @@ PortletURL tabs1URL = renderResponse.createRenderURL();
 	<%
 	boolean showAddCategoryButton = MBCategoryPermission.contains(permissionChecker, scopeGroupId, categoryId, ActionKeys.ADD_CATEGORY);
 	boolean showPermissionsButton = GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS);
-	boolean defaultCategory = (categoryId == MBCategoryImpl.DEFAULT_PARENT_CATEGORY_ID);
+	boolean defaultCategory = (categoryId == MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID);
 	%>
 
 	<c:if test="<%= !defaultCategory %>">
@@ -89,7 +95,7 @@ PortletURL tabs1URL = renderResponse.createRenderURL();
 				<%
 				PortletURL toggleCategoriesURL = renderResponse.createRenderURL();
 
-				toggleCategoriesURL.setParameter("categoryId", String.valueOf(categoryId));
+				toggleCategoriesURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 				%>
 
 				<c:choose>

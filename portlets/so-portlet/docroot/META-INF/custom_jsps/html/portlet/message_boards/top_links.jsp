@@ -16,21 +16,3 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 %>
-
-<%@ include file="/html/portlet/message_boards/init.jsp" %>
-
-<%
-MBMessage message = (MBMessage)request.getAttribute(WebKeys.MESSAGE_BOARDS_MESSAGE);
-
-long categoryId = BeanParamUtil.getLong(message, request, "mbCategoryId");
-%>
-
-<liferay-util:include page="/html/portlet/message_boards/sidebar.jsp" />
-
-<div class="breadcrumbs">
-	<%= getCategoryBreadcrumb(categoryId, pageContext, renderResponse) %>
-
-	<h6><liferay-ui:message key='<%= message == null ? "add-message" : "edit-message" %>' /></h6>
-</div>
-
-<liferay-util:include page="/html/portlet/message_boards/edit_message.portal.jsp" />

@@ -26,11 +26,11 @@ String tabs1 = ParamUtil.getString(request, "tabs1", "categories");
 
 MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_CATEGORY);
 
-long categoryId = BeanParamUtil.getLong(category, request, "categoryId", MBCategoryImpl.DEFAULT_PARENT_CATEGORY_ID);
+long categoryId = BeanParamUtil.getLong(category, request, "mbCategoryId", MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID);
 %>
 
 <c:choose>
-	<c:when test='<%= (tabs1.equals("categories")) && (categoryId == MBCategoryImpl.DEFAULT_PARENT_CATEGORY_ID) %>'>
+	<c:when test='<%= (tabs1.equals("categories")) && (categoryId == MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID) %>'>
 		<h6><liferay-ui:message key="forums" /></h6>
 	</c:when>
 	<c:when test='<%= tabs1.equals("my_posts") %>'>
