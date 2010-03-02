@@ -23,7 +23,7 @@ includeFormTag = true;
 %>
 
 <%!
-public String getCategoryBreadcrumb(long categoryId, PageContext pageContext, RenderResponse renderResponse) throws Exception {
+public String getCategoryBreadcrumbs(long categoryId, PageContext pageContext, RenderResponse renderResponse) throws Exception {
 	PortletURL portletURL = renderResponse.createRenderURL();
 
 	portletURL.setWindowState(WindowState.NORMAL);

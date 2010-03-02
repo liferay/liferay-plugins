@@ -78,7 +78,7 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 	<c:when test='<%= tabs1.equals("categories") %>'>
 		<c:if test="<%= category != null %>">
 			<div class="breadcrumbs">
-				<%= getCategoryBreadcrumb(category.getParentCategoryId(), pageContext, renderResponse) %>
+				<%= getCategoryBreadcrumbs(category.getParentCategoryId(), pageContext, renderResponse) %>
 
 				<h6><%= category.getName() %></h6>
 			</div>

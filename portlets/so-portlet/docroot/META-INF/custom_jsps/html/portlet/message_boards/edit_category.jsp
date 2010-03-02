@@ -28,7 +28,7 @@ long parentCategoryId = BeanParamUtil.getLong(category, request, "parentCategory
 <liferay-util:include page="/html/portlet/message_boards/sidebar.jsp" />
 
 <div class="breadcrumbs">
-	<%= getCategoryBreadcrumb(parentCategoryId, pageContext, renderResponse) %>
+	<%= getCategoryBreadcrumbs(parentCategoryId, pageContext, renderResponse) %>
 
 	<h6><liferay-ui:message key='<%= category == null ? "add-category" : "edit-category" %>' /></h6>
 </div>

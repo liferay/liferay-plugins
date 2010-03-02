@@ -32,7 +32,7 @@ if (message != null) {
 <liferay-util:include page="/html/portlet/message_boards/sidebar.jsp" />
 
 <div class="breadcrumbs">
-	<%= getCategoryBreadcrumb(categoryId, pageContext, renderResponse) %>
+	<%= getCategoryBreadcrumbs(categoryId, pageContext, renderResponse) %>
 
 	<h6><liferay-ui:message key='<%= message == null ? "add-message" : "edit-message" %>' /></h6>
 </div>

@@ -30,7 +30,7 @@ MBCategory category = messageDisplay.getCategory();
 <liferay-util:include page="/html/portlet/message_boards/sidebar.jsp" />
 
 <div class="breadcrumbs">
-	<%= getCategoryBreadcrumb(message.getCategoryId(), pageContext, renderResponse) %>
+	<%= getCategoryBreadcrumbs(message.getCategoryId(), pageContext, renderResponse) %>
 
 	<h6><%= message.getSubject() %></h6>
 </div>
