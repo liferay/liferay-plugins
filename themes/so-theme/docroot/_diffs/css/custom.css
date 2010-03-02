@@ -526,6 +526,11 @@ textarea.focus {
 	background: #7F80A4;
 }
 
+.results-header th,
+.results-header td {
+	color: #FFF;
+}
+
 .results-row td {
 	background: #FFF;
 }
@@ -1146,10 +1151,6 @@ table.calendar {
 
 .portlet-document-library .results-grid {
 	margin-top: 1em;
-}
-
-.portlet-document-library .results-header {
-	display: none;
 }
 
 .portlet-document-library .result-data .locked {
