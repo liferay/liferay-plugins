@@ -101,6 +101,12 @@ if (portletDisplay.isWebDAVEnabled()) {
 
 UnicodeProperties extraSettingsProperties = fileEntry.getExtraSettingsProperties();
 
+String versionText = LanguageUtil.format(pageContext, "version-x", fileEntry.getVersion());
+
+if (Validator.isNull(fileEntry.getVersion())) {
+	versionText = LanguageUtil.get(pageContext, "not-approved");
+}
+
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("struts_action", strutsAction);
@@ -113,6 +119,12 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 %>
 
 <liferay-util:include page="/html/portlet/document_library/sidebar.jsp" />
+
+<div class="breadcrumbs">
+	<%= getFolderBreadcrumbs(folderId, pageContext, renderResponse) %>
+
+	<h6 class="file-entry-title"><%= fileEntry.getTitle() + " <span>" + versionText + "</span>" %></h6>
+</div>
 
 <c:if test="<%= isLocked.booleanValue() %>">
 	<c:choose>
@@ -133,16 +145,6 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 		</c:otherwise>
 	</c:choose>
 </c:if>
-
-<%
-String versionText = LanguageUtil.format(pageContext, "version-x", fileEntry.getVersion());
-
-if (Validator.isNull(fileEntry.getVersion())) {
-	versionText = LanguageUtil.get(pageContext, "not-approved");
-}
-%>
-
-<h6 class="file-entry-title"><%= fileEntry.getTitle() + " <span>" + versionText + "</span>" %></h6>
 
 <aui:layout cssClass="layout-container">
 	<aui:column columnWidth="<%= 70 %>" cssClass="layout-column-content" first="<%= true %>">
@@ -365,8 +367,8 @@ if (Validator.isNull(fileEntry.getVersion())) {
 				<span>
 					<liferay-ui:icon
 						image='<%= "../file_system/small/" + extension %>'
-						message="<%= conversion.toUpperCase() %>"
-						url='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/document/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(fileEntry.getTitle()) + "?version=" + fileVersion.getVersion() + "&targetExtension=" + conversion %>'
+						message="<%= extension.toUpperCase() %>"
+						url='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/document/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(fileEntry.getTitle()) %>'
 						label="<%= true %>"
 					/>
 
@@ -379,7 +381,7 @@ if (Validator.isNull(fileEntry.getVersion())) {
 							<liferay-ui:icon
 								image='<%= "../file_system/small/" + conversion %>'
 								message="<%= conversion.toUpperCase() %>"
-								url='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/document/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(fileEntry.getTitle()) + "?version=" + fileVersion.getVersion() + "&targetExtension=" + conversion %>'
+								url='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/document/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(fileEntry.getTitle()) + "?version=" + fileEntry.getVersion() + "&targetExtension=" + conversion %>'
 								label="<%= true %>"
 							/>
 						</span>

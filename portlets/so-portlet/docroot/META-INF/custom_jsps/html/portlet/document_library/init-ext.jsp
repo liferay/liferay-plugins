@@ -32,7 +32,7 @@ public String getFolderBreadcrumbs(long folderId, PageContext pageContext, Rende
 
 	portletURL.setWindowState(WindowState.NORMAL);
 
-	portletURL.setParameter("struts_action", "/message_boards/view");
+	portletURL.setParameter("struts_action", "/document_library/view");
 	portletURL.setParameter("folderId", String.valueOf(DLFolderConstants.DEFAULT_PARENT_FOLDER_ID));
 
 	String head = "<span><a href=\"" + portletURL.toString() + "\">" + LanguageUtil.get(pageContext, "document-home") + "</a></span> &raquo; ";
@@ -54,7 +54,7 @@ public String getFolderBreadcrumbs(long folderId, PageContext pageContext, Rende
 			break;
 		}
 
-		folder = DLFolderLocalServiceUtil.getFolder(folder.getParentCategoryId());
+		folder = DLFolderLocalServiceUtil.getFolder(folder.getParentFolderId());
 	};
 
 	breadcrumb = head + breadcrumb;

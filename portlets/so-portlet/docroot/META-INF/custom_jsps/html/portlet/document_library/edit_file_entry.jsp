@@ -98,14 +98,18 @@ portletURL.setParameter("name", name);
 <c:if test="<%= !windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
 	<liferay-util:include page="/html/portlet/document_library/sidebar.jsp" />
 
-	<c:choose>
-		<c:when test="<%= fileEntry != null %>">
-			<h6><%= HtmlUtil.escape(fileEntry.getTitle()) %></h6>
-		</c:when>
-		<c:otherwise>
-			<h6><liferay-ui:message key="add-file-entry" /></h6>
-		</c:otherwise>
-	</c:choose>
+	<div class="breadcrumbs">
+		<%= getFolderBreadcrumbs(folderId, pageContext, renderResponse) %>
+
+		<c:choose>
+			<c:when test="<%= fileEntry != null %>">
+				<h6><%= HtmlUtil.escape(fileEntry.getTitle()) %></h6>
+			</c:when>
+			<c:otherwise>
+				<h6><liferay-ui:message key="add-file-entry" /></h6>
+			</c:otherwise>
+		</c:choose>
+	</div>
 </c:if>
 
 <c:if test="<%= isLocked.booleanValue() %>">

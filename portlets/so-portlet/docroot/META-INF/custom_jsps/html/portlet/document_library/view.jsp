@@ -64,14 +64,18 @@ request.setAttribute("view.jsp-viewFolder", Boolean.TRUE.toString());
 <c:choose>
 	<c:when test='<%= tabs1.equals("document-home") %>'>
 		<aui:layout>
-			<c:choose>
-				<c:when test="<%= folder != null %>">
-					<h6 class="folder-title"><%= folder.getName() %></h6>
-				</c:when>
-				<c:otherwise>
-					<h6 class="no-folder-title"><liferay-ui:message key="documents-home" /></h6>
-				</c:otherwise>
-			</c:choose>
+			<div class="breadcrumb">
+				<c:choose>
+					<c:when test="<%= folder != null %>">
+						<%= getFolderBreadcrumbs(folder.getParentFolderId(), pageContext, renderResponse) %>
+
+						<h6 class="folder-title"><%= folder.getName() %></h6>
+					</c:when>
+					<c:otherwise>
+						<h6 class="no-folder-title"><liferay-ui:message key="documents-home" /></h6>
+					</c:otherwise>
+				</c:choose>
+			</div>
 
 			<aui:column columnWidth="100" cssClass="folder-column folder-column-first" first="<%= true %>">
 				<liferay-ui:panel-container extended="<%= false %>" id="documentLibraryPanelContainer" persistState="<%= true %>">
