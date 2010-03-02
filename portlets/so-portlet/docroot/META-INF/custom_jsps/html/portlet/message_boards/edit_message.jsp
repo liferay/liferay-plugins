@@ -23,6 +23,10 @@
 MBMessage message = (MBMessage)request.getAttribute(WebKeys.MESSAGE_BOARDS_MESSAGE);
 
 long categoryId = BeanParamUtil.getLong(message, request, "mbCategoryId");
+
+if (message != null) {
+	categoryId = message.getCategoryId();
+}
 %>
 
 <liferay-util:include page="/html/portlet/message_boards/sidebar.jsp" />
