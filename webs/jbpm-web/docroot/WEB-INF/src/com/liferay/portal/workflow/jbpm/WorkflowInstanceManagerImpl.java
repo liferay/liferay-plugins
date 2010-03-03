@@ -25,8 +25,10 @@ import com.liferay.portal.kernel.workflow.WorkflowInstanceManager;
 import com.liferay.portal.kernel.workflow.comparator.WorkflowInstanceStateComparator;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -208,7 +210,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 	public WorkflowInstance signalWorkflowInstance(
 			long companyId, long userId, long workflowInstanceId,
-			String transitionName, Map<String, Object> context)
+			String transitionName, Map<String, Serializable> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -222,7 +224,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				ContextInstance contextInstance =
 					processInstance.getContextInstance();
 
-				for (Map.Entry<String, Object> entry : context.entrySet()) {
+				for (Map.Entry<String, Serializable> entry : context.entrySet()) {
 					contextInstance.setVariableLocally(
 						entry.getKey(), entry.getValue(), token);
 				}
@@ -252,7 +254,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	public WorkflowInstance startWorkflowInstance(
 			long companyId, long userId, String workflowDefinitionName,
 			Integer workflowDefinitionVersion, String transitionName,
-			Map<String, Object> context)
+			Map<String, Serializable> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -268,7 +270,10 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				ContextInstance contextInstance =
 					processInstance.getContextInstance();
 
-				contextInstance.addVariables(context);
+				Map<String, Object> contextObjects =
+					new HashMap<String, Object>(context);
+
+				contextInstance.addVariables(contextObjects);
 			}
 
 			if (Validator.isNotNull(transitionName)) {
@@ -294,7 +299,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 	public WorkflowInstance updateContext(
 			long companyId, long workflowInstanceId,
-			Map<String, Object> context)
+			Map<String, Serializable> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -308,7 +313,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				ContextInstance contextInstance =
 					processInstance.getContextInstance();
 
-				for (Map.Entry<String, Object> entry : context.entrySet()) {
+				for (Map.Entry<String, Serializable> entry : context.entrySet()) {
 					contextInstance.setVariableLocally(
 						entry.getKey(), entry.getValue(), token);
 				}
