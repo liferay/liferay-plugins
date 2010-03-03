@@ -164,9 +164,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 	public List<WorkflowInstance> getWorkflowInstances(
 			long companyId, String workflowDefinitionName,
-			Integer workflowDefinitionVersion,
-			Boolean completed, int start, int end,
-			OrderByComparator orderByComparator)
+			Integer workflowDefinitionVersion, Boolean completed, int start,
+			int end, OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -294,8 +293,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public WorkflowInstance updateContext(
-			long companyId, long workflowInstanceId, Map
-			<String, Object> context)
+			long companyId, long workflowInstanceId,
+			Map<String, Object> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();

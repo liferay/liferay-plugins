@@ -56,9 +56,8 @@ import org.jbpm.taskmgmt.exe.TaskInstance;
 public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 	public WorkflowTask assignWorkflowTaskToRole(
-			long companyId, long userId, long workflowTaskId,
-			long roleId, String comment,
-			Map<String, Object> context)
+			long companyId, long userId, long workflowTaskId, long roleId,
+			String comment, Map<String, Object> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -265,8 +264,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
-	public long[] getPooledActorsIds(
-			long companyId, long workflowTaskId)
+	public long[] getPooledActorsIds(long companyId, long workflowTaskId)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
