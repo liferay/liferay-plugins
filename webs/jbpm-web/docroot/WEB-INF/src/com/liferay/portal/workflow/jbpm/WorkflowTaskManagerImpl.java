@@ -56,7 +56,8 @@ import org.jbpm.taskmgmt.exe.TaskInstance;
 public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 	public WorkflowTask assignWorkflowTaskToRole(
-			long userId, long workflowTaskId, long roleId, String comment,
+			long companyId, long userId, long workflowTaskId,
+			long roleId, String comment,
 			Map<String, Object> context)
 		throws WorkflowException {
 
@@ -89,8 +90,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public WorkflowTask assignWorkflowTaskToUser(
-			long userId, long workflowTaskId, long assigneeUserId,
-			String comment, Map<String, Object> context)
+			long companyId, long userId, long workflowTaskId,
+			long assigneeUserId, String comment, Map<String, Object> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -156,8 +157,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public WorkflowTask completeWorkflowTask(
-			long userId, long workflowTaskId, String transitionName,
-			String comment, Map<String, Object> context)
+			long companyId, long userId, long workflowTaskId,
+			String transitionName, String comment, Map<String, Object> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -223,7 +224,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
-	public List<String> getNextTransitionNames(long userId, long workflowTaskId)
+	public List<String> getNextTransitionNames(
+			long companyId, long userId, long workflowTaskId)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -263,7 +265,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
-	public long[] getPooledActorsIds(long workflowTaskId)
+	public long[] getPooledActorsIds(
+			long companyId, long workflowTaskId)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -294,7 +297,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
-	public WorkflowTask getWorkflowTask(long workflowTaskId)
+	public WorkflowTask getWorkflowTask(
+			long companyId, long workflowTaskId)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -315,25 +319,28 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
-	public int getWorkflowTaskCount(Boolean completed)
+	public int getWorkflowTaskCount(long companyId, Boolean completed)
 		throws WorkflowException {
 
 		return getWorkflowTaskCount(null, false, completed);
 	}
 
-	public int getWorkflowTaskCountByRole(long roleId, Boolean completed)
+	public int getWorkflowTaskCountByRole(
+			long companyId, long roleId, Boolean completed)
 		throws WorkflowException {
 
 		return getWorkflowTaskCount(new long[] {roleId}, true, completed);
 	}
 
-	public int getWorkflowTaskCountByUser(long userId, Boolean completed)
+	public int getWorkflowTaskCountByUser(
+			long companyId, long userId, Boolean completed)
 		throws WorkflowException {
 
 		return getWorkflowTaskCount(new long[] {userId}, false, completed);
 	}
 
-	public int getWorkflowTaskCountByUserRoles(long userId, Boolean completed)
+	public int getWorkflowTaskCountByUserRoles(
+			long companyId, long userId, Boolean completed)
 		throws WorkflowException {
 
 		try {
@@ -353,7 +360,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public int getWorkflowTaskCountByWorkflowInstance(
-			long workflowInstanceId, Boolean completed)
+			long companyId, long workflowInstanceId, Boolean completed)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -373,7 +380,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public List<WorkflowTask> getWorkflowTasks(
-			Boolean completed, int start, int end,
+			long companyId, Boolean completed, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
@@ -382,7 +389,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public List<WorkflowTask> getWorkflowTasksByRole(
-			long roleId, Boolean completed, int start, int end,
+			long companyId, long roleId, Boolean completed, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
@@ -392,7 +399,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public List<WorkflowTask> getWorkflowTasksByUser(
-			long userId, Boolean completed, int start, int end,
+			long companyId, long userId, Boolean completed, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
@@ -402,7 +409,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public List<WorkflowTask> getWorkflowTasksByUserRoles(
-			long userId, Boolean completed, int start, int end,
+			long companyId, long userId, Boolean completed, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
@@ -424,8 +431,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public List<WorkflowTask> getWorkflowTasksByWorkflowInstance(
-			long workflowInstanceId, Boolean completed, int start, int end,
-			OrderByComparator orderByComparator)
+			long companyId, long workflowInstanceId, Boolean completed,
+			int start, int end, OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		return getWorkflowTasks(

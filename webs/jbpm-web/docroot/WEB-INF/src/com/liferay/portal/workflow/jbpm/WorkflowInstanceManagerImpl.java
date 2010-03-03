@@ -49,7 +49,9 @@ import org.jbpm.graph.exe.Token;
  */
 public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
-	public void deleteWorkflowInstance(long workflowInstanceId) {
+	public void deleteWorkflowInstance(
+		long companyId, long workflowInstanceId) {
+
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {
@@ -90,7 +92,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public List<String> getNextTransitionNames(
-			long userId, long workflowInstanceId)
+			long companyId, long userId, long workflowInstanceId)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -117,7 +119,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		}
 	}
 
-	public WorkflowInstance getWorkflowInstance(long workflowInstanceId)
+	public WorkflowInstance getWorkflowInstance(
+			long companyId, long workflowInstanceId)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -136,8 +139,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public int getWorkflowInstanceCount(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			Boolean completed)
+			long companyId, String workflowDefinitionName,
+			Integer workflowDefinitionVersion, Boolean completed)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -160,7 +163,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public List<WorkflowInstance> getWorkflowInstances(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
+			long companyId, String workflowDefinitionName,
+			Integer workflowDefinitionVersion,
 			Boolean completed, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
@@ -204,8 +208,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public WorkflowInstance signalWorkflowInstance(
-			long userId, long workflowInstanceId, String transitionName,
-			Map<String, Object> context)
+			long companyId, long userId, long workflowInstanceId,
+			String transitionName, Map<String, Object> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -247,7 +251,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public WorkflowInstance startWorkflowInstance(
-			long userId, String workflowDefinitionName,
+			long companyId, long userId, String workflowDefinitionName,
 			Integer workflowDefinitionVersion, String transitionName,
 			Map<String, Object> context)
 		throws WorkflowException {
@@ -290,7 +294,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public WorkflowInstance updateContext(
-			long workflowInstanceId, Map<String, Object> context)
+			long companyId, long workflowInstanceId, Map
+			<String, Object> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
