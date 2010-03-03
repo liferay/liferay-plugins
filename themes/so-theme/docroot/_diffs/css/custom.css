@@ -540,6 +540,7 @@ textarea.focus {
 
 .aui-tab-active,
 .aui-tab-active a {
+	color: #403638;
 	text-shadow: none;
 }
 
