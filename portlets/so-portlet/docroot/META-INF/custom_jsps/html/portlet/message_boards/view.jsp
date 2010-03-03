@@ -272,6 +272,8 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 			<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
 
 			</form>
+
+			<br />
 		</c:if>
 
 		<script type="text/javascript">
