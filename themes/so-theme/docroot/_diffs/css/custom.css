@@ -404,6 +404,13 @@ textarea.focus {
 	margin-top: 0;
 }
 
+/* Panel */
+
+.aui-panel-hd-text {
+	font-size: 12px;
+	font-weight: bold;
+}
+
 /* Search Iterator */
 
 .taglib-search-iterator .result-title img {
@@ -1574,7 +1581,7 @@ table.calendar {
 	padding: 0 16px 0 0;
 	position: absolute;
 	right: 5px;
-	top: 3px;
+	top: 9px;
 }
 
 .tms-portlet-tasks .progress {
