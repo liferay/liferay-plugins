@@ -101,7 +101,9 @@ public class ServicePreAction extends Action {
 
 		Group group = layout.getGroup();
 
-		if (!group.getName().equals(GroupConstants.GUEST)) {
+		if (!group.getName().equals(GroupConstants.GUEST) ||
+			currentURL.startsWith("/c/portal")) {
+
 			return;
 		}
 
@@ -142,11 +144,7 @@ public class ServicePreAction extends Action {
 		s = StringUtil.remove(s, urlFragment1, StringPool.BLANK);
 		s = StringUtil.remove(s, urlFragment2, StringPool.BLANK);
 
-		if (!Validator.isNumber(s)) {
-			return false;
-		}
-
-		return true;
+		return Validator.isNumber(s);
 	}
 
 	protected String getRedirect(ThemeDisplay themeDisplay, long groupId)
