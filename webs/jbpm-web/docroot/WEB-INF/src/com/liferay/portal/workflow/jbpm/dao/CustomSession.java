@@ -295,6 +295,8 @@ public class CustomSession {
 						"pooledActors");
 
 					subCriteria.add(Restrictions.in("actorId", actorIds));
+
+					criteria.add(Restrictions.isNull("actorId"));
 				}
 				else {
 					criteria.add(Restrictions.in("actorId", actorIds));

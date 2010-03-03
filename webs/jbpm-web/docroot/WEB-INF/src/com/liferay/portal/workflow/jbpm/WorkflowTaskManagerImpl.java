@@ -122,7 +122,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			}
 
 			taskInstance.setActorId(String.valueOf(assigneeUserId));
-			taskInstance.setPooledActors();
 
 			taskInstance.addComment(comment);
 
