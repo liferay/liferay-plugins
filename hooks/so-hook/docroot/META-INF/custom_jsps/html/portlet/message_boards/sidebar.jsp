@@ -194,7 +194,7 @@ PortletURL tabs1URL = renderResponse.createRenderURL();
 			<a href="<%= tabs1URL %>"><liferay-ui:message key="statistics" /></a>
 		</li>
 
-		<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, plid, PortletKeys.MESSAGE_BOARDS, ActionKeys.BAN_USER) %>">
+		<c:if test="<%= MBPermission.contains(permissionChecker, scopeGroupId, ActionKeys.BAN_USER) %>">
 			<li>
 
 				<%
