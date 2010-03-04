@@ -30,6 +30,7 @@ import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutTemplate;
 import com.liferay.portal.model.LayoutTypePortlet;
+import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.model.Resource;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
@@ -42,10 +43,12 @@ import com.liferay.portal.service.PermissionLocalServiceUtil;
 import com.liferay.portal.service.ResourceLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.so.util.PortletPropsKeys;
 import com.liferay.so.util.PortletPropsValues;
 import com.liferay.util.portlet.PortletProps;
+import com.liferay.portal.util.PortletKeys;
 
 import java.util.List;
 import java.util.Locale;
@@ -107,7 +110,9 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		layout = addLayout(group, "Calendar", "/calendar", "1_column");
 
-		removePortletBorder(layout, "8");
+		addResources(layout, PortletKeys.CALENDAR);
+
+		removePortletBorder(layout, PortletKeys.CALENDAR);
 
 		updatePermissions(layout, true);
 
@@ -115,7 +120,10 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		layout = addLayout(group, "Documents", "/documents", "2_columns_iii");
 
-		removePortletBorder(layout, "20");
+		addResources(layout, PortletKeys.DOCUMENT_LIBRARY);
+		addResources(layout, "101_INSTANCE_abcd");
+
+		removePortletBorder(layout, PortletKeys.DOCUMENT_LIBRARY);
 
 		configureAssetPublisher(layout);
 
@@ -125,7 +133,10 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		layout = addLayout(group, "Forums", "/forums", "2_columns_iii");
 
-		removePortletBorder(layout, "19");
+		addResources(layout, PortletKeys.MESSAGE_BOARDS);
+		addResources(layout, "101_INSTANCE_abcd");
+
+		removePortletBorder(layout, PortletKeys.MESSAGE_BOARDS);
 
 		configureAssetPublisher(layout);
 
@@ -135,7 +146,10 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		layout = addLayout(group, "Blog", "/blog", "2_columns_iii");
 
-		removePortletBorder(layout, "33");
+		addResources(layout, PortletKeys.BLOGS);
+		addResources(layout, "101_INSTANCE_abcd");
+
+		removePortletBorder(layout, PortletKeys.BLOGS);
 
 		configureAssetPublisher(layout);
 
@@ -145,7 +159,10 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		layout = addLayout(group, "Wiki", "/wiki", "2_columns_iii");
 
-		removePortletBorder(layout, "36");
+		addResources(layout, PortletKeys.WIKI);
+		addResources(layout, "101_INSTANCE_abcd");
+
+		removePortletBorder(layout, PortletKeys.WIKI);
 
 		configureAssetPublisher(layout);
 
@@ -154,6 +171,10 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		// Members
 
 		layout = addLayout(group, "Members", "/members", "2_columns_ii");
+
+		addResources(layout, "2_WAR_soportlet");
+		addResources(layout, "3_WAR_soportlet");
+		addResources(layout, "4_WAR_soportlet");
 
 		removePortletBorder(layout, "2_WAR_soportlet");
 		removePortletBorder(layout, "3_WAR_soportlet");
@@ -181,6 +202,9 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		layout = addLayout(group, "Profile", "/profile", "2_columns_ii");
 
+		addResources(layout, "1_WAR_soportlet");
+		addResources(layout, "4_WAR_soportlet");
+
 		removePortletBorder(layout, "4_WAR_soportlet");
 
 		updatePermissions(layout, true);
@@ -188,6 +212,8 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		// Mail
 
 		layout = addLayout(group, "Mail", "/mail", "1_column");
+
+		addResources(layout, "1_WAR_mailportlet");
 
 		updatePermissions(layout, false);
 	}
@@ -246,9 +272,26 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		List<String> portletIds = layoutTypePortlet.getPortletIds();
 
-		if (portletIds.contains("1_WAR_wysiwygportlet")) {
-			updatePortletTitle(layout, "1_WAR_wysiwygportlet", "Welcome");
+		for (String portletId : portletIds) {
+			addResources(layout, portletId);
+
+			if (portletId.equals("1_WAR_wysiwygportlet")) {
+				updatePortletTitle(layout, "1_WAR_wysiwygportlet", "Welcome");
+			}
 		}
+	}
+
+	protected void addResources(Layout layout, String portletId)
+		throws Exception{
+
+		String rootPortletId = PortletConstants.getRootPortletId(portletId);
+
+		String portletPrimaryKey = PortletPermissionUtil.getPrimaryKey(
+			layout.getPlid(), portletId);
+
+		ResourceLocalServiceUtil.addResources(
+			layout.getCompanyId(), layout.getGroupId(), 0, rootPortletId,
+			portletPrimaryKey, true, true, true);
 	}
 
 	protected void configureAssetPublisher(Layout layout) throws Exception {
