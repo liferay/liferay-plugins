@@ -23,7 +23,7 @@
 								no-border
 							#end
 						">
-							<a href="javascript:void(0);" onclick="$add_content_url">$add_content_text</a>
+							<a href="javascript:void(0);" id="soAddContent">$add_content_text</a>
 						</li>
 						<li class="layout">
 							<a href="javascript:void(0);" onclick="$layout_url">$layout_text</a>
