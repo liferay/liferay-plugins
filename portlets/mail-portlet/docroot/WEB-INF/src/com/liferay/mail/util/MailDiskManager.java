@@ -15,6 +15,7 @@
 package com.liferay.mail.util;
 
 import com.liferay.mail.model.MailAccount;
+import com.liferay.mail.model.MessageEntry;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -29,6 +30,8 @@ import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -113,10 +116,15 @@ public class MailDiskManager {
 		String body = message.getString("body");
 
 		try {
-			Indexer.addMessage(
+			Indexer indexer = IndexerRegistryUtil.getIndexer(
+				MessageEntry.class);
+
+			MessageEntry entry = new MessageEntry(
 				user.getCompanyId(), user.getGroup().getGroupId(),
 				user.getUserId(), emailAddress, _encodeFolderName(folderName),
 				messageUid, subject, body);
+
+			indexer.reindex(entry);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -129,7 +137,7 @@ public class MailDiskManager {
 		FileUtil.deltree(accountPath);
 
 		try {
-			Indexer.deleteMessages(
+			MessageIndexer.deleteMessages(
 				user.getCompanyId(), user.getUserId(), emailAddress);
 		}
 		catch (Exception e) {
@@ -146,9 +154,14 @@ public class MailDiskManager {
 		FileUtil.deltree(messagePath);
 
 		try {
-			Indexer.deleteMessage(
-				user.getCompanyId(), user.getUserId(), emailAddress, folderName,
-				messageUid);
+			Indexer indexer = IndexerRegistryUtil.getIndexer(
+				MessageEntry.class);
+
+			MessageEntry entry = new MessageEntry(
+				user.getCompanyId(), user.getUserId(), emailAddress,
+				_encodeFolderName(folderName), messageUid);
+
+			indexer.delete(entry);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -516,12 +529,14 @@ public class MailDiskManager {
 
 			contextQuery.addRequiredTerm(Field.COMPANY_ID, companyId);
 			contextQuery.addRequiredTerm(Field.GROUP_ID, groupId);
-			contextQuery.addRequiredTerm(Field.PORTLET_ID, Indexer.PORTLET_ID);
+			contextQuery.addRequiredTerm(
+				Field.PORTLET_ID, MessageIndexer.PORTLET_ID);
 			contextQuery.addRequiredTerm(Field.USER_ID, userId);
-			contextQuery.addRequiredTerm(Indexer.EMAIL_ADDRESS, emailAddress);
+			contextQuery.addRequiredTerm(
+				MessageIndexer.EMAIL_ADDRESS, emailAddress);
 
 			contextQuery.addRequiredTerm(
-				Indexer.FOLDER_NAME, escapedFolderName);
+				MessageIndexer.FOLDER_NAME, escapedFolderName);
 
 			BooleanQuery fullQuery = BooleanQueryFactoryUtil.create();
 
@@ -746,7 +761,7 @@ public class MailDiskManager {
 			return;
 		}
 
-		Indexer.deleteMessages(companyId, userId, emailAddress);
+		MessageIndexer.deleteMessages(companyId, userId, emailAddress);
 
 		String[] folders = FileUtil.listDirs(accountPath + "/");
 
@@ -790,11 +805,14 @@ public class MailDiskManager {
 		String subject = jsonObj.getString("subject");
 		String content = jsonObj.getString("body");
 
-		Document doc = Indexer.getMessageDocument(
+		Indexer indexer = IndexerRegistryUtil.getIndexer(
+			MessageEntry.class);
+
+		MessageEntry entry = new MessageEntry(
 			companyId, groupId, userId, emailAddress, folderName, messageUid,
 			subject, content);
 
-		SearchEngineUtil.addDocument(companyId, doc);
+		indexer.reindex(entry);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(MailDiskManager.class);

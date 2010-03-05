@@ -14,137 +14,155 @@
 
 package com.liferay.mail.util;
 
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.mail.model.MessageEntry;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.search.BooleanQuery;
+import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
+import com.liferay.portal.kernel.search.DocumentImpl;
+import com.liferay.portal.kernel.search.Field;
+import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
-import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.util.portlet.PortletProps;
+import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Summary;
+import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.search.BaseIndexer;
+import com.liferay.portal.util.PortletKeys;
+
+import javax.portlet.PortletURL;
 
 /**
  * <a href="MessageIndexer.java.html"><b><i>View Source</i></b></a>
  *
  * @author Scott Lee
+ * @author Alexander Chow
  *
  */
-public class MessageIndexer {
+public class MessageIndexer extends BaseIndexer {
 
-	public static void reIndex(String[] ids) throws SystemException {
-		if (SearchEngineUtil.isIndexReadOnly()) {
-			return;
-		}
+	public static final String[] CLASS_NAMES = {MessageEntry.class.getName()};
 
-		long companyId = GetterUtil.getLong(ids[0]);
+	public static final String EMAIL_ADDRESS = "emailAddress";
 
-		String rootPath = PortletProps.get("disk.root.dir") + "/";
+	public static final String FOLDER_NAME = "folderName";
 
-		String[] userIds = FileUtil.listDirs(rootPath);
+	public static final String PORTLET_ID = PortletKeys.MAIL;
 
+	public String[] getClassNames() {
+		return CLASS_NAMES;
+	}
+
+	public Summary getSummary(
+		Document doc, String snippet, PortletURL portletURL) {
+
+		return null;
+	}
+
+	protected void doDelete(Object obj) throws Exception {
+		MessageEntry entry = (MessageEntry)obj;
+
+		SearchEngineUtil.deleteDocument(
+			entry.getCompanyId(),
+			getUID(
+				entry.getUserId(), entry.getEmailAddress(),
+				entry.getFolderName(), entry.getMessageUid()));
+	}
+
+	protected Document doGetDocument(Object obj) throws Exception {
+		MessageEntry entry = (MessageEntry)obj;
+
+		long companyId = entry.getCompanyId();
+		long groupId = entry.getGroupId();
+		long userId = entry.getUserId();
+		String emailAddress = entry.getEmailAddress();
+		String folderName = entry.getFolderName();
+		long messageUid = entry.getMessageUid();
+		String title = entry.getTitle();
+		String content = entry.getContent();
+
+		content = HtmlUtil.extractText(content);
+
+		Document document = new DocumentImpl();
+
+		document.addKeyword(
+			Field.UID, getUID(userId, emailAddress, folderName, messageUid));
+
+		document.addModifiedDate();
+
+		document.addKeyword(Field.COMPANY_ID, companyId);
+		document.addKeyword(Field.PORTLET_ID, PORTLET_ID);
+		document.addKeyword(Field.GROUP_ID, groupId);
+		document.addKeyword(Field.USER_ID, userId);
+
+		document.addKeyword(EMAIL_ADDRESS, emailAddress);
+		document.addKeyword(FOLDER_NAME, folderName);
+		document.addText(Field.TITLE, title);
+		document.addText(Field.CONTENT, content);
+
+		document.addKeyword(
+			Field.ENTRY_CLASS_NAME, MessageEntry.class.getName());
+		document.addKeyword(Field.ENTRY_CLASS_PK, messageUid);
+
+		return document;
+	}
+
+	protected void doReindex(Object obj) throws Exception {
+		MessageEntry entry = (MessageEntry)obj;
+
+		Document document = getDocument(entry);
+
+		SearchEngineUtil.updateDocument(
+			entry.getCompanyId(), document.get(Field.UID), document);
+	}
+
+	protected void doReindex(String className, long classPK) throws Exception {
+		throw new UnsupportedOperationException();
+	}
+
+	protected void doReindex(String[] ids) throws Exception {
 		try {
-			for (String userIdString : userIds) {
-				long userId = 0;
-				long groupId = 0;
-
-				try {
-					userId = GetterUtil.getLong(userIdString);
-
-					User user = UserLocalServiceUtil.getUserById(userId);
-
-					groupId = user.getGroup().getGroupId();
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-
-					continue;
-				}
-
-				String userPath = rootPath + userId + "/";
-
-				if (!FileUtil.exists(userPath)) {
-					continue;
-				}
-
-				String[] emailAddresses = FileUtil.listDirs(userPath + "/");
-
-				for (String emailAddress : emailAddresses) {
-					_reIndexAccount(
-						companyId, groupId, userId, userPath, emailAddress);
-				}
-			}
+			MailDiskManager.reIndex(ids);
 		}
 		catch (Exception e) {
-			throw new SystemException(e);
+			throw new SearchException(e);
 		}
 	}
 
-	private static void _reIndexAccount(
-			long companyId, long groupId, long userId, String userPath,
-			String emailAddress)
-		throws Exception {
+	protected String getPortletId(SearchContext searchContext) {
+		return PORTLET_ID;
+	}
 
-		String accountPath = userPath + emailAddress + "/";
+	public static void deleteMessages(
+			long companyId, long userId, String emailAddress)
+		throws SearchException {
 
-		if (!FileUtil.exists(accountPath)) {
-			return;
-		}
+		BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
 
-		Indexer.deleteMessages(companyId, userId, emailAddress);
+		booleanQuery.addRequiredTerm(Field.PORTLET_ID, PORTLET_ID);
+		booleanQuery.addRequiredTerm(Field.USER_ID, userId);
+		booleanQuery.addRequiredTerm(EMAIL_ADDRESS, emailAddress);
 
-		String[] folders = FileUtil.listDirs(accountPath + "/");
+		Hits hits = SearchEngineUtil.search(
+			companyId, booleanQuery, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		for (String folderName : folders) {
-			String folderPath = accountPath + folderName + "/";
+		for (int i = 0; i < hits.getLength(); i++) {
+			Document doc = hits.doc(i);
 
-			if (!FileUtil.exists(folderPath)) {
-				continue;
-			}
-
-			String[] messageUids = FileUtil.listDirs(folderPath + "/");
-
-			for (String messageUid : messageUids) {
-				_reIndexMessage(
-					companyId, groupId, userId, emailAddress, folderName,
-					folderPath, GetterUtil.getLong(messageUid));
-			}
+			SearchEngineUtil.deleteDocument(companyId, doc.get(Field.UID));
 		}
 	}
 
-	private static void _reIndexMessage(
-			long companyId, long groupId, long userId, String emailAddress,
-			String folderName, String folderPath, long messageUid)
-		throws Exception {
+	public static String getUID(
+		long userId, String emailAddress, String folderName, long messageUid) {
 
-		String messagePath = folderPath + messageUid + "/";
+		Document doc = new DocumentImpl();
 
-		if (!FileUtil.exists(messagePath)) {
-			return;
-		}
+		doc.addUID(
+			PORTLET_ID, String.valueOf(userId), emailAddress, folderName,
+			String.valueOf(messageUid));
 
-		String filePath = messagePath + "/message.json";
-
-		if (!FileUtil.exists(filePath)) {
-			return;
-		}
-
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject(
-			FileUtil.read(filePath));
-
-		String subject = jsonObj.getString("subject");
-		String content = jsonObj.getString("body");
-
-		Document doc = Indexer.getMessageDocument(
-			companyId, groupId, userId, emailAddress, folderName, messageUid,
-			subject, content);
-
-		SearchEngineUtil.addDocument(companyId, doc);
+		return doc.get(Field.UID);
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(MessageIndexer.class);
 
 }

@@ -5,11 +5,12 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
-		<indexer-class>com.liferay.mail.util.Indexer</indexer-class>
+		<indexer-class>com.liferay.mail.util.MessageIndexer</indexer-class>
 		<friendly-url-mapper-class>com.liferay.mail.portlet.MailFriendlyURLMapper</friendly-url-mapper-class>
 		<render-weight>1</render-weight>
 		<ajaxable>false</ajaxable>
 		<header-portlet-css>/css.jsp</header-portlet-css>
+		<header-portlet-javascript>/jquery.js</header-portlet-javascript>
 		<footer-portlet-javascript>/javascript.js</footer-portlet-javascript>
 		<css-class-wrapper>mail-portlet</css-class-wrapper>
 	</portlet>
