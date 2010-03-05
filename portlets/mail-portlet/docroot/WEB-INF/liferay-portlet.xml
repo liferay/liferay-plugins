@@ -10,7 +10,6 @@
 		<render-weight>1</render-weight>
 		<ajaxable>false</ajaxable>
 		<header-portlet-css>/css.jsp</header-portlet-css>
-		<header-portlet-javascript>/jquery.js</header-portlet-javascript>
 		<footer-portlet-javascript>/javascript.js</footer-portlet-javascript>
 		<css-class-wrapper>mail-portlet</css-class-wrapper>
 	</portlet>
