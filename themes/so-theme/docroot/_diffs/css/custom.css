@@ -18,7 +18,7 @@ a:active {
 	width: 95%;
 }
 
-#content-wrapper {
+#main-content {
 	font-size: 1.2em;
 	margin-bottom: 4em;
 }
@@ -261,15 +261,25 @@ body #banner h1.logo a {
 
 /* ---------- Layout ---------- */
 
-.lfr-grid .lfr-column {
+.portlet-column-content {
 	padding: 0 15px;
 }
 
-#column-1.seventy {
+.portlet-column-content-first,
+.portlet-column-content-only {
+	padding-left: 0;
+}
+
+.portlet-column-content-last,
+.portlet-column-content-only {
+	padding-right: 0;
+}
+
+.columns-2 #column-1.aui-w70 {
 	width: 75%;
 }
 
-#column-2.thirty {
+.columns-2 #column-2.aui-w30 {
 	width: 25%;
 }
 
@@ -328,6 +338,12 @@ body #banner h1.logo a {
 
 .detail-column {
 	display: none;
+}
+
+/* Dynamic Uploader */
+
+.lfr-upload-container {
+	width: 475px;
 }
 
 /* Forms */
@@ -557,6 +573,12 @@ background: #E8EFF4;
 
 .taglib-icon .taglib-text {
 	text-decoration: none;
+}
+
+/* Tags */
+
+.lfr-tags-selector-content {
+	width: 80%;
 }
 
 /* ---------- Portlet ---------- */
