@@ -329,8 +329,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			long companyId, long roleId, Boolean completed)
 		throws WorkflowException {
 
-		return getWorkflowTaskCount(new String[] {String.valueOf(roleId)}, true,
-			completed);
+		return getWorkflowTaskCount(
+			new String[] {String.valueOf(roleId)}, true, completed);
 	}
 
 	public int getWorkflowTaskCountByUser(
@@ -423,8 +423,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			String[] actorIds = new String[] {
 				String.valueOf(userId), user.getEmailAddress()};
 
-			return getWorkflowTasks(-1, actorIds, false, completed, start, end,
-				orderByComparator);
+			return getWorkflowTasks(
+				-1, actorIds, false, completed, start, end, orderByComparator);
 		}
 		catch (WorkflowException we) {
 			throw we;
@@ -521,18 +521,23 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
-	protected boolean isWorkflowTaskAssignedToUser(
-		String actorId, long userId) throws WorkflowException {
+	protected boolean isWorkflowTaskAssignedToUser(String actorId, long userId)
+		throws WorkflowException {
 
 		try {
-			String id = String.valueOf(userId);
+			if (actorId.equals(String.valueOf(userId))) {
+				return true;
+			}
 
 			if (Validator.isEmailAddress(actorId)) {
 				User user = UserLocalServiceUtil.getUser(userId);
-				id = user.getEmailAddress();
+
+				if (actorId.equals(user.getEmailAddress())) {
+					return true;
+				}
 			}
 
-			return Validator.equals(actorId, id);
+			return false;
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
