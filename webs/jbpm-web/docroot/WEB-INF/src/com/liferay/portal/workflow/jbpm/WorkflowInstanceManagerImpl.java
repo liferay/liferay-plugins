@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.workflow.comparator.WorkflowInstanceStateCompar
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -224,7 +225,9 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				ContextInstance contextInstance =
 					processInstance.getContextInstance();
 
-				for (Map.Entry<String, Serializable> entry : context.entrySet()) {
+				for (Map.Entry<String, Serializable> entry :
+						context.entrySet()) {
+
 					contextInstance.setVariableLocally(
 						entry.getKey(), entry.getValue(), token);
 				}
@@ -313,7 +316,9 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				ContextInstance contextInstance =
 					processInstance.getContextInstance();
 
-				for (Map.Entry<String, Serializable> entry : context.entrySet()) {
+				for (Map.Entry<String, Serializable> entry :
+						context.entrySet()) {
+
 					contextInstance.setVariableLocally(
 						entry.getKey(), entry.getValue(), token);
 				}

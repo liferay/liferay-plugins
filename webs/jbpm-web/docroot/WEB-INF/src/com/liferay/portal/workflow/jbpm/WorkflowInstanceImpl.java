@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.jbpm;
 import com.liferay.portal.kernel.workflow.DefaultWorkflowInstance;
 
 import java.io.Serializable;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,12 +48,12 @@ public class WorkflowInstanceImpl extends DefaultWorkflowInstance {
 
 		Map<String, Serializable> serializables =
 			new HashMap<String, Serializable>();
-		
+
 		for (Map.Entry<String, Object> contextEntry : context.entrySet()) {
 			serializables.put(
 				contextEntry.getKey(), (Serializable)contextEntry.getValue());
 		}
-		
+
 		setContext(Collections.unmodifiableMap(serializables));
 
 		setEndDate(token.getEnd());
