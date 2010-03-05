@@ -1,21 +1,27 @@
-<div class="columns-1-2-1" id="content-wrapper">
-	<table class="lfr-grid" id="layout-grid">
-	<tr id="row-1">
-		<td class="lfr-column" id="column-1" valign="top" colspan="2">
-			$processor.processColumn("column-1")
+<div class="columns-1-2-1" id="main-content" role="main">
+	<table class="portlet-layout">
+	<tr>
+		<td class="portlet-column portlet-column-only" id="column-3">
+			$processor.processColumn("column-1", "portlet-column-content portlet-column-content-only")
 		</td>
 	</tr>
-	<tr id="row-2">
-		<td class="lfr-column seventy" id="column-2" valign="top">
-			$processor.processColumn("column-2")
+	</table>
+
+	<table class="portlet-layout">
+	<tr>
+		<td class="aui-w50 portlet-column portlet-column-first" id="column-2">
+			$processor.processColumn("column-2", "portlet-column-content portlet-column-content-first")
 		</td>
-		<td class="lfr-column thirty" id="column-3" valign="top">
-			$processor.processColumn("column-3")
+		<td class="aui-w50 portlet-column portlet-column-last" id="column-4">
+			$processor.processColumn("column-4", "portlet-column-content portlet-column-content-last")
 		</td>
 	</tr>
-	<tr id="row-3">
-		<td class="lfr-column" id="column-4" valign="top" colspan="2">
-			$processor.processColumn("column-4")
+	</table>
+
+	<table class="portlet-layout">
+	<tr>
+		<td class="portlet-column portlet-column-only" id="column-5">
+			$processor.processColumn("column-5", "portlet-column-content portlet-column-content-only")
 		</td>
 	</tr>
 	</table>

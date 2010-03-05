@@ -1,33 +1,39 @@
-<div class="columns-3-2-3" id="content-wrapper">
-	<table class="lfr-grid" id="layout-grid">
-	<tr id="column-center">
-		<td class="lfr-column thirty" id="column-1" valign="top">
-			$processor.processColumn("column-1")
-		</td>
-		<td class="lfr-column thirty" id="column-2" valign="top">
-			$processor.processColumn("column-2")
-		</td>
-		<td class="lfr-column thirty" id="column-3" valign="top">
-			$processor.processColumn("column-3")
-		</td>
-	</tr>
+<div class="columns-3-2-3" id="main-content" role="main">
+	<table class="portlet-layout">
 	<tr>
-		<td class="lfr-column thirty" id="column-4" valign="top">
-			$processor.processColumn("column-4")
+		<td class="aui-w33 portlet-column portlet-column-first" id="column-1">
+			$processor.processColumn("column-1", "portlet-column-content portlet-column-content-first")
 		</td>
-		<td class="lfr-column sixty" id="column-5" valign="top" colspan="2">
-			$processor.processColumn("column-5")
+		<td class="aui-w33 portlet-column" id="column-2">
+			$processor.processColumn("column-2", "portlet-column-content")
+		</td>
+		<td class="aui-w33 portlet-column portlet-column-last" id="column-3">
+			$processor.processColumn("column-3", "portlet-column-content portlet-column-content-last")
 		</td>
 	</tr>
-	<tr id="column-center">
-		<td class="lfr-column thirty" id="column-6" valign="top">
-			$processor.processColumn("column=6")
+	</table>
+
+	<table class="portlet-layout">
+	<tr>
+		<td class="aui-w33 portlet-column portlet-column-first" id="column-4">
+			$processor.processColumn("column-4", "portlet-column-content portlet-column-content-first")
 		</td>
-		<td class="lfr-column thirty" id="column-7" valign="top">
-			$processor.processColumn("column-7")
+		<td class="aui-w66 portlet-column portlet-column-last" id="column-5">
+			$processor.processColumn("column-5", "portlet-column-content portlet-column-content-last")
 		</td>
-		<td class="lfr-column thirty" id="column-8" valign="top">
-			$processor.processColumn("column-8")
+	</tr>
+	</table>
+
+	<table class="portlet-layout">
+	<tr>
+		<td class="aui-w33 portlet-column portlet-column-first" id="column-6">
+			$processor.processColumn("column-6", "portlet-column-content portlet-column-content-first")
+		</td>
+		<td class="aui-w33 portlet-column" id="column-7">
+			$processor.processColumn("column-7", "portlet-column-content")
+		</td>
+		<td class="aui-w33 portlet-column portlet-column-last" id="column-8">
+			$processor.processColumn("column-8", "portlet-column-content portlet-column-content-last")
 		</td>
 	</tr>
 	</table>

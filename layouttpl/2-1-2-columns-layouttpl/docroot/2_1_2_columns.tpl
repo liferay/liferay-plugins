@@ -1,24 +1,30 @@
-<div class="columns-2-1-2" id="content-wrapper">
-	<table class="lfr-grid" id="layout-grid">
-	<tr id="column-center">
-		<td class="lfr-column fifty" id="column-1" valign="top">
-			$processor.processColumn("column-1")
-		</td>
-		<td class="lfr-column fifty" id="column-2" valign="top">
-			$processor.processColumn("column-2")
-		</td>
-	</tr>
+<div class="columns-2-1-2" id="main-content" role="main">
+	<table class="portlet-layout">
 	<tr>
-		<td class="lfr-column" colspan="2" id="column-3" valign="top">
-			$processor.processColumn("column-3")
+		<td class="aui-w50 portlet-column portlet-column-first" id="column-1">
+			$processor.processColumn("column-1", "portlet-column-content portlet-column-content-first")
+		</td>
+		<td class="aui-w50 portlet-column portlet-column-last" id="column-3">
+			$processor.processColumn("column-2", "portlet-column-content portlet-column-content-last")
 		</td>
 	</tr>
-	<tr id="column-center">
-		<td class="lfr-column fifty" id="column-4" valign="top">
-			$processor.processColumn("column-4")
+	</table>
+
+	<table class="portlet-layout">
+	<tr>
+		<td class="portlet-column portlet-column-only" id="column-3">
+			$processor.processColumn("column-3", "portlet-column-content portlet-column-content-only")
 		</td>
-		<td class="lfr-column fifty" id="column-5" valign="top">
-			$processor.processColumn("column-5")
+	</tr>
+	</table>
+
+	<table class="portlet-layout">
+	<tr>
+		<td class="aui-w50 portlet-column portlet-column-first" id="column-4">
+			$processor.processColumn("column-4", "portlet-column-content portlet-column-content-first")
+		</td>
+		<td class="aui-w50 portlet-column portlet-column-last" id="column-5">
+			$processor.processColumn("column-5", "portlet-column-content portlet-column-content-last")
 		</td>
 	</tr>
 	</table>
