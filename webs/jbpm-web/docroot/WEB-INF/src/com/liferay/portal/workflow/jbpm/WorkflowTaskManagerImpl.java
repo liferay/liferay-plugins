@@ -14,16 +14,17 @@
 
 package com.liferay.portal.workflow.jbpm;
 
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowLog;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManager;
 import com.liferay.portal.model.Role;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
@@ -173,7 +174,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			long actorId = GetterUtil.getLong(taskInstance.getActorId());
 
-			if (actorId != userId) {
+			if (!isWorkflowTaskAssignedToUser(
+					taskInstance.getActorId(), userId)) {
+
 				throw new WorkflowException(
 					"Workflow task " + workflowTaskId +
 						" is not assigned to user " + userId);
@@ -234,9 +237,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			TaskInstance taskInstance = taskMgmtSession.loadTaskInstance(
 				workflowTaskId);
 
-			long actorId = GetterUtil.getLong(taskInstance.getActorId());
+			if (!isWorkflowTaskAssignedToUser(
+					taskInstance.getActorId(), userId)) {
 
-			if (actorId != userId) {
 				throw new WorkflowException(
 					"Workflow task " + workflowTaskId +
 						" is not assigned to user " + userId);
@@ -326,14 +329,28 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			long companyId, long roleId, Boolean completed)
 		throws WorkflowException {
 
-		return getWorkflowTaskCount(new long[] {roleId}, true, completed);
+		return getWorkflowTaskCount(new String[] {String.valueOf(roleId)}, true,
+			completed);
 	}
 
 	public int getWorkflowTaskCountByUser(
 			long companyId, long userId, Boolean completed)
 		throws WorkflowException {
 
-		return getWorkflowTaskCount(new long[] {userId}, false, completed);
+		try {
+			User user = UserLocalServiceUtil.getUser(userId);
+
+			String[] actorIds = new String[] {
+				String.valueOf(userId), user.getEmailAddress()};
+
+			return getWorkflowTaskCount(actorIds, false, completed);
+		}
+		catch (WorkflowException we) {
+			throw we;
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
 	}
 
 	public int getWorkflowTaskCountByUserRoles(
@@ -343,8 +360,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		try {
 			List<Role> roles = RoleLocalServiceUtil.getUserRoles(userId);
 
-			long[] roleIds = StringUtil.split(
-				ListUtil.toString(roles, "roleId"), 0L);
+			String[] roleIds = StringUtil.split(
+				ListUtil.toString(roles, "roleId"));
 
 			return getWorkflowTaskCount(roleIds, true, completed);
 		}
@@ -391,8 +408,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		throws WorkflowException {
 
 		return getWorkflowTasks(
-			-1, new long[] {roleId}, true, completed, start, end,
-			orderByComparator);
+			-1, new String[] {String.valueOf(roleId)}, true, completed, start,
+			end, orderByComparator);
 	}
 
 	public List<WorkflowTask> getWorkflowTasksByUser(
@@ -400,9 +417,21 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
-		return getWorkflowTasks(
-			-1, new long[] {userId}, false, completed, start, end,
-			orderByComparator);
+		try {
+			User user = UserLocalServiceUtil.getUser(userId);
+
+			String[] actorIds = new String[] {
+				String.valueOf(userId), user.getEmailAddress()};
+
+			return getWorkflowTasks(-1, actorIds, false, completed, start, end,
+				orderByComparator);
+		}
+		catch (WorkflowException we) {
+			throw we;
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
 	}
 
 	public List<WorkflowTask> getWorkflowTasksByUserRoles(
@@ -413,8 +442,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		try {
 			List<Role> roles = RoleLocalServiceUtil.getUserRoles(userId);
 
-			long[] roleIds = StringUtil.split(
-				ListUtil.toString(roles, "roleId"), 0L);
+			String[] roleIds = StringUtil.split(
+				ListUtil.toString(roles, "roleId"));
 
 			return getWorkflowTasks(
 				-1, roleIds, true, completed, start, end, orderByComparator);
@@ -442,7 +471,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	protected int getWorkflowTaskCount(
-			long[] actorIds, boolean pooledActors, Boolean completed)
+			String[] actorIds, boolean pooledActors, Boolean completed)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -452,8 +481,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			if (actorIds != null) {
 				return customSession.countTaskInstances(
-					-1, -1, ArrayUtil.toStringArray(actorIds), pooledActors,
-					completed);
+					-1, -1, actorIds, pooledActors,	completed);
 			}
 			else {
 				return customSession.countTaskInstances(
@@ -469,7 +497,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	protected List<WorkflowTask> getWorkflowTasks(
-			long workflowInstanceId, long[] actorIds, boolean pooledActors,
+			long workflowInstanceId, String[] actorIds, boolean pooledActors,
 			Boolean completed, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
@@ -479,14 +507,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		try {
 			CustomSession customSession = new CustomSession(jbpmContext);
 
-			String[] actorIdStringArray = null;
-
-			if (actorIds != null) {
-				actorIdStringArray = ArrayUtil.toStringArray(actorIds);
-			}
-
 			List<TaskInstance> taskInstances = customSession.findTaskInstances(
-				-1, workflowInstanceId, actorIdStringArray, pooledActors,
+				-1, workflowInstanceId, actorIds, pooledActors,
 				completed, start, end, orderByComparator);
 
 			return toWorkflowTasks(taskInstances);
@@ -496,6 +518,24 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 		finally {
 			jbpmContext.close();
+		}
+	}
+
+	protected boolean isWorkflowTaskAssignedToUser(
+		String actorId, long userId) throws WorkflowException {
+
+		try {
+			String id = String.valueOf(userId);
+
+			if (Validator.isEmailAddress(actorId)) {
+				User user = UserLocalServiceUtil.getUser(userId);
+				id = user.getEmailAddress();
+			}
+
+			return Validator.equals(actorId, id);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
 		}
 	}
 

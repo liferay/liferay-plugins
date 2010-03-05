@@ -15,6 +15,7 @@
 package com.liferay.portal.workflow.jbpm;
 
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.DefaultWorkflowTask;
 
 import java.util.Set;
@@ -47,7 +48,13 @@ public class WorkflowTaskImpl extends DefaultWorkflowTask {
 			setAssigneeRoleId(GetterUtil.getLong(pooledActor.getActorId()));
 		}
 
-		setAssigneeUserId(GetterUtil.getLong(taskInstance.getActorId()));
+		if (Validator.isEmailAddress(taskInstance.getActorId())) {
+			setAssigneeEmailAddress(taskInstance.getActorId());
+		}
+		else {
+			setAssigneeUserId(GetterUtil.getLong(taskInstance.getActorId()));
+		}
+
 		setAsynchronous(!taskInstance.isBlocking());
 		setCompletionDate(taskInstance.getEnd());
 		setCreateDate(taskInstance.getCreate());
