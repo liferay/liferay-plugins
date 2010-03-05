@@ -15,9 +15,12 @@
 package com.liferay.portal.workflow.jbpm.handler;
 
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.ContextConstants;
 import com.liferay.portal.kernel.workflow.StatusConstants;
 import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.UserLocalServiceUtil;
 
 import org.jbpm.graph.def.ActionHandler;
 import org.jbpm.graph.exe.ExecutionContext;
@@ -40,7 +43,7 @@ public class WorkflowStatusActionHandler implements ActionHandler {
 			TaskInstance taskInstance = executionContext.getTaskInstance();
 
 			if (taskInstance != null) {
-				userId = GetterUtil.getLong(taskInstance.getActorId());
+				userId = getUserId(companyId, taskInstance.getActorId());
 			}
 		}
 
@@ -52,6 +55,18 @@ public class WorkflowStatusActionHandler implements ActionHandler {
 		WorkflowStatusManagerUtil.updateStatus(
 			companyId, groupId, userId, className, classPK,
 			StatusConstants.fromLabel(status));
+	}
+
+	protected long getUserId(long companyId, String actorId) throws Exception {
+		if (Validator.isEmailAddress(actorId)) {
+			User user = UserLocalServiceUtil.getUserByEmailAddress(
+				companyId, actorId);
+
+			return user.getUserId();
+		}
+		else {
+			return GetterUtil.getLong(actorId);
+		}
 	}
 
 	private String status;
