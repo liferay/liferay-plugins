@@ -408,15 +408,15 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 					<c:when test="<%= (isLocked.booleanValue() && hasLock.booleanValue()) %>">
 						<li class="action-unlock"><a href="javascript:;" onClick="<portlet:namespace />unlock();"><liferay-ui:message key="unlock-document" /></a></li>
 
-						<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
+						<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="editURL">
 							<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
-							<portlet:param name="edit_action" value="upload" />
+							<portlet:param name="display_section" value="upload" />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 							<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
 							<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
 						</portlet:renderURL>
 
-						<li class="action-upload"><a href="<%= editURL %>"><liferay-ui:message key="upload-new-revision" /></a></li>
+						<li class="action-upload"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= editURL %>', '<liferay-ui:message key="upload-new-revision" />')"><liferay-ui:message key="upload-new-revision" /></a></li>
 					</c:when>
 					<c:when test="<%= isLocked.booleanValue() %>">
 						<li class="action-unlock"><liferay-ui:message key="unlock-document" /></li>
@@ -450,45 +450,21 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 			%>
 
 			<c:if test="<%= Validator.isNotNull(officeDoc) %>">
-
-				<%
-				StringBuilder sb = new StringBuilder();
-
-				DLFolder curFolder = DLFolderLocalServiceUtil.getFolder(folderId);
-
-				while (true) {
-					sb.insert(0, HttpUtil.encodeURL(curFolder.getName()));
-					sb.insert(0, StringPool.SLASH);
-
-					if (curFolder.getParentFolderId() == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-						break;
-					}
-					else {
-						curFolder = DLFolderLocalServiceUtil.getFolder(curFolder.getParentFolderId());
-					}
-				}
-
-				sb.append(StringPool.SLASH);
-				sb.append(HttpUtil.encodeURL(title));
-
-				Group group = themeDisplay.getScopeGroup();
-				%>
-
-				<script>
+				<aui:script>
 					function <portlet:namespace />openDocument() {
-						var fileUrl = '<%= themeDisplay.getPortalURL() + themeDisplay.getPathMain() + "/document_library/get_file?uuid=" + fileEntry.getUuid() + "&groupId=" + folder.getGroupId() %>';
-						var webDavUrl = '<%= themeDisplay.getPortalURL() + "/tunnel-web/secure/webdav/" + company.getWebId() + group.getFriendlyURL() + "/document_library" + sb.toString() %>';
+						var fileUrl = "<%= fileUrl %>";
+						var webDavUrl = "<%= webDavUrl %>";
 
-						var officeDoc = new ActiveXObject('<%= officeDoc %>');
+						var officeDoc = new ActiveXObject("<%= officeDoc %>");
 
 						if (officeDoc) {
 							officeDoc.EditDocument(webDavUrl);
 						}
 						else {
-							window.location.href=fileUrl;
+							window.location.href = fileUrl;
 						}
 					}
-				</script>
+				</aui:script>
 
 				<ul class="document-action-list">
 					<c:choose>
@@ -515,16 +491,16 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 					<c:if test="<%= DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE) %>">
 						<li class="action-move"><a href="javascript:;" onClick="var folderWindow = window.open('<portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="struts_action" value="/document_library/select_folder" /><portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" /></portlet:renderURL>', 'folder', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); folderWindow.focus();"><liferay-ui:message key="move-to" /></a></li>
 
-						<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
+						<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="editURL">
 							<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
 							<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-							<portlet:param name="edit_action" value="properties" />
+							<portlet:param name="display_section" value="properties" />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 							<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
 							<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
 						</portlet:renderURL>
 
-						<li class="action-edit"><a href="<%= editURL %>"><liferay-ui:message key="edit-properties" /></a></li>
+						<li class="action-edit"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= editURL %>', '<liferay-ui:message key="edit-properties" />')"><liferay-ui:message key="edit-properties" /></a></li>
 					</c:if>
 
 					<c:if test="<%= DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.PERMISSIONS) %>">
@@ -644,6 +620,53 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 			<portlet:namespace />updateRowsChecked(event.currentTarget);
 		}
 	);
+</aui:script>
+
+<aui:script use="aui-dialog">
+	Liferay.namespace('SO');
+
+	Liferay.SO.DocumentLibrary = {
+		closePopup: function() {
+			var instance = this;
+
+			var popup = instance._getPopup();
+
+			popup.hide();
+		},
+
+		displayPopup: function(url, title) {
+			var instance = this;
+
+			var popup = instance._getPopup();
+
+			popup.show();
+
+			popup.set('title', title);
+
+			popup.io.set('uri', url);
+			popup.io.start();
+		},
+
+		_getPopup: function() {
+			var instance = this;
+
+			if (!instance._popup) {
+				instance._popup = new A.Dialog(
+					{
+						cssClass: 'document-library-dialog',
+						resizable: false,
+						width: 600,
+						xy: [15,15]
+					}
+				).plug(
+					A.Plugin.IO,
+					{autoLoad: false}
+				).render();
+			}
+
+			return instance._popup;
+		}
+	}
 </aui:script>
 
 <%

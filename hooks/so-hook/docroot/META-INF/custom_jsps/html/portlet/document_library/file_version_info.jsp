@@ -40,7 +40,9 @@ String rowHREF = themeDisplay.getPathMain() + "/document_library/get_file?p_l_id
 	<div class="result-title">
 		<a href="<%= rowHREF %>"><liferay-ui:message key="revision" /> <%= fileVersion.getVersion() %></a>
 	</div>
-
+	<div class="result-description">
+		<%= fileVersion.getDescription() %>
+	</div>
 	<div class="result-data">
 		<span><liferay-ui:message key="by" />: <%= fileVersion.getUserName() %></span>
 		<span><liferay-ui:message key="modified" />: <%= dateFormatDateTime.format(fileVersion.getCreateDate()) %></span>
@@ -54,7 +56,7 @@ String rowHREF = themeDisplay.getPathMain() + "/document_library/get_file?p_l_id
 		<liferay-util:include page="/html/portlet/document_library/file_version_convert_to.jsp" />
 	</c:if>
 
-	<div class="result-comments" style="display: none;">
+	<div class="result-comments aui-helper-hidden">
 		<portlet:actionURL var="discussionURL">
 			<portlet:param name="struts_action" value="/document_library/edit_file_entry_discussion" />
 		</portlet:actionURL>

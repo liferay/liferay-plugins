@@ -22,6 +22,8 @@
 <%
 String strutsAction = ParamUtil.getString(request, "struts_action");
 
+String displaySection = ParamUtil.getString(request, "display_section", StringPool.BLANK);
+
 String tabs2 = ParamUtil.getString(request, "tabs2", "version-history");
 
 String redirect = ParamUtil.getString(request, "redirect");
@@ -116,26 +118,26 @@ portletURL.setParameter("name", name);
 			</c:otherwise>
 		</c:choose>
 	</div>
-</c:if>
 
-<c:if test="<%= isLocked.booleanValue() %>">
-	<c:choose>
-		<c:when test="<%= hasLock.booleanValue() %>">
+	<c:if test="<%= isLocked.booleanValue() %>">
+		<c:choose>
+			<c:when test="<%= hasLock.booleanValue() %>">
 
-			<%
-			String lockExpirationTime = LanguageUtil.getTimeDescription(pageContext, DLFileEntryImpl.LOCK_EXPIRATION_TIME).toLowerCase();
-			%>
+				<%
+				String lockExpirationTime = LanguageUtil.getTimeDescription(pageContext, DLFileEntryImpl.LOCK_EXPIRATION_TIME).toLowerCase();
+				%>
 
-			<div class="portlet-msg-success">
-				<%= LanguageUtil.format(pageContext, "you-now-have-a-lock-on-this-document", lockExpirationTime, false) %>
-			</div>
-		</c:when>
-		<c:otherwise>
-			<div class="portlet-msg-error">
-				<%= LanguageUtil.format(pageContext, "you-cannot-modify-this-document-because-it-was-locked-by-x-on-x", new Object[] {PortalUtil.getUserName(lock.getUserId(), String.valueOf(lock.getUserId())), dateFormatDateTime.format(lock.getCreateDate())}, false) %>
-			</div>
-		</c:otherwise>
-	</c:choose>
+				<div class="portlet-msg-success">
+					<%= LanguageUtil.format(pageContext, "you-now-have-a-lock-on-this-document", lockExpirationTime, false) %>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="portlet-msg-error">
+					<%= LanguageUtil.format(pageContext, "you-cannot-modify-this-document-because-it-was-locked-by-x-on-x", new Object[] {PortalUtil.getUserName(lock.getUserId(), String.valueOf(lock.getUserId())), dateFormatDateTime.format(lock.getCreateDate())}, false) %>
+				</div>
+			</c:otherwise>
+		</c:choose>
+	</c:if>
 </c:if>
 
 <c:if test="<%= fileEntry == null %>">
@@ -193,8 +195,8 @@ portletURL.setParameter("name", name);
 
 	<aui:model-context bean="<%= fileEntry %>" model="<%= DLFileEntry.class %>" />
 
-	<aui:fieldset>
-		<div>
+	<aui:fieldset cssClass="<%= displaySection %>">
+		<div class="section-upload">
 			<aui:field-wrapper>
 
 				<%
@@ -207,20 +209,19 @@ portletURL.setParameter("name", name);
 					</div>
 				</c:if>
 			</aui:field-wrapper>
-		</div>
-		<div>
+
 			<aui:input name="file" type="file" />
 
 			<c:if test="<%= fileEntry != null %>">
-				<aui:input label="version-description" name="versionDescription" type="textarea" />
+				<aui:input label="version-description" name="versionDescription" style="width: 350px;" type="textarea" />
 			</c:if>
 		</div>
-		<div>
-			<aui:input label="title" name="extraSettingsProperties(name)" type="text" value='<%= GetterUtil.getString(extraSettingsProperties.getProperty("name")) %>' />
+		<div class="section-properties">
+			<aui:input label="title" name="extraSettingsProperties(name)" style="width: 350px;" type="text" value='<%= GetterUtil.getString(extraSettingsProperties.getProperty("name")) %>' />
 
 			<aui:input label="name" name="title" />
 
-			<aui:input label="author" name="extraSettingsProperties(author)" type="text" value='<%= GetterUtil.getString(extraSettingsProperties.getProperty("author")) %>' />
+			<aui:input label="author" name="extraSettingsProperties(author)" style="width: 350px;" type="text" value='<%= GetterUtil.getString(extraSettingsProperties.getProperty("author")) %>' />
 
 			<aui:input name="description" />
 
@@ -235,20 +236,26 @@ portletURL.setParameter("name", name);
 
 			<aui:input name="tags" type="assetTags" />
 		</div>
-		<div>
-			<c:if test="<%= fileEntry == null %>">
-				<aui:field-wrapper label="permissions">
-					<liferay-ui:input-permissions
-						modelName="<%= DLFileEntry.class.getName() %>"
-					/>
-				</aui:field-wrapper>
-			</c:if>
-		<div>
+
+		<c:if test="<%= fileEntry == null %>">
+			<aui:field-wrapper label="permissions">
+				<liferay-ui:input-permissions
+					modelName="<%= DLFileEntry.class.getName() %>"
+				/>
+			</aui:field-wrapper>
+		</c:if>
 
 		<aui:button-row>
 			<aui:button disabled="<%= isLocked.booleanValue() && !hasLock.booleanValue() %>" type="submit" value="save" />
 
-			<aui:button onClick="<%= redirect %>" type="cancel" />
+			<c:choose>
+				<c:when test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
+					<aui:button onClick="Liferay.SO.DocumentLibrary.closePopup()" type="cancel" />
+				</c:when>
+				<c:otherwise>
+					<aui:button onClick="<%= redirect %>" type="cancel" />
+				</c:otherwise>
+			</c:choose>
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>
