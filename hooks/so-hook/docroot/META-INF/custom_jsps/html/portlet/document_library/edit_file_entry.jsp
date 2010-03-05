@@ -86,6 +86,12 @@ else if (WorkflowInstanceLinkLocalServiceUtil.hasWorkflowInstanceLink(company.ge
 	status = StatusConstants.PENDING;
 }
 
+UnicodeProperties extraSettingsProperties = new UnicodeProperties();
+
+if (fileEntry != null) {
+	extraSettingsProperties = fileEntry.getExtraSettingsProperties();
+}
+
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("struts_action", strutsAction);
@@ -188,59 +194,56 @@ portletURL.setParameter("name", name);
 	<aui:model-context bean="<%= fileEntry %>" model="<%= DLFileEntry.class %>" />
 
 	<aui:fieldset>
-		<aui:field-wrapper>
+		<div>
+			<aui:field-wrapper>
 
-			<%
-			long fileMaxSize = PrefsPropsUtil.getLong(PropsKeys.DL_FILE_MAX_SIZE) / 1024;
-			%>
+				<%
+				long fileMaxSize = PrefsPropsUtil.getLong(PropsKeys.DL_FILE_MAX_SIZE) / 1024;
+				%>
 
-			<c:if test="<%= fileMaxSize != 0 %>">
-				<div class="portlet-msg-info">
-					<%= LanguageUtil.format(pageContext, "upload-documents-no-larger-than-x-k", String.valueOf(fileMaxSize), false) %>
-				</div>
-			</c:if>
-		</aui:field-wrapper>
-
-		<aui:input name="file" type="file" />
-
-		<aui:input name="title" />
-
-		<aui:input name="description" />
-
-		<aui:input label="version-description" name="versionDescription" type="textarea" />
-
-		<liferay-ui:custom-attributes-available className="<%= DLFileEntry.class.getName() %>">
-			<liferay-ui:custom-attribute-list
-				className="<%= DLFileEntry.class.getName() %>"
-				classPK="<%= (fileEntry != null) ? fileEntry.getFileEntryId() : 0 %>"
-				editable="<%= true %>"
-				label="<%= true %>"
-			/>
-		</liferay-ui:custom-attributes-available>
-
-		<aui:input name="tags" type="assetTags" />
-
-		<%
-		if (fileEntry == null) {
-			request.setAttribute(WebKeys.DOCUMENT_LIBRARY_FILE_ENTRY, new DLFileEntryImpl());
-		}
-		%>
-
-		<%@ include file="/html/portlet/document_library/edit_file_entry_form_extra_fields.jsp" %>
-
-		<%
-		if (fileEntry == null) {
-			request.removeAttribute(WebKeys.DOCUMENT_LIBRARY_FILE_ENTRY);
-		}
-		%>
-
-		<c:if test="<%= fileEntry == null %>">
-			<aui:field-wrapper label="permissions">
-				<liferay-ui:input-permissions
-					modelName="<%= DLFileEntry.class.getName() %>"
-				/>
+				<c:if test="<%= fileMaxSize != 0 %>">
+					<div class="portlet-msg-info">
+						<%= LanguageUtil.format(pageContext, "upload-documents-no-larger-than-x-k", String.valueOf(fileMaxSize), false) %>
+					</div>
+				</c:if>
 			</aui:field-wrapper>
-		</c:if>
+		</div>
+		<div>
+			<aui:input name="file" type="file" />
+
+			<c:if test="<%= fileEntry != null %>">
+				<aui:input label="version-description" name="versionDescription" type="textarea" />
+			</c:if>
+		</div>
+		<div>
+			<aui:input label="title" name="extraSettingsProperties(name)" type="text" value='<%= GetterUtil.getString(extraSettingsProperties.getProperty("name")) %>' />
+
+			<aui:input label="name" name="title" />
+
+			<aui:input label="author" name="extraSettingsProperties(author)" type="text" value='<%= GetterUtil.getString(extraSettingsProperties.getProperty("author")) %>' />
+
+			<aui:input name="description" />
+
+			<liferay-ui:custom-attributes-available className="<%= DLFileEntry.class.getName() %>">
+				<liferay-ui:custom-attribute-list
+					className="<%= DLFileEntry.class.getName() %>"
+					classPK="<%= (fileEntry != null) ? fileEntry.getFileEntryId() : 0 %>"
+					editable="<%= true %>"
+					label="<%= true %>"
+				/>
+			</liferay-ui:custom-attributes-available>
+
+			<aui:input name="tags" type="assetTags" />
+		</div>
+		<div>
+			<c:if test="<%= fileEntry == null %>">
+				<aui:field-wrapper label="permissions">
+					<liferay-ui:input-permissions
+						modelName="<%= DLFileEntry.class.getName() %>"
+					/>
+				</aui:field-wrapper>
+			</c:if>
+		<div>
 
 		<aui:button-row>
 			<aui:button disabled="<%= isLocked.booleanValue() && !hasLock.booleanValue() %>" type="submit" value="save" />

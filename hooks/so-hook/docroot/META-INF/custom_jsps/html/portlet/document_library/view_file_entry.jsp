@@ -161,6 +161,14 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 		</tr>
 		<tr>
 			<td class="lfr-label">
+				<liferay-ui:message key="title" />
+			</td>
+			<td>
+				<%= GetterUtil.getString(extraSettingsProperties.getProperty("name")) %>
+			</td>
+		</tr>
+		<tr>
+			<td class="lfr-label">
 				<liferay-ui:message key="version" />
 			</td>
 			<td>
@@ -596,7 +604,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 	}
 
 	function <portlet:namespace />lock() {
-		submitForm(document.hrefFm, "<portlet:actionURL><portlet:param name="struts_action" value="/document_library/edit_file_entry" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.LOCK %>" /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" /><portlet:param name="name" value="<%= name %>" /></portlet:actionURL>");
+		submitForm(document.hrefFm, "<portlet:actionURL><portlet:param name="struts_action" value="/document_library/edit_file_entry" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.LOCK %>" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" /><portlet:param name="name" value="<%= name %>" /></portlet:actionURL>");
 	}
 
 	function <portlet:namespace />selectFolder(folderId, folderName) {
@@ -604,7 +612,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 	}
 
 	function <portlet:namespace />unlock() {
-		submitForm(document.hrefFm, "<portlet:actionURL><portlet:param name="struts_action" value="/document_library/edit_file_entry" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UNLOCK %>" /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" /><portlet:param name="name" value="<%= name %>" /></portlet:actionURL>");
+		submitForm(document.hrefFm, "<portlet:actionURL><portlet:param name="struts_action" value="/document_library/edit_file_entry" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UNLOCK %>" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" /><portlet:param name="name" value="<%= name %>" /></portlet:actionURL>");
 	}
 
 	function <portlet:namespace />updateRowsChecked(element) {
