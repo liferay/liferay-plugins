@@ -297,11 +297,6 @@ body #banner h1.logo a {
 	width: 50%;
 }
 
-.columns-1 #column-1,
-.columns-max #column-1 {
-	padding-top: 15px;
-}
-
 /* ---------- Application ---------- */
 
 /* Actions */
@@ -1244,14 +1239,13 @@ table.calendar {
 	background-image: url(../images/common/delete.png);
 }
 
-.portlet-document-library .edit-version,
-.portlet-document-library .upload .edit-properties,
-.portlet-document-library .properties .edit-file {
+.document-library-dialog .upload .section-properties,
+.document-library-dialog .properties .section-upload {
 	display: none;
 }
 
-.portlet-document-library .upload .pop-set {
-	margin: 0;
+.document-library-dialog .aui-tagselector-content {
+	margin-bottom: 50px;
 }
 
 .portlet-document-library .upload .edit-version {
