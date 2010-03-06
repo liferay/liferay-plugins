@@ -36,7 +36,7 @@ String strutsAction = ParamUtil.getString(request, "struts_action");
 String rowHREF = themeDisplay.getPathMain() + "/document_library/get_file?p_l_id=" + themeDisplay.getPlid() + "&folderId=" + fileEntry.getFolderId() + "&name=" + HttpUtil.encodeURL(fileEntry.getName()) + "&version=" + fileVersion.getVersion();
 %>
 
-<div>
+<div class="result-wrapper">
 	<div class="result-title">
 		<a href="<%= rowHREF %>"><liferay-ui:message key="revision" /> <%= fileVersion.getVersion() %></a>
 	</div>

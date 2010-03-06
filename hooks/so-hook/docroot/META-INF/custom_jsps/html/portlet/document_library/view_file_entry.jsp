@@ -169,7 +169,15 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 		</tr>
 		<tr>
 			<td class="lfr-label">
-				<liferay-ui:message key="version" />
+				<liferay-ui:message key="description" />
+			</td>
+			<td>
+				<%= fileEntry.getDescription() %>
+			</td>
+		</tr>
+		<tr>
+			<td class="lfr-label">
+				<liferay-ui:message key="current-revision" />
 			</td>
 			<td>
 				<%= fileEntry.getVersion() %>
@@ -181,14 +189,6 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 			</td>
 			<td>
 				<%= TextFormatter.formatKB(fileEntry.getSize(), locale) %>k
-			</td>
-		</tr>
-		<tr>
-			<td class="lfr-label">
-				<liferay-ui:message key="num-of-downloads" />
-			</td>
-			<td>
-				<%= fileEntry.getReadCount() %>
 			</td>
 		</tr>
 		<tr>
@@ -239,6 +239,14 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 		<tr>
 			<td colspan="2">
 				<br />
+			</td>
+		</tr>
+		<tr>
+			<td class="lfr-label">
+				<liferay-ui:message key="num-of-downloads" />
+			</td>
+			<td>
+				<%= fileEntry.getReadCount() %>
 			</td>
 		</tr>
 		<tr>
@@ -667,6 +675,25 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 			return instance._popup;
 		}
 	}
+
+	A.all('.portlet-document-library .result-data .comments').on(
+		'click',
+		function(event) {
+			event = event.currentTarget;
+
+			var container = event.ancestor('.result-wrapper');
+			var comments = container.one('.result-comments');
+
+			if (comments.hasClass('aui-helper-hidden')) {
+				comments.show();
+				event.text(Liferay.Language.get('hide-comments'));
+			}
+			else {
+				comments.hide();
+				event.text(Liferay.Language.get('show-comments'));
+			}
+		}
+	);
 </aui:script>
 
 <%
