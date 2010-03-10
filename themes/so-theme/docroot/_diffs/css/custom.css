@@ -230,12 +230,12 @@ body #banner h1.logo a {
 	font-weight: bold;
 }
 
-.portlet-icons {
+.portlet-toolbar {
 	right: 2px;
 	top: 2px;
 }
 
-.portlet-icons .portlet-options {
+.portlet-toolbar .portlet-options {
 	width: 20px;
 }
 

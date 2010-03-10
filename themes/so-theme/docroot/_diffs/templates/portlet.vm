@@ -5,13 +5,13 @@
 #set ($portlet_content = $portlet_display.getContent())
 #set ($portlet_back_url = $htmlUtil.escape($portlet_display.getURLBack()))
 
-<div class="portlet" id="portlet-wrapper-$portlet_id">
+<div class="portlet" id="portlet_$portlet_id">
 	<div class="portlet-topper">
 		<span class="portlet-title not-editable">
-			$portlet_title
+			<span>$portlet_title</span>
 		</span>
 
-		<div class="portlet-icons" id="portlet-small-icon-bar_$portlet_id">
+		<div class="portlet-toolbar" id="portlet-toolbar_$portlet_id">
 			#if ($portlet_display.isShowBackIcon())
 				<a href="$portlet_back_url" class="portlet-icon-back">#language ("return-to-full-page")</a>
 			#elseif ($layout.getFriendlyURL().equals("/home"))
