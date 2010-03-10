@@ -30,11 +30,9 @@ String[] conversions = (String[])objArray[2];
 PortletURL redirectURL = (PortletURL)objArray[3];
 Boolean isLocked = (Boolean)objArray[4];
 Boolean hasLock = (Boolean)objArray[5];
-
-boolean showDelete = (!isLocked.booleanValue() || hasLock.booleanValue()) && !fileEntry.getVersion().equals(fileVersion.getVersion());
 %>
 
-<c:if test="<%= showDelete && DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.DELETE) %>">
+<c:if test="<%= (!isLocked.booleanValue() || hasLock.booleanValue()) && DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.DELETE) %>">
 	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
 		<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
 		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
