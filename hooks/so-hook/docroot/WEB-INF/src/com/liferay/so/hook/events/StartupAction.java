@@ -202,7 +202,9 @@ public class StartupAction extends SimpleAction {
 		// Community Member - Document Library
 
 		name = "com.liferay.portlet.documentlibrary";
-		actionIds = new String[] {ActionKeys.ADD_FOLDER};
+		actionIds = new String[] {
+			ActionKeys.ADD_FOLDER, ActionKeys.ADD_DOCUMENT
+		};
 
 		ResourcePermissionLocalServiceUtil.setResourcePermissions(
 			companyId, name, scope, primKey, roleId, actionIds);
