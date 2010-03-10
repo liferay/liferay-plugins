@@ -29,8 +29,10 @@ import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -58,7 +60,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 	public WorkflowTask assignWorkflowTaskToRole(
 			long companyId, long userId, long workflowTaskId, long roleId,
-			String comment, Map<String, Object> context)
+			String comment, Map<String, Serializable> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -74,7 +76,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			taskInstance.addComment(comment);
 
 			if (context != null) {
-				taskInstance.addVariables(context);
+				taskInstance.addVariables(new HashMap<String, Object>(context));
 			}
 
 			jbpmContext.save(taskInstance);
@@ -91,7 +93,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 	public WorkflowTask assignWorkflowTaskToUser(
 			long companyId, long userId, long workflowTaskId,
-			long assigneeUserId, String comment, Map<String, Object> context)
+			long assigneeUserId, String comment,
+			Map<String, Serializable> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -127,7 +130,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			taskInstance.addComment(comment);
 
 			if (context != null) {
-				taskInstance.addVariables(context);
+				taskInstance.addVariables(new HashMap<String, Object>(context));
 			}
 
 			jbpmContext.save(taskInstance);
@@ -157,7 +160,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 	public WorkflowTask completeWorkflowTask(
 			long companyId, long userId, long workflowTaskId,
-			String transitionName, String comment, Map<String, Object> context)
+			String transitionName, String comment,
+			Map<String, Serializable> context)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -185,7 +189,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			taskInstance.addComment(comment);
 
 			if (context != null) {
-				taskInstance.addVariables(context);
+				taskInstance.addVariables(new HashMap<String, Object>(context));
 			}
 
 			if (transitionName == null) {

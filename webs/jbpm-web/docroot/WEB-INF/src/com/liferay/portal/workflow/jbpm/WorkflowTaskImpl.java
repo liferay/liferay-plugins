@@ -18,6 +18,9 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.DefaultWorkflowTask;
 
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.jbpm.graph.def.ProcessDefinition;
@@ -61,7 +64,17 @@ public class WorkflowTaskImpl extends DefaultWorkflowTask {
 		setDescription(taskInstance.getDescription());
 		setDueDate(taskInstance.getDueDate());
 		setName(taskInstance.getName());
-		setOptionalAttributes(taskInstance.getVariables());
+
+		Map<String, Serializable> optionalAttributes =
+			new HashMap<String, Serializable>();
+		Map<String, Object> objectValues = taskInstance.getVariables();
+		for (Map.Entry<String, Object> objectValue : objectValues.entrySet()) {
+			optionalAttributes.put(
+				objectValue.getKey(), (Serializable)objectValue.getValue());
+
+		}
+		setOptionalAttributes(optionalAttributes);
+
 		setWorkflowDefinitionId(processDefinition.getId());
 		setWorkflowDefinitionName(processDefinition.getName());
 		setWorkflowDefinitionVersion(processDefinition.getVersion());
