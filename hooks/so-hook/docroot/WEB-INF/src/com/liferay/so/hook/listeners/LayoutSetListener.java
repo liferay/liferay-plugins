@@ -31,7 +31,6 @@ import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutTemplate;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.PortletConstants;
-import com.liferay.portal.model.Resource;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
@@ -39,8 +38,8 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
-import com.liferay.portal.service.PermissionLocalServiceUtil;
 import com.liferay.portal.service.ResourceLocalServiceUtil;
+import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.permission.PortletPermissionUtil;
@@ -385,14 +384,11 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		String[] actionIds = new String[0];
 
 		String name = Layout.class.getName();
-		int scope =	ResourceConstants.SCOPE_INDIVIDUAL;
+		int scope = ResourceConstants.SCOPE_INDIVIDUAL;
 		String primKey = String.valueOf(layout.getPrimaryKey());
 
-		Resource resource = ResourceLocalServiceUtil.getResource(
-			companyId, name, scope, primKey);
-
-		PermissionLocalServiceUtil.setRolePermissions(
-			role.getRoleId(), actionIds, resource.getResourceId());
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, role.getRoleId(), actionIds);
 
 		if (addDefaultActionIds) {
 			actionIds = new String[] {ActionKeys.VIEW};
@@ -401,8 +397,8 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		role = RoleLocalServiceUtil.getRole(
 			companyId, RoleConstants.POWER_USER);
 
-		PermissionLocalServiceUtil.setRolePermissions(
-			role.getRoleId(), actionIds, resource.getResourceId());
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, role.getRoleId(), actionIds);
 	}
 
 	protected void updatePortletTitle(

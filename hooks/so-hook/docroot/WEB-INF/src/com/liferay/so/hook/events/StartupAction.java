@@ -40,8 +40,8 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
-import com.liferay.portal.service.PermissionLocalServiceUtil;
 import com.liferay.portal.service.PortletLocalServiceUtil;
+import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -168,60 +168,54 @@ public class StartupAction extends SimpleAction {
 		String name = "com.liferay.portlet.blogs";
 		int scope = ResourceConstants.SCOPE_GROUP_TEMPLATE;
 		String primKey = String.valueOf(GroupConstants.DEFAULT_PARENT_GROUP_ID);
-		String actionId = ActionKeys.ADD_ENTRY;
+		String[] actionIds = new String[] {ActionKeys.ADD_ENTRY};
 
-		PermissionLocalServiceUtil.setRolePermission(
-			roleId, companyId, name, scope, primKey, actionId);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 
 		// Community Member - Calendar
 
 		name = "com.liferay.portlet.calendar";
-		String[] actionIds = new String[] {
+		actionIds = new String[] {
 			ActionKeys.ADD_EVENT, ActionKeys.EXPORT_ALL_EVENTS
 		};
 
-		PermissionLocalServiceUtil.setRolePermissions(
-			roleId, companyId, name, scope, primKey, actionIds);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 
 		// Community Member - Calendar Event
 
 		name = CalEvent.class.getName();
-		actionId = ActionKeys.VIEW;
+		actionIds = new String[] {ActionKeys.VIEW};
 
-		PermissionLocalServiceUtil.setRolePermission(
-			roleId, companyId, name, scope, primKey, actionId);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 
 		// Community Member - Community
 
 		name = Group.class.getName();
-		actionId = ActionKeys.ASSIGN_MEMBERS;
+		actionIds = new String[] {ActionKeys.ASSIGN_MEMBERS};
 
-		PermissionLocalServiceUtil.setRolePermission(
-			roleId, companyId, name, scope, primKey, actionId);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 
 		// Community Member - Document Library
 
 		name = "com.liferay.portlet.documentlibrary";
-		actionId = ActionKeys.ADD_FOLDER;
+		actionIds = new String[] {ActionKeys.ADD_FOLDER};
 
-		PermissionLocalServiceUtil.setRolePermission(
-			roleId, companyId, name, scope, primKey, actionId);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 
 		// Community Member - Document Library Document
 
 		name = DLFileEntry.class.getName();
-		actionIds = new String[] {ActionKeys.UPDATE, ActionKeys.VIEW};
+		actionIds = new String[] {
+			ActionKeys.ADD_DISCUSSION, ActionKeys.UPDATE, ActionKeys.VIEW
+		};
 
-		PermissionLocalServiceUtil.setRolePermissions(
-			roleId, companyId, name, scope, primKey, actionIds);
-
-		// Community Member - Document Library Version
-
-		name = DLFileVersion.class.getName();
-		actionIds = new String[] {ActionKeys.ADD_DISCUSSION};
-
-		PermissionLocalServiceUtil.setRolePermissions(
-			roleId, companyId, name, scope, primKey, actionIds);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 
 		// Community Member - Document Library Folder
 
@@ -230,16 +224,16 @@ public class StartupAction extends SimpleAction {
 			ActionKeys.ADD_DOCUMENT, ActionKeys.ADD_SUBFOLDER, ActionKeys.VIEW
 		};
 
-		PermissionLocalServiceUtil.setRolePermissions(
-			roleId, companyId, name, scope, primKey, actionIds);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 
 		// Community Member - Message Boards
 
 		name = "com.liferay.portlet.messageboards";
-		actionId = ActionKeys.ADD_CATEGORY;
+		actionIds = new String[] {ActionKeys.ADD_CATEGORY};
 
-		PermissionLocalServiceUtil.setRolePermission(
-			roleId, companyId, name, scope, primKey, actionId);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 
 		// Community Member - Message Boards Category
 
@@ -250,24 +244,24 @@ public class StartupAction extends SimpleAction {
 			ActionKeys.REPLY_TO_MESSAGE, ActionKeys.SUBSCRIBE, ActionKeys.VIEW
 		};
 
-		PermissionLocalServiceUtil.setRolePermissions(
-			roleId, companyId, name, scope, primKey, actionIds);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 
 		// Community Member - Message Boards Message
 
 		name = MBMessage.class.getName();
-		actionId = ActionKeys.VIEW;
+		actionIds = new String[] {ActionKeys.VIEW};
 
-		PermissionLocalServiceUtil.setRolePermission(
-			roleId, companyId, name, scope, primKey, actionId);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 
 		// Community Member - Wiki
 
 		name = "com.liferay.portlet.wiki";
-		actionId = ActionKeys.ADD_NODE;
+		actionIds = new String[] {ActionKeys.ADD_NODE};
 
-		PermissionLocalServiceUtil.setRolePermission(
-			roleId, companyId, name, scope, primKey, actionId);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 
 		// Community Member - Wiki Node
 
@@ -277,8 +271,8 @@ public class StartupAction extends SimpleAction {
 			ActionKeys.SUBSCRIBE, ActionKeys.VIEW
 		};
 
-		PermissionLocalServiceUtil.setRolePermissions(
-			roleId, companyId, name, scope, primKey, actionIds);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 
 		// Community Member - Wiki Page
 
@@ -288,8 +282,8 @@ public class StartupAction extends SimpleAction {
 			ActionKeys.UPDATE, ActionKeys.VIEW
 		};
 
-		PermissionLocalServiceUtil.setRolePermissions(
-			roleId, companyId, name, scope, primKey, actionIds);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 
 		// Community Owner - Announcements
 
@@ -298,18 +292,10 @@ public class StartupAction extends SimpleAction {
 
 		roleId = role.getRoleId();
 		name = PortletKeys.ANNOUNCEMENTS;
-		actionId = ActionKeys.ADD_ENTRY;
+		actionIds = new String[] {ActionKeys.ADD_ENTRY};
 
-		PermissionLocalServiceUtil.setRolePermission(
-			roleId, companyId, name, scope, primKey, actionId);
-
-		// Community Owner - RSS
-
-		name = "com.liferay.portlet.rss";
-		actionId = ActionKeys.CONFIGURATION;
-
-		PermissionLocalServiceUtil.setRolePermission(
-			roleId, companyId, name, scope, primKey, actionId);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 
 		// Power User - Add Community
 
@@ -320,18 +306,18 @@ public class StartupAction extends SimpleAction {
 		name = PortletKeys.PORTAL;
 		scope =	ResourceConstants.SCOPE_COMPANY;
 		primKey = String.valueOf(companyId);
-		actionId = ActionKeys.ADD_COMMUNITY;
+		actionIds = new String[] {ActionKeys.ADD_COMMUNITY};
 
-		PermissionLocalServiceUtil.setRolePermission(
-			roleId, companyId, name, scope, primKey, actionId);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 
 		// Power User - Directory
 
 		name = PortletKeys.DIRECTORY;
-		actionId = ActionKeys.VIEW;
+		actionIds = new String[] {ActionKeys.VIEW};
 
-		PermissionLocalServiceUtil.setRolePermission(
-			roleId, companyId, name, scope, primKey, actionId);
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 	}
 
 	protected void setupRuntime(long companyId) throws Exception {

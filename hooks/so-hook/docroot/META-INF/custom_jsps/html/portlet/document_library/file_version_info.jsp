@@ -66,6 +66,8 @@ String rowHREF = themeDisplay.getPathMain() + "/document_library/get_file?p_l_id
 			formAction="<%= discussionURL %>"
 			className="<%= DLFileVersion.class.getName() %>"
 			classPK="<%= fileVersion.getFileVersionId() %>"
+			permissionClassName="<%= DLFileEntry.class.getName() %>"
+			permissionClassPK="<%= fileEntry.getFileEntryId() %>"
 			userId="<%= fileVersion.getUserId() %>"
 			subject="<%= fileEntry.getTitle() %>"
 			redirect="<%= currentURL %>"
