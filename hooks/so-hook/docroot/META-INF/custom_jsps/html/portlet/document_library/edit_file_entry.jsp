@@ -216,6 +216,10 @@ portletURL.setParameter("name", name);
 
 					<aui:input label="major-revision" name="version" type="radio" value="major" />
 					<aui:input label="minor-revision" checked="true" name="version" type="radio" value="minor" />
+
+					<c:if test='<%= displaySection.equals("online") %>'>
+						<aui:input label="revert-revision" name="version" type="radio" value="revert" />
+					</c:if>
 				</aui:field-wrapper>
 			</c:if>
 
@@ -282,6 +286,23 @@ portletURL.setParameter("name", name);
 <aui:script>
 	function <portlet:namespace />saveFileEntry() {
 		<%= HtmlUtil.escape(uploadProgressId) %>.startProgress();
+
+		<c:if test='<%= displaySection.equals("online") %>'>
+			if (document.<portlet:namespace />fm.<portlet:namespace />version[2].checked) {
+				<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
+					<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
+					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+					<portlet:param name="redirect" value="<%= redirect %>" />
+					<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
+					<portlet:param name="name" value="<%= fileEntry.getName() %>" />
+					<portlet:param name="version" value="<%= String.valueOf(fileEntry.getVersion()) %>" />
+				</portlet:actionURL>
+
+				submitForm(document.hrefFm, '<%= deleteURL %>');
+
+				return false;
+			}
+		</c:if>
 
 		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= fileEntry == null ? Constants.ADD : Constants.UPDATE %>";
 		document.<portlet:namespace />fm.<portlet:namespace />majorVersion.value = document.<portlet:namespace />fm.<portlet:namespace />version[0].checked;
