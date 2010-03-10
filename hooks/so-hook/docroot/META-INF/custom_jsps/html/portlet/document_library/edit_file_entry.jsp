@@ -210,6 +210,15 @@ portletURL.setParameter("name", name);
 				</c:if>
 			</aui:field-wrapper>
 
+			<c:if test="<%= fileEntry != null %>">
+				<aui:field-wrapper>
+					<aui:input name="majorVersion" type="hidden" />
+
+					<aui:input label="major-revision" name="version" type="radio" value="major" />
+					<aui:input label="minor-revision" checked="true" name="version" type="radio" value="minor" />
+				</aui:field-wrapper>
+			</c:if>
+
 			<aui:input name="file" type="file" />
 
 			<c:if test="<%= fileEntry != null %>">
@@ -275,6 +284,7 @@ portletURL.setParameter("name", name);
 		<%= HtmlUtil.escape(uploadProgressId) %>.startProgress();
 
 		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= fileEntry == null ? Constants.ADD : Constants.UPDATE %>";
+		document.<portlet:namespace />fm.<portlet:namespace />majorVersion.value = document.<portlet:namespace />fm.<portlet:namespace />version[0].checked;
 		submitForm(document.<portlet:namespace />fm);
 	}
 
