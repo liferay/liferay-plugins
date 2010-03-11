@@ -8,10 +8,6 @@
 	min-width: 960px;
 }
 
-#banner {
-	margin-bottom: 10px;
-}
-
 #signIn {
 	border-bottom: 1px solid #EEF0F2;
 	margin: 0 10px;
@@ -24,11 +20,18 @@
 	color: #FFF;
 }
 
-#content-wrapper {
+#content {
 	margin: 10px 10px 0;
 }
 
 /* ---------- Classic custom_common.css ---------- */
+
+#skip-to-content, #banner h2, #banner h3, #navigation h1, .site-breadcrumbs h1 {
+	left: -99999px;
+	overflow: hidden;
+	position: absolute;
+	width: 1%;
+}
 
 .aui-tab-active:after {
 	border: 10px solid;
