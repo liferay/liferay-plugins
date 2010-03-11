@@ -55,6 +55,20 @@ public class ServicePreAction extends Action {
 	public void run(HttpServletRequest request, HttpServletResponse response)
 		throws ActionException {
 
+		try {
+			doRun(request, response);
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(e, e);
+			}
+		}
+	}
+
+	protected void doRun(
+			HttpServletRequest request, HttpServletResponse response)
+		throws Exception {
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -64,27 +78,20 @@ public class ServicePreAction extends Action {
 
 			// SOS-9
 
-			try {
-				long groupId = ParamUtil.getLong(request, "groupId");
+			long groupId = ParamUtil.getLong(request, "groupId");
 
-				String redirect = getRedirect(themeDisplay, groupId);
+			String redirect = getRedirect(themeDisplay, groupId);
 
-				if (redirect == null) {
-					redirect = ParamUtil.getString(request, "redirect");
+			if (redirect == null) {
+				redirect = ParamUtil.getString(request, "redirect");
 
-					SessionErrors.add(
-						request, NoSuchLayoutSetException.class.getName(),
-						new NoSuchLayoutSetException(
-							"{groupId=" + groupId + ", privateLayout=0}"));
-				}
-
-				response.sendRedirect(redirect);
+				SessionErrors.add(
+					request, NoSuchLayoutSetException.class.getName(),
+					new NoSuchLayoutSetException(
+						"{groupId=" + groupId + ", privateLayout=0}"));
 			}
-			catch (Exception e) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(e, e);
-				}
-			}
+
+			response.sendRedirect(redirect);
 
 			return;
 		}
@@ -107,20 +114,13 @@ public class ServicePreAction extends Action {
 			return;
 		}
 
-		try {
-			User user = themeDisplay.getUser();
+		User user = themeDisplay.getUser();
 
-			String redirect =
-				themeDisplay.getPathFriendlyURLPublic() + "/" +
-					user.getScreenName() + "/home";
+		String redirect =
+			themeDisplay.getPathFriendlyURLPublic() + "/" +
+				user.getScreenName() + "/home";
 
-			response.sendRedirect(redirect);
-		}
-		catch (Exception e) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(e, e);
-			}
-		}
+		response.sendRedirect(redirect);
 	}
 
 	protected boolean isDisplayURL(
