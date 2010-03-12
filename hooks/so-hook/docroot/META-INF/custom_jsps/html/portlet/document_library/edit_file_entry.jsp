@@ -291,8 +291,9 @@ portletURL.setParameter("name", name);
 			function <portlet:namespace />saveFileEntry() {
 				<%= HtmlUtil.escape(uploadProgressId) %>.startProgress();
 
-				document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= displaySection.equals("online") ? Constants.APPROVE : Constants.UPDATE %>";
+				document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.UPDATE %>";
 				document.<portlet:namespace />fm.<portlet:namespace />majorVersion.value = document.<portlet:namespace />fm.<portlet:namespace />version[0].checked;
+				document.<portlet:namespace />fm.<portlet:namespace />status.value = "<%= StatusConstants.APPROVED %>";
 
 				<c:if test='<%= displaySection.equals("online") %>'>
 					if (document.<portlet:namespace />fm.<portlet:namespace />version[2].checked) {

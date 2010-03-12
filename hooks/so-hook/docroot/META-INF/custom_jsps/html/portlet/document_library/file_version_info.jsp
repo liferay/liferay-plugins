@@ -38,7 +38,14 @@ String rowHREF = themeDisplay.getPathMain() + "/document_library/get_file?p_l_id
 
 <div class="result-wrapper">
 	<div class="result-title">
-		<a href="<%= rowHREF %>"><liferay-ui:message key="revision" /> <%= fileVersion.getVersion() %></a>
+		<c:choose>
+			<c:when test="<%= fileVersion.isApproved() %>">
+				<a href="<%= rowHREF %>"><liferay-ui:message key="revision" /> <%=  fileVersion.getVersion() %></a>
+			</c:when>
+			<c:otherwise>
+				<%= LanguageUtil.get(pageContext, "draft") %>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<div class="result-description">
 		<%= fileVersion.getDescription() %>
@@ -47,31 +54,36 @@ String rowHREF = themeDisplay.getPathMain() + "/document_library/get_file?p_l_id
 		<span><liferay-ui:message key="by" />: <%= fileVersion.getUserName() %></span>
 		<span><liferay-ui:message key="modified" />: <%= dateFormatDateTime.format(fileVersion.getCreateDate()) %></span>
 		<span><liferay-ui:message key="size" />: <%= TextFormatter.formatKB(fileVersion.getSize(), locale) %>k</span>
-		<span><a class="comments" href="javascript:;"><liferay-ui:message key="show-comments" /></a></span>
+
+		<c:if test="<%= fileVersion.isApproved() %>">
+			<span><a class="comments" href="javascript:;"><liferay-ui:message key="show-comments" /></a></span>
+		</c:if>
 
 		<liferay-util:include page="/html/portlet/document_library/file_version_action.jsp" />
 	</div>
 
-	<c:if test="<%= conversions.length > 0 %>">
+	<c:if test="<%= fileVersion.isApproved() && conversions.length > 0 %>">
 		<liferay-util:include page="/html/portlet/document_library/file_version_convert_to.jsp" />
 	</c:if>
 
-	<div class="result-comments aui-helper-hidden">
-		<portlet:actionURL var="discussionURL">
-			<portlet:param name="struts_action" value="/document_library/edit_file_entry_discussion" />
-		</portlet:actionURL>
+	<c:if test="<%= fileVersion.isApproved() %>">
+		<div class="result-comments aui-helper-hidden">
+			<portlet:actionURL var="discussionURL">
+				<portlet:param name="struts_action" value="/document_library/edit_file_entry_discussion" />
+			</portlet:actionURL>
 
-		<liferay-ui:discussion
-			formName='<%= "fm2" + fileVersion.getFileVersionId() %>'
-			formAction="<%= discussionURL %>"
-			className="<%= DLFileVersion.class.getName() %>"
-			classPK="<%= fileVersion.getFileVersionId() %>"
-			permissionClassName="<%= DLFileEntry.class.getName() %>"
-			permissionClassPK="<%= fileEntry.getFileEntryId() %>"
-			userId="<%= fileVersion.getUserId() %>"
-			subject="<%= fileEntry.getTitle() %>"
-			redirect="<%= currentURL %>"
-			ratingsEnabled="<%= enableCommentRatings %>"
-		/>
-	</div>
+			<liferay-ui:discussion
+				formName='<%= "fm2" + fileVersion.getFileVersionId() %>'
+				formAction="<%= discussionURL %>"
+				className="<%= DLFileVersion.class.getName() %>"
+				classPK="<%= fileVersion.getFileVersionId() %>"
+				permissionClassName="<%= DLFileEntry.class.getName() %>"
+				permissionClassPK="<%= fileEntry.getFileEntryId() %>"
+				userId="<%= fileVersion.getUserId() %>"
+				subject="<%= fileEntry.getTitle() %>"
+				redirect="<%= currentURL %>"
+				ratingsEnabled="<%= enableCommentRatings %>"
+			/>
+		</div>
+	</c:if>
 </div>

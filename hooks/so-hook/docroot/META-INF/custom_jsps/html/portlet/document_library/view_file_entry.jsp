@@ -323,7 +323,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 					searchContainer.setRowChecker(new RowChecker(renderResponse, RowChecker.ALIGN, RowChecker.VALIGN, RowChecker.FORM_NAME, null, RowChecker.ROW_IDS));
 				}
 
-				List results = DLFileVersionLocalServiceUtil.getFileVersions(scopeGroupId, folderId, name, StatusConstants.APPROVED);
+				List results = DLFileVersionLocalServiceUtil.getFileVersions(scopeGroupId, folderId, name, StatusConstants.ANY);
 				List resultRows = searchContainer.getResultRows();
 
 				for (int i = 0; i < results.size(); i++) {
@@ -489,12 +489,8 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 
 							<li class="action-save-office"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= onlineEditURL %>', '<liferay-ui:message key="finish-editing-online" />');"><liferay-ui:message key="finish-editing-online" /></a></li>
 						</c:when>
-						<c:when test="<%= isLocked.booleanValue() %>">
-							<li class="action-edit-office"><liferay-ui:message key="edit-document-online" /></li>
-							<li class="action-save-office"><liferay-ui:message key="finish-editing-online" /></li>
-						</c:when>
 						<c:otherwise>
-							<li class="action-edit-office"><a href="javascript:;" onClick="<portlet:namespace />openDocument();"><liferay-ui:message key="edit-document-online" /></a></li>
+							<li class="action-edit-office"><liferay-ui:message key="edit-document-online" /></li>
 							<li class="action-save-office"><liferay-ui:message key="finish-editing-online" /></li>
 						</c:otherwise>
 					</c:choose>
