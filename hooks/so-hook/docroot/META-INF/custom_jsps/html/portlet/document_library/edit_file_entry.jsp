@@ -259,12 +259,11 @@ portletURL.setParameter("name", name);
 		</c:if>
 
 		<aui:button-row>
-
 			<c:choose>
 				<c:when test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
 					<aui:button onClick='<%= renderResponse.getNamespace() + "saveFileEntry();" %>' type="button" value="save" />
 
-					<aui:button onClick="Liferay.SO.DocumentLibrary.closePopup()" type="cancel" />
+					<aui:button onClick="Liferay.SO.DocumentLibrary.closePopup();" type="cancel" />
 				</c:when>
 				<c:otherwise>
 					<aui:button disabled="<%= isLocked.booleanValue() && !hasLock.booleanValue() %>" type="submit" value="save" />

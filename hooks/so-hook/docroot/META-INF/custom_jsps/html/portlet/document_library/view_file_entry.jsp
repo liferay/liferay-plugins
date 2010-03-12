@@ -424,7 +424,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 							<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
 						</portlet:renderURL>
 
-						<li class="action-upload"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= editURL %>', '<liferay-ui:message key="upload-new-revision" />')"><liferay-ui:message key="upload-new-revision" /></a></li>
+						<li class="action-upload"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= editURL %>', '<liferay-ui:message key="upload-new-revision" />');"><liferay-ui:message key="upload-new-revision" /></a></li>
 					</c:when>
 					<c:when test="<%= isLocked.booleanValue() %>">
 						<li class="action-unlock"><liferay-ui:message key="unlock-document" /></li>
@@ -487,14 +487,14 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 								<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
 							</portlet:renderURL>
 
-							<li class="action-save-office"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= onlineEditURL %>', '<liferay-ui:message key="finish-editing-online" />')"><liferay-ui:message key="finish-editing-online" /></a></li>
+							<li class="action-save-office"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= onlineEditURL %>', '<liferay-ui:message key="finish-editing-online" />');"><liferay-ui:message key="finish-editing-online" /></a></li>
 						</c:when>
 						<c:when test="<%= isLocked.booleanValue() %>">
 							<li class="action-edit-office"><liferay-ui:message key="edit-document-online" /></li>
 							<li class="action-save-office"><liferay-ui:message key="finish-editing-online" /></li>
 						</c:when>
 						<c:otherwise>
-							<li class="action-edit-office"><a href="javascript:;" onClick="<portlet:namespace />openDocument()"><liferay-ui:message key="edit-document-online" /></a></li>
+							<li class="action-edit-office"><a href="javascript:;" onClick="<portlet:namespace />openDocument();"><liferay-ui:message key="edit-document-online" /></a></li>
 							<li class="action-save-office"><liferay-ui:message key="finish-editing-online" /></li>
 						</c:otherwise>
 					</c:choose>
@@ -517,7 +517,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 							<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
 						</portlet:renderURL>
 
-						<li class="action-edit"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= editURL %>', '<liferay-ui:message key="edit-properties" />')"><liferay-ui:message key="edit-properties" /></a></li>
+						<li class="action-edit"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= editURL %>', '<liferay-ui:message key="edit-properties" />');"><liferay-ui:message key="edit-properties" /></a></li>
 					</c:if>
 
 					<c:if test="<%= DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.PERMISSIONS) %>">
