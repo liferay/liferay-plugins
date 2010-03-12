@@ -4,18 +4,33 @@
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
->
+	>
 	<bean
 		name="com.liferay.portal.kernel.workflow.comparator.WorkflowLogComparatorFactoryUtil"
-		class="com.liferay.portal.kernel.workflow.comparator.WorkflowLogComparatorFactoryUtil">
+		class="com.liferay.portal.kernel.workflow.comparator.WorkflowComparatorFactoryUtil">
 		<property name="workflowLogComparatorFactory">
 			<bean
-				class="com.liferay.portal.workflow.basic.comparator.WorkflowLogComparatorFactoryImpl"/>
+				class="com.liferay.portal.workflow.jbpm.comparator.WorkflowLogComparatorFactoryImpl"/>
+		</property>
+		<property name="workflowDefinitionComparatorFactory">
+			<bean
+				class="com.liferay.portal.workflow.jbpm.comparator.WorkflowDefinitionComparatorFactoryImpl"/>
+		</property>
+		<property name="workflowInstanceComparatorFactory">
+			<bean
+				class="com.liferay.portal.workflow.jbpm.comparator.WorkflowInstanceComparatorFactoryImpl"/>
+		</property>
+
+		<property name="workflowTaskComparatorFactory">
+			<bean
+				class="com.liferay.portal.workflow.jbpm.comparator.WorkflowTaskComparatorFactoryImpl"/>
 		</property>
 	</bean>
-	
-	<bean id="jbpmConfiguration" class="com.liferay.portal.workflow.jbpm.util.JbpmConfigurationUtil" factory-method="createJbpmConfiguration">
-		<constructor-arg index="0" ref="hibernateSessionFactory" />
-		<constructor-arg index="1" value="org/jbpm/default.jbpm.cfg.xml" />
+
+	<bean id="jbpmConfiguration"
+		  class="com.liferay.portal.workflow.jbpm.util.JbpmConfigurationUtil"
+		  factory-method="createJbpmConfiguration">
+		<constructor-arg index="0" ref="hibernateSessionFactory"/>
+		<constructor-arg index="1" value="org/jbpm/default.jbpm.cfg.xml"/>
 	</bean>
 </beans>

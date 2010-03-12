@@ -14,27 +14,28 @@
 
 package com.liferay.portal.workflow.jbpm.comparator;
 
-import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowLogUserIdComparator;
+import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowTaskUserIdComparator;
 
 /**
- * <a href="WorkflowLogUserIdComparator.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowTaskUserIdComparator.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Shuyang Zhou
  */
-public class WorkflowLogUserIdComparator
-	extends BaseWorkflowLogUserIdComparator {
+public class WorkflowTaskUserIdComparator
+	extends BaseWorkflowTaskUserIdComparator {
 
-	public static String ORDER_BY_ASC = "userId ASC, workflowLogId ASC";
+	public static String ORDER_BY_ASC = "userId ASC, workflowTaskId ASC";
 
-	public static String ORDER_BY_DESC = "userId DESC, workflowLogId DESC";
+	public static String ORDER_BY_DESC = "userId DESC, workflowTaskId DESC";
 
-	public static String[] ORDER_BY_FIELDS = {"userId", "workflowLogId"};
+	public static String[] ORDER_BY_FIELDS = {"userId", "workflowTaskId"};
 
-	public WorkflowLogUserIdComparator() {
+	public WorkflowTaskUserIdComparator() {
 		super(false);
 	}
 
-	public WorkflowLogUserIdComparator(boolean asc) {
+	public WorkflowTaskUserIdComparator(boolean asc) {
 		super(asc);
 	}
 
@@ -50,4 +51,5 @@ public class WorkflowLogUserIdComparator
 	public String[] getOrderByFields() {
 		return ORDER_BY_FIELDS;
 	}
+
 }

@@ -14,8 +14,8 @@
 
 package com.liferay.portal.workflow.jbpm.comparator;
 
-import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowLog;
+import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowLogCreateDateComparator;
 
 import java.util.Date;
 
@@ -25,7 +25,8 @@ import java.util.Date;
  *
  * @author Shuyang Zhou
  */
-public class WorkflowLogCreateDateComparator extends OrderByComparator {
+public class WorkflowLogCreateDateComparator
+	extends BaseWorkflowLogCreateDateComparator {
 
 	public static String ORDER_BY_ASC = "createDate ASC, workflowLogId ASC";
 
