@@ -5,6 +5,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
 >
+	<bean
+		name="com.liferay.portal.kernel.workflow.comparator.WorkflowLogComparatorFactoryUtil"
+		class="com.liferay.portal.kernel.workflow.comparator.WorkflowLogComparatorFactoryUtil">
+		<property name="workflowLogComparatorFactory">
+			<bean
+				class="com.liferay.portal.workflow.basic.comparator.WorkflowLogComparatorFactoryImpl"/>
+		</property>
+	</bean>
+	
 	<bean id="jbpmConfiguration" class="com.liferay.portal.workflow.jbpm.util.JbpmConfigurationUtil" factory-method="createJbpmConfiguration">
 		<constructor-arg index="0" ref="hibernateSessionFactory" />
 		<constructor-arg index="1" value="org/jbpm/default.jbpm.cfg.xml" />
