@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManager;
-import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowInstanceStateComparator;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowInstanceStateComparator;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
 import java.io.Serializable;
@@ -415,7 +415,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 		Collections.sort(
 			workflowInstanceImpl.getChildrenWorkflowInstances(),
-			new BaseWorkflowInstanceStateComparator(true));
+			new WorkflowInstanceStateComparator(true));
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

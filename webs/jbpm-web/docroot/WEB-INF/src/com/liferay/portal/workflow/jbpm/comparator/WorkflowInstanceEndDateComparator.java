@@ -33,11 +33,11 @@ public class WorkflowInstanceEndDateComparator
 	public static String[] ORDER_BY_FIELDS = {"endDate", "workflowInstanceId"};
 
 	public WorkflowInstanceEndDateComparator() {
-		super(false);
+		super();
 	}
 
-	public WorkflowInstanceEndDateComparator(boolean asc) {
-		super(asc);
+	public WorkflowInstanceEndDateComparator(boolean ascending) {
+		super(ascending);
 	}
 
 	public String getOrderBy() {

@@ -34,11 +34,11 @@ public class WorkflowInstanceStateComparator
 	};
 
 	public WorkflowInstanceStateComparator() {
-		super(false);
+		super();
 	}
 
-	public WorkflowInstanceStateComparator(boolean asc) {
-		super(asc);
+	public WorkflowInstanceStateComparator(boolean ascending) {
+		super(ascending);
 	}
 
 	public String getOrderBy() {

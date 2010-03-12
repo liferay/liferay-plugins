@@ -35,11 +35,11 @@ public class WorkflowInstanceStartDateComparator
 	};
 
 	public WorkflowInstanceStartDateComparator() {
-		super(false);
+		super();
 	}
 
-	public WorkflowInstanceStartDateComparator(boolean asc) {
-		super(asc);
+	public WorkflowInstanceStartDateComparator(boolean ascending) {
+		super(ascending);
 	}
 
 	public String getOrderBy() {

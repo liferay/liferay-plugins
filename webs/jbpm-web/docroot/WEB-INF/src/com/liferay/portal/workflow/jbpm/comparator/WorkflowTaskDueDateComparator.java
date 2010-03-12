@@ -14,11 +14,7 @@
 
 package com.liferay.portal.workflow.jbpm.comparator;
 
-import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowTaskDueDateComparator;
-
-import java.util.Date;
 
 /**
  * <a href="WorkflowTaskDueDateComparator.java.html"><b><i>View Source</i></b>
@@ -36,11 +32,11 @@ public class WorkflowTaskDueDateComparator
 	public static String[] ORDER_BY_FIELDS = {"dueDate", "workflowTaskId"};
 
 	public WorkflowTaskDueDateComparator() {
-		super(false);
+		super();
 	}
 
-	public WorkflowTaskDueDateComparator(boolean asc) {
-		super(asc);
+	public WorkflowTaskDueDateComparator(boolean ascending) {
+		super(ascending);
 	}
 
 	public String getOrderBy() {

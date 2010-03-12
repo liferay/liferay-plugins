@@ -31,11 +31,11 @@ public class WorkflowTaskNameComparator
 	public static String[] ORDER_BY_FIELDS = {"name", "workflowTaskId"};
 
 	public WorkflowTaskNameComparator() {
-		super(false);
+		super();
 	}
 
-	public WorkflowTaskNameComparator(boolean asc) {
-		super(asc);
+	public WorkflowTaskNameComparator(boolean ascending) {
+		super(ascending);
 	}
 
 	public String getOrderBy() {

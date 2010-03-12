@@ -14,10 +14,7 @@
 
 package com.liferay.portal.workflow.jbpm.comparator;
 
-import com.liferay.portal.kernel.workflow.WorkflowLog;
 import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowLogCreateDateComparator;
-
-import java.util.Date;
 
 /**
  * <a href="WorkflowLogCreateDateComparator.java.html"><b><i>View Source</i></b>
@@ -35,39 +32,15 @@ public class WorkflowLogCreateDateComparator
 	public static String[] ORDER_BY_FIELDS = {"createDate", "workflowLogId"};
 
 	public WorkflowLogCreateDateComparator() {
-		this(false);
+		super();
 	}
 
-	public WorkflowLogCreateDateComparator(boolean asc) {
-		_asc = asc;
-	}
-
-	public int compare(Object obj1, Object obj2) {
-		WorkflowLog workflowLog1 = (WorkflowLog)obj1;
-		WorkflowLog workflowLog2 = (WorkflowLog)obj2;
-
-		Date createDate1 = workflowLog1.getCreateDate();
-		Date createDate2 = workflowLog2.getCreateDate();
-
-		int value = createDate1.compareTo(createDate2);
-
-		if (value != 0) {
-			Long workflowLogId1 = workflowLog1.getWorkflowLogId();
-			Long workflowLogId2 = workflowLog2.getWorkflowLogId();
-
-			value = workflowLogId1.compareTo(workflowLogId2);
-		}
-
-		if (_asc) {
-			return value;
-		}
-		else {
-			return -value;
-		}
+	public WorkflowLogCreateDateComparator(boolean ascending) {
+		super(ascending);
 	}
 
 	public String getOrderBy() {
-		if (_asc) {
+		if (isAscending()) {
 			return ORDER_BY_ASC;
 		}
 		else {
@@ -78,11 +51,5 @@ public class WorkflowLogCreateDateComparator
 	public String[] getOrderByFields() {
 		return ORDER_BY_FIELDS;
 	}
-
-	public boolean isAscending() {
-		return _asc;
-	}
-
-	private boolean _asc;
 
 }

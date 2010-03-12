@@ -36,11 +36,11 @@ public class WorkflowTaskCompletionDateComparator
 	};
 
 	public WorkflowTaskCompletionDateComparator() {
-		super(false);
+		super();
 	}
 
-	public WorkflowTaskCompletionDateComparator(boolean asc) {
-		super(asc);
+	public WorkflowTaskCompletionDateComparator(boolean ascending) {
+		super(ascending);
 	}
 
 	public String getOrderBy() {
