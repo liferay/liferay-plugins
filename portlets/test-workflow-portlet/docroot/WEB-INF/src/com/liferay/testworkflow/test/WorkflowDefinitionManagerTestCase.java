@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowDefinitionManagerUtil;
 import com.liferay.portal.kernel.workflow.WorkflowException;
-import com.liferay.portal.kernel.workflow.comparator.WorkflowDefinitionNameComparator;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowComparatorFactoryUtil;
 
 import java.io.ByteArrayInputStream;
 
@@ -224,7 +224,7 @@ public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {
 		// All workflow definitions
 
 		OrderByComparator orderByComparator =
-			new WorkflowDefinitionNameComparator();
+			WorkflowComparatorFactoryUtil.getDefinitionNameComparator();
 
 		List<WorkflowDefinition> workflowDefinitions =
 			WorkflowDefinitionManagerUtil.getWorkflowDefinitions(
@@ -297,7 +297,7 @@ public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {
 		// All versions of workflow definition 1
 
 		OrderByComparator orderByComparator =
-			new WorkflowDefinitionNameComparator();
+			WorkflowComparatorFactoryUtil.getDefinitionNameComparator();
 
 		List<WorkflowDefinition> workflowDefinitions =
 			WorkflowDefinitionManagerUtil.getWorkflowDefinitions(

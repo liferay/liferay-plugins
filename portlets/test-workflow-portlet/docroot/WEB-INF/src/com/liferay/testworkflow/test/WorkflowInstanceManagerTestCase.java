@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.workflow.WorkflowDefinitionManagerUtil;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManagerUtil;
-import com.liferay.portal.kernel.workflow.comparator.WorkflowInstanceStartDateComparator;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowComparatorFactoryUtil;
 
 import java.io.ByteArrayInputStream;
 import java.io.Serializable;
@@ -525,7 +525,8 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 			WorkflowInstanceManagerUtil.getWorkflowInstances(
 				companyId, DEFINITION_NAME_1, _workflowDefinition1.getVersion(),
 				Boolean.TRUE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new WorkflowInstanceStartDateComparator(true));
+				WorkflowComparatorFactoryUtil.getInstanceStartDateComparator(
+					true));
 
 		assertEquals(2, workflowInstances.size());
 
@@ -577,7 +578,8 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		workflowInstances = WorkflowInstanceManagerUtil.getWorkflowInstances(
 			companyId, DEFINITION_NAME_1, _workflowDefinition1.getVersion(),
-			Boolean.TRUE, 1, 2, new WorkflowInstanceStartDateComparator(true));
+			Boolean.TRUE, 1, 2,
+			WorkflowComparatorFactoryUtil.getInstanceStartDateComparator(true));
 
 		assertEquals(1, workflowInstances.size());
 
@@ -608,7 +610,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		workflowInstances = WorkflowInstanceManagerUtil.getWorkflowInstances(
 			companyId, DEFINITION_NAME_1, _workflowDefinition1.getVersion(),
 			Boolean.FALSE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new WorkflowInstanceStartDateComparator(true));
+			WorkflowComparatorFactoryUtil.getInstanceStartDateComparator(true));
 
 		assertEquals(1, workflowInstances.size());
 
@@ -639,7 +641,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		workflowInstances = WorkflowInstanceManagerUtil.getWorkflowInstances(
 			companyId, DEFINITION_NAME_2, _workflowDefinition2.getVersion(),
 			Boolean.TRUE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new WorkflowInstanceStartDateComparator(true));
+			WorkflowComparatorFactoryUtil.getInstanceStartDateComparator(true));
 
 		assertEquals(1, workflowInstances.size());
 
@@ -670,7 +672,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		workflowInstances = WorkflowInstanceManagerUtil.getWorkflowInstances(
 			companyId, DEFINITION_NAME_2, _workflowDefinition2.getVersion(),
 			Boolean.FALSE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new WorkflowInstanceStartDateComparator(true));
+			WorkflowComparatorFactoryUtil.getInstanceStartDateComparator(true));
 
 		assertEquals(1, workflowInstances.size());
 

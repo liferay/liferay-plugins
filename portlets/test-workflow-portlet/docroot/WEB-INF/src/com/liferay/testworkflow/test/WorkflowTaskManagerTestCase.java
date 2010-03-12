@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManagerUtil;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil;
-import com.liferay.portal.kernel.workflow.comparator.WorkflowTaskNameComparator;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowComparatorFactoryUtil;
 
 import java.io.ByteArrayInputStream;
 
@@ -55,7 +55,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		List<WorkflowTask> workflowTasks =
 			WorkflowTaskManagerUtil.getWorkflowTasksByRole(
 				companyId, guestRoleId, null, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
+				QueryUtil.ALL_POS,
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(0, workflowTasks.size());
 
@@ -74,7 +75,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -93,7 +94,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByRole(
 			companyId, guestRoleId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new WorkflowTaskNameComparator(true));
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
 
@@ -105,7 +106,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		List<WorkflowTask> workflowTasks =
 			WorkflowTaskManagerUtil.getWorkflowTasksByUser(
 				companyId, defaultUserId, null, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
+				QueryUtil.ALL_POS,
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(0, workflowTasks.size());
 
@@ -124,7 +126,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -149,7 +151,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByUser(
 			companyId, defaultUserId, null, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
+			QueryUtil.ALL_POS,
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
 
@@ -176,7 +179,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					Boolean.TRUE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(0, childWorkflowTasks.size());
 
@@ -184,7 +187,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					Boolean.FALSE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -212,7 +215,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					Boolean.TRUE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -245,7 +248,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 			WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 				companyId, childWorkflowInstance1.getWorkflowInstanceId(), null,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new WorkflowTaskNameComparator(true));
+				WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(1, childWorkflowTasks1.size());
 
@@ -273,7 +276,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 			WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 				companyId, childWorkflowInstance2.getWorkflowInstanceId(), null,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new WorkflowTaskNameComparator(true));
+				WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(1, childWorkflowTasks2.size());
 
@@ -301,7 +304,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 			WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 				companyId, childWorkflowInstance3.getWorkflowInstanceId(), null,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new WorkflowTaskNameComparator(true));
+				WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(1, childWorkflowTasks3.size());
 
@@ -347,7 +350,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -392,7 +395,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -443,7 +446,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -488,7 +491,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -540,7 +543,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -548,7 +551,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					Boolean.TRUE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(0, childWorkflowTasks.size());
 
@@ -556,7 +559,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					Boolean.FALSE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 		}
@@ -569,7 +572,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		List<WorkflowTask> workflowTasks =
 			WorkflowTaskManagerUtil.getWorkflowTasksByRole(
 				companyId, guestRoleId, null, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
+				QueryUtil.ALL_POS,
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(0, workflowTasks.size());
 
@@ -588,7 +592,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -613,7 +617,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByRole(
 			companyId, guestRoleId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new WorkflowTaskNameComparator(true));
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
 
@@ -637,13 +641,15 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByRole(
 			companyId, guestRoleId, Boolean.TRUE, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
+			QueryUtil.ALL_POS,
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(0, workflowTasks.size());
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByRole(
 			companyId, guestRoleId, Boolean.FALSE, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
+			QueryUtil.ALL_POS,
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
 
@@ -672,7 +678,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -685,7 +691,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByRole(
 			companyId, guestRoleId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new WorkflowTaskNameComparator(true));
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
 
@@ -709,7 +715,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByRole(
 			companyId, guestRoleId, Boolean.TRUE, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
+			QueryUtil.ALL_POS,
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
 
@@ -733,7 +740,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByRole(
 			companyId, guestRoleId, Boolean.FALSE, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
+			QueryUtil.ALL_POS,
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(0, workflowTasks.size());
 
@@ -745,7 +753,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		List<WorkflowTask> workflowTasks =
 			WorkflowTaskManagerUtil.getWorkflowTasksByUser(
 				companyId, defaultUserId, null, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
+				QueryUtil.ALL_POS,
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(0, workflowTasks.size());
 
@@ -764,7 +773,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -789,7 +798,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByUser(
 			companyId, defaultUserId, null, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
+			QueryUtil.ALL_POS,
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
 
@@ -813,13 +823,15 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByUser(
 			companyId, defaultUserId, Boolean.TRUE, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
+			QueryUtil.ALL_POS,
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(0, workflowTasks.size());
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByUser(
 			companyId, defaultUserId, Boolean.FALSE, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
+			QueryUtil.ALL_POS,
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
 
@@ -848,7 +860,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -861,7 +873,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByUser(
 			companyId, defaultUserId, null, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
+			QueryUtil.ALL_POS,
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(4, workflowTasks.size());
 
@@ -891,7 +904,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByUser(
 			companyId, defaultUserId, Boolean.TRUE, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
+			QueryUtil.ALL_POS,
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
 
@@ -915,7 +929,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByUser(
 			companyId, defaultUserId, Boolean.FALSE, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
+			QueryUtil.ALL_POS,
+			WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(1, workflowTasks.size());
 
@@ -939,7 +954,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 			WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 				companyId, workflowInstance.getWorkflowInstanceId(), null,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new WorkflowTaskNameComparator(true));
+				WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 		assertEquals(0, workflowTasks.size());
 
@@ -953,7 +968,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -967,7 +982,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					Boolean.TRUE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(0, childWorkflowTasks.size());
 
@@ -975,7 +990,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					Boolean.FALSE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 

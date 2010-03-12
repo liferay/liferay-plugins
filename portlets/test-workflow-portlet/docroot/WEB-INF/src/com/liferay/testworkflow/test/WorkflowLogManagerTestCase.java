@@ -23,8 +23,7 @@ import com.liferay.portal.kernel.workflow.WorkflowLog;
 import com.liferay.portal.kernel.workflow.WorkflowLogManagerUtil;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil;
-import com.liferay.portal.kernel.workflow.comparator.WorkflowLogCreateDateComparator;
-import com.liferay.portal.kernel.workflow.comparator.WorkflowTaskNameComparator;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowComparatorFactoryUtil;
 
 import java.io.ByteArrayInputStream;
 
@@ -76,7 +75,7 @@ public class WorkflowLogManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					Boolean.FALSE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -122,7 +121,7 @@ public class WorkflowLogManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
 					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					Boolean.FALSE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowTaskNameComparator(true));
+					WorkflowComparatorFactoryUtil.getTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
@@ -132,7 +131,8 @@ public class WorkflowLogManagerTestCase extends WorkflowTestCase {
 				WorkflowLogManagerUtil.getWorkflowLogs(
 					companyId, childWorkflowTask.getWorkflowTaskId(),
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new WorkflowLogCreateDateComparator(true));
+					WorkflowComparatorFactoryUtil.getLogCreateDateComparator(
+						true));
 
 			assertTrue(childWorkflowLogs.isEmpty());
 
@@ -143,7 +143,7 @@ public class WorkflowLogManagerTestCase extends WorkflowTestCase {
 			childWorkflowLogs = WorkflowLogManagerUtil.getWorkflowLogs(
 				companyId, childWorkflowTask.getWorkflowTaskId(),
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new WorkflowLogCreateDateComparator(true));
+				WorkflowComparatorFactoryUtil.getLogCreateDateComparator(true));
 
 			assertTrue(!childWorkflowLogs.isEmpty());
 		}
