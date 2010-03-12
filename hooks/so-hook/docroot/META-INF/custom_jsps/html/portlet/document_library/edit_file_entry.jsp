@@ -259,13 +259,16 @@ portletURL.setParameter("name", name);
 		</c:if>
 
 		<aui:button-row>
-			<aui:button disabled="<%= isLocked.booleanValue() && !hasLock.booleanValue() %>" type="submit" value="save" />
 
 			<c:choose>
 				<c:when test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
+					<aui:button onClick='<%= renderResponse.getNamespace() + "saveFileEntry();" %>' type="button" value="save" />
+
 					<aui:button onClick="Liferay.SO.DocumentLibrary.closePopup()" type="cancel" />
 				</c:when>
 				<c:otherwise>
+					<aui:button disabled="<%= isLocked.booleanValue() && !hasLock.booleanValue() %>" type="submit" value="save" />
+
 					<aui:button onClick="<%= redirect %>" type="cancel" />
 				</c:otherwise>
 			</c:choose>
@@ -284,30 +287,39 @@ portletURL.setParameter("name", name);
 </c:if>
 
 <aui:script>
-	function <portlet:namespace />saveFileEntry() {
-		<%= HtmlUtil.escape(uploadProgressId) %>.startProgress();
+	<c:choose>
+		<c:when test='<%= displaySection.equals("online") || displaySection.equals("upload") %>'>
+			function <portlet:namespace />saveFileEntry() {
+				<%= HtmlUtil.escape(uploadProgressId) %>.startProgress();
 
-		<c:if test='<%= displaySection.equals("online") %>'>
-			if (document.<portlet:namespace />fm.<portlet:namespace />version[2].checked) {
-				<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
-					<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
-					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-					<portlet:param name="redirect" value="<%= redirect %>" />
-					<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
-					<portlet:param name="name" value="<%= fileEntry.getName() %>" />
-					<portlet:param name="version" value="<%= String.valueOf(fileEntry.getVersion()) %>" />
-				</portlet:actionURL>
+				document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= displaySection.equals("online") ? Constants.APPROVE : Constants.UPDATE %>";
+				document.<portlet:namespace />fm.<portlet:namespace />majorVersion.value = document.<portlet:namespace />fm.<portlet:namespace />version[0].checked;
 
-				submitForm(document.hrefFm, '<%= deleteURL %>');
+				<c:if test='<%= displaySection.equals("online") %>'>
+					if (document.<portlet:namespace />fm.<portlet:namespace />version[2].checked) {
+						document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.REVERT %>";
+					}
+				</c:if>
 
-				return false;
+				jQuery(document.<portlet:namespace />fm).ajaxSubmit(
+					{
+						success: function() {
+							<portlet:namespace />unlock();
+						}
+					}
+				);;
 			}
-		</c:if>
+		</c:when>
+		<c:otherwise>
+			function <portlet:namespace />saveFileEntry() {
+				<%= HtmlUtil.escape(uploadProgressId) %>.startProgress();
 
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= fileEntry == null ? Constants.ADD : Constants.UPDATE %>";
-		document.<portlet:namespace />fm.<portlet:namespace />majorVersion.value = document.<portlet:namespace />fm.<portlet:namespace />version[0].checked;
-		submitForm(document.<portlet:namespace />fm);
-	}
+				document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= fileEntry == null ? Constants.ADD : Constants.UPDATE %>";
+				document.<portlet:namespace />fm.<portlet:namespace />majorVersion.value = false;
+				submitForm(document.<portlet:namespace />fm);
+			}
+		</c:otherwise>
+	</c:choose>
 
 	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) || windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />title);
