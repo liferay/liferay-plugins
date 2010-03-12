@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.workflow.WorkflowInstanceManagerUtil;
 import com.liferay.portal.kernel.workflow.comparator.WorkflowInstanceStartDateComparator;
 
 import java.io.ByteArrayInputStream;
+import java.io.Serializable;
 
 import java.util.HashMap;
 import java.util.List;
@@ -41,22 +42,22 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		_workflowDefinition1 =
 			WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-				defaultUserId, DEFINITION_NAME_1,
+				companyId, defaultUserId, DEFINITION_NAME_1,
 				new ByteArrayInputStream(definitionBytes1));
 
 		_workflowDefinition2 =
 			WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-				defaultUserId, DEFINITION_NAME_2,
+				companyId, defaultUserId, DEFINITION_NAME_2,
 				new ByteArrayInputStream(definitionBytes2));
 
 		_workflowDefinition3 =
 			WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-				defaultUserId, DEFINITION_NAME_3,
+				companyId, defaultUserId, DEFINITION_NAME_3,
 				new ByteArrayInputStream(definitionBytes3));
 
 		_workflowDefinition4 =
 			WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-				defaultUserId, DEFINITION_NAME_4,
+				companyId, defaultUserId, DEFINITION_NAME_4,
 				new ByteArrayInputStream(definitionBytes4));
 	}
 
@@ -64,36 +65,36 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		super.tearDown();
 
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			defaultUserId, DEFINITION_NAME_1,
+			companyId, defaultUserId, DEFINITION_NAME_1,
 			_workflowDefinition1.getVersion());
 
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			defaultUserId, DEFINITION_NAME_2,
+			companyId, defaultUserId, DEFINITION_NAME_2,
 			_workflowDefinition2.getVersion());
 
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			defaultUserId, DEFINITION_NAME_3,
+			companyId, defaultUserId, DEFINITION_NAME_3,
 			_workflowDefinition3.getVersion());
 
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			defaultUserId, DEFINITION_NAME_4,
+			companyId, defaultUserId, DEFINITION_NAME_4,
 			_workflowDefinition4.getVersion());
 	}
 
 	public void testDeleteWorkflowInstance() throws Exception {
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition1.getName(),
+				companyId, defaultUserId, _workflowDefinition1.getName(),
 				_workflowDefinition1.getVersion(), null, null);
 
 		assertNotNull(workflowInstance);
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 
 		try{
 			WorkflowInstanceManagerUtil.getWorkflowInstance(
-				workflowInstance.getWorkflowInstanceId());
+				companyId, workflowInstance.getWorkflowInstanceId());
 
 			fail();
 		}
@@ -107,24 +108,25 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		WorkflowInstance workflowInstance1 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition1.getName(),
+				companyId, defaultUserId, _workflowDefinition1.getName(),
 				_workflowDefinition1.getVersion(), null, null);
 
 		WorkflowInstance workflowInstance2 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition2.getName(),
+				companyId, defaultUserId, _workflowDefinition2.getName(),
 				_workflowDefinition2.getVersion(), null, null);
 
 		WorkflowInstance workflowInstance3 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition3.getName(),
+				companyId, defaultUserId, _workflowDefinition3.getName(),
 				_workflowDefinition3.getVersion(), null, null);
 
 		// Workflow instance 1
 
 		List<String> nextTransitionNames1 =
 			WorkflowInstanceManagerUtil.getNextTransitionNames(
-				defaultUserId, workflowInstance1.getWorkflowInstanceId());
+				companyId, defaultUserId,
+				workflowInstance1.getWorkflowInstanceId());
 
 		assertEquals(1, nextTransitionNames1.size());
 		assertEquals("toTaskNode", nextTransitionNames1.get(0));
@@ -133,7 +135,8 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		List<String> nextTransitionNames2 =
 			WorkflowInstanceManagerUtil.getNextTransitionNames(
-				defaultUserId, workflowInstance2.getWorkflowInstanceId());
+				companyId, defaultUserId,
+				workflowInstance2.getWorkflowInstanceId());
 
 		assertEquals(1, nextTransitionNames2.size());
 		assertEquals("toEnd", nextTransitionNames2.get(0));
@@ -142,7 +145,8 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		List<String> nextTransitionNames3 =
 			WorkflowInstanceManagerUtil.getNextTransitionNames(
-				defaultUserId, workflowInstance3.getWorkflowInstanceId());
+				companyId, defaultUserId,
+				workflowInstance3.getWorkflowInstanceId());
 
 		assertEquals(3, nextTransitionNames3.size());
 		assertTrue(nextTransitionNames3.contains("branch1"));
@@ -152,13 +156,13 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		// Clean up
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance1.getWorkflowInstanceId());
+			companyId, workflowInstance1.getWorkflowInstanceId());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance2.getWorkflowInstanceId());
+			companyId, workflowInstance2.getWorkflowInstanceId());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance3.getWorkflowInstanceId());
+			companyId, workflowInstance3.getWorkflowInstanceId());
 	}
 
 	public void testGetWorkflowInstance() throws Exception {
@@ -167,17 +171,17 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		WorkflowInstance workflowInstance1 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition1.getName(),
+				companyId, defaultUserId, _workflowDefinition1.getName(),
 				_workflowDefinition1.getVersion(), null, null);
 
 		WorkflowInstance workflowInstance2 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition2.getName(),
+				companyId, defaultUserId, _workflowDefinition2.getName(),
 				_workflowDefinition2.getVersion(), null, null);
 
 		WorkflowInstance workflowInstance3 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition3.getName(),
+				companyId, defaultUserId, _workflowDefinition3.getName(),
 				_workflowDefinition3.getVersion(), null, null);
 
 		// Workflow instance 1
@@ -185,11 +189,11 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		long workflowInstanceId1 = workflowInstance1.getWorkflowInstanceId();
 
 		workflowInstance1 = WorkflowInstanceManagerUtil.getWorkflowInstance(
-			workflowInstance1.getWorkflowInstanceId());
+			companyId, workflowInstance1.getWorkflowInstanceId());
 
 		assertEquals(0, workflowInstance1.getChildrenWorkflowInstanceCount());
 
-		Map<String, Object> context1 = workflowInstance1.getContext();
+		Map<String, Serializable> context1 = workflowInstance1.getContext();
 
 		assertNotNull(context1);
 		assertEquals(1, context1.size());
@@ -212,11 +216,11 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		long workflowInstanceId2 = workflowInstance2.getWorkflowInstanceId();
 
 		workflowInstance2 = WorkflowInstanceManagerUtil.getWorkflowInstance(
-			workflowInstance2.getWorkflowInstanceId());
+			companyId, workflowInstance2.getWorkflowInstanceId());
 
 		assertEquals(0, workflowInstance2.getChildrenWorkflowInstanceCount());
 
-		Map<String, Object> context2 = workflowInstance2.getContext();
+		Map<String, Serializable> context2 = workflowInstance2.getContext();
 
 		assertNotNull(context2);
 		assertEquals(1, context2.size());
@@ -239,7 +243,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		long workflowInstanceId3 = workflowInstance3.getWorkflowInstanceId();
 
 		workflowInstance3 = WorkflowInstanceManagerUtil.getWorkflowInstance(
-			workflowInstance3.getWorkflowInstanceId());
+			companyId, workflowInstance3.getWorkflowInstanceId());
 
 		List<WorkflowInstance> childrenInstances =
 			workflowInstance3.getChildrenWorkflowInstances();
@@ -253,7 +257,8 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(
 			0, childWorkflowInstance3_1.getChildrenWorkflowInstanceCount());
 
-		Map<String, Object> context3_1 = childWorkflowInstance3_1.getContext();
+		Map<String, Serializable> context3_1 =
+			childWorkflowInstance3_1.getContext();
 
 		assertNotNull(context3_1);
 		assertEquals(1, context3_1.size());
@@ -279,7 +284,8 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(
 			0, childWorkflowInstance3_2.getChildrenWorkflowInstanceCount());
 
-		Map<String, Object> context3_2 = childWorkflowInstance3_2.getContext();
+		Map<String, Serializable> context3_2 =
+			childWorkflowInstance3_2.getContext();
 
 		assertNotNull(context3_2);
 		assertEquals(1, context3_2.size());
@@ -305,7 +311,8 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(
 			0, childWorkflowInstance3_3.getChildrenWorkflowInstanceCount());
 
-		Map<String, Object> context3_3 = childWorkflowInstance3_3.getContext();
+		Map<String, Serializable> context3_3 =
+			childWorkflowInstance3_3.getContext();
 
 		assertNotNull(context3_3);
 		assertEquals(1, context3_3.size());
@@ -324,7 +331,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 			_workflowDefinition3.getVersion(),
 			childWorkflowInstance3_3.getWorkflowDefinitionVersion());
 
-		Map<String, Object> context3 = workflowInstance3.getContext();
+		Map<String, Serializable> context3 = workflowInstance3.getContext();
 
 		assertNotNull(context3);
 		assertEquals(1, context3.size());
@@ -345,13 +352,13 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		// Clean up
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance1.getWorkflowInstanceId());
+			companyId, workflowInstance1.getWorkflowInstanceId());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance2.getWorkflowInstanceId());
+			companyId, workflowInstance2.getWorkflowInstanceId());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance3.getWorkflowInstanceId());
+			companyId, workflowInstance3.getWorkflowInstanceId());
 	}
 
 	public void testGetWorkflowInstanceCount() throws Exception {
@@ -360,63 +367,66 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		WorkflowInstance workflowInstance1_1 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition1.getName(),
+				companyId, defaultUserId, _workflowDefinition1.getName(),
 				_workflowDefinition1.getVersion(), null, null);
 
 		workflowInstance1_1 =
 			WorkflowInstanceManagerUtil.signalWorkflowInstance(
-				defaultUserId, workflowInstance1_1.getWorkflowInstanceId(),
-				"toTaskNode", null);
+				companyId, defaultUserId,
+				workflowInstance1_1.getWorkflowInstanceId(), "toTaskNode",
+				null);
 
 		workflowInstance1_1 =
 			WorkflowInstanceManagerUtil.signalWorkflowInstance(
-				defaultUserId, workflowInstance1_1.getWorkflowInstanceId(),
-				"toEnd", null);
+				companyId, defaultUserId,
+				workflowInstance1_1.getWorkflowInstanceId(), "toEnd", null);
 
 		WorkflowInstance workflowInstance1_2 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition1.getName(),
+				companyId, defaultUserId, _workflowDefinition1.getName(),
 				_workflowDefinition1.getVersion(), null, null);
 
 		workflowInstance1_2 =
 			WorkflowInstanceManagerUtil.signalWorkflowInstance(
-				defaultUserId, workflowInstance1_2.getWorkflowInstanceId(),
-				"toTaskNode", null);
+				companyId, defaultUserId,
+				workflowInstance1_2.getWorkflowInstanceId(), "toTaskNode",
+				null);
 
 		workflowInstance1_2 =
 			WorkflowInstanceManagerUtil.signalWorkflowInstance(
-				defaultUserId, workflowInstance1_2.getWorkflowInstanceId(),
-				"toEnd", null);
+				companyId, defaultUserId,
+				workflowInstance1_2.getWorkflowInstanceId(), "toEnd", null);
 
 		WorkflowInstance workflowInstance1_3 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition1.getName(),
+				companyId, defaultUserId, _workflowDefinition1.getName(),
 				_workflowDefinition1.getVersion(), null, null);
 
 		WorkflowInstance workflowInstance2_1 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition2.getName(),
+				companyId, defaultUserId, _workflowDefinition2.getName(),
 				_workflowDefinition2.getVersion(), null, null);
 
 		workflowInstance2_1 =
 			WorkflowInstanceManagerUtil.signalWorkflowInstance(
-				defaultUserId, workflowInstance2_1.getWorkflowInstanceId(),
-				"toEnd", null);
+				companyId, defaultUserId,
+				workflowInstance2_1.getWorkflowInstanceId(), "toEnd", null);
 
 		WorkflowInstance workflowInstance2_2 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition2.getName(),
+				companyId, defaultUserId, _workflowDefinition2.getName(),
 				_workflowDefinition2.getVersion(), null, null);
 
 		// Workflow definition 1
 
 		int count = WorkflowInstanceManagerUtil.getWorkflowInstanceCount(
-			DEFINITION_NAME_1, _workflowDefinition1.getVersion(), Boolean.TRUE);
+			companyId, DEFINITION_NAME_1, _workflowDefinition1.getVersion(),
+			Boolean.TRUE);
 
 		assertEquals(2, count);
 
 		count = WorkflowInstanceManagerUtil.getWorkflowInstanceCount(
-			DEFINITION_NAME_1, _workflowDefinition1.getVersion(),
+			companyId, DEFINITION_NAME_1, _workflowDefinition1.getVersion(),
 			Boolean.FALSE);
 
 		assertEquals(1, count);
@@ -424,12 +434,13 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		// Workflow definition 2
 
 		count = WorkflowInstanceManagerUtil.getWorkflowInstanceCount(
-			DEFINITION_NAME_2, _workflowDefinition2.getVersion(), Boolean.TRUE);
+			companyId, DEFINITION_NAME_2, _workflowDefinition2.getVersion(),
+			Boolean.TRUE);
 
 		assertEquals(1, count);
 
 		count = WorkflowInstanceManagerUtil.getWorkflowInstanceCount(
-			DEFINITION_NAME_2, _workflowDefinition2.getVersion(),
+			companyId, DEFINITION_NAME_2, _workflowDefinition2.getVersion(),
 			Boolean.FALSE);
 
 		assertEquals(1, count);
@@ -437,19 +448,19 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		// Clean up
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance1_1.getWorkflowInstanceId());
+			companyId, workflowInstance1_1.getWorkflowInstanceId());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance1_2.getWorkflowInstanceId());
+			companyId, workflowInstance1_2.getWorkflowInstanceId());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance1_3.getWorkflowInstanceId());
+			companyId, workflowInstance1_3.getWorkflowInstanceId());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance2_1.getWorkflowInstanceId());
+			companyId, workflowInstance2_1.getWorkflowInstanceId());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance2_2.getWorkflowInstanceId());
+			companyId, workflowInstance2_2.getWorkflowInstanceId());
 	}
 
 	public void testGetWorkflowInstances() throws Exception {
@@ -458,59 +469,61 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		WorkflowInstance workflowInstance1_1 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition1.getName(),
+				companyId, defaultUserId, _workflowDefinition1.getName(),
 				_workflowDefinition1.getVersion(), null, null);
 
 		workflowInstance1_1 =
 			WorkflowInstanceManagerUtil.signalWorkflowInstance(
-				defaultUserId, workflowInstance1_1.getWorkflowInstanceId(),
-				"toTaskNode", null);
+				companyId, defaultUserId,
+				workflowInstance1_1.getWorkflowInstanceId(), "toTaskNode",
+				null);
 
 		workflowInstance1_1 =
 			WorkflowInstanceManagerUtil.signalWorkflowInstance(
-				defaultUserId, workflowInstance1_1.getWorkflowInstanceId(),
-				"toEnd", null);
+				companyId, defaultUserId,
+				workflowInstance1_1.getWorkflowInstanceId(), "toEnd", null);
 
 		WorkflowInstance workflowInstance1_2 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition1.getName(),
+				companyId, defaultUserId, _workflowDefinition1.getName(),
 				_workflowDefinition1.getVersion(), null, null);
 
 		workflowInstance1_2 =
 			WorkflowInstanceManagerUtil.signalWorkflowInstance(
-				defaultUserId, workflowInstance1_2.getWorkflowInstanceId(),
-				"toTaskNode", null);
+				companyId, defaultUserId,
+				workflowInstance1_2.getWorkflowInstanceId(), "toTaskNode",
+				null);
 
 		workflowInstance1_2 =
 			WorkflowInstanceManagerUtil.signalWorkflowInstance(
-				defaultUserId, workflowInstance1_2.getWorkflowInstanceId(),
-				"toEnd", null);
+				companyId, defaultUserId,
+				workflowInstance1_2.getWorkflowInstanceId(), "toEnd", null);
 
 		WorkflowInstance workflowInstance1_3 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition1.getName(),
+				companyId, defaultUserId, _workflowDefinition1.getName(),
 				_workflowDefinition1.getVersion(), null, null);
 
 		WorkflowInstance workflowInstance2_1 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition2.getName(),
+				companyId, defaultUserId, _workflowDefinition2.getName(),
 				_workflowDefinition2.getVersion(), null, null);
 
 		workflowInstance2_1 =
 			WorkflowInstanceManagerUtil.signalWorkflowInstance(
-				defaultUserId, workflowInstance2_1.getWorkflowInstanceId(),
-				"toEnd", null);
+				companyId, defaultUserId,
+				workflowInstance2_1.getWorkflowInstanceId(), "toEnd", null);
 
 		WorkflowInstance workflowInstance2_2 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition2.getName(),
+				companyId, defaultUserId, _workflowDefinition2.getName(),
 				_workflowDefinition2.getVersion(), null, null);
 
 		// Workflow definition 1, completed, all
 
 		List<WorkflowInstance> workflowInstances =
 			WorkflowInstanceManagerUtil.getWorkflowInstances(
-				DEFINITION_NAME_1, _workflowDefinition1.getVersion(),
+				companyId, DEFINITION_NAME_1, _workflowDefinition1.getVersion(),
 				Boolean.TRUE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				new WorkflowInstanceStartDateComparator(true));
 
@@ -520,7 +533,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(0, workflowInstance1.getChildrenWorkflowInstanceCount());
 
-		Map<String, Object> context1 = workflowInstance1.getContext();
+		Map<String, Serializable> context1 = workflowInstance1.getContext();
 
 		assertEquals(1, context1.size());
 		assertEquals("success", context1.get("javaNode11"));
@@ -542,7 +555,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(0, workflowInstance2.getChildrenWorkflowInstanceCount());
 
-		Map<String, Object> context2 = workflowInstance2.getContext();
+		Map<String, Serializable> context2 = workflowInstance2.getContext();
 
 		assertEquals(1, context2.size());
 		assertEquals("success", context2.get("javaNode11"));
@@ -563,8 +576,8 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		// Workflow definition 1, completed, by range
 
 		workflowInstances = WorkflowInstanceManagerUtil.getWorkflowInstances(
-			DEFINITION_NAME_1, _workflowDefinition1.getVersion(), Boolean.TRUE,
-			1, 2, new WorkflowInstanceStartDateComparator(true));
+			companyId, DEFINITION_NAME_1, _workflowDefinition1.getVersion(),
+			Boolean.TRUE, 1, 2, new WorkflowInstanceStartDateComparator(true));
 
 		assertEquals(1, workflowInstances.size());
 
@@ -572,7 +585,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(0, workflowInstance3.getChildrenWorkflowInstanceCount());
 
-		Map<String, Object> context3 = workflowInstance3.getContext();
+		Map<String, Serializable> context3 = workflowInstance3.getContext();
 
 		assertEquals(1, context3.size());
 		assertEquals("success", context3.get("javaNode11"));
@@ -593,8 +606,8 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		// Workflow definition 1, uncompleted, all
 
 		workflowInstances = WorkflowInstanceManagerUtil.getWorkflowInstances(
-			DEFINITION_NAME_1, _workflowDefinition1.getVersion(), Boolean.FALSE,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			companyId, DEFINITION_NAME_1, _workflowDefinition1.getVersion(),
+			Boolean.FALSE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new WorkflowInstanceStartDateComparator(true));
 
 		assertEquals(1, workflowInstances.size());
@@ -603,7 +616,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(0, workflowInstance4.getChildrenWorkflowInstanceCount());
 
-		Map<String, Object> context4 = workflowInstance4.getContext();
+		Map<String, Serializable> context4 = workflowInstance4.getContext();
 
 		assertEquals(1, context4.size());
 		assertEquals("success", context4.get("javaNode11"));
@@ -624,8 +637,8 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		// Workflow definition 2, completed, all
 
 		workflowInstances = WorkflowInstanceManagerUtil.getWorkflowInstances(
-			DEFINITION_NAME_2, _workflowDefinition2.getVersion(), Boolean.TRUE,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			companyId, DEFINITION_NAME_2, _workflowDefinition2.getVersion(),
+			Boolean.TRUE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new WorkflowInstanceStartDateComparator(true));
 
 		assertEquals(1, workflowInstances.size());
@@ -634,7 +647,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(0, workflowInstance5.getChildrenWorkflowInstanceCount());
 
-		Map<String, Object> context5 = workflowInstance5.getContext();
+		Map<String, Serializable> context5 = workflowInstance5.getContext();
 
 		assertEquals(1, context5.size());
 		assertEquals("success", context5.get("javaNode21"));
@@ -655,8 +668,8 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		// Workflow definition 2, uncompleted, all
 
 		workflowInstances = WorkflowInstanceManagerUtil.getWorkflowInstances(
-			DEFINITION_NAME_2, _workflowDefinition2.getVersion(), Boolean.FALSE,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			companyId, DEFINITION_NAME_2, _workflowDefinition2.getVersion(),
+			Boolean.FALSE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new WorkflowInstanceStartDateComparator(true));
 
 		assertEquals(1, workflowInstances.size());
@@ -665,7 +678,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(0, workflowInstance6.getChildrenWorkflowInstanceCount());
 
-		Map<String, Object> context6 = workflowInstance6.getContext();
+		Map<String, Serializable> context6 = workflowInstance6.getContext();
 
 		assertEquals(1, context6.size());
 		assertEquals("success", context6.get("javaNode21"));
@@ -686,19 +699,19 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		// Clean up
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance1_1.getWorkflowInstanceId());
+			companyId, workflowInstance1_1.getWorkflowInstanceId());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance1_2.getWorkflowInstanceId());
+			companyId, workflowInstance1_2.getWorkflowInstanceId());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance1_3.getWorkflowInstanceId());
+			companyId, workflowInstance1_3.getWorkflowInstanceId());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance2_1.getWorkflowInstanceId());
+			companyId, workflowInstance2_1.getWorkflowInstanceId());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance2_2.getWorkflowInstanceId());
+			companyId, workflowInstance2_2.getWorkflowInstanceId());
 	}
 
 	public void testSignalWorkflowInstance() throws Exception {
@@ -707,53 +720,53 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition4.getName(),
+				companyId, defaultUserId, _workflowDefinition4.getName(),
 				_workflowDefinition4.getVersion(), null, null);
 
 		assertEquals("Switch", workflowInstance.getState());
 
 		workflowInstance = WorkflowInstanceManagerUtil.signalWorkflowInstance(
-			defaultUserId, workflowInstance.getWorkflowInstanceId(), "toState1",
-			null);
+			companyId, defaultUserId, workflowInstance.getWorkflowInstanceId(),
+			"toState1", null);
 
 		assertEquals("State1", workflowInstance.getState());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 
 		// Path 2
 
 		workflowInstance = WorkflowInstanceManagerUtil.startWorkflowInstance(
-			defaultUserId, _workflowDefinition4.getName(),
+			companyId, defaultUserId, _workflowDefinition4.getName(),
 			_workflowDefinition4.getVersion(), null, null);
 
 		assertEquals("Switch", workflowInstance.getState());
 
 		workflowInstance = WorkflowInstanceManagerUtil.signalWorkflowInstance(
-			defaultUserId, workflowInstance.getWorkflowInstanceId(), "toState2",
-			null);
+			companyId, defaultUserId, workflowInstance.getWorkflowInstanceId(),
+			"toState2", null);
 
 		assertEquals("State2", workflowInstance.getState());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 
 		// Path 3
 
 		workflowInstance = WorkflowInstanceManagerUtil.startWorkflowInstance(
-			defaultUserId, _workflowDefinition4.getName(),
+			companyId, defaultUserId, _workflowDefinition4.getName(),
 			_workflowDefinition4.getVersion(), null, null);
 
 		assertEquals("Switch", workflowInstance.getState());
 
 		workflowInstance = WorkflowInstanceManagerUtil.signalWorkflowInstance(
-			defaultUserId, workflowInstance.getWorkflowInstanceId(), "toState3",
-			null);
+			companyId, defaultUserId, workflowInstance.getWorkflowInstanceId(),
+			"toState3", null);
 
 		assertEquals("State3", workflowInstance.getState());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 	}
 
 	public void testStartWorkflowInstance() throws Exception {
@@ -762,13 +775,13 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		WorkflowInstance workflowInstance1 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition1.getName(),
+				companyId, defaultUserId, _workflowDefinition1.getName(),
 				_workflowDefinition1.getVersion(), null, null);
 
 		assertNotNull(workflowInstance1);
 		assertEquals(0, workflowInstance1.getChildrenWorkflowInstanceCount());
 
-		Map<String, Object> context1 = workflowInstance1.getContext();
+		Map<String, Serializable> context1 = workflowInstance1.getContext();
 
 		assertNotNull(context1);
 		assertEquals(1, context1.size());
@@ -788,13 +801,13 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		WorkflowInstance workflowInstance2 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition2.getName(),
+				companyId, defaultUserId, _workflowDefinition2.getName(),
 				_workflowDefinition2.getVersion(), null, null);
 
 		assertNotNull(workflowInstance2);
 		assertEquals(0, workflowInstance2.getChildrenWorkflowInstanceCount());
 
-		Map<String, Object> context2 = workflowInstance2.getContext();
+		Map<String, Serializable> context2 = workflowInstance2.getContext();
 
 		assertNotNull(context2);
 		assertEquals(1, context2.size());
@@ -814,13 +827,13 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		WorkflowInstance workflowInstance3 =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition3.getName(),
+				companyId, defaultUserId, _workflowDefinition3.getName(),
 				_workflowDefinition3.getVersion(), null, null);
 
 		assertNotNull(workflowInstance3);
 		assertEquals(0, workflowInstance3.getChildrenWorkflowInstanceCount());
 
-		Map<String, Object> context3 = workflowInstance3.getContext();
+		Map<String, Serializable> context3 = workflowInstance3.getContext();
 
 		assertNotNull(context3);
 		assertEquals(1, context3.size());
@@ -839,13 +852,13 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		// Clean up
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance1.getWorkflowInstanceId());
+			companyId, workflowInstance1.getWorkflowInstanceId());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance2.getWorkflowInstanceId());
+			companyId, workflowInstance2.getWorkflowInstanceId());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance3.getWorkflowInstanceId());
+			companyId, workflowInstance3.getWorkflowInstanceId());
 	}
 
 	public void testUpdateContext() throws Exception {
@@ -854,10 +867,10 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, _workflowDefinition1.getName(),
+				companyId, defaultUserId, _workflowDefinition1.getName(),
 				_workflowDefinition1.getVersion(), null, null);
 
-		Map<String, Object> context = workflowInstance.getContext();
+		Map<String, Serializable> context = workflowInstance.getContext();
 
 		assertNotNull(context);
 		assertEquals(1, context.size());
@@ -867,14 +880,15 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		String testValue1 = "testValue1";
 		String testValue2 = "testValue2";
 
-		Map<String, Object> updateContext = new HashMap<String, Object>();
+		Map<String, Serializable> updateContext =
+			new HashMap<String, Serializable>();
 
 		updateContext.put(testKey, testValue1);
 
 		// Add new variable
 
 		workflowInstance = WorkflowInstanceManagerUtil.updateContext(
-			workflowInstance.getWorkflowInstanceId(), updateContext);
+			companyId, workflowInstance.getWorkflowInstanceId(), updateContext);
 
 		context = workflowInstance.getContext();
 
@@ -883,14 +897,14 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals("success", context.get("javaNode11"));
 		assertEquals(testValue1, context.get(testKey));
 
-		updateContext = new HashMap<String, Object>();
+		updateContext = new HashMap<String, Serializable>();
 
 		updateContext.put(testKey, testValue2);
 
 		// Update variable
 
 		workflowInstance = WorkflowInstanceManagerUtil.updateContext(
-			workflowInstance.getWorkflowInstanceId(), updateContext);
+			companyId, workflowInstance.getWorkflowInstanceId(), updateContext);
 
 		context = workflowInstance.getContext();
 
@@ -902,7 +916,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		// Clean up
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 	}
 
 	private WorkflowDefinition _workflowDefinition1;

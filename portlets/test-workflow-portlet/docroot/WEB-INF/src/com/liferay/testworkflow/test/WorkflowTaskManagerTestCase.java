@@ -39,7 +39,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		_workflowDefinition =
 			WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-				defaultUserId, DEFINITION_NAME_3,
+				companyId, defaultUserId, DEFINITION_NAME_3,
 				new ByteArrayInputStream(definitionBytes3));
 	}
 
@@ -47,21 +47,21 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		super.tearDown();
 
 		WorkflowDefinitionManagerUtil.undeployWorkflowDefinition(
-			defaultUserId, DEFINITION_NAME_3,
+			companyId, defaultUserId, DEFINITION_NAME_3,
 			_workflowDefinition.getVersion());
 	}
 
 	public void testAssignWorkflowTaskToRole() throws Exception {
 		List<WorkflowTask> workflowTasks =
 			WorkflowTaskManagerUtil.getWorkflowTasksByRole(
-				guestRoleId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new WorkflowTaskNameComparator(true));
+				companyId, guestRoleId, null, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
 
 		assertEquals(0, workflowTasks.size());
 
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, DEFINITION_NAME_3,
+				companyId, defaultUserId, DEFINITION_NAME_3,
 				_workflowDefinition.getVersion(), null, null);
 
 		List<WorkflowInstance> childrenWorkflowInstances =
@@ -72,8 +72,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			List<WorkflowTask> childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), null,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
@@ -84,33 +84,34 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
-					defaultUserId, childWorkflowTask.getWorkflowTaskId(),
-					guestRoleId, null, null);
+					companyId, defaultUserId,
+					childWorkflowTask.getWorkflowTaskId(), guestRoleId, null,
+					null);
 
 			assertEquals(guestRoleId, childWorkflowTask.getAssigneeRoleId());
 		}
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByRole(
-			guestRoleId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			companyId, guestRoleId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new WorkflowTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 	}
 
 	public void testAssignWorkflowTaskTouser() throws Exception {
 		List<WorkflowTask> workflowTasks =
 			WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-				defaultUserId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new WorkflowTaskNameComparator(true));
+				companyId, defaultUserId, null, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
 
 		assertEquals(0, workflowTasks.size());
 
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, DEFINITION_NAME_3,
+				companyId, defaultUserId, DEFINITION_NAME_3,
 				_workflowDefinition.getVersion(), null, null);
 
 		List<WorkflowInstance> childrenWorkflowInstances =
@@ -121,8 +122,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			List<WorkflowTask> childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), null,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
@@ -133,35 +134,37 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
-					defaultUserId, childWorkflowTask.getWorkflowTaskId(),
-					guestRoleId, null, null);
+					companyId, defaultUserId,
+					childWorkflowTask.getWorkflowTaskId(), guestRoleId, null,
+					null);
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
-					defaultUserId, childWorkflowTask.getWorkflowTaskId(),
-					defaultUserId, null, null);
+					companyId, defaultUserId,
+					childWorkflowTask.getWorkflowTaskId(), defaultUserId, null,
+					null);
 
 			assertEquals(defaultUserId, childWorkflowTask.getAssigneeUserId());
 		}
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-			defaultUserId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new WorkflowTaskNameComparator(true));
+			companyId, defaultUserId, null, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 	}
 
 	public void testCompleteWorkflowTask() throws Exception {
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, DEFINITION_NAME_3,
+				companyId, defaultUserId, DEFINITION_NAME_3,
 				_workflowDefinition.getVersion(), null, null);
 
 		workflowInstance = WorkflowInstanceManagerUtil.getWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 
 		List<WorkflowInstance> childrenWorkflowInstances =
 			workflowInstance.getChildrenWorkflowInstances();
@@ -171,15 +174,15 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			List<WorkflowTask> childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), Boolean.TRUE,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					Boolean.TRUE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(0, childWorkflowTasks.size());
 
 			childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(),
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					Boolean.FALSE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
@@ -191,22 +194,24 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
-					defaultUserId, childWorkflowTask.getWorkflowTaskId(),
-					guestRoleId, null, null);
+					companyId, defaultUserId,
+					childWorkflowTask.getWorkflowTaskId(), guestRoleId, null,
+					null);
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
-					defaultUserId, childWorkflowTask.getWorkflowTaskId(),
-					defaultUserId, null, null);
+					companyId, defaultUserId,
+					childWorkflowTask.getWorkflowTaskId(), defaultUserId, null,
+					null);
 
 			childWorkflowTask = WorkflowTaskManagerUtil.completeWorkflowTask(
-				defaultUserId, childWorkflowTask.getWorkflowTaskId(), null,
-				null, null);
+				companyId, defaultUserId, childWorkflowTask.getWorkflowTaskId(),
+				null, null, null);
 
 			childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), Boolean.TRUE,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					Boolean.TRUE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
@@ -219,13 +224,13 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		}
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 	}
 
 	public void testGetNextTransitionNames() throws Exception {
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, DEFINITION_NAME_3,
+				companyId, defaultUserId, DEFINITION_NAME_3,
 				_workflowDefinition.getVersion(), null, null);
 
 		List<WorkflowInstance> childrenWorkflowInstances =
@@ -238,7 +243,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		List<WorkflowTask> childWorkflowTasks1 =
 			WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-				childWorkflowInstance1.getWorkflowInstanceId(), null,
+				companyId, childWorkflowInstance1.getWorkflowInstanceId(), null,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				new WorkflowTaskNameComparator(true));
 
@@ -247,16 +252,16 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		WorkflowTask workflowTask1 = childWorkflowTasks1.get(0);
 
 		workflowTask1 = WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
-			defaultUserId, workflowTask1.getWorkflowTaskId(), guestRoleId, null,
-			null);
+			companyId, defaultUserId, workflowTask1.getWorkflowTaskId(),
+			guestRoleId, null, null);
 
 		workflowTask1 = WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
-			defaultUserId, workflowTask1.getWorkflowTaskId(), defaultUserId,
-			null, null);
+			companyId, defaultUserId, workflowTask1.getWorkflowTaskId(),
+			defaultUserId, null, null);
 
 		List<String> nextTransitionNames1 =
 			WorkflowTaskManagerUtil.getNextTransitionNames(
-				defaultUserId, workflowTask1.getWorkflowTaskId());
+				companyId, defaultUserId, workflowTask1.getWorkflowTaskId());
 
 		assertEquals(1, nextTransitionNames1.size());
 		assertEquals("toJoinNode", nextTransitionNames1.get(0));
@@ -266,7 +271,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		List<WorkflowTask> childWorkflowTasks2 =
 			WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-				childWorkflowInstance2.getWorkflowInstanceId(), null,
+				companyId, childWorkflowInstance2.getWorkflowInstanceId(), null,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				new WorkflowTaskNameComparator(true));
 
@@ -275,16 +280,16 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		WorkflowTask workflowTask2 = childWorkflowTasks2.get(0);
 
 		workflowTask2 = WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
-			defaultUserId, workflowTask2.getWorkflowTaskId(), guestRoleId,
-			null, null);
+			companyId, defaultUserId, workflowTask2.getWorkflowTaskId(),
+			guestRoleId, null, null);
 
 		workflowTask2 = WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
-			defaultUserId, workflowTask2.getWorkflowTaskId(),
+			companyId, defaultUserId, workflowTask2.getWorkflowTaskId(),
 			defaultUserId, null, null);
 
 		List<String> nextTransitionNames2 =
 			WorkflowTaskManagerUtil.getNextTransitionNames(
-				defaultUserId, workflowTask2.getWorkflowTaskId());
+				companyId, defaultUserId, workflowTask2.getWorkflowTaskId());
 
 		assertEquals(1, nextTransitionNames2.size());
 		assertEquals("toTaskNode4", nextTransitionNames2.get(0));
@@ -294,7 +299,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		List<WorkflowTask> childWorkflowTasks3 =
 			WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-				childWorkflowInstance3.getWorkflowInstanceId(), null,
+				companyId, childWorkflowInstance3.getWorkflowInstanceId(), null,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				new WorkflowTaskNameComparator(true));
 
@@ -303,33 +308,33 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		WorkflowTask workflowTask3 = childWorkflowTasks3.get(0);
 
 		workflowTask3 = WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
-			defaultUserId, workflowTask3.getWorkflowTaskId(), guestRoleId,
-			null, null);
+			companyId, defaultUserId, workflowTask3.getWorkflowTaskId(),
+			guestRoleId, null, null);
 
 		workflowTask3 = WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
-			defaultUserId, workflowTask3.getWorkflowTaskId(), defaultUserId,
-			null, null);
+			companyId, defaultUserId, workflowTask3.getWorkflowTaskId(),
+			defaultUserId,null, null);
 
 		List<String> nextTransitionNames3 =
 			WorkflowTaskManagerUtil.getNextTransitionNames(
-				defaultUserId, workflowTask3.getWorkflowTaskId());
+				companyId, defaultUserId, workflowTask3.getWorkflowTaskId());
 
 		assertEquals(1, nextTransitionNames3.size());
 		assertEquals("toJoinNode", nextTransitionNames3.get(0));
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 	}
 
 	public void testGetWorkflowTaskCountByRole() throws Exception {
 		int count = WorkflowTaskManagerUtil.getWorkflowTaskCountByRole(
-			guestRoleId, null);
+			companyId, guestRoleId, null);
 
 		assertEquals(0, count);
 
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, DEFINITION_NAME_3,
+				companyId, defaultUserId, DEFINITION_NAME_3,
 				_workflowDefinition.getVersion(), null, null);
 
 		List<WorkflowInstance> childrenWorkflowInstances =
@@ -340,8 +345,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			List<WorkflowTask> childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), null,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
@@ -352,29 +357,31 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
-					defaultUserId, childWorkflowTask.getWorkflowTaskId(),
-					guestRoleId, null, null);
+					companyId, defaultUserId,
+					childWorkflowTask.getWorkflowTaskId(), guestRoleId, null,
+					null);
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
-					defaultUserId, childWorkflowTask.getWorkflowTaskId(),
-					defaultUserId, null, null);
+					companyId, defaultUserId,
+					childWorkflowTask.getWorkflowTaskId(), defaultUserId, null,
+					null);
 
 			assertEquals(guestRoleId, childWorkflowTask.getAssigneeRoleId());
 		}
 
 		count = WorkflowTaskManagerUtil.getWorkflowTaskCountByRole(
-			guestRoleId, null);
+			companyId, guestRoleId, null);
 
 		assertEquals(3, count);
 
 		count = WorkflowTaskManagerUtil.getWorkflowTaskCountByRole(
-			guestRoleId, Boolean.TRUE);
+			companyId, guestRoleId, Boolean.TRUE);
 
 		assertEquals(0, count);
 
 		count = WorkflowTaskManagerUtil.getWorkflowTaskCountByRole(
-			guestRoleId, Boolean.FALSE);
+			companyId, guestRoleId, Boolean.FALSE);
 
 		assertEquals(3, count);
 
@@ -383,8 +390,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			List<WorkflowTask> childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), null,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
@@ -392,38 +399,38 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 			WorkflowTask childWorkflowTask = childWorkflowTasks.get(0);
 
 			WorkflowTaskManagerUtil.completeWorkflowTask(
-				defaultUserId, childWorkflowTask.getWorkflowTaskId(), null,
-				null, null);
+				companyId, defaultUserId, childWorkflowTask.getWorkflowTaskId(),
+				null, null, null);
 		}
 
 		count = WorkflowTaskManagerUtil.getWorkflowTaskCountByRole(
-			guestRoleId, null);
+			companyId, guestRoleId, null);
 
 		assertEquals(3, count);
 
 		count = WorkflowTaskManagerUtil.getWorkflowTaskCountByRole(
-			guestRoleId, Boolean.TRUE);
+			companyId, guestRoleId, Boolean.TRUE);
 
 		assertEquals(3, count);
 
 		count = WorkflowTaskManagerUtil.getWorkflowTaskCountByRole(
-			guestRoleId, Boolean.FALSE);
+			companyId, guestRoleId, Boolean.FALSE);
 
 		assertEquals(0, count);
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 	}
 
 	public void testGetWorkflowTaskCountByUser() throws Exception {
 		int count = WorkflowTaskManagerUtil.getWorkflowTaskCountByUser(
-			defaultUserId, null);
+			companyId, defaultUserId, null);
 
 		assertEquals(0, count);
 
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, DEFINITION_NAME_3,
+				companyId, defaultUserId, DEFINITION_NAME_3,
 				_workflowDefinition.getVersion(), null, null);
 
 		List<WorkflowInstance> childrenWorkflowInstances =
@@ -434,8 +441,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			List<WorkflowTask> childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), null,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
@@ -446,29 +453,31 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
-					defaultUserId, childWorkflowTask.getWorkflowTaskId(),
-					guestRoleId, null, null);
+					companyId, defaultUserId,
+					childWorkflowTask.getWorkflowTaskId(), guestRoleId, null,
+					null);
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
-					defaultUserId, childWorkflowTask.getWorkflowTaskId(),
-					defaultUserId, null, null);
+					companyId, defaultUserId,
+					childWorkflowTask.getWorkflowTaskId(), defaultUserId, null,
+					null);
 
 			assertEquals(guestRoleId, childWorkflowTask.getAssigneeRoleId());
 		}
 
 		count = WorkflowTaskManagerUtil.getWorkflowTaskCountByUser(
-			defaultUserId, null);
+			companyId, defaultUserId, null);
 
 		assertEquals(3, count);
 
 		count = WorkflowTaskManagerUtil.getWorkflowTaskCountByUser(
-			defaultUserId, Boolean.TRUE);
+			companyId, defaultUserId, Boolean.TRUE);
 
 		assertEquals(0, count);
 
 		count = WorkflowTaskManagerUtil.getWorkflowTaskCountByUser(
-			defaultUserId, Boolean.FALSE);
+			companyId, defaultUserId, Boolean.FALSE);
 
 		assertEquals(3, count);
 
@@ -477,8 +486,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			List<WorkflowTask> childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), null,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
@@ -486,38 +495,38 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 			WorkflowTask childWorkflowTask = childWorkflowTasks.get(0);
 
 			WorkflowTaskManagerUtil.completeWorkflowTask(
-				defaultUserId, childWorkflowTask.getWorkflowTaskId(),
+				companyId, defaultUserId, childWorkflowTask.getWorkflowTaskId(),
 				null, null, null);
 		}
 
 		count = WorkflowTaskManagerUtil.getWorkflowTaskCountByUser(
-			defaultUserId, null);
+			companyId, defaultUserId, null);
 
 		assertEquals(4, count);
 
 		count = WorkflowTaskManagerUtil.getWorkflowTaskCountByUser(
-			defaultUserId, Boolean.TRUE);
+			companyId, defaultUserId, Boolean.TRUE);
 
 		assertEquals(3, count);
 
 		count = WorkflowTaskManagerUtil.getWorkflowTaskCountByUser(
-			defaultUserId, Boolean.FALSE);
+			companyId, defaultUserId, Boolean.FALSE);
 
 		assertEquals(1, count);
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 	}
 
 	public void testGetWorkflowTaskCountByWorkflowInstance() throws Exception {
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, DEFINITION_NAME_3,
+				companyId, defaultUserId, DEFINITION_NAME_3,
 				_workflowDefinition.getVersion(), null, null);
 
 		int count =
 			WorkflowTaskManagerUtil.getWorkflowTaskCountByWorkflowInstance(
-				workflowInstance.getWorkflowInstanceId(), null);
+				companyId, workflowInstance.getWorkflowInstanceId(), null);
 
 		assertEquals(0, count);
 
@@ -529,23 +538,23 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			List<WorkflowTask> childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), null,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
 
 			childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), Boolean.TRUE,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					Boolean.TRUE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(0, childWorkflowTasks.size());
 
 			childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(),
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					Boolean.FALSE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
@@ -553,20 +562,20 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		}
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 	}
 
 	public void testGetWorkflowTasksByRole() throws Exception {
 		List<WorkflowTask> workflowTasks =
 			WorkflowTaskManagerUtil.getWorkflowTasksByRole(
-				guestRoleId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new WorkflowTaskNameComparator(true));
+				companyId, guestRoleId, null, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
 
 		assertEquals(0, workflowTasks.size());
 
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, DEFINITION_NAME_3,
+				companyId, defaultUserId, DEFINITION_NAME_3,
 				_workflowDefinition.getVersion(), null, null);
 
 		List<WorkflowInstance> childrenWorkflowInstances =
@@ -577,8 +586,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			List<WorkflowTask> childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), null,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
@@ -589,19 +598,21 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
-					defaultUserId, childWorkflowTask.getWorkflowTaskId(),
-					guestRoleId, null, null);
+					companyId, defaultUserId,
+					childWorkflowTask.getWorkflowTaskId(), guestRoleId, null,
+					null);
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
-					defaultUserId, childWorkflowTask.getWorkflowTaskId(),
-					defaultUserId, null, null);
+					companyId, defaultUserId,
+					childWorkflowTask.getWorkflowTaskId(), defaultUserId, null,
+					null);
 
 			assertEquals(guestRoleId, childWorkflowTask.getAssigneeRoleId());
 		}
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByRole(
-			guestRoleId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			companyId, guestRoleId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new WorkflowTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
@@ -625,14 +636,14 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		assertEquals("Task3-3", workflowTask3.getName());
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByRole(
-			guestRoleId, Boolean.TRUE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new WorkflowTaskNameComparator(true));
+			companyId, guestRoleId, Boolean.TRUE, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
 
 		assertEquals(0, workflowTasks.size());
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByRole(
-			guestRoleId, Boolean.FALSE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new WorkflowTaskNameComparator(true));
+			companyId, guestRoleId, Boolean.FALSE, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
 
@@ -659,8 +670,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			List<WorkflowTask> childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), null,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
@@ -668,12 +679,12 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 			WorkflowTask childWorkflowTask = childWorkflowTasks.get(0);
 
 			WorkflowTaskManagerUtil.completeWorkflowTask(
-				defaultUserId, childWorkflowTask.getWorkflowTaskId(),
+				companyId, defaultUserId, childWorkflowTask.getWorkflowTaskId(),
 				null, null, null);
 		}
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByRole(
-			guestRoleId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			companyId, guestRoleId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new WorkflowTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
@@ -697,8 +708,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		assertEquals("Task3-3", workflowTask3.getName());
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByRole(
-			guestRoleId, Boolean.TRUE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new WorkflowTaskNameComparator(true));
+			companyId, guestRoleId, Boolean.TRUE, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
 
@@ -721,26 +732,26 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		assertEquals("Task3-3", workflowTask3.getName());
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByRole(
-			guestRoleId, Boolean.FALSE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new WorkflowTaskNameComparator(true));
+			companyId, guestRoleId, Boolean.FALSE, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
 
 		assertEquals(0, workflowTasks.size());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 	}
 
 	public void testGetWorkflowTasksByUser() throws Exception {
 		List<WorkflowTask> workflowTasks =
 			WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-				defaultUserId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new WorkflowTaskNameComparator(true));
+				companyId, defaultUserId, null, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
 
 		assertEquals(0, workflowTasks.size());
 
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, DEFINITION_NAME_3,
+				companyId, defaultUserId, DEFINITION_NAME_3,
 				_workflowDefinition.getVersion(), null, null);
 
 		List<WorkflowInstance> childrenWorkflowInstances =
@@ -751,8 +762,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			List<WorkflowTask> childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), null,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
@@ -763,20 +774,22 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
-					defaultUserId, childWorkflowTask.getWorkflowTaskId(),
-					guestRoleId, null, null);
+					companyId, defaultUserId,
+					childWorkflowTask.getWorkflowTaskId(), guestRoleId, null,
+					null);
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
-					defaultUserId, childWorkflowTask.getWorkflowTaskId(),
-					defaultUserId, null, null);
+					companyId, defaultUserId,
+					childWorkflowTask.getWorkflowTaskId(), defaultUserId, null,
+					null);
 
 			assertEquals(defaultUserId, childWorkflowTask.getAssigneeUserId());
 		}
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-			defaultUserId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new WorkflowTaskNameComparator(true));
+			companyId, defaultUserId, null, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
 
@@ -799,13 +812,13 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		assertEquals("Task3-3", workflowTask3.getName());
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-			defaultUserId, Boolean.TRUE, QueryUtil.ALL_POS,
+			companyId, defaultUserId, Boolean.TRUE, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
 
 		assertEquals(0, workflowTasks.size());
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-			defaultUserId, Boolean.FALSE, QueryUtil.ALL_POS,
+			companyId, defaultUserId, Boolean.FALSE, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
@@ -833,8 +846,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			List<WorkflowTask> childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), null,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
@@ -842,13 +855,13 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 			WorkflowTask childWorkflowTask = childWorkflowTasks.get(0);
 
 			WorkflowTaskManagerUtil.completeWorkflowTask(
-				defaultUserId, childWorkflowTask.getWorkflowTaskId(), null,
-				null, null);
+				companyId, defaultUserId, childWorkflowTask.getWorkflowTaskId(),
+				null, null, null);
 		}
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-			defaultUserId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new WorkflowTaskNameComparator(true));
+			companyId, defaultUserId, null, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
 
 		assertEquals(4, workflowTasks.size());
 
@@ -877,7 +890,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		assertEquals("Task3-4", workflowTask4.getName());
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-			defaultUserId, Boolean.TRUE, QueryUtil.ALL_POS,
+			companyId, defaultUserId, Boolean.TRUE, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
 
 		assertEquals(3, workflowTasks.size());
@@ -901,7 +914,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		assertEquals("Task3-3", workflowTask3.getName());
 
 		workflowTasks = WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-			defaultUserId, Boolean.FALSE, QueryUtil.ALL_POS,
+			companyId, defaultUserId, Boolean.FALSE, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, new WorkflowTaskNameComparator(true));
 
 		assertEquals(1, workflowTasks.size());
@@ -913,18 +926,18 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		assertEquals("Task3-4", workflowTask4.getName());
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 	}
 
 	public void testGetWorkflowTasksByWorkflowInstance() throws Exception {
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				defaultUserId, DEFINITION_NAME_3,
+				companyId, defaultUserId, DEFINITION_NAME_3,
 				_workflowDefinition.getVersion(), null, null);
 
 		List<WorkflowTask> workflowTasks =
 			WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-				workflowInstance.getWorkflowInstanceId(), null,
+				companyId, workflowInstance.getWorkflowInstanceId(), null,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				new WorkflowTaskNameComparator(true));
 
@@ -938,8 +951,8 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			List<WorkflowTask> childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), null,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(1, childWorkflowTasks.size());
@@ -952,15 +965,15 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 			childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(), Boolean.TRUE,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
+					Boolean.TRUE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
 			assertEquals(0, childWorkflowTasks.size());
 
 			childWorkflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByWorkflowInstance(
-					childWorkflowInstance.getWorkflowInstanceId(),
+					companyId, childWorkflowInstance.getWorkflowInstanceId(),
 					Boolean.FALSE, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new WorkflowTaskNameComparator(true));
 
@@ -974,7 +987,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 		}
 
 		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			workflowInstance.getWorkflowInstanceId());
+			companyId, workflowInstance.getWorkflowInstanceId());
 	}
 
 	private WorkflowDefinition _workflowDefinition;

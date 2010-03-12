@@ -32,7 +32,7 @@ public class WorkflowTestCase extends TestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
-		long companyId = PortalUtil.getDefaultCompanyId();
+		companyId = PortalUtil.getDefaultCompanyId();
 
 		defaultUser = UserLocalServiceUtil.getDefaultUser(companyId);
 		defaultUserId = defaultUser.getUserId();
@@ -80,6 +80,7 @@ public class WorkflowTestCase extends TestCase {
 
 	protected static final String DEFINITION_NAME_4 = "Workflow Definition 4";
 
+	protected long companyId;
 	protected byte[] definitionBytes1;
 	protected byte[] definitionBytes2;
 	protected byte[] definitionBytes3;
