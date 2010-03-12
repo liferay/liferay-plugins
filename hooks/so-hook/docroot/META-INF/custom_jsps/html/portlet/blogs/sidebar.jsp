@@ -65,6 +65,24 @@
 		</c:otherwise>
 	</c:choose>
 
+	<c:if test="<%= BlogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
+		<h2><liferay-ui:message key="quick-links" /></h2>
+
+		<ul class="disc">
+			<liferay-security:permissionsURL
+				modelResource="com.liferay.portlet.blogs"
+				modelResourceDescription="<%= portletDisplay.getTitle() %>"
+				redirect="<%= currentURL %>"
+				resourcePrimKey="<%= portletDisplay.getResourcePK() %>"
+				var="permissionsURL"
+			/>
+
+			<li>
+				<a href="<%= permissionsURL %>"><liferay-ui:message key="permissions" /></a>
+			</li>
+		</ul>
+	</c:if>
+
 	<%
 	String rssURL = PortalUtil.getLayoutURL(layout, themeDisplay) + "/-/blogs/rss";
 

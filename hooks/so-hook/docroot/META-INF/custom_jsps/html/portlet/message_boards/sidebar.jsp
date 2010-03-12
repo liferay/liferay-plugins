@@ -204,5 +204,19 @@ PortletURL tabs1URL = renderResponse.createRenderURL();
 				<a href="<%= tabs1URL %>"><liferay-ui:message key="banned-users" /></a>
 			</li>
 		</c:if>
+
+		<c:if test="<%= MBPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
+			<liferay-security:permissionsURL
+				modelResource="com.liferay.portlet.messageboards"
+				modelResourceDescription="<%= portletDisplay.getTitle() %>"
+				redirect="<%= currentURL %>"
+				resourcePrimKey="<%= portletDisplay.getResourcePK() %>"
+				var="permissionsURL"
+			/>
+
+			<li>
+				<a href="<%= permissionsURL %>"><liferay-ui:message key="permissions" /></a>
+			</li>
+		</c:if>
 	</ul>
 </div>

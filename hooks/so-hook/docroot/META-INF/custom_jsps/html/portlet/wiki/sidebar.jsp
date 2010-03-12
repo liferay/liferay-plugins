@@ -80,11 +80,11 @@
 			</div>
 		</c:if>
 
-		<c:if test="<%= WikiPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_NODE) %>">
-			<div class="quick-links">
-				<h2><liferay-ui:message key="quick-links" /></h2>
+		<div class="quick-links">
+			<h2><liferay-ui:message key="quick-links" /></h2>
 
-				<ul class="disc">
+			<ul class="disc">
+				<c:if test="<%= WikiPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_NODE) %>">
 					<li>
 
 						<%
@@ -128,8 +128,22 @@
 
 						<a href="<%= portletURL.toString() %>"><nobr><liferay-ui:message key="orphan-pages" /></nobr></a>
 					</li>
-				</ul>
-			</c:if>
+				</c:if>
+
+				<c:if test="<%= WikiPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
+					<liferay-security:permissionsURL
+						modelResource="com.liferay.portlet.wiki"
+						modelResourceDescription="<%= portletDisplay.getTitle() %>"
+						redirect="<%= currentURL %>"
+						resourcePrimKey="<%= portletDisplay.getResourcePK() %>"
+						var="permissionsURL"
+					/>
+
+					<li>
+						<a href="<%= permissionsURL %>"><liferay-ui:message key="permissions" /></a>
+					</li>
+				</c:if>
+			</ul>
 		</div>
 	</c:if>
 </div>

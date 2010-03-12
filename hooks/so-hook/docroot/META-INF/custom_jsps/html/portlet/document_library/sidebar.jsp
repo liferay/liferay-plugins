@@ -66,9 +66,7 @@
 		</form>
 	</div>
 
-	<h2>
-		<liferay-ui:message key="quick-links" />
-	</h2>
+	<h2><liferay-ui:message key="quick-links" /></h2>
 
 	<%
 	String tabs1 = ParamUtil.getString(request, "tabs1", "document-home");
@@ -91,18 +89,30 @@
 			<a href="<%= tabs1URL %>"><liferay-ui:message key="recent-documents" /></a>
 		</li>
 
-		<%
-		if (themeDisplay.isSignedIn()) {
+		<c:if test="<%= themeDisplay.isSignedIn() %>">
+
+			<%
 			tabs1URL.setParameter("tabs1", "my-documents");
-		%>
+			%>
 
 			<li>
 				<a href="<%= tabs1URL %>"><liferay-ui:message key="my-documents" /></a>
 			</li>
+		</c:if>
 
-		<%
-		}
-		%>
+		<c:if test="<%= DLPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
+			<liferay-security:permissionsURL
+				modelResource="com.liferay.portlet.documentlibrary"
+				modelResourceDescription="<%= portletDisplay.getTitle() %>"
+				redirect="<%= currentURL %>"
+				resourcePrimKey="<%= portletDisplay.getResourcePK() %>"
+				var="permissionsURL"
+			/>
+
+			<li>
+				<a href="<%= permissionsURL %>"><liferay-ui:message key="permissions" /></a>
+			</li>
+		</c:if>
 
 	</ul>
 
