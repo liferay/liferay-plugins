@@ -1237,8 +1237,10 @@ table.calendar {
 	background-image: url(../images/common/delete.png);
 }
 
-.document-library-dialog .upload .section-properties,
-.document-library-dialog .properties .section-upload {
+.document-library-dialog .online .aui-field-file,
+.document-library-dialog .online .section-properties,
+.document-library-dialog .properties .section-upload,
+.document-library-dialog .upload .section-properties {
 	display: none;
 }
 
