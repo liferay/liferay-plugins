@@ -17,6 +17,7 @@ package com.liferay.mail.util;
 import com.liferay.mail.model.MailAccount;
 import com.liferay.mail.model.MessageEntry;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONException;
@@ -353,8 +354,9 @@ public class MailDiskManager {
 	}
 
 	public static JSONObject getJSONMessageRelativeToUid(
-		User user, String emailAddress, String folderName, long messageUid,
-		int offset, String keywords) {
+			User user, String emailAddress, String folderName, long messageUid,
+			int offset, String keywords)
+		throws PortalException, SystemException {
 
 		if (Validator.isNull(user) || Validator.isNull(emailAddress) ||
 			Validator.isNull(folderName)) {
@@ -426,8 +428,9 @@ public class MailDiskManager {
 	}
 
 	public static JSONObject getJSONMessagesBySearch(
-		User user, String emailAddress, String folderName, int pageNumber,
-		int messagesPerPage, String keywords) {
+			User user, String emailAddress, String folderName, int pageNumber,
+			int messagesPerPage, String keywords)
+		throws PortalException, SystemException {
 
 		if (Validator.isNull(user) || Validator.isNull(emailAddress) ||
 			Validator.isNull(folderName)) {
@@ -516,7 +519,8 @@ public class MailDiskManager {
 	}
 
 	public static long[] search(
-		User user, String emailAddress, String folderName, String keywords) {
+			User user, String emailAddress, String folderName, String keywords)
+		throws PortalException, SystemException {
 
 		long companyId = user.getCompanyId();
 		long groupId = user.getGroup().getGroupId();
