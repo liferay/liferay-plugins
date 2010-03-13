@@ -303,6 +303,7 @@ portletURL.setParameter("name", name);
 
 				jQuery(document.<portlet:namespace />fm).ajaxSubmit(
 					{
+						iframe: true,
 						success: function() {
 							<portlet:namespace />unlock();
 						}
