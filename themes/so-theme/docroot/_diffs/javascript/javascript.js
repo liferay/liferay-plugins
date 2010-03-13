@@ -49,7 +49,7 @@ AUI().use(
 											);
 										}
 									},
-									uri: themeDisplay.getPathMain() + '/portal/render_portlet',
+									uri: themeDisplay.getPathMain() + '/portal/render_portlet'
 								}
 							).render();
 						}

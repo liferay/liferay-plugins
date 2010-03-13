@@ -987,6 +987,11 @@ textarea.focus {
 	padding-left: 5px;
 }
 
+.portlet-calendar .export-import-calendar .permissions {
+	border-left: 1px solid #6F686B;
+	padding-left: 5px;
+}
+
 .portlet-calendar .export-import-calendar.day-view {
 	margin-left: 50px;
 }
