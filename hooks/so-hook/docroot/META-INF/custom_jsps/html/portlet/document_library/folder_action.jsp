@@ -56,7 +56,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 			</c:if>
 
 			<c:if test="<%= portletDisplay.isWebDAVEnabled() && DLFolderPermission.contains(permissionChecker, scopeGroupId, folderId, ActionKeys.VIEW) %>">
-				<input type="button" class='<%= randomNamespace + "-webdav-action" %>' value="<liferay-ui:message key="access-from-my-desktop" />" />
+				<input type="button" class='<%= randomNamespace + "-webdav-action" %>' value="<liferay-ui:message key="access-from-desktop" />" />
 			</c:if>
 		</div>
 		<div id="<%= randomNamespace %>webDav" style="display: none;">
@@ -119,7 +119,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 							centered: true,
 							destroyOnClose: true,
 							modal: true,
-							title: '<liferay-ui:message key="access-from-my-desktop" />',
+							title: '<liferay-ui:message key="access-from-desktop" />',
 							width: 500
 						}
 					)
