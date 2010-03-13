@@ -1,0 +1,393 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.wsrp.util;
+
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.xml.Document;
+import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.kernel.xml.Namespace;
+import com.liferay.portal.kernel.xml.SAXReaderUtil;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portal.model.User;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.PortletQNameUtil;
+import com.liferay.wsrp.proxy.ServiceHandler;
+
+import java.lang.reflect.Proxy;
+
+import java.net.URL;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.portlet.PortletRequest;
+
+import javax.xml.namespace.QName;
+
+import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
+import oasis.names.tc.wsrp.v2.intf.WSRP_v2_PortletManagement_PortType;
+import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Registration_PortType;
+import oasis.names.tc.wsrp.v2.intf.WSRP_v2_ServiceDescription_PortType;
+import oasis.names.tc.wsrp.v2.types.EventDescription;
+import oasis.names.tc.wsrp.v2.types.GetServiceDescription;
+import oasis.names.tc.wsrp.v2.types.ModelDescription;
+import oasis.names.tc.wsrp.v2.types.PortletDescription;
+import oasis.names.tc.wsrp.v2.types.PropertyDescription;
+import oasis.names.tc.wsrp.v2.types.RegistrationContext;
+import oasis.names.tc.wsrp.v2.types.ServiceDescription;
+import oasis.names.tc.wsrp.v2.wsdl.WSRP_v2_Service;
+
+/**
+ * <a href="WSRPConsumerManager.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class WSRPConsumerManager {
+
+	public static String getUserToken(PortletRequest portletRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		User user = themeDisplay.getUser();
+
+		if (user == null) {
+			return null;
+		}
+
+		Company company = themeDisplay.getCompany();
+
+		String authType = company.getAuthType();
+
+		if (authType.equals(CompanyConstants.AUTH_TYPE_EA)) {
+			return user.getEmailAddress();
+		}
+		else if (authType.equals(CompanyConstants.AUTH_TYPE_SN)) {
+			return user.getScreenName();
+		}
+		else if (authType.equals(CompanyConstants.AUTH_TYPE_ID)) {
+			return String.valueOf(user.getUserId());
+		}
+		else {
+			return user.getScreenName();
+		}
+	}
+
+	public WSRPConsumerManager(
+			String url, RegistrationContext registrationContext,
+			String userToken)
+		throws Exception {
+
+		try {
+			_serviceHandler = new ServiceHandler(userToken);
+
+			_service = (WSRP_v2_Service)Proxy.newProxyInstance(
+				WSRP_v2_Service.class.getClassLoader(),
+				new Class[] {WSRP_v2_Service.class}, _serviceHandler);
+
+			_wsdl = HttpUtil.URLtoString(url);
+
+			Document document = SAXReaderUtil.read(_wsdl);
+
+			Element root = document.getRootElement();
+
+			_wsdlNamespace = _getWsdlNamespace(root);
+
+			List<Element> serviceElements = root.elements(
+				_getWsdlQName("service"));
+
+			for (Element serviceElement : serviceElements) {
+				boolean v2 = _readServiceElement(serviceElement);
+
+				if (v2) {
+					break;
+				}
+			}
+
+			updateServiceDescription(registrationContext);
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(e, e);
+			}
+
+			throw e;
+		}
+	}
+
+	public String getDisplayName(PortletDescription portletDescription) {
+		String displayName = LocalizedStringUtil.getLocalizedStringValue(
+			portletDescription.getDisplayName());
+
+		if (displayName == null) {
+			displayName = LocalizedStringUtil.getLocalizedStringValue(
+				portletDescription.getShortTitle());
+		}
+
+		if (displayName == null) {
+			displayName = LocalizedStringUtil.getLocalizedStringValue(
+				portletDescription.getTitle());
+		}
+
+		if (displayName == null) {
+			displayName = portletDescription.getPortletHandle();
+		}
+
+		return displayName;
+	}
+
+	public QName getEventQName(QName qName) {
+		String key = PortletQNameUtil.getKey(
+			qName.getNamespaceURI(), qName.getLocalPart());
+
+		return _events.get(key);
+	}
+
+	public WSRP_v2_Markup_PortType getMarkupService(String userToken)
+		throws Exception {
+
+		_serviceHandler.setUserToken(userToken);
+
+		return _service.getWSRP_v2_Markup_Service(_markupServiceURL);
+	}
+
+	public PortletDescription getPortletDescription(String portletHandle) {
+		return _portletDescriptions.get(portletHandle);
+	}
+
+	public WSRP_v2_PortletManagement_PortType getPortletManagementService() {
+		return _portletManagementService;
+	}
+
+	public PropertyDescription getPropertyDescription(String name) {
+		return _propertyDescriptions.get(name);
+	}
+
+	public PropertyDescription[] getPropertyDescriptions() {
+		PropertyDescription[] propertyDescriptions = null;
+
+		ModelDescription modelDescription =
+			_serviceDescription.getRegistrationPropertyDescription();
+
+		if (modelDescription != null) {
+			propertyDescriptions = modelDescription.getPropertyDescriptions();
+		}
+
+		return propertyDescriptions;
+	}
+
+	public WSRP_v2_Registration_PortType getRegistrationService() {
+		return _registrationService;
+	}
+
+	public ServiceDescription getServiceDescription() {
+		return _serviceDescription;
+	}
+
+	public String getWsdl() {
+		return _wsdl;
+	}
+
+	public void updateServiceDescription(
+			RegistrationContext registrationContext)
+		throws Exception {
+
+		GetServiceDescription getServiceDescription =
+			new GetServiceDescription();
+
+		if (registrationContext != null) {
+			getServiceDescription.setRegistrationContext(registrationContext);
+		}
+
+		_serviceDescription = _serviceDescriptionService.getServiceDescription(
+			getServiceDescription);
+
+		_portletDescriptions = new HashMap<String, PortletDescription>();
+
+		PortletDescription[] portletDescriptions =
+			_serviceDescription.getOfferedPortlets();
+
+		if (portletDescriptions != null) {
+			for (PortletDescription portletDescription : portletDescriptions) {
+				_portletDescriptions.put(
+					portletDescription.getPortletHandle(), portletDescription);
+			}
+		}
+
+		_propertyDescriptions = new HashMap<String, PropertyDescription>();
+
+		PropertyDescription[] propertyDescriptions = getPropertyDescriptions();
+
+		if (propertyDescriptions != null) {
+			for (PropertyDescription propertyDescription :
+					propertyDescriptions) {
+
+				_propertyDescriptions.put(
+					propertyDescription.getName().toString(),
+					propertyDescription);
+			}
+		}
+
+		_events = new HashMap<String, QName>();
+
+		EventDescription[] eventDescriptions =
+			_serviceDescription.getEventDescriptions();
+
+		if (eventDescriptions != null) {
+			for (EventDescription eventDescription : eventDescriptions) {
+				QName[] aliases = eventDescription.getAliases();
+				QName qName = eventDescription.getName();
+
+				String key = PortletQNameUtil.getKey(
+					qName.getNamespaceURI(), qName.getLocalPart());
+
+				_events.put(key, qName);
+
+				if (aliases == null) {
+					continue;
+				}
+
+				for (QName alias : aliases) {
+					key = PortletQNameUtil.getKey(
+						alias.getNamespaceURI(), alias.getLocalPart());
+
+					_events.put(key, qName);
+				}
+			}
+		}
+	}
+
+	private Namespace _getWsdlNamespace(Element element) {
+		return element.getNamespaceForURI(_WSDL_URI);
+	}
+
+	private com.liferay.portal.kernel.xml.QName _getWsdlQName(
+		String localName) {
+
+		return SAXReaderUtil.createQName(localName, _wsdlNamespace);
+	}
+
+	private void _readBindingElement(Element bindingElement) throws Exception {
+		String binding = bindingElement.attributeValue("binding");
+
+		int pos = binding.indexOf(StringPool.COLON);
+
+		binding = binding.substring(pos + 1);
+
+		Element addressElement = bindingElement.element("address");
+
+		String bindingLocation = addressElement.attributeValue("location");
+
+		URL bindingLocationURL = new URL(bindingLocation);
+
+		if (binding.equals(_WSRP_V1_MARKUP_BINDING) ||
+			binding.equals(_WSRP_V2_MARKUP_BINDING)) {
+
+			_markupServiceURL = bindingLocationURL;
+		}
+		else if (binding.equals(_WSRP_V1_PORTLET_MANAGEMENT_BINDING) ||
+				 binding.equals(_WSRP_V2_PORTLET_MANAGEMENT_BINDING)) {
+
+			_portletManagementService =
+				_service.getWSRP_v2_PortletManagement_Service(
+					bindingLocationURL);
+		}
+		else if (binding.equals(_WSRP_V1_REGISTRATION_BINDING) ||
+				 binding.equals(_WSRP_V2_REGISTRATION_BINDING)) {
+
+			_registrationService =
+				_service.getWSRP_v2_Registration_Service(
+					bindingLocationURL);
+		}
+		else if (binding.equals(_WSRP_V1_SERVICE_DESCRIPTION_BINDING) ||
+				 binding.equals(_WSRP_V2_SERVICE_DESCRIPTION_BINDING)) {
+
+			_serviceDescriptionService =
+				_service.getWSRP_v2_ServiceDescription_Service(
+					bindingLocationURL);
+		}
+	}
+
+	private boolean _readServiceElement(Element element) throws Exception {
+		List<Element> bindingElements = element.elements(_getWsdlQName("port"));
+
+		Element firstBindingElement = bindingElements.get(0);
+
+ 		String binding = firstBindingElement.attributeValue("binding");
+
+		boolean v2 = false;
+
+		if (binding.contains("v2")) {
+			v2 = true;
+
+			_serviceHandler.setV2(v2);
+		}
+
+		for (Element bindingElement : bindingElements) {
+			_readBindingElement(bindingElement);
+		}
+
+		return v2;
+	}
+
+	private static final String _WSDL_URI = "http://schemas.xmlsoap.org/wsdl/";
+
+	private static final String _WSRP_V1_MARKUP_BINDING =
+		"WSRP_v1_Markup_Binding_SOAP";
+
+	private static final String _WSRP_V1_PORTLET_MANAGEMENT_BINDING =
+		"WSRP_v1_PortletManagement_Binding_SOAP";
+
+	private static final String _WSRP_V1_REGISTRATION_BINDING =
+		"WSRP_v1_Registration_Binding_SOAP";
+
+	private static final String _WSRP_V1_SERVICE_DESCRIPTION_BINDING =
+		"WSRP_v1_ServiceDescription_Binding_SOAP";
+
+	private static final String _WSRP_V2_MARKUP_BINDING =
+		"WSRP_v2_Markup_Binding_SOAP";
+
+	private static final String _WSRP_V2_PORTLET_MANAGEMENT_BINDING =
+		"WSRP_v2_PortletManagement_Binding_SOAP";
+
+	private static final String _WSRP_V2_REGISTRATION_BINDING =
+		"WSRP_v2_Registration_Binding_SOAP";
+
+	private static final String _WSRP_V2_SERVICE_DESCRIPTION_BINDING =
+		"WSRP_v2_ServiceDescription_Binding_SOAP";
+
+	private static Log _log = LogFactoryUtil.getLog(WSRPConsumerManager.class);
+
+	private Map<String, QName> _events;
+	private URL _markupServiceURL;
+	private Map<String, PortletDescription> _portletDescriptions;
+	private WSRP_v2_PortletManagement_PortType _portletManagementService;
+	private Map<String, PropertyDescription> _propertyDescriptions;
+	private WSRP_v2_Registration_PortType _registrationService;
+	private WSRP_v2_Service _service;
+	private ServiceDescription _serviceDescription;
+	private WSRP_v2_ServiceDescription_PortType _serviceDescriptionService;
+	private ServiceHandler _serviceHandler;
+	private String _wsdl;
+	private Namespace _wsdlNamespace;
+
+}

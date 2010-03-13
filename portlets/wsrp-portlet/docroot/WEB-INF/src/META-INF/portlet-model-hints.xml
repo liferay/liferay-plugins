@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="com.liferay.wsrp.model.WSRPConsumer">
+		<field name="wsrpConsumerId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="name" type="String" />
+		<field name="url" type="String">
+			<hint-collection name="URL" />
+		</field>
+		<field name="wsdl" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="registrationContextString" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="registrationPropertiesString" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+	</model>
+	<model name="com.liferay.wsrp.model.WSRPConsumerPortlet">
+		<field name="wsrpConsumerPortletId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="wsrpConsumerId" type="long" />
+		<field name="name" type="String" />
+		<field name="portletHandle" type="String">
+			<hint-collection name="URL" />
+		</field>
+	</model>
+	<model name="com.liferay.wsrp.model.WSRPProducer">
+		<field name="wsrpProducerId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="name" type="String" />
+		<field name="portletIds" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+	</model>
+</model-hints>

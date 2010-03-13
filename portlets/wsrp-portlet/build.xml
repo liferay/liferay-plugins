@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+
+<project name="portlet" basedir="." default="deploy">
+	<import file="../build-common-portlet.xml" />
+
+	<taskdef classpathref="portal.classpath" resource="axis-tasks.properties" />
+
+	<target name="build-oasis-wsrp">
+		<tstamp>
+			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+		</tstamp>
+
+		<mkdir dir="${tstamp.value}" />
+
+		<axis-wsdl2java nowrapped="true" output="${tstamp.value}" serverside="true" url="docroot/WEB-INF/wsdl/wsrp-1.0-service.wsdl" verbose="true">
+			<mapping namespace="urn:oasis:names:tc:wsrp:v1:bind" package="oasis.names.tc.wsrp.v1.bind" />
+			<mapping namespace="urn:oasis:names:tc:wsrp:v1:intf" package="oasis.names.tc.wsrp.v1.intf" />
+			<mapping namespace="urn:oasis:names:tc:wsrp:v1:types" package="oasis.names.tc.wsrp.v1.types" />
+			<mapping namespace="urn:oasis:names:tc:wsrp:v1:wsdl" package="oasis.names.tc.wsrp.v1.wsdl" />
+		</axis-wsdl2java>
+
+		<axis-wsdl2java nowrapped="true" output="${tstamp.value}" serverside="true" url="docroot/WEB-INF/wsdl/wsrp-2.0-service.wsdl" verbose="true">
+			<mapping namespace="urn:oasis:names:tc:wsrp:v2:bind" package="oasis.names.tc.wsrp.v2.bind" />
+			<mapping namespace="urn:oasis:names:tc:wsrp:v2:intf" package="oasis.names.tc.wsrp.v2.intf" />
+			<mapping namespace="urn:oasis:names:tc:wsrp:v2:types" package="oasis.names.tc.wsrp.v2.types" />
+			<mapping namespace="urn:oasis:names:tc:wsrp:v2:wsdl" package="oasis.names.tc.wsrp.v2.wsdl" />
+		</axis-wsdl2java>
+
+		<replaceregexp
+			match="super\(\s*errorCode,\s*reason,\s*resourceList,\s*extensions\)"
+			replace="super(reason, resourceList, extensions, errorCode)"
+		>
+			<fileset dir="${tstamp.value}/oasis/names/tc/wsrp/v2/types" includes="FailedPortlets.java,HandleEventsFailed.java,ImportPortletsFailed.java" />
+		</replaceregexp>
+
+		<replaceregexp
+			match="super\(\s*ccppProfileWarning,\s*useCachedItem,\s*mimeType,\s*itemString,\s*itemBinary,\s*locale,\s*requiresRewriting,\s*cacheControl,\s*clientAttributes,\s*extensions\);"
+			replace="super(useCachedItem,mimeType,itemString,itemBinary,locale,requiresRewriting,cacheControl,clientAttributes,extensions,ccppProfileWarning);"
+		>
+			<fileset dir="${tstamp.value}/oasis/names/tc/wsrp/v2/types" includes="MarkupContext.java,ResourceContext.java" />
+		</replaceregexp>
+
+		<javac
+			classpathref="plugin.classpath"
+			compiler="${javac.compiler}"
+			debug="${javac.debug}"
+			deprecation="${javac.deprecation}"
+			destdir="${tstamp.value}"
+			nowarn="${javac.nowarn}"
+			srcdir="${tstamp.value}"
+		/>
+
+		<jar
+			basedir="${tstamp.value}"
+			jarfile="docroot/WEB-INF/lib/oasis-wsrp.jar"
+		/>
+
+		<delete dir="${tstamp.value}" />
+	</target>
+
+	<target name="format-xml">
+		<for param="xml.file">
+			<path>
+				<fileset
+					dir="."
+					includes="docroot/WEB-INF/wsdl/*"
+				/>
+			</path>
+			<sequential>
+				<java
+					classname="com.liferay.util.xml.XMLFormatter"
+					classpathref="portal.classpath"
+					fork="true"
+					newenvironment="true"
+				>
+					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+					<jvmarg value="-Dxml.formatter.file=@{xml.file}" />
+					<jvmarg value="-Dxml.formatter.strip.comments=true" />
+				</java>
+			</sequential>
+		</for>
+	</target>
+</project>
