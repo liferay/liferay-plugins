@@ -36,7 +36,7 @@ String fileName = PrefsParamUtil.getString(preferences, request, "fileName");
 
 boolean fieldsEditingDisabled = false;
 
-if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
+if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0) {
 	fieldsEditingDisabled = true;
 }
 %>
@@ -91,7 +91,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
 
-<aui:form action="<%= configurationURL %>" cssClass="portlet-web-form" method="post" name="fm" onSubmit="submitForm(this); return false;">
+<aui:form action="<%= configurationURL %>" cssClass="portlet-web-form" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
@@ -104,7 +104,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 				<aui:input name="description" type="textarea" value="<%= HtmlUtil.toInputSafe(description) %>" wrap="soft" />
 
-				<aui:input inlineLabel="left" label="require-captcha" name="requireCaptcha" type="checkbox" value="<%= requireCaptcha %>" />
+				<aui:input name="requireCaptcha" type="checkbox" value="<%= requireCaptcha %>" />
 
 				<aui:input cssClass="lfr-input-text-container" label="redirect-url-on-success" name="successURL" value="<%= HtmlUtil.toInputSafe(successURL) %>" />
 			</aui:fieldset>
@@ -112,9 +112,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 		<liferay-ui:panel id='webFormData' title='<%= LanguageUtil.get(pageContext, "handling-of-form-data") %>' collapsible="<%= true %>" persistState="<%= true %>" extended="<%= true %>">
 			<aui:fieldset>
-				<fieldset class="handle-data">
-					<legend><liferay-ui:message key="email" /></legend>
-
+				<fieldset class="handle-data" label="email">
 					<liferay-ui:error key="subjectRequired" message="please-enter-a-subject" />
 					<liferay-ui:error key="handlingRequired" message="please-select-an-action-for-the-handling-of-form-data" />
 					<liferay-ui:error key="emailAddressInvalid" message="please-enter-a-valid-email-address" />
@@ -125,19 +123,15 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 					<aui:input cssClass="lfr-input-text-container" name="subject" value="<%= subject %>" />
 
-					<aui:input cssClass="lfr-input-text-container" label="email-address" name="emailAddress" value="<%= emailAddress %>" />
+					<aui:input cssClass="lfr-input-text-container" name="emailAddress" value="<%= emailAddress %>" />
 				</fieldset>
 
-				<fieldset class="handle-data">
-					<legend><liferay-ui:message key="database" /></legend>
-
-					<aui:input inlineLabel="left" label="save-to-database" name="saveToDatabase" type="checkbox" value="<%= saveToDatabase %>" />
+				<fieldset class="handle-data" label="database">
+					<aui:input name="saveToDatabase" type="checkbox" value="<%= saveToDatabase %>" />
 				</fieldset>
 
-				<fieldset class="handle-data">
-					<legend><liferay-ui:message key="file" /></legend>
-
-					<aui:input inlineLabel="left" label="save-to-file" name="saveToFile" type="checkbox" value="<%= saveToFile %>" />
+				<fieldset class="handle-data" label="file">
+					<aui:input name="saveToFile" type="checkbox" value="<%= saveToFile %>" />
 
 					<aui:input cssClass="lfr-input-text-container" label="path-and-file-name" name="filename" value="<%= fileName %>" />
 				</fieldset>
@@ -146,7 +140,6 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 
 		<liferay-ui:panel id='webFormFields' title='<%= LanguageUtil.get(pageContext, "form-fields") %>' collapsible="<%= true %>" persistState="<%= true %>" extended="<%= true %>">
 			<aui:fieldset cssClass="rows-container webFields">
-
 				<c:if test="<%= fieldsEditingDisabled %>">
 					<div class="portlet-msg-alert">
 						<liferay-ui:message key="there-is-existing-form-data-please-export-and-delete-it-before-making-changes-to-the-fields" />
@@ -234,15 +227,13 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 								<aui:input cssClass="lfr-input-text-container label-name" label="name" name='<%= "fieldLabel" + formFieldsIndex %>' onchange="AUI().one(this).get('parentNode.parentNode.parentNode.parentNode').one('.field-label').html(AUI().one(this).val())" size="50" value="<%= fieldLabel %>" />
 							</c:when>
 							<c:otherwise>
-								<table class="editing-disabled">
-								<tr>
-									<td>
+								<dl class="editing-disabled">
+									<dt>
 										<label><liferay-ui:message key="name" /></label>
-									</td>
-									<td>
+									</dt>
+									<dd>
 										<%= fieldLabel %>
-									</td>
-								</tr>
+									</dd>
 							</c:otherwise>
 						</c:choose>
 
@@ -258,14 +249,12 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 								</aui:select>
 							</c:when>
 							<c:otherwise>
-								<tr>
-									<td>
+									<dt>
 										<label><liferay-ui:message key="type" /></label>
-									</td>
-									<td>
+									</dt>
+									<dd>
 										<liferay-ui:message key="<%= fieldType %>" />
-									</td>
-								</tr>
+									</dd>
 							</c:otherwise>
 						</c:choose>
 
@@ -274,14 +263,12 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 								<aui:input cssClass="optional-control" inlineLabel="left" label="optional" name='<%= "fieldOptional" + formFieldsIndex %>' type="checkbox" value="<%= fieldOptional %>" />
 							</c:when>
 							<c:otherwise>
-								<tr>
-									<td>
+									<dt>
 										<label><liferay-ui:message key="optional" /></label>
-									</td>
-									<td>
+									</dt>
+									<dd>
 										<liferay-ui:message key='<%= fieldOptional ? "yes" : "no" %>' />
-									</td>
-								</tr>
+									</dd>
 							</c:otherwise>
 						</c:choose>
 
@@ -290,14 +277,12 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 								<aui:input cssClass="options lfr-input-text-container" helpMessage="add-options-separated-by-commas" label="options" name='<%= "fieldOptions" + formFieldsIndex %>' value="<%= fieldOptions %>" />
 							</c:when>
 							<c:when test="<%= Validator.isNotNull(fieldOptions) %>">
-								<tr>
-									<td>
+									<dt>
 										<label><liferay-ui:message key="options" /></label>
-									</td>
-									<td>
+									</dt>
+									<dd>
 										<%= fieldOptions %>
-									</td>
-								</tr>
+									</dd>
 							</c:when>
 						</c:choose>
 
@@ -324,38 +309,32 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 									</div>
 								</c:when>
 								<c:when test="<%= Validator.isNotNull(fieldValidationScript) %>">
-									<tr>
-										<td>
+										<dt>
 											<label class="optional"><liferay-ui:message key="validation" /></label>
-										</td>
-										<td>
+										</dt>
+										<dd>
 											<pre><%= fieldValidationScript %></pre>
-										</td>
-									</tr>
-									<tr>
-										<td>
+										</dd>
+										<dt>
 											<label class="optional"><liferay-ui:message key="validation-error-message" /></label>
-										</td>
-										<td>
+										</dt>
+										<dd>
 											<%= fieldValidationErrorMessage %>
-										</td>
-									</tr>
+										</dd>
 								</c:when>
 								<c:otherwise>
-									<tr>
-										<td>
+										<dt>
 											<label class="optional"><liferay-ui:message key="validation" /></label>
-										</td>
-										<td>
+										</dt>
+										<dd>
 											<liferay-ui:message key="this-field-does-not-have-any-specific-validation" />
-										</td>
-									</tr>
+										</dd>
 								</c:otherwise>
 							</c:choose>
 						</c:if>
 
 						<c:if test="<%= fieldsEditingDisabled %>">
-							</table>
+							</dl>
 						</c:if>
 					</div>
 
