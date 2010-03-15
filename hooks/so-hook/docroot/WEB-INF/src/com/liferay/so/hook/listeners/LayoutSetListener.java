@@ -210,11 +210,11 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		// Mail
 
-		/*layout = addLayout(group, "Mail", "/mail", "1_column");
+		layout = addLayout(group, "Mail", "/mail", "1_column");
 
 		addResources(layout, "1_WAR_mailportlet");
 
-		updatePermissions(layout, false);*/
+		updatePermissions(layout, false);
 	}
 
 	protected Layout addLayout(
