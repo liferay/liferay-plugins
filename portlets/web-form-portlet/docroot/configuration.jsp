@@ -42,8 +42,8 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 %>
 
 <style type="text/css">
-	.portlet-web-form fieldset .handle-data {
-		border: 1px solid #BFBFBF;
+	.portlet-web-form .lfr-panel-content {
+		padding: 0 1em;
 	}
 
 	.portlet-web-form fieldset.rows-container {
@@ -51,17 +51,11 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 		margin-top: 0;
 	}
 
-	.portlet-web-form table.editing-disabled {
-		margin-left: 30px;
-	}
-
-	.portlet-web-form table.editing-disabled label {
-		font-weight: bold;
+	.portlet-web-form .editing-disabled dt {
 		color: #999999;
-	}
-
-	.portlet-web-form table.editing-disabled td {
-		padding: 3px;
+		float: left;
+		font-weight: bold;
+		width: 6em;
 	}
 
 	.portlet-web-form .lfr-form-row .aui-ctrl-holder {
@@ -111,30 +105,28 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 		</liferay-ui:panel>
 
 		<liferay-ui:panel id='webFormData' title='<%= LanguageUtil.get(pageContext, "handling-of-form-data") %>' collapsible="<%= true %>" persistState="<%= true %>" extended="<%= true %>">
-			<aui:fieldset>
-				<fieldset class="handle-data" label="email">
-					<liferay-ui:error key="subjectRequired" message="please-enter-a-subject" />
-					<liferay-ui:error key="handlingRequired" message="please-select-an-action-for-the-handling-of-form-data" />
-					<liferay-ui:error key="emailAddressInvalid" message="please-enter-a-valid-email-address" />
-					<liferay-ui:error key="emailAddressRequired" message="please-enter-an-email-address" />
-					<liferay-ui:error key="fileNameInvalid" message="please-enter-a-valid-path-and-filename" />
+			<aui:fieldset cssClass="handle-data" label="email">
+				<liferay-ui:error key="subjectRequired" message="please-enter-a-subject" />
+				<liferay-ui:error key="handlingRequired" message="please-select-an-action-for-the-handling-of-form-data" />
+				<liferay-ui:error key="emailAddressInvalid" message="please-enter-a-valid-email-address" />
+				<liferay-ui:error key="emailAddressRequired" message="please-enter-an-email-address" />
+				<liferay-ui:error key="fileNameInvalid" message="please-enter-a-valid-path-and-filename" />
 
-					<aui:input inlineLabel="left" label="send-as-email" name="sendAsEmail" type="checkbox" value="<%= sendAsEmail %>" />
+				<aui:input inlineLabel="left" label="send-as-email" name="sendAsEmail" type="checkbox" value="<%= sendAsEmail %>" />
 
-					<aui:input cssClass="lfr-input-text-container" name="subject" value="<%= subject %>" />
+				<aui:input cssClass="lfr-input-text-container" name="subject" value="<%= subject %>" />
 
-					<aui:input cssClass="lfr-input-text-container" name="emailAddress" value="<%= emailAddress %>" />
-				</fieldset>
+				<aui:input cssClass="lfr-input-text-container" name="emailAddress" value="<%= emailAddress %>" />
+			</aui:fieldset>
 
-				<fieldset class="handle-data" label="database">
-					<aui:input name="saveToDatabase" type="checkbox" value="<%= saveToDatabase %>" />
-				</fieldset>
+			<aui:fieldset cssClass="handle-data" label="database">
+				<aui:input name="saveToDatabase" type="checkbox" value="<%= saveToDatabase %>" />
+			</aui:fieldset>
 
-				<fieldset class="handle-data" label="file">
-					<aui:input name="saveToFile" type="checkbox" value="<%= saveToFile %>" />
+			<aui:fieldset cssClass="handle-data" label="file">
+				<aui:input name="saveToFile" type="checkbox" value="<%= saveToFile %>" />
 
-					<aui:input cssClass="lfr-input-text-container" label="path-and-file-name" name="filename" value="<%= fileName %>" />
-				</fieldset>
+				<aui:input cssClass="lfr-input-text-container" label="path-and-file-name" name="filename" value="<%= fileName %>" />
 			</aui:fieldset>
 		</liferay-ui:panel>
 
@@ -229,7 +221,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 							<c:otherwise>
 								<dl class="editing-disabled">
 									<dt>
-										<label><liferay-ui:message key="name" /></label>
+										<liferay-ui:message key="name" />
 									</dt>
 									<dd>
 										<%= fieldLabel %>
@@ -250,7 +242,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 							</c:when>
 							<c:otherwise>
 									<dt>
-										<label><liferay-ui:message key="type" /></label>
+										<liferay-ui:message key="type" />
 									</dt>
 									<dd>
 										<liferay-ui:message key="<%= fieldType %>" />
@@ -264,7 +256,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 							</c:when>
 							<c:otherwise>
 									<dt>
-										<label><liferay-ui:message key="optional" /></label>
+										<liferay-ui:message key="optional" />
 									</dt>
 									<dd>
 										<liferay-ui:message key='<%= fieldOptional ? "yes" : "no" %>' />
@@ -278,7 +270,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 							</c:when>
 							<c:when test="<%= Validator.isNotNull(fieldOptions) %>">
 									<dt>
-										<label><liferay-ui:message key="options" /></label>
+										<liferay-ui:message key="options" />
 									</dt>
 									<dd>
 										<%= fieldOptions %>
@@ -309,22 +301,22 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 									</div>
 								</c:when>
 								<c:when test="<%= Validator.isNotNull(fieldValidationScript) %>">
-										<dt>
-											<label class="optional"><liferay-ui:message key="validation" /></label>
+										<dt class="optional">
+											<liferay-ui:message key="validation" />
 										</dt>
 										<dd>
 											<pre><%= fieldValidationScript %></pre>
 										</dd>
-										<dt>
-											<label class="optional"><liferay-ui:message key="validation-error-message" /></label>
+										<dt class="optional">
+											<liferay-ui:message key="validation-error-message" />
 										</dt>
 										<dd>
 											<%= fieldValidationErrorMessage %>
 										</dd>
 								</c:when>
 								<c:otherwise>
-										<dt>
-											<label class="optional"><liferay-ui:message key="validation" /></label>
+										<dt class="optional">
+											<liferay-ui:message key="validation" />
 										</dt>
 										<dd>
 											<liferay-ui:message key="this-field-does-not-have-any-specific-validation" />
@@ -347,9 +339,9 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 	</liferay-ui:panel-container>
 
 	<aui:button-row>
-		<aui:button type="submit" value="save" />
+		<aui:button type="submit" />
 
-		<aui:button onclick="<%= PortalUtil.escapeRedirect(redirect) %>" value="cancel" />
+		<aui:button onclick="<%= redirect %>" type="cancel" />
 	</aui:button-row>
 </aui:form>
 
