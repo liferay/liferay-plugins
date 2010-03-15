@@ -30,36 +30,6 @@ int type = BeanParamUtil.getInteger(group, request, "type");
 String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 %>
 
-<script type="text/javascript">
-	function <portlet:namespace />saveGroup() {
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= group == null ? Constants.ADD : Constants.UPDATE %>";
-		submitForm(document.<portlet:namespace />fm);
-	}
-
-	<c:if test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
-		jQuery(
-			function() {
-				jQuery(document.<portlet:namespace />fm).ajaxForm(
-					{
-						target: Liferay.SO.Sites.getPopup().bodyNode.getDOM(),
-						type: "POST",
-						success: function() {
-							var siteList = jQuery('.so-portlet-sites form');
-
-							siteList.html('<div class="loading-animation" />');
-							siteList.load(themeDisplay.getLayoutURL() + ' .so-portlet-sites form', {t:(+new Date())});
-
-							if (jQuery('.contacts-portlet').length > 0) {
-								Liferay.Contacts.loadEntries(false);
-							}
-						}
-					}
-				);
-			}
-		);
-	</c:if>
-</script>
-
 <form action="<portlet:actionURL windowState="<%= windowState.toString() %>"><portlet:param name="struts_action" value="/communities/edit_community" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= group == null ? Constants.ADD : Constants.UPDATE %>" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) ? StringPool.BLANK : HtmlUtil.escape(redirect) %>" />
@@ -125,8 +95,36 @@ String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 
 </form>
 
-<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) || windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
-	<script type="text/javascript">
+<aui:script>
+	function <portlet:namespace />saveGroup() {
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= group == null ? Constants.ADD : Constants.UPDATE %>";
+		submitForm(document.<portlet:namespace />fm);
+	}
+
+	<c:if test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
+		jQuery(
+			function() {
+				jQuery(document.<portlet:namespace />fm).ajaxForm(
+					{
+						target: Liferay.SO.Sites.getPopup().bodyNode.getDOM(),
+						type: "POST",
+						success: function() {
+							var siteList = jQuery('.so-portlet-sites form');
+
+							siteList.html('<div class="loading-animation" />');
+							siteList.load(themeDisplay.getLayoutURL() + ' .so-portlet-sites form', {t:(+new Date())});
+
+							if (jQuery('.contacts-portlet').length > 0) {
+								Liferay.Contacts.loadEntries(false);
+							}
+						}
+					}
+				);
+			}
+		);
+	</c:if>
+
+	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) || windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
-	</script>
-</c:if>
+	</c:if>
+</aui:script>
