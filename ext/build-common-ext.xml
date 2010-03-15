@@ -272,17 +272,17 @@ loader.
 	</target>
 
 	<target name="deploy" depends="war">
-		<copy todir="${app.server.lib.global.dir}" overwrite="yes">
+		<copy todir="${app.server.lib.global.dir}" overwrite="true">
 			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
 			<fileset dir="docroot/WEB-INF/ext-service" includes="*.jar" />
 		</copy>
 
-		<copy todir="${app.server.lib.portal.dir}" overwrite="yes">
+		<copy todir="${app.server.lib.portal.dir}" overwrite="true">
 			<fileset dir="docroot/WEB-INF/ext-lib/portal" includes="*.jar" />
 			<fileset dir="docroot/WEB-INF/ext-impl" includes="*.jar" />
 		</copy>
 
-		<copy todir="${app.server.portal.dir}" overwrite="yes">
+		<copy todir="${app.server.portal.dir}" overwrite="true">
 			<fileset dir="docroot/WEB-INF/ext-web/docroot" excludes="WEB-INF/web.xml" />
 		</copy>
 
@@ -315,7 +315,7 @@ loader.
 	</target>
 
 	<target name="deploy-properties">
-		<copy todir="${app.server.classes.portal.dir}" overwrite="yes">
+		<copy todir="${app.server.classes.portal.dir}" overwrite="true">
 			<fileset dir="docroot/WEB-INF/ext-impl/src" includes="portal-*.properties,system-*.properties" />
 		</copy>
 	</target>

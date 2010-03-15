@@ -504,7 +504,7 @@ Please find a solution that does not require portal-impl.jar.
 			</then>
 		</if>
 
-		<copy todir="tmp" overwrite="false">
+		<copy todir="tmp">
 			<fileset dir="docroot" />
 		</copy>
 	</target>
