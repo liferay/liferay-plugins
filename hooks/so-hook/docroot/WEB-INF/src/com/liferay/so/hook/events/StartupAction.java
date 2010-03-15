@@ -351,19 +351,23 @@ public class StartupAction extends SimpleAction {
 			}
 		}
 
-		// Communities portlet
+		// Communities
 
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
 			PortletKeys.COMMUNITIES);
 
 		portlet.setAddDefaultResource(true);
 
-		// Directory portlet
+		// Directory
 
 		portlet = PortletLocalServiceUtil.getPortletById(
 			PortletKeys.DIRECTORY);
 
 		portlet.setAddDefaultResource(true);
+
+		// Clear caches
+
+		PortletLocalServiceUtil.clearCaches();
 	}
 
 	protected void setupUsers(long companyId) throws Exception {
