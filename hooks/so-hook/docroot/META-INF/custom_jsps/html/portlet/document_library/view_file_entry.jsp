@@ -360,6 +360,8 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 							formAction="<%= discussionURL %>"
 							className="<%= DLFileVersion.class.getName() %>"
 							classPK="<%= fileVersion.getFileVersionId() %>"
+							permissionClassName="<%= DLFileEntry.class.getName() %>"
+							permissionClassPK="<%= fileEntry.getFileEntryId() %>"
 							userId="<%= fileVersion.getUserId() %>"
 							subject="<%= fileEntry.getTitle() %>"
 							redirect="<%= currentURL %>"
