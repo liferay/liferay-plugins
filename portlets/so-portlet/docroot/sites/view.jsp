@@ -146,5 +146,9 @@ pageContext.setAttribute("portletURL", portletURL);
 </form>
 
 <aui:script>
-	Liferay.SO.Sites.init();
+	AUI().ready(
+		function() {
+			Liferay.SO.Sites.init();
+		}
+	)
 </aui:script>
