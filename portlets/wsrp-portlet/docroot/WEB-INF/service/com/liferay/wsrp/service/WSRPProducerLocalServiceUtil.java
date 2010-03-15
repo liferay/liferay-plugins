@@ -140,7 +140,7 @@ public class WSRPProducerLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
-					portletClassLoader);
+					WSRPProducerLocalService.class.getName(), portletClassLoader);
 
 			_service = new WSRPProducerLocalServiceClp(classLoaderProxy);
 

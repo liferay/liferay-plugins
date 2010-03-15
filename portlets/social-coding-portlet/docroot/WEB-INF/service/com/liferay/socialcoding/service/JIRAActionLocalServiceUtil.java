@@ -115,7 +115,7 @@ public class JIRAActionLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
-					portletClassLoader);
+					JIRAActionLocalService.class.getName(), portletClassLoader);
 
 			_service = new JIRAActionLocalServiceClp(classLoaderProxy);
 

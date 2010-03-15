@@ -195,6 +195,7 @@ public class MemberRequestLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					MemberRequestLocalService.class.getName(),
 					portletClassLoader);
 
 			_service = new MemberRequestLocalServiceClp(classLoaderProxy);

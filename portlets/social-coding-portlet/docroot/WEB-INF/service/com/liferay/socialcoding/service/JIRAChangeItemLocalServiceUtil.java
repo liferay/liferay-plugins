@@ -122,6 +122,7 @@ public class JIRAChangeItemLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					JIRAChangeItemLocalService.class.getName(),
 					portletClassLoader);
 
 			_service = new JIRAChangeItemLocalServiceClp(classLoaderProxy);

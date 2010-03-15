@@ -144,6 +144,7 @@ public class MeetupsRegistrationLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					MeetupsRegistrationLocalService.class.getName(),
 					portletClassLoader);
 
 			_service = new MeetupsRegistrationLocalServiceClp(classLoaderProxy);

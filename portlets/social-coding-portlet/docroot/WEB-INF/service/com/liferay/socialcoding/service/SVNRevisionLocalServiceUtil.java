@@ -174,7 +174,7 @@ public class SVNRevisionLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
-					portletClassLoader);
+					SVNRevisionLocalService.class.getName(), portletClassLoader);
 
 			_service = new SVNRevisionLocalServiceClp(classLoaderProxy);
 

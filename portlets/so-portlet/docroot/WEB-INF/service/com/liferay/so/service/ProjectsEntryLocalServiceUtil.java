@@ -151,6 +151,7 @@ public class ProjectsEntryLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					ProjectsEntryLocalService.class.getName(),
 					portletClassLoader);
 
 			_service = new ProjectsEntryLocalServiceClp(classLoaderProxy);
