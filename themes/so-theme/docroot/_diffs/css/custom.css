@@ -39,7 +39,8 @@ a:active {
 }
 
 body #banner h1.logo {
-	margin: 15px 0 0 15px;
+	margin: 0 0 0 15px;
+	padding-top: 15px;
 }
 
 body #banner h1.logo a {
