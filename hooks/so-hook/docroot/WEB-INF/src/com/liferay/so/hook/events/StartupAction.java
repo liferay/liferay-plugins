@@ -365,9 +365,9 @@ public class StartupAction extends SimpleAction {
 
 		portlet.setAddDefaultResource(true);
 
-		// Clear caches
+		// Clear cache
 
-		PortletLocalServiceUtil.clearCaches();
+		PortletLocalServiceUtil.clearCache();
 	}
 
 	protected void setupUsers(long companyId) throws Exception {
