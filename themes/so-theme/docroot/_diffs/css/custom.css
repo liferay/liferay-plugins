@@ -110,9 +110,10 @@ body #banner h1.logo a {
 	background: #FFF;
 	border: 1px solid #B0BAFF;
 	border-top: none;
+	display: none;
 	position: absolute;
 	right: 0;
-	top: 28px;
+	top: 30px;
 	width: 239px;
 	z-index: 20;
 }
@@ -350,38 +351,6 @@ body #banner h1.logo a {
 	font-weight: bold;
 	text-align: right;
 	vertical-align: top;
-}
-
-.ie input[type="submit"],
-.ie input[type="button"],
-.ie input[type="reset"] {
-	padding: 4px 5px 3px;
-}
-
-.ie6 input.submit,
-.ie6 input.button {
-	padding: 4px 0 3px;
-}
-
-input {
-	background: none;
-}
-
-input[type="text"],
-input[type="password"],
-select,
-textarea,
-.textarea {
-	background: #FFF;
-	border-color: #D7DCFF;
-	color: #555;
-}
-
-input[type="password"]:focus,
-input.focus,
-textarea.focus {
-	background: #FFF6ED;
-	border: 1px solid #FC9;
 }
 
 /* Headings */

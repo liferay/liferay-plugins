@@ -60,29 +60,20 @@ AUI().use(
 			},
 
 			handleMySitesDropDown: function() {
-				var mySites = A.one('#navigation-top .my-sites');
-
-				if (mySites) {
-					mySites.on(
-						'mouseover',
-						function(event) {
-							var menu = event.currentTarget;
-
-							menu.addClass('open');
-							menu.one('.child-menu').show();
+				$('#navigation-top .my-sites').hoverIntent(
+					{
+						interval: 0,
+						timeout: 500,
+						over: function() {
+							$(this).addClass('open');
+							$('.child-menu', $(this)).show();
+						},
+						out: function() {
+							$(this).removeClass('open');
+							$('.child-menu', $(this)).hide();
 						}
-					);
-
-					mySites.on(
-						'mouseout',
-						function(event) {
-							var menu = event.currentTarget;
-
-							menu.removeClass('open');
-							menu.one('.child-menu').hide();
-						}
-					);
-				}
+					}
+				);
 			}
 		};
 	}
