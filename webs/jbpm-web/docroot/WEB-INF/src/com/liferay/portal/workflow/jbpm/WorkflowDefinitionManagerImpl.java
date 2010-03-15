@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.jbpm;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
+import com.liferay.portal.kernel.workflow.WorkflowDefinitionFileException;
 import com.liferay.portal.kernel.workflow.WorkflowDefinitionManager;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
@@ -33,6 +34,7 @@ import org.jbpm.JbpmContext;
 import org.jbpm.db.GraphSession;
 import org.jbpm.graph.def.ProcessDefinition;
 import org.jbpm.graph.exe.ProcessInstance;
+import org.jbpm.jpdl.JpdlException;
 import org.jbpm.jpdl.par.ProcessArchive;
 
 /**
@@ -60,6 +62,9 @@ public class WorkflowDefinitionManagerImpl
 		}
 		catch (IOException ioe) {
 			throw new WorkflowException(ioe);
+		}
+		catch (JpdlException jpdle) {
+			throw new WorkflowDefinitionFileException(jpdle);
 		}
 		finally {
 			try {
