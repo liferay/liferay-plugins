@@ -469,6 +469,10 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 
 						if (officeDoc) {
 							officeDoc.EditDocument(webDavUrl);
+
+							<c:if test="<%= !isLocked.booleanValue() %>">
+								<portlet:namespace />lock();
+							</c:if>
 						}
 						else {
 							window.location.href = fileUrl;
@@ -491,8 +495,12 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 
 							<li class="action-save-office"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= onlineEditURL %>', '<liferay-ui:message key="finish-editing-online" />');"><liferay-ui:message key="finish-editing-online" /></a></li>
 						</c:when>
-						<c:otherwise>
+						<c:when test="<%= isLocked.booleanValue() %>">
 							<li class="action-edit-office"><liferay-ui:message key="edit-document-online" /></li>
+							<li class="action-save-office"><liferay-ui:message key="finish-editing-online" /></li>
+						</c:when>
+						<c:otherwise>
+							<li class="action-edit-office"><a href="javascript:;" onClick="<portlet:namespace />openDocument();"><liferay-ui:message key="edit-document-online" /></a></li>
 							<li class="action-save-office"><liferay-ui:message key="finish-editing-online" /></li>
 						</c:otherwise>
 					</c:choose>
