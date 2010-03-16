@@ -82,12 +82,17 @@ public class WorkflowDefinitionManagerImpl
 
 		try {
 			jbpmContext.deployProcessDefinition(processDefinition);
+
+			WorkflowDefinitionStatusImpl wfDefinitionStatus =
+				new WorkflowDefinitionStatusImpl(true, processDefinition);
+
+			jbpmContext.getSession().save(wfDefinitionStatus);
 		}
 		finally {
 			jbpmContext.close();
 		}
 
-		return new WorkflowDefinitionImpl(processDefinition);
+		return new WorkflowDefinitionImpl(processDefinition, true);
 	}
 
 	public WorkflowDefinition getWorkflowDefinition(
@@ -103,7 +108,15 @@ public class WorkflowDefinitionManagerImpl
 				graphSession.findProcessDefinition(name, version);
 
 			if (processDefinition != null) {
-				return new WorkflowDefinitionImpl(processDefinition);
+
+				CustomSession customSession = new CustomSession(jbpmContext);
+
+				WorkflowDefinitionStatusImpl wfDefinitionStatus =
+					customSession.findWorkflowDefinitonStatus(
+						processDefinition.getId());
+
+				return new WorkflowDefinitionImpl(
+					processDefinition, wfDefinitionStatus.isActive());
 			}
 			else {
 				throw new WorkflowException(
@@ -213,6 +226,11 @@ public class WorkflowDefinitionManagerImpl
 					}
 				}
 
+				CustomSession customSession = new CustomSession(jbpmContext);
+
+				customSession.deleteWorkflowDefinitionStatus(
+						processDefinition.getId());
+
 				graphSession.deleteProcessDefinition(processDefinition);
 			}
 		}
@@ -224,17 +242,32 @@ public class WorkflowDefinitionManagerImpl
 	protected List<WorkflowDefinition> toWorkflowDefinitions(
 		List<ProcessDefinition> processDefinitions) {
 
-		List<WorkflowDefinition> workflowDefinitions =
-			new ArrayList<WorkflowDefinition>(processDefinitions.size());
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
-		for (ProcessDefinition processDefinition : processDefinitions) {
-			WorkflowDefinition workflowDefinition = new WorkflowDefinitionImpl(
-				processDefinition);
+		try {
+			List<WorkflowDefinition> workflowDefinitions =
+				new ArrayList<WorkflowDefinition>(processDefinitions.size());
 
-			workflowDefinitions.add(workflowDefinition);
+			for (ProcessDefinition processDefinition : processDefinitions) {
+
+				CustomSession customSession = new CustomSession(jbpmContext);
+
+				WorkflowDefinitionStatusImpl wfDefinitionStatus =
+					customSession.findWorkflowDefinitonStatus(
+						processDefinition.getId());
+
+				WorkflowDefinition workflowDefinition =
+					new WorkflowDefinitionImpl(
+						processDefinition, wfDefinitionStatus.isActive());
+
+				workflowDefinitions.add(workflowDefinition);
+			}
+
+			return workflowDefinitions;
 		}
-
-		return workflowDefinitions;
+		finally {
+			jbpmContext.close();
+		}
 	}
 
 	private JbpmConfiguration _jbpmConfiguration;

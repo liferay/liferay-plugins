@@ -26,7 +26,10 @@ import org.jbpm.graph.def.ProcessDefinition;
  */
 public class WorkflowDefinitionImpl extends DefaultWorkflowDefinition {
 
-	public WorkflowDefinitionImpl(ProcessDefinition processDefinition) {
+	public WorkflowDefinitionImpl(
+		ProcessDefinition processDefinition, boolean active) {
+
+		setActive(active);
 		setName(processDefinition.getName());
 		setVersion(processDefinition.getVersion());
 	}

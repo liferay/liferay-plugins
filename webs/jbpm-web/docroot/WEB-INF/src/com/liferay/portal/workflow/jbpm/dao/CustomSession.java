@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.jbpm.dao;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowLog;
+import com.liferay.portal.workflow.jbpm.WorkflowDefinitionStatusImpl;
 import com.liferay.portal.workflow.jbpm.WorkflowLogImpl;
 
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ import org.jbpm.taskmgmt.exe.TaskInstance;
  *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
+ * @author Marcellus Tavares
  */
 public class CustomSession {
 
@@ -166,6 +168,13 @@ public class CustomSession {
 		catch (Exception e) {
 			throw new JbpmException(e);
 		}
+	}
+
+	public void deleteWorkflowDefinitionStatus(long processDefinitionId) {
+		WorkflowDefinitionStatusImpl wfDefinitionStatus =
+			findWorkflowDefinitonStatus(processDefinitionId);
+
+		_session.delete(wfDefinitionStatus);
 	}
 
 	public void deleteWorkflowLogs(long processInstanceId) {
@@ -316,6 +325,23 @@ public class CustomSession {
 			addOrder(criteria, orderByComparator);
 
 			return criteria.list();
+		}
+		catch (Exception e) {
+			throw new JbpmException(e);
+		}
+	}
+
+	public WorkflowDefinitionStatusImpl findWorkflowDefinitonStatus(
+		long processDefinitionId){
+
+		try {
+			Criteria criteria = _session.createCriteria(
+				WorkflowDefinitionStatusImpl.class);
+
+			criteria.add(
+				Restrictions.eq("processDefinition.id", processDefinitionId));
+
+			return (WorkflowDefinitionStatusImpl) criteria.uniqueResult();
 		}
 		catch (Exception e) {
 			throw new JbpmException(e);

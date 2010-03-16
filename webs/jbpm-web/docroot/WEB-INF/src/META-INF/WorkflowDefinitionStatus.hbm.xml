@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="false">
+	<class name="com.liferay.portal.workflow.jbpm.WorkflowDefinitionStatusImpl" lazy="false" table="JBPM_PROCESSDEFINITIONSTATUS_LIFERAY">
+		<id column="ID_" name="workflowDefinitionStatusId">
+			<generator class="native" />
+		</id>
+		<property column="ACTIVE_" name="active" type="boolean" />
+		<many-to-one column="PROCESSDEFINITION_" foreign-key="FK_PROCESSDEFINITIONSTATUS_LIFERAY_PROCESSDEF" index="IDX_PROCESSDEFINITIONSTATUS_LIFERAY_PROCESSDEF" name="processDefinition" unique="true" />
+	</class>
+</hibernate-mapping>
