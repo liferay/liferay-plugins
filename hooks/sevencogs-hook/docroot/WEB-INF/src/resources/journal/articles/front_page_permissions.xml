@@ -1,29 +1,27 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
+			<h3>
+				<img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" /> Permissions
+			</h3>
 
-		<h3>
-			<img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" />
-			Permissions
-		</h3>
-
-		<p>
-			Go to your Control Panel --&gt; Content --&gt; Web Content
-		</p>
-		<p>
-			Logged in as Bruno (admin) you will be able to do anything in this organization.
-		</p>
-		<p>
-			Logged in as Michelle (editor) you will be able to create new articles or edit the existing ones.
-		</p>
-		<p>
-			Logged in as Rich (publisher) you will be able to approve, expire or delete existing articles.
-		</p>
-		<p>
-			To modify these permissions go to Roles and then you can edit the permissions for any role or create new roles.
-		</p>
-
+			<p>
+				Go to your Control Panel --&gt; Content --&gt; Web Content
+			</p>
+			<p>
+				Logged in as Bruno (admin) you will be able to do anything in this organization.
+			</p>
+			<p>
+				Logged in as Michelle (editor) you will be able to create new articles or edit the existing ones.
+			</p>
+			<p>
+				Logged in as Rich (publisher) you will be able to approve, expire or delete existing articles.
+			</p>
+			<p>
+				To modify these permissions go to Roles and then you can edit the permissions for any role or create new roles.
+			</p>
 		]]>
 	</static-content>
 </root>

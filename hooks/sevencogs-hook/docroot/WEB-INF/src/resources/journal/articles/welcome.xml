@@ -1,4 +1,5 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
@@ -155,7 +156,7 @@
 		<h4>Mashups</h4>
 
 		<p>
-			Liferay supports mashup development with support for widgets, Facebook&reg; integration, iGoogle&reg; support, and GoogleMaps&reg; 
+			Liferay supports mashup development with support for widgets, Facebook&reg; integration, iGoogle&reg; support, and GoogleMaps&reg;
 		</p>
 
 		<h3>Some Companies That Use Liferay</h3>

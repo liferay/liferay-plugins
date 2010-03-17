@@ -1,10 +1,11 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
 
 		<p>
-			<img src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" alt="" /> 
+			<img src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" alt="" />
 			These are my private pages. Only I can see them, edit them and create new ones.
 		</p>
 		<ul>

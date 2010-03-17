@@ -1,10 +1,11 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <root available-locales="en_US," default-locale="">
 	<static-content language-id="en_US">
 		<![CDATA[
 
 		<p>
-			<img src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" alt="" /> 
+			<img src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" alt="" />
 			This is my personal space (My Community). I have 2 <strong>public pages</strong>: Profile and Blog. Everybody can see these pages by going to <a href="/web/jon">@portal_url@/web/jon</a> but only I can modify the content in them. I can create more public pages (Add page) and add more applications to those pages in the dock menu (Add Aplication).
 		</p>
 		<p>

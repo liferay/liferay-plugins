@@ -1,4 +1,5 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
@@ -45,7 +46,7 @@
 			}
 
 		</style>
-		
+
 		<form name="loginadmin" method="post" action="/web/guest/home">
 
 			<input type="hidden" value="58" name="p_p_id" />
@@ -53,9 +54,9 @@
 			<input type="hidden" value="view" name="p_p_mode" />
 			<input type="hidden" value="maximized" name="p_p_state" />
 			<input type="hidden" value="/login/login" name="_58_struts_action" />
-			<input type="hidden" value="bruno@7cogs.com" name="_58_login" /> 
+			<input type="hidden" value="bruno@7cogs.com" name="_58_login" />
 			<input type="hidden" value="bruno" name="_58_password" />
-			
+
 			<div title="Login: bruno@7cogs.com, Password: bruno" class="loginuser">
 				<div style="float: left; padding-right: 4px;" class="user-profile-image">
 					<img width="80" src="/image/user_portrait?screenName=bruno&amp;companyId=[$COMPANY_ID$]&amp;t=1228845375900" class="avatar" alt="" />
@@ -106,9 +107,9 @@
 				<div style="float: left; padding-right: 4px;" class="user-profile-image">
 					<img width="80" src="/image/user_portrait?screenName=michelle&amp;companyId=[$COMPANY_ID$]&amp;t=1228845375823" class="avatar" alt="" />
 				</div>
-		
+
 				<h2>Michelle Editor</h2>
-		
+
 				<div>
 					Michelle has control over the staging and layout of all articles as well as publishing rights for workflow and the content management system. <a href="/web/michelle" class="public_pages">View michelle's public page</a> <a onclick="document.loginmichelle.submit();return false;" href="#" class="express_login">Login as michelle</a>
 				</div>

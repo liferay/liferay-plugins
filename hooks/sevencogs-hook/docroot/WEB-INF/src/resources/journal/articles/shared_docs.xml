@@ -1,10 +1,11 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
 
 		<p>
-			<img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" /> 
+			<img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" />
 			Only the members of the 7cogs organization can see the documents and images on this page. By default only the Administrator can upload new files and create folders.
 		</p>
 
