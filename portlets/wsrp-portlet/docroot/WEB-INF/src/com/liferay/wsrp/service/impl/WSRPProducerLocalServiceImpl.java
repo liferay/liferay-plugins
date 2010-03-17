@@ -19,8 +19,13 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
+import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletConstants;
+import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.util.PwdGenerator;
 import com.liferay.wsrp.WSRPProducerNameException;
@@ -28,6 +33,7 @@ import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.base.WSRPProducerLocalServiceBaseImpl;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -41,7 +47,7 @@ public class WSRPProducerLocalServiceImpl
 	extends WSRPProducerLocalServiceBaseImpl {
 
 	public WSRPProducer addWSRPProducer(
-			long companyId, String name, String portletIds)
+			long companyId, long userId, String name, String portletIds)
 		throws PortalException, SystemException {
 
 		Date now = new Date();
@@ -60,6 +66,8 @@ public class WSRPProducerLocalServiceImpl
 		wsrpProducer.setModifiedDate(now);
 		wsrpProducer.setName(name);
 		wsrpProducer.setPortletIds(portletIds);
+
+		createWSRPCommunity(companyId, userId);
 
 		wsrpProducerPersistence.update(wsrpProducer, false);
 
@@ -137,10 +145,35 @@ public class WSRPProducerLocalServiceImpl
 		return StringUtil.merge(ids);
 	}
 
+	protected void createWSRPCommunity(long companyId, long userId)
+		throws PortalException, SystemException {
+
+		int type = GroupConstants.TYPE_COMMUNITY_PRIVATE;
+		LinkedHashMap<String, Object> params =
+			new LinkedHashMap<String, Object>();
+
+		params.put("type", type);
+
+		List<Group> groups = GroupLocalServiceUtil.search(
+			companyId, WSRP, null, params, -1, -1);
+
+		if (groups.isEmpty()) {
+			Group wsrpGroup = GroupLocalServiceUtil.addGroup(
+				userId, null, 0, 0, WSRP, null, type, null, true, null);
+
+			LayoutLocalServiceUtil.addLayout(
+				userId, wsrpGroup.getGroupId(), false,
+				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, WSRP, null, null,
+				LayoutConstants.TYPE_PORTLET, false, "/wsrp-portlets", null);
+		}
+	}
+
 	protected void validate(String name) throws PortalException {
 		if (Validator.isNull(name)) {
 			throw new WSRPProducerNameException();
 		}
 	}
+
+	public static final String WSRP = "WSRP";
 
 }

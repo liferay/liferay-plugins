@@ -94,7 +94,7 @@ public interface WSRPProducerLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long companyId,
-		java.lang.String name, java.lang.String portletIds)
+		long userId, java.lang.String name, java.lang.String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

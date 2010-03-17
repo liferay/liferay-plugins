@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutTypePortlet;
@@ -34,6 +33,7 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.util.axis.ServletUtil;
 import com.liferay.wsrp.model.WSRPProducer;
+import com.liferay.wsrp.service.impl.WSRPProducerLocalServiceImpl;
 import com.liferay.wsrp.util.ExtensionUtil;
 import com.liferay.wsrp.util.WebKeys;
 
@@ -511,7 +511,7 @@ public class MarkupServiceImpl
 		throws Exception {
 
 		Group group = GroupLocalServiceUtil.getGroup(
-			wsrpProducer.getCompanyId(), GroupConstants.GUEST);
+			wsrpProducer.getCompanyId(), WSRPProducerLocalServiceImpl.WSRP);
 
 		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
 			group.getGroupId(), false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
