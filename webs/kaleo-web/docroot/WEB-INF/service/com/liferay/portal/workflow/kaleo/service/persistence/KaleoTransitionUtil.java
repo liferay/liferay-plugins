@@ -1,0 +1,283 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.portal.workflow.kaleo.service.persistence;
+
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
+
+import java.util.List;
+
+/**
+ * <a href="KaleoTransitionUtil.java.html"><b><i>View Source</i></b></a>
+ *
+ * <p>
+ * ServiceBuilder generated this class. Modifications in this class will be
+ * overwritten the next time is generated.
+ * </p>
+ *
+ * @author    Brian Wing Shun Chan
+ * @see       KaleoTransitionPersistence
+ * @see       KaleoTransitionPersistenceImpl
+ * @generated
+ */
+public class KaleoTransitionUtil {
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache()
+	 */
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
+	 */
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
+	 */
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
+	 */
+	public static KaleoTransition remove(KaleoTransition kaleoTransition)
+		throws SystemException {
+		return getPersistence().remove(kaleoTransition);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 */
+	public static KaleoTransition update(KaleoTransition kaleoTransition,
+		boolean merge) throws SystemException {
+		return getPersistence().update(kaleoTransition, merge);
+	}
+
+	public static void cacheResult(
+		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition) {
+		getPersistence().cacheResult(kaleoTransition);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> kaleoTransitions) {
+		getPersistence().cacheResult(kaleoTransitions);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition create(
+		long kaleoTransitionId) {
+		return getPersistence().create(kaleoTransitionId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition remove(
+		long kaleoTransitionId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTransitionException {
+		return getPersistence().remove(kaleoTransitionId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition updateImpl(
+		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition,
+		boolean merge)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(kaleoTransition, merge);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition findByPrimaryKey(
+		long kaleoTransitionId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTransitionException {
+		return getPersistence().findByPrimaryKey(kaleoTransitionId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchByPrimaryKey(
+		long kaleoTransitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(kaleoTransitionId);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> findByKaleoNodeId(
+		long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByKaleoNodeId(kaleoNodeId);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> findByKaleoNodeId(
+		long kaleoNodeId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByKaleoNodeId(kaleoNodeId, start, end);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> findByKaleoNodeId(
+		long kaleoNodeId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByKaleoNodeId(kaleoNodeId, start, end, orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition findByKaleoNodeId_First(
+		long kaleoNodeId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTransitionException {
+		return getPersistence()
+				   .findByKaleoNodeId_First(kaleoNodeId, orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition findByKaleoNodeId_Last(
+		long kaleoNodeId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTransitionException {
+		return getPersistence()
+				   .findByKaleoNodeId_Last(kaleoNodeId, orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition[] findByKaleoNodeId_PrevAndNext(
+		long kaleoTransitionId, long kaleoNodeId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTransitionException {
+		return getPersistence()
+				   .findByKaleoNodeId_PrevAndNext(kaleoTransitionId,
+			kaleoNodeId, orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition findByKNI_N(
+		long kaleoNodeId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTransitionException {
+		return getPersistence().findByKNI_N(kaleoNodeId, name);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchByKNI_N(
+		long kaleoNodeId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByKNI_N(kaleoNodeId, name);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchByKNI_N(
+		long kaleoNodeId, java.lang.String name, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByKNI_N(kaleoNodeId, name, retrieveFromCache);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition findByKNI_DT(
+		long kaleoNodeId, boolean defaultTransition)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTransitionException {
+		return getPersistence().findByKNI_DT(kaleoNodeId, defaultTransition);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchByKNI_DT(
+		long kaleoNodeId, boolean defaultTransition)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByKNI_DT(kaleoNodeId, defaultTransition);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchByKNI_DT(
+		long kaleoNodeId, boolean defaultTransition, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByKNI_DT(kaleoNodeId, defaultTransition,
+			retrieveFromCache);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> findAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findAll();
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> findAll(
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findAll(start, end);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> findAll(
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findAll(start, end, orderByComparator);
+	}
+
+	public static void removeByKaleoNodeId(long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByKaleoNodeId(kaleoNodeId);
+	}
+
+	public static void removeByKNI_N(long kaleoNodeId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTransitionException {
+		getPersistence().removeByKNI_N(kaleoNodeId, name);
+	}
+
+	public static void removeByKNI_DT(long kaleoNodeId,
+		boolean defaultTransition)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTransitionException {
+		getPersistence().removeByKNI_DT(kaleoNodeId, defaultTransition);
+	}
+
+	public static void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeAll();
+	}
+
+	public static int countByKaleoNodeId(long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKaleoNodeId(kaleoNodeId);
+	}
+
+	public static int countByKNI_N(long kaleoNodeId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKNI_N(kaleoNodeId, name);
+	}
+
+	public static int countByKNI_DT(long kaleoNodeId, boolean defaultTransition)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKNI_DT(kaleoNodeId, defaultTransition);
+	}
+
+	public static int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countAll();
+	}
+
+	public static KaleoTransitionPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (KaleoTransitionPersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					KaleoTransitionPersistence.class.getName());
+		}
+
+		return _persistence;
+	}
+
+	public void setPersistence(KaleoTransitionPersistence persistence) {
+		_persistence = persistence;
+	}
+
+	private static KaleoTransitionPersistence _persistence;
+}

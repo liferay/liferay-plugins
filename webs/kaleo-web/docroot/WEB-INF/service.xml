@@ -1,0 +1,463 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
+
+<service-builder package-path="com.liferay.portal.workflow.kaleo">
+	<namespace>Kaleo</namespace>
+	<entity name="KaleoAction" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kaleoActionId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="kaleoDefinitionId" type="long" />
+		<column name="kaleoNodeId" type="long" />
+		<column name="kaleoNodeName" type="String" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="language" type="String" />
+		<column name="script" type="String" />
+		<column name="executionType" type="String" />
+		<column name="executionOrder" type="int" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="executionOrder" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="KNI_ET" return-type="Collection">
+			<finder-column name="kaleoNodeId" />
+			<finder-column name="executionType" />
+		</finder>
+	</entity>
+	<entity name="KaleoDefinition" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kaleoDefinitionId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="version" type="int" />
+		<column name="active" type="boolean" />
+		<column name="startKaleoNodeId" type="long" />
+
+		<!-- Relationships -->
+
+		<column name="kaleoNodes" type="Collection" entity="KaleoNode" mapping-key="kaleoDefinitionId" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="version" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+		<finder name="C_N" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="name" />
+		</finder>
+		<finder name="C_N_V" return-type="KaleoDefinition">
+			<finder-column name="companyId" />
+			<finder-column name="name" />
+			<finder-column name="version" />
+		</finder>
+	</entity>
+	<entity name="KaleoInstance" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kaleoInstanceId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="kaleoDefinitionId" type="long" />
+		<column name="kaleoDefinitionName" type="String" />
+		<column name="kaleoDefinitionVersion" type="int" />
+		<column name="rootKaleoInstanceTokenId" type="long" />
+		<column name="className" type="String" />
+		<column name="classPK" type="long" />
+		<column name="completionDate" type="Date" />
+		<column name="context" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="kaleoInstanceId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="C_KDN_KDV_CD" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="kaleoDefinitionName" />
+			<finder-column name="kaleoDefinitionVersion" />
+			<finder-column name="completionDate" />
+		</finder>
+	</entity>
+	<entity name="KaleoInstanceToken" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kaleoInstanceTokenId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="kaleoInstanceId" type="long" />
+		<column name="parentKaleoInstanceTokenId" type="long" />
+		<column name="currentKaleoNodeId" type="long" />
+		<column name="completionDate" type="Date" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="kaleoInstanceTokenId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="C_PKITI" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="parentKaleoInstanceTokenId" />
+		</finder>
+		<finder name="C_PKITI_CD" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="parentKaleoInstanceTokenId" />
+			<finder-column name="completionDate" />
+		</finder>
+	</entity>
+	<entity name="KaleoLog" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kaleoLogId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="kaleoInstanceId" type="long" />
+		<column name="kaleoInstanceTokenId" type="long" />
+		<column name="kaleoTaskInstanceTokenId" type="long" />
+		<column name="kaleoNodeId" type="long" />
+		<column name="kaleoNodeName" type="String" />
+		<column name="terminalKaleoNode" type="boolean" />
+		<column name="kaleoActionId" type="long" />
+		<column name="kaleoActionName" type="String" />
+		<column name="kaleoActionDescription" type="String" />
+		<column name="previousKaleoNodeId" type="long" />
+		<column name="previousKaleoNodeName" type="String" />
+		<column name="previousAssigneeClassName" type="String" />
+		<column name="previousAssigneeClassPK" type="long" />
+		<column name="currentAssigneeClassName" type="String" />
+		<column name="currentAssigneeClassPK" type="long" />
+		<column name="type" type="String" />
+		<column name="comment" type="String" />
+		<column name="startDate" type="Date" />
+		<column name="endDate" type="Date" />
+		<column name="duration" type="long" />
+		<column name="context" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="kaleoLogId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="KaleoTaskInstanceTokenId" return-type="Collection">
+			<finder-column name="kaleoTaskInstanceTokenId" />
+		</finder>
+		<finder name="KITI_T" return-type="Collection">
+			<finder-column name="kaleoInstanceTokenId" />
+			<finder-column name="type" />
+		</finder>
+		<finder name="KITI_KNI_T" return-type="Collection">
+			<finder-column name="kaleoInstanceTokenId" />
+			<finder-column name="kaleoNodeId" />
+			<finder-column name="type" />
+		</finder>
+	</entity>
+	<entity name="KaleoNode" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kaleoNodeId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="kaleoDefinitionId" type="long" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="type" type="String" />
+		<column name="initial" type="boolean" />
+		<column name="terminal" type="boolean" />
+
+		<!-- Relationships -->
+
+		<column name="kaleoActions" type="Collection" entity="KaleoAction" mapping-key="kaleoNodeId" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="kaleoNodeId" />
+		</order>
+	</entity>
+	<entity name="KaleoTask" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kaleoTaskId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="kaleoDefinitionId" type="long" />
+		<column name="kaleoNodeId" type="long" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+
+		<!-- Relationships -->
+
+		<column name="kaleoAssignments" type="Collection" entity="KaleoTaskAssignment" mapping-key="workflowTaskId" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="kaleoTaskId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="KaleoNodeId" return-type="KaleoTask">
+			<finder-column name="kaleoNodeId" />
+		</finder>
+	</entity>
+	<entity name="KaleoTaskAssignment" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kaleoTaskAssignmentId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="kaleoDefinitionId" type="long" />
+		<column name="kaleoNodeId" type="long" />
+		<column name="kaleoTaskId" type="long" />
+		<column name="assigneeClassName" type="String" />
+		<column name="assigneeClassPK" type="long" />
+		<column name="defaultAssignment" type="boolean" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="kaleoTaskAssignmentId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="KaleoTaskId" return-type="Collection">
+			<finder-column name="kaleoTaskId" />
+		</finder>
+		<finder name="KTI_DA" return-type="KaleoTaskAssignment">
+			<finder-column name="kaleoTaskId" />
+			<finder-column name="defaultAssignment" />
+		</finder>
+		<finder name="ACN_ACP" return-type="Collection">
+			<finder-column name="assigneeClassName" />
+			<finder-column name="assigneeClassPK" />
+		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portal" entity="Role" />
+	</entity>
+	<entity name="KaleoTaskInstanceAssignment" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kaleoTaskInstanceAssignmentId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="kaleoTaskInstanceTokenId" type="long" />
+		<column name="kaleoTaskId" type="long" />
+		<column name="assigneeClassName" type="String" />
+		<column name="assigneeClassPK" type="long" />
+		<column name="completionDate" type="Date" />
+		<column name="context" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="kaleoTaskInstanceTokenId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="KaleoTaskInstanceTokenId" return-type="KaleoTaskInstanceAssignment">
+			<finder-column name="kaleoTaskInstanceTokenId" />
+		</finder>
+		<finder name="KTITI_ACPK_ACN" return-type="KaleoTaskInstanceAssignment">
+			<finder-column name="kaleoTaskInstanceTokenId" />
+			<finder-column name="assigneeClassName" />
+			<finder-column name="assigneeClassPK" />
+		</finder>
+	</entity>
+	<entity name="KaleoTaskInstanceToken" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kaleoTaskInstanceTokenId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="kaleoInstanceId" type="long" />
+		<column name="kaleoInstanceTokenId" type="long" />
+		<column name="kaleoTaskId" type="long" />
+		<column name="completionUserId" type="long" />
+		<column name="completionDate" type="Date" />
+		<column name="dueDate" type="Date" />
+		<column name="context" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="kaleoTaskInstanceTokenId" />
+		</order>
+	</entity>
+	<entity name="KaleoTransition" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kaleoTransitionId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="kaleoDefinitionId" type="long" />
+		<column name="kaleoNodeId" type="long" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="sourceKaleoNodeId" type="long" />
+		<column name="sourceKaleoNodeName" type="String" />
+		<column name="targetKaleoNodeId" type="long" />
+		<column name="targetKaleoNodeName" type="String" />
+		<column name="defaultTransition" type="boolean" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="kaleoTransitionId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="KaleoNodeId" return-type="Collection">
+			<finder-column name="kaleoNodeId" />
+		</finder>
+		<finder name="KNI_N" return-type="KaleoTransition">
+			<finder-column name="kaleoNodeId" />
+			<finder-column name="name" />
+		</finder>
+		<finder name="KNI_DT" return-type="KaleoTransition">
+			<finder-column name="kaleoNodeId" />
+			<finder-column name="defaultTransition" />
+		</finder>
+	</entity>
+</service-builder>

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoActionModelImpl">
+		<attributes>
+			<id name="kaleoActionId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="kaleoDefinitionId" />
+			<basic name="kaleoNodeId" />
+			<basic name="kaleoNodeName" />
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="language" />
+			<basic name="script" />
+			<basic name="executionType" />
+			<basic name="executionOrder" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionModelImpl">
+		<attributes>
+			<id name="kaleoDefinitionId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="version" />
+			<basic name="active">
+				<column name="ACTIVE_" />
+			</basic>
+			<basic name="startKaleoNodeId" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceModelImpl">
+		<attributes>
+			<id name="kaleoInstanceId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="kaleoDefinitionId" />
+			<basic name="kaleoDefinitionName" />
+			<basic name="kaleoDefinitionVersion" />
+			<basic name="rootKaleoInstanceTokenId" />
+			<basic name="className" />
+			<basic name="classPK" />
+			<basic name="completionDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="context" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceTokenModelImpl">
+		<attributes>
+			<id name="kaleoInstanceTokenId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="kaleoInstanceId" />
+			<basic name="parentKaleoInstanceTokenId" />
+			<basic name="currentKaleoNodeId" />
+			<basic name="completionDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoLogModelImpl">
+		<attributes>
+			<id name="kaleoLogId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="kaleoInstanceId" />
+			<basic name="kaleoInstanceTokenId" />
+			<basic name="kaleoTaskInstanceTokenId" />
+			<basic name="kaleoNodeId" />
+			<basic name="kaleoNodeName" />
+			<basic name="terminalKaleoNode" />
+			<basic name="kaleoActionId" />
+			<basic name="kaleoActionName" />
+			<basic name="kaleoActionDescription" />
+			<basic name="previousKaleoNodeId" />
+			<basic name="previousKaleoNodeName" />
+			<basic name="previousAssigneeClassName" />
+			<basic name="previousAssigneeClassPK" />
+			<basic name="currentAssigneeClassName" />
+			<basic name="currentAssigneeClassPK" />
+			<basic name="type">
+				<column name="TYPE_" />
+			</basic>
+			<basic name="comment" />
+			<basic name="startDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="endDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="duration" />
+			<basic name="context" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl">
+		<attributes>
+			<id name="kaleoNodeId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="kaleoDefinitionId" />
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="type">
+				<column name="TYPE_" />
+			</basic>
+			<basic name="initial" />
+			<basic name="terminal" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskModelImpl">
+		<attributes>
+			<id name="kaleoTaskId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="kaleoDefinitionId" />
+			<basic name="kaleoNodeId" />
+			<basic name="name" />
+			<basic name="description" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentModelImpl">
+		<attributes>
+			<id name="kaleoTaskAssignmentId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="kaleoDefinitionId" />
+			<basic name="kaleoNodeId" />
+			<basic name="kaleoTaskId" />
+			<basic name="assigneeClassName" />
+			<basic name="assigneeClassPK" />
+			<basic name="defaultAssignment" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceAssignmentModelImpl">
+		<attributes>
+			<id name="kaleoTaskInstanceAssignmentId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="kaleoTaskInstanceTokenId" />
+			<basic name="kaleoTaskId" />
+			<basic name="assigneeClassName" />
+			<basic name="assigneeClassPK" />
+			<basic name="completionDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="context" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenModelImpl">
+		<attributes>
+			<id name="kaleoTaskInstanceTokenId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="kaleoInstanceId" />
+			<basic name="kaleoInstanceTokenId" />
+			<basic name="kaleoTaskId" />
+			<basic name="completionUserId" />
+			<basic name="completionDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="dueDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="context" />
+			<transient name="completionUserUuid" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionModelImpl">
+		<attributes>
+			<id name="kaleoTransitionId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="kaleoDefinitionId" />
+			<basic name="kaleoNodeId" />
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="sourceKaleoNodeId" />
+			<basic name="sourceKaleoNodeName" />
+			<basic name="targetKaleoNodeId" />
+			<basic name="targetKaleoNodeName" />
+			<basic name="defaultTransition" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoActionImpl" name="KaleoAction">
+		<table name="Kaleo_KaleoAction" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionImpl" name="KaleoDefinition">
+		<table name="Kaleo_KaleoDefinition" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceImpl" name="KaleoInstance">
+		<table name="Kaleo_KaleoInstance" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceTokenImpl" name="KaleoInstanceToken">
+		<table name="Kaleo_KaleoInstanceToken" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoLogImpl" name="KaleoLog">
+		<table name="Kaleo_KaleoLog" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl" name="KaleoNode">
+		<table name="Kaleo_KaleoNode" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskImpl" name="KaleoTask">
+		<table name="Kaleo_KaleoTask" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentImpl" name="KaleoTaskAssignment">
+		<table name="Kaleo_KaleoTaskAssignment" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceAssignmentImpl" name="KaleoTaskInstanceAssignment">
+		<table name="Kaleo_KaleoTaskInstanceAssignment" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenImpl" name="KaleoTaskInstanceToken">
+		<table name="Kaleo_KaleoTaskInstanceToken" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionImpl" name="KaleoTransition">
+		<table name="Kaleo_KaleoTransition" />
+		<attributes />
+	</entity>
+</entity-mappings>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.portal.workflow.kaleo.model.KaleoAction" />
+	<import class="com.liferay.portal.workflow.kaleo.model.KaleoDefinition" />
+	<import class="com.liferay.portal.workflow.kaleo.model.KaleoInstance" />
+	<import class="com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken" />
+	<import class="com.liferay.portal.workflow.kaleo.model.KaleoLog" />
+	<import class="com.liferay.portal.workflow.kaleo.model.KaleoNode" />
+	<import class="com.liferay.portal.workflow.kaleo.model.KaleoTask" />
+	<import class="com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment" />
+	<import class="com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment" />
+	<import class="com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken" />
+	<import class="com.liferay.portal.workflow.kaleo.model.KaleoTransition" />
+	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoActionImpl" table="Kaleo_KaleoAction">
+		<cache usage="read-write" />
+		<id name="kaleoActionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="kaleoDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoNodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoNodeName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="language" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="script" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="executionType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="executionOrder" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionImpl" table="Kaleo_KaleoDefinition">
+		<cache usage="read-write" />
+		<id name="kaleoDefinitionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="version" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="active" column="active_" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="startKaleoNodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceImpl" table="Kaleo_KaleoInstance">
+		<cache usage="read-write" />
+		<id name="kaleoInstanceId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="kaleoDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoDefinitionName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="kaleoDefinitionVersion" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="rootKaleoInstanceTokenId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="className" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="completionDate" type="org.hibernate.type.TimestampType" />
+		<property name="context" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceTokenImpl" table="Kaleo_KaleoInstanceToken">
+		<cache usage="read-write" />
+		<id name="kaleoInstanceTokenId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="kaleoInstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="parentKaleoInstanceTokenId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="currentKaleoNodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="completionDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoLogImpl" table="Kaleo_KaleoLog">
+		<cache usage="read-write" />
+		<id name="kaleoLogId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="kaleoInstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoInstanceTokenId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoTaskInstanceTokenId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoNodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoNodeName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="terminalKaleoNode" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="kaleoActionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoActionName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="kaleoActionDescription" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="previousKaleoNodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="previousKaleoNodeName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="previousAssigneeClassName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="previousAssigneeClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="currentAssigneeClassName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="currentAssigneeClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="type" column="type_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="comment" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="startDate" type="org.hibernate.type.TimestampType" />
+		<property name="endDate" type="org.hibernate.type.TimestampType" />
+		<property name="duration" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="context" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl" table="Kaleo_KaleoNode">
+		<cache usage="read-write" />
+		<id name="kaleoNodeId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="kaleoDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="type" column="type_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="initial" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="terminal" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskImpl" table="Kaleo_KaleoTask">
+		<cache usage="read-write" />
+		<id name="kaleoTaskId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="kaleoDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoNodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentImpl" table="Kaleo_KaleoTaskAssignment">
+		<cache usage="read-write" />
+		<id name="kaleoTaskAssignmentId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="kaleoDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoNodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoTaskId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="assigneeClassName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="assigneeClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="defaultAssignment" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceAssignmentImpl" table="Kaleo_KaleoTaskInstanceAssignment">
+		<cache usage="read-write" />
+		<id name="kaleoTaskInstanceAssignmentId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="kaleoTaskInstanceTokenId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoTaskId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="assigneeClassName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="assigneeClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="completionDate" type="org.hibernate.type.TimestampType" />
+		<property name="context" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenImpl" table="Kaleo_KaleoTaskInstanceToken">
+		<cache usage="read-write" />
+		<id name="kaleoTaskInstanceTokenId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="kaleoInstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoInstanceTokenId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoTaskId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="completionUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="completionDate" type="org.hibernate.type.TimestampType" />
+		<property name="dueDate" type="org.hibernate.type.TimestampType" />
+		<property name="context" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionImpl" table="Kaleo_KaleoTransition">
+		<cache usage="read-write" />
+		<id name="kaleoTransitionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="kaleoDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoNodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="sourceKaleoNodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="sourceKaleoNodeName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="targetKaleoNodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="targetKaleoNodeName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="defaultTransition" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+</hibernate-mapping>

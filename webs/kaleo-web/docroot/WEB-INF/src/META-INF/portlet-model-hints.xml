@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="com.liferay.portal.workflow.kaleo.model.KaleoAction">
+		<field name="kaleoActionId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="kaleoDefinitionId" type="long" />
+		<field name="kaleoNodeId" type="long" />
+		<field name="kaleoNodeName" type="String" />
+		<field name="name" type="String" />
+		<field name="description" type="String" />
+		<field name="language" type="String" />
+		<field name="script" type="String" />
+		<field name="executionType" type="String" />
+		<field name="executionOrder" type="int" />
+	</model>
+	<model name="com.liferay.portal.workflow.kaleo.model.KaleoDefinition">
+		<field name="kaleoDefinitionId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="name" type="String" />
+		<field name="description" type="String" />
+		<field name="version" type="int" />
+		<field name="active" type="boolean" />
+		<field name="startKaleoNodeId" type="long" />
+	</model>
+	<model name="com.liferay.portal.workflow.kaleo.model.KaleoInstance">
+		<field name="kaleoInstanceId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="kaleoDefinitionId" type="long" />
+		<field name="kaleoDefinitionName" type="String" />
+		<field name="kaleoDefinitionVersion" type="int" />
+		<field name="rootKaleoInstanceTokenId" type="long" />
+		<field name="className" type="String" />
+		<field name="classPK" type="long" />
+		<field name="completionDate" type="Date" />
+		<field name="context" type="String" />
+	</model>
+	<model name="com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken">
+		<field name="kaleoInstanceTokenId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="kaleoInstanceId" type="long" />
+		<field name="parentKaleoInstanceTokenId" type="long" />
+		<field name="currentKaleoNodeId" type="long" />
+		<field name="completionDate" type="Date" />
+	</model>
+	<model name="com.liferay.portal.workflow.kaleo.model.KaleoLog">
+		<field name="kaleoLogId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="kaleoInstanceId" type="long" />
+		<field name="kaleoInstanceTokenId" type="long" />
+		<field name="kaleoTaskInstanceTokenId" type="long" />
+		<field name="kaleoNodeId" type="long" />
+		<field name="kaleoNodeName" type="String" />
+		<field name="terminalKaleoNode" type="boolean" />
+		<field name="kaleoActionId" type="long" />
+		<field name="kaleoActionName" type="String" />
+		<field name="kaleoActionDescription" type="String" />
+		<field name="previousKaleoNodeId" type="long" />
+		<field name="previousKaleoNodeName" type="String" />
+		<field name="previousAssigneeClassName" type="String" />
+		<field name="previousAssigneeClassPK" type="long" />
+		<field name="currentAssigneeClassName" type="String" />
+		<field name="currentAssigneeClassPK" type="long" />
+		<field name="type" type="String" />
+		<field name="comment" type="String" />
+		<field name="startDate" type="Date" />
+		<field name="endDate" type="Date" />
+		<field name="duration" type="long" />
+		<field name="context" type="String" />
+	</model>
+	<model name="com.liferay.portal.workflow.kaleo.model.KaleoNode">
+		<field name="kaleoNodeId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="kaleoDefinitionId" type="long" />
+		<field name="name" type="String" />
+		<field name="description" type="String" />
+		<field name="type" type="String" />
+		<field name="initial" type="boolean" />
+		<field name="terminal" type="boolean" />
+	</model>
+	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTask">
+		<field name="kaleoTaskId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="kaleoDefinitionId" type="long" />
+		<field name="kaleoNodeId" type="long" />
+		<field name="name" type="String" />
+		<field name="description" type="String" />
+	</model>
+	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment">
+		<field name="kaleoTaskAssignmentId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="kaleoDefinitionId" type="long" />
+		<field name="kaleoNodeId" type="long" />
+		<field name="kaleoTaskId" type="long" />
+		<field name="assigneeClassName" type="String" />
+		<field name="assigneeClassPK" type="long" />
+		<field name="defaultAssignment" type="boolean" />
+	</model>
+	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment">
+		<field name="kaleoTaskInstanceAssignmentId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="kaleoTaskInstanceTokenId" type="long" />
+		<field name="kaleoTaskId" type="long" />
+		<field name="assigneeClassName" type="String" />
+		<field name="assigneeClassPK" type="long" />
+		<field name="completionDate" type="Date" />
+		<field name="context" type="String" />
+	</model>
+	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken">
+		<field name="kaleoTaskInstanceTokenId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="kaleoInstanceId" type="long" />
+		<field name="kaleoInstanceTokenId" type="long" />
+		<field name="kaleoTaskId" type="long" />
+		<field name="completionUserId" type="long" />
+		<field name="completionDate" type="Date" />
+		<field name="dueDate" type="Date" />
+		<field name="context" type="String" />
+	</model>
+	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTransition">
+		<field name="kaleoTransitionId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="kaleoDefinitionId" type="long" />
+		<field name="kaleoNodeId" type="long" />
+		<field name="name" type="String" />
+		<field name="description" type="String" />
+		<field name="sourceKaleoNodeId" type="long" />
+		<field name="sourceKaleoNodeName" type="String" />
+		<field name="targetKaleoNodeId" type="long" />
+		<field name="targetKaleoNodeName" type="String" />
+		<field name="defaultTransition" type="boolean" />
+	</model>
+</model-hints>

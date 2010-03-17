@@ -1,0 +1,228 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.portal.workflow.kaleo.service.persistence;
+
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.workflow.kaleo.model.KaleoTask;
+
+import java.util.List;
+
+/**
+ * <a href="KaleoTaskUtil.java.html"><b><i>View Source</i></b></a>
+ *
+ * <p>
+ * ServiceBuilder generated this class. Modifications in this class will be
+ * overwritten the next time is generated.
+ * </p>
+ *
+ * @author    Brian Wing Shun Chan
+ * @see       KaleoTaskPersistence
+ * @see       KaleoTaskPersistenceImpl
+ * @generated
+ */
+public class KaleoTaskUtil {
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache()
+	 */
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
+	 */
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
+	 */
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
+	 */
+	public static KaleoTask remove(KaleoTask kaleoTask)
+		throws SystemException {
+		return getPersistence().remove(kaleoTask);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 */
+	public static KaleoTask update(KaleoTask kaleoTask, boolean merge)
+		throws SystemException {
+		return getPersistence().update(kaleoTask, merge);
+	}
+
+	public static void cacheResult(
+		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask) {
+		getPersistence().cacheResult(kaleoTask);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> kaleoTasks) {
+		getPersistence().cacheResult(kaleoTasks);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask create(
+		long kaleoTaskId) {
+		return getPersistence().create(kaleoTaskId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask remove(
+		long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTaskException {
+		return getPersistence().remove(kaleoTaskId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask updateImpl(
+		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask,
+		boolean merge)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(kaleoTask, merge);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask findByPrimaryKey(
+		long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTaskException {
+		return getPersistence().findByPrimaryKey(kaleoTaskId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask fetchByPrimaryKey(
+		long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(kaleoTaskId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask findByKaleoNodeId(
+		long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTaskException {
+		return getPersistence().findByKaleoNodeId(kaleoNodeId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask fetchByKaleoNodeId(
+		long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByKaleoNodeId(kaleoNodeId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask fetchByKaleoNodeId(
+		long kaleoNodeId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByKaleoNodeId(kaleoNodeId, retrieveFromCache);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> findAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findAll();
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> findAll(
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findAll(start, end);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> findAll(
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findAll(start, end, orderByComparator);
+	}
+
+	public static void removeByKaleoNodeId(long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTaskException {
+		getPersistence().removeByKaleoNodeId(kaleoNodeId);
+	}
+
+	public static void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeAll();
+	}
+
+	public static int countByKaleoNodeId(long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKaleoNodeId(kaleoNodeId);
+	}
+
+	public static int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countAll();
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
+		long pk) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getKaleoTaskAssignments(pk);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
+		long pk, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getKaleoTaskAssignments(pk, start, end);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
+		long pk, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .getKaleoTaskAssignments(pk, start, end, orderByComparator);
+	}
+
+	public static int getKaleoTaskAssignmentsSize(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getKaleoTaskAssignmentsSize(pk);
+	}
+
+	public static boolean containsKaleoTaskAssignment(long pk,
+		long kaleoTaskAssignmentPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .containsKaleoTaskAssignment(pk, kaleoTaskAssignmentPK);
+	}
+
+	public static boolean containsKaleoTaskAssignments(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().containsKaleoTaskAssignments(pk);
+	}
+
+	public static KaleoTaskPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (KaleoTaskPersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					KaleoTaskPersistence.class.getName());
+		}
+
+		return _persistence;
+	}
+
+	public void setPersistence(KaleoTaskPersistence persistence) {
+		_persistence = persistence;
+	}
+
+	private static KaleoTaskPersistence _persistence;
+}
