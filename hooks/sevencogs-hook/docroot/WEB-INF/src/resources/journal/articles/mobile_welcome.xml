@@ -1,10 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-
 <root available-locales="en_US," default-locale="">
 	<static-content language-id="en_US">
 		<![CDATA[
-			<h2>Welcome to Our Mobile Site</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra pellentesque ante ut tristique. Etiam non elit nibh, id laoreet felis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla sit amet quam risus, eleifend porta massa. Nam suscipit lectus blandit arcu rutrum vitae semper dui porttitor. Curabitur rutrum ultricies mi, at aliquet nisi auctor sit amet. Fusce sed iaculis sapien.</p>
+
+		<h2>Welcome to Our Mobile Site</h2>
+
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra pellentesque ante ut tristique. Etiam non elit nibh, id laoreet felis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla sit amet quam risus, eleifend porta massa. Nam suscipit lectus blandit arcu rutrum vitae semper dui porttitor. Curabitur rutrum ultricies mi, at aliquet nisi auctor sit amet. Fusce sed iaculis sapien.
+		</p>
+
 		]]>
 	</static-content>
 </root>

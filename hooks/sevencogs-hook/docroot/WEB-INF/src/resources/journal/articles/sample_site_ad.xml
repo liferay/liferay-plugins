@@ -1,14 +1,16 @@
-<?xml version='1.0' encoding='UTF-8'?><root available-locales="en_US," default-locale="en_US"><static-content language-id="en_US"><![CDATA[
+<?xml version='1.0' encoding='UTF-8'?>
+<root available-locales="en_US," default-locale="en_US">
+	<static-content language-id="en_US">
+		<![CDATA[
 
-<div class="lfc-single-image">
+		<div class="lfc-single-image">
 
-		<a href="[$GROUP_URL$]">
+			<a href="[$GROUP_URL$]">
+				<img src="/image/image_gallery?uuid=[$IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]" alt=""/>
+			</a>
 
-		<img src="/image/image_gallery?uuid=[$IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]" alt=""/>
+		</div>
 
-		</a>
-
-</div>
-
-
-]]></static-content></root>	
+		]]>
+	</static-content>
+</root>	

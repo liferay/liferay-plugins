@@ -1,176 +1,190 @@
-<?xml version='1.0' encoding='UTF-8'?><root available-locales="en_US," default-locale="en_US"><static-content language-id="en_US"><![CDATA[<style type="text/css">
+<?xml version='1.0' encoding='UTF-8'?>
+<root available-locales="en_US," default-locale="en_US">
+	<static-content language-id="en_US">
+		<![CDATA[
 
-	.welcome {
-		border: 1px solid #A7A6A9;
-		border-radius: 5px;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
-		color: #333;
-		font-size: 1.21em;
-		margin-bottom: 15px;
-		padding: 10px;
-	}
+		<style type="text/css">
 
-	.welcome .intro {
-		font-size: 1.5em;
-	}
+			.welcome {
+				border: 1px solid #A7A6A9;
+				border-radius: 5px;
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				color: #333;
+				font-size: 1.21em;
+				margin-bottom: 15px;
+				padding: 10px;
+			}
 
-	.welcome h2,
-	.welcome h4 {
-		margin: 0 0 .5em;
-	}
+			.welcome .intro {
+				font-size: 1.5em;
+			}
 
-	.welcome h3 {
-		clear: both;
-		margin: .5em 0 .15em;
-	}
+			.welcome h2,
+			.welcome h4 {
+				margin: 0 0 .5em;
+			}
 
-	.welcome h4 {
-		color: #28477C;
-		padding: .5em 0 0;
-	}
+			.welcome h3 {
+				clear: both;
+				margin: .5em 0 .15em;
+			}
 
-	.welcome img.right {
-		float: right;
-		margin-left: 10px;
-	}
+			.welcome h4 {
+				color: #28477C;
+				padding: .5em 0 0;
+			}
 
-	.welcome img.left {
-		float: left;
-		margin-right: 10px;
-	}
+			.welcome img.right {
+				float: right;
+				margin-left: 10px;
+			}
 
-	.welcome blockquote {
-		font-family: "Garamond", "Georgia", Times, serif;
-		font-size: 1.5em;
-		font-style: italic;
-		line-height: 1;
-	}
+			.welcome img.left {
+				float: left;
+				margin-right: 10px;
+			}
 
-	.welcome hr {
-		border: none;
-		border-bottom: 1px solid #CCC;
-		border-top: 1px solid #EEE;
-		clear: both;
-		padding: 0;
-	}
+			.welcome blockquote {
+				font-family: "Garamond", "Georgia", Times, serif;
+				font-size: 1.5em;
+				font-style: italic;
+				line-height: 1;
+			}
 
-</style>
+			.welcome hr {
+				border: none;
+				border-bottom: 1px solid #CCC;
+				border-top: 1px solid #EEE;
+				clear: both;
+				padding: 0;
+			}
 
-<div class="welcome">
-<h2>
-	Welcome to Liferay
-</h2>
+		</style>
 
-<img alt="Shared Workspaces" class="right" src="/image/image_gallery?uuid=[$SHARED_WORKSPACES_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
+		<div class="welcome">
 
-<p class="intro">
-	Liferay is a complete, all-in-one open source enterprise portal solution and web application platform.
-</p>
+		<h2>
+			Welcome to Liferay
+		</h2>
 
-<p>
-	It has over one hundred thousand deployments worldwide with sites from small businesses to Fortune 500 companies. We've purposed Liferay for everything from a portal, a <abbr title="Content Management System">CMS</abbr> to a web application platform. We hope you enjoy this preview release of Liferay 6.0. Take a look around, and maybe for starters, click on one of the users on the bottom right hand corner of the screen.
-</p>
+		<img alt="Shared Workspaces" class="right" src="/image/image_gallery?uuid=[$SHARED_WORKSPACES_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
 
-<p>
-	Once you're done taking a look around, and if you haven't decided yet, you might want to ask yourself this question: <em>&quot;what are you going to use Liferay for?&quot;</em>
-</p>
+		<p class="intro">
+			Liferay is a complete, all-in-one open source enterprise portal solution and web application platform.
+		</p>
 
-<h3>
-	As a Portal
-</h3>
+		<p>
+			It has over one hundred thousand deployments worldwide with sites from small businesses to Fortune 500 companies. We've purposed Liferay for everything from a portal, a <abbr title="Content Management System">CMS</abbr> to a web application platform. We hope you enjoy this preview release of Liferay 6.0. Take a look around, and maybe for starters, click on one of the users on the bottom right hand corner of the screen.
+		</p>
 
-<p>
-	Portals are designed to unify information. Liferay was designed with people in mind. We know how important it is to communicate within companies and here's some of the ways we try to make it easier for you.
-</p>
+		<p>
+			Once you're done taking a look around, and if you haven't decided yet, you might want to ask yourself this question: <em>&quot;what are you going to use Liferay for?&quot;</em>
+		</p>
 
-<h4>
-	Shared Workspaces
-</h4>
+		<h3>
+			As a Portal
+		</h3>
 
-<p>
-	Increase productivity by creating workspaces and workflows for documents, content, and more. Create a central meeting place for everyone related to a project; now then, imagine getting everyone on the same "page," no matter where they are.
-</p>
+		<p>
+			Portals are designed to unify information. Liferay was designed with people in mind. We know how important it is to communicate within companies and here's some of the ways we try to make it easier for you.
+		</p>
 
-<h4>
-	Social Communities and Networks
-</h4>
+		<h4>
+			Shared Workspaces
+		</h4>
 
-<img alt="Liferay Community Image" class="right" src="/image/image_gallery?uuid=[$SOCIAL_NETWORKING_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
+		<p>
+			Increase productivity by creating workspaces and workflows for documents, content, and more. Create a central meeting place for everyone related to a project; now then, imagine getting everyone on the same "page," no matter where they are.
+		</p>
 
-<p>
-	Remember Eddie, Olivia, and Johnny from accounting? What about Tom, Ryan, Jenn, and Steve from professional services? How do they communicate? E-mail can only go so far and instant messages can get lost or deleted. Now you're probably wondering, is there a better way?
-</p>
+		<h4>
+			Social Communities and Networks
+		</h4>
 
-<blockquote>
-	Communicate, collaborate, and consolidate information...
-</blockquote>
+		<img alt="Liferay Community Image" class="right" src="/image/image_gallery?uuid=[$SOCIAL_NETWORKING_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
 
-<p>
-	By creating communities for different departments or groups within your company, then leveraging blogs, wikis, message boards, and shared calendars and get them organized and talking. With Liferay 6.0 we've improved this with community templates. When creating a new community, just specify the type of community, we'll propagate pages with portlets commonly associated with that community, then just edit and save to your liking.
-</p>
+		<p>
+			Remember Eddie, Olivia, and Johnny from accounting? What about Tom, Ryan, Jenn, and Steve from professional services? How do they communicate? E-mail can only go so far and instant messages can get lost or deleted. Now you're probably wondering, is there a better way?
+		</p>
 
-<h4>
-	Content Management System
-</h4>
+		<blockquote>
+			Communicate, collaborate, and consolidate information...
+		</blockquote>
 
-<img alt="Liferay CMS Image" class="right" src="/image/image_gallery?uuid=[$WEB_PUBLISHING_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
+		<p>
+			By creating communities for different departments or groups within your company, then leveraging blogs, wikis, message boards, and shared calendars and get them organized and talking. With Liferay 6.0 we've improved this with community templates. When creating a new community, just specify the type of community, we'll propagate pages with portlets commonly associated with that community, then just edit and save to your liking.
+		</p>
 
-<p>
-	Liferay isn't just an internal portal, as an external and facing portal, you'll have the tools you need to create beautiful, dynamic websites. Create content through an editorial workflow then use and re-use that content ubiquitously through your portal.
-</p>
+		<h4>
+			Content Management System
+		</h4>
 
-<p>
-	In this release, we've made many improvements to make finding and publishing your content as global as possible.
-</p>
+		<img alt="Liferay CMS Image" class="right" src="/image/image_gallery?uuid=[$WEB_PUBLISHING_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
 
+		<p>
+			Liferay isn't just an internal portal, as an external and facing portal, you'll have the tools you need to create beautiful, dynamic websites. Create content through an editorial workflow then use and re-use that content ubiquitously through your portal.
+		</p>
 
-<h3>
-	As a Platform
-</h3>
+		<p>
+			In this release, we've made many improvements to make finding and publishing your content as global as possible.
+		</p>
 
-<img alt="Platform Image" class="right" src="/image/image_gallery?uuid=[$PORTAL_MASHUPS_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
+		<h3>
+			As a Platform
+		</h3>
 
-<p>
-	Liferay is a robust web application platform.It's open source so developers can see how things work.
-</p>
+		<img alt="Platform Image" class="right" src="/image/image_gallery?uuid=[$PORTAL_MASHUPS_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
 
-<h4>SOA</h4>
+		<p>
+			Liferay is a robust web application platform.It's open source so developers can see how things work.
+		</p>
 
-<p>
-	Speed up development with built-in developer tools, LDAP, web services, and Spring-based architecture. Rapidly produce portlets and applications that cater to your needs.
-</p>
+		<h4>SOA</h4>
 
-<h4>Enterprise Integration</h4>
+		<p>
+			Speed up development with built-in developer tools, LDAP, web services, and Spring-based architecture. Rapidly produce portlets and applications that cater to your needs.
+		</p>
 
-<p>
-	We meet industry standards which reduces risk and increases re-usability from within Liferay.
-</p>
+		<h4>Enterprise Integration</h4>
 
-<h4>Mashups</h4>
+		<p>
+			We meet industry standards which reduces risk and increases re-usability from within Liferay.
+		</p>
 
-<p>
-	Liferay supports mashup development with support for widgets, Facebook&reg; integration, iGoogle&reg; support, and GoogleMaps&reg; 
-</p>
+		<h4>Mashups</h4>
 
-<h3>Some Companies That Use Liferay</h3>
+		<p>
+			Liferay supports mashup development with support for widgets, Facebook&reg; integration, iGoogle&reg; support, and GoogleMaps&reg; 
+		</p>
 
-<p><a href="http://developer.cisco.com" target="_blank">Cisco Developer Network</a>, <a href="http://www.monsterenergy.com" target="_blank">Monster Energy Drink</a>, <a href="http://www.teambeachbody.com" target="_blank">Teambeachbody.com</a>, <a href="http://www.eamobile.com/home/" target="_blank">EA Mobile</a>, <a href="http://www.poken.com/" target="_blank">Poken</a>, <a href="http://reboot.fcc.gov/" target="_blank">FCC Reboot</a>, and many corporate intranet sites... for case studies and more, visit <a href="http://www.liferay.com/products/liferay-portal/stories" target="_blank">Liferay: Stories</a>.</p>
+		<h3>Some Companies That Use Liferay</h3>
 
-<hr/>
+		<p>
+			<a href="http://developer.cisco.com" target="_blank">Cisco Developer Network</a>, <a href="http://www.monsterenergy.com" target="_blank">Monster Energy Drink</a>, <a href="http://www.teambeachbody.com" target="_blank">Teambeachbody.com</a>, <a href="http://www.eamobile.com/home/" target="_blank">EA Mobile</a>, <a href="http://www.poken.com/" target="_blank">Poken</a>, <a href="http://reboot.fcc.gov/" target="_blank">FCC Reboot</a>, and many corporate intranet sites... for case studies and more, visit <a href="http://www.liferay.com/products/liferay-portal/stories" target="_blank">Liferay: Stories</a>.
+		</p>
 
-<h3>Build With Us</h3>
+		<hr/>
 
-<p>
-	What else does Liferay, as a company, do? We provide <a href="http://www.liferay.com/services">services</a>.
-</p>
+		<h3>Build With Us</h3>
 
-<ul>
-	<li>We offer <a href="http://www.liferay.com/services/subscription">Enterprise Support</a>, 24 hours a day, seven days a week.</li>
-	<li><a href="http://www.liferay.com/services/training">Training</a> tailored to fit your organization's needs.</li>
-	<li>Through our <a href="http://www.liferay.com/services/consulting">consulting services</a>, our experts are available to help you at every stage of the application's lifecycle.</li>
-	<li>If you develop for the Liferay application, why not <a href="http://www.liferay.com/partners/service-partners">partner with us</a> and help us build.</li>
-</ul>
-<p>Visit <a href="http://www.liferay.com">Liferay.com</a>, for <a href="http://www.liferay.com/about-us/news">updates</a>, <a href="http://www.liferay.com/about-us/events/">events</a>, and join our <a href="http://www.liferay.com/community">community</a>.</p>
-</div>
-]]></static-content></root>
+		<p>
+			What else does Liferay, as a company, do? We provide <a href="http://www.liferay.com/services">services</a>.
+		</p>
+
+		<ul>
+			<li>We offer <a href="http://www.liferay.com/services/subscription">Enterprise Support</a>, 24 hours a day, seven days a week.</li>
+			<li><a href="http://www.liferay.com/services/training">Training</a> tailored to fit your organization's needs.</li>
+			<li>Through our <a href="http://www.liferay.com/services/consulting">consulting services</a>, our experts are available to help you at every stage of the application's lifecycle.</li>
+			<li>If you develop for the Liferay application, why not <a href="http://www.liferay.com/partners/service-partners">partner with us</a> and help us build.</li>
+		</ul>
+
+		<p>
+			Visit <a href="http://www.liferay.com">Liferay.com</a>, for <a href="http://www.liferay.com/about-us/news">updates</a>, <a href="http://www.liferay.com/about-us/events/">events</a>, and join our <a href="http://www.liferay.com/community">community</a>.
+		</p>
+
+		</div>
+
+		]]>
+	</static-content>
+</root>

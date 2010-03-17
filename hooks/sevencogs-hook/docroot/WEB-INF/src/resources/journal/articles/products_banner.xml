@@ -1,16 +1,21 @@
-<?xml version='1.0' encoding='UTF-8'?><root available-locales="en_US," default-locale="en_US"><static-content language-id="en_US"><![CDATA[
+<?xml version='1.0' encoding='UTF-8'?>
+<root available-locales="en_US," default-locale="en_US">
+	<static-content language-id="en_US">
+		<![CDATA[
 
-<style type="text/css">
-		 .single-image-front {
-		 margin: 0px;
-		 padding: 0px;
-		  }
+		<style type="text/css">
 
-</style>
+			.single-image-front {
+				margin: 0px;
+				padding: 0px;
+			}
 
-<div class="single-image-front">
-		<img src="/image/image_gallery?uuid=[$PRODUCTS_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]" alt=""/>
-</div>
+		</style>
+		
+		<div class="single-image-front">
+			<img src="/image/image_gallery?uuid=[$PRODUCTS_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]" alt=""/>
+		</div>
 
-
-]]></static-content></root>
+		]]>
+	</static-content>
+</root>

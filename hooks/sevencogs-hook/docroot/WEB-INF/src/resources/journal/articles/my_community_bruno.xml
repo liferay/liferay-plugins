@@ -1,1 +1,16 @@
-<?xml version='1.0' encoding='UTF-8'?><root available-locales="en_US," default-locale=""><static-content language-id="en_US"><![CDATA[<p><img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" /> This is my personal space (My Community). I have 2 <strong>public pages</strong>: Profile and Blog. Everybody can see these pages by going to <a href="/web/bruno">@portal_url@/web/bruno</a> but only I can modify the content in them. I can create more public pages (Add page) and add more applications to those pages in the dock menu (Add Aplication).</p> <p>I also have some <strong>private pages</strong> that only I can see (my socialSpace, my workSpace and my email). In order to access them I have to go to the dock menu --&gt; My Places --&gt; My community --&gt; Private Pages or go to <a href="/user/bruno">@portal_url@/user/bruno</a> when I am logged in.</p>]]></static-content></root>
+<?xml version='1.0' encoding='UTF-8'?>
+<root available-locales="en_US," default-locale="">
+	<static-content language-id="en_US">
+		<![CDATA[
+
+		<p>
+			<img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" /> 
+			This is my personal space (My Community). I have 2 <strong>public pages</strong>: Profile and Blog. Everybody can see these pages by going to <a href="/web/bruno">@portal_url@/web/bruno</a> but only I can modify the content in them. I can create more public pages (Add page) and add more applications to those pages in the dock menu (Add Aplication).
+		</p>
+		<p>
+			I also have some <strong>private pages</strong> that only I can see (my socialSpace, my workSpace and my email). In order to access them I have to go to the dock menu --&gt; My Places --&gt; My community --&gt; Private Pages or go to <a href="/user/bruno">@portal_url@/user/bruno</a> when I am logged in.
+		</p>
+
+		]]>
+	</static-content>
+</root>

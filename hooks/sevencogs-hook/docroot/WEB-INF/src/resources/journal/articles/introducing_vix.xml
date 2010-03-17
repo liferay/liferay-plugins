@@ -1,1 +1,20 @@
-<?xml version='1.0' encoding='UTF-8'?><root available-locales="en_US," default-locale="en_US"><static-content language-id="en_US"><![CDATA[<p>&nbsp;</p><p><span style="border-bottom: 1px solid rgb(153, 153, 153); color: rgb(100, 100, 100);"><strong><span style="font-size: large;">Introducing the ViX-998:&nbsp;Social Networking for The Cog Industry</span></strong></span></p> <p><span style="color: rgb(128, 128, 128);">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a nisi sed tortor molestie lacinia. Suspendisse sollicitudin adipiscing lacus. Ut nulla quam, iaculis id, mollis eu, gravida nec, lorem. In vel tellus non neque aliquam semper. Praesent gravida. Duis nec pede vitae dui interdum scelerisque. Proin metus nisi, blandit sit amet, mollis vel, sodales id, leo.</span></p> <p><span style="color: rgb(128, 128, 128);">Sed ut nisl quis est vestibulum commodo. Proin eros arcu, aliquam vitae, gravida at, pharetra eu, leo. Nulla pede lacus, feugiat ut, tincidunt vel, semper in, felis. Cras dictum pulvinar turpis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi aliquet nisl at eros tempus volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin posuere lectus lacinia turpis. Quisque nunc. Aliquam ultrices felis hendrerit tellus.</span></p> <p><span style="color: rgb(128, 128, 128);">Sed eget leo. Sed mauris. Praesent felis. Suspendisse bibendum elit et nisl. Vestibulum ut nibh. Nulla condimentum sodales velit. Ut vehicula tincidunt est. Sed sem ligula, malesuada eget, auctor id, pharetra ornare, dui. Nam iaculis. Nunc bibendum. Aliquam suscipit pharetra sapien. Nunc scelerisque lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue tincidunt risus. Ut ac nunc. Morbi ac risus. Duis viverra tincidunt erat. Phasellus a nisi. Aliquam pellentesque hendrerit enim.</span></p>]]></static-content></root>
+<?xml version='1.0' encoding='UTF-8'?>
+<root available-locales="en_US," default-locale="en_US">
+	<static-content language-id="en_US">
+		<![CDATA[
+
+		<h1>Introducing the ViX-998:&nbsp;Social Networking for The Cog Industry</h1>
+
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a nisi sed tortor molestie lacinia. Suspendisse sollicitudin adipiscing lacus. Ut nulla quam, iaculis id, mollis eu, gravida nec, lorem. In vel tellus non neque aliquam semper. Praesent gravida. Duis nec pede vitae dui interdum scelerisque. Proin metus nisi, blandit sit amet, mollis vel, sodales id, leo.
+		</p>
+		<p>
+			Sed ut nisl quis est vestibulum commodo. Proin eros arcu, aliquam vitae, gravida at, pharetra eu, leo. Nulla pede lacus, feugiat ut, tincidunt vel, semper in, felis. Cras dictum pulvinar turpis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi aliquet nisl at eros tempus volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin posuere lectus lacinia turpis. Quisque nunc. Aliquam ultrices felis hendrerit tellus.
+		</p>
+		<p>
+			Sed eget leo. Sed mauris. Praesent felis. Suspendisse bibendum elit et nisl. Vestibulum ut nibh. Nulla condimentum sodales velit. Ut vehicula tincidunt est. Sed sem ligula, malesuada eget, auctor id, pharetra ornare, dui. Nam iaculis. Nunc bibendum. Aliquam suscipit pharetra sapien. Nunc scelerisque lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue tincidunt risus. Ut ac nunc. Morbi ac risus. Duis viverra tincidunt erat. Phasellus a nisi. Aliquam pellentesque hendrerit enim.
+		</p>
+
+		]]>
+	</static-content>
+</root>
