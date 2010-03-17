@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.jbpm;
 
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.RequiredWorkflowDefinitionException;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowDefinitionFileException;
 import com.liferay.portal.kernel.workflow.WorkflowDefinitionManager;
@@ -43,6 +44,7 @@ import org.jbpm.jpdl.par.ProcessArchive;
  *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
+ * @author Marcellus Tavares
  */
 public class WorkflowDefinitionManagerImpl
 	implements WorkflowDefinitionManager {
@@ -229,9 +231,47 @@ public class WorkflowDefinitionManagerImpl
 				CustomSession customSession = new CustomSession(jbpmContext);
 
 				customSession.deleteWorkflowDefinitionStatus(
-						processDefinition.getId());
+					processDefinition.getId());
 
 				graphSession.deleteProcessDefinition(processDefinition);
+			}
+		}
+		finally {
+			jbpmContext.close();
+		}
+	}
+
+	public WorkflowDefinition updateActive(
+			long companyId, long userId, String name, int version,
+			boolean active)
+		throws WorkflowException{
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			GraphSession graphSession = jbpmContext.getGraphSession();
+
+			ProcessDefinition processDefinition =
+				graphSession.findProcessDefinition(name, version);
+
+			if (processDefinition != null) {
+				CustomSession customSession = new CustomSession(jbpmContext);
+
+				WorkflowDefinitionStatusImpl wfDefinitionStatus =
+					customSession.findWorkflowDefinitonStatus(
+						processDefinition.getId());
+
+				wfDefinitionStatus.setActive(active);
+
+				jbpmContext.getSession().update(wfDefinitionStatus);
+
+				return new WorkflowDefinitionImpl(
+					processDefinition, wfDefinitionStatus.isActive());
+			}
+			else {
+				throw new WorkflowException(
+					"No workflow definition with name " + name +
+						" and version " + version);
 			}
 		}
 		finally {
