@@ -171,10 +171,10 @@ public class CustomSession {
 	}
 
 	public void deleteWorkflowDefinitionStatus(long processDefinitionId) {
-		WorkflowDefinitionStatusImpl wfDefinitionStatus =
+		WorkflowDefinitionStatusImpl workflowDefinitionStatus =
 			findWorkflowDefinitonStatus(processDefinitionId);
 
-		_session.delete(wfDefinitionStatus);
+		_session.delete(workflowDefinitionStatus);
 	}
 
 	public void deleteWorkflowLogs(long processInstanceId) {
@@ -341,7 +341,7 @@ public class CustomSession {
 			criteria.add(
 				Restrictions.eq("processDefinition.id", processDefinitionId));
 
-			return (WorkflowDefinitionStatusImpl) criteria.uniqueResult();
+			return (WorkflowDefinitionStatusImpl)criteria.uniqueResult();
 		}
 		catch (Exception e) {
 			throw new JbpmException(e);

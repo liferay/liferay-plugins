@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipInputStream;
 
+import org.hibernate.Session;
+
 import org.jbpm.JbpmConfiguration;
 import org.jbpm.JbpmContext;
 import org.jbpm.db.GraphSession;
@@ -85,10 +87,12 @@ public class WorkflowDefinitionManagerImpl
 		try {
 			jbpmContext.deployProcessDefinition(processDefinition);
 
-			WorkflowDefinitionStatusImpl wfDefinitionStatus =
-				new WorkflowDefinitionStatusImpl(true, processDefinition);
+			WorkflowDefinitionStatusImpl workflowDefinitionStatus =
+				new WorkflowDefinitionStatusImpl(processDefinition, true);
 
-			jbpmContext.getSession().save(wfDefinitionStatus);
+			Session session = jbpmContext.getSession();
+
+			session.save(workflowDefinitionStatus);
 		}
 		finally {
 			jbpmContext.close();
@@ -110,15 +114,14 @@ public class WorkflowDefinitionManagerImpl
 				graphSession.findProcessDefinition(name, version);
 
 			if (processDefinition != null) {
-
 				CustomSession customSession = new CustomSession(jbpmContext);
 
-				WorkflowDefinitionStatusImpl wfDefinitionStatus =
+				WorkflowDefinitionStatusImpl workflowDefinitionStatus =
 					customSession.findWorkflowDefinitonStatus(
 						processDefinition.getId());
 
 				return new WorkflowDefinitionImpl(
-					processDefinition, wfDefinitionStatus.isActive());
+					processDefinition, workflowDefinitionStatus.isActive());
 			}
 			else {
 				throw new WorkflowException(
@@ -261,16 +264,18 @@ public class WorkflowDefinitionManagerImpl
 			if (processDefinition != null) {
 				CustomSession customSession = new CustomSession(jbpmContext);
 
-				WorkflowDefinitionStatusImpl wfDefinitionStatus =
+				WorkflowDefinitionStatusImpl workflowDefinitionStatus =
 					customSession.findWorkflowDefinitonStatus(
 						processDefinition.getId());
 
-				wfDefinitionStatus.setActive(active);
+				workflowDefinitionStatus.setActive(active);
 
-				jbpmContext.getSession().update(wfDefinitionStatus);
+				Session session = jbpmContext.getSession();
+
+				session.update(workflowDefinitionStatus);
 
 				return new WorkflowDefinitionImpl(
-					processDefinition, wfDefinitionStatus.isActive());
+					processDefinition, workflowDefinitionStatus.isActive());
 			}
 			else {
 				throw new WorkflowException(
@@ -293,16 +298,15 @@ public class WorkflowDefinitionManagerImpl
 				new ArrayList<WorkflowDefinition>(processDefinitions.size());
 
 			for (ProcessDefinition processDefinition : processDefinitions) {
-
 				CustomSession customSession = new CustomSession(jbpmContext);
 
-				WorkflowDefinitionStatusImpl wfDefinitionStatus =
+				WorkflowDefinitionStatusImpl workflowDefinitionStatus =
 					customSession.findWorkflowDefinitonStatus(
 						processDefinition.getId());
 
 				WorkflowDefinition workflowDefinition =
 					new WorkflowDefinitionImpl(
-						processDefinition, wfDefinitionStatus.isActive());
+						processDefinition, workflowDefinitionStatus.isActive());
 
 				workflowDefinitions.add(workflowDefinition);
 			}

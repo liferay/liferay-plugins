@@ -28,10 +28,10 @@ public class WorkflowDefinitionStatusImpl {
 	}
 
 	public WorkflowDefinitionStatusImpl(
-		boolean active, ProcessDefinition processDefinition){
+		ProcessDefinition processDefinition, boolean active){
 
-		_active = active;
 		_processDefinition = processDefinition;
+		_active = active;
 	}
 
 	public ProcessDefinition getProcessDefinition(){
