@@ -222,7 +222,7 @@ public class WorkflowDefinitionManagerImpl
 
 				for (ProcessInstance processInstance : processInstances) {
 					if (!processInstance.hasEnded()) {
-						throw new WorkflowException(
+						throw new RequiredWorkflowDefinitionException(
 							"Process instance " + processInstance.getId() +
 								" is required");
 					}
@@ -232,6 +232,10 @@ public class WorkflowDefinitionManagerImpl
 
 				customSession.deleteWorkflowDefinitionStatus(
 					processDefinition.getId());
+
+				for (ProcessInstance processInstance : processInstances) {
+					customSession.deleteWorkflowLogs(processInstance.getId());
+				}
 
 				graphSession.deleteProcessDefinition(processDefinition);
 			}
