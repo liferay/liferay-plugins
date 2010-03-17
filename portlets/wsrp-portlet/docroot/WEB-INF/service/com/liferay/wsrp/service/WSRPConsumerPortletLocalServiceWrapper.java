@@ -117,6 +117,12 @@ public class WSRPConsumerPortletLocalServiceWrapper
 			name, portletHandle, userToken);
 	}
 
+	public boolean hasWSRPConsumerPortlet(java.lang.String portletHandle)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _wsrpConsumerPortletLocalService.hasWSRPConsumerPortlet(portletHandle);
+	}
+
 	public void deleteWSRPConsumerPortlets(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

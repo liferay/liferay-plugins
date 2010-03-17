@@ -60,6 +60,19 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 		long wsrpConsumerPortletId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public com.liferay.wsrp.model.WSRPConsumerPortlet findByPortletHandle(
+		java.lang.String portletHandle)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.wsrp.NoSuchConsumerPortletException;
+
+	public com.liferay.wsrp.model.WSRPConsumerPortlet fetchByPortletHandle(
+		java.lang.String portletHandle)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.wsrp.model.WSRPConsumerPortlet fetchByPortletHandle(
+		java.lang.String portletHandle, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findByWsrpConsumerId(
 		long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -102,10 +115,17 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public void removeByPortletHandle(java.lang.String portletHandle)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.wsrp.NoSuchConsumerPortletException;
+
 	public void removeByWsrpConsumerId(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int countByPortletHandle(java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByWsrpConsumerId(long wsrpConsumerId)

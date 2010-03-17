@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -66,6 +67,14 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	public static final String FINDER_CLASS_NAME_ENTITY = WSRPConsumerPortletImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
+	public static final FinderPath FINDER_PATH_FETCH_BY_PORTLETHANDLE = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_ENTITY, "fetchByPortletHandle",
+			new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_PORTLETHANDLE = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "countByPortletHandle",
+			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_WSRPCONSUMERID = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
 			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByWsrpConsumerId",
@@ -93,6 +102,10 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	public void cacheResult(WSRPConsumerPortlet wsrpConsumerPortlet) {
 		EntityCacheUtil.putResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
 			WSRPConsumerPortletImpl.class, wsrpConsumerPortlet.getPrimaryKey(),
+			wsrpConsumerPortlet);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_PORTLETHANDLE,
+			new Object[] { wsrpConsumerPortlet.getPortletHandle() },
 			wsrpConsumerPortlet);
 	}
 
@@ -208,6 +221,11 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		WSRPConsumerPortletModelImpl wsrpConsumerPortletModelImpl = (WSRPConsumerPortletModelImpl)wsrpConsumerPortlet;
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_PORTLETHANDLE,
+			new Object[] { wsrpConsumerPortletModelImpl.getOriginalPortletHandle() });
+
 		EntityCacheUtil.removeResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
 			WSRPConsumerPortletImpl.class, wsrpConsumerPortlet.getPrimaryKey());
 
@@ -218,6 +236,10 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet,
 		boolean merge) throws SystemException {
 		wsrpConsumerPortlet = toUnwrappedModel(wsrpConsumerPortlet);
+
+		boolean isNew = wsrpConsumerPortlet.isNew();
+
+		WSRPConsumerPortletModelImpl wsrpConsumerPortletModelImpl = (WSRPConsumerPortletModelImpl)wsrpConsumerPortlet;
 
 		Session session = null;
 
@@ -240,6 +262,23 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		EntityCacheUtil.putResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
 			WSRPConsumerPortletImpl.class, wsrpConsumerPortlet.getPrimaryKey(),
 			wsrpConsumerPortlet);
+
+		if (!isNew &&
+				(!Validator.equals(wsrpConsumerPortlet.getPortletHandle(),
+					wsrpConsumerPortletModelImpl.getOriginalPortletHandle()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_PORTLETHANDLE,
+				new Object[] {
+					wsrpConsumerPortletModelImpl.getOriginalPortletHandle()
+				});
+		}
+
+		if (isNew ||
+				(!Validator.equals(wsrpConsumerPortlet.getPortletHandle(),
+					wsrpConsumerPortletModelImpl.getOriginalPortletHandle()))) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_PORTLETHANDLE,
+				new Object[] { wsrpConsumerPortlet.getPortletHandle() },
+				wsrpConsumerPortlet);
+		}
 
 		return wsrpConsumerPortlet;
 	}
@@ -320,6 +359,127 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		}
 
 		return wsrpConsumerPortlet;
+	}
+
+	public WSRPConsumerPortlet findByPortletHandle(String portletHandle)
+		throws NoSuchConsumerPortletException, SystemException {
+		WSRPConsumerPortlet wsrpConsumerPortlet = fetchByPortletHandle(portletHandle);
+
+		if (wsrpConsumerPortlet == null) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("portletHandle=");
+			msg.append(portletHandle);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchConsumerPortletException(msg.toString());
+		}
+
+		return wsrpConsumerPortlet;
+	}
+
+	public WSRPConsumerPortlet fetchByPortletHandle(String portletHandle)
+		throws SystemException {
+		return fetchByPortletHandle(portletHandle, true);
+	}
+
+	public WSRPConsumerPortlet fetchByPortletHandle(String portletHandle,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { portletHandle };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_PORTLETHANDLE,
+					finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(3);
+
+				query.append(_SQL_SELECT_WSRPCONSUMERPORTLET_WHERE);
+
+				if (portletHandle == null) {
+					query.append(_FINDER_COLUMN_PORTLETHANDLE_PORTLETHANDLE_1);
+				}
+				else {
+					if (portletHandle.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_PORTLETHANDLE_PORTLETHANDLE_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_PORTLETHANDLE_PORTLETHANDLE_2);
+					}
+				}
+
+				query.append(WSRPConsumerPortletModelImpl.ORDER_BY_JPQL);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (portletHandle != null) {
+					qPos.add(portletHandle);
+				}
+
+				List<WSRPConsumerPortlet> list = q.list();
+
+				result = list;
+
+				WSRPConsumerPortlet wsrpConsumerPortlet = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_PORTLETHANDLE,
+						finderArgs, list);
+				}
+				else {
+					wsrpConsumerPortlet = list.get(0);
+
+					cacheResult(wsrpConsumerPortlet);
+
+					if ((wsrpConsumerPortlet.getPortletHandle() == null) ||
+							!wsrpConsumerPortlet.getPortletHandle()
+													.equals(portletHandle)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_PORTLETHANDLE,
+							finderArgs, wsrpConsumerPortlet);
+					}
+				}
+
+				return wsrpConsumerPortlet;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (result == null) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_PORTLETHANDLE,
+						finderArgs, new ArrayList<WSRPConsumerPortlet>());
+				}
+
+				closeSession(session);
+			}
+		}
+		else {
+			if (result instanceof List<?>) {
+				return null;
+			}
+			else {
+				return (WSRPConsumerPortlet)result;
+			}
+		}
 	}
 
 	public List<WSRPConsumerPortlet> findByWsrpConsumerId(long wsrpConsumerId)
@@ -671,6 +831,13 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		return list;
 	}
 
+	public void removeByPortletHandle(String portletHandle)
+		throws NoSuchConsumerPortletException, SystemException {
+		WSRPConsumerPortlet wsrpConsumerPortlet = findByPortletHandle(portletHandle);
+
+		remove(wsrpConsumerPortlet);
+	}
+
 	public void removeByWsrpConsumerId(long wsrpConsumerId)
 		throws SystemException {
 		for (WSRPConsumerPortlet wsrpConsumerPortlet : findByWsrpConsumerId(
@@ -683,6 +850,65 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		for (WSRPConsumerPortlet wsrpConsumerPortlet : findAll()) {
 			remove(wsrpConsumerPortlet);
 		}
+	}
+
+	public int countByPortletHandle(String portletHandle)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { portletHandle };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_PORTLETHANDLE,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(2);
+
+				query.append(_SQL_COUNT_WSRPCONSUMERPORTLET_WHERE);
+
+				if (portletHandle == null) {
+					query.append(_FINDER_COLUMN_PORTLETHANDLE_PORTLETHANDLE_1);
+				}
+				else {
+					if (portletHandle.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_PORTLETHANDLE_PORTLETHANDLE_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_PORTLETHANDLE_PORTLETHANDLE_2);
+					}
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (portletHandle != null) {
+					qPos.add(portletHandle);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_PORTLETHANDLE,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
 	}
 
 	public int countByWsrpConsumerId(long wsrpConsumerId)
@@ -802,6 +1028,9 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	private static final String _SQL_SELECT_WSRPCONSUMERPORTLET_WHERE = "SELECT wsrpConsumerPortlet FROM WSRPConsumerPortlet wsrpConsumerPortlet WHERE ";
 	private static final String _SQL_COUNT_WSRPCONSUMERPORTLET = "SELECT COUNT(wsrpConsumerPortlet) FROM WSRPConsumerPortlet wsrpConsumerPortlet";
 	private static final String _SQL_COUNT_WSRPCONSUMERPORTLET_WHERE = "SELECT COUNT(wsrpConsumerPortlet) FROM WSRPConsumerPortlet wsrpConsumerPortlet WHERE ";
+	private static final String _FINDER_COLUMN_PORTLETHANDLE_PORTLETHANDLE_1 = "wsrpConsumerPortlet.portletHandle IS NULL";
+	private static final String _FINDER_COLUMN_PORTLETHANDLE_PORTLETHANDLE_2 = "wsrpConsumerPortlet.portletHandle = ?";
+	private static final String _FINDER_COLUMN_PORTLETHANDLE_PORTLETHANDLE_3 = "(wsrpConsumerPortlet.portletHandle IS NULL OR wsrpConsumerPortlet.portletHandle = ?)";
 	private static final String _FINDER_COLUMN_WSRPCONSUMERID_WSRPCONSUMERID_2 = "wsrpConsumerPortlet.wsrpConsumerId = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "wsrpConsumerPortlet.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No WSRPConsumerPortlet exists with the primary key ";

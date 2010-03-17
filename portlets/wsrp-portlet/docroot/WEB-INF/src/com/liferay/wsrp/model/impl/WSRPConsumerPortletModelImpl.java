@@ -178,6 +178,14 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 	public void setPortletHandle(String portletHandle) {
 		_portletHandle = portletHandle;
+
+		if (_originalPortletHandle == null) {
+			_originalPortletHandle = portletHandle;
+		}
+	}
+
+	public String getOriginalPortletHandle() {
+		return GetterUtil.getString(_originalPortletHandle);
 	}
 
 	public WSRPConsumerPortlet toEscapedModel() {
@@ -343,5 +351,6 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	private long _wsrpConsumerId;
 	private String _name;
 	private String _portletHandle;
+	private String _originalPortletHandle;
 	private transient ExpandoBridge _expandoBridge;
 }

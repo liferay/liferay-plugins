@@ -118,6 +118,26 @@ public class WSRPConsumerPortletUtil {
 		return getPersistence().fetchByPrimaryKey(wsrpConsumerPortletId);
 	}
 
+	public static com.liferay.wsrp.model.WSRPConsumerPortlet findByPortletHandle(
+		java.lang.String portletHandle)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.wsrp.NoSuchConsumerPortletException {
+		return getPersistence().findByPortletHandle(portletHandle);
+	}
+
+	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByPortletHandle(
+		java.lang.String portletHandle)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPortletHandle(portletHandle);
+	}
+
+	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByPortletHandle(
+		java.lang.String portletHandle, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByPortletHandle(portletHandle, retrieveFromCache);
+	}
+
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findByWsrpConsumerId(
 		long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -181,6 +201,12 @@ public class WSRPConsumerPortletUtil {
 		return getPersistence().findAll(start, end, obc);
 	}
 
+	public static void removeByPortletHandle(java.lang.String portletHandle)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.wsrp.NoSuchConsumerPortletException {
+		getPersistence().removeByPortletHandle(portletHandle);
+	}
+
 	public static void removeByWsrpConsumerId(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByWsrpConsumerId(wsrpConsumerId);
@@ -189,6 +215,11 @@ public class WSRPConsumerPortletUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
+	}
+
+	public static int countByPortletHandle(java.lang.String portletHandle)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByPortletHandle(portletHandle);
 	}
 
 	public static int countByWsrpConsumerId(long wsrpConsumerId)

@@ -60,6 +60,9 @@
 
 		<!-- Finder methods -->
 
+		<finder name="PortletHandle" return-type="WSRPConsumerPortlet">
+			<finder-column name="portletHandle" />
+		</finder>
 		<finder name="WsrpConsumerId" return-type="Collection">
 			<finder-column name="wsrpConsumerId" />
 		</finder>
