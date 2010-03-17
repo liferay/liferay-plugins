@@ -72,11 +72,11 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 			{ "name", new Integer(Types.VARCHAR) },
 			{ "description", new Integer(Types.VARCHAR) },
 			{ "language", new Integer(Types.VARCHAR) },
-			{ "script", new Integer(Types.VARCHAR) },
+			{ "script", new Integer(Types.CLOB) },
 			{ "executionType", new Integer(Types.VARCHAR) },
 			{ "executionOrder", new Integer(Types.INTEGER) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoAction (kaleoActionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(75) null,name VARCHAR(75) null,description VARCHAR(75) null,language VARCHAR(75) null,script VARCHAR(75) null,executionType VARCHAR(75) null,executionOrder INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoAction (kaleoActionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description VARCHAR(75) null,language VARCHAR(75) null,script TEXT null,executionType VARCHAR(75) null,executionOrder INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoAction";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoAction.executionOrder ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoAction.executionOrder ASC";

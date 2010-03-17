@@ -27,6 +27,7 @@ public class WorkflowDefinitionAdapter extends DefaultWorkflowDefinition {
 	public WorkflowDefinitionAdapter(KaleoDefinition kaleoDefinition) {
 		setName(kaleoDefinition.getName());
 		setVersion(kaleoDefinition.getVersion());
+		setActive(kaleoDefinition.getActive());
 	}
 
 }

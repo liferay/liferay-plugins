@@ -177,7 +177,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 		_kaleoTransition.setDefaultTransition(defaultTransition);
 	}
 
-	public KaleoTransition toEscapedModel() {
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition toEscapedModel() {
 		return _kaleoTransition.toEscapedModel();
 	}
 
@@ -222,7 +222,8 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 		return _kaleoTransition.clone();
 	}
 
-	public int compareTo(KaleoTransition kaleoTransition) {
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition) {
 		return _kaleoTransition.compareTo(kaleoTransition);
 	}
 

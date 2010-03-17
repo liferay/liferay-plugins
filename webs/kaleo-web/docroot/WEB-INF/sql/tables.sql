@@ -8,11 +8,11 @@ create table Kaleo_KaleoAction (
 	modifiedDate DATE null,
 	kaleoDefinitionId LONG,
 	kaleoNodeId LONG,
-	kaleoNodeName VARCHAR(75) null,
-	name VARCHAR(75) null,
+	kaleoNodeName VARCHAR(200) null,
+	name VARCHAR(200) null,
 	description VARCHAR(75) null,
 	language VARCHAR(75) null,
-	script VARCHAR(75) null,
+	script TEXT null,
 	executionType VARCHAR(75) null,
 	executionOrder INTEGER
 );
@@ -24,8 +24,8 @@ create table Kaleo_KaleoDefinition (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
-	name VARCHAR(75) null,
-	description VARCHAR(75) null,
+	name VARCHAR(200) null,
+	description VARCHAR(2000) null,
 	version INTEGER,
 	active_ BOOLEAN,
 	startKaleoNodeId LONG
@@ -39,13 +39,13 @@ create table Kaleo_KaleoInstance (
 	createDate DATE null,
 	modifiedDate DATE null,
 	kaleoDefinitionId LONG,
-	kaleoDefinitionName VARCHAR(75) null,
+	kaleoDefinitionName VARCHAR(200) null,
 	kaleoDefinitionVersion INTEGER,
 	rootKaleoInstanceTokenId LONG,
-	className VARCHAR(75) null,
+	className VARCHAR(200) null,
 	classPK LONG,
 	completionDate DATE null,
-	context VARCHAR(75) null
+	context TEXT null
 );
 
 create table Kaleo_KaleoInstanceToken (
@@ -72,23 +72,23 @@ create table Kaleo_KaleoLog (
 	kaleoInstanceTokenId LONG,
 	kaleoTaskInstanceTokenId LONG,
 	kaleoNodeId LONG,
-	kaleoNodeName VARCHAR(75) null,
+	kaleoNodeName VARCHAR(200) null,
 	terminalKaleoNode BOOLEAN,
 	kaleoActionId LONG,
-	kaleoActionName VARCHAR(75) null,
-	kaleoActionDescription VARCHAR(75) null,
+	kaleoActionName VARCHAR(200) null,
+	kaleoActionDescription VARCHAR(2000) null,
 	previousKaleoNodeId LONG,
-	previousKaleoNodeName VARCHAR(75) null,
-	previousAssigneeClassName VARCHAR(75) null,
+	previousKaleoNodeName VARCHAR(200) null,
+	previousAssigneeClassName VARCHAR(200) null,
 	previousAssigneeClassPK LONG,
-	currentAssigneeClassName VARCHAR(75) null,
+	currentAssigneeClassName VARCHAR(200) null,
 	currentAssigneeClassPK LONG,
 	type_ VARCHAR(75) null,
-	comment VARCHAR(75) null,
+	comment VARCHAR(2000) null,
 	startDate DATE null,
 	endDate DATE null,
 	duration LONG,
-	context VARCHAR(75) null
+	context TEXT null
 );
 
 create table Kaleo_KaleoNode (
@@ -99,8 +99,8 @@ create table Kaleo_KaleoNode (
 	createDate DATE null,
 	modifiedDate DATE null,
 	kaleoDefinitionId LONG,
-	name VARCHAR(75) null,
-	description VARCHAR(75) null,
+	name VARCHAR(200) null,
+	description VARCHAR(2000) null,
 	type_ VARCHAR(75) null,
 	initial BOOLEAN,
 	terminal BOOLEAN
@@ -115,8 +115,8 @@ create table Kaleo_KaleoTask (
 	modifiedDate DATE null,
 	kaleoDefinitionId LONG,
 	kaleoNodeId LONG,
-	name VARCHAR(75) null,
-	description VARCHAR(75) null
+	name VARCHAR(200) null,
+	description VARCHAR(2000) null
 );
 
 create table Kaleo_KaleoTaskAssignment (
@@ -129,7 +129,7 @@ create table Kaleo_KaleoTaskAssignment (
 	kaleoDefinitionId LONG,
 	kaleoNodeId LONG,
 	kaleoTaskId LONG,
-	assigneeClassName VARCHAR(75) null,
+	assigneeClassName VARCHAR(200) null,
 	assigneeClassPK LONG,
 	defaultAssignment BOOLEAN
 );
@@ -143,10 +143,10 @@ create table Kaleo_KaleoTaskInstanceAssignment (
 	modifiedDate DATE null,
 	kaleoTaskInstanceTokenId LONG,
 	kaleoTaskId LONG,
-	assigneeClassName VARCHAR(75) null,
+	assigneeClassName VARCHAR(200) null,
 	assigneeClassPK LONG,
 	completionDate DATE null,
-	context VARCHAR(75) null
+	context TEXT null
 );
 
 create table Kaleo_KaleoTaskInstanceToken (
@@ -162,7 +162,7 @@ create table Kaleo_KaleoTaskInstanceToken (
 	completionUserId LONG,
 	completionDate DATE null,
 	dueDate DATE null,
-	context VARCHAR(75) null
+	context TEXT null
 );
 
 create table Kaleo_KaleoTransition (
@@ -174,11 +174,11 @@ create table Kaleo_KaleoTransition (
 	modifiedDate DATE null,
 	kaleoDefinitionId LONG,
 	kaleoNodeId LONG,
-	name VARCHAR(75) null,
-	description VARCHAR(75) null,
+	name VARCHAR(200) null,
+	description VARCHAR(2000) null,
 	sourceKaleoNodeId LONG,
-	sourceKaleoNodeName VARCHAR(75) null,
+	sourceKaleoNodeName VARCHAR(200) null,
 	targetKaleoNodeId LONG,
-	targetKaleoNodeName VARCHAR(75) null,
+	targetKaleoNodeName VARCHAR(200) null,
 	defaultTransition BOOLEAN
 );
