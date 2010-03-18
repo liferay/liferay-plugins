@@ -19,7 +19,7 @@
 		<field name="description" type="String" />
 		<field name="language" type="String" />
 		<field name="script" type="String">
-			<hint name="max-length">2000000</hint>
+			<hint-collection name="CLOB" />
 		</field>
 		<field name="executionType" type="String" />
 		<field name="executionOrder" type="int" />
@@ -60,7 +60,7 @@
 		<field name="classPK" type="long" />
 		<field name="completionDate" type="Date" />
 		<field name="context" type="String">
-			<hint name="max-length">2000000</hint>
+			<hint-collection name="CLOB" />
 		</field>
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken">
@@ -117,7 +117,7 @@
 		<field name="endDate" type="Date" />
 		<field name="duration" type="long" />
 		<field name="context" type="String">
-			<hint name="max-length">2000000</hint>
+			<hint-collection name="CLOB" />
 		</field>
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoNode">
@@ -185,7 +185,7 @@
 		<field name="assigneeClassPK" type="long" />
 		<field name="completionDate" type="Date" />
 		<field name="context" type="String">
-			<hint name="max-length">2000000</hint>
+			<hint-collection name="CLOB" />
 		</field>
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken">
@@ -202,7 +202,7 @@
 		<field name="completionDate" type="Date" />
 		<field name="dueDate" type="Date" />
 		<field name="context" type="String">
-			<hint name="max-length">2000000</hint>
+			<hint-collection name="CLOB" />
 		</field>
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTransition">

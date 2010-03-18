@@ -25,9 +25,9 @@ import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 public class WorkflowDefinitionAdapter extends DefaultWorkflowDefinition {
 
 	public WorkflowDefinitionAdapter(KaleoDefinition kaleoDefinition) {
+		setActive(kaleoDefinition.getActive());
 		setName(kaleoDefinition.getName());
 		setVersion(kaleoDefinition.getVersion());
-		setActive(kaleoDefinition.getActive());
 	}
 
 }
