@@ -273,7 +273,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 
 		kaleoLog.setCompanyId(user.getCompanyId());
 		kaleoLog.setUserId(user.getUserId());
-		kaleoLog.setUserName(user.getFullName());
+		kaleoLog.setUserName(user.getScreenName());
 		kaleoLog.setCreateDate(now);
 		kaleoLog.setModifiedDate(now);
 		kaleoLog.setKaleoInstanceId(kaleoInstanceToken.getKaleoInstanceId());

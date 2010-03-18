@@ -58,7 +58,7 @@ public class KaleoTaskInstanceAssignmentLocalServiceImpl
 
 		kaleoTaskInstanceAssignment.setCompanyId(user.getCompanyId());
 		kaleoTaskInstanceAssignment.setUserId(user.getUserId());
-		kaleoTaskInstanceAssignment.setUserName(user.getFullName());
+		kaleoTaskInstanceAssignment.setUserName(user.getScreenName());
 		kaleoTaskInstanceAssignment.setCreateDate(now);
 		kaleoTaskInstanceAssignment.setModifiedDate(now);
 		kaleoTaskInstanceAssignment.setKaleoTaskInstanceTokenId(

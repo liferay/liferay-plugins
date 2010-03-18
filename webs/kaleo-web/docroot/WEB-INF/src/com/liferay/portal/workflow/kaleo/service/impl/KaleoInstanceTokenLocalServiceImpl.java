@@ -57,7 +57,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 
 		kaleoInstanceToken.setCompanyId(user.getCompanyId());
 		kaleoInstanceToken.setUserId(user.getUserId());
-		kaleoInstanceToken.setUserName(user.getFullName());
+		kaleoInstanceToken.setUserName(user.getScreenName());
 		kaleoInstanceToken.setCreateDate(now);
 		kaleoInstanceToken.setModifiedDate(now);
 		kaleoInstanceToken.setKaleoInstanceId(
@@ -152,7 +152,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 
 		kaleoInstanceToken.setCompanyId(user.getCompanyId());
 		kaleoInstanceToken.setUserId(user.getUserId());
-		kaleoInstanceToken.setUserName(user.getFullName());
+		kaleoInstanceToken.setUserName(user.getScreenName());
 		kaleoInstanceToken.setCreateDate(now);
 		kaleoInstanceToken.setModifiedDate(now);
 		kaleoInstanceToken.setKaleoInstanceId(

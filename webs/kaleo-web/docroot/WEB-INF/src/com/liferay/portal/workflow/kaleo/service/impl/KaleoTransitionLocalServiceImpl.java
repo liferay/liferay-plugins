@@ -52,7 +52,7 @@ public class KaleoTransitionLocalServiceImpl
 
 		kaleoTransition.setCompanyId(user.getCompanyId());
 		kaleoTransition.setUserId(user.getUserId());
-		kaleoTransition.setUserName(user.getFullName());
+		kaleoTransition.setUserName(user.getScreenName());
 		kaleoTransition.setCreateDate(now);
 		kaleoTransition.setModifiedDate(now);
 		kaleoTransition.setKaleoDefinitionId(kaleoDefinitionId);

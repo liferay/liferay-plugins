@@ -48,7 +48,7 @@ public class KaleoActionLocalServiceImpl
 
 		kaleoAction.setCompanyId(user.getCompanyId());
 		kaleoAction.setUserId(user.getUserId());
-		kaleoAction.setUserName(user.getFullName());
+		kaleoAction.setUserName(user.getScreenName());
 		kaleoAction.setCreateDate(now);
 		kaleoAction.setModifiedDate(now);
 		kaleoAction.setKaleoDefinitionId(kaleoDefinitionId);

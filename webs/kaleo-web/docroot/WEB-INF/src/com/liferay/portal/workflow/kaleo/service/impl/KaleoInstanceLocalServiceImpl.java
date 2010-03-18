@@ -59,7 +59,7 @@ public class KaleoInstanceLocalServiceImpl
 
 		kaleoInstance.setCompanyId(user.getCompanyId());
 		kaleoInstance.setUserId(user.getUserId());
-		kaleoInstance.setUserName(user.getFullName());
+		kaleoInstance.setUserName(user.getScreenName());
 		kaleoInstance.setCreateDate(now);
 		kaleoInstance.setModifiedDate(now);
 		kaleoInstance.setKaleoDefinitionId(kaleoDefinitionId);
