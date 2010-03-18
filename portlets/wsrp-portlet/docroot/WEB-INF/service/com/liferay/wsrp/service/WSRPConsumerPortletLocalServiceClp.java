@@ -508,7 +508,8 @@ public class WSRPConsumerPortletLocalServiceClp
 		return (com.liferay.wsrp.model.WSRPConsumerPortlet)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public boolean hasWSRPConsumerPortlet(java.lang.String portletHandle)
+	public com.liferay.wsrp.model.WSRPConsumerPortlet getWSRPConsumerPortlet(
+		java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(portletHandle);
@@ -520,7 +521,7 @@ public class WSRPConsumerPortletLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("hasWSRPConsumerPortlet",
+			returnObj = _classLoaderProxy.invoke("getWSRPConsumerPortlet",
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
@@ -541,7 +542,7 @@ public class WSRPConsumerPortletLocalServiceClp
 			}
 		}
 
-		return ((Boolean)returnObj).booleanValue();
+		return (com.liferay.wsrp.model.WSRPConsumerPortlet)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void deleteWSRPConsumerPortlets(long wsrpConsumerId)

@@ -118,26 +118,6 @@ public class WSRPConsumerPortletUtil {
 		return getPersistence().fetchByPrimaryKey(wsrpConsumerPortletId);
 	}
 
-	public static com.liferay.wsrp.model.WSRPConsumerPortlet findByPortletHandle(
-		java.lang.String portletHandle)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException {
-		return getPersistence().findByPortletHandle(portletHandle);
-	}
-
-	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByPortletHandle(
-		java.lang.String portletHandle)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPortletHandle(portletHandle);
-	}
-
-	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByPortletHandle(
-		java.lang.String portletHandle, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .fetchByPortletHandle(portletHandle, retrieveFromCache);
-	}
-
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findByWsrpConsumerId(
 		long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -187,6 +167,26 @@ public class WSRPConsumerPortletUtil {
 			wsrpConsumerId, orderByComparator);
 	}
 
+	public static com.liferay.wsrp.model.WSRPConsumerPortlet findByPortletHandle(
+		java.lang.String portletHandle)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.wsrp.NoSuchConsumerPortletException {
+		return getPersistence().findByPortletHandle(portletHandle);
+	}
+
+	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByPortletHandle(
+		java.lang.String portletHandle)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPortletHandle(portletHandle);
+	}
+
+	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByPortletHandle(
+		java.lang.String portletHandle, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByPortletHandle(portletHandle, retrieveFromCache);
+	}
+
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
@@ -205,15 +205,15 @@ public class WSRPConsumerPortletUtil {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
+	public static void removeByWsrpConsumerId(long wsrpConsumerId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByWsrpConsumerId(wsrpConsumerId);
+	}
+
 	public static void removeByPortletHandle(java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.wsrp.NoSuchConsumerPortletException {
 		getPersistence().removeByPortletHandle(portletHandle);
-	}
-
-	public static void removeByWsrpConsumerId(long wsrpConsumerId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByWsrpConsumerId(wsrpConsumerId);
 	}
 
 	public static void removeAll()
@@ -221,14 +221,14 @@ public class WSRPConsumerPortletUtil {
 		getPersistence().removeAll();
 	}
 
-	public static int countByPortletHandle(java.lang.String portletHandle)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByPortletHandle(portletHandle);
-	}
-
 	public static int countByWsrpConsumerId(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByWsrpConsumerId(wsrpConsumerId);
+	}
+
+	public static int countByPortletHandle(java.lang.String portletHandle)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByPortletHandle(portletHandle);
 	}
 
 	public static int countAll()
