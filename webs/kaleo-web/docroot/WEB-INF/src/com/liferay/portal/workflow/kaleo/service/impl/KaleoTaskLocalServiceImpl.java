@@ -50,7 +50,7 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 
 		kaleoTask.setCompanyId(user.getCompanyId());
 		kaleoTask.setUserId(user.getUserId());
-		kaleoTask.setUserName(user.getScreenName());
+		kaleoTask.setUserName(user.getFullName());
 		kaleoTask.setCreateDate(now);
 		kaleoTask.setModifiedDate(now);
 		kaleoTask.setKaleoDefinitionId(kaleoDefinitionId);

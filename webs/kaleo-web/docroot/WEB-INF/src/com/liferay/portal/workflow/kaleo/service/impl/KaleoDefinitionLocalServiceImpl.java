@@ -105,7 +105,7 @@ public class KaleoDefinitionLocalServiceImpl
 
 		kaleoDefinition.setCompanyId(user.getCompanyId());
 		kaleoDefinition.setUserId(user.getUserId());
-		kaleoDefinition.setUserName(user.getScreenName());
+		kaleoDefinition.setUserName(user.getFullName());
 		kaleoDefinition.setCreateDate(now);
 		kaleoDefinition.setModifiedDate(now);
 		kaleoDefinition.setName(name);

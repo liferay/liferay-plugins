@@ -51,7 +51,7 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 
 		kaleoNode.setCompanyId(user.getCompanyId());
 		kaleoNode.setUserId(user.getUserId());
-		kaleoNode.setUserName(user.getScreenName());
+		kaleoNode.setUserName(user.getFullName());
 		kaleoNode.setCreateDate(now);
 		kaleoNode.setModifiedDate(now);
 		kaleoNode.setKaleoDefinitionId(kaleoDefinitionId);
