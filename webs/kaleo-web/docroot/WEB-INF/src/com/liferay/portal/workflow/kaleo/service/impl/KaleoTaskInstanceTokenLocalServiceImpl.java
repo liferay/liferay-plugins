@@ -146,11 +146,9 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("assigneeClassName").eq(
 				Role.class.getName()));
-
-		Long[] roleIdsArray = roleIds.toArray(new Long[roleIds.size()]);
-
 		dynamicQuery.add(
-			PropertyFactoryUtil.forName("assigneeClassPK").in(roleIdsArray));
+			PropertyFactoryUtil.forName("assigneeClassPK").in(
+				roleIds.toArray(new Long[roleIds.size()])));
 
 		addCompletedCriterion(dynamicQuery, completed);
 
@@ -199,8 +197,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			PropertyFactoryUtil.forName("assigneeClassName").eq(
 				assigneeClassName));
 		dynamicQuery.add(
-			PropertyFactoryUtil.forName("assigneeClassPK").eq(
-				assigneeClassPK));
+			PropertyFactoryUtil.forName("assigneeClassPK").eq(assigneeClassPK));
 
 		addCompletedCriterion(dynamicQuery, completed);
 
@@ -240,11 +237,9 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("assigneeClassName").eq(
 				Role.class.getName()));
-
-		Long[] roleIdsArray = roleIds.toArray(new Long[roleIds.size()]);
-
 		dynamicQuery.add(
-			PropertyFactoryUtil.forName("assigneeClassPK").in(roleIdsArray));
+			PropertyFactoryUtil.forName("assigneeClassPK").in(
+				roleIds.toArray(new Long[roleIds.size()])));
 
 		addCompletedCriterion(dynamicQuery, completed);
 
@@ -286,8 +281,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			PropertyFactoryUtil.forName("assigneeClassName").eq(
 				assigneeClassName));
 		dynamicQuery.add(
-			PropertyFactoryUtil.forName("assigneeClassPK").eq(
-				assigneeClassPK));
+			PropertyFactoryUtil.forName("assigneeClassPK").eq(assigneeClassPK));
 
 		addCompletedCriterion(dynamicQuery, completed);
 
