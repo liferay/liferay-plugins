@@ -16,8 +16,6 @@ package com.liferay.sampleexpando.hook.events;
 
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portlet.calendar.model.CalEvent;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
@@ -64,7 +62,5 @@ public class StartupAction extends SimpleAction {
 		catch (Exception e) {
 		}
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(StartupAction.class);
 
 }
