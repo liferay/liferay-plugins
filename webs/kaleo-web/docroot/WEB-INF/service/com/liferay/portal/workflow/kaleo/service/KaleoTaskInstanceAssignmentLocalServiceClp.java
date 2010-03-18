@@ -454,11 +454,17 @@ public class KaleoTaskInstanceAssignmentLocalServiceClp
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment addKaleoTaskInstanceAssignment(
-		long kaleoTaskInstanceTokenId, long kaleoTaskAssignmentId,
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
+		long kaleoTaskAssignmentId,
 		java.util.Map<String, java.io.Serializable> context)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(kaleoTaskInstanceTokenId);
+		Object paramObj0 = ClpSerializer.translateInput(kaleoTaskInstanceToken);
+
+		if (kaleoTaskInstanceToken == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken");
+		}
 
 		Object paramObj1 = new LongWrapper(kaleoTaskAssignmentId);
 

@@ -129,12 +129,13 @@ public class KaleoTaskInstanceAssignmentLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment addKaleoTaskInstanceAssignment(
-		long kaleoTaskInstanceTokenId, long kaleoTaskAssignmentId,
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
+		long kaleoTaskAssignmentId,
 		java.util.Map<String, java.io.Serializable> context)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addKaleoTaskInstanceAssignment(kaleoTaskInstanceTokenId,
+				   .addKaleoTaskInstanceAssignment(kaleoTaskInstanceToken,
 			kaleoTaskAssignmentId, context);
 	}
 

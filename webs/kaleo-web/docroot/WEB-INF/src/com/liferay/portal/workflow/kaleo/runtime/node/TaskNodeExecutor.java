@@ -68,7 +68,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 		KaleoTaskInstanceAssignment kaleoTaskInstanceAssignment =
 			KaleoTaskInstanceAssignmentLocalServiceUtil.
 				addKaleoTaskInstanceAssignment(
-					kaleoTaskInstanceToken.getKaleoInstanceTokenId(),
+					kaleoTaskInstanceToken,
 					kaleoTaskAssignment.getKaleoTaskAssignmentId(), context);
 
 		KaleoLogLocalServiceUtil.addTaskAssignmentKaleoLog(

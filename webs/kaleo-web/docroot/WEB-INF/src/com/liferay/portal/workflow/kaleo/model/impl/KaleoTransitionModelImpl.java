@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -174,7 +175,12 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition> {
 	}
 
 	public String getUserName() {
-		return GetterUtil.getString(_userName);
+		if (_userName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _userName;
+		}
 	}
 
 	public void setUserName(String userName) {
@@ -224,7 +230,12 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition> {
 	}
 
 	public String getName() {
-		return GetterUtil.getString(_name);
+		if (_name == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _name;
+		}
 	}
 
 	public void setName(String name) {
@@ -240,7 +251,12 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition> {
 	}
 
 	public String getDescription() {
-		return GetterUtil.getString(_description);
+		if (_description == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _description;
+		}
 	}
 
 	public void setDescription(String description) {
@@ -256,7 +272,12 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition> {
 	}
 
 	public String getSourceKaleoNodeName() {
-		return GetterUtil.getString(_sourceKaleoNodeName);
+		if (_sourceKaleoNodeName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _sourceKaleoNodeName;
+		}
 	}
 
 	public void setSourceKaleoNodeName(String sourceKaleoNodeName) {
@@ -272,7 +293,12 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition> {
 	}
 
 	public String getTargetKaleoNodeName() {
-		return GetterUtil.getString(_targetKaleoNodeName);
+		if (_targetKaleoNodeName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _targetKaleoNodeName;
+		}
 	}
 
 	public void setTargetKaleoNodeName(String targetKaleoNodeName) {

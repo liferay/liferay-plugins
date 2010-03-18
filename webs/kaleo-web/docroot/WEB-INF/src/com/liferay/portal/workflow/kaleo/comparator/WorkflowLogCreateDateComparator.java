@@ -25,12 +25,12 @@ import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowLogCreateDateCo
 public class WorkflowLogCreateDateComparator
 	extends BaseWorkflowLogCreateDateComparator {
 
-	public static String ORDER_BY_ASC = "createDate ASC, kaleoLogEntryId ASC";
+	public static String ORDER_BY_ASC = "createDate ASC, kaleoLogId ASC";
 
 	public static String ORDER_BY_DESC =
-		"createDate DESC, kaleoLogEntryId DESC";
+		"createDate DESC, kaleoLogId DESC";
 
-	public static String[] ORDER_BY_FIELDS = {"createDate", "kaleoLogEntryId"};
+	public static String[] ORDER_BY_FIELDS = {"createDate", "kaleoLogId"};
 
 	public WorkflowLogCreateDateComparator() {
 		super();

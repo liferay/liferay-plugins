@@ -24,11 +24,11 @@ import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowLogUserIdCompar
 public class WorkflowLogUserIdComparator
 	extends BaseWorkflowLogUserIdComparator {
 
-	public static String ORDER_BY_ASC = "userId ASC, kaleoLogEntryId ASC";
+	public static String ORDER_BY_ASC = "userId ASC, kaleoLogId ASC";
 
-	public static String ORDER_BY_DESC = "userId DESC, kaleoLogEntryId DESC";
+	public static String ORDER_BY_DESC = "userId DESC, kaleoLogId DESC";
 
-	public static String[] ORDER_BY_FIELDS = {"userId", "kaleoLogEntryId"};
+	public static String[] ORDER_BY_FIELDS = {"userId", "kaleoLogId"};
 
 	public WorkflowLogUserIdComparator() {
 		super();

@@ -39,13 +39,10 @@ public class KaleoTaskInstanceAssignmentLocalServiceImpl
 	extends KaleoTaskInstanceAssignmentLocalServiceBaseImpl {
 
 	public KaleoTaskInstanceAssignment addKaleoTaskInstanceAssignment(
-			long kaleoTaskInstanceTokenId, long kaleoTaskAssignmentId,
+			KaleoTaskInstanceToken kaleoTaskInstanceToken, long kaleoTaskAssignmentId,
 			Map<String, Serializable> context)
 		throws PortalException, SystemException {
 
-		KaleoTaskInstanceToken kaleoTaskInstanceToken =
-			kaleoTaskInstanceTokenPersistence.findByPrimaryKey(
-				kaleoTaskInstanceTokenId);
 		KaleoTaskAssignment kaleoTaskAssignment =
 			kaleoTaskAssignmentPersistence.findByPrimaryKey(
 				kaleoTaskAssignmentId);

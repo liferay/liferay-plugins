@@ -78,7 +78,7 @@ public class KaleoInstanceTokenImpl
 		throws PortalException, SystemException {
 
 		return KaleoInstanceTokenLocalServiceUtil.getKaleoInstanceToken(
-			getKaleoInstanceTokenId());
+			getParentKaleoInstanceTokenId());
 	}
 
 	public boolean hasIncompleteChildrenKaleoInstanceToken()

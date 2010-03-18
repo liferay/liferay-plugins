@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -173,7 +174,12 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 	}
 
 	public String getUserName() {
-		return GetterUtil.getString(_userName);
+		if (_userName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _userName;
+		}
 	}
 
 	public void setUserName(String userName) {
@@ -213,7 +219,12 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 	}
 
 	public String getKaleoNodeName() {
-		return GetterUtil.getString(_kaleoNodeName);
+		if (_kaleoNodeName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _kaleoNodeName;
+		}
 	}
 
 	public void setKaleoNodeName(String kaleoNodeName) {
@@ -221,7 +232,12 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 	}
 
 	public String getName() {
-		return GetterUtil.getString(_name);
+		if (_name == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _name;
+		}
 	}
 
 	public void setName(String name) {
@@ -229,7 +245,12 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 	}
 
 	public String getDescription() {
-		return GetterUtil.getString(_description);
+		if (_description == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _description;
+		}
 	}
 
 	public void setDescription(String description) {
@@ -237,7 +258,12 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 	}
 
 	public String getLanguage() {
-		return GetterUtil.getString(_language);
+		if (_language == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _language;
+		}
 	}
 
 	public void setLanguage(String language) {
@@ -245,7 +271,12 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 	}
 
 	public String getScript() {
-		return GetterUtil.getString(_script);
+		if (_script == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _script;
+		}
 	}
 
 	public void setScript(String script) {
@@ -253,7 +284,12 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 	}
 
 	public String getExecutionType() {
-		return GetterUtil.getString(_executionType);
+		if (_executionType == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _executionType;
+		}
 	}
 
 	public void setExecutionType(String executionType) {

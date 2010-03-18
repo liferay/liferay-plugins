@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -197,7 +198,12 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 	}
 
 	public String getUserName() {
-		return GetterUtil.getString(_userName);
+		if (_userName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _userName;
+		}
 	}
 
 	public void setUserName(String userName) {
@@ -253,7 +259,12 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 	}
 
 	public String getKaleoNodeName() {
-		return GetterUtil.getString(_kaleoNodeName);
+		if (_kaleoNodeName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _kaleoNodeName;
+		}
 	}
 
 	public void setKaleoNodeName(String kaleoNodeName) {
@@ -281,7 +292,12 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 	}
 
 	public String getKaleoActionName() {
-		return GetterUtil.getString(_kaleoActionName);
+		if (_kaleoActionName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _kaleoActionName;
+		}
 	}
 
 	public void setKaleoActionName(String kaleoActionName) {
@@ -289,7 +305,12 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 	}
 
 	public String getKaleoActionDescription() {
-		return GetterUtil.getString(_kaleoActionDescription);
+		if (_kaleoActionDescription == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _kaleoActionDescription;
+		}
 	}
 
 	public void setKaleoActionDescription(String kaleoActionDescription) {
@@ -305,7 +326,12 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 	}
 
 	public String getPreviousKaleoNodeName() {
-		return GetterUtil.getString(_previousKaleoNodeName);
+		if (_previousKaleoNodeName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _previousKaleoNodeName;
+		}
 	}
 
 	public void setPreviousKaleoNodeName(String previousKaleoNodeName) {
@@ -313,7 +339,12 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 	}
 
 	public String getPreviousAssigneeClassName() {
-		return GetterUtil.getString(_previousAssigneeClassName);
+		if (_previousAssigneeClassName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _previousAssigneeClassName;
+		}
 	}
 
 	public void setPreviousAssigneeClassName(String previousAssigneeClassName) {
@@ -329,7 +360,12 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 	}
 
 	public String getCurrentAssigneeClassName() {
-		return GetterUtil.getString(_currentAssigneeClassName);
+		if (_currentAssigneeClassName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _currentAssigneeClassName;
+		}
 	}
 
 	public void setCurrentAssigneeClassName(String currentAssigneeClassName) {
@@ -345,7 +381,12 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 	}
 
 	public String getType() {
-		return GetterUtil.getString(_type);
+		if (_type == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _type;
+		}
 	}
 
 	public void setType(String type) {
@@ -353,7 +394,12 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 	}
 
 	public String getComment() {
-		return GetterUtil.getString(_comment);
+		if (_comment == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _comment;
+		}
 	}
 
 	public void setComment(String comment) {
@@ -385,7 +431,12 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 	}
 
 	public String getContext() {
-		return GetterUtil.getString(_context);
+		if (_context == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _context;
+		}
 	}
 
 	public void setContext(String context) {

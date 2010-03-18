@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -171,7 +172,12 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 	}
 
 	public String getUserName() {
-		return GetterUtil.getString(_userName);
+		if (_userName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _userName;
+		}
 	}
 
 	public void setUserName(String userName) {
@@ -203,7 +209,12 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 	}
 
 	public String getKaleoDefinitionName() {
-		return GetterUtil.getString(_kaleoDefinitionName);
+		if (_kaleoDefinitionName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _kaleoDefinitionName;
+		}
 	}
 
 	public void setKaleoDefinitionName(String kaleoDefinitionName) {
@@ -227,7 +238,12 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 	}
 
 	public String getClassName() {
-		return GetterUtil.getString(_className);
+		if (_className == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _className;
+		}
 	}
 
 	public void setClassName(String className) {
@@ -251,7 +267,12 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 	}
 
 	public String getContext() {
-		return GetterUtil.getString(_context);
+		if (_context == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _context;
+		}
 	}
 
 	public void setContext(String context) {
