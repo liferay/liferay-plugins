@@ -17,12 +17,16 @@
  */
 %>
 
+<%@ include file="/html/portlet/blogs/init.jsp" %>
+
 <%
+BlogsEntry entry = (BlogsEntry)request.getAttribute("view_entry_content.jsp-entry");
+
 User entryUser = UserLocalServiceUtil.getUser(entry.getUserId());
 %>
 
 <div id="<portlet:namespace />entry_<%= entry.getEntryId() %>">
-	<%@ include file="/html/portlet/blogs/view_entry_content.portal.jspf" %>
+	<liferay-util:include page="/html/portlet/blogs/view_entry_content.portal.jsp" />
 </div>
 
 <c:if test="<%= Validator.isNotNull(entryUser.getDisplayURL(themeDisplay)) %>">
