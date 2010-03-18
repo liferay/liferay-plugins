@@ -73,6 +73,21 @@ public class WSRPProducerLocalServiceUtil {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
+	public static java.util.List<Object> dynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
+	}
+
+	public static int dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().dynamicQueryCount(dynamicQuery);
+	}
+
 	public static com.liferay.wsrp.model.WSRPProducer getWSRPProducer(
 		long wsrpProducerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -104,11 +119,10 @@ public class WSRPProducerLocalServiceUtil {
 	}
 
 	public static com.liferay.wsrp.model.WSRPProducer addWSRPProducer(
-		long companyId, long userId, java.lang.String name,
-		java.lang.String portletIds)
+		long userId, java.lang.String name, java.lang.String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addWSRPProducer(companyId, userId, name, portletIds);
+		return getService().addWSRPProducer(userId, name, portletIds);
 	}
 
 	public static java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducers(

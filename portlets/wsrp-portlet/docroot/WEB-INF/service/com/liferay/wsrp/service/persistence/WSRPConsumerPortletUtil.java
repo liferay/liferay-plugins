@@ -152,36 +152,39 @@ public class WSRPConsumerPortletUtil {
 
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findByWsrpConsumerId(
 		long wsrpConsumerId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByWsrpConsumerId(wsrpConsumerId, start, end, obc);
+				   .findByWsrpConsumerId(wsrpConsumerId, start, end,
+			orderByComparator);
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet findByWsrpConsumerId_First(
 		long wsrpConsumerId,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.wsrp.NoSuchConsumerPortletException {
-		return getPersistence().findByWsrpConsumerId_First(wsrpConsumerId, obc);
+		return getPersistence()
+				   .findByWsrpConsumerId_First(wsrpConsumerId, orderByComparator);
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet findByWsrpConsumerId_Last(
 		long wsrpConsumerId,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.wsrp.NoSuchConsumerPortletException {
-		return getPersistence().findByWsrpConsumerId_Last(wsrpConsumerId, obc);
+		return getPersistence()
+				   .findByWsrpConsumerId_Last(wsrpConsumerId, orderByComparator);
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet[] findByWsrpConsumerId_PrevAndNext(
 		long wsrpConsumerPortletId, long wsrpConsumerId,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.wsrp.NoSuchConsumerPortletException {
 		return getPersistence()
 				   .findByWsrpConsumerId_PrevAndNext(wsrpConsumerPortletId,
-			wsrpConsumerId, obc);
+			wsrpConsumerId, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findAll()
@@ -196,9 +199,10 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findAll(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findAll(start, end, obc);
+		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	public static void removeByPortletHandle(java.lang.String portletHandle)

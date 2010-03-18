@@ -72,6 +72,21 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 		return _wsrpProducerLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
+	public java.util.List<Object> dynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _wsrpProducerLocalService.dynamicQuery(dynamicQuery, start, end,
+			orderByComparator);
+	}
+
+	public int dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _wsrpProducerLocalService.dynamicQueryCount(dynamicQuery);
+	}
+
 	public com.liferay.wsrp.model.WSRPProducer getWSRPProducer(
 		long wsrpProducerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -102,12 +117,12 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 		return _wsrpProducerLocalService.updateWSRPProducer(wsrpProducer, merge);
 	}
 
-	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long companyId,
-		long userId, java.lang.String name, java.lang.String portletIds)
+	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
+		java.lang.String name, java.lang.String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _wsrpProducerLocalService.addWSRPProducer(companyId, userId,
-			name, portletIds);
+		return _wsrpProducerLocalService.addWSRPProducer(userId, name,
+			portletIds);
 	}
 
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducers(

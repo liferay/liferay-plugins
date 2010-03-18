@@ -70,6 +70,16 @@ public interface WSRPProducerLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
+	public java.util.List<Object> dynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPProducer getWSRPProducer(
 		long wsrpProducerId)
@@ -93,8 +103,8 @@ public interface WSRPProducerLocalService {
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long companyId,
-		long userId, java.lang.String name, java.lang.String portletIds)
+	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
+		java.lang.String name, java.lang.String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
