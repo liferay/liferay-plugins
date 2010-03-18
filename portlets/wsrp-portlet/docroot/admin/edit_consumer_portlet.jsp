@@ -85,13 +85,16 @@ PortletDescription[] portletDescriptions = serviceDescription.getOfferedPortlets
 
 				<%
 				for (PortletDescription portletDescription : portletDescriptions) {
+					try {
+						WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(portletDescription.getPortletHandle());
+					}
+					catch (NoSuchConsumerPortletException nscpe) {
 				%>
 
-					<c:if test="<%= !WSRPConsumerPortletLocalServiceUtil.hasWSRPConsumerPortlet(portletDescription.getPortletHandle()) %>">
 						<option <%= portletHandle.equals(portletDescription.getPortletHandle()) ? "selected" : "" %> value="<%= portletDescription.getPortletHandle() %>"><%= wsrpConsumerManager.getDisplayName(portletDescription) %></option>
-					</c:if>
 
 				<%
+					}
 				}
 				%>
 

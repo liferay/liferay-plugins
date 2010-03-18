@@ -100,11 +100,11 @@ public class WSRPConsumerPortletLocalServiceImpl
 		return wsrpConsumerPortlet;
 	}
 
-	public boolean hasWSRPConsumerPortlet(String portletHandle)
+	public WSRPConsumerPortlet getWSRPConsumerPortlet(String portletHandle)
 		throws PortalException, SystemException {
 
-		return wsrpConsumerPortletPersistence.fetchByPortletHandle(
-			portletHandle) != null;
+		return wsrpConsumerPortletPersistence.findByPortletHandle(
+			portletHandle);
 	}
 
 	public void deleteWSRPConsumerPortlet(long wsrpConsumerPortletId)
