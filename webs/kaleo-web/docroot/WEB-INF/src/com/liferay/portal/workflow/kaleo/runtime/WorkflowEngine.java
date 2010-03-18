@@ -38,7 +38,7 @@ public interface WorkflowEngine {
 		throws WorkflowException;
 
 	public WorkflowDefinition deployWorkflowDefinition(
-			String name, InputStream inputStream, ServiceContext serviceContext)
+			InputStream inputStream, ServiceContext serviceContext)
 		throws WorkflowException;
 
 	public List<String> getNextTransitionNames(

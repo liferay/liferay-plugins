@@ -66,13 +66,11 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 		isolation = Isolation.PORTAL,
 		rollbackFor = {PortalException.class, SystemException.class})
 	public WorkflowDefinition deployWorkflowDefinition(
-			String name, InputStream inputStream, ServiceContext serviceContext)
+			InputStream inputStream, ServiceContext serviceContext)
 		throws WorkflowException {
 
 		try {
 			Definition definition = _workflowModelParser.parse(inputStream);
-
-			definition.setName(name);
 
 			if (_workflowValidator != null) {
 				_workflowValidator.validate(definition);

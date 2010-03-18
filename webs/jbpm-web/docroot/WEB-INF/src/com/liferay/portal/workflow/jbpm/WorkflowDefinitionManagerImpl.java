@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.jbpm;
 
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.RequiredWorkflowDefinitionException;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowDefinitionFileException;
@@ -52,7 +51,7 @@ public class WorkflowDefinitionManagerImpl
 	implements WorkflowDefinitionManager {
 
 	public WorkflowDefinition deployWorkflowDefinition(
-			long companyId, long userId, String name, InputStream inputStream)
+			long companyId, long userId, InputStream inputStream)
 		throws WorkflowException {
 
 		ProcessDefinition processDefinition = null;
@@ -76,10 +75,6 @@ public class WorkflowDefinitionManagerImpl
 			}
 			catch (IOException ioe) {
 			}
-		}
-
-		if (Validator.isNotNull(name)) {
-			processDefinition.setName(name);
 		}
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
