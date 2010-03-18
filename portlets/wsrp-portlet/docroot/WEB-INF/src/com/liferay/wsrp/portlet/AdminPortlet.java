@@ -285,8 +285,7 @@ public class AdminPortlet extends MVCPortlet {
 
 		if (wsrpProducerId <= 0) {
 			WSRPProducerLocalServiceUtil.addWSRPProducer(
-				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-				name, portletIds);
+				themeDisplay.getUserId(), name, portletIds);
 		}
 		else {
 			WSRPProducerLocalServiceUtil.updateWSRPProducer(

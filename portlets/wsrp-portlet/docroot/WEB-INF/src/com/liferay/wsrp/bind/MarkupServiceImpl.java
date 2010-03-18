@@ -511,7 +511,8 @@ public class MarkupServiceImpl
 		throws Exception {
 
 		Group group = GroupLocalServiceUtil.getGroup(
-			wsrpProducer.getCompanyId(), WSRPProducerLocalServiceImpl.WSRP);
+			wsrpProducer.getCompanyId(),
+			WSRPProducerLocalServiceImpl.WSRP_GROUP_NAME);
 
 		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
 			group.getGroupId(), false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
