@@ -27,7 +27,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 	<c:when test="<%= row == null %>">
 
 		<%
-		String randomNamespace = DeterminateKeyGenerator.generate("portlet_document_library_folder_action") + StringPool.UNDERLINE;
+		String randomNamespace = PortalUtil.generateRandomKey(request, "portlet_document_library_folder_action") + StringPool.UNDERLINE;
 
 		DLFolder folder = (DLFolder)request.getAttribute("view.jsp-folder");
 
