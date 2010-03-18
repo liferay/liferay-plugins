@@ -12,8 +12,10 @@
  * details.
  */
 
-package com.liferay.sample.expando.hook.events;
+package com.liferay.sampleexpando.hook.events;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.events.ActionException;
@@ -35,7 +37,6 @@ import com.liferay.portlet.expando.model.ExpandoTableConstants;
  * <a href="StartupAction.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class StartupAction extends SimpleAction {
 
@@ -49,48 +50,28 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected void doRun(long companyId) throws Exception {
-		
-		String className = StringPool.BLANK;
-		String newFieldName = StringPool.BLANK;
-		int newFieldType = 0;
-
-		className = CalEvent.class.getName();
-		newFieldName = "URL";
-		newFieldType = ExpandoColumnConstants.STRING;
-
-		createNewField(
-			className, newFieldName, newFieldType, companyId);
-
-		System.out.println("Confirmed the creation of the field " +
-			newFieldName + " for the entity "+ className);
-	}
-
-	private void createNewField(
-		String entityName, String newFieldName,	int newFieldType,
-		long companyId) throws SystemException{
-
-		ExpandoTable table = null;
+		ExpandoTable expandoTable = null;
 
 		try {
-			table = ExpandoTableLocalServiceUtil.addTable(
-				entityName, ExpandoTableConstants.DEFAULT_TABLE_NAME);
+			expandoTable = ExpandoTableLocalServiceUtil.addTable(
+				CalEvent.class.getName(),
+				ExpandoTableConstants.DEFAULT_TABLE_NAME);
 		}
-		catch (Exception dtne) {
-			try{
-
-				table = ExpandoTableLocalServiceUtil.getTable(
-					entityName, ExpandoTableConstants.DEFAULT_TABLE_NAME);
-			} catch (Exception e){
-			}
+		catch (Exception e) {
+			expandoTable = ExpandoTableLocalServiceUtil.getTable(
+				CalEvent.class.getName(),
+				ExpandoTableConstants.DEFAULT_TABLE_NAME);
 		}
 		
 		try {
 			ExpandoColumnLocalServiceUtil.addColumn(
-				table.getTableId(),
-				newFieldName,
-				newFieldType);
+				expandoTable.getTableId(), "sampleColumn",
+				ExpandoColumnConstants.STRING);
 		}
-		catch (Exception dcne) {
+		catch (Exception e) {
 		}
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(StartupAction.class);
+
 }
