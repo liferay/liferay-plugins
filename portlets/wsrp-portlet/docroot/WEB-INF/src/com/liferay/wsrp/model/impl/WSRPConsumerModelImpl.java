@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -160,7 +161,12 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer> {
 	}
 
 	public String getName() {
-		return GetterUtil.getString(_name);
+		if (_name == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _name;
+		}
 	}
 
 	public void setName(String name) {
@@ -168,7 +174,12 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer> {
 	}
 
 	public String getUrl() {
-		return GetterUtil.getString(_url);
+		if (_url == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _url;
+		}
 	}
 
 	public void setUrl(String url) {
@@ -176,7 +187,12 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer> {
 	}
 
 	public String getWsdl() {
-		return GetterUtil.getString(_wsdl);
+		if (_wsdl == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _wsdl;
+		}
 	}
 
 	public void setWsdl(String wsdl) {
@@ -184,7 +200,12 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer> {
 	}
 
 	public String getRegistrationContextString() {
-		return GetterUtil.getString(_registrationContextString);
+		if (_registrationContextString == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _registrationContextString;
+		}
 	}
 
 	public void setRegistrationContextString(String registrationContextString) {
@@ -192,7 +213,12 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer> {
 	}
 
 	public String getRegistrationPropertiesString() {
-		return GetterUtil.getString(_registrationPropertiesString);
+		if (_registrationPropertiesString == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _registrationPropertiesString;
+		}
 	}
 
 	public void setRegistrationPropertiesString(

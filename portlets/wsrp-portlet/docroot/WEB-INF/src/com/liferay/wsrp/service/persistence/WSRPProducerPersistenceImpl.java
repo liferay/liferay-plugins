@@ -34,6 +34,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
+import com.liferay.portal.service.persistence.ResourcePersistence;
+import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.wsrp.NoSuchProducerException;
@@ -741,16 +743,16 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		}
 	}
 
-	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPConsumerPersistence")
-	protected com.liferay.wsrp.service.persistence.WSRPConsumerPersistence wsrpConsumerPersistence;
-	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPConsumerPortletPersistence")
-	protected com.liferay.wsrp.service.persistence.WSRPConsumerPortletPersistence wsrpConsumerPortletPersistence;
-	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPProducerPersistence")
-	protected com.liferay.wsrp.service.persistence.WSRPProducerPersistence wsrpProducerPersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
-	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
-	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
+	@BeanReference(type = WSRPConsumerPersistence.class)
+	protected WSRPConsumerPersistence wsrpConsumerPersistence;
+	@BeanReference(type = WSRPConsumerPortletPersistence.class)
+	protected WSRPConsumerPortletPersistence wsrpConsumerPortletPersistence;
+	@BeanReference(type = WSRPProducerPersistence.class)
+	protected WSRPProducerPersistence wsrpProducerPersistence;
+	@BeanReference(type = ResourcePersistence.class)
+	protected ResourcePersistence resourcePersistence;
+	@BeanReference(type = UserPersistence.class)
+	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_WSRPPRODUCER = "SELECT wsrpProducer FROM WSRPProducer wsrpProducer";
 	private static final String _SQL_SELECT_WSRPPRODUCER_WHERE = "SELECT wsrpProducer FROM WSRPProducer wsrpProducer WHERE ";
 	private static final String _SQL_COUNT_WSRPPRODUCER = "SELECT COUNT(wsrpProducer) FROM WSRPProducer wsrpProducer";

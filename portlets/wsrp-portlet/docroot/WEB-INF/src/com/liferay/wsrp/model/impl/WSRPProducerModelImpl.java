@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -154,7 +155,12 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	}
 
 	public String getName() {
-		return GetterUtil.getString(_name);
+		if (_name == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _name;
+		}
 	}
 
 	public void setName(String name) {
@@ -162,7 +168,12 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	}
 
 	public String getPortletIds() {
-		return GetterUtil.getString(_portletIds);
+		if (_portletIds == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _portletIds;
+		}
 	}
 
 	public void setPortletIds(String portletIds) {

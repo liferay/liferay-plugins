@@ -253,32 +253,32 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(name = "com.liferay.wsrp.service.WSRPConsumerLocalService")
+	@BeanReference(type = WSRPConsumerLocalService.class)
 	protected WSRPConsumerLocalService wsrpConsumerLocalService;
-	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPConsumerPersistence")
+	@BeanReference(type = WSRPConsumerPersistence.class)
 	protected WSRPConsumerPersistence wsrpConsumerPersistence;
-	@BeanReference(name = "com.liferay.wsrp.service.WSRPConsumerPortletLocalService")
+	@BeanReference(type = WSRPConsumerPortletLocalService.class)
 	protected WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService;
-	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPConsumerPortletPersistence")
+	@BeanReference(type = WSRPConsumerPortletPersistence.class)
 	protected WSRPConsumerPortletPersistence wsrpConsumerPortletPersistence;
-	@BeanReference(name = "com.liferay.wsrp.service.WSRPProducerLocalService")
+	@BeanReference(type = WSRPProducerLocalService.class)
 	protected WSRPProducerLocalService wsrpProducerLocalService;
-	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPProducerPersistence")
+	@BeanReference(type = WSRPProducerPersistence.class)
 	protected WSRPProducerPersistence wsrpProducerPersistence;
-	@BeanReference(name = "com.liferay.counter.service.CounterLocalService")
+	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
-	@BeanReference(name = "com.liferay.counter.service.CounterService")
+	@BeanReference(type = CounterService.class)
 	protected CounterService counterService;
-	@BeanReference(name = "com.liferay.portal.service.ResourceLocalService")
+	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(name = "com.liferay.portal.service.ResourceService")
+	@BeanReference(type = ResourceService.class)
 	protected ResourceService resourceService;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
+	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.UserLocalService")
+	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
-	@BeanReference(name = "com.liferay.portal.service.UserService")
+	@BeanReference(type = UserService.class)
 	protected UserService userService;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
+	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 }
