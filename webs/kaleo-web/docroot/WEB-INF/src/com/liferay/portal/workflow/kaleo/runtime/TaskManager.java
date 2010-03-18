@@ -20,6 +20,7 @@ import com.liferay.portal.service.ServiceContext;
 
 import java.io.Serializable;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -34,14 +35,30 @@ public interface TaskManager {
 			Map<String, Serializable> context, ServiceContext serviceContext)
 		throws WorkflowException;
 
+	public WorkflowTask assignWorkflowTaskToRole(
+			long workflowTaskId, long roleId, String comment, Date dueDate,
+			Map<String, Serializable> context, ServiceContext serviceContext)
+		throws WorkflowException;
+
 	public WorkflowTask assignWorkflowTaskToUser(
 			long workflowTaskId, long assigneeUserId, String comment,
 			Map<String, Serializable> context, ServiceContext serviceContext)
 		throws WorkflowException;
 
+	public WorkflowTask assignWorkflowTaskToUser(
+			long workflowTaskId, long assigneeUserId, String comment,
+			Date dueDate, Map<String, Serializable> context,
+			ServiceContext serviceContext)
+		throws WorkflowException;
+
 	public WorkflowTask completeWorkflowTask(
 			long workflowTaskId, String transitionName, String comment,
 			Map<String, Serializable> context, ServiceContext serviceContext)
+		throws WorkflowException;
+
+	public WorkflowTask updateDueDate(
+			long workflowTaskId, String comment, Date dueDate,
+			ServiceContext serviceContext)
 		throws WorkflowException;
 
 }

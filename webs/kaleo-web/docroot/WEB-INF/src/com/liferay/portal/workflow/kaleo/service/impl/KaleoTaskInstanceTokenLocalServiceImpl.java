@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.CalendarFactoryUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
@@ -32,6 +34,7 @@ import com.liferay.portal.workflow.kaleo.util.ContextUtil;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -289,6 +292,33 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		addCompletedCriterion(dynamicQuery, completed);
 
 		return dynamicQueryCount(dynamicQuery);
+	}
+
+	public KaleoTaskInstanceToken updateDueDate(
+			long kaleoTaskInstanceTokenId, Date dueDate,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		KaleoTaskInstanceToken kaleoTaskInstance =
+			kaleoTaskInstanceTokenPersistence.fetchByPrimaryKey(
+				kaleoTaskInstanceTokenId);
+
+		if (dueDate != null) {
+			Calendar cal = CalendarFactoryUtil.getCalendar(
+				LocaleUtil.getDefault());
+			cal.setTime(dueDate);
+
+			kaleoTaskInstance.setDueDate(cal.getTime());
+		}
+
+		kaleoTaskInstance.setModifiedDate(new Date());
+		kaleoTaskInstance.setUserId(serviceContext.getUserId());
+
+		kaleoTaskInstanceTokenPersistence.update(
+			kaleoTaskInstance, false);
+
+		return kaleoTaskInstance;
+
 	}
 
 	protected void addCompletedCriterion(

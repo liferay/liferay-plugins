@@ -976,6 +976,53 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken updateDueDate(
+		long kaleoTaskInstanceTokenId, java.util.Date dueDate,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(kaleoTaskInstanceTokenId);
+
+		Object paramObj1 = ClpSerializer.translateInput(dueDate);
+
+		if (dueDate == null) {
+			paramObj1 = new NullWrapper("java.util.Date");
+		}
+
+		Object paramObj2 = ClpSerializer.translateInput(serviceContext);
+
+		if (serviceContext == null) {
+			paramObj2 = new NullWrapper(
+					"com.liferay.portal.service.ServiceContext");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateDueDate",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}

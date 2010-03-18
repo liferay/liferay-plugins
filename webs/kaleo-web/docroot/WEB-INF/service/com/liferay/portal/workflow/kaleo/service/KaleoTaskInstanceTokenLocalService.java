@@ -174,4 +174,10 @@ public interface KaleoTaskInstanceTokenLocalService {
 		java.lang.Boolean completed,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken updateDueDate(
+		long kaleoTaskInstanceTokenId, java.util.Date dueDate,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

@@ -41,6 +41,7 @@ import com.liferay.portal.workflow.kaleo.util.ContextUtil;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -58,18 +59,42 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			long roleId, String comment, Map<String, Serializable> context)
 		throws WorkflowException {
 
+		return assignWorkflowTaskToRole(
+			companyId, userId, workflowTaskInstanceId, roleId,
+			comment, null, context);
+	}
+
+	public WorkflowTask assignWorkflowTaskToRole(
+			long companyId, long userId, long workflowTaskInstanceId,
+			long roleId, String comment, Date dueDate,
+			Map<String, Serializable> context)
+		throws WorkflowException {
+
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setCompanyId(companyId);
 		serviceContext.setUserId(userId);
 
 		return _taskManager.assignWorkflowTaskToRole(
-			workflowTaskInstanceId, roleId, comment, context, serviceContext);
+			workflowTaskInstanceId, roleId, comment, dueDate,
+			context, serviceContext);
+
 	}
 
 	public WorkflowTask assignWorkflowTaskToUser(
 			long companyId, long userId, long workflowTaskInstanceId,
 			long assigneeUserId, String comment,
+			Map<String, Serializable> context)
+		throws WorkflowException {
+
+		return assignWorkflowTaskToUser(
+			companyId, userId, workflowTaskInstanceId, assigneeUserId,
+			comment, null, context);
+	}
+
+	public WorkflowTask assignWorkflowTaskToUser(
+			long companyId, long userId, long workflowTaskInstanceId,
+			long assigneeUserId, String comment, Date dueDate,
 			Map<String, Serializable> context)
 		throws WorkflowException {
 
@@ -79,7 +104,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		serviceContext.setUserId(userId);
 
 		return _taskManager.assignWorkflowTaskToUser(
-			workflowTaskInstanceId, assigneeUserId, comment, context,
+			workflowTaskInstanceId, assigneeUserId, comment, dueDate, context,
 			serviceContext);
 	}
 
@@ -394,6 +419,21 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	public void setTaskManager(TaskManager taskManager) {
 		_taskManager = taskManager;
 	}
+
+	public WorkflowTask updateDueDate(
+			long companyId, long userId, long workflowTaskInstanceId,
+			String comment, Date dueDate)
+		throws WorkflowException {
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setCompanyId(companyId);
+		serviceContext.setUserId(userId);
+
+		return _taskManager.updateDueDate(
+			workflowTaskInstanceId, comment, dueDate, serviceContext);
+	}
+
 
 	protected List<Long> getRoleIds(ServiceContext serviceContext)
 		throws SystemException, PortalException {

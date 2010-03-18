@@ -226,6 +226,16 @@ public class KaleoTaskInstanceTokenLocalServiceUtil {
 			assigneeClassPK, completed, serviceContext);
 	}
 
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken updateDueDate(
+		long kaleoTaskInstanceTokenId, java.util.Date dueDate,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateDueDate(kaleoTaskInstanceTokenId, dueDate,
+			serviceContext);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
