@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
@@ -87,6 +88,17 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 		int end) throws SystemException {
 		return svnRepositoryPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
+	}
+
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		return svnRepositoryPersistence.findWithDynamicQuery(dynamicQuery,
+			start, end, orderByComparator);
+	}
+
+	public int dynamicQueryCount(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return svnRepositoryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
 	public SVNRepository getSVNRepository(long svnRepositoryId)
@@ -326,50 +338,50 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(name = "com.liferay.socialcoding.service.JIRAActionLocalService")
+	@BeanReference(type = JIRAActionLocalService.class)
 	protected JIRAActionLocalService jiraActionLocalService;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAActionPersistence")
+	@BeanReference(type = JIRAActionPersistence.class)
 	protected JIRAActionPersistence jiraActionPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAActionFinder")
+	@BeanReference(type = JIRAActionFinder.class)
 	protected JIRAActionFinder jiraActionFinder;
-	@BeanReference(name = "com.liferay.socialcoding.service.JIRAChangeGroupLocalService")
+	@BeanReference(type = JIRAChangeGroupLocalService.class)
 	protected JIRAChangeGroupLocalService jiraChangeGroupLocalService;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence")
+	@BeanReference(type = JIRAChangeGroupPersistence.class)
 	protected JIRAChangeGroupPersistence jiraChangeGroupPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAChangeGroupFinder")
+	@BeanReference(type = JIRAChangeGroupFinder.class)
 	protected JIRAChangeGroupFinder jiraChangeGroupFinder;
-	@BeanReference(name = "com.liferay.socialcoding.service.JIRAChangeItemLocalService")
+	@BeanReference(type = JIRAChangeItemLocalService.class)
 	protected JIRAChangeItemLocalService jiraChangeItemLocalService;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence")
+	@BeanReference(type = JIRAChangeItemPersistence.class)
 	protected JIRAChangeItemPersistence jiraChangeItemPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.JIRAIssueLocalService")
+	@BeanReference(type = JIRAIssueLocalService.class)
 	protected JIRAIssueLocalService jiraIssueLocalService;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAIssuePersistence")
+	@BeanReference(type = JIRAIssuePersistence.class)
 	protected JIRAIssuePersistence jiraIssuePersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAIssueFinder")
+	@BeanReference(type = JIRAIssueFinder.class)
 	protected JIRAIssueFinder jiraIssueFinder;
-	@BeanReference(name = "com.liferay.socialcoding.service.SVNRepositoryLocalService")
+	@BeanReference(type = SVNRepositoryLocalService.class)
 	protected SVNRepositoryLocalService svnRepositoryLocalService;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence")
+	@BeanReference(type = SVNRepositoryPersistence.class)
 	protected SVNRepositoryPersistence svnRepositoryPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.SVNRevisionLocalService")
+	@BeanReference(type = SVNRevisionLocalService.class)
 	protected SVNRevisionLocalService svnRevisionLocalService;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRevisionPersistence")
+	@BeanReference(type = SVNRevisionPersistence.class)
 	protected SVNRevisionPersistence svnRevisionPersistence;
-	@BeanReference(name = "com.liferay.counter.service.CounterLocalService")
+	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
-	@BeanReference(name = "com.liferay.counter.service.CounterService")
+	@BeanReference(type = CounterService.class)
 	protected CounterService counterService;
-	@BeanReference(name = "com.liferay.portal.service.ResourceLocalService")
+	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(name = "com.liferay.portal.service.ResourceService")
+	@BeanReference(type = ResourceService.class)
 	protected ResourceService resourceService;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
+	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.UserLocalService")
+	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
-	@BeanReference(name = "com.liferay.portal.service.UserService")
+	@BeanReference(type = UserService.class)
 	protected UserService userService;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
+	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 }

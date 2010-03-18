@@ -17,7 +17,6 @@ package com.liferay.socialnetworking.service.persistence;
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -35,6 +34,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
+import com.liferay.portal.service.persistence.ResourcePersistence;
+import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
@@ -444,11 +445,13 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	}
 
 	public List<MeetupsRegistration> findByMeetupsEntryId(long meetupsEntryId,
-		int start, int end, OrderByComparator obc) throws SystemException {
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(meetupsEntryId),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_MEETUPSENTRYID,
@@ -462,9 +465,9 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(3 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(3);
@@ -474,8 +477,9 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 				query.append(_FINDER_COLUMN_MEETUPSENTRYID_MEETUPSENTRYID_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -514,10 +518,10 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	}
 
 	public MeetupsRegistration findByMeetupsEntryId_First(long meetupsEntryId,
-		OrderByComparator obc)
+		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		List<MeetupsRegistration> list = findByMeetupsEntryId(meetupsEntryId,
-				0, 1, obc);
+				0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -537,12 +541,12 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	}
 
 	public MeetupsRegistration findByMeetupsEntryId_Last(long meetupsEntryId,
-		OrderByComparator obc)
+		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		int count = countByMeetupsEntryId(meetupsEntryId);
 
 		List<MeetupsRegistration> list = findByMeetupsEntryId(meetupsEntryId,
-				count - 1, count, obc);
+				count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -562,7 +566,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	}
 
 	public MeetupsRegistration[] findByMeetupsEntryId_PrevAndNext(
-		long meetupsRegistrationId, long meetupsEntryId, OrderByComparator obc)
+		long meetupsRegistrationId, long meetupsEntryId,
+		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		MeetupsRegistration meetupsRegistration = findByPrimaryKey(meetupsRegistrationId);
 
@@ -575,9 +580,9 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(3 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(3);
@@ -587,8 +592,9 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 			query.append(_FINDER_COLUMN_MEETUPSENTRYID_MEETUPSENTRYID_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -603,8 +609,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 			qPos.add(meetupsEntryId);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					meetupsRegistration);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, meetupsRegistration);
 
 			MeetupsRegistration[] array = new MeetupsRegistrationImpl[3];
 
@@ -803,12 +809,13 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	}
 
 	public List<MeetupsRegistration> findByME_S(long meetupsEntryId,
-		int status, int start, int end, OrderByComparator obc)
+		int status, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(meetupsEntryId), new Integer(status),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ME_S,
@@ -822,9 +829,9 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(4 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(4);
@@ -836,8 +843,9 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 				query.append(_FINDER_COLUMN_ME_S_STATUS_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -878,10 +886,10 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	}
 
 	public MeetupsRegistration findByME_S_First(long meetupsEntryId,
-		int status, OrderByComparator obc)
+		int status, OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		List<MeetupsRegistration> list = findByME_S(meetupsEntryId, status, 0,
-				1, obc);
+				1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -904,12 +912,12 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	}
 
 	public MeetupsRegistration findByME_S_Last(long meetupsEntryId, int status,
-		OrderByComparator obc)
+		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		int count = countByME_S(meetupsEntryId, status);
 
 		List<MeetupsRegistration> list = findByME_S(meetupsEntryId, status,
-				count - 1, count, obc);
+				count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -933,7 +941,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 	public MeetupsRegistration[] findByME_S_PrevAndNext(
 		long meetupsRegistrationId, long meetupsEntryId, int status,
-		OrderByComparator obc)
+		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		MeetupsRegistration meetupsRegistration = findByPrimaryKey(meetupsRegistrationId);
 
@@ -946,9 +954,9 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(4 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(4);
@@ -960,8 +968,9 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 			query.append(_FINDER_COLUMN_ME_S_STATUS_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -978,8 +987,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 			qPos.add(status);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					meetupsRegistration);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, meetupsRegistration);
 
 			MeetupsRegistration[] array = new MeetupsRegistrationImpl[3];
 
@@ -988,46 +997,6 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 			array[2] = (MeetupsRegistration)objArray[2];
 
 			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			dynamicQuery.compile(session);
-
-			return dynamicQuery.list();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			dynamicQuery.setLimit(start, end);
-
-			dynamicQuery.compile(session);
-
-			return dynamicQuery.list();
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -1047,9 +1016,10 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	}
 
 	public List<MeetupsRegistration> findAll(int start, int end,
-		OrderByComparator obc) throws SystemException {
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
@@ -1064,13 +1034,14 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 				StringBundler query = null;
 				String sql = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(2 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 
 					query.append(_SQL_SELECT_MEETUPSREGISTRATION);
 
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 
 					sql = query.toString();
 				}
@@ -1081,7 +1052,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 				Query q = session.createQuery(sql);
 
-				if (obc == null) {
+				if (orderByComparator == null) {
 					list = (List<MeetupsRegistration>)QueryUtil.list(q,
 							getDialect(), start, end, false);
 
@@ -1350,16 +1321,16 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		}
 	}
 
-	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistence")
-	protected com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistence meetupsEntryPersistence;
-	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence")
-	protected com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence meetupsRegistrationPersistence;
-	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.WallEntryPersistence")
-	protected com.liferay.socialnetworking.service.persistence.WallEntryPersistence wallEntryPersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
-	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
-	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
+	@BeanReference(type = MeetupsEntryPersistence.class)
+	protected MeetupsEntryPersistence meetupsEntryPersistence;
+	@BeanReference(type = MeetupsRegistrationPersistence.class)
+	protected MeetupsRegistrationPersistence meetupsRegistrationPersistence;
+	@BeanReference(type = WallEntryPersistence.class)
+	protected WallEntryPersistence wallEntryPersistence;
+	@BeanReference(type = ResourcePersistence.class)
+	protected ResourcePersistence resourcePersistence;
+	@BeanReference(type = UserPersistence.class)
+	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_MEETUPSREGISTRATION = "SELECT meetupsRegistration FROM MeetupsRegistration meetupsRegistration";
 	private static final String _SQL_SELECT_MEETUPSREGISTRATION_WHERE = "SELECT meetupsRegistration FROM MeetupsRegistration meetupsRegistration WHERE ";
 	private static final String _SQL_COUNT_MEETUPSREGISTRATION = "SELECT COUNT(meetupsRegistration) FROM MeetupsRegistration meetupsRegistration";

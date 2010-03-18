@@ -17,7 +17,6 @@ package com.liferay.socialcoding.service.persistence;
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -35,6 +34,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
+import com.liferay.portal.service.persistence.ResourcePersistence;
+import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.socialcoding.NoSuchSVNRevisionException;
@@ -413,11 +414,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	}
 
 	public List<SVNRevision> findBySVNUserId(String svnUserId, int start,
-		int end, OrderByComparator obc) throws SystemException {
+		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				svnUserId,
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<SVNRevision> list = (List<SVNRevision>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_SVNUSERID,
@@ -431,9 +433,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(3 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(3);
@@ -453,8 +455,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 					}
 				}
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -495,9 +498,10 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	}
 
 	public SVNRevision findBySVNUserId_First(String svnUserId,
-		OrderByComparator obc)
+		OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
-		List<SVNRevision> list = findBySVNUserId(svnUserId, 0, 1, obc);
+		List<SVNRevision> list = findBySVNUserId(svnUserId, 0, 1,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -517,12 +521,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	}
 
 	public SVNRevision findBySVNUserId_Last(String svnUserId,
-		OrderByComparator obc)
+		OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
 		int count = countBySVNUserId(svnUserId);
 
 		List<SVNRevision> list = findBySVNUserId(svnUserId, count - 1, count,
-				obc);
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -542,7 +546,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	}
 
 	public SVNRevision[] findBySVNUserId_PrevAndNext(long svnRevisionId,
-		String svnUserId, OrderByComparator obc)
+		String svnUserId, OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
 		SVNRevision svnRevision = findByPrimaryKey(svnRevisionId);
 
@@ -555,9 +559,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(3 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(3);
@@ -577,8 +581,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				}
 			}
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -595,8 +600,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				qPos.add(svnUserId);
 			}
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					svnRevision);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, svnRevision);
 
 			SVNRevision[] array = new SVNRevisionImpl[3];
 
@@ -671,11 +676,13 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	}
 
 	public List<SVNRevision> findBySVNRepositoryId(long svnRepositoryId,
-		int start, int end, OrderByComparator obc) throws SystemException {
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(svnRepositoryId),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<SVNRevision> list = (List<SVNRevision>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_SVNREPOSITORYID,
@@ -689,9 +696,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(3 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(3);
@@ -701,8 +708,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 				query.append(_FINDER_COLUMN_SVNREPOSITORYID_SVNREPOSITORYID_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -741,10 +749,10 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	}
 
 	public SVNRevision findBySVNRepositoryId_First(long svnRepositoryId,
-		OrderByComparator obc)
+		OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
 		List<SVNRevision> list = findBySVNRepositoryId(svnRepositoryId, 0, 1,
-				obc);
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -764,12 +772,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	}
 
 	public SVNRevision findBySVNRepositoryId_Last(long svnRepositoryId,
-		OrderByComparator obc)
+		OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
 		int count = countBySVNRepositoryId(svnRepositoryId);
 
 		List<SVNRevision> list = findBySVNRepositoryId(svnRepositoryId,
-				count - 1, count, obc);
+				count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -789,7 +797,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	}
 
 	public SVNRevision[] findBySVNRepositoryId_PrevAndNext(long svnRevisionId,
-		long svnRepositoryId, OrderByComparator obc)
+		long svnRepositoryId, OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
 		SVNRevision svnRevision = findByPrimaryKey(svnRevisionId);
 
@@ -802,9 +810,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(3 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(3);
@@ -814,8 +822,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 			query.append(_FINDER_COLUMN_SVNREPOSITORYID_SVNREPOSITORYID_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -830,8 +839,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 			qPos.add(svnRepositoryId);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					svnRevision);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, svnRevision);
 
 			SVNRevision[] array = new SVNRevisionImpl[3];
 
@@ -922,12 +931,13 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	}
 
 	public List<SVNRevision> findBySVNU_SVNR(String svnUserId,
-		long svnRepositoryId, int start, int end, OrderByComparator obc)
-		throws SystemException {
+		long svnRepositoryId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				svnUserId, new Long(svnRepositoryId),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<SVNRevision> list = (List<SVNRevision>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_SVNU_SVNR,
@@ -941,9 +951,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(4 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(4);
@@ -965,8 +975,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 				query.append(_FINDER_COLUMN_SVNU_SVNR_SVNREPOSITORYID_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -1009,10 +1020,10 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	}
 
 	public SVNRevision findBySVNU_SVNR_First(String svnUserId,
-		long svnRepositoryId, OrderByComparator obc)
+		long svnRepositoryId, OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
 		List<SVNRevision> list = findBySVNU_SVNR(svnUserId, svnRepositoryId, 0,
-				1, obc);
+				1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -1035,12 +1046,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	}
 
 	public SVNRevision findBySVNU_SVNR_Last(String svnUserId,
-		long svnRepositoryId, OrderByComparator obc)
+		long svnRepositoryId, OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
 		int count = countBySVNU_SVNR(svnUserId, svnRepositoryId);
 
 		List<SVNRevision> list = findBySVNU_SVNR(svnUserId, svnRepositoryId,
-				count - 1, count, obc);
+				count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -1063,7 +1074,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	}
 
 	public SVNRevision[] findBySVNU_SVNR_PrevAndNext(long svnRevisionId,
-		String svnUserId, long svnRepositoryId, OrderByComparator obc)
+		String svnUserId, long svnRepositoryId,
+		OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
 		SVNRevision svnRevision = findByPrimaryKey(svnRevisionId);
 
@@ -1076,9 +1088,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(4 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(4);
@@ -1100,8 +1112,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 			query.append(_FINDER_COLUMN_SVNU_SVNR_SVNREPOSITORYID_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -1120,8 +1133,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 			qPos.add(svnRepositoryId);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					svnRevision);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, svnRevision);
 
 			SVNRevision[] array = new SVNRevisionImpl[3];
 
@@ -1130,46 +1143,6 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			array[2] = (SVNRevision)objArray[2];
 
 			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			dynamicQuery.compile(session);
-
-			return dynamicQuery.list();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			dynamicQuery.setLimit(start, end);
-
-			dynamicQuery.compile(session);
-
-			return dynamicQuery.list();
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -1188,10 +1161,11 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		return findAll(start, end, null);
 	}
 
-	public List<SVNRevision> findAll(int start, int end, OrderByComparator obc)
-		throws SystemException {
+	public List<SVNRevision> findAll(int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<SVNRevision> list = (List<SVNRevision>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
@@ -1206,13 +1180,14 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				StringBundler query = null;
 				String sql = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(2 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 
 					query.append(_SQL_SELECT_SVNREVISION);
 
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 
 					sql = query.toString();
 				}
@@ -1223,7 +1198,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 				Query q = session.createQuery(sql);
 
-				if (obc == null) {
+				if (orderByComparator == null) {
 					list = (List<SVNRevision>)QueryUtil.list(q, getDialect(),
 							start, end, false);
 
@@ -1504,22 +1479,22 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 	}
 
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAActionPersistence")
-	protected com.liferay.socialcoding.service.persistence.JIRAActionPersistence jiraActionPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence")
-	protected com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence jiraChangeGroupPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence")
-	protected com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence jiraChangeItemPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAIssuePersistence")
-	protected com.liferay.socialcoding.service.persistence.JIRAIssuePersistence jiraIssuePersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence")
-	protected com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence svnRepositoryPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRevisionPersistence")
-	protected com.liferay.socialcoding.service.persistence.SVNRevisionPersistence svnRevisionPersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
-	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
-	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
+	@BeanReference(type = JIRAActionPersistence.class)
+	protected JIRAActionPersistence jiraActionPersistence;
+	@BeanReference(type = JIRAChangeGroupPersistence.class)
+	protected JIRAChangeGroupPersistence jiraChangeGroupPersistence;
+	@BeanReference(type = JIRAChangeItemPersistence.class)
+	protected JIRAChangeItemPersistence jiraChangeItemPersistence;
+	@BeanReference(type = JIRAIssuePersistence.class)
+	protected JIRAIssuePersistence jiraIssuePersistence;
+	@BeanReference(type = SVNRepositoryPersistence.class)
+	protected SVNRepositoryPersistence svnRepositoryPersistence;
+	@BeanReference(type = SVNRevisionPersistence.class)
+	protected SVNRevisionPersistence svnRevisionPersistence;
+	@BeanReference(type = ResourcePersistence.class)
+	protected ResourcePersistence resourcePersistence;
+	@BeanReference(type = UserPersistence.class)
+	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_SVNREVISION = "SELECT svnRevision FROM SVNRevision svnRevision";
 	private static final String _SQL_SELECT_SVNREVISION_WHERE = "SELECT svnRevision FROM SVNRevision svnRevision WHERE ";
 	private static final String _SQL_COUNT_SVNREVISION = "SELECT COUNT(svnRevision) FROM SVNRevision svnRevision";

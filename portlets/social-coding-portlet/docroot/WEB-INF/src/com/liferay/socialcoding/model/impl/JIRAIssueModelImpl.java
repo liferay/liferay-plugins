@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -165,7 +166,12 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public String getKey() {
-		return GetterUtil.getString(_key);
+		if (_key == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _key;
+		}
 	}
 
 	public void setKey(String key) {
@@ -181,7 +187,12 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public String getSummary() {
-		return GetterUtil.getString(_summary);
+		if (_summary == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _summary;
+		}
 	}
 
 	public void setSummary(String summary) {
@@ -189,7 +200,12 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public String getDescription() {
-		return GetterUtil.getString(_description);
+		if (_description == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _description;
+		}
 	}
 
 	public void setDescription(String description) {
@@ -197,7 +213,12 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public String getReporterJiraUserId() {
-		return GetterUtil.getString(_reporterJiraUserId);
+		if (_reporterJiraUserId == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _reporterJiraUserId;
+		}
 	}
 
 	public void setReporterJiraUserId(String reporterJiraUserId) {
@@ -205,7 +226,12 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public String getAssigneeJiraUserId() {
-		return GetterUtil.getString(_assigneeJiraUserId);
+		if (_assigneeJiraUserId == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _assigneeJiraUserId;
+		}
 	}
 
 	public void setAssigneeJiraUserId(String assigneeJiraUserId) {
@@ -213,7 +239,12 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public String getResolution() {
-		return GetterUtil.getString(_resolution);
+		if (_resolution == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _resolution;
+		}
 	}
 
 	public void setResolution(String resolution) {
@@ -221,7 +252,12 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public String getStatus() {
-		return GetterUtil.getString(_status);
+		if (_status == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _status;
+		}
 	}
 
 	public void setStatus(String status) {

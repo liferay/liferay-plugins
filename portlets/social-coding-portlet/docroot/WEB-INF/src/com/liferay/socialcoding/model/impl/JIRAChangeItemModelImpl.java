@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -137,7 +138,12 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 	}
 
 	public String getField() {
-		return GetterUtil.getString(_field);
+		if (_field == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _field;
+		}
 	}
 
 	public void setField(String field) {
@@ -145,7 +151,12 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 	}
 
 	public String getOldValue() {
-		return GetterUtil.getString(_oldValue);
+		if (_oldValue == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _oldValue;
+		}
 	}
 
 	public void setOldValue(String oldValue) {
@@ -153,7 +164,12 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 	}
 
 	public String getOldString() {
-		return GetterUtil.getString(_oldString);
+		if (_oldString == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _oldString;
+		}
 	}
 
 	public void setOldString(String oldString) {
@@ -161,7 +177,12 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 	}
 
 	public String getNewValue() {
-		return GetterUtil.getString(_newValue);
+		if (_newValue == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _newValue;
+		}
 	}
 
 	public void setNewValue(String newValue) {
@@ -169,7 +190,12 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 	}
 
 	public String getNewString() {
-		return GetterUtil.getString(_newString);
+		if (_newString == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _newString;
+		}
 	}
 
 	public void setNewString(String newString) {

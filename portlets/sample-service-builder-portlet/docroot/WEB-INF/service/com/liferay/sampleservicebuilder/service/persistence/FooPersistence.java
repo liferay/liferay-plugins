@@ -65,22 +65,24 @@ public interface FooPersistence extends BasePersistence<Foo> {
 
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> findByField2(
 		boolean field2, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.sampleservicebuilder.model.Foo findByField2_First(
-		boolean field2, com.liferay.portal.kernel.util.OrderByComparator obc)
+		boolean field2,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	public com.liferay.sampleservicebuilder.model.Foo findByField2_Last(
-		boolean field2, com.liferay.portal.kernel.util.OrderByComparator obc)
+		boolean field2,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	public com.liferay.sampleservicebuilder.model.Foo[] findByField2_PrevAndNext(
 		long fooId, boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
@@ -92,7 +94,8 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> findAll(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void removeByField2(boolean field2)

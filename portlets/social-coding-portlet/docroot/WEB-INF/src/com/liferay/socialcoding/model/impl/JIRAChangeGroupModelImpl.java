@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -128,7 +129,12 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
 	}
 
 	public String getJiraUserId() {
-		return GetterUtil.getString(_jiraUserId);
+		if (_jiraUserId == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _jiraUserId;
+		}
 	}
 
 	public void setJiraUserId(String jiraUserId) {

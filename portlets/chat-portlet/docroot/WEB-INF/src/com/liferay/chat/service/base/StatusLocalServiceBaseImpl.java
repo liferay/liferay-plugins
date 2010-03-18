@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
@@ -73,6 +74,17 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService {
 	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end) throws SystemException {
 		return statusPersistence.findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		return statusPersistence.findWithDynamicQuery(dynamicQuery, start, end,
+			orderByComparator);
+	}
+
+	public int dynamicQueryCount(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return statusPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
 	public Status getStatus(long statusId)
@@ -226,32 +238,32 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService {
 		}
 	}
 
-	@BeanReference(name = "com.liferay.chat.service.EntryLocalService")
+	@BeanReference(type = EntryLocalService.class)
 	protected EntryLocalService entryLocalService;
-	@BeanReference(name = "com.liferay.chat.service.persistence.EntryPersistence")
+	@BeanReference(type = EntryPersistence.class)
 	protected EntryPersistence entryPersistence;
-	@BeanReference(name = "com.liferay.chat.service.persistence.EntryFinder")
+	@BeanReference(type = EntryFinder.class)
 	protected EntryFinder entryFinder;
-	@BeanReference(name = "com.liferay.chat.service.StatusLocalService")
+	@BeanReference(type = StatusLocalService.class)
 	protected StatusLocalService statusLocalService;
-	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence")
+	@BeanReference(type = StatusPersistence.class)
 	protected StatusPersistence statusPersistence;
-	@BeanReference(name = "com.liferay.chat.service.persistence.StatusFinder")
+	@BeanReference(type = StatusFinder.class)
 	protected StatusFinder statusFinder;
-	@BeanReference(name = "com.liferay.counter.service.CounterLocalService")
+	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
-	@BeanReference(name = "com.liferay.counter.service.CounterService")
+	@BeanReference(type = CounterService.class)
 	protected CounterService counterService;
-	@BeanReference(name = "com.liferay.portal.service.ResourceLocalService")
+	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(name = "com.liferay.portal.service.ResourceService")
+	@BeanReference(type = ResourceService.class)
 	protected ResourceService resourceService;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
+	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.UserLocalService")
+	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
-	@BeanReference(name = "com.liferay.portal.service.UserService")
+	@BeanReference(type = UserService.class)
 	protected UserService userService;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
+	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 }

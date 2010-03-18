@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -167,7 +168,12 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 	}
 
 	public String getUserName() {
-		return GetterUtil.getString(_userName);
+		if (_userName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _userName;
+		}
 	}
 
 	public void setUserName(String userName) {
@@ -191,7 +197,12 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 	}
 
 	public String getTitle() {
-		return GetterUtil.getString(_title);
+		if (_title == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _title;
+		}
 	}
 
 	public void setTitle(String title) {
@@ -199,7 +210,12 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 	}
 
 	public String getDescription() {
-		return GetterUtil.getString(_description);
+		if (_description == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _description;
+		}
 	}
 
 	public void setDescription(String description) {
@@ -223,7 +239,12 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 	}
 
 	public String getData() {
-		return GetterUtil.getString(_data);
+		if (_data == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _data;
+		}
 	}
 
 	public void setData(String data) {

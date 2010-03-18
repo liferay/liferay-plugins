@@ -17,7 +17,6 @@ package com.liferay.socialcoding.service.persistence;
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -37,6 +36,8 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
+import com.liferay.portal.service.persistence.ResourcePersistence;
+import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.socialcoding.NoSuchJIRAIssueException;
@@ -585,11 +586,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public List<JIRAIssue> findByProjectId(long projectId, int start, int end,
-		OrderByComparator obc) throws SystemException {
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_PROJECTID,
@@ -603,9 +605,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(3 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(3);
@@ -615,8 +617,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 				query.append(_FINDER_COLUMN_PROJECTID_PROJECTID_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -654,9 +657,11 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return list;
 	}
 
-	public JIRAIssue findByProjectId_First(long projectId, OrderByComparator obc)
+	public JIRAIssue findByProjectId_First(long projectId,
+		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
-		List<JIRAIssue> list = findByProjectId(projectId, 0, 1, obc);
+		List<JIRAIssue> list = findByProjectId(projectId, 0, 1,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -675,11 +680,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
-	public JIRAIssue findByProjectId_Last(long projectId, OrderByComparator obc)
+	public JIRAIssue findByProjectId_Last(long projectId,
+		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		int count = countByProjectId(projectId);
 
-		List<JIRAIssue> list = findByProjectId(projectId, count - 1, count, obc);
+		List<JIRAIssue> list = findByProjectId(projectId, count - 1, count,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -699,7 +706,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue[] findByProjectId_PrevAndNext(long jiraIssueId,
-		long projectId, OrderByComparator obc)
+		long projectId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
@@ -712,9 +719,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(3 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(3);
@@ -724,8 +731,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 			query.append(_FINDER_COLUMN_PROJECTID_PROJECTID_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -740,8 +748,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 			qPos.add(projectId);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					jiraIssue);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, jiraIssue);
 
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
@@ -947,11 +955,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public List<JIRAIssue> findByReporterJiraUserId(String reporterJiraUserId,
-		int start, int end, OrderByComparator obc) throws SystemException {
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				reporterJiraUserId,
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_REPORTERJIRAUSERID,
@@ -965,9 +975,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(3 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(3);
@@ -987,8 +997,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					}
 				}
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -1029,9 +1040,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByReporterJiraUserId_First(String reporterJiraUserId,
-		OrderByComparator obc) throws NoSuchJIRAIssueException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchJIRAIssueException, SystemException {
 		List<JIRAIssue> list = findByReporterJiraUserId(reporterJiraUserId, 0,
-				1, obc);
+				1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -1051,11 +1063,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByReporterJiraUserId_Last(String reporterJiraUserId,
-		OrderByComparator obc) throws NoSuchJIRAIssueException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchJIRAIssueException, SystemException {
 		int count = countByReporterJiraUserId(reporterJiraUserId);
 
 		List<JIRAIssue> list = findByReporterJiraUserId(reporterJiraUserId,
-				count - 1, count, obc);
+				count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -1075,7 +1088,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue[] findByReporterJiraUserId_PrevAndNext(long jiraIssueId,
-		String reporterJiraUserId, OrderByComparator obc)
+		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
@@ -1088,9 +1101,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(3 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(3);
@@ -1110,8 +1123,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				}
 			}
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -1128,8 +1142,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				qPos.add(reporterJiraUserId);
 			}
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					jiraIssue);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, jiraIssue);
 
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
@@ -1216,11 +1230,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public List<JIRAIssue> findByAssigneeJiraUserId(String assigneeJiraUserId,
-		int start, int end, OrderByComparator obc) throws SystemException {
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				assigneeJiraUserId,
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ASSIGNEEJIRAUSERID,
@@ -1234,9 +1250,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(3 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(3);
@@ -1256,8 +1272,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					}
 				}
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -1298,9 +1315,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByAssigneeJiraUserId_First(String assigneeJiraUserId,
-		OrderByComparator obc) throws NoSuchJIRAIssueException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchJIRAIssueException, SystemException {
 		List<JIRAIssue> list = findByAssigneeJiraUserId(assigneeJiraUserId, 0,
-				1, obc);
+				1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -1320,11 +1338,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByAssigneeJiraUserId_Last(String assigneeJiraUserId,
-		OrderByComparator obc) throws NoSuchJIRAIssueException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchJIRAIssueException, SystemException {
 		int count = countByAssigneeJiraUserId(assigneeJiraUserId);
 
 		List<JIRAIssue> list = findByAssigneeJiraUserId(assigneeJiraUserId,
-				count - 1, count, obc);
+				count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -1344,7 +1363,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue[] findByAssigneeJiraUserId_PrevAndNext(long jiraIssueId,
-		String assigneeJiraUserId, OrderByComparator obc)
+		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
@@ -1357,9 +1376,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(3 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(3);
@@ -1379,8 +1398,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				}
 			}
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -1397,8 +1417,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				qPos.add(assigneeJiraUserId);
 			}
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					jiraIssue);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, jiraIssue);
 
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
@@ -1484,11 +1504,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public List<JIRAIssue> findByMD_P(Date modifiedDate, long projectId,
-		int start, int end, OrderByComparator obc) throws SystemException {
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				modifiedDate, new Long(projectId),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_MD_P,
@@ -1502,9 +1524,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(4 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(4);
@@ -1521,8 +1543,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 				query.append(_FINDER_COLUMN_MD_P_PROJECTID_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -1565,8 +1588,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByMD_P_First(Date modifiedDate, long projectId,
-		OrderByComparator obc) throws NoSuchJIRAIssueException, SystemException {
-		List<JIRAIssue> list = findByMD_P(modifiedDate, projectId, 0, 1, obc);
+		OrderByComparator orderByComparator)
+		throws NoSuchJIRAIssueException, SystemException {
+		List<JIRAIssue> list = findByMD_P(modifiedDate, projectId, 0, 1,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -1589,11 +1614,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByMD_P_Last(Date modifiedDate, long projectId,
-		OrderByComparator obc) throws NoSuchJIRAIssueException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchJIRAIssueException, SystemException {
 		int count = countByMD_P(modifiedDate, projectId);
 
 		List<JIRAIssue> list = findByMD_P(modifiedDate, projectId, count - 1,
-				count, obc);
+				count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -1616,7 +1642,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue[] findByMD_P_PrevAndNext(long jiraIssueId,
-		Date modifiedDate, long projectId, OrderByComparator obc)
+		Date modifiedDate, long projectId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
@@ -1629,9 +1655,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(4 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(4);
@@ -1648,8 +1674,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 			query.append(_FINDER_COLUMN_MD_P_PROJECTID_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -1668,8 +1695,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 			qPos.add(projectId);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					jiraIssue);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, jiraIssue);
 
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
@@ -1765,14 +1792,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public List<JIRAIssue> findByP_RJUI(long projectId,
-		String reporterJiraUserId, int start, int end, OrderByComparator obc)
-		throws SystemException {
+		String reporterJiraUserId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
 				reporterJiraUserId,
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_P_RJUI,
@@ -1786,9 +1814,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(4 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(4);
@@ -1810,8 +1838,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					}
 				}
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -1854,10 +1883,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByP_RJUI_First(long projectId,
-		String reporterJiraUserId, OrderByComparator obc)
+		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		List<JIRAIssue> list = findByP_RJUI(projectId, reporterJiraUserId, 0,
-				1, obc);
+				1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -1880,12 +1909,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByP_RJUI_Last(long projectId,
-		String reporterJiraUserId, OrderByComparator obc)
+		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		int count = countByP_RJUI(projectId, reporterJiraUserId);
 
 		List<JIRAIssue> list = findByP_RJUI(projectId, reporterJiraUserId,
-				count - 1, count, obc);
+				count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -1908,7 +1937,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue[] findByP_RJUI_PrevAndNext(long jiraIssueId,
-		long projectId, String reporterJiraUserId, OrderByComparator obc)
+		long projectId, String reporterJiraUserId,
+		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
@@ -1921,9 +1951,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(4 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(4);
@@ -1945,8 +1975,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				}
 			}
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -1965,8 +1996,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				qPos.add(reporterJiraUserId);
 			}
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					jiraIssue);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, jiraIssue);
 
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
@@ -2062,14 +2093,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public List<JIRAIssue> findByP_AJUI(long projectId,
-		String assigneeJiraUserId, int start, int end, OrderByComparator obc)
-		throws SystemException {
+		String assigneeJiraUserId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
 				assigneeJiraUserId,
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_P_AJUI,
@@ -2083,9 +2115,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(4 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(4);
@@ -2107,8 +2139,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					}
 				}
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -2151,10 +2184,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByP_AJUI_First(long projectId,
-		String assigneeJiraUserId, OrderByComparator obc)
+		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		List<JIRAIssue> list = findByP_AJUI(projectId, assigneeJiraUserId, 0,
-				1, obc);
+				1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -2177,12 +2210,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByP_AJUI_Last(long projectId,
-		String assigneeJiraUserId, OrderByComparator obc)
+		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		int count = countByP_AJUI(projectId, assigneeJiraUserId);
 
 		List<JIRAIssue> list = findByP_AJUI(projectId, assigneeJiraUserId,
-				count - 1, count, obc);
+				count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -2205,7 +2238,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue[] findByP_AJUI_PrevAndNext(long jiraIssueId,
-		long projectId, String assigneeJiraUserId, OrderByComparator obc)
+		long projectId, String assigneeJiraUserId,
+		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
@@ -2218,9 +2252,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(4 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(4);
@@ -2242,8 +2276,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				}
 			}
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -2262,8 +2297,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				qPos.add(assigneeJiraUserId);
 			}
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					jiraIssue);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, jiraIssue);
 
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
@@ -2371,14 +2406,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public List<JIRAIssue> findByMD_P_RJUI(Date modifiedDate, long projectId,
-		String reporterJiraUserId, int start, int end, OrderByComparator obc)
-		throws SystemException {
+		String reporterJiraUserId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				modifiedDate, new Long(projectId),
 				
 				reporterJiraUserId,
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_MD_P_RJUI,
@@ -2392,9 +2428,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(5 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(5);
@@ -2423,8 +2459,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					}
 				}
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -2471,10 +2508,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByMD_P_RJUI_First(Date modifiedDate, long projectId,
-		String reporterJiraUserId, OrderByComparator obc)
+		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		List<JIRAIssue> list = findByMD_P_RJUI(modifiedDate, projectId,
-				reporterJiraUserId, 0, 1, obc);
+				reporterJiraUserId, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(8);
@@ -2500,12 +2537,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByMD_P_RJUI_Last(Date modifiedDate, long projectId,
-		String reporterJiraUserId, OrderByComparator obc)
+		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		int count = countByMD_P_RJUI(modifiedDate, projectId, reporterJiraUserId);
 
 		List<JIRAIssue> list = findByMD_P_RJUI(modifiedDate, projectId,
-				reporterJiraUserId, count - 1, count, obc);
+				reporterJiraUserId, count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(8);
@@ -2532,7 +2569,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	public JIRAIssue[] findByMD_P_RJUI_PrevAndNext(long jiraIssueId,
 		Date modifiedDate, long projectId, String reporterJiraUserId,
-		OrderByComparator obc) throws NoSuchJIRAIssueException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
 		int count = countByMD_P_RJUI(modifiedDate, projectId, reporterJiraUserId);
@@ -2544,9 +2582,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(5 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(5);
@@ -2575,8 +2613,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				}
 			}
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -2599,8 +2638,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				qPos.add(reporterJiraUserId);
 			}
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					jiraIssue);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, jiraIssue);
 
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
@@ -2708,14 +2747,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public List<JIRAIssue> findByMD_P_AJUI(Date modifiedDate, long projectId,
-		String assigneeJiraUserId, int start, int end, OrderByComparator obc)
-		throws SystemException {
+		String assigneeJiraUserId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				modifiedDate, new Long(projectId),
 				
 				assigneeJiraUserId,
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_MD_P_AJUI,
@@ -2729,9 +2769,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(5 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(5);
@@ -2760,8 +2800,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					}
 				}
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -2808,10 +2849,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByMD_P_AJUI_First(Date modifiedDate, long projectId,
-		String assigneeJiraUserId, OrderByComparator obc)
+		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		List<JIRAIssue> list = findByMD_P_AJUI(modifiedDate, projectId,
-				assigneeJiraUserId, 0, 1, obc);
+				assigneeJiraUserId, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(8);
@@ -2837,12 +2878,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByMD_P_AJUI_Last(Date modifiedDate, long projectId,
-		String assigneeJiraUserId, OrderByComparator obc)
+		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		int count = countByMD_P_AJUI(modifiedDate, projectId, assigneeJiraUserId);
 
 		List<JIRAIssue> list = findByMD_P_AJUI(modifiedDate, projectId,
-				assigneeJiraUserId, count - 1, count, obc);
+				assigneeJiraUserId, count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(8);
@@ -2869,7 +2910,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	public JIRAIssue[] findByMD_P_AJUI_PrevAndNext(long jiraIssueId,
 		Date modifiedDate, long projectId, String assigneeJiraUserId,
-		OrderByComparator obc) throws NoSuchJIRAIssueException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
 		int count = countByMD_P_AJUI(modifiedDate, projectId, assigneeJiraUserId);
@@ -2881,9 +2923,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(5 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(5);
@@ -2912,8 +2954,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				}
 			}
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -2936,8 +2979,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				qPos.add(assigneeJiraUserId);
 			}
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					jiraIssue);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, jiraIssue);
 
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
@@ -3053,7 +3096,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	public List<JIRAIssue> findByP_RJUI_S(long projectId,
 		String reporterJiraUserId, String status, int start, int end,
-		OrderByComparator obc) throws SystemException {
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
@@ -3061,7 +3104,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				
 				status,
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_P_RJUI_S,
@@ -3075,9 +3119,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(5 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(5);
@@ -3111,8 +3155,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					}
 				}
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -3159,10 +3204,11 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByP_RJUI_S_First(long projectId,
-		String reporterJiraUserId, String status, OrderByComparator obc)
+		String reporterJiraUserId, String status,
+		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		List<JIRAIssue> list = findByP_RJUI_S(projectId, reporterJiraUserId,
-				status, 0, 1, obc);
+				status, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(8);
@@ -3188,12 +3234,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByP_RJUI_S_Last(long projectId,
-		String reporterJiraUserId, String status, OrderByComparator obc)
+		String reporterJiraUserId, String status,
+		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		int count = countByP_RJUI_S(projectId, reporterJiraUserId, status);
 
 		List<JIRAIssue> list = findByP_RJUI_S(projectId, reporterJiraUserId,
-				status, count - 1, count, obc);
+				status, count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(8);
@@ -3220,7 +3267,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	public JIRAIssue[] findByP_RJUI_S_PrevAndNext(long jiraIssueId,
 		long projectId, String reporterJiraUserId, String status,
-		OrderByComparator obc) throws NoSuchJIRAIssueException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
 		int count = countByP_RJUI_S(projectId, reporterJiraUserId, status);
@@ -3232,9 +3280,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(5 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(5);
@@ -3268,8 +3316,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				}
 			}
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -3292,8 +3341,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				qPos.add(status);
 			}
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					jiraIssue);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, jiraIssue);
 
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
@@ -3409,7 +3458,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	public List<JIRAIssue> findByP_AJUI_S(long projectId,
 		String assigneeJiraUserId, String status, int start, int end,
-		OrderByComparator obc) throws SystemException {
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
@@ -3417,7 +3466,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				
 				status,
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_P_AJUI_S,
@@ -3431,9 +3481,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(5 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(5);
@@ -3467,8 +3517,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					}
 				}
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -3515,10 +3566,11 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByP_AJUI_S_First(long projectId,
-		String assigneeJiraUserId, String status, OrderByComparator obc)
+		String assigneeJiraUserId, String status,
+		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		List<JIRAIssue> list = findByP_AJUI_S(projectId, assigneeJiraUserId,
-				status, 0, 1, obc);
+				status, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(8);
@@ -3544,12 +3596,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public JIRAIssue findByP_AJUI_S_Last(long projectId,
-		String assigneeJiraUserId, String status, OrderByComparator obc)
+		String assigneeJiraUserId, String status,
+		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
 		int count = countByP_AJUI_S(projectId, assigneeJiraUserId, status);
 
 		List<JIRAIssue> list = findByP_AJUI_S(projectId, assigneeJiraUserId,
-				status, count - 1, count, obc);
+				status, count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(8);
@@ -3576,7 +3629,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	public JIRAIssue[] findByP_AJUI_S_PrevAndNext(long jiraIssueId,
 		long projectId, String assigneeJiraUserId, String status,
-		OrderByComparator obc) throws NoSuchJIRAIssueException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
 		int count = countByP_AJUI_S(projectId, assigneeJiraUserId, status);
@@ -3588,9 +3642,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(5 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(5);
@@ -3624,8 +3678,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				}
 			}
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -3648,8 +3703,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				qPos.add(status);
 			}
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					jiraIssue);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, jiraIssue);
 
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
@@ -3658,46 +3713,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			array[2] = (JIRAIssue)objArray[2];
 
 			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			dynamicQuery.compile(session);
-
-			return dynamicQuery.list();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			dynamicQuery.setLimit(start, end);
-
-			dynamicQuery.compile(session);
-
-			return dynamicQuery.list();
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -3716,10 +3731,11 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return findAll(start, end, null);
 	}
 
-	public List<JIRAIssue> findAll(int start, int end, OrderByComparator obc)
-		throws SystemException {
+	public List<JIRAIssue> findAll(int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
@@ -3734,13 +3750,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				StringBundler query = null;
 				String sql = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(2 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 
 					query.append(_SQL_SELECT_JIRAISSUE);
 
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 
 					sql = query.toString();
 				}
@@ -3751,7 +3768,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 				Query q = session.createQuery(sql);
 
-				if (obc == null) {
+				if (orderByComparator == null) {
 					list = (List<JIRAIssue>)QueryUtil.list(q, getDialect(),
 							start, end, false);
 
@@ -4663,22 +4680,22 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAActionPersistence")
-	protected com.liferay.socialcoding.service.persistence.JIRAActionPersistence jiraActionPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence")
-	protected com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence jiraChangeGroupPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence")
-	protected com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence jiraChangeItemPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.JIRAIssuePersistence")
-	protected com.liferay.socialcoding.service.persistence.JIRAIssuePersistence jiraIssuePersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence")
-	protected com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence svnRepositoryPersistence;
-	@BeanReference(name = "com.liferay.socialcoding.service.persistence.SVNRevisionPersistence")
-	protected com.liferay.socialcoding.service.persistence.SVNRevisionPersistence svnRevisionPersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
-	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
-	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
+	@BeanReference(type = JIRAActionPersistence.class)
+	protected JIRAActionPersistence jiraActionPersistence;
+	@BeanReference(type = JIRAChangeGroupPersistence.class)
+	protected JIRAChangeGroupPersistence jiraChangeGroupPersistence;
+	@BeanReference(type = JIRAChangeItemPersistence.class)
+	protected JIRAChangeItemPersistence jiraChangeItemPersistence;
+	@BeanReference(type = JIRAIssuePersistence.class)
+	protected JIRAIssuePersistence jiraIssuePersistence;
+	@BeanReference(type = SVNRepositoryPersistence.class)
+	protected SVNRepositoryPersistence svnRepositoryPersistence;
+	@BeanReference(type = SVNRevisionPersistence.class)
+	protected SVNRevisionPersistence svnRevisionPersistence;
+	@BeanReference(type = ResourcePersistence.class)
+	protected ResourcePersistence resourcePersistence;
+	@BeanReference(type = UserPersistence.class)
+	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_JIRAISSUE = "SELECT jiraIssue FROM JIRAIssue jiraIssue";
 	private static final String _SQL_SELECT_JIRAISSUE_WHERE = "SELECT jiraIssue FROM JIRAIssue jiraIssue WHERE ";
 	private static final String _SQL_COUNT_JIRAISSUE = "SELECT COUNT(jiraIssue) FROM JIRAIssue jiraIssue";

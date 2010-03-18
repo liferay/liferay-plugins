@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -191,7 +192,12 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 	}
 
 	public String getActivePanelId() {
-		return GetterUtil.getString(_activePanelId);
+		if (_activePanelId == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _activePanelId;
+		}
 	}
 
 	public void setActivePanelId(String activePanelId) {
@@ -199,7 +205,12 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 	}
 
 	public String getMessage() {
-		return GetterUtil.getString(_message);
+		if (_message == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _message;
+		}
 	}
 
 	public void setMessage(String message) {

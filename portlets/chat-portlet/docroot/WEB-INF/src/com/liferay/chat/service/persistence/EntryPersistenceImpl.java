@@ -22,7 +22,6 @@ import com.liferay.chat.model.impl.EntryModelImpl;
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -40,6 +39,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
+import com.liferay.portal.service.persistence.ResourcePersistence;
+import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
@@ -470,11 +471,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public List<Entry> findByCreateDate(long createDate, int start, int end,
-		OrderByComparator obc) throws SystemException {
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(createDate),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_CREATEDATE,
@@ -488,9 +490,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(3 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(3);
@@ -500,8 +502,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				query.append(_FINDER_COLUMN_CREATEDATE_CREATEDATE_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -538,9 +541,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		return list;
 	}
 
-	public Entry findByCreateDate_First(long createDate, OrderByComparator obc)
+	public Entry findByCreateDate_First(long createDate,
+		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
-		List<Entry> list = findByCreateDate(createDate, 0, 1, obc);
+		List<Entry> list = findByCreateDate(createDate, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -559,11 +563,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		}
 	}
 
-	public Entry findByCreateDate_Last(long createDate, OrderByComparator obc)
+	public Entry findByCreateDate_Last(long createDate,
+		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
 		int count = countByCreateDate(createDate);
 
-		List<Entry> list = findByCreateDate(createDate, count - 1, count, obc);
+		List<Entry> list = findByCreateDate(createDate, count - 1, count,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -583,7 +589,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public Entry[] findByCreateDate_PrevAndNext(long entryId, long createDate,
-		OrderByComparator obc) throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
 		Entry entry = findByPrimaryKey(entryId);
 
 		int count = countByCreateDate(createDate);
@@ -595,9 +602,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(3 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(3);
@@ -607,8 +614,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			query.append(_FINDER_COLUMN_CREATEDATE_CREATEDATE_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -623,7 +631,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			qPos.add(createDate);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, entry);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, entry);
 
 			Entry[] array = new EntryImpl[3];
 
@@ -698,11 +707,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public List<Entry> findByFromUserId(long fromUserId, int start, int end,
-		OrderByComparator obc) throws SystemException {
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(fromUserId),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_FROMUSERID,
@@ -716,9 +726,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(3 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(3);
@@ -728,8 +738,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				query.append(_FINDER_COLUMN_FROMUSERID_FROMUSERID_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -766,9 +777,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		return list;
 	}
 
-	public Entry findByFromUserId_First(long fromUserId, OrderByComparator obc)
+	public Entry findByFromUserId_First(long fromUserId,
+		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
-		List<Entry> list = findByFromUserId(fromUserId, 0, 1, obc);
+		List<Entry> list = findByFromUserId(fromUserId, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -787,11 +799,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		}
 	}
 
-	public Entry findByFromUserId_Last(long fromUserId, OrderByComparator obc)
+	public Entry findByFromUserId_Last(long fromUserId,
+		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
 		int count = countByFromUserId(fromUserId);
 
-		List<Entry> list = findByFromUserId(fromUserId, count - 1, count, obc);
+		List<Entry> list = findByFromUserId(fromUserId, count - 1, count,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -811,7 +825,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public Entry[] findByFromUserId_PrevAndNext(long entryId, long fromUserId,
-		OrderByComparator obc) throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
 		Entry entry = findByPrimaryKey(entryId);
 
 		int count = countByFromUserId(fromUserId);
@@ -823,9 +838,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(3 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(3);
@@ -835,8 +850,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			query.append(_FINDER_COLUMN_FROMUSERID_FROMUSERID_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -851,7 +867,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			qPos.add(fromUserId);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, entry);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, entry);
 
 			Entry[] array = new EntryImpl[3];
 
@@ -925,11 +942,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public List<Entry> findByToUserId(long toUserId, int start, int end,
-		OrderByComparator obc) throws SystemException {
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(toUserId),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_TOUSERID,
@@ -943,9 +961,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(3 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(3);
@@ -955,8 +973,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				query.append(_FINDER_COLUMN_TOUSERID_TOUSERID_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -993,9 +1012,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		return list;
 	}
 
-	public Entry findByToUserId_First(long toUserId, OrderByComparator obc)
+	public Entry findByToUserId_First(long toUserId,
+		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
-		List<Entry> list = findByToUserId(toUserId, 0, 1, obc);
+		List<Entry> list = findByToUserId(toUserId, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -1014,11 +1034,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		}
 	}
 
-	public Entry findByToUserId_Last(long toUserId, OrderByComparator obc)
+	public Entry findByToUserId_Last(long toUserId,
+		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
 		int count = countByToUserId(toUserId);
 
-		List<Entry> list = findByToUserId(toUserId, count - 1, count, obc);
+		List<Entry> list = findByToUserId(toUserId, count - 1, count,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -1038,7 +1060,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public Entry[] findByToUserId_PrevAndNext(long entryId, long toUserId,
-		OrderByComparator obc) throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
 		Entry entry = findByPrimaryKey(entryId);
 
 		int count = countByToUserId(toUserId);
@@ -1050,9 +1073,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(3 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(3);
@@ -1062,8 +1085,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			query.append(_FINDER_COLUMN_TOUSERID_TOUSERID_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -1078,7 +1102,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			qPos.add(toUserId);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, entry);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, entry);
 
 			Entry[] array = new EntryImpl[3];
 
@@ -1159,11 +1184,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public List<Entry> findByC_F(long createDate, long fromUserId, int start,
-		int end, OrderByComparator obc) throws SystemException {
+		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(createDate), new Long(fromUserId),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_C_F,
@@ -1177,9 +1203,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(4 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(4);
@@ -1191,8 +1217,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				query.append(_FINDER_COLUMN_C_F_FROMUSERID_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -1232,8 +1259,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public Entry findByC_F_First(long createDate, long fromUserId,
-		OrderByComparator obc) throws NoSuchEntryException, SystemException {
-		List<Entry> list = findByC_F(createDate, fromUserId, 0, 1, obc);
+		OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
+		List<Entry> list = findByC_F(createDate, fromUserId, 0, 1,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -1256,11 +1285,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public Entry findByC_F_Last(long createDate, long fromUserId,
-		OrderByComparator obc) throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
 		int count = countByC_F(createDate, fromUserId);
 
 		List<Entry> list = findByC_F(createDate, fromUserId, count - 1, count,
-				obc);
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -1283,7 +1313,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public Entry[] findByC_F_PrevAndNext(long entryId, long createDate,
-		long fromUserId, OrderByComparator obc)
+		long fromUserId, OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
 		Entry entry = findByPrimaryKey(entryId);
 
@@ -1296,9 +1326,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(4 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(4);
@@ -1310,8 +1340,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			query.append(_FINDER_COLUMN_C_F_FROMUSERID_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -1328,7 +1359,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			qPos.add(fromUserId);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, entry);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, entry);
 
 			Entry[] array = new EntryImpl[3];
 
@@ -1409,11 +1441,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public List<Entry> findByC_T(long createDate, long toUserId, int start,
-		int end, OrderByComparator obc) throws SystemException {
+		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(createDate), new Long(toUserId),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_C_T,
@@ -1427,9 +1460,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(4 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(4);
@@ -1441,8 +1474,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				query.append(_FINDER_COLUMN_C_T_TOUSERID_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -1482,8 +1516,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public Entry findByC_T_First(long createDate, long toUserId,
-		OrderByComparator obc) throws NoSuchEntryException, SystemException {
-		List<Entry> list = findByC_T(createDate, toUserId, 0, 1, obc);
+		OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
+		List<Entry> list = findByC_T(createDate, toUserId, 0, 1,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -1506,10 +1542,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public Entry findByC_T_Last(long createDate, long toUserId,
-		OrderByComparator obc) throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
 		int count = countByC_T(createDate, toUserId);
 
-		List<Entry> list = findByC_T(createDate, toUserId, count - 1, count, obc);
+		List<Entry> list = findByC_T(createDate, toUserId, count - 1, count,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -1532,7 +1570,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public Entry[] findByC_T_PrevAndNext(long entryId, long createDate,
-		long toUserId, OrderByComparator obc)
+		long toUserId, OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
 		Entry entry = findByPrimaryKey(entryId);
 
@@ -1545,9 +1583,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(4 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(4);
@@ -1559,8 +1597,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			query.append(_FINDER_COLUMN_C_T_TOUSERID_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -1577,7 +1616,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			qPos.add(toUserId);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, entry);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, entry);
 
 			Entry[] array = new EntryImpl[3];
 
@@ -1662,12 +1702,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public List<Entry> findByC_F_T(long createDate, long fromUserId,
-		long toUserId, int start, int end, OrderByComparator obc)
+		long toUserId, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(createDate), new Long(fromUserId), new Long(toUserId),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_C_F_T,
@@ -1681,9 +1722,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(5 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(5);
@@ -1697,8 +1738,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				query.append(_FINDER_COLUMN_C_F_T_TOUSERID_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -1740,10 +1782,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public Entry findByC_F_T_First(long createDate, long fromUserId,
-		long toUserId, OrderByComparator obc)
+		long toUserId, OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
 		List<Entry> list = findByC_F_T(createDate, fromUserId, toUserId, 0, 1,
-				obc);
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(8);
@@ -1769,12 +1811,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public Entry findByC_F_T_Last(long createDate, long fromUserId,
-		long toUserId, OrderByComparator obc)
+		long toUserId, OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
 		int count = countByC_F_T(createDate, fromUserId, toUserId);
 
 		List<Entry> list = findByC_F_T(createDate, fromUserId, toUserId,
-				count - 1, count, obc);
+				count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(8);
@@ -1800,7 +1842,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public Entry[] findByC_F_T_PrevAndNext(long entryId, long createDate,
-		long fromUserId, long toUserId, OrderByComparator obc)
+		long fromUserId, long toUserId, OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
 		Entry entry = findByPrimaryKey(entryId);
 
@@ -1813,9 +1855,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(5 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(5);
@@ -1829,8 +1871,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			query.append(_FINDER_COLUMN_C_F_T_TOUSERID_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -1849,7 +1892,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			qPos.add(toUserId);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, entry);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, entry);
 
 			Entry[] array = new EntryImpl[3];
 
@@ -1948,14 +1992,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public List<Entry> findByF_T_C(long fromUserId, long toUserId,
-		String content, int start, int end, OrderByComparator obc)
+		String content, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(fromUserId), new Long(toUserId),
 				
 				content,
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_F_T_C,
@@ -1969,9 +2014,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(5 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(5);
@@ -1995,8 +2040,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 					}
 				}
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -2040,9 +2086,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public Entry findByF_T_C_First(long fromUserId, long toUserId,
-		String content, OrderByComparator obc)
+		String content, OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
-		List<Entry> list = findByF_T_C(fromUserId, toUserId, content, 0, 1, obc);
+		List<Entry> list = findByF_T_C(fromUserId, toUserId, content, 0, 1,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(8);
@@ -2068,12 +2115,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public Entry findByF_T_C_Last(long fromUserId, long toUserId,
-		String content, OrderByComparator obc)
+		String content, OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
 		int count = countByF_T_C(fromUserId, toUserId, content);
 
 		List<Entry> list = findByF_T_C(fromUserId, toUserId, content,
-				count - 1, count, obc);
+				count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(8);
@@ -2099,7 +2146,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public Entry[] findByF_T_C_PrevAndNext(long entryId, long fromUserId,
-		long toUserId, String content, OrderByComparator obc)
+		long toUserId, String content, OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
 		Entry entry = findByPrimaryKey(entryId);
 
@@ -2112,9 +2159,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(5 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(5);
@@ -2138,8 +2185,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				}
 			}
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -2160,7 +2208,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				qPos.add(content);
 			}
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, entry);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, entry);
 
 			Entry[] array = new EntryImpl[3];
 
@@ -2178,46 +2227,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		}
 	}
 
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			dynamicQuery.compile(session);
-
-			return dynamicQuery.list();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			dynamicQuery.setLimit(start, end);
-
-			dynamicQuery.compile(session);
-
-			return dynamicQuery.list();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
 	public List<Entry> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -2226,10 +2235,11 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		return findAll(start, end, null);
 	}
 
-	public List<Entry> findAll(int start, int end, OrderByComparator obc)
-		throws SystemException {
+	public List<Entry> findAll(int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
@@ -2244,13 +2254,14 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				StringBundler query = null;
 				String sql = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(2 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 
 					query.append(_SQL_SELECT_ENTRY);
 
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 
 					sql = query.toString();
 				}
@@ -2261,7 +2272,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				Query q = session.createQuery(sql);
 
-				if (obc == null) {
+				if (orderByComparator == null) {
 					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
 							end, false);
 
@@ -2771,14 +2782,14 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		}
 	}
 
-	@BeanReference(name = "com.liferay.chat.service.persistence.EntryPersistence")
-	protected com.liferay.chat.service.persistence.EntryPersistence entryPersistence;
-	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence")
-	protected com.liferay.chat.service.persistence.StatusPersistence statusPersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
-	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
-	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
+	@BeanReference(type = EntryPersistence.class)
+	protected EntryPersistence entryPersistence;
+	@BeanReference(type = StatusPersistence.class)
+	protected StatusPersistence statusPersistence;
+	@BeanReference(type = ResourcePersistence.class)
+	protected ResourcePersistence resourcePersistence;
+	@BeanReference(type = UserPersistence.class)
+	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_ENTRY = "SELECT entry FROM Entry entry";
 	private static final String _SQL_SELECT_ENTRY_WHERE = "SELECT entry FROM Entry entry WHERE ";
 	private static final String _SQL_COUNT_ENTRY = "SELECT COUNT(entry) FROM Entry entry";

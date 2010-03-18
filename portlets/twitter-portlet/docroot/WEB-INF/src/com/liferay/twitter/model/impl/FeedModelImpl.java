@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -157,7 +158,12 @@ public class FeedModelImpl extends BaseModelImpl<Feed> {
 	}
 
 	public String getTwitterScreenName() {
-		return GetterUtil.getString(_twitterScreenName);
+		if (_twitterScreenName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _twitterScreenName;
+		}
 	}
 
 	public void setTwitterScreenName(String twitterScreenName) {

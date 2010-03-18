@@ -131,35 +131,38 @@ public class JIRAChangeGroupUtil {
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findByJiraUserId(
 		java.lang.String jiraUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByJiraUserId(jiraUserId, start, end, obc);
+		return getPersistence()
+				   .findByJiraUserId(jiraUserId, start, end, orderByComparator);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAChangeGroup findByJiraUserId_First(
 		java.lang.String jiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeGroupException {
-		return getPersistence().findByJiraUserId_First(jiraUserId, obc);
+		return getPersistence()
+				   .findByJiraUserId_First(jiraUserId, orderByComparator);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAChangeGroup findByJiraUserId_Last(
 		java.lang.String jiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeGroupException {
-		return getPersistence().findByJiraUserId_Last(jiraUserId, obc);
+		return getPersistence()
+				   .findByJiraUserId_Last(jiraUserId, orderByComparator);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAChangeGroup[] findByJiraUserId_PrevAndNext(
 		long jiraChangeGroupId, java.lang.String jiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeGroupException {
 		return getPersistence()
 				   .findByJiraUserId_PrevAndNext(jiraChangeGroupId, jiraUserId,
-			obc);
+			orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findByJiraIssueId(
@@ -176,33 +179,38 @@ public class JIRAChangeGroupUtil {
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findByJiraIssueId(
 		long jiraIssueId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByJiraIssueId(jiraIssueId, start, end, obc);
+		return getPersistence()
+				   .findByJiraIssueId(jiraIssueId, start, end, orderByComparator);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAChangeGroup findByJiraIssueId_First(
-		long jiraIssueId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		long jiraIssueId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeGroupException {
-		return getPersistence().findByJiraIssueId_First(jiraIssueId, obc);
+		return getPersistence()
+				   .findByJiraIssueId_First(jiraIssueId, orderByComparator);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAChangeGroup findByJiraIssueId_Last(
-		long jiraIssueId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		long jiraIssueId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeGroupException {
-		return getPersistence().findByJiraIssueId_Last(jiraIssueId, obc);
+		return getPersistence()
+				   .findByJiraIssueId_Last(jiraIssueId, orderByComparator);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAChangeGroup[] findByJiraIssueId_PrevAndNext(
 		long jiraChangeGroupId, long jiraIssueId,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAChangeGroupException {
 		return getPersistence()
 				   .findByJiraIssueId_PrevAndNext(jiraChangeGroupId,
-			jiraIssueId, obc);
+			jiraIssueId, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findAll()
@@ -217,9 +225,10 @@ public class JIRAChangeGroupUtil {
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findAll(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findAll(start, end, obc);
+		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	public static void removeByJiraUserId(java.lang.String jiraUserId)

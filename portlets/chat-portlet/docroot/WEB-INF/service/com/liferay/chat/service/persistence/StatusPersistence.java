@@ -75,22 +75,24 @@ public interface StatusPersistence extends BasePersistence<Status> {
 
 	public java.util.List<com.liferay.chat.model.Status> findByModifiedDate(
 		long modifiedDate, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.chat.model.Status findByModifiedDate_First(
-		long modifiedDate, com.liferay.portal.kernel.util.OrderByComparator obc)
+		long modifiedDate,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.chat.model.Status findByModifiedDate_Last(
-		long modifiedDate, com.liferay.portal.kernel.util.OrderByComparator obc)
+		long modifiedDate,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.chat.model.Status[] findByModifiedDate_PrevAndNext(
 		long statusId, long modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -104,22 +106,22 @@ public interface StatusPersistence extends BasePersistence<Status> {
 
 	public java.util.List<com.liferay.chat.model.Status> findByOnline(
 		boolean online, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.chat.model.Status findByOnline_First(boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.chat.model.Status findByOnline_Last(boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.chat.model.Status[] findByOnline_PrevAndNext(
 		long statusId, boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -133,22 +135,24 @@ public interface StatusPersistence extends BasePersistence<Status> {
 
 	public java.util.List<com.liferay.chat.model.Status> findByM_O(
 		long modifiedDate, boolean online, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.chat.model.Status findByM_O_First(long modifiedDate,
-		boolean online, com.liferay.portal.kernel.util.OrderByComparator obc)
+		boolean online,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.chat.model.Status findByM_O_Last(long modifiedDate,
-		boolean online, com.liferay.portal.kernel.util.OrderByComparator obc)
+		boolean online,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.chat.model.Status[] findByM_O_PrevAndNext(
 		long statusId, long modifiedDate, boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -159,7 +163,8 @@ public interface StatusPersistence extends BasePersistence<Status> {
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.chat.model.Status> findAll(int start,
-		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void removeByUserId(long userId)

@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -130,7 +131,12 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 	}
 
 	public String getSvnUserId() {
-		return GetterUtil.getString(_svnUserId);
+		if (_svnUserId == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _svnUserId;
+		}
 	}
 
 	public void setSvnUserId(String svnUserId) {
@@ -162,7 +168,12 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 	}
 
 	public String getComments() {
-		return GetterUtil.getString(_comments);
+		if (_comments == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _comments;
+		}
 	}
 
 	public void setComments(String comments) {

@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -135,7 +136,12 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	}
 
 	public String getJiraUserId() {
-		return GetterUtil.getString(_jiraUserId);
+		if (_jiraUserId == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _jiraUserId;
+		}
 	}
 
 	public void setJiraUserId(String jiraUserId) {
@@ -167,7 +173,12 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	}
 
 	public String getType() {
-		return GetterUtil.getString(_type);
+		if (_type == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _type;
+		}
 	}
 
 	public void setType(String type) {
@@ -175,7 +186,12 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	}
 
 	public String getBody() {
-		return GetterUtil.getString(_body);
+		if (_body == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _body;
+		}
 	}
 
 	public void setBody(String body) {
@@ -183,7 +199,12 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	}
 
 	public String getJiraGroupName() {
-		return GetterUtil.getString(_jiraGroupName);
+		if (_jiraGroupName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _jiraGroupName;
+		}
 	}
 
 	public void setJiraGroupName(String jiraGroupName) {

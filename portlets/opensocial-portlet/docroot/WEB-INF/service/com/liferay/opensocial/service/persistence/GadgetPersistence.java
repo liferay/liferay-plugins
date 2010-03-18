@@ -64,22 +64,24 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 
 	public java.util.List<com.liferay.opensocial.model.Gadget> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.opensocial.model.Gadget findByCompanyId_First(
-		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.opensocial.NoSuchGadgetException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.opensocial.model.Gadget findByCompanyId_Last(
-		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.opensocial.NoSuchGadgetException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.opensocial.model.Gadget[] findByCompanyId_PrevAndNext(
 		long gadgetId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.opensocial.NoSuchGadgetException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -91,7 +93,8 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.opensocial.model.Gadget> findAll(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void removeByCompanyId(long companyId)

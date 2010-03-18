@@ -17,7 +17,6 @@ package com.liferay.sampleservicebuilder.service.persistence;
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -35,6 +34,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
+import com.liferay.portal.service.persistence.ResourcePersistence;
+import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.sampleservicebuilder.NoSuchFooException;
@@ -365,11 +366,12 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	}
 
 	public List<Foo> findByField2(boolean field2, int start, int end,
-		OrderByComparator obc) throws SystemException {
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				Boolean.valueOf(field2),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<Foo> list = (List<Foo>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_FIELD2,
@@ -383,9 +385,9 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(3 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(3);
@@ -395,8 +397,9 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 				query.append(_FINDER_COLUMN_FIELD2_FIELD2_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -433,9 +436,10 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		return list;
 	}
 
-	public Foo findByField2_First(boolean field2, OrderByComparator obc)
+	public Foo findByField2_First(boolean field2,
+		OrderByComparator orderByComparator)
 		throws NoSuchFooException, SystemException {
-		List<Foo> list = findByField2(field2, 0, 1, obc);
+		List<Foo> list = findByField2(field2, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -454,11 +458,13 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		}
 	}
 
-	public Foo findByField2_Last(boolean field2, OrderByComparator obc)
+	public Foo findByField2_Last(boolean field2,
+		OrderByComparator orderByComparator)
 		throws NoSuchFooException, SystemException {
 		int count = countByField2(field2);
 
-		List<Foo> list = findByField2(field2, count - 1, count, obc);
+		List<Foo> list = findByField2(field2, count - 1, count,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -478,7 +484,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	}
 
 	public Foo[] findByField2_PrevAndNext(long fooId, boolean field2,
-		OrderByComparator obc) throws NoSuchFooException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchFooException, SystemException {
 		Foo foo = findByPrimaryKey(fooId);
 
 		int count = countByField2(field2);
@@ -490,9 +497,9 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(3 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(3);
@@ -502,8 +509,9 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 			query.append(_FINDER_COLUMN_FIELD2_FIELD2_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -518,7 +526,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 			qPos.add(field2);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, foo);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, foo);
 
 			Foo[] array = new FooImpl[3];
 
@@ -536,46 +545,6 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		}
 	}
 
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			dynamicQuery.compile(session);
-
-			return dynamicQuery.list();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			dynamicQuery.setLimit(start, end);
-
-			dynamicQuery.compile(session);
-
-			return dynamicQuery.list();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
 	public List<Foo> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -584,10 +553,11 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		return findAll(start, end, null);
 	}
 
-	public List<Foo> findAll(int start, int end, OrderByComparator obc)
-		throws SystemException {
+	public List<Foo> findAll(int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<Foo> list = (List<Foo>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
@@ -602,13 +572,14 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 				StringBundler query = null;
 				String sql = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(2 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 
 					query.append(_SQL_SELECT_FOO);
 
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 
 					sql = query.toString();
 				}
@@ -619,7 +590,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 				Query q = session.createQuery(sql);
 
-				if (obc == null) {
+				if (orderByComparator == null) {
 					list = (List<Foo>)QueryUtil.list(q, getDialect(), start,
 							end, false);
 
@@ -762,12 +733,12 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		}
 	}
 
-	@BeanReference(name = "com.liferay.sampleservicebuilder.service.persistence.FooPersistence")
-	protected com.liferay.sampleservicebuilder.service.persistence.FooPersistence fooPersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
-	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
-	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
+	@BeanReference(type = FooPersistence.class)
+	protected FooPersistence fooPersistence;
+	@BeanReference(type = ResourcePersistence.class)
+	protected ResourcePersistence resourcePersistence;
+	@BeanReference(type = UserPersistence.class)
+	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_FOO = "SELECT foo FROM Foo foo";
 	private static final String _SQL_SELECT_FOO_WHERE = "SELECT foo FROM Foo foo WHERE ";
 	private static final String _SQL_COUNT_FOO = "SELECT COUNT(foo) FROM Foo foo";

@@ -17,7 +17,6 @@ package com.liferay.so.service.persistence;
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -36,6 +35,8 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
+import com.liferay.portal.service.persistence.ResourcePersistence;
+import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.so.NoSuchMemberRequestException;
@@ -602,11 +603,13 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	}
 
 	public List<MemberRequest> findByReceiverUserId(long receiverUserId,
-		int start, int end, OrderByComparator obc) throws SystemException {
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(receiverUserId),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<MemberRequest> list = (List<MemberRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_RECEIVERUSERID,
@@ -620,9 +623,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(3 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(3);
@@ -632,8 +635,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 				query.append(_FINDER_COLUMN_RECEIVERUSERID_RECEIVERUSERID_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -672,10 +676,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	}
 
 	public MemberRequest findByReceiverUserId_First(long receiverUserId,
-		OrderByComparator obc)
+		OrderByComparator orderByComparator)
 		throws NoSuchMemberRequestException, SystemException {
 		List<MemberRequest> list = findByReceiverUserId(receiverUserId, 0, 1,
-				obc);
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -695,12 +699,12 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	}
 
 	public MemberRequest findByReceiverUserId_Last(long receiverUserId,
-		OrderByComparator obc)
+		OrderByComparator orderByComparator)
 		throws NoSuchMemberRequestException, SystemException {
 		int count = countByReceiverUserId(receiverUserId);
 
 		List<MemberRequest> list = findByReceiverUserId(receiverUserId,
-				count - 1, count, obc);
+				count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -720,7 +724,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	}
 
 	public MemberRequest[] findByReceiverUserId_PrevAndNext(
-		long memberRequestId, long receiverUserId, OrderByComparator obc)
+		long memberRequestId, long receiverUserId,
+		OrderByComparator orderByComparator)
 		throws NoSuchMemberRequestException, SystemException {
 		MemberRequest memberRequest = findByPrimaryKey(memberRequestId);
 
@@ -733,9 +738,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(3 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(3);
@@ -745,8 +750,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 			query.append(_FINDER_COLUMN_RECEIVERUSERID_RECEIVERUSERID_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -761,8 +767,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 			qPos.add(receiverUserId);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					memberRequest);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, memberRequest);
 
 			MemberRequest[] array = new MemberRequestImpl[3];
 
@@ -843,11 +849,13 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	}
 
 	public List<MemberRequest> findByR_S(long receiverUserId, int status,
-		int start, int end, OrderByComparator obc) throws SystemException {
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(receiverUserId), new Integer(status),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<MemberRequest> list = (List<MemberRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_R_S,
@@ -861,9 +869,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(4 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(4);
@@ -875,8 +883,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 				query.append(_FINDER_COLUMN_R_S_STATUS_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				else {
@@ -917,9 +926,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	}
 
 	public MemberRequest findByR_S_First(long receiverUserId, int status,
-		OrderByComparator obc)
+		OrderByComparator orderByComparator)
 		throws NoSuchMemberRequestException, SystemException {
-		List<MemberRequest> list = findByR_S(receiverUserId, status, 0, 1, obc);
+		List<MemberRequest> list = findByR_S(receiverUserId, status, 0, 1,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -942,12 +952,12 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	}
 
 	public MemberRequest findByR_S_Last(long receiverUserId, int status,
-		OrderByComparator obc)
+		OrderByComparator orderByComparator)
 		throws NoSuchMemberRequestException, SystemException {
 		int count = countByR_S(receiverUserId, status);
 
 		List<MemberRequest> list = findByR_S(receiverUserId, status, count - 1,
-				count, obc);
+				count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -970,7 +980,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	}
 
 	public MemberRequest[] findByR_S_PrevAndNext(long memberRequestId,
-		long receiverUserId, int status, OrderByComparator obc)
+		long receiverUserId, int status, OrderByComparator orderByComparator)
 		throws NoSuchMemberRequestException, SystemException {
 		MemberRequest memberRequest = findByPrimaryKey(memberRequestId);
 
@@ -983,9 +993,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(4 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(4);
@@ -997,8 +1007,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 			query.append(_FINDER_COLUMN_R_S_STATUS_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			else {
@@ -1015,8 +1026,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 			qPos.add(status);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					memberRequest);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, memberRequest);
 
 			MemberRequest[] array = new MemberRequestImpl[3];
 
@@ -1160,46 +1171,6 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 	}
 
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			dynamicQuery.compile(session);
-
-			return dynamicQuery.list();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			dynamicQuery.setLimit(start, end);
-
-			dynamicQuery.compile(session);
-
-			return dynamicQuery.list();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
 	public List<MemberRequest> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -1209,10 +1180,11 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return findAll(start, end, null);
 	}
 
-	public List<MemberRequest> findAll(int start, int end, OrderByComparator obc)
-		throws SystemException {
+	public List<MemberRequest> findAll(int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<MemberRequest> list = (List<MemberRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
@@ -1227,13 +1199,14 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				StringBundler query = null;
 				String sql = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(2 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 
 					query.append(_SQL_SELECT_MEMBERREQUEST);
 
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 
 					sql = query.toString();
 				}
@@ -1244,7 +1217,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 				Query q = session.createQuery(sql);
 
-				if (obc == null) {
+				if (orderByComparator == null) {
 					list = (List<MemberRequest>)QueryUtil.list(q, getDialect(),
 							start, end, false);
 
@@ -1580,14 +1553,14 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 	}
 
-	@BeanReference(name = "com.liferay.so.service.persistence.MemberRequestPersistence")
-	protected com.liferay.so.service.persistence.MemberRequestPersistence memberRequestPersistence;
-	@BeanReference(name = "com.liferay.so.service.persistence.ProjectsEntryPersistence")
-	protected com.liferay.so.service.persistence.ProjectsEntryPersistence projectsEntryPersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
-	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
-	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
+	@BeanReference(type = MemberRequestPersistence.class)
+	protected MemberRequestPersistence memberRequestPersistence;
+	@BeanReference(type = ProjectsEntryPersistence.class)
+	protected ProjectsEntryPersistence projectsEntryPersistence;
+	@BeanReference(type = ResourcePersistence.class)
+	protected ResourcePersistence resourcePersistence;
+	@BeanReference(type = UserPersistence.class)
+	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_MEMBERREQUEST = "SELECT memberRequest FROM MemberRequest memberRequest";
 	private static final String _SQL_SELECT_MEMBERREQUEST_WHERE = "SELECT memberRequest FROM MemberRequest memberRequest WHERE ";
 	private static final String _SQL_COUNT_MEMBERREQUEST = "SELECT COUNT(memberRequest) FROM MemberRequest memberRequest";

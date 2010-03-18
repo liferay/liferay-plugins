@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
@@ -78,6 +79,17 @@ public abstract class WallEntryLocalServiceBaseImpl
 		int end) throws SystemException {
 		return wallEntryPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
+	}
+
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		return wallEntryPersistence.findWithDynamicQuery(dynamicQuery, start,
+			end, orderByComparator);
+	}
+
+	public int dynamicQueryCount(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return wallEntryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
 	public WallEntry getWallEntry(long wallEntryId)
@@ -246,34 +258,34 @@ public abstract class WallEntryLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(name = "com.liferay.socialnetworking.service.MeetupsEntryLocalService")
+	@BeanReference(type = MeetupsEntryLocalService.class)
 	protected MeetupsEntryLocalService meetupsEntryLocalService;
-	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistence")
+	@BeanReference(type = MeetupsEntryPersistence.class)
 	protected MeetupsEntryPersistence meetupsEntryPersistence;
-	@BeanReference(name = "com.liferay.socialnetworking.service.MeetupsRegistrationLocalService")
+	@BeanReference(type = MeetupsRegistrationLocalService.class)
 	protected MeetupsRegistrationLocalService meetupsRegistrationLocalService;
-	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence")
+	@BeanReference(type = MeetupsRegistrationPersistence.class)
 	protected MeetupsRegistrationPersistence meetupsRegistrationPersistence;
-	@BeanReference(name = "com.liferay.socialnetworking.service.WallEntryLocalService")
+	@BeanReference(type = WallEntryLocalService.class)
 	protected WallEntryLocalService wallEntryLocalService;
-	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.WallEntryPersistence")
+	@BeanReference(type = WallEntryPersistence.class)
 	protected WallEntryPersistence wallEntryPersistence;
-	@BeanReference(name = "com.liferay.socialnetworking.service.persistence.WallEntryFinder")
+	@BeanReference(type = WallEntryFinder.class)
 	protected WallEntryFinder wallEntryFinder;
-	@BeanReference(name = "com.liferay.counter.service.CounterLocalService")
+	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
-	@BeanReference(name = "com.liferay.counter.service.CounterService")
+	@BeanReference(type = CounterService.class)
 	protected CounterService counterService;
-	@BeanReference(name = "com.liferay.portal.service.ResourceLocalService")
+	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(name = "com.liferay.portal.service.ResourceService")
+	@BeanReference(type = ResourceService.class)
 	protected ResourceService resourceService;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
+	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.UserLocalService")
+	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
-	@BeanReference(name = "com.liferay.portal.service.UserService")
+	@BeanReference(type = UserService.class)
 	protected UserService userService;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
+	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 }

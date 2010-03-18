@@ -22,7 +22,6 @@ import com.liferay.chat.model.impl.StatusModelImpl;
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistry;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -40,6 +39,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
+import com.liferay.portal.service.persistence.ResourcePersistence;
+import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
@@ -531,11 +532,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public List<Status> findByModifiedDate(long modifiedDate, int start,
-		int end, OrderByComparator obc) throws SystemException {
+		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(modifiedDate),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_MODIFIEDDATE,
@@ -549,9 +551,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(3 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(2);
@@ -561,8 +563,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				String sql = query.toString();
@@ -596,8 +599,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public Status findByModifiedDate_First(long modifiedDate,
-		OrderByComparator obc) throws NoSuchStatusException, SystemException {
-		List<Status> list = findByModifiedDate(modifiedDate, 0, 1, obc);
+		OrderByComparator orderByComparator)
+		throws NoSuchStatusException, SystemException {
+		List<Status> list = findByModifiedDate(modifiedDate, 0, 1,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -617,11 +622,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public Status findByModifiedDate_Last(long modifiedDate,
-		OrderByComparator obc) throws NoSuchStatusException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchStatusException, SystemException {
 		int count = countByModifiedDate(modifiedDate);
 
 		List<Status> list = findByModifiedDate(modifiedDate, count - 1, count,
-				obc);
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -641,7 +647,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public Status[] findByModifiedDate_PrevAndNext(long statusId,
-		long modifiedDate, OrderByComparator obc)
+		long modifiedDate, OrderByComparator orderByComparator)
 		throws NoSuchStatusException, SystemException {
 		Status status = findByPrimaryKey(statusId);
 
@@ -654,9 +660,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(3 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(2);
@@ -666,8 +672,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 			query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			String sql = query.toString();
@@ -678,7 +685,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 			qPos.add(modifiedDate);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, status);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, status);
 
 			Status[] array = new StatusImpl[3];
 
@@ -750,11 +758,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public List<Status> findByOnline(boolean online, int start, int end,
-		OrderByComparator obc) throws SystemException {
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				Boolean.valueOf(online),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ONLINE,
@@ -768,9 +777,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(3 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(2);
@@ -780,8 +789,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				String sql = query.toString();
@@ -814,9 +824,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return list;
 	}
 
-	public Status findByOnline_First(boolean online, OrderByComparator obc)
+	public Status findByOnline_First(boolean online,
+		OrderByComparator orderByComparator)
 		throws NoSuchStatusException, SystemException {
-		List<Status> list = findByOnline(online, 0, 1, obc);
+		List<Status> list = findByOnline(online, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -835,11 +846,13 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
-	public Status findByOnline_Last(boolean online, OrderByComparator obc)
+	public Status findByOnline_Last(boolean online,
+		OrderByComparator orderByComparator)
 		throws NoSuchStatusException, SystemException {
 		int count = countByOnline(online);
 
-		List<Status> list = findByOnline(online, count - 1, count, obc);
+		List<Status> list = findByOnline(online, count - 1, count,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(4);
@@ -859,7 +872,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public Status[] findByOnline_PrevAndNext(long statusId, boolean online,
-		OrderByComparator obc) throws NoSuchStatusException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchStatusException, SystemException {
 		Status status = findByPrimaryKey(statusId);
 
 		int count = countByOnline(online);
@@ -871,9 +885,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(3 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(2);
@@ -883,8 +897,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 			query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			String sql = query.toString();
@@ -895,7 +910,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 			qPos.add(online);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, status);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, status);
 
 			Status[] array = new StatusImpl[3];
 
@@ -974,11 +990,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public List<Status> findByM_O(long modifiedDate, boolean online, int start,
-		int end, OrderByComparator obc) throws SystemException {
+		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(modifiedDate), Boolean.valueOf(online),
 				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_M_O,
@@ -992,9 +1009,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				StringBundler query = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(4 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
 					query = new StringBundler(3);
@@ -1006,8 +1023,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				query.append(_FINDER_COLUMN_M_O_ONLINE_2);
 
-				if (obc != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 				}
 
 				String sql = query.toString();
@@ -1043,8 +1061,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public Status findByM_O_First(long modifiedDate, boolean online,
-		OrderByComparator obc) throws NoSuchStatusException, SystemException {
-		List<Status> list = findByM_O(modifiedDate, online, 0, 1, obc);
+		OrderByComparator orderByComparator)
+		throws NoSuchStatusException, SystemException {
+		List<Status> list = findByM_O(modifiedDate, online, 0, 1,
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -1067,11 +1087,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public Status findByM_O_Last(long modifiedDate, boolean online,
-		OrderByComparator obc) throws NoSuchStatusException, SystemException {
+		OrderByComparator orderByComparator)
+		throws NoSuchStatusException, SystemException {
 		int count = countByM_O(modifiedDate, online);
 
 		List<Status> list = findByM_O(modifiedDate, online, count - 1, count,
-				obc);
+				orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -1094,7 +1115,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public Status[] findByM_O_PrevAndNext(long statusId, long modifiedDate,
-		boolean online, OrderByComparator obc)
+		boolean online, OrderByComparator orderByComparator)
 		throws NoSuchStatusException, SystemException {
 		Status status = findByPrimaryKey(statusId);
 
@@ -1107,9 +1128,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 			StringBundler query = null;
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				query = new StringBundler(4 +
-						(obc.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
 				query = new StringBundler(3);
@@ -1121,8 +1142,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 			query.append(_FINDER_COLUMN_M_O_ONLINE_2);
 
-			if (obc != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
 			}
 
 			String sql = query.toString();
@@ -1135,7 +1157,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 			qPos.add(online);
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, status);
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, status);
 
 			Status[] array = new StatusImpl[3];
 
@@ -1153,46 +1176,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			dynamicQuery.compile(session);
-
-			return dynamicQuery.list();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			dynamicQuery.setLimit(start, end);
-
-			dynamicQuery.compile(session);
-
-			return dynamicQuery.list();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
 	public List<Status> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -1201,10 +1184,11 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return findAll(start, end, null);
 	}
 
-	public List<Status> findAll(int start, int end, OrderByComparator obc)
-		throws SystemException {
+	public List<Status> findAll(int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
@@ -1219,13 +1203,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				StringBundler query = null;
 				String sql = null;
 
-				if (obc != null) {
+				if (orderByComparator != null) {
 					query = new StringBundler(2 +
-							(obc.getOrderByFields().length * 3));
+							(orderByComparator.getOrderByFields().length * 3));
 
 					query.append(_SQL_SELECT_STATUS);
 
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS, obc);
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
 
 					sql = query.toString();
 				}
@@ -1234,7 +1219,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				Query q = session.createQuery(sql);
 
-				if (obc == null) {
+				if (orderByComparator == null) {
 					list = (List<Status>)QueryUtil.list(q, getDialect(), start,
 							end, false);
 
@@ -1544,14 +1529,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
-	@BeanReference(name = "com.liferay.chat.service.persistence.EntryPersistence")
-	protected com.liferay.chat.service.persistence.EntryPersistence entryPersistence;
-	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence")
-	protected com.liferay.chat.service.persistence.StatusPersistence statusPersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
-	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
-	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
+	@BeanReference(type = EntryPersistence.class)
+	protected EntryPersistence entryPersistence;
+	@BeanReference(type = StatusPersistence.class)
+	protected StatusPersistence statusPersistence;
+	@BeanReference(type = ResourcePersistence.class)
+	protected ResourcePersistence resourcePersistence;
+	@BeanReference(type = UserPersistence.class)
+	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_STATUS = "SELECT status FROM Status status";
 	private static final String _SQL_SELECT_STATUS_WHERE = "SELECT status FROM Status status WHERE ";
 	private static final String _SQL_COUNT_STATUS = "SELECT COUNT(status) FROM Status status";

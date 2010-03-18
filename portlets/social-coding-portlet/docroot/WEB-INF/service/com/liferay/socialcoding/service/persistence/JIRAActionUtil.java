@@ -130,34 +130,38 @@ public class JIRAActionUtil {
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAAction> findByJiraUserId(
 		java.lang.String jiraUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByJiraUserId(jiraUserId, start, end, obc);
+		return getPersistence()
+				   .findByJiraUserId(jiraUserId, start, end, orderByComparator);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAAction findByJiraUserId_First(
 		java.lang.String jiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAActionException {
-		return getPersistence().findByJiraUserId_First(jiraUserId, obc);
+		return getPersistence()
+				   .findByJiraUserId_First(jiraUserId, orderByComparator);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAAction findByJiraUserId_Last(
 		java.lang.String jiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAActionException {
-		return getPersistence().findByJiraUserId_Last(jiraUserId, obc);
+		return getPersistence()
+				   .findByJiraUserId_Last(jiraUserId, orderByComparator);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAAction[] findByJiraUserId_PrevAndNext(
 		long jiraActionId, java.lang.String jiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAActionException {
 		return getPersistence()
-				   .findByJiraUserId_PrevAndNext(jiraActionId, jiraUserId, obc);
+				   .findByJiraUserId_PrevAndNext(jiraActionId, jiraUserId,
+			orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAAction> findByJiraIssueId(
@@ -174,32 +178,38 @@ public class JIRAActionUtil {
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAAction> findByJiraIssueId(
 		long jiraIssueId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByJiraIssueId(jiraIssueId, start, end, obc);
+		return getPersistence()
+				   .findByJiraIssueId(jiraIssueId, start, end, orderByComparator);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAAction findByJiraIssueId_First(
-		long jiraIssueId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		long jiraIssueId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAActionException {
-		return getPersistence().findByJiraIssueId_First(jiraIssueId, obc);
+		return getPersistence()
+				   .findByJiraIssueId_First(jiraIssueId, orderByComparator);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAAction findByJiraIssueId_Last(
-		long jiraIssueId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		long jiraIssueId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAActionException {
-		return getPersistence().findByJiraIssueId_Last(jiraIssueId, obc);
+		return getPersistence()
+				   .findByJiraIssueId_Last(jiraIssueId, orderByComparator);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAAction[] findByJiraIssueId_PrevAndNext(
 		long jiraActionId, long jiraIssueId,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAActionException {
 		return getPersistence()
-				   .findByJiraIssueId_PrevAndNext(jiraActionId, jiraIssueId, obc);
+				   .findByJiraIssueId_PrevAndNext(jiraActionId, jiraIssueId,
+			orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAAction> findByType(
@@ -216,33 +226,34 @@ public class JIRAActionUtil {
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAAction> findByType(
 		java.lang.String type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByType(type, start, end, obc);
+		return getPersistence().findByType(type, start, end, orderByComparator);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAAction findByType_First(
 		java.lang.String type,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAActionException {
-		return getPersistence().findByType_First(type, obc);
+		return getPersistence().findByType_First(type, orderByComparator);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAAction findByType_Last(
 		java.lang.String type,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAActionException {
-		return getPersistence().findByType_Last(type, obc);
+		return getPersistence().findByType_Last(type, orderByComparator);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAAction[] findByType_PrevAndNext(
 		long jiraActionId, java.lang.String type,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAActionException {
-		return getPersistence().findByType_PrevAndNext(jiraActionId, type, obc);
+		return getPersistence()
+				   .findByType_PrevAndNext(jiraActionId, type, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAAction> findAll()
@@ -257,9 +268,10 @@ public class JIRAActionUtil {
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAAction> findAll(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findAll(start, end, obc);
+		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	public static void removeByJiraUserId(java.lang.String jiraUserId)

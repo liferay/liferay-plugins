@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -166,7 +167,12 @@ public class FooModelImpl extends BaseModelImpl<Foo> {
 	}
 
 	public String getUserName() {
-		return GetterUtil.getString(_userName);
+		if (_userName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _userName;
+		}
 	}
 
 	public void setUserName(String userName) {
@@ -190,7 +196,12 @@ public class FooModelImpl extends BaseModelImpl<Foo> {
 	}
 
 	public String getField1() {
-		return GetterUtil.getString(_field1);
+		if (_field1 == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _field1;
+		}
 	}
 
 	public void setField1(String field1) {
@@ -226,7 +237,12 @@ public class FooModelImpl extends BaseModelImpl<Foo> {
 	}
 
 	public String getField5() {
-		return GetterUtil.getString(_field5);
+		if (_field5 == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _field5;
+		}
 	}
 
 	public void setField5(String field5) {
