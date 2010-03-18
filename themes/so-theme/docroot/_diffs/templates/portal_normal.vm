@@ -65,7 +65,18 @@ $theme.include($top_messages_include)
 
 #if (!$layout.getFriendlyURL().equals("/home"))
 	<script type="text/javascript">
-		Liferay.Layout = null;
+		AUI().use(
+			'liferay-layout',
+			function(A) {
+				A.Do.before(
+					function(options) {
+						options.dragNodes = '';
+					},
+					Liferay.Layout,
+					'init'
+				);
+			}
+		);
 	</script>
 #end
 
