@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
@@ -145,8 +144,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			PropertyFactoryUtil.forName("assigneeClassName").eq(
 				Role.class.getName()));
 
-		String[] roleIdsArray = ArrayUtil.toStringArray(
-			roleIds.toArray(new Object[roleIds.size()]));
+		Long[] roleIdsArray = roleIds.toArray(new Long[roleIds.size()]);
 
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("assigneeClassPK").in(roleIdsArray));
@@ -240,8 +238,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			PropertyFactoryUtil.forName("assigneeClassName").eq(
 				Role.class.getName()));
 
-		String[] roleIdsArray = ArrayUtil.toStringArray(
-			roleIds.toArray(new Object[roleIds.size()]));
+		Long[] roleIdsArray = roleIds.toArray(new Long[roleIds.size()]);
 
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("assigneeClassPK").in(roleIdsArray));
