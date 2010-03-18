@@ -12,7 +12,7 @@
 	<!-- Advice -->
 
 	<aop:config>
-		<aop:pointcut id="transactionOperation" expression="bean(*GraphWalker) || bean(*Service) || bean(*WorkflowEngine)" />
+		<aop:pointcut id="transactionOperation" expression="bean(*GraphWalker) || bean(*WorkflowEngine)" />
 		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionOperation" order="1" />
 	</aop:config>
 	
