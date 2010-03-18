@@ -416,64 +416,64 @@ public abstract class KaleoTaskInstanceTokenLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.KaleoActionLocalService")
+	@BeanReference(type = KaleoActionLocalService.class)
 	protected KaleoActionLocalService kaleoActionLocalService;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoActionPersistence")
+	@BeanReference(type = KaleoActionPersistence.class)
 	protected KaleoActionPersistence kaleoActionPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalService")
+	@BeanReference(type = KaleoDefinitionLocalService.class)
 	protected KaleoDefinitionLocalService kaleoDefinitionLocalService;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoDefinitionPersistence")
+	@BeanReference(type = KaleoDefinitionPersistence.class)
 	protected KaleoDefinitionPersistence kaleoDefinitionPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService")
+	@BeanReference(type = KaleoInstanceLocalService.class)
 	protected KaleoInstanceLocalService kaleoInstanceLocalService;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoInstancePersistence")
+	@BeanReference(type = KaleoInstancePersistence.class)
 	protected KaleoInstancePersistence kaleoInstancePersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalService")
+	@BeanReference(type = KaleoInstanceTokenLocalService.class)
 	protected KaleoInstanceTokenLocalService kaleoInstanceTokenLocalService;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoInstanceTokenPersistence")
+	@BeanReference(type = KaleoInstanceTokenPersistence.class)
 	protected KaleoInstanceTokenPersistence kaleoInstanceTokenPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.KaleoLogLocalService")
+	@BeanReference(type = KaleoLogLocalService.class)
 	protected KaleoLogLocalService kaleoLogLocalService;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoLogPersistence")
+	@BeanReference(type = KaleoLogPersistence.class)
 	protected KaleoLogPersistence kaleoLogPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalService")
+	@BeanReference(type = KaleoNodeLocalService.class)
 	protected KaleoNodeLocalService kaleoNodeLocalService;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoNodePersistence")
+	@BeanReference(type = KaleoNodePersistence.class)
 	protected KaleoNodePersistence kaleoNodePersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalService")
+	@BeanReference(type = KaleoTaskLocalService.class)
 	protected KaleoTaskLocalService kaleoTaskLocalService;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskPersistence")
+	@BeanReference(type = KaleoTaskPersistence.class)
 	protected KaleoTaskPersistence kaleoTaskPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalService")
+	@BeanReference(type = KaleoTaskAssignmentLocalService.class)
 	protected KaleoTaskAssignmentLocalService kaleoTaskAssignmentLocalService;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskAssignmentPersistence")
+	@BeanReference(type = KaleoTaskAssignmentPersistence.class)
 	protected KaleoTaskAssignmentPersistence kaleoTaskAssignmentPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceAssignmentLocalService")
+	@BeanReference(type = KaleoTaskInstanceAssignmentLocalService.class)
 	protected KaleoTaskInstanceAssignmentLocalService kaleoTaskInstanceAssignmentLocalService;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceAssignmentPersistence")
+	@BeanReference(type = KaleoTaskInstanceAssignmentPersistence.class)
 	protected KaleoTaskInstanceAssignmentPersistence kaleoTaskInstanceAssignmentPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalService")
+	@BeanReference(type = KaleoTaskInstanceTokenLocalService.class)
 	protected KaleoTaskInstanceTokenLocalService kaleoTaskInstanceTokenLocalService;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenPersistence")
+	@BeanReference(type = KaleoTaskInstanceTokenPersistence.class)
 	protected KaleoTaskInstanceTokenPersistence kaleoTaskInstanceTokenPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalService")
+	@BeanReference(type = KaleoTransitionLocalService.class)
 	protected KaleoTransitionLocalService kaleoTransitionLocalService;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoTransitionPersistence")
+	@BeanReference(type = KaleoTransitionPersistence.class)
 	protected KaleoTransitionPersistence kaleoTransitionPersistence;
-	@BeanReference(name = "com.liferay.counter.service.CounterLocalService")
+	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
-	@BeanReference(name = "com.liferay.counter.service.CounterService")
+	@BeanReference(type = CounterService.class)
 	protected CounterService counterService;
-	@BeanReference(name = "com.liferay.portal.service.ResourceLocalService")
+	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(name = "com.liferay.portal.service.ResourceService")
+	@BeanReference(type = ResourceService.class)
 	protected ResourceService resourceService;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
+	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.UserLocalService")
+	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
-	@BeanReference(name = "com.liferay.portal.service.UserService")
+	@BeanReference(type = UserService.class)
 	protected UserService userService;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
+	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 }

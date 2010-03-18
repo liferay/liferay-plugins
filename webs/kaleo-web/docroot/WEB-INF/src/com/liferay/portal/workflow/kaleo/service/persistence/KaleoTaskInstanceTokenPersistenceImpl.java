@@ -32,6 +32,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
+import com.liferay.portal.service.persistence.ResourcePersistence;
+import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
@@ -450,32 +452,32 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		}
 	}
 
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoActionPersistence")
-	protected com.liferay.portal.workflow.kaleo.service.persistence.KaleoActionPersistence kaleoActionPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoDefinitionPersistence")
-	protected com.liferay.portal.workflow.kaleo.service.persistence.KaleoDefinitionPersistence kaleoDefinitionPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoInstancePersistence")
-	protected com.liferay.portal.workflow.kaleo.service.persistence.KaleoInstancePersistence kaleoInstancePersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoInstanceTokenPersistence")
-	protected com.liferay.portal.workflow.kaleo.service.persistence.KaleoInstanceTokenPersistence kaleoInstanceTokenPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoLogPersistence")
-	protected com.liferay.portal.workflow.kaleo.service.persistence.KaleoLogPersistence kaleoLogPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoNodePersistence")
-	protected com.liferay.portal.workflow.kaleo.service.persistence.KaleoNodePersistence kaleoNodePersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskPersistence")
-	protected com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskPersistence kaleoTaskPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskAssignmentPersistence")
-	protected com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskAssignmentPersistence kaleoTaskAssignmentPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceAssignmentPersistence")
-	protected com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceAssignmentPersistence kaleoTaskInstanceAssignmentPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenPersistence")
-	protected com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenPersistence kaleoTaskInstanceTokenPersistence;
-	@BeanReference(name = "com.liferay.portal.workflow.kaleo.service.persistence.KaleoTransitionPersistence")
-	protected com.liferay.portal.workflow.kaleo.service.persistence.KaleoTransitionPersistence kaleoTransitionPersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence")
-	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence")
-	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
+	@BeanReference(type = KaleoActionPersistence.class)
+	protected KaleoActionPersistence kaleoActionPersistence;
+	@BeanReference(type = KaleoDefinitionPersistence.class)
+	protected KaleoDefinitionPersistence kaleoDefinitionPersistence;
+	@BeanReference(type = KaleoInstancePersistence.class)
+	protected KaleoInstancePersistence kaleoInstancePersistence;
+	@BeanReference(type = KaleoInstanceTokenPersistence.class)
+	protected KaleoInstanceTokenPersistence kaleoInstanceTokenPersistence;
+	@BeanReference(type = KaleoLogPersistence.class)
+	protected KaleoLogPersistence kaleoLogPersistence;
+	@BeanReference(type = KaleoNodePersistence.class)
+	protected KaleoNodePersistence kaleoNodePersistence;
+	@BeanReference(type = KaleoTaskPersistence.class)
+	protected KaleoTaskPersistence kaleoTaskPersistence;
+	@BeanReference(type = KaleoTaskAssignmentPersistence.class)
+	protected KaleoTaskAssignmentPersistence kaleoTaskAssignmentPersistence;
+	@BeanReference(type = KaleoTaskInstanceAssignmentPersistence.class)
+	protected KaleoTaskInstanceAssignmentPersistence kaleoTaskInstanceAssignmentPersistence;
+	@BeanReference(type = KaleoTaskInstanceTokenPersistence.class)
+	protected KaleoTaskInstanceTokenPersistence kaleoTaskInstanceTokenPersistence;
+	@BeanReference(type = KaleoTransitionPersistence.class)
+	protected KaleoTransitionPersistence kaleoTransitionPersistence;
+	@BeanReference(type = ResourcePersistence.class)
+	protected ResourcePersistence resourcePersistence;
+	@BeanReference(type = UserPersistence.class)
+	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_KALEOTASKINSTANCETOKEN = "SELECT kaleoTaskInstanceToken FROM KaleoTaskInstanceToken kaleoTaskInstanceToken";
 	private static final String _SQL_COUNT_KALEOTASKINSTANCETOKEN = "SELECT COUNT(kaleoTaskInstanceToken) FROM KaleoTaskInstanceToken kaleoTaskInstanceToken";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kaleoTaskInstanceToken.";
