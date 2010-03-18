@@ -109,7 +109,7 @@ public class ServicePreAction extends Action {
 		Group group = layout.getGroup();
 
 		if (!group.getName().equals(GroupConstants.GUEST) ||
-			currentURL.startsWith("/c/portal")) {
+			currentURL.startsWith("/c/")) {
 
 			return;
 		}
