@@ -63,7 +63,7 @@ $theme.include($top_messages_include)
 	<div id="footer"></div>
 </div>
 
-#if (!$layout.getFriendlyURL().equals("/home"))
+#if ($is_signed_in && !$layout.getFriendlyURL().equals("/home"))
 	<script type="text/javascript">
 		AUI().use(
 			'liferay-layout',
