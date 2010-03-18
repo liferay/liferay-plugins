@@ -199,7 +199,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 				assigneeClassName));
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("assigneeClassPK").eq(
-				String.valueOf(assigneeClassPK)));
+				assigneeClassPK));
 
 		addCompletedCriterion(dynamicQuery, completed);
 
@@ -287,7 +287,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 				assigneeClassName));
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("assigneeClassPK").eq(
-				String.valueOf(assigneeClassPK)));
+				assigneeClassPK));
 
 		addCompletedCriterion(dynamicQuery, completed);
 
