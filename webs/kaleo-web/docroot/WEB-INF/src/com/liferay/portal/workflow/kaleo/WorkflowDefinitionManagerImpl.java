@@ -68,7 +68,7 @@ public class WorkflowDefinitionManagerImpl
 
 	public int getActiveWorkflowDefinitionCount(long companyId, String name)
 		throws WorkflowException {
-		
+
 		try {
 			ServiceContext serviceContext = new ServiceContext();
 
@@ -241,15 +241,15 @@ public class WorkflowDefinitionManagerImpl
 	}
 
 	public WorkflowDefinition updateActive(
-			long companyId, long userId, String name,
-			int version, boolean active)
+			long companyId, long userId, String name, int version,
+			boolean active)
 		throws WorkflowException {
 
 		try {
 			ServiceContext serviceContext = new ServiceContext();
 
-			serviceContext.setCompanyId(userId);
 			serviceContext.setCompanyId(companyId);
+			serviceContext.setUserId(userId);
 
 			if (active) {
 				KaleoDefinitionLocalServiceUtil.activateKaleoDefinition(
@@ -259,6 +259,7 @@ public class WorkflowDefinitionManagerImpl
 				KaleoDefinitionLocalServiceUtil.deactivateKaleoDefinition(
 					name, version, serviceContext);
 			}
+
 			return getWorkflowDefinition(companyId, name, version);
 		}
 		catch (Exception e) {

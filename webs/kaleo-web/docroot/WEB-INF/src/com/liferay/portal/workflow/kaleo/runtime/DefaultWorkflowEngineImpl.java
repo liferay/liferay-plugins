@@ -230,7 +230,7 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 			throw new WorkflowException(e);
 		}
 	}
-	
+
 	public WorkflowInstance updateContext(
 			long workflowInstanceId, Map<String, Serializable> context,
 			ServiceContext serviceContext)
