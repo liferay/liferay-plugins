@@ -142,9 +142,9 @@ public class DefaultTaskManagerImpl implements TaskManager {
 			comment = comment + "; Task due dated moved to : " + dueDate;
 
 			KaleoTaskInstanceTokenLocalServiceUtil.updateDueDate(
-				workflowTaskInstanceId, dueDate, serviceContext);			
+				workflowTaskInstanceId, dueDate, serviceContext);
 		}
-		
+
 		KaleoTaskInstanceAssignment currentKaleoTaskInstanceAssignment =
 			currentKaleoTaskInstanceToken.getKaleoTaskInstanceAssignment();
 
@@ -229,7 +229,6 @@ public class DefaultTaskManagerImpl implements TaskManager {
 					workflowTaskInstanceId, dueDate, serviceContext);
 			}
 
-
 			KaleoTaskInstanceAssignment currentKaleoTaskInstanceAssignment =
 				currentKaleoTaskInstanceToken.getKaleoTaskInstanceAssignment();
 
@@ -237,7 +236,7 @@ public class DefaultTaskManagerImpl implements TaskManager {
 				currentKaleoTaskInstanceAssignment.getContext());
 
 			comment = "Task due dated moved to : " + dueDate + "; " + comment;
-			
+
 			KaleoLogLocalServiceUtil.addTaskAssignmentKaleoLog(
 				currentKaleoTaskInstanceToken,
 				currentKaleoTaskInstanceAssignment,

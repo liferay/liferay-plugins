@@ -27,8 +27,7 @@ public class WorkflowLogCreateDateComparator
 
 	public static String ORDER_BY_ASC = "createDate ASC, kaleoLogId ASC";
 
-	public static String ORDER_BY_DESC =
-		"createDate DESC, kaleoLogId DESC";
+	public static String ORDER_BY_DESC = "createDate DESC, kaleoLogId DESC";
 
 	public static String[] ORDER_BY_FIELDS = {"createDate", "kaleoLogId"};
 

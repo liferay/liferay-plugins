@@ -162,7 +162,7 @@ public class KaleoDefinitionLocalServiceImpl
 			boolean active, int start, int end,
 			OrderByComparator orderByComparator, ServiceContext serviceContext)
 		throws SystemException {
-		
+
 		return kaleoDefinitionPersistence.findByC_A(
 			serviceContext.getCompanyId(), active, start,
 			end, orderByComparator);
@@ -172,7 +172,7 @@ public class KaleoDefinitionLocalServiceImpl
 			String name, boolean active, int start, int end,
 			OrderByComparator orderByComparator, ServiceContext serviceContext)
 		throws SystemException {
-		
+
 		return kaleoDefinitionPersistence.findByC_A_N(
 			serviceContext.getCompanyId(), active, name, start,
 			end, orderByComparator);
@@ -193,7 +193,6 @@ public class KaleoDefinitionLocalServiceImpl
 		return kaleoDefinitionPersistence.countByC_A_N(
 			serviceContext.getCompanyId(), active, name);
 	}
-
 
 	public int getKaleoDefinitionsCount(ServiceContext serviceContext)
 		throws SystemException {

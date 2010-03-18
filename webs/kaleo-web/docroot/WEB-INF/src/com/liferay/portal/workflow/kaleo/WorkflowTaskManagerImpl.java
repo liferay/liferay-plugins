@@ -434,7 +434,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			workflowTaskInstanceId, comment, dueDate, serviceContext);
 	}
 
-
 	protected List<Long> getRoleIds(ServiceContext serviceContext)
 		throws SystemException, PortalException {
 
