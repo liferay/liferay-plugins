@@ -96,6 +96,36 @@ public class WorkflowDefinitionManagerImpl
 		return new WorkflowDefinitionImpl(processDefinition, true);
 	}
 
+	public List<WorkflowDefinition> getActiveWorkflowDefinitions(
+			long companyId, int start, int end,
+			OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		return getWorkflowDefinitions(companyId, start, end, orderByComparator);
+	}
+
+	public List<WorkflowDefinition> getActiveWorkflowDefinitions(
+			long companyId, String name, int start, int end,
+			OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		return getWorkflowDefinitions(
+			companyId, name, start, end, orderByComparator);
+
+	}
+
+	public int getActiveWorkflowDefinitionCount(long companyId)
+		throws WorkflowException {
+
+		return getWorkflowDefinitionCount(companyId);
+	}
+
+	public int getActiveWorkflowDefinitionCount(long companyId, String name)
+		throws WorkflowException {
+
+		return getWorkflowDefinitionCount(companyId, name);
+	}
+
 	public WorkflowDefinition getWorkflowDefinition(
 			long companyId, String name, int version)
 		throws WorkflowException{

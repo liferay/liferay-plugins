@@ -90,6 +90,70 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A(
+		long companyId, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A(
+		long companyId, boolean active, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A(
+		long companyId, boolean active, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_A_First(
+		long companyId, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_A_Last(
+		long companyId, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition[] findByC_A_PrevAndNext(
+		long kaleoDefinitionId, long companyId, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A_N(
+		long companyId, boolean active, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A_N(
+		long companyId, boolean active, java.lang.String name, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A_N(
+		long companyId, boolean active, java.lang.String name, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_A_N_First(
+		long companyId, boolean active, java.lang.String name,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_A_N_Last(
+		long companyId, boolean active, java.lang.String name,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition[] findByC_A_N_PrevAndNext(
+		long kaleoDefinitionId, long companyId, boolean active,
+		java.lang.String name,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
+
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_N(
 		long companyId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -150,6 +214,13 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	public void removeByCompanyId(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public void removeByC_A(long companyId, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void removeByC_A_N(long companyId, boolean active,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public void removeByC_N(long companyId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -161,6 +232,13 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int countByC_A(long companyId, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int countByC_A_N(long companyId, boolean active,
+		java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByC_N(long companyId, java.lang.String name)

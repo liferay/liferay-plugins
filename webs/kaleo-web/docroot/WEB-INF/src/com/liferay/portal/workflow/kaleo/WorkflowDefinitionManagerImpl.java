@@ -50,6 +50,80 @@ public class WorkflowDefinitionManagerImpl
 			inputStream, serviceContext);
 	}
 
+	public int getActiveWorkflowDefinitionCount(long companyId)
+		throws WorkflowException {
+
+		try {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+
+			return KaleoDefinitionLocalServiceUtil.getKaleoDefinitionsCount(
+					true, serviceContext);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
+	public int getActiveWorkflowDefinitionCount(long companyId, String name)
+		throws WorkflowException {
+		
+		try {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+
+			return KaleoDefinitionLocalServiceUtil.getKaleoDefinitionsCount(
+					name, true, serviceContext);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
+	public List<WorkflowDefinition> getActiveWorkflowDefinitions(
+			long companyId, int start, int end,
+			OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		try {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+
+			List<KaleoDefinition> kaleoDefinitions =
+				KaleoDefinitionLocalServiceUtil.getKaleoDefinitions(
+					true, start, end, orderByComparator, serviceContext);
+
+			return toWorkflowDefinitions(kaleoDefinitions);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
+	public List<WorkflowDefinition> getActiveWorkflowDefinitions(
+			long companyId, String name, int start, int end,
+			OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		try {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+
+			List<KaleoDefinition> kaleoDefinitions =
+				KaleoDefinitionLocalServiceUtil.getKaleoDefinitions(
+					name, true, start, end, orderByComparator, serviceContext);
+
+			return toWorkflowDefinitions(kaleoDefinitions);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
 	public WorkflowDefinition getWorkflowDefinition(
 			long companyId, String name, int version)
 		throws WorkflowException {
