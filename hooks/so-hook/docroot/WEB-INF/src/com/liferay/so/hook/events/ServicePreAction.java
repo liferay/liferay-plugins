@@ -100,10 +100,16 @@ public class ServicePreAction extends Action {
 			return;
 		}
 
+		Layout layout = themeDisplay.getLayout();
+
+		if ((layout == null) || (layout.getLayoutId() != 1)) {
+			return;
+		}
+
 		Group group = layout.getGroup();
 
 		if (!group.getName().equals(GroupConstants.GUEST) ||
-			currentURL.startsWith("/c/")) {
+			currentURL.startsWith("/c/portal")) {
 
 			return;
 		}
