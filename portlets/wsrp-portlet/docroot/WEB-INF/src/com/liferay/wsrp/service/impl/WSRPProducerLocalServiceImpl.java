@@ -17,17 +17,12 @@ package com.liferay.wsrp.service.impl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.LayoutConstants;
-import com.liferay.portal.model.Portlet;
-import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portal.service.PortletLocalServiceUtil;
-import com.liferay.util.PwdGenerator;
 import com.liferay.wsrp.WSRPProducerNameException;
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.base.WSRPProducerLocalServiceBaseImpl;
@@ -53,8 +48,6 @@ public class WSRPProducerLocalServiceImpl
 		Date now = new Date();
 
 		validate(name);
-
-		portletIds = buildInstanceablePortletIds(portletIds);
 
 		long wsrpProducerId = CounterLocalServiceUtil.increment();
 
@@ -106,8 +99,6 @@ public class WSRPProducerLocalServiceImpl
 
 		validate(name);
 
-		portletIds = buildInstanceablePortletIds(portletIds);
-
 		WSRPProducer wsrpProducer = wsrpProducerPersistence.findByPrimaryKey(
 			wsrpProducerId);
 
@@ -118,31 +109,6 @@ public class WSRPProducerLocalServiceImpl
 		wsrpProducerPersistence.update(wsrpProducer, false);
 
 		return wsrpProducer;
-	}
-
-	protected String buildInstanceablePortletIds(String portletIds) {
-		String[] ids = StringUtil.split(portletIds);
-
-		for (int i = 0; i < ids.length; i++) {
-			String portletId = ids[i];
-
-			if (portletId.indexOf(PortletConstants.INSTANCE_SEPARATOR) != -1) {
-				continue;
-			}
-
-			Portlet portlet = PortletLocalServiceUtil.getPortletById(portletId);
-
-			if (portlet.isInstanceable()) {
-				String instanceId = PwdGenerator.getPassword(
-					PwdGenerator.KEY1 + PwdGenerator.KEY2 +
-					PwdGenerator.KEY3, 4);
-
-				ids[i] = portletId + PortletConstants.INSTANCE_SEPARATOR +
-					instanceId;
-			}
-		}
-
-		return StringUtil.merge(ids);
 	}
 
 	protected void createWSRPCommunity(long companyId, long userId)

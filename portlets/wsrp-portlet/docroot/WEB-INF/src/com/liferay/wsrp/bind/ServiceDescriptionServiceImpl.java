@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Portlet;
-import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.model.PortletInfo;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -135,11 +134,11 @@ public class ServiceDescriptionServiceImpl
 	}
 
 	protected PortletDescription getPortletDescription(
-		WSRPProducer wsrpProducer, String portletId, Portlet portlet) {
+		WSRPProducer wsrpProducer, Portlet portlet) {
 
 		PortletDescription portletDescription = new PortletDescription();
 
-		portletDescription.setPortletHandle(portletId);
+		portletDescription.setPortletHandle(portlet.getPortletId());
 		portletDescription.setMarkupTypes(getMarkupTypes(portlet));
 
 		HttpServletRequest request = ServletUtil.getRequest();
@@ -185,24 +184,14 @@ public class ServiceDescriptionServiceImpl
 			new ArrayList<PortletDescription>();
 
 		for (String portletId : portletIds) {
-			String rootPortletId = portletId;
-
-			if (rootPortletId.indexOf(
-				PortletConstants.INSTANCE_SEPARATOR) != -1) {
-
-				rootPortletId = PortletConstants.getRootPortletId(
-					rootPortletId);
-			}
-
-			Portlet portlet = PortletLocalServiceUtil.getPortletById(
-				rootPortletId);
+			Portlet portlet = PortletLocalServiceUtil.getPortletById(portletId);
 
 			if (portlet == null) {
 				continue;
 			}
 
 			PortletDescription portletDescription = getPortletDescription(
-				wsrpProducer, portletId, portlet);
+				wsrpProducer, portlet);
 
 			portletDescriptions.add(portletDescription);
 		}
