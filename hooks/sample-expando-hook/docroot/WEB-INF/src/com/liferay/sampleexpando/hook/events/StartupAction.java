@@ -14,24 +14,17 @@
 
 package com.liferay.sampleexpando.hook.events;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.model.User;
 import com.liferay.portlet.calendar.model.CalEvent;
-import com.liferay.portlet.expando.DuplicateColumnNameException;
-import com.liferay.portlet.expando.DuplicateTableNameException;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.portlet.expando.model.ExpandoTable;
+import com.liferay.portlet.expando.model.ExpandoTableConstants;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
-import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portlet.expando.model.ExpandoTableConstants;
 
 /**
  * <a href="StartupAction.java.html"><b><i>View Source</i></b></a>
@@ -62,7 +55,7 @@ public class StartupAction extends SimpleAction {
 				CalEvent.class.getName(),
 				ExpandoTableConstants.DEFAULT_TABLE_NAME);
 		}
-		
+
 		try {
 			ExpandoColumnLocalServiceUtil.addColumn(
 				expandoTable.getTableId(), "sampleColumn",
