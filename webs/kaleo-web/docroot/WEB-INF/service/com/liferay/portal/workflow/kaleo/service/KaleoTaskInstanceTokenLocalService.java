@@ -105,7 +105,7 @@ public interface KaleoTaskInstanceTokenLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken addKaleoTaskInstanceToken(
-		long kaleoInstanceTokenId, long kaleoTaskId,
+		long kaleoInstanceTokenId, long kaleoTaskId, java.util.Date dueDate,
 		java.util.Map<String, java.io.Serializable> context,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,

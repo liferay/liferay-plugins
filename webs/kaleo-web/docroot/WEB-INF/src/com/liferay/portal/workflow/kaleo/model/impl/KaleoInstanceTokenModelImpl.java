@@ -72,7 +72,7 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 			{ "currentKaleoNodeId", new Integer(Types.BIGINT) },
 			{ "completionDate", new Integer(Types.TIMESTAMP) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoInstanceToken (kaleoInstanceTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoInstanceId LONG,parentKaleoInstanceTokenId LONG,currentKaleoNodeId LONG,completionDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoInstanceToken (kaleoInstanceTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoInstanceId LONG,parentKaleoInstanceTokenId LONG,currentKaleoNodeId LONG,completionDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoInstanceToken";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoInstanceToken.kaleoInstanceTokenId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoInstanceToken.kaleoInstanceTokenId ASC";

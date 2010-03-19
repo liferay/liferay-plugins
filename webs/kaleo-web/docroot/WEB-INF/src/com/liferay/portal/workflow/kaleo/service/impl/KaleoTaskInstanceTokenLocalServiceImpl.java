@@ -49,7 +49,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	extends KaleoTaskInstanceTokenLocalServiceBaseImpl {
 
 	public KaleoTaskInstanceToken addKaleoTaskInstanceToken(
-			long kaleoInstanceTokenId, long kaleoTaskId,
+			long kaleoInstanceTokenId, long kaleoTaskId, Date dueDate,
 			Map<String, Serializable> context, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -70,6 +70,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		kaleoTaskInstanceToken.setUserName(user.getFullName());
 		kaleoTaskInstanceToken.setCreateDate(now);
 		kaleoTaskInstanceToken.setModifiedDate(now);
+		kaleoTaskInstanceToken.setDueDate(dueDate);
 		kaleoTaskInstanceToken.setKaleoInstanceId(
 			kaleoInstanceToken.getKaleoInstanceId());
 

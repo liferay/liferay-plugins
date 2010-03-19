@@ -182,6 +182,8 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="dueDateDuration" />
+			<basic name="dueDateScale" />
 			<basic name="kaleoDefinitionId" />
 			<basic name="kaleoNodeId" />
 			<basic name="name" />

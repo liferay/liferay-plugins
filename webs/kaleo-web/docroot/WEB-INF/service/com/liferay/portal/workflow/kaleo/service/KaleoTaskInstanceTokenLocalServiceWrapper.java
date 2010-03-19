@@ -123,13 +123,13 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken addKaleoTaskInstanceToken(
-		long kaleoInstanceTokenId, long kaleoTaskId,
+		long kaleoInstanceTokenId, long kaleoTaskId, java.util.Date dueDate,
 		java.util.Map<String, java.io.Serializable> context,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskInstanceTokenLocalService.addKaleoTaskInstanceToken(kaleoInstanceTokenId,
-			kaleoTaskId, context, serviceContext);
+			kaleoTaskId, dueDate, context, serviceContext);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken completeKaleoTaskInstanceToken(

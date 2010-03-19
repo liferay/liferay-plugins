@@ -31,6 +31,10 @@ public class Task extends Node {
 		return _assignments;
 	}
 
+	public DueDateDuration getDueDateDuration() {
+		return _dueDateDuration;
+	}
+
 	public State getStartState() {
 		return _startState;
 	}
@@ -41,6 +45,10 @@ public class Task extends Node {
 
 	public void setAssignments(Set<Assignment> assignments) {
 		_assignments = assignments;
+	}
+
+	public void setDueDateDuration(DueDateDuration dueDateDuration) {
+		_dueDateDuration = dueDateDuration;
 	}
 
 	public void setStartState(State startState) {
@@ -54,5 +62,6 @@ public class Task extends Node {
 	private Set<Assignment> _assignments;
 	private State _startState;
 	private State _targetState;
+	private DueDateDuration _dueDateDuration;
 
 }

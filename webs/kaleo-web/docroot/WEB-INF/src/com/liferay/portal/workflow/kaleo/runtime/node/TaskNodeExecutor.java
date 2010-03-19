@@ -18,6 +18,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.workflow.kaleo.definition.DueDateDuration;
+import com.liferay.portal.workflow.kaleo.definition.DurationScale;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
@@ -26,6 +28,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
+import com.liferay.portal.workflow.kaleo.runtime.calendar.DueDateCalculator;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
 import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceAssignmentLocalServiceUtil;
@@ -34,6 +37,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalServiceUtil;
 
 import java.io.Serializable;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +47,10 @@ import java.util.Map;
  * @author Michael C. Han
  */
 public class TaskNodeExecutor extends BaseNodeExecutor {
+
+	public void setDueDateCalculator(DueDateCalculator dueDateCalculator) {
+		_dueDateCalculator = dueDateCalculator;
+	}
 
 	protected void doEnter(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
@@ -57,10 +65,20 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 		KaleoTask kaleoTask = KaleoTaskLocalServiceUtil.getKaleoNodeKaleoTask(
 			currentKaleoNode.getKaleoNodeId());
 
+		Date dueDate = null;
+		if (kaleoTask.getDueDateDuration() > 0) {
+			DueDateDuration dueDateDuration = new DueDateDuration(
+				kaleoTask.getDueDateDuration(),
+				DurationScale.getValue(kaleoTask.getDueDateScale()));
+
+			dueDate = _dueDateCalculator.getDueDate(
+				new Date(), dueDateDuration );
+		}
+
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
 			KaleoTaskInstanceTokenLocalServiceUtil.addKaleoTaskInstanceToken(
 				kaleoInstanceToken.getKaleoInstanceTokenId(),
-				kaleoTask.getKaleoTaskId(), context, serviceContext);
+				kaleoTask.getKaleoTaskId(), dueDate, context, serviceContext);
 
 		KaleoTaskAssignment kaleoTaskAssignment =
 			kaleoTask.getDefaultKaleoTaskAssignment();
@@ -105,4 +123,5 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 		remainingPathElement.add(pathElement);
 	}
 
+	private DueDateCalculator _dueDateCalculator;
 }

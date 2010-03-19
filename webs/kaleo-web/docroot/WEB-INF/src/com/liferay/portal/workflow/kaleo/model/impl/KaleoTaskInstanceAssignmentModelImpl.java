@@ -74,7 +74,7 @@ public class KaleoTaskInstanceAssignmentModelImpl extends BaseModelImpl<KaleoTas
 			{ "completionDate", new Integer(Types.TIMESTAMP) },
 			{ "context", new Integer(Types.CLOB) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTaskInstanceAssignment (kaleoTaskInstanceAssignmentId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoTaskInstanceTokenId LONG,kaleoTaskId LONG,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG,completionDate DATE null,context TEXT null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTaskInstanceAssignment (kaleoTaskInstanceAssignmentId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoTaskInstanceTokenId LONG,kaleoTaskId LONG,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG,completionDate DATE null,context TEXT null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoTaskInstanceAssignment";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTaskInstanceAssignment.kaleoTaskInstanceTokenId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoTaskInstanceAssignment.kaleoTaskInstanceTokenId ASC";

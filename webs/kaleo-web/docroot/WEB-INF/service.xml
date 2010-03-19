@@ -282,6 +282,8 @@
 		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />
 		<column name="modifiedDate" type="Date" />
+		<column name="dueDateDuration" type="double" />
+		<column name="dueDateScale" type="String" />
 
 		<!-- Other fields -->
 

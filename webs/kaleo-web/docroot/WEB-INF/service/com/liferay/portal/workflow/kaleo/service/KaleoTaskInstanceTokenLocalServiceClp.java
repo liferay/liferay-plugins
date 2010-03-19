@@ -453,7 +453,7 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken addKaleoTaskInstanceToken(
-		long kaleoInstanceTokenId, long kaleoTaskId,
+		long kaleoInstanceTokenId, long kaleoTaskId, java.util.Date dueDate,
 		java.util.Map<String, java.io.Serializable> context,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -462,16 +462,22 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 
 		Object paramObj1 = new LongWrapper(kaleoTaskId);
 
-		Object paramObj2 = ClpSerializer.translateInput(context);
+		Object paramObj2 = ClpSerializer.translateInput(dueDate);
 
-		if (context == null) {
-			paramObj2 = new NullWrapper("java.util.Map");
+		if (dueDate == null) {
+			paramObj2 = new NullWrapper("java.util.Date");
 		}
 
-		Object paramObj3 = ClpSerializer.translateInput(serviceContext);
+		Object paramObj3 = ClpSerializer.translateInput(context);
+
+		if (context == null) {
+			paramObj3 = new NullWrapper("java.util.Map");
+		}
+
+		Object paramObj4 = ClpSerializer.translateInput(serviceContext);
 
 		if (serviceContext == null) {
-			paramObj3 = new NullWrapper(
+			paramObj4 = new NullWrapper(
 					"com.liferay.portal.service.ServiceContext");
 		}
 
@@ -479,7 +485,9 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 
 		try {
 			returnObj = _classLoaderProxy.invoke("addKaleoTaskInstanceToken",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+					});
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {

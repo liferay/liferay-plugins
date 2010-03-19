@@ -47,6 +47,8 @@ public class KaleoTaskSoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
+		soapModel.setDueDateDuration(model.getDueDateDuration());
+		soapModel.setDueDateScale(model.getDueDateScale());
 		soapModel.setKaleoDefinitionId(model.getKaleoDefinitionId());
 		soapModel.setKaleoNodeId(model.getKaleoNodeId());
 		soapModel.setName(model.getName());
@@ -151,6 +153,22 @@ public class KaleoTaskSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
+	public double getDueDateDuration() {
+		return _dueDateDuration;
+	}
+
+	public void setDueDateDuration(double dueDateDuration) {
+		_dueDateDuration = dueDateDuration;
+	}
+
+	public String getDueDateScale() {
+		return _dueDateScale;
+	}
+
+	public void setDueDateScale(String dueDateScale) {
+		_dueDateScale = dueDateScale;
+	}
+
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
@@ -189,6 +207,8 @@ public class KaleoTaskSoap implements Serializable {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private double _dueDateDuration;
+	private String _dueDateScale;
 	private long _kaleoDefinitionId;
 	private long _kaleoNodeId;
 	private String _name;

@@ -5,7 +5,9 @@
 		<field name="kaleoActionId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="kaleoDefinitionId" type="long" />
@@ -16,7 +18,9 @@
 		<field name="name" type="String">
 			<hint name="max-length">200</hint>
 		</field>
-		<field name="description" type="String" />
+		<field name="description" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
 		<field name="language" type="String" />
 		<field name="script" type="String">
 			<hint-collection name="CLOB" />
@@ -28,7 +32,9 @@
 		<field name="kaleoDefinitionId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="name" type="String">
@@ -45,7 +51,9 @@
 		<field name="kaleoInstanceId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="kaleoDefinitionId" type="long" />
@@ -67,7 +75,9 @@
 		<field name="kaleoInstanceTokenId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="kaleoInstanceId" type="long" />
@@ -79,7 +89,9 @@
 		<field name="kaleoLogId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="kaleoInstanceId" type="long" />
@@ -109,7 +121,9 @@
 			<hint name="max-length">200</hint>
 		</field>
 		<field name="currentAssigneeClassPK" type="long" />
-		<field name="type" type="String" />
+		<field name="type" type="String">
+			<hint name="max-length">50</hint>
+		</field>
 		<field name="comment" type="String">
 			<hint name="max-length">2000</hint>
 		</field>
@@ -124,7 +138,9 @@
 		<field name="kaleoNodeId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="kaleoDefinitionId" type="long" />
@@ -134,7 +150,9 @@
 		<field name="description" type="String">
 			<hint name="max-length">2000</hint>
 		</field>
-		<field name="type" type="String" />
+		<field name="type" type="String">
+			<hint name="max-length">20</hint>
+		</field>
 		<field name="initial" type="boolean" />
 		<field name="terminal" type="boolean" />
 	</model>
@@ -142,9 +160,15 @@
 		<field name="kaleoTaskId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
+		<field name="dueDateDuration" type="double" />
+		<field name="dueDateScale" type="String">
+			<hint name="max-length">10</hint>
+		</field>
 		<field name="kaleoDefinitionId" type="long" />
 		<field name="kaleoNodeId" type="long" />
 		<field name="name" type="String">
@@ -158,7 +182,9 @@
 		<field name="kaleoTaskAssignmentId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="kaleoDefinitionId" type="long" />
@@ -174,7 +200,9 @@
 		<field name="kaleoTaskInstanceAssignmentId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="kaleoTaskInstanceTokenId" type="long" />
@@ -192,7 +220,9 @@
 		<field name="kaleoTaskInstanceTokenId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="kaleoInstanceId" type="long" />
@@ -209,7 +239,9 @@
 		<field name="kaleoTransitionId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="kaleoDefinitionId" type="long" />

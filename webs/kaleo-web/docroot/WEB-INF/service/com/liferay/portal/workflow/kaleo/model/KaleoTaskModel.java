@@ -76,6 +76,14 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask> {
 
 	public void setModifiedDate(Date modifiedDate);
 
+	public double getDueDateDuration();
+
+	public void setDueDateDuration(double dueDateDuration);
+
+	public String getDueDateScale();
+
+	public void setDueDateScale(String dueDateScale);
+
 	public long getKaleoDefinitionId();
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId);

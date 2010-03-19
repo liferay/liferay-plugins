@@ -76,7 +76,7 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 			{ "completionDate", new Integer(Types.TIMESTAMP) },
 			{ "context", new Integer(Types.CLOB) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoInstance (kaleoInstanceId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoDefinitionName VARCHAR(200) null,kaleoDefinitionVersion INTEGER,rootKaleoInstanceTokenId LONG,className VARCHAR(200) null,classPK LONG,completionDate DATE null,context TEXT null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoInstance (kaleoInstanceId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoDefinitionName VARCHAR(200) null,kaleoDefinitionVersion INTEGER,rootKaleoInstanceTokenId LONG,className VARCHAR(200) null,classPK LONG,completionDate DATE null,context TEXT null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoInstance";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoInstance.kaleoInstanceId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoInstance.kaleoInstanceId ASC";

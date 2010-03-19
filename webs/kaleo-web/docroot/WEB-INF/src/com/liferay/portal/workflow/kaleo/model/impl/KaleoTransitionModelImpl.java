@@ -77,7 +77,7 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition> {
 			{ "targetKaleoNodeName", new Integer(Types.VARCHAR) },
 			{ "defaultTransition", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTransition (kaleoTransitionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,name VARCHAR(200) null,description VARCHAR(2000) null,sourceKaleoNodeId LONG,sourceKaleoNodeName VARCHAR(200) null,targetKaleoNodeId LONG,targetKaleoNodeName VARCHAR(200) null,defaultTransition BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTransition (kaleoTransitionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,name VARCHAR(200) null,description VARCHAR(2000) null,sourceKaleoNodeId LONG,sourceKaleoNodeName VARCHAR(200) null,targetKaleoNodeId LONG,targetKaleoNodeName VARCHAR(200) null,defaultTransition BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoTransition";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTransition.kaleoTransitionId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoTransition.kaleoTransitionId ASC";
