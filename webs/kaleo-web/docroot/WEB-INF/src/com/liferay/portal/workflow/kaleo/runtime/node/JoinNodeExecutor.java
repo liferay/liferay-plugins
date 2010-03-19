@@ -22,7 +22,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
-import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -48,7 +47,7 @@ public class JoinNodeExecutor extends BaseNodeExecutor {
 			executionContext.getKaleoInstanceToken();
 
 		kaleoInstanceToken =
-			KaleoInstanceTokenLocalServiceUtil.completeKaleoInstanceToken(
+			kaleoInstanceTokenLocalService.completeKaleoInstanceToken(
 				kaleoInstanceToken.getKaleoInstanceTokenId());
 
 		KaleoInstanceToken parentKaleoInstanceToken =
@@ -61,7 +60,7 @@ public class JoinNodeExecutor extends BaseNodeExecutor {
 		}
 
 		parentKaleoInstanceToken =
-			KaleoInstanceTokenLocalServiceUtil.updateKaleoInstanceToken(
+			kaleoInstanceTokenLocalService.updateKaleoInstanceToken(
 				parentKaleoInstanceToken.getKaleoInstanceTokenId(),
 				currentKaleoNode.getKaleoNodeId());
 

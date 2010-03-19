@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.runtime;
 
+import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.annotation.Isolation;
 import com.liferay.portal.kernel.annotation.Transactional;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -26,14 +27,17 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.WorkflowInstanceAdapter;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 import com.liferay.portal.workflow.kaleo.deployment.WorkflowDeployer;
+import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.parser.WorkflowModelParser;
 import com.liferay.portal.workflow.kaleo.parser.WorkflowValidator;
-import com.liferay.portal.workflow.kaleo.runtime.graph.GraphWalker;
-import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalService;
+import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService;
+import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalService;
+import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalService;
 
 import java.io.InputStream;
 import java.io.Serializable;
@@ -47,6 +51,9 @@ import java.util.Map;
  *
  * @author Michael C. Han
  */
+@Transactional(
+	isolation = Isolation.PORTAL,
+	rollbackFor = {Exception.class})
 public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 
 	public void deleteWorkflowInstance(
@@ -54,7 +61,7 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 		throws WorkflowException {
 
 		try {
-			KaleoInstanceLocalServiceUtil.deleteKaleoInstance(
+			kaleoInstanceLocalService.deleteKaleoInstance(
 				workflowInstanceId);
 		}
 		catch (Exception e) {
@@ -62,9 +69,6 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 		}
 	}
 
-	@Transactional(
-		isolation = Isolation.PORTAL,
-		rollbackFor = {PortalException.class, SystemException.class})
 	public WorkflowDefinition deployWorkflowDefinition(
 			String title, InputStream inputStream,
 			ServiceContext serviceContext)
@@ -93,7 +97,7 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 
 		try {
 			KaleoInstance kaleoInstance =
-				KaleoInstanceLocalServiceUtil.getKaleoInstance(
+				kaleoInstanceLocalService.getKaleoInstance(
 					workflowInstanceId);
 
 			KaleoInstanceToken rootKaleoInstanceToken =
@@ -116,7 +120,7 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 
 		try {
 			KaleoInstance kaleoInstance =
-				KaleoInstanceLocalServiceUtil.getKaleoInstance(
+				kaleoInstanceLocalService.getKaleoInstance(
 					workflowInstanceId);
 
 			KaleoInstanceToken rootKaleoInstanceToken =
@@ -136,7 +140,7 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 		throws WorkflowException {
 
 		try {
-			return KaleoInstanceLocalServiceUtil.getKaleoInstancesCount(
+			return kaleoInstanceLocalService.getKaleoInstancesCount(
 				workflowDefinitionName, workflowDefinitionVersion, completed,
 				serviceContext);
 		}
@@ -153,7 +157,7 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 
 		try {
 			List<KaleoInstance> kaleoInstances =
-				KaleoInstanceLocalServiceUtil.getKaleoInstances(
+				kaleoInstanceLocalService.getKaleoInstances(
 					workflowDefinitionName, workflowDefinitionVersion,
 					completed, start, end, orderByComparator, serviceContext);
 
@@ -164,8 +168,8 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 		}
 	}
 
-	public void setGraphWalker(GraphWalker graphWalker) {
-		_graphWalker = graphWalker;
+	public void setKaleoSignaler(KaleoSignaler kaleoSignaler) {
+		_kaleoSignaler = kaleoSignaler;
 	}
 
 	public void setWorkflowDeployer(WorkflowDeployer workflowDeployer) {
@@ -197,7 +201,7 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 			ExecutionContext executionContext = new ExecutionContext(
 				kaleoInstanceToken, context, serviceContext);
 
-			_graphWalker.signalExit(transitionName, executionContext);
+			_kaleoSignaler.signalExit(transitionName, executionContext);
 
 			return new WorkflowInstanceAdapter(
 				kaleoInstance, kaleoInstanceToken, context);
@@ -214,18 +218,38 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 		throws WorkflowException {
 
 		try {
-			ExecutionContext executionContext = _graphWalker.initialize(
-				workflowDefinitionName, workflowDefinitionVersion, context,
-				serviceContext);
 
-			_graphWalker.signalEntry(transitionName, executionContext);
+			KaleoDefinition kaleoDefinition =
+				kaleoDefinitionLocalService.getKaleoDefinition(
+					workflowDefinitionName, workflowDefinitionVersion,
+					serviceContext);
 
-			KaleoInstanceToken kaleoInstanceToken =
-				executionContext.getKaleoInstanceToken();
-			KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
+			if (!kaleoDefinition.isActive()) {
+				throw new WorkflowException(
+					"Inactive workflow definition with name " +
+						workflowDefinitionName + " and version " +
+							workflowDefinitionVersion);
+			}
+
+			KaleoInstance kaleoInstance =
+				kaleoInstanceLocalService.addKaleoInstance(
+					kaleoDefinition.getKaleoDefinitionId(),
+					kaleoDefinition.getName(), kaleoDefinition.getVersion(),
+					context, serviceContext);
+
+			KaleoInstanceToken rootKaleoInstanceToken =
+				kaleoInstance.getRootKaleoInstanceToken(context, serviceContext);
+
+			kaleoLogLocalService.addWorkflowInstanceStartKaleoLog(
+				rootKaleoInstanceToken, serviceContext);
+			
+			ExecutionContext executionContext = new ExecutionContext(
+				rootKaleoInstanceToken, context, serviceContext);
+
+			_kaleoSignaler.signalEntry(transitionName, executionContext);
 
 			return new WorkflowInstanceAdapter(
-				kaleoInstance, kaleoInstanceToken, context);
+				kaleoInstance, rootKaleoInstanceToken, context);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -257,7 +281,7 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 			ServiceContext serviceContext)
 		throws Exception {
 
-		return KaleoInstanceLocalServiceUtil.updateKaleoInstance(
+		return kaleoInstanceLocalService.updateKaleoInstance(
 			workflowInstanceId, context, serviceContext);
 	}
 
@@ -309,7 +333,19 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 		return workflowInstances;
 	}
 
-	private GraphWalker _graphWalker;
+	@BeanReference(type = KaleoDefinitionLocalService.class)
+	protected KaleoDefinitionLocalService kaleoDefinitionLocalService;
+
+	@BeanReference(type = KaleoInstanceLocalService.class)
+	protected KaleoInstanceLocalService kaleoInstanceLocalService;
+
+	@BeanReference(type = KaleoInstanceTokenLocalService.class)
+	protected KaleoInstanceTokenLocalService kaleoInstanceTokenLocalService;
+
+	@BeanReference(type = KaleoLogLocalService.class)
+	protected KaleoLogLocalService kaleoLogLocalService;
+
+	private KaleoSignaler _kaleoSignaler;
 	private WorkflowDeployer _workflowDeployer;
 	private WorkflowModelParser _workflowModelParser;
 	private WorkflowValidator _workflowValidator;

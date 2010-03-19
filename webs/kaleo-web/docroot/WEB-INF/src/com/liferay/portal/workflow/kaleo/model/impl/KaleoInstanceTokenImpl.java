@@ -109,4 +109,13 @@ public class KaleoInstanceTokenImpl
 		}
 	}
 
+	public void setCurrentNode(KaleoNode kaleoNode)
+		throws SystemException, PortalException {
+
+		setCurrentKaleoNodeId(kaleoNode.getKaleoNodeId());
+		
+		KaleoInstanceTokenLocalServiceUtil.updateKaleoInstanceToken(
+			getKaleoInstanceTokenId(), kaleoNode.getKaleoNodeId());
+	}
+
 }

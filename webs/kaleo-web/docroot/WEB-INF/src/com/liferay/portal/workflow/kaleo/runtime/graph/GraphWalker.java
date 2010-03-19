@@ -16,12 +16,10 @@ package com.liferay.portal.workflow.kaleo.runtime.graph;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
-import java.io.Serializable;
-
-import java.util.Map;
+import java.util.List;
 
 /**
  * <a href="DefaultGraphWalker.java.html"><b><i>View Source</i></b></a>
@@ -30,21 +28,9 @@ import java.util.Map;
  */
 public interface GraphWalker {
 
-	public ExecutionContext completeTask(
-			String comments, ExecutionContext executionContext)
+	public void follow(
+			KaleoNode sourceKaleoNode, KaleoNode targetKaleoNode,
+			List<PathElement> remainingPathElement,
+			ExecutionContext executionContext)
 		throws PortalException, SystemException;
-
-	public ExecutionContext initialize(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			Map<String, Serializable> context, ServiceContext serviceContext)
-		throws PortalException, SystemException;
-
-	public void signalEntry(
-			String transitionName, ExecutionContext executionContext)
-		throws PortalException, SystemException;
-
-	public void signalExit(
-			String transitionName, ExecutionContext executionContext)
-		throws PortalException, SystemException;
-
 }

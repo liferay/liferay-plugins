@@ -14,172 +14,71 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.graph;
 
+import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.annotation.Isolation;
 import com.liferay.portal.kernel.annotation.Propagation;
 import com.liferay.portal.kernel.annotation.Transactional;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.workflow.WorkflowException;
-import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.ActionType;
 import com.liferay.portal.workflow.kaleo.definition.NodeType;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
-import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutor;
 import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorFactory;
 import com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutor;
 import com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutorFactory;
 import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceAssignmentLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalService;
 
-import java.io.Serializable;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * <a href="DefaultGraphWalker.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael C. Han
  */
+@Transactional(
+	isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
+	rollbackFor = {PortalException.class, SystemException.class})
 public class DefaultGraphWalker implements GraphWalker {
 
-	@Transactional(
-		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
-		rollbackFor = {PortalException.class, SystemException.class})
-	public ExecutionContext completeTask(
-			String comment, ExecutionContext executionContext)
+	public void follow(
+			KaleoNode sourceKaleoNode, KaleoNode targetKaleoNode,
+			List<PathElement> remainingPathElement,
+			ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
-		KaleoTaskInstanceToken kaleoTaskInstanceToken =
-			executionContext.getKaleoTaskInstanceToken();
+		if (sourceKaleoNode != null) {
+			NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(
+				NodeType.valueOf(sourceKaleoNode.getType()));
 
-		KaleoTaskInstanceAssignment kaleoTaskInstanceAssigment =
-			executionContext.getKaleoTaskInstanceAssigment();
+			nodeExecutor.exit(
+				sourceKaleoNode, executionContext, remainingPathElement);
 
-		kaleoTaskInstanceAssigment =
-			KaleoTaskInstanceAssignmentLocalServiceUtil.
-				completeKaleoTaskInstanceAssignment(
-					kaleoTaskInstanceAssigment.
-						getKaleoTaskInstanceAssignmentId());
-
-		kaleoTaskInstanceToken =
-			KaleoTaskInstanceTokenLocalServiceUtil.
-				completeKaleoTaskInstanceToken(
-					kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId(),
-					executionContext.getServiceContext());
-
-		KaleoInstanceToken kaleoInstanceToken =
-			KaleoInstanceTokenLocalServiceUtil.getKaleoInstanceToken(
-				kaleoTaskInstanceToken.getKaleoInstanceTokenId());
-
-		KaleoInstanceToken parentKaleoInstanceToken =
-			KaleoInstanceTokenLocalServiceUtil.getKaleoInstanceToken(
-				kaleoInstanceToken.getParentKaleoInstanceTokenId());
-
-		KaleoLogLocalServiceUtil.addTaskCompletionKaleoLog(
-			kaleoTaskInstanceToken, kaleoTaskInstanceAssigment, comment,
-			executionContext.getContext(),
-			executionContext.getServiceContext());
-
-		return new ExecutionContext(
-			parentKaleoInstanceToken, executionContext.getContext(),
-			executionContext.getServiceContext());
-	}
-
-	@Transactional(
-		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
-		rollbackFor = {PortalException.class, SystemException.class})
-	public ExecutionContext initialize(
-			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			Map<String, Serializable> context,
-			ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		KaleoDefinition kaleoDefinition =
-			KaleoDefinitionLocalServiceUtil.getKaleoDefinition(
-				workflowDefinitionName, workflowDefinitionVersion,
-				serviceContext);
-
-		if (!kaleoDefinition.isActive()) {
-			throw new WorkflowException(
-				"Inactive workflow definition with name " +
-					workflowDefinitionName + " and version " +
-						workflowDefinitionVersion);
+			executeKaleoActions(
+				sourceKaleoNode.getKaleoNodeId(), ActionType.ON_EXIT,
+				executionContext);
 		}
 
-		KaleoInstance kaleoInstance =
-			KaleoInstanceLocalServiceUtil.addKaleoInstance(
-				kaleoDefinition.getKaleoDefinitionId(),
-				kaleoDefinition.getName(), kaleoDefinition.getVersion(),
-				context, serviceContext);
+		if (targetKaleoNode != null) {
+			kaleoLogLocalService.addNodeEntryKaleoLog(
+				executionContext.getKaleoInstanceToken(), sourceKaleoNode,
+				targetKaleoNode, executionContext.getServiceContext());
 
-		KaleoInstanceToken rootKaleoInstanceToken =
-			kaleoInstance.getRootKaleoInstanceToken(context, serviceContext);
+			executeKaleoActions(
+				targetKaleoNode.getKaleoNodeId(), ActionType.ON_ENTRY,
+				executionContext);
 
-		KaleoLogLocalServiceUtil.addWorkflowInstanceStartKaleoLog(
-			rootKaleoInstanceToken, serviceContext);
+			NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(
+				NodeType.valueOf(targetKaleoNode.getType()));
 
-		return new ExecutionContext(
-			rootKaleoInstanceToken, context, serviceContext);
-	}
-
-	public void signalEntry(
-			String transitionName, ExecutionContext executionContext)
-		throws PortalException, SystemException {
-
-		KaleoInstanceToken kaleoInstanceToken =
-			executionContext.getKaleoInstanceToken();
-		KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
-		KaleoDefinition kaleoDefinition = kaleoInstance.getKaleoDefinition();
-
-		KaleoNode kaleoStartNode = kaleoDefinition.getKaleoStartNode();
-
-		executionContext.setTransitionName(transitionName);
-
-		List<PathElement> remainingPathElement = new ArrayList<PathElement>();
-
-		PathElement startPathElement = new PathElement(
-			null, kaleoStartNode, executionContext);
-
-		remainingPathElement.add(startPathElement);
-
-		follow(remainingPathElement);
-
-		checkKaleoInstanceComplete(executionContext);
-	}
-
-	public void signalExit(
-			String transitionName, ExecutionContext executionContext)
-		throws PortalException, SystemException {
-
-		KaleoInstanceToken kaleoInstanceToken =
-			executionContext.getKaleoInstanceToken();
-
-		executionContext.setTransitionName(transitionName);
-
-		KaleoNode currentKaleoNode = kaleoInstanceToken.getCurrentKaleoNode();
-
-		List<PathElement> remainingPathElement = new ArrayList<PathElement>();
-
-		PathElement pathElement = new PathElement(
-			currentKaleoNode, null, executionContext);
-
-		remainingPathElement.add(pathElement);
-
-		follow(remainingPathElement);
+			nodeExecutor.enter(
+				targetKaleoNode, executionContext, remainingPathElement);
+		}
 
 		checkKaleoInstanceComplete(executionContext);
 	}
@@ -200,13 +99,13 @@ public class DefaultGraphWalker implements GraphWalker {
 			return;
 		}
 
-		KaleoLogLocalServiceUtil.addWorkflowInstanceEndKaleoLog(
+		kaleoLogLocalService.addWorkflowInstanceEndKaleoLog(
 			kaleoInstanceToken, executionContext.getServiceContext());
 	}
 
 	protected void executeKaleoActions(
 			long kaleoNodeId, ActionType actionType,
-			ExecutionContext executionContext, ServiceContext serviceContext)
+			ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
 		List<KaleoAction> kaleoActions =
@@ -215,7 +114,7 @@ public class DefaultGraphWalker implements GraphWalker {
 
 		for (KaleoAction kaleoAction : kaleoActions) {
 			long startTime = System.currentTimeMillis();
-			String comment = "Action completed successfully.";
+			String comment = _ACTION_SUCCESS_MESG;
 
 			try {
 				ActionExecutor actionExecutor =
@@ -228,7 +127,7 @@ public class DefaultGraphWalker implements GraphWalker {
 				comment = e.getMessage();
 			}
 			finally {
-				KaleoLogLocalServiceUtil.addActionExecutionKaleoLog(
+				kaleoLogLocalService.addActionExecutionKaleoLog(
 					executionContext.getKaleoInstanceToken(), kaleoAction,
 					startTime, System.currentTimeMillis(), comment,
 					executionContext.getServiceContext());
@@ -236,54 +135,9 @@ public class DefaultGraphWalker implements GraphWalker {
 		}
 	}
 
-	@Transactional(
-		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
-		rollbackFor = {PortalException.class, SystemException.class})
-	protected void follow(
-			KaleoNode sourceKaleoNode, KaleoNode targetKaleoNode,
-			List<PathElement> remainingPathElement,
-			ExecutionContext executionContext)
-		throws PortalException, SystemException {
+	@BeanReference(type = KaleoLogLocalService.class)
+	protected KaleoLogLocalService kaleoLogLocalService;
 
-		if (sourceKaleoNode != null) {
-			NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(
-				NodeType.valueOf(sourceKaleoNode.getType()));
-
-			nodeExecutor.exit(
-				sourceKaleoNode, executionContext, remainingPathElement);
-
-			executeKaleoActions(
-				sourceKaleoNode.getKaleoNodeId(), ActionType.ON_EXIT,
-				executionContext, executionContext.getServiceContext());
-		}
-
-		if (targetKaleoNode != null) {
-			KaleoLogLocalServiceUtil.addNodeEntryKaleoLog(
-				executionContext.getKaleoInstanceToken(), sourceKaleoNode,
-				targetKaleoNode, executionContext.getServiceContext());
-
-			executeKaleoActions(
-				targetKaleoNode.getKaleoNodeId(), ActionType.ON_ENTRY,
-				executionContext, executionContext.getServiceContext());
-
-			NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(
-				NodeType.valueOf(targetKaleoNode.getType()));
-
-			nodeExecutor.enter(
-				targetKaleoNode, executionContext, remainingPathElement);
-		}
-	}
-
-	protected void follow(List<PathElement> remainingPathElement)
-		throws PortalException, SystemException {
-
-		while (!remainingPathElement.isEmpty()) {
-			PathElement pathElement = remainingPathElement.remove(0);
-
-			follow(
-				pathElement.getStartNode(), pathElement.getTargetNode(),
-				remainingPathElement, pathElement.getExecutionContext());
-		}
-	}
-
+	private static final String _ACTION_SUCCESS_MESG =
+		"Action completed successfully.";
 }

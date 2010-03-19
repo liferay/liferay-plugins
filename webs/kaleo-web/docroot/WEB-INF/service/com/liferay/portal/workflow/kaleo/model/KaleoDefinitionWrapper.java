@@ -182,7 +182,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		_kaleoDefinition.setStartKaleoNodeId(startKaleoNodeId);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition toEscapedModel() {
+	public KaleoDefinition toEscapedModel() {
 		return _kaleoDefinition.toEscapedModel();
 	}
 
@@ -227,8 +227,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		return _kaleoDefinition.clone();
 	}
 
-	public int compareTo(
-		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition) {
+	public int compareTo(KaleoDefinition kaleoDefinition) {
 		return _kaleoDefinition.compareTo(kaleoDefinition);
 	}
 

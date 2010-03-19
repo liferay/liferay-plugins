@@ -165,6 +165,11 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		throw new UnsupportedOperationException();
 	}
 
+	public void setCurrentNode(
+		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode) {
+		throw new UnsupportedOperationException();
+	}
+
 	public KaleoInstanceToken toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;

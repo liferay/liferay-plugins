@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.node;
 
+import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
@@ -24,11 +25,9 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceTokenImpl;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
-import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService;
 
 import java.io.Serializable;
-
 import java.util.List;
 import java.util.Map;
 
@@ -54,14 +53,14 @@ public class StateNodeExecutor extends BaseNodeExecutor {
 
 		if (!currentKaleoNode.hasKaleoTransition()) {
 			kaleoInstanceToken =
-				KaleoInstanceTokenLocalServiceUtil.completeKaleoInstanceToken(
+				kaleoInstanceTokenLocalService.completeKaleoInstanceToken(
 					kaleoInstanceToken.getKaleoInstanceTokenId());
 
 			if (kaleoInstanceToken.getParentKaleoInstanceTokenId() ==
 					KaleoInstanceTokenImpl.
 						DEFAULT_PARENT_KALEO_INSTANCE_TOKEN_ID) {
 
-				KaleoInstanceLocalServiceUtil.completeKaleoInstance(
+				kaleoInstanceLocalService.completeKaleoInstance(
 					kaleoInstanceToken.getKaleoInstanceId());
 			}
 
@@ -92,5 +91,9 @@ public class StateNodeExecutor extends BaseNodeExecutor {
 		KaleoNode currentKaleoNode, ExecutionContext executionContext,
 		List<PathElement> remainingPathElement) {
 	}
+
+	@BeanReference(type = KaleoInstanceLocalService.class)
+	protected KaleoInstanceLocalService kaleoInstanceLocalService;
+
 
 }
