@@ -630,59 +630,6 @@ public class KaleoDefinitionLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoDefinition)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition updateTitle(
-		java.lang.String name, int version, java.lang.String title,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(name);
-
-		if (name == null) {
-			paramObj0 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj1 = new IntegerWrapper(version);
-
-		Object paramObj2 = ClpSerializer.translateInput(title);
-
-		if (title == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj3 = ClpSerializer.translateInput(serviceContext);
-
-		if (serviceContext == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.service.ServiceContext");
-		}
-
-		Object returnObj = null;
-
-		try {
-			returnObj = _classLoaderProxy.invoke("updateTitle",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.portal.workflow.kaleo.model.KaleoDefinition)ClpSerializer.translateOutput(returnObj);
-	}
-
 	public void deactivateKaleoDefinition(java.lang.String name, int version,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -1156,6 +1103,59 @@ public class KaleoDefinitionLocalServiceClp
 		try {
 			returnObj = _classLoaderProxy.invoke("incrementKaleoDefinition",
 					new Object[] { paramObj0, paramObj1, paramObj2 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.workflow.kaleo.model.KaleoDefinition)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition updateTitle(
+		java.lang.String name, int version, java.lang.String title,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(name);
+
+		if (name == null) {
+			paramObj0 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj1 = new IntegerWrapper(version);
+
+		Object paramObj2 = ClpSerializer.translateInput(title);
+
+		if (title == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj3 = ClpSerializer.translateInput(serviceContext);
+
+		if (serviceContext == null) {
+			paramObj3 = new NullWrapper(
+					"com.liferay.portal.service.ServiceContext");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateTitle",
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
