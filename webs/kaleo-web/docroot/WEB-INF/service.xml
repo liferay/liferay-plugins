@@ -59,6 +59,7 @@
 		<!-- Other fields -->
 
 		<column name="name" type="String" />
+		<column name="title" type="String" />
 		<column name="description" type="String" />
 		<column name="version" type="int" />
 		<column name="active" type="boolean" />

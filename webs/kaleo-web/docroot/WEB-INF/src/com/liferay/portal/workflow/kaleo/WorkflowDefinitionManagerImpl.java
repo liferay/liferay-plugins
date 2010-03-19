@@ -38,7 +38,7 @@ public class WorkflowDefinitionManagerImpl
 	implements WorkflowDefinitionManager {
 
 	public WorkflowDefinition deployWorkflowDefinition(
-			long companyId, long userId, InputStream inputStream)
+			long companyId, long userId, String title, InputStream inputStream)
 		throws WorkflowException {
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -47,7 +47,7 @@ public class WorkflowDefinitionManagerImpl
 		serviceContext.setUserId(userId);
 
 		return _workflowEngine.deployWorkflowDefinition(
-			inputStream, serviceContext);
+			title, inputStream, serviceContext);
 	}
 
 	public int getActiveWorkflowDefinitionCount(long companyId)
@@ -261,6 +261,27 @@ public class WorkflowDefinitionManagerImpl
 			}
 
 			return getWorkflowDefinition(companyId, name, version);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
+	public WorkflowDefinition updateTitle(
+			long companyId, long userId, String name, int version, String title)
+		throws WorkflowException {
+
+		try {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+			serviceContext.setUserId(userId);
+
+			KaleoDefinition kaleoDefinition =
+				KaleoDefinitionLocalServiceUtil.updateTitle(
+					name, version, title, serviceContext);
+
+			return new WorkflowDefinitionAdapter(kaleoDefinition);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);

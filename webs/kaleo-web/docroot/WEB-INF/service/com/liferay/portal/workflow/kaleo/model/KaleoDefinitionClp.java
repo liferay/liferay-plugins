@@ -113,6 +113,14 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		_name = name;
 	}
 
+	public String getTitle() {
+		return _title;
+	}
+
+	public void setTitle(String title) {
+		_title = title;
+	}
+
 	public String getDescription() {
 		return _description;
 	}
@@ -169,6 +177,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
 			model.setName(HtmlUtil.escape(getName()));
+			model.setTitle(HtmlUtil.escape(getTitle()));
 			model.setDescription(HtmlUtil.escape(getDescription()));
 			model.setVersion(getVersion());
 			model.setActive(getActive());
@@ -192,6 +201,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
 		clone.setName(getName());
+		clone.setTitle(getTitle());
 		clone.setDescription(getDescription());
 		clone.setVersion(getVersion());
 		clone.setActive(getActive());
@@ -251,7 +261,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{kaleoDefinitionId=");
 		sb.append(getKaleoDefinitionId());
@@ -267,6 +277,8 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		sb.append(getModifiedDate());
 		sb.append(", name=");
 		sb.append(getName());
+		sb.append(", title=");
+		sb.append(getTitle());
 		sb.append(", description=");
 		sb.append(getDescription());
 		sb.append(", version=");
@@ -281,7 +293,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoDefinition");
@@ -316,6 +328,10 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		sb.append(getName());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>title</column-name><column-value><![CDATA[");
+		sb.append(getTitle());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>description</column-name><column-value><![CDATA[");
 		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
@@ -345,6 +361,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;
+	private String _title;
 	private String _description;
 	private int _version;
 	private boolean _active;

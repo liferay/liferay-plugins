@@ -147,12 +147,22 @@ public class KaleoDefinitionLocalServiceWrapper
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition addKaleoDefinition(
-		java.lang.String name, java.lang.String description, int version,
+		java.lang.String name, java.lang.String title,
+		java.lang.String description, int version,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoDefinitionLocalService.addKaleoDefinition(name,
+		return _kaleoDefinitionLocalService.addKaleoDefinition(name, title,
 			description, version, serviceContext);
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition updateTitle(
+		java.lang.String name, int version, java.lang.String title,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoDefinitionLocalService.updateTitle(name, version, title,
+			serviceContext);
 	}
 
 	public void deactivateKaleoDefinition(java.lang.String name, int version,
@@ -236,12 +246,12 @@ public class KaleoDefinitionLocalServiceWrapper
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition incrementKaleoDefinition(
-		java.lang.String name,
+		java.lang.String name, java.lang.String title,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoDefinitionLocalService.incrementKaleoDefinition(name,
-			serviceContext);
+			title, serviceContext);
 	}
 
 	public KaleoDefinitionLocalService getWrappedKaleoDefinitionLocalService() {

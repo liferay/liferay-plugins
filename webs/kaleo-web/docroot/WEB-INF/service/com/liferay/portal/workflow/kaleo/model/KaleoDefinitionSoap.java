@@ -48,6 +48,7 @@ public class KaleoDefinitionSoap implements Serializable {
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setName(model.getName());
+		soapModel.setTitle(model.getTitle());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setVersion(model.getVersion());
 		soapModel.setActive(model.getActive());
@@ -162,6 +163,14 @@ public class KaleoDefinitionSoap implements Serializable {
 		_name = name;
 	}
 
+	public String getTitle() {
+		return _title;
+	}
+
+	public void setTitle(String title) {
+		_title = title;
+	}
+
 	public String getDescription() {
 		return _description;
 	}
@@ -205,6 +214,7 @@ public class KaleoDefinitionSoap implements Serializable {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;
+	private String _title;
 	private String _description;
 	private int _version;
 	private boolean _active;

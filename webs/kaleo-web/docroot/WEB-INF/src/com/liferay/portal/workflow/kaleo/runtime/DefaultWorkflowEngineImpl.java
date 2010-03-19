@@ -23,9 +23,11 @@ import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.workflow.kaleo.WorkflowDefinitionAdapter;
 import com.liferay.portal.workflow.kaleo.WorkflowInstanceAdapter;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 import com.liferay.portal.workflow.kaleo.deployment.WorkflowDeployer;
+import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
@@ -33,6 +35,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.parser.WorkflowModelParser;
 import com.liferay.portal.workflow.kaleo.parser.WorkflowValidator;
 import com.liferay.portal.workflow.kaleo.runtime.graph.GraphWalker;
+import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalServiceUtil;
 
 import java.io.InputStream;
@@ -66,7 +69,8 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 		isolation = Isolation.PORTAL,
 		rollbackFor = {PortalException.class, SystemException.class})
 	public WorkflowDefinition deployWorkflowDefinition(
-			InputStream inputStream, ServiceContext serviceContext)
+			String title, InputStream inputStream,
+			ServiceContext serviceContext)
 		throws WorkflowException {
 
 		try {
@@ -77,7 +81,7 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 			}
 
 			WorkflowDefinition workflowDefinition = _workflowDeployer.deploy(
-				definition, serviceContext);
+				title, definition, serviceContext);
 
 			return workflowDefinition;
 		}

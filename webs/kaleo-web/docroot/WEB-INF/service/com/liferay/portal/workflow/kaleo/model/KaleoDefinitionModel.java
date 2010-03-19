@@ -80,6 +80,10 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition> {
 
 	public void setName(String name);
 
+	public String getTitle();
+
+	public void setTitle(String title);
+
 	public String getDescription();
 
 	public void setDescription(String description);

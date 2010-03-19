@@ -45,6 +45,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="name" />
+			<basic name="title" />
 			<basic name="description" />
 			<basic name="version" />
 			<basic name="active">

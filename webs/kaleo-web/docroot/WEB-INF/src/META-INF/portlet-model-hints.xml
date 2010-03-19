@@ -40,6 +40,9 @@
 		<field name="name" type="String">
 			<hint name="max-length">200</hint>
 		</field>
+		<field name="title" type="String">
+			<hint-collection name="CLOB" />
+		</field>
 		<field name="description" type="String">
 			<hint name="max-length">2000</hint>
 		</field>

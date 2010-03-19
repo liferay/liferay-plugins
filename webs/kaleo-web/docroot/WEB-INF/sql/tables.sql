@@ -24,6 +24,7 @@ create table Kaleo_KaleoDefinition (
 	createDate DATE null,
 	modifiedDate DATE null,
 	name VARCHAR(200) null,
+	title TEXT null,
 	description VARCHAR(2000) null,
 	version INTEGER,
 	active_ BOOLEAN,

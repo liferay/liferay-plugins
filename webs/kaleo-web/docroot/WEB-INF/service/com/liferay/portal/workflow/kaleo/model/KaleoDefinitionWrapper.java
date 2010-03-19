@@ -109,6 +109,14 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		_kaleoDefinition.setName(name);
 	}
 
+	public java.lang.String getTitle() {
+		return _kaleoDefinition.getTitle();
+	}
+
+	public void setTitle(java.lang.String title) {
+		_kaleoDefinition.setTitle(title);
+	}
+
 	public java.lang.String getDescription() {
 		return _kaleoDefinition.getDescription();
 	}

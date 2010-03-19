@@ -90,7 +90,7 @@ public class KaleoDefinitionLocalServiceImpl
 	}
 
 	public KaleoDefinition addKaleoDefinition(
-			String name, String description, int version,
+			String name, String title, String description, int version,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -109,6 +109,7 @@ public class KaleoDefinitionLocalServiceImpl
 		kaleoDefinition.setCreateDate(now);
 		kaleoDefinition.setModifiedDate(now);
 		kaleoDefinition.setName(name);
+		kaleoDefinition.setTitle(title);
 		kaleoDefinition.setDescription(description);
 		kaleoDefinition.setVersion(version);
 		kaleoDefinition.setActive(false);
@@ -210,15 +211,31 @@ public class KaleoDefinitionLocalServiceImpl
 	}
 
 	public KaleoDefinition incrementKaleoDefinition(
-			String name, ServiceContext serviceContext)
+			String name, String title, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		KaleoDefinition kaleoDefinition = getLatestKaleoDefinition(
 			name, serviceContext);
 
 		return addKaleoDefinition(
-			kaleoDefinition.getName(), kaleoDefinition.getDescription(),
+			kaleoDefinition.getName(), title, kaleoDefinition.getDescription(),
 			kaleoDefinition.getVersion() + 1, serviceContext);
+	}
+
+	public KaleoDefinition updateTitle(
+			String name, int version, String title,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		KaleoDefinition kaleoDefinition =
+			kaleoDefinitionPersistence.findByC_N_V(
+				serviceContext.getCompanyId(), name, version);
+
+		kaleoDefinition.setTitle(title);
+
+		kaleoDefinitionPersistence.update(kaleoDefinition, false);
+
+		return kaleoDefinition;
 	}
 
 	protected KaleoDefinition getLatestKaleoDefinition(
