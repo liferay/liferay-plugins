@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -21,36 +21,40 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.util.Map;
 
+import org.jbpm.context.exe.ContextInstance;
 import org.jbpm.graph.def.ActionHandler;
 import org.jbpm.graph.exe.ExecutionContext;
 import org.jbpm.taskmgmt.exe.TaskInstance;
 
 /**
- * <a href="ScriptingWorkflowActionHandler.java.html"><b><i>View Source</i></b></a>
+ * <a href="ScriptingWorkflowActionHandler.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Michael C. Han
  */
 public class ScriptingWorkflowActionHandler implements ActionHandler {
 
 	public void execute(ExecutionContext executionContext) throws Exception {
+		ContextInstance contextInstance =
+			executionContext.getContextInstance();
 
-		Map<String, Object> inputObjects =
-			executionContext.getContextInstance().getVariables();
+		Map<String, Object> inputObjects = new HashMap<String, Object>(
+			contextInstance.getVariables());
 
 		Long companyId = (Long)inputObjects.get(ContextConstants.COMPANY_ID);
 
 		TaskInstance taskInstance = executionContext.getTaskInstance();
-		if (taskInstance != null) {
-			inputObjects.put("assigneeClassPK", taskInstance.getActorId());
-			inputObjects.put("assigneeClassName", User.class.getName());
 
+		if (taskInstance != null) {
+			inputObjects.put("assigneeClassName", User.class.getName());
+			inputObjects.put("assigneeClassPK", taskInstance.getActorId());
 			inputObjects.put("taskName", taskInstance.getName());
 			inputObjects.put("userId", taskInstance.getActorId());
 		}
 		else if (companyId != null) {
-			inputObjects.put(
-				"userId",
-				UserLocalServiceUtil.getDefaultUser(companyId).getUserId());
+			User user = UserLocalServiceUtil.getDefaultUser(companyId);
+
+			inputObjects.put("userId", user.getUserId());
 		}
 
 		ScriptingUtil.exec(null, inputObjects, language, script);
@@ -58,4 +62,5 @@ public class ScriptingWorkflowActionHandler implements ActionHandler {
 
 	private String language;
 	private String script;
+
 }

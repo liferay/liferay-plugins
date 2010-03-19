@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jbpm.context.exe.ContextInstance;
 import org.jbpm.graph.def.ProcessDefinition;
 import org.jbpm.graph.exe.ProcessInstance;
 import org.jbpm.graph.exe.Token;
@@ -39,8 +40,9 @@ public class WorkflowInstanceImpl extends DefaultWorkflowInstance {
 		ProcessDefinition processDefinition =
 			processInstance.getProcessDefinition();
 
-		Map<String, Object> context =
-			processInstance.getContextInstance().getVariables(token);
+		ContextInstance contextInstance = processInstance.getContextInstance();
+
+		Map<String, Object> context = contextInstance.getVariables(token);
 
 		if (context == null) {
 			context = new HashMap<String, Object>();
