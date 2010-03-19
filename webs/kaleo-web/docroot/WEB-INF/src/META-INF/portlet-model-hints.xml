@@ -40,8 +40,8 @@
 		<field name="name" type="String">
 			<hint name="max-length">200</hint>
 		</field>
-		<field name="title" type="String">
-			<hint name="max-length">200</hint>
+		<field name="title" type="String" localized="true">
+			<hint name="max-length">4000</hint>
 		</field>
 		<field name="description" type="String">
 			<hint name="max-length">2000</hint>

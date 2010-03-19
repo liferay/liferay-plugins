@@ -16,10 +16,13 @@ package com.liferay.portal.workflow.kaleo.model.impl;
 
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -28,6 +31,8 @@ import com.liferay.portal.workflow.kaleo.model.KaleoDefinitionSoap;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
+
+import com.liferay.util.LocalizationUtil;
 
 import java.io.Serializable;
 
@@ -38,6 +43,8 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * <a href="KaleoDefinitionModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -74,7 +81,7 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition> {
 			{ "active_", new Integer(Types.BOOLEAN) },
 			{ "startKaleoNodeId", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoDefinition (kaleoDefinitionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(200) null,title VARCHAR(200) null,description VARCHAR(2000) null,version INTEGER,active_ BOOLEAN,startKaleoNodeId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoDefinition (kaleoDefinitionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(200) null,title STRING null,description VARCHAR(2000) null,version INTEGER,active_ BOOLEAN,startKaleoNodeId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoDefinition";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoDefinition.version DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoDefinition.version DESC";
@@ -237,8 +244,74 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition> {
 		}
 	}
 
+	public String getTitle(Locale locale) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		return getTitle(languageId);
+	}
+
+	public String getTitle(Locale locale, boolean useDefault) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		return getTitle(languageId, useDefault);
+	}
+
+	public String getTitle(String languageId) {
+		String value = LocalizationUtil.getLocalization(getTitle(), languageId);
+
+		if (isEscapedModel()) {
+			return HtmlUtil.escape(value);
+		}
+		else {
+			return value;
+		}
+	}
+
+	public String getTitle(String languageId, boolean useDefault) {
+		String value = LocalizationUtil.getLocalization(getTitle(), languageId,
+				useDefault);
+
+		if (isEscapedModel()) {
+			return HtmlUtil.escape(value);
+		}
+		else {
+			return value;
+		}
+	}
+
+	public Map<Locale, String> getTitleMap() {
+		return LocalizationUtil.getLocalizationMap(getTitle());
+	}
+
 	public void setTitle(String title) {
 		_title = title;
+	}
+
+	public void setTitle(Locale locale, String title) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		if (Validator.isNotNull(title)) {
+			setTitle(LocalizationUtil.updateLocalization(getTitle(), "Title",
+					title, languageId));
+		}
+		else {
+			setTitle(LocalizationUtil.removeLocalization(getTitle(), "Title",
+					languageId));
+		}
+	}
+
+	public void setTitleMap(Map<Locale, String> titleMap) {
+		if (titleMap == null) {
+			return;
+		}
+
+		Locale[] locales = LanguageUtil.getAvailableLocales();
+
+		for (Locale locale : locales) {
+			String title = titleMap.get(locale);
+
+			setTitle(locale, title);
+		}
 	}
 
 	public String getDescription() {
@@ -309,7 +382,7 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition> {
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
 			model.setName(HtmlUtil.escape(getName()));
-			model.setTitle(HtmlUtil.escape(getTitle()));
+			model.setTitle(getTitle());
 			model.setDescription(HtmlUtil.escape(getDescription()));
 			model.setVersion(getVersion());
 			model.setActive(getActive());

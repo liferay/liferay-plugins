@@ -16,16 +16,24 @@ package com.liferay.portal.workflow.kaleo.model;
 
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
+
+import com.liferay.util.LocalizationUtil;
 
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * <a href="KaleoDefinitionClp.java.html"><b><i>View Source</i></b></a>
@@ -117,8 +125,91 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		return _title;
 	}
 
+	public String getTitle(Locale locale) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		return getTitle(languageId);
+	}
+
+	public String getTitle(Locale locale, boolean useDefault) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		return getTitle(languageId, useDefault);
+	}
+
+	public String getTitle(String languageId) {
+		String value = LocalizationUtil.getLocalization(getTitle(), languageId);
+
+		if (isEscapedModel()) {
+			return HtmlUtil.escape(value);
+		}
+		else {
+			return value;
+		}
+	}
+
+	public String getTitle(String languageId, boolean useDefault) {
+		String value = LocalizationUtil.getLocalization(getTitle(), languageId,
+				useDefault);
+
+		if (isEscapedModel()) {
+			return HtmlUtil.escape(value);
+		}
+		else {
+			return value;
+		}
+	}
+
+	public Map<Locale, String> getTitleMap() {
+		return LocalizationUtil.getLocalizationMap(getTitle());
+	}
+
 	public void setTitle(String title) {
 		_title = title;
+	}
+
+	public void setTitle(Locale locale, String title) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		if (Validator.isNotNull(title)) {
+			setTitle(LocalizationUtil.updateLocalization(getTitle(), "Title",
+					title, languageId));
+		}
+		else {
+			setTitle(LocalizationUtil.removeLocalization(getTitle(), "Title",
+					languageId));
+		}
+	}
+
+	public void setTitleMap(Map<Locale, String> titleMap) {
+		if (titleMap == null) {
+			return;
+		}
+
+		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
+
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			if (contextClassLoader != portalClassLoader) {
+				currentThread.setContextClassLoader(portalClassLoader);
+			}
+
+			Locale[] locales = LanguageUtil.getAvailableLocales();
+
+			for (Locale locale : locales) {
+				String title = titleMap.get(locale);
+
+				setTitle(locale, title);
+			}
+		}
+		finally {
+			if (contextClassLoader != portalClassLoader) {
+				currentThread.setContextClassLoader(contextClassLoader);
+			}
+		}
 	}
 
 	public String getDescription() {
