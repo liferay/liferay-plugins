@@ -31,17 +31,7 @@ import java.util.Map;
 public interface TaskManager {
 
 	public WorkflowTask assignWorkflowTaskToRole(
-			long workflowTaskId, long roleId, String comment,
-			Map<String, Serializable> context, ServiceContext serviceContext)
-		throws WorkflowException;
-
-	public WorkflowTask assignWorkflowTaskToRole(
 			long workflowTaskId, long roleId, String comment, Date dueDate,
-			Map<String, Serializable> context, ServiceContext serviceContext)
-		throws WorkflowException;
-
-	public WorkflowTask assignWorkflowTaskToUser(
-			long workflowTaskId, long assigneeUserId, String comment,
 			Map<String, Serializable> context, ServiceContext serviceContext)
 		throws WorkflowException;
 

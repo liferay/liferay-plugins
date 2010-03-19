@@ -52,18 +52,6 @@ import java.util.Map;
  */
 public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
-	private TaskManager _taskManager;
-
-	public WorkflowTask assignWorkflowTaskToRole(
-			long companyId, long userId, long workflowTaskInstanceId,
-			long roleId, String comment, Map<String, Serializable> context)
-		throws WorkflowException {
-
-		return assignWorkflowTaskToRole(
-			companyId, userId, workflowTaskInstanceId, roleId,
-			comment, null, context);
-	}
-
 	public WorkflowTask assignWorkflowTaskToRole(
 			long companyId, long userId, long workflowTaskInstanceId,
 			long roleId, String comment, Date dueDate,
@@ -76,20 +64,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		serviceContext.setUserId(userId);
 
 		return _taskManager.assignWorkflowTaskToRole(
-			workflowTaskInstanceId, roleId, comment, dueDate,
-			context, serviceContext);
-
-	}
-
-	public WorkflowTask assignWorkflowTaskToUser(
-			long companyId, long userId, long workflowTaskInstanceId,
-			long assigneeUserId, String comment,
-			Map<String, Serializable> context)
-		throws WorkflowException {
-
-		return assignWorkflowTaskToUser(
-			companyId, userId, workflowTaskInstanceId, assigneeUserId,
-			comment, null, context);
+			workflowTaskInstanceId, roleId, comment, dueDate, context,
+			serviceContext);
 	}
 
 	public WorkflowTask assignWorkflowTaskToUser(
@@ -480,5 +456,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 		return workflowTasks;
 	}
+
+	private TaskManager _taskManager;
 
 }

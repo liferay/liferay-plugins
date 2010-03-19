@@ -64,15 +64,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 	public WorkflowTask assignWorkflowTaskToRole(
 			long companyId, long userId, long workflowTaskId, long roleId,
-			String comment, Map<String, Serializable> context)
-		throws WorkflowException {
-
-		return assignWorkflowTaskToRole(
-			companyId, userId, workflowTaskId, roleId, comment, null, context);
-	}
-
-	public WorkflowTask assignWorkflowTaskToRole(
-			long companyId, long userId, long workflowTaskId, long roleId,
 			String comment, Date dueDate, Map<String, Serializable> context)
 		throws WorkflowException {
 
@@ -88,11 +79,11 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			taskInstance.addComment(comment);
 
+			setDueDate(taskInstance, dueDate);
+
 			if (context != null) {
 				taskInstance.addVariables(new HashMap<String, Object>(context));
 			}
-
-			setDueDate(dueDate, taskInstance);
 
 			jbpmContext.save(taskInstance);
 
@@ -104,17 +95,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		finally {
 			jbpmContext.close();
 		}
-	}
-
-	public WorkflowTask assignWorkflowTaskToUser(
-			long companyId, long userId, long workflowTaskId,
-			long assigneeUserId, String comment,
-			Map<String, Serializable> context)
-		throws WorkflowException {
-
-		return assignWorkflowTaskToUser(
-			companyId, userId, workflowTaskId, assigneeUserId,
-			comment, null, context);
 	}
 
 	public WorkflowTask assignWorkflowTaskToUser(
@@ -155,11 +135,11 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			taskInstance.addComment(comment);
 
+			setDueDate(taskInstance, dueDate);
+
 			if (context != null) {
 				taskInstance.addVariables(new HashMap<String, Object>(context));
 			}
-
-			setDueDate(dueDate, taskInstance);
 
 			jbpmContext.save(taskInstance);
 
@@ -184,7 +164,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		finally {
 			jbpmContext.close();
 		}
-
 	}
 
 	public WorkflowTask completeWorkflowTask(
@@ -518,25 +497,26 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			taskInstance.addComment(comment);
 
-			setDueDate(dueDate, taskInstance);
+			setDueDate(taskInstance, dueDate);
 
 			jbpmContext.save(taskInstance);
 
+			Token token = taskInstance.getToken();
+
+			Node node = token.getNode();
+
 			WorkflowLogImpl workflowLogImpl = new WorkflowLogImpl();
 
+			workflowLogImpl.setComment(comment);
 			workflowLogImpl.setCreateDate(new Date());
-			workflowLogImpl.setComment(
-				"Assigning new date date to : " + dueDate.toString() + " " +
-				comment);
-			workflowLogImpl.setState(
-				taskInstance.getToken().getNode().getName());
+			workflowLogImpl.setState(node.getName());
 			workflowLogImpl.setTaskInstance(taskInstance);
 			workflowLogImpl.setType(WorkflowLog.TASK_ASSIGN);
 
 			Session session = jbpmContext.getSession();
 
 			session.save(workflowLogImpl);
-			
+
 			return new WorkflowTaskImpl(taskInstance);
 		}
 		catch (Exception e) {
@@ -545,7 +525,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		finally {
 			jbpmContext.close();
 		}
-
 	}
 
 	protected int getWorkflowTaskCount(
@@ -622,14 +601,16 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
-	protected void setDueDate(Date dueDate, TaskInstance taskInstance) {
-		if (dueDate != null) {
-			Calendar cal = CalendarFactoryUtil.getCalendar(
-				LocaleUtil.getDefault());
-			cal.setTime(dueDate);
-
-			taskInstance.setDueDate(cal.getTime());
+	protected void setDueDate(TaskInstance taskInstance, Date dueDate) {
+		if (dueDate == null) {
+			return;
 		}
+
+		Calendar cal = CalendarFactoryUtil.getCalendar(LocaleUtil.getDefault());
+
+		cal.setTime(dueDate);
+
+		taskInstance.setDueDate(cal.getTime());
 	}
 
 	protected List<WorkflowTask> toWorkflowTasks(
