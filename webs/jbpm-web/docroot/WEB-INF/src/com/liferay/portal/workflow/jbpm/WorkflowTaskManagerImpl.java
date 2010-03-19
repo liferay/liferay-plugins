@@ -511,7 +511,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			workflowLogImpl.setCreateDate(new Date());
 			workflowLogImpl.setState(node.getName());
 			workflowLogImpl.setTaskInstance(taskInstance);
-			workflowLogImpl.setType(WorkflowLog.TASK_ASSIGN);
+			workflowLogImpl.setType(WorkflowLog.TASK_UPDATE);
+			workflowLogImpl.setUserId(userId);
 
 			Session session = jbpmContext.getSession();
 
