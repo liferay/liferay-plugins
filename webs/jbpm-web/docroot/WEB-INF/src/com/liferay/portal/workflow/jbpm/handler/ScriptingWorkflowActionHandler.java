@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.workflow.ContextConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.jbpm.context.exe.ContextInstance;
