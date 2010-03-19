@@ -173,30 +173,21 @@ public class KaleoDefinitionLocalServiceWrapper
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoDefinitionLocalService.getKaleoDefinitions(start, end,
-			orderByComparator, serviceContext);
-	}
-
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
-		java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoDefinitionLocalService.getKaleoDefinitions(name, start,
-			end, orderByComparator, serviceContext);
-	}
-
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
 		boolean active, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoDefinitionLocalService.getKaleoDefinitions(active, start,
 			end, orderByComparator, serviceContext);
+	}
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoDefinitionLocalService.getKaleoDefinitions(start, end,
+			orderByComparator, serviceContext);
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
@@ -208,6 +199,15 @@ public class KaleoDefinitionLocalServiceWrapper
 			start, end, orderByComparator, serviceContext);
 	}
 
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
+		java.lang.String name, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoDefinitionLocalService.getKaleoDefinitions(name, start,
+			end, orderByComparator, serviceContext);
+	}
+
 	public int getKaleoDefinitionsCount(boolean active,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -215,17 +215,17 @@ public class KaleoDefinitionLocalServiceWrapper
 			serviceContext);
 	}
 
+	public int getKaleoDefinitionsCount(
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoDefinitionLocalService.getKaleoDefinitionsCount(serviceContext);
+	}
+
 	public int getKaleoDefinitionsCount(java.lang.String name, boolean active,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoDefinitionLocalService.getKaleoDefinitionsCount(name,
 			active, serviceContext);
-	}
-
-	public int getKaleoDefinitionsCount(
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoDefinitionLocalService.getKaleoDefinitionsCount(serviceContext);
 	}
 
 	public int getKaleoDefinitionsCount(java.lang.String name,

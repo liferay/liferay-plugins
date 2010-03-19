@@ -59,7 +59,7 @@ public class WorkflowDefinitionManagerImpl
 			serviceContext.setCompanyId(companyId);
 
 			return KaleoDefinitionLocalServiceUtil.getKaleoDefinitionsCount(
-					true, serviceContext);
+				true, serviceContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -75,7 +75,7 @@ public class WorkflowDefinitionManagerImpl
 			serviceContext.setCompanyId(companyId);
 
 			return KaleoDefinitionLocalServiceUtil.getKaleoDefinitionsCount(
-					name, true, serviceContext);
+				name, true, serviceContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);

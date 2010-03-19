@@ -79,23 +79,23 @@
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
-		<finder name="C_A" return-type="Collection">
-			<finder-column name="companyId" />
-			<finder-column name="active" />
-		</finder>
-		<finder name="C_A_N" return-type="Collection">
-			<finder-column name="companyId" />
-			<finder-column name="active" />
-			<finder-column name="name" />
-		</finder>
 		<finder name="C_N" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="name" />
+		</finder>
+		<finder name="C_A" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="active" />
 		</finder>
 		<finder name="C_N_V" return-type="KaleoDefinition">
 			<finder-column name="companyId" />
 			<finder-column name="name" />
 			<finder-column name="version" />
+		</finder>
+		<finder name="C_N_A" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="name" />
+			<finder-column name="active" />
 		</finder>
 	</entity>
 	<entity name="KaleoInstance" local-service="true" remote-service="false">

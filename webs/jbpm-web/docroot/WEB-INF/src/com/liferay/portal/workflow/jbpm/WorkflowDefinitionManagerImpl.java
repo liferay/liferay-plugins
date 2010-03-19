@@ -111,7 +111,6 @@ public class WorkflowDefinitionManagerImpl
 
 		return getWorkflowDefinitions(
 			companyId, name, start, end, orderByComparator);
-
 	}
 
 	public int getActiveWorkflowDefinitionCount(long companyId)

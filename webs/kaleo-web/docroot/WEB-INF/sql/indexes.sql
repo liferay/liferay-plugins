@@ -2,8 +2,8 @@ create index IX_B2A93512 on Kaleo_KaleoAction (kaleoNodeId, executionType);
 
 create index IX_2B7BEC2E on Kaleo_KaleoDefinition (companyId);
 create index IX_2F7F569B on Kaleo_KaleoDefinition (companyId, active_);
-create index IX_1827061A on Kaleo_KaleoDefinition (companyId, active_, name);
 create index IX_87D3E16D on Kaleo_KaleoDefinition (companyId, name);
+create index IX_2C5DD83C on Kaleo_KaleoDefinition (companyId, name, active_);
 create index IX_CC4EDF3B on Kaleo_KaleoDefinition (companyId, name, version);
 
 create index IX_EC4CB399 on Kaleo_KaleoInstance (companyId, kaleoDefinitionName, kaleoDefinitionVersion, completionDate);

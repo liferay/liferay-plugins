@@ -164,105 +164,6 @@ public class KaleoDefinitionUtil {
 			orderByComparator);
 	}
 
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A(
-		long companyId, boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByC_A(companyId, active);
-	}
-
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A(
-		long companyId, boolean active, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByC_A(companyId, active, start, end);
-	}
-
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A(
-		long companyId, boolean active, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByC_A(companyId, active, start, end, orderByComparator);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_A_First(
-		long companyId, boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException {
-		return getPersistence()
-				   .findByC_A_First(companyId, active, orderByComparator);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_A_Last(
-		long companyId, boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException {
-		return getPersistence()
-				   .findByC_A_Last(companyId, active, orderByComparator);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition[] findByC_A_PrevAndNext(
-		long kaleoDefinitionId, long companyId, boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException {
-		return getPersistence()
-				   .findByC_A_PrevAndNext(kaleoDefinitionId, companyId, active,
-			orderByComparator);
-	}
-
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A_N(
-		long companyId, boolean active, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByC_A_N(companyId, active, name);
-	}
-
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A_N(
-		long companyId, boolean active, java.lang.String name, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByC_A_N(companyId, active, name, start, end);
-	}
-
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A_N(
-		long companyId, boolean active, java.lang.String name, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByC_A_N(companyId, active, name, start, end,
-			orderByComparator);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_A_N_First(
-		long companyId, boolean active, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException {
-		return getPersistence()
-				   .findByC_A_N_First(companyId, active, name, orderByComparator);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_A_N_Last(
-		long companyId, boolean active, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException {
-		return getPersistence()
-				   .findByC_A_N_Last(companyId, active, name, orderByComparator);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition[] findByC_A_N_PrevAndNext(
-		long kaleoDefinitionId, long companyId, boolean active,
-		java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException {
-		return getPersistence()
-				   .findByC_A_N_PrevAndNext(kaleoDefinitionId, companyId,
-			active, name, orderByComparator);
-	}
-
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_N(
 		long companyId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -311,6 +212,54 @@ public class KaleoDefinitionUtil {
 			orderByComparator);
 	}
 
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A(
+		long companyId, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByC_A(companyId, active);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A(
+		long companyId, boolean active, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByC_A(companyId, active, start, end);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A(
+		long companyId, boolean active, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_A(companyId, active, start, end, orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_A_First(
+		long companyId, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException {
+		return getPersistence()
+				   .findByC_A_First(companyId, active, orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_A_Last(
+		long companyId, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException {
+		return getPersistence()
+				   .findByC_A_Last(companyId, active, orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition[] findByC_A_PrevAndNext(
+		long kaleoDefinitionId, long companyId, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException {
+		return getPersistence()
+				   .findByC_A_PrevAndNext(kaleoDefinitionId, companyId, active,
+			orderByComparator);
+	}
+
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_N_V(
 		long companyId, java.lang.String name, int version)
 		throws com.liferay.portal.kernel.exception.SystemException,
@@ -330,6 +279,57 @@ public class KaleoDefinitionUtil {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .fetchByC_N_V(companyId, name, version, retrieveFromCache);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_N_A(
+		long companyId, java.lang.String name, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByC_N_A(companyId, name, active);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_N_A(
+		long companyId, java.lang.String name, boolean active, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByC_N_A(companyId, name, active, start, end);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_N_A(
+		long companyId, java.lang.String name, boolean active, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_N_A(companyId, name, active, start, end,
+			orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_N_A_First(
+		long companyId, java.lang.String name, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException {
+		return getPersistence()
+				   .findByC_N_A_First(companyId, name, active, orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_N_A_Last(
+		long companyId, java.lang.String name, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException {
+		return getPersistence()
+				   .findByC_N_A_Last(companyId, name, active, orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition[] findByC_N_A_PrevAndNext(
+		long kaleoDefinitionId, long companyId, java.lang.String name,
+		boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException {
+		return getPersistence()
+				   .findByC_N_A_PrevAndNext(kaleoDefinitionId, companyId, name,
+			active, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findAll()
@@ -355,20 +355,14 @@ public class KaleoDefinitionUtil {
 		getPersistence().removeByCompanyId(companyId);
 	}
 
-	public static void removeByC_A(long companyId, boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByC_A(companyId, active);
-	}
-
-	public static void removeByC_A_N(long companyId, boolean active,
-		java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByC_A_N(companyId, active, name);
-	}
-
 	public static void removeByC_N(long companyId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByC_N(companyId, name);
+	}
+
+	public static void removeByC_A(long companyId, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByC_A(companyId, active);
 	}
 
 	public static void removeByC_N_V(long companyId, java.lang.String name,
@@ -376,6 +370,12 @@ public class KaleoDefinitionUtil {
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException {
 		getPersistence().removeByC_N_V(companyId, name, version);
+	}
+
+	public static void removeByC_N_A(long companyId, java.lang.String name,
+		boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByC_N_A(companyId, name, active);
 	}
 
 	public static void removeAll()
@@ -388,25 +388,25 @@ public class KaleoDefinitionUtil {
 		return getPersistence().countByCompanyId(companyId);
 	}
 
-	public static int countByC_A(long companyId, boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByC_A(companyId, active);
-	}
-
-	public static int countByC_A_N(long companyId, boolean active,
-		java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByC_A_N(companyId, active, name);
-	}
-
 	public static int countByC_N(long companyId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByC_N(companyId, name);
 	}
 
+	public static int countByC_A(long companyId, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByC_A(companyId, active);
+	}
+
 	public static int countByC_N_V(long companyId, java.lang.String name,
 		int version) throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByC_N_V(companyId, name, version);
+	}
+
+	public static int countByC_N_A(long companyId, java.lang.String name,
+		boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByC_N_A(companyId, name, active);
 	}
 
 	public static int countAll()
