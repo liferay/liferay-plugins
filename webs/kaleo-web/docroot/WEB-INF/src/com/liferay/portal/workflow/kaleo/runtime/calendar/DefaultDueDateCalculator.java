@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -27,44 +27,36 @@ import java.util.Date;
  * @author Michael C. Han
  */
 public class DefaultDueDateCalculator implements DueDateCalculator {
+
 	public Date getDueDate(Date startDate, DueDateDuration dueDateDuration) {
 		Calendar cal = CalendarFactoryUtil.getCalendar();
+
 		cal.setTime(startDate);
 
 		DurationScale durationScale = dueDateDuration.getDurationScale();
+
+		int duration = (int)Math.round(dueDateDuration.getDuration());
+
 		if (durationScale.equals(DurationScale.SECONDS)) {
-			cal.add(
-				Calendar.SECOND, 
-				(int)Math.round(dueDateDuration.getDuration()));
+			cal.add(Calendar.SECOND, duration);
 		}
 		else if (durationScale.equals(DurationScale.MINUTES)) {
-			cal.add(
-				Calendar.MINUTE,
-				(int)Math.round(dueDateDuration.getDuration()));
+			cal.add(Calendar.MINUTE, duration);
 		}
 		else if (durationScale.equals(DurationScale.HOURS)) {
-			cal.add(
-				Calendar.HOUR,
-				(int)Math.round(dueDateDuration.getDuration()));
+			cal.add(Calendar.HOUR, duration);
 		}
 		else if (durationScale.equals(DurationScale.DAYS)) {
-			cal.add(
-				Calendar.DAY_OF_YEAR,
-				(int)Math.round(dueDateDuration.getDuration()));
+			cal.add(Calendar.DAY_OF_YEAR, duration);
 		}
 		else if (durationScale.equals(DurationScale.MONTHS)) {
-			cal.add(
-				Calendar.MONTH,
-				(int)Math.round(dueDateDuration.getDuration()));
+			cal.add(Calendar.MONTH, duration);
 		}
 		else if (durationScale.equals(DurationScale.YEARS)) {
-			cal.add(
-				Calendar.YEAR,
-				(int)Math.round(dueDateDuration.getDuration()));
+			cal.add(Calendar.YEAR, duration);
 		}
 
-
 		return cal.getTime();
-
 	}
+
 }

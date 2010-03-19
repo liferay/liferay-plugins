@@ -888,45 +888,45 @@ public class ClpSerializer {
 
 					method5.invoke(newModel, value5);
 
-					Method method6 = newModelClass.getMethod("setDueDateDuration",
-							new Class[] { Double.TYPE });
+					Method method6 = newModelClass.getMethod("setKaleoDefinitionId",
+							new Class[] { Long.TYPE });
 
-					Double value6 = new Double(oldCplModel.getDueDateDuration());
+					Long value6 = new Long(oldCplModel.getKaleoDefinitionId());
 
 					method6.invoke(newModel, value6);
 
-					Method method7 = newModelClass.getMethod("setDueDateScale",
-							new Class[] { String.class });
+					Method method7 = newModelClass.getMethod("setKaleoNodeId",
+							new Class[] { Long.TYPE });
 
-					String value7 = oldCplModel.getDueDateScale();
+					Long value7 = new Long(oldCplModel.getKaleoNodeId());
 
 					method7.invoke(newModel, value7);
 
-					Method method8 = newModelClass.getMethod("setKaleoDefinitionId",
-							new Class[] { Long.TYPE });
+					Method method8 = newModelClass.getMethod("setName",
+							new Class[] { String.class });
 
-					Long value8 = new Long(oldCplModel.getKaleoDefinitionId());
+					String value8 = oldCplModel.getName();
 
 					method8.invoke(newModel, value8);
 
-					Method method9 = newModelClass.getMethod("setKaleoNodeId",
-							new Class[] { Long.TYPE });
+					Method method9 = newModelClass.getMethod("setDescription",
+							new Class[] { String.class });
 
-					Long value9 = new Long(oldCplModel.getKaleoNodeId());
+					String value9 = oldCplModel.getDescription();
 
 					method9.invoke(newModel, value9);
 
-					Method method10 = newModelClass.getMethod("setName",
-							new Class[] { String.class });
+					Method method10 = newModelClass.getMethod("setDueDateDuration",
+							new Class[] { Double.TYPE });
 
-					String value10 = oldCplModel.getName();
+					Double value10 = new Double(oldCplModel.getDueDateDuration());
 
 					method10.invoke(newModel, value10);
 
-					Method method11 = newModelClass.getMethod("setDescription",
+					Method method11 = newModelClass.getMethod("setDueDateScale",
 							new Class[] { String.class });
 
-					String value11 = oldCplModel.getDescription();
+					String value11 = oldCplModel.getDueDateScale();
 
 					method11.invoke(newModel, value11);
 
@@ -2234,46 +2234,46 @@ public class ClpSerializer {
 					newModel.setModifiedDate(value5);
 
 					Method method6 = oldModelClass.getMethod(
-							"getDueDateDuration");
-
-					Double value6 = (Double)method6.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setDueDateDuration(value6.doubleValue());
-
-					Method method7 = oldModelClass.getMethod("getDueDateScale");
-
-					String value7 = (String)method7.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setDueDateScale(value7);
-
-					Method method8 = oldModelClass.getMethod(
 							"getKaleoDefinitionId");
 
-					Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
+					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoDefinitionId(value8.longValue());
+					newModel.setKaleoDefinitionId(value6.longValue());
 
-					Method method9 = oldModelClass.getMethod("getKaleoNodeId");
+					Method method7 = oldModelClass.getMethod("getKaleoNodeId");
 
-					Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
+					Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoNodeId(value9.longValue());
+					newModel.setKaleoNodeId(value7.longValue());
 
-					Method method10 = oldModelClass.getMethod("getName");
+					Method method8 = oldModelClass.getMethod("getName");
 
-					String value10 = (String)method10.invoke(oldModel,
+					String value8 = (String)method8.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setName(value10);
+					newModel.setName(value8);
 
-					Method method11 = oldModelClass.getMethod("getDescription");
+					Method method9 = oldModelClass.getMethod("getDescription");
+
+					String value9 = (String)method9.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setDescription(value9);
+
+					Method method10 = oldModelClass.getMethod(
+							"getDueDateDuration");
+
+					Double value10 = (Double)method10.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setDueDateDuration(value10.doubleValue());
+
+					Method method11 = oldModelClass.getMethod("getDueDateScale");
 
 					String value11 = (String)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setDescription(value11);
+					newModel.setDueDateScale(value11);
 
 					return newModel;
 				}

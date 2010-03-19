@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -20,30 +20,31 @@ package com.liferay.portal.workflow.kaleo.definition;
  * @author Michael C. Han
  */
 public enum DurationScale {
-	DAYS("days"), HOURS("hours"), MINUTES("minutes"),
-	MONTHS("months"), SECONDS("seconds"), YEARS("years");
 
-	public static DurationScale getValue(String value) {
+	DAYS("days"), HOURS("hours"), MINUTES("minutes"), MONTHS("months"),
+	SECONDS("seconds"), YEARS("years");
+
+	public static DurationScale parse(String value) {
 		if (DAYS._value.equals(value)) {
 			return DAYS;
 		}
-		if (HOURS._value.equals(value)) {
+		else if (HOURS._value.equals(value)) {
 			return HOURS;
 		}
-		if (MINUTES._value.equals(value)) {
+		else if (MINUTES._value.equals(value)) {
 			return MINUTES;
 		}
-		if (MONTHS._value.equals(value)) {
+		else if (MONTHS._value.equals(value)) {
 			return MONTHS;
 		}
-		if (SECONDS._value.equals(value)) {
+		else if (SECONDS._value.equals(value)) {
 			return SECONDS;
 		}
-		if (YEARS._value.equals(value)) {
+		else if (YEARS._value.equals(value)) {
 			return YEARS;
 		}
 
-		throw new IllegalArgumentException("Invalid scale value: " + value);
+		throw new IllegalArgumentException("Invalid value " + value);
 	}
 
 	public String getValue() {
@@ -55,4 +56,5 @@ public enum DurationScale {
 	}
 
 	private String _value;
+
 }

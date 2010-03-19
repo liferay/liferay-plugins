@@ -60,8 +60,8 @@ public class Task extends Node {
 	}
 
 	private Set<Assignment> _assignments;
+	private DueDateDuration _dueDateDuration;
 	private State _startState;
 	private State _targetState;
-	private DueDateDuration _dueDateDuration;
 
 }

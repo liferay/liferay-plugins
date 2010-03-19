@@ -53,16 +53,6 @@ import java.util.Map;
 public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 	public WorkflowTask assignWorkflowTaskToRole(
-		long companyId, long userId, long workflowTaskId, long roleId,
-		String comment, Map<String, Serializable> context)
-		throws WorkflowException {
-
-		return assignWorkflowTaskToRole(
-			companyId, userId, workflowTaskId,
-			roleId, comment, null, context);
-	}
-
-	public WorkflowTask assignWorkflowTaskToRole(
 			long companyId, long userId, long workflowTaskInstanceId,
 			long roleId, String comment, Date dueDate,
 			Map<String, Serializable> context)
@@ -77,18 +67,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			workflowTaskInstanceId, roleId, comment, dueDate, context,
 			serviceContext);
 	}
-
-	public WorkflowTask assignWorkflowTaskToUser(
-			long companyId, long userId, long workflowTaskId,
-			long assigneeUserId, String comment,
-			Map<String, Serializable> context)
-		throws WorkflowException {
-
-		return assignWorkflowTaskToUser(
-			companyId, userId, workflowTaskId,
-			assigneeUserId, comment, null, context);
-	}
-
 
 	public WorkflowTask assignWorkflowTaskToUser(
 			long companyId, long userId, long workflowTaskInstanceId,

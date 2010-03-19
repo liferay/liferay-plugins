@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -20,6 +20,7 @@ package com.liferay.portal.workflow.kaleo.definition;
  * @author Michael C. Han
  */
 public class DueDateDuration {
+
 	public DueDateDuration(double duration, DurationScale durationScale) {
 		_duration = duration;
 		_durationScale = durationScale;
@@ -35,4 +36,5 @@ public class DueDateDuration {
 
 	private double _duration;
 	private DurationScale _durationScale;
+
 }

@@ -1,4 +1,3 @@
-
 create table Kaleo_KaleoAction (
 	kaleoActionId LONG not null primary key,
 	companyId LONG,
@@ -113,12 +112,12 @@ create table Kaleo_KaleoTask (
 	userName VARCHAR(200) null,
 	createDate DATE null,
 	modifiedDate DATE null,
-	dueDateDuration DOUBLE,
-	dueDateScale VARCHAR(10) null,
 	kaleoDefinitionId LONG,
 	kaleoNodeId LONG,
 	name VARCHAR(200) null,
-	description VARCHAR(2000) null
+	description VARCHAR(2000) null,
+	dueDateDuration DOUBLE,
+	dueDateScale VARCHAR(10) null
 );
 
 create table Kaleo_KaleoTaskAssignment (

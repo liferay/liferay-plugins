@@ -66,13 +66,14 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			currentKaleoNode.getKaleoNodeId());
 
 		Date dueDate = null;
+
 		if (kaleoTask.getDueDateDuration() > 0) {
 			DueDateDuration dueDateDuration = new DueDateDuration(
 				kaleoTask.getDueDateDuration(),
-				DurationScale.getValue(kaleoTask.getDueDateScale()));
+				DurationScale.parse(kaleoTask.getDueDateScale()));
 
 			dueDate = _dueDateCalculator.getDueDate(
-				new Date(), dueDateDuration );
+				new Date(), dueDateDuration);
 		}
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
@@ -124,4 +125,5 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 	}
 
 	private DueDateCalculator _dueDateCalculator;
+
 }

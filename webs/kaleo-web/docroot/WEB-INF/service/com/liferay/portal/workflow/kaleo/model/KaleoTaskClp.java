@@ -104,22 +104,6 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		_modifiedDate = modifiedDate;
 	}
 
-	public double getDueDateDuration() {
-		return _dueDateDuration;
-	}
-
-	public void setDueDateDuration(double dueDateDuration) {
-		_dueDateDuration = dueDateDuration;
-	}
-
-	public String getDueDateScale() {
-		return _dueDateScale;
-	}
-
-	public void setDueDateScale(String dueDateScale) {
-		_dueDateScale = dueDateScale;
-	}
-
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
@@ -152,6 +136,22 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		_description = description;
 	}
 
+	public double getDueDateDuration() {
+		return _dueDateDuration;
+	}
+
+	public void setDueDateDuration(double dueDateDuration) {
+		_dueDateDuration = dueDateDuration;
+	}
+
+	public String getDueDateScale() {
+		return _dueDateScale;
+	}
+
+	public void setDueDateScale(String dueDateScale) {
+		_dueDateScale = dueDateScale;
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment getDefaultKaleoTaskAssignment() {
 		throw new UnsupportedOperationException();
 	}
@@ -179,12 +179,12 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 			model.setUserName(HtmlUtil.escape(getUserName()));
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
-			model.setDueDateDuration(getDueDateDuration());
-			model.setDueDateScale(HtmlUtil.escape(getDueDateScale()));
 			model.setKaleoDefinitionId(getKaleoDefinitionId());
 			model.setKaleoNodeId(getKaleoNodeId());
 			model.setName(HtmlUtil.escape(getName()));
 			model.setDescription(HtmlUtil.escape(getDescription()));
+			model.setDueDateDuration(getDueDateDuration());
+			model.setDueDateScale(HtmlUtil.escape(getDueDateScale()));
 
 			model = (KaleoTask)Proxy.newProxyInstance(KaleoTask.class.getClassLoader(),
 					new Class[] { KaleoTask.class },
@@ -203,12 +203,12 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
-		clone.setDueDateDuration(getDueDateDuration());
-		clone.setDueDateScale(getDueDateScale());
 		clone.setKaleoDefinitionId(getKaleoDefinitionId());
 		clone.setKaleoNodeId(getKaleoNodeId());
 		clone.setName(getName());
 		clone.setDescription(getDescription());
+		clone.setDueDateDuration(getDueDateDuration());
+		clone.setDueDateScale(getDueDateScale());
 
 		return clone;
 	}
@@ -276,10 +276,6 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", dueDateDuration=");
-		sb.append(getDueDateDuration());
-		sb.append(", dueDateScale=");
-		sb.append(getDueDateScale());
 		sb.append(", kaleoDefinitionId=");
 		sb.append(getKaleoDefinitionId());
 		sb.append(", kaleoNodeId=");
@@ -288,6 +284,10 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		sb.append(getName());
 		sb.append(", description=");
 		sb.append(getDescription());
+		sb.append(", dueDateDuration=");
+		sb.append(getDueDateDuration());
+		sb.append(", dueDateScale=");
+		sb.append(getDueDateScale());
 		sb.append("}");
 
 		return sb.toString();
@@ -325,14 +325,6 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>dueDateDuration</column-name><column-value><![CDATA[");
-		sb.append(getDueDateDuration());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>dueDateScale</column-name><column-value><![CDATA[");
-		sb.append(getDueDateScale());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>kaleoDefinitionId</column-name><column-value><![CDATA[");
 		sb.append(getKaleoDefinitionId());
 		sb.append("]]></column-value></column>");
@@ -348,6 +340,14 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 			"<column><column-name>description</column-name><column-value><![CDATA[");
 		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>dueDateDuration</column-name><column-value><![CDATA[");
+		sb.append(getDueDateDuration());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>dueDateScale</column-name><column-value><![CDATA[");
+		sb.append(getDueDateScale());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -361,10 +361,10 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private double _dueDateDuration;
-	private String _dueDateScale;
 	private long _kaleoDefinitionId;
 	private long _kaleoNodeId;
 	private String _name;
 	private String _description;
+	private double _dueDateDuration;
+	private String _dueDateScale;
 }

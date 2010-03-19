@@ -68,7 +68,7 @@
 				<entry key="TASK">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.node.TaskNodeExecutor">
 						<property name="dueDateCalculator">
-							<bean class="com.liferay.portal.workflow.kaleo.runtime.calendar.DefaultDueDateCalculator"/>
+							<bean class="com.liferay.portal.workflow.kaleo.runtime.calendar.DefaultDueDateCalculator" />
 						</property>
 					</bean>
 				</entry>

@@ -101,22 +101,6 @@ public class KaleoTaskWrapper implements KaleoTask {
 		_kaleoTask.setModifiedDate(modifiedDate);
 	}
 
-	public double getDueDateDuration() {
-		return _kaleoTask.getDueDateDuration();
-	}
-
-	public void setDueDateDuration(double dueDateDuration) {
-		_kaleoTask.setDueDateDuration(dueDateDuration);
-	}
-
-	public java.lang.String getDueDateScale() {
-		return _kaleoTask.getDueDateScale();
-	}
-
-	public void setDueDateScale(java.lang.String dueDateScale) {
-		_kaleoTask.setDueDateScale(dueDateScale);
-	}
-
 	public long getKaleoDefinitionId() {
 		return _kaleoTask.getKaleoDefinitionId();
 	}
@@ -147,6 +131,22 @@ public class KaleoTaskWrapper implements KaleoTask {
 
 	public void setDescription(java.lang.String description) {
 		_kaleoTask.setDescription(description);
+	}
+
+	public double getDueDateDuration() {
+		return _kaleoTask.getDueDateDuration();
+	}
+
+	public void setDueDateDuration(double dueDateDuration) {
+		_kaleoTask.setDueDateDuration(dueDateDuration);
+	}
+
+	public java.lang.String getDueDateScale() {
+		return _kaleoTask.getDueDateScale();
+	}
+
+	public void setDueDateScale(java.lang.String dueDateScale) {
+		_kaleoTask.setDueDateScale(dueDateScale);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask toEscapedModel() {

@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.parser;
 
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -246,31 +245,23 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		return state;
 	}
 
-	protected Task parseTask(Element taskElement)
-		throws WorkflowException {
-
+	protected Task parseTask(Element taskElement) throws WorkflowException {
 		String name = taskElement.attributeValue("name");
 		String description = taskElement.elementText("description");
 
 		Task task = new Task(name, description);
 
-		String dueDateDurationStr = taskElement.elementText(
-			"due-date-duration"); 
+		double dueDateDuration = GetterUtil.getDouble(
+			taskElement.elementText("due-date-duration"));
 
-		if (Validator.isNotNull(dueDateDurationStr)) {
-			double duration = Double.parseDouble(dueDateDurationStr);
+		if (dueDateDuration > 0) {
+			DurationScale dueDateScale = DurationScale.parse(
+				taskElement.attributeValue("due-date-scale"));
 
-			String dueDateScaleStr = taskElement.attributeValue("due-date-scale");
-			if (Validator.isNull(dueDateScaleStr)) {
-				throw new WorkflowException(
-					"Must specify a scale for the due date duration of task :" +
-					task.getName());
-			}
+			DueDateDuration dueDateDurationModel = new DueDateDuration(
+				dueDateDuration, dueDateScale);
 
-			DurationScale durationScale = DurationScale.getValue(dueDateScaleStr);
-			DueDateDuration dueDateDuration = new DueDateDuration(
-				duration, durationScale);
-			task.setDueDateDuration(dueDateDuration);
+			task.setDueDateDuration(dueDateDurationModel);
 		}
 
 		Element actionsElement = taskElement.element("actions");
