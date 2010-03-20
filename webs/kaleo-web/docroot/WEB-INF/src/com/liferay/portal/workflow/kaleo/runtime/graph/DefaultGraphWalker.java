@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.workflow.kaleo.definition.ActionType;
 import com.liferay.portal.workflow.kaleo.definition.NodeType;
@@ -179,7 +178,7 @@ public class DefaultGraphWalker implements GraphWalker {
 						kaleoNotification.getTemplate(), executionContext);
 
 				String notificationSubject = kaleoNotification.getDescription();
-				
+
 				String[] notificationTypes =
 					kaleoNotification.getNotificationTypesArray();
 
@@ -197,7 +196,7 @@ public class DefaultGraphWalker implements GraphWalker {
 					}
 					return;
 				}
-				
+
 				for (String notificationType : notificationTypes) {
 					try {
 						NotificationSender notificationSender =

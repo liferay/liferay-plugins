@@ -49,7 +49,6 @@ public class VelocityNotificationMessageGenerator
 		VelocityContext velocityContext =
 			VelocityEngineUtil.getRestrictedToolsContext();
 
-
 		try {
 			populateContextVariables(velocityContext, executionContext);
 

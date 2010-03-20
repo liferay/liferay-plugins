@@ -23,10 +23,10 @@ import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
-import javax.mail.internet.InternetAddress;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.mail.internet.InternetAddress;
 
 /**
  * <a href="EmailNotificationSender.java.html"><b><i>View Source</i></b></a>
@@ -68,7 +68,7 @@ public class EmailNotificationSender implements NotificationSender {
 	}
 
 	protected InternetAddress[] getRecipients(
-			List<KaleoNotificationRecipient> notificationRecipients) 
+			List<KaleoNotificationRecipient> notificationRecipients)
 		throws Exception {
 
 		List<InternetAddress> internetAddresses =
