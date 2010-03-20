@@ -269,6 +269,85 @@
 		<order by="asc">
 			<order-column name="kaleoNodeId" />
 		</order>
+
+		<finder name="C_KDI" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
+	</entity>
+	<entity name="KaleoNotification" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kaleoNotificationId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="kaleoDefinitionId" type="long" />
+		<column name="kaleoNodeId" type="long" />
+		<column name="kaleoNodeName" type="String" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="language" type="String" />
+		<column name="template" type="String" />
+		<column name="notificationTypes" type="String" />
+
+		<column name="receipients" type="Collection" entity="KaleoNotificationRecipient" mapping-key="kaleoNotificationId"/>
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="kaleoNotificationId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="KNI" return-type="Collection">
+			<finder-column name="kaleoNodeId" />
+		</finder>
+	</entity>
+	<entity name="KaleoNotificationRecipient" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kaleoRecipientId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="kaleoNotificationId" type="long" />
+		<column name="recipientClassName" type="String" />
+		<column name="recipientClassPK" type="long" />
+		<column name="address" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="kaleoRecipientId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="KNI" return-type="Collection">
+			<finder-column name="kaleoNotificationId" />
+		</finder>
+
+		<reference package-path="com.liferay.portal" entity="Role" />
+
 	</entity>
 	<entity name="KaleoTask" local-service="true" remote-service="false">
 

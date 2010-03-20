@@ -64,7 +64,7 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 			kaleoTask.setDueDateScale(
 				dueDateDuration.getDurationScale().getValue());
 		}
-		
+
 		kaleoTaskPersistence.update(kaleoTask, false);
 
 		// Kaleo assignments

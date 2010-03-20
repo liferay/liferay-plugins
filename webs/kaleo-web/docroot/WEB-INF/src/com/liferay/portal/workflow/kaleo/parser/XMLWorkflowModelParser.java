@@ -15,11 +15,13 @@
 package com.liferay.portal.workflow.kaleo.parser;
 
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.workflow.kaleo.definition.Action;
+import com.liferay.portal.workflow.kaleo.definition.AddressRecipient;
 import com.liferay.portal.workflow.kaleo.definition.Assignment;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 import com.liferay.portal.workflow.kaleo.definition.DueDateDuration;
@@ -27,11 +29,14 @@ import com.liferay.portal.workflow.kaleo.definition.DurationScale;
 import com.liferay.portal.workflow.kaleo.definition.Fork;
 import com.liferay.portal.workflow.kaleo.definition.Join;
 import com.liferay.portal.workflow.kaleo.definition.Node;
+import com.liferay.portal.workflow.kaleo.definition.Notification;
 import com.liferay.portal.workflow.kaleo.definition.RoleAssignment;
+import com.liferay.portal.workflow.kaleo.definition.RoleRecipient;
 import com.liferay.portal.workflow.kaleo.definition.State;
 import com.liferay.portal.workflow.kaleo.definition.Task;
 import com.liferay.portal.workflow.kaleo.definition.Transition;
 import com.liferay.portal.workflow.kaleo.definition.UserAssignment;
+import com.liferay.portal.workflow.kaleo.definition.UserRecipient;
 
 import java.io.InputStream;
 
@@ -109,9 +114,9 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		return definition;
 	}
 
-	protected Set<Action> parseActions(Element actionsElement) {
+	protected void parseActions(Element actionsElement, Node node) {
 		if (actionsElement == null) {
-			return Collections.EMPTY_SET;
+			return;
 		}
 
 		Set<Action> actions = new HashSet<Action>();
@@ -130,12 +135,52 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 			action.setExecutionOrder(executionOrder);
 
-			action.setScript(actionElement.getText());
+			String description = actionElement.attributeValue("description");
+			if (Validator.isNotNull(description)) {
+				action.setDescription(description);
+			}
+
+			Element scriptElement = actionElement.element("script");
+			action.setScript(scriptElement.getText());
 
 			actions.add(action);
 		}
+		node.setActions(actions);
 
-		return actions;
+		Set<Notification> notifications = new HashSet<Notification>();
+		List<Element> notificationElements = actionsElement.elements(
+			"notification");
+
+		for (Element notificationElement : notificationElements) {
+			String name = notificationElement.attributeValue("name");
+			String language = notificationElement.attributeValue("language");
+
+			Notification notification = new Notification(name, language);
+
+			String description = notificationElement.attributeValue(
+				"description");
+			if (Validator.isNotNull(description)) {
+				notification.setDescription(description);
+			}
+
+			Element recipientsElement = notificationElement.element(
+				"recipients");
+			parseRecipients(recipientsElement, notification);
+
+			List<Element> notificationTypeElements = notificationElement.elements(
+				"notification-type");
+			for (Element notificationTypeElement : notificationTypeElements) {
+				notification.addNotificationType(
+					notificationTypeElement.attributeValue("value"));
+			}
+
+			Element scriptElement = notificationElement.element("template");
+			notification.setTemplate(scriptElement.getText());
+
+			notifications.add(notification);
+		}
+
+		node.setNotifications(notifications);
 	}
 
 	protected Set<Assignment> parseAssignments(Element assignmentsElement) {
@@ -150,11 +195,18 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		for (Element roleAssignmentElement : roleAssignmentElements) {
 			String name = roleAssignmentElement.attributeValue("name");
+			Long roleId = GetterUtil.getLong(
+				roleAssignmentElement.attributeValue("role-id"), 0);
 			boolean defaultValue = GetterUtil.getBoolean(
 				roleAssignmentElement.attributeValue("default"));
 
-			RoleAssignment roleAssignment = new RoleAssignment(
-				name, defaultValue);
+			RoleAssignment roleAssignment = null;
+			if (Validator.isNotNull(name)) {
+				roleAssignment = new RoleAssignment(name, defaultValue);
+			}
+			else {
+				roleAssignment = new RoleAssignment(roleId, defaultValue);
+			}
 
 			assignments.add(roleAssignment);
 		}
@@ -198,9 +250,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		Element actionsElement = forkElement.element("actions");
 
 		if (actionsElement != null) {
-			Set<Action> actions = parseActions(actionsElement);
-
-			fork.setActions(actions);
+			parseActions(actionsElement, fork);
 		}
 
 		return fork;
@@ -215,12 +265,73 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		Element actionsElement = joinElement.element("actions");
 
 		if (actionsElement != null) {
-			Set<Action> actions = parseActions(actionsElement);
-
-			join.setActions(actions);
+			parseActions(actionsElement, join);
 		}
 
 		return join;
+	}
+
+	private void parseRecipients(
+		Element recipientsElement, Notification notification) {
+
+		if (recipientsElement == null) {
+			return;
+		}
+
+		List<Element> roleReceipientElements = recipientsElement.elements(
+			"role");
+
+		for (Element roleAssignmentElement : roleReceipientElements) {
+			String name = roleAssignmentElement.attributeValue("name");
+			Long roleId = GetterUtil.getLong(
+				roleAssignmentElement.attributeValue("role-id"), 0);
+
+			RoleRecipient roleRecipient = null;
+			if (Validator.isNotNull(name)) {
+				roleRecipient = new RoleRecipient(name);
+			}
+			else {
+				roleRecipient = new RoleRecipient(roleId);
+			}
+
+			notification.addRecipients(roleRecipient);
+		}
+
+		List<Element> userRecipientElements = recipientsElement.elements(
+			"user");
+
+		for (Element userRecipientElement : userRecipientElements) {
+
+			UserRecipient userRecipient = new UserRecipient();
+
+			long userId = GetterUtil.getLong(
+				userRecipientElement.attributeValue("user-id"));
+
+			userRecipient.setUserId(userId);
+
+			String screenName = userRecipientElement.attributeValue(
+				"screen-name");
+
+			userRecipient.setScreenName(screenName);
+
+			String emailAddress = userRecipientElement.attributeValue(
+				"email-address");
+
+			userRecipient.setEmailAddress(emailAddress);
+
+			notification.addRecipients(userRecipient);
+		}
+
+		List<Element> addressRecipientElements = recipientsElement.elements(
+			"address");
+		for (Element addressRecipientElement : addressRecipientElements) {
+
+			AddressRecipient addressRecipient = new AddressRecipient(
+				addressRecipientElement.getTextTrim());
+
+			notification.addRecipients(addressRecipient);
+		}
+
 	}
 
 	protected State parseState(Element stateElement) {
@@ -237,9 +348,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		Element actionsElement = stateElement.element("actions");
 
 		if (actionsElement != null) {
-			Set<Action> actions = parseActions(actionsElement);
-
-			state.setActions(actions);
+			parseActions(actionsElement, state);
 		}
 
 		return state;
@@ -267,9 +376,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		Element actionsElement = taskElement.element("actions");
 
 		if (actionsElement != null) {
-			Set<Action> actions = parseActions(actionsElement);
-
-			task.setActions(actions);
+			parseActions(actionsElement, task);
 		}
 
 		Element assignmentsElement = taskElement.element("assignments");

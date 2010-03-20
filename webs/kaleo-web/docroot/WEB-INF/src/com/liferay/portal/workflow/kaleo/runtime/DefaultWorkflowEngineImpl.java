@@ -242,7 +242,7 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 
 			kaleoLogLocalService.addWorkflowInstanceStartKaleoLog(
 				rootKaleoInstanceToken, serviceContext);
-			
+
 			ExecutionContext executionContext = new ExecutionContext(
 				rootKaleoInstanceToken, context, serviceContext);
 

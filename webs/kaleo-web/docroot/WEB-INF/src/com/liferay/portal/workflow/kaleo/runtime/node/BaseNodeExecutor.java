@@ -65,5 +65,5 @@ public abstract class BaseNodeExecutor implements NodeExecutor {
 
 	@BeanReference(type = KaleoInstanceTokenLocalService.class)
 	protected KaleoInstanceTokenLocalService kaleoInstanceTokenLocalService;
-	
+
 }

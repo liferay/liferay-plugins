@@ -116,6 +116,58 @@ public class KaleoNodeUtil {
 		return getPersistence().fetchByPrimaryKey(kaleoNodeId);
 	}
 
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByC_KDI(
+		long companyId, long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByC_KDI(companyId, kaleoDefinitionId);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByC_KDI(
+		long companyId, long kaleoDefinitionId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_KDI(companyId, kaleoDefinitionId, start, end);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByC_KDI(
+		long companyId, long kaleoDefinitionId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_KDI(companyId, kaleoDefinitionId, start, end,
+			orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNode findByC_KDI_First(
+		long companyId, long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNodeException {
+		return getPersistence()
+				   .findByC_KDI_First(companyId, kaleoDefinitionId,
+			orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNode findByC_KDI_Last(
+		long companyId, long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNodeException {
+		return getPersistence()
+				   .findByC_KDI_Last(companyId, kaleoDefinitionId,
+			orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNode[] findByC_KDI_PrevAndNext(
+		long kaleoNodeId, long companyId, long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNodeException {
+		return getPersistence()
+				   .findByC_KDI_PrevAndNext(kaleoNodeId, companyId,
+			kaleoDefinitionId, orderByComparator);
+	}
+
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
@@ -134,9 +186,19 @@ public class KaleoNodeUtil {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
+	public static void removeByC_KDI(long companyId, long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByC_KDI(companyId, kaleoDefinitionId);
+	}
+
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
+	}
+
+	public static int countByC_KDI(long companyId, long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByC_KDI(companyId, kaleoDefinitionId);
 	}
 
 	public static int countAll()

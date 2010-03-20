@@ -66,7 +66,6 @@ public class PathElementMessageListener implements MessageListener {
 		_singleDestinationMessageSender  = singleDestinationMessageSender ;
 	}
 
-
 	private GraphWalker _graphWalker;
 	private SingleDestinationMessageSender _singleDestinationMessageSender;
 

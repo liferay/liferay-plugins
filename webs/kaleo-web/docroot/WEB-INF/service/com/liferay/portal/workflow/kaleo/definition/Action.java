@@ -27,8 +27,25 @@ public class Action {
 		_language = language;
 	}
 
+	public boolean equals(Object object) {
+		if (this == object) {
+			return true;
+		}
+		if (object == null || getClass() != object.getClass()) {
+			return false;
+		}
+
+		Action action = (Action)object;
+
+		return action.getName().equals(getName());
+	}
+
 	public ActionType getActionType() {
 		return _actionType;
+	}
+
+	public String getDescription() {
+		return _description;
 	}
 
 	public int getExecutionOrder() {
@@ -47,6 +64,14 @@ public class Action {
 		return _script;
 	}
 
+	public int hashCode() {
+		return _name.hashCode();
+	}
+
+	public void setDescription(String description) {
+		_description = description;
+	}
+
 	public void setExecutionOrder(int executionOrder) {
 		_executionOrder = executionOrder;
 	}
@@ -57,6 +82,7 @@ public class Action {
 
 	private ActionType _actionType;
 	private int _executionOrder;
+	private String _description;
 	private String _language;
 	private String _name;
 	private String _script;

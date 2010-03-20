@@ -464,6 +464,10 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	protected KaleoLogPersistence kaleoLogPersistence;
 	@BeanReference(type = KaleoNodePersistence.class)
 	protected KaleoNodePersistence kaleoNodePersistence;
+	@BeanReference(type = KaleoNotificationPersistence.class)
+	protected KaleoNotificationPersistence kaleoNotificationPersistence;
+	@BeanReference(type = KaleoNotificationRecipientPersistence.class)
+	protected KaleoNotificationRecipientPersistence kaleoNotificationRecipientPersistence;
 	@BeanReference(type = KaleoTaskPersistence.class)
 	protected KaleoTaskPersistence kaleoTaskPersistence;
 	@BeanReference(type = KaleoTaskAssignmentPersistence.class)

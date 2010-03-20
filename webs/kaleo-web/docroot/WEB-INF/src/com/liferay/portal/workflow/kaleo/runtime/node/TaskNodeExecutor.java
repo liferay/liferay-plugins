@@ -38,6 +38,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServ
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalService;
 
 import java.io.Serializable;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map;

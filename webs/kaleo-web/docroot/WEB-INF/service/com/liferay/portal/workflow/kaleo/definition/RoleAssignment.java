@@ -29,6 +29,12 @@ public class RoleAssignment extends Assignment {
 		_roleName = roleName;
 	}
 
+	public RoleAssignment(long roleId, boolean defaultValue) {
+		super(AssignmentType.ROLE, defaultValue);
+
+		_roleId = roleId;
+	}
+
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -40,11 +46,16 @@ public class RoleAssignment extends Assignment {
 
 		RoleAssignment roleAssignment = (RoleAssignment)obj;
 
-		if (Validator.equals(_roleName, roleAssignment._roleName)) {
+		if (Validator.equals(_roleName, roleAssignment._roleName) &&
+			(_roleId == roleAssignment._roleId)) {
 			return true;
 		}
 
 		return true;
+	}
+
+	public long getRoleId() {
+		return _roleId;
 	}
 
 	public String getRoleName() {
@@ -55,6 +66,7 @@ public class RoleAssignment extends Assignment {
 		return _roleName.hashCode();
 	}
 
+	private long _roleId;
 	private String _roleName;
 
 }

@@ -8,6 +8,8 @@
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken" />
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoLog" />
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoNode" />
+	<import class="com.liferay.portal.workflow.kaleo.model.KaleoNotification" />
+	<import class="com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient" />
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoTask" />
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment" />
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment" />
@@ -132,6 +134,40 @@
 		<property name="type" column="type_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="initial" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="terminal" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationImpl" table="Kaleo_KaleoNotification">
+		<cache usage="read-write" />
+		<id name="kaleoNotificationId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="kaleoDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoNodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kaleoNodeName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="language" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="template" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="notificationTypes" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientImpl" table="Kaleo_KaleoNotificationRecipient">
+		<cache usage="read-write" />
+		<id name="kaleoRecipientId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="kaleoNotificationId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="recipientClassName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="recipientClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="address" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskImpl" table="Kaleo_KaleoTask">
 		<cache usage="read-write" />

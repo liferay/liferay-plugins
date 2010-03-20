@@ -56,6 +56,7 @@ public class KaleoActionLocalServiceImpl
 		kaleoAction.setKaleoNodeName(kaleoNodeName);
 		kaleoAction.setName(action.getName());
 		kaleoAction.setLanguage(action.getLanguage());
+		kaleoAction.setDescription(action.getDescription());
 		kaleoAction.setScript(action.getScript());
 		kaleoAction.setExecutionType(action.getActionType().getType());
 		kaleoAction.setExecutionOrder(action.getExecutionOrder());

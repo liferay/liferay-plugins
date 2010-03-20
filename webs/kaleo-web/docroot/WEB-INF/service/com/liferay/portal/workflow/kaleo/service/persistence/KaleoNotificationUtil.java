@@ -1,0 +1,256 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.portal.workflow.kaleo.service.persistence;
+
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
+
+import java.util.List;
+
+/**
+ * <a href="KaleoNotificationUtil.java.html"><b><i>View Source</i></b></a>
+ *
+ * <p>
+ * ServiceBuilder generated this class. Modifications in this class will be
+ * overwritten the next time is generated.
+ * </p>
+ *
+ * @author    Brian Wing Shun Chan
+ * @see       KaleoNotificationPersistence
+ * @see       KaleoNotificationPersistenceImpl
+ * @generated
+ */
+public class KaleoNotificationUtil {
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache()
+	 */
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
+	 */
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
+	 */
+	public static List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
+	 */
+	public static KaleoNotification remove(KaleoNotification kaleoNotification)
+		throws SystemException {
+		return getPersistence().remove(kaleoNotification);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 */
+	public static KaleoNotification update(
+		KaleoNotification kaleoNotification, boolean merge)
+		throws SystemException {
+		return getPersistence().update(kaleoNotification, merge);
+	}
+
+	public static void cacheResult(
+		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification) {
+		getPersistence().cacheResult(kaleoNotification);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> kaleoNotifications) {
+		getPersistence().cacheResult(kaleoNotifications);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification create(
+		long kaleoNotificationId) {
+		return getPersistence().create(kaleoNotificationId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification remove(
+		long kaleoNotificationId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNotificationException {
+		return getPersistence().remove(kaleoNotificationId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification updateImpl(
+		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification,
+		boolean merge)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(kaleoNotification, merge);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification findByPrimaryKey(
+		long kaleoNotificationId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNotificationException {
+		return getPersistence().findByPrimaryKey(kaleoNotificationId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification fetchByPrimaryKey(
+		long kaleoNotificationId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(kaleoNotificationId);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> findByKNI(
+		long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByKNI(kaleoNodeId);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> findByKNI(
+		long kaleoNodeId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByKNI(kaleoNodeId, start, end);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> findByKNI(
+		long kaleoNodeId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByKNI(kaleoNodeId, start, end, orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification findByKNI_First(
+		long kaleoNodeId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNotificationException {
+		return getPersistence().findByKNI_First(kaleoNodeId, orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification findByKNI_Last(
+		long kaleoNodeId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNotificationException {
+		return getPersistence().findByKNI_Last(kaleoNodeId, orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification[] findByKNI_PrevAndNext(
+		long kaleoNotificationId, long kaleoNodeId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNotificationException {
+		return getPersistence()
+				   .findByKNI_PrevAndNext(kaleoNotificationId, kaleoNodeId,
+			orderByComparator);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> findAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findAll();
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> findAll(
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findAll(start, end);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> findAll(
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findAll(start, end, orderByComparator);
+	}
+
+	public static void removeByKNI(long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByKNI(kaleoNodeId);
+	}
+
+	public static void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeAll();
+	}
+
+	public static int countByKNI(long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKNI(kaleoNodeId);
+	}
+
+	public static int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countAll();
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> getKaleoNotificationRecipients(
+		long pk) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getKaleoNotificationRecipients(pk);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> getKaleoNotificationRecipients(
+		long pk, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getKaleoNotificationRecipients(pk, start, end);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> getKaleoNotificationRecipients(
+		long pk, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .getKaleoNotificationRecipients(pk, start, end,
+			orderByComparator);
+	}
+
+	public static int getKaleoNotificationRecipientsSize(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getKaleoNotificationRecipientsSize(pk);
+	}
+
+	public static boolean containsKaleoNotificationRecipient(long pk,
+		long kaleoNotificationRecipientPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .containsKaleoNotificationRecipient(pk,
+			kaleoNotificationRecipientPK);
+	}
+
+	public static boolean containsKaleoNotificationRecipients(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().containsKaleoNotificationRecipients(pk);
+	}
+
+	public static KaleoNotificationPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (KaleoNotificationPersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+					KaleoNotificationPersistence.class.getName());
+		}
+
+		return _persistence;
+	}
+
+	public void setPersistence(KaleoNotificationPersistence persistence) {
+		_persistence = persistence;
+	}
+
+	private static KaleoNotificationPersistence _persistence;
+}

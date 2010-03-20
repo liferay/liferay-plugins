@@ -39,11 +39,11 @@ public class UserAssignment extends Assignment {
 			return false;
 		}
 
-		UserAssignment readWriteLockKey = (UserAssignment)obj;
+		UserAssignment userAssignment = (UserAssignment)obj;
 
-		if (Validator.equals(_emailAddress, readWriteLockKey._emailAddress) &&
-			Validator.equals(_screenName, readWriteLockKey._screenName) &&
-			(_userId == readWriteLockKey._userId)) {
+		if (Validator.equals(_emailAddress, userAssignment._emailAddress) &&
+			Validator.equals(_screenName, userAssignment._screenName) &&
+			(_userId == userAssignment._userId)) {
 
 			return true;
 		}

@@ -28,6 +28,7 @@ import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService;
 
 import java.io.Serializable;
+
 import java.util.List;
 import java.util.Map;
 
@@ -94,6 +95,5 @@ public class StateNodeExecutor extends BaseNodeExecutor {
 
 	@BeanReference(type = KaleoInstanceLocalService.class)
 	protected KaleoInstanceLocalService kaleoInstanceLocalService;
-
 
 }

@@ -21,6 +21,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.Action;
 import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.NodeType;
+import com.liferay.portal.workflow.kaleo.definition.Notification;
 import com.liferay.portal.workflow.kaleo.definition.State;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoNodeLocalServiceBaseImpl;
@@ -83,6 +84,14 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 		for (Action action : actions) {
 			kaleoActionLocalService.addKaleoAction(
 				kaleoDefinitionId, kaleoNodeId, node.getName(), action,
+				serviceContext);
+		}
+
+		Set<Notification> notifications = node.getNotifications();
+
+		for (Notification notification : notifications) {
+			kaleoNotificationLocalService.addKaleoNotification(
+				kaleoDefinitionId, kaleoNodeId, node.getName(), notification,
 				serviceContext);
 		}
 

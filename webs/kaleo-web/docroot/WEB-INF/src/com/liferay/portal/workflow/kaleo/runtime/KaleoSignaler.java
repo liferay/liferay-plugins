@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.exception.SystemException;
  * @author Michael C. Han
  */
 public interface KaleoSignaler {
-	
+
 	public void signalEntry(
 				String transitionName, ExecutionContext executionContext)
 			throws PortalException, SystemException;
@@ -31,5 +31,5 @@ public interface KaleoSignaler {
 	public void signalExit(
 			String transitionName, ExecutionContext executionContext)
 		throws PortalException, SystemException;
-	
+
 }

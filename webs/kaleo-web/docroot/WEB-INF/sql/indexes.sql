@@ -15,6 +15,14 @@ create index IX_37870D24 on Kaleo_KaleoLog (kaleoInstanceTokenId, kaleoNodeId, t
 create index IX_5FD03F99 on Kaleo_KaleoLog (kaleoInstanceTokenId, type_);
 create index IX_B0413637 on Kaleo_KaleoLog (kaleoTaskInstanceTokenId);
 
+create index IX_ECA77F9F on Kaleo_KaleoNode (companyId, kaleoDefinitionId);
+
+create index IX_1B1DE8FB on Kaleo_KaleoNotification (kaleoNodeId);
+
+create index IX_21EE3763 on Kaleo_KaleoNotificationRecipient (kaleoNotificationId);
+
+create index IX_61688F8A on Kaleo_KaleoNotificationRecipients (kaleoNotificationId);
+
 create index IX_61E22421 on Kaleo_KaleoTask (kaleoNodeId);
 
 create index IX_34EC9969 on Kaleo_KaleoTaskAssignment (assigneeClassName, assigneeClassPK);

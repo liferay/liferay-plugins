@@ -149,7 +149,7 @@ public class KaleoTaskWrapper implements KaleoTask {
 		_kaleoTask.setDueDateScale(dueDateScale);
 	}
 
-	public KaleoTask toEscapedModel() {
+	public com.liferay.portal.workflow.kaleo.model.KaleoTask toEscapedModel() {
 		return _kaleoTask.toEscapedModel();
 	}
 
@@ -194,7 +194,8 @@ public class KaleoTaskWrapper implements KaleoTask {
 		return _kaleoTask.clone();
 	}
 
-	public int compareTo(KaleoTask kaleoTask) {
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask) {
 		return _kaleoTask.compareTo(kaleoTask);
 	}
 

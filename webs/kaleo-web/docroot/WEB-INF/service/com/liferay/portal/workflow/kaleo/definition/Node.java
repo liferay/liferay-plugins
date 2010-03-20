@@ -77,6 +77,10 @@ public abstract class Node {
 		return _nodeType;
 	}
 
+	public Set<Notification> getNotifications() {
+		return _notifications;
+	}
+
 	public Map<String, Transition> getTransitions() {
 		return _transitions;
 	}
@@ -93,10 +97,15 @@ public abstract class Node {
 		_actions = actions;
 	}
 
+	public void setNotifications(Set<Notification> notifications) {
+		_notifications = notifications;
+	}
+
 	private Set<Action> _actions;
 	private String _description;
 	private String _name;
 	private NodeType _nodeType;
+	private Set<Notification> _notifications;
 	private Map<String, Transition> _transitions =
 		new HashMap<String, Transition>();
 

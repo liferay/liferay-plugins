@@ -172,6 +172,50 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationModelImpl">
+		<attributes>
+			<id name="kaleoNotificationId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="kaleoDefinitionId" />
+			<basic name="kaleoNodeId" />
+			<basic name="kaleoNodeName" />
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="language" />
+			<basic name="template" />
+			<basic name="notificationTypes" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientModelImpl">
+		<attributes>
+			<id name="kaleoRecipientId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="kaleoNotificationId" />
+			<basic name="recipientClassName" />
+			<basic name="recipientClassPK" />
+			<basic name="address" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskModelImpl">
 		<attributes>
 			<id name="kaleoTaskId" />
@@ -315,6 +359,14 @@
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl" name="KaleoNode">
 		<table name="Kaleo_KaleoNode" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationImpl" name="KaleoNotification">
+		<table name="Kaleo_KaleoNotification" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientImpl" name="KaleoNotificationRecipient">
+		<table name="Kaleo_KaleoNotificationRecipient" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskImpl" name="KaleoTask">

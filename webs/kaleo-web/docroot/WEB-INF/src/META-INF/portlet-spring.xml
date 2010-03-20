@@ -31,6 +31,16 @@
 		<property name="service" ref="com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalService" />
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoNodePersistence" class="com.liferay.portal.workflow.kaleo.service.persistence.KaleoNodePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoNotificationLocalService" class="com.liferay.portal.workflow.kaleo.service.impl.KaleoNotificationLocalServiceImpl" />
+	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoNotificationLocalServiceUtil" class="com.liferay.portal.workflow.kaleo.service.KaleoNotificationLocalServiceUtil">
+		<property name="service" ref="com.liferay.portal.workflow.kaleo.service.KaleoNotificationLocalService" />
+	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoNotificationPersistence" class="com.liferay.portal.workflow.kaleo.service.persistence.KaleoNotificationPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalService" class="com.liferay.portal.workflow.kaleo.service.impl.KaleoNotificationRecipientLocalServiceImpl" />
+	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalServiceUtil" class="com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalServiceUtil">
+		<property name="service" ref="com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalService" />
+	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoNotificationRecipientPersistence" class="com.liferay.portal.workflow.kaleo.service.persistence.KaleoNotificationRecipientPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalService" class="com.liferay.portal.workflow.kaleo.service.impl.KaleoTaskLocalServiceImpl" />
 	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalServiceUtil" class="com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalServiceUtil">
 		<property name="service" ref="com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalService" />

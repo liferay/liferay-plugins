@@ -106,6 +106,49 @@ create table Kaleo_KaleoNode (
 	terminal BOOLEAN
 );
 
+create table Kaleo_KaleoNotification (
+	kaleoNotificationId LONG not null primary key,
+	companyId LONG,
+	userId LONG,
+	userName VARCHAR(200) null,
+	createDate DATE null,
+	modifiedDate DATE null,
+	kaleoDefinitionId LONG,
+	kaleoNodeId LONG,
+	kaleoNodeName VARCHAR(200) null,
+	name VARCHAR(200) null,
+	description VARCHAR(2000) null,
+	language VARCHAR(20) null,
+	template TEXT null,
+	notificationTypes VARCHAR(200) null
+);
+
+create table Kaleo_KaleoNotificationRecipient (
+	kaleoRecipientId LONG not null primary key,
+	companyId LONG,
+	userId LONG,
+	userName VARCHAR(75) null,
+	createDate DATE null,
+	modifiedDate DATE null,
+	kaleoNotificationId LONG,
+	recipientClassName VARCHAR(75) null,
+	recipientClassPK LONG,
+	address VARCHAR(75) null
+);
+
+create table Kaleo_KaleoNotificationRecipients (
+	kaleoRecipientId LONG not null primary key,
+	companyId LONG,
+	userId LONG,
+	userName VARCHAR(200) null,
+	createDate DATE null,
+	modifiedDate DATE null,
+	kaleoNotificationId LONG,
+	recipientClassName VARCHAR(200) null,
+	recipientClassPK LONG,
+	address VARCHAR(200) null
+);
+
 create table Kaleo_KaleoTask (
 	kaleoTaskId LONG not null primary key,
 	companyId LONG,
@@ -115,10 +158,10 @@ create table Kaleo_KaleoTask (
 	modifiedDate DATE null,
 	kaleoDefinitionId LONG,
 	kaleoNodeId LONG,
-	name VARCHAR(200) null,
-	description VARCHAR(2000) null,
+	name VARCHAR(75) null,
+	description VARCHAR(75) null,
 	dueDateDuration DOUBLE,
-	dueDateScale VARCHAR(10) null
+	dueDateScale VARCHAR(75) null
 );
 
 create table Kaleo_KaleoTaskAssignment (

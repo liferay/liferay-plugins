@@ -1,0 +1,116 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.portal.workflow.kaleo.service.persistence;
+
+import com.liferay.portal.service.persistence.BasePersistence;
+import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
+
+/**
+ * <a href="KaleoNotificationRecipientPersistence.java.html"><b><i>View Source</i></b></a>
+ *
+ * <p>
+ * ServiceBuilder generated this class. Modifications in this class will be
+ * overwritten the next time is generated.
+ * </p>
+ *
+ * @author    Brian Wing Shun Chan
+ * @see       KaleoNotificationRecipientPersistenceImpl
+ * @see       KaleoNotificationRecipientUtil
+ * @generated
+ */
+public interface KaleoNotificationRecipientPersistence extends BasePersistence<KaleoNotificationRecipient> {
+	public void cacheResult(
+		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient);
+
+	public void cacheResult(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> kaleoNotificationRecipients);
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient create(
+		long kaleoRecipientId);
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient remove(
+		long kaleoRecipientId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient updateImpl(
+		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient,
+		boolean merge)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByPrimaryKey(
+		long kaleoRecipientId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient fetchByPrimaryKey(
+		long kaleoRecipientId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findByKNI(
+		long kaleoNotificationId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findByKNI(
+		long kaleoNotificationId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findByKNI(
+		long kaleoNotificationId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByKNI_First(
+		long kaleoNotificationId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByKNI_Last(
+		long kaleoNotificationId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient[] findByKNI_PrevAndNext(
+		long kaleoRecipientId, long kaleoNotificationId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findAll(
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findAll(
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void removeByKNI(long kaleoNotificationId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int countByKNI(long kaleoNotificationId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
+}

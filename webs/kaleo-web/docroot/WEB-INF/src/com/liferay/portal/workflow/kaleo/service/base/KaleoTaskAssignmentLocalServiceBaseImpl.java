@@ -40,6 +40,8 @@ import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalService;
+import com.liferay.portal.workflow.kaleo.service.KaleoNotificationLocalService;
+import com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceAssignmentLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalService;
@@ -51,6 +53,8 @@ import com.liferay.portal.workflow.kaleo.service.persistence.KaleoInstancePersis
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoInstanceTokenPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoLogPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoNodePersistence;
+import com.liferay.portal.workflow.kaleo.service.persistence.KaleoNotificationPersistence;
+import com.liferay.portal.workflow.kaleo.service.persistence.KaleoNotificationRecipientPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskAssignmentPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceAssignmentPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenPersistence;
@@ -245,6 +249,42 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	public void setKaleoNodePersistence(
 		KaleoNodePersistence kaleoNodePersistence) {
 		this.kaleoNodePersistence = kaleoNodePersistence;
+	}
+
+	public KaleoNotificationLocalService getKaleoNotificationLocalService() {
+		return kaleoNotificationLocalService;
+	}
+
+	public void setKaleoNotificationLocalService(
+		KaleoNotificationLocalService kaleoNotificationLocalService) {
+		this.kaleoNotificationLocalService = kaleoNotificationLocalService;
+	}
+
+	public KaleoNotificationPersistence getKaleoNotificationPersistence() {
+		return kaleoNotificationPersistence;
+	}
+
+	public void setKaleoNotificationPersistence(
+		KaleoNotificationPersistence kaleoNotificationPersistence) {
+		this.kaleoNotificationPersistence = kaleoNotificationPersistence;
+	}
+
+	public KaleoNotificationRecipientLocalService getKaleoNotificationRecipientLocalService() {
+		return kaleoNotificationRecipientLocalService;
+	}
+
+	public void setKaleoNotificationRecipientLocalService(
+		KaleoNotificationRecipientLocalService kaleoNotificationRecipientLocalService) {
+		this.kaleoNotificationRecipientLocalService = kaleoNotificationRecipientLocalService;
+	}
+
+	public KaleoNotificationRecipientPersistence getKaleoNotificationRecipientPersistence() {
+		return kaleoNotificationRecipientPersistence;
+	}
+
+	public void setKaleoNotificationRecipientPersistence(
+		KaleoNotificationRecipientPersistence kaleoNotificationRecipientPersistence) {
+		this.kaleoNotificationRecipientPersistence = kaleoNotificationRecipientPersistence;
 	}
 
 	public KaleoTaskLocalService getKaleoTaskLocalService() {
@@ -461,6 +501,14 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	protected KaleoNodeLocalService kaleoNodeLocalService;
 	@BeanReference(type = KaleoNodePersistence.class)
 	protected KaleoNodePersistence kaleoNodePersistence;
+	@BeanReference(type = KaleoNotificationLocalService.class)
+	protected KaleoNotificationLocalService kaleoNotificationLocalService;
+	@BeanReference(type = KaleoNotificationPersistence.class)
+	protected KaleoNotificationPersistence kaleoNotificationPersistence;
+	@BeanReference(type = KaleoNotificationRecipientLocalService.class)
+	protected KaleoNotificationRecipientLocalService kaleoNotificationRecipientLocalService;
+	@BeanReference(type = KaleoNotificationRecipientPersistence.class)
+	protected KaleoNotificationRecipientPersistence kaleoNotificationRecipientPersistence;
 	@BeanReference(type = KaleoTaskLocalService.class)
 	protected KaleoTaskLocalService kaleoTaskLocalService;
 	@BeanReference(type = KaleoTaskPersistence.class)
