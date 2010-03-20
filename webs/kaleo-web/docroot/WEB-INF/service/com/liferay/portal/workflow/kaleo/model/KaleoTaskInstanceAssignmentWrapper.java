@@ -152,7 +152,7 @@ public class KaleoTaskInstanceAssignmentWrapper
 		_kaleoTaskInstanceAssignment.setContext(context);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment toEscapedModel() {
+	public KaleoTaskInstanceAssignment toEscapedModel() {
 		return _kaleoTaskInstanceAssignment.toEscapedModel();
 	}
 
@@ -198,7 +198,7 @@ public class KaleoTaskInstanceAssignmentWrapper
 	}
 
 	public int compareTo(
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment kaleoTaskInstanceAssignment) {
+		KaleoTaskInstanceAssignment kaleoTaskInstanceAssignment) {
 		return _kaleoTaskInstanceAssignment.compareTo(kaleoTaskInstanceAssignment);
 	}
 

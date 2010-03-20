@@ -191,6 +191,7 @@
 			<basic name="description" />
 			<basic name="language" />
 			<basic name="template" />
+			<basic name="executionType" />
 			<basic name="notificationTypes" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />

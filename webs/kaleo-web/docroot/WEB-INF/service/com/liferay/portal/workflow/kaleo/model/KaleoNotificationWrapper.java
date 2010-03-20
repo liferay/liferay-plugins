@@ -157,6 +157,14 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		_kaleoNotification.setTemplate(template);
 	}
 
+	public java.lang.String getExecutionType() {
+		return _kaleoNotification.getExecutionType();
+	}
+
+	public void setExecutionType(java.lang.String executionType) {
+		_kaleoNotification.setExecutionType(executionType);
+	}
+
 	public java.lang.String getNotificationTypes() {
 		return _kaleoNotification.getNotificationTypes();
 	}
@@ -165,7 +173,7 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		_kaleoNotification.setNotificationTypes(notificationTypes);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotification toEscapedModel() {
+	public KaleoNotification toEscapedModel() {
 		return _kaleoNotification.toEscapedModel();
 	}
 
@@ -210,8 +218,7 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		return _kaleoNotification.clone();
 	}
 
-	public int compareTo(
-		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification) {
+	public int compareTo(KaleoNotification kaleoNotification) {
 		return _kaleoNotification.compareTo(kaleoNotification);
 	}
 
@@ -225,6 +232,10 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 
 	public java.lang.String toXmlString() {
 		return _kaleoNotification.toXmlString();
+	}
+
+	public java.lang.String[] getNotificationTypesArray() {
+		return _kaleoNotification.getNotificationTypesArray();
 	}
 
 	public KaleoNotification getWrappedKaleoNotification() {

@@ -1,3 +1,4 @@
+
 create table Kaleo_KaleoAction (
 	kaleoActionId LONG not null primary key,
 	companyId LONG,
@@ -12,7 +13,7 @@ create table Kaleo_KaleoAction (
 	description VARCHAR(2000) null,
 	language VARCHAR(75) null,
 	script TEXT null,
-	executionType VARCHAR(75) null,
+	executionType VARCHAR(10) null,
 	executionOrder INTEGER
 );
 
@@ -120,7 +121,8 @@ create table Kaleo_KaleoNotification (
 	description VARCHAR(2000) null,
 	language VARCHAR(20) null,
 	template TEXT null,
-	notificationTypes VARCHAR(200) null
+	executionType VARCHAR(10) null,
+	notificationTypes VARCHAR(25) null
 );
 
 create table Kaleo_KaleoNotificationRecipient (
@@ -134,19 +136,6 @@ create table Kaleo_KaleoNotificationRecipient (
 	recipientClassName VARCHAR(75) null,
 	recipientClassPK LONG,
 	address VARCHAR(75) null
-);
-
-create table Kaleo_KaleoNotificationRecipients (
-	kaleoRecipientId LONG not null primary key,
-	companyId LONG,
-	userId LONG,
-	userName VARCHAR(200) null,
-	createDate DATE null,
-	modifiedDate DATE null,
-	kaleoNotificationId LONG,
-	recipientClassName VARCHAR(200) null,
-	recipientClassPK LONG,
-	address VARCHAR(200) null
 );
 
 create table Kaleo_KaleoTask (

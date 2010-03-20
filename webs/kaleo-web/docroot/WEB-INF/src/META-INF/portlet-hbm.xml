@@ -152,6 +152,7 @@
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="language" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="template" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="executionType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="notificationTypes" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientImpl" table="Kaleo_KaleoNotificationRecipient">

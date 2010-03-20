@@ -77,7 +77,7 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 			{ "executionType", new Integer(Types.VARCHAR) },
 			{ "executionOrder", new Integer(Types.INTEGER) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoAction (kaleoActionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description VARCHAR(2000) null,language VARCHAR(75) null,script TEXT null,executionType VARCHAR(75) null,executionOrder INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoAction (kaleoActionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description VARCHAR(2000) null,language VARCHAR(75) null,script TEXT null,executionType VARCHAR(10) null,executionOrder INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoAction";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoAction.executionOrder ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoAction.executionOrder ASC";

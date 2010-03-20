@@ -54,6 +54,7 @@ public class KaleoNotificationSoap implements Serializable {
 		soapModel.setDescription(model.getDescription());
 		soapModel.setLanguage(model.getLanguage());
 		soapModel.setTemplate(model.getTemplate());
+		soapModel.setExecutionType(model.getExecutionType());
 		soapModel.setNotificationTypes(model.getNotificationTypes());
 
 		return soapModel;
@@ -214,6 +215,14 @@ public class KaleoNotificationSoap implements Serializable {
 		_template = template;
 	}
 
+	public String getExecutionType() {
+		return _executionType;
+	}
+
+	public void setExecutionType(String executionType) {
+		_executionType = executionType;
+	}
+
 	public String getNotificationTypes() {
 		return _notificationTypes;
 	}
@@ -235,5 +244,6 @@ public class KaleoNotificationSoap implements Serializable {
 	private String _description;
 	private String _language;
 	private String _template;
+	private String _executionType;
 	private String _notificationTypes;
 }

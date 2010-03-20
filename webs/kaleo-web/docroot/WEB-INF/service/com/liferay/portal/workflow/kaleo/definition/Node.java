@@ -78,6 +78,9 @@ public abstract class Node {
 	}
 
 	public Set<Notification> getNotifications() {
+		if (_notifications == null) {
+			return Collections.EMPTY_SET;
+		}
 		return _notifications;
 	}
 

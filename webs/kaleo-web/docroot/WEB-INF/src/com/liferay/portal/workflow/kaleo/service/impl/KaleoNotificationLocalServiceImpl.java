@@ -27,6 +27,7 @@ import com.liferay.portal.workflow.kaleo.service.base.KaleoNotificationLocalServ
 
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -64,14 +65,16 @@ public class KaleoNotificationLocalServiceImpl
 		kaleoNotification.setDescription(notification.getDescription());
 		kaleoNotification.setLanguage(notification.getLanguage().getValue());
 		kaleoNotification.setTemplate(notification.getTemplate());
+		kaleoNotification.setExecutionType(
+			notification.getActionType().getType());
 
-		Set<Notification.Type> notificationTypes =
+		Set<Notification.NotificationType> notificationTypes =
 			notification.getNotificationTypes();
 		if (!notificationTypes.isEmpty()) {
 			StringBundler bundler = new StringBundler(
 				notificationTypes.size() * 2);
 
-			Iterator<Notification.Type> notificationTypeIter =
+			Iterator<Notification.NotificationType> notificationTypeIter =
 				notificationTypes.iterator();
 
 			while (notificationTypeIter.hasNext()) {
@@ -95,4 +98,11 @@ public class KaleoNotificationLocalServiceImpl
 		return kaleoNotification;
 	}
 
+	public List<KaleoNotification> getKaleoNotifications(
+			long kaleoNodeId, String executionType)
+		throws SystemException {
+
+		return kaleoNotificationPersistence.findByKNI_ET(
+			kaleoNodeId, executionType);
+	}
 }

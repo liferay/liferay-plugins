@@ -161,12 +161,24 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		_template = template;
 	}
 
+	public String getExecutionType() {
+		return _executionType;
+	}
+
+	public void setExecutionType(String executionType) {
+		_executionType = executionType;
+	}
+
 	public String getNotificationTypes() {
 		return _notificationTypes;
 	}
 
 	public void setNotificationTypes(String notificationTypes) {
 		_notificationTypes = notificationTypes;
+	}
+
+	public java.lang.String[] getNotificationTypesArray() {
+		throw new UnsupportedOperationException();
 	}
 
 	public KaleoNotification toEscapedModel() {
@@ -191,6 +203,7 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 			model.setDescription(HtmlUtil.escape(getDescription()));
 			model.setLanguage(HtmlUtil.escape(getLanguage()));
 			model.setTemplate(HtmlUtil.escape(getTemplate()));
+			model.setExecutionType(HtmlUtil.escape(getExecutionType()));
 			model.setNotificationTypes(HtmlUtil.escape(getNotificationTypes()));
 
 			model = (KaleoNotification)Proxy.newProxyInstance(KaleoNotification.class.getClassLoader(),
@@ -217,6 +230,7 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		clone.setDescription(getDescription());
 		clone.setLanguage(getLanguage());
 		clone.setTemplate(getTemplate());
+		clone.setExecutionType(getExecutionType());
 		clone.setNotificationTypes(getNotificationTypes());
 
 		return clone;
@@ -271,7 +285,7 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{kaleoNotificationId=");
 		sb.append(getKaleoNotificationId());
@@ -299,6 +313,8 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		sb.append(getLanguage());
 		sb.append(", template=");
 		sb.append(getTemplate());
+		sb.append(", executionType=");
+		sb.append(getExecutionType());
 		sb.append(", notificationTypes=");
 		sb.append(getNotificationTypes());
 		sb.append("}");
@@ -307,7 +323,7 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoNotification");
@@ -366,6 +382,10 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		sb.append(getTemplate());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>executionType</column-name><column-value><![CDATA[");
+		sb.append(getExecutionType());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>notificationTypes</column-name><column-value><![CDATA[");
 		sb.append(getNotificationTypes());
 		sb.append("]]></column-value></column>");
@@ -389,5 +409,6 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 	private String _description;
 	private String _language;
 	private String _template;
+	private String _executionType;
 	private String _notificationTypes;
 }

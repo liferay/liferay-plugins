@@ -298,6 +298,7 @@
 		<column name="description" type="String" />
 		<column name="language" type="String" />
 		<column name="template" type="String" />
+		<column name="executionType" type="String" />
 		<column name="notificationTypes" type="String" />
 
 		<column name="receipients" type="Collection" entity="KaleoNotificationRecipient" mapping-key="kaleoNotificationId"/>
@@ -309,8 +310,9 @@
 
 		<!-- Finder methods -->
 
-		<finder name="KNI" return-type="Collection">
+		<finder name="KNI_ET" return-type="Collection">
 			<finder-column name="kaleoNodeId" />
+			<finder-column name="executionType" />
 		</finder>
 	</entity>
 	<entity name="KaleoNotificationRecipient" local-service="true" remote-service="false">

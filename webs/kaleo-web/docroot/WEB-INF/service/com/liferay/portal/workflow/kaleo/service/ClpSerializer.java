@@ -946,12 +946,19 @@ public class ClpSerializer {
 
 					method12.invoke(newModel, value12);
 
-					Method method13 = newModelClass.getMethod("setNotificationTypes",
+					Method method13 = newModelClass.getMethod("setExecutionType",
 							new Class[] { String.class });
 
-					String value13 = oldCplModel.getNotificationTypes();
+					String value13 = oldCplModel.getExecutionType();
 
 					method13.invoke(newModel, value13);
+
+					Method method14 = newModelClass.getMethod("setNotificationTypes",
+							new Class[] { String.class });
+
+					String value14 = oldCplModel.getNotificationTypes();
+
+					method14.invoke(newModel, value14);
 
 					return newModel;
 				}
@@ -2520,12 +2527,20 @@ public class ClpSerializer {
 					newModel.setTemplate(value12);
 
 					Method method13 = oldModelClass.getMethod(
-							"getNotificationTypes");
+							"getExecutionType");
 
 					String value13 = (String)method13.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setNotificationTypes(value13);
+					newModel.setExecutionType(value13);
+
+					Method method14 = oldModelClass.getMethod(
+							"getNotificationTypes");
+
+					String value14 = (String)method14.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setNotificationTypes(value14);
 
 					return newModel;
 				}

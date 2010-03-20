@@ -104,6 +104,10 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification> {
 
 	public void setTemplate(String template);
 
+	public String getExecutionType();
+
+	public void setExecutionType(String executionType);
+
 	public String getNotificationTypes();
 
 	public void setNotificationTypes(String notificationTypes);

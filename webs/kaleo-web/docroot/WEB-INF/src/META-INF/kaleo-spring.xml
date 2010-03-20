@@ -33,8 +33,6 @@
 		<property name="workflowModelParser" ref="com.liferay.portal.workflow.kaleo.parser.WorkflowModelParser" />
 	</bean>
 
-	<!-- Runtime -->
-
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler" class="com.liferay.portal.workflow.kaleo.runtime.DefaultKaleoSignaler">
 		<property name="destinationName" value="liferay/kaleo_graph_walker"/>
 	</bean>
@@ -75,6 +73,39 @@
 							<bean class="com.liferay.portal.workflow.kaleo.runtime.calendar.DefaultDueDateCalculator" />
 						</property>
 					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.runtime.notification.NotificationSenderFactory" class="com.liferay.portal.workflow.kaleo.runtime.notification.NotificationSenderFactory">
+		<property name="notificationSenders">
+			<map>
+				<entry key="email">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.EmailNotificationSender">
+						<property name="fromAddress" value="no-reply@liferay.com"/>
+						<property name="fromName" value="Liferay Portal Workflow Notifications"/>
+					</bean>
+				</entry>
+				<entry key="private-message">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.PrivateMessageNotificationSender" />
+				</entry>
+				<entry key="im">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.IMNotificationSender" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.runtime.notification.NotificationMessageGeneratorFactory" class="com.liferay.portal.workflow.kaleo.runtime.notification.NotificationMessageGeneratorFactory">
+		<property name="notificationMessageGenerators">
+			<map>
+				<entry key="freemarker">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.FreeMarkerNotificationMessageGenerator" />
+				</entry>
+				<entry key="text">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.TextNotificationMessageGenerator" />
+				</entry>
+				<entry key="velocity">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.VelocityNotificationMessageGenerator" />
 				</entry>
 			</map>
 		</property>

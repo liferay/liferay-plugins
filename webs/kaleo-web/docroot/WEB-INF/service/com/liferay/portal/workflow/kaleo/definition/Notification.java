@@ -24,7 +24,7 @@ import java.util.Set;
  */
 public class Notification {
 	public enum Language {
-		TEXT("text"), VELOCITY("velocity"), FREEMARKER("freemarker");
+		FREEMARKER("freemarker"), TEXT("text"), VELOCITY("velocity");
 
 		public static Language parse(String value) {
 			if (TEXT._value.equals(value)) {
@@ -51,10 +51,10 @@ public class Notification {
 		private String _value;
 	}
 
-	public enum Type {
-		EMAIL("email"), PRIVATE_MESSAGE("private-message"), IM("im");
+	public enum NotificationType {
+		EMAIL("email"), IM("im"), PRIVATE_MESSAGE("private-message");
 
-		public static Type parse(String value) {
+		public static NotificationType parse(String value) {
 			if (EMAIL._value.equals(value)) {
 				return EMAIL;
 			}
@@ -72,20 +72,21 @@ public class Notification {
 			return _value;
 		}
 
-		private Type(String value) {
+		private NotificationType(String value) {
 			_value = value;
 		}
 
 		private String _value;
 	}
 
-	public Notification(String name, String language) {
+	public Notification(String name, String language, String actionType) {
 		_name = name;
 		_language = Language.parse(language);
+		_actionType = ActionType.parse(actionType);
 	}
 
 	public void addNotificationType(String notificationType) {
-		_notificationTypes.add(Type.parse(notificationType));
+		_notificationTypes.add(NotificationType.parse(notificationType));
 	}
 
 	public void addRecipients(Recipient recipient) {
@@ -105,6 +106,10 @@ public class Notification {
 		return notification.getName().equals(getName());
 	}
 
+	public ActionType getActionType() {
+		return _actionType;
+	}
+
 	public String getDescription() {
 		return _description;
 	}
@@ -113,7 +118,7 @@ public class Notification {
 		return _language;
 	}
 
-	public Set<Type> getNotificationTypes() {
+	public Set<NotificationType> getNotificationTypes() {
 		return _notificationTypes;
 	}
 
@@ -141,10 +146,11 @@ public class Notification {
 		_template = template;
 	}
 
+	private ActionType _actionType;
 	private String _description;
 	private Language _language;
 	private String _name;
-	private Set<Type> _notificationTypes = new HashSet<Type>();
+	private Set<NotificationType> _notificationTypes = new HashSet<NotificationType>();
 	private Set<Recipient> _recipients = new HashSet<Recipient>();
 	private String _template;
 

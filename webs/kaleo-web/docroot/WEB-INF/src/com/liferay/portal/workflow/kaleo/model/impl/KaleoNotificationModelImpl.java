@@ -74,9 +74,10 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 			{ "description", new Integer(Types.VARCHAR) },
 			{ "language", new Integer(Types.VARCHAR) },
 			{ "template", new Integer(Types.CLOB) },
+			{ "executionType", new Integer(Types.VARCHAR) },
 			{ "notificationTypes", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoNotification (kaleoNotificationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description VARCHAR(2000) null,language VARCHAR(20) null,template TEXT null,notificationTypes VARCHAR(200) null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoNotification (kaleoNotificationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description VARCHAR(2000) null,language VARCHAR(20) null,template TEXT null,executionType VARCHAR(10) null,notificationTypes VARCHAR(25) null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoNotification";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoNotification.kaleoNotificationId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoNotification.kaleoNotificationId ASC";
@@ -106,6 +107,7 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		model.setDescription(soapModel.getDescription());
 		model.setLanguage(soapModel.getLanguage());
 		model.setTemplate(soapModel.getTemplate());
+		model.setExecutionType(soapModel.getExecutionType());
 		model.setNotificationTypes(soapModel.getNotificationTypes());
 
 		return model;
@@ -282,6 +284,19 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		_template = template;
 	}
 
+	public String getExecutionType() {
+		if (_executionType == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _executionType;
+		}
+	}
+
+	public void setExecutionType(String executionType) {
+		_executionType = executionType;
+	}
+
 	public String getNotificationTypes() {
 		if (_notificationTypes == null) {
 			return StringPool.BLANK;
@@ -318,6 +333,7 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 			model.setDescription(HtmlUtil.escape(getDescription()));
 			model.setLanguage(HtmlUtil.escape(getLanguage()));
 			model.setTemplate(HtmlUtil.escape(getTemplate()));
+			model.setExecutionType(HtmlUtil.escape(getExecutionType()));
 			model.setNotificationTypes(HtmlUtil.escape(getNotificationTypes()));
 
 			model = (KaleoNotification)Proxy.newProxyInstance(KaleoNotification.class.getClassLoader(),
@@ -357,6 +373,7 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		clone.setDescription(getDescription());
 		clone.setLanguage(getLanguage());
 		clone.setTemplate(getTemplate());
+		clone.setExecutionType(getExecutionType());
 		clone.setNotificationTypes(getNotificationTypes());
 
 		return clone;
@@ -411,7 +428,7 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{kaleoNotificationId=");
 		sb.append(getKaleoNotificationId());
@@ -439,6 +456,8 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		sb.append(getLanguage());
 		sb.append(", template=");
 		sb.append(getTemplate());
+		sb.append(", executionType=");
+		sb.append(getExecutionType());
 		sb.append(", notificationTypes=");
 		sb.append(getNotificationTypes());
 		sb.append("}");
@@ -447,7 +466,7 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoNotification");
@@ -506,6 +525,10 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		sb.append(getTemplate());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>executionType</column-name><column-value><![CDATA[");
+		sb.append(getExecutionType());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>notificationTypes</column-name><column-value><![CDATA[");
 		sb.append(getNotificationTypes());
 		sb.append("]]></column-value></column>");
@@ -529,6 +552,7 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	private String _description;
 	private String _language;
 	private String _template;
+	private String _executionType;
 	private String _notificationTypes;
 	private transient ExpandoBridge _expandoBridge;
 }

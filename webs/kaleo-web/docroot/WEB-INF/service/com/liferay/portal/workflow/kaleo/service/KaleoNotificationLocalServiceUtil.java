@@ -131,6 +131,12 @@ public class KaleoNotificationLocalServiceUtil {
 			kaleoNodeName, notification, serviceContext);
 	}
 
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> getKaleoNotifications(
+		long kaleoNodeId, java.lang.String executionType)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getKaleoNotifications(kaleoNodeId, executionType);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

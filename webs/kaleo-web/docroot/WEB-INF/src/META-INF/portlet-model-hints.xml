@@ -25,7 +25,9 @@
 		<field name="script" type="String">
 			<hint-collection name="CLOB" />
 		</field>
-		<field name="executionType" type="String" />
+		<field name="executionType" type="String">
+			<hint name="max-length">10</hint>
+		</field>
 		<field name="executionOrder" type="int" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoDefinition">
@@ -185,8 +187,11 @@
 		<field name="template" type="String">
 			<hint-collection name="CLOB" />
 		</field>
+		<field name="executionType" type="String">
+			<hint name="max-length">10</hint>
+		</field>
 		<field name="notificationTypes" type="String">
-			<hint name="max-length">200</hint>
+			<hint name="max-length">25</hint>
 		</field>
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient">

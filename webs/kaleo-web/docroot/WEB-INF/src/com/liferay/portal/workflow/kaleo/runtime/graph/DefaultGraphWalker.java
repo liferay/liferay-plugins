@@ -20,19 +20,31 @@ import com.liferay.portal.kernel.annotation.Propagation;
 import com.liferay.portal.kernel.annotation.Transactional;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.workflow.kaleo.definition.ActionType;
 import com.liferay.portal.workflow.kaleo.definition.NodeType;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
+import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
+import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutor;
 import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorFactory;
 import com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutor;
 import com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutorFactory;
-import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationMessageGenerator;
+import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationMessageGeneratorFactory;
+import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationSender;
+import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationSenderFactory;
+import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalService;
+import com.liferay.portal.workflow.kaleo.service.KaleoNotificationLocalService;
+import com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalService;
 
 import java.util.List;
 
@@ -62,6 +74,10 @@ public class DefaultGraphWalker implements GraphWalker {
 			executeKaleoActions(
 				sourceKaleoNode.getKaleoNodeId(), ActionType.ON_EXIT,
 				executionContext);
+
+			sendKaleoNotifications(
+				sourceKaleoNode.getKaleoNodeId(), ActionType.ON_EXIT,
+				executionContext);
 		}
 
 		if (targetKaleoNode != null) {
@@ -70,6 +86,10 @@ public class DefaultGraphWalker implements GraphWalker {
 				targetKaleoNode, executionContext.getServiceContext());
 
 			executeKaleoActions(
+				targetKaleoNode.getKaleoNodeId(), ActionType.ON_ENTRY,
+				executionContext);
+
+			sendKaleoNotifications(
 				targetKaleoNode.getKaleoNodeId(), ActionType.ON_ENTRY,
 				executionContext);
 
@@ -109,7 +129,7 @@ public class DefaultGraphWalker implements GraphWalker {
 		throws PortalException, SystemException {
 
 		List<KaleoAction> kaleoActions =
-			KaleoActionLocalServiceUtil.getKaleoActions(
+			kaleoActionLocalService.getKaleoActions(
 				kaleoNodeId, actionType.getType());
 
 		for (KaleoAction kaleoAction : kaleoActions) {
@@ -135,8 +155,88 @@ public class DefaultGraphWalker implements GraphWalker {
 		}
 	}
 
+	protected void sendKaleoNotifications(
+			long kaleoNodeId, ActionType actionType,
+			ExecutionContext executionContext)
+		throws PortalException, SystemException {
+
+		List<KaleoNotification> kaleoNotifications=
+			kaleoNotificationLocalService.getKaleoNotifications(
+				kaleoNodeId, actionType.getType());
+
+		for (KaleoNotification kaleoNotification : kaleoNotifications) {
+
+			try {
+				NotificationMessageGenerator notificationMessageGenerator =
+					NotificationMessageGeneratorFactory.
+						getNotificationMessageGenerator(
+							kaleoNotification.getLanguage());
+
+				String notificationMessage =
+					notificationMessageGenerator.generateMessage(
+						kaleoNotification.getName(),
+						kaleoNotification.getKaleoNodeId(),
+						kaleoNotification.getTemplate(), executionContext);
+
+				String notificationSubject = kaleoNotification.getDescription();
+				
+				String[] notificationTypes =
+					kaleoNotification.getNotificationTypesArray();
+
+				List<KaleoNotificationRecipient> notificationRecipients =
+					kaleoNotificationRecipientLocalService.
+						getKaleoNotificationRecipients(
+							kaleoNotification.getKaleoNotificationId());
+
+				if (notificationRecipients.isEmpty()) {
+					if (_log.isInfoEnabled()) {
+						_log.info(
+							"No recipients found to notify with message: " +
+							kaleoNotification.getName() + " " +
+							notificationMessage);
+					}
+					return;
+				}
+				
+				for (String notificationType : notificationTypes) {
+					try {
+						NotificationSender notificationSender =
+							NotificationSenderFactory.getNotificationSender(
+								notificationType);
+
+						notificationSender.sendNotification(
+							notificationRecipients, notificationSubject,
+							notificationMessage, executionContext);
+					}
+					catch (WorkflowException e) {
+						if (_log.isErrorEnabled()) {
+							_log.error("Unable to send notifications", e);
+						}
+					}
+				}
+			}
+			catch (Exception e) {
+				if (_log.isErrorEnabled()) {
+					_log.error("Unable to send notifications", e);
+				}
+			}
+		}
+	}
+
+	@BeanReference(type = KaleoActionLocalService.class)
+	protected KaleoActionLocalService kaleoActionLocalService;
+
 	@BeanReference(type = KaleoLogLocalService.class)
 	protected KaleoLogLocalService kaleoLogLocalService;
+
+	@BeanReference(type = KaleoNotificationLocalService.class)
+	protected KaleoNotificationLocalService kaleoNotificationLocalService;
+
+	@BeanReference(type = KaleoNotificationRecipientLocalService.class)
+	protected KaleoNotificationRecipientLocalService kaleoNotificationRecipientLocalService;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DefaultGraphWalker.class);
 
 	private static final String _ACTION_SUCCESS_MESG =
 		"Action completed successfully.";

@@ -28,6 +28,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoNotificationRecipientLocalServiceBaseImpl;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <a href="KaleoNotificationRecipientLocalServiceImpl.java.html"><b><i>View
@@ -68,7 +69,15 @@ public class KaleoNotificationRecipientLocalServiceImpl
 
 	}
 
-	private void setRecipient(
+	public List<KaleoNotificationRecipient> getKaleoNotificationRecipients(
+			long kaleoNotificationId)
+		throws SystemException {
+
+		return kaleoNotificationRecipientPersistence.findByKNI(
+			kaleoNotificationId);
+	}
+
+	protected void setRecipient(
 			KaleoNotificationRecipient kaleoNotificationRecipient,
 			Recipient recipient, ServiceContext serviceContext)
 		throws PortalException, SystemException {

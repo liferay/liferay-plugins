@@ -511,6 +511,40 @@ public class KaleoNotificationLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNotification)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> getKaleoNotifications(
+		long kaleoNodeId, java.lang.String executionType)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(kaleoNodeId);
+
+		Object paramObj1 = ClpSerializer.translateInput(executionType);
+
+		if (executionType == null) {
+			paramObj1 = new NullWrapper("java.lang.String");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getKaleoNotifications",
+					new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}

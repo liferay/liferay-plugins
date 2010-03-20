@@ -59,33 +59,34 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 		long kaleoNotificationId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> findByKNI(
-		long kaleoNodeId)
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> findByKNI_ET(
+		long kaleoNodeId, java.lang.String executionType)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> findByKNI(
-		long kaleoNodeId, int start, int end)
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> findByKNI_ET(
+		long kaleoNodeId, java.lang.String executionType, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> findByKNI(
-		long kaleoNodeId, int start, int end,
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> findByKNI_ET(
+		long kaleoNodeId, java.lang.String executionType, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotification findByKNI_First(
-		long kaleoNodeId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchNotificationException;
-
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotification findByKNI_Last(
-		long kaleoNodeId,
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotification findByKNI_ET_First(
+		long kaleoNodeId, java.lang.String executionType,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchNotificationException;
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotification[] findByKNI_PrevAndNext(
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotification findByKNI_ET_Last(
+		long kaleoNodeId, java.lang.String executionType,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNotificationException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotification[] findByKNI_ET_PrevAndNext(
 		long kaleoNotificationId, long kaleoNodeId,
+		java.lang.String executionType,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchNotificationException;
@@ -102,13 +103,13 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void removeByKNI(long kaleoNodeId)
+	public void removeByKNI_ET(long kaleoNodeId, java.lang.String executionType)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countByKNI(long kaleoNodeId)
+	public int countByKNI_ET(long kaleoNodeId, java.lang.String executionType)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countAll()

@@ -157,7 +157,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 		_kaleoNode.setTerminal(terminal);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode toEscapedModel() {
+	public KaleoNode toEscapedModel() {
 		return _kaleoNode.toEscapedModel();
 	}
 
@@ -202,8 +202,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 		return _kaleoNode.clone();
 	}
 
-	public int compareTo(
-		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode) {
+	public int compareTo(KaleoNode kaleoNode) {
 		return _kaleoNode.compareTo(kaleoNode);
 	}
 

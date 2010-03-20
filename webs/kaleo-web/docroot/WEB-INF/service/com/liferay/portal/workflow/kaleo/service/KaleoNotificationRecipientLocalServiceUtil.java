@@ -133,6 +133,12 @@ public class KaleoNotificationRecipientLocalServiceUtil {
 				   .addRecipient(kaleoNotificationId, recipient, serviceContext);
 	}
 
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> getKaleoNotificationRecipients(
+		long kaleoNotificationId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getKaleoNotificationRecipients(kaleoNotificationId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

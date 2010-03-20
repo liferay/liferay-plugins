@@ -154,8 +154,9 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		for (Element notificationElement : notificationElements) {
 			String name = notificationElement.attributeValue("name");
 			String language = notificationElement.attributeValue("language");
+			String type = notificationElement.attributeValue("type");
 
-			Notification notification = new Notification(name, language);
+			Notification notification = new Notification(name, language, type);
 
 			String description = notificationElement.attributeValue(
 				"description");
