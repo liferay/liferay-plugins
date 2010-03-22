@@ -316,7 +316,11 @@ portletURL.setParameter("name", name);
 				<%= HtmlUtil.escape(uploadProgressId) %>.startProgress();
 
 				document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= fileEntry == null ? Constants.ADD : Constants.UPDATE %>";
-				document.<portlet:namespace />fm.<portlet:namespace />majorVersion.value = false;
+
+				<c:if test="<%= fileEntry != null %>">
+					document.<portlet:namespace />fm.<portlet:namespace />majorVersion.value = false;
+				</c:if>
+
 				submitForm(document.<portlet:namespace />fm);
 			}
 		</c:otherwise>
