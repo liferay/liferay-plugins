@@ -3,18 +3,16 @@
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
-
-		<p>
-			<span style="color: rgb(81, 83, 91); font-size: xx-large;">Leading Innovation in the Cog Industry</span>
-		</p>
-		<p>
-			<span style="color: rgb(100, 102, 100); line-height: 2em;">7Cogs is the leading provider of cogs in the world. With a 200 year tradition of quality, service, and innovation, 7Cogs has proven itself to customers globally to Fortune 500 companies across industries. </span>
-		</p>
-		<p>
-			<br />
-			<span style="font-size: medium;">Which Cog is right for me? <a href="/web/7cogs/products">Find out!</a></span>
-		</p>
-
+			<h1>Welcome to 7Cogs</h1>
+			<p>
+				We specialize in manufacturing and developing gears, sprockets, cogs, bearings, and everything in between.
+			</p>
+			<h3>Full Product Line and Services:</h3>
+			<ul>
+				<li><a href="#">Cogs, Sprockets, Springs, Bearings...</a></li>
+				<li><a href="#">Gearbox Assembly</a></li>
+				<li><a href="#">Custom CNC</a></li>
+			</ul>
 		]]>
 	</static-content>
 </root>

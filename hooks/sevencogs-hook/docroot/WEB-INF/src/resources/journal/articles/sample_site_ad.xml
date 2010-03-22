@@ -3,15 +3,11 @@
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
-
-		<div class="lfc-single-image">
-
-			<a href="[$GROUP_URL$]">
-				<img src="/image/image_gallery?uuid=[$IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]" alt=""/>
-			</a>
-
-		</div>
-
+			<div class="lfc-single-image">
+				<a href="[$GROUP_URL$]">
+					<img alt="" src="/image/image_gallery?uuid=[$IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]" />
+				</a>
+			</div>
 		]]>
 	</static-content>
 </root>

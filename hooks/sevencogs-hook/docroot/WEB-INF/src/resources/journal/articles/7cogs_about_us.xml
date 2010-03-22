@@ -3,24 +3,22 @@
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
-
-		<table cellspacing="5" cellpadding="5" border="0">
-			<tbody>
-				<tr>
-					<td>
-						<a href="http://www.liferay.com">
-							<img height="26" width="26" alt="" src="/image/image_gallery?uuid=[$LIFERAY_LOGO_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]&amp;t=1229384453062" />
-						</a>
-					</td>
-					<td>
-						<p>
-							To find out more about Liferay, please visit our website <a href="http://www.liferay.com">www.liferay.com</a>
-						</p>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-
+			<table border="0" cellpadding="5" cellspacing="5">
+				<tbody>
+					<tr>
+						<td>
+							<a href="http://www.liferay.com">
+								<img alt="" height="26" src="/image/image_gallery?uuid=[$LIFERAY_LOGO_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]&amp;t=1229384453062" width="26" />
+							</a>
+						</td>
+						<td>
+							<p>
+								To find out more about Liferay, please visit our website <a href="http://www.liferay.com">www.liferay.com</a>
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		]]>
 	</static-content>
 </root>

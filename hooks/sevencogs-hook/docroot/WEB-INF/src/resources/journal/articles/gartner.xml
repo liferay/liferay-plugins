@@ -9,7 +9,6 @@
 					padding: 0px;
 				}
 			</style>
-
 			<div class="single-image-front">
 				<a href="http://www.liferay.com/web/guest/gartner">
 					<img alt="" src="/image/image_gallery?uuid=[$GARTNER_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]" />

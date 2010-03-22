@@ -494,7 +494,7 @@ public class StartupAction extends SimpleAction {
 			iframePreferences.put("height-normal","460");
 		}
 		else if (screenName.equals("michelle")) {
-			iframePreferences.put("src","https://twitterforiphone.com/login");
+			iframePreferences.put("src","http://m.digg.com");
 			iframePreferences.put("height-normal","400");
 		}
 		else if (screenName.equals("richard")) {

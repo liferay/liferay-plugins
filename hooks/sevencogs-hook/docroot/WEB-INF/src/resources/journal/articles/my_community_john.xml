@@ -3,15 +3,13 @@
 <root available-locales="en_US," default-locale="">
 	<static-content language-id="en_US">
 		<![CDATA[
-
-		<p>
-			<img src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" alt="" />
-			This is my personal space (My Community). I have 2 <strong>public pages</strong>: Profile and Blog. Everybody can see these pages by going to <a href="/web/jon">@portal_url@/web/jon</a> but only I can modify the content in them. I can create more public pages (Add page) and add more applications to those pages in the dock menu (Add Aplication).
-		</p>
-		<p>
-			I also have some <strong>private pages</strong> that only I can see (my socialSpace, my workSpace and my email). In order to access them I have to go to the dock menu --&gt; My Places --&gt; My community --&gt; Private Pages or go to <a href="/user/jon">@portal_url@/user/jon</a> when I am logged in.
-		</p>
-
+			<h2><img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" /> Michelle&#39;s Public Page</h2>
+			<p>
+				My name is John Regular. I'm a pretty regular guy with a pretty regular role in 7Cogs inc. This is my personal space (My Own Community). I have 2 <strong>public pages</strong>: &quot;Profile&quot; and &quot;Blog&quot;. Everybody can see these pages by going to <a href="/web/michelle">@portal_url@/web/michelle</a> but only I can modify the content in them.
+			</p>
+			<p>
+				I also have a few <strong>private pages</strong> that only I can see (my socialSpace, my workSpace and my email). When I'm logged in, I'm able to access the pages using the <a href="http://www.liferay.com/community/wiki/-/wiki/1071674/Dockbar/maximized" target="_blank"><em>Dockbar</em></a> then clicking on the <strong>&quot;Go to&quot;</strong> button, and selecting the &rarr; <strong>&quot;My Private Pages&quot;</strong>.
+			</p>
 		]]>
 	</static-content>
 </root>
