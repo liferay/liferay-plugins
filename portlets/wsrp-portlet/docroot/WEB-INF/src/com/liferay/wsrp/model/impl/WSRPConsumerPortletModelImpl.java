@@ -163,6 +163,16 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 	public void setWsrpConsumerId(long wsrpConsumerId) {
 		_wsrpConsumerId = wsrpConsumerId;
+
+		if (!_setOriginalWsrpConsumerId) {
+			_setOriginalWsrpConsumerId = true;
+
+			_originalWsrpConsumerId = wsrpConsumerId;
+		}
+	}
+
+	public long getOriginalWsrpConsumerId() {
+		return _originalWsrpConsumerId;
 	}
 
 	public String getName() {
@@ -360,6 +370,8 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _wsrpConsumerId;
+	private long _originalWsrpConsumerId;
+	private boolean _setOriginalWsrpConsumerId;
 	private String _name;
 	private String _portletHandle;
 	private String _originalPortletHandle;

@@ -91,17 +91,18 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.wsrp.NoSuchConsumerPortletException;
 
-	public com.liferay.wsrp.model.WSRPConsumerPortlet findByPortletHandle(
-		java.lang.String portletHandle)
+	public com.liferay.wsrp.model.WSRPConsumerPortlet findByC_P(
+		long wsrpConsumerId, java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.wsrp.NoSuchConsumerPortletException;
 
-	public com.liferay.wsrp.model.WSRPConsumerPortlet fetchByPortletHandle(
-		java.lang.String portletHandle)
+	public com.liferay.wsrp.model.WSRPConsumerPortlet fetchByC_P(
+		long wsrpConsumerId, java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public com.liferay.wsrp.model.WSRPConsumerPortlet fetchByPortletHandle(
-		java.lang.String portletHandle, boolean retrieveFromCache)
+	public com.liferay.wsrp.model.WSRPConsumerPortlet fetchByC_P(
+		long wsrpConsumerId, java.lang.String portletHandle,
+		boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findAll()
@@ -119,7 +120,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	public void removeByWsrpConsumerId(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void removeByPortletHandle(java.lang.String portletHandle)
+	public void removeByC_P(long wsrpConsumerId, java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.wsrp.NoSuchConsumerPortletException;
 
@@ -129,7 +130,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	public int countByWsrpConsumerId(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countByPortletHandle(java.lang.String portletHandle)
+	public int countByC_P(long wsrpConsumerId, java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countAll()

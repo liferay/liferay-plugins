@@ -46,6 +46,7 @@ public class WSRPProducerSoap implements Serializable {
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setName(model.getName());
+		soapModel.setGroupId(model.getGroupId());
 		soapModel.setPortletIds(model.getPortletIds());
 
 		return soapModel;
@@ -139,6 +140,14 @@ public class WSRPProducerSoap implements Serializable {
 		_name = name;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	public String getPortletIds() {
 		return _portletIds;
 	}
@@ -152,5 +161,6 @@ public class WSRPProducerSoap implements Serializable {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;
+	private long _groupId;
 	private String _portletIds;
 }

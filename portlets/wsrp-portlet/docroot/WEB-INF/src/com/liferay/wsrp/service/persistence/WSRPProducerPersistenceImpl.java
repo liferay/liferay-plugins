@@ -34,6 +34,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
+import com.liferay.portal.service.persistence.GroupPersistence;
+import com.liferay.portal.service.persistence.LayoutPersistence;
 import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -255,6 +257,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		wsrpProducerImpl.setCreateDate(wsrpProducer.getCreateDate());
 		wsrpProducerImpl.setModifiedDate(wsrpProducer.getModifiedDate());
 		wsrpProducerImpl.setName(wsrpProducer.getName());
+		wsrpProducerImpl.setGroupId(wsrpProducer.getGroupId());
 		wsrpProducerImpl.setPortletIds(wsrpProducer.getPortletIds());
 
 		return wsrpProducerImpl;
@@ -749,6 +752,10 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	protected WSRPConsumerPortletPersistence wsrpConsumerPortletPersistence;
 	@BeanReference(type = WSRPProducerPersistence.class)
 	protected WSRPProducerPersistence wsrpProducerPersistence;
+	@BeanReference(type = GroupPersistence.class)
+	protected GroupPersistence groupPersistence;
+	@BeanReference(type = LayoutPersistence.class)
+	protected LayoutPersistence layoutPersistence;
 	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)

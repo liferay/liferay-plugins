@@ -509,20 +509,22 @@ public class WSRPConsumerPortletLocalServiceClp
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet getWSRPConsumerPortlet(
-		java.lang.String portletHandle)
+		long wsrpConsumerId, java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(portletHandle);
+		Object paramObj0 = new LongWrapper(wsrpConsumerId);
+
+		Object paramObj1 = ClpSerializer.translateInput(portletHandle);
 
 		if (portletHandle == null) {
-			paramObj0 = new NullWrapper("java.lang.String");
+			paramObj1 = new NullWrapper("java.lang.String");
 		}
 
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("getWSRPConsumerPortlet",
-					new Object[] { paramObj0 });
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {

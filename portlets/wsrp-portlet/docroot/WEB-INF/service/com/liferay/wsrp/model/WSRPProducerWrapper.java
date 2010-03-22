@@ -84,6 +84,14 @@ public class WSRPProducerWrapper implements WSRPProducer {
 		_wsrpProducer.setName(name);
 	}
 
+	public long getGroupId() {
+		return _wsrpProducer.getGroupId();
+	}
+
+	public void setGroupId(long groupId) {
+		_wsrpProducer.setGroupId(groupId);
+	}
+
 	public java.lang.String getPortletIds() {
 		return _wsrpProducer.getPortletIds();
 	}

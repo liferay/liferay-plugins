@@ -52,6 +52,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="name" />
+			<basic name="groupId" />
 			<basic name="portletIds" />
 			<transient name="primaryKey" />
 		</attributes>

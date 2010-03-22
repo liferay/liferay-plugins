@@ -56,7 +56,8 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 
 	public void deleteWSRPProducer(
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_wsrpProducerLocalService.deleteWSRPProducer(wsrpProducer);
 	}
 
@@ -122,6 +123,14 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wsrpProducerLocalService.addWSRPProducer(userId, name,
+			portletIds);
+	}
+
+	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
+		java.lang.String name, long groupId, java.lang.String portletIds)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _wsrpProducerLocalService.addWSRPProducer(userId, name, groupId,
 			portletIds);
 	}
 

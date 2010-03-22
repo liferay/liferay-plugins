@@ -86,7 +86,7 @@ PortletDescription[] portletDescriptions = serviceDescription.getOfferedPortlets
 				<%
 				for (PortletDescription portletDescription : portletDescriptions) {
 					try {
-						WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(portletDescription.getPortletHandle());
+						WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(wsrpConsumer.getWsrpConsumerId(), portletDescription.getPortletHandle());
 					}
 					catch (NoSuchConsumerPortletException nscpe) {
 				%>

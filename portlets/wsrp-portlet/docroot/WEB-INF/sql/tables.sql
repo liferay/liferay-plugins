@@ -27,5 +27,6 @@ create table WSRP_WSRPProducer (
 	createDate DATE null,
 	modifiedDate DATE null,
 	name VARCHAR(75) null,
+	groupId LONG,
 	portletIds STRING null
 );

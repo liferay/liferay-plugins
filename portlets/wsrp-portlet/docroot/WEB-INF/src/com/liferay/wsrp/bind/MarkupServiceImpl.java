@@ -23,17 +23,14 @@ import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutTypePortlet;
-import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.util.axis.ServletUtil;
 import com.liferay.wsrp.model.WSRPProducer;
-import com.liferay.wsrp.service.impl.WSRPProducerLocalServiceImpl;
 import com.liferay.wsrp.util.ExtensionUtil;
 import com.liferay.wsrp.util.WebKeys;
 
@@ -510,13 +507,9 @@ public class MarkupServiceImpl
 			PortletContext portletContext, WSRPProducer wsrpProducer)
 		throws Exception {
 
-		Group group = GroupLocalServiceUtil.getGroup(
-			wsrpProducer.getCompanyId(),
-			WSRPProducerLocalServiceImpl.WSRP_GROUP_NAME);
-
 		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
-			group.getGroupId(), false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			0, 1);
+			wsrpProducer.getGroupId(), false,
+			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, 0, 1);
 
 		if (layouts.isEmpty()) {
 			throw new NoSuchLayoutException();

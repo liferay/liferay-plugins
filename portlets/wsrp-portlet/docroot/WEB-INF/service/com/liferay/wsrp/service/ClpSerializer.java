@@ -259,12 +259,19 @@ public class ClpSerializer {
 
 					method4.invoke(newModel, value4);
 
-					Method method5 = newModelClass.getMethod("setPortletIds",
-							new Class[] { String.class });
+					Method method5 = newModelClass.getMethod("setGroupId",
+							new Class[] { Long.TYPE });
 
-					String value5 = oldCplModel.getPortletIds();
+					Long value5 = new Long(oldCplModel.getGroupId());
 
 					method5.invoke(newModel, value5);
+
+					Method method6 = newModelClass.getMethod("setPortletIds",
+							new Class[] { String.class });
+
+					String value6 = oldCplModel.getPortletIds();
+
+					method6.invoke(newModel, value6);
 
 					return newModel;
 				}
@@ -504,12 +511,18 @@ public class ClpSerializer {
 
 					newModel.setName(value4);
 
-					Method method5 = oldModelClass.getMethod("getPortletIds");
+					Method method5 = oldModelClass.getMethod("getGroupId");
 
-					String value5 = (String)method5.invoke(oldModel,
+					Long value5 = (Long)method5.invoke(oldModel, (Object[])null);
+
+					newModel.setGroupId(value5.longValue());
+
+					Method method6 = oldModelClass.getMethod("getPortletIds");
+
+					String value6 = (String)method6.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setPortletIds(value5);
+					newModel.setPortletIds(value6);
 
 					return newModel;
 				}

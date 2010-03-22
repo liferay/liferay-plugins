@@ -87,6 +87,14 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		_name = name;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	public String getPortletIds() {
 		return _portletIds;
 	}
@@ -109,6 +117,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
 			model.setName(HtmlUtil.escape(getName()));
+			model.setGroupId(getGroupId());
 			model.setPortletIds(HtmlUtil.escape(getPortletIds()));
 
 			model = (WSRPProducer)Proxy.newProxyInstance(WSRPProducer.class.getClassLoader(),
@@ -127,6 +136,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
 		clone.setName(getName());
+		clone.setGroupId(getGroupId());
 		clone.setPortletIds(getPortletIds());
 
 		return clone;
@@ -173,7 +183,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{wsrpProducerId=");
 		sb.append(getWsrpProducerId());
@@ -185,6 +195,8 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		sb.append(getModifiedDate());
 		sb.append(", name=");
 		sb.append(getName());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
 		sb.append(", portletIds=");
 		sb.append(getPortletIds());
 		sb.append("}");
@@ -193,7 +205,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.wsrp.model.WSRPProducer");
@@ -220,6 +232,10 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		sb.append(getName());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>portletIds</column-name><column-value><![CDATA[");
 		sb.append(getPortletIds());
 		sb.append("]]></column-value></column>");
@@ -234,5 +250,6 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;
+	private long _groupId;
 	private String _portletIds;
 }

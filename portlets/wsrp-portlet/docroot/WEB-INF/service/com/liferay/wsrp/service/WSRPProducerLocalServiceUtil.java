@@ -57,7 +57,8 @@ public class WSRPProducerLocalServiceUtil {
 
 	public static void deleteWSRPProducer(
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteWSRPProducer(wsrpProducer);
 	}
 
@@ -123,6 +124,14 @@ public class WSRPProducerLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().addWSRPProducer(userId, name, portletIds);
+	}
+
+	public static com.liferay.wsrp.model.WSRPProducer addWSRPProducer(
+		long userId, java.lang.String name, long groupId,
+		java.lang.String portletIds)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().addWSRPProducer(userId, name, groupId, portletIds);
 	}
 
 	public static java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducers(

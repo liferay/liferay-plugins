@@ -63,7 +63,8 @@
 		<finder name="WsrpConsumerId" return-type="Collection">
 			<finder-column name="wsrpConsumerId" />
 		</finder>
-		<finder name="PortletHandle" return-type="WSRPConsumerPortlet">
+		<finder name="C_P" return-type="WSRPConsumerPortlet">
+			<finder-column name="wsrpConsumerId" />
 			<finder-column name="portletHandle" />
 		</finder>
 	</entity>
@@ -82,6 +83,7 @@
 		<!-- Other fields -->
 
 		<column name="name" type="String" />
+		<column name="groupId" type="long" />
 		<column name="portletIds" type="String" />
 
 		<!-- Order -->
@@ -95,6 +97,11 @@
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portal" entity="Group" />
+		<reference package-path="com.liferay.portal" entity="Layout" />
 	</entity>
 	<exceptions>
 		<exception>WSRPConsumerName</exception>

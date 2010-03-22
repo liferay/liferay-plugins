@@ -17,6 +17,7 @@ package com.liferay.wsrp.service.impl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
@@ -25,8 +26,6 @@ import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.util.PwdGenerator;
 import com.liferay.wsrp.WSRPProducerNameException;
@@ -56,6 +55,18 @@ public class WSRPProducerLocalServiceImpl
 		// WSRP producer
 
 		User user = userPersistence.findByPrimaryKey(userId);
+		Group group = addGroup(user, name);
+
+		return addWSRPProducer(userId, name, group.getGroupId(), portletIds);
+	}
+
+	public WSRPProducer addWSRPProducer(
+			long userId, String name, long groupId, String portletIds)
+		throws PortalException, SystemException {
+
+		// WSRP producer
+
+		User user = userPersistence.findByPrimaryKey(userId);
 		portletIds = transformPortletIds(portletIds);
 		Date now = new Date();
 
@@ -70,13 +81,10 @@ public class WSRPProducerLocalServiceImpl
 		wsrpProducer.setCreateDate(now);
 		wsrpProducer.setModifiedDate(now);
 		wsrpProducer.setName(name);
+		wsrpProducer.setGroupId(groupId);
 		wsrpProducer.setPortletIds(portletIds);
 
 		wsrpProducerPersistence.update(wsrpProducer, false);
-
-		// Group
-
-		addGroup(user);
 
 		return wsrpProducer;
 	}
@@ -91,8 +99,13 @@ public class WSRPProducerLocalServiceImpl
 	}
 
 	public void deleteWSRPProducer(WSRPProducer wsrpProducer)
-		throws SystemException {
+		throws PortalException, SystemException {
 
+		Group group = groupLocalService.getGroup(
+			wsrpProducer.getGroupId());
+
+		layoutLocalService.deleteLayouts(wsrpProducer.getGroupId(), false);
+		groupLocalService.deleteGroup(group);
 		wsrpProducerPersistence.remove(wsrpProducer);
 	}
 
@@ -118,6 +131,8 @@ public class WSRPProducerLocalServiceImpl
 		WSRPProducer wsrpProducer = wsrpProducerPersistence.findByPrimaryKey(
 			wsrpProducerId);
 
+		updateGroup(wsrpProducer, name);
+
 		wsrpProducer.setModifiedDate(new Date());
 		wsrpProducer.setName(name);
 		wsrpProducer.setPortletIds(portletIds);
@@ -127,7 +142,11 @@ public class WSRPProducerLocalServiceImpl
 		return wsrpProducer;
 	}
 
-	protected void addGroup(User user) throws PortalException, SystemException {
+	protected Group addGroup(User user, String name)
+		throws PortalException, SystemException {
+
+		name = getGroupName(name);
+
 		LinkedHashMap<String, Object> params =
 			new LinkedHashMap<String, Object>();
 
@@ -135,21 +154,23 @@ public class WSRPProducerLocalServiceImpl
 
 		params.put("type", type);
 
-		List<Group> groups = GroupLocalServiceUtil.search(
-			user.getCompanyId(), WSRP_GROUP_NAME, null, params, 0, 1);
+		List<Group> groups = groupLocalService.search(
+			user.getCompanyId(), name, null, params, 0, 1);
 
 		if (!groups.isEmpty()) {
-			return;
+			return groups.get(0);
 		}
 
-		Group group = GroupLocalServiceUtil.addGroup(
-			user.getUserId(), null, 0, 0, WSRP_GROUP_NAME, null, type, null,
+		Group group = groupLocalService.addGroup(
+			user.getUserId(), null, 0, 0, name, null, type, null,
 			true, null);
 
-		LayoutLocalServiceUtil.addLayout(
+		layoutLocalService.addLayout(
 			user.getUserId(), group.getGroupId(), false,
 			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Portlets", null, null,
 			LayoutConstants.TYPE_PORTLET, false, "/portlets", null);
+
+		return group;
 	}
 
 	/**
@@ -160,6 +181,10 @@ public class WSRPProducerLocalServiceImpl
 			PwdGenerator.KEY1 + PwdGenerator.KEY2 + PwdGenerator.KEY3, 4);
 
 		return PortletConstants.INSTANCE_SEPARATOR + instanceId;
+	}
+
+	protected String getGroupName(String name) {
+		return WSRP_GROUP_NAME + StringPool.MINUS + name;
 	}
 
 	protected String transformPortletIds(String portletIds) {
@@ -186,6 +211,16 @@ public class WSRPProducerLocalServiceImpl
 		}
 
 		return StringUtil.merge(portletIdsArray);
+	}
+
+	protected void updateGroup(WSRPProducer wsrpProducer, String name)
+		throws PortalException, SystemException {
+
+		Group group = groupLocalService.getGroup(
+			wsrpProducer.getGroupId());
+
+		group.setName(getGroupName(name));
+		groupLocalService.updateGroup(group);
 	}
 
 	protected void validate(String name) throws PortalException {
