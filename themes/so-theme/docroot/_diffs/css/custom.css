@@ -1501,15 +1501,7 @@ table.calendar {
 	font-weight: bold;
 }
 
-.so-portlet-sites .results-grid .col-2 a {
-	font-size: 10px;
-	margin-left: 5px;
-}
-
-.so-portlet-sites .taglib-page-iterator .search-results {
-	display: none;
-}
-
+.so-portlet-sites .taglib-page-iterator .search-results,
 .so-portlet-sites th {
 	display: none;
 }
@@ -1533,10 +1525,6 @@ table.calendar {
 	position: absolute;
 	right: 5px;
 	top: 9px;
-}
-
-.so-portlet-sites .actions {
-	width: 80px;
 }
 
 .so-portlet-sites .description-toggle {

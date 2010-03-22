@@ -25,7 +25,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 Group group = (Group)row.getObject();
 %>
 
-<div class="actions">
+<liferay-ui:icon-menu>
 	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.UPDATE) %>">
 		<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" portletName="<%= PortletKeys.COMMUNITIES %>" var="editURL">
 			<liferay-portlet:param name="struts_action" value="/communities/edit_community" />
@@ -33,7 +33,21 @@ Group group = (Group)row.getObject();
 			<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 		</liferay-portlet:renderURL>
 
-		<a class="edit-site" href="javascript:;" onClick="Liferay.SO.Sites.displayPopup('<%= editURL %>','<liferay-ui:message key="edit-site" />');"><liferay-ui:message key="edit" /></a>
+		<%
+		String taglibEditURL = "javascript:Liferay.SO.Sites.displayPopup('" + editURL + "','" + LanguageUtil.get(pageContext, "edit-site") + "');";
+		%>
+
+		<liferay-ui:icon image="edit" url="<%= taglibEditURL %>" />
+	</c:if>
+
+	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_TEAMS) %>">
+		<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="<%= PortletKeys.COMMUNITIES %>" var="manageTeamsURL">
+			<portlet:param name="struts_action" value="/communities/view_teams" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+		</liferay-portlet:renderURL>
+
+		<liferay-ui:icon image="group" message="manage-teams" url="<%= manageTeamsURL %>" />
 	</c:if>
 
 	<c:choose>
@@ -47,7 +61,7 @@ Group group = (Group)row.getObject();
 					<portlet:param name="addUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
 				</liferay-portlet:actionURL>
 
-				<a class="join-site" href="javascript:;" onclick="return (submitForm(document.hrefFm, '<%= joinURL %>'));"><liferay-ui:message key="join" /></a>
+				<liferay-ui:icon image="join" url="<%= joinURL %>" />
 			</c:if>
 		</c:when>
 		<c:when test="<%= !GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.DELETE) %>">
@@ -59,7 +73,7 @@ Group group = (Group)row.getObject();
 				<portlet:param name="removeUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
 			</liferay-portlet:actionURL>
 
-			<a class="leave-site" href="javascript:;" onclick="return (submitForm(document.hrefFm, '<%= leaveURL %>'));"><liferay-ui:message key="leave" /></a>
+			<liferay-ui:icon image="leave" url="<%= leaveURL %>" />
 		</c:when>
 	</c:choose>
 
@@ -71,6 +85,6 @@ Group group = (Group)row.getObject();
 			<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 		</liferay-portlet:actionURL>
 
-		<a class="delete-site" href="javascript:;" onclick="return (confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this" />') && submitForm(document.hrefFm, '<%= deleteURL %>'));"><liferay-ui:message key="delete" /></a>
+		<liferay-ui:icon-delete url="<%= deleteURL %>" />
 	</c:if>
-</div>
+</liferay-ui:icon-menu>
