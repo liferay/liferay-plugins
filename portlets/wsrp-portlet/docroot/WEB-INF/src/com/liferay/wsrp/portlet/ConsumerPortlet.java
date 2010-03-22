@@ -361,20 +361,23 @@ public class ConsumerPortlet extends GenericPortlet {
 		throws Exception {
 
 		String resourceID = resourceRequest.getResourceID();
-		String url = resourceRequest.getParameter("wsrp-url");
+
+		String url = ParamUtil.getString(resourceRequest, "wsrp-url");
+
 		boolean preferOperation = ParamUtil.getBoolean(
 			resourceRequest, "wsrp-preferOperation");
 
-		if (preferOperation) {
+		if (preferOperation &&
+				Validator.isNotNull(url) &&
+				Validator.isNotNull(resourceID)) {
+
 			getResource(resourceRequest, resourceResponse);
 		}
-		else {
-			if (Validator.isNotNull(url)) {
+		else if (Validator.isNotNull(url)) {
 				proxyURL(resourceRequest, resourceResponse, url);
-			}
-			else if (Validator.isNotNull(resourceID)) {
+		}
+		else if (Validator.isNotNull(resourceID)) {
 				getResource(resourceRequest, resourceResponse);
-			}
 		}
 	}
 
