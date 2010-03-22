@@ -532,6 +532,10 @@ body #banner h1.logo a {
 	text-shadow: none;
 }
 
+.aui-tab-active:after {
+	border-width: 0;
+}
+
 /* Taglib */
 
 .taglib-icon .taglib-text {
