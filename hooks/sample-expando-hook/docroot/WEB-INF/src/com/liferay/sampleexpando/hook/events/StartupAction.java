@@ -27,6 +27,7 @@ import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 /**
  * <a href="StartupAction.java.html"><b><i>View Source</i></b></a>
  *
+ * @author Juan Fernández
  * @author Brian Wing Shun Chan
  */
 public class StartupAction extends SimpleAction {
