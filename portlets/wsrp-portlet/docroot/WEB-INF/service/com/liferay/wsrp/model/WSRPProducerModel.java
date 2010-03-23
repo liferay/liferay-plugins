@@ -51,6 +51,10 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 
 	public void setWsrpProducerId(long wsrpProducerId);
 
+	public long getGroupId();
+
+	public void setGroupId(long groupId);
+
 	public long getCompanyId();
 
 	public void setCompanyId(long companyId);
@@ -66,10 +70,6 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public String getName();
 
 	public void setName(String name);
-
-	public long getGroupId();
-
-	public void setGroupId(long groupId);
 
 	public String getPortletIds();
 

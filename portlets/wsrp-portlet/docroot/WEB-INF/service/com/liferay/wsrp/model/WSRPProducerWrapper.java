@@ -52,6 +52,14 @@ public class WSRPProducerWrapper implements WSRPProducer {
 		_wsrpProducer.setWsrpProducerId(wsrpProducerId);
 	}
 
+	public long getGroupId() {
+		return _wsrpProducer.getGroupId();
+	}
+
+	public void setGroupId(long groupId) {
+		_wsrpProducer.setGroupId(groupId);
+	}
+
 	public long getCompanyId() {
 		return _wsrpProducer.getCompanyId();
 	}
@@ -82,14 +90,6 @@ public class WSRPProducerWrapper implements WSRPProducer {
 
 	public void setName(java.lang.String name) {
 		_wsrpProducer.setName(name);
-	}
-
-	public long getGroupId() {
-		return _wsrpProducer.getGroupId();
-	}
-
-	public void setGroupId(long groupId) {
-		_wsrpProducer.setGroupId(groupId);
 	}
 
 	public java.lang.String getPortletIds() {

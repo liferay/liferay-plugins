@@ -495,18 +495,18 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
-		java.lang.String name, long groupId, java.lang.String portletIds)
+		long groupId, java.lang.String name, java.lang.String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
 
-		Object paramObj1 = ClpSerializer.translateInput(name);
+		Object paramObj1 = new LongWrapper(groupId);
+
+		Object paramObj2 = ClpSerializer.translateInput(name);
 
 		if (name == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
+			paramObj2 = new NullWrapper("java.lang.String");
 		}
-
-		Object paramObj2 = new LongWrapper(groupId);
 
 		Object paramObj3 = ClpSerializer.translateInput(portletIds);
 

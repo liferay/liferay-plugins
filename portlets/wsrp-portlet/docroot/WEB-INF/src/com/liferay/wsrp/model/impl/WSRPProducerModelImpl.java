@@ -61,14 +61,14 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	public static final String TABLE_NAME = "WSRP_WSRPProducer";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "wsrpProducerId", new Integer(Types.BIGINT) },
+			{ "groupId", new Integer(Types.BIGINT) },
 			{ "companyId", new Integer(Types.BIGINT) },
 			{ "createDate", new Integer(Types.TIMESTAMP) },
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
 			{ "name", new Integer(Types.VARCHAR) },
-			{ "groupId", new Integer(Types.BIGINT) },
 			{ "portletIds", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPProducer (wsrpProducerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,groupId LONG,portletIds STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPProducer (wsrpProducerId LONG not null primary key,groupId LONG,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,portletIds STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table WSRP_WSRPProducer";
 	public static final String ORDER_BY_JPQL = " ORDER BY wsrpProducer.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY WSRP_WSRPProducer.name ASC";
@@ -86,11 +86,11 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 		WSRPProducer model = new WSRPProducerImpl();
 
 		model.setWsrpProducerId(soapModel.getWsrpProducerId());
+		model.setGroupId(soapModel.getGroupId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setName(soapModel.getName());
-		model.setGroupId(soapModel.getGroupId());
 		model.setPortletIds(soapModel.getPortletIds());
 
 		return model;
@@ -132,6 +132,14 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 		_wsrpProducerId = wsrpProducerId;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -169,14 +177,6 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 		_name = name;
 	}
 
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
-
 	public String getPortletIds() {
 		if (_portletIds == null) {
 			return StringPool.BLANK;
@@ -201,11 +201,11 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 			model.setEscapedModel(true);
 
 			model.setWsrpProducerId(getWsrpProducerId());
+			model.setGroupId(getGroupId());
 			model.setCompanyId(getCompanyId());
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
 			model.setName(HtmlUtil.escape(getName()));
-			model.setGroupId(getGroupId());
 			model.setPortletIds(HtmlUtil.escape(getPortletIds()));
 
 			model = (WSRPProducer)Proxy.newProxyInstance(WSRPProducer.class.getClassLoader(),
@@ -233,11 +233,11 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 		WSRPProducerImpl clone = new WSRPProducerImpl();
 
 		clone.setWsrpProducerId(getWsrpProducerId());
+		clone.setGroupId(getGroupId());
 		clone.setCompanyId(getCompanyId());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
 		clone.setName(getName());
-		clone.setGroupId(getGroupId());
 		clone.setPortletIds(getPortletIds());
 
 		return clone;
@@ -288,6 +288,8 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 
 		sb.append("{wsrpProducerId=");
 		sb.append(getWsrpProducerId());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", createDate=");
@@ -296,8 +298,6 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 		sb.append(getModifiedDate());
 		sb.append(", name=");
 		sb.append(getName());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
 		sb.append(", portletIds=");
 		sb.append(getPortletIds());
 		sb.append("}");
@@ -317,6 +317,10 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 		sb.append(getWsrpProducerId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
 		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
@@ -333,10 +337,6 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 		sb.append(getName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>portletIds</column-name><column-value><![CDATA[");
 		sb.append(getPortletIds());
 		sb.append("]]></column-value></column>");
@@ -347,11 +347,11 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	}
 
 	private long _wsrpProducerId;
+	private long _groupId;
 	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;
-	private long _groupId;
 	private String _portletIds;
 	private transient ExpandoBridge _expandoBridge;
 }

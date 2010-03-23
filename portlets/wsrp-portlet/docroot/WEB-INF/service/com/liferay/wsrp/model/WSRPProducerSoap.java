@@ -42,11 +42,11 @@ public class WSRPProducerSoap implements Serializable {
 		WSRPProducerSoap soapModel = new WSRPProducerSoap();
 
 		soapModel.setWsrpProducerId(model.getWsrpProducerId());
+		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setName(model.getName());
-		soapModel.setGroupId(model.getGroupId());
 		soapModel.setPortletIds(model.getPortletIds());
 
 		return soapModel;
@@ -108,6 +108,14 @@ public class WSRPProducerSoap implements Serializable {
 		_wsrpProducerId = wsrpProducerId;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -140,14 +148,6 @@ public class WSRPProducerSoap implements Serializable {
 		_name = name;
 	}
 
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
-
 	public String getPortletIds() {
 		return _portletIds;
 	}
@@ -157,10 +157,10 @@ public class WSRPProducerSoap implements Serializable {
 	}
 
 	private long _wsrpProducerId;
+	private long _groupId;
 	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;
-	private long _groupId;
 	private String _portletIds;
 }

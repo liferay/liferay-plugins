@@ -23,10 +23,10 @@ create table WSRP_WSRPConsumerPortlet (
 
 create table WSRP_WSRPProducer (
 	wsrpProducerId LONG not null primary key,
+	groupId LONG,
 	companyId LONG,
 	createDate DATE null,
 	modifiedDate DATE null,
 	name VARCHAR(75) null,
-	groupId LONG,
 	portletIds STRING null
 );

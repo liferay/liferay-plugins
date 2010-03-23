@@ -44,6 +44,7 @@
 	<mapped-superclass class="com.liferay.wsrp.model.impl.WSRPProducerModelImpl">
 		<attributes>
 			<id name="wsrpProducerId" />
+			<basic name="groupId" />
 			<basic name="companyId" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>
@@ -52,7 +53,6 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="name" />
-			<basic name="groupId" />
 			<basic name="portletIds" />
 			<transient name="primaryKey" />
 		</attributes>

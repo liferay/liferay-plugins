@@ -167,25 +167,25 @@ public class WSRPConsumerPortletUtil {
 			wsrpConsumerId, orderByComparator);
 	}
 
-	public static com.liferay.wsrp.model.WSRPConsumerPortlet findByC_P(
+	public static com.liferay.wsrp.model.WSRPConsumerPortlet findByW_P(
 		long wsrpConsumerId, java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.wsrp.NoSuchConsumerPortletException {
-		return getPersistence().findByC_P(wsrpConsumerId, portletHandle);
+		return getPersistence().findByW_P(wsrpConsumerId, portletHandle);
 	}
 
-	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByC_P(
+	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByW_P(
 		long wsrpConsumerId, java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByC_P(wsrpConsumerId, portletHandle);
+		return getPersistence().fetchByW_P(wsrpConsumerId, portletHandle);
 	}
 
-	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByC_P(
+	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByW_P(
 		long wsrpConsumerId, java.lang.String portletHandle,
 		boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByC_P(wsrpConsumerId, portletHandle, retrieveFromCache);
+				   .fetchByW_P(wsrpConsumerId, portletHandle, retrieveFromCache);
 	}
 
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findAll()
@@ -211,11 +211,11 @@ public class WSRPConsumerPortletUtil {
 		getPersistence().removeByWsrpConsumerId(wsrpConsumerId);
 	}
 
-	public static void removeByC_P(long wsrpConsumerId,
+	public static void removeByW_P(long wsrpConsumerId,
 		java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.wsrp.NoSuchConsumerPortletException {
-		getPersistence().removeByC_P(wsrpConsumerId, portletHandle);
+		getPersistence().removeByW_P(wsrpConsumerId, portletHandle);
 	}
 
 	public static void removeAll()
@@ -228,10 +228,10 @@ public class WSRPConsumerPortletUtil {
 		return getPersistence().countByWsrpConsumerId(wsrpConsumerId);
 	}
 
-	public static int countByC_P(long wsrpConsumerId,
+	public static int countByW_P(long wsrpConsumerId,
 		java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByC_P(wsrpConsumerId, portletHandle);
+		return getPersistence().countByW_P(wsrpConsumerId, portletHandle);
 	}
 
 	public static int countAll()

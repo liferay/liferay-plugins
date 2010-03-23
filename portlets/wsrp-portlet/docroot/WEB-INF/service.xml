@@ -63,7 +63,7 @@
 		<finder name="WsrpConsumerId" return-type="Collection">
 			<finder-column name="wsrpConsumerId" />
 		</finder>
-		<finder name="C_P" return-type="WSRPConsumerPortlet">
+		<finder name="W_P" return-type="WSRPConsumerPortlet">
 			<finder-column name="wsrpConsumerId" />
 			<finder-column name="portletHandle" />
 		</finder>
@@ -74,6 +74,10 @@
 
 		<column name="wsrpProducerId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
@@ -83,7 +87,6 @@
 		<!-- Other fields -->
 
 		<column name="name" type="String" />
-		<column name="groupId" type="long" />
 		<column name="portletIds" type="String" />
 
 		<!-- Order -->

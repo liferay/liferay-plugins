@@ -127,10 +127,10 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
-		java.lang.String name, long groupId, java.lang.String portletIds)
+		long groupId, java.lang.String name, java.lang.String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _wsrpProducerLocalService.addWSRPProducer(userId, name, groupId,
+		return _wsrpProducerLocalService.addWSRPProducer(userId, groupId, name,
 			portletIds);
 	}
 
