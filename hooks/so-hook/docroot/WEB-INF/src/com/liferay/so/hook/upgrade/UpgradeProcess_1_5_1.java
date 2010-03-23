@@ -17,6 +17,7 @@
 
 package com.liferay.so.hook.upgrade;
 
+import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -34,6 +35,7 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.so.util.PortletPropsKeys;
 import com.liferay.util.portlet.PortletProps;
@@ -130,6 +132,14 @@ public class UpgradeProcess_1_5_1 extends UpgradeProcess {
 		}
 
 		long companyId = group.getCompanyId();
+		long userId = group.getCreatorUserId();
+
+		try {
+			UserLocalServiceUtil.getUser(userId);
+		}
+		catch (NoSuchUserException nsue) {
+			userId = UserLocalServiceUtil.getDefaultUserId(companyId);
+		}
 
 		boolean privateLayout = group.hasPrivateLayouts();
 
@@ -140,7 +150,7 @@ public class UpgradeProcess_1_5_1 extends UpgradeProcess {
 
 		for (Layout sourceLayout : sourceLayouts) {
 			Layout targetLayout = LayoutLocalServiceUtil.addLayout(
-				group.getCreatorUserId(), group.getGroupId(), !privateLayout,
+				userId, group.getGroupId(), !privateLayout,
 				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
 				sourceLayout.getName(LocaleUtil.getDefault().toString()),
 				StringPool.BLANK, StringPool.BLANK,
