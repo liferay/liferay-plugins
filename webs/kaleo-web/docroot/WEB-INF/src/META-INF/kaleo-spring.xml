@@ -23,7 +23,6 @@
 
 	<!-- Runtime -->
 
-	<bean id="com.liferay.portal.workflow.kaleo.runtime.graph.GraphWalker" class="com.liferay.portal.workflow.kaleo.runtime.graph.DefaultGraphWalker" />
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler" class="com.liferay.portal.workflow.kaleo.runtime.DefaultKaleoSignaler">
 		<property name="destinationName" value="liferay/kaleo_graph_walker" />
 	</bean>
@@ -53,6 +52,7 @@
 			</map>
 		</property>
 	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.runtime.graph.GraphWalker" class="com.liferay.portal.workflow.kaleo.runtime.graph.DefaultGraphWalker" />
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutorFactory" class="com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutorFactory">
 		<property name="nodeExectors">
 			<map>
@@ -84,11 +84,11 @@
 						<property name="fromName" value="Liferay Portal Workflow Notifications" />
 					</bean>
 				</entry>
-				<entry key="private-message">
-					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.PrivateMessageNotificationSender" />
-				</entry>
 				<entry key="im">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.IMNotificationSender" />
+				</entry>
+				<entry key="private-message">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.PrivateMessageNotificationSender" />
 				</entry>
 			</map>
 		</property>

@@ -115,4 +115,5 @@ public class KaleoNotificationLocalServiceImpl
 		return kaleoNotificationPersistence.findByKNI_ET(
 			kaleoNodeId, executionType);
 	}
+
 }

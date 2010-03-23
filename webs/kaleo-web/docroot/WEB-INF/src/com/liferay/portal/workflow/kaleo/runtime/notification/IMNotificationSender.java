@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -25,13 +25,11 @@ import java.util.List;
  * @author Michael C. Han
  */
 public class IMNotificationSender implements NotificationSender {
+
 	public void sendNotification(
-			List<KaleoNotificationRecipient> notificationRecipients,
-			String subject, String notificationMessage,
-			ExecutionContext executionContext)
-		throws NotificationMessageSenderException {
-
-		//not implemented yet...waiting for chat
-
+		List<KaleoNotificationRecipient> notificationRecipients,
+		String subject, String notificationMessage,
+		ExecutionContext executionContext) {
 	}
+
 }

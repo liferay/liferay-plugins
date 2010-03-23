@@ -81,6 +81,7 @@ public abstract class Node {
 		if (_notifications == null) {
 			return Collections.EMPTY_SET;
 		}
+
 		return _notifications;
 	}
 

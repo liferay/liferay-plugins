@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.graph;
 
-import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.annotation.Isolation;
 import com.liferay.portal.kernel.annotation.Propagation;
 import com.liferay.portal.kernel.annotation.Transactional;
@@ -23,7 +22,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.definition.ActionType;
 import com.liferay.portal.workflow.kaleo.definition.NodeType;
@@ -42,10 +40,6 @@ import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationMessag
 import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationMessageGeneratorFactory;
 import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationSender;
 import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationSenderFactory;
-import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalService;
-import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalService;
-import com.liferay.portal.workflow.kaleo.service.KaleoNotificationLocalService;
-import com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalService;
 
 import java.util.List;
 
@@ -156,91 +150,70 @@ public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 		}
 	}
 
+	protected void sendKaleoNotification(
+			KaleoNotification kaleoNotification,
+			ExecutionContext executionContext)
+		throws PortalException, SystemException {
+
+		NotificationMessageGenerator notificationMessageGenerator =
+			NotificationMessageGeneratorFactory.getNotificationMessageGenerator(
+				kaleoNotification.getLanguage());
+
+		String notificationMessage =
+			notificationMessageGenerator.generateMessage(
+				kaleoNotification.getKaleoNodeId(), kaleoNotification.getName(),
+				kaleoNotification.getTemplate(), executionContext);
+
+		String notificationSubject = kaleoNotification.getDescription();
+
+		String[] notificationTypes = StringUtil.split(
+			kaleoNotification.getNotificationTypes());
+
+		List<KaleoNotificationRecipient> kaleoNotificationRecipient =
+			kaleoNotificationRecipientLocalService.
+				getKaleoNotificationRecipients(
+					kaleoNotification.getKaleoNotificationId());
+
+		if (kaleoNotificationRecipient.isEmpty()) {
+			if (_log.isInfoEnabled()) {
+				_log.info(
+					"No recipients found to notify with message " +
+						kaleoNotification.getName() + " " +
+							notificationMessage);
+			}
+
+			return;
+		}
+
+		for (String notificationType : notificationTypes) {
+			NotificationSender notificationSender =
+				NotificationSenderFactory.getNotificationSender(
+					notificationType);
+
+			notificationSender.sendNotification(
+				kaleoNotificationRecipient, notificationSubject,
+				notificationMessage, executionContext);
+		}
+	}
+
 	protected void sendKaleoNotifications(
 			long kaleoNodeId, ActionType actionType,
 			ExecutionContext executionContext)
-		throws SystemException {
+		throws PortalException, SystemException {
 
-		List<KaleoNotification> kaleoNotifications=
+		List<KaleoNotification> kaleoNotifications =
 			kaleoNotificationLocalService.getKaleoNotifications(
 				kaleoNodeId, actionType.getValue());
 
 		for (KaleoNotification kaleoNotification : kaleoNotifications) {
-
-			try {
-				NotificationMessageGenerator notificationMessageGenerator =
-					NotificationMessageGeneratorFactory.
-						getNotificationMessageGenerator(
-							kaleoNotification.getLanguage());
-
-				String notificationMessage =
-					notificationMessageGenerator.generateMessage(
-						kaleoNotification.getName(),
-						kaleoNotification.getKaleoNodeId(),
-						kaleoNotification.getTemplate(), executionContext);
-
-				String notificationSubject = kaleoNotification.getDescription();
-
-				String[] notificationTypes = StringUtil.split(
-					kaleoNotification.getNotificationTypes());
-
-				List<KaleoNotificationRecipient> notificationRecipients =
-					kaleoNotificationRecipientLocalService.
-						getKaleoNotificationRecipients(
-							kaleoNotification.getKaleoNotificationId());
-
-				if (notificationRecipients.isEmpty()) {
-					if (_log.isInfoEnabled()) {
-						_log.info(
-							"No recipients found to notify with message " +
-								kaleoNotification.getName() + " " +
-									notificationMessage);
-					}
-					return;
-				}
-
-				for (String notificationType : notificationTypes) {
-					try {
-						NotificationSender notificationSender =
-							NotificationSenderFactory.getNotificationSender(
-								notificationType);
-
-						notificationSender.sendNotification(
-							notificationRecipients, notificationSubject,
-							notificationMessage, executionContext);
-					}
-					catch (WorkflowException e) {
-						if (_log.isErrorEnabled()) {
-							_log.error("Unable to send notifications", e);
-						}
-					}
-				}
-			}
-			catch (Exception e) {
-				if (_log.isErrorEnabled()) {
-					_log.error("Unable to send notifications", e);
-				}
-			}
+			sendKaleoNotification(kaleoNotification, executionContext);
 		}
 	}
 
-	@BeanReference(type = KaleoActionLocalService.class)
-	protected KaleoActionLocalService kaleoActionLocalService;
-
-	@BeanReference(type = KaleoLogLocalService.class)
-	protected KaleoLogLocalService kaleoLogLocalService;
-
-	@BeanReference(type = KaleoNotificationLocalService.class)
-	protected KaleoNotificationLocalService kaleoNotificationLocalService;
-
-	@BeanReference(type = KaleoNotificationRecipientLocalService.class)
-	protected KaleoNotificationRecipientLocalService
-		kaleoNotificationRecipientLocalService;
+	private static final String _COMMENT_ACTION_SUCCESS =
+		"Action completed successfully.";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		DefaultGraphWalker.class);
-
-	private static final String _COMMENT_ACTION_SUCCESS =
-		"Action completed successfully.";
 
 }

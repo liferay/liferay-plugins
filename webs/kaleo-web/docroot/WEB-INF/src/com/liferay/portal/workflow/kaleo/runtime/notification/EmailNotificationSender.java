@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -33,8 +33,9 @@ import javax.mail.internet.InternetAddress;
  * @author Michael C. Han
  */
 public class EmailNotificationSender implements NotificationSender {
+
 	public void sendNotification(
-			List<KaleoNotificationRecipient> notificationRecipients,
+			List<KaleoNotificationRecipient> kaleoNotificationRecipients,
 			String subject, String notificationMessage,
 			ExecutionContext executionContext)
 		throws NotificationMessageSenderException {
@@ -46,16 +47,14 @@ public class EmailNotificationSender implements NotificationSender {
 			MailMessage mailMessage = new MailMessage(
 				from, subject, notificationMessage, true);
 
-			mailMessage.setTo(getRecipients(notificationRecipients));
+			mailMessage.setTo(getRecipients(kaleoNotificationRecipients));
 
 			MailServiceUtil.sendEmail(mailMessage);
-
 		}
 		catch (Exception e) {
 			throw new NotificationMessageSenderException(
 				"Unable to send mail message", e);
 		}
-
 	}
 
 	public void setFromAddress(String fromAddress) {
@@ -67,36 +66,43 @@ public class EmailNotificationSender implements NotificationSender {
 	}
 
 	protected InternetAddress[] getRecipients(
-			List<KaleoNotificationRecipient> notificationRecipients)
+			List<KaleoNotificationRecipient> kaleoNotificationRecipients)
 		throws Exception {
 
 		List<InternetAddress> internetAddresses =
 			new ArrayList<InternetAddress>();
 
-		for (KaleoNotificationRecipient recipient : notificationRecipients) {
-			if (Validator.isNotNull(recipient.getAddress())) {
-				internetAddresses.add(
-					new InternetAddress(recipient.getAddress()));
+		for (KaleoNotificationRecipient kaleoNotificationRecipient :
+				kaleoNotificationRecipients) {
+
+			if (Validator.isNotNull(kaleoNotificationRecipient.getAddress())) {
+				InternetAddress internetAddress = new InternetAddress(
+					kaleoNotificationRecipient.getAddress());
+
+				internetAddresses.add(internetAddress);
 			}
 			else {
-				String recipientClass = recipient.getRecipientClassName();
+				String recipientClassName =
+					kaleoNotificationRecipient.getRecipientClassName();
 
-				if (User.class.getName().equals(recipientClass)) {
+				if (User.class.getName().equals(recipientClassName)) {
 					User user = UserLocalServiceUtil.getUser(
-						recipient.getRecipientClassPK());
+						kaleoNotificationRecipient.getRecipientClassPK());
 
-					internetAddresses.add(
-						new InternetAddress(
-							user.getEmailAddress(), user.getFullName()));
+					InternetAddress internetAddress = new InternetAddress(
+						user.getEmailAddress(), user.getFullName());
+
+					internetAddresses.add(internetAddress);
 				}
 				else {
-					List<User> roleUsers = UserLocalServiceUtil.getRoleUsers(
-						recipient.getRecipientClassPK());
+					List<User> users = UserLocalServiceUtil.getRoleUsers(
+						kaleoNotificationRecipient.getRecipientClassPK());
 
-					for (User user : roleUsers) {
-						internetAddresses.add(
-							new InternetAddress(
-								user.getEmailAddress(), user.getFullName()));
+					for (User user : users) {
+						InternetAddress internetAddress = new InternetAddress(
+							user.getEmailAddress(), user.getFullName());
+
+						internetAddresses.add(internetAddress);
 					}
 				}
 			}

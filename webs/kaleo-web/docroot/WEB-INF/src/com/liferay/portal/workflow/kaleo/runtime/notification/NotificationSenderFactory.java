@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -24,12 +24,13 @@ import java.util.Map;
  * @author Michael C. Han
  */
 public class NotificationSenderFactory {
+
 	public static NotificationSender getNotificationSender(
 			String notificationType)
 		throws WorkflowException {
 
-		NotificationSender notificationSender =
-			_notificationSenders.get(notificationType);
+		NotificationSender notificationSender = _notificationSenders.get(
+			notificationType);
 
 		if (notificationSender == null) {
 			throw new WorkflowException(
@@ -46,4 +47,5 @@ public class NotificationSenderFactory {
 	}
 
 	public static Map<String, NotificationSender> _notificationSenders;
+
 }

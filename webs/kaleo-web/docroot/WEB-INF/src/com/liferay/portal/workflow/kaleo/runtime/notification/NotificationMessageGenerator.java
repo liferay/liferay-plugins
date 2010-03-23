@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -17,13 +17,16 @@ package com.liferay.portal.workflow.kaleo.runtime.notification;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 /**
- * <a href="NotificationMessageGenerator.java.html"><b><i>View Source</i></b></a>
+ * <a href="NotificationMessageGenerator.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Michael C. Han
  */
 public interface NotificationMessageGenerator {
+
 	public String generateMessage(
-		String notificationName, long kaleoNodeId, String notificationTemplate,
-		ExecutionContext executionContext)
+			long kaleoNodeId, String notificationName,
+			String notificationTemplate, ExecutionContext executionContext)
 		throws NotificationMessageGenerationException;
+
 }

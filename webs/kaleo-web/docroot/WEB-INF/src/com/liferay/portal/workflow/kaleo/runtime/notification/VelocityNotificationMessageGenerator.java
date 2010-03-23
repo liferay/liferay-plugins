@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -31,7 +31,8 @@ import java.io.StringWriter;
 import java.util.Map;
 
 /**
- * <a href="VelocityNotificationMessageGenerator.java.html"><b><i>View Source</i></b></a>
+ * <a href="VelocityNotificationMessageGenerator.java.html"><b><i>View Source
+ * </i></b></a>
  *
  * @author Michael C. Han
  */
@@ -39,12 +40,11 @@ public class VelocityNotificationMessageGenerator
 	implements NotificationMessageGenerator {
 
 	public String generateMessage(
-			String notificationName, long kaleoNodeId,
+			long kaleoNodeId, String notificationName,
 			String notificationTemplate, ExecutionContext executionContext)
 		throws NotificationMessageGenerationException {
 
-		VelocityEngine velocityEngine =
-			VelocityEngineUtil.getVelocityEngine();
+		VelocityEngine velocityEngine = VelocityEngineUtil.getVelocityEngine();
 
 		VelocityContext velocityContext =
 			VelocityEngineUtil.getRestrictedToolsContext();
@@ -52,21 +52,18 @@ public class VelocityNotificationMessageGenerator
 		try {
 			populateContextVariables(velocityContext, executionContext);
 
-			StringWriter messageWriter = new StringWriter();
-
-			String templateId = notificationName + kaleoNodeId;
+			StringWriter stringWriter = new StringWriter();
 
 			velocityEngine.mergeTemplate(
-				templateId, notificationTemplate,
-				velocityContext, messageWriter);
+				notificationName + kaleoNodeId, notificationTemplate,
+				velocityContext, stringWriter);
 
-			return messageWriter.toString();
+			return stringWriter.toString();
 		}
 		catch (Exception e) {
 			throw new NotificationMessageGenerationException(
 				"Unable to generate notification message", e);
 		}
-
 	}
 
 	protected void populateContextVariables(
@@ -106,7 +103,8 @@ public class VelocityNotificationMessageGenerator
 
 			velocityContext.put("taskName", kaleoTask.getName());
 
-			velocityContext.put("userId", kaleoTaskInstanceAssignment.getUserId());
+			velocityContext.put(
+				"userId", kaleoTaskInstanceAssignment.getUserId());
 		}
 		else {
 			KaleoInstanceToken kaleoInstanceToken =
@@ -115,4 +113,5 @@ public class VelocityNotificationMessageGenerator
 			velocityContext.put("userId", kaleoInstanceToken.getUserId());
 		}
 	}
+
 }

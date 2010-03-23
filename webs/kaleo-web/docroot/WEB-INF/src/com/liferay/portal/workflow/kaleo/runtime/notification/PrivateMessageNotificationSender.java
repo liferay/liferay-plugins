@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -20,19 +20,17 @@ import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import java.util.List;
 
 /**
- * <a href="PrivateMessageNotificationSender.java.html"><b><i>View Source</i></b></a>
+ * <a href="PrivateMessageNotificationSender.java.html"><b><i>View Source</i>
+ * </b></a>
  *
  * @author Michael C. Han
  */
 public class PrivateMessageNotificationSender implements NotificationSender {
 
 	public void sendNotification(
-			List<KaleoNotificationRecipient> notificationRecipients,
-			String subject, String notificationMessage,
-			ExecutionContext executionContext)
-		throws NotificationMessageSenderException {
-
-		//not implemented yet...waiting for PM
-
+		List<KaleoNotificationRecipient> notificationRecipients,
+		String subject, String notificationMessage,
+		ExecutionContext executionContext) {
 	}
+
 }

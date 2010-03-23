@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -19,11 +19,13 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 import java.util.Map;
 
 /**
- * <a href="NotificationMessageGeneratorFactory.java.html"><b><i>View Source</i></b></a>
+ * <a href="NotificationMessageGeneratorFactory.java.html"><b><i>View Source</i>
+ * </b></a>
  *
  * @author Michael C. Han
  */
 public class NotificationMessageGeneratorFactory {
+
 	public static NotificationMessageGenerator getNotificationMessageGenerator(
 			String language)
 		throws WorkflowException {
@@ -39,11 +41,13 @@ public class NotificationMessageGeneratorFactory {
 	}
 
 	public void setNotificationMessageGenerators(
-		Map<String, NotificationMessageGenerator> notificationMessageGenerators) {
+		Map<String, NotificationMessageGenerator>
+		notificationMessageGenerators) {
 
 		_notificationMessageGenerators = notificationMessageGenerators;
 	}
 
-	public static Map<String, NotificationMessageGenerator> _notificationMessageGenerators;
+	public static Map<String, NotificationMessageGenerator>
+		_notificationMessageGenerators;
 
 }

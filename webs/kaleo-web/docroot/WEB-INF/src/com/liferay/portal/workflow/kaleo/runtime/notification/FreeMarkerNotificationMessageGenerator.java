@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -31,7 +31,8 @@ import java.io.StringWriter;
 import java.util.Map;
 
 /**
- * <a href="FreeMarkerNotificationMessageGenerator.java.html"><b><i>View Source</i></b></a>
+ * <a href="FreeMarkerNotificationMessageGenerator.java.html"><b><i>View Source
+ * </i></b></a>
  *
  * @author Michael C. Han
  */
@@ -39,7 +40,7 @@ public class FreeMarkerNotificationMessageGenerator
 	implements NotificationMessageGenerator {
 
 	public String generateMessage(
-			String notificationName, long kaleoNodeId,
+			long kaleoNodeId, String notificationName,
 			String notificationTemplate, ExecutionContext executionContext)
 		throws NotificationMessageGenerationException {
 
@@ -52,21 +53,18 @@ public class FreeMarkerNotificationMessageGenerator
 		try {
 			populateContextVariables(freeMarketContext, executionContext);
 
-			StringWriter messageWriter = new StringWriter();
-
-			String templateId = notificationName + kaleoNodeId;
+			StringWriter stringWriter = new StringWriter();
 
 			freeMarkerEngine.mergeTemplate(
-				templateId, notificationTemplate,
-				freeMarketContext, messageWriter);
+				notificationName + kaleoNodeId, notificationTemplate,
+				freeMarketContext, stringWriter);
 
-			return messageWriter.toString();
+			return stringWriter.toString();
 		}
 		catch (Exception e) {
 			throw new NotificationMessageGenerationException(
 				"Unable to generate notification message", e);
 		}
-
 	}
 
 	protected void populateContextVariables(
@@ -118,4 +116,5 @@ public class FreeMarkerNotificationMessageGenerator
 			freeMarkerContext.put("userId", kaleoInstanceToken.getUserId());
 		}
 	}
+
 }

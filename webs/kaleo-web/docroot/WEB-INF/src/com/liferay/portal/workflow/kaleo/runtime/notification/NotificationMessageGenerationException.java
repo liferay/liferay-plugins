@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -14,19 +14,31 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.notification;
 
+import com.liferay.portal.kernel.workflow.WorkflowException;
+
 /**
- * <a href="NotificationMessageGenerationException.java.html"><b><i>View Source</i></b></a>
+ * <a href="NotificationMessageGenerationException.java.html"><b><i>View Source
+ * </i>
+ * </b></a>
  *
  * @author Michael C. Han
  */
-public class NotificationMessageGenerationException extends Exception {
+public class NotificationMessageGenerationException extends WorkflowException {
 
-	public NotificationMessageGenerationException(String message) {
-		super(message);
+	public NotificationMessageGenerationException() {
+		super();
 	}
 
-	public NotificationMessageGenerationException(
-		String message, Throwable cause) {
-		super(message,cause);
+	public NotificationMessageGenerationException(String msg) {
+		super(msg);
 	}
+
+	public NotificationMessageGenerationException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public NotificationMessageGenerationException(Throwable cause) {
+		super(cause);
+	}
+
 }

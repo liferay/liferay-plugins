@@ -15,10 +15,13 @@
 package com.liferay.portal.workflow.kaleo;
 
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalService;
+import com.liferay.portal.workflow.kaleo.service.KaleoNotificationLocalService;
+import com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceAssignmentLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalService;
@@ -29,6 +32,9 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalService;
  * @author Brian Wing Shun Chan
  */
 public class BaseKaleoBean {
+
+	@BeanReference(type = KaleoActionLocalService.class)
+	protected KaleoActionLocalService kaleoActionLocalService;
 
 	@BeanReference(type = KaleoDefinitionLocalService.class)
 	protected KaleoDefinitionLocalService kaleoDefinitionLocalService;
@@ -42,8 +48,12 @@ public class BaseKaleoBean {
 	@BeanReference(type = KaleoLogLocalService.class)
 	protected KaleoLogLocalService kaleoLogLocalService;
 
-	@BeanReference(type = KaleoTaskLocalService.class)
-	protected KaleoTaskLocalService kaleoTaskLocalService;
+	@BeanReference(type = KaleoNotificationLocalService.class)
+	protected KaleoNotificationLocalService kaleoNotificationLocalService;
+
+	@BeanReference(type = KaleoNotificationRecipientLocalService.class)
+	protected KaleoNotificationRecipientLocalService
+		kaleoNotificationRecipientLocalService;
 
 	@BeanReference(type = KaleoTaskInstanceAssignmentLocalService.class)
 	protected KaleoTaskInstanceAssignmentLocalService
@@ -52,5 +62,8 @@ public class BaseKaleoBean {
 	@BeanReference(type = KaleoTaskInstanceTokenLocalService.class)
 	protected KaleoTaskInstanceTokenLocalService
 		kaleoTaskInstanceTokenLocalService;
+
+	@BeanReference(type = KaleoTaskLocalService.class)
+	protected KaleoTaskLocalService kaleoTaskLocalService;
 
 }
