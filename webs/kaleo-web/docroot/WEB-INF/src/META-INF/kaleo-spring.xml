@@ -34,6 +34,32 @@
 		<property name="workflowDeployer" ref="com.liferay.portal.workflow.kaleo.deployment.WorkflowDeployer" />
 		<property name="workflowModelParser" ref="com.liferay.portal.workflow.kaleo.parser.WorkflowModelParser" />
 	</bean>
+
+	<bean id="com.liferay.portal.workflow.kaleo.manager.PortalKaleoManagerUtil" class="com.liferay.portal.workflow.kaleo.manager.PortalKaleoManagerUtil">
+		<property name="portalKaleoManager" ref="com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager" />
+	</bean>
+
+	<bean id="com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager" class="com.liferay.portal.workflow.kaleo.manager.DefaultPortalKaleoManager">
+		<property name="defaultRoles">
+			<map>
+				<entry key="Content_Reviewers" value="Role granted to all users who are reviewers in the content management workflow" />
+			</map>
+		</property>
+		<property name="definitionFilesMap">
+			<map>
+				<entry key="Automatic Approval" value="META-INF/definitions/auto-approve-definition.xml" />
+				<entry key="Single Approver" value="META-INF/definitions/single-approver-definition.xml" />
+			</map>
+		</property>
+		<property name="definitionAssetMap">
+			<map>
+				<entry key="Automatic Approval" value="com.liferay.portlet.documentlibrary.model.DLFileEntry" />
+				<entry key="Single Approver" value="com.liferay.portlet.journal.model.JournalArticle" />
+			</map>			
+		</property>
+		<property name="workflowDefinitionManager" ref="com.liferay.portal.kernel.workflow.WorkflowDefinitionManager" />
+	</bean>
+	
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorFactory" class="com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorFactory">
 		<property name="actionExecutors">
 			<map>

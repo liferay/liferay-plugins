@@ -15,18 +15,16 @@
 	</bean>
 
 	<!-- Listeners -->
-
+	<bean id="com.liferay.portal.kernel.workflow.WorkflowDefinitionManager" class="com.liferay.portal.workflow.kaleo.WorkflowDefinitionManagerImpl">
+		<property name="workflowEngine" ref="com.liferay.portal.workflow.kaleo.runtime.WorkflowEngine" />
+	</bean>
 	<bean id="messageListener.kaleo_graph_walker" class="com.liferay.portal.workflow.kaleo.runtime.graph.messaging.PathElementMessageListener">
 		<property name="graphWalker" ref="com.liferay.portal.workflow.kaleo.runtime.graph.GraphWalker" />
 
 		<property name="destinationName" value="liferay/kaleo_graph_walker" />
 	</bean>
 	<bean id="messageListener.workflow_definition" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
-		<property name="manager">
-			<bean class="com.liferay.portal.workflow.kaleo.WorkflowDefinitionManagerImpl">
-				<property name="workflowEngine" ref="com.liferay.portal.workflow.kaleo.runtime.WorkflowEngine" />
-			</bean>
-		</property>
+		<property name="manager" ref="com.liferay.portal.kernel.workflow.WorkflowDefinitionManager" />
 	</bean>
 	<bean id="messageListener.workflow_engine" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
 		<property name="manager">
@@ -93,6 +91,15 @@
 						<ref bean="messageListener.workflow_task" />
 					</list>
 				</entry>
+				<entry key="liferay/hot_deploy">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<bean class="com.liferay.portal.workflow.kaleo.manager.messaging.KaleoDeploymentEventMessageListener">
+							<property name="portalKaleoManager" ref="com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager" />
+							<property name="contextName" value="kaleo-web" />
+						</bean>
+					</list>
+				</entry>
+				<!---->
 			</map>
 		</property>
 		<property name="specificDestinationEventListener">

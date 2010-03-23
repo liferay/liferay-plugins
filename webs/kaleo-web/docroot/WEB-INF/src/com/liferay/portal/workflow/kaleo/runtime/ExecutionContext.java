@@ -76,6 +76,16 @@ public class ExecutionContext {
 		return _transitionName;
 	}
 
+	public void setKaleoTaskInstanceAssigment(
+		KaleoTaskInstanceAssignment kaleoTaskInstanceAssigment) {
+		_kaleoTaskInstanceAssigment = kaleoTaskInstanceAssigment;
+	}
+
+	public void setKaleoTaskInstanceToken(
+		KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+		_kaleoTaskInstanceToken = kaleoTaskInstanceToken;
+	}
+
 	public void setTransitionName(String transitionName) {
 		_transitionName = transitionName;
 	}
