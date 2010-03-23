@@ -359,7 +359,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		return state;
 	}
 
-	protected Task parseTask(Element taskElement) throws WorkflowException {
+	protected Task parseTask(Element taskElement) {
 		String name = taskElement.attributeValue("name");
 		String description = taskElement.elementText("description");
 
