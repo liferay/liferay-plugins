@@ -3,13 +3,17 @@
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
-			<h1>Welcome to 7Cogs</h1>
+			<h1>
+				Welcome to 7Cogs
+			</h1>
 
 			<p>
 				We specialize in manufacturing and developing gears, sprockets, cogs, bearings, and everything in between.
 			</p>
 
-			<h3>Full Product Line and Services:</h3>
+			<h3>
+				Full Product Line and Services:
+			</h3>
 
 			<ul>
 				<li>

@@ -53,8 +53,13 @@
 			</style>
 
 			<div class="welcome">
-				<h2>Welcome to Liferay</h2>
+
+				<h2>
+					Welcome to Liferay
+				</h2>
+
 				<img alt="Shared Workspaces" class="right" src="/image/image_gallery?uuid=[$SHARED_WORKSPACES_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
+
 				<p class="intro">
 					Liferay is a complete, all-in-one open source enterprise portal solution and web application platform.
 				</p>
@@ -64,51 +69,74 @@
 				<p>
 					Once you're done taking a look around, and if you haven't decided yet, you might want to ask yourself this question: <em>&quot;what are you going to use Liferay for?&quot;</em>
 				</p>
+
 				<h3>As a Portal</h3>
+
 				<p>
 					Portals are designed to unify information. Liferay was designed with people in mind. We know how important it is to communicate within companies and here's some of the ways we try to make it easier for you.
 				</p>
+
 				<h4>Shared Workspaces</h4>
+
 				<p>
 					Increase productivity by creating workspaces and workflows for documents, content, and more. Create a central meeting place for everyone related to a project; now then, imagine getting everyone on the same "page," no matter where they are.
 				</p>
+
 				<h4>Social Communities and Networks</h4>
+
 				<img alt="Liferay Community Image" class="right" src="/image/image_gallery?uuid=[$SOCIAL_NETWORKING_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
+
 				<p>
 					Remember Eddie, Olivia, and Johnny from accounting? What about Tom, Ryan, Jenn, and Steve from professional services? How do they communicate? E-mail can only go so far and instant messages can get lost or deleted. Now you're probably wondering, is there a better way?
 				</p>
+
 				<blockquote>
 					Communicate, collaborate, and consolidate information...
 				</blockquote>
+
 				<p>
 					By creating communities for different departments or groups within your company, then leveraging blogs, wikis, message boards, and shared calendars and get them organized and talking. With Liferay 6.0 we've improved this with community templates. When creating a new community, just specify the type of community, we'll propagate pages with portlets commonly associated with that community, then just edit and save to your liking.
 				</p>
+
 				<h4>Content Management System</h4>
+
 				<img alt="Liferay CMS Image" class="right" src="/image/image_gallery?uuid=[$WEB_PUBLISHING_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
+
 				<p>
 					Liferay isn't just an internal portal, as an external and facing portal, you'll have the tools you need to create beautiful, dynamic websites. Create content through an editorial workflow then use and re-use that content ubiquitously through your portal.
 				</p>
 				<p>
 					In this release, we've made many improvements to make finding and publishing your content as global as possible.
 				</p>
+
 				<h3>As a Platform</h3>
+
 				<img alt="Platform Image" class="right" src="/image/image_gallery?uuid=[$PORTAL_MASHUPS_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
+
 				<p>
 					Liferay is a robust web application platform.It's open source so developers can see how things work.
 				</p>
+
 				<h4>SOA</h4>
+
 				<p>
 					Speed up development with built-in developer tools, LDAP, web services, and Spring-based architecture. Rapidly produce portlets and applications that cater to your needs.
 				</p>
+
 				<h4>Enterprise Integration</h4>
+
 				<p>
 					We meet industry standards which reduces risk and increases re-usability from within Liferay.
 				</p>
+
 				<h4>Mashups</h4>
+
 				<p>
 					Liferay supports mashup development with support for widgets, Facebook&reg; integration, iGoogle&reg; support, and GoogleMaps&reg;
 				</p>
+
 				<h3>Some Companies That Use Liferay</h3>
+
 				<p>
 					<a href="http://developer.cisco.com" target="_blank">Cisco Developer Network</a>, <a href="http://www.monsterenergy.com" target="_blank">Monster Energy Drink</a>, <a href="http://www.teambeachbody.com" target="_blank">Teambeachbody.com</a>, <a href="http://www.eamobile.com/home/" target="_blank">EA Mobile</a>, <a href="http://www.poken.com/" target="_blank">Poken</a>, <a href="http://reboot.fcc.gov/" target="_blank">FCC Reboot</a>, and many corporate intranet sites... for case studies and more, visit <a href="http://www.liferay.com/products/liferay-portal/stories" target="_blank">Liferay: Stories</a>.
 				</p>
@@ -116,18 +144,30 @@
 				<hr/>
 
 				<h3>Build With Us</h3>
+
 				<p>
 					What else does Liferay, as a company, do? We provide <a href="http://www.liferay.com/services">services</a>.
 				</p>
+
 				<ul>
-					<li>We offer <a href="http://www.liferay.com/services/subscription">Enterprise Support</a>, 24 hours a day, seven days a week.</li>
-					<li><a href="http://www.liferay.com/services/training">Training</a> tailored to fit your organization's needs.</li>
-					<li>Through our <a href="http://www.liferay.com/services/consulting">consulting services</a>, our experts are available to help you at every stage of the application's lifecycle.</li>
-					<li>If you develop for the Liferay application, why not <a href="http://www.liferay.com/partners/service-partners">partner with us</a> and help us build.</li>
+					<li>
+						We offer <a href="http://www.liferay.com/services/subscription">Enterprise Support</a>, 24 hours a day, seven days a week.
+					</li>
+					<li>
+						<a href="http://www.liferay.com/services/training">Training</a> tailored to fit your organization's needs.
+					</li>
+					<li>
+						Through our <a href="http://www.liferay.com/services/consulting">consulting services</a>, our experts are available to help you at every stage of the application's lifecycle.
+					</li>
+					<li>
+						If you develop for the Liferay application, why not <a href="http://www.liferay.com/partners/service-partners">partner with us</a> and help us build.
+					</li>
 				</ul>
+
 				<p>
 					Visit <a href="http://www.liferay.com">Liferay.com</a>, for <a href="http://www.liferay.com/about-us/news">updates</a>, <a href="http://www.liferay.com/about-us/events/">events</a>, and join our <a href="http://www.liferay.com/community">community</a>.
 				</p>
+
 			</div>
 		]]>
 	</static-content>

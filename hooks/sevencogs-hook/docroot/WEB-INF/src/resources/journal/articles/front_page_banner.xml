@@ -9,6 +9,7 @@
 					padding: 0px;
 				}
 			</style>
+
 			<div class="single-image-front">
 				<img alt="" src="/image/image_gallery?uuid=[$INTRODUCING_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]" />
 			</div>

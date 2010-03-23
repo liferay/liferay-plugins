@@ -3,15 +3,27 @@
 <root available-locales="en_US," default-locale="">
 	<static-content language-id="en_US">
 		<![CDATA[
-			<h2>Administrate Everything fast!</h2>
+			<h2>
+				Administrate Everything fast!
+			</h2>
+
 			<p>
 				Access the Control panel in the dock menu to administrate:
 			</p>
+
 			<ul>
-				<li>Users, organizations, communities...</li>
-				<li>All the content from the portal (Articles, blogs, wiki...)</li>
-				<li>settings of the portal or the server</li>
-				<li>Install new plugins</li>
+				<li>
+					Users, organizations, communities...
+				</li>
+				<li>
+					All the content from the portal (Articles, blogs, wiki...)
+				</li>
+				<li>
+					settings of the portal or the server
+				</li>
+				<li>
+					Install new plugins
+				</li>
 			</ul>
 		]]>
 	</static-content>

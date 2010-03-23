@@ -34,6 +34,7 @@
 					background: url("/html/themes/classic/images/common/view_tasks.png") no-repeat;
 				}
 			</style>
+
 			<form action="/web/guest/home" method="post" name="loginadmin">
 				<input name="p_p_id" type="hidden" value="58" />
 				<input name="p_p_lifecycle" type="hidden" value="1" />
@@ -42,17 +43,23 @@
 				<input name="_58_struts_action" type="hidden" value="/login/login" />
 				<input name="_58_login" type="hidden" value="bruno@7cogs.com" />
 				<input name="_58_password" type="hidden" value="bruno" />
+
 				<div class="loginuser" title="Login: bruno@7cogs.com, Password: bruno">
 					<div class="user-profile-image" style="float: left; padding-right: 4px;">
 						<img alt="" class="avatar" src="/image/user_portrait?screenName=bruno&amp;companyId=[$COMPANY_ID$]&amp;t=1228845375900" width="80" />
 					</div>
+
 					<h2>Bruno (Admin)</h2>
+
 					<div>
 						The admin has full control over the entire portal, allowing modification and creation of users, communitities, and roles. <a class="public_pages" href="/web/bruno">View bruno's public page</a> <a class="express_login" href="#" onclick="document.loginadmin.submit();return false;">Login as bruno</a>
+
 					</div>
 				</div>
+
 			</form>
 			<form action="/web/guest/home" method="post" name="loginrich">
+
 				<input name="p_p_id" type="hidden" value="58" />
 				<input name="p_p_lifecycle" type="hidden" value="1" />
 				<input name="p_p_mode" type="hidden" value="view" />
@@ -65,13 +72,17 @@
 					<div class="user-profile-image" style="float: left; padding-right: 4px;">
 						<img alt="" class="avatar" src="/image/user_portrait?screenName=richard&amp;companyId=[$COMPANY_ID$]&amp;t=1228845375871" width="80" />
 					</div>
+
 					<h2>Richard Publisher</h2>
+
 					<div>
 						Richard has article submission rights for the content management system. <a class="public_pages" href="/web/richard">View richard's public page</a> <a class="express_login" href="#" onclick="document.loginrich.submit();return false;">Login as richard</a>
 					</div>
 				</div>
+
 			</form>
 			<form action="/web/guest/home" method="post" name="loginmichelle">
+
 				<input name="p_p_id" type="hidden" value="58" />
 				<input name="p_p_lifecycle" type="hidden" value="1" />
 				<input name="p_p_mode" type="hidden" value="view" />
@@ -79,18 +90,22 @@
 				<input name="_58_struts_action" type="hidden" value="/login/login" />
 				<input name="_58_login" type="hidden" value="michelle@7cogs.com" />
 				<input name="_58_password" type="hidden" value="michelle" />
+
 				<div class="loginuser" title="Login: michelle@7cogs.com, Password: michelle">
 					<div class="user-profile-image" style="float: left; padding-right: 4px;">
 						<img alt="" class="avatar" src="/image/user_portrait?screenName=michelle&amp;companyId=[$COMPANY_ID$]&amp;t=1228845375823" width="80" />
 					</div>
+
 					<h2>Michelle Editor</h2>
+
 					<div>
 						Michelle has control over the staging and layout of all articles as well as publishing rights for workflow and the content management system. <a class="public_pages" href="/web/michelle">View michelle's public page</a> <a class="express_login" href="#" onclick="document.loginmichelle.submit();return false;">Login as michelle</a>
 					</div>
 				</div>
-			</form>
 
+			</form>
 			<form action="/web/guest/home" method="post" name="loginjohn">
+
 				<input name="p_p_id" type="hidden" value="58" />
 				<input name="p_p_lifecycle" type="hidden" value="1" />
 				<input name="p_p_mode" type="hidden" value="view" />
@@ -108,12 +123,12 @@
 
 					<div>
 						John is a user with minimum rights within the portal.
-
 						<div>
 							<a class="public_pages" href="/web/john">View john's public page</a> <a class="express_login" href="#" onclick="document.loginjohn.submit();return false;">Login as john</a>
 						</div>
 					</div>
 				</div>
+
 			</form>
 		]]>
 	</static-content>

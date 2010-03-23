@@ -3,14 +3,24 @@
 <root available-locales="en_US," default-locale="">
 	<static-content language-id="en_US">
 		<![CDATA[
-			<h2><img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" /> Richard&#39;s Private Page</h2>
+			<h2>
+				<img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" /> Richard&#39;s Private Page
+			</h2>
+
 			<p>
 				These are my private pages. Only I can see them, edit them and create new ones.
 			</p>
+
 			<ul>
-				<li>Social Space - Shows my friends and their activities.</li>
-				<li>Work Space - Has my calendar, documents, images...</li>
-				<li>Email - I can configure this page to view my emails.</li>
+				<li>
+					Social Space - Shows my friends and their activities.
+				</li>
+				<li>
+					Work Space - Has my calendar, documents, images...
+				</li>
+				<li>
+					Email - I can configure this page to view my emails.
+				</li>
 			</ul>
 			<p>
 				To add more applications just go to the <a href="http://www.liferay.com/community/wiki/-/wiki/1071674/Dockbar/maximized" target="_blank"><em>Dockbar</em></a> and click on the <strong>&quot;+ Add&quot;</strong> button. It should bring out a menu, from there, you'll be able to add a pages and applications.

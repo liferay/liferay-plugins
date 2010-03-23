@@ -9,6 +9,7 @@
 			<p>
 				<img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" />&nbsp; Adding new content or modifying already existing content is very easy.
 			</p>
+
 			<ul>
 				<li>
 					You must be the administrator of this community or have permission to edit this page. In this example, Bruno is the administrator and Michelle can Edit Content although she can't publish it until Rich approves it.
@@ -16,6 +17,7 @@
 				<li>
 					On this page there are 5 Web Content Display portlets (Some of them have an image and some of them have text). In order to add more content, go to your dock menu --&gt; Add Application --&gt; Content Management --&gt; Web Content Display.<br />
 					In the beginning it will be empty, but you can create a new Article or display one that is already created. You will find the following icons in your portlet:
+
 					<ul>
 						<li>
 							<img alt="" height="16" src="/image/image_gallery?uuid=[$EDIT_ICON_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]&amp;t=1229378466060" width="16" />&nbsp; Edit this article
@@ -30,8 +32,10 @@
 							<img alt="" height="16" src="/image/image_gallery?uuid=[$LOOK_ICON_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]&amp;t=1229378576518" width="16" />&nbsp; Look and Feel (style for the portlet, hide the borders, margins, paddings, colors...)
 						</li>
 					</ul>
+
 				</li>
 			</ul>
+
 			<p>
 				You can also remove this Web Content Display simply by clicking on the close button above
 			</p>
