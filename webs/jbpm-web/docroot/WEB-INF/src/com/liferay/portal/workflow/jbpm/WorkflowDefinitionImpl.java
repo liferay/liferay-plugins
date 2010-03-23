@@ -15,6 +15,7 @@
 package com.liferay.portal.workflow.jbpm;
 
 import com.liferay.portal.kernel.workflow.DefaultWorkflowDefinition;
+import com.liferay.util.LocalizationUtil;
 
 import org.jbpm.graph.def.ProcessDefinition;
 
@@ -27,11 +28,16 @@ import org.jbpm.graph.def.ProcessDefinition;
 public class WorkflowDefinitionImpl extends DefaultWorkflowDefinition {
 
 	public WorkflowDefinitionImpl(
-		ProcessDefinition processDefinition, boolean active) {
+		ProcessDefinition processDefinition, String title, boolean active) {
 
 		setActive(active);
 		setName(processDefinition.getName());
+		setTitle(title);
 		setVersion(processDefinition.getVersion());
+	}
+
+	public String getTitle(String languageId) {
+		return LocalizationUtil.getLocalization(getTitle(), languageId);
 	}
 
 }

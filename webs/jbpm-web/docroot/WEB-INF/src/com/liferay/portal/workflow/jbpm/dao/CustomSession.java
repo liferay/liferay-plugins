@@ -17,7 +17,7 @@ package com.liferay.portal.workflow.jbpm.dao;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowLog;
-import com.liferay.portal.workflow.jbpm.WorkflowDefinitionStatusImpl;
+import com.liferay.portal.workflow.jbpm.WorkflowDefinitionExtensionImpl;
 import com.liferay.portal.workflow.jbpm.WorkflowLogImpl;
 
 import java.util.ArrayList;
@@ -170,11 +170,11 @@ public class CustomSession {
 		}
 	}
 
-	public void deleteWorkflowDefinitionStatus(long processDefinitionId) {
-		WorkflowDefinitionStatusImpl workflowDefinitionStatus =
-			findWorkflowDefinitonStatus(processDefinitionId);
+	public void deleteWorkflowDefinitionExtension(long processDefinitionId) {
+		WorkflowDefinitionExtensionImpl workflowDefinitionExtension =
+			findWorkflowDefinitonExtension(processDefinitionId);
 
-		_session.delete(workflowDefinitionStatus);
+		_session.delete(workflowDefinitionExtension);
 	}
 
 	public void deleteWorkflowLogs(long processInstanceId) {
@@ -331,17 +331,17 @@ public class CustomSession {
 		}
 	}
 
-	public WorkflowDefinitionStatusImpl findWorkflowDefinitonStatus(
+	public WorkflowDefinitionExtensionImpl findWorkflowDefinitonExtension(
 		long processDefinitionId){
 
 		try {
 			Criteria criteria = _session.createCriteria(
-				WorkflowDefinitionStatusImpl.class);
+				WorkflowDefinitionExtensionImpl.class);
 
 			criteria.add(
 				Restrictions.eq("processDefinition.id", processDefinitionId));
 
-			return (WorkflowDefinitionStatusImpl)criteria.uniqueResult();
+			return (WorkflowDefinitionExtensionImpl)criteria.uniqueResult();
 		}
 		catch (Exception e) {
 			throw new JbpmException(e);

@@ -51,7 +51,7 @@ public class WorkflowDefinitionManagerImpl
 	implements WorkflowDefinitionManager {
 
 	public WorkflowDefinition deployWorkflowDefinition(
-			long companyId, long userId, InputStream inputStream)
+			long companyId, long userId, String title, InputStream inputStream)
 		throws WorkflowException {
 
 		ProcessDefinition processDefinition = null;
@@ -82,18 +82,19 @@ public class WorkflowDefinitionManagerImpl
 		try {
 			jbpmContext.deployProcessDefinition(processDefinition);
 
-			WorkflowDefinitionStatusImpl workflowDefinitionStatus =
-				new WorkflowDefinitionStatusImpl(processDefinition, true);
+			WorkflowDefinitionExtensionImpl workflowDefinitionExtension =
+				new WorkflowDefinitionExtensionImpl(
+					processDefinition, title, true);
 
 			Session session = jbpmContext.getSession();
 
-			session.save(workflowDefinitionStatus);
+			session.save(workflowDefinitionExtension);
 		}
 		finally {
 			jbpmContext.close();
 		}
 
-		return new WorkflowDefinitionImpl(processDefinition, true);
+		return new WorkflowDefinitionImpl(processDefinition, title, true);
 	}
 
 	public int getActiveWorkflowDefinitionCount(long companyId) {
@@ -134,12 +135,13 @@ public class WorkflowDefinitionManagerImpl
 			if (processDefinition != null) {
 				CustomSession customSession = new CustomSession(jbpmContext);
 
-				WorkflowDefinitionStatusImpl workflowDefinitionStatus =
-					customSession.findWorkflowDefinitonStatus(
+				WorkflowDefinitionExtensionImpl workflowDefinitionExtension =
+					customSession.findWorkflowDefinitonExtension(
 						processDefinition.getId());
 
 				return new WorkflowDefinitionImpl(
-					processDefinition, workflowDefinitionStatus.isActive());
+					processDefinition, workflowDefinitionExtension.getTitle(),
+					workflowDefinitionExtension.isActive());
 			}
 			else {
 				throw new WorkflowException(
@@ -251,7 +253,7 @@ public class WorkflowDefinitionManagerImpl
 
 				CustomSession customSession = new CustomSession(jbpmContext);
 
-				customSession.deleteWorkflowDefinitionStatus(
+				customSession.deleteWorkflowDefinitionExtension(
 					processDefinition.getId());
 
 				for (ProcessInstance processInstance : processInstances) {
@@ -271,39 +273,16 @@ public class WorkflowDefinitionManagerImpl
 			boolean active)
 		throws WorkflowException{
 
-		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+		return updateWorkflowDefinitionExtension(
+			companyId, userId, name, version, null, active);
+	}
 
-		try {
-			GraphSession graphSession = jbpmContext.getGraphSession();
+	public WorkflowDefinition updateTitle(
+			long companyId, long userId, String name, int version, String title)
+		throws WorkflowException {
 
-			ProcessDefinition processDefinition =
-				graphSession.findProcessDefinition(name, version);
-
-			if (processDefinition != null) {
-				CustomSession customSession = new CustomSession(jbpmContext);
-
-				WorkflowDefinitionStatusImpl workflowDefinitionStatus =
-					customSession.findWorkflowDefinitonStatus(
-						processDefinition.getId());
-
-				workflowDefinitionStatus.setActive(active);
-
-				Session session = jbpmContext.getSession();
-
-				session.update(workflowDefinitionStatus);
-
-				return new WorkflowDefinitionImpl(
-					processDefinition, workflowDefinitionStatus.isActive());
-			}
-			else {
-				throw new WorkflowException(
-					"No workflow definition with name " + name +
-						" and version " + version);
-			}
-		}
-		finally {
-			jbpmContext.close();
-		}
+		return updateWorkflowDefinitionExtension(
+			companyId, userId, name, version, title, null);
 	}
 
 	protected List<WorkflowDefinition> toWorkflowDefinitions(
@@ -318,18 +297,67 @@ public class WorkflowDefinitionManagerImpl
 			for (ProcessDefinition processDefinition : processDefinitions) {
 				CustomSession customSession = new CustomSession(jbpmContext);
 
-				WorkflowDefinitionStatusImpl workflowDefinitionStatus =
-					customSession.findWorkflowDefinitonStatus(
+				WorkflowDefinitionExtensionImpl workflowDefinitionExtension =
+					customSession.findWorkflowDefinitonExtension(
 						processDefinition.getId());
 
 				WorkflowDefinition workflowDefinition =
 					new WorkflowDefinitionImpl(
-						processDefinition, workflowDefinitionStatus.isActive());
+						processDefinition,
+						workflowDefinitionExtension.getTitle(),
+						workflowDefinitionExtension.isActive());
 
 				workflowDefinitions.add(workflowDefinition);
 			}
 
 			return workflowDefinitions;
+		}
+		finally {
+			jbpmContext.close();
+		}
+	}
+
+	protected WorkflowDefinition updateWorkflowDefinitionExtension(
+			long companyId, long userId, String name, int version, String title,
+			Boolean active)
+		throws WorkflowException {
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			GraphSession graphSession = jbpmContext.getGraphSession();
+
+			ProcessDefinition processDefinition =
+				graphSession.findProcessDefinition(name, version);
+
+			if (processDefinition != null) {
+				CustomSession customSession = new CustomSession(jbpmContext);
+
+				WorkflowDefinitionExtensionImpl workflowDefinitionExtension =
+					customSession.findWorkflowDefinitonExtension(
+						processDefinition.getId());
+
+				if (title != null) {
+					workflowDefinitionExtension.setTitle(title);
+				}
+
+				if (active != null) {
+					workflowDefinitionExtension.setActive(active);
+				}
+
+				Session session = jbpmContext.getSession();
+
+				session.update(workflowDefinitionExtension);
+
+				return new WorkflowDefinitionImpl(
+					processDefinition, workflowDefinitionExtension.getTitle(),
+					workflowDefinitionExtension.isActive());
+			}
+			else {
+				throw new WorkflowException(
+					"No workflow definition with name " + name +
+						" and version " + version);
+			}
 		}
 		finally {
 			jbpmContext.close();

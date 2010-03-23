@@ -17,20 +17,21 @@ package com.liferay.portal.workflow.jbpm;
 import org.jbpm.graph.def.ProcessDefinition;
 
 /**
- * <a href="WorkflowDefinitionStatusImpl.java.html"><b><i>View Source</i></b>
+ * <a href="WorkflowDefinitionExtensionImpl.java.html"><b><i>View Source</i></b>
  * </a>
  *
  * @author Marcellus Tavares
  */
-public class WorkflowDefinitionStatusImpl {
+public class WorkflowDefinitionExtensionImpl {
 
-	public WorkflowDefinitionStatusImpl() {
+	public WorkflowDefinitionExtensionImpl() {
 	}
 
-	public WorkflowDefinitionStatusImpl(
-		ProcessDefinition processDefinition, boolean active){
+	public WorkflowDefinitionExtensionImpl(
+		ProcessDefinition processDefinition, String title, boolean active){
 
 		_processDefinition = processDefinition;
+		_title = title;
 		_active = active;
 	}
 
@@ -38,8 +39,12 @@ public class WorkflowDefinitionStatusImpl {
 		return _processDefinition;
 	}
 
-	public long getWorkflowDefinitionStatusId(){
-		return _workflowDefinitionStatusId;
+	public String getTitle(){
+		return _title;
+	}
+
+	public long getWorkflowDefinitionExtensionId(){
+		return _workflowDefinitionExtensionId;
 	}
 
 	public boolean isActive(){
@@ -54,12 +59,19 @@ public class WorkflowDefinitionStatusImpl {
 		_processDefinition = processDefinition;
 	}
 
-	public void setWorkflowDefinitionStatusId(long workflowDefinitionStatusId){
-		_workflowDefinitionStatusId = workflowDefinitionStatusId;
+	public void setTitle(String title){
+		_title = title;
+	}
+
+	public void setWorkflowDefinitionExtensionId(
+		long workflowDefinitionExtensionId){
+
+		_workflowDefinitionExtensionId = workflowDefinitionExtensionId;
 	}
 
 	private boolean _active;
+	private String _title;
 	private ProcessDefinition _processDefinition;
-	private long _workflowDefinitionStatusId;
+	private long _workflowDefinitionExtensionId;
 
 }
