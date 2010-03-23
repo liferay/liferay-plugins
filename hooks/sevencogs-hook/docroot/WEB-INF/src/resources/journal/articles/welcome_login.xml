@@ -34,7 +34,7 @@
 					background: url("/html/themes/classic/images/common/view_tasks.png") no-repeat;
 				}
 			</style>
-			<form action="/web/guest/home" method="post" name="loginadmin" >
+			<form action="/web/guest/home" method="post" name="loginadmin">
 				<input name="p_p_id" type="hidden" value="58" />
 				<input name="p_p_lifecycle" type="hidden" value="1" />
 				<input name="p_p_mode" type="hidden" value="view" />
@@ -42,8 +42,8 @@
 				<input name="_58_struts_action" type="hidden" value="/login/login" />
 				<input name="_58_login" type="hidden" value="bruno@7cogs.com" />
 				<input name="_58_password" type="hidden" value="bruno" />
-				<div class="loginuser" title="Login: bruno@7cogs.com, Password: bruno" >
-					<div class="user-profile-image" style="float: left; padding-right: 4px;" >
+				<div class="loginuser" title="Login: bruno@7cogs.com, Password: bruno">
+					<div class="user-profile-image" style="float: left; padding-right: 4px;">
 						<img alt="" class="avatar" src="/image/user_portrait?screenName=bruno&amp;companyId=[$COMPANY_ID$]&amp;t=1228845375900" width="80" />
 					</div>
 					<h2>Bruno (Admin)</h2>
@@ -60,8 +60,9 @@
 				<input name="_58_struts_action" type="hidden" value="/login/login" />
 				<input name="_58_login" type="hidden" value="richard@7cogs.com" />
 				<input name="_58_password" type="hidden" value="richard" />
-				<div class="loginuser" title="Login: richard@7cogs.com, Password: richard" >
-					<div class="user-profile-image" style="float: left; padding-right: 4px;" >
+
+				<div class="loginuser" title="Login: richard@7cogs.com, Password: richard">
+					<div class="user-profile-image" style="float: left; padding-right: 4px;">
 						<img alt="" class="avatar" src="/image/user_portrait?screenName=richard&amp;companyId=[$COMPANY_ID$]&amp;t=1228845375871" width="80" />
 					</div>
 					<h2>Richard Publisher</h2>
@@ -79,7 +80,7 @@
 				<input name="_58_login" type="hidden" value="michelle@7cogs.com" />
 				<input name="_58_password" type="hidden" value="michelle" />
 				<div class="loginuser" title="Login: michelle@7cogs.com, Password: michelle">
-					<div class="user-profile-image" style="float: left; padding-right: 4px;" >
+					<div class="user-profile-image" style="float: left; padding-right: 4px;">
 						<img alt="" class="avatar" src="/image/user_portrait?screenName=michelle&amp;companyId=[$COMPANY_ID$]&amp;t=1228845375823" width="80" />
 					</div>
 					<h2>Michelle Editor</h2>
@@ -97,13 +98,17 @@
 				<input name="_58_struts_action" type="hidden" value="/login/login" />
 				<input name="_58_login" type="hidden" value="john@7cogs.com" />
 				<input name="_58_password" type="hidden" value="john" />
-				<div class="loginuser" title="Login: john@7cogs.com, Password: john" >
-					<div class="user-profile-image" style="float: left; padding-right: 4px;" >
+
+				<div class="loginuser" title="Login: john@7cogs.com, Password: john">
+					<div class="user-profile-image" style="float: left; padding-right: 4px;">
 						<img alt="" class="avatar" src="/image/user_portrait?screenName=john&amp;companyId=[$COMPANY_ID$]&amp;t=1228845375887" width="80" />
 					</div>
+
 					<h2>John Regular User</h2>
+
 					<div>
 						John is a user with minimum rights within the portal.
+
 						<div>
 							<a class="public_pages" href="/web/john">View john's public page</a> <a class="express_login" href="#" onclick="document.loginjohn.submit();return false;">Login as john</a>
 						</div>
