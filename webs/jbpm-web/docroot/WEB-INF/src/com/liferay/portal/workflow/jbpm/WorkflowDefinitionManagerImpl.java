@@ -291,12 +291,12 @@ public class WorkflowDefinitionManagerImpl
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {
+			CustomSession customSession = new CustomSession(jbpmContext);
+
 			List<WorkflowDefinition> workflowDefinitions =
 				new ArrayList<WorkflowDefinition>(processDefinitions.size());
 
 			for (ProcessDefinition processDefinition : processDefinitions) {
-				CustomSession customSession = new CustomSession(jbpmContext);
-
 				WorkflowDefinitionExtensionImpl workflowDefinitionExtension =
 					customSession.findWorkflowDefinitonExtension(
 						processDefinition.getId());

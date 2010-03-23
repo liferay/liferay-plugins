@@ -6,8 +6,8 @@
 		<id column="ID_" name="workflowDefinitionExtensionId">
 			<generator class="native" />
 		</id>
-		<property column="ACTIVE_" name="active" type="boolean" />
 		<property column="TITLE_" length="4000" name="title" type="string" />
+		<property column="ACTIVE_" name="active" type="boolean" />
 		<many-to-one column="PROCESSDEFINITION_" foreign-key="FK_PROCESSDEFINITIONEXTENSION_LIFERAY_PROCESSDEF" index="IDX_PROCESSDEFINITIONEXTENSION_LIFERAY_PROCESSDEF" name="processDefinition" unique="true" />
 	</class>
 </hibernate-mapping>

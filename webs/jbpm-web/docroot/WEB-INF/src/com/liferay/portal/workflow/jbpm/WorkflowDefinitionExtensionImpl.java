@@ -28,26 +28,26 @@ public class WorkflowDefinitionExtensionImpl {
 	}
 
 	public WorkflowDefinitionExtensionImpl(
-		ProcessDefinition processDefinition, String title, boolean active){
+		ProcessDefinition processDefinition, String title, boolean active) {
 
 		_processDefinition = processDefinition;
 		_title = title;
 		_active = active;
 	}
 
-	public ProcessDefinition getProcessDefinition(){
+	public ProcessDefinition getProcessDefinition() {
 		return _processDefinition;
 	}
 
-	public String getTitle(){
+	public String getTitle() {
 		return _title;
 	}
 
-	public long getWorkflowDefinitionExtensionId(){
+	public long getWorkflowDefinitionExtensionId() {
 		return _workflowDefinitionExtensionId;
 	}
 
-	public boolean isActive(){
+	public boolean isActive() {
 		return _active;
 	}
 
@@ -59,12 +59,12 @@ public class WorkflowDefinitionExtensionImpl {
 		_processDefinition = processDefinition;
 	}
 
-	public void setTitle(String title){
+	public void setTitle(String title) {
 		_title = title;
 	}
 
 	public void setWorkflowDefinitionExtensionId(
-		long workflowDefinitionExtensionId){
+		long workflowDefinitionExtensionId) {
 
 		_workflowDefinitionExtensionId = workflowDefinitionExtensionId;
 	}
