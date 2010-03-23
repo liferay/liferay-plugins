@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
+import com.liferay.portal.kernel.util.Validator;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,61 +25,6 @@ import java.util.Set;
  * @author Michael C. Han
  */
 public class Notification {
-	public enum Language {
-		FREEMARKER("freemarker"), TEXT("text"), VELOCITY("velocity");
-
-		public static Language parse(String value) {
-			if (TEXT._value.equals(value)) {
-				return TEXT;
-			}
-			else if (VELOCITY._value.equals(value)) {
-				return VELOCITY;
-			}
-			else if (FREEMARKER._value.equals(value)) {
-				return FREEMARKER;
-			}
-
-			throw new IllegalArgumentException("Invalid value " + value);
-		}
-
-		public String getValue() {
-			return _value;
-		}
-
-		private Language(String value) {
-			_value = value;
-		}
-
-		private String _value;
-	}
-
-	public enum NotificationType {
-		EMAIL("email"), IM("im"), PRIVATE_MESSAGE("private-message");
-
-		public static NotificationType parse(String value) {
-			if (EMAIL._value.equals(value)) {
-				return EMAIL;
-			}
-			else if (PRIVATE_MESSAGE._value.equals(value)) {
-				return PRIVATE_MESSAGE;
-			}
-			else if (IM._value.equals(value)) {
-				return IM;
-			}
-
-			throw new IllegalArgumentException("Invalid value " + value);
-		}
-
-		public String getValue() {
-			return _value;
-		}
-
-		private NotificationType(String value) {
-			_value = value;
-		}
-
-		private String _value;
-	}
 
 	public Notification(String name, String language, String actionType) {
 		_name = name;
@@ -93,17 +40,22 @@ public class Notification {
 		_recipients.add(recipient);
 	}
 
-	public boolean equals(Object object) {
-		if (this == object) {
-			return true;
-		}
-		if (object == null || getClass() != object.getClass()) {
+	public boolean equals(Object obj) {
+		if (obj == null) {
 			return false;
 		}
 
-		Notification notification = (Notification) object;
+		if (!(obj instanceof Notification)) {
+			return false;
+		}
 
-		return notification.getName().equals(getName());
+		Notification notification = (Notification)obj;
+
+		if (Validator.equals(_name, notification._name)) {
+			return true;
+		}
+
+		return true;
 	}
 
 	public ActionType getActionType() {
@@ -118,12 +70,12 @@ public class Notification {
 		return _language;
 	}
 
-	public Set<NotificationType> getNotificationTypes() {
-		return _notificationTypes;
-	}
-
 	public String getName() {
 		return _name;
+	}
+
+	public Set<NotificationType> getNotificationTypes() {
+		return _notificationTypes;
 	}
 
 	public Set<Recipient> getRecipients() {
@@ -150,7 +102,8 @@ public class Notification {
 	private String _description;
 	private Language _language;
 	private String _name;
-	private Set<NotificationType> _notificationTypes = new HashSet<NotificationType>();
+	private Set<NotificationType> _notificationTypes =
+		new HashSet<NotificationType>();
 	private Set<Recipient> _recipients = new HashSet<Recipient>();
 	private String _template;
 

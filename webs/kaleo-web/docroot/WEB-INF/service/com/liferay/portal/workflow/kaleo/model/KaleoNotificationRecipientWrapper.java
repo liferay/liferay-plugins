@@ -46,12 +46,13 @@ public class KaleoNotificationRecipientWrapper
 		_kaleoNotificationRecipient.setPrimaryKey(pk);
 	}
 
-	public long getKaleoRecipientId() {
-		return _kaleoNotificationRecipient.getKaleoRecipientId();
+	public long getKaleoNotificationRecipientId() {
+		return _kaleoNotificationRecipient.getKaleoNotificationRecipientId();
 	}
 
-	public void setKaleoRecipientId(long kaleoRecipientId) {
-		_kaleoNotificationRecipient.setKaleoRecipientId(kaleoRecipientId);
+	public void setKaleoNotificationRecipientId(
+		long kaleoNotificationRecipientId) {
+		_kaleoNotificationRecipient.setKaleoNotificationRecipientId(kaleoNotificationRecipientId);
 	}
 
 	public long getCompanyId() {
@@ -135,7 +136,7 @@ public class KaleoNotificationRecipientWrapper
 		_kaleoNotificationRecipient.setAddress(address);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient toEscapedModel() {
+	public KaleoNotificationRecipient toEscapedModel() {
 		return _kaleoNotificationRecipient.toEscapedModel();
 	}
 
@@ -180,8 +181,7 @@ public class KaleoNotificationRecipientWrapper
 		return _kaleoNotificationRecipient.clone();
 	}
 
-	public int compareTo(
-		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient) {
+	public int compareTo(KaleoNotificationRecipient kaleoNotificationRecipient) {
 		return _kaleoNotificationRecipient.compareTo(kaleoNotificationRecipient);
 	}
 

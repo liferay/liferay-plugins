@@ -23,26 +23,26 @@ public enum ActionType {
 
 	ON_ENTRY("onEntry"), ON_EXIT("onExit");
 
-	public static ActionType parse(String type) {
-		if (ON_ENTRY.getType().equals(type)) {
+	public static ActionType parse(String value) {
+		if (ON_ENTRY.getValue().equals(value)) {
 			return ON_ENTRY;
 		}
-		else if (ON_EXIT.getType().equals(type)) {
+		else if (ON_EXIT.getValue().equals(value)) {
 			return ON_EXIT;
 		}
 		else {
-			throw new IllegalArgumentException("Invalid type " + type);
+			throw new IllegalArgumentException("Invalid value " + value);
 		}
 	}
 
-	public String getType() {
-		return _type;
+	public String getValue() {
+		return _value;
 	}
 
-	private ActionType(String type) {
-		_type = type;
+	private ActionType(String value) {
+		_value = value;
 	}
 
-	private String _type;
+	private String _value;
 
 }

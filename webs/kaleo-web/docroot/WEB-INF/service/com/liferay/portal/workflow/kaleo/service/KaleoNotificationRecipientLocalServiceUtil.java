@@ -46,14 +46,17 @@ public class KaleoNotificationRecipientLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient createKaleoNotificationRecipient(
-		long kaleoRecipientId) {
-		return getService().createKaleoNotificationRecipient(kaleoRecipientId);
+		long kaleoNotificationRecipientId) {
+		return getService()
+				   .createKaleoNotificationRecipient(kaleoNotificationRecipientId);
 	}
 
-	public static void deleteKaleoNotificationRecipient(long kaleoRecipientId)
+	public static void deleteKaleoNotificationRecipient(
+		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoNotificationRecipient(kaleoRecipientId);
+		getService()
+			.deleteKaleoNotificationRecipient(kaleoNotificationRecipientId);
 	}
 
 	public static void deleteKaleoNotificationRecipient(
@@ -90,10 +93,11 @@ public class KaleoNotificationRecipientLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient getKaleoNotificationRecipient(
-		long kaleoRecipientId)
+		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getKaleoNotificationRecipient(kaleoRecipientId);
+		return getService()
+				   .getKaleoNotificationRecipient(kaleoNotificationRecipientId);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> getKaleoNotificationRecipients(
@@ -123,14 +127,15 @@ public class KaleoNotificationRecipientLocalServiceUtil {
 			merge);
 	}
 
-	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient addRecipient(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient addKaleoNotificationRecipient(
 		long kaleoNotificationId,
 		com.liferay.portal.workflow.kaleo.definition.Recipient recipient,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addRecipient(kaleoNotificationId, recipient, serviceContext);
+				   .addKaleoNotificationRecipient(kaleoNotificationId,
+			recipient, serviceContext);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> getKaleoNotificationRecipients(

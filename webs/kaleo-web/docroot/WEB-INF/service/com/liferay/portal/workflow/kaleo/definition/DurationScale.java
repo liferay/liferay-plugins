@@ -25,22 +25,22 @@ public enum DurationScale {
 	SECONDS("seconds"), YEARS("years");
 
 	public static DurationScale parse(String value) {
-		if (DAYS._value.equals(value)) {
+		if (DAYS.getValue().equals(value)) {
 			return DAYS;
 		}
-		else if (HOURS._value.equals(value)) {
+		else if (HOURS.getValue().equals(value)) {
 			return HOURS;
 		}
-		else if (MINUTES._value.equals(value)) {
+		else if (MINUTES.getValue().equals(value)) {
 			return MINUTES;
 		}
-		else if (MONTHS._value.equals(value)) {
+		else if (MONTHS.getValue().equals(value)) {
 			return MONTHS;
 		}
-		else if (SECONDS._value.equals(value)) {
+		else if (SECONDS.getValue().equals(value)) {
 			return SECONDS;
 		}
-		else if (YEARS._value.equals(value)) {
+		else if (YEARS.getValue().equals(value)) {
 			return YEARS;
 		}
 

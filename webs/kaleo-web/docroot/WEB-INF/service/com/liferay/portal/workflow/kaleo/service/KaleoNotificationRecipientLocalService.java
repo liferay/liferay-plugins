@@ -52,9 +52,10 @@ public interface KaleoNotificationRecipientLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient createKaleoNotificationRecipient(
-		long kaleoRecipientId);
+		long kaleoNotificationRecipientId);
 
-	public void deleteKaleoNotificationRecipient(long kaleoRecipientId)
+	public void deleteKaleoNotificationRecipient(
+		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.kernel.exception.PortalException;
 
@@ -82,7 +83,7 @@ public interface KaleoNotificationRecipientLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient getKaleoNotificationRecipient(
-		long kaleoRecipientId)
+		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.kernel.exception.PortalException;
 
@@ -104,7 +105,7 @@ public interface KaleoNotificationRecipientLocalService {
 		boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient addRecipient(
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient addKaleoNotificationRecipient(
 		long kaleoNotificationId,
 		com.liferay.portal.workflow.kaleo.definition.Recipient recipient,
 		com.liferay.portal.service.ServiceContext serviceContext)

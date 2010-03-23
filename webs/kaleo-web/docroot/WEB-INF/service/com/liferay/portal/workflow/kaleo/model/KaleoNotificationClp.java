@@ -177,10 +177,6 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		_notificationTypes = notificationTypes;
 	}
 
-	public java.lang.String[] getNotificationTypesArray() {
-		throw new UnsupportedOperationException();
-	}
-
 	public KaleoNotification toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;

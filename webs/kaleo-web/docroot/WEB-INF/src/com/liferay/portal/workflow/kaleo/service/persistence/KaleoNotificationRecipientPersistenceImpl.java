@@ -68,22 +68,22 @@ public class KaleoNotificationRecipientPersistenceImpl
 	public static final String FINDER_CLASS_NAME_ENTITY = KaleoNotificationRecipientImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
-	public static final FinderPath FINDER_PATH_FIND_BY_KNI = new FinderPath(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_KALEONOTIFICATIONID = new FinderPath(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNotificationRecipientModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByKNI",
+			FINDER_CLASS_NAME_LIST, "findByKaleoNotificationId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_KNI = new FinderPath(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_KALEONOTIFICATIONID = new FinderPath(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNotificationRecipientModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByKNI",
+			FINDER_CLASS_NAME_LIST, "findByKaleoNotificationId",
 			new String[] {
 				Long.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_KNI = new FinderPath(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_KALEONOTIFICATIONID = new FinderPath(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNotificationRecipientModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByKNI",
+			FINDER_CLASS_NAME_LIST, "countByKaleoNotificationId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNotificationRecipientModelImpl.FINDER_CACHE_ENABLED,
@@ -119,11 +119,11 @@ public class KaleoNotificationRecipientPersistenceImpl
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
-	public KaleoNotificationRecipient create(long kaleoRecipientId) {
+	public KaleoNotificationRecipient create(long kaleoNotificationRecipientId) {
 		KaleoNotificationRecipient kaleoNotificationRecipient = new KaleoNotificationRecipientImpl();
 
 		kaleoNotificationRecipient.setNew(true);
-		kaleoNotificationRecipient.setPrimaryKey(kaleoRecipientId);
+		kaleoNotificationRecipient.setPrimaryKey(kaleoNotificationRecipientId);
 
 		return kaleoNotificationRecipient;
 	}
@@ -133,7 +133,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 		return remove(((Long)primaryKey).longValue());
 	}
 
-	public KaleoNotificationRecipient remove(long kaleoRecipientId)
+	public KaleoNotificationRecipient remove(long kaleoNotificationRecipientId)
 		throws NoSuchNotificationRecipientException, SystemException {
 		Session session = null;
 
@@ -141,16 +141,16 @@ public class KaleoNotificationRecipientPersistenceImpl
 			session = openSession();
 
 			KaleoNotificationRecipient kaleoNotificationRecipient = (KaleoNotificationRecipient)session.get(KaleoNotificationRecipientImpl.class,
-					new Long(kaleoRecipientId));
+					new Long(kaleoNotificationRecipientId));
 
 			if (kaleoNotificationRecipient == null) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						kaleoRecipientId);
+						kaleoNotificationRecipientId);
 				}
 
 				throw new NoSuchNotificationRecipientException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoRecipientId);
+					kaleoNotificationRecipientId);
 			}
 
 			return remove(kaleoNotificationRecipient);
@@ -264,7 +264,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 		kaleoNotificationRecipientImpl.setNew(kaleoNotificationRecipient.isNew());
 		kaleoNotificationRecipientImpl.setPrimaryKey(kaleoNotificationRecipient.getPrimaryKey());
 
-		kaleoNotificationRecipientImpl.setKaleoRecipientId(kaleoNotificationRecipient.getKaleoRecipientId());
+		kaleoNotificationRecipientImpl.setKaleoNotificationRecipientId(kaleoNotificationRecipient.getKaleoNotificationRecipientId());
 		kaleoNotificationRecipientImpl.setCompanyId(kaleoNotificationRecipient.getCompanyId());
 		kaleoNotificationRecipientImpl.setUserId(kaleoNotificationRecipient.getUserId());
 		kaleoNotificationRecipientImpl.setUserName(kaleoNotificationRecipient.getUserName());
@@ -283,17 +283,19 @@ public class KaleoNotificationRecipientPersistenceImpl
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
-	public KaleoNotificationRecipient findByPrimaryKey(long kaleoRecipientId)
+	public KaleoNotificationRecipient findByPrimaryKey(
+		long kaleoNotificationRecipientId)
 		throws NoSuchNotificationRecipientException, SystemException {
-		KaleoNotificationRecipient kaleoNotificationRecipient = fetchByPrimaryKey(kaleoRecipientId);
+		KaleoNotificationRecipient kaleoNotificationRecipient = fetchByPrimaryKey(kaleoNotificationRecipientId);
 
 		if (kaleoNotificationRecipient == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoRecipientId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+					kaleoNotificationRecipientId);
 			}
 
 			throw new NoSuchNotificationRecipientException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kaleoRecipientId);
+				kaleoNotificationRecipientId);
 		}
 
 		return kaleoNotificationRecipient;
@@ -304,10 +306,11 @@ public class KaleoNotificationRecipientPersistenceImpl
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
-	public KaleoNotificationRecipient fetchByPrimaryKey(long kaleoRecipientId)
-		throws SystemException {
+	public KaleoNotificationRecipient fetchByPrimaryKey(
+		long kaleoNotificationRecipientId) throws SystemException {
 		KaleoNotificationRecipient kaleoNotificationRecipient = (KaleoNotificationRecipient)EntityCacheUtil.getResult(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNotificationRecipientImpl.class, kaleoRecipientId, this);
+				KaleoNotificationRecipientImpl.class,
+				kaleoNotificationRecipientId, this);
 
 		if (kaleoNotificationRecipient == null) {
 			Session session = null;
@@ -316,7 +319,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 				session = openSession();
 
 				kaleoNotificationRecipient = (KaleoNotificationRecipient)session.get(KaleoNotificationRecipientImpl.class,
-						new Long(kaleoRecipientId));
+						new Long(kaleoNotificationRecipientId));
 			}
 			catch (Exception e) {
 				throw processException(e);
@@ -333,11 +336,11 @@ public class KaleoNotificationRecipientPersistenceImpl
 		return kaleoNotificationRecipient;
 	}
 
-	public List<KaleoNotificationRecipient> findByKNI(long kaleoNotificationId)
-		throws SystemException {
+	public List<KaleoNotificationRecipient> findByKaleoNotificationId(
+		long kaleoNotificationId) throws SystemException {
 		Object[] finderArgs = new Object[] { new Long(kaleoNotificationId) };
 
-		List<KaleoNotificationRecipient> list = (List<KaleoNotificationRecipient>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KNI,
+		List<KaleoNotificationRecipient> list = (List<KaleoNotificationRecipient>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KALEONOTIFICATIONID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -350,7 +353,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 				query.append(_SQL_SELECT_KALEONOTIFICATIONRECIPIENT_WHERE);
 
-				query.append(_FINDER_COLUMN_KNI_KALEONOTIFICATIONID_2);
+				query.append(_FINDER_COLUMN_KALEONOTIFICATIONID_KALEONOTIFICATIONID_2);
 
 				query.append(KaleoNotificationRecipientModelImpl.ORDER_BY_JPQL);
 
@@ -374,8 +377,8 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KNI, finderArgs,
-					list);
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEONOTIFICATIONID,
+					finderArgs, list);
 
 				closeSession(session);
 			}
@@ -384,12 +387,12 @@ public class KaleoNotificationRecipientPersistenceImpl
 		return list;
 	}
 
-	public List<KaleoNotificationRecipient> findByKNI(
+	public List<KaleoNotificationRecipient> findByKaleoNotificationId(
 		long kaleoNotificationId, int start, int end) throws SystemException {
-		return findByKNI(kaleoNotificationId, start, end, null);
+		return findByKaleoNotificationId(kaleoNotificationId, start, end, null);
 	}
 
-	public List<KaleoNotificationRecipient> findByKNI(
+	public List<KaleoNotificationRecipient> findByKaleoNotificationId(
 		long kaleoNotificationId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -399,7 +402,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 				String.valueOf(orderByComparator)
 			};
 
-		List<KaleoNotificationRecipient> list = (List<KaleoNotificationRecipient>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_KNI,
+		List<KaleoNotificationRecipient> list = (List<KaleoNotificationRecipient>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_KALEONOTIFICATIONID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -420,7 +423,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 				query.append(_SQL_SELECT_KALEONOTIFICATIONRECIPIENT_WHERE);
 
-				query.append(_FINDER_COLUMN_KNI_KALEONOTIFICATIONID_2);
+				query.append(_FINDER_COLUMN_KALEONOTIFICATIONID_KALEONOTIFICATIONID_2);
 
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -452,7 +455,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_KNI,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_KALEONOTIFICATIONID,
 					finderArgs, list);
 
 				closeSession(session);
@@ -462,10 +465,10 @@ public class KaleoNotificationRecipientPersistenceImpl
 		return list;
 	}
 
-	public KaleoNotificationRecipient findByKNI_First(
+	public KaleoNotificationRecipient findByKaleoNotificationId_First(
 		long kaleoNotificationId, OrderByComparator orderByComparator)
 		throws NoSuchNotificationRecipientException, SystemException {
-		List<KaleoNotificationRecipient> list = findByKNI(kaleoNotificationId,
+		List<KaleoNotificationRecipient> list = findByKaleoNotificationId(kaleoNotificationId,
 				0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
@@ -485,12 +488,12 @@ public class KaleoNotificationRecipientPersistenceImpl
 		}
 	}
 
-	public KaleoNotificationRecipient findByKNI_Last(long kaleoNotificationId,
-		OrderByComparator orderByComparator)
+	public KaleoNotificationRecipient findByKaleoNotificationId_Last(
+		long kaleoNotificationId, OrderByComparator orderByComparator)
 		throws NoSuchNotificationRecipientException, SystemException {
-		int count = countByKNI(kaleoNotificationId);
+		int count = countByKaleoNotificationId(kaleoNotificationId);
 
-		List<KaleoNotificationRecipient> list = findByKNI(kaleoNotificationId,
+		List<KaleoNotificationRecipient> list = findByKaleoNotificationId(kaleoNotificationId,
 				count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
@@ -510,13 +513,13 @@ public class KaleoNotificationRecipientPersistenceImpl
 		}
 	}
 
-	public KaleoNotificationRecipient[] findByKNI_PrevAndNext(
-		long kaleoRecipientId, long kaleoNotificationId,
+	public KaleoNotificationRecipient[] findByKaleoNotificationId_PrevAndNext(
+		long kaleoNotificationRecipientId, long kaleoNotificationId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNotificationRecipientException, SystemException {
-		KaleoNotificationRecipient kaleoNotificationRecipient = findByPrimaryKey(kaleoRecipientId);
+		KaleoNotificationRecipient kaleoNotificationRecipient = findByPrimaryKey(kaleoNotificationRecipientId);
 
-		int count = countByKNI(kaleoNotificationId);
+		int count = countByKaleoNotificationId(kaleoNotificationId);
 
 		Session session = null;
 
@@ -535,7 +538,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 			query.append(_SQL_SELECT_KALEONOTIFICATIONRECIPIENT_WHERE);
 
-			query.append(_FINDER_COLUMN_KNI_KALEONOTIFICATIONID_2);
+			query.append(_FINDER_COLUMN_KALEONOTIFICATIONID_KALEONOTIFICATIONID_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -649,8 +652,9 @@ public class KaleoNotificationRecipientPersistenceImpl
 		return list;
 	}
 
-	public void removeByKNI(long kaleoNotificationId) throws SystemException {
-		for (KaleoNotificationRecipient kaleoNotificationRecipient : findByKNI(
+	public void removeByKaleoNotificationId(long kaleoNotificationId)
+		throws SystemException {
+		for (KaleoNotificationRecipient kaleoNotificationRecipient : findByKaleoNotificationId(
 				kaleoNotificationId)) {
 			remove(kaleoNotificationRecipient);
 		}
@@ -662,10 +666,11 @@ public class KaleoNotificationRecipientPersistenceImpl
 		}
 	}
 
-	public int countByKNI(long kaleoNotificationId) throws SystemException {
+	public int countByKaleoNotificationId(long kaleoNotificationId)
+		throws SystemException {
 		Object[] finderArgs = new Object[] { new Long(kaleoNotificationId) };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KNI,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEONOTIFICATIONID,
 				finderArgs, this);
 
 		if (count == null) {
@@ -678,7 +683,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 				query.append(_SQL_COUNT_KALEONOTIFICATIONRECIPIENT_WHERE);
 
-				query.append(_FINDER_COLUMN_KNI_KALEONOTIFICATIONID_2);
+				query.append(_FINDER_COLUMN_KALEONOTIFICATIONID_KALEONOTIFICATIONID_2);
 
 				String sql = query.toString();
 
@@ -698,8 +703,8 @@ public class KaleoNotificationRecipientPersistenceImpl
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KNI, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KALEONOTIFICATIONID,
+					finderArgs, count);
 
 				closeSession(session);
 			}
@@ -800,7 +805,8 @@ public class KaleoNotificationRecipientPersistenceImpl
 	private static final String _SQL_SELECT_KALEONOTIFICATIONRECIPIENT_WHERE = "SELECT kaleoNotificationRecipient FROM KaleoNotificationRecipient kaleoNotificationRecipient WHERE ";
 	private static final String _SQL_COUNT_KALEONOTIFICATIONRECIPIENT = "SELECT COUNT(kaleoNotificationRecipient) FROM KaleoNotificationRecipient kaleoNotificationRecipient";
 	private static final String _SQL_COUNT_KALEONOTIFICATIONRECIPIENT_WHERE = "SELECT COUNT(kaleoNotificationRecipient) FROM KaleoNotificationRecipient kaleoNotificationRecipient WHERE ";
-	private static final String _FINDER_COLUMN_KNI_KALEONOTIFICATIONID_2 = "kaleoNotificationRecipient.kaleoNotificationId = ?";
+	private static final String _FINDER_COLUMN_KALEONOTIFICATIONID_KALEONOTIFICATIONID_2 =
+		"kaleoNotificationRecipient.kaleoNotificationId = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kaleoNotificationRecipient.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No KaleoNotificationRecipient exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoNotificationRecipient exists with the key {";

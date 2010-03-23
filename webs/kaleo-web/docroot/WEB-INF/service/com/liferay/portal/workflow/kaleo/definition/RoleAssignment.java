@@ -23,16 +23,16 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class RoleAssignment extends Assignment {
 
-	public RoleAssignment(String roleName, boolean defaultValue) {
-		super(AssignmentType.ROLE, defaultValue);
-
-		_roleName = roleName;
-	}
-
 	public RoleAssignment(long roleId, boolean defaultValue) {
 		super(AssignmentType.ROLE, defaultValue);
 
 		_roleId = roleId;
+	}
+
+	public RoleAssignment(String roleName, boolean defaultValue) {
+		super(AssignmentType.ROLE, defaultValue);
+
+		_roleName = roleName;
 	}
 
 	public boolean equals(Object obj) {
@@ -48,6 +48,7 @@ public class RoleAssignment extends Assignment {
 
 		if (Validator.equals(_roleName, roleAssignment._roleName) &&
 			(_roleId == roleAssignment._roleId)) {
+
 			return true;
 		}
 

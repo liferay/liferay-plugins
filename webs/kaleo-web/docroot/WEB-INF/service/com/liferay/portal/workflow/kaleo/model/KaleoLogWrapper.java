@@ -276,7 +276,7 @@ public class KaleoLogWrapper implements KaleoLog {
 		_kaleoLog.setContext(context);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoLog toEscapedModel() {
+	public KaleoLog toEscapedModel() {
 		return _kaleoLog.toEscapedModel();
 	}
 
@@ -321,8 +321,7 @@ public class KaleoLogWrapper implements KaleoLog {
 		return _kaleoLog.clone();
 	}
 
-	public int compareTo(
-		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog) {
+	public int compareTo(KaleoLog kaleoLog) {
 		return _kaleoLog.compareTo(kaleoLog);
 	}
 

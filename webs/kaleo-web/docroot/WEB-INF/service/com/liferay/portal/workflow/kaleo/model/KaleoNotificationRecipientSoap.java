@@ -42,7 +42,7 @@ public class KaleoNotificationRecipientSoap implements Serializable {
 		KaleoNotificationRecipient model) {
 		KaleoNotificationRecipientSoap soapModel = new KaleoNotificationRecipientSoap();
 
-		soapModel.setKaleoRecipientId(model.getKaleoRecipientId());
+		soapModel.setKaleoNotificationRecipientId(model.getKaleoNotificationRecipientId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
@@ -100,19 +100,20 @@ public class KaleoNotificationRecipientSoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _kaleoRecipientId;
+		return _kaleoNotificationRecipientId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setKaleoRecipientId(pk);
+		setKaleoNotificationRecipientId(pk);
 	}
 
-	public long getKaleoRecipientId() {
-		return _kaleoRecipientId;
+	public long getKaleoNotificationRecipientId() {
+		return _kaleoNotificationRecipientId;
 	}
 
-	public void setKaleoRecipientId(long kaleoRecipientId) {
-		_kaleoRecipientId = kaleoRecipientId;
+	public void setKaleoNotificationRecipientId(
+		long kaleoNotificationRecipientId) {
+		_kaleoNotificationRecipientId = kaleoNotificationRecipientId;
 	}
 
 	public long getCompanyId() {
@@ -187,7 +188,7 @@ public class KaleoNotificationRecipientSoap implements Serializable {
 		_address = address;
 	}
 
-	private long _kaleoRecipientId;
+	private long _kaleoNotificationRecipientId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;

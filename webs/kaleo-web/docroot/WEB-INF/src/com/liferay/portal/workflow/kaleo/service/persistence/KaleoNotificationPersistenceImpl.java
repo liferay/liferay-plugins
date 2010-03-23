@@ -1065,10 +1065,10 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 
 		protected boolean contains(long kaleoNotificationId,
-			long kaleoRecipientId) {
+			long kaleoNotificationRecipientId) {
 			List<Integer> results = _mappingSqlQuery.execute(new Object[] {
 						new Long(kaleoNotificationId),
-						new Long(kaleoRecipientId)
+						new Long(kaleoNotificationRecipientId)
 					});
 
 			if (results.size() > 0) {
@@ -1091,7 +1091,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	private static final String _SQL_COUNT_KALEONOTIFICATION_WHERE = "SELECT COUNT(kaleoNotification) FROM KaleoNotification kaleoNotification WHERE ";
 	private static final String _SQL_GETKALEONOTIFICATIONRECIPIENTS = "SELECT {Kaleo_KaleoNotificationRecipient.*} FROM Kaleo_KaleoNotificationRecipient INNER JOIN Kaleo_KaleoNotification ON (Kaleo_KaleoNotification.kaleoNotificationId = Kaleo_KaleoNotificationRecipient.kaleoNotificationId) WHERE (Kaleo_KaleoNotification.kaleoNotificationId = ?)";
 	private static final String _SQL_GETKALEONOTIFICATIONRECIPIENTSSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM Kaleo_KaleoNotificationRecipient WHERE kaleoNotificationId = ?";
-	private static final String _SQL_CONTAINSKALEONOTIFICATIONRECIPIENT = "SELECT COUNT(*) AS COUNT_VALUE FROM Kaleo_KaleoNotificationRecipient WHERE kaleoNotificationId = ? AND kaleoRecipientId = ?";
+	private static final String _SQL_CONTAINSKALEONOTIFICATIONRECIPIENT = "SELECT COUNT(*) AS COUNT_VALUE FROM Kaleo_KaleoNotificationRecipient WHERE kaleoNotificationId = ? AND kaleoNotificationRecipientId = ?";
 	private static final String _FINDER_COLUMN_KNI_ET_KALEONODEID_2 = "kaleoNotification.kaleoNodeId = ? AND ";
 	private static final String _FINDER_COLUMN_KNI_ET_EXECUTIONTYPE_1 = "kaleoNotification.executionType IS NULL";
 	private static final String _FINDER_COLUMN_KNI_ET_EXECUTIONTYPE_2 = "kaleoNotification.executionType = ?";

@@ -199,7 +199,7 @@
 	</mapped-superclass>
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientModelImpl">
 		<attributes>
-			<id name="kaleoRecipientId" />
+			<id name="kaleoNotificationRecipientId" />
 			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />

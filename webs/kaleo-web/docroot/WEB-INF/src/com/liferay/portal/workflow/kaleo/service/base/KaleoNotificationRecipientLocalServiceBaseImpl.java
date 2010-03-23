@@ -81,13 +81,14 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 	}
 
 	public KaleoNotificationRecipient createKaleoNotificationRecipient(
-		long kaleoRecipientId) {
-		return kaleoNotificationRecipientPersistence.create(kaleoRecipientId);
+		long kaleoNotificationRecipientId) {
+		return kaleoNotificationRecipientPersistence.create(kaleoNotificationRecipientId);
 	}
 
-	public void deleteKaleoNotificationRecipient(long kaleoRecipientId)
+	public void deleteKaleoNotificationRecipient(
+		long kaleoNotificationRecipientId)
 		throws PortalException, SystemException {
-		kaleoNotificationRecipientPersistence.remove(kaleoRecipientId);
+		kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipientId);
 	}
 
 	public void deleteKaleoNotificationRecipient(
@@ -119,8 +120,9 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 	}
 
 	public KaleoNotificationRecipient getKaleoNotificationRecipient(
-		long kaleoRecipientId) throws PortalException, SystemException {
-		return kaleoNotificationRecipientPersistence.findByPrimaryKey(kaleoRecipientId);
+		long kaleoNotificationRecipientId)
+		throws PortalException, SystemException {
+		return kaleoNotificationRecipientPersistence.findByPrimaryKey(kaleoNotificationRecipientId);
 	}
 
 	public List<KaleoNotificationRecipient> getKaleoNotificationRecipients(

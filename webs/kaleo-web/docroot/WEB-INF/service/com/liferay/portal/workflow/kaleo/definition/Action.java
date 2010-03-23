@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
+import com.liferay.portal.kernel.util.Validator;
+
 /**
  * <a href="Action.java.html"><b><i>View Source</i></b></a>
  *
@@ -27,17 +29,22 @@ public class Action {
 		_language = language;
 	}
 
-	public boolean equals(Object object) {
-		if (this == object) {
-			return true;
-		}
-		if (object == null || getClass() != object.getClass()) {
+	public boolean equals(Object obj) {
+		if (obj == null) {
 			return false;
 		}
 
-		Action action = (Action)object;
+		if (!(obj instanceof Action)) {
+			return false;
+		}
 
-		return action.getName().equals(getName());
+		Action action = (Action)obj;
+
+		if (Validator.equals(_name, action._name)) {
+			return true;
+		}
+
+		return true;
 	}
 
 	public ActionType getActionType() {

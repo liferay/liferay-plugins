@@ -67,8 +67,8 @@ public class KaleoNotificationRecipientLocalServiceClp
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient createKaleoNotificationRecipient(
-		long kaleoRecipientId) {
-		Object paramObj0 = new LongWrapper(kaleoRecipientId);
+		long kaleoNotificationRecipientId) {
+		Object paramObj0 = new LongWrapper(kaleoNotificationRecipientId);
 
 		Object returnObj = null;
 
@@ -89,10 +89,11 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteKaleoNotificationRecipient(long kaleoRecipientId)
+	public void deleteKaleoNotificationRecipient(
+		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(kaleoRecipientId);
+		Object paramObj0 = new LongWrapper(kaleoNotificationRecipientId);
 
 		try {
 			_classLoaderProxy.invoke("deleteKaleoNotificationRecipient",
@@ -296,10 +297,10 @@ public class KaleoNotificationRecipientLocalServiceClp
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient getKaleoNotificationRecipient(
-		long kaleoRecipientId)
+		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(kaleoRecipientId);
+		Object paramObj0 = new LongWrapper(kaleoNotificationRecipientId);
 
 		Object returnObj = null;
 
@@ -452,7 +453,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient addRecipient(
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient addKaleoNotificationRecipient(
 		long kaleoNotificationId,
 		com.liferay.portal.workflow.kaleo.definition.Recipient recipient,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -477,7 +478,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("addRecipient",
+			returnObj = _classLoaderProxy.invoke("addKaleoNotificationRecipient",
 					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {

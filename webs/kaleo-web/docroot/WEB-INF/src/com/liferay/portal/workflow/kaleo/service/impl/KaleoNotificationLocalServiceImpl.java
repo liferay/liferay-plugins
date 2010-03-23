@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.Notification;
+import com.liferay.portal.workflow.kaleo.definition.NotificationType;
 import com.liferay.portal.workflow.kaleo.definition.Recipient;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoNotificationLocalServiceBaseImpl;
@@ -44,6 +45,8 @@ public class KaleoNotificationLocalServiceImpl
 			Notification notification, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		// Kaleo notification
+
 		User user = userPersistence.findByPrimaryKey(
 			serviceContext.getUserId());
 		Date now = new Date();
@@ -66,20 +69,23 @@ public class KaleoNotificationLocalServiceImpl
 		kaleoNotification.setLanguage(notification.getLanguage().getValue());
 		kaleoNotification.setTemplate(notification.getTemplate());
 		kaleoNotification.setExecutionType(
-			notification.getActionType().getType());
+			notification.getActionType().getValue());
 
-		Set<Notification.NotificationType> notificationTypes =
+		Set<NotificationType> notificationTypes =
 			notification.getNotificationTypes();
+
 		if (!notificationTypes.isEmpty()) {
 			StringBundler bundler = new StringBundler(
 				notificationTypes.size() * 2);
 
-			Iterator<Notification.NotificationType> notificationTypeIter =
-				notificationTypes.iterator();
+			Iterator<NotificationType> itr = notificationTypes.iterator();
 
-			while (notificationTypeIter.hasNext()) {
-				bundler.append(notificationTypeIter.next().getValue());
-				if (notificationTypeIter.hasNext()) {
+			while (itr.hasNext()) {
+				NotificationType notificationType = itr.next();
+
+				bundler.append(notificationType.getValue());
+
+				if (itr.hasNext()) {
 					bundler.append(StringPool.COMMA);
 				}
 			}
@@ -89,10 +95,14 @@ public class KaleoNotificationLocalServiceImpl
 
 		kaleoNotificationPersistence.update(kaleoNotification, false);
 
+		// Kaleo notification recipients
+
 		Set<Recipient> recipients = notification.getRecipients();
+
 		for (Recipient recipient : recipients) {
-			kaleoNotificationRecipientLocalService.addRecipient(
-				kaleoNotificationId, recipient, serviceContext);
+			kaleoNotificationRecipientLocalService.
+				addKaleoNotificationRecipient(
+					kaleoNotificationId, recipient, serviceContext);
 		}
 
 		return kaleoNotification;

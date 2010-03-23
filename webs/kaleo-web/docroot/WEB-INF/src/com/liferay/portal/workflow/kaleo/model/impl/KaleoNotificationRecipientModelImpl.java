@@ -61,7 +61,7 @@ import java.util.List;
 public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNotificationRecipient> {
 	public static final String TABLE_NAME = "Kaleo_KaleoNotificationRecipient";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoRecipientId", new Integer(Types.BIGINT) },
+			{ "kaleoNotificationRecipientId", new Integer(Types.BIGINT) },
 			{ "companyId", new Integer(Types.BIGINT) },
 			{ "userId", new Integer(Types.BIGINT) },
 			{ "userName", new Integer(Types.VARCHAR) },
@@ -72,10 +72,10 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 			{ "recipientClassPK", new Integer(Types.BIGINT) },
 			{ "address", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoNotificationRecipient (kaleoRecipientId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoNotificationId LONG,recipientClassName VARCHAR(75) null,recipientClassPK LONG,address VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoNotificationRecipient (kaleoNotificationRecipientId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoNotificationId LONG,recipientClassName VARCHAR(75) null,recipientClassPK LONG,address VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoNotificationRecipient";
-	public static final String ORDER_BY_JPQL = " ORDER BY kaleoNotificationRecipient.kaleoRecipientId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoNotificationRecipient.kaleoRecipientId ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY kaleoNotificationRecipient.kaleoNotificationRecipientId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoNotificationRecipient.kaleoNotificationRecipientId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -90,7 +90,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 		KaleoNotificationRecipientSoap soapModel) {
 		KaleoNotificationRecipient model = new KaleoNotificationRecipientImpl();
 
-		model.setKaleoRecipientId(soapModel.getKaleoRecipientId());
+		model.setKaleoNotificationRecipientId(soapModel.getKaleoNotificationRecipientId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setUserId(soapModel.getUserId());
 		model.setUserName(soapModel.getUserName());
@@ -122,23 +122,24 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	}
 
 	public long getPrimaryKey() {
-		return _kaleoRecipientId;
+		return _kaleoNotificationRecipientId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setKaleoRecipientId(pk);
+		setKaleoNotificationRecipientId(pk);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kaleoRecipientId);
+		return new Long(_kaleoNotificationRecipientId);
 	}
 
-	public long getKaleoRecipientId() {
-		return _kaleoRecipientId;
+	public long getKaleoNotificationRecipientId() {
+		return _kaleoNotificationRecipientId;
 	}
 
-	public void setKaleoRecipientId(long kaleoRecipientId) {
-		_kaleoRecipientId = kaleoRecipientId;
+	public void setKaleoNotificationRecipientId(
+		long kaleoNotificationRecipientId) {
+		_kaleoNotificationRecipientId = kaleoNotificationRecipientId;
 	}
 
 	public long getCompanyId() {
@@ -246,7 +247,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 			model.setNew(isNew());
 			model.setEscapedModel(true);
 
-			model.setKaleoRecipientId(getKaleoRecipientId());
+			model.setKaleoNotificationRecipientId(getKaleoNotificationRecipientId());
 			model.setCompanyId(getCompanyId());
 			model.setUserId(getUserId());
 			model.setUserName(HtmlUtil.escape(getUserName()));
@@ -281,7 +282,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	public Object clone() {
 		KaleoNotificationRecipientImpl clone = new KaleoNotificationRecipientImpl();
 
-		clone.setKaleoRecipientId(getKaleoRecipientId());
+		clone.setKaleoNotificationRecipientId(getKaleoNotificationRecipientId());
 		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
@@ -298,10 +299,10 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	public int compareTo(KaleoNotificationRecipient kaleoNotificationRecipient) {
 		int value = 0;
 
-		if (getKaleoRecipientId() < kaleoNotificationRecipient.getKaleoRecipientId()) {
+		if (getKaleoNotificationRecipientId() < kaleoNotificationRecipient.getKaleoNotificationRecipientId()) {
 			value = -1;
 		}
-		else if (getKaleoRecipientId() > kaleoNotificationRecipient.getKaleoRecipientId()) {
+		else if (getKaleoNotificationRecipientId() > kaleoNotificationRecipient.getKaleoNotificationRecipientId()) {
 			value = 1;
 		}
 		else {
@@ -346,8 +347,8 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 
-		sb.append("{kaleoRecipientId=");
-		sb.append(getKaleoRecipientId());
+		sb.append("{kaleoNotificationRecipientId=");
+		sb.append(getKaleoNotificationRecipientId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", userId=");
@@ -380,8 +381,8 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>kaleoRecipientId</column-name><column-value><![CDATA[");
-		sb.append(getKaleoRecipientId());
+			"<column><column-name>kaleoNotificationRecipientId</column-name><column-value><![CDATA[");
+		sb.append(getKaleoNotificationRecipientId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -425,7 +426,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 		return sb.toString();
 	}
 
-	private long _kaleoRecipientId;
+	private long _kaleoNotificationRecipientId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;

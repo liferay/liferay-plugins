@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.util.Validator;
 public class UserRecipient extends Recipient {
 
 	public UserRecipient() {
-		super(Type.USER);
+		super(RecipientType.USER);
 	}
 
 	public boolean equals(Object obj) {
@@ -35,7 +35,7 @@ public class UserRecipient extends Recipient {
 			return false;
 		}
 
-		if (!(obj instanceof UserAssignment)) {
+		if (!(obj instanceof UserRecipient)) {
 			return false;
 		}
 

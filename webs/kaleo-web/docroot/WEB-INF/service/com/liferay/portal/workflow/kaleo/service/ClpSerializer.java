@@ -987,10 +987,10 @@ public class ClpSerializer {
 
 					Object newModel = newModelClass.newInstance();
 
-					Method method0 = newModelClass.getMethod("setKaleoRecipientId",
+					Method method0 = newModelClass.getMethod("setKaleoNotificationRecipientId",
 							new Class[] { Long.TYPE });
 
-					Long value0 = new Long(oldCplModel.getKaleoRecipientId());
+					Long value0 = new Long(oldCplModel.getKaleoNotificationRecipientId());
 
 					method0.invoke(newModel, value0);
 
@@ -2565,11 +2565,11 @@ public class ClpSerializer {
 					KaleoNotificationRecipientClp newModel = new KaleoNotificationRecipientClp();
 
 					Method method0 = oldModelClass.getMethod(
-							"getKaleoRecipientId");
+							"getKaleoNotificationRecipientId");
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoRecipientId(value0.longValue());
+					newModel.setKaleoNotificationRecipientId(value0.longValue());
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 

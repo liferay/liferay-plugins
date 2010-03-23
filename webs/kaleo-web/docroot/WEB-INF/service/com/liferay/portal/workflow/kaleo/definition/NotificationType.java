@@ -14,47 +14,37 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
-import com.liferay.portal.kernel.util.Validator;
-
 /**
- * <a href="AddressRecipient.java.html"><b><i>View Source</i></b></a>
+ * <a href="NotificationType.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael C. Han
  */
-public class AddressRecipient extends Recipient {
+public enum NotificationType {
 
-	public AddressRecipient(String address) {
-		super(RecipientType.ADDRESS);
+	EMAIL("email"), IM("im"), PRIVATE_MESSAGE("private-message");
 
-		_address = address;
-	}
-
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
+	public static NotificationType parse(String value) {
+		if (EMAIL.getValue().equals(value)) {
+			return EMAIL;
+		}
+		else if (IM.getValue().equals(value)) {
+			return IM;
+		}
+		else if (PRIVATE_MESSAGE.getValue().equals(value)) {
+			return PRIVATE_MESSAGE;
 		}
 
-		if (!(obj instanceof AddressRecipient)) {
-			return false;
-		}
-
-		AddressRecipient addressRecipient = (AddressRecipient)obj;
-
-		if (Validator.equals(_address, addressRecipient._address)) {
-			return true;
-		}
-
-		return true;
+		throw new IllegalArgumentException("Invalid value " + value);
 	}
 
-	public String getAddress() {
-		return _address;
+	public String getValue() {
+		return _value;
 	}
 
-	public int hashCode() {
-		return _address.hashCode();
+	private NotificationType(String value) {
+		_value = value;
 	}
 
-	private String _address;
+	private String _value;
 
 }

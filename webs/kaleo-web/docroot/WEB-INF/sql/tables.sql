@@ -126,7 +126,7 @@ create table Kaleo_KaleoNotification (
 );
 
 create table Kaleo_KaleoNotificationRecipient (
-	kaleoRecipientId LONG not null primary key,
+	kaleoNotificationRecipientId LONG not null primary key,
 	companyId LONG,
 	userId LONG,
 	userName VARCHAR(75) null,

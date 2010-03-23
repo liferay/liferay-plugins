@@ -14,47 +14,37 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
-import com.liferay.portal.kernel.util.Validator;
-
 /**
- * <a href="AddressRecipient.java.html"><b><i>View Source</i></b></a>
+ * <a href="Language.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael C. Han
  */
-public class AddressRecipient extends Recipient {
+public enum Language {
 
-	public AddressRecipient(String address) {
-		super(RecipientType.ADDRESS);
+	FREEMARKER("freemarker"), TEXT("text"), VELOCITY("velocity");
 
-		_address = address;
-	}
-
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
+	public static Language parse(String value) {
+		if (FREEMARKER.getValue().equals(value)) {
+			return FREEMARKER;
+		}
+		else if (TEXT.getValue().equals(value)) {
+			return TEXT;
+		}
+		else if (VELOCITY.getValue().equals(value)) {
+			return VELOCITY;
 		}
 
-		if (!(obj instanceof AddressRecipient)) {
-			return false;
-		}
-
-		AddressRecipient addressRecipient = (AddressRecipient)obj;
-
-		if (Validator.equals(_address, addressRecipient._address)) {
-			return true;
-		}
-
-		return true;
+		throw new IllegalArgumentException("Invalid value " + value);
 	}
 
-	public String getAddress() {
-		return _address;
+	public String getValue() {
+		return _value;
 	}
 
-	public int hashCode() {
-		return _address.hashCode();
+	private Language(String value) {
+		_value = value;
 	}
 
-	private String _address;
+	private String _value;
 
 }

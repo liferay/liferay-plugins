@@ -40,5 +40,4 @@ package com.liferay.portal.workflow.kaleo.model;
  * @generated
  */
 public interface KaleoNotification extends KaleoNotificationModel {
-	public java.lang.String[] getNotificationTypesArray();
 }

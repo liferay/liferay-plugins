@@ -39,23 +39,24 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	}
 
 	public long getPrimaryKey() {
-		return _kaleoRecipientId;
+		return _kaleoNotificationRecipientId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setKaleoRecipientId(pk);
+		setKaleoNotificationRecipientId(pk);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kaleoRecipientId);
+		return new Long(_kaleoNotificationRecipientId);
 	}
 
-	public long getKaleoRecipientId() {
-		return _kaleoRecipientId;
+	public long getKaleoNotificationRecipientId() {
+		return _kaleoNotificationRecipientId;
 	}
 
-	public void setKaleoRecipientId(long kaleoRecipientId) {
-		_kaleoRecipientId = kaleoRecipientId;
+	public void setKaleoNotificationRecipientId(
+		long kaleoNotificationRecipientId) {
+		_kaleoNotificationRecipientId = kaleoNotificationRecipientId;
 	}
 
 	public long getCompanyId() {
@@ -147,7 +148,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 
 			model.setEscapedModel(true);
 
-			model.setKaleoRecipientId(getKaleoRecipientId());
+			model.setKaleoNotificationRecipientId(getKaleoNotificationRecipientId());
 			model.setCompanyId(getCompanyId());
 			model.setUserId(getUserId());
 			model.setUserName(HtmlUtil.escape(getUserName()));
@@ -169,7 +170,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	public Object clone() {
 		KaleoNotificationRecipientClp clone = new KaleoNotificationRecipientClp();
 
-		clone.setKaleoRecipientId(getKaleoRecipientId());
+		clone.setKaleoNotificationRecipientId(getKaleoNotificationRecipientId());
 		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
@@ -186,10 +187,10 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	public int compareTo(KaleoNotificationRecipient kaleoNotificationRecipient) {
 		int value = 0;
 
-		if (getKaleoRecipientId() < kaleoNotificationRecipient.getKaleoRecipientId()) {
+		if (getKaleoNotificationRecipientId() < kaleoNotificationRecipient.getKaleoNotificationRecipientId()) {
 			value = -1;
 		}
-		else if (getKaleoRecipientId() > kaleoNotificationRecipient.getKaleoRecipientId()) {
+		else if (getKaleoNotificationRecipientId() > kaleoNotificationRecipient.getKaleoNotificationRecipientId()) {
 			value = 1;
 		}
 		else {
@@ -234,8 +235,8 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 
-		sb.append("{kaleoRecipientId=");
-		sb.append(getKaleoRecipientId());
+		sb.append("{kaleoNotificationRecipientId=");
+		sb.append(getKaleoNotificationRecipientId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", userId=");
@@ -268,8 +269,8 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>kaleoRecipientId</column-name><column-value><![CDATA[");
-		sb.append(getKaleoRecipientId());
+			"<column><column-name>kaleoNotificationRecipientId</column-name><column-value><![CDATA[");
+		sb.append(getKaleoNotificationRecipientId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -313,7 +314,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		return sb.toString();
 	}
 
-	private long _kaleoRecipientId;
+	private long _kaleoNotificationRecipientId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;

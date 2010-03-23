@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.definition.ActionType;
@@ -130,7 +131,7 @@ public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 
 		List<KaleoAction> kaleoActions =
 			kaleoActionLocalService.getKaleoActions(
-				kaleoNodeId, actionType.getType());
+				kaleoNodeId, actionType.getValue());
 
 		for (KaleoAction kaleoAction : kaleoActions) {
 			long startTime = System.currentTimeMillis();
@@ -158,11 +159,11 @@ public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 	protected void sendKaleoNotifications(
 			long kaleoNodeId, ActionType actionType,
 			ExecutionContext executionContext)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		List<KaleoNotification> kaleoNotifications=
 			kaleoNotificationLocalService.getKaleoNotifications(
-				kaleoNodeId, actionType.getType());
+				kaleoNodeId, actionType.getValue());
 
 		for (KaleoNotification kaleoNotification : kaleoNotifications) {
 
@@ -180,8 +181,8 @@ public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 
 				String notificationSubject = kaleoNotification.getDescription();
 
-				String[] notificationTypes =
-					kaleoNotification.getNotificationTypesArray();
+				String[] notificationTypes = StringUtil.split(
+					kaleoNotification.getNotificationTypes());
 
 				List<KaleoNotificationRecipient> notificationRecipients =
 					kaleoNotificationRecipientLocalService.

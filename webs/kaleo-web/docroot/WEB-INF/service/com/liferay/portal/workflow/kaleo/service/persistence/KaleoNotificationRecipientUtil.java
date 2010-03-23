@@ -87,15 +87,15 @@ public class KaleoNotificationRecipientUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient create(
-		long kaleoRecipientId) {
-		return getPersistence().create(kaleoRecipientId);
+		long kaleoNotificationRecipientId) {
+		return getPersistence().create(kaleoNotificationRecipientId);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient remove(
-		long kaleoRecipientId)
+		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException {
-		return getPersistence().remove(kaleoRecipientId);
+		return getPersistence().remove(kaleoNotificationRecipientId);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient updateImpl(
@@ -106,63 +106,67 @@ public class KaleoNotificationRecipientUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByPrimaryKey(
-		long kaleoRecipientId)
+		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException {
-		return getPersistence().findByPrimaryKey(kaleoRecipientId);
+		return getPersistence().findByPrimaryKey(kaleoNotificationRecipientId);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient fetchByPrimaryKey(
-		long kaleoRecipientId)
+		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(kaleoRecipientId);
+		return getPersistence().fetchByPrimaryKey(kaleoNotificationRecipientId);
 	}
 
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findByKNI(
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findByKaleoNotificationId(
 		long kaleoNotificationId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByKNI(kaleoNotificationId);
+		return getPersistence().findByKaleoNotificationId(kaleoNotificationId);
 	}
 
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findByKNI(
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findByKaleoNotificationId(
 		long kaleoNotificationId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByKNI(kaleoNotificationId, start, end);
+		return getPersistence()
+				   .findByKaleoNotificationId(kaleoNotificationId, start, end);
 	}
 
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findByKNI(
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findByKaleoNotificationId(
 		long kaleoNotificationId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByKNI(kaleoNotificationId, start, end, orderByComparator);
+				   .findByKaleoNotificationId(kaleoNotificationId, start, end,
+			orderByComparator);
 	}
 
-	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByKNI_First(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByKaleoNotificationId_First(
 		long kaleoNotificationId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException {
 		return getPersistence()
-				   .findByKNI_First(kaleoNotificationId, orderByComparator);
+				   .findByKaleoNotificationId_First(kaleoNotificationId,
+			orderByComparator);
 	}
 
-	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByKNI_Last(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByKaleoNotificationId_Last(
 		long kaleoNotificationId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException {
 		return getPersistence()
-				   .findByKNI_Last(kaleoNotificationId, orderByComparator);
+				   .findByKaleoNotificationId_Last(kaleoNotificationId,
+			orderByComparator);
 	}
 
-	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient[] findByKNI_PrevAndNext(
-		long kaleoRecipientId, long kaleoNotificationId,
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient[] findByKaleoNotificationId_PrevAndNext(
+		long kaleoNotificationRecipientId, long kaleoNotificationId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException {
 		return getPersistence()
-				   .findByKNI_PrevAndNext(kaleoRecipientId,
+				   .findByKaleoNotificationId_PrevAndNext(kaleoNotificationRecipientId,
 			kaleoNotificationId, orderByComparator);
 	}
 
@@ -184,9 +188,9 @@ public class KaleoNotificationRecipientUtil {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
-	public static void removeByKNI(long kaleoNotificationId)
+	public static void removeByKaleoNotificationId(long kaleoNotificationId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByKNI(kaleoNotificationId);
+		getPersistence().removeByKaleoNotificationId(kaleoNotificationId);
 	}
 
 	public static void removeAll()
@@ -194,9 +198,9 @@ public class KaleoNotificationRecipientUtil {
 		getPersistence().removeAll();
 	}
 
-	public static int countByKNI(long kaleoNotificationId)
+	public static int countByKaleoNotificationId(long kaleoNotificationId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByKNI(kaleoNotificationId);
+		return getPersistence().countByKaleoNotificationId(kaleoNotificationId);
 	}
 
 	public static int countAll()

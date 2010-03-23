@@ -157,7 +157,7 @@
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientImpl" table="Kaleo_KaleoNotificationRecipient">
 		<cache usage="read-write" />
-		<id name="kaleoRecipientId" type="long">
+		<id name="kaleoNotificationRecipientId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />

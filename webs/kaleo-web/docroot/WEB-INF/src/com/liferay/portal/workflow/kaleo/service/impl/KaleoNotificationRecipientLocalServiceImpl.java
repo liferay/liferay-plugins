@@ -22,6 +22,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.AddressRecipient;
 import com.liferay.portal.workflow.kaleo.definition.Recipient;
+import com.liferay.portal.workflow.kaleo.definition.RecipientType;
 import com.liferay.portal.workflow.kaleo.definition.RoleRecipient;
 import com.liferay.portal.workflow.kaleo.definition.UserRecipient;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
@@ -39,7 +40,7 @@ import java.util.List;
 public class KaleoNotificationRecipientLocalServiceImpl
 	extends KaleoNotificationRecipientLocalServiceBaseImpl {
 
-	public KaleoNotificationRecipient addRecipient(
+	public KaleoNotificationRecipient addKaleoNotificationRecipient(
 			long kaleoNotificationId, Recipient recipient,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -66,14 +67,13 @@ public class KaleoNotificationRecipientLocalServiceImpl
 			kaleoNotificationRecipient, false);
 
 		return kaleoNotificationRecipient;
-
 	}
 
 	public List<KaleoNotificationRecipient> getKaleoNotificationRecipients(
 			long kaleoNotificationId)
 		throws SystemException {
 
-		return kaleoNotificationRecipientPersistence.findByKNI(
+		return kaleoNotificationRecipientPersistence.findByKaleoNotificationId(
 			kaleoNotificationId);
 	}
 
@@ -82,15 +82,16 @@ public class KaleoNotificationRecipientLocalServiceImpl
 			Recipient recipient, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		Recipient.Type recipientType = recipient.getRecipientType();
+		RecipientType recipientType = recipient.getRecipientType();
 
-		if (recipientType.equals(Recipient.Type.ROLE)) {
+		if (recipientType.equals(RecipientType.ROLE)) {
 			kaleoNotificationRecipient.setRecipientClassName(
 				Role.class.getName());
 
 			RoleRecipient roleRecipient = (RoleRecipient)recipient;
 
 			Role role = null;
+
 			if (Validator.isNotNull(roleRecipient.getRoleName())) {
 				role = roleLocalService.getRole(
 					serviceContext.getCompanyId(), roleRecipient.getRoleName());
@@ -101,26 +102,26 @@ public class KaleoNotificationRecipientLocalServiceImpl
 
 			kaleoNotificationRecipient.setRecipientClassPK(role.getClassPK());
 		}
-		else if (recipientType.equals(Recipient.Type.USER)) {
+		else if (recipientType.equals(RecipientType.USER)) {
 			kaleoNotificationRecipient.setRecipientClassName(
 				User.class.getName());
 
-			UserRecipient roleRecipient = (UserRecipient)recipient;
+			UserRecipient userRecipient = (UserRecipient)recipient;
 
 			User user = null;
 
-			if (roleRecipient.getUserId() > 0) {
-				user = userLocalService.getUser(roleRecipient.getUserId());
+			if (userRecipient.getUserId() > 0) {
+				user = userLocalService.getUser(userRecipient.getUserId());
 			}
-			else if (Validator.isNotNull(roleRecipient.getScreenName())) {
+			else if (Validator.isNotNull(userRecipient.getScreenName())) {
 				user = userLocalService.getUserByScreenName(
 					serviceContext.getCompanyId(),
-					roleRecipient.getScreenName());
+					userRecipient.getScreenName());
 			}
 			else {
 				user = userLocalService.getUserByEmailAddress(
 					serviceContext.getCompanyId(),
-					roleRecipient.getEmailAddress());
+					userRecipient.getEmailAddress());
 			}
 
 			kaleoNotificationRecipient.setRecipientClassPK(user.getUserId());
@@ -132,4 +133,5 @@ public class KaleoNotificationRecipientLocalServiceImpl
 				addressRecipient.getAddress());
 		}
 	}
+
 }

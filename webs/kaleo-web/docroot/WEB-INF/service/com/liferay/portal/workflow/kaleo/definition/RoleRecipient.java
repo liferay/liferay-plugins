@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -23,16 +23,16 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class RoleRecipient extends Recipient {
 
-	public RoleRecipient(String roleName) {
-		super(Type.ROLE);
-
-		_roleName = roleName;
-	}
-
 	public RoleRecipient(long roleId) {
-		super(Type.ROLE);
+		super(RecipientType.ROLE);
 
 		_roleId = roleId;
+	}
+
+	public RoleRecipient(String roleName) {
+		super(RecipientType.ROLE);
+
+		_roleName = roleName;
 	}
 
 	public boolean equals(Object obj) {
@@ -40,7 +40,7 @@ public class RoleRecipient extends Recipient {
 			return false;
 		}
 
-		if (!(obj instanceof RoleAssignment)) {
+		if (!(obj instanceof RoleRecipient)) {
 			return false;
 		}
 
@@ -48,6 +48,7 @@ public class RoleRecipient extends Recipient {
 
 		if (Validator.equals(_roleName, roleRecipient._roleName) &&
 			(_roleId == roleRecipient._roleId)) {
+
 			return true;
 		}
 
@@ -66,7 +67,7 @@ public class RoleRecipient extends Recipient {
 		return _roleName.hashCode();
 	}
 
-	private String _roleName;
 	private long _roleId;
+	private String _roleName;
 
 }

@@ -195,7 +195,7 @@
 		</field>
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient">
-		<field name="kaleoRecipientId" type="long" />
+		<field name="kaleoNotificationRecipientId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String" />

@@ -25,6 +25,8 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
 public class KaleoNotificationRecipientImpl
 	extends KaleoNotificationRecipientModelImpl
 	implements KaleoNotificationRecipient {
+
 	public KaleoNotificationRecipientImpl() {
 	}
+
 }

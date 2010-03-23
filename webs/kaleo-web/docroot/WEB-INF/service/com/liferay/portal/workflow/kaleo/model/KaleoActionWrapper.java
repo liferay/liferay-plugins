@@ -173,7 +173,7 @@ public class KaleoActionWrapper implements KaleoAction {
 		_kaleoAction.setExecutionOrder(executionOrder);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoAction toEscapedModel() {
+	public KaleoAction toEscapedModel() {
 		return _kaleoAction.toEscapedModel();
 	}
 
@@ -218,8 +218,7 @@ public class KaleoActionWrapper implements KaleoAction {
 		return _kaleoAction.clone();
 	}
 
-	public int compareTo(
-		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction) {
+	public int compareTo(KaleoAction kaleoAction) {
 		return _kaleoAction.compareTo(kaleoAction);
 	}
 

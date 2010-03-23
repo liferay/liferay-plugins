@@ -270,6 +270,8 @@
 			<order-column name="kaleoNodeId" />
 		</order>
 
+		<!-- Finder methods -->
+
 		<finder name="C_KDI" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="kaleoDefinitionId" />
@@ -301,7 +303,8 @@
 		<column name="executionType" type="String" />
 		<column name="notificationTypes" type="String" />
 
-		<column name="receipients" type="Collection" entity="KaleoNotificationRecipient" mapping-key="kaleoNotificationId"/>
+		<column name="receipients" type="Collection" entity="KaleoNotificationRecipient" mapping-key="kaleoNotificationId" />
+
 		<!-- Order -->
 
 		<order by="asc">
@@ -319,7 +322,7 @@
 
 		<!-- PK fields -->
 
-		<column name="kaleoRecipientId" type="long" primary="true" />
+		<column name="kaleoNotificationRecipientId" type="long" primary="true" />
 
 		<!-- Audit fields -->
 
@@ -339,17 +342,18 @@
 		<!-- Order -->
 
 		<order by="asc">
-			<order-column name="kaleoRecipientId" />
+			<order-column name="kaleoNotificationRecipientId" />
 		</order>
 
 		<!-- Finder methods -->
 
-		<finder name="KNI" return-type="Collection">
+		<finder name="KaleoNotificationId" return-type="Collection">
 			<finder-column name="kaleoNotificationId" />
 		</finder>
 
-		<reference package-path="com.liferay.portal" entity="Role" />
+		<!-- References -->
 
+		<reference package-path="com.liferay.portal" entity="Role" />
 	</entity>
 	<entity name="KaleoTask" local-service="true" remote-service="false">
 

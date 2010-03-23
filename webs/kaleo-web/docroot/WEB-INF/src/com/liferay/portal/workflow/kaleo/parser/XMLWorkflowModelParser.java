@@ -136,18 +136,20 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			action.setExecutionOrder(executionOrder);
 
 			String description = actionElement.attributeValue("description");
-			if (Validator.isNotNull(description)) {
-				action.setDescription(description);
-			}
 
-			Element scriptElement = actionElement.element("script");
-			action.setScript(scriptElement.getText());
+			action.setDescription(description);
+
+			String script = actionElement.elementText("script");
+
+			action.setScript(script);
 
 			actions.add(action);
 		}
+
 		node.setActions(actions);
 
 		Set<Notification> notifications = new HashSet<Notification>();
+
 		List<Element> notificationElements = actionsElement.elements(
 			"notification");
 
@@ -160,23 +162,25 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 			String description = notificationElement.attributeValue(
 				"description");
-			if (Validator.isNotNull(description)) {
-				notification.setDescription(description);
-			}
+
+			notification.setDescription(description);
 
 			Element recipientsElement = notificationElement.element(
 				"recipients");
+
 			parseRecipients(recipientsElement, notification);
 
-			List<Element> notificationTypeElements = notificationElement.elements(
-				"notification-type");
+			List<Element> notificationTypeElements =
+				notificationElement.elements("notification-type");
+
 			for (Element notificationTypeElement : notificationTypeElements) {
 				notification.addNotificationType(
 					notificationTypeElement.attributeValue("value"));
 			}
 
-			Element scriptElement = notificationElement.element("template");
-			notification.setTemplate(scriptElement.getText());
+			String template = notificationElement.elementText("template");
+
+			notification.setTemplate(template);
 
 			notifications.add(notification);
 		}
@@ -196,12 +200,13 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		for (Element roleAssignmentElement : roleAssignmentElements) {
 			String name = roleAssignmentElement.attributeValue("name");
-			Long roleId = GetterUtil.getLong(
-				roleAssignmentElement.attributeValue("role-id"), 0);
+			long roleId = GetterUtil.getLong(
+				roleAssignmentElement.attributeValue("role-id"));
 			boolean defaultValue = GetterUtil.getBoolean(
 				roleAssignmentElement.attributeValue("default"));
 
 			RoleAssignment roleAssignment = null;
+
 			if (Validator.isNotNull(name)) {
 				roleAssignment = new RoleAssignment(name, defaultValue);
 			}
@@ -284,10 +289,11 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		for (Element roleAssignmentElement : roleReceipientElements) {
 			String name = roleAssignmentElement.attributeValue("name");
-			Long roleId = GetterUtil.getLong(
-				roleAssignmentElement.attributeValue("role-id"), 0);
+			long roleId = GetterUtil.getLong(
+				roleAssignmentElement.attributeValue("role-id"));
 
 			RoleRecipient roleRecipient = null;
+
 			if (Validator.isNotNull(name)) {
 				roleRecipient = new RoleRecipient(name);
 			}
@@ -302,7 +308,6 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			"user");
 
 		for (Element userRecipientElement : userRecipientElements) {
-
 			UserRecipient userRecipient = new UserRecipient();
 
 			long userId = GetterUtil.getLong(
@@ -325,14 +330,13 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		List<Element> addressRecipientElements = recipientsElement.elements(
 			"address");
-		for (Element addressRecipientElement : addressRecipientElements) {
 
+		for (Element addressRecipientElement : addressRecipientElements) {
 			AddressRecipient addressRecipient = new AddressRecipient(
 				addressRecipientElement.getTextTrim());
 
 			notification.addRecipients(addressRecipient);
 		}
-
 	}
 
 	protected State parseState(Element stateElement) {

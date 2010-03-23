@@ -14,8 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.model.impl;
 
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
 
 /**
@@ -25,10 +23,8 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
  */
 public class KaleoNotificationImpl extends KaleoNotificationModelImpl
 	implements KaleoNotification {
+
 	public KaleoNotificationImpl() {
 	}
 
-	public String[] getNotificationTypesArray() {
-		return StringUtil.split(getNotificationTypes(), StringPool.COMMA);
-	}
 }

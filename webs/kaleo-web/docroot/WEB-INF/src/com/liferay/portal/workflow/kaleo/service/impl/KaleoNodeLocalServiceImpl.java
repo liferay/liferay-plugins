@@ -87,6 +87,8 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 				serviceContext);
 		}
 
+		// Kaleo notifications
+
 		Set<Notification> notifications = node.getNotifications();
 
 		for (Notification notification : notifications) {

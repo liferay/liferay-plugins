@@ -15,20 +15,12 @@
 package com.liferay.portal.workflow.kaleo.definition;
 
 /**
- * <a href="Recipient.java.html"><b><i>View Source</i></b></a>
+ * <a href="RecipientType.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael C. Han
  */
-public abstract class Recipient {
+public enum RecipientType {
 
-	public Recipient(RecipientType recipientType) {
-		_recipientType = recipientType;
-	}
-
-	public RecipientType getRecipientType() {
-		return _recipientType;
-	}
-
-	private RecipientType _recipientType;
+	ADDRESS, ROLE, USER
 
 }
