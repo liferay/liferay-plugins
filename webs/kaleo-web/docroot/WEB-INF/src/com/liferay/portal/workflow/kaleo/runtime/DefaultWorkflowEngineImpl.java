@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.runtime;
 
-import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.annotation.Isolation;
 import com.liferay.portal.kernel.annotation.Transactional;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -24,6 +23,7 @@ import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.WorkflowInstanceAdapter;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 import com.liferay.portal.workflow.kaleo.deployment.WorkflowDeployer;
@@ -34,10 +34,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.parser.WorkflowModelParser;
 import com.liferay.portal.workflow.kaleo.parser.WorkflowValidator;
-import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalService;
-import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService;
-import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalService;
-import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalService;
 
 import java.io.InputStream;
 import java.io.Serializable;
@@ -51,18 +47,16 @@ import java.util.Map;
  *
  * @author Michael C. Han
  */
-@Transactional(
-	isolation = Isolation.PORTAL,
-	rollbackFor = {Exception.class})
-public class DefaultWorkflowEngineImpl implements WorkflowEngine {
+@Transactional(isolation = Isolation.PORTAL, rollbackFor = {Exception.class})
+public class DefaultWorkflowEngineImpl
+	extends BaseKaleoBean implements WorkflowEngine {
 
 	public void deleteWorkflowInstance(
 			long workflowInstanceId, ServiceContext serviceContext)
 		throws WorkflowException {
 
 		try {
-			kaleoInstanceLocalService.deleteKaleoInstance(
-				workflowInstanceId);
+			kaleoInstanceLocalService.deleteKaleoInstance(workflowInstanceId);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -97,8 +91,7 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 
 		try {
 			KaleoInstance kaleoInstance =
-				kaleoInstanceLocalService.getKaleoInstance(
-					workflowInstanceId);
+				kaleoInstanceLocalService.getKaleoInstance(workflowInstanceId);
 
 			KaleoInstanceToken rootKaleoInstanceToken =
 				kaleoInstance.getRootKaleoInstanceToken(null, serviceContext);
@@ -120,8 +113,7 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 
 		try {
 			KaleoInstance kaleoInstance =
-				kaleoInstanceLocalService.getKaleoInstance(
-					workflowInstanceId);
+				kaleoInstanceLocalService.getKaleoInstance(workflowInstanceId);
 
 			KaleoInstanceToken rootKaleoInstanceToken =
 				kaleoInstance.getRootKaleoInstanceToken(serviceContext);
@@ -218,7 +210,6 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 		throws WorkflowException {
 
 		try {
-
 			KaleoDefinition kaleoDefinition =
 				kaleoDefinitionLocalService.getKaleoDefinition(
 					workflowDefinitionName, workflowDefinitionVersion,
@@ -238,7 +229,8 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 					context, serviceContext);
 
 			KaleoInstanceToken rootKaleoInstanceToken =
-				kaleoInstance.getRootKaleoInstanceToken(context, serviceContext);
+				kaleoInstance.getRootKaleoInstanceToken(
+					context, serviceContext);
 
 			kaleoLogLocalService.addWorkflowInstanceStartKaleoLog(
 				rootKaleoInstanceToken, serviceContext);
@@ -332,18 +324,6 @@ public class DefaultWorkflowEngineImpl implements WorkflowEngine {
 
 		return workflowInstances;
 	}
-
-	@BeanReference(type = KaleoDefinitionLocalService.class)
-	protected KaleoDefinitionLocalService kaleoDefinitionLocalService;
-
-	@BeanReference(type = KaleoInstanceLocalService.class)
-	protected KaleoInstanceLocalService kaleoInstanceLocalService;
-
-	@BeanReference(type = KaleoInstanceTokenLocalService.class)
-	protected KaleoInstanceTokenLocalService kaleoInstanceTokenLocalService;
-
-	@BeanReference(type = KaleoLogLocalService.class)
-	protected KaleoLogLocalService kaleoLogLocalService;
 
 	private KaleoSignaler _kaleoSignaler;
 	private WorkflowDeployer _workflowDeployer;

@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.node;
 
-import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
@@ -25,7 +24,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceTokenImpl;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
-import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService;
 
 import java.io.Serializable;
 
@@ -92,8 +90,5 @@ public class StateNodeExecutor extends BaseNodeExecutor {
 		KaleoNode currentKaleoNode, ExecutionContext executionContext,
 		List<PathElement> remainingPathElement) {
 	}
-
-	@BeanReference(type = KaleoInstanceLocalService.class)
-	protected KaleoInstanceLocalService kaleoInstanceLocalService;
 
 }

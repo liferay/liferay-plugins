@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.workflow.WorkflowException;
+import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.definition.ActionType;
 import com.liferay.portal.workflow.kaleo.definition.NodeType;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
@@ -55,7 +56,7 @@ import java.util.List;
 @Transactional(
 	isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
 	rollbackFor = {PortalException.class, SystemException.class})
-public class DefaultGraphWalker implements GraphWalker {
+public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 
 	public void follow(
 			KaleoNode sourceKaleoNode, KaleoNode targetKaleoNode,
@@ -133,7 +134,7 @@ public class DefaultGraphWalker implements GraphWalker {
 
 		for (KaleoAction kaleoAction : kaleoActions) {
 			long startTime = System.currentTimeMillis();
-			String comment = _ACTION_SUCCESS_MESG;
+			String comment = _COMMENT_ACTION_SUCCESS;
 
 			try {
 				ActionExecutor actionExecutor =
@@ -190,9 +191,9 @@ public class DefaultGraphWalker implements GraphWalker {
 				if (notificationRecipients.isEmpty()) {
 					if (_log.isInfoEnabled()) {
 						_log.info(
-							"No recipients found to notify with message: " +
-							kaleoNotification.getName() + " " +
-							notificationMessage);
+							"No recipients found to notify with message " +
+								kaleoNotification.getName() + " " +
+									notificationMessage);
 					}
 					return;
 				}
@@ -232,11 +233,13 @@ public class DefaultGraphWalker implements GraphWalker {
 	protected KaleoNotificationLocalService kaleoNotificationLocalService;
 
 	@BeanReference(type = KaleoNotificationRecipientLocalService.class)
-	protected KaleoNotificationRecipientLocalService kaleoNotificationRecipientLocalService;
+	protected KaleoNotificationRecipientLocalService
+		kaleoNotificationRecipientLocalService;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		DefaultGraphWalker.class);
 
-	private static final String _ACTION_SUCCESS_MESG =
+	private static final String _COMMENT_ACTION_SUCCESS =
 		"Action completed successfully.";
+
 }

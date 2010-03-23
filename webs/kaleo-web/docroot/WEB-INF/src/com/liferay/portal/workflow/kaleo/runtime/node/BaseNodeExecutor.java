@@ -14,14 +14,13 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.node;
 
-import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
-import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalService;
 
 import java.util.List;
 
@@ -30,7 +29,8 @@ import java.util.List;
  *
  * @author Michael C. Han
  */
-public abstract class BaseNodeExecutor implements NodeExecutor {
+public abstract class BaseNodeExecutor
+	extends BaseKaleoBean implements NodeExecutor {
 
 	public void enter(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
@@ -40,7 +40,7 @@ public abstract class BaseNodeExecutor implements NodeExecutor {
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
 
-		kaleoInstanceToken.setCurrentNode(currentKaleoNode);
+		kaleoInstanceToken.setCurrentKaleoNode(currentKaleoNode);
 
 		doEnter(currentKaleoNode, executionContext, remainingPathElement);
 	}
@@ -62,8 +62,5 @@ public abstract class BaseNodeExecutor implements NodeExecutor {
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
 			List<PathElement> remainingPathElement)
 		throws PortalException, SystemException;
-
-	@BeanReference(type = KaleoInstanceTokenLocalService.class)
-	protected KaleoInstanceTokenLocalService kaleoInstanceTokenLocalService;
 
 }

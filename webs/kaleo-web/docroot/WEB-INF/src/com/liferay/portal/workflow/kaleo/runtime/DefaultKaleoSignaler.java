@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -14,25 +14,25 @@
 
 package com.liferay.portal.workflow.kaleo.runtime;
 
-import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.sender.DefaultSingleDestinationMessageSender;
 import com.liferay.portal.kernel.messaging.sender.SingleDestinationMessageSender;
+import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
-import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalService;
 
 /**
  * <a href="DefaultKaleoSignaler.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael C. Han
  */
-public class DefaultKaleoSignaler implements KaleoSignaler {
+public class DefaultKaleoSignaler
+	extends BaseKaleoBean implements KaleoSignaler {
 
 	public void signalEntry(
 		String transitionName, ExecutionContext executionContext)
@@ -42,10 +42,9 @@ public class DefaultKaleoSignaler implements KaleoSignaler {
 			executionContext.getKaleoInstanceToken();
 		KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
 		KaleoDefinition kaleoDefinition = kaleoInstance.getKaleoDefinition();
-
 		KaleoNode kaleoStartNode = kaleoDefinition.getKaleoStartNode();
 
-		kaleoInstanceToken.setCurrentNode(kaleoStartNode);
+		kaleoInstanceToken.setCurrentKaleoNode(kaleoStartNode);
 
 		executionContext.setTransitionName(transitionName);
 
@@ -82,9 +81,6 @@ public class DefaultKaleoSignaler implements KaleoSignaler {
 
 		_singleDestinationMessageSender = singleDestinationMessageSender;
 	}
-
-	@BeanReference(type = KaleoInstanceTokenLocalService.class)
-	protected KaleoInstanceTokenLocalService kaleoInstanceTokenLocalService;
 
 	private SingleDestinationMessageSender _singleDestinationMessageSender;
 

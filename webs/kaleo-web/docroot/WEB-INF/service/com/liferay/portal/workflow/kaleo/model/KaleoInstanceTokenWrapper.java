@@ -133,7 +133,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		_kaleoInstanceToken.setCompletionDate(completionDate);
 	}
 
-	public KaleoInstanceToken toEscapedModel() {
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken toEscapedModel() {
 		return _kaleoInstanceToken.toEscapedModel();
 	}
 
@@ -178,7 +178,8 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		return _kaleoInstanceToken.clone();
 	}
 
-	public int compareTo(KaleoInstanceToken kaleoInstanceToken) {
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken) {
 		return _kaleoInstanceToken.compareTo(kaleoInstanceToken);
 	}
 
@@ -231,11 +232,11 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		return _kaleoInstanceToken.isCompleted();
 	}
 
-	public void setCurrentNode(
+	public void setCurrentKaleoNode(
 		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoInstanceToken.setCurrentNode(kaleoNode);
+		_kaleoInstanceToken.setCurrentKaleoNode(kaleoNode);
 	}
 
 	public KaleoInstanceToken getWrappedKaleoInstanceToken() {

@@ -63,7 +63,7 @@ public interface KaleoInstanceToken extends KaleoInstanceTokenModel {
 
 	public boolean isCompleted();
 
-	public void setCurrentNode(
+	public void setCurrentKaleoNode(
 		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

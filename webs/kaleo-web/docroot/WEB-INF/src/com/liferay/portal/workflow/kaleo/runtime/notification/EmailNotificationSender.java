@@ -15,11 +15,10 @@
 package com.liferay.portal.workflow.kaleo.runtime.notification;
 
 import com.liferay.mail.service.MailServiceUtil;
-import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalService;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
@@ -81,9 +80,9 @@ public class EmailNotificationSender implements NotificationSender {
 			}
 			else {
 				String recipientClass = recipient.getRecipientClassName();
-				if (User.class.getName().equals(recipientClass)) {
 
-					User user = userLocalService.getUser(
+				if (User.class.getName().equals(recipientClass)) {
+					User user = UserLocalServiceUtil.getUser(
 						recipient.getRecipientClassPK());
 
 					internetAddresses.add(
@@ -91,7 +90,7 @@ public class EmailNotificationSender implements NotificationSender {
 							user.getEmailAddress(), user.getFullName()));
 				}
 				else {
-					List<User> roleUsers = userLocalService.getRoleUsers(
+					List<User> roleUsers = UserLocalServiceUtil.getRoleUsers(
 						recipient.getRecipientClassPK());
 
 					for (User user : roleUsers) {
@@ -107,9 +106,7 @@ public class EmailNotificationSender implements NotificationSender {
 			new InternetAddress[internetAddresses.size()]);
 	}
 
-	@BeanReference(type = UserLocalService.class)
-	protected UserLocalService userLocalService;
-
 	private String _fromAddress;
 	private String _fromName;
+
 }

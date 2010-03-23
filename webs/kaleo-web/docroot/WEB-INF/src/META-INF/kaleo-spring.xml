@@ -16,7 +16,7 @@
 			<bean class="com.liferay.portal.workflow.kaleo.comparator.WorkflowComparatorFactoryImpl" />
 		</property>
 	</bean>
-	
+
 	<!-- Deployment -->
 
 	<bean id="com.liferay.portal.workflow.kaleo.deployment.WorkflowDeployer" class="com.liferay.portal.workflow.kaleo.deployment.DefaultWorkflowDeployer" />
@@ -24,6 +24,9 @@
 	<!-- Runtime -->
 
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.graph.GraphWalker" class="com.liferay.portal.workflow.kaleo.runtime.graph.DefaultGraphWalker" />
+	<bean id="com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler" class="com.liferay.portal.workflow.kaleo.runtime.DefaultKaleoSignaler">
+		<property name="destinationName" value="liferay/kaleo_graph_walker" />
+	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.TaskManager" class="com.liferay.portal.workflow.kaleo.runtime.DefaultTaskManagerImpl">
 		<property name="kaleoSignaler" ref="com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler" />
 	</bean>
@@ -32,11 +35,6 @@
 		<property name="workflowDeployer" ref="com.liferay.portal.workflow.kaleo.deployment.WorkflowDeployer" />
 		<property name="workflowModelParser" ref="com.liferay.portal.workflow.kaleo.parser.WorkflowModelParser" />
 	</bean>
-
-	<bean id="com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler" class="com.liferay.portal.workflow.kaleo.runtime.DefaultKaleoSignaler">
-		<property name="destinationName" value="liferay/kaleo_graph_walker"/>
-	</bean>
-	
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorFactory" class="com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorFactory">
 		<property name="actionExecutors">
 			<map>
@@ -82,8 +80,8 @@
 			<map>
 				<entry key="email">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.EmailNotificationSender">
-						<property name="fromAddress" value="no-reply@liferay.com"/>
-						<property name="fromName" value="Liferay Portal Workflow Notifications"/>
+						<property name="fromAddress" value="no-reply@liferay.com" />
+						<property name="fromName" value="Liferay Portal Workflow Notifications" />
 					</bean>
 				</entry>
 				<entry key="private-message">

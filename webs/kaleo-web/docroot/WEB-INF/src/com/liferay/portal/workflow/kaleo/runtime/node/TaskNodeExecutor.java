@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.node;
 
-import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
@@ -31,11 +30,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.calendar.DueDateCalculator;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
-import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalService;
-import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalService;
-import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceAssignmentLocalService;
-import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalService;
-import com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalService;
 
 import java.io.Serializable;
 
@@ -125,21 +119,6 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 
 		remainingPathElement.add(pathElement);
 	}
-
-	@BeanReference(type = KaleoInstanceTokenLocalService.class)
-	protected KaleoInstanceTokenLocalService kaleoInstanceTokenLocalService;
-
-	@BeanReference(type = KaleoLogLocalService.class)
-	protected KaleoLogLocalService kaleoLogLocalService;
-
-	@BeanReference(type = KaleoTaskLocalService.class)
-	protected KaleoTaskLocalService kaleoTaskLocalService;
-
-	@BeanReference(type = KaleoTaskInstanceAssignmentLocalService.class)
-	protected KaleoTaskInstanceAssignmentLocalService kaleoTaskInstanceAssignmentLocalService;
-
-	@BeanReference(type = KaleoTaskInstanceTokenLocalService.class)
-	protected KaleoTaskInstanceTokenLocalService kaleoTaskInstanceTokenLocalService;
 
 	private DueDateCalculator _dueDateCalculator;
 

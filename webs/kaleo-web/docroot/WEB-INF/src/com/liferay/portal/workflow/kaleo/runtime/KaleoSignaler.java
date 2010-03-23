@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -25,8 +25,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 public interface KaleoSignaler {
 
 	public void signalEntry(
-				String transitionName, ExecutionContext executionContext)
-			throws PortalException, SystemException;
+			String transitionName, ExecutionContext executionContext)
+		throws PortalException, SystemException;
 
 	public void signalExit(
 			String transitionName, ExecutionContext executionContext)

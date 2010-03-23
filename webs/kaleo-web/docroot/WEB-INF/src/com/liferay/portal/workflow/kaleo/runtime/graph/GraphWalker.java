@@ -33,4 +33,5 @@ public interface GraphWalker {
 			List<PathElement> remainingPathElement,
 			ExecutionContext executionContext)
 		throws PortalException, SystemException;
+
 }

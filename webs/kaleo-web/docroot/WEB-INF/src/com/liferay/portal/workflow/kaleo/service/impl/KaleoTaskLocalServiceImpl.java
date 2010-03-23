@@ -59,6 +59,7 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 		kaleoTask.setName(task.getName());
 
 		DueDateDuration dueDateDuration = task.getDueDateDuration();
+
 		if (dueDateDuration != null) {
 			kaleoTask.setDueDateDuration(dueDateDuration.getDuration());
 			kaleoTask.setDueDateScale(

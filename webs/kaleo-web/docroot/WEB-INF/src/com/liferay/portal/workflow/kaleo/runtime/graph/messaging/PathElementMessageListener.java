@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.graph.messaging;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
@@ -33,8 +35,8 @@ import java.util.List;
 public class PathElementMessageListener implements MessageListener {
 
 	public void receive(Message message) {
+		PathElement pathElement = (PathElement)message.getPayload();
 
-		PathElement pathElement = (PathElement) message.getPayload();
 		List<PathElement> remainingPathElements = new ArrayList<PathElement>();
 
 		try {
@@ -43,7 +45,7 @@ public class PathElementMessageListener implements MessageListener {
 				remainingPathElements, pathElement.getExecutionContext());
 		}
 		catch (Exception e) {
-			//TBD Need to write a log message
+			_log.error(e, e);
 		}
 
 		for (PathElement remainingPathElement : remainingPathElements) {
@@ -63,8 +65,11 @@ public class PathElementMessageListener implements MessageListener {
 		singleDestinationMessageSender.setMessageSender(
 			MessageBusUtil.getMessageSender());
 
-		_singleDestinationMessageSender  = singleDestinationMessageSender ;
+		_singleDestinationMessageSender = singleDestinationMessageSender ;
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		PathElementMessageListener.class);
 
 	private GraphWalker _graphWalker;
 	private SingleDestinationMessageSender _singleDestinationMessageSender;

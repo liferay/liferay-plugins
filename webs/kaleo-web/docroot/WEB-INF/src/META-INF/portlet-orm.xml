@@ -352,7 +352,9 @@
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceTokenImpl" name="KaleoInstanceToken">
 		<table name="Kaleo_KaleoInstanceToken" />
-		<attributes />
+		<attributes>
+			<transient name="currentKaleoNode" />
+		</attributes>
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoLogImpl" name="KaleoLog">
 		<table name="Kaleo_KaleoLog" />

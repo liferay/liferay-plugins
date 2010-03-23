@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.runtime;
 
-import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.annotation.Isolation;
 import com.liferay.portal.kernel.annotation.Transactional;
 import com.liferay.portal.kernel.workflow.WorkflowException;
@@ -22,17 +21,11 @@ import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.WorkflowTaskAdapter;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
-import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalService;
-import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalService;
-import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceAssignmentLocalService;
-import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceAssignmentLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalService;
-import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.util.ContextUtil;
 
 import java.io.Serializable;
@@ -45,10 +38,9 @@ import java.util.Map;
  *
  * @author Michael C. Han
  */
-@Transactional(
-	isolation = Isolation.PORTAL,
-	rollbackFor = {Exception.class})
-public class DefaultTaskManagerImpl implements TaskManager {
+@Transactional(isolation = Isolation.PORTAL, rollbackFor = {Exception.class})
+public class DefaultTaskManagerImpl
+	extends BaseKaleoBean implements TaskManager {
 
 	public WorkflowTask assignWorkflowTaskToRole(
 			long workflowTaskInstanceId, long roleId, String comment,
@@ -108,8 +100,8 @@ public class DefaultTaskManagerImpl implements TaskManager {
 
 		try {
 			KaleoTaskInstanceToken kaleoTaskInstanceToken =
-				KaleoTaskInstanceTokenLocalServiceUtil.
-					getKaleoTaskInstanceToken(workflowTaskInstanceId);
+				kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceToken(
+					workflowTaskInstanceId);
 
 			if (kaleoTaskInstanceToken.isCompleted()) {
 				throw new WorkflowException(
@@ -118,7 +110,7 @@ public class DefaultTaskManagerImpl implements TaskManager {
 			}
 
 			if (dueDate != null) {
-				KaleoTaskInstanceTokenLocalServiceUtil.updateDueDate(
+				kaleoTaskInstanceTokenLocalService.updateDueDate(
 					workflowTaskInstanceId, dueDate, serviceContext);
 			}
 
@@ -128,7 +120,7 @@ public class DefaultTaskManagerImpl implements TaskManager {
 			Map<String, Serializable> context = ContextUtil.convert(
 				kaleoTaskInstanceAssignment.getContext());
 
-			KaleoLogLocalServiceUtil.addTaskAssignmentKaleoLog(
+			kaleoLogLocalService.addTaskAssignmentKaleoLog(
 				kaleoTaskInstanceToken, kaleoTaskInstanceAssignment,
 				kaleoTaskInstanceAssignment, comment, context, serviceContext);
 
@@ -147,7 +139,7 @@ public class DefaultTaskManagerImpl implements TaskManager {
 		throws Exception {
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
-			KaleoTaskInstanceTokenLocalServiceUtil.getKaleoTaskInstanceToken(
+			kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceToken(
 				workflowTaskInstanceId);
 
 		if (kaleoTaskInstanceToken.isCompleted()) {
@@ -156,7 +148,7 @@ public class DefaultTaskManagerImpl implements TaskManager {
 		}
 
 		if (dueDate != null) {
-			KaleoTaskInstanceTokenLocalServiceUtil.updateDueDate(
+			kaleoTaskInstanceTokenLocalService.updateDueDate(
 				workflowTaskInstanceId, dueDate, serviceContext);
 		}
 
@@ -164,14 +156,14 @@ public class DefaultTaskManagerImpl implements TaskManager {
 			kaleoTaskInstanceToken.getKaleoTaskInstanceAssignment();
 
 		KaleoTaskInstanceAssignment newKaleoTaskInstanceAssignment =
-			KaleoTaskInstanceAssignmentLocalServiceUtil.
+			kaleoTaskInstanceAssignmentLocalService.
 				assignKaleoTaskInstanceAssignment(
 					kaleoTaskInstanceAssignment.
 						getKaleoTaskInstanceAssignmentId(),
 					assigneeClassName, assigneeClassPK, context,
 					serviceContext);
 
-		KaleoLogLocalServiceUtil.addTaskAssignmentKaleoLog(
+		kaleoLogLocalService.addTaskAssignmentKaleoLog(
 			kaleoTaskInstanceToken, kaleoTaskInstanceAssignment,
 			newKaleoTaskInstanceAssignment, comment, context, serviceContext);
 
@@ -185,11 +177,11 @@ public class DefaultTaskManagerImpl implements TaskManager {
 		throws Exception {
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
-			KaleoTaskInstanceTokenLocalServiceUtil.getKaleoTaskInstanceToken(
+			kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceToken(
 				workflowTaskInstanceId);
 
 		KaleoTaskInstanceAssignment kaleoTaskInstanceAssignment =
-			KaleoTaskInstanceAssignmentLocalServiceUtil.
+			kaleoTaskInstanceAssignmentLocalService.
 				getKaleoTaskInstanceAssignment(
 					workflowTaskInstanceId, User.class.getName(),
 					serviceContext.getUserId());
@@ -234,17 +226,5 @@ public class DefaultTaskManagerImpl implements TaskManager {
 	}
 
 	private KaleoSignaler _kaleoSignaler;
-
-	@BeanReference(type = KaleoInstanceTokenLocalService.class)
-	protected KaleoInstanceTokenLocalService kaleoInstanceTokenLocalService;
-
-	@BeanReference(type = KaleoLogLocalService.class)
-	protected KaleoLogLocalService kaleoLogLocalService;
-
-	@BeanReference(type = KaleoTaskInstanceAssignmentLocalService.class)
-	protected KaleoTaskInstanceAssignmentLocalService kaleoTaskInstanceAssignmentLocalService;
-
-	@BeanReference(type = KaleoTaskInstanceTokenLocalService.class)
-	protected KaleoTaskInstanceTokenLocalService kaleoTaskInstanceTokenLocalService;
 
 }
