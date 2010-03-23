@@ -59,7 +59,7 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 	</c:when>
 	<c:when test="<%= !ipGeocoderConfigured %>">
 		<div class="portlet-msg-error">
-			<aui:a href="http://www.maxmind.com/app/geolitecity" target="_blank"><liferay-ui:message key="install-and-configure-maxmind-geoip-city-or-geolite-city-to-enable-this-portlet" /></aui:a>
+			<a href="http://www.maxmind.com/app/geolitecity" target="_blank"><liferay-ui:message key="install-and-configure-maxmind-geoip-city-or-geolite-city-to-enable-this-portlet" /></a>
 		</div>
 	</c:when>
 	<c:otherwise>
