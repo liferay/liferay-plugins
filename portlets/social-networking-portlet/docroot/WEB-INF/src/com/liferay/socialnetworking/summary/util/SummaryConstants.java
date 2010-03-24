@@ -14,6 +14,9 @@
 
 package com.liferay.socialnetworking.summary.util;
 
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.util.portlet.PortletProps;
+
 /**
  * <a href="SummaryConstants.java.html"><b><i>View Source</i></b></a>
  *
@@ -31,6 +34,9 @@ public interface SummaryConstants {
 	public static final int ORGANIZATION_SERVICES_PARTNER_ID = 810694;
 
 	public static final int ORGANIZATION_TECHNOLOGY_PARTNER_ID = 810690;
+
+	public static final long SUMMARY_MESSAGE_BOARDS_GROUP_PLID =
+		GetterUtil.getLong(PortletProps.get("summary.message.boards.plid"));
 
 	public static final int USER_DEFAULT_ADMIN_ID = 2;
 
