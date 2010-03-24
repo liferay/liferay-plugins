@@ -153,7 +153,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		_kaleoTaskAssignment.setDefaultAssignment(defaultAssignment);
 	}
 
-	public KaleoTaskAssignment toEscapedModel() {
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment toEscapedModel() {
 		return _kaleoTaskAssignment.toEscapedModel();
 	}
 
@@ -198,7 +198,8 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		return _kaleoTaskAssignment.clone();
 	}
 
-	public int compareTo(KaleoTaskAssignment kaleoTaskAssignment) {
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment kaleoTaskAssignment) {
 		return _kaleoTaskAssignment.compareTo(kaleoTaskAssignment);
 	}
 
