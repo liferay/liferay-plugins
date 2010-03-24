@@ -132,6 +132,7 @@ public class UpgradeProcess_1_5_1 extends UpgradeProcess {
 		}
 
 		long companyId = group.getCompanyId();
+
 		long userId = group.getCreatorUserId();
 
 		try {
