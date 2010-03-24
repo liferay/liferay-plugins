@@ -67,7 +67,16 @@ public class RoleRecipient extends Recipient {
 		return _roleName.hashCode();
 	}
 
+	public boolean isAutoCreate() {
+		return _autoCreate;
+	}
+
+	public void setAutoCreate(boolean autoCreate) {
+		_autoCreate = autoCreate;
+	}
+
+	private boolean _autoCreate;
 	private long _roleId;
 	private String _roleName;
-
+	
 }

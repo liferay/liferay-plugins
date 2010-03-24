@@ -14,10 +14,12 @@
 
 package com.liferay.portal.workflow.kaleo.service.impl;
 
+import com.liferay.portal.NoSuchRoleException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.AddressRecipient;
@@ -94,8 +96,23 @@ public class KaleoNotificationRecipientLocalServiceImpl
 			Role role = null;
 
 			if (Validator.isNotNull(roleRecipient.getRoleName())) {
-				role = roleLocalService.getRole(
-					serviceContext.getCompanyId(), roleRecipient.getRoleName());
+				try {
+					role = roleLocalService.getRole(
+						serviceContext.getCompanyId(),
+						roleRecipient.getRoleName());
+				}
+				catch (NoSuchRoleException nsre) {
+
+					if (!roleRecipient.isAutoCreate()) {
+						throw nsre;
+					}
+					role = roleLocalService.addRole(
+						serviceContext.getUserId(),
+						serviceContext.getCompanyId(),
+						roleRecipient.getRoleName(), null,
+						"Automatically added Role from workflow definition",
+						RoleConstants.TYPE_REGULAR);
+				}
 			}
 			else {
 				role = roleLocalService.getRole(roleRecipient.getRoleId());

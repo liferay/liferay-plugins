@@ -204,11 +204,14 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 				roleAssignmentElement.attributeValue("role-id"));
 			boolean defaultValue = GetterUtil.getBoolean(
 				roleAssignmentElement.attributeValue("default"));
+			boolean autoCreate = GetterUtil.getBoolean(
+				roleAssignmentElement.attributeValue("auto-create"), true);
 
 			RoleAssignment roleAssignment = null;
 
 			if (Validator.isNotNull(name)) {
 				roleAssignment = new RoleAssignment(name, defaultValue);
+				roleAssignment.setAutoCreate(autoCreate);
 			}
 			else {
 				roleAssignment = new RoleAssignment(roleId, defaultValue);
@@ -291,11 +294,14 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			String name = roleAssignmentElement.attributeValue("name");
 			long roleId = GetterUtil.getLong(
 				roleAssignmentElement.attributeValue("role-id"));
+			boolean autoCreate = GetterUtil.getBoolean(
+				roleAssignmentElement.attributeValue("auto-create"), true);
 
 			RoleRecipient roleRecipient = null;
 
 			if (Validator.isNotNull(name)) {
 				roleRecipient = new RoleRecipient(name);
+				roleRecipient.setAutoCreate(autoCreate);
 			}
 			else {
 				roleRecipient = new RoleRecipient(roleId);
