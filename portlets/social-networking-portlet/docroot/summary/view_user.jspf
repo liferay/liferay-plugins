@@ -106,9 +106,9 @@
 				<td>
 
 					<%
-					Layout mbLayout = LayoutLocalServiceUtil.getLayout(SummaryConstants.SUMMARY_MESSAGE_BOARDS_GROUP_PLID);
+					Layout mbLayout = LayoutLocalServiceUtil.getLayout(SummaryConstants.SUMMARY_MESSAGE_BOARDS_PLID);
 
-					String friendlyURL= PortalUtil.getLayoutFriendlyURL(LayoutLocalServiceUtil.getLayout(SummaryConstants.SUMMARY_MESSAGE_BOARDS_GROUP_PLID), themeDisplay);
+					String friendlyURL= PortalUtil.getLayoutFriendlyURL(LayoutLocalServiceUtil.getLayout(SummaryConstants.SUMMARY_MESSAGE_BOARDS_PLID), themeDisplay);
 
 					int mbMessagesCount = MBStatsUserLocalServiceUtil.getStatsUser(mbLayout.getGroupId(), user2.getUserId()).getMessageCount();
 					%>
@@ -123,7 +123,7 @@
 				<td>
 					<liferay-ui:icon
 						image="rss"
-						url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=" + SummaryConstants.SUMMARY_MESSAGE_BOARDS_GROUP_PLID + "&groupId=" + mbLayout.getGroupId() + "&userId=" + user2.getUserId() %>'
+						url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=" + SummaryConstants.SUMMARY_MESSAGE_BOARDS_PLID + "&groupId=" + mbLayout.getGroupId() + "&userId=" + user2.getUserId() %>'
 					/>
 				</td>
 			</tr>

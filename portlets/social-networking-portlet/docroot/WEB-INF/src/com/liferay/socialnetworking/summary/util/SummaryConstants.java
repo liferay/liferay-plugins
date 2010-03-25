@@ -35,7 +35,7 @@ public interface SummaryConstants {
 
 	public static final int ORGANIZATION_TECHNOLOGY_PARTNER_ID = 810690;
 
-	public static final long SUMMARY_MESSAGE_BOARDS_GROUP_PLID =
+	public static final long SUMMARY_MESSAGE_BOARDS_PLID =
 		GetterUtil.getLong(PortletProps.get("summary.message.boards.plid"));
 
 	public static final int USER_DEFAULT_ADMIN_ID = 2;
