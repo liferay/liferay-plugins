@@ -84,7 +84,7 @@ List users = UserLocalServiceUtil.getGroupUsers(layout.getGroupId());
 int invitedMembersCount = ParamUtil.getInteger(renderRequest, "invitedMembersCount");
 %>
 
-<c:if test="<%= users.contains(user) %>">
+<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, layout.getGroupId(), ActionKeys.UPDATE) %>">
 	<div class="invite-members">
 		<a href="javascript:;"><liferay-ui:message key="invite-members" /></a>
 	</div>

@@ -57,7 +57,8 @@ public class MemberRequestLocalServiceImpl
 
 	public MemberRequest addMemberRequest(
 			long userId, long groupId, long receiverUserId,
-			String receiverEmailAddress, ThemeDisplay themeDisplay)
+			String receiverEmailAddress, long invitedTeamId,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		User user = userLocalService.getUserById(userId);
@@ -77,6 +78,7 @@ public class MemberRequestLocalServiceImpl
 		memberRequest.setModifiedDate(now);
 		memberRequest.setKey(PortalUUIDUtil.generate());
 		memberRequest.setReceiverUserId(receiverUserId);
+		memberRequest.setInvitedTeamId(invitedTeamId);
 		memberRequest.setStatus(InviteMembersConstants.STATUS_PENDING);
 
 		memberRequestPersistence.update(memberRequest, false);
@@ -95,7 +97,7 @@ public class MemberRequestLocalServiceImpl
 
 	public void addMemberRequests(
 			long userId, long groupId, long[] receiverUserIds,
-			ThemeDisplay themeDisplay)
+			long invitedTeamId, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		for (long receiverUserId : receiverUserIds) {
@@ -108,13 +110,14 @@ public class MemberRequestLocalServiceImpl
 			String emailAddress = user.getEmailAddress();
 
 			addMemberRequest(
-				userId, groupId, receiverUserId, emailAddress, themeDisplay);
+				userId, groupId, receiverUserId, emailAddress, invitedTeamId,
+				themeDisplay);
 		}
 	}
 
 	public void addMemberRequests(
 			long userId, long groupId, String[] emailAddresses,
-			ThemeDisplay themeDisplay)
+			long invitedTeamId, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		for (String emailAddress : emailAddresses) {
@@ -122,7 +125,8 @@ public class MemberRequestLocalServiceImpl
 				continue;
 			}
 
-			addMemberRequest(userId, groupId, 0, emailAddress, themeDisplay);
+			addMemberRequest(
+				userId, groupId, 0, emailAddress, invitedTeamId, themeDisplay);
 		}
 	}
 
@@ -194,6 +198,12 @@ public class MemberRequestLocalServiceImpl
 			userLocalService.addGroupUsers(
 				memberRequest.getGroupId(),
 				new long[] {memberRequest.getReceiverUserId()});
+
+			if (memberRequest.getInvitedTeamId() > 0 ) {
+				userLocalService.addTeamUsers(
+					memberRequest.getInvitedTeamId(),
+					new long[] {memberRequest.getReceiverUserId()});
+			}
 		}
 
 		return memberRequest;

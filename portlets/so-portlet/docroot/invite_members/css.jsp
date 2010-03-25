@@ -157,6 +157,15 @@
 	border-color: #AFA;
 }
 
+.so-portlet-invite-members .team-invite select {
+	margin-top: 1em;
+	min-width: 300px;
+}
+
+.ie .so-portlet-invite-members .team-invite select {
+	width: 300px;
+}
+
 .so-portlet-invite-members span.email {
 	color: #AAA;
 	font-size: 0.8em;

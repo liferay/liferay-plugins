@@ -18,6 +18,10 @@
 %>
 
 <script>
+	function <portlet:namespace />selectInvitedTeam(teamId) {
+		document.<portlet:namespace />fm.<portlet:namespace />invitedTeamId.value = teamId;
+	}
+
 	jQuery(
 		function() {
 			var form = jQuery(document.<portlet:namespace />fm);
@@ -139,12 +143,40 @@
 		</div>
 	</div>
 
+	<%
+	List<Team> teams = TeamLocalServiceUtil.getGroupTeams(group.getGroupId());
+	%>
+
+	<c:if test="<%= !teams.isEmpty() && GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_TEAMS) %>">
+		<div class="team-invite">
+			<h2>
+				<liferay-ui:message key="invite-to-team" />
+			</h2>
+
+			<select name="<portlet:namespace />teamId" onChange="<portlet:namespace />selectInvitedTeam(this.value);">
+				<option selected value="0"></option>
+
+				<%
+				for (Team team : teams) {
+				%>
+
+					<option value="<%= team.getTeamId() %>"><%= team.getName() %></option>
+
+				<%
+				}
+				%>
+
+			</select>
+		</div>
+	</c:if>
+
 	<div class="invite-actions">
 		<form action="<portlet:actionURL name="sendInvites" />" method="post" name="<portlet:namespace />fm">
 		<input name="<portlet:namespace />redirect" type="hidden" value="<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/invite_members/view.jsp" /></portlet:renderURL>" />
 		<input name="<portlet:namespace />groupId" type="hidden" value="<%= themeDisplay.getScopeGroupId() %>" />
 		<input name="<portlet:namespace />receiverUserIds" type="hidden" value="" />
 		<input name="<portlet:namespace />receiverEmailAddresses" type="hidden" value="" />
+		<input name="<portlet:namespace />invitedTeamId" type="hidden" value="" />
 
 		<input id="<portlet:namespace />submit" type="submit" value="<liferay-ui:message key="send-invitations" />" />
 
