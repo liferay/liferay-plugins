@@ -92,6 +92,10 @@ public interface MemberRequestModel extends BaseModel<MemberRequest> {
 
 	public void setReceiverUserUuid(String receiverUserUuid);
 
+	public long getInvitedTeamId();
+
+	public void setInvitedTeamId(long invitedTeamId);
+
 	public int getStatus();
 
 	public void setStatus(int status);

@@ -139,6 +139,14 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 		_receiverUserUuid = receiverUserUuid;
 	}
 
+	public long getInvitedTeamId() {
+		return _invitedTeamId;
+	}
+
+	public void setInvitedTeamId(long invitedTeamId) {
+		_invitedTeamId = invitedTeamId;
+	}
+
 	public int getStatus() {
 		return _status;
 	}
@@ -165,6 +173,7 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 			model.setModifiedDate(getModifiedDate());
 			model.setKey(HtmlUtil.escape(getKey()));
 			model.setReceiverUserId(getReceiverUserId());
+			model.setInvitedTeamId(getInvitedTeamId());
 			model.setStatus(getStatus());
 
 			model = (MemberRequest)Proxy.newProxyInstance(MemberRequest.class.getClassLoader(),
@@ -187,6 +196,7 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 		clone.setModifiedDate(getModifiedDate());
 		clone.setKey(getKey());
 		clone.setReceiverUserId(getReceiverUserId());
+		clone.setInvitedTeamId(getInvitedTeamId());
 		clone.setStatus(getStatus());
 
 		return clone;
@@ -236,7 +246,7 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{memberRequestId=");
 		sb.append(getMemberRequestId());
@@ -256,6 +266,8 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 		sb.append(getKey());
 		sb.append(", receiverUserId=");
 		sb.append(getReceiverUserId());
+		sb.append(", invitedTeamId=");
+		sb.append(getInvitedTeamId());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append("}");
@@ -264,7 +276,7 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.so.model.MemberRequest");
@@ -307,6 +319,10 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 		sb.append(getReceiverUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>invitedTeamId</column-name><column-value><![CDATA[");
+		sb.append(getInvitedTeamId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
 		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
@@ -327,5 +343,6 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 	private String _key;
 	private long _receiverUserId;
 	private String _receiverUserUuid;
+	private long _invitedTeamId;
 	private int _status;
 }

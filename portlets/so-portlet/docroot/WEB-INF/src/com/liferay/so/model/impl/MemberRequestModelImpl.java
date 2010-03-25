@@ -72,9 +72,10 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
 			{ "key_", new Integer(Types.VARCHAR) },
 			{ "receiverUserId", new Integer(Types.BIGINT) },
+			{ "invitedTeamId", new Integer(Types.BIGINT) },
 			{ "status", new Integer(Types.INTEGER) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table SO_MemberRequest (memberRequestId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,key_ VARCHAR(75) null,receiverUserId LONG,status INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table SO_MemberRequest (memberRequestId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,key_ VARCHAR(75) null,receiverUserId LONG,invitedTeamId LONG,status INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table SO_MemberRequest";
 	public static final String ORDER_BY_JPQL = " ORDER BY memberRequest.createDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY SO_MemberRequest.createDate DESC";
@@ -100,6 +101,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setKey(soapModel.getKey());
 		model.setReceiverUserId(soapModel.getReceiverUserId());
+		model.setInvitedTeamId(soapModel.getInvitedTeamId());
 		model.setStatus(soapModel.getStatus());
 
 		return model;
@@ -260,6 +262,14 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
 		return _originalReceiverUserId;
 	}
 
+	public long getInvitedTeamId() {
+		return _invitedTeamId;
+	}
+
+	public void setInvitedTeamId(long invitedTeamId) {
+		_invitedTeamId = invitedTeamId;
+	}
+
 	public int getStatus() {
 		return _status;
 	}
@@ -297,6 +307,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
 			model.setModifiedDate(getModifiedDate());
 			model.setKey(HtmlUtil.escape(getKey()));
 			model.setReceiverUserId(getReceiverUserId());
+			model.setInvitedTeamId(getInvitedTeamId());
 			model.setStatus(getStatus());
 
 			model = (MemberRequest)Proxy.newProxyInstance(MemberRequest.class.getClassLoader(),
@@ -332,6 +343,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
 		clone.setModifiedDate(getModifiedDate());
 		clone.setKey(getKey());
 		clone.setReceiverUserId(getReceiverUserId());
+		clone.setInvitedTeamId(getInvitedTeamId());
 		clone.setStatus(getStatus());
 
 		return clone;
@@ -381,7 +393,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{memberRequestId=");
 		sb.append(getMemberRequestId());
@@ -401,6 +413,8 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
 		sb.append(getKey());
 		sb.append(", receiverUserId=");
 		sb.append(getReceiverUserId());
+		sb.append(", invitedTeamId=");
+		sb.append(getInvitedTeamId());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append("}");
@@ -409,7 +423,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.so.model.MemberRequest");
@@ -452,6 +466,10 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
 		sb.append(getReceiverUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>invitedTeamId</column-name><column-value><![CDATA[");
+		sb.append(getInvitedTeamId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
 		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
@@ -477,6 +495,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
 	private String _receiverUserUuid;
 	private long _originalReceiverUserId;
 	private boolean _setOriginalReceiverUserId;
+	private long _invitedTeamId;
 	private int _status;
 	private int _originalStatus;
 	private boolean _setOriginalStatus;

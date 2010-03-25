@@ -9,6 +9,7 @@ create table SO_MemberRequest (
 	modifiedDate DATE null,
 	key_ VARCHAR(75) null,
 	receiverUserId LONG,
+	invitedTeamId LONG,
 	status INTEGER
 );
 

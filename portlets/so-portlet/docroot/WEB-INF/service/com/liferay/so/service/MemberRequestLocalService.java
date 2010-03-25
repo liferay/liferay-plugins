@@ -105,19 +105,19 @@ public interface MemberRequestLocalService {
 
 	public com.liferay.so.model.MemberRequest addMemberRequest(long userId,
 		long groupId, long receiverUserId,
-		java.lang.String receiverEmailAddress,
+		java.lang.String receiverEmailAddress, long invitedTeamId,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public void addMemberRequests(long userId, long groupId,
-		long[] receiverUserIds,
+		long[] receiverUserIds, long invitedTeamId,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public void addMemberRequests(long userId, long groupId,
-		java.lang.String[] emailAddresses,
+		java.lang.String[] emailAddresses, long invitedTeamId,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

@@ -134,6 +134,14 @@ public class MemberRequestWrapper implements MemberRequest {
 		_memberRequest.setReceiverUserUuid(receiverUserUuid);
 	}
 
+	public long getInvitedTeamId() {
+		return _memberRequest.getInvitedTeamId();
+	}
+
+	public void setInvitedTeamId(long invitedTeamId) {
+		_memberRequest.setInvitedTeamId(invitedTeamId);
+	}
+
 	public int getStatus() {
 		return _memberRequest.getStatus();
 	}

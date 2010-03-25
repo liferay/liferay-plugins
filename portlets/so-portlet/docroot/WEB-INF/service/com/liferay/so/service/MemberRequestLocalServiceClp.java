@@ -447,7 +447,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 	public com.liferay.so.model.MemberRequest addMemberRequest(long userId,
 		long groupId, long receiverUserId,
-		java.lang.String receiverEmailAddress,
+		java.lang.String receiverEmailAddress, long invitedTeamId,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -463,10 +463,12 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 			paramObj3 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj4 = ClpSerializer.translateInput(themeDisplay);
+		Object paramObj4 = new LongWrapper(invitedTeamId);
+
+		Object paramObj5 = ClpSerializer.translateInput(themeDisplay);
 
 		if (themeDisplay == null) {
-			paramObj4 = new NullWrapper("com.liferay.portal.theme.ThemeDisplay");
+			paramObj5 = new NullWrapper("com.liferay.portal.theme.ThemeDisplay");
 		}
 
 		Object returnObj = null;
@@ -474,7 +476,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		try {
 			returnObj = _classLoaderProxy.invoke("addMemberRequest",
 					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+						paramObj5
 					});
 		}
 		catch (Throwable t) {
@@ -499,7 +502,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	}
 
 	public void addMemberRequests(long userId, long groupId,
-		long[] receiverUserIds,
+		long[] receiverUserIds, long invitedTeamId,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -513,15 +516,19 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 			paramObj2 = new NullWrapper("[J");
 		}
 
-		Object paramObj3 = ClpSerializer.translateInput(themeDisplay);
+		Object paramObj3 = new LongWrapper(invitedTeamId);
+
+		Object paramObj4 = ClpSerializer.translateInput(themeDisplay);
 
 		if (themeDisplay == null) {
-			paramObj3 = new NullWrapper("com.liferay.portal.theme.ThemeDisplay");
+			paramObj4 = new NullWrapper("com.liferay.portal.theme.ThemeDisplay");
 		}
 
 		try {
 			_classLoaderProxy.invoke("addMemberRequests",
-				new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+				new Object[] {
+					paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+				});
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -543,7 +550,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	}
 
 	public void addMemberRequests(long userId, long groupId,
-		java.lang.String[] emailAddresses,
+		java.lang.String[] emailAddresses, long invitedTeamId,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -557,15 +564,19 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 			paramObj2 = new NullWrapper("[Ljava.lang.String;");
 		}
 
-		Object paramObj3 = ClpSerializer.translateInput(themeDisplay);
+		Object paramObj3 = new LongWrapper(invitedTeamId);
+
+		Object paramObj4 = ClpSerializer.translateInput(themeDisplay);
 
 		if (themeDisplay == null) {
-			paramObj3 = new NullWrapper("com.liferay.portal.theme.ThemeDisplay");
+			paramObj4 = new NullWrapper("com.liferay.portal.theme.ThemeDisplay");
 		}
 
 		try {
 			_classLoaderProxy.invoke("addMemberRequests",
-				new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+				new Object[] {
+					paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+				});
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
