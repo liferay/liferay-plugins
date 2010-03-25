@@ -23,9 +23,12 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.WorkflowTaskAdapter;
+import com.liferay.portal.workflow.kaleo.definition.ActionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
+import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorUtil;
+import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationUtil;
 import com.liferay.portal.workflow.kaleo.util.ContextUtil;
 
 import java.io.Serializable;
@@ -163,6 +166,22 @@ public class DefaultTaskManagerImpl
 					assigneeClassName, assigneeClassPK, context,
 					serviceContext);
 
+		ExecutionContext executionContext = new ExecutionContext(
+			kaleoTaskInstanceToken.getKaleoInstanceToken(),
+			kaleoTaskInstanceToken, newKaleoTaskInstanceAssignment,
+			context, serviceContext);
+
+		ActionExecutorUtil.executeKaleoActions(
+			kaleoTaskInstanceToken.getKaleoTask().getKaleoNodeId(),
+			ActionType.ON_ASSIGNMENT,
+			executionContext);
+
+		NotificationUtil.sendKaleoNotifications(
+			kaleoTaskInstanceToken.getKaleoTask().getKaleoNodeId(),
+			ActionType.ON_ASSIGNMENT,
+			executionContext);
+
+		
 		kaleoLogLocalService.addTaskAssignmentKaleoLog(
 			kaleoTaskInstanceToken, kaleoTaskInstanceAssignment,
 			newKaleoTaskInstanceAssignment, comment, context, serviceContext);

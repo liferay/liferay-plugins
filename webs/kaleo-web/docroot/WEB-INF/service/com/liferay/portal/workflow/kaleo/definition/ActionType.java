@@ -21,7 +21,7 @@ package com.liferay.portal.workflow.kaleo.definition;
  */
 public enum ActionType {
 
-	ON_ENTRY("onEntry"), ON_EXIT("onExit");
+	ON_ASSIGNMENT("onAssignment"), ON_ENTRY("onEntry"), ON_EXIT("onExit");
 
 	public static ActionType parse(String value) {
 		if (ON_ENTRY.getValue().equals(value)) {
