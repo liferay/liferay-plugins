@@ -23,7 +23,10 @@ import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.common.SolrInputDocument;
@@ -53,6 +56,31 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		}
 	}
 
+	public void addDocuments(long companyId, Collection<Document> documents)
+		throws SearchException {
+
+		try {
+			Collection<SolrInputDocument> solrDocuments = getSolrDocuments(
+				documents);
+
+			if (solrDocuments.isEmpty()) {
+				return;
+			}
+
+			_solrServer.add(solrDocuments);
+
+			if (_commit) {
+				_solrServer.commit();
+			}
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new SearchException(e.getMessage());
+		}		
+
+	}
+
 	public void deleteDocument(long companyId, String uid)
 		throws SearchException {
 
@@ -67,6 +95,14 @@ public class SolrIndexWriterImpl implements IndexWriter {
 			_log.error(e, e);
 
 			throw new SearchException(e.getMessage());
+		}
+	}
+
+	public void deleteDocuments(long companyId, Collection<String> uids)
+		throws SearchException {
+
+		for (String uid : uids) {
+			deleteDocument(companyId, uid);
 		}
 	}
 
@@ -104,6 +140,16 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		addDocument(companyId, document);
 	}
 
+	public void updateDocuments(long companyId, Map<String, Document> documents)
+		throws SearchException {
+
+		for (String uid : documents.keySet()) {
+			deleteDocument(companyId, uid);
+		}
+
+		addDocuments(companyId, documents.values());
+	}
+	
 	protected SolrInputDocument getSolrDocument(Document document) {
 		SolrInputDocument solrInputDocument = new SolrInputDocument();
 
@@ -123,6 +169,21 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		}
 
 		return solrInputDocument;
+	}
+
+	protected Collection<SolrInputDocument> getSolrDocuments(
+		Collection<Document> documents) {
+
+		List<SolrInputDocument> solrInputDocuments =
+			new ArrayList<SolrInputDocument>(documents.size());
+
+		for (Document document : documents) {
+			SolrInputDocument solrInputDocument = getSolrDocument(document);
+
+			solrInputDocuments.add(solrInputDocument);
+		}
+
+		return solrInputDocuments;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(SolrIndexWriterImpl.class);
