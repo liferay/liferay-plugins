@@ -138,6 +138,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		removePortletBorder(layout, PortletKeys.MESSAGE_BOARDS);
 
 		configureAssetPublisher(layout);
+		configureMessageBoards(layout);
 
 		updatePermissions(layout, true);
 
@@ -294,14 +295,34 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 	}
 
 	protected void configureAssetPublisher(Layout layout) throws Exception {
-		String portletId = "101_INSTANCE_abcd";
-
 		PortletPreferences portletSetup =
 			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-				layout, portletId);
+				layout, "101_INSTANCE_abcd");
 
 		portletSetup.setValue("display-style", "title-list");
 		portletSetup.setValue("asset-link-behaviour", "viewInPortlet");
+
+		portletSetup.store();
+	}
+
+	protected void configureMessageBoards(Layout layout) throws Exception {
+		PortletPreferences portletSetup =
+			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+				layout, PortletKeys.MESSAGE_BOARDS);
+
+		String[] ranks = {
+			"Bronze=0",
+			"Silver=25",
+			"Gold=100",
+			"Platinum=250",
+			"Moderator=community-role:Message Boards Administrator",
+			"Moderator=organization:Message Boards Administrator",
+			"Moderator=organization-role:Message Boards Administrator",
+			"Moderator=regular-role:Message Boards Administrator",
+			"Moderator=user-group:Message Boards Administrator"
+		};
+
+		portletSetup.setValues("ranks", ranks);
 
 		portletSetup.store();
 	}
