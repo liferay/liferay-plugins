@@ -57,6 +57,7 @@
 				<entry key="Single Approver" value="com.liferay.portlet.journal.model.JournalArticle" />
 			</map>			
 		</property>
+		<property name="defaultDefinitionName" value="Automatic Approval"/>
 		<property name="workflowDefinitionManager" ref="com.liferay.portal.kernel.workflow.WorkflowDefinitionManager" />
 	</bean>
 	

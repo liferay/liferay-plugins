@@ -27,11 +27,14 @@ public interface PortalKaleoManager {
 
 	public void deployDefaultDefinitions() throws Exception;
 
-	public void deployDefaultDefinitions(Company company) throws Exception;
+	public void deployDefaultDefinitionLink(String assetClassName)
+	throws Exception;
 
 	public void deployDefaultDefinitionLinks() throws Exception;
 
 	public void deployDefaultDefinitionLinks(Company company) throws Exception;
+
+	public void deployDefaultDefinitions(Company company) throws Exception;
 
 	public void deployDefaultRoles() throws Exception;
 
