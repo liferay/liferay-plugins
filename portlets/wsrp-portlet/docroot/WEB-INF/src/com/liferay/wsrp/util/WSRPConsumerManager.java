@@ -183,16 +183,14 @@ public class WSRPConsumerManager {
 	}
 
 	public PropertyDescription[] getPropertyDescriptions() {
-		PropertyDescription[] propertyDescriptions = null;
+		PropertyDescription[] propertyDescriptions =
+			_EMPTY_PROPERTY_DESCRIPTION_ARRAY;
 
 		ModelDescription modelDescription =
 			_serviceDescription.getRegistrationPropertyDescription();
 
 		if (modelDescription != null) {
 			propertyDescriptions = modelDescription.getPropertyDescriptions();
-		}
-		else {
-			propertyDescriptions =  _EMPTY_PROPERTY_DESCRIPTION_ARRAY;
 		}
 
 		return propertyDescriptions;
