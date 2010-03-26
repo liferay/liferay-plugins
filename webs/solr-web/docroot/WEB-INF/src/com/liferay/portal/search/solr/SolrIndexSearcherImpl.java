@@ -131,7 +131,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		if (allResults && (length > 0)) {
 			solrQuery.setRows((int)length);
 
-			results = _solrServer.query(solrQuery).getResults();
+			queryResponse = _solrServer.query(solrQuery);
 
 			return subset(solrQuery, queryResponse, false);
 		}
