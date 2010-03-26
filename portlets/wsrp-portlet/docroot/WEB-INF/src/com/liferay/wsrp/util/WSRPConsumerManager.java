@@ -352,6 +352,9 @@ public class WSRPConsumerManager {
 		return v2;
 	}
 
+	private static final PropertyDescription[] _EMPTY_PROPERTY_DESCRIPTION_ARRAY =
+		new PropertyDescription[0];
+
 	private static final String _WSDL_URI = "http://schemas.xmlsoap.org/wsdl/";
 
 	private static final String _WSRP_V1_MARKUP_BINDING =
@@ -377,9 +380,6 @@ public class WSRPConsumerManager {
 
 	private static final String _WSRP_V2_SERVICE_DESCRIPTION_BINDING =
 		"WSRP_v2_ServiceDescription_Binding_SOAP";
-
-	private static final PropertyDescription[] _EMPTY_PROPERTY_DESCRIPTION_ARRAY =
-		new PropertyDescription[0];
 
 	private static Log _log = LogFactoryUtil.getLog(WSRPConsumerManager.class);
 
