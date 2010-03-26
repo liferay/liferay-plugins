@@ -191,6 +191,9 @@ public class WSRPConsumerManager {
 		if (modelDescription != null) {
 			propertyDescriptions = modelDescription.getPropertyDescriptions();
 		}
+		else {
+			propertyDescriptions =  _EMPTY_PROPERTY_DESCRIPTION_ARRAY;
+		}
 
 		return propertyDescriptions;
 	}
@@ -374,6 +377,9 @@ public class WSRPConsumerManager {
 
 	private static final String _WSRP_V2_SERVICE_DESCRIPTION_BINDING =
 		"WSRP_v2_ServiceDescription_Binding_SOAP";
+
+	private static final PropertyDescription[] _EMPTY_PROPERTY_DESCRIPTION_ARRAY =
+		new PropertyDescription[0];
 
 	private static Log _log = LogFactoryUtil.getLog(WSRPConsumerManager.class);
 

@@ -1,3 +1,4 @@
+<%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%
 /**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
@@ -69,7 +70,19 @@ portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 			PortletDescription portletDescription = wsrpConsumerManager.getPortletDescription(wsrpConsumerPortlet.getPortletHandle());
 
 			if (portletDescription != null) {
-				buffer.append(portletDescription.getDisplayName().getValue());
+				String displayName = null;
+
+				if (portletDescription.getDisplayName() != null) {
+					displayName = portletDescription.getDisplayName().getValue(); 
+				}
+				else if (portletDescription.getShortTitle() != null) {
+					displayName = portletDescription.getShortTitle().getValue();
+				}
+				else if (portletDescription.getTitle() != null) {
+					displayName = portletDescription.getTitle().getValue();
+				}
+
+				buffer.append(displayName);
 			}
 			else {
 				buffer.append(LanguageUtil.format(locale, "is-temporarily-unavailable", "remote-portlet"));
