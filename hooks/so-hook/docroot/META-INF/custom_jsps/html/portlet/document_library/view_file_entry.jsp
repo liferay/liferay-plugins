@@ -69,7 +69,7 @@ try {
 catch (Exception e) {
 }
 
-String fileUrl = themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/document/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + folderId + StringPool.SLASH + HttpUtil.encodeURL(title);
+String fileUrl = themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + folderId + StringPool.SLASH + HttpUtil.encodeURL(title);
 String webDavUrl = StringPool.BLANK;
 
 if (portletDisplay.isWebDAVEnabled()) {
@@ -254,7 +254,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 				<liferay-ui:message key="url" />
 			</td>
 			<td>
-				<liferay-ui:input-resource url='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/document/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getUuid() %>' />
+				<liferay-ui:input-resource url='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getUuid() %>' />
 			</td>
 		</tr>
 
@@ -386,7 +386,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 					<liferay-ui:icon
 						image='<%= "../file_system/small/" + extension %>'
 						message="<%= extension.toUpperCase() %>"
-						url='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/document/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(fileEntry.getTitle()) %>'
+						url='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(fileEntry.getTitle()) %>'
 						label="<%= true %>"
 					/>
 
@@ -399,7 +399,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 							<liferay-ui:icon
 								image='<%= "../file_system/small/" + conversion %>'
 								message="<%= conversion.toUpperCase() %>"
-								url='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/document/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(fileEntry.getTitle()) + "?version=" + fileEntry.getVersion() + "&targetExtension=" + conversion %>'
+								url='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(fileEntry.getTitle()) + "?version=" + fileEntry.getVersion() + "&targetExtension=" + conversion %>'
 								label="<%= true %>"
 							/>
 						</span>
