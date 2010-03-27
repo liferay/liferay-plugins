@@ -183,14 +183,16 @@ public class WSRPConsumerManager {
 	}
 
 	public PropertyDescription[] getPropertyDescriptions() {
-		PropertyDescription[] propertyDescriptions =
-			_EMPTY_PROPERTY_DESCRIPTION_ARRAY;
+		PropertyDescription[] propertyDescriptions = null;
 
 		ModelDescription modelDescription =
 			_serviceDescription.getRegistrationPropertyDescription();
 
 		if (modelDescription != null) {
 			propertyDescriptions = modelDescription.getPropertyDescriptions();
+		}
+		else {
+			propertyDescriptions = new PropertyDescription[0];
 		}
 
 		return propertyDescriptions;
@@ -349,9 +351,6 @@ public class WSRPConsumerManager {
 
 		return v2;
 	}
-
-	private static final PropertyDescription[] _EMPTY_PROPERTY_DESCRIPTION_ARRAY =
-		new PropertyDescription[0];
 
 	private static final String _WSDL_URI = "http://schemas.xmlsoap.org/wsdl/";
 

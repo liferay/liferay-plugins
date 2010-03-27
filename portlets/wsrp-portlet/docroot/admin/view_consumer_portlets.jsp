@@ -69,19 +69,7 @@ portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 			PortletDescription portletDescription = wsrpConsumerManager.getPortletDescription(wsrpConsumerPortlet.getPortletHandle());
 
 			if (portletDescription != null) {
-				String displayName = null;
-
-				if (portletDescription.getDisplayName() != null) {
-					displayName = portletDescription.getDisplayName().getValue(); 
-				}
-				else if (portletDescription.getShortTitle() != null) {
-					displayName = portletDescription.getShortTitle().getValue();
-				}
-				else if (portletDescription.getTitle() != null) {
-					displayName = portletDescription.getTitle().getValue();
-				}
-
-				buffer.append(displayName);
+				buffer.append(wsrpConsumerManager.getDisplayName(portletDescription));
 			}
 			else {
 				buffer.append(LanguageUtil.format(locale, "is-temporarily-unavailable", "remote-portlet"));
