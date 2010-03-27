@@ -106,24 +106,20 @@
 				<td>
 
 					<%
-					Layout mbLayout = LayoutLocalServiceUtil.getLayout(SummaryConstants.SUMMARY_MESSAGE_BOARDS_PLID);
-
-					String friendlyURL= PortalUtil.getLayoutFriendlyURL(LayoutLocalServiceUtil.getLayout(SummaryConstants.SUMMARY_MESSAGE_BOARDS_PLID), themeDisplay);
-
-					int mbMessagesCount = MBStatsUserLocalServiceUtil.getStatsUser(mbLayout.getGroupId(), user2.getUserId()).getMessageCount();
+					int mbMessagesCount = MBStatsUserLocalServiceUtil.getStatsUser(14, user2.getUserId()).getMessageCount();
 					%>
 
 					<liferay-ui:icon
 						image="view"
 						message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>'
-						url='<%= friendlyURL + "/-/message_boards/recent-posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
+						url='<%= themeDisplay.getPathContext() + "/web/guest/community/forums/-/message_boards/recent_posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
 						label="<%= true %>"
 					/>
 				</td>
 				<td>
 					<liferay-ui:icon
 						image="rss"
-						url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=" + SummaryConstants.SUMMARY_MESSAGE_BOARDS_PLID + "&groupId=" + mbLayout.getGroupId() + "&userId=" + user2.getUserId() %>'
+						url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=1403921&groupId=14&userId=" + user2.getUserId() %>'
 					/>
 				</td>
 			</tr>
