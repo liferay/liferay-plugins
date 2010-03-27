@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.util.Validator;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.common.SolrInputDocument;
@@ -43,7 +42,7 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		throws SearchException {
 
 		try {
-			_solrServer.add(getSolrDocument(document));
+			_solrServer.add(getSolrInputDocument(document));
 
 			if (_commit) {
 				_solrServer.commit();
@@ -60,14 +59,14 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		throws SearchException {
 
 		try {
-			Collection<SolrInputDocument> solrDocuments = getSolrDocuments(
-				documents);
+			Collection<SolrInputDocument> solrInputDocuments =
+				getSolrInputDocuments(documents);
 
-			if (solrDocuments.isEmpty()) {
+			if (solrInputDocuments.isEmpty()) {
 				return;
 			}
 
-			_solrServer.add(solrDocuments);
+			_solrServer.add(solrInputDocuments);
 
 			if (_commit) {
 				_solrServer.commit();
@@ -77,8 +76,7 @@ public class SolrIndexWriterImpl implements IndexWriter {
 			_log.error(e, e);
 
 			throw new SearchException(e.getMessage());
-		}		
-
+		}
 	}
 
 	public void deleteDocument(long companyId, String uid)
@@ -132,25 +130,25 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		_solrServer = solrServer;
 	}
 
-	public void updateDocument(long companyId, String uid, Document document)
+	public void updateDocument(long companyId, Document document)
 		throws SearchException {
 
-		deleteDocument(companyId, uid);
+		deleteDocument(companyId, document.getUID());
 
 		addDocument(companyId, document);
 	}
 
-	public void updateDocuments(long companyId, Map<String, Document> documents)
+	public void updateDocuments(long companyId, Collection<Document> documents)
 		throws SearchException {
 
-		for (String uid : documents.keySet()) {
-			deleteDocument(companyId, uid);
+		for (Document document : documents) {
+			deleteDocument(companyId, document.getUID());
 		}
 
-		addDocuments(companyId, documents.values());
+		addDocuments(companyId, documents);
 	}
-	
-	protected SolrInputDocument getSolrDocument(Document document) {
+
+	protected SolrInputDocument getSolrInputDocument(Document document) {
 		SolrInputDocument solrInputDocument = new SolrInputDocument();
 
 		Collection<Field> fields = document.getFields().values();
@@ -171,14 +169,15 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		return solrInputDocument;
 	}
 
-	protected Collection<SolrInputDocument> getSolrDocuments(
+	protected Collection<SolrInputDocument> getSolrInputDocuments(
 		Collection<Document> documents) {
 
 		List<SolrInputDocument> solrInputDocuments =
 			new ArrayList<SolrInputDocument>(documents.size());
 
 		for (Document document : documents) {
-			SolrInputDocument solrInputDocument = getSolrDocument(document);
+			SolrInputDocument solrInputDocument = getSolrInputDocument(
+				document);
 
 			solrInputDocuments.add(solrInputDocument);
 		}
