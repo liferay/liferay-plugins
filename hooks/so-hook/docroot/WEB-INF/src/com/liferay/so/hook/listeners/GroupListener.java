@@ -18,7 +18,6 @@
 package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
-import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
@@ -30,7 +29,7 @@ import com.liferay.portal.model.Portlet;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 
 import java.util.List;
@@ -77,15 +76,8 @@ public class GroupListener extends BaseModelListener<Group> {
 			privateLayout = true;
 		}
 
-		long userId = group.getCreatorUserId();
-
-		try {
-			UserLocalServiceUtil.getUser(userId);
-		}
-		catch (NoSuchUserException nsue) {
-			userId = UserLocalServiceUtil.getDefaultUserId(
-				group.getCompanyId());
-		}
+		long userId = PortalUtil.getValidUserId(
+			group.getCompanyId(), group.getCreatorUserId());
 
 		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
 			group.getGroupId(), !privateLayout);
