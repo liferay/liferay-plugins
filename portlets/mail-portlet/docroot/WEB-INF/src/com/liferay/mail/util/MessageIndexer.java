@@ -112,8 +112,7 @@ public class MessageIndexer extends BaseIndexer {
 
 		Document document = getDocument(entry);
 
-		SearchEngineUtil.updateDocument(
-			entry.getCompanyId(), document);
+		SearchEngineUtil.updateDocument(entry.getCompanyId(), document);
 	}
 
 	protected void doReindex(String className, long classPK) throws Exception {
