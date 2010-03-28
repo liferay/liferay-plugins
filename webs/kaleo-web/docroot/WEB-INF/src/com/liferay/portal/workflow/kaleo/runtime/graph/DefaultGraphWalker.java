@@ -107,4 +107,5 @@ public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 		kaleoLogLocalService.addWorkflowInstanceEndKaleoLog(
 			kaleoInstanceToken, executionContext.getServiceContext());
 	}
+
 }

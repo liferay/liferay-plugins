@@ -78,5 +78,5 @@ public class RoleRecipient extends Recipient {
 	private boolean _autoCreate;
 	private long _roleId;
 	private String _roleName;
-	
+
 }

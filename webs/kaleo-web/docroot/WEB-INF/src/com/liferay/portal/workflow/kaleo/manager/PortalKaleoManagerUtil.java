@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -32,4 +32,5 @@ public class PortalKaleoManagerUtil {
 	}
 
 	private static PortalKaleoManager _portalKaleoManager;
+
 }

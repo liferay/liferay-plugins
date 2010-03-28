@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -21,23 +21,19 @@ import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager;
 
 /**
- * <a href="KaleoAssetDeploymentMessageListener.java.html"><b><i>View Source</i></b></a>
+ * <a href="KaleoAssetDeploymentMessageListener.java.html"><b><i>View Source</i>
+ * </b></a>
  *
  * @author Michael C. Han
  */
 public class KaleoAssetDeploymentMessageListener implements MessageListener {
+
 	public void receive(Message message) {
-
-		String assetClassName = (String)message.get("ASSET_CLASS_NAME");
-
 		try {
-			_portalKaleoManager.deployDefaultDefinitionLink(assetClassName);
+			doReceive(message);
 		}
 		catch (Exception e) {
-			if (_log.isErrorEnabled()) {
-				_log.error("Unable to deploy default definitions for: " +
-						  assetClassName, e);
-			}
+			_log.error("Unable to process message " + message, e);
 		}
 	}
 
@@ -45,8 +41,15 @@ public class KaleoAssetDeploymentMessageListener implements MessageListener {
 		_portalKaleoManager = portalKaleoManager;
 	}
 
+	protected void doReceive(Message message) throws Exception {
+		String assetClassName = (String)message.get("ASSET_CLASS_NAME");
+
+		_portalKaleoManager.deployDefaultDefinitionLink(assetClassName);
+	}
+
 	private static final Log _log = LogFactoryUtil.getLog(
 		KaleoAssetDeploymentMessageListener.class);
-	
+
 	private PortalKaleoManager _portalKaleoManager;
+
 }

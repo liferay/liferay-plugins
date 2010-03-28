@@ -35,21 +35,11 @@ import java.util.List;
 public class PathElementMessageListener implements MessageListener {
 
 	public void receive(Message message) {
-		PathElement pathElement = (PathElement)message.getPayload();
-
-		List<PathElement> remainingPathElements = new ArrayList<PathElement>();
-
 		try {
-			_graphWalker.follow(
-				pathElement.getStartNode(), pathElement.getTargetNode(),
-				remainingPathElements, pathElement.getExecutionContext());
+			doReceive(message);
 		}
 		catch (Exception e) {
-			_log.error(e, e);
-		}
-
-		for (PathElement remainingPathElement : remainingPathElements) {
-			_singleDestinationMessageSender.send(remainingPathElement);
+			_log.error("Unable to process message " + message, e);
 		}
 	}
 
@@ -66,6 +56,20 @@ public class PathElementMessageListener implements MessageListener {
 			MessageBusUtil.getMessageSender());
 
 		_singleDestinationMessageSender = singleDestinationMessageSender ;
+	}
+
+	protected void doReceive(Message message) throws Exception {
+		PathElement pathElement = (PathElement)message.getPayload();
+
+		List<PathElement> remainingPathElements = new ArrayList<PathElement>();
+
+		_graphWalker.follow(
+			pathElement.getStartNode(), pathElement.getTargetNode(),
+			remainingPathElements, pathElement.getExecutionContext());
+
+		for (PathElement remainingPathElement : remainingPathElements) {
+			_singleDestinationMessageSender.send(remainingPathElement);
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

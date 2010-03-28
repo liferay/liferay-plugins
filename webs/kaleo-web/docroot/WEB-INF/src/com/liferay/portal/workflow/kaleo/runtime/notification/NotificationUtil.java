@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -34,7 +34,7 @@ import java.util.List;
  * @author Michael C. Han
  */
 public class NotificationUtil {
-	
+
 	public static void sendKaleoNotifications(
 			long kaleoNodeId, ActionType actionType,
 			ExecutionContext executionContext)
@@ -77,8 +77,8 @@ public class NotificationUtil {
 			if (_log.isInfoEnabled()) {
 				_log.info(
 					"No recipients found to notify with message " +
-					kaleoNotification.getName() + " " +
-					notificationMessage);
+						kaleoNotification.getName() + " " +
+							notificationMessage);
 			}
 
 			return;

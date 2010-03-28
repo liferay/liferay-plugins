@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -21,42 +21,44 @@ import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager;
 
 /**
- * <a href="KaleoDeploymentEventMessageListener.java.html"><b><i>View Source</i></b></a>
+ * <a href="KaleoDeploymentEventMessageListener.java.html"><b><i>View Source</i>
+ * </b></a>
  *
  * @author Michael C. Han
  */
 public class KaleoDeploymentEventMessageListener implements MessageListener {
 
 	public void receive(Message message) {
-
-		String contextName = (String)message.get("servletContextName");
-
-		if (!_contextName.equals(contextName)) {
-			return;
-		}
-
 		try {
-			_portalKaleoManager.deployKaleoDefaults();
+			doReceive(message);
 		}
 		catch (Exception e) {
-			if (_log.isErrorEnabled()) {
-				_log.error("Unable to deploy Kaleo defaults", e);
-			}
+			_log.error("Unable to process message " + message, e);
 		}
-	}
-
-	public void setContextName(String contextName) {
-		_contextName = contextName;
 	}
 
 	public void setPortalKaleoManager(PortalKaleoManager portalKaleoManager) {
 		_portalKaleoManager = portalKaleoManager;
 	}
 
+	public void setServletContextName(String servletContextName) {
+		_servletContextName = servletContextName;
+	}
+
+	protected void doReceive(Message message) throws Exception {
+		String servletContextName = (String)message.get("servletContextName");
+
+		if (!_servletContextName.equals(servletContextName)) {
+			return;
+		}
+
+		_portalKaleoManager.deployKaleoDefaults();
+	}
+
 	private static final Log _log = LogFactoryUtil.getLog(
 		KaleoDeploymentEventMessageListener.class);
 
-	private String _contextName;
-
 	private PortalKaleoManager _portalKaleoManager;
+	private String _servletContextName;
+
 }

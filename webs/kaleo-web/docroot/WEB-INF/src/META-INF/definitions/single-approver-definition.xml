@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workflow-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:liferay.com:liferay-workflow_6.0.0 http://www.liferay.com/dtd/liferay-workflow-definition_6_0_0.xsd" xmlns="urn:liferay.com:liferay-workflow_6.0.0">
+
+<workflow-definition
+	xmlns="urn:liferay.com:liferay-workflow_6.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:liferay.com:liferay-workflow_6.0.0 http://www.liferay.com/dtd/liferay-workflow-definition_6_0_0.xsd"
+>
 	<name>Single Approver</name>
 	<description>Workflow definition for a single approver worker</description>
 	<version>1</version>
 	<state name="Created" initial="true">
 		<description>Entry state of the workflow</description>
 		<transitions>
-			<transition name="review_fork" target="Content Review" default="true"/>
+			<transition name="review_fork" target="Content Review" default="true" />
 		</transitions>
 	</state>
 	<task name="Content Review">
@@ -17,28 +22,28 @@
 					<role name="Content_Reviewers" />
 				</recipients>
 				<notification-type value="email" />
-				<template><![CDATA[
-					You have a new item waiting for your approval in the workflow. 
-						]]>
+				<template>
+					<![CDATA[
+						You have a new item waiting for your approval in the workflow. 
+					]]>
 				</template>
 			</notification>
 		</actions>
 		<transitions>
-			<transition name="Approve Content" target="Approved" default="true"/>
+			<transition name="Approve Content" target="Approved" default="true" />
 		</transitions>
 		<assignments>
-			<role name="Content_Reviewers" default="true"/>
+			<role name="Content_Reviewers" default="true" />
 		</assignments>
 	</task>
 	<state name="Approved">
 		<description>Approve the item</description>
 		<actions>
 			<action execution-order="0" name="ApproveAsset" description="Approve the submitted asset" language="javascript" type="onEntry">
-				<script><![CDATA[
-					Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(
-						companyId, groupId, userId, entryClassName, entryClassPK,
-						Packages.com.liferay.portal.kernel.workflow.StatusConstants.fromLabel("approved"));
-						]]>
+				<script>
+					<![CDATA[
+						Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(companyId, groupId, userId, entryClassName, entryClassPK, Packages.com.liferay.portal.kernel.workflow.StatusConstants.fromLabel("approved"));
+					]]>
 				</script>
 			</action>
 		</actions>

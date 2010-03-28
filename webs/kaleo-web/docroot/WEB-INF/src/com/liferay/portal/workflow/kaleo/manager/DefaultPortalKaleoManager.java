@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -16,7 +16,6 @@ package com.liferay.portal.workflow.kaleo.manager;
 
 import com.liferay.portal.NoSuchRoleException;
 import com.liferay.portal.NoSuchWorkflowDefinitionLinkException;
-import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -33,8 +32,8 @@ import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.WorkflowDefinitionLinkLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.comparator.WorkflowDefinitionNameComparator;
-import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalService;
 
 import java.io.InputStream;
 
@@ -48,20 +47,9 @@ import java.util.Map;
  * @author Michael C. Han
  */
 public class DefaultPortalKaleoManager
-	implements PortalKaleoManager {
+	extends BaseKaleoBean implements PortalKaleoManager {
 
 	public void deleteKaleoData(Company company) throws Exception {
-
-		//for now do nothing...
-	}
-
-	public void deployDefaultRoles() throws Exception {
-
-		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
-
-		for (Company company : companies) {
-			deployDefaultRoles(company);
-		}
 	}
 
 	public void deployDefaultDefinitionLink(String assetClassName)
@@ -70,29 +58,30 @@ public class DefaultPortalKaleoManager
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		for (Company company : companies) {
-			Group companyGroup = GroupLocalServiceUtil.getCompanyGroup(
-				company.getCompanyId());
-
 			User defaultUser = UserLocalServiceUtil.getDefaultUser(
 				company.getCompanyId());
 
+			Group companyGroup = GroupLocalServiceUtil.getCompanyGroup(
+				company.getCompanyId());
+
 			String definitionName = _defaultDefinitionName;
-			if (_definitionAssetMap.containsKey(assetClassName)) {
-				definitionName = _definitionAssetMap.get(assetClassName);
+
+			if (_definitionAssets.containsKey(assetClassName)) {
+				definitionName = _definitionAssets.get(assetClassName);
 			}
 
 			ServiceContext serviceContext = new ServiceContext();
+
 			serviceContext.setCompanyId(company.getCompanyId());
 
-			doDeployDefaultDefinitionLink(
-				company, assetClassName, companyGroup,
-				defaultUser, definitionName);
+			deployDefaultDefinitionLink(
+				defaultUser, company, companyGroup, assetClassName,
+				definitionName);
 		}
 	}
 
 	public void deployDefaultDefinitionLinks() throws Exception {
-
-		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
+		List<Company> companies = CompanyLocalServiceUtil.getCompanies(false);
 
 		for (Company company : companies) {
 			deployDefaultDefinitionLinks(company);
@@ -100,39 +89,27 @@ public class DefaultPortalKaleoManager
 	}
 
 	public void deployDefaultDefinitionLinks(Company company) throws Exception {
+		User defaultUser = UserLocalServiceUtil.getDefaultUser(
+			company.getCompanyId());
 
 		Group companyGroup = GroupLocalServiceUtil.getCompanyGroup(
 			company.getCompanyId());
 
-		User defaultUser = UserLocalServiceUtil.getDefaultUser(
-			company.getCompanyId());
-
 		ServiceContext serviceContext = new ServiceContext();
+
 		serviceContext.setCompanyId(company.getCompanyId());
 
-		for (Map.Entry<String, String> definitionEntry :
-			_definitionAssetMap.entrySet()) {
+		for (Map.Entry<String, String> entry : _definitionAssets.entrySet()) {
+			String definitionName = entry.getKey();
+			String assetClassName = entry.getValue();
 
-			String assetClassName = definitionEntry.getKey();
-			String definitionName = definitionEntry.getValue();
-
-			try {
-				doDeployDefaultDefinitionLink(
-					company, assetClassName, companyGroup,
-					defaultUser, definitionName);
-			}
-			catch (Exception e) {
-				if (_log.isErrorEnabled()) {
-					_log.error(
-						"Unable to deploy default definition: " +
-						definitionEntry.getKey(), e);
-				}
-			}
+			deployDefaultDefinitionLink(
+				defaultUser, company, companyGroup, assetClassName,
+				definitionName);
 		}
 	}
 
 	public void deployDefaultDefinitions() throws Exception {
-
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		for (Company company : companies) {
@@ -141,99 +118,82 @@ public class DefaultPortalKaleoManager
 	}
 
 	public void deployDefaultDefinitions(Company company) throws Exception {
+		for (Map.Entry<String, String> entry : _definitionFiles.entrySet()) {
+			String definitionName = entry.getKey();
+			String fileName = entry.getValue();
 
-		for (Map.Entry<String, String> definitionEntry :
-			_definitionFilesMap.entrySet()) {
+			ServiceContext serviceContext = new ServiceContext();
 
-			try {
-				String definitionName = definitionEntry.getKey();
+			serviceContext.setCompanyId(company.getCompanyId());
 
-				ServiceContext serviceContext = new ServiceContext();
-				serviceContext.setCompanyId(company.getCompanyId());
+			int kaleoDefinitionsCount =
+				kaleoDefinitionLocalService.getKaleoDefinitionsCount(
+					definitionName, serviceContext);
 
-				int definitionCount =
-					_kaleoDefinitionLocalService.getKaleoDefinitionsCount(
-						definitionName, serviceContext);
-
-				if (definitionCount > 0) {
-					return;
-				}
-
-				ClassLoader classLoader = getClass().getClassLoader();
-
-				InputStream inputStream =
-					classLoader.getResourceAsStream(definitionEntry.getValue());
-
-				if (inputStream == null) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(
-							"Unable to find definition file for: " +
-							definitionName + " file name: " +
-							definitionEntry.getValue());
-					}
-					return;
-				}
-
-				User defaultUser = UserLocalServiceUtil.getDefaultUser(
-					company.getCompanyId());
-
-				_workflowDefinitionManager.deployWorkflowDefinition(
-					serviceContext.getCompanyId(), defaultUser.getUserId(),
-					definitionName, inputStream);
-
+			if (kaleoDefinitionsCount > 0) {
+				return;
 			}
-			catch (Exception e) {
-				if (_log.isErrorEnabled()) {
-					_log.error(
-						"Unable to deploy default definition: " +
-						definitionEntry.getKey(), e);
+
+			ClassLoader classLoader = getClass().getClassLoader();
+
+			InputStream inputStream = classLoader.getResourceAsStream(
+				fileName);
+
+			if (inputStream == null) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"Unable to find definition file for " + definitionName +
+							" with file name " + fileName);
 				}
+
+				return;
 			}
+
+			User defaultUser = UserLocalServiceUtil.getDefaultUser(
+				company.getCompanyId());
+
+			_workflowDefinitionManager.deployWorkflowDefinition(
+				serviceContext.getCompanyId(), defaultUser.getUserId(),
+				definitionName, inputStream);
+		}
+	}
+
+	public void deployDefaultRoles() throws Exception {
+		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
+
+		for (Company company : companies) {
+			deployDefaultRoles(company);
 		}
 	}
 
 	public void deployDefaultRoles(Company company) throws Exception {
-
 		User defaultUser = UserLocalServiceUtil.getDefaultUser(
 			company.getCompanyId());
 
-		for (Map.Entry<String, String> defaultRole : _defaultRoles.entrySet()) {
+		for (Map.Entry<String, String> entry : _defaultRoles.entrySet()) {
+			String name = entry.getKey();
+			String description = entry.getValue();
 
 			try {
-				try {
-					RoleLocalServiceUtil.getRole(
-						company.getCompanyId(), defaultRole.getKey());
-				}
-				catch (NoSuchRoleException e) {
-					RoleLocalServiceUtil.addRole(
-						defaultUser.getUserId(), company.getCompanyId(),
-						defaultRole.getKey(), null, defaultRole.getValue(),
-						RoleConstants.TYPE_REGULAR);
-				}
+				RoleLocalServiceUtil.getRole(company.getCompanyId(), name);
 			}
-			catch (Exception e) {
-				if (_log.isErrorEnabled()) {
-					_log.error(
-						"Unable to add default role: " + defaultRole.getKey(),
-						e);
-				}
+			catch (NoSuchRoleException nsre) {
+				RoleLocalServiceUtil.addRole(
+					defaultUser.getUserId(), company.getCompanyId(), name, null,
+					description, RoleConstants.TYPE_REGULAR);
 			}
 		}
 	}
 
 	public void deployKaleoDefaults() throws Exception {
 		deployDefaultRoles();
-
 		deployDefaultDefinitions();
-
 		deployDefaultDefinitionLinks();
 	}
 
 	public void deployKaleoDefaults(Company company) throws Exception {
 		deployDefaultRoles(company);
-
 		deployDefaultDefinitions(company);
-
 		deployDefaultDefinitionLinks(company);
 	}
 
@@ -245,12 +205,12 @@ public class DefaultPortalKaleoManager
 		_defaultRoles.putAll(defaultRoles);
 	}
 
-	public void setDefinitionAssetMap(Map<String, String> definitionAssetMap) {
-		_definitionAssetMap.putAll(definitionAssetMap);
+	public void setDefinitionAssets(Map<String, String> definitionAssets) {
+		_definitionAssets.putAll(definitionAssets);
 	}
 
-	public void setDefinitionFilesMap(Map<String, String> definitionFilesMap) {
-		_definitionFilesMap.putAll(definitionFilesMap);
+	public void setDefinitionFiles(Map<String, String> definitionFiles) {
+		_definitionFiles.putAll(definitionFiles);
 	}
 
 	public void setWorkflowDefinitionManager(
@@ -259,55 +219,53 @@ public class DefaultPortalKaleoManager
 		_workflowDefinitionManager = workflowDefinitionManager;
 	}
 
-	protected void doDeployDefaultDefinitionLink(
-			Company company, String assetClassName, Group companyGroup,
-			User defaultUser, String definitionName)
+	protected void deployDefaultDefinitionLink(
+			User defaultUser, Company company, Group companyGroup,
+			String assetClassName, String workflowDefinitionName)
 		throws PortalException, SystemException {
 
 		try {
 			WorkflowDefinitionLinkLocalServiceUtil.
-				getCompanyDefaultWorkflowDefinitionLink(
+				getDefaultWorkflowDefinitionLink(
 					company.getCompanyId(), assetClassName);
-		}
-		catch (NoSuchWorkflowDefinitionLinkException e) {
-			List<WorkflowDefinition> workflowDefinitions =
-				_workflowDefinitionManager.getActiveWorkflowDefinitions(
-					company.getCompanyId(), definitionName, 0, 20,
-					new WorkflowDefinitionNameComparator(false));
 
-			if (workflowDefinitions.isEmpty()) {
-				if (_log.isWarnEnabled()) {
-					_log.warn("No definitions found for:" +
-							  definitionName);
-				}
-				return;
+			return;
+		}
+		catch (NoSuchWorkflowDefinitionLinkException nswdle) {
+		}
+
+		List<WorkflowDefinition> workflowDefinitions =
+			_workflowDefinitionManager.getActiveWorkflowDefinitions(
+				company.getCompanyId(), workflowDefinitionName, 0, 20,
+				new WorkflowDefinitionNameComparator(false));
+
+		if (workflowDefinitions.isEmpty()) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"No workflow definitions found for " +
+						workflowDefinitionName);
 			}
 
-			WorkflowDefinition workflowDefinition =
-				workflowDefinitions.get(0);
-
-			WorkflowDefinitionLinkLocalServiceUtil.
-				addWorkflowDefinitionLink(
-					defaultUser.getUserId(), company.getCompanyId(),
-					companyGroup.getGroupId(), assetClassName,
-					workflowDefinition.getName(),
-					workflowDefinition.getVersion());
+			return;
 		}
+
+		WorkflowDefinition workflowDefinition = workflowDefinitions.get(0);
+
+		WorkflowDefinitionLinkLocalServiceUtil.addWorkflowDefinitionLink(
+			defaultUser.getUserId(), company.getCompanyId(),
+			companyGroup.getGroupId(), assetClassName,
+			workflowDefinition.getName(), workflowDefinition.getVersion());
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		DefaultPortalKaleoManager.class);
 
 	private String _defaultDefinitionName;
-	
-	private Map<String, String> _definitionFilesMap =
-		new HashMap<String, String>();
 	private Map<String, String> _defaultRoles = new HashMap<String, String>();
-	private Map<String, String> _definitionAssetMap =
+	private Map<String, String> _definitionAssets =
 		new HashMap<String, String>();
-
-	@BeanReference(type = KaleoDefinitionLocalService.class)
-	private KaleoDefinitionLocalService _kaleoDefinitionLocalService;
-
+	private Map<String, String> _definitionFiles =
+		new HashMap<String, String>();
 	private WorkflowDefinitionManager _workflowDefinitionManager;
+
 }

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -30,7 +30,7 @@ import java.util.List;
  * @author Michael C. Han
  */
 public class ActionExecutorUtil {
-	
+
 	public static void executeKaleoActions(
 			long kaleoNodeId, ActionType actionType,
 			ExecutionContext executionContext)
@@ -41,7 +41,6 @@ public class ActionExecutorUtil {
 				kaleoNodeId, actionType.getValue());
 
 		for (KaleoAction kaleoAction : kaleoActions) {
-
 			long startTime = System.currentTimeMillis();
 
 			String comment = _COMMENT_ACTION_SUCCESS;
@@ -67,4 +66,5 @@ public class ActionExecutorUtil {
 
 	private static final String _COMMENT_ACTION_SUCCESS =
 		"Action completed successfully.";
+
 }

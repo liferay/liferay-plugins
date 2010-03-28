@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -12,22 +12,22 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.manager;
+package com.liferay.portal.workflow.kaleo.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Company;
+import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager;
+import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManagerUtil;
 
 /**
- * <a href="KaleoCompanyModelListener.java.html"><b><i>View Source</i></b></a>
+ * <a href="CompanyModelListener.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael C. Han
  */
-public class KaleoCompanyModelListener extends BaseModelListener<Company> {
+public class CompanyModelListener extends BaseModelListener<Company> {
 
-	public void onAfterCreate(Company companyModel)
+	public void onAfterCreate(Company company)
 		throws ModelListenerException {
 
 		try {
@@ -37,34 +37,22 @@ public class KaleoCompanyModelListener extends BaseModelListener<Company> {
 			portalKaleoManager.deployKaleoDefaults();
 		}
 		catch (Exception e) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Unable to deploy default Kaleo definitions.  " +
-					"Please attempt to manually deploy", e);
-			}
+			throw new ModelListenerException(e);
 		}
-
 	}
 
-	public void onAfterRemove(Company companyModel)
+	public void onAfterRemove(Company company)
 		throws ModelListenerException {
 
 		try {
 			PortalKaleoManager portalKaleoManager =
 				PortalKaleoManagerUtil.getPortalKaleoManager();
 
-			portalKaleoManager.deleteKaleoData(companyModel);
+			portalKaleoManager.deleteKaleoData(company);
 		}
 		catch (Exception e) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Unable to delete Kaleo data.  " +
-					"Please attempt to manually remove", e);
-			}
+			throw new ModelListenerException(e);
 		}
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		KaleoCompanyModelListener.class);
 
 }

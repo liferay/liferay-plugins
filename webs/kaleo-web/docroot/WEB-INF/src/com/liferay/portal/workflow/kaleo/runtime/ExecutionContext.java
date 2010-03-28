@@ -78,11 +78,13 @@ public class ExecutionContext {
 
 	public void setKaleoTaskInstanceAssigment(
 		KaleoTaskInstanceAssignment kaleoTaskInstanceAssigment) {
+
 		_kaleoTaskInstanceAssigment = kaleoTaskInstanceAssigment;
 	}
 
 	public void setKaleoTaskInstanceToken(
 		KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 		_kaleoTaskInstanceToken = kaleoTaskInstanceToken;
 	}
 

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -25,14 +25,14 @@ public interface PortalKaleoManager {
 
 	public void deleteKaleoData(Company company) throws Exception;
 
-	public void deployDefaultDefinitions() throws Exception;
-
 	public void deployDefaultDefinitionLink(String assetClassName)
-	throws Exception;
+		throws Exception;
 
 	public void deployDefaultDefinitionLinks() throws Exception;
 
 	public void deployDefaultDefinitionLinks(Company company) throws Exception;
+
+	public void deployDefaultDefinitions() throws Exception;
 
 	public void deployDefaultDefinitions(Company company) throws Exception;
 

@@ -80,6 +80,8 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 				kaleoInstanceToken.getKaleoInstanceTokenId(),
 				kaleoTask.getKaleoTaskId(), dueDate, context, serviceContext);
 
+		executionContext.setKaleoTaskInstanceToken(kaleoTaskInstanceToken);
+
 		KaleoTaskAssignment kaleoTaskAssignment =
 			kaleoTask.getDefaultKaleoTaskAssignment();
 
@@ -89,7 +91,6 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 					kaleoTaskInstanceToken,
 					kaleoTaskAssignment.getKaleoTaskAssignmentId(), context);
 
-		executionContext.setKaleoTaskInstanceToken(kaleoTaskInstanceToken);
 		executionContext.setKaleoTaskInstanceAssigment(
 			kaleoTaskInstanceAssignment);
 
