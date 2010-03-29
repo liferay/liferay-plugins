@@ -15,33 +15,31 @@
 package com.liferay.portal.workflow.kaleo.definition;
 
 /**
- * <a href="Language.java.html"><b><i>View Source</i></b></a>
+ * <a href="ExecutionType.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael C. Han
  */
-public enum Language {
+public enum ExecutionType {
 
-	FREEMARKER("freemarker"), TEXT("text"), VELOCITY("velocity");
+	ON_ASSIGNMENT("onAssignment"), ON_ENTRY("onEntry"), ON_EXIT("onExit");
 
-	public static Language parse(String value) {
-		if (FREEMARKER.getValue().equals(value)) {
-			return FREEMARKER;
+	public static ExecutionType parse(String value) {
+		if (ON_ENTRY.getValue().equals(value)) {
+			return ON_ENTRY;
 		}
-		else if (TEXT.getValue().equals(value)) {
-			return TEXT;
+		else if (ON_EXIT.getValue().equals(value)) {
+			return ON_EXIT;
 		}
-		else if (VELOCITY.getValue().equals(value)) {
-			return VELOCITY;
+		else {
+			throw new IllegalArgumentException("Invalid value " + value);
 		}
-
-		throw new IllegalArgumentException("Invalid value " + value);
 	}
 
 	public String getValue() {
 		return _value;
 	}
 
-	private Language(String value) {
+	private ExecutionType(String value) {
 		_value = value;
 	}
 

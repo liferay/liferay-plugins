@@ -141,12 +141,12 @@ public class KaleoActionWrapper implements KaleoAction {
 		_kaleoAction.setDescription(description);
 	}
 
-	public java.lang.String getLanguage() {
-		return _kaleoAction.getLanguage();
+	public java.lang.String getExecutionType() {
+		return _kaleoAction.getExecutionType();
 	}
 
-	public void setLanguage(java.lang.String language) {
-		_kaleoAction.setLanguage(language);
+	public void setExecutionType(java.lang.String executionType) {
+		_kaleoAction.setExecutionType(executionType);
 	}
 
 	public java.lang.String getScript() {
@@ -157,20 +157,20 @@ public class KaleoActionWrapper implements KaleoAction {
 		_kaleoAction.setScript(script);
 	}
 
-	public java.lang.String getExecutionType() {
-		return _kaleoAction.getExecutionType();
+	public java.lang.String getScriptLanguage() {
+		return _kaleoAction.getScriptLanguage();
 	}
 
-	public void setExecutionType(java.lang.String executionType) {
-		_kaleoAction.setExecutionType(executionType);
+	public void setScriptLanguage(java.lang.String scriptLanguage) {
+		_kaleoAction.setScriptLanguage(scriptLanguage);
 	}
 
-	public int getExecutionOrder() {
-		return _kaleoAction.getExecutionOrder();
+	public int getPriority() {
+		return _kaleoAction.getPriority();
 	}
 
-	public void setExecutionOrder(int executionOrder) {
-		_kaleoAction.setExecutionOrder(executionOrder);
+	public void setPriority(int priority) {
+		_kaleoAction.setPriority(priority);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction toEscapedModel() {

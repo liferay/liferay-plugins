@@ -15,31 +15,33 @@
 package com.liferay.portal.workflow.kaleo.definition;
 
 /**
- * <a href="ActionType.java.html"><b><i>View Source</i></b></a>
+ * <a href="TemplateLanguage.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael C. Han
  */
-public enum ActionType {
+public enum TemplateLanguage {
 
-	ON_ASSIGNMENT("onAssignment"), ON_ENTRY("onEntry"), ON_EXIT("onExit");
+	FREEMARKER("freemarker"), TEXT("text"), VELOCITY("velocity");
 
-	public static ActionType parse(String value) {
-		if (ON_ENTRY.getValue().equals(value)) {
-			return ON_ENTRY;
+	public static TemplateLanguage parse(String value) {
+		if (FREEMARKER.getValue().equals(value)) {
+			return FREEMARKER;
 		}
-		else if (ON_EXIT.getValue().equals(value)) {
-			return ON_EXIT;
+		else if (TEXT.getValue().equals(value)) {
+			return TEXT;
 		}
-		else {
-			throw new IllegalArgumentException("Invalid value " + value);
+		else if (VELOCITY.getValue().equals(value)) {
+			return VELOCITY;
 		}
+
+		throw new IllegalArgumentException("Invalid value " + value);
 	}
 
 	public String getValue() {
 		return _value;
 	}
 
-	private ActionType(String value) {
+	private TemplateLanguage(String value) {
 		_value = value;
 	}
 

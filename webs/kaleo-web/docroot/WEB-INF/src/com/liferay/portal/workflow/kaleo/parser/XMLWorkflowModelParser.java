@@ -76,26 +76,11 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		Definition definition = new Definition(name, description, version);
 
-		List<Element> stateElements = rootElement.elements("state");
-
-		for (Element stateElement : stateElements) {
-			State state = parseState(stateElement);
-
-			definition.addNode(state);
-		}
-
-		List<Element> taskElements = rootElement.elements("task");
-
-		for (Element taskElement : taskElements) {
-
-			Task task = parseTask(taskElement);
-			definition.addNode(task);
-		}
-
 		List<Element> forkElements = rootElement.elements("fork");
 
 		for (Element forkElement : forkElements) {
 			Fork fork = parseFork(forkElement);
+
 			definition.addNode(fork);
 		}
 
@@ -107,9 +92,25 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			definition.addNode(join);
 		}
 
+		List<Element> stateElements = rootElement.elements("state");
+
+		for (Element stateElement : stateElements) {
+			State state = parseState(stateElement);
+
+			definition.addNode(state);
+		}
+
+		List<Element> taskElements = rootElement.elements("task");
+
+		for (Element taskElement : taskElements) {
+			Task task = parseTask(taskElement);
+
+			definition.addNode(task);
+		}
+
 		processTransitions(
-			definition, stateElements, taskElements, forkElements,
-			joinElements);
+			definition, forkElements, joinElements, stateElements,
+			taskElements);
 
 		return definition;
 	}
@@ -124,24 +125,16 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		List<Element> actionElements = actionsElement.elements("action");
 
 		for (Element actionElement : actionElements) {
-			String name = actionElement.attributeValue("name");
-			String type = actionElement.attributeValue("type");
-			String language = actionElement.attributeValue("language");
-
-			Action action = new Action(name, type, language);
-
-			int executionOrder = GetterUtil.getInteger(
-				actionElement.attributeValue("execution-order"));
-
-			action.setExecutionOrder(executionOrder);
-
-			String description = actionElement.attributeValue("description");
-
-			action.setDescription(description);
-
+			String name = actionElement.elementText("name");
+			String description = actionElement.elementText("description");
+			String executionType = actionElement.elementText("execution-type");
 			String script = actionElement.elementText("script");
+			String language = actionElement.elementText("script-language");
+			int priority = GetterUtil.getInteger(
+				actionElement.elementText("priority"));
 
-			action.setScript(script);
+			Action action = new Action(
+				name, description, executionType, script, language, priority);
 
 			actions.add(action);
 		}
@@ -154,33 +147,29 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			"notification");
 
 		for (Element notificationElement : notificationElements) {
-			String name = notificationElement.attributeValue("name");
-			String language = notificationElement.attributeValue("language");
-			String type = notificationElement.attributeValue("type");
+			String name = notificationElement.elementText("name");
+			String description = notificationElement.elementText("description");
+			String executionType = notificationElement.elementText(
+				"execution-type");
+			String template = notificationElement.elementText("template");
+			String templateLanguage = notificationElement.elementText(
+				"template-language");
 
-			Notification notification = new Notification(name, language, type);
-
-			String description = notificationElement.attributeValue(
-				"description");
-
-			notification.setDescription(description);
-
-			Element recipientsElement = notificationElement.element(
-				"recipients");
-
-			parseRecipients(recipientsElement, notification);
+			Notification notification = new Notification(
+				name, description, executionType, template, templateLanguage);
 
 			List<Element> notificationTypeElements =
 				notificationElement.elements("notification-type");
 
 			for (Element notificationTypeElement : notificationTypeElements) {
 				notification.addNotificationType(
-					notificationTypeElement.attributeValue("value"));
+					notificationTypeElement.getText());
 			}
 
-			String template = notificationElement.elementText("template");
+			Element recipientsElement = notificationElement.element(
+				"recipients");
 
-			notification.setTemplate(template);
+			parseRecipients(recipientsElement, notification);
 
 			notifications.add(notification);
 		}
@@ -199,11 +188,11 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			"role");
 
 		for (Element roleAssignmentElement : roleAssignmentElements) {
-			String name = roleAssignmentElement.attributeValue("name");
 			long roleId = GetterUtil.getLong(
-				roleAssignmentElement.attributeValue("role-id"));
+				roleAssignmentElement.elementText("role-id"));
+			String name = roleAssignmentElement.elementText("name");
 			boolean defaultValue = GetterUtil.getBoolean(
-				roleAssignmentElement.attributeValue("default"));
+				roleAssignmentElement.elementText("default"));
 
 			RoleAssignment roleAssignment = null;
 
@@ -211,7 +200,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 				roleAssignment = new RoleAssignment(name, defaultValue);
 
 				boolean autoCreate = GetterUtil.getBoolean(
-					roleAssignmentElement.attributeValue("auto-create"), true);
+					roleAssignmentElement.elementText("auto-create"), true);
 
 				roleAssignment.setAutoCreate(autoCreate);
 			}
@@ -226,25 +215,17 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			"user");
 
 		for (Element userAssignmentElement : userAssignmentElements) {
-			boolean defaultValue = GetterUtil.getBoolean(
-				userAssignmentElement.attributeValue("default"));
-
-			UserAssignment userAssignment = new UserAssignment(defaultValue);
-
 			long userId = GetterUtil.getLong(
-				userAssignmentElement.attributeValue("user-id"));
-
-			userAssignment.setUserId(userId);
-
-			String screenName = userAssignmentElement.attributeValue(
+				userAssignmentElement.elementText("user-id"));
+			String screenName = userAssignmentElement.elementText(
 				"screen-name");
-
-			userAssignment.setScreenName(screenName);
-
-			String emailAddress = userAssignmentElement.attributeValue(
+			String emailAddress = userAssignmentElement.elementText(
 				"email-address");
+			boolean defaultValue = GetterUtil.getBoolean(
+				userAssignmentElement.elementText("default"));
 
-			userAssignment.setEmailAddress(emailAddress);
+			UserAssignment userAssignment = new UserAssignment(
+				userId, screenName, emailAddress, defaultValue);
 
 			assignments.add(userAssignment);
 		}
@@ -253,7 +234,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 	}
 
 	protected Fork parseFork(Element forkElement) {
-		String name = forkElement.attributeValue("name");
+		String name = forkElement.elementText("name");
 		String description = forkElement.elementText("description");
 
 		Fork fork = new Fork(name, description);
@@ -268,7 +249,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 	}
 
 	protected Join parseJoin(Element joinElement) {
-		String name = joinElement.attributeValue("name");
+		String name = joinElement.elementText("name");
 		String description = joinElement.elementText("description");
 
 		Join join = new Join(name, description);
@@ -289,26 +270,36 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			return;
 		}
 
+		List<Element> addressRecipientElements = recipientsElement.elements(
+			"address");
+
+		for (Element addressRecipientElement : addressRecipientElements) {
+			AddressRecipient addressRecipient = new AddressRecipient(
+				addressRecipientElement.getText());
+
+			notification.addRecipients(addressRecipient);
+		}
+
 		List<Element> roleReceipientElements = recipientsElement.elements(
 			"role");
 
 		for (Element roleAssignmentElement : roleReceipientElements) {
-			String name = roleAssignmentElement.attributeValue("name");
 			long roleId = GetterUtil.getLong(
-				roleAssignmentElement.attributeValue("role-id"));
+				roleAssignmentElement.elementText("role-id"));
+			String name = roleAssignmentElement.elementText("name");
 
 			RoleRecipient roleRecipient = null;
 
-			if (Validator.isNotNull(name)) {
+			if (roleId > 0) {
+				roleRecipient = new RoleRecipient(roleId);
+			}
+			else {
 				roleRecipient = new RoleRecipient(name);
 
 				boolean autoCreate = GetterUtil.getBoolean(
 					roleAssignmentElement.attributeValue("auto-create"), true);
 
 				roleRecipient.setAutoCreate(autoCreate);
-			}
-			else {
-				roleRecipient = new RoleRecipient(roleId);
 			}
 
 			notification.addRecipients(roleRecipient);
@@ -318,47 +309,26 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			"user");
 
 		for (Element userRecipientElement : userRecipientElements) {
-			UserRecipient userRecipient = new UserRecipient();
-
 			long userId = GetterUtil.getLong(
-				userRecipientElement.attributeValue("user-id"));
-
-			userRecipient.setUserId(userId);
-
-			String screenName = userRecipientElement.attributeValue(
-				"screen-name");
-
-			userRecipient.setScreenName(screenName);
-
-			String emailAddress = userRecipientElement.attributeValue(
+				userRecipientElement.elementText("user-id"));
+			String screenName = userRecipientElement.elementText("screen-name");
+			String emailAddress = userRecipientElement.elementText(
 				"email-address");
 
-			userRecipient.setEmailAddress(emailAddress);
+			UserRecipient userRecipient = new UserRecipient(
+				userId, screenName, emailAddress);
 
 			notification.addRecipients(userRecipient);
-		}
-
-		List<Element> addressRecipientElements = recipientsElement.elements(
-			"address");
-
-		for (Element addressRecipientElement : addressRecipientElements) {
-			AddressRecipient addressRecipient = new AddressRecipient(
-				addressRecipientElement.getTextTrim());
-
-			notification.addRecipients(addressRecipient);
 		}
 	}
 
 	protected State parseState(Element stateElement) {
-		String name = stateElement.attributeValue("name");
+		String name = stateElement.elementText("name");
 		String description = stateElement.elementText("description");
-
-		State state = new State(name, description);
-
 		boolean initial = GetterUtil.getBoolean(
-			stateElement.attributeValue("initial"));
+			stateElement.elementText("initial"));
 
-		state.setInitial(initial);
+		State state = new State(name, description, initial);
 
 		Element actionsElement = stateElement.element("actions");
 
@@ -370,7 +340,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 	}
 
 	protected Task parseTask(Element taskElement) {
-		String name = taskElement.attributeValue("name");
+		String name = taskElement.elementText("name");
 		String description = taskElement.elementText("description");
 
 		Task task = new Task(name, description);
@@ -380,7 +350,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		if (dueDateDuration > 0) {
 			DurationScale dueDateScale = DurationScale.parse(
-				taskElement.attributeValue("due-date-scale"));
+				taskElement.elementText("due-date-scale"));
 
 			DueDateDuration dueDateDurationModel = new DueDateDuration(
 				dueDateDuration, dueDateScale);
@@ -408,7 +378,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 	protected void parseTransition(Definition definition, Element nodeElement)
 		throws WorkflowException {
 
-		String sourceName = nodeElement.attributeValue("name");
+		String sourceName = nodeElement.elementText("name");
 
 		Node sourceNode = definition.getNode(sourceName);
 
@@ -427,17 +397,9 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			"transition");
 
 		for (Element transitionElement : transitionElements) {
-			String transitionName = transitionElement.attributeValue(
-				"name");
+			String transitionName = transitionElement.elementText("name");
 
-			Transition transition = new Transition(transitionName, sourceNode);
-
-			boolean defaultValue = GetterUtil.getBoolean(
-				transitionElement.attributeValue("default"));
-
-			transition.setDefault(defaultValue);
-
-			String targetName = transitionElement.attributeValue("target");
+			String targetName = transitionElement.elementText("target");
 
 			Node targetNode = definition.getNode(targetName);
 
@@ -446,25 +408,21 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 					"Unable to find target node " + targetName);
 			}
 
-			transition.setTargetNode(targetNode);
+			boolean defaultValue = GetterUtil.getBoolean(
+				transitionElement.elementText("default"));
+
+			Transition transition = new Transition(
+				transitionName, sourceNode, targetNode, defaultValue);
 
 			sourceNode.addTransition(transition);
 		}
 	}
 
 	protected void processTransitions(
-			Definition definition, List<Element> stateElements,
-			List<Element> taskElements, List<Element> forkElements,
-			List<Element> joinElements)
+			Definition definition, List<Element> forkElements,
+			List<Element> joinElements, List<Element> stateElements,
+			List<Element> taskElements)
 		throws WorkflowException {
-
-		for (Element stateElement : stateElements) {
-			parseTransition(definition, stateElement);
-		}
-
-		for (Element taskElement : taskElements) {
-			parseTransition(definition, taskElement);
-		}
 
 		for (Element forkElement : forkElements) {
 			parseTransition(definition, forkElement);
@@ -472,6 +430,14 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		for (Element joinElement : joinElements) {
 			parseTransition(definition, joinElement);
+		}
+
+		for (Element stateElement : stateElements) {
+			parseTransition(definition, stateElement);
+		}
+
+		for (Element taskElement : taskElements) {
+			parseTransition(definition, taskElement);
 		}
 	}
 

@@ -145,12 +145,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		_description = description;
 	}
 
-	public String getLanguage() {
-		return _language;
+	public String getExecutionType() {
+		return _executionType;
 	}
 
-	public void setLanguage(String language) {
-		_language = language;
+	public void setExecutionType(String executionType) {
+		_executionType = executionType;
 	}
 
 	public String getTemplate() {
@@ -161,12 +161,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		_template = template;
 	}
 
-	public String getExecutionType() {
-		return _executionType;
+	public String getTemplateLanguage() {
+		return _templateLanguage;
 	}
 
-	public void setExecutionType(String executionType) {
-		_executionType = executionType;
+	public void setTemplateLanguage(String templateLanguage) {
+		_templateLanguage = templateLanguage;
 	}
 
 	public String getNotificationTypes() {
@@ -197,9 +197,9 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 			model.setKaleoNodeName(HtmlUtil.escape(getKaleoNodeName()));
 			model.setName(HtmlUtil.escape(getName()));
 			model.setDescription(HtmlUtil.escape(getDescription()));
-			model.setLanguage(HtmlUtil.escape(getLanguage()));
-			model.setTemplate(HtmlUtil.escape(getTemplate()));
 			model.setExecutionType(HtmlUtil.escape(getExecutionType()));
+			model.setTemplate(HtmlUtil.escape(getTemplate()));
+			model.setTemplateLanguage(HtmlUtil.escape(getTemplateLanguage()));
 			model.setNotificationTypes(HtmlUtil.escape(getNotificationTypes()));
 
 			model = (KaleoNotification)Proxy.newProxyInstance(KaleoNotification.class.getClassLoader(),
@@ -224,9 +224,9 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		clone.setKaleoNodeName(getKaleoNodeName());
 		clone.setName(getName());
 		clone.setDescription(getDescription());
-		clone.setLanguage(getLanguage());
-		clone.setTemplate(getTemplate());
 		clone.setExecutionType(getExecutionType());
+		clone.setTemplate(getTemplate());
+		clone.setTemplateLanguage(getTemplateLanguage());
 		clone.setNotificationTypes(getNotificationTypes());
 
 		return clone;
@@ -305,12 +305,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		sb.append(getName());
 		sb.append(", description=");
 		sb.append(getDescription());
-		sb.append(", language=");
-		sb.append(getLanguage());
-		sb.append(", template=");
-		sb.append(getTemplate());
 		sb.append(", executionType=");
 		sb.append(getExecutionType());
+		sb.append(", template=");
+		sb.append(getTemplate());
+		sb.append(", templateLanguage=");
+		sb.append(getTemplateLanguage());
 		sb.append(", notificationTypes=");
 		sb.append(getNotificationTypes());
 		sb.append("}");
@@ -370,16 +370,16 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>language</column-name><column-value><![CDATA[");
-		sb.append(getLanguage());
+			"<column><column-name>executionType</column-name><column-value><![CDATA[");
+		sb.append(getExecutionType());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>template</column-name><column-value><![CDATA[");
 		sb.append(getTemplate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>executionType</column-name><column-value><![CDATA[");
-		sb.append(getExecutionType());
+			"<column><column-name>templateLanguage</column-name><column-value><![CDATA[");
+		sb.append(getTemplateLanguage());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>notificationTypes</column-name><column-value><![CDATA[");
@@ -403,8 +403,8 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 	private String _kaleoNodeName;
 	private String _name;
 	private String _description;
-	private String _language;
-	private String _template;
 	private String _executionType;
+	private String _template;
+	private String _templateLanguage;
 	private String _notificationTypes;
 }

@@ -96,21 +96,21 @@ public interface KaleoActionModel extends BaseModel<KaleoAction> {
 
 	public void setDescription(String description);
 
-	public String getLanguage();
+	public String getExecutionType();
 
-	public void setLanguage(String language);
+	public void setExecutionType(String executionType);
 
 	public String getScript();
 
 	public void setScript(String script);
 
-	public String getExecutionType();
+	public String getScriptLanguage();
 
-	public void setExecutionType(String executionType);
+	public void setScriptLanguage(String scriptLanguage);
 
-	public int getExecutionOrder();
+	public int getPriority();
 
-	public void setExecutionOrder(int executionOrder);
+	public void setPriority(int priority);
 
 	public KaleoAction toEscapedModel();
 

@@ -16,7 +16,6 @@ package com.liferay.portal.workflow.kaleo.definition;
 
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
 /**
@@ -26,8 +25,15 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class UserAssignment extends Assignment {
 
-	public UserAssignment(boolean defaultValue) {
+	public UserAssignment(
+		long userId, String screenName, String emailAddress,
+		boolean defaultValue) {
+
 		super(AssignmentType.USER, defaultValue);
+
+		_userId = userId;
+		_screenName = GetterUtil.getString(screenName);
+		_emailAddress = GetterUtil.getString(emailAddress);
 	}
 
 	public boolean equals(Object obj) {
@@ -68,18 +74,6 @@ public class UserAssignment extends Assignment {
 			String.valueOf(_userId)).hashCode();
 	}
 
-	public void setEmailAddress(String emailAddress) {
-		_emailAddress = GetterUtil.getString(emailAddress);
-	}
-
-	public void setScreenName(String screenName) {
-		_screenName = GetterUtil.getString(screenName);
-	}
-
-	public void setUserId(long userId) {
-		_userId = userId;
-	}
-
 	public String toString() {
 		StringBundler sb = new StringBundler(7);
 
@@ -94,8 +88,8 @@ public class UserAssignment extends Assignment {
 		return sb.toString();
 	}
 
-	private String _emailAddress = StringPool.BLANK;
-	private String _screenName = StringPool.BLANK;
+	private String _emailAddress;
+	private String _screenName;
 	private long _userId;
 
 }

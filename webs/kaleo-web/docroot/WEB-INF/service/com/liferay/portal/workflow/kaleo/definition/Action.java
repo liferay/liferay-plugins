@@ -23,10 +23,16 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class Action {
 
-	public Action(String name, String actionType, String language) {
+	public Action(
+		String name, String description, String executionType, String script,
+		String scriptLanguage, int priority) {
+
 		_name = name;
-		_actionType = ActionType.parse(actionType);
-		_language = language;
+		_description = description;
+		_executionType = ExecutionType.parse(executionType);
+		_script = script;
+		_scriptLanguage = ScriptLanguage.parse(scriptLanguage);
+		_priority = priority;
 	}
 
 	public boolean equals(Object obj) {
@@ -47,51 +53,39 @@ public class Action {
 		return true;
 	}
 
-	public ActionType getActionType() {
-		return _actionType;
-	}
-
 	public String getDescription() {
 		return _description;
 	}
 
-	public int getExecutionOrder() {
-		return _executionOrder;
-	}
-
-	public String getLanguage() {
-		return _language;
+	public ExecutionType getExecutionType() {
+		return _executionType;
 	}
 
 	public String getName() {
 		return _name;
 	}
 
+	public int getPriority() {
+		return _priority;
+	}
+
 	public String getScript() {
 		return _script;
+	}
+
+	public ScriptLanguage getScriptLanguage() {
+		return _scriptLanguage;
 	}
 
 	public int hashCode() {
 		return _name.hashCode();
 	}
 
-	public void setDescription(String description) {
-		_description = description;
-	}
-
-	public void setExecutionOrder(int executionOrder) {
-		_executionOrder = executionOrder;
-	}
-
-	public void setScript(String script) {
-		_script = script;
-	}
-
-	private ActionType _actionType;
-	private int _executionOrder;
 	private String _description;
-	private String _language;
+	private ExecutionType _executionType;
 	private String _name;
+	private int _priority;
 	private String _script;
+	private ScriptLanguage _scriptLanguage;
 
 }

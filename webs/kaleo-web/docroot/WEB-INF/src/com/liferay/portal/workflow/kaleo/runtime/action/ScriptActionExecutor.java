@@ -52,10 +52,6 @@ public class ScriptActionExecutor implements ActionExecutor {
 			KaleoAction kaleoAction, ExecutionContext executionContext)
 		throws Exception {
 
-		String language = kaleoAction.getLanguage();
-
-		String script = kaleoAction.getScript();
-
 		Map<String, Serializable> context = executionContext.getContext();
 
 		if (context == null) {
@@ -97,7 +93,9 @@ public class ScriptActionExecutor implements ActionExecutor {
 			inputObjects.put("userId", kaleoInstanceToken.getUserId());
 		}
 
-		ScriptingUtil.exec(null, inputObjects, language, script);
+		ScriptingUtil.exec(
+			null, inputObjects, kaleoAction.getScriptLanguage(),
+			kaleoAction.getScript());
 	}
 
 }

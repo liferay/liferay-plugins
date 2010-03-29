@@ -145,12 +145,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		_description = description;
 	}
 
-	public String getLanguage() {
-		return _language;
+	public String getExecutionType() {
+		return _executionType;
 	}
 
-	public void setLanguage(String language) {
-		_language = language;
+	public void setExecutionType(String executionType) {
+		_executionType = executionType;
 	}
 
 	public String getScript() {
@@ -161,20 +161,20 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		_script = script;
 	}
 
-	public String getExecutionType() {
-		return _executionType;
+	public String getScriptLanguage() {
+		return _scriptLanguage;
 	}
 
-	public void setExecutionType(String executionType) {
-		_executionType = executionType;
+	public void setScriptLanguage(String scriptLanguage) {
+		_scriptLanguage = scriptLanguage;
 	}
 
-	public int getExecutionOrder() {
-		return _executionOrder;
+	public int getPriority() {
+		return _priority;
 	}
 
-	public void setExecutionOrder(int executionOrder) {
-		_executionOrder = executionOrder;
+	public void setPriority(int priority) {
+		_priority = priority;
 	}
 
 	public KaleoAction toEscapedModel() {
@@ -197,10 +197,10 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 			model.setKaleoNodeName(HtmlUtil.escape(getKaleoNodeName()));
 			model.setName(HtmlUtil.escape(getName()));
 			model.setDescription(HtmlUtil.escape(getDescription()));
-			model.setLanguage(HtmlUtil.escape(getLanguage()));
-			model.setScript(HtmlUtil.escape(getScript()));
 			model.setExecutionType(HtmlUtil.escape(getExecutionType()));
-			model.setExecutionOrder(getExecutionOrder());
+			model.setScript(HtmlUtil.escape(getScript()));
+			model.setScriptLanguage(HtmlUtil.escape(getScriptLanguage()));
+			model.setPriority(getPriority());
 
 			model = (KaleoAction)Proxy.newProxyInstance(KaleoAction.class.getClassLoader(),
 					new Class[] { KaleoAction.class },
@@ -224,10 +224,10 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		clone.setKaleoNodeName(getKaleoNodeName());
 		clone.setName(getName());
 		clone.setDescription(getDescription());
-		clone.setLanguage(getLanguage());
-		clone.setScript(getScript());
 		clone.setExecutionType(getExecutionType());
-		clone.setExecutionOrder(getExecutionOrder());
+		clone.setScript(getScript());
+		clone.setScriptLanguage(getScriptLanguage());
+		clone.setPriority(getPriority());
 
 		return clone;
 	}
@@ -235,10 +235,10 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 	public int compareTo(KaleoAction kaleoAction) {
 		int value = 0;
 
-		if (getExecutionOrder() < kaleoAction.getExecutionOrder()) {
+		if (getPriority() < kaleoAction.getPriority()) {
 			value = -1;
 		}
-		else if (getExecutionOrder() > kaleoAction.getExecutionOrder()) {
+		else if (getPriority() > kaleoAction.getPriority()) {
 			value = 1;
 		}
 		else {
@@ -305,14 +305,14 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		sb.append(getName());
 		sb.append(", description=");
 		sb.append(getDescription());
-		sb.append(", language=");
-		sb.append(getLanguage());
-		sb.append(", script=");
-		sb.append(getScript());
 		sb.append(", executionType=");
 		sb.append(getExecutionType());
-		sb.append(", executionOrder=");
-		sb.append(getExecutionOrder());
+		sb.append(", script=");
+		sb.append(getScript());
+		sb.append(", scriptLanguage=");
+		sb.append(getScriptLanguage());
+		sb.append(", priority=");
+		sb.append(getPriority());
 		sb.append("}");
 
 		return sb.toString();
@@ -370,20 +370,20 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>language</column-name><column-value><![CDATA[");
-		sb.append(getLanguage());
+			"<column><column-name>executionType</column-name><column-value><![CDATA[");
+		sb.append(getExecutionType());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>script</column-name><column-value><![CDATA[");
 		sb.append(getScript());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>executionType</column-name><column-value><![CDATA[");
-		sb.append(getExecutionType());
+			"<column><column-name>scriptLanguage</column-name><column-value><![CDATA[");
+		sb.append(getScriptLanguage());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>executionOrder</column-name><column-value><![CDATA[");
-		sb.append(getExecutionOrder());
+			"<column><column-name>priority</column-name><column-value><![CDATA[");
+		sb.append(getPriority());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -403,8 +403,8 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 	private String _kaleoNodeName;
 	private String _name;
 	private String _description;
-	private String _language;
-	private String _script;
 	private String _executionType;
-	private int _executionOrder;
+	private String _script;
+	private String _scriptLanguage;
+	private int _priority;
 }

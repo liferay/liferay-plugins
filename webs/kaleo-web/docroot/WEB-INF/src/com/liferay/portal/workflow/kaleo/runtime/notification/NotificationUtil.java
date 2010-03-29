@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.workflow.kaleo.definition.ActionType;
+import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
@@ -36,13 +36,13 @@ import java.util.List;
 public class NotificationUtil {
 
 	public static void sendKaleoNotifications(
-			long kaleoNodeId, ActionType actionType,
+			long kaleoNodeId, ExecutionType executionType,
 			ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
 		List<KaleoNotification> kaleoNotifications =
 			KaleoNotificationLocalServiceUtil.getKaleoNotifications(
-				kaleoNodeId, actionType.getValue());
+				kaleoNodeId, executionType.getValue());
 
 		for (KaleoNotification kaleoNotification : kaleoNotifications) {
 			_sendKaleoNotification(kaleoNotification, executionContext);
@@ -56,7 +56,7 @@ public class NotificationUtil {
 
 		NotificationMessageGenerator notificationMessageGenerator =
 			NotificationMessageGeneratorFactory.getNotificationMessageGenerator(
-				kaleoNotification.getLanguage());
+				kaleoNotification.getTemplateLanguage());
 
 		String notificationMessage =
 			notificationMessageGenerator.generateMessage(

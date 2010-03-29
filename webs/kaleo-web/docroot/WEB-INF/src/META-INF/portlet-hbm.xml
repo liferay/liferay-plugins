@@ -30,10 +30,10 @@
 		<property name="kaleoNodeName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="language" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="script" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="executionType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="executionOrder" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="script" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="scriptLanguage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionImpl" table="Kaleo_KaleoDefinition">
 		<cache usage="read-write" />
@@ -150,9 +150,9 @@
 		<property name="kaleoNodeName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="language" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="template" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="executionType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="template" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="templateLanguage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="notificationTypes" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientImpl" table="Kaleo_KaleoNotificationRecipient">

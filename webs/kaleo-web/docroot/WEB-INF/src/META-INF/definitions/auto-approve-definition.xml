@@ -6,17 +6,21 @@
 	xsi:schemaLocation="urn:liferay.com:liferay-workflow_6.0.0 http://www.liferay.com/dtd/liferay-workflow-definition_6_0_0.xsd"
 >
 	<name>Automatic Approval</name>
-	<description>A workflow definition that will automatically approve a workflow item</description>
+	<description>Automatically approve a workflow asset.</description>
 	<version>1</version>
-	<state name="Approved" initial="true">
-		<description>Approve the item</description>
+	<state>
+		<name>APPROVED</name>
+		<initial>true</initial>
 		<actions>
-			<action execution-order="0" name="ApproveAsset" description="Approve the submitted asset" language="javascript" type="onEntry">
+			<action>
+				<name>Approve Asset</name>
+				<execution-type>onEntry</execution-type>
 				<script>
 					<![CDATA[
 						Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(companyId, groupId, userId, entryClassName, entryClassPK, Packages.com.liferay.portal.kernel.workflow.StatusConstants.fromLabel("approved"));
 					]]>
 				</script>
+				<script-language>javascript</script-language>
 			</action>
 		</actions>
 	</state>

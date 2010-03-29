@@ -52,10 +52,10 @@ public class KaleoActionSoap implements Serializable {
 		soapModel.setKaleoNodeName(model.getKaleoNodeName());
 		soapModel.setName(model.getName());
 		soapModel.setDescription(model.getDescription());
-		soapModel.setLanguage(model.getLanguage());
-		soapModel.setScript(model.getScript());
 		soapModel.setExecutionType(model.getExecutionType());
-		soapModel.setExecutionOrder(model.getExecutionOrder());
+		soapModel.setScript(model.getScript());
+		soapModel.setScriptLanguage(model.getScriptLanguage());
+		soapModel.setPriority(model.getPriority());
 
 		return soapModel;
 	}
@@ -196,12 +196,12 @@ public class KaleoActionSoap implements Serializable {
 		_description = description;
 	}
 
-	public String getLanguage() {
-		return _language;
+	public String getExecutionType() {
+		return _executionType;
 	}
 
-	public void setLanguage(String language) {
-		_language = language;
+	public void setExecutionType(String executionType) {
+		_executionType = executionType;
 	}
 
 	public String getScript() {
@@ -212,20 +212,20 @@ public class KaleoActionSoap implements Serializable {
 		_script = script;
 	}
 
-	public String getExecutionType() {
-		return _executionType;
+	public String getScriptLanguage() {
+		return _scriptLanguage;
 	}
 
-	public void setExecutionType(String executionType) {
-		_executionType = executionType;
+	public void setScriptLanguage(String scriptLanguage) {
+		_scriptLanguage = scriptLanguage;
 	}
 
-	public int getExecutionOrder() {
-		return _executionOrder;
+	public int getPriority() {
+		return _priority;
 	}
 
-	public void setExecutionOrder(int executionOrder) {
-		_executionOrder = executionOrder;
+	public void setPriority(int priority) {
+		_priority = priority;
 	}
 
 	private long _kaleoActionId;
@@ -239,8 +239,8 @@ public class KaleoActionSoap implements Serializable {
 	private String _kaleoNodeName;
 	private String _name;
 	private String _description;
-	private String _language;
-	private String _script;
 	private String _executionType;
-	private int _executionOrder;
+	private String _script;
+	private String _scriptLanguage;
+	private int _priority;
 }

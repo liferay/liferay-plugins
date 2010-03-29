@@ -15,40 +15,39 @@
 package com.liferay.portal.workflow.kaleo.definition;
 
 /**
- * <a href="Transition.java.html"><b><i>View Source</i></b></a>
+ * <a href="ScriptLanguage.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael C. Han
  */
-public class Transition {
+public enum ScriptLanguage {
 
-	public Transition(
-		String name, Node sourceNode, Node targetNode, boolean defaultValue) {
+	GROOVY("groovy"), JAVASCRIPT("javascript"), PYTHON("python"), RUBY("ruby");
 
-		_name = name;
-		_sourceNode = sourceNode;
-		_targetNode = targetNode;
-		_default = defaultValue;
+	public static ScriptLanguage parse(String value) {
+		if (GROOVY.getValue().equals(value)) {
+			return GROOVY;
+		}
+		else if (JAVASCRIPT.getValue().equals(value)) {
+			return JAVASCRIPT;
+		}
+		else if (PYTHON.getValue().equals(value)) {
+			return PYTHON;
+		}
+		else if (RUBY.getValue().equals(value)) {
+			return RUBY;
+		}
+
+		throw new IllegalArgumentException("Invalid value " + value);
 	}
 
-	public String getName() {
-		return _name;
+	public String getValue() {
+		return _value;
 	}
 
-	public Node getSourceNode() {
-		return _sourceNode;
+	private ScriptLanguage(String value) {
+		_value = value;
 	}
 
-	public Node getTargetNode() {
-		return _targetNode;
-	}
-
-	public boolean isDefault() {
-		return _default;
-	}
-
-	private boolean _default;
-	private String _name;
-	private Node _sourceNode;
-	private Node _targetNode;
+	private String _value;
 
 }

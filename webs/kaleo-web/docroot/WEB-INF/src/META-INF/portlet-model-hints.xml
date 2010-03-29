@@ -21,14 +21,12 @@
 		<field name="description" type="String">
 			<hint name="max-length">2000</hint>
 		</field>
-		<field name="language" type="String" />
+		<field name="executionType" type="String" />
 		<field name="script" type="String">
 			<hint-collection name="CLOB" />
 		</field>
-		<field name="executionType" type="String">
-			<hint name="max-length">10</hint>
-		</field>
-		<field name="executionOrder" type="int" />
+		<field name="scriptLanguage" type="String" />
+		<field name="priority" type="int" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoDefinition">
 		<field name="kaleoDefinitionId" type="long" />
@@ -181,15 +179,13 @@
 		<field name="description" type="String">
 			<hint name="max-length">2000</hint>
 		</field>
-		<field name="language" type="String">
-			<hint name="max-length">20</hint>
+		<field name="executionType" type="String">
+			<hint name="max-length">10</hint>
 		</field>
 		<field name="template" type="String">
 			<hint-collection name="CLOB" />
 		</field>
-		<field name="executionType" type="String">
-			<hint name="max-length">10</hint>
-		</field>
+		<field name="templateLanguage" type="String" />
 		<field name="notificationTypes" type="String">
 			<hint name="max-length">25</hint>
 		</field>

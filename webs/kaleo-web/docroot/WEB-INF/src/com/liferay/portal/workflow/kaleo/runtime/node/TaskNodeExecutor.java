@@ -18,9 +18,9 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.workflow.kaleo.definition.ActionType;
 import com.liferay.portal.workflow.kaleo.definition.DueDateDuration;
 import com.liferay.portal.workflow.kaleo.definition.DurationScale;
+import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
@@ -95,11 +95,11 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			kaleoTaskInstanceAssignment);
 
 		ActionExecutorUtil.executeKaleoActions(
-			currentKaleoNode.getKaleoNodeId(), ActionType.ON_ASSIGNMENT,
+			currentKaleoNode.getKaleoNodeId(), ExecutionType.ON_ASSIGNMENT,
 			executionContext);
 
 		NotificationUtil.sendKaleoNotifications(
-			currentKaleoNode.getKaleoNodeId(), ActionType.ON_ASSIGNMENT,
+			currentKaleoNode.getKaleoNodeId(), ExecutionType.ON_ASSIGNMENT,
 			executionContext);
 
 		kaleoLogLocalService.addTaskAssignmentKaleoLog(

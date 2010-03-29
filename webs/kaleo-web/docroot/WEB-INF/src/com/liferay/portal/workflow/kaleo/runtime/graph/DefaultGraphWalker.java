@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.annotation.Transactional;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
-import com.liferay.portal.workflow.kaleo.definition.ActionType;
+import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.definition.NodeType;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
@@ -57,11 +57,11 @@ public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 				sourceKaleoNode, executionContext, remainingPathElement);
 
 			ActionExecutorUtil.executeKaleoActions(
-				sourceKaleoNode.getKaleoNodeId(), ActionType.ON_EXIT,
+				sourceKaleoNode.getKaleoNodeId(), ExecutionType.ON_EXIT,
 				executionContext);
 
 			NotificationUtil.sendKaleoNotifications(
-				sourceKaleoNode.getKaleoNodeId(), ActionType.ON_EXIT,
+				sourceKaleoNode.getKaleoNodeId(), ExecutionType.ON_EXIT,
 				executionContext);
 		}
 
@@ -71,7 +71,7 @@ public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 				targetKaleoNode, executionContext.getServiceContext());
 
 			ActionExecutorUtil.executeKaleoActions(
-				targetKaleoNode.getKaleoNodeId(), ActionType.ON_ENTRY,
+				targetKaleoNode.getKaleoNodeId(), ExecutionType.ON_ENTRY,
 				executionContext);
 
 			NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(
@@ -81,7 +81,7 @@ public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 				targetKaleoNode, executionContext, remainingPathElement);
 
 			NotificationUtil.sendKaleoNotifications(
-				targetKaleoNode.getKaleoNodeId(), ActionType.ON_ENTRY,
+				targetKaleoNode.getKaleoNodeId(), ExecutionType.ON_ENTRY,
 				executionContext);
 		}
 

@@ -25,13 +25,14 @@ import java.util.Map;
  */
 public class ActionExecutorFactory {
 
-	public static ActionExecutor getActionExecutor(String language)
+	public static ActionExecutor getActionExecutor(String scriptLanguage)
 		throws WorkflowException {
 
-		ActionExecutor actionExecutor = _actionExecutors.get(language);
+		ActionExecutor actionExecutor = _actionExecutors.get(scriptLanguage);
 
 		if (actionExecutor == null) {
-			throw new WorkflowException("Invalid language " + language);
+			throw new WorkflowException(
+				"Invalid script language " + scriptLanguage);
 		}
 
 		return actionExecutor;

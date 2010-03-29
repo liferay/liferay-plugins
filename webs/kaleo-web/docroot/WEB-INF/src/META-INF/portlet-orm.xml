@@ -24,10 +24,10 @@
 			<basic name="kaleoNodeName" />
 			<basic name="name" />
 			<basic name="description" />
-			<basic name="language" />
-			<basic name="script" />
 			<basic name="executionType" />
-			<basic name="executionOrder" />
+			<basic name="script" />
+			<basic name="scriptLanguage" />
+			<basic name="priority" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />
 		</attributes>
@@ -189,9 +189,9 @@
 			<basic name="kaleoNodeName" />
 			<basic name="name" />
 			<basic name="description" />
-			<basic name="language" />
-			<basic name="template" />
 			<basic name="executionType" />
+			<basic name="template" />
+			<basic name="templateLanguage" />
 			<basic name="notificationTypes" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />

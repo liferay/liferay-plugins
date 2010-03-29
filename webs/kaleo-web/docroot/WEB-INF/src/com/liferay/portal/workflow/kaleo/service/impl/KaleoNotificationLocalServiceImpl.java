@@ -66,10 +66,11 @@ public class KaleoNotificationLocalServiceImpl
 		kaleoNotification.setKaleoNodeName(kaleoNodeName);
 		kaleoNotification.setName(notification.getName());
 		kaleoNotification.setDescription(notification.getDescription());
-		kaleoNotification.setLanguage(notification.getLanguage().getValue());
-		kaleoNotification.setTemplate(notification.getTemplate());
 		kaleoNotification.setExecutionType(
-			notification.getActionType().getValue());
+			notification.getExecutionType().getValue());
+		kaleoNotification.setTemplate(notification.getTemplate());
+		kaleoNotification.setTemplateLanguage(
+			notification.getTemplateLanguage().getValue());
 
 		Set<NotificationType> notificationTypes =
 			notification.getNotificationTypes();

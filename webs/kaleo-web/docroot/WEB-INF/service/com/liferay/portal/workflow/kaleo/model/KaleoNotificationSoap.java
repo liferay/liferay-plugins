@@ -52,9 +52,9 @@ public class KaleoNotificationSoap implements Serializable {
 		soapModel.setKaleoNodeName(model.getKaleoNodeName());
 		soapModel.setName(model.getName());
 		soapModel.setDescription(model.getDescription());
-		soapModel.setLanguage(model.getLanguage());
-		soapModel.setTemplate(model.getTemplate());
 		soapModel.setExecutionType(model.getExecutionType());
+		soapModel.setTemplate(model.getTemplate());
+		soapModel.setTemplateLanguage(model.getTemplateLanguage());
 		soapModel.setNotificationTypes(model.getNotificationTypes());
 
 		return soapModel;
@@ -199,12 +199,12 @@ public class KaleoNotificationSoap implements Serializable {
 		_description = description;
 	}
 
-	public String getLanguage() {
-		return _language;
+	public String getExecutionType() {
+		return _executionType;
 	}
 
-	public void setLanguage(String language) {
-		_language = language;
+	public void setExecutionType(String executionType) {
+		_executionType = executionType;
 	}
 
 	public String getTemplate() {
@@ -215,12 +215,12 @@ public class KaleoNotificationSoap implements Serializable {
 		_template = template;
 	}
 
-	public String getExecutionType() {
-		return _executionType;
+	public String getTemplateLanguage() {
+		return _templateLanguage;
 	}
 
-	public void setExecutionType(String executionType) {
-		_executionType = executionType;
+	public void setTemplateLanguage(String templateLanguage) {
+		_templateLanguage = templateLanguage;
 	}
 
 	public String getNotificationTypes() {
@@ -242,8 +242,8 @@ public class KaleoNotificationSoap implements Serializable {
 	private String _kaleoNodeName;
 	private String _name;
 	private String _description;
-	private String _language;
-	private String _template;
 	private String _executionType;
+	private String _template;
+	private String _templateLanguage;
 	private String _notificationTypes;
 }

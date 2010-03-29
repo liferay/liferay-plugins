@@ -24,15 +24,15 @@
 		<column name="kaleoNodeName" type="String" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
-		<column name="language" type="String" />
-		<column name="script" type="String" />
 		<column name="executionType" type="String" />
-		<column name="executionOrder" type="int" />
+		<column name="script" type="String" />
+		<column name="scriptLanguage" type="String" />
+		<column name="priority" type="int" />
 
 		<!-- Order -->
 
 		<order by="asc">
-			<order-column name="executionOrder" />
+			<order-column name="priority" />
 		</order>
 
 		<!-- Finder methods -->
@@ -298,10 +298,12 @@
 		<column name="kaleoNodeName" type="String" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
-		<column name="language" type="String" />
-		<column name="template" type="String" />
 		<column name="executionType" type="String" />
+		<column name="template" type="String" />
+		<column name="templateLanguage" type="String" />
 		<column name="notificationTypes" type="String" />
+
+		<!-- Relationships -->
 
 		<column name="receipients" type="Collection" entity="KaleoNotificationRecipient" mapping-key="kaleoNotificationId" />
 

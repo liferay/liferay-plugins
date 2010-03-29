@@ -146,10 +146,10 @@ public class ClpSerializer {
 
 					method10.invoke(newModel, value10);
 
-					Method method11 = newModelClass.getMethod("setLanguage",
+					Method method11 = newModelClass.getMethod("setExecutionType",
 							new Class[] { String.class });
 
-					String value11 = oldCplModel.getLanguage();
+					String value11 = oldCplModel.getExecutionType();
 
 					method11.invoke(newModel, value11);
 
@@ -160,17 +160,17 @@ public class ClpSerializer {
 
 					method12.invoke(newModel, value12);
 
-					Method method13 = newModelClass.getMethod("setExecutionType",
+					Method method13 = newModelClass.getMethod("setScriptLanguage",
 							new Class[] { String.class });
 
-					String value13 = oldCplModel.getExecutionType();
+					String value13 = oldCplModel.getScriptLanguage();
 
 					method13.invoke(newModel, value13);
 
-					Method method14 = newModelClass.getMethod("setExecutionOrder",
+					Method method14 = newModelClass.getMethod("setPriority",
 							new Class[] { Integer.TYPE });
 
-					Integer value14 = new Integer(oldCplModel.getExecutionOrder());
+					Integer value14 = new Integer(oldCplModel.getPriority());
 
 					method14.invoke(newModel, value14);
 
@@ -932,10 +932,10 @@ public class ClpSerializer {
 
 					method10.invoke(newModel, value10);
 
-					Method method11 = newModelClass.getMethod("setLanguage",
+					Method method11 = newModelClass.getMethod("setExecutionType",
 							new Class[] { String.class });
 
-					String value11 = oldCplModel.getLanguage();
+					String value11 = oldCplModel.getExecutionType();
 
 					method11.invoke(newModel, value11);
 
@@ -946,10 +946,10 @@ public class ClpSerializer {
 
 					method12.invoke(newModel, value12);
 
-					Method method13 = newModelClass.getMethod("setExecutionType",
+					Method method13 = newModelClass.getMethod("setTemplateLanguage",
 							new Class[] { String.class });
 
-					String value13 = oldCplModel.getExecutionType();
+					String value13 = oldCplModel.getTemplateLanguage();
 
 					method13.invoke(newModel, value13);
 
@@ -1761,12 +1761,13 @@ public class ClpSerializer {
 
 					newModel.setDescription(value10);
 
-					Method method11 = oldModelClass.getMethod("getLanguage");
+					Method method11 = oldModelClass.getMethod(
+							"getExecutionType");
 
 					String value11 = (String)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setLanguage(value11);
+					newModel.setExecutionType(value11);
 
 					Method method12 = oldModelClass.getMethod("getScript");
 
@@ -1776,20 +1777,19 @@ public class ClpSerializer {
 					newModel.setScript(value12);
 
 					Method method13 = oldModelClass.getMethod(
-							"getExecutionType");
+							"getScriptLanguage");
 
 					String value13 = (String)method13.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setExecutionType(value13);
+					newModel.setScriptLanguage(value13);
 
-					Method method14 = oldModelClass.getMethod(
-							"getExecutionOrder");
+					Method method14 = oldModelClass.getMethod("getPriority");
 
 					Integer value14 = (Integer)method14.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setExecutionOrder(value14.intValue());
+					newModel.setPriority(value14.intValue());
 
 					return newModel;
 				}
@@ -2512,12 +2512,13 @@ public class ClpSerializer {
 
 					newModel.setDescription(value10);
 
-					Method method11 = oldModelClass.getMethod("getLanguage");
+					Method method11 = oldModelClass.getMethod(
+							"getExecutionType");
 
 					String value11 = (String)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setLanguage(value11);
+					newModel.setExecutionType(value11);
 
 					Method method12 = oldModelClass.getMethod("getTemplate");
 
@@ -2527,12 +2528,12 @@ public class ClpSerializer {
 					newModel.setTemplate(value12);
 
 					Method method13 = oldModelClass.getMethod(
-							"getExecutionType");
+							"getTemplateLanguage");
 
 					String value13 = (String)method13.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setExecutionType(value13);
+					newModel.setTemplateLanguage(value13);
 
 					Method method14 = oldModelClass.getMethod(
 							"getNotificationTypes");

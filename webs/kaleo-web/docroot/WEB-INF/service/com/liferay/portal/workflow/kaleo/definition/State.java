@@ -21,8 +21,10 @@ package com.liferay.portal.workflow.kaleo.definition;
  */
 public class State extends Node {
 
-	public State(String name, String description) {
+	public State(String name, String description, boolean initial) {
 		super(NodeType.STATE, name, description);
+
+		_initial = initial;
 	}
 
 	public boolean isInitial() {
@@ -36,10 +38,6 @@ public class State extends Node {
 		else {
 			return false;
 		}
-	}
-
-	public void setInitial(boolean initial) {
-		_initial = initial;
 	}
 
 	private boolean _initial;

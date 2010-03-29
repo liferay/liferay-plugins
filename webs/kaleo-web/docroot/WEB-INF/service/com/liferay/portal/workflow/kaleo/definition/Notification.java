@@ -26,10 +26,15 @@ import java.util.Set;
  */
 public class Notification {
 
-	public Notification(String name, String language, String actionType) {
+	public Notification(
+		String name, String description, String executionType, String template,
+		String templateLanguage) {
+
 		_name = name;
-		_language = Language.parse(language);
-		_actionType = ActionType.parse(actionType);
+		_description = description;
+		_executionType = ExecutionType.parse(executionType);
+		_template = template;
+		_templateLanguage = TemplateLanguage.parse(templateLanguage);
 	}
 
 	public void addNotificationType(String notificationType) {
@@ -58,16 +63,12 @@ public class Notification {
 		return true;
 	}
 
-	public ActionType getActionType() {
-		return _actionType;
-	}
-
 	public String getDescription() {
 		return _description;
 	}
 
-	public Language getLanguage() {
-		return _language;
+	public ExecutionType getExecutionType() {
+		return _executionType;
 	}
 
 	public String getName() {
@@ -86,25 +87,21 @@ public class Notification {
 		return _template;
 	}
 
+	public TemplateLanguage getTemplateLanguage() {
+		return _templateLanguage;
+	}
+
 	public int hashCode() {
 		return _name.hashCode();
 	}
 
-	public void setDescription(String description) {
-		_description = description;
-	}
-
-	public void setTemplate(String template) {
-		_template = template;
-	}
-
-	private ActionType _actionType;
 	private String _description;
-	private Language _language;
+	private ExecutionType _executionType;
 	private String _name;
 	private Set<NotificationType> _notificationTypes =
 		new HashSet<NotificationType>();
 	private Set<Recipient> _recipients = new HashSet<Recipient>();
 	private String _template;
+	private TemplateLanguage _templateLanguage;
 
 }

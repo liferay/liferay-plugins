@@ -72,12 +72,12 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 			{ "kaleoNodeName", new Integer(Types.VARCHAR) },
 			{ "name", new Integer(Types.VARCHAR) },
 			{ "description", new Integer(Types.VARCHAR) },
-			{ "language", new Integer(Types.VARCHAR) },
-			{ "template", new Integer(Types.CLOB) },
 			{ "executionType", new Integer(Types.VARCHAR) },
+			{ "template", new Integer(Types.CLOB) },
+			{ "templateLanguage", new Integer(Types.VARCHAR) },
 			{ "notificationTypes", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoNotification (kaleoNotificationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description VARCHAR(2000) null,language VARCHAR(20) null,template TEXT null,executionType VARCHAR(10) null,notificationTypes VARCHAR(25) null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoNotification (kaleoNotificationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description VARCHAR(2000) null,executionType VARCHAR(10) null,template TEXT null,templateLanguage VARCHAR(75) null,notificationTypes VARCHAR(25) null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoNotification";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoNotification.kaleoNotificationId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoNotification.kaleoNotificationId ASC";
@@ -105,9 +105,9 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		model.setKaleoNodeName(soapModel.getKaleoNodeName());
 		model.setName(soapModel.getName());
 		model.setDescription(soapModel.getDescription());
-		model.setLanguage(soapModel.getLanguage());
-		model.setTemplate(soapModel.getTemplate());
 		model.setExecutionType(soapModel.getExecutionType());
+		model.setTemplate(soapModel.getTemplate());
+		model.setTemplateLanguage(soapModel.getTemplateLanguage());
 		model.setNotificationTypes(soapModel.getNotificationTypes());
 
 		return model;
@@ -258,17 +258,17 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		_description = description;
 	}
 
-	public String getLanguage() {
-		if (_language == null) {
+	public String getExecutionType() {
+		if (_executionType == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _language;
+			return _executionType;
 		}
 	}
 
-	public void setLanguage(String language) {
-		_language = language;
+	public void setExecutionType(String executionType) {
+		_executionType = executionType;
 	}
 
 	public String getTemplate() {
@@ -284,17 +284,17 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		_template = template;
 	}
 
-	public String getExecutionType() {
-		if (_executionType == null) {
+	public String getTemplateLanguage() {
+		if (_templateLanguage == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _executionType;
+			return _templateLanguage;
 		}
 	}
 
-	public void setExecutionType(String executionType) {
-		_executionType = executionType;
+	public void setTemplateLanguage(String templateLanguage) {
+		_templateLanguage = templateLanguage;
 	}
 
 	public String getNotificationTypes() {
@@ -331,9 +331,9 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 			model.setKaleoNodeName(HtmlUtil.escape(getKaleoNodeName()));
 			model.setName(HtmlUtil.escape(getName()));
 			model.setDescription(HtmlUtil.escape(getDescription()));
-			model.setLanguage(HtmlUtil.escape(getLanguage()));
-			model.setTemplate(HtmlUtil.escape(getTemplate()));
 			model.setExecutionType(HtmlUtil.escape(getExecutionType()));
+			model.setTemplate(HtmlUtil.escape(getTemplate()));
+			model.setTemplateLanguage(HtmlUtil.escape(getTemplateLanguage()));
 			model.setNotificationTypes(HtmlUtil.escape(getNotificationTypes()));
 
 			model = (KaleoNotification)Proxy.newProxyInstance(KaleoNotification.class.getClassLoader(),
@@ -371,9 +371,9 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		clone.setKaleoNodeName(getKaleoNodeName());
 		clone.setName(getName());
 		clone.setDescription(getDescription());
-		clone.setLanguage(getLanguage());
-		clone.setTemplate(getTemplate());
 		clone.setExecutionType(getExecutionType());
+		clone.setTemplate(getTemplate());
+		clone.setTemplateLanguage(getTemplateLanguage());
 		clone.setNotificationTypes(getNotificationTypes());
 
 		return clone;
@@ -452,12 +452,12 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		sb.append(getName());
 		sb.append(", description=");
 		sb.append(getDescription());
-		sb.append(", language=");
-		sb.append(getLanguage());
-		sb.append(", template=");
-		sb.append(getTemplate());
 		sb.append(", executionType=");
 		sb.append(getExecutionType());
+		sb.append(", template=");
+		sb.append(getTemplate());
+		sb.append(", templateLanguage=");
+		sb.append(getTemplateLanguage());
 		sb.append(", notificationTypes=");
 		sb.append(getNotificationTypes());
 		sb.append("}");
@@ -517,16 +517,16 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>language</column-name><column-value><![CDATA[");
-		sb.append(getLanguage());
+			"<column><column-name>executionType</column-name><column-value><![CDATA[");
+		sb.append(getExecutionType());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>template</column-name><column-value><![CDATA[");
 		sb.append(getTemplate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>executionType</column-name><column-value><![CDATA[");
-		sb.append(getExecutionType());
+			"<column><column-name>templateLanguage</column-name><column-value><![CDATA[");
+		sb.append(getTemplateLanguage());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>notificationTypes</column-name><column-value><![CDATA[");
@@ -550,9 +550,9 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	private String _kaleoNodeName;
 	private String _name;
 	private String _description;
-	private String _language;
-	private String _template;
 	private String _executionType;
+	private String _template;
+	private String _templateLanguage;
 	private String _notificationTypes;
 	private transient ExpandoBridge _expandoBridge;
 }

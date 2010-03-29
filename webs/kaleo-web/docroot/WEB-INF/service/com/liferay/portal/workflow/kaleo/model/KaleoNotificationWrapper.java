@@ -141,12 +141,12 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		_kaleoNotification.setDescription(description);
 	}
 
-	public java.lang.String getLanguage() {
-		return _kaleoNotification.getLanguage();
+	public java.lang.String getExecutionType() {
+		return _kaleoNotification.getExecutionType();
 	}
 
-	public void setLanguage(java.lang.String language) {
-		_kaleoNotification.setLanguage(language);
+	public void setExecutionType(java.lang.String executionType) {
+		_kaleoNotification.setExecutionType(executionType);
 	}
 
 	public java.lang.String getTemplate() {
@@ -157,12 +157,12 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		_kaleoNotification.setTemplate(template);
 	}
 
-	public java.lang.String getExecutionType() {
-		return _kaleoNotification.getExecutionType();
+	public java.lang.String getTemplateLanguage() {
+		return _kaleoNotification.getTemplateLanguage();
 	}
 
-	public void setExecutionType(java.lang.String executionType) {
-		_kaleoNotification.setExecutionType(executionType);
+	public void setTemplateLanguage(java.lang.String templateLanguage) {
+		_kaleoNotification.setTemplateLanguage(templateLanguage);
 	}
 
 	public java.lang.String getNotificationTypes() {

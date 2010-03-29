@@ -1,4 +1,3 @@
-
 create table Kaleo_KaleoAction (
 	kaleoActionId LONG not null primary key,
 	companyId LONG,
@@ -11,10 +10,10 @@ create table Kaleo_KaleoAction (
 	kaleoNodeName VARCHAR(200) null,
 	name VARCHAR(200) null,
 	description VARCHAR(2000) null,
-	language VARCHAR(75) null,
+	executionType VARCHAR(75) null,
 	script TEXT null,
-	executionType VARCHAR(10) null,
-	executionOrder INTEGER
+	scriptLanguage VARCHAR(75) null,
+	priority INTEGER
 );
 
 create table Kaleo_KaleoDefinition (
@@ -119,9 +118,9 @@ create table Kaleo_KaleoNotification (
 	kaleoNodeName VARCHAR(200) null,
 	name VARCHAR(200) null,
 	description VARCHAR(2000) null,
-	language VARCHAR(20) null,
-	template TEXT null,
 	executionType VARCHAR(10) null,
+	template TEXT null,
+	templateLanguage VARCHAR(75) null,
 	notificationTypes VARCHAR(25) null
 );
 

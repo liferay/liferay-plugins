@@ -80,10 +80,6 @@ public class Definition {
 		return _version;
 	}
 
-	public void setName(String name) {
-		_name = name;
-	}
-
 	private String _description;
 	private State _initialState;
 	private String _name;

@@ -260,10 +260,10 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		kaleoActionImpl.setKaleoNodeName(kaleoAction.getKaleoNodeName());
 		kaleoActionImpl.setName(kaleoAction.getName());
 		kaleoActionImpl.setDescription(kaleoAction.getDescription());
-		kaleoActionImpl.setLanguage(kaleoAction.getLanguage());
-		kaleoActionImpl.setScript(kaleoAction.getScript());
 		kaleoActionImpl.setExecutionType(kaleoAction.getExecutionType());
-		kaleoActionImpl.setExecutionOrder(kaleoAction.getExecutionOrder());
+		kaleoActionImpl.setScript(kaleoAction.getScript());
+		kaleoActionImpl.setScriptLanguage(kaleoAction.getScriptLanguage());
+		kaleoActionImpl.setPriority(kaleoAction.getPriority());
 
 		return kaleoActionImpl;
 	}

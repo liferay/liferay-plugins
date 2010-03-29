@@ -27,14 +27,15 @@ import java.util.Map;
 public class NotificationMessageGeneratorFactory {
 
 	public static NotificationMessageGenerator getNotificationMessageGenerator(
-			String language)
+			String templateLanguage)
 		throws WorkflowException {
 
 		NotificationMessageGenerator notificationMessageGenerator =
-			_notificationMessageGenerators.get(language);
+			_notificationMessageGenerators.get(templateLanguage);
 
 		if (notificationMessageGenerator == null) {
-			throw new WorkflowException("Invalid language " + language);
+			throw new WorkflowException(
+				"Invalid template language " + templateLanguage);
 		}
 
 		return notificationMessageGenerator;

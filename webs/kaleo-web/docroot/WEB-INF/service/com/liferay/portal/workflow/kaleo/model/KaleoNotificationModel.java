@@ -96,17 +96,17 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification> {
 
 	public void setDescription(String description);
 
-	public String getLanguage();
+	public String getExecutionType();
 
-	public void setLanguage(String language);
+	public void setExecutionType(String executionType);
 
 	public String getTemplate();
 
 	public void setTemplate(String template);
 
-	public String getExecutionType();
+	public String getTemplateLanguage();
 
-	public void setExecutionType(String executionType);
+	public void setTemplateLanguage(String templateLanguage);
 
 	public String getNotificationTypes();
 

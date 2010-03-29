@@ -6,46 +6,62 @@
 	xsi:schemaLocation="urn:liferay.com:liferay-workflow_6.0.0 http://www.liferay.com/dtd/liferay-workflow-definition_6_0_0.xsd"
 >
 	<name>Single Approver</name>
-	<description>Workflow definition for a single approver worker</description>
+	<description>A single approver can approve a workflow asset.</description>
 	<version>1</version>
-	<state name="Created" initial="true">
-		<description>Entry state of the workflow</description>
+	<state>
+		<name>CREATED</name>
+		<initial>true</initial>
 		<transitions>
-			<transition name="review_fork" target="Content Review" default="true" />
+			<transition>
+				<name>Review Content</name>
+				<target>REVIEW_CONTENT</target>
+				<default>true</default>
+			</transition>
 		</transitions>
 	</state>
-	<task name="Content Review">
-		<description>Performing content reviews</description>
+	<state>
+		<name>APPROVED</name>
 		<actions>
-			<notification description="Notify reviewers there is an item pending approval" name="Approval Pending Notification" language="text" type="onEntry">
-				<recipients>
-					<role name="Content_Reviewers" />
-				</recipients>
-				<notification-type value="email" />
-				<template>
-					<![CDATA[
-						You have a new item waiting for your approval in the workflow. 
-					]]>
-				</template>
-			</notification>
-		</actions>
-		<transitions>
-			<transition name="Approve Content" target="Approved" default="true" />
-		</transitions>
-		<assignments>
-			<role name="Content_Reviewers" default="true" />
-		</assignments>
-	</task>
-	<state name="Approved">
-		<description>Approve the item</description>
-		<actions>
-			<action execution-order="0" name="ApproveAsset" description="Approve the submitted asset" language="javascript" type="onEntry">
+			<action>
+				<name>Approve Asset</name>
+				<execution-type>onEntry</execution-type>
 				<script>
 					<![CDATA[
 						Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(companyId, groupId, userId, entryClassName, entryClassPK, Packages.com.liferay.portal.kernel.workflow.StatusConstants.fromLabel("approved"));
 					]]>
 				</script>
+				<script-language>javascript</script-language>
 			</action>
 		</actions>
 	</state>
+	<task>
+		<name>REVIEW_CONTENT</name>
+		<actions>
+			<notification>
+				<name>Review Content Notification</name>
+				<execution-type>onEntry</execution-type>
+				<template>You have a new asset waiting for your review in the workflow.</template>
+				<template-language>text</template-language>
+				<notification-type>email</notification-type>
+				<recipients>
+					<role>
+						<name>Content Reviewers</name>
+					</role>
+				</recipients>
+			</notification>
+		</actions>
+		<assignments>
+			<role>
+				<name>Content Reviewers</name>
+				<default>true</default>
+			</role>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Approve Asset</name>
+				<target>APPROVED</target>
+				<default>true</default>
+			</transition>			
+		</transitions>
+	</task>
 </workflow-definition>

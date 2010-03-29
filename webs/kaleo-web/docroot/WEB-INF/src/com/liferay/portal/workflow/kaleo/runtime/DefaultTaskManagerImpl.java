@@ -23,7 +23,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.WorkflowTaskAdapter;
-import com.liferay.portal.workflow.kaleo.definition.ActionType;
+import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment;
@@ -175,11 +175,11 @@ public class DefaultTaskManagerImpl
 		KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
 		ActionExecutorUtil.executeKaleoActions(
-			kaleoTask.getKaleoNodeId(), ActionType.ON_ASSIGNMENT,
+			kaleoTask.getKaleoNodeId(), ExecutionType.ON_ASSIGNMENT,
 			executionContext);
 
 		NotificationUtil.sendKaleoNotifications(
-			kaleoTask.getKaleoNodeId(), ActionType.ON_ASSIGNMENT,
+			kaleoTask.getKaleoNodeId(), ExecutionType.ON_ASSIGNMENT,
 			executionContext);
 
 		kaleoLogLocalService.addTaskAssignmentKaleoLog(

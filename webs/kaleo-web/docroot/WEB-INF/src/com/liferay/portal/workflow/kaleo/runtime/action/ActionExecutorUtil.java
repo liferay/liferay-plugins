@@ -16,7 +16,7 @@ package com.liferay.portal.workflow.kaleo.runtime.action;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.workflow.kaleo.definition.ActionType;
+import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalServiceUtil;
@@ -32,13 +32,13 @@ import java.util.List;
 public class ActionExecutorUtil {
 
 	public static void executeKaleoActions(
-			long kaleoNodeId, ActionType actionType,
+			long kaleoNodeId, ExecutionType executionType,
 			ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
 		List<KaleoAction> kaleoActions =
 			KaleoActionLocalServiceUtil.getKaleoActions(
-				kaleoNodeId, actionType.getValue());
+				kaleoNodeId, executionType.getValue());
 
 		for (KaleoAction kaleoAction : kaleoActions) {
 			long startTime = System.currentTimeMillis();
@@ -48,7 +48,7 @@ public class ActionExecutorUtil {
 			try {
 				ActionExecutor actionExecutor =
 					ActionExecutorFactory.getActionExecutor(
-						kaleoAction.getLanguage());
+						kaleoAction.getScriptLanguage());
 
 				actionExecutor.execute(kaleoAction, executionContext);
 			}

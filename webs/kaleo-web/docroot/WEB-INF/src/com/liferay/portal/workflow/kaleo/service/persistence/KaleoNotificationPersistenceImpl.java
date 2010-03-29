@@ -273,9 +273,9 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		kaleoNotificationImpl.setKaleoNodeName(kaleoNotification.getKaleoNodeName());
 		kaleoNotificationImpl.setName(kaleoNotification.getName());
 		kaleoNotificationImpl.setDescription(kaleoNotification.getDescription());
-		kaleoNotificationImpl.setLanguage(kaleoNotification.getLanguage());
-		kaleoNotificationImpl.setTemplate(kaleoNotification.getTemplate());
 		kaleoNotificationImpl.setExecutionType(kaleoNotification.getExecutionType());
+		kaleoNotificationImpl.setTemplate(kaleoNotification.getTemplate());
+		kaleoNotificationImpl.setTemplateLanguage(kaleoNotification.getTemplateLanguage());
 		kaleoNotificationImpl.setNotificationTypes(kaleoNotification.getNotificationTypes());
 
 		return kaleoNotificationImpl;
