@@ -14,8 +14,7 @@
 
 package com.liferay.opensocial.model;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
-import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
@@ -107,22 +106,8 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 			return this;
 		}
 		else {
-			Gadget model = new GadgetClp();
-
-			model.setEscapedModel(true);
-
-			model.setGadgetId(getGadgetId());
-			model.setCompanyId(getCompanyId());
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setName(HtmlUtil.escape(getName()));
-			model.setUrl(HtmlUtil.escape(getUrl()));
-			model.setXml(HtmlUtil.escape(getXml()));
-
-			model = (Gadget)Proxy.newProxyInstance(Gadget.class.getClassLoader(),
-					new Class[] { Gadget.class }, new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (Gadget)Proxy.newProxyInstance(Gadget.class.getClassLoader(),
+				new Class[] { Gadget.class }, new AutoEscapeBeanHandler(this));
 		}
 	}
 

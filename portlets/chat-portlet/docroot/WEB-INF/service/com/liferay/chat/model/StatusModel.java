@@ -14,6 +14,7 @@
 
 package com.liferay.chat.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
@@ -74,10 +75,12 @@ public interface StatusModel extends BaseModel<Status> {
 
 	public void setAwake(boolean awake);
 
+	@AutoEscape
 	public String getActivePanelId();
 
 	public void setActivePanelId(String activePanelId);
 
+	@AutoEscape
 	public String getMessage();
 
 	public void setMessage(String message);

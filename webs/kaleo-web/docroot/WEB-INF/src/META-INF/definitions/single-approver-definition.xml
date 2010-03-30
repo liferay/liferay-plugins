@@ -19,21 +19,6 @@
 			</transition>
 		</transitions>
 	</state>
-	<state>
-		<name>APPROVED</name>
-		<actions>
-			<action>
-				<name>Approve Asset</name>
-				<execution-type>onEntry</execution-type>
-				<script>
-					<![CDATA[
-						Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(companyId, groupId, userId, entryClassName, entryClassPK, Packages.com.liferay.portal.kernel.workflow.StatusConstants.fromLabel("approved"));
-					]]>
-				</script>
-				<script-language>javascript</script-language>
-			</action>
-		</actions>
-	</state>
 	<task>
 		<name>REVIEW_CONTENT</name>
 		<actions>
@@ -64,4 +49,19 @@
 			</transition>			
 		</transitions>
 	</task>
+	<state>
+		<name>APPROVED</name>
+		<actions>
+			<action>
+				<name>Approve Asset</name>
+				<execution-type>onEntry</execution-type>
+				<script>
+					<![CDATA[
+						Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(companyId, groupId, userId, entryClassName, entryClassPK, Packages.com.liferay.portal.kernel.workflow.StatusConstants.fromLabel("approved"));
+					]]>
+				</script>
+				<script-language>javascript</script-language>
+			</action>
+		</actions>
+	</state>	
 </workflow-definition>

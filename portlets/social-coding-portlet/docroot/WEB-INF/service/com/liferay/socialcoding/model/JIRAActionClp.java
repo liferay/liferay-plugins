@@ -14,9 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
@@ -117,24 +116,9 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 			return this;
 		}
 		else {
-			JIRAAction model = new JIRAActionClp();
-
-			model.setEscapedModel(true);
-
-			model.setJiraActionId(getJiraActionId());
-			model.setJiraUserId(HtmlUtil.escape(getJiraUserId()));
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setJiraIssueId(getJiraIssueId());
-			model.setType(HtmlUtil.escape(getType()));
-			model.setBody(HtmlUtil.escape(getBody()));
-			model.setJiraGroupName(HtmlUtil.escape(getJiraGroupName()));
-
-			model = (JIRAAction)Proxy.newProxyInstance(JIRAAction.class.getClassLoader(),
-					new Class[] { JIRAAction.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (JIRAAction)Proxy.newProxyInstance(JIRAAction.class.getClassLoader(),
+				new Class[] { JIRAAction.class },
+				new AutoEscapeBeanHandler(this));
 		}
 	}
 

@@ -32,6 +32,10 @@ public class UpgradeProcess_2_0_0 extends UpgradeProcess {
 	}
 
 	protected void doUpgrade() throws Exception {
+		if (UpgradeUtil.isFirstRun()) {
+			return;
+		}
+
 		upgrade(UpgradeSchema.class);
 	}
 

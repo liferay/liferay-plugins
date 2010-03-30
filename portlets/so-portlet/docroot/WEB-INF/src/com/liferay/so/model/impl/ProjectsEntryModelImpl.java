@@ -14,11 +14,10 @@
 
 package com.liferay.so.model.impl;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -256,28 +255,9 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
 			return (ProjectsEntry)this;
 		}
 		else {
-			ProjectsEntry model = new ProjectsEntryImpl();
-
-			model.setNew(isNew());
-			model.setEscapedModel(true);
-
-			model.setProjectsEntryId(getProjectsEntryId());
-			model.setCompanyId(getCompanyId());
-			model.setUserId(getUserId());
-			model.setUserName(HtmlUtil.escape(getUserName()));
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setTitle(HtmlUtil.escape(getTitle()));
-			model.setDescription(HtmlUtil.escape(getDescription()));
-			model.setStartDate(getStartDate());
-			model.setEndDate(getEndDate());
-			model.setData(HtmlUtil.escape(getData()));
-
-			model = (ProjectsEntry)Proxy.newProxyInstance(ProjectsEntry.class.getClassLoader(),
-					new Class[] { ProjectsEntry.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (ProjectsEntry)Proxy.newProxyInstance(ProjectsEntry.class.getClassLoader(),
+				new Class[] { ProjectsEntry.class },
+				new AutoEscapeBeanHandler(this));
 		}
 	}
 

@@ -7,7 +7,9 @@
 
 	<target name="create">
 		<if>
-			<equals arg1="${layouttpl.name}" arg2="$${layouttpl.name}" />
+			<not>
+				<isset property="layouttpl.name" />
+			</not>
 			<then>
 				<echo message="This task must be called by the create script." />
 			</then>

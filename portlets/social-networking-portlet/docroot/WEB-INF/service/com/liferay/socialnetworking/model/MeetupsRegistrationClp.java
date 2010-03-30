@@ -14,10 +14,9 @@
 
 package com.liferay.socialnetworking.model;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
@@ -135,25 +134,9 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 			return this;
 		}
 		else {
-			MeetupsRegistration model = new MeetupsRegistrationClp();
-
-			model.setEscapedModel(true);
-
-			model.setMeetupsRegistrationId(getMeetupsRegistrationId());
-			model.setCompanyId(getCompanyId());
-			model.setUserId(getUserId());
-			model.setUserName(HtmlUtil.escape(getUserName()));
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setMeetupsEntryId(getMeetupsEntryId());
-			model.setStatus(getStatus());
-			model.setComments(HtmlUtil.escape(getComments()));
-
-			model = (MeetupsRegistration)Proxy.newProxyInstance(MeetupsRegistration.class.getClassLoader(),
-					new Class[] { MeetupsRegistration.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (MeetupsRegistration)Proxy.newProxyInstance(MeetupsRegistration.class.getClassLoader(),
+				new Class[] { MeetupsRegistration.class },
+				new AutoEscapeBeanHandler(this));
 		}
 	}
 

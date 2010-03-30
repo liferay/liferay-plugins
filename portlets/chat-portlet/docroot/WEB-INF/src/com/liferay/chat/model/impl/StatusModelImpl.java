@@ -17,10 +17,9 @@ package com.liferay.chat.model.impl;
 import com.liferay.chat.model.Status;
 import com.liferay.chat.model.StatusSoap;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -234,24 +233,8 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 			return (Status)this;
 		}
 		else {
-			Status model = new StatusImpl();
-
-			model.setNew(isNew());
-			model.setEscapedModel(true);
-
-			model.setStatusId(getStatusId());
-			model.setUserId(getUserId());
-			model.setModifiedDate(getModifiedDate());
-			model.setOnline(getOnline());
-			model.setAwake(getAwake());
-			model.setActivePanelId(HtmlUtil.escape(getActivePanelId()));
-			model.setMessage(HtmlUtil.escape(getMessage()));
-			model.setPlaySound(getPlaySound());
-
-			model = (Status)Proxy.newProxyInstance(Status.class.getClassLoader(),
-					new Class[] { Status.class }, new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (Status)Proxy.newProxyInstance(Status.class.getClassLoader(),
+				new Class[] { Status.class }, new AutoEscapeBeanHandler(this));
 		}
 	}
 

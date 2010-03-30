@@ -37,7 +37,9 @@
 		</java>
 
 		<if>
-			<equals arg1="${theme.type}" arg2="$${theme.type}" />
+			<not>
+				<isset property="theme.type" />
+			</not>
 			<then>
 				<property name="theme.type" value="vm" />
 			</then>
@@ -105,9 +107,7 @@
 				</then>
 			</elseif>
 			<elseif>
-				<not>
-					<equals arg1="${theme.parent}" arg2="$${theme.parent}" />
-				</not>
+				<isset property="theme.parent" />
 				<then>
 					<ant dir="${theme.parent}" target="compile" inheritAll="false" />
 

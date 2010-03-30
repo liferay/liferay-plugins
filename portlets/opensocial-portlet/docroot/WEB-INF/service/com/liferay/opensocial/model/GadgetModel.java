@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -63,14 +64,17 @@ public interface GadgetModel extends BaseModel<Gadget> {
 
 	public void setModifiedDate(Date modifiedDate);
 
+	@AutoEscape
 	public String getName();
 
 	public void setName(String name);
 
+	@AutoEscape
 	public String getUrl();
 
 	public void setUrl(String url);
 
+	@AutoEscape
 	public String getXml();
 
 	public void setXml(String xml);

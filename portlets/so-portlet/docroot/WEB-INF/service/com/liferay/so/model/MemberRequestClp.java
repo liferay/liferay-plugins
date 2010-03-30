@@ -14,10 +14,9 @@
 
 package com.liferay.so.model;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
@@ -160,27 +159,9 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 			return this;
 		}
 		else {
-			MemberRequest model = new MemberRequestClp();
-
-			model.setEscapedModel(true);
-
-			model.setMemberRequestId(getMemberRequestId());
-			model.setGroupId(getGroupId());
-			model.setCompanyId(getCompanyId());
-			model.setUserId(getUserId());
-			model.setUserName(HtmlUtil.escape(getUserName()));
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setKey(HtmlUtil.escape(getKey()));
-			model.setReceiverUserId(getReceiverUserId());
-			model.setInvitedTeamId(getInvitedTeamId());
-			model.setStatus(getStatus());
-
-			model = (MemberRequest)Proxy.newProxyInstance(MemberRequest.class.getClassLoader(),
-					new Class[] { MemberRequest.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (MemberRequest)Proxy.newProxyInstance(MemberRequest.class.getClassLoader(),
+				new Class[] { MemberRequest.class },
+				new AutoEscapeBeanHandler(this));
 		}
 	}
 

@@ -14,6 +14,7 @@
 
 package com.liferay.wsrp.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -67,10 +68,12 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 
 	public void setWsrpConsumerId(long wsrpConsumerId);
 
+	@AutoEscape
 	public String getName();
 
 	public void setName(String name);
 
+	@AutoEscape
 	public String getPortletHandle();
 
 	public void setPortletHandle(String portletHandle);

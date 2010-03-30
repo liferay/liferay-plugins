@@ -6,6 +6,7 @@
 			<p>
 				<img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" /> These documents and images are on my private pages, so only I can see them or use them.
 			</p>
+
 			<p>
 				In order to share folders, documents or images with the users of an organization or community you should use the private pages of that organization or community. To see an example, access the private pages of the organization 7Cogs and find a page called Shared documents. Only the members of that organization can access the private pages. If you only want some users of the organization to be able to access that page you would define a role for them and define permissions for that role.
 			</p>

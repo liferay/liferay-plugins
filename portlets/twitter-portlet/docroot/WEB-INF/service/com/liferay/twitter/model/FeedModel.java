@@ -14,6 +14,7 @@
 
 package com.liferay.twitter.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
@@ -60,6 +61,7 @@ public interface FeedModel extends BaseModel<Feed> {
 
 	public void setTwitterUserUuid(String twitterUserUuid);
 
+	@AutoEscape
 	public String getTwitterScreenName();
 
 	public void setTwitterScreenName(String twitterScreenName);

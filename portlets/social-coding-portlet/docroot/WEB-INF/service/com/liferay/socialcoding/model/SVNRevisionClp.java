@@ -14,8 +14,7 @@
 
 package com.liferay.socialcoding.model;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
-import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
@@ -112,22 +111,9 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 			return this;
 		}
 		else {
-			SVNRevision model = new SVNRevisionClp();
-
-			model.setEscapedModel(true);
-
-			model.setSvnRevisionId(getSvnRevisionId());
-			model.setSvnUserId(HtmlUtil.escape(getSvnUserId()));
-			model.setCreateDate(getCreateDate());
-			model.setSvnRepositoryId(getSvnRepositoryId());
-			model.setRevisionNumber(getRevisionNumber());
-			model.setComments(HtmlUtil.escape(getComments()));
-
-			model = (SVNRevision)Proxy.newProxyInstance(SVNRevision.class.getClassLoader(),
-					new Class[] { SVNRevision.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (SVNRevision)Proxy.newProxyInstance(SVNRevision.class.getClassLoader(),
+				new Class[] { SVNRevision.class },
+				new AutoEscapeBeanHandler(this));
 		}
 	}
 

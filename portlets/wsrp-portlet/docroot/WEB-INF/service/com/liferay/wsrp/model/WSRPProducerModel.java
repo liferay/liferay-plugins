@@ -14,6 +14,7 @@
 
 package com.liferay.wsrp.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -67,10 +68,12 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 
 	public void setModifiedDate(Date modifiedDate);
 
+	@AutoEscape
 	public String getName();
 
 	public void setName(String name);
 
+	@AutoEscape
 	public String getPortletIds();
 
 	public void setPortletIds(String portletIds);

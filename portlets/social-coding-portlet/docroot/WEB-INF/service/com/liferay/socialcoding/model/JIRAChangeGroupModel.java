@@ -14,6 +14,7 @@
 
 package com.liferay.socialcoding.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -51,6 +52,7 @@ public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 
 	public void setJiraChangeGroupId(long jiraChangeGroupId);
 
+	@AutoEscape
 	public String getJiraUserId();
 
 	public void setJiraUserId(String jiraUserId);

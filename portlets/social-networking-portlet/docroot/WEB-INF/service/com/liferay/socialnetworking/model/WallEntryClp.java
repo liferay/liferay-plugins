@@ -14,10 +14,9 @@
 
 package com.liferay.socialnetworking.model;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
@@ -126,24 +125,8 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 			return this;
 		}
 		else {
-			WallEntry model = new WallEntryClp();
-
-			model.setEscapedModel(true);
-
-			model.setWallEntryId(getWallEntryId());
-			model.setGroupId(getGroupId());
-			model.setCompanyId(getCompanyId());
-			model.setUserId(getUserId());
-			model.setUserName(HtmlUtil.escape(getUserName()));
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setComments(HtmlUtil.escape(getComments()));
-
-			model = (WallEntry)Proxy.newProxyInstance(WallEntry.class.getClassLoader(),
-					new Class[] { WallEntry.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (WallEntry)Proxy.newProxyInstance(WallEntry.class.getClassLoader(),
+				new Class[] { WallEntry.class }, new AutoEscapeBeanHandler(this));
 		}
 	}
 

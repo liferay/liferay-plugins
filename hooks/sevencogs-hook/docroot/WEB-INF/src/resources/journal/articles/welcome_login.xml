@@ -56,10 +56,9 @@
 
 					</div>
 				</div>
-
 			</form>
-			<form action="/web/guest/home" method="post" name="loginrich">
 
+			<form action="/web/guest/home" method="post" name="loginrich">
 				<input name="p_p_id" type="hidden" value="58" />
 				<input name="p_p_lifecycle" type="hidden" value="1" />
 				<input name="p_p_mode" type="hidden" value="view" />
@@ -79,10 +78,9 @@
 						Richard has article submission rights for the content management system. <a class="public_pages" href="/web/richard">View richard's public page</a> <a class="express_login" href="#" onclick="document.loginrich.submit();return false;">Login as richard</a>
 					</div>
 				</div>
-
 			</form>
-			<form action="/web/guest/home" method="post" name="loginmichelle">
 
+			<form action="/web/guest/home" method="post" name="loginmichelle">
 				<input name="p_p_id" type="hidden" value="58" />
 				<input name="p_p_lifecycle" type="hidden" value="1" />
 				<input name="p_p_mode" type="hidden" value="view" />
@@ -102,10 +100,9 @@
 						Michelle has control over the staging and layout of all articles as well as publishing rights for workflow and the content management system. <a class="public_pages" href="/web/michelle">View michelle's public page</a> <a class="express_login" href="#" onclick="document.loginmichelle.submit();return false;">Login as michelle</a>
 					</div>
 				</div>
-
 			</form>
-			<form action="/web/guest/home" method="post" name="loginjohn">
 
+			<form action="/web/guest/home" method="post" name="loginjohn">
 				<input name="p_p_id" type="hidden" value="58" />
 				<input name="p_p_lifecycle" type="hidden" value="1" />
 				<input name="p_p_mode" type="hidden" value="view" />
@@ -128,7 +125,6 @@
 						</div>
 					</div>
 				</div>
-
 			</form>
 		]]>
 	</static-content>

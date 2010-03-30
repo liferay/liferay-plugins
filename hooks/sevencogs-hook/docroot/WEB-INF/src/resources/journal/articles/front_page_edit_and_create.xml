@@ -6,6 +6,7 @@
 			<p>
 				This is a sample website to showcase the WCM&nbsp;(web content management)&nbsp;capabilities of <a href="http://www.liferay.com">Liferay</a>, the leading provider of enterprise open source portal and social collaboration software. If you want to return to the Guest Community, go to <a href="/web/guest/home">@portal_url@/web/guest/home</a>
 			</p>
+
 			<p>
 				<img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" />&nbsp; Adding new content or modifying already existing content is very easy.
 			</p>
@@ -16,6 +17,7 @@
 				</li>
 				<li>
 					On this page there are 5 Web Content Display portlets (Some of them have an image and some of them have text). In order to add more content, go to your dock menu --&gt; Add Application --&gt; Content Management --&gt; Web Content Display.<br />
+
 					In the beginning it will be empty, but you can create a new Article or display one that is already created. You will find the following icons in your portlet:
 
 					<ul>
@@ -39,6 +41,7 @@
 			<p>
 				You can also remove this Web Content Display simply by clicking on the close button above
 			</p>
+
 			<p>
 				To manage all the web content you can go to the <strong>Control Panel</strong> (in your dock menu) and if you have permissions, you will find a section called Content and within that, Web Content.
 			</p>

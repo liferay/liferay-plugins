@@ -17,9 +17,8 @@ package com.liferay.opensocial.model.impl;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.model.GadgetSoap;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -200,23 +199,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget> {
 			return (Gadget)this;
 		}
 		else {
-			Gadget model = new GadgetImpl();
-
-			model.setNew(isNew());
-			model.setEscapedModel(true);
-
-			model.setGadgetId(getGadgetId());
-			model.setCompanyId(getCompanyId());
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setName(HtmlUtil.escape(getName()));
-			model.setUrl(HtmlUtil.escape(getUrl()));
-			model.setXml(HtmlUtil.escape(getXml()));
-
-			model = (Gadget)Proxy.newProxyInstance(Gadget.class.getClassLoader(),
-					new Class[] { Gadget.class }, new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (Gadget)Proxy.newProxyInstance(Gadget.class.getClassLoader(),
+				new Class[] { Gadget.class }, new AutoEscapeBeanHandler(this));
 		}
 	}
 

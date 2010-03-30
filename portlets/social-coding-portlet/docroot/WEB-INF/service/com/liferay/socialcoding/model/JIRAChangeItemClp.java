@@ -14,8 +14,7 @@
 
 package com.liferay.socialcoding.model;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
-import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
@@ -106,23 +105,9 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 			return this;
 		}
 		else {
-			JIRAChangeItem model = new JIRAChangeItemClp();
-
-			model.setEscapedModel(true);
-
-			model.setJiraChangeItemId(getJiraChangeItemId());
-			model.setJiraChangeGroupId(getJiraChangeGroupId());
-			model.setField(HtmlUtil.escape(getField()));
-			model.setOldValue(HtmlUtil.escape(getOldValue()));
-			model.setOldString(HtmlUtil.escape(getOldString()));
-			model.setNewValue(HtmlUtil.escape(getNewValue()));
-			model.setNewString(HtmlUtil.escape(getNewString()));
-
-			model = (JIRAChangeItem)Proxy.newProxyInstance(JIRAChangeItem.class.getClassLoader(),
-					new Class[] { JIRAChangeItem.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (JIRAChangeItem)Proxy.newProxyInstance(JIRAChangeItem.class.getClassLoader(),
+				new Class[] { JIRAChangeItem.class },
+				new AutoEscapeBeanHandler(this));
 		}
 	}
 

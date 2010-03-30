@@ -14,6 +14,7 @@
 
 package com.liferay.socialnetworking.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
@@ -64,6 +65,7 @@ public interface MeetupsEntryModel extends BaseModel<MeetupsEntry> {
 
 	public void setUserUuid(String userUuid);
 
+	@AutoEscape
 	public String getUserName();
 
 	public void setUserName(String userName);
@@ -76,10 +78,12 @@ public interface MeetupsEntryModel extends BaseModel<MeetupsEntry> {
 
 	public void setModifiedDate(Date modifiedDate);
 
+	@AutoEscape
 	public String getTitle();
 
 	public void setTitle(String title);
 
+	@AutoEscape
 	public String getDescription();
 
 	public void setDescription(String description);

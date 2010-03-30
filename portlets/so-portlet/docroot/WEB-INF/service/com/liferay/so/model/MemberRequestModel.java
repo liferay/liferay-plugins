@@ -14,6 +14,7 @@
 
 package com.liferay.so.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
@@ -68,6 +69,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest> {
 
 	public void setUserUuid(String userUuid);
 
+	@AutoEscape
 	public String getUserName();
 
 	public void setUserName(String userName);
@@ -80,6 +82,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest> {
 
 	public void setModifiedDate(Date modifiedDate);
 
+	@AutoEscape
 	public String getKey();
 
 	public void setKey(String key);

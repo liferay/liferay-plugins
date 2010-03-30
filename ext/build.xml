@@ -7,7 +7,9 @@
 
 	<target name="create">
 		<if>
-			<equals arg1="${ext.name}" arg2="$${ext.name}" />
+			<not>
+				<isset property="ext.name" />
+			</not>
 			<then>
 				<fail message="This task must be called by create.bat." />
 			</then>
@@ -31,7 +33,9 @@
 
 	<target name="upgrade-ext">
 		<if>
-			<equals arg1="${ext.name}" arg2="$${ext.name}" />
+			<not>
+				<isset property="ext.name" />
+			</not>
 			<then>
 				<fail>
 .

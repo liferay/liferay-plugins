@@ -14,9 +14,8 @@
 
 package com.liferay.chat.model;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
@@ -107,20 +106,8 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 			return this;
 		}
 		else {
-			Entry model = new EntryClp();
-
-			model.setEscapedModel(true);
-
-			model.setEntryId(getEntryId());
-			model.setCreateDate(getCreateDate());
-			model.setFromUserId(getFromUserId());
-			model.setToUserId(getToUserId());
-			model.setContent(HtmlUtil.escape(getContent()));
-
-			model = (Entry)Proxy.newProxyInstance(Entry.class.getClassLoader(),
-					new Class[] { Entry.class }, new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (Entry)Proxy.newProxyInstance(Entry.class.getClassLoader(),
+				new Class[] { Entry.class }, new AutoEscapeBeanHandler(this));
 		}
 	}
 

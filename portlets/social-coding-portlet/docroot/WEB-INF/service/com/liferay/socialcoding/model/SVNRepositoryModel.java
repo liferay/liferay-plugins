@@ -14,6 +14,7 @@
 
 package com.liferay.socialcoding.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -49,6 +50,7 @@ public interface SVNRepositoryModel extends BaseModel<SVNRepository> {
 
 	public void setSvnRepositoryId(long svnRepositoryId);
 
+	@AutoEscape
 	public String getUrl();
 
 	public void setUrl(String url);

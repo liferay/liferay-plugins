@@ -14,6 +14,7 @@
 
 package com.liferay.sampleservicebuilder.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
@@ -64,6 +65,7 @@ public interface FooModel extends BaseModel<Foo> {
 
 	public void setUserUuid(String userUuid);
 
+	@AutoEscape
 	public String getUserName();
 
 	public void setUserName(String userName);
@@ -76,6 +78,7 @@ public interface FooModel extends BaseModel<Foo> {
 
 	public void setModifiedDate(Date modifiedDate);
 
+	@AutoEscape
 	public String getField1();
 
 	public void setField1(String field1);
@@ -94,6 +97,7 @@ public interface FooModel extends BaseModel<Foo> {
 
 	public void setField4(Date field4);
 
+	@AutoEscape
 	public String getField5();
 
 	public void setField5(String field5);

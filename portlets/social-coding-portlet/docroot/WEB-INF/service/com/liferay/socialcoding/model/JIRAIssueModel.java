@@ -14,6 +14,7 @@
 
 package com.liferay.socialcoding.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -63,30 +64,37 @@ public interface JIRAIssueModel extends BaseModel<JIRAIssue> {
 
 	public void setProjectId(long projectId);
 
+	@AutoEscape
 	public String getKey();
 
 	public void setKey(String key);
 
+	@AutoEscape
 	public String getSummary();
 
 	public void setSummary(String summary);
 
+	@AutoEscape
 	public String getDescription();
 
 	public void setDescription(String description);
 
+	@AutoEscape
 	public String getReporterJiraUserId();
 
 	public void setReporterJiraUserId(String reporterJiraUserId);
 
+	@AutoEscape
 	public String getAssigneeJiraUserId();
 
 	public void setAssigneeJiraUserId(String assigneeJiraUserId);
 
+	@AutoEscape
 	public String getResolution();
 
 	public void setResolution(String resolution);
 
+	@AutoEscape
 	public String getStatus();
 
 	public void setStatus(String status);

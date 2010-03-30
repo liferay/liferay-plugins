@@ -100,8 +100,8 @@ public class DefaultPortalKaleoManager
 		serviceContext.setCompanyId(company.getCompanyId());
 
 		for (Map.Entry<String, String> entry : _definitionAssets.entrySet()) {
-			String definitionName = entry.getKey();
-			String assetClassName = entry.getValue();
+			String assetClassName = entry.getKey();
+			String definitionName = entry.getValue();
 
 			deployDefaultDefinitionLink(
 				defaultUser, company, companyGroup, assetClassName,

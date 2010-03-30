@@ -14,6 +14,7 @@
 
 package com.liferay.wsrp.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -63,22 +64,27 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 
 	public void setModifiedDate(Date modifiedDate);
 
+	@AutoEscape
 	public String getName();
 
 	public void setName(String name);
 
+	@AutoEscape
 	public String getUrl();
 
 	public void setUrl(String url);
 
+	@AutoEscape
 	public String getWsdl();
 
 	public void setWsdl(String wsdl);
 
+	@AutoEscape
 	public String getRegistrationContextString();
 
 	public void setRegistrationContextString(String registrationContextString);
 
+	@AutoEscape
 	public String getRegistrationPropertiesString();
 
 	public void setRegistrationPropertiesString(

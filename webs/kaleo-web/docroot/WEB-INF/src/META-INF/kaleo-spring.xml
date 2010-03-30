@@ -43,8 +43,8 @@
 		</property>
 		<property name="definitionAssets">
 			<map>
-				<entry key="Automatic Approval" value="com.liferay.portlet.documentlibrary.model.DLFileEntry" />
-				<entry key="Single Approver" value="com.liferay.portlet.journal.model.JournalArticle" />
+				<entry key="com.liferay.portlet.documentlibrary.model.DLFileEntry" value="Automatic Approval" />
+				<entry key="com.liferay.portlet.journal.model.JournalArticle" value="Single Approver" />
 			</map>
 		</property>
 		<property name="definitionFiles">

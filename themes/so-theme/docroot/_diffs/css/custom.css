@@ -455,7 +455,7 @@ body #banner h1.logo a {
 	width: 58px;
 }
 
-.sidebar h2 {
+#wrapper .sidebar h2 {
 	border: none;
 	font-size: 12px;
 	margin: 1em 0;

@@ -14,10 +14,9 @@
 
 package com.liferay.sampleservicebuilder.model.impl;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -254,27 +253,8 @@ public class FooModelImpl extends BaseModelImpl<Foo> {
 			return (Foo)this;
 		}
 		else {
-			Foo model = new FooImpl();
-
-			model.setNew(isNew());
-			model.setEscapedModel(true);
-
-			model.setFooId(getFooId());
-			model.setCompanyId(getCompanyId());
-			model.setUserId(getUserId());
-			model.setUserName(HtmlUtil.escape(getUserName()));
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setField1(HtmlUtil.escape(getField1()));
-			model.setField2(getField2());
-			model.setField3(getField3());
-			model.setField4(getField4());
-			model.setField5(HtmlUtil.escape(getField5()));
-
-			model = (Foo)Proxy.newProxyInstance(Foo.class.getClassLoader(),
-					new Class[] { Foo.class }, new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (Foo)Proxy.newProxyInstance(Foo.class.getClassLoader(),
+				new Class[] { Foo.class }, new AutoEscapeBeanHandler(this));
 		}
 	}
 

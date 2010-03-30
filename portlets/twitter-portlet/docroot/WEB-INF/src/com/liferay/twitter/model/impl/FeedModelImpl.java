@@ -14,10 +14,9 @@
 
 package com.liferay.twitter.model.impl;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -207,22 +206,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> {
 			return (Feed)this;
 		}
 		else {
-			Feed model = new FeedImpl();
-
-			model.setNew(isNew());
-			model.setEscapedModel(true);
-
-			model.setFeedId(getFeedId());
-			model.setTwitterUserId(getTwitterUserId());
-			model.setTwitterScreenName(HtmlUtil.escape(getTwitterScreenName()));
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setLastStatusId(getLastStatusId());
-
-			model = (Feed)Proxy.newProxyInstance(Feed.class.getClassLoader(),
-					new Class[] { Feed.class }, new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (Feed)Proxy.newProxyInstance(Feed.class.getClassLoader(),
+				new Class[] { Feed.class }, new AutoEscapeBeanHandler(this));
 		}
 	}
 

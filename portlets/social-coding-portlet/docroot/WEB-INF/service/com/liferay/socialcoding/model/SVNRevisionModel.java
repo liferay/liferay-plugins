@@ -14,6 +14,7 @@
 
 package com.liferay.socialcoding.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -51,6 +52,7 @@ public interface SVNRevisionModel extends BaseModel<SVNRevision> {
 
 	public void setSvnRevisionId(long svnRevisionId);
 
+	@AutoEscape
 	public String getSvnUserId();
 
 	public void setSvnUserId(String svnUserId);
@@ -67,6 +69,7 @@ public interface SVNRevisionModel extends BaseModel<SVNRevision> {
 
 	public void setRevisionNumber(long revisionNumber);
 
+	@AutoEscape
 	public String getComments();
 
 	public void setComments(String comments);

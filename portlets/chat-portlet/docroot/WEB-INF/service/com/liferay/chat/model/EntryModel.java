@@ -14,6 +14,7 @@
 
 package com.liferay.chat.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
@@ -70,6 +71,7 @@ public interface EntryModel extends BaseModel<Entry> {
 
 	public void setToUserUuid(String toUserUuid);
 
+	@AutoEscape
 	public String getContent();
 
 	public void setContent(String content);

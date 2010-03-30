@@ -14,10 +14,9 @@
 
 package com.liferay.socialcoding.model.impl;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -269,28 +268,8 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 			return (JIRAIssue)this;
 		}
 		else {
-			JIRAIssue model = new JIRAIssueImpl();
-
-			model.setNew(isNew());
-			model.setEscapedModel(true);
-
-			model.setJiraIssueId(getJiraIssueId());
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setProjectId(getProjectId());
-			model.setKey(HtmlUtil.escape(getKey()));
-			model.setSummary(HtmlUtil.escape(getSummary()));
-			model.setDescription(HtmlUtil.escape(getDescription()));
-			model.setReporterJiraUserId(HtmlUtil.escape(getReporterJiraUserId()));
-			model.setAssigneeJiraUserId(HtmlUtil.escape(getAssigneeJiraUserId()));
-			model.setResolution(HtmlUtil.escape(getResolution()));
-			model.setStatus(HtmlUtil.escape(getStatus()));
-
-			model = (JIRAIssue)Proxy.newProxyInstance(JIRAIssue.class.getClassLoader(),
-					new Class[] { JIRAIssue.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (JIRAIssue)Proxy.newProxyInstance(JIRAIssue.class.getClassLoader(),
+				new Class[] { JIRAIssue.class }, new AutoEscapeBeanHandler(this));
 		}
 	}
 

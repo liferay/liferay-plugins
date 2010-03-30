@@ -14,6 +14,7 @@
 
 package com.liferay.socialnetworking.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
@@ -64,6 +65,7 @@ public interface MeetupsRegistrationModel extends BaseModel<MeetupsRegistration>
 
 	public void setUserUuid(String userUuid);
 
+	@AutoEscape
 	public String getUserName();
 
 	public void setUserName(String userName);
@@ -84,6 +86,7 @@ public interface MeetupsRegistrationModel extends BaseModel<MeetupsRegistration>
 
 	public void setStatus(int status);
 
+	@AutoEscape
 	public String getComments();
 
 	public void setComments(String comments);

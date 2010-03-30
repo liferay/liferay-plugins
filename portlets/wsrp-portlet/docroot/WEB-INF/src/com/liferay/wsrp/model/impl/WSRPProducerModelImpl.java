@@ -14,9 +14,8 @@
 
 package com.liferay.wsrp.model.impl;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -195,24 +194,9 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 			return (WSRPProducer)this;
 		}
 		else {
-			WSRPProducer model = new WSRPProducerImpl();
-
-			model.setNew(isNew());
-			model.setEscapedModel(true);
-
-			model.setWsrpProducerId(getWsrpProducerId());
-			model.setGroupId(getGroupId());
-			model.setCompanyId(getCompanyId());
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setName(HtmlUtil.escape(getName()));
-			model.setPortletIds(HtmlUtil.escape(getPortletIds()));
-
-			model = (WSRPProducer)Proxy.newProxyInstance(WSRPProducer.class.getClassLoader(),
-					new Class[] { WSRPProducer.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (WSRPProducer)Proxy.newProxyInstance(WSRPProducer.class.getClassLoader(),
+				new Class[] { WSRPProducer.class },
+				new AutoEscapeBeanHandler(this));
 		}
 	}
 

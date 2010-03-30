@@ -53,7 +53,6 @@
 			</style>
 
 			<div class="welcome">
-
 				<h2>
 					Welcome to Liferay
 				</h2>
@@ -63,9 +62,11 @@
 				<p class="intro">
 					Liferay is a complete, all-in-one open source enterprise portal solution and web application platform.
 				</p>
+
 				<p>
 					It has over one hundred thousand deployments worldwide with sites from small businesses to Fortune 500 companies. We've purposed Liferay for everything from a portal, a <abbr title="Content Management System">CMS</abbr> to a web application platform. We hope you enjoy this preview release of Liferay 6.0. Take a look around, and maybe for starters, click on one of the users on the bottom right hand corner of the screen.
 				</p>
+
 				<p>
 					Once you're done taking a look around, and if you haven't decided yet, you might want to ask yourself this question: <em>&quot;what are you going to use Liferay for?&quot;</em>
 				</p>
@@ -105,6 +106,7 @@
 				<p>
 					Liferay isn't just an internal portal, as an external and facing portal, you'll have the tools you need to create beautiful, dynamic websites. Create content through an editorial workflow then use and re-use that content ubiquitously through your portal.
 				</p>
+
 				<p>
 					In this release, we've made many improvements to make finding and publishing your content as global as possible.
 				</p>
@@ -167,7 +169,6 @@
 				<p>
 					Visit <a href="http://www.liferay.com">Liferay.com</a>, for <a href="http://www.liferay.com/about-us/news">updates</a>, <a href="http://www.liferay.com/about-us/events/">events</a>, and join our <a href="http://www.liferay.com/community">community</a>.
 				</p>
-
 			</div>
 		]]>
 	</static-content>
