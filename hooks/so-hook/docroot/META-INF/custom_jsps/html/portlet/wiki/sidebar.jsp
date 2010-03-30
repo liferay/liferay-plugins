@@ -130,7 +130,7 @@
 					</li>
 				</c:if>
 
-				<c:if test="<%= WikiPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
+				<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, layout.getPlid(), portletDisplay.getResourcePK(), ActionKeys.CONFIGURATION) %>">
 					<liferay-security:permissionsURL
 						modelResource="com.liferay.portlet.wiki"
 						modelResourceDescription="<%= portletDisplay.getTitle() %>"

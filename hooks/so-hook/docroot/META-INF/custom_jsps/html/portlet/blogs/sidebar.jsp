@@ -65,7 +65,7 @@
 		</c:otherwise>
 	</c:choose>
 
-	<c:if test="<%= BlogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
+	<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, layout.getPlid(), portletDisplay.getResourcePK(), ActionKeys.CONFIGURATION) %>">
 		<h2><liferay-ui:message key="quick-links" /></h2>
 
 		<ul class="disc">
