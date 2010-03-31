@@ -34,6 +34,14 @@
 		<ant dir="webs" target="war" inheritAll="false" />
 	</target>
 
+	<target name="direct-deploy">
+		<ant dir="hooks" target="direct-deploy" inheritAll="false" />
+		<ant dir="layouttpl" target="direct-deploy" inheritAll="false" />
+		<ant dir="portlets" target="direct-deploy" inheritAll="false" />
+		<ant dir="themes" target="direct-deploy" inheritAll="false" />
+		<ant dir="webs" target="direct-deploy" inheritAll="false" />
+	</target>
+
 	<target name="deploy">
 		<ant dir="hooks" target="deploy" inheritAll="false" />
 		<ant dir="layouttpl" target="deploy" inheritAll="false" />
