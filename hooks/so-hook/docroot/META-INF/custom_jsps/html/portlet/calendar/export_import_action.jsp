@@ -37,12 +37,11 @@ if (tabs1.equals("day")) {
 			<a class="export-events" href="javascript:;" onClick="document.<portlet:namespace />fm1.action = '<portlet:actionURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="struts_action" value="/calendar/export_events" /></portlet:actionURL>'; document.<portlet:namespace />fm1.submit();"><liferay-ui:message key="export" /></a>
 		</c:if>
 
-		<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, layout.getPlid(), portletDisplay.getResourcePK(), ActionKeys.CONFIGURATION) %>">
+		<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
 			<liferay-security:permissionsURL
 				modelResource="com.liferay.portlet.calendar"
 				modelResourceDescription="<%= portletDisplay.getTitle() %>"
-				redirect="<%= currentURL %>"
-				resourcePrimKey="<%= portletDisplay.getResourcePK() %>"
+				resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
 				var="permissionsURL"
 			/>
 

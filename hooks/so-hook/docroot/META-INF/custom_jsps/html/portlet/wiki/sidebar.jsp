@@ -131,11 +131,23 @@
 				</c:if>
 
 				<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, layout.getPlid(), portletDisplay.getResourcePK(), ActionKeys.CONFIGURATION) %>">
+
+					<%
+					String modelResource = "com.liferay.portlet.wiki";
+					String modelResourceDescription = portletDisplay.getTitle();
+					String resourcePrimKey = String.valueOf(scopeGroupId);
+
+					if (node != null) {
+						modelResource = WikiNode.class.getName();
+						modelResourceDescription = node.getName();
+						resourcePrimKey = String.valueOf(node.getNodeId());
+					}
+					%>
+
 					<liferay-security:permissionsURL
-						modelResource="com.liferay.portlet.wiki"
-						modelResourceDescription="<%= portletDisplay.getTitle() %>"
-						redirect="<%= currentURL %>"
-						resourcePrimKey="<%= portletDisplay.getResourcePK() %>"
+						modelResource="<%= modelResource %>"
+						modelResourceDescription="<%= HtmlUtil.escape(modelResourceDescription) %>"
+						resourcePrimKey="<%= resourcePrimKey %>"
 						var="permissionsURL"
 					/>
 

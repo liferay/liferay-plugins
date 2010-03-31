@@ -65,15 +65,14 @@
 		</c:otherwise>
 	</c:choose>
 
-	<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, layout.getPlid(), portletDisplay.getResourcePK(), ActionKeys.CONFIGURATION) %>">
+	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
 		<h2><liferay-ui:message key="quick-links" /></h2>
 
 		<ul class="disc">
 			<liferay-security:permissionsURL
 				modelResource="com.liferay.portlet.blogs"
 				modelResourceDescription="<%= portletDisplay.getTitle() %>"
-				redirect="<%= currentURL %>"
-				resourcePrimKey="<%= portletDisplay.getResourcePK() %>"
+				resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
 				var="permissionsURL"
 			/>
 

@@ -205,12 +205,11 @@ PortletURL tabs1URL = renderResponse.createRenderURL();
 			</li>
 		</c:if>
 
-		<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, layout.getPlid(), portletDisplay.getResourcePK(), ActionKeys.CONFIGURATION) %>">
+		<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
 			<liferay-security:permissionsURL
 				modelResource="com.liferay.portlet.messageboards"
 				modelResourceDescription="<%= portletDisplay.getTitle() %>"
-				redirect="<%= currentURL %>"
-				resourcePrimKey="<%= portletDisplay.getResourcePK() %>"
+				resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
 				var="permissionsURL"
 			/>
 
