@@ -4,6 +4,36 @@
 	<import file="../build-common-web.xml" />
 
 	<property name="original.war.file" value="jbpm-installer-3.2.6.SP1.jar" />
+	<property name="auto.approver.name" value="Automatic Approval" />
+	<property name="single.approver.name" value="Single Approver" />
+
+	<target name="build-samples">
+		<delete dir="samples" />
+
+		<copy 
+			file="docroot/WEB-INF/src/META-INF/definitions/auto-approve-definition.xml" 
+			tofile="samples/processdefinition.xml"
+		/>
+
+		<jar
+			basedir="samples"
+			jarfile="samples/${auto.approver.name}.jar"
+		/>
+
+		<copy 
+			file="docroot/WEB-INF/src/META-INF/definitions/single-approver-definition.xml" 
+			overwrite="true"
+			tofile="samples/processdefinition.xml"
+		/>
+
+		<jar
+			basedir="samples"
+			excludes="*.jar"
+			jarfile="samples/${single.approver.name}.jar"
+		/>
+
+		<delete file="samples/processdefinition.xml" />
+	</target>
 
 	<target name="merge">
 		<if>

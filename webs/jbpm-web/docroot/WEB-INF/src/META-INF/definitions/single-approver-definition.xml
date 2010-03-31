@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition xmlns="urn:jbpm.org:jpdl-3.2" name="Single Approver">
+
+	<description>A single approver can approve a workflow asset.</description>
+
+	<start-state name="Created">
+		<transition to="Review" />
+	</start-state>
+
+	<task-node name="Review">
+		<task name="Review Content">
+			<assignment pooled-actors="Content Reviewers" />
+		</task>
+		<transition name="Approve Asset" to="Approved" />
+	</task-node>
+
+	<end-state name="Approved">
+		<event type="node-enter">
+			<action class="com.liferay.portal.workflow.jbpm.handler.ScriptingWorkflowActionHandler" name="Approve Asset">
+				<language>javascript</language>
+				<script>
+					<![CDATA[
+						Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(companyId, groupId, userId, entryClassName, entryClassPK, Packages.com.liferay.portal.kernel.workflow.StatusConstants.fromLabel("approved"));
+					]]>
+				</script>
+			</action>
+		</event>
+	</end-state>
+
+</process-definition>
