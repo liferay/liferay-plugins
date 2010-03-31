@@ -30,6 +30,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
+import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.io.Serializable;
 
@@ -59,6 +60,7 @@ import org.jbpm.taskmgmt.exe.TaskInstance;
  *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
+ * @author Marcellus Tavares
  */
 public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
@@ -478,6 +480,116 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			orderByComparator);
 	}
 
+	public List<WorkflowTask> search(
+			long companyId, long userId, String keywords, Boolean completed,
+			Boolean searchByUserRoles, int start, int end,
+			OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			CustomSession customSession = new CustomSession(jbpmContext);
+
+			String[] actorIds = getActorIds(userId, searchByUserRoles);
+			String[] names = CustomSQLUtil.keywords(keywords);
+			String[] states = CustomSQLUtil.keywords(keywords);
+
+			List<TaskInstance> taskInstances =
+				customSession.searchTaskInstances(
+					actorIds, searchByUserRoles, names, states, completed,
+					start, end,	orderByComparator);
+
+			return toWorkflowTasks(taskInstances);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+		finally {
+			jbpmContext.close();
+		}
+	}
+
+	public List<WorkflowTask> search(
+			long companyId, long userId, String name, String type, String state,
+			Date dueDateGT, Date dueDateLT, Boolean completed,
+			Boolean searchByUserRoles, boolean andOperator, int start, int end,
+			OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			CustomSession customSession = new CustomSession(jbpmContext);
+
+			String[] actorIds = getActorIds(userId, searchByUserRoles);
+
+			List<TaskInstance> taskInstances =
+				customSession.searchTaskInstances(
+					actorIds, searchByUserRoles, name, type, state, dueDateGT,
+					dueDateLT, completed, andOperator, start, end,
+					orderByComparator);
+
+			return toWorkflowTasks(taskInstances);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+		finally {
+			jbpmContext.close();
+		}
+	}
+
+	public int searchCount(
+			long companyId, long userId, String keywords,
+			Boolean completed, Boolean searchByUserRoles)
+		throws WorkflowException {
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			CustomSession customSession = new CustomSession(jbpmContext);
+
+			String[] actorIds = getActorIds(userId, searchByUserRoles);
+			String[] names = CustomSQLUtil.keywords(keywords);
+			String[] states = CustomSQLUtil.keywords(keywords);
+
+			return customSession.searchCountTaskInstances(
+				actorIds, searchByUserRoles, names, states, completed);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+		finally {
+			jbpmContext.close();
+		}
+	}
+
+	public int searchCount(
+			long companyId, long userId, String name, String type, String state,
+			Date dueDateGT, Date dueDateLT, Boolean completed,
+			Boolean searchByUserRoles, boolean andOperator)
+		throws WorkflowException {
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			CustomSession customSession = new CustomSession(jbpmContext);
+
+			String[] actorIds = getActorIds(userId, searchByUserRoles);
+
+			return customSession.searchCountTaskInstances(
+				actorIds, searchByUserRoles, name, type, state, dueDateGT,
+				dueDateLT, completed, andOperator);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+		finally {
+			jbpmContext.close();
+		}
+	}
+
 	public void setJbpmConfiguration(JbpmConfiguration jbpmConfiguration) {
 		_jbpmConfiguration = jbpmConfiguration;
 	}
@@ -526,6 +638,38 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		finally {
 			jbpmContext.close();
 		}
+	}
+
+	protected String[] getActorIds(
+			long userId, Boolean searchByUserRoles)
+		throws WorkflowException{
+
+		String[] actorIds = null;
+
+		try{
+			if (userId > 0) {
+				if ((searchByUserRoles != null) &&
+						searchByUserRoles.booleanValue()) {
+
+					List<Role> roles = RoleLocalServiceUtil.getUserRoles(
+						userId);
+
+					actorIds = StringUtil.split(
+						ListUtil.toString(roles, "roleId"));
+				}
+				else {
+					User user = UserLocalServiceUtil.getUser(userId);
+
+					actorIds = new String[] {
+						String.valueOf(userId), user.getEmailAddress()};
+				}
+			}
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+
+		return actorIds;
 	}
 
 	protected int getWorkflowTaskCount(

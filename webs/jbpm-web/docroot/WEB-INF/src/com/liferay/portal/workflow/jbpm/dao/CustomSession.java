@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.jbpm.dao;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.workflow.ContextConstants;
 import com.liferay.portal.kernel.workflow.WorkflowLog;
 import com.liferay.portal.workflow.jbpm.WorkflowDefinitionExtensionImpl;
 import com.liferay.portal.workflow.jbpm.WorkflowLogImpl;
@@ -23,12 +24,16 @@ import com.liferay.portal.workflow.jbpm.WorkflowLogImpl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.Junction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
@@ -277,6 +282,98 @@ public class CustomSession {
 		}
 	}
 
+	public int searchCountTaskInstances(
+		String[] actorIds, Boolean pooledActors, String[] names,
+		String[] states, Boolean completed) {
+
+		try {
+			Criteria criteria = _session.createCriteria(TaskInstance.class);
+
+			criteria.setProjection(Projections.countDistinct("id"));
+
+			createSearchCriteria(
+				criteria, actorIds, pooledActors, names, states, completed);
+
+			Number count = (Number)criteria.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw new JbpmException(e);
+		}
+	}
+
+	public int searchCountTaskInstances(
+		String[] actorIds, Boolean pooledActors, String name, String type,
+		String state, Date dueDateGT, Date dueDateLT, Boolean completed,
+		boolean andOperator) {
+
+		try {
+			Criteria criteria = _session.createCriteria(TaskInstance.class);
+
+			criteria.setProjection(Projections.countDistinct("id"));
+
+			createSearchCriteria(
+				criteria, actorIds, pooledActors, name, type, state,
+				dueDateGT, dueDateLT, completed, andOperator);
+
+			Number count = (Number)criteria.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw new JbpmException(e);
+		}
+	}
+
+	public List<TaskInstance> searchTaskInstances(
+		String[] actorIds, Boolean pooledActors, String[] names,
+		String[] states, Boolean completed,	int start, int end,
+		OrderByComparator orderByComparator) {
+
+		try {
+			Criteria criteria = _session.createCriteria(TaskInstance.class);
+
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+			createSearchCriteria(
+				criteria, actorIds, pooledActors, names, states, completed);
+
+			addPagination(criteria, start, end);
+			addOrder(criteria, orderByComparator);
+
+			return criteria.list();
+		}
+		catch (Exception e) {
+			throw new JbpmException(e);
+		}
+	}
+
+	public List<TaskInstance> searchTaskInstances(
+		String[] actorIds, Boolean pooledActors, String name, String type,
+		String state, Date dueDateGT, Date dueDateLT, Boolean completed,
+		boolean andOperator, int start, int end,
+		OrderByComparator orderByComparator) {
+
+		try {
+			Criteria criteria = _session.createCriteria(TaskInstance.class);
+
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+			createSearchCriteria(
+				criteria, actorIds, pooledActors, name, type, state,
+				dueDateGT, dueDateLT, completed, andOperator);
+
+			addPagination(criteria, start, end);
+			addOrder(criteria, orderByComparator);
+
+			return criteria.list();
+		}
+		catch (Exception e) {
+			throw new JbpmException(e);
+		}
+	}
+
 	public List<TaskInstance> findTaskInstances(
 		long processInstanceId, long tokenId, String[] actorIds,
 		boolean pooledActors, Boolean completed, int start, int end,
@@ -389,6 +486,125 @@ public class CustomSession {
 		}
 	}
 
+	protected void createSearchCriteria(
+		Criteria criteria, String[] actorIds, Boolean pooledActors,
+		String[] names, String[] states, Boolean completed) {
+
+		if (actorIds != null) {
+			if ((pooledActors != null) && pooledActors.booleanValue()) {
+				Criteria subCriteria = criteria.createCriteria(
+					"pooledActors");
+
+				subCriteria.add(Restrictions.in("actorId", actorIds));
+
+				criteria.add(Restrictions.isNull("actorId"));
+			}
+			else {
+				criteria.add(Restrictions.in("actorId", actorIds));
+			}
+		}
+
+		Disjunction kewordsDisjunction = Restrictions.disjunction();
+
+		if ((names != null) && (names.length > 0)) {
+			addDisjunction(kewordsDisjunction, "name", names);
+		}
+
+		if ((states != null) && (states.length > 0)) {
+			criteria.createAlias("processInstance", "processInstance");
+			criteria.createAlias("processInstance.rootToken", "rootToken");
+			criteria.createAlias("rootToken.node", "node");
+
+			addDisjunction(kewordsDisjunction, "node.name", states);
+		}
+
+		criteria.add(kewordsDisjunction);
+
+		if (completed != null) {
+			if (completed.booleanValue()) {
+				criteria.add(Restrictions.isNotNull("end"));
+			}
+			else {
+				criteria.add(Restrictions.isNull("end"));
+			}
+		}
+	}
+
+	protected void createSearchCriteria(
+		Criteria criteria, String[] actorIds, Boolean pooledActors,
+		String name, String type, String state, Date dueDateGT, Date dueDateLT,
+		Boolean completed, boolean andOperator) {
+
+		if (actorIds != null) {
+			if ((pooledActors != null) && pooledActors.booleanValue()) {
+				Criteria subCriteria = criteria.createCriteria(
+					"pooledActors");
+
+				subCriteria.add(Restrictions.in("actorId", actorIds));
+
+				criteria.add(Restrictions.isNull("actorId"));
+			}
+			else {
+				criteria.add(Restrictions.in("actorId", actorIds));
+			}
+		}
+
+		Junction kewordsJunction;
+
+		if (andOperator) {
+			kewordsJunction = Restrictions.conjunction();
+		}
+		else {
+			kewordsJunction = Restrictions.disjunction();
+		}
+
+		if (name != null) {
+			kewordsJunction.add(Restrictions.like("name", name));
+		}
+
+		if (state != null) {
+			criteria.createAlias("processInstance", "processInstance");
+			criteria.createAlias("processInstance.rootToken", "rootToken");
+			criteria.createAlias("rootToken.node", "node");
+
+			kewordsJunction.add(Restrictions.like("node.name", state));
+		}
+
+		if (type != null){
+			if (state == null) {
+				criteria.createAlias("processInstance", "processInstance");
+			}
+
+			criteria.createAlias("processInstance.instances", "instances");
+			criteria.createAlias("instances.tokenVariableMaps", "varMaps");
+			criteria.createAlias(
+				"varMaps.variableInstances", "varInstances");
+
+			Criterion typeCriterion = Restrictions.and(
+				Restrictions.eq(
+					"varInstances.name", ContextConstants.ENTRY_TYPE),
+				Restrictions.like("varInstances.value", type));
+
+			kewordsJunction.add(typeCriterion);
+		}
+
+		if ((dueDateGT != null) && (dueDateLT != null)) {
+			kewordsJunction.add(
+				Restrictions.between("dueDate", dueDateGT, dueDateLT));
+		}
+
+		criteria.add(kewordsJunction);
+
+		if (completed != null) {
+			if (completed.booleanValue()) {
+				criteria.add(Restrictions.isNotNull("end"));
+			}
+			else {
+				criteria.add(Restrictions.isNull("end"));
+			}
+		}
+	}
+
 	protected ProcessDefinition findProcessDefinition(String name) {
 		try {
 			Criteria criteria = _session.createCriteria(
@@ -429,6 +645,18 @@ public class CustomSession {
 		catch (Exception e) {
 			throw new JbpmException(e);
 		}
+	}
+
+	protected void addDisjunction(
+		Junction junction, String propertyName, String[] values) {
+
+		Disjunction disjunction = Restrictions.disjunction();
+
+		for (String value : values) {
+			disjunction.add(Restrictions.like(propertyName, value));
+		}
+
+		junction.add(disjunction);
 	}
 
 	private static Map<String, String> _fieldMap =
