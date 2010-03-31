@@ -147,10 +147,10 @@ public class CustomSession {
 			}
 			else if (actorIds != null) {
 				if (pooledActors) {
-					Criteria subCriteria = criteria.createCriteria(
+					Criteria subcriteria = criteria.createCriteria(
 						"pooledActors");
 
-					subCriteria.add(Restrictions.in("actorId", actorIds));
+					subcriteria.add(Restrictions.in("actorId", actorIds));
 				}
 				else {
 					criteria.add(Restrictions.in("actorId", actorIds));
@@ -282,98 +282,6 @@ public class CustomSession {
 		}
 	}
 
-	public int searchCountTaskInstances(
-		String[] actorIds, Boolean pooledActors, String[] names,
-		String[] states, Boolean completed) {
-
-		try {
-			Criteria criteria = _session.createCriteria(TaskInstance.class);
-
-			criteria.setProjection(Projections.countDistinct("id"));
-
-			createSearchCriteria(
-				criteria, actorIds, pooledActors, names, states, completed);
-
-			Number count = (Number)criteria.uniqueResult();
-
-			return count.intValue();
-		}
-		catch (Exception e) {
-			throw new JbpmException(e);
-		}
-	}
-
-	public int searchCountTaskInstances(
-		String[] actorIds, Boolean pooledActors, String name, String type,
-		String state, Date dueDateGT, Date dueDateLT, Boolean completed,
-		boolean andOperator) {
-
-		try {
-			Criteria criteria = _session.createCriteria(TaskInstance.class);
-
-			criteria.setProjection(Projections.countDistinct("id"));
-
-			createSearchCriteria(
-				criteria, actorIds, pooledActors, name, type, state,
-				dueDateGT, dueDateLT, completed, andOperator);
-
-			Number count = (Number)criteria.uniqueResult();
-
-			return count.intValue();
-		}
-		catch (Exception e) {
-			throw new JbpmException(e);
-		}
-	}
-
-	public List<TaskInstance> searchTaskInstances(
-		String[] actorIds, Boolean pooledActors, String[] names,
-		String[] states, Boolean completed,	int start, int end,
-		OrderByComparator orderByComparator) {
-
-		try {
-			Criteria criteria = _session.createCriteria(TaskInstance.class);
-
-			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-
-			createSearchCriteria(
-				criteria, actorIds, pooledActors, names, states, completed);
-
-			addPagination(criteria, start, end);
-			addOrder(criteria, orderByComparator);
-
-			return criteria.list();
-		}
-		catch (Exception e) {
-			throw new JbpmException(e);
-		}
-	}
-
-	public List<TaskInstance> searchTaskInstances(
-		String[] actorIds, Boolean pooledActors, String name, String type,
-		String state, Date dueDateGT, Date dueDateLT, Boolean completed,
-		boolean andOperator, int start, int end,
-		OrderByComparator orderByComparator) {
-
-		try {
-			Criteria criteria = _session.createCriteria(TaskInstance.class);
-
-			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-
-			createSearchCriteria(
-				criteria, actorIds, pooledActors, name, type, state,
-				dueDateGT, dueDateLT, completed, andOperator);
-
-			addPagination(criteria, start, end);
-			addOrder(criteria, orderByComparator);
-
-			return criteria.list();
-		}
-		catch (Exception e) {
-			throw new JbpmException(e);
-		}
-	}
-
 	public List<TaskInstance> findTaskInstances(
 		long processInstanceId, long tokenId, String[] actorIds,
 		boolean pooledActors, Boolean completed, int start, int end,
@@ -397,10 +305,10 @@ public class CustomSession {
 			}
 			else if (actorIds != null) {
 				if (pooledActors) {
-					Criteria subCriteria = criteria.createCriteria(
+					Criteria subcriteria = criteria.createCriteria(
 						"pooledActors");
 
-					subCriteria.add(Restrictions.in("actorId", actorIds));
+					subcriteria.add(Restrictions.in("actorId", actorIds));
 
 					criteria.add(Restrictions.isNull("actorId"));
 				}
@@ -445,6 +353,110 @@ public class CustomSession {
 		}
 	}
 
+	public int searchCountTaskInstances(
+		String[] actorIds, Boolean pooledActors, String name, String type,
+		String state, Date dueDateGT, Date dueDateLT, Boolean completed,
+		boolean andOperator) {
+
+		try {
+			Criteria criteria = _session.createCriteria(TaskInstance.class);
+
+			criteria.setProjection(Projections.countDistinct("id"));
+
+			addSearchCriteria(
+				criteria, actorIds, pooledActors, name, type, state,
+				dueDateGT, dueDateLT, completed, andOperator);
+
+			Number count = (Number)criteria.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw new JbpmException(e);
+		}
+	}
+
+	public int searchCountTaskInstances(
+		String[] actorIds, Boolean pooledActors, String[] names,
+		String[] states, Boolean completed) {
+
+		try {
+			Criteria criteria = _session.createCriteria(TaskInstance.class);
+
+			criteria.setProjection(Projections.countDistinct("id"));
+
+			addSearchCriteria(
+				criteria, actorIds, pooledActors, names, states, completed);
+
+			Number count = (Number)criteria.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw new JbpmException(e);
+		}
+	}
+
+	public List<TaskInstance> searchTaskInstances(
+		String[] actorIds, Boolean pooledActors, String name, String type,
+		String state, Date dueDateGT, Date dueDateLT, Boolean completed,
+		boolean andOperator, int start, int end,
+		OrderByComparator orderByComparator) {
+
+		try {
+			Criteria criteria = _session.createCriteria(TaskInstance.class);
+
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+			addSearchCriteria(
+				criteria, actorIds, pooledActors, name, type, state,
+				dueDateGT, dueDateLT, completed, andOperator);
+
+			addPagination(criteria, start, end);
+			addOrder(criteria, orderByComparator);
+
+			return criteria.list();
+		}
+		catch (Exception e) {
+			throw new JbpmException(e);
+		}
+	}
+
+	public List<TaskInstance> searchTaskInstances(
+		String[] actorIds, Boolean pooledActors, String[] names,
+		String[] states, Boolean completed,	int start, int end,
+		OrderByComparator orderByComparator) {
+
+		try {
+			Criteria criteria = _session.createCriteria(TaskInstance.class);
+
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+			addSearchCriteria(
+				criteria, actorIds, pooledActors, names, states, completed);
+
+			addPagination(criteria, start, end);
+			addOrder(criteria, orderByComparator);
+
+			return criteria.list();
+		}
+		catch (Exception e) {
+			throw new JbpmException(e);
+		}
+	}
+
+	protected void addDisjunction(
+		Junction junction, String propertyName, String[] values) {
+
+		Disjunction disjunction = Restrictions.disjunction();
+
+		for (String value : values) {
+			disjunction.add(Restrictions.like(propertyName, value));
+		}
+
+		junction.add(disjunction);
+	}
+
 	protected void addOrder(
 		Criteria criteria, OrderByComparator orderByComparator,
 		String... skipFields) {
@@ -486,61 +498,17 @@ public class CustomSession {
 		}
 	}
 
-	protected void createSearchCriteria(
-		Criteria criteria, String[] actorIds, Boolean pooledActors,
-		String[] names, String[] states, Boolean completed) {
-
-		if (actorIds != null) {
-			if ((pooledActors != null) && pooledActors.booleanValue()) {
-				Criteria subCriteria = criteria.createCriteria(
-					"pooledActors");
-
-				subCriteria.add(Restrictions.in("actorId", actorIds));
-
-				criteria.add(Restrictions.isNull("actorId"));
-			}
-			else {
-				criteria.add(Restrictions.in("actorId", actorIds));
-			}
-		}
-
-		Disjunction kewordsDisjunction = Restrictions.disjunction();
-
-		if ((names != null) && (names.length > 0)) {
-			addDisjunction(kewordsDisjunction, "name", names);
-		}
-
-		if ((states != null) && (states.length > 0)) {
-			criteria.createAlias("processInstance", "processInstance");
-			criteria.createAlias("processInstance.rootToken", "rootToken");
-			criteria.createAlias("rootToken.node", "node");
-
-			addDisjunction(kewordsDisjunction, "node.name", states);
-		}
-
-		criteria.add(kewordsDisjunction);
-
-		if (completed != null) {
-			if (completed.booleanValue()) {
-				criteria.add(Restrictions.isNotNull("end"));
-			}
-			else {
-				criteria.add(Restrictions.isNull("end"));
-			}
-		}
-	}
-
-	protected void createSearchCriteria(
+	protected void addSearchCriteria(
 		Criteria criteria, String[] actorIds, Boolean pooledActors,
 		String name, String type, String state, Date dueDateGT, Date dueDateLT,
 		Boolean completed, boolean andOperator) {
 
 		if (actorIds != null) {
 			if ((pooledActors != null) && pooledActors.booleanValue()) {
-				Criteria subCriteria = criteria.createCriteria(
+				Criteria subcriteria = criteria.createCriteria(
 					"pooledActors");
 
-				subCriteria.add(Restrictions.in("actorId", actorIds));
+				subcriteria.add(Restrictions.in("actorId", actorIds));
 
 				criteria.add(Restrictions.isNull("actorId"));
 			}
@@ -605,6 +573,50 @@ public class CustomSession {
 		}
 	}
 
+	protected void addSearchCriteria(
+		Criteria criteria, String[] actorIds, Boolean pooledActors,
+		String[] names, String[] states, Boolean completed) {
+
+		if (actorIds != null) {
+			if ((pooledActors != null) && pooledActors.booleanValue()) {
+				Criteria subcriteria = criteria.createCriteria(
+					"pooledActors");
+
+				subcriteria.add(Restrictions.in("actorId", actorIds));
+
+				criteria.add(Restrictions.isNull("actorId"));
+			}
+			else {
+				criteria.add(Restrictions.in("actorId", actorIds));
+			}
+		}
+
+		Disjunction kewordsDisjunction = Restrictions.disjunction();
+
+		if ((names != null) && (names.length > 0)) {
+			addDisjunction(kewordsDisjunction, "name", names);
+		}
+
+		if ((states != null) && (states.length > 0)) {
+			criteria.createAlias("processInstance", "processInstance");
+			criteria.createAlias("processInstance.rootToken", "rootToken");
+			criteria.createAlias("rootToken.node", "node");
+
+			addDisjunction(kewordsDisjunction, "node.name", states);
+		}
+
+		criteria.add(kewordsDisjunction);
+
+		if (completed != null) {
+			if (completed.booleanValue()) {
+				criteria.add(Restrictions.isNotNull("end"));
+			}
+			else {
+				criteria.add(Restrictions.isNull("end"));
+			}
+		}
+	}
+
 	protected ProcessDefinition findProcessDefinition(String name) {
 		try {
 			Criteria criteria = _session.createCriteria(
@@ -645,18 +657,6 @@ public class CustomSession {
 		catch (Exception e) {
 			throw new JbpmException(e);
 		}
-	}
-
-	protected void addDisjunction(
-		Junction junction, String propertyName, String[] values) {
-
-		Disjunction disjunction = Restrictions.disjunction();
-
-		for (String value : values) {
-			disjunction.add(Restrictions.like(propertyName, value));
-		}
-
-		junction.add(disjunction);
 	}
 
 	private static Map<String, String> _fieldMap =
