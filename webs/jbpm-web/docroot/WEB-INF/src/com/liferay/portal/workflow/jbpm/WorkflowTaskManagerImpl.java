@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowException;
@@ -125,9 +127,22 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			PooledActor pooledActor = pooledActors.iterator().next();
 
-			long roleId = GetterUtil.getLong(pooledActor.getActorId());
+			String actorId = pooledActor.getActorId();
 
-			if (!RoleLocalServiceUtil.hasUserRole(assigneeUserId, roleId)) {
+			boolean hasUserRole = false;
+
+			if (Validator.isNumber(actorId)) {
+				long roleId = GetterUtil.getLong(actorId);
+
+				hasUserRole = RoleLocalServiceUtil.hasUserRole(
+					assigneeUserId, roleId);
+			}
+			else {
+				hasUserRole = RoleLocalServiceUtil.hasUserRole(
+					assigneeUserId, companyId, actorId, true);
+			}
+
+			if (!hasUserRole) {
 				throw new WorkflowException(
 					"Workflow task " + workflowTaskId +
 						" cannot be assigned to user " + assigneeUserId);
@@ -343,8 +358,20 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			long companyId, long roleId, Boolean completed)
 		throws WorkflowException {
 
-		return getWorkflowTaskCount(
-			new String[] {String.valueOf(roleId)}, true, completed);
+		try {
+			Role role = RoleLocalServiceUtil.getRole(roleId);
+
+			String[] actorIds = new String[] {
+				String.valueOf(roleId), role.getName()};
+
+			return getWorkflowTaskCount(actorIds, true, completed);
+		}
+		catch (WorkflowException we) {
+			throw we;
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
 	}
 
 	public int getWorkflowTaskCountByUser(
@@ -374,10 +401,15 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		try {
 			List<Role> roles = RoleLocalServiceUtil.getUserRoles(userId);
 
-			String[] roleIds = StringUtil.split(
-				ListUtil.toString(roles, "roleId"));
+			StringBundler sb = new StringBundler();
 
-			return getWorkflowTaskCount(roleIds, true, completed);
+			sb.append(ListUtil.toString(roles, "roleId"));
+			sb.append(StringPool.COMMA);
+			sb.append(ListUtil.toString(roles, "name"));
+
+			String[] actorIds = StringUtil.split(sb.toString());
+
+			return getWorkflowTaskCount(actorIds, true, completed);
 		}
 		catch (WorkflowException we) {
 			throw we;
@@ -421,9 +453,21 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
-		return getWorkflowTasks(
-			-1, new String[] {String.valueOf(roleId)}, true, completed, start,
-			end, orderByComparator);
+		try {
+			Role role = RoleLocalServiceUtil.getRole(roleId);
+
+			String[] actorIds = new String[] {
+				String.valueOf(roleId), role.getName()};
+
+			return getWorkflowTasks(
+				-1, actorIds, true, completed, start, end, orderByComparator);
+		}
+		catch (WorkflowException we) {
+			throw we;
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
 	}
 
 	public List<WorkflowTask> getWorkflowTasksByUser(
@@ -456,11 +500,16 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		try {
 			List<Role> roles = RoleLocalServiceUtil.getUserRoles(userId);
 
-			String[] roleIds = StringUtil.split(
-				ListUtil.toString(roles, "roleId"));
+			StringBundler sb = new StringBundler();
+
+			sb.append(ListUtil.toString(roles, "roleId"));
+			sb.append(StringPool.COMMA);
+			sb.append(ListUtil.toString(roles, "name"));
+
+			String[] actorIds = StringUtil.split(sb.toString());
 
 			return getWorkflowTasks(
-				-1, roleIds, true, completed, start, end, orderByComparator);
+				-1, actorIds, true, completed, start, end, orderByComparator);
 		}
 		catch (WorkflowException we) {
 			throw we;
@@ -654,8 +703,13 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					List<Role> roles = RoleLocalServiceUtil.getUserRoles(
 						userId);
 
-					actorIds = StringUtil.split(
-						ListUtil.toString(roles, "roleId"));
+					StringBundler sb = new StringBundler();
+
+					sb.append(ListUtil.toString(roles, "roleId"));
+					sb.append(StringPool.COMMA);
+					sb.append(ListUtil.toString(roles, "name"));
+
+					actorIds = StringUtil.split(sb.toString());
 				}
 				else {
 					User user = UserLocalServiceUtil.getUser(userId);
