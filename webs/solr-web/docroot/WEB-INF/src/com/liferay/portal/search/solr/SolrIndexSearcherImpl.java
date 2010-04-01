@@ -219,13 +219,13 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 					String sortFieldName = sortField.getFieldName();
 
-					if (sortFieldName == null) {
-						sortFieldName = "score";
-					}
-
 					ORDER order = ORDER.asc;
 
-					if (sortField.isReverse()) {
+					if (sortFieldName == null) {
+						sortFieldName = "score";
+						order = ORDER.desc;
+					}
+					else if (sortField.isReverse()) {
 						order = ORDER.desc;
 					}
 
