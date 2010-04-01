@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <process-definition xmlns="urn:jbpm.org:jpdl-3.2" name="Automatic Approval">
-
 	<description>Automatically approve a workflow asset.</description>
-
 	<start-state>
 		<transition to="Approved" />
 	</start-state>
-
 	<end-state name="Approved">
 		<event type="node-enter">
 			<action class="com.liferay.portal.workflow.jbpm.handler.ScriptingWorkflowActionHandler" name="Approve Asset">
@@ -20,5 +17,4 @@
 			</action>
 		</event>
 	</end-state>
-
 </process-definition>
