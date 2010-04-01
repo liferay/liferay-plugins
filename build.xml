@@ -50,6 +50,11 @@
 		<ant dir="webs" target="deploy" inheritAll="false" />
 	</target>
 
+	<target name="build-service">
+		<ant dir="portlets" target="build-service" inheritAll="false" />
+		<ant dir="webs" target="build-service" inheritAll="false" />
+	</target>
+
 	<target name="build-summary">
 		<java
 			classname="com.liferay.portal.tools.PluginsSummaryBuilder"
