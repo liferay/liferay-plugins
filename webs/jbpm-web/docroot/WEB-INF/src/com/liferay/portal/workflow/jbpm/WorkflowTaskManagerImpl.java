@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -401,13 +400,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		try {
 			List<Role> roles = RoleLocalServiceUtil.getUserRoles(userId);
 
-			StringBundler sb = new StringBundler();
-
-			sb.append(ListUtil.toString(roles, "roleId"));
-			sb.append(StringPool.COMMA);
-			sb.append(ListUtil.toString(roles, "name"));
-
-			String[] actorIds = StringUtil.split(sb.toString());
+			String[] actorIds = getActorIds(roles);
 
 			return getWorkflowTaskCount(actorIds, true, completed);
 		}
@@ -500,13 +493,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		try {
 			List<Role> roles = RoleLocalServiceUtil.getUserRoles(userId);
 
-			StringBundler sb = new StringBundler();
-
-			sb.append(ListUtil.toString(roles, "roleId"));
-			sb.append(StringPool.COMMA);
-			sb.append(ListUtil.toString(roles, "name"));
-
-			String[] actorIds = StringUtil.split(sb.toString());
+			String[] actorIds = getActorIds(roles);
 
 			return getWorkflowTasks(
 				-1, actorIds, true, completed, start, end, orderByComparator);
@@ -689,6 +676,12 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
+	protected String[] getActorIds(List<Role> roles) {
+		return StringUtil.split(
+			ListUtil.toString(roles, "roleId").concat(
+				StringPool.COMMA).concat(ListUtil.toString(roles, "name")));
+	}
+
 	protected String[] getActorIds(
 			long userId, Boolean searchByUserRoles)
 		throws WorkflowException{
@@ -703,13 +696,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					List<Role> roles = RoleLocalServiceUtil.getUserRoles(
 						userId);
 
-					StringBundler sb = new StringBundler();
-
-					sb.append(ListUtil.toString(roles, "roleId"));
-					sb.append(StringPool.COMMA);
-					sb.append(ListUtil.toString(roles, "name"));
-
-					actorIds = StringUtil.split(sb.toString());
+					actorIds = getActorIds(roles);
 				}
 				else {
 					User user = UserLocalServiceUtil.getUser(userId);
