@@ -173,7 +173,7 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		_kaleoNotification.setNotificationTypes(notificationTypes);
 	}
 
-	public KaleoNotification toEscapedModel() {
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotification toEscapedModel() {
 		return _kaleoNotification.toEscapedModel();
 	}
 
@@ -218,7 +218,8 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		return _kaleoNotification.clone();
 	}
 
-	public int compareTo(KaleoNotification kaleoNotification) {
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification) {
 		return _kaleoNotification.compareTo(kaleoNotification);
 	}
 
