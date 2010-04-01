@@ -397,7 +397,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			Boolean searchByUserRoles, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
-		
+
 		try {
 			ServiceContext serviceContext = new ServiceContext();
 
@@ -431,9 +431,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
 				KaleoTaskInstanceTokenLocalServiceUtil.search(
-					name, type, state, dueDateGT, dueDateLT,
-					completed, searchByUserRoles, andOperator,
-					start, end, orderByComparator, serviceContext);
+					name, type, state, dueDateGT, dueDateLT, completed,
+					searchByUserRoles, andOperator, start, end,
+					orderByComparator, serviceContext);
 
 			return toWorkflowTasks(kaleoTaskInstanceTokens);
 		}
@@ -474,8 +474,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			serviceContext.setUserId(userId);
 
 			return KaleoTaskInstanceTokenLocalServiceUtil.searchCount(
-				name, type, state, dueDateGT, dueDateLT,
-				completed, searchByUserRoles, andOperator, serviceContext);
+				name, type, state, dueDateGT, dueDateLT, completed,
+				searchByUserRoles, andOperator, serviceContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
