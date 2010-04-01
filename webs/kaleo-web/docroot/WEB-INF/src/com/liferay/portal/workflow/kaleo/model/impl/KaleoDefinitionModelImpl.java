@@ -14,7 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.model.impl;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -370,29 +370,9 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition> {
 			return (KaleoDefinition)this;
 		}
 		else {
-			KaleoDefinition model = new KaleoDefinitionImpl();
-
-			model.setNew(isNew());
-			model.setEscapedModel(true);
-
-			model.setKaleoDefinitionId(getKaleoDefinitionId());
-			model.setCompanyId(getCompanyId());
-			model.setUserId(getUserId());
-			model.setUserName(HtmlUtil.escape(getUserName()));
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setName(HtmlUtil.escape(getName()));
-			model.setTitle(getTitle());
-			model.setDescription(HtmlUtil.escape(getDescription()));
-			model.setVersion(getVersion());
-			model.setActive(getActive());
-			model.setStartKaleoNodeId(getStartKaleoNodeId());
-
-			model = (KaleoDefinition)Proxy.newProxyInstance(KaleoDefinition.class.getClassLoader(),
-					new Class[] { KaleoDefinition.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (KaleoDefinition)Proxy.newProxyInstance(KaleoDefinition.class.getClassLoader(),
+				new Class[] { KaleoDefinition.class },
+				new AutoEscapeBeanHandler(this));
 		}
 	}
 

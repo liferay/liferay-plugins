@@ -14,10 +14,9 @@
 
 package com.liferay.portal.workflow.kaleo.model.impl;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -309,32 +308,9 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 			return (KaleoAction)this;
 		}
 		else {
-			KaleoAction model = new KaleoActionImpl();
-
-			model.setNew(isNew());
-			model.setEscapedModel(true);
-
-			model.setKaleoActionId(getKaleoActionId());
-			model.setCompanyId(getCompanyId());
-			model.setUserId(getUserId());
-			model.setUserName(HtmlUtil.escape(getUserName()));
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setKaleoDefinitionId(getKaleoDefinitionId());
-			model.setKaleoNodeId(getKaleoNodeId());
-			model.setKaleoNodeName(HtmlUtil.escape(getKaleoNodeName()));
-			model.setName(HtmlUtil.escape(getName()));
-			model.setDescription(HtmlUtil.escape(getDescription()));
-			model.setExecutionType(HtmlUtil.escape(getExecutionType()));
-			model.setScript(HtmlUtil.escape(getScript()));
-			model.setScriptLanguage(HtmlUtil.escape(getScriptLanguage()));
-			model.setPriority(getPriority());
-
-			model = (KaleoAction)Proxy.newProxyInstance(KaleoAction.class.getClassLoader(),
-					new Class[] { KaleoAction.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (KaleoAction)Proxy.newProxyInstance(KaleoAction.class.getClassLoader(),
+				new Class[] { KaleoAction.class },
+				new AutoEscapeBeanHandler(this));
 		}
 	}
 

@@ -289,6 +289,71 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		return dynamicQueryCount(dynamicQuery);
 	}
 
+	public List<KaleoTaskInstanceToken> search(
+			String keywords, Boolean completed,
+			Boolean searchByUserRoles, int start, int end,
+			OrderByComparator orderByComparator, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			KaleoTaskInstanceAssignment.class);
+
+		List<Object> results = dynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
+
+		// TBD NOT COMPLETED YET...place holder to ensure compilation
+
+		return toKaleoTaskInstanceTokens(results);
+
+	}
+
+	public List<KaleoTaskInstanceToken> search(
+			String name, String type, String state,
+			Date dueDateGT, Date dueDateLT, Boolean completed,
+			Boolean searchByUserRoles, boolean andOperator, int start, int end,
+			OrderByComparator orderByComparator, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			KaleoTaskInstanceAssignment.class);
+
+		List<Object> results = dynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
+
+		// TBD NOT COMPLETED YET...place holder to ensure compilation
+
+		return toKaleoTaskInstanceTokens(results);
+
+	}
+
+	public int searchCount(
+			String keywords, Boolean completed,
+			Boolean searchByUserRoles, ServiceContext serviceContext)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			KaleoTaskInstanceAssignment.class);
+
+		return dynamicQueryCount(dynamicQuery);
+		// TBD NOT COMPLETED YET...place holder to ensure compilation
+
+	}
+
+	public int searchCount(
+			String name, String type, String state,
+			Date dueDateGT, Date dueDateLT, Boolean completed,
+			Boolean searchByUserRoles, boolean andOperator,
+			ServiceContext serviceContext)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			KaleoTaskInstanceAssignment.class);
+		// TBD NOT COMPLETED YET...place holder to ensure compilation
+
+		return dynamicQueryCount(dynamicQuery);
+	}
+
+
 	public KaleoTaskInstanceToken updateDueDate(
 			long kaleoTaskInstanceTokenId, Date dueDate,
 			ServiceContext serviceContext)
@@ -330,7 +395,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 				PropertyFactoryUtil.forName("completionDate").isNull());
 		}
 	}
-
+	
 	protected List<KaleoTaskInstanceToken> toKaleoTaskInstanceTokens(
 			List<Object> results)
 		throws PortalException, SystemException {

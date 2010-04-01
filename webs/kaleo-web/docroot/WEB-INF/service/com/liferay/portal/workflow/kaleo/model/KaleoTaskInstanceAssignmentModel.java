@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
@@ -65,6 +66,7 @@ public interface KaleoTaskInstanceAssignmentModel extends BaseModel<KaleoTaskIns
 
 	public void setUserUuid(String userUuid);
 
+	@AutoEscape
 	public String getUserName();
 
 	public void setUserName(String userName);
@@ -85,6 +87,7 @@ public interface KaleoTaskInstanceAssignmentModel extends BaseModel<KaleoTaskIns
 
 	public void setKaleoTaskId(long kaleoTaskId);
 
+	@AutoEscape
 	public String getAssigneeClassName();
 
 	public void setAssigneeClassName(String assigneeClassName);
@@ -97,6 +100,7 @@ public interface KaleoTaskInstanceAssignmentModel extends BaseModel<KaleoTaskIns
 
 	public void setCompletionDate(Date completionDate);
 
+	@AutoEscape
 	public String getContext();
 
 	public void setContext(String context);

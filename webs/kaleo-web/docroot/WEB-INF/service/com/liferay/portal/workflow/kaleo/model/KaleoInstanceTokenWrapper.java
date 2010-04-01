@@ -133,7 +133,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		_kaleoInstanceToken.setCompletionDate(completionDate);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken toEscapedModel() {
+	public KaleoInstanceToken toEscapedModel() {
 		return _kaleoInstanceToken.toEscapedModel();
 	}
 
@@ -178,8 +178,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		return _kaleoInstanceToken.clone();
 	}
 
-	public int compareTo(
-		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken) {
+	public int compareTo(KaleoInstanceToken kaleoInstanceToken) {
 		return _kaleoInstanceToken.compareTo(kaleoInstanceToken);
 	}
 

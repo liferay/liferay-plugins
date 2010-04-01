@@ -136,7 +136,7 @@ public class KaleoNotificationRecipientWrapper
 		_kaleoNotificationRecipient.setAddress(address);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient toEscapedModel() {
+	public KaleoNotificationRecipient toEscapedModel() {
 		return _kaleoNotificationRecipient.toEscapedModel();
 	}
 
@@ -181,8 +181,7 @@ public class KaleoNotificationRecipientWrapper
 		return _kaleoNotificationRecipient.clone();
 	}
 
-	public int compareTo(
-		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient) {
+	public int compareTo(KaleoNotificationRecipient kaleoNotificationRecipient) {
 		return _kaleoNotificationRecipient.compareTo(kaleoNotificationRecipient);
 	}
 

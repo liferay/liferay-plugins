@@ -14,9 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
@@ -191,29 +190,9 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 			return this;
 		}
 		else {
-			KaleoTaskInstanceToken model = new KaleoTaskInstanceTokenClp();
-
-			model.setEscapedModel(true);
-
-			model.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
-			model.setCompanyId(getCompanyId());
-			model.setUserId(getUserId());
-			model.setUserName(HtmlUtil.escape(getUserName()));
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setKaleoInstanceId(getKaleoInstanceId());
-			model.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
-			model.setKaleoTaskId(getKaleoTaskId());
-			model.setCompletionUserId(getCompletionUserId());
-			model.setCompletionDate(getCompletionDate());
-			model.setDueDate(getDueDate());
-			model.setContext(HtmlUtil.escape(getContext()));
-
-			model = (KaleoTaskInstanceToken)Proxy.newProxyInstance(KaleoTaskInstanceToken.class.getClassLoader(),
-					new Class[] { KaleoTaskInstanceToken.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (KaleoTaskInstanceToken)Proxy.newProxyInstance(KaleoTaskInstanceToken.class.getClassLoader(),
+				new Class[] { KaleoTaskInstanceToken.class },
+				new AutoEscapeBeanHandler(this));
 		}
 	}
 

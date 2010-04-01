@@ -392,6 +392,96 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
+	public List<WorkflowTask> search(
+			long companyId, long userId, String keywords, Boolean completed,
+			Boolean searchByUserRoles, int start, int end,
+			OrderByComparator orderByComparator)
+		throws WorkflowException {
+		
+		try {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+			serviceContext.setUserId(userId);
+
+			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
+				KaleoTaskInstanceTokenLocalServiceUtil.search(
+					keywords, completed, searchByUserRoles, start, end,
+					orderByComparator, serviceContext);
+
+			return toWorkflowTasks(kaleoTaskInstanceTokens);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
+	public List<WorkflowTask> search(
+			long companyId, long userId, String name, String type, String state,
+			Date dueDateGT, Date dueDateLT, Boolean completed,
+			Boolean searchByUserRoles, boolean andOperator, int start, int end,
+			OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		try {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+			serviceContext.setUserId(userId);
+
+			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
+				KaleoTaskInstanceTokenLocalServiceUtil.search(
+					name, type, state, dueDateGT, dueDateLT,
+					completed, searchByUserRoles, andOperator,
+					start, end, orderByComparator, serviceContext);
+
+			return toWorkflowTasks(kaleoTaskInstanceTokens);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
+	public int searchCount(
+			long companyId, long userId, String keywords, Boolean completed,
+			Boolean searchByUserRoles)
+		throws WorkflowException {
+
+		try {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+			serviceContext.setUserId(userId);
+
+			return KaleoTaskInstanceTokenLocalServiceUtil.searchCount(
+				keywords, completed, searchByUserRoles, serviceContext);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
+	public int searchCount(
+			long companyId, long userId, String name, String type, String state,
+			Date dueDateGT, Date dueDateLT, Boolean completed,
+			Boolean searchByUserRoles, boolean andOperator)
+		throws WorkflowException {
+
+		try {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+			serviceContext.setUserId(userId);
+
+			return KaleoTaskInstanceTokenLocalServiceUtil.searchCount(
+				name, type, state, dueDateGT, dueDateLT,
+				completed, searchByUserRoles, andOperator, serviceContext);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
 	public void setTaskManager(TaskManager taskManager) {
 		_taskManager = taskManager;
 	}

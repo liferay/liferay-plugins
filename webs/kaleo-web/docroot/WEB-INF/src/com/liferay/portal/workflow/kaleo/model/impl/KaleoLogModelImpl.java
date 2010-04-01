@@ -14,10 +14,9 @@
 
 package com.liferay.portal.workflow.kaleo.model.impl;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -448,48 +447,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 			return (KaleoLog)this;
 		}
 		else {
-			KaleoLog model = new KaleoLogImpl();
-
-			model.setNew(isNew());
-			model.setEscapedModel(true);
-
-			model.setKaleoLogId(getKaleoLogId());
-			model.setCompanyId(getCompanyId());
-			model.setUserId(getUserId());
-			model.setUserName(HtmlUtil.escape(getUserName()));
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setKaleoInstanceId(getKaleoInstanceId());
-			model.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
-			model.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
-			model.setKaleoNodeId(getKaleoNodeId());
-			model.setKaleoNodeName(HtmlUtil.escape(getKaleoNodeName()));
-			model.setTerminalKaleoNode(getTerminalKaleoNode());
-			model.setKaleoActionId(getKaleoActionId());
-			model.setKaleoActionName(HtmlUtil.escape(getKaleoActionName()));
-			model.setKaleoActionDescription(HtmlUtil.escape(
-					getKaleoActionDescription()));
-			model.setPreviousKaleoNodeId(getPreviousKaleoNodeId());
-			model.setPreviousKaleoNodeName(HtmlUtil.escape(
-					getPreviousKaleoNodeName()));
-			model.setPreviousAssigneeClassName(HtmlUtil.escape(
-					getPreviousAssigneeClassName()));
-			model.setPreviousAssigneeClassPK(getPreviousAssigneeClassPK());
-			model.setCurrentAssigneeClassName(HtmlUtil.escape(
-					getCurrentAssigneeClassName()));
-			model.setCurrentAssigneeClassPK(getCurrentAssigneeClassPK());
-			model.setType(HtmlUtil.escape(getType()));
-			model.setComment(HtmlUtil.escape(getComment()));
-			model.setStartDate(getStartDate());
-			model.setEndDate(getEndDate());
-			model.setDuration(getDuration());
-			model.setContext(HtmlUtil.escape(getContext()));
-
-			model = (KaleoLog)Proxy.newProxyInstance(KaleoLog.class.getClassLoader(),
-					new Class[] { KaleoLog.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (KaleoLog)Proxy.newProxyInstance(KaleoLog.class.getClassLoader(),
+				new Class[] { KaleoLog.class }, new AutoEscapeBeanHandler(this));
 		}
 	}
 

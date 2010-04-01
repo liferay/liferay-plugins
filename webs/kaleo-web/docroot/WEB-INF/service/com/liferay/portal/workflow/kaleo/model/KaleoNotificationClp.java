@@ -14,9 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
@@ -182,31 +181,9 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 			return this;
 		}
 		else {
-			KaleoNotification model = new KaleoNotificationClp();
-
-			model.setEscapedModel(true);
-
-			model.setKaleoNotificationId(getKaleoNotificationId());
-			model.setCompanyId(getCompanyId());
-			model.setUserId(getUserId());
-			model.setUserName(HtmlUtil.escape(getUserName()));
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setKaleoDefinitionId(getKaleoDefinitionId());
-			model.setKaleoNodeId(getKaleoNodeId());
-			model.setKaleoNodeName(HtmlUtil.escape(getKaleoNodeName()));
-			model.setName(HtmlUtil.escape(getName()));
-			model.setDescription(HtmlUtil.escape(getDescription()));
-			model.setExecutionType(HtmlUtil.escape(getExecutionType()));
-			model.setTemplate(HtmlUtil.escape(getTemplate()));
-			model.setTemplateLanguage(HtmlUtil.escape(getTemplateLanguage()));
-			model.setNotificationTypes(HtmlUtil.escape(getNotificationTypes()));
-
-			model = (KaleoNotification)Proxy.newProxyInstance(KaleoNotification.class.getClassLoader(),
-					new Class[] { KaleoNotification.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (KaleoNotification)Proxy.newProxyInstance(KaleoNotification.class.getClassLoader(),
+				new Class[] { KaleoNotification.class },
+				new AutoEscapeBeanHandler(this));
 		}
 	}
 

@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
@@ -64,6 +65,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 
 	public void setUserUuid(String userUuid);
 
+	@AutoEscape
 	public String getUserName();
 
 	public void setUserName(String userName);
@@ -92,6 +94,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 
 	public void setKaleoNodeId(long kaleoNodeId);
 
+	@AutoEscape
 	public String getKaleoNodeName();
 
 	public void setKaleoNodeName(String kaleoNodeName);
@@ -106,10 +109,12 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 
 	public void setKaleoActionId(long kaleoActionId);
 
+	@AutoEscape
 	public String getKaleoActionName();
 
 	public void setKaleoActionName(String kaleoActionName);
 
+	@AutoEscape
 	public String getKaleoActionDescription();
 
 	public void setKaleoActionDescription(String kaleoActionDescription);
@@ -118,10 +123,12 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 
 	public void setPreviousKaleoNodeId(long previousKaleoNodeId);
 
+	@AutoEscape
 	public String getPreviousKaleoNodeName();
 
 	public void setPreviousKaleoNodeName(String previousKaleoNodeName);
 
+	@AutoEscape
 	public String getPreviousAssigneeClassName();
 
 	public void setPreviousAssigneeClassName(String previousAssigneeClassName);
@@ -130,6 +137,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 
 	public void setPreviousAssigneeClassPK(long previousAssigneeClassPK);
 
+	@AutoEscape
 	public String getCurrentAssigneeClassName();
 
 	public void setCurrentAssigneeClassName(String currentAssigneeClassName);
@@ -138,10 +146,12 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 
 	public void setCurrentAssigneeClassPK(long currentAssigneeClassPK);
 
+	@AutoEscape
 	public String getType();
 
 	public void setType(String type);
 
+	@AutoEscape
 	public String getComment();
 
 	public void setComment(String comment);
@@ -158,6 +168,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 
 	public void setDuration(long duration);
 
+	@AutoEscape
 	public String getContext();
 
 	public void setContext(String context);

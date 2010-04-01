@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
@@ -64,6 +65,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction> {
 
 	public void setUserUuid(String userUuid);
 
+	@AutoEscape
 	public String getUserName();
 
 	public void setUserName(String userName);
@@ -84,26 +86,32 @@ public interface KaleoActionModel extends BaseModel<KaleoAction> {
 
 	public void setKaleoNodeId(long kaleoNodeId);
 
+	@AutoEscape
 	public String getKaleoNodeName();
 
 	public void setKaleoNodeName(String kaleoNodeName);
 
+	@AutoEscape
 	public String getName();
 
 	public void setName(String name);
 
+	@AutoEscape
 	public String getDescription();
 
 	public void setDescription(String description);
 
+	@AutoEscape
 	public String getExecutionType();
 
 	public void setExecutionType(String executionType);
 
+	@AutoEscape
 	public String getScript();
 
 	public void setScript(String script);
 
+	@AutoEscape
 	public String getScriptLanguage();
 
 	public void setScriptLanguage(String scriptLanguage);

@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
@@ -65,6 +66,7 @@ public interface KaleoNotificationRecipientModel extends BaseModel<KaleoNotifica
 
 	public void setUserUuid(String userUuid);
 
+	@AutoEscape
 	public String getUserName();
 
 	public void setUserName(String userName);
@@ -81,6 +83,7 @@ public interface KaleoNotificationRecipientModel extends BaseModel<KaleoNotifica
 
 	public void setKaleoNotificationId(long kaleoNotificationId);
 
+	@AutoEscape
 	public String getRecipientClassName();
 
 	public void setRecipientClassName(String recipientClassName);
@@ -89,6 +92,7 @@ public interface KaleoNotificationRecipientModel extends BaseModel<KaleoNotifica
 
 	public void setRecipientClassPK(long recipientClassPK);
 
+	@AutoEscape
 	public String getAddress();
 
 	public void setAddress(String address);

@@ -216,6 +216,50 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 			assigneeClassPK, completed, serviceContext);
 	}
 
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> search(
+		java.lang.String keywords, java.lang.Boolean completed,
+		java.lang.Boolean searchByUserRoles, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoTaskInstanceTokenLocalService.search(keywords, completed,
+			searchByUserRoles, start, end, orderByComparator, serviceContext);
+	}
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> search(
+		java.lang.String name, java.lang.String type, java.lang.String state,
+		java.util.Date dueDateGT, java.util.Date dueDateLT,
+		java.lang.Boolean completed, java.lang.Boolean searchByUserRoles,
+		boolean andOperator, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoTaskInstanceTokenLocalService.search(name, type, state,
+			dueDateGT, dueDateLT, completed, searchByUserRoles, andOperator,
+			start, end, orderByComparator, serviceContext);
+	}
+
+	public int searchCount(java.lang.String keywords,
+		java.lang.Boolean completed, java.lang.Boolean searchByUserRoles,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoTaskInstanceTokenLocalService.searchCount(keywords,
+			completed, searchByUserRoles, serviceContext);
+	}
+
+	public int searchCount(java.lang.String name, java.lang.String type,
+		java.lang.String state, java.util.Date dueDateGT,
+		java.util.Date dueDateLT, java.lang.Boolean completed,
+		java.lang.Boolean searchByUserRoles, boolean andOperator,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoTaskInstanceTokenLocalService.searchCount(name, type,
+			state, dueDateGT, dueDateLT, completed, searchByUserRoles,
+			andOperator, serviceContext);
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken updateDueDate(
 		long kaleoTaskInstanceTokenId, java.util.Date dueDate,
 		com.liferay.portal.service.ServiceContext serviceContext)

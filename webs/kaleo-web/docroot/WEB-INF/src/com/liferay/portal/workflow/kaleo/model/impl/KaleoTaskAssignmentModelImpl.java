@@ -14,10 +14,9 @@
 
 package com.liferay.portal.workflow.kaleo.model.impl;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -279,29 +278,9 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 			return (KaleoTaskAssignment)this;
 		}
 		else {
-			KaleoTaskAssignment model = new KaleoTaskAssignmentImpl();
-
-			model.setNew(isNew());
-			model.setEscapedModel(true);
-
-			model.setKaleoTaskAssignmentId(getKaleoTaskAssignmentId());
-			model.setCompanyId(getCompanyId());
-			model.setUserId(getUserId());
-			model.setUserName(HtmlUtil.escape(getUserName()));
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setKaleoDefinitionId(getKaleoDefinitionId());
-			model.setKaleoNodeId(getKaleoNodeId());
-			model.setKaleoTaskId(getKaleoTaskId());
-			model.setAssigneeClassName(HtmlUtil.escape(getAssigneeClassName()));
-			model.setAssigneeClassPK(getAssigneeClassPK());
-			model.setDefaultAssignment(getDefaultAssignment());
-
-			model = (KaleoTaskAssignment)Proxy.newProxyInstance(KaleoTaskAssignment.class.getClassLoader(),
-					new Class[] { KaleoTaskAssignment.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (KaleoTaskAssignment)Proxy.newProxyInstance(KaleoTaskAssignment.class.getClassLoader(),
+				new Class[] { KaleoTaskAssignment.class },
+				new AutoEscapeBeanHandler(this));
 		}
 	}
 

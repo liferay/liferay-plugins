@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.kernel.annotation.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
@@ -66,6 +67,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition> {
 
 	public void setUserUuid(String userUuid);
 
+	@AutoEscape
 	public String getUserName();
 
 	public void setUserName(String userName);
@@ -78,6 +80,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition> {
 
 	public void setModifiedDate(Date modifiedDate);
 
+	@AutoEscape
 	public String getName();
 
 	public void setName(String name);
@@ -100,6 +103,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition> {
 
 	public void setTitleMap(Map<Locale, String> titleMap);
 
+	@AutoEscape
 	public String getDescription();
 
 	public void setDescription(String description);

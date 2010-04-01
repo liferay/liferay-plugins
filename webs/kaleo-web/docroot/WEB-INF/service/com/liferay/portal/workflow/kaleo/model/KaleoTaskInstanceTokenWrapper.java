@@ -167,7 +167,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 		_kaleoTaskInstanceToken.setContext(context);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken toEscapedModel() {
+	public KaleoTaskInstanceToken toEscapedModel() {
 		return _kaleoTaskInstanceToken.toEscapedModel();
 	}
 
@@ -212,8 +212,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 		return _kaleoTaskInstanceToken.clone();
 	}
 
-	public int compareTo(
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+	public int compareTo(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
 		return _kaleoTaskInstanceToken.compareTo(kaleoTaskInstanceToken);
 	}
 

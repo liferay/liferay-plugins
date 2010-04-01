@@ -14,9 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
@@ -144,26 +143,9 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 			return this;
 		}
 		else {
-			KaleoNotificationRecipient model = new KaleoNotificationRecipientClp();
-
-			model.setEscapedModel(true);
-
-			model.setKaleoNotificationRecipientId(getKaleoNotificationRecipientId());
-			model.setCompanyId(getCompanyId());
-			model.setUserId(getUserId());
-			model.setUserName(HtmlUtil.escape(getUserName()));
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setKaleoNotificationId(getKaleoNotificationId());
-			model.setRecipientClassName(HtmlUtil.escape(getRecipientClassName()));
-			model.setRecipientClassPK(getRecipientClassPK());
-			model.setAddress(HtmlUtil.escape(getAddress()));
-
-			model = (KaleoNotificationRecipient)Proxy.newProxyInstance(KaleoNotificationRecipient.class.getClassLoader(),
-					new Class[] { KaleoNotificationRecipient.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
+			return (KaleoNotificationRecipient)Proxy.newProxyInstance(KaleoNotificationRecipient.class.getClassLoader(),
+				new Class[] { KaleoNotificationRecipient.class },
+				new AutoEscapeBeanHandler(this));
 		}
 	}
 

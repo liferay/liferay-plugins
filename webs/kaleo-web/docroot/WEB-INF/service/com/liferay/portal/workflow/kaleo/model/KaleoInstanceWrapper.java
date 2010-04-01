@@ -165,7 +165,7 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 		_kaleoInstance.setContext(context);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoInstance toEscapedModel() {
+	public KaleoInstance toEscapedModel() {
 		return _kaleoInstance.toEscapedModel();
 	}
 
@@ -210,8 +210,7 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 		return _kaleoInstance.clone();
 	}
 
-	public int compareTo(
-		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance) {
+	public int compareTo(KaleoInstance kaleoInstance) {
 		return _kaleoInstance.compareTo(kaleoInstance);
 	}
 
