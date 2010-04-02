@@ -28,6 +28,9 @@ public interface PortletPropsKeys {
 
 	public static final String CONTROL_PANEL_ITEMS = "control.panel.items";
 
+	public static final String SITE_AUTO_CREATE_TEAM_NAMES =
+		"site.auto.create.team.names";
+
 	public static final String SITE_LAYOUT_PORTLETS = "site.layout.portlets.";
 
 	public static final String SITE_LAYOUT_TEMPLATE = "site.layout.template";

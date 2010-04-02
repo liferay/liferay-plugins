@@ -18,6 +18,7 @@
 package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
@@ -29,10 +30,13 @@ import com.liferay.portal.model.Portlet;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.TeamLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
+import com.liferay.so.util.PortletPropsValues;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.portlet.PortletPreferences;
 
@@ -43,6 +47,19 @@ import javax.portlet.PortletPreferences;
  *
  */
 public class GroupListener extends BaseModelListener<Group> {
+
+	public void onAfterCreate(Group group) throws ModelListenerException {
+		try {
+			if (!group.isCommunity()) {
+				return;
+			}
+
+			createTeams(group);
+		}
+		catch (Exception e) {
+			throw new ModelListenerException(e);
+		}
+	}
 
 	public void onAfterUpdate(Group group) throws ModelListenerException {
 		try {
@@ -130,6 +147,19 @@ public class GroupListener extends BaseModelListener<Group> {
 				PortletKeys.PREFS_OWNER_ID_DEFAULT,
 				PortletKeys.PREFS_OWNER_TYPE_LAYOUT, targetLayout.getPlid(),
 				sourcePortletId, sourcePreferences);
+		}
+	}
+
+	protected void createTeams(Group group) throws Exception {
+		long userId = PortalUtil.getValidUserId(
+			group.getCompanyId(), group.getCreatorUserId());
+
+		Set<String> names = SetUtil.fromArray(
+			PortletPropsValues.SITE_AUTO_CREATE_TEAM_NAMES);
+
+		for (String name : names) {
+			TeamLocalServiceUtil.addTeam(
+				userId, group.getGroupId(), name, StringPool.BLANK);
 		}
 	}
 
