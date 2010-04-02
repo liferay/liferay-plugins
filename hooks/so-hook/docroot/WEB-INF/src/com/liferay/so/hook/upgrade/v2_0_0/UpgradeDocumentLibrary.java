@@ -71,8 +71,6 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 				portletSetup.getValue("rootFolderId", null),
 				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
-			System.out.println("rootFolderId: " + rootFolderId);
-
 			if (rootFolderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 				continue;
 			}
