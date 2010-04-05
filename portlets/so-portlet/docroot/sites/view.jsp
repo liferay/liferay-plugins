@@ -66,8 +66,13 @@ pageContext.setAttribute("portletURL", portletURL);
 	</div>
 
 	<%
-	if (name.equals(StringPool.BLANK)) {
+	String searchName = null;
+
+	if (Validator.isNull(name)) {
 		name = null;
+	}
+	else {
+		searchName = "%" + name + "%";
 	}
 
 	LinkedHashMap groupParams = new LinkedHashMap();
@@ -76,7 +81,7 @@ pageContext.setAttribute("portletURL", portletURL);
 
 	List<Group> displayGroups = null;
 
-	List<Group> myGroups = GroupLocalServiceUtil.search(company.getCompanyId(), name, null, groupParams, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+	List<Group> myGroups = GroupLocalServiceUtil.search(company.getCompanyId(), searchName, null, groupParams, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 
 	if (tabs1.equals("my-sites")) {
 		displayGroups = myGroups;
@@ -90,7 +95,7 @@ pageContext.setAttribute("portletURL", portletURL);
 
 		groupParams.put("types", types);
 
-		List<Group> allGroups = GroupLocalServiceUtil.search(company.getCompanyId(), name, null, groupParams, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+		List<Group> allGroups = GroupLocalServiceUtil.search(company.getCompanyId(), searchName, null, groupParams, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 
 		List<Group> openGroups = new ArrayList<Group>(allGroups.size());
 
