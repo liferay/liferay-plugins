@@ -156,7 +156,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 				<liferay-ui:message key="name" />
 			</td>
 			<td>
-				<a href="<%= fileUrl %>"><%= HtmlUtil.escape(fileEntry.getTitle()) %></a>
+				<a href="<%= fileUrl %>"><%= fileEntry.getTitle() %></a>
 			</td>
 		</tr>
 		<tr>
