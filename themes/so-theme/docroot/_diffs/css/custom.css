@@ -331,6 +331,25 @@ body #banner h1.logo a {
 	padding: 5px;
 }
 
+/* Breadcrumbs */
+
+.breadcrumbs {
+	margin-bottom: 1.5em;
+}
+
+.breadcrumbs li {
+	background: url(../images/custom/arrow_right.png) no-repeat 100% 50%;
+	display: inline;
+	margin-right: 5px;
+	padding-right: 15px;
+}
+
+.breadcrumbs .last {
+	background-image: none;
+	font-weight: bold;
+	margin-top: 0.2em;
+}
+
 /* Detail column */
 
 .detail-column {
