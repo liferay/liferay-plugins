@@ -223,6 +223,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 					if (sortFieldName == null) {
 						sortFieldName = "score";
+
 						order = ORDER.desc;
 					}
 					else if (sortField.isReverse()) {
