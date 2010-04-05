@@ -54,7 +54,7 @@ public class GroupListener extends BaseModelListener<Group> {
 				return;
 			}
 
-			createTeams(group);
+			addTeams(group);
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
@@ -83,6 +83,19 @@ public class GroupListener extends BaseModelListener<Group> {
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
+		}
+	}
+
+	protected void addTeams(Group group) throws Exception {
+		long userId = PortalUtil.getValidUserId(
+			group.getCompanyId(), group.getCreatorUserId());
+
+		Set<String> names = SetUtil.fromArray(
+			PortletPropsValues.SITE_AUTO_CREATE_TEAM_NAMES);
+
+		for (String name : names) {
+			TeamLocalServiceUtil.addTeam(
+				userId, group.getGroupId(), name, StringPool.BLANK);
 		}
 	}
 
@@ -147,19 +160,6 @@ public class GroupListener extends BaseModelListener<Group> {
 				PortletKeys.PREFS_OWNER_ID_DEFAULT,
 				PortletKeys.PREFS_OWNER_TYPE_LAYOUT, targetLayout.getPlid(),
 				sourcePortletId, sourcePreferences);
-		}
-	}
-
-	protected void createTeams(Group group) throws Exception {
-		long userId = PortalUtil.getValidUserId(
-			group.getCompanyId(), group.getCreatorUserId());
-
-		Set<String> names = SetUtil.fromArray(
-			PortletPropsValues.SITE_AUTO_CREATE_TEAM_NAMES);
-
-		for (String name : names) {
-			TeamLocalServiceUtil.addTeam(
-				userId, group.getGroupId(), name, StringPool.BLANK);
 		}
 	}
 
