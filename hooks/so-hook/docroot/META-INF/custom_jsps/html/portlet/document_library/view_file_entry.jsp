@@ -69,7 +69,7 @@ try {
 catch (Exception e) {
 }
 
-String fileUrl = themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + folderId + StringPool.SLASH + HttpUtil.encodeURL(title);
+String fileUrl = themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + folderId + StringPool.SLASH + HttpUtil.encodeURL(HtmlUtil.unescape(title));
 String webDavUrl = StringPool.BLANK;
 
 if (portletDisplay.isWebDAVEnabled()) {
@@ -92,7 +92,7 @@ if (portletDisplay.isWebDAVEnabled()) {
 	}
 
 	sb.append(StringPool.SLASH);
-	sb.append(HttpUtil.encodeURL(title, true));
+	sb.append(HttpUtil.encodeURL(HtmlUtil.unescape(title), true));
 
 	Group group = themeDisplay.getScopeGroup();
 
@@ -386,7 +386,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 					<liferay-ui:icon
 						image='<%= "../file_system/small/" + extension %>'
 						message="<%= extension.toUpperCase() %>"
-						url='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(fileEntry.getTitle()) %>'
+						url='<%= fileUrl %>'
 						label="<%= true %>"
 					/>
 
@@ -399,7 +399,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 							<liferay-ui:icon
 								image='<%= "../file_system/small/" + conversion %>'
 								message="<%= conversion.toUpperCase() %>"
-								url='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(fileEntry.getTitle()) + "?version=" + fileEntry.getVersion() + "&targetExtension=" + conversion %>'
+								url='<%= fileUrl + "?version=" + fileEntry.getVersion() + "&targetExtension=" + conversion %>'
 								label="<%= true %>"
 							/>
 						</span>

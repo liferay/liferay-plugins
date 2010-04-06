@@ -39,7 +39,7 @@ Boolean hasLock = (Boolean)objArray[5];
 	for (String conversion : conversions) {
 	%>
 
-		<span><a href="<%= themeDisplay.getPathMain() + "/document_library/get_file?p_l_id=" + themeDisplay.getPlid() + "&folderId=" + fileEntry.getFolderId() + "&name=" + HttpUtil.encodeURL(fileEntry.getName()) + "&version=" + fileVersion.getVersion() + "&targetExtension=" + conversion %>"><%= conversion.toUpperCase() %></a></span>
+		<span><a href="<%= themeDisplay.getPathMain() + "/document_library/get_file?p_l_id=" + themeDisplay.getPlid() + "&folderId=" + fileEntry.getFolderId() + "&name=" + HttpUtil.encodeURL(HtmlUtil.unescape(fileEntry.getName())) + "&version=" + fileVersion.getVersion() + "&targetExtension=" + conversion %>"><%= conversion.toUpperCase() %></a></span>
 
 	<%
 	}

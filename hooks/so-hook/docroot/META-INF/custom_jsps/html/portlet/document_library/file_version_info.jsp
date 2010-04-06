@@ -33,7 +33,7 @@ Boolean hasLock = (Boolean)objArray[5];
 
 String strutsAction = ParamUtil.getString(request, "struts_action");
 
-String rowHREF = themeDisplay.getPathMain() + "/document_library/get_file?p_l_id=" + themeDisplay.getPlid() + "&folderId=" + fileEntry.getFolderId() + "&name=" + HttpUtil.encodeURL(fileEntry.getName()) + "&version=" + fileVersion.getVersion();
+String rowHREF = themeDisplay.getPathMain() + "/document_library/get_file?p_l_id=" + themeDisplay.getPlid() + "&folderId=" + fileEntry.getFolderId() + "&name=" + HttpUtil.encodeURL(HtmlUtil.unescape(fileEntry.getName())) + "&version=" + fileVersion.getVersion();
 %>
 
 <div class="result-wrapper">
