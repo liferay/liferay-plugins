@@ -7,7 +7,7 @@
 
 		<!-- PK fields -->
 
-		<column name="accountId type="long" primary="true" />
+		<column name="accountId" type="long" primary="true" />
 
 		<!-- Audit fields -->
 
