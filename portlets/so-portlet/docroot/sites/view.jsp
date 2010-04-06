@@ -41,6 +41,7 @@ pageContext.setAttribute("portletURL", portletURL);
 
 	<%
 	String name = ParamUtil.getString(request, "name");
+	String searchName = DAOParamUtil.getLike(request, "name");
 	%>
 
 	<div>
@@ -66,15 +67,6 @@ pageContext.setAttribute("portletURL", portletURL);
 	</div>
 
 	<%
-	String searchName = null;
-
-	if (Validator.isNull(name)) {
-		name = null;
-	}
-	else {
-		searchName = "%" + name + "%";
-	}
-
 	LinkedHashMap groupParams = new LinkedHashMap();
 
 	groupParams.put("usersGroups", new Long(user.getUserId()));
