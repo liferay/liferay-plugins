@@ -18,6 +18,7 @@
 package com.liferay.so.hook.upgrade;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.so.hook.upgrade.v2_0_0.UpgradeAssetPublisher;
 import com.liferay.so.hook.upgrade.v2_0_0.UpgradeDocumentLibrary;
 import com.liferay.so.hook.upgrade.v2_0_0.UpgradeGroup;
 
@@ -37,6 +38,7 @@ public class UpgradeProcess_2_0_0 extends UpgradeProcess {
 			return;
 		}
 
+		upgrade(UpgradeAssetPublisher.class);
 		upgrade(UpgradeDocumentLibrary.class);
 		upgrade(UpgradeGroup.class);
 	}
