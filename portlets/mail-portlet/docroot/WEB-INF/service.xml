@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
+
+<service-builder package-path="com.liferay.mail">
+	<namespace>Mail</namespace>
+	<entity name="AccountEntry" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="accountEntryId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="type" type="String" />
+		<column name="emailAddress" type="String" />
+		<column name="inboxFolderId" type="long" />
+		<column name="draftFolderId" type="long" />
+		<column name="sentFolderId" type="long" />
+		<column name="trashFolderId" type="long" />
+		<column name="username" type="String" />
+		<column name="senderName" type="String" />
+		<column name="password" type="String" />
+		<column name="passwordSaved" type="boolean" />
+		<column name="initialized" type="boolean" />
+		<column name="signature" type="String" />
+		<column name="useSignature" type="boolean" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="emailAddress" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+		<finder name="C_T_M" return-type="AccountEntry">
+			<finder-column name="companyId" />
+			<finder-column name="type" />
+			<finder-column name="emailAddress" />
+		</finder>
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
+		<finder name="U_T" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="type" />
+		</finder>
+		<finder name="U_T_I" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="type" />
+			<finder-column name="initialized" />
+		</finder>
+		<finder name="U_T_M" return-type="AccountEntry">
+			<finder-column name="userId" />
+			<finder-column name="type" />
+			<finder-column name="emailAddress" />
+		</finder>
+	</entity>
+	<entity name="AccountSetting" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="accountSettingId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="accountEntryId" type="long" />
+		<column name="type" type="String" />
+		<column name="mailInHostName" type="String" />
+		<column name="mailInPort" type="int" />
+		<column name="mailInSecure" type="boolean" />
+		<column name="mailOutHostName" type="String" />
+		<column name="mailOutPort" type="int" />
+		<column name="mailOutSecure" type="boolean" />
+		<column name="defaultFolderPrefix" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="AccountEntryId" return-type="AccountSetting">
+			<finder-column name="accountEntryId" />
+		</finder>
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+		<finder name="C_T" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="type" />
+		</finder>
+	</entity>	
+	<entity name="Attachment" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="attachmentId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="messageId" type="long" />
+		<column name="filename" type="String" />
+		<column name="size" type="long" />
+		<column name="contentPath" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="MessageId" return-type="Collection">
+			<finder-column name="messageId" />
+		</finder>
+	</entity>
+	<entity name="Folder" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="folderId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="accountEntryId" type="long" />
+		<column name="fullName" type="String" />
+		<column name="name" type="String" />
+		<column name="initialized" type="boolean" />
+		<column name="remoteMessageCount" type="int" />
+		<column name="synchronizedDate" type="Date" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="fullName" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="AccountEntryId" return-type="Collection">
+			<finder-column name="accountEntryId" />
+		</finder>
+		<finder name="A_N" return-type="Folder">
+			<finder-column name="accountEntryId" />
+			<finder-column name="fullName" />			
+		</finder>
+	</entity>
+	<entity name="Message" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="messageId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="folderId" type="long" />
+		<column name="sender" type="String" />
+		<column name="recipientsTo" type="String" />
+		<column name="recipientsCc" type="String" />
+		<column name="recipientsBcc" type="String" />
+		<column name="sentDate" type="Date" />
+		<column name="subject" type="String" />
+		<column name="preview" type="String" />
+		<column name="body" type="String" />
+		<column name="flags" type="String" />
+		<column name="size" type="long" />
+		<column name="remoteMessageId" type="long" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="sentDate" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="FolderId" return-type="Collection">
+			<finder-column name="folderId" />
+		</finder>
+		<finder name="F_R" return-type="Message">
+			<finder-column name="folderId" />
+			<finder-column name="remoteMessageId" />
+		</finder>
+	</entity>
+	<exceptions>
+		<exception>AccountSetting</exception>
+		<exception>Address</exception>
+		<exception>Attachment</exception>
+		<exception>Conversion</exception>
+		<exception>Folder</exception>
+		<exception>Mail</exception>
+		<exception>Message</exception>
+	</exceptions>
+</service-builder>
