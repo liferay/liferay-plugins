@@ -92,6 +92,17 @@
 		<order by="asc">
 			<order-column name="fullName" />
 		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="AccountId" return-type="Collection">
+			<finder-column name="accountId" />
+		</finder>
+
+		<finder name="A_F" return-type="Folder">
+			<finder-column name="accountId" />
+			<finder-column name="fullName" />			
+		</finder>
 	</entity>
 	<entity name="Message" local-service="true" remote-service="false">
 
