@@ -36,7 +36,6 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
-
 		Date now = new Date();
 
 		long folderId = counterLocalService.increment();
@@ -53,13 +52,15 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 		folder.setDisplayName(displayName);
 		folder.setRemoteMessageCount(remoteMessageCount);
 
-		return folderPersistence.update(folder, false);
+		folderPersistence.update(folder, false);
+
+		return folder;
 	}
 
-	public Folder getFolder(long accountId, String name)
+	public Folder getFolder(long accountId, String fullName)
 		throws PortalException, SystemException {
 
-		return folderPersistence.findByA_F(accountId, name);
+		return folderPersistence.findByA_F(accountId, fullName);
 	}
 
 	public List<Folder> getFolders(long accountId) throws SystemException {
@@ -78,7 +79,9 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 		folder.setDisplayName(displayName);
 		folder.setRemoteMessageCount(remoteMessageCount);
 
-		return folderPersistence.update(folder, false);
+		folderPersistence.update(folder, false);
+
+		return folder;
 	}
 
 }
