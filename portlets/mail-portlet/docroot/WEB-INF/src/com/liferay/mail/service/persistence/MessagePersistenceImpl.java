@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -34,6 +35,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -65,6 +67,29 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	public static final String FINDER_CLASS_NAME_ENTITY = MessageImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
+	public static final FinderPath FINDER_PATH_FIND_BY_FOLDERID = new FinderPath(MessageModelImpl.ENTITY_CACHE_ENABLED,
+			MessageModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByFolderId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_FOLDERID = new FinderPath(MessageModelImpl.ENTITY_CACHE_ENABLED,
+			MessageModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByFolderId",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_FOLDERID = new FinderPath(MessageModelImpl.ENTITY_CACHE_ENABLED,
+			MessageModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByFolderId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FETCH_BY_F_R = new FinderPath(MessageModelImpl.ENTITY_CACHE_ENABLED,
+			MessageModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
+			"fetchByF_R",
+			new String[] { Long.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_F_R = new FinderPath(MessageModelImpl.ENTITY_CACHE_ENABLED,
+			MessageModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByF_R",
+			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(MessageModelImpl.ENTITY_CACHE_ENABLED,
 			MessageModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findAll", new String[0]);
@@ -75,6 +100,12 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	public void cacheResult(Message message) {
 		EntityCacheUtil.putResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
 			MessageImpl.class, message.getPrimaryKey(), message);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R,
+			new Object[] {
+				new Long(message.getFolderId()),
+				new Long(message.getRemoteMessageId())
+			}, message);
 	}
 
 	public void cacheResult(List<Message> messages) {
@@ -184,6 +215,14 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		MessageModelImpl messageModelImpl = (MessageModelImpl)message;
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R,
+			new Object[] {
+				new Long(messageModelImpl.getOriginalFolderId()),
+				new Long(messageModelImpl.getOriginalRemoteMessageId())
+			});
+
 		EntityCacheUtil.removeResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
 			MessageImpl.class, message.getPrimaryKey());
 
@@ -193,6 +232,10 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	public Message updateImpl(com.liferay.mail.model.Message message,
 		boolean merge) throws SystemException {
 		message = toUnwrappedModel(message);
+
+		boolean isNew = message.isNew();
+
+		MessageModelImpl messageModelImpl = (MessageModelImpl)message;
 
 		Session session = null;
 
@@ -214,6 +257,26 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 
 		EntityCacheUtil.putResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
 			MessageImpl.class, message.getPrimaryKey(), message);
+
+		if (!isNew &&
+				((message.getFolderId() != messageModelImpl.getOriginalFolderId()) ||
+				(message.getRemoteMessageId() != messageModelImpl.getOriginalRemoteMessageId()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R,
+				new Object[] {
+					new Long(messageModelImpl.getOriginalFolderId()),
+					new Long(messageModelImpl.getOriginalRemoteMessageId())
+				});
+		}
+
+		if (isNew ||
+				((message.getFolderId() != messageModelImpl.getOriginalFolderId()) ||
+				(message.getRemoteMessageId() != messageModelImpl.getOriginalRemoteMessageId()))) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R,
+				new Object[] {
+					new Long(message.getFolderId()),
+					new Long(message.getRemoteMessageId())
+				}, message);
+		}
 
 		return message;
 	}
@@ -305,6 +368,359 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return message;
 	}
 
+	public List<Message> findByFolderId(long folderId)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(folderId) };
+
+		List<Message> list = (List<Message>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_FOLDERID,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(3);
+
+				query.append(_SQL_SELECT_MESSAGE_WHERE);
+
+				query.append(_FINDER_COLUMN_FOLDERID_FOLDERID_2);
+
+				query.append(MessageModelImpl.ORDER_BY_JPQL);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(folderId);
+
+				list = q.list();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<Message>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_FOLDERID,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public List<Message> findByFolderId(long folderId, int start, int end)
+		throws SystemException {
+		return findByFolderId(folderId, start, end, null);
+	}
+
+	public List<Message> findByFolderId(long folderId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(folderId),
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Message> list = (List<Message>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_FOLDERID,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = null;
+
+				if (orderByComparator != null) {
+					query = new StringBundler(3 +
+							(orderByComparator.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
+
+				query.append(_SQL_SELECT_MESSAGE_WHERE);
+
+				query.append(_FINDER_COLUMN_FOLDERID_FOLDERID_2);
+
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
+				}
+
+				else {
+					query.append(MessageModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(folderId);
+
+				list = (List<Message>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<Message>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_FOLDERID,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public Message findByFolderId_First(long folderId,
+		OrderByComparator orderByComparator)
+		throws NoSuchMessageException, SystemException {
+		List<Message> list = findByFolderId(folderId, 0, 1, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("folderId=");
+			msg.append(folderId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchMessageException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Message findByFolderId_Last(long folderId,
+		OrderByComparator orderByComparator)
+		throws NoSuchMessageException, SystemException {
+		int count = countByFolderId(folderId);
+
+		List<Message> list = findByFolderId(folderId, count - 1, count,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("folderId=");
+			msg.append(folderId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchMessageException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Message[] findByFolderId_PrevAndNext(long messageId, long folderId,
+		OrderByComparator orderByComparator)
+		throws NoSuchMessageException, SystemException {
+		Message message = findByPrimaryKey(messageId);
+
+		int count = countByFolderId(folderId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_MESSAGE_WHERE);
+
+			query.append(_FINDER_COLUMN_FOLDERID_FOLDERID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(MessageModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(folderId);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, message);
+
+			Message[] array = new MessageImpl[3];
+
+			array[0] = (Message)objArray[0];
+			array[1] = (Message)objArray[1];
+			array[2] = (Message)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public Message findByF_R(long folderId, long remoteMessageId)
+		throws NoSuchMessageException, SystemException {
+		Message message = fetchByF_R(folderId, remoteMessageId);
+
+		if (message == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("folderId=");
+			msg.append(folderId);
+
+			msg.append(", remoteMessageId=");
+			msg.append(remoteMessageId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchMessageException(msg.toString());
+		}
+
+		return message;
+	}
+
+	public Message fetchByF_R(long folderId, long remoteMessageId)
+		throws SystemException {
+		return fetchByF_R(folderId, remoteMessageId, true);
+	}
+
+	public Message fetchByF_R(long folderId, long remoteMessageId,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(folderId), new Long(remoteMessageId)
+			};
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_F_R,
+					finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(4);
+
+				query.append(_SQL_SELECT_MESSAGE_WHERE);
+
+				query.append(_FINDER_COLUMN_F_R_FOLDERID_2);
+
+				query.append(_FINDER_COLUMN_F_R_REMOTEMESSAGEID_2);
+
+				query.append(MessageModelImpl.ORDER_BY_JPQL);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(folderId);
+
+				qPos.add(remoteMessageId);
+
+				List<Message> list = q.list();
+
+				result = list;
+
+				Message message = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R,
+						finderArgs, list);
+				}
+				else {
+					message = list.get(0);
+
+					cacheResult(message);
+
+					if ((message.getFolderId() != folderId) ||
+							(message.getRemoteMessageId() != remoteMessageId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R,
+							finderArgs, message);
+					}
+				}
+
+				return message;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (result == null) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R,
+						finderArgs, new ArrayList<Message>());
+				}
+
+				closeSession(session);
+			}
+		}
+		else {
+			if (result instanceof List<?>) {
+				return null;
+			}
+			else {
+				return (Message)result;
+			}
+		}
+	}
+
 	public List<Message> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -380,10 +796,122 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return list;
 	}
 
+	public void removeByFolderId(long folderId) throws SystemException {
+		for (Message message : findByFolderId(folderId)) {
+			remove(message);
+		}
+	}
+
+	public void removeByF_R(long folderId, long remoteMessageId)
+		throws NoSuchMessageException, SystemException {
+		Message message = findByF_R(folderId, remoteMessageId);
+
+		remove(message);
+	}
+
 	public void removeAll() throws SystemException {
 		for (Message message : findAll()) {
 			remove(message);
 		}
+	}
+
+	public int countByFolderId(long folderId) throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(folderId) };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_FOLDERID,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(2);
+
+				query.append(_SQL_COUNT_MESSAGE_WHERE);
+
+				query.append(_FINDER_COLUMN_FOLDERID_FOLDERID_2);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(folderId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_FOLDERID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public int countByF_R(long folderId, long remoteMessageId)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(folderId), new Long(remoteMessageId)
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_F_R,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(3);
+
+				query.append(_SQL_COUNT_MESSAGE_WHERE);
+
+				query.append(_FINDER_COLUMN_F_R_FOLDERID_2);
+
+				query.append(_FINDER_COLUMN_F_R_REMOTEMESSAGEID_2);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(folderId);
+
+				qPos.add(remoteMessageId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_F_R, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
 	}
 
 	public int countAll() throws SystemException {
@@ -455,8 +983,14 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_MESSAGE = "SELECT message FROM Message message";
+	private static final String _SQL_SELECT_MESSAGE_WHERE = "SELECT message FROM Message message WHERE ";
 	private static final String _SQL_COUNT_MESSAGE = "SELECT COUNT(message) FROM Message message";
+	private static final String _SQL_COUNT_MESSAGE_WHERE = "SELECT COUNT(message) FROM Message message WHERE ";
+	private static final String _FINDER_COLUMN_FOLDERID_FOLDERID_2 = "message.folderId = ?";
+	private static final String _FINDER_COLUMN_F_R_FOLDERID_2 = "message.folderId = ? AND ";
+	private static final String _FINDER_COLUMN_F_R_REMOTEMESSAGEID_2 = "message.remoteMessageId = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "message.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Message exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Message exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(MessagePersistenceImpl.class);
 }

@@ -439,6 +439,286 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		return (com.liferay.mail.model.Message)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.mail.model.Message addMessage(long userId,
+		long folderId, java.lang.String sender, java.lang.String recipientsTo,
+		java.lang.String recipientsCc, java.lang.String recipientsBcc,
+		java.util.Date sentDate, java.lang.String subject,
+		java.lang.String body, java.lang.String flags, long size,
+		long remoteMessageId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object paramObj1 = new LongWrapper(folderId);
+
+		Object paramObj2 = ClpSerializer.translateInput(sender);
+
+		if (sender == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj3 = ClpSerializer.translateInput(recipientsTo);
+
+		if (recipientsTo == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj4 = ClpSerializer.translateInput(recipientsCc);
+
+		if (recipientsCc == null) {
+			paramObj4 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj5 = ClpSerializer.translateInput(recipientsBcc);
+
+		if (recipientsBcc == null) {
+			paramObj5 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj6 = ClpSerializer.translateInput(sentDate);
+
+		if (sentDate == null) {
+			paramObj6 = new NullWrapper("java.util.Date");
+		}
+
+		Object paramObj7 = ClpSerializer.translateInput(subject);
+
+		if (subject == null) {
+			paramObj7 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj8 = ClpSerializer.translateInput(body);
+
+		if (body == null) {
+			paramObj8 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj9 = ClpSerializer.translateInput(flags);
+
+		if (flags == null) {
+			paramObj9 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj10 = new LongWrapper(size);
+
+		Object paramObj11 = new LongWrapper(remoteMessageId);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("addMessage",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
+						paramObj10, paramObj11
+					});
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.mail.model.Message)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.mail.model.Message getMessage(long folderId,
+		long remoteMessageId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(folderId);
+
+		Object paramObj1 = new LongWrapper(remoteMessageId);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getMessage",
+					new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.mail.model.Message)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int getMessageCount(long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(folderId);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getMessageCount",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	public java.util.List<com.liferay.mail.model.Message> getMessages(
+		long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(folderId);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getMessages",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.mail.model.Message>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.mail.model.Message updateMessage(long messageId,
+		long folderId, java.lang.String sender, java.lang.String recipientsTo,
+		java.lang.String recipientsCc, java.lang.String recipientsBcc,
+		java.util.Date sentDate, java.lang.String subject,
+		java.lang.String body, java.lang.String flags, long size,
+		long remoteMessageId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(messageId);
+
+		Object paramObj1 = new LongWrapper(folderId);
+
+		Object paramObj2 = ClpSerializer.translateInput(sender);
+
+		if (sender == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj3 = ClpSerializer.translateInput(recipientsTo);
+
+		if (recipientsTo == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj4 = ClpSerializer.translateInput(recipientsCc);
+
+		if (recipientsCc == null) {
+			paramObj4 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj5 = ClpSerializer.translateInput(recipientsBcc);
+
+		if (recipientsBcc == null) {
+			paramObj5 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj6 = ClpSerializer.translateInput(sentDate);
+
+		if (sentDate == null) {
+			paramObj6 = new NullWrapper("java.util.Date");
+		}
+
+		Object paramObj7 = ClpSerializer.translateInput(subject);
+
+		if (subject == null) {
+			paramObj7 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj8 = ClpSerializer.translateInput(body);
+
+		if (body == null) {
+			paramObj8 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj9 = ClpSerializer.translateInput(flags);
+
+		if (flags == null) {
+			paramObj9 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj10 = new LongWrapper(size);
+
+		Object paramObj11 = new LongWrapper(remoteMessageId);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateMessage",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
+						paramObj10, paramObj11
+					});
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.mail.model.Message)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}

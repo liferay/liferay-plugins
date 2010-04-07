@@ -115,6 +115,51 @@ public class AccountLocalServiceUtil {
 		return getService().updateAccount(account, merge);
 	}
 
+	public static com.liferay.mail.model.Account addAccount(long userId,
+		java.lang.String address, java.lang.String personalName,
+		java.lang.String protocol, java.lang.String incomingHostName,
+		int incomingPort, boolean incomingSecure,
+		java.lang.String outgoingHostName, int outgoingPort,
+		boolean outgoingSecure, java.lang.String login,
+		java.lang.String password, boolean savePassword,
+		java.lang.String signature, boolean useSignature,
+		java.lang.String folderPrefix, long inboxFolderId, long draftFolderId,
+		long sentFolderId, long trashFolderId, boolean defaultSender)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addAccount(userId, address, personalName, protocol,
+			incomingHostName, incomingPort, incomingSecure, outgoingHostName,
+			outgoingPort, outgoingSecure, login, password, savePassword,
+			signature, useSignature, folderPrefix, inboxFolderId,
+			draftFolderId, sentFolderId, trashFolderId, defaultSender);
+	}
+
+	public static java.util.List<com.liferay.mail.model.Account> getAccountEntries(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getAccountEntries(userId);
+	}
+
+	public static com.liferay.mail.model.Account updateAccount(long accountId,
+		java.lang.String address, java.lang.String personalName,
+		java.lang.String protocol, java.lang.String incomingHostName,
+		int incomingPort, boolean incomingSecure,
+		java.lang.String outgoingHostName, int outgoingPort,
+		boolean outgoingSecure, java.lang.String login,
+		java.lang.String password, boolean savePassword,
+		java.lang.String signature, boolean useSignature, long inboxFolderId,
+		long draftFolderId, long sentFolderId, long trashFolderId,
+		java.lang.String folderPrefix, boolean defaultSender)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateAccount(accountId, address, personalName, protocol,
+			incomingHostName, incomingPort, incomingSecure, outgoingHostName,
+			outgoingPort, outgoingSecure, login, password, savePassword,
+			signature, useSignature, inboxFolderId, draftFolderId,
+			sentFolderId, trashFolderId, folderPrefix, defaultSender);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

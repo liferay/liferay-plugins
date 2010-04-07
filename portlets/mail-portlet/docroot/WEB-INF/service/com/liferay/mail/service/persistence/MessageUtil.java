@@ -112,6 +112,72 @@ public class MessageUtil {
 		return getPersistence().fetchByPrimaryKey(messageId);
 	}
 
+	public static java.util.List<com.liferay.mail.model.Message> findByFolderId(
+		long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByFolderId(folderId);
+	}
+
+	public static java.util.List<com.liferay.mail.model.Message> findByFolderId(
+		long folderId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByFolderId(folderId, start, end);
+	}
+
+	public static java.util.List<com.liferay.mail.model.Message> findByFolderId(
+		long folderId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByFolderId(folderId, start, end, orderByComparator);
+	}
+
+	public static com.liferay.mail.model.Message findByFolderId_First(
+		long folderId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchMessageException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByFolderId_First(folderId, orderByComparator);
+	}
+
+	public static com.liferay.mail.model.Message findByFolderId_Last(
+		long folderId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchMessageException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByFolderId_Last(folderId, orderByComparator);
+	}
+
+	public static com.liferay.mail.model.Message[] findByFolderId_PrevAndNext(
+		long messageId, long folderId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchMessageException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByFolderId_PrevAndNext(messageId, folderId,
+			orderByComparator);
+	}
+
+	public static com.liferay.mail.model.Message findByF_R(long folderId,
+		long remoteMessageId)
+		throws com.liferay.mail.NoSuchMessageException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByF_R(folderId, remoteMessageId);
+	}
+
+	public static com.liferay.mail.model.Message fetchByF_R(long folderId,
+		long remoteMessageId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByF_R(folderId, remoteMessageId);
+	}
+
+	public static com.liferay.mail.model.Message fetchByF_R(long folderId,
+		long remoteMessageId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByF_R(folderId, remoteMessageId, retrieveFromCache);
+	}
+
 	public static java.util.List<com.liferay.mail.model.Message> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
@@ -130,9 +196,30 @@ public class MessageUtil {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
+	public static void removeByFolderId(long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByFolderId(folderId);
+	}
+
+	public static void removeByF_R(long folderId, long remoteMessageId)
+		throws com.liferay.mail.NoSuchMessageException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByF_R(folderId, remoteMessageId);
+	}
+
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
+	}
+
+	public static int countByFolderId(long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByFolderId(folderId);
+	}
+
+	public static int countByF_R(long folderId, long remoteMessageId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByF_R(folderId, remoteMessageId);
 	}
 
 	public static int countAll()

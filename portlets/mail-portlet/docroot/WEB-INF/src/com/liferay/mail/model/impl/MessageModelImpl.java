@@ -225,6 +225,16 @@ public class MessageModelImpl extends BaseModelImpl<Message> {
 
 	public void setFolderId(long folderId) {
 		_folderId = folderId;
+
+		if (!_setOriginalFolderId) {
+			_setOriginalFolderId = true;
+
+			_originalFolderId = folderId;
+		}
+	}
+
+	public long getOriginalFolderId() {
+		return _originalFolderId;
 	}
 
 	public String getSender() {
@@ -353,6 +363,16 @@ public class MessageModelImpl extends BaseModelImpl<Message> {
 
 	public void setRemoteMessageId(long remoteMessageId) {
 		_remoteMessageId = remoteMessageId;
+
+		if (!_setOriginalRemoteMessageId) {
+			_setOriginalRemoteMessageId = true;
+
+			_originalRemoteMessageId = remoteMessageId;
+		}
+	}
+
+	public long getOriginalRemoteMessageId() {
+		return _originalRemoteMessageId;
 	}
 
 	public Message toEscapedModel() {
@@ -588,6 +608,8 @@ public class MessageModelImpl extends BaseModelImpl<Message> {
 	private Date _modifiedDate;
 	private long _accountId;
 	private long _folderId;
+	private long _originalFolderId;
+	private boolean _setOriginalFolderId;
 	private String _sender;
 	private String _recipientsTo;
 	private String _recipientsCc;
@@ -599,5 +621,7 @@ public class MessageModelImpl extends BaseModelImpl<Message> {
 	private String _flags;
 	private long _size;
 	private long _remoteMessageId;
+	private long _originalRemoteMessageId;
+	private boolean _setOriginalRemoteMessageId;
 	private transient ExpandoBridge _expandoBridge;
 }

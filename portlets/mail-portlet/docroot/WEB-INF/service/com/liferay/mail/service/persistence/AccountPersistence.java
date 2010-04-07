@@ -54,6 +54,34 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	public com.liferay.mail.model.Account fetchByPrimaryKey(long accountId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public java.util.List<com.liferay.mail.model.Account> findByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.mail.model.Account> findByUserId(
+		long userId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.mail.model.Account> findByUserId(
+		long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Account findByUserId_First(long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchAccountException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Account findByUserId_Last(long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchAccountException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Account[] findByUserId_PrevAndNext(
+		long accountId, long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchAccountException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public java.util.List<com.liferay.mail.model.Account> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -65,7 +93,13 @@ public interface AccountPersistence extends BasePersistence<Account> {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int countByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countAll()

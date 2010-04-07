@@ -99,4 +99,37 @@ public interface MessageLocalService {
 	public com.liferay.mail.model.Message updateMessage(
 		com.liferay.mail.model.Message message, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Message addMessage(long userId,
+		long folderId, java.lang.String sender, java.lang.String recipientsTo,
+		java.lang.String recipientsCc, java.lang.String recipientsBcc,
+		java.util.Date sentDate, java.lang.String subject,
+		java.lang.String body, java.lang.String flags, long size,
+		long remoteMessageId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.mail.model.Message getMessage(long folderId,
+		long remoteMessageId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getMessageCount(long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.mail.model.Message> getMessages(
+		long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Message updateMessage(long messageId,
+		long folderId, java.lang.String sender, java.lang.String recipientsTo,
+		java.lang.String recipientsCc, java.lang.String recipientsBcc,
+		java.util.Date sentDate, java.lang.String subject,
+		java.lang.String body, java.lang.String flags, long size,
+		long remoteMessageId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }
