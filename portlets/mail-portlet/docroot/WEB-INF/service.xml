@@ -71,6 +71,12 @@
 		<column name="contentPath" type="String" />
 		<column name="fileName" type="String" />
 		<column name="size" type="long" />
+
+		<!-- Finder methods -->
+
+		<finder name="MessageId" return-type="Collection">
+			<finder-column name="messageId" />
+		</finder>
 	</entity>
 	<entity name="Folder" local-service="true" remote-service="false">
 
