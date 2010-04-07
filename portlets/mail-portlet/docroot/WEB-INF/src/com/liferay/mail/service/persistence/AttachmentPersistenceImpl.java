@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -34,6 +35,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -65,6 +67,21 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	public static final String FINDER_CLASS_NAME_ENTITY = AttachmentImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
+	public static final FinderPath FINDER_PATH_FIND_BY_MESSAGEID = new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
+			AttachmentModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByMessageId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_MESSAGEID = new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
+			AttachmentModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByMessageId",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_MESSAGEID = new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
+			AttachmentModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByMessageId", new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
 			AttachmentModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findAll", new String[0]);
@@ -297,6 +314,234 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		return attachment;
 	}
 
+	public List<Attachment> findByMessageId(long messageId)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(messageId) };
+
+		List<Attachment> list = (List<Attachment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_MESSAGEID,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(2);
+
+				query.append(_SQL_SELECT_ATTACHMENT_WHERE);
+
+				query.append(_FINDER_COLUMN_MESSAGEID_MESSAGEID_2);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(messageId);
+
+				list = q.list();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<Attachment>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MESSAGEID,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public List<Attachment> findByMessageId(long messageId, int start, int end)
+		throws SystemException {
+		return findByMessageId(messageId, start, end, null);
+	}
+
+	public List<Attachment> findByMessageId(long messageId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(messageId),
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Attachment> list = (List<Attachment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_MESSAGEID,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = null;
+
+				if (orderByComparator != null) {
+					query = new StringBundler(3 +
+							(orderByComparator.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(2);
+				}
+
+				query.append(_SQL_SELECT_ATTACHMENT_WHERE);
+
+				query.append(_FINDER_COLUMN_MESSAGEID_MESSAGEID_2);
+
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(messageId);
+
+				list = (List<Attachment>)QueryUtil.list(q, getDialect(), start,
+						end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<Attachment>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_MESSAGEID,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public Attachment findByMessageId_First(long messageId,
+		OrderByComparator orderByComparator)
+		throws NoSuchAttachmentException, SystemException {
+		List<Attachment> list = findByMessageId(messageId, 0, 1,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("messageId=");
+			msg.append(messageId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchAttachmentException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Attachment findByMessageId_Last(long messageId,
+		OrderByComparator orderByComparator)
+		throws NoSuchAttachmentException, SystemException {
+		int count = countByMessageId(messageId);
+
+		List<Attachment> list = findByMessageId(messageId, count - 1, count,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("messageId=");
+			msg.append(messageId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchAttachmentException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Attachment[] findByMessageId_PrevAndNext(long attachmentId,
+		long messageId, OrderByComparator orderByComparator)
+		throws NoSuchAttachmentException, SystemException {
+		Attachment attachment = findByPrimaryKey(attachmentId);
+
+		int count = countByMessageId(messageId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(2);
+			}
+
+			query.append(_SQL_SELECT_ATTACHMENT_WHERE);
+
+			query.append(_FINDER_COLUMN_MESSAGEID_MESSAGEID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(messageId);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, attachment);
+
+			Attachment[] array = new AttachmentImpl[3];
+
+			array[0] = (Attachment)objArray[0];
+			array[1] = (Attachment)objArray[1];
+			array[2] = (Attachment)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
 	public List<Attachment> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -371,10 +616,62 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		return list;
 	}
 
+	public void removeByMessageId(long messageId) throws SystemException {
+		for (Attachment attachment : findByMessageId(messageId)) {
+			remove(attachment);
+		}
+	}
+
 	public void removeAll() throws SystemException {
 		for (Attachment attachment : findAll()) {
 			remove(attachment);
 		}
+	}
+
+	public int countByMessageId(long messageId) throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(messageId) };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MESSAGEID,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(2);
+
+				query.append(_SQL_COUNT_ATTACHMENT_WHERE);
+
+				query.append(_FINDER_COLUMN_MESSAGEID_MESSAGEID_2);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(messageId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MESSAGEID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
 	}
 
 	public int countAll() throws SystemException {
@@ -446,8 +743,12 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_ATTACHMENT = "SELECT attachment FROM Attachment attachment";
+	private static final String _SQL_SELECT_ATTACHMENT_WHERE = "SELECT attachment FROM Attachment attachment WHERE ";
 	private static final String _SQL_COUNT_ATTACHMENT = "SELECT COUNT(attachment) FROM Attachment attachment";
+	private static final String _SQL_COUNT_ATTACHMENT_WHERE = "SELECT COUNT(attachment) FROM Attachment attachment WHERE ";
+	private static final String _FINDER_COLUMN_MESSAGEID_MESSAGEID_2 = "attachment.messageId = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "attachment.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Attachment exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Attachment exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(AttachmentPersistenceImpl.class);
 }

@@ -113,6 +113,54 @@ public class AttachmentUtil {
 		return getPersistence().fetchByPrimaryKey(attachmentId);
 	}
 
+	public static java.util.List<com.liferay.mail.model.Attachment> findByMessageId(
+		long messageId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByMessageId(messageId);
+	}
+
+	public static java.util.List<com.liferay.mail.model.Attachment> findByMessageId(
+		long messageId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByMessageId(messageId, start, end);
+	}
+
+	public static java.util.List<com.liferay.mail.model.Attachment> findByMessageId(
+		long messageId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByMessageId(messageId, start, end, orderByComparator);
+	}
+
+	public static com.liferay.mail.model.Attachment findByMessageId_First(
+		long messageId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchAttachmentException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByMessageId_First(messageId, orderByComparator);
+	}
+
+	public static com.liferay.mail.model.Attachment findByMessageId_Last(
+		long messageId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchAttachmentException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByMessageId_Last(messageId, orderByComparator);
+	}
+
+	public static com.liferay.mail.model.Attachment[] findByMessageId_PrevAndNext(
+		long attachmentId, long messageId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchAttachmentException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByMessageId_PrevAndNext(attachmentId, messageId,
+			orderByComparator);
+	}
+
 	public static java.util.List<com.liferay.mail.model.Attachment> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
@@ -131,9 +179,19 @@ public class AttachmentUtil {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
+	public static void removeByMessageId(long messageId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByMessageId(messageId);
+	}
+
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
+	}
+
+	public static int countByMessageId(long messageId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByMessageId(messageId);
 	}
 
 	public static int countAll()

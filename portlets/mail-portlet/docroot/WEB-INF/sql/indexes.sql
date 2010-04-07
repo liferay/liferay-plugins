@@ -1,5 +1,7 @@
 create index IX_C4F22765 on Mail_Account (userId);
 
+create index IX_F661D061 on Mail_Attachment (messageId);
+
 create index IX_3841821C on Mail_Folder (accountId);
 create index IX_310E554A on Mail_Folder (accountId, fullName);
 

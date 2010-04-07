@@ -441,6 +441,86 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (com.liferay.mail.model.Attachment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.mail.model.Attachment addAttachment(long userId,
+		long messageId, java.lang.String contentPath,
+		java.lang.String fileName, long size)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object paramObj1 = new LongWrapper(messageId);
+
+		Object paramObj2 = ClpSerializer.translateInput(contentPath);
+
+		if (contentPath == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj3 = ClpSerializer.translateInput(fileName);
+
+		if (fileName == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj4 = new LongWrapper(size);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("addAttachment",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+					});
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.mail.model.Attachment)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.mail.model.Attachment> getAttachments(
+		long messageId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(messageId);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getAttachments",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.mail.model.Attachment>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}

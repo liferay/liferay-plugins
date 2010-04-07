@@ -114,6 +114,21 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService {
 		return _attachmentLocalService.updateAttachment(attachment, merge);
 	}
 
+	public com.liferay.mail.model.Attachment addAttachment(long userId,
+		long messageId, java.lang.String contentPath,
+		java.lang.String fileName, long size)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _attachmentLocalService.addAttachment(userId, messageId,
+			contentPath, fileName, size);
+	}
+
+	public java.util.List<com.liferay.mail.model.Attachment> getAttachments(
+		long messageId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _attachmentLocalService.getAttachments(messageId);
+	}
+
 	public AttachmentLocalService getWrappedAttachmentLocalService() {
 		return _attachmentLocalService;
 	}

@@ -99,4 +99,15 @@ public interface AttachmentLocalService {
 	public com.liferay.mail.model.Attachment updateAttachment(
 		com.liferay.mail.model.Attachment attachment, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Attachment addAttachment(long userId,
+		long messageId, java.lang.String contentPath,
+		java.lang.String fileName, long size)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.mail.model.Attachment> getAttachments(
+		long messageId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

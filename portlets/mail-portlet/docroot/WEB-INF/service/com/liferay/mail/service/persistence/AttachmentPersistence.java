@@ -55,6 +55,37 @@ public interface AttachmentPersistence extends BasePersistence<Attachment> {
 		long attachmentId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public java.util.List<com.liferay.mail.model.Attachment> findByMessageId(
+		long messageId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.mail.model.Attachment> findByMessageId(
+		long messageId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.mail.model.Attachment> findByMessageId(
+		long messageId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Attachment findByMessageId_First(
+		long messageId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchAttachmentException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Attachment findByMessageId_Last(
+		long messageId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchAttachmentException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Attachment[] findByMessageId_PrevAndNext(
+		long attachmentId, long messageId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchAttachmentException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public java.util.List<com.liferay.mail.model.Attachment> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -67,7 +98,13 @@ public interface AttachmentPersistence extends BasePersistence<Attachment> {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public void removeByMessageId(long messageId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int countByMessageId(long messageId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countAll()

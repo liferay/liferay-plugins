@@ -118,6 +118,21 @@ public class AttachmentLocalServiceUtil {
 		return getService().updateAttachment(attachment, merge);
 	}
 
+	public static com.liferay.mail.model.Attachment addAttachment(long userId,
+		long messageId, java.lang.String contentPath,
+		java.lang.String fileName, long size)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addAttachment(userId, messageId, contentPath, fileName, size);
+	}
+
+	public static java.util.List<com.liferay.mail.model.Attachment> getAttachments(
+		long messageId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getAttachments(messageId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
