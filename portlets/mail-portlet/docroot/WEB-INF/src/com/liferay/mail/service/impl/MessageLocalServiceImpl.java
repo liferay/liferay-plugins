@@ -80,9 +80,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		return messagePersistence.countByFolderId(folderId);
 	}
 
-	public List<Message> getMessages(long folderId)
-		throws SystemException {
-
+	public List<Message> getMessages(long folderId) throws SystemException {
 		return messagePersistence.findByFolderId(folderId);
 	}
 
