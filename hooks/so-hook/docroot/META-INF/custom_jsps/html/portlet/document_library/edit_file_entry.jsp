@@ -308,7 +308,7 @@ portletURL.setParameter("name", name);
 							<portlet:namespace />unlock();
 						}
 					}
-				);;
+				);
 			}
 		</c:when>
 		<c:otherwise>
