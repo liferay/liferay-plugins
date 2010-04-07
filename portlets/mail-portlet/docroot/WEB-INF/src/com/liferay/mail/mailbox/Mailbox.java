@@ -21,10 +21,15 @@ import com.liferay.portal.model.User;
  * <a href="Mailbox.java.html"><b><i>View Source</i></b></a>
  *
  * @author Scott Lee
- *
  */
 public interface Mailbox {
 
-	public Mailbox clone(User user, Account account);
+	public Account getAccount();
+
+	public User getUser();
+
+	public void setAccount(Account account);
+
+	public void setUser(User user);
 
 }

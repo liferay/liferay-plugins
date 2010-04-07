@@ -14,25 +14,12 @@
 
 package com.liferay.mail.mailbox;
 
-import com.liferay.mail.model.Account;
-import com.liferay.portal.model.User;
-
 /**
  * <a href="IMAPMailbox.java.html"><b><i>View Source</i></b></a>
  *
  * @author Scott Lee
- *
  */
 public class IMAPMailbox extends BaseMailbox {
-
-	public Mailbox clone(User user, Account account) {
-		IMAPMailbox mailbox = new IMAPMailbox();
-
-		mailbox.setUser(user);
-		mailbox.setAccount(account);
-
-		return mailbox;
-	}
 
 	protected IMAPMailbox() {
 	}

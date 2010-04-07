@@ -18,29 +18,19 @@ import com.liferay.mail.model.Account;
 import com.liferay.portal.model.User;
 
 /**
- * <a href="BaseMailbox.java.html"><b><i>View Source</i></b></a>
+ * <a href="IMAPMailboxFactory.java.html"><b><i>View Source</i></b></a>
  *
  * @author Scott Lee
  */
-public abstract class BaseMailbox implements Mailbox {
+public class IMAPMailboxFactory implements MailboxFactory {
 
-	public Account getAccount() {
-		return account;
+	public Mailbox getMailbox(User user, Account account) {
+		Mailbox mailbox = new IMAPMailbox();
+
+		mailbox.setAccount(account);
+		mailbox.setUser(user);
+
+		return mailbox;
 	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	protected Account account;
-	protected User user;
 
 }
