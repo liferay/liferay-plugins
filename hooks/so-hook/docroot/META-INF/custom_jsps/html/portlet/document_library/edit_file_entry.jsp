@@ -326,7 +326,7 @@ portletURL.setParameter("name", name);
 		</c:otherwise>
 	</c:choose>
 
-	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) || windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
+	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />title);
 	</c:if>
 </aui:script>
