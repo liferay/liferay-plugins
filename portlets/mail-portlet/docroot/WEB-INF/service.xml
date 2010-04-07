@@ -45,6 +45,12 @@
 		<order by="asc">
 			<order-column name="address" />
 		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
 	</entity>
 	<entity name="Attachment" local-service="true" remote-service="false">
 
@@ -139,5 +145,15 @@
 		<order by="asc">
 			<order-column name="sentDate" />
 		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="FolderId" return-type="Collection">
+			<finder-column name="folderId" />
+		</finder>
+		<finder name="F_R" return-type="Message">
+			<finder-column name="folderId" />
+			<finder-column name="remoteMessageId" />
+		</finder>
 	</entity>
 </service-builder>

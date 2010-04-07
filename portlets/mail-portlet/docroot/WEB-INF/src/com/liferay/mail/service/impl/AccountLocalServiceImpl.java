@@ -14,12 +14,113 @@
 
 package com.liferay.mail.service.impl;
 
+import com.liferay.mail.model.Account;
 import com.liferay.mail.service.base.AccountLocalServiceBaseImpl;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.User;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * <a href="AccountLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
  *
- * @author Brian Wing Shun Chan
+ * @author Scott Lee
  */
 public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
+
+	public Account addAccount(
+			long userId, String address, String personalName, String protocol,
+			String incomingHostName, int incomingPort, boolean incomingSecure,
+			String outgoingHostName, int outgoingPort, boolean outgoingSecure,
+			String login, String password, boolean savePassword,
+			String signature, boolean useSignature, String folderPrefix,
+			long inboxFolderId, long draftFolderId, long sentFolderId,
+			long trashFolderId, boolean defaultSender)
+		throws PortalException, SystemException {
+
+		User user = userPersistence.findByPrimaryKey(userId);
+		Date now = new Date();
+
+		long accountId = counterLocalService.increment();
+
+		Account account = accountPersistence.create(accountId);
+
+		account.setCompanyId(user.getCompanyId());
+		account.setUserId(user.getUserId());
+		account.setUserName(user.getFullName());
+		account.setCreateDate(now);
+		account.setModifiedDate(now);
+		account.setAddress(address);
+		account.setPersonalName(personalName);
+		account.setProtocol(protocol);
+		account.setIncomingHostName(incomingHostName);
+		account.setIncomingPort(incomingPort);
+		account.setIncomingSecure(incomingSecure);
+		account.setOutgoingHostName(outgoingHostName);
+		account.setOutgoingPort(outgoingPort);
+		account.setOutgoingSecure(outgoingSecure);
+		account.setLogin(login);
+		account.setPassword(password);
+		account.setSavePassword(savePassword);
+		account.setSignature(signature);
+		account.setUseSignature(useSignature);
+		account.setFolderPrefix(folderPrefix);
+		account.setInboxFolderId(inboxFolderId);
+		account.setDraftFolderId(draftFolderId);
+		account.setSentFolderId(sentFolderId);
+		account.setTrashFolderId(trashFolderId);
+		account.setDefaultSender(defaultSender);
+
+		accountPersistence.update(account, false);
+
+		return account;
+	}
+
+	public List<Account> getAccountEntries(long userId)
+		throws SystemException {
+
+		return accountPersistence.findByUserId(userId);
+	}
+
+	public Account updateAccount(
+			long accountId, String address, String personalName,
+			String protocol, String incomingHostName, int incomingPort,
+			boolean incomingSecure, String outgoingHostName, int outgoingPort,
+			boolean outgoingSecure, String login, String password,
+			boolean savePassword, String signature, boolean useSignature,
+			long inboxFolderId, long draftFolderId, long sentFolderId,
+			long trashFolderId, String folderPrefix, boolean defaultSender)
+		throws PortalException, SystemException {
+
+		Account account = accountPersistence.findByPrimaryKey(accountId);
+
+		account.setModifiedDate(new Date());
+		account.setAddress(address);
+		account.setPersonalName(personalName);
+		account.setProtocol(protocol);
+		account.setIncomingHostName(incomingHostName);
+		account.setIncomingPort(incomingPort);
+		account.setIncomingSecure(incomingSecure);
+		account.setOutgoingHostName(outgoingHostName);
+		account.setOutgoingPort(outgoingPort);
+		account.setOutgoingSecure(outgoingSecure);
+		account.setLogin(login);
+		account.setPassword(password);
+		account.setSavePassword(savePassword);
+		account.setSignature(signature);
+		account.setUseSignature(useSignature);
+		account.setFolderPrefix(folderPrefix);
+		account.setInboxFolderId(inboxFolderId);
+		account.setDraftFolderId(draftFolderId);
+		account.setSentFolderId(sentFolderId);
+		account.setTrashFolderId(trashFolderId);
+		account.setDefaultSender(defaultSender);
+
+		accountPersistence.update(account, false);
+
+		return account;
+	}
+
 }
