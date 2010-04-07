@@ -15,7 +15,6 @@
 package com.liferay.mail.service.impl;
 
 import com.liferay.mail.model.Attachment;
-import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.base.AttachmentLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -39,17 +38,14 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 		User user = userPersistence.findByPrimaryKey(userId);
 		Message message = messagePersistence.findByPrimaryKey(messageId);
 
-		Folder folder = folderPersistence.findByPrimaryKey(
-			message.getFolderId());
-
 		long attachmentId = counterLocalService.increment();
 
 		Attachment attachment = attachmentPersistence.create(attachmentId);
 
 		attachment.setCompanyId(user.getCompanyId());
 		attachment.setUserId(user.getUserId());
-		attachment.setAccountId(folder.getAccountId());
-		attachment.setFolderId(folder.getFolderId());
+		attachment.setAccountId(message.getAccountId());
+		attachment.setFolderId(message.getFolderId());
 		attachment.setMessageId(messageId);
 		attachment.setContentPath(contentPath);
 		attachment.setFileName(fileName);
