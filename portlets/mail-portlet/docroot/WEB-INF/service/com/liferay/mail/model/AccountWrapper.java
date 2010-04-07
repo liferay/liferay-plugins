@@ -281,7 +281,7 @@ public class AccountWrapper implements Account {
 		_account.setDefaultSender(defaultSender);
 	}
 
-	public Account toEscapedModel() {
+	public com.liferay.mail.model.Account toEscapedModel() {
 		return _account.toEscapedModel();
 	}
 
@@ -326,7 +326,7 @@ public class AccountWrapper implements Account {
 		return _account.clone();
 	}
 
-	public int compareTo(Account account) {
+	public int compareTo(com.liferay.mail.model.Account account) {
 		return _account.compareTo(account);
 	}
 

@@ -115,6 +115,39 @@ public class FolderLocalServiceUtil {
 		return getService().updateFolder(folder, merge);
 	}
 
+	public static com.liferay.mail.model.Folder addFolder(long userId,
+		long accountId, java.lang.String fullName,
+		java.lang.String displayName, int remoteMessageCount)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addFolder(userId, accountId, fullName, displayName,
+			remoteMessageCount);
+	}
+
+	public static com.liferay.mail.model.Folder getFolder(long accountId,
+		java.lang.String fullName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getFolder(accountId, fullName);
+	}
+
+	public static java.util.List<com.liferay.mail.model.Folder> getFolders(
+		long accountId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getFolders(accountId);
+	}
+
+	public static com.liferay.mail.model.Folder updateFolder(long folderId,
+		java.lang.String fullName, java.lang.String displayName,
+		int remoteMessageCount)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateFolder(folderId, fullName, displayName,
+			remoteMessageCount);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

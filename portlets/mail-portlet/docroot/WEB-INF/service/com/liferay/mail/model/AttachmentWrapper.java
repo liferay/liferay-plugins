@@ -125,7 +125,7 @@ public class AttachmentWrapper implements Attachment {
 		_attachment.setSize(size);
 	}
 
-	public Attachment toEscapedModel() {
+	public com.liferay.mail.model.Attachment toEscapedModel() {
 		return _attachment.toEscapedModel();
 	}
 
@@ -170,7 +170,7 @@ public class AttachmentWrapper implements Attachment {
 		return _attachment.clone();
 	}
 
-	public int compareTo(Attachment attachment) {
+	public int compareTo(com.liferay.mail.model.Attachment attachment) {
 		return _attachment.compareTo(attachment);
 	}
 

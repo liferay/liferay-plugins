@@ -112,6 +112,37 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 		return _folderLocalService.updateFolder(folder, merge);
 	}
 
+	public com.liferay.mail.model.Folder addFolder(long userId, long accountId,
+		java.lang.String fullName, java.lang.String displayName,
+		int remoteMessageCount)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _folderLocalService.addFolder(userId, accountId, fullName,
+			displayName, remoteMessageCount);
+	}
+
+	public com.liferay.mail.model.Folder getFolder(long accountId,
+		java.lang.String fullName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _folderLocalService.getFolder(accountId, fullName);
+	}
+
+	public java.util.List<com.liferay.mail.model.Folder> getFolders(
+		long accountId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _folderLocalService.getFolders(accountId);
+	}
+
+	public com.liferay.mail.model.Folder updateFolder(long folderId,
+		java.lang.String fullName, java.lang.String displayName,
+		int remoteMessageCount)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _folderLocalService.updateFolder(folderId, fullName,
+			displayName, remoteMessageCount);
+	}
+
 	public FolderLocalService getWrappedFolderLocalService() {
 		return _folderLocalService;
 	}

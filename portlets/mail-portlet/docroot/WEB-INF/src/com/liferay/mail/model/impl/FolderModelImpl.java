@@ -198,6 +198,16 @@ public class FolderModelImpl extends BaseModelImpl<Folder> {
 
 	public void setAccountId(long accountId) {
 		_accountId = accountId;
+
+		if (!_setOriginalAccountId) {
+			_setOriginalAccountId = true;
+
+			_originalAccountId = accountId;
+		}
+	}
+
+	public long getOriginalAccountId() {
+		return _originalAccountId;
 	}
 
 	public String getFullName() {
@@ -211,6 +221,14 @@ public class FolderModelImpl extends BaseModelImpl<Folder> {
 
 	public void setFullName(String fullName) {
 		_fullName = fullName;
+
+		if (_originalFullName == null) {
+			_originalFullName = fullName;
+		}
+	}
+
+	public String getOriginalFullName() {
+		return GetterUtil.getString(_originalFullName);
 	}
 
 	public String getDisplayName() {
@@ -403,7 +421,10 @@ public class FolderModelImpl extends BaseModelImpl<Folder> {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _accountId;
+	private long _originalAccountId;
+	private boolean _setOriginalAccountId;
 	private String _fullName;
+	private String _originalFullName;
 	private String _displayName;
 	private int _remoteMessageCount;
 	private transient ExpandoBridge _expandoBridge;

@@ -133,7 +133,7 @@ public class FolderWrapper implements Folder {
 		_folder.setRemoteMessageCount(remoteMessageCount);
 	}
 
-	public Folder toEscapedModel() {
+	public com.liferay.mail.model.Folder toEscapedModel() {
 		return _folder.toEscapedModel();
 	}
 
@@ -178,7 +178,7 @@ public class FolderWrapper implements Folder {
 		return _folder.clone();
 	}
 
-	public int compareTo(Folder folder) {
+	public int compareTo(com.liferay.mail.model.Folder folder) {
 		return _folder.compareTo(folder);
 	}
 

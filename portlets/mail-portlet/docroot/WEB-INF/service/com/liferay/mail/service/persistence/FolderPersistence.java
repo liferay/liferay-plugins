@@ -54,6 +54,48 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 	public com.liferay.mail.model.Folder fetchByPrimaryKey(long folderId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public java.util.List<com.liferay.mail.model.Folder> findByAccountId(
+		long accountId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.mail.model.Folder> findByAccountId(
+		long accountId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.mail.model.Folder> findByAccountId(
+		long accountId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Folder findByAccountId_First(long accountId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchFolderException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Folder findByAccountId_Last(long accountId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchFolderException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Folder[] findByAccountId_PrevAndNext(
+		long folderId, long accountId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchFolderException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Folder findByA_F(long accountId,
+		java.lang.String fullName)
+		throws com.liferay.mail.NoSuchFolderException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Folder fetchByA_F(long accountId,
+		java.lang.String fullName)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Folder fetchByA_F(long accountId,
+		java.lang.String fullName, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public java.util.List<com.liferay.mail.model.Folder> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -65,7 +107,20 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public void removeByAccountId(long accountId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void removeByA_F(long accountId, java.lang.String fullName)
+		throws com.liferay.mail.NoSuchFolderException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int countByAccountId(long accountId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int countByA_F(long accountId, java.lang.String fullName)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countAll()

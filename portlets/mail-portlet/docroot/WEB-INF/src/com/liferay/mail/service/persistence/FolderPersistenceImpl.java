@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -34,7 +35,9 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -65,6 +68,29 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	public static final String FINDER_CLASS_NAME_ENTITY = FolderImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
+	public static final FinderPath FINDER_PATH_FIND_BY_ACCOUNTID = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
+			FolderModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByAccountId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_ACCOUNTID = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
+			FolderModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByAccountId",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_ACCOUNTID = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
+			FolderModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByAccountId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FETCH_BY_A_F = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
+			FolderModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
+			"fetchByA_F",
+			new String[] { Long.class.getName(), String.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_A_F = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
+			FolderModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByA_F",
+			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
 			FolderModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findAll", new String[0]);
@@ -75,6 +101,10 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	public void cacheResult(Folder folder) {
 		EntityCacheUtil.putResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
 			FolderImpl.class, folder.getPrimaryKey(), folder);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F,
+			new Object[] { new Long(folder.getAccountId()), folder.getFullName() },
+			folder);
 	}
 
 	public void cacheResult(List<Folder> folders) {
@@ -184,6 +214,15 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		FolderModelImpl folderModelImpl = (FolderModelImpl)folder;
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
+			new Object[] {
+				new Long(folderModelImpl.getOriginalAccountId()),
+				
+			folderModelImpl.getOriginalFullName()
+			});
+
 		EntityCacheUtil.removeResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
 			FolderImpl.class, folder.getPrimaryKey());
 
@@ -193,6 +232,10 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	public Folder updateImpl(com.liferay.mail.model.Folder folder, boolean merge)
 		throws SystemException {
 		folder = toUnwrappedModel(folder);
+
+		boolean isNew = folder.isNew();
+
+		FolderModelImpl folderModelImpl = (FolderModelImpl)folder;
 
 		Session session = null;
 
@@ -214,6 +257,30 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 		EntityCacheUtil.putResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
 			FolderImpl.class, folder.getPrimaryKey(), folder);
+
+		if (!isNew &&
+				((folder.getAccountId() != folderModelImpl.getOriginalAccountId()) ||
+				!Validator.equals(folder.getFullName(),
+					folderModelImpl.getOriginalFullName()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
+				new Object[] {
+					new Long(folderModelImpl.getOriginalAccountId()),
+					
+				folderModelImpl.getOriginalFullName()
+				});
+		}
+
+		if (isNew ||
+				((folder.getAccountId() != folderModelImpl.getOriginalAccountId()) ||
+				!Validator.equals(folder.getFullName(),
+					folderModelImpl.getOriginalFullName()))) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F,
+				new Object[] {
+					new Long(folder.getAccountId()),
+					
+				folder.getFullName()
+				}, folder);
+		}
 
 		return folder;
 	}
@@ -296,6 +363,370 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		return folder;
 	}
 
+	public List<Folder> findByAccountId(long accountId)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(accountId) };
+
+		List<Folder> list = (List<Folder>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ACCOUNTID,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(3);
+
+				query.append(_SQL_SELECT_FOLDER_WHERE);
+
+				query.append(_FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2);
+
+				query.append(FolderModelImpl.ORDER_BY_JPQL);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(accountId);
+
+				list = q.list();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<Folder>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ACCOUNTID,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public List<Folder> findByAccountId(long accountId, int start, int end)
+		throws SystemException {
+		return findByAccountId(accountId, start, end, null);
+	}
+
+	public List<Folder> findByAccountId(long accountId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(accountId),
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Folder> list = (List<Folder>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ACCOUNTID,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = null;
+
+				if (orderByComparator != null) {
+					query = new StringBundler(3 +
+							(orderByComparator.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(3);
+				}
+
+				query.append(_SQL_SELECT_FOLDER_WHERE);
+
+				query.append(_FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2);
+
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
+				}
+
+				else {
+					query.append(FolderModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(accountId);
+
+				list = (List<Folder>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<Folder>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_ACCOUNTID,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public Folder findByAccountId_First(long accountId,
+		OrderByComparator orderByComparator)
+		throws NoSuchFolderException, SystemException {
+		List<Folder> list = findByAccountId(accountId, 0, 1, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("accountId=");
+			msg.append(accountId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchFolderException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Folder findByAccountId_Last(long accountId,
+		OrderByComparator orderByComparator)
+		throws NoSuchFolderException, SystemException {
+		int count = countByAccountId(accountId);
+
+		List<Folder> list = findByAccountId(accountId, count - 1, count,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("accountId=");
+			msg.append(accountId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchFolderException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Folder[] findByAccountId_PrevAndNext(long folderId, long accountId,
+		OrderByComparator orderByComparator)
+		throws NoSuchFolderException, SystemException {
+		Folder folder = findByPrimaryKey(folderId);
+
+		int count = countByAccountId(accountId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_FOLDER_WHERE);
+
+			query.append(_FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(FolderModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Query q = session.createQuery(sql);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(accountId);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
+					orderByComparator, folder);
+
+			Folder[] array = new FolderImpl[3];
+
+			array[0] = (Folder)objArray[0];
+			array[1] = (Folder)objArray[1];
+			array[2] = (Folder)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public Folder findByA_F(long accountId, String fullName)
+		throws NoSuchFolderException, SystemException {
+		Folder folder = fetchByA_F(accountId, fullName);
+
+		if (folder == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("accountId=");
+			msg.append(accountId);
+
+			msg.append(", fullName=");
+			msg.append(fullName);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchFolderException(msg.toString());
+		}
+
+		return folder;
+	}
+
+	public Folder fetchByA_F(long accountId, String fullName)
+		throws SystemException {
+		return fetchByA_F(accountId, fullName, true);
+	}
+
+	public Folder fetchByA_F(long accountId, String fullName,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(accountId), fullName };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_A_F,
+					finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(4);
+
+				query.append(_SQL_SELECT_FOLDER_WHERE);
+
+				query.append(_FINDER_COLUMN_A_F_ACCOUNTID_2);
+
+				if (fullName == null) {
+					query.append(_FINDER_COLUMN_A_F_FULLNAME_1);
+				}
+				else {
+					if (fullName.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_A_F_FULLNAME_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_A_F_FULLNAME_2);
+					}
+				}
+
+				query.append(FolderModelImpl.ORDER_BY_JPQL);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(accountId);
+
+				if (fullName != null) {
+					qPos.add(fullName);
+				}
+
+				List<Folder> list = q.list();
+
+				result = list;
+
+				Folder folder = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F,
+						finderArgs, list);
+				}
+				else {
+					folder = list.get(0);
+
+					cacheResult(folder);
+
+					if ((folder.getAccountId() != accountId) ||
+							(folder.getFullName() == null) ||
+							!folder.getFullName().equals(fullName)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F,
+							finderArgs, folder);
+					}
+				}
+
+				return folder;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (result == null) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F,
+						finderArgs, new ArrayList<Folder>());
+				}
+
+				closeSession(session);
+			}
+		}
+		else {
+			if (result instanceof List<?>) {
+				return null;
+			}
+			else {
+				return (Folder)result;
+			}
+		}
+	}
+
 	public List<Folder> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -371,10 +802,132 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		return list;
 	}
 
+	public void removeByAccountId(long accountId) throws SystemException {
+		for (Folder folder : findByAccountId(accountId)) {
+			remove(folder);
+		}
+	}
+
+	public void removeByA_F(long accountId, String fullName)
+		throws NoSuchFolderException, SystemException {
+		Folder folder = findByA_F(accountId, fullName);
+
+		remove(folder);
+	}
+
 	public void removeAll() throws SystemException {
 		for (Folder folder : findAll()) {
 			remove(folder);
 		}
+	}
+
+	public int countByAccountId(long accountId) throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(accountId) };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ACCOUNTID,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(2);
+
+				query.append(_SQL_COUNT_FOLDER_WHERE);
+
+				query.append(_FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(accountId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ACCOUNTID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public int countByA_F(long accountId, String fullName)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(accountId), fullName };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_A_F,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(3);
+
+				query.append(_SQL_COUNT_FOLDER_WHERE);
+
+				query.append(_FINDER_COLUMN_A_F_ACCOUNTID_2);
+
+				if (fullName == null) {
+					query.append(_FINDER_COLUMN_A_F_FULLNAME_1);
+				}
+				else {
+					if (fullName.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_A_F_FULLNAME_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_A_F_FULLNAME_2);
+					}
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(accountId);
+
+				if (fullName != null) {
+					qPos.add(fullName);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_F, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
 	}
 
 	public int countAll() throws SystemException {
@@ -446,8 +999,16 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_FOLDER = "SELECT folder FROM Folder folder";
+	private static final String _SQL_SELECT_FOLDER_WHERE = "SELECT folder FROM Folder folder WHERE ";
 	private static final String _SQL_COUNT_FOLDER = "SELECT COUNT(folder) FROM Folder folder";
+	private static final String _SQL_COUNT_FOLDER_WHERE = "SELECT COUNT(folder) FROM Folder folder WHERE ";
+	private static final String _FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2 = "folder.accountId = ?";
+	private static final String _FINDER_COLUMN_A_F_ACCOUNTID_2 = "folder.accountId = ? AND ";
+	private static final String _FINDER_COLUMN_A_F_FULLNAME_1 = "folder.fullName IS NULL";
+	private static final String _FINDER_COLUMN_A_F_FULLNAME_2 = "folder.fullName = ?";
+	private static final String _FINDER_COLUMN_A_F_FULLNAME_3 = "(folder.fullName IS NULL OR folder.fullName = ?)";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "folder.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Folder exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Folder exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(FolderPersistenceImpl.class);
 }

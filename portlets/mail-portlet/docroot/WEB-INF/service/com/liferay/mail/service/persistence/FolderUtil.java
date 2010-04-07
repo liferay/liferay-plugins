@@ -110,6 +110,74 @@ public class FolderUtil {
 		return getPersistence().fetchByPrimaryKey(folderId);
 	}
 
+	public static java.util.List<com.liferay.mail.model.Folder> findByAccountId(
+		long accountId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByAccountId(accountId);
+	}
+
+	public static java.util.List<com.liferay.mail.model.Folder> findByAccountId(
+		long accountId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByAccountId(accountId, start, end);
+	}
+
+	public static java.util.List<com.liferay.mail.model.Folder> findByAccountId(
+		long accountId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByAccountId(accountId, start, end, orderByComparator);
+	}
+
+	public static com.liferay.mail.model.Folder findByAccountId_First(
+		long accountId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchFolderException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByAccountId_First(accountId, orderByComparator);
+	}
+
+	public static com.liferay.mail.model.Folder findByAccountId_Last(
+		long accountId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchFolderException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByAccountId_Last(accountId, orderByComparator);
+	}
+
+	public static com.liferay.mail.model.Folder[] findByAccountId_PrevAndNext(
+		long folderId, long accountId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.mail.NoSuchFolderException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByAccountId_PrevAndNext(folderId, accountId,
+			orderByComparator);
+	}
+
+	public static com.liferay.mail.model.Folder findByA_F(long accountId,
+		java.lang.String fullName)
+		throws com.liferay.mail.NoSuchFolderException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByA_F(accountId, fullName);
+	}
+
+	public static com.liferay.mail.model.Folder fetchByA_F(long accountId,
+		java.lang.String fullName)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByA_F(accountId, fullName);
+	}
+
+	public static com.liferay.mail.model.Folder fetchByA_F(long accountId,
+		java.lang.String fullName, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByA_F(accountId, fullName, retrieveFromCache);
+	}
+
 	public static java.util.List<com.liferay.mail.model.Folder> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
@@ -128,9 +196,30 @@ public class FolderUtil {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
+	public static void removeByAccountId(long accountId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByAccountId(accountId);
+	}
+
+	public static void removeByA_F(long accountId, java.lang.String fullName)
+		throws com.liferay.mail.NoSuchFolderException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByA_F(accountId, fullName);
+	}
+
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
+	}
+
+	public static int countByAccountId(long accountId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByAccountId(accountId);
+	}
+
+	public static int countByA_F(long accountId, java.lang.String fullName)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByA_F(accountId, fullName);
 	}
 
 	public static int countAll()

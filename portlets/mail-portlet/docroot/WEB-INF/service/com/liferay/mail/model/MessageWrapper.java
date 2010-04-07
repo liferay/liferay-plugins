@@ -205,7 +205,7 @@ public class MessageWrapper implements Message {
 		_message.setRemoteMessageId(remoteMessageId);
 	}
 
-	public Message toEscapedModel() {
+	public com.liferay.mail.model.Message toEscapedModel() {
 		return _message.toEscapedModel();
 	}
 
@@ -250,7 +250,7 @@ public class MessageWrapper implements Message {
 		return _message.clone();
 	}
 
-	public int compareTo(Message message) {
+	public int compareTo(com.liferay.mail.model.Message message) {
 		return _message.compareTo(message);
 	}
 
