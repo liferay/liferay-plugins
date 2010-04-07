@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo;
 
 import com.liferay.portal.kernel.workflow.DefaultWorkflowDefinition;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
+import com.liferay.util.LocalizationUtil;
 
 /**
  * <a href="WorkflowDefinitionAdapter.java.html"><b><i>View Source</i></b></a>
@@ -29,6 +30,10 @@ public class WorkflowDefinitionAdapter extends DefaultWorkflowDefinition {
 		setName(kaleoDefinition.getName());
 		setTitle(kaleoDefinition.getTitle());
 		setVersion(kaleoDefinition.getVersion());
+	}
+
+	public String getTitle(String languageId) {
+		return LocalizationUtil.getLocalization(getTitle(), languageId);
 	}
 
 }
