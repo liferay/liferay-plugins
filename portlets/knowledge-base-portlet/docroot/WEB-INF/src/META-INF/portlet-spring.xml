@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.liferay.knowledgebase.service.ArticleLocalService" class="com.liferay.knowledgebase.service.impl.ArticleLocalServiceImpl" />
+	<bean id="com.liferay.knowledgebase.service.ArticleLocalServiceUtil" class="com.liferay.knowledgebase.service.ArticleLocalServiceUtil">
+		<property name="service" ref="com.liferay.knowledgebase.service.ArticleLocalService" />
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.ArticleService" class="com.liferay.knowledgebase.service.impl.ArticleServiceImpl" />
+	<bean id="com.liferay.knowledgebase.service.ArticleServiceUtil" class="com.liferay.knowledgebase.service.ArticleServiceUtil">
+		<property name="service" ref="com.liferay.knowledgebase.service.ArticleService" />
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.persistence.ArticlePersistence" class="com.liferay.knowledgebase.service.persistence.ArticlePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.knowledgebase.service.TemplateLocalService" class="com.liferay.knowledgebase.service.impl.TemplateLocalServiceImpl" />
+	<bean id="com.liferay.knowledgebase.service.TemplateLocalServiceUtil" class="com.liferay.knowledgebase.service.TemplateLocalServiceUtil">
+		<property name="service" ref="com.liferay.knowledgebase.service.TemplateLocalService" />
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.TemplateService" class="com.liferay.knowledgebase.service.impl.TemplateServiceImpl" />
+	<bean id="com.liferay.knowledgebase.service.TemplateServiceUtil" class="com.liferay.knowledgebase.service.TemplateServiceUtil">
+		<property name="service" ref="com.liferay.knowledgebase.service.TemplateService" />
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.persistence.TemplatePersistence" class="com.liferay.knowledgebase.service.persistence.TemplatePersistenceImpl" parent="basePersistence" />
+</beans>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.liferay.knowledgebase.model.impl.ArticleModelImpl">
+		<attributes>
+			<id name="articleId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="resourcePrimKey" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="parentResourcePrimKey" />
+			<basic name="version" />
+			<basic name="title" />
+			<basic name="content" />
+			<basic name="description" />
+			<basic name="priority" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.knowledgebase.model.impl.TemplateModelImpl">
+		<attributes>
+			<id name="templateId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="title" />
+			<basic name="content" />
+			<basic name="description" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.liferay.knowledgebase.model.impl.ArticleImpl" name="Article">
+		<table name="KB_Article" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.knowledgebase.model.impl.TemplateImpl" name="Template">
+		<table name="KB_Template" />
+		<attributes />
+	</entity>
+</entity-mappings>

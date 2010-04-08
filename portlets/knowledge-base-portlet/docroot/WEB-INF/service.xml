@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
 
-<service-builder package-path="com.liferay.knowledgebase.kb">
+<service-builder package-path="com.liferay.knowledgebase">
 	<namespace>KB</namespace>
-	<entity name="KBArticle" uuid="true" local-service="true" remote-service="true">
+	<entity name="Article" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
 
@@ -28,11 +28,11 @@
 		<!-- Other fields -->
 
 		<column name="parentResourcePrimKey" type="long" />
+		<column name="version" type="double" />
 		<column name="title" type="String" />
 		<column name="content" type="String" />
 		<column name="description" type="String" />
 		<column name="priority" type="int" />
-		<column name="version" type="double" />
 
 		<!-- Order -->
 
@@ -45,12 +45,12 @@
 		<finder name="ResourcePrimKey" return-type="Collection">
 			<finder-column name="resourcePrimKey" />
 		</finder>
-		<finder name="R_V" return-type="KBArticle" unique="true">
+		<finder name="R_V" return-type="Article" unique="true">
 			<finder-column name="resourcePrimKey" />
 			<finder-column name="version" />
 		</finder>
 	</entity>
-	<entity name="KBTemplate" uuid="true" local-service="true" remote-service="true">
+	<entity name="Template" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
 

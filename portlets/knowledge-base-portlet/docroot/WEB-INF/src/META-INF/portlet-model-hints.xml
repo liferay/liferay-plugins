@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="com.liferay.knowledgebase.model.Article">
+		<field name="uuid" type="String" />
+		<field name="articleId" type="long" />
+		<field name="resourcePrimKey" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="parentResourcePrimKey" type="long" />
+		<field name="version" type="double" />
+		<field name="title" type="String" />
+		<field name="content" type="String" />
+		<field name="description" type="String" />
+		<field name="priority" type="int" />
+	</model>
+	<model name="com.liferay.knowledgebase.model.Template">
+		<field name="uuid" type="String" />
+		<field name="templateId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="title" type="String" />
+		<field name="content" type="String" />
+		<field name="description" type="String" />
+	</model>
+</model-hints>
