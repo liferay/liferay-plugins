@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<root available-locales="en_US," default-locale="en_US">
+	<static-content language-id="en_US">
+		<![CDATA[
+			<div class="info-tip">
+				<p>
+					With the <strong>"Web Form"</strong> portlet, you're able to build contact forms and get feedback from clients.
+				</p>
+			</div>
+		]]>
+	</static-content>
+</root>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root available-locales="en_US," default-locale="en_US">
+	<static-content language-id="en_US">
+		<![CDATA[
+			<div class="info-tip">
+				<p>
+					The <strong>Wiki</strong> portlet is an amazing tool used to consolidate information and terms used within your organization or trade. Priveledged users are able to update the wiki with the newest and most accurate information.
+				</p>
+			</div>
+		]]>
+	</static-content>
+</root>

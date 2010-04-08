@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root available-locales="en_US," default-locale="en_US">
+	<static-content language-id="en_US">
+		<![CDATA[
+
+		<a href="#">
+
+			<p>
+				New!
+			</p>
+			<p>
+				7Cogs Titanium Series
+			</p>
+
+			<h3>ViX-998</h3>
+
+			<p>
+				We proudly present to you the ViX-998
+			</p>
+			<p>
+				We've listened to waht you need and have come up with the greatest gearset you'll ever use
+			</p>
+
+		</a>
+
+		]]>
+	</static-content>
+</root>
