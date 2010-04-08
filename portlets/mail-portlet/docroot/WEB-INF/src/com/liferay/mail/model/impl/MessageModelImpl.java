@@ -71,9 +71,9 @@ public class MessageModelImpl extends BaseModelImpl<Message> {
 			{ "accountId", new Integer(Types.BIGINT) },
 			{ "folderId", new Integer(Types.BIGINT) },
 			{ "sender", new Integer(Types.VARCHAR) },
-			{ "recipientsTo", new Integer(Types.VARCHAR) },
-			{ "recipientsCc", new Integer(Types.VARCHAR) },
-			{ "recipientsBcc", new Integer(Types.VARCHAR) },
+			{ "to_", new Integer(Types.VARCHAR) },
+			{ "cc", new Integer(Types.VARCHAR) },
+			{ "bcc", new Integer(Types.VARCHAR) },
 			{ "sentDate", new Integer(Types.TIMESTAMP) },
 			{ "subject", new Integer(Types.VARCHAR) },
 			{ "preview", new Integer(Types.VARCHAR) },
@@ -82,7 +82,7 @@ public class MessageModelImpl extends BaseModelImpl<Message> {
 			{ "size_", new Integer(Types.BIGINT) },
 			{ "remoteMessageId", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Mail_Message (messageId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,accountId LONG,folderId LONG,sender VARCHAR(75) null,recipientsTo VARCHAR(75) null,recipientsCc VARCHAR(75) null,recipientsBcc VARCHAR(75) null,sentDate DATE null,subject VARCHAR(75) null,preview VARCHAR(75) null,body VARCHAR(75) null,flags VARCHAR(75) null,size_ LONG,remoteMessageId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Mail_Message (messageId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,accountId LONG,folderId LONG,sender VARCHAR(75) null,to_ VARCHAR(75) null,cc VARCHAR(75) null,bcc VARCHAR(75) null,sentDate DATE null,subject VARCHAR(75) null,preview VARCHAR(75) null,body VARCHAR(75) null,flags VARCHAR(75) null,size_ LONG,remoteMessageId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Mail_Message";
 	public static final String ORDER_BY_JPQL = " ORDER BY message.sentDate ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Mail_Message.sentDate ASC";
@@ -108,9 +108,9 @@ public class MessageModelImpl extends BaseModelImpl<Message> {
 		model.setAccountId(soapModel.getAccountId());
 		model.setFolderId(soapModel.getFolderId());
 		model.setSender(soapModel.getSender());
-		model.setRecipientsTo(soapModel.getRecipientsTo());
-		model.setRecipientsCc(soapModel.getRecipientsCc());
-		model.setRecipientsBcc(soapModel.getRecipientsBcc());
+		model.setTo(soapModel.getTo());
+		model.setCc(soapModel.getCc());
+		model.setBcc(soapModel.getBcc());
 		model.setSentDate(soapModel.getSentDate());
 		model.setSubject(soapModel.getSubject());
 		model.setPreview(soapModel.getPreview());
@@ -250,43 +250,43 @@ public class MessageModelImpl extends BaseModelImpl<Message> {
 		_sender = sender;
 	}
 
-	public String getRecipientsTo() {
-		if (_recipientsTo == null) {
+	public String getTo() {
+		if (_to == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _recipientsTo;
+			return _to;
 		}
 	}
 
-	public void setRecipientsTo(String recipientsTo) {
-		_recipientsTo = recipientsTo;
+	public void setTo(String to) {
+		_to = to;
 	}
 
-	public String getRecipientsCc() {
-		if (_recipientsCc == null) {
+	public String getCc() {
+		if (_cc == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _recipientsCc;
+			return _cc;
 		}
 	}
 
-	public void setRecipientsCc(String recipientsCc) {
-		_recipientsCc = recipientsCc;
+	public void setCc(String cc) {
+		_cc = cc;
 	}
 
-	public String getRecipientsBcc() {
-		if (_recipientsBcc == null) {
+	public String getBcc() {
+		if (_bcc == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _recipientsBcc;
+			return _bcc;
 		}
 	}
 
-	public void setRecipientsBcc(String recipientsBcc) {
-		_recipientsBcc = recipientsBcc;
+	public void setBcc(String bcc) {
+		_bcc = bcc;
 	}
 
 	public Date getSentDate() {
@@ -410,9 +410,9 @@ public class MessageModelImpl extends BaseModelImpl<Message> {
 		clone.setAccountId(getAccountId());
 		clone.setFolderId(getFolderId());
 		clone.setSender(getSender());
-		clone.setRecipientsTo(getRecipientsTo());
-		clone.setRecipientsCc(getRecipientsCc());
-		clone.setRecipientsBcc(getRecipientsBcc());
+		clone.setTo(getTo());
+		clone.setCc(getCc());
+		clone.setBcc(getBcc());
 		clone.setSentDate(getSentDate());
 		clone.setSubject(getSubject());
 		clone.setPreview(getPreview());
@@ -485,12 +485,12 @@ public class MessageModelImpl extends BaseModelImpl<Message> {
 		sb.append(getFolderId());
 		sb.append(", sender=");
 		sb.append(getSender());
-		sb.append(", recipientsTo=");
-		sb.append(getRecipientsTo());
-		sb.append(", recipientsCc=");
-		sb.append(getRecipientsCc());
-		sb.append(", recipientsBcc=");
-		sb.append(getRecipientsBcc());
+		sb.append(", to=");
+		sb.append(getTo());
+		sb.append(", cc=");
+		sb.append(getCc());
+		sb.append(", bcc=");
+		sb.append(getBcc());
 		sb.append(", sentDate=");
 		sb.append(getSentDate());
 		sb.append(", subject=");
@@ -554,16 +554,16 @@ public class MessageModelImpl extends BaseModelImpl<Message> {
 		sb.append(getSender());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>recipientsTo</column-name><column-value><![CDATA[");
-		sb.append(getRecipientsTo());
+			"<column><column-name>to</column-name><column-value><![CDATA[");
+		sb.append(getTo());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>recipientsCc</column-name><column-value><![CDATA[");
-		sb.append(getRecipientsCc());
+			"<column><column-name>cc</column-name><column-value><![CDATA[");
+		sb.append(getCc());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>recipientsBcc</column-name><column-value><![CDATA[");
-		sb.append(getRecipientsBcc());
+			"<column><column-name>bcc</column-name><column-value><![CDATA[");
+		sb.append(getBcc());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>sentDate</column-name><column-value><![CDATA[");
@@ -611,9 +611,9 @@ public class MessageModelImpl extends BaseModelImpl<Message> {
 	private long _originalFolderId;
 	private boolean _setOriginalFolderId;
 	private String _sender;
-	private String _recipientsTo;
-	private String _recipientsCc;
-	private String _recipientsBcc;
+	private String _to;
+	private String _cc;
+	private String _bcc;
 	private Date _sentDate;
 	private String _subject;
 	private String _preview;

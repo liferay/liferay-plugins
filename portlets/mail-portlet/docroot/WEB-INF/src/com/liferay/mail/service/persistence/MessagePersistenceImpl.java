@@ -315,9 +315,9 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		messageImpl.setAccountId(message.getAccountId());
 		messageImpl.setFolderId(message.getFolderId());
 		messageImpl.setSender(message.getSender());
-		messageImpl.setRecipientsTo(message.getRecipientsTo());
-		messageImpl.setRecipientsCc(message.getRecipientsCc());
-		messageImpl.setRecipientsBcc(message.getRecipientsBcc());
+		messageImpl.setTo(message.getTo());
+		messageImpl.setCc(message.getCc());
+		messageImpl.setBcc(message.getBcc());
 		messageImpl.setSentDate(message.getSentDate());
 		messageImpl.setSubject(message.getSubject());
 		messageImpl.setPreview(message.getPreview());

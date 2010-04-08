@@ -79,9 +79,9 @@
 		<property name="accountId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="folderId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="sender" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="recipientsTo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="recipientsCc" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="recipientsBcc" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="to" column="to_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="cc" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="bcc" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="sentDate" type="org.hibernate.type.TimestampType" />
 		<property name="subject" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="preview" type="com.liferay.portal.dao.orm.hibernate.StringType" />

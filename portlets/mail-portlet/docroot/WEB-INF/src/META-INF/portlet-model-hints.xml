@@ -62,9 +62,9 @@
 		<field name="accountId" type="long" />
 		<field name="folderId" type="long" />
 		<field name="sender" type="String" />
-		<field name="recipientsTo" type="String" />
-		<field name="recipientsCc" type="String" />
-		<field name="recipientsBcc" type="String" />
+		<field name="to" type="String" />
+		<field name="cc" type="String" />
+		<field name="bcc" type="String" />
 		<field name="sentDate" type="Date" />
 		<field name="subject" type="String" />
 		<field name="preview" type="String" />

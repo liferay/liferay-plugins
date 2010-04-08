@@ -445,11 +445,10 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	}
 
 	public com.liferay.mail.model.Message addMessage(long userId,
-		long folderId, java.lang.String sender, java.lang.String recipientsTo,
-		java.lang.String recipientsCc, java.lang.String recipientsBcc,
-		java.util.Date sentDate, java.lang.String subject,
-		java.lang.String body, java.lang.String flags, long size,
-		long remoteMessageId)
+		long folderId, java.lang.String sender, java.lang.String to,
+		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
+		java.lang.String subject, java.lang.String body,
+		java.lang.String flags, long size, long remoteMessageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
@@ -462,21 +461,21 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			paramObj2 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj3 = ClpSerializer.translateInput(recipientsTo);
+		Object paramObj3 = ClpSerializer.translateInput(to);
 
-		if (recipientsTo == null) {
+		if (to == null) {
 			paramObj3 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj4 = ClpSerializer.translateInput(recipientsCc);
+		Object paramObj4 = ClpSerializer.translateInput(cc);
 
-		if (recipientsCc == null) {
+		if (cc == null) {
 			paramObj4 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj5 = ClpSerializer.translateInput(recipientsBcc);
+		Object paramObj5 = ClpSerializer.translateInput(bcc);
 
-		if (recipientsBcc == null) {
+		if (bcc == null) {
 			paramObj5 = new NullWrapper("java.lang.String");
 		}
 
@@ -689,11 +688,10 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	}
 
 	public com.liferay.mail.model.Message updateMessage(long messageId,
-		long folderId, java.lang.String sender, java.lang.String recipientsTo,
-		java.lang.String recipientsCc, java.lang.String recipientsBcc,
-		java.util.Date sentDate, java.lang.String subject,
-		java.lang.String body, java.lang.String flags, long size,
-		long remoteMessageId)
+		long folderId, java.lang.String sender, java.lang.String to,
+		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
+		java.lang.String subject, java.lang.String body,
+		java.lang.String flags, long size, long remoteMessageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(messageId);
@@ -706,21 +704,21 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			paramObj2 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj3 = ClpSerializer.translateInput(recipientsTo);
+		Object paramObj3 = ClpSerializer.translateInput(to);
 
-		if (recipientsTo == null) {
+		if (to == null) {
 			paramObj3 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj4 = ClpSerializer.translateInput(recipientsCc);
+		Object paramObj4 = ClpSerializer.translateInput(cc);
 
-		if (recipientsCc == null) {
+		if (cc == null) {
 			paramObj4 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj5 = ClpSerializer.translateInput(recipientsBcc);
+		Object paramObj5 = ClpSerializer.translateInput(bcc);
 
-		if (recipientsBcc == null) {
+		if (bcc == null) {
 			paramObj5 = new NullWrapper("java.lang.String");
 		}
 

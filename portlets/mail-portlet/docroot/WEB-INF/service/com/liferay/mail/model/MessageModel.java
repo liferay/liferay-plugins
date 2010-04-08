@@ -92,19 +92,19 @@ public interface MessageModel extends BaseModel<Message> {
 	public void setSender(String sender);
 
 	@AutoEscape
-	public String getRecipientsTo();
+	public String getTo();
 
-	public void setRecipientsTo(String recipientsTo);
-
-	@AutoEscape
-	public String getRecipientsCc();
-
-	public void setRecipientsCc(String recipientsCc);
+	public void setTo(String to);
 
 	@AutoEscape
-	public String getRecipientsBcc();
+	public String getCc();
 
-	public void setRecipientsBcc(String recipientsBcc);
+	public void setCc(String cc);
+
+	@AutoEscape
+	public String getBcc();
+
+	public void setBcc(String bcc);
 
 	public Date getSentDate();
 

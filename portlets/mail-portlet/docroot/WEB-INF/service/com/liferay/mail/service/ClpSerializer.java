@@ -517,24 +517,24 @@ public class ClpSerializer {
 
 					method8.invoke(newModel, value8);
 
-					Method method9 = newModelClass.getMethod("setRecipientsTo",
+					Method method9 = newModelClass.getMethod("setTo",
 							new Class[] { String.class });
 
-					String value9 = oldCplModel.getRecipientsTo();
+					String value9 = oldCplModel.getTo();
 
 					method9.invoke(newModel, value9);
 
-					Method method10 = newModelClass.getMethod("setRecipientsCc",
+					Method method10 = newModelClass.getMethod("setCc",
 							new Class[] { String.class });
 
-					String value10 = oldCplModel.getRecipientsCc();
+					String value10 = oldCplModel.getCc();
 
 					method10.invoke(newModel, value10);
 
-					Method method11 = newModelClass.getMethod("setRecipientsBcc",
+					Method method11 = newModelClass.getMethod("setBcc",
 							new Class[] { String.class });
 
-					String value11 = oldCplModel.getRecipientsBcc();
+					String value11 = oldCplModel.getBcc();
 
 					method11.invoke(newModel, value11);
 
@@ -1066,27 +1066,26 @@ public class ClpSerializer {
 
 					newModel.setSender(value8);
 
-					Method method9 = oldModelClass.getMethod("getRecipientsTo");
+					Method method9 = oldModelClass.getMethod("getTo");
 
 					String value9 = (String)method9.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setRecipientsTo(value9);
+					newModel.setTo(value9);
 
-					Method method10 = oldModelClass.getMethod("getRecipientsCc");
+					Method method10 = oldModelClass.getMethod("getCc");
 
 					String value10 = (String)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setRecipientsCc(value10);
+					newModel.setCc(value10);
 
-					Method method11 = oldModelClass.getMethod(
-							"getRecipientsBcc");
+					Method method11 = oldModelClass.getMethod("getBcc");
 
 					String value11 = (String)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setRecipientsBcc(value11);
+					newModel.setBcc(value11);
 
 					Method method12 = oldModelClass.getMethod("getSentDate");
 

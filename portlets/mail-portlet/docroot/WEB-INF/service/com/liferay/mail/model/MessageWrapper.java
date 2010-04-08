@@ -125,28 +125,28 @@ public class MessageWrapper implements Message {
 		_message.setSender(sender);
 	}
 
-	public java.lang.String getRecipientsTo() {
-		return _message.getRecipientsTo();
+	public java.lang.String getTo() {
+		return _message.getTo();
 	}
 
-	public void setRecipientsTo(java.lang.String recipientsTo) {
-		_message.setRecipientsTo(recipientsTo);
+	public void setTo(java.lang.String to) {
+		_message.setTo(to);
 	}
 
-	public java.lang.String getRecipientsCc() {
-		return _message.getRecipientsCc();
+	public java.lang.String getCc() {
+		return _message.getCc();
 	}
 
-	public void setRecipientsCc(java.lang.String recipientsCc) {
-		_message.setRecipientsCc(recipientsCc);
+	public void setCc(java.lang.String cc) {
+		_message.setCc(cc);
 	}
 
-	public java.lang.String getRecipientsBcc() {
-		return _message.getRecipientsBcc();
+	public java.lang.String getBcc() {
+		return _message.getBcc();
 	}
 
-	public void setRecipientsBcc(java.lang.String recipientsBcc) {
-		_message.setRecipientsBcc(recipientsBcc);
+	public void setBcc(java.lang.String bcc) {
+		_message.setBcc(bcc);
 	}
 
 	public java.util.Date getSentDate() {

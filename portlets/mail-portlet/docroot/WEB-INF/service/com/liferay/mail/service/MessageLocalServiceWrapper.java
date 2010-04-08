@@ -115,16 +115,14 @@ public class MessageLocalServiceWrapper implements MessageLocalService {
 	}
 
 	public com.liferay.mail.model.Message addMessage(long userId,
-		long folderId, java.lang.String sender, java.lang.String recipientsTo,
-		java.lang.String recipientsCc, java.lang.String recipientsBcc,
-		java.util.Date sentDate, java.lang.String subject,
-		java.lang.String body, java.lang.String flags, long size,
-		long remoteMessageId)
+		long folderId, java.lang.String sender, java.lang.String to,
+		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
+		java.lang.String subject, java.lang.String body,
+		java.lang.String flags, long size, long remoteMessageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _messageLocalService.addMessage(userId, folderId, sender,
-			recipientsTo, recipientsCc, recipientsBcc, sentDate, subject, body,
-			flags, size, remoteMessageId);
+		return _messageLocalService.addMessage(userId, folderId, sender, to,
+			cc, bcc, sentDate, subject, body, flags, size, remoteMessageId);
 	}
 
 	public java.util.List<com.liferay.mail.model.Message> getCompanyMessages(
@@ -157,16 +155,14 @@ public class MessageLocalServiceWrapper implements MessageLocalService {
 	}
 
 	public com.liferay.mail.model.Message updateMessage(long messageId,
-		long folderId, java.lang.String sender, java.lang.String recipientsTo,
-		java.lang.String recipientsCc, java.lang.String recipientsBcc,
-		java.util.Date sentDate, java.lang.String subject,
-		java.lang.String body, java.lang.String flags, long size,
-		long remoteMessageId)
+		long folderId, java.lang.String sender, java.lang.String to,
+		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
+		java.lang.String subject, java.lang.String body,
+		java.lang.String flags, long size, long remoteMessageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _messageLocalService.updateMessage(messageId, folderId, sender,
-			recipientsTo, recipientsCc, recipientsBcc, sentDate, subject, body,
-			flags, size, remoteMessageId);
+			to, cc, bcc, sentDate, subject, body, flags, size, remoteMessageId);
 	}
 
 	public MessageLocalService getWrappedMessageLocalService() {

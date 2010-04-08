@@ -97,9 +97,11 @@
 			<basic name="accountId" />
 			<basic name="folderId" />
 			<basic name="sender" />
-			<basic name="recipientsTo" />
-			<basic name="recipientsCc" />
-			<basic name="recipientsBcc" />
+			<basic name="to">
+				<column name="TO_" />
+			</basic>
+			<basic name="cc" />
+			<basic name="bcc" />
 			<basic name="sentDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>

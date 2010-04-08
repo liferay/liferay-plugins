@@ -50,9 +50,9 @@ public class MessageSoap implements Serializable {
 		soapModel.setAccountId(model.getAccountId());
 		soapModel.setFolderId(model.getFolderId());
 		soapModel.setSender(model.getSender());
-		soapModel.setRecipientsTo(model.getRecipientsTo());
-		soapModel.setRecipientsCc(model.getRecipientsCc());
-		soapModel.setRecipientsBcc(model.getRecipientsBcc());
+		soapModel.setTo(model.getTo());
+		soapModel.setCc(model.getCc());
+		soapModel.setBcc(model.getBcc());
 		soapModel.setSentDate(model.getSentDate());
 		soapModel.setSubject(model.getSubject());
 		soapModel.setPreview(model.getPreview());
@@ -184,28 +184,28 @@ public class MessageSoap implements Serializable {
 		_sender = sender;
 	}
 
-	public String getRecipientsTo() {
-		return _recipientsTo;
+	public String getTo() {
+		return _to;
 	}
 
-	public void setRecipientsTo(String recipientsTo) {
-		_recipientsTo = recipientsTo;
+	public void setTo(String to) {
+		_to = to;
 	}
 
-	public String getRecipientsCc() {
-		return _recipientsCc;
+	public String getCc() {
+		return _cc;
 	}
 
-	public void setRecipientsCc(String recipientsCc) {
-		_recipientsCc = recipientsCc;
+	public void setCc(String cc) {
+		_cc = cc;
 	}
 
-	public String getRecipientsBcc() {
-		return _recipientsBcc;
+	public String getBcc() {
+		return _bcc;
 	}
 
-	public void setRecipientsBcc(String recipientsBcc) {
-		_recipientsBcc = recipientsBcc;
+	public void setBcc(String bcc) {
+		_bcc = bcc;
 	}
 
 	public Date getSentDate() {
@@ -273,9 +273,9 @@ public class MessageSoap implements Serializable {
 	private long _accountId;
 	private long _folderId;
 	private String _sender;
-	private String _recipientsTo;
-	private String _recipientsCc;
-	private String _recipientsBcc;
+	private String _to;
+	private String _cc;
+	private String _bcc;
 	private Date _sentDate;
 	private String _subject;
 	private String _preview;
