@@ -55,7 +55,8 @@ public class MessageLocalServiceUtil {
 	}
 
 	public static void deleteMessage(com.liferay.mail.model.Message message)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteMessage(message);
 	}
 
@@ -129,22 +130,33 @@ public class MessageLocalServiceUtil {
 			remoteMessageId);
 	}
 
+	public static java.util.List<com.liferay.mail.model.Message> getCompanyMessages(
+		long companyId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getCompanyMessages(companyId, start, end);
+	}
+
+	public static int getCompanyMessagesCount(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getCompanyMessagesCount(companyId);
+	}
+
+	public static java.util.List<com.liferay.mail.model.Message> getFolderMessages(
+		long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getFolderMessages(folderId);
+	}
+
+	public static int getFolderMessagesCount(long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getFolderMessagesCount(folderId);
+	}
+
 	public static com.liferay.mail.model.Message getMessage(long folderId,
 		long remoteMessageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getMessage(folderId, remoteMessageId);
-	}
-
-	public static int getMessageCount(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getMessageCount(folderId);
-	}
-
-	public static java.util.List<com.liferay.mail.model.Message> getMessages(
-		long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getMessages(folderId);
 	}
 
 	public static com.liferay.mail.model.Message updateMessage(long messageId,

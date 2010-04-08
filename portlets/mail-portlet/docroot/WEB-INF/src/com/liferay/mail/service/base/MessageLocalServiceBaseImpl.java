@@ -64,7 +64,8 @@ public abstract class MessageLocalServiceBaseImpl implements MessageLocalService
 		messagePersistence.remove(messageId);
 	}
 
-	public void deleteMessage(Message message) throws SystemException {
+	public void deleteMessage(Message message)
+		throws PortalException, SystemException {
 		messagePersistence.remove(message);
 	}
 

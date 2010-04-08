@@ -53,7 +53,8 @@ public class MessageLocalServiceWrapper implements MessageLocalService {
 	}
 
 	public void deleteMessage(com.liferay.mail.model.Message message)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_messageLocalService.deleteMessage(message);
 	}
 
@@ -126,22 +127,33 @@ public class MessageLocalServiceWrapper implements MessageLocalService {
 			flags, size, remoteMessageId);
 	}
 
+	public java.util.List<com.liferay.mail.model.Message> getCompanyMessages(
+		long companyId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _messageLocalService.getCompanyMessages(companyId, start, end);
+	}
+
+	public int getCompanyMessagesCount(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _messageLocalService.getCompanyMessagesCount(companyId);
+	}
+
+	public java.util.List<com.liferay.mail.model.Message> getFolderMessages(
+		long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _messageLocalService.getFolderMessages(folderId);
+	}
+
+	public int getFolderMessagesCount(long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _messageLocalService.getFolderMessagesCount(folderId);
+	}
+
 	public com.liferay.mail.model.Message getMessage(long folderId,
 		long remoteMessageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _messageLocalService.getMessage(folderId, remoteMessageId);
-	}
-
-	public int getMessageCount(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _messageLocalService.getMessageCount(folderId);
-	}
-
-	public java.util.List<com.liferay.mail.model.Message> getMessages(
-		long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _messageLocalService.getMessages(folderId);
 	}
 
 	public com.liferay.mail.model.Message updateMessage(long messageId,
