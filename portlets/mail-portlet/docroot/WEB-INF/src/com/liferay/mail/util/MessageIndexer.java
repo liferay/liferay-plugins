@@ -45,7 +45,7 @@ import javax.portlet.PortletURL;
  */
 public class MessageIndexer extends BaseIndexer {
 
-	public static final String[] CLASS_NAMES = { Message.class.getName()};
+	public static final String[] CLASS_NAMES = {Message.class.getName()};
 
 	public static final String PORTLET_ID = PortletKeys.MAIL;
 
@@ -78,8 +78,8 @@ public class MessageIndexer extends BaseIndexer {
 		long accountId = message.getAccountId();
 		long folderId = message.getFolderId();
 		long messageId = message.getMessageId();
-		String title = message.getSubject();
-		String content = HtmlUtil.extractText(message.getBody());
+		String subject = message.getSubject();
+		String body = HtmlUtil.extractText(message.getBody());
 		long remoteMessageId = message.getRemoteMessageId();
 		Date modifiedDate = message.getModifiedDate();
 
@@ -95,13 +95,12 @@ public class MessageIndexer extends BaseIndexer {
 		document.addKeyword(Field.PORTLET_ID, PORTLET_ID);
 		document.addKeyword(Field.USER_ID, userId);
 
-		document.addKeyword("accountId", accountId);
-		document.addKeyword("folderId", folderId);
-		document.addKeyword("messageId", messageId);
-		document.addText(Field.TITLE, title);
-		document.addText(Field.CONTENT, content);
+		document.addText(Field.TITLE, subject);
+		document.addText(Field.CONTENT, body);
 		document.addKeyword("remoteMessageId", remoteMessageId);
 
+		document.addKeyword("accountId", accountId);
+		document.addKeyword("folderId", folderId);
 		document.addKeyword(
 			Field.ENTRY_CLASS_NAME, Message.class.getName());
 		document.addKeyword(Field.ENTRY_CLASS_PK, messageId);

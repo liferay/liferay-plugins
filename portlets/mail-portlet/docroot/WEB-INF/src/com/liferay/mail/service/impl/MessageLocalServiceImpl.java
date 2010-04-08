@@ -112,18 +112,20 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		return messagePersistence.countByCompanyId(companyId);
 	}
 
+	public List<Message> getFolderMessages(long folderId)
+		throws SystemException {
+
+		return messagePersistence.findByFolderId(folderId);
+	}
+
+	public int getFolderMessagesCount(long folderId) throws SystemException {
+		return messagePersistence.countByFolderId(folderId);
+	}
+
 	public Message getMessage(long folderId, long remoteMessageId)
 		throws PortalException, SystemException {
 
 		return messagePersistence.findByF_R(folderId, remoteMessageId);
-	}
-
-	public int getMessageCount(long folderId) throws SystemException {
-		return messagePersistence.countByFolderId(folderId);
-	}
-
-	public List<Message> getMessages(long folderId) throws SystemException {
-		return messagePersistence.findByFolderId(folderId);
 	}
 
 	public Message updateMessage(
