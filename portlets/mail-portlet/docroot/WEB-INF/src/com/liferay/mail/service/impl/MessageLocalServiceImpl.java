@@ -19,6 +19,8 @@ import com.liferay.mail.model.Message;
 import com.liferay.mail.service.base.MessageLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.model.User;
 
 import java.util.Date;
@@ -37,6 +39,8 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 			String subject, String body, String flags, long size,
 			long remoteMessageId)
 		throws PortalException, SystemException {
+
+		// Message
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		Folder folder = folderPersistence.findByPrimaryKey(folderId);
@@ -67,7 +71,45 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 
 		messagePersistence.update(message, false);
 
+		// Indexer
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
+
+		indexer.reindex(message);
+
 		return message;
+	}
+
+	public void deleteMessage(long messageId)
+		throws PortalException, SystemException {
+
+		Message message = messagePersistence.findByPrimaryKey(messageId);
+
+		deleteMessage(message);
+	}
+
+	public void deleteMessage(Message message)
+		throws PortalException, SystemException {
+
+		// Message
+
+		messagePersistence.remove(message);
+
+		// Indexer
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
+
+		indexer.delete(message);
+	}
+
+	public List<Message> getCompanyMessages(long companyId, int start, int end)
+		throws SystemException {
+
+		return messagePersistence.findByCompanyId(companyId, start, end);
+	}
+
+	public int getCompanyMessagesCount(long companyId) throws SystemException {
+		return messagePersistence.countByCompanyId(companyId);
 	}
 
 	public Message getMessage(long folderId, long remoteMessageId)
@@ -91,6 +133,8 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 			long remoteMessageId)
 		throws PortalException, SystemException {
 
+		// Message
+
 		Message message = messagePersistence.findByPrimaryKey(messageId);
 
 		message.setModifiedDate(new Date());
@@ -108,6 +152,12 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setRemoteMessageId(remoteMessageId);
 
 		messagePersistence.update(message, false);
+
+		// Indexer
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
+
+		indexer.reindex(message);
 
 		return message;
 	}
