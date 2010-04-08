@@ -146,7 +146,7 @@ public class StartupAction extends SimpleAction {
 			ServiceContext serviceContext)
 		throws Exception {
 
-		String content = getString("/blogs/" + fileName);
+		String content = getString(fileName);
 
 		return BlogsEntryLocalServiceUtil.addEntry(
 			null, userId, title, content, 1, 1, 2008, 0, 0, false, false,
@@ -154,11 +154,12 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected DLFileEntry addDLFileEntry(
-			long userId, long groupId, long folderId, String name, String title,
-			String description, ServiceContext serviceContext)
+			long userId, long groupId, long folderId, String fileName,
+			String name, String title, String description,
+			ServiceContext serviceContext)
 		throws Exception {
 
-		byte[] bytes = getBytes("/document_library/" + name);
+		byte[] bytes = getBytes(fileName);
 
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(false);
@@ -190,11 +191,11 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected IGImage addIGImage(
-			long userId, long folderId, String name,
+			long userId, long folderId, String name, String fileName,
 			ServiceContext serviceContext)
 		throws Exception {
 
-		InputStream is = getInputStream("/images/" + name);
+		InputStream is = getInputStream(fileName);
 
 		return IGImageLocalServiceUtil.addImage(
 			null, userId, serviceContext.getScopeGroupId(), folderId, name,
@@ -217,7 +218,7 @@ public class StartupAction extends SimpleAction {
 			ServiceContext serviceContext)
 		throws Exception {
 
-		String content = getString("/journal/articles/" + fileName);
+		String content = getString(fileName);
 
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
@@ -238,10 +239,11 @@ public class StartupAction extends SimpleAction {
 		return journalArticle;
 	}
 
-	protected JournalStructure addJournalStructure(long userId, long groupId)
+	protected JournalStructure addJournalStructure(
+			long userId, long groupId, String fileName)
 		throws Exception {
 
-		String xsd = getString("/journal/structures/single_image.xml");
+		String xsd = getString(fileName);
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -254,10 +256,11 @@ public class StartupAction extends SimpleAction {
 			serviceContext);
 	}
 
-	protected JournalTemplate addJournalTemplate(long userId, long groupId)
+	protected JournalTemplate addJournalTemplate(
+			long userId, long groupId, String fileName)
 		throws Exception {
 
-		String xsl = getString("/journal/templates/single_image.xml");
+		String xsl = getString(fileName);
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -410,7 +413,8 @@ public class StartupAction extends SimpleAction {
 			birthdayDay, birthdayYear, jobTitle, groupIds, organizationIds,
 			roleIds, userGroupIds, sendEmail, serviceContext);
 
-		byte[] portrait = getBytes("/users/" + screenName + "/portrait.jpg");
+		byte[] portrait = getBytes(
+			"/users/images/" + screenName + "_portrait.jpg");
 
 		UserLocalServiceUtil.updatePortrait(user.getUserId(), portrait);
 
@@ -437,10 +441,13 @@ public class StartupAction extends SimpleAction {
 
 		serviceContext.setAssetTagNames(new String[] {"community", "tips"});
 
+		String fileName =
+			"/users/journal/articles/my_community_" + user.getScreenName() +
+				".xml";
+
 		JournalArticle journalArticle = addJournalArticle(
 			user.getUserId(), group.getGroupId(),
-			"Public Pages " + user.getScreenName(),
-			"my_community_" + user.getScreenName() + ".xml", serviceContext);
+			"Public Pages " + user.getScreenName(), fileName, serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -472,10 +479,13 @@ public class StartupAction extends SimpleAction {
 
 		serviceContext.setAssetTagNames(new String[] {"social", "tips"});
 
+		fileName =
+			"/users/journal/articles/private_pages_" + user.getScreenName() +
+				".xml";
+
 		journalArticle = addJournalArticle(
 			user.getUserId(), group.getGroupId(),
-			"Public Pages " + user.getScreenName(),
-			"private_pages_" + user.getScreenName() + ".xml", serviceContext);
+			"Public Pages " + user.getScreenName(), fileName, serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -522,7 +532,7 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			user.getUserId(), group.getGroupId(), "My documents",
-			"workspace_docs.xml", serviceContext);
+			"/users/journal/articles/workspace_docs.xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -537,7 +547,7 @@ public class StartupAction extends SimpleAction {
 			ServiceContext serviceContext)
 		throws Exception {
 
-		String content = getString("/wiki/" + fileName);
+		String content = getString(fileName);
 
 		return WikiPageLocalServiceUtil.addPage(
 			userId, nodeId, title, content, "New", false, serviceContext);
@@ -738,8 +748,12 @@ public class StartupAction extends SimpleAction {
 
 		// Journal
 
-		addJournalStructure(defaultUserId, group.getGroupId());
-		addJournalTemplate(defaultUserId, group.getGroupId());
+		addJournalStructure(
+			defaultUserId, group.getGroupId(),
+			"/guest/journal/structures/single_image.xml");
+		addJournalTemplate(
+			defaultUserId, group.getGroupId(),
+			"/guest/journal/templates/single_image.xml");
 
 		// Image gallery
 
@@ -755,31 +769,31 @@ public class StartupAction extends SimpleAction {
 
 		IGImage cellBgIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "cell_bg.png",
-			serviceContext);
+			"/guest/images/cell_bg.png", serviceContext);
 
 		IGImage portalMashupIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "portal_mashup.png",
-			serviceContext);
+			"/guest/images/portal_mashup.png", serviceContext);
 
 		IGImage sevenCogsAdIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "sevencogs_ad.png",
-			serviceContext);
+			"/guest/images/sevencogs_ad.png", serviceContext);
 
 		IGImage sevenCogsMobileAdIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "sevencogs_mobile_ad.png",
-			serviceContext);
+			"/guest/images/sevencogs_mobile_ad.png", serviceContext);
 
 		IGImage sharedWorkspacesIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "shared_workspaces.png",
-			serviceContext);
+			"/guest/images/shared_workspaces.png", serviceContext);
 
 		IGImage socialNetworkingIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "social_network.png",
-			serviceContext);
+			"/guest/images/social_network.png", serviceContext);
 
 		IGImage webPublishingIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "web_publishing.png",
-			serviceContext);
+			"/guest/images/web_publishing.png", serviceContext);
 
 		// Welcome layout
 
@@ -796,8 +810,8 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setAssetTagNames(new String[] {"liferay", "welcome"});
 
 		JournalArticle journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Welcome", "welcome.xml",
-			serviceContext);
+			defaultUserId, group.getGroupId(), "Welcome",
+			"/guest/journal/articles/welcome.xml", serviceContext);
 
 		String content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -836,7 +850,7 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "7 Cogs Ad",
-			"sample_site_ad.xml", serviceContext);
+			"/guest/journal/articles/sample_site_ad.xml", serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -869,7 +883,7 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "7 Cogs Mobile Ad",
-			"sample_site_ad.xml", serviceContext);
+			"/guest/journal/articles/sample_site_ad.xml", serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -902,7 +916,7 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Welcome Note",
-			"welcome_note.xml", serviceContext);
+			"/guest/journal/articles/welcome_note.xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -917,7 +931,7 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Welcome Login",
-			"welcome_login.xml", serviceContext);
+			"/guest/journal/articles/welcome_login.xml", serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(), "[$COMPANY_ID$]",
@@ -976,7 +990,7 @@ public class StartupAction extends SimpleAction {
 
 		LayoutSetLocalServiceUtil.updateLogo(
 			group.getGroupId(), false, true,
-			getInputStream("/images/seven_cogs_logo.png"));
+			getInputStream("/sample/images/seven_cogs_logo.png"));
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
 			group.getGroupId(), false, "sevencogs_WAR_sevencogstheme", "01", "",
@@ -1020,8 +1034,12 @@ public class StartupAction extends SimpleAction {
 
 		// Journal
 
-		addJournalStructure(defaultUserId, group.getGroupId());
-		addJournalTemplate(defaultUserId, group.getGroupId());
+		addJournalStructure(
+			defaultUserId, group.getGroupId(),
+			"/sample/journal/structures/single_image.xml");
+		addJournalTemplate(
+			defaultUserId, group.getGroupId(),
+			"/sample/journal/template/single_image.xml");
 
 		// Image gallery
 
@@ -1037,7 +1055,7 @@ public class StartupAction extends SimpleAction {
 
 		IGImage addIconIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "add_icon.png",
-			serviceContext);
+			"/sample/images/add_icon.png", serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"configuration"});
 		serviceContext.setAssetCategoryIds(
@@ -1045,7 +1063,7 @@ public class StartupAction extends SimpleAction {
 
 		IGImage configurationIconIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "configuration_icon.png",
-			serviceContext);
+			"/sample/images/configuration_icon.png", serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"edit"});
 		serviceContext.setAssetCategoryIds(
@@ -1053,7 +1071,7 @@ public class StartupAction extends SimpleAction {
 
 		IGImage editIconIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "edit_icon.png",
-			serviceContext);
+			"/sample/images/edit_icon.png", serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"enterprise"});
 		serviceContext.setAssetCategoryIds(
@@ -1063,7 +1081,8 @@ public class StartupAction extends SimpleAction {
 			});
 
 		IGImage eeAdIGImage = addIGImage(
-			defaultUserId, igFolder.getFolderId(), "ee_ad.png", serviceContext);
+			defaultUserId, igFolder.getFolderId(), "ee_ad.png",
+			"/sample/images/ee_ad.png", serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"gartner", "quadrant"});
 		serviceContext.setAssetCategoryIds(
@@ -1074,13 +1093,13 @@ public class StartupAction extends SimpleAction {
 
 		IGImage gartnerIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "gartner.png",
-			serviceContext);
+			"/sample/images/gartner.png", serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"vix-998"});
 
 		IGImage introducingIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "introducing.png",
-			serviceContext);
+			"/sample/images/introducing.png", serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"liferay", "logo"});
 		serviceContext.setAssetCategoryIds(
@@ -1088,7 +1107,7 @@ public class StartupAction extends SimpleAction {
 
 		IGImage liferayLogoIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "liferay_logo.png",
-			serviceContext);
+			"/sample/images/liferay_logo.png", serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"look and feel"});
 		serviceContext.setAssetCategoryIds(
@@ -1096,7 +1115,7 @@ public class StartupAction extends SimpleAction {
 
 		IGImage lookIconIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "look_icon.png",
-			serviceContext);
+			"/sample/images/look_icon.png", serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"vix-998", "products"});
 		serviceContext.setAssetCategoryIds(
@@ -1104,7 +1123,7 @@ public class StartupAction extends SimpleAction {
 
 		IGImage productsIGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "products.png",
-			serviceContext);
+			"/sample/images/products.png", serviceContext);
 
 		// Home layout
 
@@ -1122,7 +1141,7 @@ public class StartupAction extends SimpleAction {
 
 		JournalArticle journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Banner",
-			"front_page_banner.xml", serviceContext);
+			"/sample/journal/articles/home_page_banner.xml", serviceContext);
 
 		String content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -1142,7 +1161,7 @@ public class StartupAction extends SimpleAction {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		// Front Page Intro content portlet
+		// Front Page - Intro content portlet
 
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
@@ -1153,12 +1172,12 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Front Page Intro",
-			"front_page_intro.xml", serviceContext);
+			"/sample/journal/articles/home_page_intro.xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		// Fron Page - Edit and Create content portlet
+		// Front Page - Edit and Create content portlet
 
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
@@ -1169,7 +1188,8 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Fron Page - Edit and Create",
-			"front_page_edit_and_create.xml", serviceContext);
+			"/sample/journal/articles/home_page_edit_and_create.xml",
+			serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -1206,7 +1226,7 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Front Page - EE Ad",
-			"ee_ad.xml", serviceContext);
+			"/sample/journal/articles/ee_ad.xml", serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -1238,7 +1258,8 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Front Page - Permissions",
-			"front_page_permissions.xml", serviceContext);
+			"/sample/journal/articles/home_page_permissions_info.xml",
+			serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -1259,7 +1280,7 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Products Image",
-			"products_banner.xml", serviceContext);
+			"/sample/journal/articles/products_banner.xml", serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -1289,8 +1310,8 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setAssetTagNames(new String[] {"liferay", "gartner"});
 
 		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Gartner", "gartner.xml",
-			serviceContext);
+			defaultUserId, group.getGroupId(), "Gartner",
+			"/sample/journal/articles/gartner_ad.xml", serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -1320,7 +1341,8 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Introducing Vix",
-			"introducing_vix.xml", serviceContext);
+			"/sample/journal/articles/products_landing_intro.xml",
+			serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -1334,9 +1356,10 @@ public class StartupAction extends SimpleAction {
 
 		serviceContext.setAssetTagNames(new String[] {"info"});
 
-		journalArticle = addJournalArticle(defaultUserId,
-			group.getGroupId(), "Products - More Information",
-			"products_more.xml", serviceContext);
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Products - More Information",
+			"/sample/journal/articles/products_landing_intro_info.xml",
+			serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -1364,16 +1387,16 @@ public class StartupAction extends SimpleAction {
 			new long[] {learningAssetCategory.getCategoryId()});
 
 		addWikiPage(
-			defaultUserId, wikiNode.getNodeId(), "FrontPage", "FrontPage.xml",
-			serviceContext);
+			defaultUserId, wikiNode.getNodeId(), "FrontPage",
+			"/sample/wiki/FrontPage.xml", serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"vix-998", "features"});
 		serviceContext.setAssetCategoryIds(
 			new long[] {productsAssetCategory.getCategoryId()});
 
 		addWikiPage(
-			defaultUserId, wikiNode.getNodeId(), "Vix-998", "Vix-998.xml",
-			serviceContext);
+			defaultUserId, wikiNode.getNodeId(), "Vix-998",
+			"/sample/wiki/Vix-998.xml", serviceContext);
 
 		// Forums layout
 
@@ -1394,8 +1417,8 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setAssetTagNames(new String[] {"liferay"});
 
 		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "About Us", "7cogs_about_us.xml",
-			serviceContext);
+			defaultUserId, group.getGroupId(), "About Us",
+			"/sample/journal/articles/home_7cogs_about_us.xml", serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -1439,7 +1462,8 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Home",
-			"7cogs_private_pages.xml", serviceContext);
+			"/sample/journal/articles/home_7cogs_private_pages.xml",
+			serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -1466,7 +1490,7 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Shared Documents",
-			"shared_docs.xml", serviceContext);
+			"/sample/journal/articles/shared_docs.xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -1493,7 +1517,7 @@ public class StartupAction extends SimpleAction {
 
 		LayoutSetLocalServiceUtil.updateLogo(
 			group.getGroupId(), false, true,
-			getInputStream("/images/seven_cogs_mobile_logo.png"));
+			getInputStream("/mobile/images/seven_cogs_mobile_logo.png"));
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
 			group.getGroupId(), false,
@@ -1512,11 +1536,11 @@ public class StartupAction extends SimpleAction {
 
 		IGImage mobileProduct1IGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "mobile_product_1.png",
-			serviceContext);
+			"/mobile/images/mobile_product_1.png", serviceContext);
 
 		IGImage mobileProduct2IGImage = addIGImage(
 			defaultUserId, igFolder.getFolderId(), "mobile_product_2.png",
-			serviceContext);
+			"/mobile/images/mobile_product_2.png", serviceContext);
 
 		// Home layout
 
@@ -1529,7 +1553,7 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Mobile Welcome",
-			"mobile_welcome.xml", serviceContext);
+			"/mobile/journal/articles/mobile_welcome.xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -1545,7 +1569,7 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Mobile Products",
-			"mobile_products.xml", serviceContext);
+			"/mobile/journal/articles/mobile_products.xml", serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
@@ -1685,8 +1709,8 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setScopeGroupId(brunoUser.getGroup().getGroupId());
 
 		addBlogsEntry(
-			brunoUser.getUserId(), "New Control Panel!!", "controlpanel.xml",
-			serviceContext);
+			brunoUser.getUserId(), "New Control Panel!!",
+			"/users/blogs/controlpanel.xml", serviceContext);
 
 		serviceContext.setAssetCategoryIds(
 			new long[] {
@@ -1701,7 +1725,7 @@ public class StartupAction extends SimpleAction {
 		addBlogsEntry(
 			brunoUser.getUserId(),
 			"Configuration of the portal: portal.properties",
-			"portalproperties.xml", serviceContext);
+			"/users/blogs/portalproperties.xml", serviceContext);
 
 		serviceContext.setAssetCategoryIds(
 			new long[] {
@@ -1713,7 +1737,8 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setScopeGroupId(johnUser.getGroup().getGroupId());
 
 		addBlogsEntry(
-			johnUser.getUserId(), "Using the wiki", "wiki.xml", serviceContext);
+			johnUser.getUserId(), "Using the wiki", "/users/blogs/wiki.xml",
+			serviceContext);
 
 		serviceContext.setAssetCategoryIds(
 			new long[] {
@@ -1725,8 +1750,8 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setScopeGroupId(michelleUser.getGroup().getGroupId());
 
 		addBlogsEntry(
-			michelleUser.getUserId(), "We have an amazing Chat!", "chat.xml",
-			serviceContext);
+			michelleUser.getUserId(), "We have an amazing Chat!",
+			"/users/blogs/chat.xml", serviceContext);
 
 		// Document library
 
@@ -1739,8 +1764,9 @@ public class StartupAction extends SimpleAction {
 
 		addDLFileEntry(
 			brunoUser.getUserId(), dlFolder.getGroupId(),
-			dlFolder.getFolderId(), "Budget.xls", "Budget",
-			"Budgets for the current year", serviceContext);
+			dlFolder.getFolderId(), "/users/document_library/Budget.xls",
+			"Budget.xls", "Budget", "Budgets for the current year",
+			serviceContext);
 
 		addDLFolder(
 			michelleUser.getUserId(), michelleUser.getGroup().getGroupId(),
@@ -1755,8 +1781,10 @@ public class StartupAction extends SimpleAction {
 
 		addDLFileEntry(
 			michelleUser.getUserId(), dlFolder.getGroupId(),
-			dlFolder.getFolderId(), "Notes from the last meeting.doc",
-			"Notes from the last meeting", "Important notes", serviceContext);
+			dlFolder.getFolderId(),
+			"/users/document_library/Notes from the last meeting.doc",
+			"Notes from the last meeting.doc", "Notes from the last meeting",
+			"Important notes", serviceContext);
 
 		addDLFolder(
 			richardUser.getUserId(), richardUser.getGroup().getGroupId(),
@@ -1771,7 +1799,8 @@ public class StartupAction extends SimpleAction {
 
 		addDLFileEntry(
 			richardUser.getUserId(), dlFolder.getGroupId(),
-			dlFolder.getFolderId(), "New Features.ppt", "New Features",
+			dlFolder.getFolderId(), "/users/document_library/New Features.ppt",
+			"New Features.ppt", "New Features",
 			"Features for the current year", serviceContext);
 
 		// Message boards
