@@ -662,6 +662,7 @@ public class StartupAction extends SimpleAction {
 		clearData(companyId);
 		setupCommunities(companyId, defaultUserId);
 		setupOrganizations(companyId, defaultUserId);
+		setupMobileOrganizations(companyId, defaultUserId);
 		setupRoles(companyId, defaultUserId);
 		setupUsers(companyId);
 	}

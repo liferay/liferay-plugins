@@ -1,12 +1,19 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
-			<div class="info-tip">
-				<p>
-					Set up <em>Landing Pages</em> for each section of your site. With <a href="http://www.liferay.com" target="_blank">Liferay</a>, it's easy create unique and re-usable content for each page you publish and cater content for your audience directy.
-				</p>
-			</div>
+			<p>
+				<img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" /> Check the latest official documentation for Liferay at&nbsp;<a href="http://www.liferay.com/web/guest/community/documentation">www.liferay.com/web/guest/community/documentation</a>
+			</p>
+
+			<p>
+				More documentation at <a href="http://wiki.liferay.com">wiki.liferay.com</a>
+			</p>
+
+			<p>
+				Have questions? Go to the Liferay Forums (<a href="http://www.liferay.com/web/guest/community/forums">www.liferay.com/web/guest/community/forums</a>) and the Liferay Community will be able to help you
+			</p>
 		]]>
 	</static-content>
 </root>
