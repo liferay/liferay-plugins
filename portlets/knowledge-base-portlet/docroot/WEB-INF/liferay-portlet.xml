@@ -4,7 +4,15 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<css-class-wrapper>knowledge-base-portlet</css-class-wrapper>
+		<css-class-wrapper>knowledge-base-portlet-kb</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>2</portlet-name>
+		<css-class-wrapper>knowledge-base-portlet-kb-aggregator</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>3</portlet-name>
+		<css-class-wrapper>knowledge-base-portlet-kb-display</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

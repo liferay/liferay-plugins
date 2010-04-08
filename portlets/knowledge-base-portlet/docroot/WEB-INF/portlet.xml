@@ -9,10 +9,10 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Knowledge Base</display-name>
-		<portlet-class>com.liferay.knowledgebase.portlet.KBPortlet</portlet-class>
+		<portlet-class>com.liferay.knowledgebase.kb.portlet.KBPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
-			<value>/view.jsp</value>
+			<value>/kb/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -22,6 +22,66 @@
 			<title>Knowledge Base</title>
 			<short-title>Knowledge Base</short-title>
 			<keywords>Knowledge Base</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>2</portlet-name>
+		<display-name>Knowledge Base Aggregator</display-name>
+		<portlet-class>com.liferay.knowledgebase.kb.portlet.KBAggregatorPortlet</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/kb_aggregator/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>Knowledge Base Aggregator</title>
+			<short-title>Knowledge Base Aggregator</short-title>
+			<keywords>Knowledge Base Aggregator</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>3</portlet-name>
+		<display-name>Knowledge Base Display</display-name>
+		<portlet-class>com.liferay.knowledgebase.kb.portlet.KBDisplayPortlet</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/kb_display/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>Knowledge Base Display</title>
+			<short-title>Knowledge Base Display</short-title>
+			<keywords>Knowledge Base Display</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
