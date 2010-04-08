@@ -64,7 +64,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 	<c:otherwise>
 
 		<%
-		renderRequest.setAttribute("PORTLET_CONFIGURATOR_VISIBILITY", Boolean.TRUE);
+		renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
 		%>
 
 		<div class="portlet-msg-info">

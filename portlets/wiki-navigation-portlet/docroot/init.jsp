@@ -29,6 +29,7 @@
 <%@ page import="com.liferay.portal.kernel.util.PrefsParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.PropsUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
+<%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
 <%@ page import="com.liferay.portal.service.permission.PortletPermissionUtil" %>
 <%@ page import="com.liferay.portal.util.PortletKeys" %>
