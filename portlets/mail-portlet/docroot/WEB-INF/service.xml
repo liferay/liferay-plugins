@@ -135,9 +135,9 @@
 		<column name="accountId" type="long" />
 		<column name="folderId" type="long" />
 		<column name="sender" type="String" />
-		<column name="recipientsTo" type="String" />
-		<column name="recipientsCc" type="String" />
-		<column name="recipientsBcc" type="String" />
+		<column name="to" type="String" />
+		<column name="cc" type="String" />
+		<column name="bcc" type="String" />
 		<column name="sentDate" type="Date" />
 		<column name="subject" type="String" />
 		<column name="preview" type="String" />

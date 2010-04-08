@@ -34,10 +34,9 @@ import java.util.List;
 public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 
 	public Message addMessage(
-			long userId, long folderId, String sender, String recipientsTo,
-			String recipientsCc, String recipientsBcc, Date sentDate,
-			String subject, String body, String flags, long size,
-			long remoteMessageId)
+			long userId, long folderId, String sender, String to, String cc,
+			String bcc, Date sentDate, String subject, String body,
+			String flags, long size, long remoteMessageId)
 		throws PortalException, SystemException {
 
 		// Message
@@ -58,9 +57,9 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setAccountId(folder.getAccountId());
 		message.setFolderId(folderId);
 		message.setSender(sender);
-		message.setRecipientsTo(recipientsTo);
-		message.setRecipientsCc(recipientsCc);
-		message.setRecipientsBcc(recipientsBcc);
+		message.setTo(to);
+		message.setCc(cc);
+		message.setBcc(bcc);
 		message.setSentDate(sentDate);
 		message.setSubject(subject);
 		message.setPreview(body);
@@ -129,10 +128,9 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 	}
 
 	public Message updateMessage(
-			long messageId, long folderId, String sender, String recipientsTo,
-			String recipientsCc, String recipientsBcc, Date sentDate,
-			String subject, String body, String flags, long size,
-			long remoteMessageId)
+			long messageId, long folderId, String sender, String to, String cc,
+			String bcc, Date sentDate, String subject, String body,
+			String flags, long size, long remoteMessageId)
 		throws PortalException, SystemException {
 
 		// Message
@@ -142,9 +140,9 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setModifiedDate(new Date());
 		message.setFolderId(folderId);
 		message.setSender(sender);
-		message.setRecipientsTo(recipientsTo);
-		message.setRecipientsCc(recipientsCc);
-		message.setRecipientsBcc(recipientsBcc);
+		message.setTo(to);
+		message.setCc(cc);
+		message.setBcc(bcc);
 		message.setSentDate(sentDate);
 		message.setSubject(subject);
 		message.setPreview(body);
