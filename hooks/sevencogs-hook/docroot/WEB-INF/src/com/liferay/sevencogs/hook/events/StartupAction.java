@@ -314,7 +314,7 @@ public class StartupAction extends SimpleAction {
 			String fileName, ServiceContext serviceContext)
 		throws Exception {
 
-		String body = getString("/message_boards/" + fileName);
+		String body = getString(fileName);
 
 		return MBMessageLocalServiceUtil.addMessage(
 			userId, userName, groupId, categoryId, threadId, parentMessageId,
@@ -1039,7 +1039,7 @@ public class StartupAction extends SimpleAction {
 			"/sample/journal/structures/single_image.xml");
 		addJournalTemplate(
 			defaultUserId, group.getGroupId(),
-			"/sample/journal/template/single_image.xml");
+			"/sample/journal/templates/single_image.xml");
 
 		// Image gallery
 
@@ -1188,7 +1188,7 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Fron Page - Edit and Create",
-			"/sample/journal/articles/home_page_edit_and_create.xml",
+			"/sample/journal/articles/home_page_edit_and_create_info.xml",
 			serviceContext);
 
 		content = StringUtil.replace(
@@ -1822,7 +1822,8 @@ public class StartupAction extends SimpleAction {
 		addMBMessage(
 			brunoUser.getUserId(), brunoUser.getFullName(),
 			mbCategory.getGroupId(), mbCategory.getCategoryId(), 0, 0,
-			"Nice Forums", "general.xml", serviceContext);
+			"Nice Forums", "/sample/message_boards/general.xml",
+			serviceContext);
 
 		mbCategory = addMBCategory(
 			brunoUser.getUserId(), "General Questions",
@@ -1833,7 +1834,8 @@ public class StartupAction extends SimpleAction {
 		MBMessage vix1Message = addMBMessage(
 			brunoUser.getUserId(), brunoUser.getFullName(),
 			mbCategory.getGroupId(), mbCategory.getCategoryId(), 0, 0,
-			"About the Vix-998", "vix1.xml", serviceContext);
+			"About the Vix-998", "/sample/message_boards/vix1.xml",
+			serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"vix-998", "latin"});
 
@@ -1841,7 +1843,8 @@ public class StartupAction extends SimpleAction {
 			richardUser.getUserId(), richardUser.getFullName(),
 			mbCategory.getGroupId(), mbCategory.getCategoryId(),
 			vix1Message.getThreadId(), vix1Message.getMessageId(),
-			"RE: About the Vix-998", "vix2.xml", serviceContext);
+			"RE: About the Vix-998", "/sample/message_boards/vix2.xml",
+			serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"vix-998", "vulgo"});
 
@@ -1849,7 +1852,8 @@ public class StartupAction extends SimpleAction {
 			michelleUser.getUserId(), michelleUser.getFullName(),
 			mbCategory.getGroupId(), mbCategory.getCategoryId(),
 			vix1Message.getThreadId(), vix2Message.getMessageId(),
-			"RE: About the Vix-998", "vix3.xml", serviceContext);
+			"RE: About the Vix-998", "/sample/message_boards/vix3.xml",
+			serviceContext);
 
 		// Social
 
