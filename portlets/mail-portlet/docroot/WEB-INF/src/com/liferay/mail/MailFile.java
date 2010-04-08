@@ -20,41 +20,40 @@ import java.io.File;
  * <a href="MailFile.java.html"><b><i>View Source</i></b></a>
  *
  * @author Scott Lee
- *
  */
 public class MailFile {
 
-	public MailFile(String contentPath, String filename, long size) {
-		this.contentPath = contentPath;
-		this.filename = filename;
-		this.size = size;
+	public MailFile(String contentPath, String fileName, long size) {
+		_contentPath = contentPath;
+		_fileName = fileName;
+		_size = size;
 	}
 
-	public MailFile(File file, String filename, long size) {
-		this.file = file;
-		this.filename = filename;
-		this.size = size;
+	public MailFile(File file, String fileName, long size) {
+		_file = file;
+		_fileName = fileName;
+		_size = size;
 	}
 
 	public String getContentPath() {
-		return this.contentPath;
+		return _contentPath;
 	}
 
 	public File getFile() {
-		return this.file;
+		return _file;
 	}
 
-	public String getFilename() {
-		return this.filename;
+	public String getFileName() {
+		return _fileName;
 	}
 
 	public long getSize() {
-		return this.size;
+		return _size;
 	}
 
-	protected String contentPath;
-	protected File file;
-	protected String filename;
-	protected long size;
+	protected String _contentPath;
+	protected File _file;
+	protected String _fileName;
+	protected long _size;
 
 }

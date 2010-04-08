@@ -35,7 +35,7 @@ import javax.mail.internet.InternetAddress;
  */
 public interface Mailbox {
 
-	public void createFolder(String displayName)
+	public void addFolder(String displayName)
 		throws PortalException, SystemException;
 
 	public void deleteAccount() throws PortalException, SystemException;
@@ -56,24 +56,21 @@ public interface Mailbox {
 
 	public List<Folder> getFolders() throws SystemException;
 
-	public Message getMessageId(long messageId)
+	public Message getMessage(long messageId)
 		throws PortalException, SystemException;
 
-	public Message getMessageNumber(
-			long folderId, int messageNumber, int offset,
-			String orderByField, String orderByType, String keywords)
+	public Message getMessage(
+			long folderId, String keywords, int messageNumber, int offset,
+			String orderByField, String orderByType)
 		throws PortalException, SystemException;
 
-	public int getMessages(
-			List<Message> messages, long folderId, int pageNumber,
-			int messagesPerPage, String orderByField, String orderByType,
-			String keywords)
+	public int getMessagesCount(long folderId)
 		throws PortalException, SystemException;
 
-	public int getMessagesStoredCount(long folderId)
+	public int getRemoteMessagesCount(long folderId)
 		throws PortalException, SystemException;
 
-	public long getUnreadMessageCountByAccountId()
+	public long getUnreadMessagesCount()
 		throws PortalException, SystemException;
 
 	public User getUser();
@@ -85,35 +82,40 @@ public interface Mailbox {
 	public List<InternetAddress> parseAddresses(String addresses)
 		throws PortalException, SystemException;
 
+	public void populateMessages(
+			List<Message> messages, long folderId, String keywords,
+			int pageNumber, int messagesPerPage, String orderByField,
+			String orderByType)
+		throws PortalException, SystemException;
+
 	public Message saveDraft(
-			String to, String cc, String bcc, String subject, String body,
-			List<MailFile> mailFiles, long messageId)
+			long messageId, String to, String cc, String bcc, String subject,
+			String body, List<MailFile> mailFiles)
 		throws PortalException, SystemException;
 
-	public void sendMessage(long sendersAccountId, long messageId)
-		throws PortalException, SystemException;
-
-	public void sendUpdateMessage()
-		throws PortalException, SystemException;
-
-	public void sendUpdateMessage(long folderId)
+	public void sendMessage(long accountId, long messageId)
 		throws PortalException, SystemException;
 
 	public void setAccount(Account account);
 
 	public void setUser(User user);
 
-	public void testAccount(
-			String incomingHostName, int incomingPort, boolean incomingSecure,
-			String outgoingHostName, int outgoingPort, boolean outgoingSecure,
-			String login, String password)
+	public void synchronize() throws PortalException, SystemException;
+
+	public void synchronize(long folderId)
 		throws PortalException, SystemException;
 
 	public void updateFolder(long folderId, String displayName)
 		throws PortalException, SystemException;
 
-	public void updateMessageFlags(
+	public void updateMessagesFlag(
 			long folderId, long[] messageIds, int flag, boolean value)
+		throws PortalException, SystemException;
+
+	public void validateAccount(
+			String incomingHostName, int incomingPort, boolean incomingSecure,
+			String outgoingHostName, int outgoingPort, boolean outgoingSecure,
+			String login, String password)
 		throws PortalException, SystemException;
 
 	public void validateAddresses(String addresses)
