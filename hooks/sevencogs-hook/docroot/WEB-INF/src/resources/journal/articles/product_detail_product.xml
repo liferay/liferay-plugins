@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root available-locales="en_US," default-locale="en_US">
+	<static-content language-id="en_US">
+		<![CDATA[
+
+		<h3>ViX-998</h3>
+
+		<p>
+			The ViX-998 is our premium flagship cog, capable of withstanding 100-5000lb of torque, meaning whatever you use this cog for-- this cog will get things done.
+		</p>
+
+		<p>
+			Every ViX-998 is guaranteed for life*, we pride ourselves in the quality of our cogs. We know that you rely on the precision of our parts. We've developed a forging process that reduces the shrink and expansion rates of each cog up to 0.0003mm
+		</p>
+
+		<h4>Specifications:</h4>
+
+		<table>
+			<tr>
+				<td>Quality</td>
+				<td>Diameter</td>
+				<td>Length</td>
+				<td>Min-Pitch</td>
+				<td>Max-Pitch</td>
+				<td>Max-Torque</td>
+			</tr>
+			<tr>
+				<td>ViX-998 TI</td>
+				<td>13"</td>
+				<td>28.3"</td>
+				<td>4</td>
+				<td>48</td>
+				<td>1000lbs</td>
+			</tr>
+			<tr>
+				<td>ViX-998 AL</td>
+				<td>13"</td>
+				<td>28.3"</td>
+				<td>4</td>
+				<td>48</td>
+				<td>500lbs</td>
+			</tr>
+			<tr>
+				<td>ViX-998 ST</td>
+				<td>13"</td>
+				<td>28.3"</td>
+				<td>4</td>
+				<td>48</td>
+				<td>750lbs</td>
+			</tr>
+		</table>
+
+		<p>
+			* {normal wear, tear and extensive use. Only applies to Titanium (TI) and Steel (ST) models.}
+		</p>
+
+		]]>
+	</static-content>
+</root>

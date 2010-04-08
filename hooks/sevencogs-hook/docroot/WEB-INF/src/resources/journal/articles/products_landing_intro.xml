@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root available-locales="en_US," default-locale="en_US">
+	<static-content language-id="en_US">
+		<![CDATA[
+
+		<p>
+			We're proud to help you build the gadgets and machinery you want with the highest quality anyou could possibly achive.
+		</p>
+		<ul>
+			<li><a href="#"><span>Cogs, Gears, &amp; Springs</span></a></li>
+			<li><a href="#"><span>Gearboxes</span></a></li>
+			<li><a href="#"><span>Custom Assembly</span></a></li>
+		</ul>
+
+		]]>
+	</static-content>
+</root>

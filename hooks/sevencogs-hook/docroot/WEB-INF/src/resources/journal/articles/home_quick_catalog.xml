@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<root available-locales="en_US," default-locale="en_US">
+	<static-content language-id="en_US">
+		<![CDATA[
+		<h1>Full Product Line and Services:</h1>
+		<ul class="bullet">
+			<li><a href="#">Cogs, Sprockets, Springs, Bearings...</a></li>
+			<li><a href="#">Gearbox Assembly</a></li>
+			<li><a href="#">Custom CNC</a></li>
+		</ul>
+		]]>
+	</static-content>
+</root>
