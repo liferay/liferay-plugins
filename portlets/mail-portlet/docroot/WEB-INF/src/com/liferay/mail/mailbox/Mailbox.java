@@ -64,6 +64,11 @@ public interface Mailbox {
 			String orderByField, String orderByType)
 		throws PortalException, SystemException;
 
+	public List<Message> getMessages(
+			long folderId, String keywords, int pageNumber, int messagesPerPage,
+			String orderByField, String orderByType)
+		throws PortalException, SystemException;
+
 	public int getMessagesCount(long folderId)
 		throws PortalException, SystemException;
 
@@ -80,12 +85,6 @@ public interface Mailbox {
 		throws PortalException, SystemException;
 
 	public List<InternetAddress> parseAddresses(String addresses)
-		throws PortalException, SystemException;
-
-	public void populateMessages(
-			List<Message> messages, long folderId, String keywords,
-			int pageNumber, int messagesPerPage, String orderByField,
-			String orderByType)
 		throws PortalException, SystemException;
 
 	public Message saveDraft(
