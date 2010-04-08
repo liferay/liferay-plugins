@@ -21,27 +21,27 @@ package com.liferay.portal.workflow.kaleo.definition;
  */
 public enum DurationScale {
 
-	DAYS("days"), HOURS("hours"), MINUTES("minutes"), MONTHS("months"),
-	SECONDS("seconds"), YEARS("years");
+	DAY("day"), HOUR("hour"), MINUTE("minute"), MONTH("month"),
+	SECOND("second"), WEEK("week"), YEAR("year");
 
 	public static DurationScale parse(String value) {
-		if (DAYS.getValue().equals(value)) {
-			return DAYS;
+		if (DAY.getValue().equals(value)) {
+			return DAY;
 		}
-		else if (HOURS.getValue().equals(value)) {
-			return HOURS;
+		else if (HOUR.getValue().equals(value)) {
+			return HOUR;
 		}
-		else if (MINUTES.getValue().equals(value)) {
-			return MINUTES;
+		else if (MINUTE.getValue().equals(value)) {
+			return MINUTE;
 		}
-		else if (MONTHS.getValue().equals(value)) {
-			return MONTHS;
+		else if (MONTH.getValue().equals(value)) {
+			return MONTH;
 		}
-		else if (SECONDS.getValue().equals(value)) {
-			return SECONDS;
+		else if (SECOND.getValue().equals(value)) {
+			return SECOND;
 		}
-		else if (YEARS.getValue().equals(value)) {
-			return YEARS;
+		else if (YEAR.getValue().equals(value)) {
+			return YEAR;
 		}
 
 		throw new IllegalArgumentException("Invalid value " + value);
