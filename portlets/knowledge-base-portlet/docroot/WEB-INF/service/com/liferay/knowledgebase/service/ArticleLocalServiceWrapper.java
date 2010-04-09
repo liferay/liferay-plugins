@@ -113,6 +113,78 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.updateArticle(article, merge);
 	}
 
+	public com.liferay.knowledgebase.model.Article addArticle(
+		java.lang.String uuid, long userId, long parentResourcePrimKey,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description, int priority,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.addArticle(uuid, userId,
+			parentResourcePrimKey, title, content, description, priority,
+			serviceContext);
+	}
+
+	public java.util.List<com.liferay.knowledgebase.model.Article> getCompanyArticles(
+		long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getCompanyArticles(companyId, start, end,
+			orderByComparator);
+	}
+
+	public int getCompanyArticlesCount(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getCompanyArticlesCount(companyId);
+	}
+
+	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getGroupArticles(groupId, start, end,
+			orderByComparator);
+	}
+
+	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
+		long groupId, long parentResourcePrimKey, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getGroupArticles(groupId,
+			parentResourcePrimKey, start, end, orderByComparator);
+	}
+
+	public int getGroupArticlesCount(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getGroupArticlesCount(groupId);
+	}
+
+	public int getGroupArticlesCount(long groupId, long parentResourcePrimKey)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getGroupArticlesCount(groupId,
+			parentResourcePrimKey);
+	}
+
+	public com.liferay.knowledgebase.model.Article updateArticle(long userId,
+		long resourcePrimKey, long parentResourcePrimKey,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description, int priority,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.updateArticle(userId, resourcePrimKey,
+			parentResourcePrimKey, title, content, description, priority,
+			serviceContext);
+	}
+
+	public com.liferay.knowledgebase.model.Article updateDisplayOrder(
+		com.liferay.knowledgebase.model.Article article,
+		long parentResourcePrimKey, int priority)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.updateDisplayOrder(article,
+			parentResourcePrimKey, priority);
+	}
+
 	public ArticleLocalService getWrappedArticleLocalService() {
 		return _articleLocalService;
 	}

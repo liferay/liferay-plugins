@@ -443,6 +443,395 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.knowledgebase.model.Article addArticle(
+		java.lang.String uuid, long userId, long parentResourcePrimKey,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description, int priority,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(uuid);
+
+		if (uuid == null) {
+			paramObj0 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj1 = new LongWrapper(userId);
+
+		Object paramObj2 = new LongWrapper(parentResourcePrimKey);
+
+		Object paramObj3 = ClpSerializer.translateInput(title);
+
+		if (title == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj4 = ClpSerializer.translateInput(content);
+
+		if (content == null) {
+			paramObj4 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj5 = ClpSerializer.translateInput(description);
+
+		if (description == null) {
+			paramObj5 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj6 = new IntegerWrapper(priority);
+
+		Object paramObj7 = ClpSerializer.translateInput(serviceContext);
+
+		if (serviceContext == null) {
+			paramObj7 = new NullWrapper(
+					"com.liferay.portal.service.ServiceContext");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("addArticle",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+						paramObj5, paramObj6, paramObj7
+					});
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.knowledgebase.model.Article> getCompanyArticles(
+		long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object paramObj1 = new IntegerWrapper(start);
+
+		Object paramObj2 = new IntegerWrapper(end);
+
+		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
+
+		if (orderByComparator == null) {
+			paramObj3 = new NullWrapper(
+					"com.liferay.portal.kernel.util.OrderByComparator");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getCompanyArticles",
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int getCompanyArticlesCount(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getCompanyArticlesCount",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(groupId);
+
+		Object paramObj1 = new IntegerWrapper(start);
+
+		Object paramObj2 = new IntegerWrapper(end);
+
+		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
+
+		if (orderByComparator == null) {
+			paramObj3 = new NullWrapper(
+					"com.liferay.portal.kernel.util.OrderByComparator");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getGroupArticles",
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
+		long groupId, long parentResourcePrimKey, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(groupId);
+
+		Object paramObj1 = new LongWrapper(parentResourcePrimKey);
+
+		Object paramObj2 = new IntegerWrapper(start);
+
+		Object paramObj3 = new IntegerWrapper(end);
+
+		Object paramObj4 = ClpSerializer.translateInput(orderByComparator);
+
+		if (orderByComparator == null) {
+			paramObj4 = new NullWrapper(
+					"com.liferay.portal.kernel.util.OrderByComparator");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getGroupArticles",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+					});
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int getGroupArticlesCount(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(groupId);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getGroupArticlesCount",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	public int getGroupArticlesCount(long groupId, long parentResourcePrimKey)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(groupId);
+
+		Object paramObj1 = new LongWrapper(parentResourcePrimKey);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getGroupArticlesCount",
+					new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	public com.liferay.knowledgebase.model.Article updateArticle(long userId,
+		long resourcePrimKey, long parentResourcePrimKey,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description, int priority,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object paramObj1 = new LongWrapper(resourcePrimKey);
+
+		Object paramObj2 = new LongWrapper(parentResourcePrimKey);
+
+		Object paramObj3 = ClpSerializer.translateInput(title);
+
+		if (title == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj4 = ClpSerializer.translateInput(content);
+
+		if (content == null) {
+			paramObj4 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj5 = ClpSerializer.translateInput(description);
+
+		if (description == null) {
+			paramObj5 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj6 = new IntegerWrapper(priority);
+
+		Object paramObj7 = ClpSerializer.translateInput(serviceContext);
+
+		if (serviceContext == null) {
+			paramObj7 = new NullWrapper(
+					"com.liferay.portal.service.ServiceContext");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateArticle",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+						paramObj5, paramObj6, paramObj7
+					});
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.knowledgebase.model.Article updateDisplayOrder(
+		com.liferay.knowledgebase.model.Article article,
+		long parentResourcePrimKey, int priority)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(article);
+
+		if (article == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.knowledgebase.model.Article");
+		}
+
+		Object paramObj1 = new LongWrapper(parentResourcePrimKey);
+
+		Object paramObj2 = new IntegerWrapper(priority);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateDisplayOrder",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}

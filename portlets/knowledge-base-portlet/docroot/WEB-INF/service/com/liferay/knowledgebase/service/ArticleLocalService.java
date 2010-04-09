@@ -99,4 +99,55 @@ public interface ArticleLocalService {
 	public com.liferay.knowledgebase.model.Article updateArticle(
 		com.liferay.knowledgebase.model.Article article, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.knowledgebase.model.Article addArticle(
+		java.lang.String uuid, long userId, long parentResourcePrimKey,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description, int priority,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.knowledgebase.model.Article> getCompanyArticles(
+		long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getCompanyArticlesCount(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
+		long groupId, long parentResourcePrimKey, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getGroupArticlesCount(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getGroupArticlesCount(long groupId, long parentResourcePrimKey)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.knowledgebase.model.Article updateArticle(long userId,
+		long resourcePrimKey, long parentResourcePrimKey,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description, int priority,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.knowledgebase.model.Article updateDisplayOrder(
+		com.liferay.knowledgebase.model.Article article,
+		long parentResourcePrimKey, int priority)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }
