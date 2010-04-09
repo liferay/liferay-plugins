@@ -15,9 +15,12 @@
 package com.liferay.mail.service.impl;
 
 import com.liferay.mail.model.Folder;
+import com.liferay.mail.model.Message;
 import com.liferay.mail.service.base.FolderLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.model.User;
 
 import java.util.Date;
@@ -55,6 +58,42 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 		folderPersistence.update(folder, false);
 
 		return folder;
+	}
+
+	public void deleteFolder(Folder folder)
+		throws PortalException, SystemException {
+
+		// Indexer
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
+
+		indexer.delete(folder);
+
+		// Messages
+
+		messageLocalService.deleteMessages(folder.getFolderId());
+
+		// Folder
+
+		folderPersistence.remove(folder);
+	}
+
+	public void deleteFolder(long folderId)
+		throws PortalException, SystemException {
+
+		Folder folder = folderPersistence.findByPrimaryKey(folderId);
+
+		deleteFolder(folder);
+	}
+
+	public void deleteFolders(long accountId)
+		throws PortalException, SystemException {
+
+		List<Folder> folders = folderPersistence.findByAccountId(accountId);
+
+		for (Folder folder : folders) {
+			deleteFolder(folder);
+		}
 	}
 
 	public Folder getFolder(long accountId, String fullName)

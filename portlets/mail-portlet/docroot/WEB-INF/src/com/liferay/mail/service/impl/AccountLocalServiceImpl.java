@@ -15,9 +15,12 @@
 package com.liferay.mail.service.impl;
 
 import com.liferay.mail.model.Account;
+import com.liferay.mail.model.Message;
 import com.liferay.mail.service.base.AccountLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.model.User;
 
 import java.util.Date;
@@ -76,6 +79,42 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		accountPersistence.update(account, false);
 
 		return account;
+	}
+
+	public void deleteAccount(Account account)
+		throws PortalException, SystemException {
+
+		// Indexer
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
+
+		indexer.delete(account);
+
+		// Folders
+
+		folderLocalService.deleteFolders(account.getAccountId());
+
+		// Account
+
+		accountPersistence.remove(account);
+	}
+
+	public void deleteAccount(long accountId)
+		throws PortalException, SystemException {
+
+		Account account = accountPersistence.findByPrimaryKey(accountId);
+
+		deleteAccount(account);
+	}
+
+	public void deleteAccounts(long userId)
+		throws PortalException, SystemException {
+
+		List<Account> accounts = accountPersistence.findByUserId(userId);
+
+		for (Account account : accounts) {
+			deleteAccount(account);
+		}
 	}
 
 	public List<Account> getAccountEntries(long userId)

@@ -90,15 +90,29 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 	public void deleteMessage(Message message)
 		throws PortalException, SystemException {
 
-		// Message
-
-		messagePersistence.remove(message);
-
 		// Indexer
 
 		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
 
 		indexer.delete(message);
+
+		// Attachments
+
+		attachmentLocalService.deleteAttachments(message.getMessageId());
+
+		// Message
+
+		messagePersistence.remove(message);
+	}
+
+	public void deleteMessages(long folderId)
+		throws PortalException, SystemException {
+
+		List<Message> messages = messagePersistence.findByFolderId(folderId);
+
+		for (Message message : messages) {
+			deleteMessage(message);
+		}
 	}
 
 	public List<Message> getCompanyMessages(long companyId, int start, int end)

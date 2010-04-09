@@ -14,11 +14,17 @@
 
 package com.liferay.mail.util;
 
+import com.liferay.mail.model.Account;
+import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.MessageLocalServiceUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.search.BooleanQuery;
+import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
+import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
@@ -60,14 +66,56 @@ public class MessageIndexer extends BaseIndexer {
 	}
 
 	protected void doDelete(Object obj) throws Exception {
-		Message message = (Message)obj;
+		if (obj instanceof Account) {
+			Account account = (Account)obj;
 
-		Document document = new DocumentImpl();
+			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
 
-		document.addUID(PORTLET_ID, message.getMessageId());
+			booleanQuery.addRequiredTerm(Field.PORTLET_ID, PORTLET_ID);
 
-		SearchEngineUtil.deleteDocument(
-			message.getCompanyId(), document.get(Field.UID));
+			booleanQuery.addRequiredTerm("accountId", account.getAccountId());
+
+			Hits hits = SearchEngineUtil.search(
+				account.getCompanyId(), booleanQuery, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS);
+
+			for (int i = 0; i < hits.getLength(); i++) {
+				Document document = hits.doc(i);
+
+				SearchEngineUtil.deleteDocument(
+					account.getCompanyId(), document.get(Field.UID));
+			}
+		}
+		else if (obj instanceof Folder) {
+			Folder folder = (Folder)obj;
+
+			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
+
+			booleanQuery.addRequiredTerm(Field.PORTLET_ID, PORTLET_ID);
+
+			booleanQuery.addRequiredTerm("folderId", folder.getFolderId());
+
+			Hits hits = SearchEngineUtil.search(
+				folder.getCompanyId(), booleanQuery, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS);
+
+			for (int i = 0; i < hits.getLength(); i++) {
+				Document document = hits.doc(i);
+
+				SearchEngineUtil.deleteDocument(
+					folder.getCompanyId(), document.get(Field.UID));
+			}
+		}
+		else if (obj instanceof Message) {
+			Message message = (Message)obj;
+
+			Document document = new DocumentImpl();
+
+			document.addUID(PORTLET_ID, message.getMessageId());
+
+			SearchEngineUtil.deleteDocument(
+				message.getCompanyId(), document.get(Field.UID));
+		}
 	}
 
 	protected Document doGetDocument(Object obj) throws Exception {
