@@ -116,17 +116,29 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService {
 
 	public com.liferay.mail.model.Attachment addAttachment(long userId,
 		long messageId, java.lang.String contentPath,
-		java.lang.String fileName, long size)
+		java.lang.String fileName, long size, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _attachmentLocalService.addAttachment(userId, messageId,
-			contentPath, fileName, size);
+			contentPath, fileName, size, file);
+	}
+
+	public void deleteAttachments(long messageId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_attachmentLocalService.deleteAttachments(messageId);
 	}
 
 	public java.util.List<com.liferay.mail.model.Attachment> getAttachments(
 		long messageId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _attachmentLocalService.getAttachments(messageId);
+	}
+
+	public java.io.File getFile(long attachmentId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _attachmentLocalService.getFile(attachmentId);
 	}
 
 	public AttachmentLocalService getWrappedAttachmentLocalService() {

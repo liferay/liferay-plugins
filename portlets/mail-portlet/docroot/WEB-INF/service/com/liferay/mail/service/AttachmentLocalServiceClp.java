@@ -443,7 +443,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 
 	public com.liferay.mail.model.Attachment addAttachment(long userId,
 		long messageId, java.lang.String contentPath,
-		java.lang.String fileName, long size)
+		java.lang.String fileName, long size, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
@@ -464,12 +464,19 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 
 		Object paramObj4 = new LongWrapper(size);
 
+		Object paramObj5 = ClpSerializer.translateInput(file);
+
+		if (file == null) {
+			paramObj5 = new NullWrapper("java.io.File");
+		}
+
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("addAttachment",
 					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+						paramObj5
 					});
 		}
 		catch (Throwable t) {
@@ -491,6 +498,34 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		}
 
 		return (com.liferay.mail.model.Attachment)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void deleteAttachments(long messageId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(messageId);
+
+		try {
+			_classLoaderProxy.invoke("deleteAttachments",
+				new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
 	}
 
 	public java.util.List<com.liferay.mail.model.Attachment> getAttachments(
@@ -519,6 +554,38 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		}
 
 		return (java.util.List<com.liferay.mail.model.Attachment>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.io.File getFile(long attachmentId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(attachmentId);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getFile",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.io.File)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public ClassLoaderProxy getClassLoaderProxy() {
