@@ -44,7 +44,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		params.put("companyId", new Long(companyId));
 
-		return findByMaxVersion(params, start, end, obc);
+		return _findByMaxVersion(params, start, end, obc);
 	}
 
 	public int getCompanyArticlesCount(long companyId) throws SystemException {
@@ -52,7 +52,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		params.put("companyId", new Long(companyId));
 
-		return countByMaxVersion(params);
+		return _countByMaxVersion(params);
 	}
 
 	public List<Article> getGroupArticles(
@@ -63,7 +63,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		params.put("groupId", new Long(groupId));
 
-		return findByMaxVersion(params, start, end, obc);
+		return _findByMaxVersion(params, start, end, obc);
 	}
 
 	public List<Article> getGroupArticles(
@@ -76,7 +76,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		params.put("groupId", new Long(groupId));
 		params.put("parentResourcePrimKey", new Long(parentResourcePrimKey));
 
-		return findByMaxVersion(params, start, end, obc);
+		return _findByMaxVersion(params, start, end, obc);
 	}
 
 	public int getGroupArticlesCount(long groupId) throws SystemException {
@@ -84,7 +84,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		params.put("groupId", new Long(groupId));
 
-		return countByMaxVersion(params);
+		return _countByMaxVersion(params);
 	}
 
 	public int getGroupArticlesCount(long groupId, long parentResourcePrimKey)
@@ -95,21 +95,21 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		params.put("groupId", new Long(groupId));
 		params.put("parentResourcePrimKey", new Long(parentResourcePrimKey));
 
-		return countByMaxVersion(params);
+		return _countByMaxVersion(params);
 	}
 
-	private int countByMaxVersion(Map<String, Long> params)
+	private int _countByMaxVersion(Map<String, Long> params)
 		throws SystemException {
 
-		return dynamicQueryCount(getMaxVersionQuery(params));
+		return dynamicQueryCount(_getMaxVersionQuery(params));
 	}
 
-	private List<Article> findByMaxVersion(
+	private List<Article> _findByMaxVersion(
 			Map<String, Long> params, int start, int end, OrderByComparator obc)
 		throws SystemException {
 
 		List<Object> objects = dynamicQuery(
-			getMaxVersionQuery(params), start, end, obc);
+			_getMaxVersionQuery(params), start, end, obc);
 
 		List<Article> articles = new ArrayList<Article>();
 
@@ -120,7 +120,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		return articles;
 	}
 
-	private DynamicQuery getMaxVersionQuery(Map<String, Long> params)
+	private DynamicQuery _getMaxVersionQuery(Map<String, Long> params)
 		throws SystemException {
 
 		DynamicQuery subSelect = DynamicQueryFactoryUtil.forClass(
