@@ -128,6 +128,12 @@ public class MessageLocalServiceUtil {
 			subject, body, flags, size, remoteMessageId);
 	}
 
+	public static void deleteMessages(long folderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteMessages(folderId);
+	}
+
 	public static java.util.List<com.liferay.mail.model.Message> getCompanyMessages(
 		long companyId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {

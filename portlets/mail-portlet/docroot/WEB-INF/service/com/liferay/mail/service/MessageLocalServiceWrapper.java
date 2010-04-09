@@ -125,6 +125,12 @@ public class MessageLocalServiceWrapper implements MessageLocalService {
 			cc, bcc, sentDate, subject, body, flags, size, remoteMessageId);
 	}
 
+	public void deleteMessages(long folderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_messageLocalService.deleteMessages(folderId);
+	}
+
 	public java.util.List<com.liferay.mail.model.Message> getCompanyMessages(
 		long companyId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {

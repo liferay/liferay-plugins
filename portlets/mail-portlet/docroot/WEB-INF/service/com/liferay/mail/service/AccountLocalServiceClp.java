@@ -112,7 +112,8 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	}
 
 	public void deleteAccount(com.liferay.mail.model.Account account)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(account);
 
 		if (account == null) {
@@ -123,6 +124,10 @@ public class AccountLocalServiceClp implements AccountLocalService {
 			_classLoaderProxy.invoke("deleteAccount", new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -560,6 +565,34 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		}
 
 		return (com.liferay.mail.model.Account)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void deleteAccounts(long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		try {
+			_classLoaderProxy.invoke("deleteAccounts",
+				new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
 	}
 
 	public java.util.List<com.liferay.mail.model.Account> getAccountEntries(

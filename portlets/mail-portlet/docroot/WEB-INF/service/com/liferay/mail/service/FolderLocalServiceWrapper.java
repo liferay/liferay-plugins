@@ -53,7 +53,8 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 	}
 
 	public void deleteFolder(com.liferay.mail.model.Folder folder)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_folderLocalService.deleteFolder(folder);
 	}
 
@@ -119,6 +120,12 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		return _folderLocalService.addFolder(userId, accountId, fullName,
 			displayName, remoteMessageCount);
+	}
+
+	public void deleteFolders(long accountId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_folderLocalService.deleteFolders(accountId);
 	}
 
 	public com.liferay.mail.model.Folder getFolder(long accountId,

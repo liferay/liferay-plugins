@@ -53,7 +53,8 @@ public class AccountLocalServiceWrapper implements AccountLocalService {
 	}
 
 	public void deleteAccount(com.liferay.mail.model.Account account)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_accountLocalService.deleteAccount(account);
 	}
 
@@ -130,6 +131,12 @@ public class AccountLocalServiceWrapper implements AccountLocalService {
 			outgoingHostName, outgoingPort, outgoingSecure, login, password,
 			savePassword, signature, useSignature, folderPrefix, inboxFolderId,
 			draftFolderId, sentFolderId, trashFolderId, defaultSender);
+	}
+
+	public void deleteAccounts(long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_accountLocalService.deleteAccounts(userId);
 	}
 
 	public java.util.List<com.liferay.mail.model.Account> getAccountEntries(

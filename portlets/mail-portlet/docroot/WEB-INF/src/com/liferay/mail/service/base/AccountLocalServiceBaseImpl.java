@@ -63,7 +63,8 @@ public abstract class AccountLocalServiceBaseImpl implements AccountLocalService
 		accountPersistence.remove(accountId);
 	}
 
-	public void deleteAccount(Account account) throws SystemException {
+	public void deleteAccount(Account account)
+		throws PortalException, SystemException {
 		accountPersistence.remove(account);
 	}
 

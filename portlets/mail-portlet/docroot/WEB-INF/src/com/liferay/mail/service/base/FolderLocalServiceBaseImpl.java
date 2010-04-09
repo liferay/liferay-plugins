@@ -63,7 +63,8 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService {
 		folderPersistence.remove(folderId);
 	}
 
-	public void deleteFolder(Folder folder) throws SystemException {
+	public void deleteFolder(Folder folder)
+		throws PortalException, SystemException {
 		folderPersistence.remove(folder);
 	}
 
