@@ -18,6 +18,7 @@ import com.liferay.documentlibrary.DuplicateDirectoryException;
 import com.liferay.documentlibrary.DuplicateFileException;
 import com.liferay.documentlibrary.NoSuchDirectoryException;
 import com.liferay.documentlibrary.NoSuchFileException;
+import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.mail.model.Attachment;
 import com.liferay.mail.model.Message;
@@ -28,13 +29,11 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,6 +53,8 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 			long size, File file)
 		throws PortalException, SystemException {
 
+		// Attachment
+
 		User user = userPersistence.findByPrimaryKey(userId);
 		Message message = messagePersistence.findByPrimaryKey(messageId);
 
@@ -70,32 +71,35 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 		attachment.setFileName(fileName);
 		attachment.setSize(size);
 
-		if (Validator.isNotNull(file)) {
+		attachmentPersistence.update(attachment, false);
+
+		// File
+
+		if (file != null) {
+			String directoryPath = getDirectoryPath(attachment.getMessageId());
+
 			try {
 				DLServiceUtil.addDirectory(
-					attachment.getCompanyId(), _repositoryId,
-					getDirectoryPath(attachment.getMessageId()));
+					attachment.getCompanyId(), _REPOSITORY_ID, directoryPath);
 			}
 			catch (DuplicateDirectoryException dde) {
 			}
 
-			try {
-				String filePath = getFilePath(
-					attachment.getMessageId(), fileName);
+			String filePath = getFilePath(
+				attachment.getMessageId(), fileName);
 
+			try {
 				DLServiceUtil.addFile(
-					attachment.getCompanyId(), _portletId, _groupId,
-					_repositoryId, filePath, 0, StringPool.BLANK, new Date(),
+					attachment.getCompanyId(), _PORTLET_ID, _GROUP_ID,
+					_REPOSITORY_ID, filePath, 0, StringPool.BLANK, new Date(),
 					new ServiceContext(), file);
 			}
 			catch (DuplicateFileException dfe) {
 				if (_log.isDebugEnabled()) {
-					_log.debug(dfe.getMessage());
+					_log.debug(dfe, dfe);
 				}
 			}
 		}
-
-		attachmentPersistence.update(attachment, false);
 
 		return attachment;
 	}
@@ -103,31 +107,39 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 	public void deleteAttachment(long attachmentId)
 		throws PortalException, SystemException {
 
+		// Attachment
+
 		Attachment attachment = attachmentPersistence.findByPrimaryKey(
 			attachmentId);
 
+		attachmentPersistence.remove(attachmentId);
+
+		// File
+
+		String filePath = getFilePath(
+			attachment.getMessageId(), attachment.getFileName());
+
 		try {
 			DLServiceUtil.deleteFile(
-				attachment.getCompanyId(), _portletId, _repositoryId,
-				getFilePath(
-					attachment.getMessageId(), attachment.getFileName()));
+				attachment.getCompanyId(), _PORTLET_ID, _REPOSITORY_ID,
+				filePath);
 		}
 		catch (NoSuchDirectoryException nsde) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(nsde.getMessage());
+				_log.debug(nsde, nsde);
 			}
 		}
 		catch (NoSuchFileException nsfe) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(nsfe.getMessage());
+				_log.debug(nsfe, nsfe);
 			}
 		}
-
-		attachmentPersistence.remove(attachmentId);
 	}
 
 	public void deleteAttachments(long messageId)
 		throws PortalException, SystemException {
+
+		// Attachments
 
 		List<Attachment> attachments = attachmentPersistence.findByMessageId(
 			messageId);
@@ -136,12 +148,16 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 			deleteAttachment(attachment);
 		}
 
+		// File
+
 		Message message = messagePersistence.findByPrimaryKey(messageId);
+
+		String directoryPath = getDirectoryPath(messageId);
 
 		try {
 			DLServiceUtil.deleteDirectory(
-				message.getCompanyId(), _portletId, _repositoryId,
-				getDirectoryPath(messageId));
+				message.getCompanyId(), _PORTLET_ID, _REPOSITORY_ID,
+				directoryPath);
 		}
 		catch (NoSuchDirectoryException nsde) {
 			if (_log.isDebugEnabled()) {
@@ -150,55 +166,59 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 		}
 	}
 
-	public File getAttachmentAsFile(long attachmentId)
-		throws IOException, PortalException, SystemException {
-
-		byte[] bytes = getAttachmentAsByteArray(attachmentId);
-
-		File file = FileUtil.createTempFile();
-
-		FileUtil.write(file, bytes);
-
-		return file;
-	}
-
-	public InputStream getAttachmentAsStream(long attachmentId)
-		throws PortalException, SystemException {
-
-		return new ByteArrayInputStream(getAttachmentAsByteArray(attachmentId));
-	}
-
 	public List<Attachment> getAttachments(long messageId)
 		throws SystemException {
 
 		return attachmentPersistence.findByMessageId(messageId);
 	}
 
-	protected byte[] getAttachmentAsByteArray(long attachmentId)
+	public File getFile(long attachmentId)
+		throws PortalException, SystemException {
+
+		try {
+			File file = FileUtil.createTempFile();
+
+			FileUtil.write(file, getInputStream(attachmentId));
+
+			return file;
+		}
+		catch (IOException ioe) {
+			throw new SystemException(ioe);
+		}
+	}
+
+	protected String getDirectoryPath(long messageId) {
+		return _DIRECTORY_PATH_PREFIX.concat(String.valueOf(messageId));
+	}
+
+	protected String getFilePath(long messageId, String filename) {
+		return getDirectoryPath(messageId).concat(StringPool.SLASH).concat(
+			filename);
+	}
+
+	protected InputStream getInputStream(long attachmentId)
 		throws PortalException, SystemException {
 
 		Attachment attachment = attachmentPersistence.findByPrimaryKey(
 			attachmentId);
 
-		return DLServiceUtil.getFile(
-			attachment.getCompanyId(), _repositoryId,
-			getFilePath(
-				attachment.getMessageId(), attachment.getFileName()));
+		String filePath = getFilePath(
+			attachment.getMessageId(), attachment.getFileName());
+
+		return DLLocalServiceUtil.getFileAsStream(
+			attachment.getCompanyId(), _REPOSITORY_ID, filePath);
 	}
 
-	protected String getDirectoryPath(long messageId) {
-		return "mail/" + messageId;
-	}
+	private static final String _DIRECTORY_PATH_PREFIX = "mail/";
 
-	protected String getFilePath(long messageId, String filename) {
-		return getDirectoryPath(messageId) + "/" + filename;
-	}
+	private static final long _GROUP_ID =
+		GroupConstants.DEFAULT_PARENT_GROUP_ID;
+
+	private static final String _PORTLET_ID = CompanyConstants.SYSTEM_STRING;
+
+	private static final long _REPOSITORY_ID = CompanyConstants.SYSTEM;
 
 	private static Log _log = LogFactoryUtil.getLog(
 		AttachmentLocalServiceImpl.class);
-
-	private long _groupId = GroupConstants.DEFAULT_PARENT_GROUP_ID;
-	private String _portletId = CompanyConstants.SYSTEM_STRING;
-	private long _repositoryId = CompanyConstants.SYSTEM;
 
 }
