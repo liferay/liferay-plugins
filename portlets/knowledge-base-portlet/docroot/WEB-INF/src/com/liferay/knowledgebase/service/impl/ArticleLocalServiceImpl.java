@@ -17,6 +17,7 @@ package com.liferay.knowledgebase.service.impl;
 import com.liferay.knowledgebase.ArticleContentException;
 import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.base.ArticleLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
@@ -57,28 +58,27 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		// Article
 
 		User user = userPersistence.findByPrimaryKey(userId);
-		long resourcePrimKey = counterLocalService.increment(
-			Article.class.getName());
-		long groupId = serviceContext.getScopeGroupId();
-		double version = 1.0;
 		Date now = new Date();
 
 		validate(title, content);
 
 		long articleId = counterLocalService.increment();
 
+		long resourcePrimKey = counterLocalService.increment(
+			Article.class.getName());
+
 		Article article = articlePersistence.create(articleId);
 
 		article.setUuid(uuid);
 		article.setResourcePrimKey(resourcePrimKey);
-		article.setGroupId(groupId);
+		article.setGroupId(serviceContext.getScopeGroupId());
 		article.setCompanyId(user.getCompanyId());
 		article.setUserId(user.getUserId());
 		article.setUserName(user.getFullName());
 		article.setCreateDate(now);
 		article.setModifiedDate(now);
 		article.setParentResourcePrimKey(parentResourcePrimKey);
-		article.setVersion(version);
+		article.setVersion(ArticleConstants.DEFAULT_VERSION);
 		article.setTitle(title);
 		article.setContent(content);
 		article.setDescription(description);
@@ -174,10 +174,9 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Article
 
+		User user = userPersistence.findByPrimaryKey(userId);
 		Article oldArticle = articlePersistence.findByResourcePrimKey_First(
 			resourcePrimKey, new ArticleVersionComparator());
-		User user = userPersistence.findByPrimaryKey(userId);
-		double version = MathUtil.format(oldArticle.getVersion() + 0.1, 1, 1);
 		Date now = new Date();
 
 		validate(title, content);
@@ -194,7 +193,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		article.setCreateDate(oldArticle.getCreateDate());
 		article.setModifiedDate(now);
 		article.setParentResourcePrimKey(parentResourcePrimKey);
-		article.setVersion(version);
+		article.setVersion(
+			MathUtil.format(oldArticle.getVersion() + 0.1, 1, 1));
 		article.setTitle(title);
 		article.setContent(content);
 		article.setDescription(description);
@@ -213,9 +213,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			Article article, long parentResourcePrimKey, int priority)
 		throws SystemException {
 
-		List<Article> articles = ListUtil.copy(getGroupArticles(
-			article.getGroupId(), article.getParentResourcePrimKey(),
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+		List<Article> articles = ListUtil.copy(
+			getGroupArticles(
+				article.getGroupId(), article.getParentResourcePrimKey(),
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new ArticlePriorityComparator(true)));
 
 		articles.remove(article);
@@ -231,18 +232,19 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				curParentResourcePrimKey = parentResourcePrimKey;
 			}
 
-			List<Article> articles2 =
+			List<Article> childrenArticles =
 				articlePersistence.findByResourcePrimKey(
 					curArticle.getResourcePrimKey());
 
-			for (Article curArticle2 : articles2) {
-				curArticle2.setParentResourcePrimKey(curParentResourcePrimKey);
-				curArticle2.setPriority(i);
+			for (Article childrenArticle : childrenArticles) {
+				childrenArticle.setParentResourcePrimKey(
+					curParentResourcePrimKey);
+				childrenArticle.setPriority(i);
 
-				articlePersistence.update(curArticle2, false);
+				articlePersistence.update(childrenArticle, false);
 
-				if (article.getArticleId() == curArticle2.getArticleId()) {
-					article = curArticle2;
+				if (article.getArticleId() == childrenArticle.getArticleId()) {
+					article = childrenArticle;
 				}
 			}
 		}
