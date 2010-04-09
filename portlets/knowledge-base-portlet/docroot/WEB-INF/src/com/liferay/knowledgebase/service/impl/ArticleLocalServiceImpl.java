@@ -37,14 +37,18 @@ import java.util.Map;
 public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 	public List<Article> getCompanyArticles(
-			long companyId, int start, int end, OrderByComparator obc)
+			long companyId, int start, int end,
+			OrderByComparator orderByComparator)
 		throws SystemException {
 
 		Map<String, Long> params = new HashMap<String, Long>();
 
 		params.put("companyId", new Long(companyId));
 
-		return _findByMaxVersion(params, start, end, obc);
+		List<Object> results = dynamicQuery(
+			getDynamicQuery(params), start, end, orderByComparator);
+
+		return toArticles(results);
 	}
 
 	public int getCompanyArticlesCount(long companyId) throws SystemException {
@@ -52,23 +56,27 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		params.put("companyId", new Long(companyId));
 
-		return _countByMaxVersion(params);
+		return dynamicQueryCount(getDynamicQuery(params));
 	}
 
 	public List<Article> getGroupArticles(
-			long groupId, int start, int end, OrderByComparator obc)
+			long groupId, int start, int end,
+			OrderByComparator orderByComparator)
 		throws SystemException {
 
 		Map<String, Long> params = new HashMap<String, Long>();
 
 		params.put("groupId", new Long(groupId));
 
-		return _findByMaxVersion(params, start, end, obc);
+		List<Object> results = dynamicQuery(
+			getDynamicQuery(params), start, end, orderByComparator);
+
+		return toArticles(results);
 	}
 
 	public List<Article> getGroupArticles(
 			long groupId, long parentResourcePrimKey, int start, int end,
-			OrderByComparator obc)
+			OrderByComparator orderByComparator)
 		throws SystemException {
 
 		Map<String, Long> params = new HashMap<String, Long>();
@@ -76,7 +84,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		params.put("groupId", new Long(groupId));
 		params.put("parentResourcePrimKey", new Long(parentResourcePrimKey));
 
-		return _findByMaxVersion(params, start, end, obc);
+		List<Object> results = dynamicQuery(
+			getDynamicQuery(params), start, end, orderByComparator);
+
+		return toArticles(results);
 	}
 
 	public int getGroupArticlesCount(long groupId) throws SystemException {
@@ -84,7 +95,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		params.put("groupId", new Long(groupId));
 
-		return _countByMaxVersion(params);
+		return dynamicQueryCount(getDynamicQuery(params));
 	}
 
 	public int getGroupArticlesCount(long groupId, long parentResourcePrimKey)
@@ -95,58 +106,49 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		params.put("groupId", new Long(groupId));
 		params.put("parentResourcePrimKey", new Long(parentResourcePrimKey));
 
-		return _countByMaxVersion(params);
+		return dynamicQueryCount(getDynamicQuery(params));
 	}
 
-	private int _countByMaxVersion(Map<String, Long> params)
-		throws SystemException {
-
-		return dynamicQueryCount(_getMaxVersionQuery(params));
-	}
-
-	private List<Article> _findByMaxVersion(
-			Map<String, Long> params, int start, int end, OrderByComparator obc)
-		throws SystemException {
-
-		List<Object> objects = dynamicQuery(
-			_getMaxVersionQuery(params), start, end, obc);
-
-		List<Article> articles = new ArrayList<Article>();
-
-		for (Object object : objects) {
-			articles.add((Article)object);
-		}
-
-		return articles;
-	}
-
-	private DynamicQuery _getMaxVersionQuery(Map<String, Long> params)
-		throws SystemException {
-
-		DynamicQuery subSelect = DynamicQueryFactoryUtil.forClass(
+	protected DynamicQuery getDynamicQuery(Map<String, Long> params) {
+		DynamicQuery subselectDynamicQuery = DynamicQueryFactoryUtil.forClass(
 			Article.class, "article2", PortletClassLoaderUtil.getClassLoader());
 
-		subSelect.setProjection(PropertyFactoryUtil.forName("version").max());
+		subselectDynamicQuery.setProjection(
+			PropertyFactoryUtil.forName("version").max());
 
-		Property property1 = PropertyFactoryUtil.forName(
+		Property resourcePrimKeyProperty1 = PropertyFactoryUtil.forName(
 			"article1.resourcePrimKey");
-		Property property2 = PropertyFactoryUtil.forName(
+		Property resourcePrimKeyProperty2 = PropertyFactoryUtil.forName(
 			"article2.resourcePrimKey");
 
-		subSelect.add(property1.eqProperty(property2));
+		subselectDynamicQuery.add(
+			resourcePrimKeyProperty1.eqProperty(resourcePrimKeyProperty2));
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			Article.class, "article1", PortletClassLoaderUtil.getClassLoader());
 
 		for (Map.Entry<String, Long> entry : params.entrySet()) {
-			Property property = PropertyFactoryUtil.forName(entry.getKey());
+			String name = entry.getKey();
+
+			Property property = PropertyFactoryUtil.forName(name);
 
 			dynamicQuery.add(property.eq(entry.getValue()));
 		}
 
-		dynamicQuery.add(PropertyFactoryUtil.forName("version").in(subSelect));
+		dynamicQuery.add(
+			PropertyFactoryUtil.forName("version").in(subselectDynamicQuery));
 
 		return dynamicQuery;
+	}
+
+	protected List<Article> toArticles(List<Object> results) {
+		List<Article> articles = new ArrayList<Article>(results.size());
+
+		for (Object result : results) {
+			articles.add((Article)result);
+		}
+
+		return articles;
 	}
 
 }
