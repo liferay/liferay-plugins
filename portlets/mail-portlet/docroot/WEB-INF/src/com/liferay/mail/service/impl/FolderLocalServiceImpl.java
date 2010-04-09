@@ -63,19 +63,19 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 	public void deleteFolder(Folder folder)
 		throws PortalException, SystemException {
 
-		// Indexer
+		// Folder
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
-
-		indexer.delete(folder);
+		folderPersistence.remove(folder);
 
 		// Messages
 
 		messageLocalService.deleteMessages(folder.getFolderId());
 
-		// Folder
+		// Indexer
 
-		folderPersistence.remove(folder);
+		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
+
+		indexer.delete(folder);
 	}
 
 	public void deleteFolder(long folderId)

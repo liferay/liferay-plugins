@@ -84,19 +84,19 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 	public void deleteAccount(Account account)
 		throws PortalException, SystemException {
 
-		// Indexer
+		// Account
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
-
-		indexer.delete(account);
+		accountPersistence.remove(account);
 
 		// Folders
 
 		folderLocalService.deleteFolders(account.getAccountId());
 
-		// Account
+		// Indexer
 
-		accountPersistence.remove(account);
+		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
+
+		indexer.delete(account);
 	}
 
 	public void deleteAccount(long accountId)
