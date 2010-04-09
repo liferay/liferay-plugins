@@ -15,7 +15,6 @@
 package com.liferay.mail.service.base;
 
 import com.liferay.counter.service.CounterLocalService;
-import com.liferay.counter.service.CounterService;
 
 import com.liferay.mail.model.Account;
 import com.liferay.mail.service.AccountLocalService;
@@ -190,14 +189,6 @@ public abstract class AccountLocalServiceBaseImpl implements AccountLocalService
 		this.counterLocalService = counterLocalService;
 	}
 
-	public CounterService getCounterService() {
-		return counterService;
-	}
-
-	public void setCounterService(CounterService counterService) {
-		this.counterService = counterService;
-	}
-
 	public ResourceLocalService getResourceLocalService() {
 		return resourceLocalService;
 	}
@@ -276,8 +267,6 @@ public abstract class AccountLocalServiceBaseImpl implements AccountLocalService
 	protected MessagePersistence messagePersistence;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
-	@BeanReference(type = CounterService.class)
-	protected CounterService counterService;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
 	@BeanReference(type = ResourceService.class)

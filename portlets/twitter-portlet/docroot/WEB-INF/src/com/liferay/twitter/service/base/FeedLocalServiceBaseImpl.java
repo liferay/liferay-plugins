@@ -15,7 +15,6 @@
 package com.liferay.twitter.service.base;
 
 import com.liferay.counter.service.CounterLocalService;
-import com.liferay.counter.service.CounterService;
 
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -130,14 +129,6 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService {
 		this.counterLocalService = counterLocalService;
 	}
 
-	public CounterService getCounterService() {
-		return counterService;
-	}
-
-	public void setCounterService(CounterService counterService) {
-		this.counterService = counterService;
-	}
-
 	public ResourceLocalService getResourceLocalService() {
 		return resourceLocalService;
 	}
@@ -204,8 +195,6 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService {
 	protected FeedPersistence feedPersistence;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
-	@BeanReference(type = CounterService.class)
-	protected CounterService counterService;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
 	@BeanReference(type = ResourceService.class)

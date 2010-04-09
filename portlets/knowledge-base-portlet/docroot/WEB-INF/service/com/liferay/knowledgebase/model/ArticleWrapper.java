@@ -173,7 +173,7 @@ public class ArticleWrapper implements Article {
 		_article.setPriority(priority);
 	}
 
-	public Article toEscapedModel() {
+	public com.liferay.knowledgebase.model.Article toEscapedModel() {
 		return _article.toEscapedModel();
 	}
 
@@ -218,7 +218,7 @@ public class ArticleWrapper implements Article {
 		return _article.clone();
 	}
 
-	public int compareTo(Article article) {
+	public int compareTo(com.liferay.knowledgebase.model.Article article) {
 		return _article.compareTo(article);
 	}
 
