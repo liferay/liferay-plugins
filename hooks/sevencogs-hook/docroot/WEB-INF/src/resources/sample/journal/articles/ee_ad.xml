@@ -3,11 +3,28 @@
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
+
+			<h1>Advertisement</h1>
+
 			<div class="lfc-single-image">
 				<a href="http://www.liferay.com/web/guest/products/eefaq">
 					<img alt="" src="/image/image_gallery?uuid=[$EE_AD_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]" />
 				</a>
 			</div>
+
+			<h2>
+				7 Cogs Awesomeness
+			</h2>
+
+			<ul>
+				<li>
+					1<sup>st</sup> Point of Awesomeness
+				</li>
+				<li>
+					2<sup>nd</sup> Point of Awesomeness
+				</li>
+			</ul>
+
 		]]>
 	</static-content>
 </root>

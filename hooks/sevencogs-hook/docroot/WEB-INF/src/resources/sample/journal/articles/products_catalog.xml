@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root available-locales="en_US," default-locale="en_US">
+	<static-content language-id="en_US">
+		<![CDATA[
+			<div>
+
+				[IMAGE]
+
+				<h2>
+					Titanium Series
+				</h2>
+
+				<ul>
+					<li>
+						<a href="#">ViX-998</a>
+					</li>
+					<li>
+						<a href="#">ViX-988</a>
+					</li>
+					<li>
+						<a href="#">ViX-876</a>
+					</li>
+				</ul>
+
+				<hr/>
+
+				[IMAGE]
+
+				<h2>
+					Adamantium Series
+				</h2>
+
+				<ul>
+					<li>
+						<a href="#">WvE-X</a>
+					</li>
+					<li>
+						<a href="#">WvE-X23</a>
+					</li>
+					<li>
+						<a href="#">WpN-X</a>
+					</li>
+				</ul>
+
+				<hr/>
+
+				[IMAGE]
+
+				<h2>
+					Vibranium Series
+				</h2>
+
+				<ul>
+					<li>
+						<a href="#">CpA-1917</a>
+					</li>
+					<li>
+						<a href="#">CpA-1945</a>
+					</li>
+					<li>
+						<a href="#">WkD-889</a>
+					</li>
+				</ul>
+
+			</div>
+			<div>
+
+				<h1>
+					News
+				</h1>
+
+				<h2>
+					Latest Release
+				</h2>
+
+				<p>
+					Sed ut nisl quis est vestibulum commodo. Proin eros arcu, aliquam vitae, gravida at, pharetra eu, leo. Nulla pede lacus, feugiat ut, tincidunt vel, semper in, felis. Cras dictum pulvinar turpis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi aliquet nisl at eros tempus volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin posuere lectus lacinia turpis. Quisque nunc. Aliquam ultrices felis hendrerit tellus.
+				</p>
+				<p>
+					<a href="#">Read more about it&gt;</a>
+				</p>
+
+			</div>
+		]]>
+	</static-content>
+</root>

@@ -3,8 +3,10 @@
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
+			[IMAGE]
+
 			<h1>
-				Introducing the ViX-998:&nbsp;Social Networking for The Cog Industry
+				Introducing the ViX-998: <span>Social Networking for The Cog Industry</span>
 			</h1>
 
 			<p>
@@ -16,7 +18,7 @@
 			</p>
 
 			<p>
-				Sed eget leo. Sed mauris. Praesent felis. Suspendisse bibendum elit et nisl. Vestibulum ut nibh. Nulla condimentum sodales velit. Ut vehicula tincidunt est. Sed sem ligula, malesuada eget, auctor id, pharetra ornare, dui. Nam iaculis. Nunc bibendum. Aliquam suscipit pharetra sapien. Nunc scelerisque lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue tincidunt risus. Ut ac nunc. Morbi ac risus. Duis viverra tincidunt erat. Phasellus a nisi. Aliquam pellentesque hendrerit enim.
+				<a href="#">Read more about it&gt;</a>
 			</p>
 		]]>
 	</static-content>

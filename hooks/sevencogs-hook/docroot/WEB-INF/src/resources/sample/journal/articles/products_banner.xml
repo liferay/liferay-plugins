@@ -3,16 +3,9 @@
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
-			<style type="text/css">
-				.single-image-front {
-					margin: 0px;
-					padding: 0px;
-				}
-			</style>
 
-			<div class="single-image-front">
-				<img alt="" src="/image/image_gallery?uuid=[$PRODUCTS_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]" />
-			</div>
+			<h1>Products</h1>
+
 		]]>
 	</static-content>
 </root>

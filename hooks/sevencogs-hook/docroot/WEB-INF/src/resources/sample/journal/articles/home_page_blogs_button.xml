@@ -3,7 +3,13 @@
 	<static-content language-id="en_US">
 		<![CDATA[
 
-		<img alt="" src="" />
+			<h1>
+				Visit the Blog!
+			</h1>
+			
+			<p>
+				Read about the latest stuff from the 7 Cog!
+			</p>
 
 		]]>
 	</static-content>
