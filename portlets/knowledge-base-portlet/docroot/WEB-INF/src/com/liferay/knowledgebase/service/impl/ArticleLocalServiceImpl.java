@@ -19,6 +19,7 @@ import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.base.ArticleLocalServiceBaseImpl;
+import com.liferay.knowledgebase.util.comparator.ArticleCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -91,6 +92,70 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		updateDisplayOrder(article, parentResourcePrimKey, priority);
 
 		return article;
+	}
+
+	public void deleteArticle(long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		Article article = articlePersistence.findByResourcePrimKey_First(
+			resourcePrimKey, new ArticleVersionComparator());
+
+		List<Article> articles = getGroupArticles(
+			article.getGroupId(), article.getResourcePrimKey(),
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new ArticlePriorityComparator());
+
+		for (Article curArticle : articles) {
+			deleteArticle(curArticle.getResourcePrimKey());
+		}
+
+		deleteArticle(article);
+	}
+
+	public void deleteArticle(Article article) throws SystemException {
+
+		// Article
+
+		articlePersistence.removeByResourcePrimKey(
+			article.getResourcePrimKey());
+	}
+
+	public void deleteGroupArticles(long groupId)
+		throws PortalException, SystemException {
+
+		List<Article> articles = getGroupArticles(
+			groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new ArticleCreateDateComparator(true));
+
+		for (Article article : articles) {
+			deleteArticle(article);
+		}
+	}
+
+	public Article getArticle(long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		return articlePersistence.findByResourcePrimKey_First(
+			resourcePrimKey, new ArticleVersionComparator());
+	}
+
+	public Article getArticle(long resourcePrimKey, double version)
+		throws PortalException, SystemException {
+
+		return articlePersistence.findByR_V(resourcePrimKey, version);
+	}
+
+	public List<Article> getArticles(
+			long resourcePrimKey, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		return articlePersistence.findByResourcePrimKey(
+			resourcePrimKey, start, end, orderByComparator);
+	}
+
+	public int getArticlesCount(long resourcePrimKey) throws SystemException {
+		return articlePersistence.countByResourcePrimKey(resourcePrimKey);
 	}
 
 	public List<Article> getCompanyArticles(
@@ -217,7 +282,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			getGroupArticles(
 				article.getGroupId(), article.getParentResourcePrimKey(),
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new ArticlePriorityComparator(true)));
+				new ArticlePriorityComparator(true)));
 
 		articles.remove(article);
 		articles.add(priority, article);
