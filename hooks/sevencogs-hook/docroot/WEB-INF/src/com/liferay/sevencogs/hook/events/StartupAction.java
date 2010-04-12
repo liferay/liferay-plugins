@@ -1128,9 +1128,9 @@ public class StartupAction extends SimpleAction {
 		// Home layout
 
 		Layout layout = addLayout(
-			group, "Home", false, "/home", "1_2_columns_ii");
+			group, "Home", false, "/home", "1_3_2_columns");
 
-		// Banner content portlet
+		// Home Page Banner content portlet
 
 		String portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-1");
@@ -1161,52 +1161,17 @@ public class StartupAction extends SimpleAction {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		// Front Page - Intro content portlet
+		// Home Page Products Button content portlet
 
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
 
 		removePortletBorder(layout, portletId);
 
-		serviceContext.setAssetTagNames(new String[] {"front"});
-
 		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Front Page Intro",
-			"/sample/journal/articles/home_page_intro.xml", serviceContext);
-
-		configureJournalContent(
-			layout, portletId, journalArticle.getArticleId());
-
-		// Front Page - Edit and Create content portlet
-
-		portletId = addPortletId(
-			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
-
-		configurePortletTitle(layout, portletId, "Edit and Add Content");
-
-		serviceContext.setAssetTagNames(new String[] {"liferay", "tips"});
-
-		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Fron Page - Edit and Create",
-			"/sample/journal/articles/home_page_edit_and_create_info.xml",
+			defaultUserId, group.getGroupId(), "Products Button",
+			"/sample/journal/articles/home_page_products_button.xml",
 			serviceContext);
-
-		content = StringUtil.replace(
-			journalArticle.getContent(),
-			new String[] {
-				"[$ADD_ICON_IG_IMAGE_UUID$]",
-				"[$CONFIGURATION_ICON_IG_IMAGE_UUID$]",
-				"[$EDIT_ICON_IG_IMAGE_UUID$]",
-				"[$GROUP_ID$]",
-				"[$LOOK_ICON_IG_IMAGE_UUID$]"
-			},
-			new String[] {
-				String.valueOf(addIconIGImage.getUuid()),
-				String.valueOf(configurationIconIGImage.getUuid()),
-				String.valueOf(editIconIGImage.getUuid()),
-				String.valueOf(group.getGroupId()),
-				String.valueOf(lookIconIGImage.getUuid())
-			});
 
 		JournalArticleLocalServiceUtil.updateContent(
 			group.getGroupId(), journalArticle.getArticleId(),
@@ -1215,17 +1180,89 @@ public class StartupAction extends SimpleAction {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		// Front Page - EE Ad content portlet
+		// Home Page Blogs Button content portlet
 
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-3");
+
+		removePortletBorder(layout, portletId);
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Blogs Button",
+			"/sample/journal/articles/home_page_blogs_button.xml",
+			serviceContext);
+
+		JournalArticleLocalServiceUtil.updateContent(
+			group.getGroupId(), journalArticle.getArticleId(),
+			journalArticle.getVersion(), content);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// Home Page Blogs Button content porltet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-4");
+
+		removePortletBorder(layout, portletId);
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Forums Button",
+			"/sample/journal/articles/home_page_forums_button.xml",
+			serviceContext);
+
+		JournalArticleLocalServiceUtil.updateContent(
+			group.getGroupId(), journalArticle.getArticleId(),
+			journalArticle.getVersion(), content);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// Products Landing Intro content portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-5");
+
+		removePortletBorder(layout, portletId);
+
+		serviceContext.setAssetTagNames(new String[] {"front"});
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Home Page Intro",
+			"/sample/journal/articles/products_landing_intro.xml",
+			serviceContext);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// Products Landing Intro Info content portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-5");
+
+		removePortletBorder(layout, portletId);
+
+		serviceContext.setAssetTagNames(new String[] {"front"});
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Home Page Intro Info",
+			"/sample/journal/articles/products_landing_intro_info.xml",
+			serviceContext);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// EE Ad content portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-8");
 
 		configurePortletTitle(layout, portletId, "Advertisement");
 
 		serviceContext.setAssetTagNames(new String[] {"liferay", "enterprise"});
 
 		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Front Page - EE Ad",
+			defaultUserId, group.getGroupId(), "Home Page - EE Ad",
 			"/sample/journal/articles/ee_ad.xml", serviceContext);
 
 		content = StringUtil.replace(
@@ -1246,30 +1283,12 @@ public class StartupAction extends SimpleAction {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		// Front Page - Permissions content portlet
-
-		portletId = addPortletId(
-			layout, PortletKeys.JOURNAL_CONTENT, "column-3");
-
-		highlightPortlet(layout, portletId);
-
-		serviceContext.setAssetTagNames(
-			new String[] {"liferay", "permissions"});
-
-		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Front Page - Permissions",
-			"/sample/journal/articles/home_page_permissions_info.xml",
-			serviceContext);
-
-		configureJournalContent(
-			layout, portletId, journalArticle.getArticleId());
-
 		// Products layout
 
 		layout = addLayout(
-			group, "Products", false, "/products", "2_columns_iii");
+			group, "Products", false, "/products", "1_2_columns_i");
 
-		// Products Image content portlet
+		// Products Banner content portlet
 
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-1");
@@ -1279,19 +1298,8 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setAssetTagNames(new String[] {"Vix-998", "7cogs"});
 
 		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Products Image",
+			defaultUserId, group.getGroupId(), "Products Banner",
 			"/sample/journal/articles/products_banner.xml", serviceContext);
-
-		content = StringUtil.replace(
-			journalArticle.getContent(),
-			new String[] {
-				"[$GROUP_ID$]",
-				"[$PRODUCTS_IG_IMAGE_UUID$]"
-			},
-			new String[] {
-				String.valueOf(group.getGroupId()),
-				String.valueOf(productsIGImage.getUuid())
-			});
 
 		JournalArticleLocalServiceUtil.updateContent(
 			group.getGroupId(), journalArticle.getArticleId(),
@@ -1300,28 +1308,40 @@ public class StartupAction extends SimpleAction {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		// News content portlet
+		// Products Landing Intro content portlet
 
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
 
-		configurePortletTitle(layout, portletId, "News");
+		configurePortletTitle(layout, portletId, "Products Landing Intro");
 
-		serviceContext.setAssetTagNames(new String[] {"liferay", "gartner"});
+		serviceContext.setAssetTagNames(new String[] {"products"});
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Gartner",
-			"/sample/journal/articles/gartner_ad.xml", serviceContext);
+			"/sample/journal/articles/products_landing_intro.xml",
+			serviceContext);
 
-		content = StringUtil.replace(
-			journalArticle.getContent(),
-			new String[] {
-				"[$GROUP_ID$]", "[$GARTNER_IG_IMAGE_UUID$]"
-			},
-			new String[] {
-				String.valueOf(group.getGroupId()),
-				String.valueOf(gartnerIGImage.getUuid())
-			});
+		JournalArticleLocalServiceUtil.updateContent(
+			group.getGroupId(), journalArticle.getArticleId(),
+			journalArticle.getVersion(), content);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// Products Landing Intro Info content portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
+
+		configurePortletTitle(layout, portletId, "Products Landing Intro Info");
+
+		serviceContext.setAssetTagNames(new String[] {"products"});
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Gartner",
+			"/sample/journal/articles/products_landing_intro_info.xml",
+			serviceContext);
 
 		JournalArticleLocalServiceUtil.updateContent(
 			group.getGroupId(), journalArticle.getArticleId(),
@@ -1333,43 +1353,44 @@ public class StartupAction extends SimpleAction {
 		// Introducing Vix content portlet
 
 		portletId = addPortletId(
-			layout, PortletKeys.JOURNAL_CONTENT, "column-1");
+			layout, PortletKeys.JOURNAL_CONTENT, "column-3");
 
 		removePortletBorder(layout, portletId);
 
 		serviceContext.setAssetTagNames(new String[] {"Vix-998", "7cogs"});
 
 		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Introducing Vix",
-			"/sample/journal/articles/products_landing_intro.xml",
-			serviceContext);
-
-		configureJournalContent(
-			layout, portletId, journalArticle.getArticleId());
-
-		// Products - More Information content portlet
-
-		portletId = addPortletId(
-			layout, PortletKeys.JOURNAL_CONTENT, "column-1");
-
-		highlightPortlet(layout, portletId);
-
-		serviceContext.setAssetTagNames(new String[] {"info"});
-
-		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Products - More Information",
-			"/sample/journal/articles/products_landing_intro_info.xml",
-			serviceContext);
+			defaultUserId, group.getGroupId(), "Products Catalog",
+			"/sample/journal/articles/products_catalog.xml", serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
 		// Blogs
 
-		layout = addLayout(group, "Blogs", false, "/blogs", "2_columns_ii");
+		layout = addLayout(group, "Blogs", false, "/blogs", "1_2_columns_i");
 
-		addPortletId(layout, PortletKeys.RECENT_BLOGGERS, "column-1");
-		addPortletId(layout, PortletKeys.BLOGS_AGGREGATOR, "column-2");
+		// Introducing Vix content portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-1");
+
+		removePortletBorder(layout, portletId);
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Blogs Banner",
+			"/sample/journal/articles/blogs_banner.xml", serviceContext);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// Recent Bloggers portlet
+
+		addPortletId(layout, PortletKeys.RECENT_BLOGGERS, "column-2");
+
+		// Blogs Aggregator portlet
+
+		addPortletId(layout, PortletKeys.BLOGS_AGGREGATOR, "column-3");
 
 		// Wiki layout
 
