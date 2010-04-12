@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 5.0.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_5_0_0.dtd">
+
+<look-and-feel>
+	<compatibility>
+		<version>6.0+</version>
+	</compatibility>
+	<theme id="7-cogs-website" name="7-Cogs Website">
+		<root-path>/</root-path>
+		<templates-path>${root-path}/templates</templates-path>
+		<images-path>${root-path}/images</images-path>
+		<template-extension>vm</template-extension>
+		<settings>
+			<setting key="portlet-setup-show-borders-default" value="false" />
+		</settings>
+		<layout-templates>
+			<custom>
+				<layout-template id="home" name="Home">
+					<template-path>/layouttpl/custom/home.tpl</template-path>
+					<wap-template-path>/layouttpl/custom/home.tpl</wap-template-path>
+					<thumbnail-path>/layouttpl/custom/home.png</thumbnail-path>
+				</layout-template>
+			</custom>
+		</layout-templates>
+	</theme>
+</look-and-feel>
