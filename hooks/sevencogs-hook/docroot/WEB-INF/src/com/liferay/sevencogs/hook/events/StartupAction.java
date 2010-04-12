@@ -990,7 +990,7 @@ public class StartupAction extends SimpleAction {
 
 		LayoutSetLocalServiceUtil.updateLogo(
 			group.getGroupId(), false, true,
-			getInputStream("/sample/images/seven_cogs_logo.png"));
+			getInputStream("/sample/images/logo.png"));
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
 			group.getGroupId(), false, "sevencogs_WAR_sevencogstheme", "01", "",
@@ -1049,57 +1049,32 @@ public class StartupAction extends SimpleAction {
 			null, defaultUserId, 0, "7Cogs Web Content",
 			"Images used for content", serviceContext);
 
-		serviceContext.setAssetTagNames(new String[] {"add"});
+		serviceContext.setAssetTagNames(new String[] {"home page", "blogs"});
 		serviceContext.setAssetCategoryIds(
 			new long[] {iconAssetCategory.getCategoryId()});
 
-		IGImage addIconIGImage = addIGImage(
-			defaultUserId, igFolder.getFolderId(), "add_icon.png",
-			"/sample/images/add_icon.png", serviceContext);
+		IGImage blogsButtonIGImage = addIGImage(
+			defaultUserId, igFolder.getFolderId(), "home-page_blogs-button.png",
+			"/sample/images/home-page_blogs-button.png", serviceContext);
 
-		serviceContext.setAssetTagNames(new String[] {"configuration"});
+		serviceContext.setAssetTagNames(new String[] {"home page"});
+		serviceContext.setAssetCategoryIds(
+			new long[] {productsAssetCategory.getCategoryId()});
+
+		IGImage cogsNetworkAdIGImage = addIGImage(
+			defaultUserId, igFolder.getFolderId(),
+			"home-page_cogs-network-advertisement.png",
+			"/sample/images/home-page_cog-network-advertisement.png",
+			serviceContext);
+
+		serviceContext.setAssetTagNames(new String[] {"home page", "forums"});
 		serviceContext.setAssetCategoryIds(
 			new long[] {iconAssetCategory.getCategoryId()});
 
-		IGImage configurationIconIGImage = addIGImage(
-			defaultUserId, igFolder.getFolderId(), "configuration_icon.png",
-			"/sample/images/configuration_icon.png", serviceContext);
-
-		serviceContext.setAssetTagNames(new String[] {"edit"});
-		serviceContext.setAssetCategoryIds(
-			new long[] {iconAssetCategory.getCategoryId()});
-
-		IGImage editIconIGImage = addIGImage(
-			defaultUserId, igFolder.getFolderId(), "edit_icon.png",
-			"/sample/images/edit_icon.png", serviceContext);
-
-		serviceContext.setAssetTagNames(new String[] {"enterprise"});
-		serviceContext.setAssetCategoryIds(
-			new long[] {
-				bannerAssetCategory.getCategoryId(),
-				liferayAssetCategory.getCategoryId()
-			});
-
-		IGImage eeAdIGImage = addIGImage(
-			defaultUserId, igFolder.getFolderId(), "ee_ad.png",
-			"/sample/images/ee_ad.png", serviceContext);
-
-		serviceContext.setAssetTagNames(new String[] {"gartner", "quadrant"});
-		serviceContext.setAssetCategoryIds(
-			new long[] {
-				bannerAssetCategory.getCategoryId(),
-				liferayAssetCategory.getCategoryId()
-			});
-
-		IGImage gartnerIGImage = addIGImage(
-			defaultUserId, igFolder.getFolderId(), "gartner.png",
-			"/sample/images/gartner.png", serviceContext);
-
-		serviceContext.setAssetTagNames(new String[] {"vix-998"});
-
-		IGImage introducingIGImage = addIGImage(
-			defaultUserId, igFolder.getFolderId(), "introducing.png",
-			"/sample/images/introducing.png", serviceContext);
+		IGImage forumsButtonIGImage = addIGImage(
+			defaultUserId, igFolder.getFolderId(),
+			"home-page_forums-button.png",
+			"/sample/images/home-page_forums-button.png", serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"liferay", "logo"});
 		serviceContext.setAssetCategoryIds(
@@ -1109,26 +1084,27 @@ public class StartupAction extends SimpleAction {
 			defaultUserId, igFolder.getFolderId(), "liferay_logo.png",
 			"/sample/images/liferay_logo.png", serviceContext);
 
-		serviceContext.setAssetTagNames(new String[] {"look and feel"});
+		serviceContext.setAssetTagNames(new String[] {"home page"});
+		serviceContext.setAssetCategoryIds(
+			new long[] {bannerAssetCategory.getCategoryId()});
+
+		IGImage mainBannerIGImage = addIGImage(
+			defaultUserId, igFolder.getFolderId(), "home-page_main-banner.png",
+			"/sample/images/home-page_main-banner.png", serviceContext);
+
+		serviceContext.setAssetTagNames(new String[] {"home page", "products"});
 		serviceContext.setAssetCategoryIds(
 			new long[] {iconAssetCategory.getCategoryId()});
 
-		IGImage lookIconIGImage = addIGImage(
-			defaultUserId, igFolder.getFolderId(), "look_icon.png",
-			"/sample/images/look_icon.png", serviceContext);
-
-		serviceContext.setAssetTagNames(new String[] {"vix-998", "products"});
-		serviceContext.setAssetCategoryIds(
-			new long[] {productsAssetCategory.getCategoryId()});
-
-		IGImage productsIGImage = addIGImage(
-			defaultUserId, igFolder.getFolderId(), "products.png",
-			"/sample/images/products.png", serviceContext);
+		IGImage productsButtonIGImage = addIGImage(
+			defaultUserId, igFolder.getFolderId(),
+			"home-page_products-button.png",
+			"/sample/images/home-page_products-button.png", serviceContext);
 
 		// Home layout
 
 		Layout layout = addLayout(
-			group, "Home", false, "/home", "1_3_2_columns");
+			group, "Home", false, "/home", "home");
 
 		// Home Page Banner content portlet
 
@@ -1147,11 +1123,11 @@ public class StartupAction extends SimpleAction {
 			journalArticle.getContent(),
 			new String[] {
 				"[$GROUP_ID$]",
-				"[$INTRODUCING_IG_IMAGE_UUID$]"
+				"[$HOME_PAGE_BANNER_IG_IMAGE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
-				String.valueOf(introducingIGImage.getUuid())
+				String.valueOf(mainBannerIGImage.getUuid())
 			});
 
 		JournalArticleLocalServiceUtil.updateContent(
@@ -1173,6 +1149,17 @@ public class StartupAction extends SimpleAction {
 			"/sample/journal/articles/home_page_products_button.xml",
 			serviceContext);
 
+		content = StringUtil.replace(
+			journalArticle.getContent(),
+			new String[] {
+				"[$GROUP_ID$]",
+				"[$HOME_PAGE_PRODUCTS_IG_IMAGE_UUID$]"
+			},
+			new String[] {
+				String.valueOf(group.getGroupId()),
+				String.valueOf(productsButtonIGImage.getUuid())
+			});
+
 		JournalArticleLocalServiceUtil.updateContent(
 			group.getGroupId(), journalArticle.getArticleId(),
 			journalArticle.getVersion(), content);
@@ -1192,6 +1179,17 @@ public class StartupAction extends SimpleAction {
 			"/sample/journal/articles/home_page_blogs_button.xml",
 			serviceContext);
 
+		content = StringUtil.replace(
+			journalArticle.getContent(),
+			new String[] {
+				"[$GROUP_ID$]",
+				"[$HOME_PAGE_BLOGS_IG_IMAGE_UUID$]"
+			},
+			new String[] {
+				String.valueOf(group.getGroupId()),
+				String.valueOf(blogsButtonIGImage.getUuid())
+			});
+
 		JournalArticleLocalServiceUtil.updateContent(
 			group.getGroupId(), journalArticle.getArticleId(),
 			journalArticle.getVersion(), content);
@@ -1199,7 +1197,7 @@ public class StartupAction extends SimpleAction {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		// Home Page Blogs Button content porltet
+		// Home Page Forums Button content porltet
 
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-4");
@@ -1210,6 +1208,17 @@ public class StartupAction extends SimpleAction {
 			defaultUserId, group.getGroupId(), "Forums Button",
 			"/sample/journal/articles/home_page_forums_button.xml",
 			serviceContext);
+
+		content = StringUtil.replace(
+			journalArticle.getContent(),
+			new String[] {
+				"[$GROUP_ID$]",
+				"[$HOME_PAGE_FORUMS_IG_IMAGE_UUID$]"
+			},
+			new String[] {
+				String.valueOf(group.getGroupId()),
+				String.valueOf(forumsButtonIGImage.getUuid())
+			});
 
 		JournalArticleLocalServiceUtil.updateContent(
 			group.getGroupId(), journalArticle.getArticleId(),
@@ -1273,7 +1282,7 @@ public class StartupAction extends SimpleAction {
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
-				String.valueOf(eeAdIGImage.getUuid())
+				String.valueOf(cogsNetworkAdIGImage.getUuid())
 			});
 
 		JournalArticleLocalServiceUtil.updateContent(
