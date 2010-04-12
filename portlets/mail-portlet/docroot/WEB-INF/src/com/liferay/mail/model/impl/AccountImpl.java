@@ -15,15 +15,21 @@
 package com.liferay.mail.model.impl;
 
 import com.liferay.mail.model.Account;
+import com.liferay.mail.util.PasswordUtil;
 
 /**
  * <a href="AccountImpl.java.html"><b><i>View Source</i></b></a>
  *
- * @author Brian Wing Shun Chan
+ * @author Scott Lee
  */
 public class AccountImpl extends AccountModelImpl implements Account {
 
-	public AccountImpl() {
+	public String getPasswordDecrypted() {
+		return PasswordUtil.decrypt(getPassword());
+	}
+
+	public void setPasswordDecrypted(String password) {
+		setPassword(PasswordUtil.encrypt(password));
 	}
 
 }
