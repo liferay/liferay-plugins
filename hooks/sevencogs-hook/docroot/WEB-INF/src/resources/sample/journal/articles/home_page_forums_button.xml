@@ -3,13 +3,22 @@
 	<static-content language-id="en_US">
 		<![CDATA[
 
-			<h1>
-				To the Forums!
-			</h1>
-
-			<p>
-				Voice your concerns and discuss with other members.
-			</p>
+			<a href="#" style="display: block; color: inherit; text-decoration: none;">
+				<div class="callout">
+					<div class="callout-extraborder">
+						<div class="callout-content" style="background: url(/image/image_gallery?uuid=[$HOME_PAGE_FORUMS_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]) no-repeat 25px 13px;">
+							<article class="after-icon-callout">
+								<h1>
+									To the Forums!
+								</h1>
+								<p>
+									Voice your concerns and discuss with other members.
+								</p>
+							</article>
+						</div>
+					</div>
+				</div>
+			</a>
 
 		]]>
 	</static-content>

@@ -3,9 +3,22 @@
 	<static-content language-id="en_US">
 		<![CDATA[
 
-			<h1>Products</h1>
-			
-			<p>Our newest addition to the Titanium Series: ViX-998</p>
+			<a href="#" style="display: block; color: inherit; text-decoration: none;">
+				<div class="callout">
+					<div class="callout-extraborder">
+						<div class="callout-content" style="background: url(/image/image_gallery?uuid=[$HOME_PAGE_PRODUCTS_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]) no-repeat 25px 13px;">
+							<article class="after-icon-callout">
+								<h1>
+									Products
+								</h1>
+								<p>
+									Our newest additions to the Titanium Series: ViX-998
+								</p>
+							</article>
+						</div>
+					</div>
+				</div>
+			</a>
 
 		]]>
 	</static-content>

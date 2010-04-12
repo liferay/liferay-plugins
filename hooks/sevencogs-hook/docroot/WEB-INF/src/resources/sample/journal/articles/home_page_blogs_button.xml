@@ -3,13 +3,23 @@
 	<static-content language-id="en_US">
 		<![CDATA[
 
-			<h1>
-				Visit the Blog!
-			</h1>
-			
-			<p>
-				Read about the latest stuff from the 7 Cog!
-			</p>
+			<a href="#" style="display: block; color: inherit; text-decoration: none;">
+				<div class="callout">
+					<div class="callout-extraborder">
+						<div class="callout-content" style="background: url(/image/image_gallery?uuid=[$HOME_PAGE_BLOGS_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]) no-repeat 25px 13px;">
+							<article class="after-icon-callout">
+								<h1>
+									Visit the Blog!
+								</h1>
+								<p>
+									Read about the latest stuff from the 7-Cog!
+								</p>
+							</article>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
 
 		]]>
 	</static-content>
