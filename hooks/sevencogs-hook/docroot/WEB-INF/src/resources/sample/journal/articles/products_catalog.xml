@@ -3,85 +3,54 @@
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
-			<div>
-
-				[IMAGE]
-
-				<h2>
-					Titanium Series
-				</h2>
-
-				<ul>
-					<li>
-						<a href="#">ViX-998</a>
-					</li>
-					<li>
-						<a href="#">ViX-988</a>
-					</li>
-					<li>
-						<a href="#">ViX-876</a>
-					</li>
-				</ul>
-
-				<hr/>
-
-				[IMAGE]
-
-				<h2>
-					Adamantium Series
-				</h2>
-
-				<ul>
-					<li>
-						<a href="#">WvE-X</a>
-					</li>
-					<li>
-						<a href="#">WvE-X23</a>
-					</li>
-					<li>
-						<a href="#">WpN-X</a>
-					</li>
-				</ul>
-
-				<hr/>
-
-				[IMAGE]
-
-				<h2>
-					Vibranium Series
-				</h2>
-
-				<ul>
-					<li>
-						<a href="#">CpA-1917</a>
-					</li>
-					<li>
-						<a href="#">CpA-1945</a>
-					</li>
-					<li>
-						<a href="#">WkD-889</a>
-					</li>
-				</ul>
-
-			</div>
-			<div>
-
-				<h1>
-					News
+			<article style="margin-bottom: 20px;">
+				<h1 class="obscured">
+					Advertisement
 				</h1>
+				<div class="callout">
+					<div class="callout-extraborder">
+						<div class="callout-content" style="background: url([IMAGE]) no-repeat 23px 27px; padding: 14px 24px 0;">
+							<article class="small-after-icon-callout">
+								<h1>
+									Titanium Series
+								</h1>
 
-				<h2>
-					Latest Release
-				</h2>
+								<ul>
+									<li>ViX-998</li>
+									<li>ViX-988</li>
+									<li>ViX-876</li>
+								</ul>
+							</article>
+						</div>
+						<div class="callout-content" style="background: url([IMAGE]) no-repeat 23px 27px; padding: 14px 24px 0;">
+							<article class="small-after-icon-callout">
+								<h1>
+									Adamantium Series
+								</h1>
 
-				<p>
-					Sed ut nisl quis est vestibulum commodo. Proin eros arcu, aliquam vitae, gravida at, pharetra eu, leo. Nulla pede lacus, feugiat ut, tincidunt vel, semper in, felis. Cras dictum pulvinar turpis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi aliquet nisl at eros tempus volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin posuere lectus lacinia turpis. Quisque nunc. Aliquam ultrices felis hendrerit tellus.
-				</p>
-				<p>
-					<a href="#">Read more about it&gt;</a>
-				</p>
+								<ul>
+									<li>WvE-X</li>
+									<li>WvE-X23</li>
+									<li>WpN-X</li>
+								</ul>
+							</article>
+						</div>
+						<div class="callout-content" style="background: url([IMAGE]) no-repeat 23px 27px; padding: 14px 24px 0;">
+							<article class="small-after-icon-callout" style="border-bottom: 0;">
+								<h1>
+									Vibranium Series
+								</h1>
 
-			</div>
+								<ul>
+									<li>CpA-1917</li>
+									<li>CpA-1945</li>
+									<li>WkD-889</li>
+								</ul>
+							</article>
+						</div>
+					</div>
+				</div>
+			</article>
 		]]>
 	</static-content>
 </root>

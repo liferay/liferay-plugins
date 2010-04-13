@@ -3,9 +3,9 @@
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
-
-			<h1>Products</h1>
-
+			<h1 id="page-banner">
+				Products
+			</h1>
 		]]>
 	</static-content>
 </root>
