@@ -17,10 +17,15 @@ package com.liferay.mail.service.impl;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.base.MessageLocalServiceBaseImpl;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 
 import java.util.Date;
@@ -115,6 +120,20 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		}
 	}
 
+	public int getAccountUnreadMessagesCount(long accountId)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Message.class, "message1", PortletClassLoaderUtil.getClassLoader());
+
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("accountId", accountId));
+		dynamicQuery.add(
+			RestrictionsFactoryUtil.not(
+				RestrictionsFactoryUtil.like("flags", "%6,%")));
+
+		return dynamicQueryCount(dynamicQuery);
+	}
+
 	public List<Message> getCompanyMessages(long companyId, int start, int end)
 		throws SystemException {
 
@@ -135,10 +154,43 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		return messagePersistence.countByFolderId(folderId);
 	}
 
+	public int getFolderUnreadMessagesCount(long folderId)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Message.class, "message2", PortletClassLoaderUtil.getClassLoader());
+
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
+		dynamicQuery.add(
+			RestrictionsFactoryUtil.not(
+				RestrictionsFactoryUtil.like("flags", "%6,%")));
+
+		return dynamicQueryCount(dynamicQuery);
+	}
+
 	public Message getMessage(long folderId, long remoteMessageId)
 		throws PortalException, SystemException {
 
 		return messagePersistence.findByF_R(folderId, remoteMessageId);
+	}
+
+	public Message updateFlag(long messageId, int flag, boolean value)
+		throws PortalException, SystemException {
+
+		Message message = messagePersistence.findByPrimaryKey(messageId);
+
+		String flags = message.getFlags();
+
+		String flagString = flag + StringPool.COMMA;
+
+		if (value && (flags.indexOf(flagString) == -1)) {
+			message.setFlags(flags + flagString);
+		}
+		else if (!value && (flags.indexOf(flagString) != -1)) {
+			message.setFlags(flags.replace(flagString, StringPool.BLANK));
+		}
+
+		return messagePersistence.update(message, false);
 	}
 
 	public Message updateMessage(
@@ -174,6 +226,15 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		indexer.reindex(message);
 
 		return message;
+	}
+
+	public void updateMessagesFlag(
+			long[] messageIds, int flag, boolean value)
+		throws PortalException, SystemException {
+
+		for (long messageId : messageIds) {
+			updateFlag(messageId, flag, value);
+		}
 	}
 
 }
