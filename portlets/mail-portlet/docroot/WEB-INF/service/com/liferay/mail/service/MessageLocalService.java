@@ -114,6 +114,10 @@ public interface MessageLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getAccountUnreadMessagesCount(long accountId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.mail.model.Message> getCompanyMessages(
 		long companyId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -132,8 +136,17 @@ public interface MessageLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getFolderUnreadMessagesCount(long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.mail.model.Message getMessage(long folderId,
 		long remoteMessageId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Message updateFlag(long messageId, int flag,
+		boolean value)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

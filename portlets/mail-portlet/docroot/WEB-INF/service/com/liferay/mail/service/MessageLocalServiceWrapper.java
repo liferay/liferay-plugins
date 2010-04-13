@@ -131,6 +131,11 @@ public class MessageLocalServiceWrapper implements MessageLocalService {
 		_messageLocalService.deleteMessages(folderId);
 	}
 
+	public int getAccountUnreadMessagesCount(long accountId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _messageLocalService.getAccountUnreadMessagesCount(accountId);
+	}
+
 	public java.util.List<com.liferay.mail.model.Message> getCompanyMessages(
 		long companyId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -153,11 +158,23 @@ public class MessageLocalServiceWrapper implements MessageLocalService {
 		return _messageLocalService.getFolderMessagesCount(folderId);
 	}
 
+	public int getFolderUnreadMessagesCount(long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _messageLocalService.getFolderUnreadMessagesCount(folderId);
+	}
+
 	public com.liferay.mail.model.Message getMessage(long folderId,
 		long remoteMessageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _messageLocalService.getMessage(folderId, remoteMessageId);
+	}
+
+	public com.liferay.mail.model.Message updateFlag(long messageId, int flag,
+		boolean value)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _messageLocalService.updateFlag(messageId, flag, value);
 	}
 
 	public com.liferay.mail.model.Message updateMessage(long messageId,

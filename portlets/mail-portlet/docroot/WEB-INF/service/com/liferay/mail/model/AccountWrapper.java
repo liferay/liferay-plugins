@@ -342,6 +342,14 @@ public class AccountWrapper implements Account {
 		return _account.toXmlString();
 	}
 
+	public java.lang.String getPasswordDecrypted() {
+		return _account.getPasswordDecrypted();
+	}
+
+	public void setPasswordDecrypted(java.lang.String unencryptedPassword) {
+		_account.setPasswordDecrypted(unencryptedPassword);
+	}
+
 	public Account getWrappedAccount() {
 		return _account;
 	}

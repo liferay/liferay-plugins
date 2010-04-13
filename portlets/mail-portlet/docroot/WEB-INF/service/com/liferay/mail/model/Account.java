@@ -40,4 +40,7 @@ package com.liferay.mail.model;
  * @generated
  */
 public interface Account extends AccountModel {
+	public java.lang.String getPasswordDecrypted();
+
+	public void setPasswordDecrypted(java.lang.String unencryptedPassword);
 }

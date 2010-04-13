@@ -283,6 +283,14 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		_defaultSender = defaultSender;
 	}
 
+	public java.lang.String getPasswordDecrypted() {
+		throw new UnsupportedOperationException();
+	}
+
+	public void setPasswordDecrypted(java.lang.String unencryptedPassword) {
+		throw new UnsupportedOperationException();
+	}
+
 	public Account toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;

@@ -119,7 +119,9 @@
 	</mapped-superclass>
 	<entity class="com.liferay.mail.model.impl.AccountImpl" name="Account">
 		<table name="Mail_Account" />
-		<attributes />
+		<attributes>
+			<transient name="passwordDecrypted" />
+		</attributes>
 	</entity>
 	<entity class="com.liferay.mail.model.impl.AttachmentImpl" name="Attachment">
 		<table name="Mail_Attachment" />
