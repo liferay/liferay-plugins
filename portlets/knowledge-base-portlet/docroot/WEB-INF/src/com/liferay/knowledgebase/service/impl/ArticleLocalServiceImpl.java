@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MathUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 
@@ -87,6 +88,21 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		articlePersistence.update(article, false);
 
+		// Resources
+
+		if (serviceContext.getAddCommunityPermissions() ||
+			serviceContext.getAddGuestPermissions()) {
+
+			addArticleResources(
+				article, serviceContext.getAddCommunityPermissions(),
+				serviceContext.getAddGuestPermissions());
+		}
+		else {
+			addArticleResources(
+				article, serviceContext.getCommunityPermissions(),
+				serviceContext.getGuestPermissions());
+		}
+
 		// Articles
 
 		updateDisplayOrder(article, parentResourcePrimKey, priority);
@@ -94,11 +110,37 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		return article;
 	}
 
-	public void deleteArticles(long resourcePrimKey)
+	public void addArticleResources(
+			Article article, boolean addCommunityPermissions,
+			boolean addGuestPermissions)
 		throws PortalException, SystemException {
+
+		resourceLocalService.addResources(
+			article.getCompanyId(), article.getGroupId(), article.getUserId(),
+			Article.class.getName(), article.getResourcePrimKey(), false,
+			addCommunityPermissions, addGuestPermissions);
+	}
+
+	public void addArticleResources(
+			Article article, String[] communityPermissions,
+			String[] guestPermissions)
+		throws PortalException, SystemException {
+
+		resourceLocalService.addModelResources(
+			article.getCompanyId(), article.getGroupId(), article.getUserId(),
+			Article.class.getName(), article.getResourcePrimKey(),
+			communityPermissions, guestPermissions);
+	}
+
+	public void deleteArticle(long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		// Article
 
 		Article article = articlePersistence.findByResourcePrimKey_First(
 			resourcePrimKey, new ArticleVersionComparator());
+
+		// Child Articles
 
 		List<Article> articles = getGroupArticles(
 			article.getGroupId(), article.getResourcePrimKey(),
@@ -106,8 +148,22 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			new ArticlePriorityComparator());
 
 		for (Article curArticle : articles) {
-			deleteArticles(curArticle.getResourcePrimKey());
+			deleteArticle(curArticle.getResourcePrimKey());
 		}
+
+		deleteArticle(article);
+	}
+
+	public void deleteArticle(Article article)
+		throws PortalException, SystemException {
+
+		// Resources
+
+		resourceLocalService.deleteResource(
+			article.getCompanyId(), Article.class.getName(),
+			ResourceConstants.SCOPE_INDIVIDUAL, article.getResourcePrimKey());
+
+		// Article
 
 		articlePersistence.removeByResourcePrimKey(
 			article.getResourcePrimKey());
@@ -121,7 +177,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			new ArticleCreateDateComparator(true));
 
 		for (Article article : articles) {
-			deleteArticles(article.getResourcePrimKey());
+			deleteArticle(article);
 		}
 	}
 
@@ -260,11 +316,32 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		articlePersistence.update(article, false);
 
+		// Resources
+
+		if ((serviceContext.getCommunityPermissions() != null) ||
+			(serviceContext.getGuestPermissions() != null)) {
+
+			updateArticleResources(
+				article, serviceContext.getCommunityPermissions(),
+				serviceContext.getGuestPermissions());
+		}
+
 		// Articles
 
 		updateDisplayOrder(article, parentResourcePrimKey, priority);
 
 		return article;
+	}
+
+	public void updateArticleResources(
+			Article article, String[] communityPermissions,
+			String[] guestPermissions)
+		throws PortalException, SystemException {
+
+		resourceLocalService.updateResources(
+			article.getCompanyId(), article.getGroupId(),
+			Article.class.getName(), article.getResourcePrimKey(),
+			communityPermissions, guestPermissions);
 	}
 
 	public Article updateDisplayOrder(
