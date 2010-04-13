@@ -61,7 +61,8 @@ public abstract class ArticleLocalServiceBaseImpl implements ArticleLocalService
 		articlePersistence.remove(articleId);
 	}
 
-	public void deleteArticle(Article article) throws SystemException {
+	public void deleteArticle(Article article)
+		throws PortalException, SystemException {
 		articlePersistence.remove(article);
 	}
 

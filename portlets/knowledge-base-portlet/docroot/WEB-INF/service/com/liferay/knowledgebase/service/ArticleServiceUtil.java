@@ -38,6 +38,107 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
  * @generated
  */
 public class ArticleServiceUtil {
+	public static com.liferay.knowledgebase.model.Article addArticle(
+		long parentResourcePrimKey, java.lang.String title,
+		java.lang.String content, java.lang.String description, int priority,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addArticle(parentResourcePrimKey, title, content,
+			description, priority, serviceContext);
+	}
+
+	public static void deleteArticle(long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteArticle(resourcePrimKey);
+	}
+
+	public static com.liferay.knowledgebase.model.Article getArticle(
+		long resourcePrimKey, double version)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getArticle(resourcePrimKey, version);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
+		long resourcePrimKey, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getArticles(resourcePrimKey, start, end, orderByComparator);
+	}
+
+	public static int getArticlesCount(long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getArticlesCount(resourcePrimKey);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.Article> getCompanyArticles(
+		long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getCompanyArticles(companyId, start, end, orderByComparator);
+	}
+
+	public static int getCompanyArticlesCount(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getCompanyArticlesCount(companyId);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getGroupArticles(groupId, start, end, orderByComparator);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
+		long groupId, long parentResourcePrimKey, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getGroupArticles(groupId, parentResourcePrimKey, start,
+			end, orderByComparator);
+	}
+
+	public static int getGroupArticlesCount(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getGroupArticlesCount(groupId);
+	}
+
+	public static int getGroupArticlesCount(long groupId,
+		long parentResourcePrimKey)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getGroupArticlesCount(groupId, parentResourcePrimKey);
+	}
+
+	public static com.liferay.knowledgebase.model.Article getLatestArticle(
+		long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getLatestArticle(resourcePrimKey);
+	}
+
+	public static com.liferay.knowledgebase.model.Article updateArticle(
+		long resourcePrimKey, long parentResourcePrimKey,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description, int priority,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateArticle(resourcePrimKey, parentResourcePrimKey,
+			title, content, description, priority, serviceContext);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

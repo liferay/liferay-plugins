@@ -114,7 +114,8 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 	}
 
 	public void deleteArticle(com.liferay.knowledgebase.model.Article article)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(article);
 
 		if (article == null) {
@@ -126,6 +127,10 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 			_classLoaderProxy.invoke("deleteArticle", new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -518,14 +523,73 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteArticles(long resourcePrimKey)
+	public void addArticleResources(
+		com.liferay.knowledgebase.model.Article article,
+		boolean addCommunityPermissions, boolean addGuestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(resourcePrimKey);
+		Object paramObj0 = ClpSerializer.translateInput(article);
+
+		if (article == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.knowledgebase.model.Article");
+		}
+
+		Object paramObj1 = new BooleanWrapper(addCommunityPermissions);
+
+		Object paramObj2 = new BooleanWrapper(addGuestPermissions);
 
 		try {
-			_classLoaderProxy.invoke("deleteArticles",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke("addArticleResources",
+				new Object[] { paramObj0, paramObj1, paramObj2 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	public void addArticleResources(
+		com.liferay.knowledgebase.model.Article article,
+		java.lang.String[] communityPermissions,
+		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(article);
+
+		if (article == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.knowledgebase.model.Article");
+		}
+
+		Object paramObj1 = ClpSerializer.translateInput(communityPermissions);
+
+		if (communityPermissions == null) {
+			paramObj1 = new NullWrapper("[Ljava.lang.String;");
+		}
+
+		Object paramObj2 = ClpSerializer.translateInput(guestPermissions);
+
+		if (guestPermissions == null) {
+			paramObj2 = new NullWrapper("[Ljava.lang.String;");
+		}
+
+		try {
+			_classLoaderProxy.invoke("addArticleResources",
+				new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -547,7 +611,8 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 	}
 
 	public void deleteGroupArticles(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
 
 		try {
@@ -555,6 +620,10 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -979,6 +1048,54 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		}
 
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void updateArticleResources(
+		com.liferay.knowledgebase.model.Article article,
+		java.lang.String[] communityPermissions,
+		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(article);
+
+		if (article == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.knowledgebase.model.Article");
+		}
+
+		Object paramObj1 = ClpSerializer.translateInput(communityPermissions);
+
+		if (communityPermissions == null) {
+			paramObj1 = new NullWrapper("[Ljava.lang.String;");
+		}
+
+		Object paramObj2 = ClpSerializer.translateInput(guestPermissions);
+
+		if (guestPermissions == null) {
+			paramObj2 = new NullWrapper("[Ljava.lang.String;");
+		}
+
+		try {
+			_classLoaderProxy.invoke("updateArticleResources",
+				new Object[] { paramObj0, paramObj1, paramObj2 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
 	}
 
 	public com.liferay.knowledgebase.model.Article updateDisplayOrder(

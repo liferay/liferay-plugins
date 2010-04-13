@@ -57,7 +57,8 @@ public class ArticleLocalServiceUtil {
 
 	public static void deleteArticle(
 		com.liferay.knowledgebase.model.Article article)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteArticle(article);
 	}
 
@@ -130,14 +131,29 @@ public class ArticleLocalServiceUtil {
 			content, description, priority, serviceContext);
 	}
 
-	public static void deleteArticles(long resourcePrimKey)
+	public static void addArticleResources(
+		com.liferay.knowledgebase.model.Article article,
+		boolean addCommunityPermissions, boolean addGuestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteArticles(resourcePrimKey);
+		getService()
+			.addArticleResources(article, addCommunityPermissions,
+			addGuestPermissions);
+	}
+
+	public static void addArticleResources(
+		com.liferay.knowledgebase.model.Article article,
+		java.lang.String[] communityPermissions,
+		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.addArticleResources(article, communityPermissions, guestPermissions);
 	}
 
 	public static void deleteGroupArticles(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteGroupArticles(groupId);
 	}
 
@@ -220,6 +236,17 @@ public class ArticleLocalServiceUtil {
 				   .updateArticle(userId, resourcePrimKey,
 			parentResourcePrimKey, title, content, description, priority,
 			serviceContext);
+	}
+
+	public static void updateArticleResources(
+		com.liferay.knowledgebase.model.Article article,
+		java.lang.String[] communityPermissions,
+		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.updateArticleResources(article, communityPermissions,
+			guestPermissions);
 	}
 
 	public static com.liferay.knowledgebase.model.Article updateDisplayOrder(
