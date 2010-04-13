@@ -28,8 +28,10 @@ public class AccountImpl extends AccountModelImpl implements Account {
 		return PasswordUtil.decrypt(getPassword());
 	}
 
-	public void setPasswordDecrypted(String password) {
-		setPassword(PasswordUtil.encrypt(password));
+	public void setPasswordDecrypted(String unencryptedPassword) {
+		String encryptedPassword = PasswordUtil.encrypt(unencryptedPassword);
+
+		setPassword(encryptedPassword);
 	}
 
 }

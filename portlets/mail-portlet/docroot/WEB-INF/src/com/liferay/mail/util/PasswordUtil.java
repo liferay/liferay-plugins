@@ -23,38 +23,38 @@ import com.liferay.portal.kernel.util.Validator;
 import java.io.UnsupportedEncodingException;
 
 /**
- * <a href="MailPasswordUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="PasswordUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Deepak Gothe
  */
 public class PasswordUtil {
 
 	public static String decrypt(String encryptedPassword) {
-		String password = null;
+		String unencryptedPassword = null;
 
 		try {
 			if (Validator.isNull(encryptedPassword)) {
 				return StringPool.BLANK;
 			}
 
-			byte[] passwordBytes = Base64.decode(encryptedPassword);
+			byte[] bytes = Base64.decode(encryptedPassword);
 
-			password = new String(passwordBytes, StringPool.UTF8);
+			unencryptedPassword = new String(bytes, StringPool.UTF8);
 		}
 		catch (UnsupportedEncodingException uee) {
 			_log.error("Unable to decrypt the password", uee);
 		}
 
-		return password;
+		return unencryptedPassword;
 	}
 
-	public static String encrypt(String password) {
+	public static String encrypt(String unencryptedPassword) {
 		String encryptedPassword = null;
 
 		try {
-			byte[] passwordBytes = password.getBytes(StringPool.UTF8);
+			byte[] bytes = unencryptedPassword.getBytes(StringPool.UTF8);
 
-			encryptedPassword = Base64.encode(passwordBytes);
+			encryptedPassword = Base64.encode(bytes);
 		}
 		catch (UnsupportedEncodingException uee) {
 			_log.error("Unable to encrypt the password", uee);
