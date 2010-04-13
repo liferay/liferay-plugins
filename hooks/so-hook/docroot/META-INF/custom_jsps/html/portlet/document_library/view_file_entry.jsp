@@ -96,7 +96,7 @@ if (portletDisplay.isWebDAVEnabled()) {
 
 	Group group = themeDisplay.getScopeGroup();
 
-	webDavUrl = themeDisplay.getPortalURL() + "/tunnel-web/secure/webdav/" + company.getWebId() + group.getFriendlyURL() + "/document_library" + sb.toString();
+	webDavUrl = themeDisplay.getPortalURL() + "/tunnel-web/secure/webdav" + group.getFriendlyURL() + "/document_library" + sb.toString();
 }
 
 UnicodeProperties extraSettingsProperties = fileEntry.getExtraSettingsProperties();
