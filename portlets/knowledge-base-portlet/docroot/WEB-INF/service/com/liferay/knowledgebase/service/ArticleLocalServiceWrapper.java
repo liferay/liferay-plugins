@@ -125,6 +125,37 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			serviceContext);
 	}
 
+	public void deleteArticles(long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleLocalService.deleteArticles(resourcePrimKey);
+	}
+
+	public void deleteGroupArticles(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_articleLocalService.deleteGroupArticles(groupId);
+	}
+
+	public com.liferay.knowledgebase.model.Article getArticle(
+		long resourcePrimKey, double version)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getArticle(resourcePrimKey, version);
+	}
+
+	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
+		long resourcePrimKey, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getArticles(resourcePrimKey, start, end,
+			orderByComparator);
+	}
+
+	public int getArticlesCount(long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getArticlesCount(resourcePrimKey);
+	}
+
 	public java.util.List<com.liferay.knowledgebase.model.Article> getCompanyArticles(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -163,6 +194,13 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.getGroupArticlesCount(groupId,
 			parentResourcePrimKey);
+	}
+
+	public com.liferay.knowledgebase.model.Article getLatestArticle(
+		long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getLatestArticle(resourcePrimKey);
 	}
 
 	public com.liferay.knowledgebase.model.Article updateArticle(long userId,
