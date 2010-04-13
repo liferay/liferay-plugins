@@ -38,7 +38,9 @@ public class AdminPermission {
 		PermissionChecker permissionChecker, long groupId, String actionId) {
 
 		return permissionChecker.hasPermission(
-			groupId, "com.liferay.knowledgebase.admin", groupId, actionId);
+			groupId, _NAME, groupId, actionId);
 	}
+
+	private static final String _NAME = "com.liferay.knowledgebase.admin";
 
 }

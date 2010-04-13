@@ -75,7 +75,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		List<Article> articles = articleLocalService.getArticles(
 			resourcePrimKey, start, end, orderByComparator);
 
-		return checkPermission(articles, ActionKeys.VIEW);
+		return filterArticles(articles);
 	}
 
 	public int getArticlesCount(long resourcePrimKey) throws SystemException {
@@ -90,7 +90,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		List<Article> articles = articleLocalService.getCompanyArticles(
 			companyId, start, end, orderByComparator);
 
-		return checkPermission(articles, ActionKeys.VIEW);
+		return filterArticles(articles);
 	}
 
 	public int getCompanyArticlesCount(long companyId) throws SystemException {
@@ -105,7 +105,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		List<Article> articles = articleLocalService.getGroupArticles(
 			groupId, start, end, orderByComparator);
 
-		return checkPermission(articles, ActionKeys.VIEW);
+		return filterArticles(articles);
 	}
 
 	public List<Article> getGroupArticles(
@@ -116,7 +116,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		List<Article> articles = articleLocalService.getGroupArticles(
 			groupId, parentResourcePrimKey, start, end, orderByComparator);
 
-		return checkPermission(articles, ActionKeys.VIEW);
+		return filterArticles(articles);
 	}
 
 	public int getGroupArticlesCount(long groupId) throws SystemException {
@@ -153,23 +153,22 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			description, priority, serviceContext);
 	}
 
-	protected List<Article> checkPermission(
-			List<Article> articles, String actionId)
+	protected List<Article> filterArticles(List<Article> articles)
 		throws PortalException, SystemException {
 
-		List<Article> articles2 = ListUtil.copy(articles);
+		articles = ListUtil.copy(articles);
 
-		Iterator<Article> itr = articles2.iterator();
+		Iterator<Article> itr = articles.iterator();
 
 		while (itr.hasNext()) {
 			if (!ArticlePermission.contains(
-					getPermissionChecker(), itr.next(), actionId)) {
+					getPermissionChecker(), itr.next(), ActionKeys.VIEW)) {
 
 				itr.remove();
 			}
 		}
 
-		return articles2;
+		return articles;
 	}
 
 }
