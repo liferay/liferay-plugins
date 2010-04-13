@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mail;
+package com.liferay.mail.util;
 
 /**
  * <a href="MailConstants.java.html"><b><i>View Source</i></b></a>
