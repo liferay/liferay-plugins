@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.User;
 
 import java.util.Date;
@@ -124,7 +124,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Message.class, "message1", PortletClassLoaderUtil.getClassLoader());
+			Message.class, PortletClassLoaderUtil.getClassLoader());
 
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("accountId", accountId));
 		dynamicQuery.add(
@@ -158,7 +158,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Message.class, "message2", PortletClassLoaderUtil.getClassLoader());
+			Message.class, PortletClassLoaderUtil.getClassLoader());
 
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
 		dynamicQuery.add(
@@ -177,17 +177,17 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 	public Message updateFlag(long messageId, int flag, boolean value)
 		throws PortalException, SystemException {
 
+		String flagString = String.valueOf(flag);
+
 		Message message = messagePersistence.findByPrimaryKey(messageId);
 
 		String flags = message.getFlags();
 
-		String flagString = flag + StringPool.COMMA;
-
-		if (value && (flags.indexOf(flagString) == -1)) {
-			message.setFlags(flags + flagString);
+		if (value && !StringUtil.contains(flags, flagString)) {
+			message.setFlags(StringUtil.add(flags, flagString));
 		}
-		else if (!value && (flags.indexOf(flagString) != -1)) {
-			message.setFlags(flags.replace(flagString, StringPool.BLANK));
+		else if (!value && StringUtil.contains(flags, flagString)) {
+			message.setFlags(StringUtil.remove(flags, flagString));
 		}
 
 		return messagePersistence.update(message, false);
@@ -226,15 +226,6 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		indexer.reindex(message);
 
 		return message;
-	}
-
-	public void updateMessagesFlag(
-			long[] messageIds, int flag, boolean value)
-		throws PortalException, SystemException {
-
-		for (long messageId : messageIds) {
-			updateFlag(messageId, flag, value);
-		}
 	}
 
 }
