@@ -144,8 +144,9 @@
 							postMessage = LanguageUtil.format(pageContext, "write-on-x-wall", wallUser.getFirstName());
 						}
 
-						String wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/profile/-/wall/" + wallUser.getScreenName();
-						String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/profile/-/wall";
+						String wallFriendlyURL = PortletPropsValues.WALL_FRIENDLY_URL;
+						String wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallFriendlyURL + "/-/wall/" + wallUser.getScreenName();
+						String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallFriendlyURL + "/-/wall";
 						String deleteHREF = "javascript:" + renderResponse.getNamespace() + "deleteWallEntry(" + wallEntry.getWallEntryId() + ");";
 						%>
 
@@ -190,7 +191,7 @@
 						</c:when>
 						<c:otherwise>
 							<liferay-portlet:actionURL var="addAsFriendURL" name="addFriend" portletName="1_WAR_socialnetworkingportlet">
-								<liferay-portlet:param name="redirect" value='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + "/profile" %>' />
+								<liferay-portlet:param name="redirect" value='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + PortletPropsValues.WALL_FRIENDLY_URL %>' />
 							</liferay-portlet:actionURL>
 
 							<a href="<%= addAsFriendURL %>"><%= LanguageUtil.format(pageContext, "ask-x-to-be-your-friend", user2.getFirstName()) %></a>

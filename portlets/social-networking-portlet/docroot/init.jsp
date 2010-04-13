@@ -78,6 +78,7 @@
 <%@ page import="com.liferay.socialnetworking.service.MeetupsEntryLocalServiceUtil" %>
 <%@ page import="com.liferay.socialnetworking.service.MeetupsRegistrationLocalServiceUtil" %>
 <%@ page import="com.liferay.socialnetworking.service.WallEntryLocalServiceUtil" %>
+<%@ page import="com.liferay.socialnetworking.util.PortletPropsValues" %>
 <%@ page import="com.liferay.util.RSSUtil" %>
 <%@ page import="com.liferay.util.portlet.PortletProps" %>
 
