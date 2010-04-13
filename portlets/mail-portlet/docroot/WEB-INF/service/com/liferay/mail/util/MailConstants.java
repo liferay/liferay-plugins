@@ -15,11 +15,11 @@
 package com.liferay.mail;
 
 /**
- * <a href="MailboxConstants.java.html"><b><i>View Source</i></b></a>
+ * <a href="MailConstants.java.html"><b><i>View Source</i></b></a>
  *
  * @author Scott Lee
  */
-public class MailboxConstants {
+public class MailConstants {
 
 	public static final int FLAG_ANSWERED = 1;
 

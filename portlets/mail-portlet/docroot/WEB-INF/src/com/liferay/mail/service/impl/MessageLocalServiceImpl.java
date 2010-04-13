@@ -14,10 +14,10 @@
 
 package com.liferay.mail.service.impl;
 
-import com.liferay.mail.MailboxConstants;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.base.MessageLocalServiceBaseImpl;
+import com.liferay.mail.util.MailConstants;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
@@ -131,7 +131,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		dynamicQuery.add(
 			RestrictionsFactoryUtil.not(
 				RestrictionsFactoryUtil.like(
-					"flags", "%" + MailboxConstants.FLAG_SEEN + ",%")));
+					"flags", "%" + MailConstants.FLAG_SEEN + ",%")));
 
 		return dynamicQueryCount(dynamicQuery);
 	}
@@ -166,7 +166,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		dynamicQuery.add(
 			RestrictionsFactoryUtil.not(
 				RestrictionsFactoryUtil.like(
-					"flags", "%" + MailboxConstants.FLAG_SEEN + ",%")));
+					"flags", "%" + MailConstants.FLAG_SEEN + ",%")));
 
 		return dynamicQueryCount(dynamicQuery);
 	}
