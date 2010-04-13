@@ -94,7 +94,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		return article;
 	}
 
-	public void deleteArticle(long resourcePrimKey)
+	public void deleteArticles(long resourcePrimKey)
 		throws PortalException, SystemException {
 
 		Article article = articlePersistence.findByResourcePrimKey_First(
@@ -106,37 +106,21 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			new ArticlePriorityComparator());
 
 		for (Article curArticle : articles) {
-			deleteArticle(curArticle.getResourcePrimKey());
+			deleteArticles(curArticle.getResourcePrimKey());
 		}
-
-		deleteArticle(article);
-	}
-
-	public void deleteArticle(Article article) throws SystemException {
-
-		// Article
 
 		articlePersistence.removeByResourcePrimKey(
 			article.getResourcePrimKey());
 	}
 
-	public void deleteGroupArticles(long groupId)
-		throws PortalException, SystemException {
-
+	public void deleteGroupArticles(long groupId) throws SystemException {
 		List<Article> articles = getGroupArticles(
 			groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new ArticleCreateDateComparator(true));
 
 		for (Article article : articles) {
-			deleteArticle(article);
+			deleteArticles(article);
 		}
-	}
-
-	public Article getArticle(long resourcePrimKey)
-		throws PortalException, SystemException {
-
-		return articlePersistence.findByResourcePrimKey_First(
-			resourcePrimKey, new ArticleVersionComparator());
 	}
 
 	public Article getArticle(long resourcePrimKey, double version)
@@ -229,6 +213,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		params.put("parentResourcePrimKey", new Long(parentResourcePrimKey));
 
 		return dynamicQueryCount(getDynamicQuery(params));
+	}
+
+	public Article getLatestArticle(long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		return articlePersistence.findByResourcePrimKey_First(
+			resourcePrimKey, new ArticleVersionComparator());
 	}
 
 	public Article updateArticle(
