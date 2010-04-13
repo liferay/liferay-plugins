@@ -113,13 +113,15 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			article.getResourcePrimKey());
 	}
 
-	public void deleteGroupArticles(long groupId) throws SystemException {
+	public void deleteGroupArticles(long groupId)
+		throws PortalException, SystemException {
+
 		List<Article> articles = getGroupArticles(
 			groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new ArticleCreateDateComparator(true));
 
 		for (Article article : articles) {
-			deleteArticles(article);
+			deleteArticles(article.getResourcePrimKey());
 		}
 	}
 
