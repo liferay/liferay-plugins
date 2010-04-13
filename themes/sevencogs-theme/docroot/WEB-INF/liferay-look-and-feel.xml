@@ -5,11 +5,7 @@
 	<compatibility>
 		<version>6.0+</version>
 	</compatibility>
-	<theme id="7-cogs-website" name="7-Cogs Website">
-		<root-path>/</root-path>
-		<templates-path>${root-path}/templates</templates-path>
-		<images-path>${root-path}/images</images-path>
-		<template-extension>vm</template-extension>
+	<theme id="sevencogs" name="7Cogs">
 		<settings>
 			<setting key="portlet-setup-show-borders-default" value="false" />
 		</settings>

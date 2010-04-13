@@ -849,7 +849,7 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setAssetTagNames(new String[] {"liferay", "7cogs"});
 
 		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "7 Cogs Ad",
+			defaultUserId, group.getGroupId(), "7Cogs Ad",
 			"/guest/journal/articles/sample_site_ad.xml", serviceContext);
 
 		content = StringUtil.replace(
@@ -882,7 +882,7 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setAssetTagNames(new String[] {"liferay", "7cogs"});
 
 		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "7 Cogs Mobile Ad",
+			defaultUserId, group.getGroupId(), "7Cogs Mobile Ad",
 			"/guest/journal/articles/sample_site_ad.xml", serviceContext);
 
 		content = StringUtil.replace(
