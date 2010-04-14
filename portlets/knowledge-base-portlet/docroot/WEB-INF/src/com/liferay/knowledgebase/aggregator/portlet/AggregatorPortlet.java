@@ -14,12 +14,12 @@
 
 package com.liferay.knowledgebase.aggregator.portlet;
 
-import com.liferay.knowledgebase.admin.portlet.AdminPortlet;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 
 /**
  * <a href="AggregatorPortlet.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public class AggregatorPortlet extends AdminPortlet {
+public class AggregatorPortlet extends MVCPortlet {
 }

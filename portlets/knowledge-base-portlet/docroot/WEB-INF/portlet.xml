@@ -11,6 +11,10 @@
 		<display-name>Knowledge Base Admin</display-name>
 		<portlet-class>com.liferay.knowledgebase.admin.portlet.AdminPortlet</portlet-class>
 		<init-param>
+			<name>jsp-path</name>
+			<value>/admin/</value>
+		</init-param>
+		<init-param>
 			<name>view-jsp</name>
 			<value>/admin/view.jsp</value>
 		</init-param>
@@ -41,6 +45,10 @@
 		<display-name>Knowledge Base Aggregator</display-name>
 		<portlet-class>com.liferay.knowledgebase.aggregator.portlet.AggregatorPortlet</portlet-class>
 		<init-param>
+			<name>jsp-path</name>
+			<value>/aggregator/</value>
+		</init-param>
+		<init-param>
 			<name>view-jsp</name>
 			<value>/aggregator/view.jsp</value>
 		</init-param>
@@ -70,6 +78,10 @@
 		<portlet-name>3</portlet-name>
 		<display-name>Knowledge Base Display</display-name>
 		<portlet-class>com.liferay.knowledgebase.display.portlet.DisplayPortlet</portlet-class>
+		<init-param>
+			<name>jsp-path</name>
+			<value>/display/</value>
+		</init-param>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/display/view.jsp</value>

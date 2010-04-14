@@ -14,12 +14,12 @@
 
 package com.liferay.knowledgebase.display.portlet;
 
-import com.liferay.knowledgebase.admin.portlet.AdminPortlet;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 
 /**
  * <a href="DisplayPortlet.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public class DisplayPortlet extends AdminPortlet {
+public class DisplayPortlet extends MVCPortlet {
 }
