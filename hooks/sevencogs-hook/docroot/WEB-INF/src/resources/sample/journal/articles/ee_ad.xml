@@ -6,24 +6,25 @@
 
 			<h1>Advertisement</h1>
 
-			<div class="lfc-single-image">
-				<a href="http://www.liferay.com/web/guest/products/eefaq">
-					<img alt="" src="/image/image_gallery?uuid=[$EE_AD_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]" />
-				</a>
+			<div class="callout">
+				<div class="callout-extraborder">
+					<div style="background: url(/image/image_gallery?uuid=[$EE_AD_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]) no-repeat center bottom #D1D2D2; height: 207px;"></div>
+				</div>
 			</div>
 
-			<h2>
-				7Cogs Awesomeness
-			</h2>
-
-			<ul>
-				<li>
-					1<sup>st</sup> Point of Awesomeness
-				</li>
-				<li>
-					2<sup>nd</sup> Point of Awesomeness
-				</li>
-			</ul>
+			<article>
+				<h1>
+					7 Cogs Awesomeness
+				</h1>
+				<ul>
+					<li>
+						<span>1<sup>st</sup> Point of Awesomeness</span>
+					</li>
+					<li>
+						<span>2<sup>nd</sup> Point of Awesomeness</span>
+					</li>
+				</ul>
+			</article>
 
 		]]>
 	</static-content>
