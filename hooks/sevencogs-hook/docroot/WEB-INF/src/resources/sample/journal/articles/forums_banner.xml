@@ -2,7 +2,7 @@
 <root available-locales="en_US," default-locale="en_US">
 	<static-content language-id="en_US">
 		<![CDATA[
-			<h1 id="page-banner">
+			<h1 id="page-banner" style="margin-bottom: 20px;">
 				Forums
 			</h1>
 		]]>
