@@ -200,9 +200,11 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		}
 
 		if (Validator.isNotNull(keywords)) {
+			String value = "%" + keywords + "%";
+
 			Junction junction = RestrictionsFactoryUtil.conjunction()
-				.add(RestrictionsFactoryUtil.ilike("subject", "%" + keywords + "%"))
-				.add(RestrictionsFactoryUtil.ilike("body", "%" + keywords + "%"));
+				.add(RestrictionsFactoryUtil.ilike("subject", value))
+				.add(RestrictionsFactoryUtil.ilike("body", value));
 
 			dynamicQuery.add(junction);
 		}
@@ -210,7 +212,8 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		int start = messagesPerPage * (pageNumber - 1);
 		int end = messagesPerPage * pageNumber;
 
-		List<Object> results = messagePersistence.findWithDynamicQuery(dynamicQuery, start, end);
+		List<Object> results = messagePersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 
 		messages = toMessages(results);
 
