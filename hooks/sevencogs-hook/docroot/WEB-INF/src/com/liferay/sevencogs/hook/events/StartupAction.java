@@ -1281,24 +1281,24 @@ public class StartupAction extends SimpleAction {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		// EE Ad content portlet
+		// Cog Network Ad content portlet
 
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-8");
 
-		configurePortletTitle(layout, portletId, "Advertisement");
+		removePortletBorder(layout, portletId);
 
 		serviceContext.setAssetTagNames(new String[] {"liferay", "enterprise"});
 
 		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Home Page - EE Ad",
-			"/sample/journal/articles/ee_ad.xml", serviceContext);
+			defaultUserId, group.getGroupId(), "Cog Network Ad",
+			"/sample/journal/articles/home_cog_network_ad.xml", serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
 			new String[] {
 				"[$GROUP_ID$]",
-				"[$EE_AD_IG_IMAGE_UUID$]"
+				"[$COG_NETWORK_AD_IG_IMAGE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1338,7 +1338,7 @@ public class StartupAction extends SimpleAction {
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
 
-		configurePortletTitle(layout, portletId, "Products Landing Intro");
+		removePortletBorder(layout, portletId);
 
 		serviceContext.setAssetTagNames(new String[] {"products"});
 
@@ -1370,7 +1370,7 @@ public class StartupAction extends SimpleAction {
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
 
-		configurePortletTitle(layout, portletId, "Products Landing Intro Info");
+		removePortletBorder(layout, portletId);
 
 		serviceContext.setAssetTagNames(new String[] {"products"});
 
@@ -1441,7 +1441,10 @@ public class StartupAction extends SimpleAction {
 
 		// Blogs Aggregator portlet
 
-		addPortletId(layout, PortletKeys.BLOGS_AGGREGATOR, "column-3");
+		portletId = addPortletId(
+			layout, PortletKeys.BLOGS_AGGREGATOR, "column-3");
+
+		configurePortletTitle(layout, portletId, "Blogs");
 
 		// Wiki layout
 
@@ -1463,7 +1466,9 @@ public class StartupAction extends SimpleAction {
 
 		// Wiki
 
-		addPortletId(layout, PortletKeys.WIKI, "column-1");
+		portletId = addPortletId(layout, PortletKeys.WIKI, "column-1");
+
+		removePortletBorder(layout, portletId);
 
 		WikiNode wikiNode = WikiNodeLocalServiceUtil.addNode(
 			defaultUserId, "Main", StringPool.BLANK, serviceContext);
@@ -1504,7 +1509,10 @@ public class StartupAction extends SimpleAction {
 
 		// Message Boards
 
-		addPortletId(layout, PortletKeys.MESSAGE_BOARDS, "column-1");
+		portletId = addPortletId(
+			layout, PortletKeys.MESSAGE_BOARDS, "column-1");
+
+		removePortletBorder(layout, portletId);
 
 		// About Us layout
 
@@ -1612,7 +1620,8 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Shared Documents",
-			"/sample/journal/articles/shared_docs.xml", serviceContext);
+			"/sample/journal/articles/documents_shared_docs.xml",
+			serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
