@@ -20,6 +20,8 @@ import com.liferay.mail.service.base.MessageLocalServiceBaseImpl;
 import com.liferay.mail.util.MailConstants;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Junction;
+import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -27,8 +29,10 @@ import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -177,6 +181,42 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		return messagePersistence.findByF_R(folderId, remoteMessageId);
 	}
 
+	public int populateMessages(
+			List<Message> messages, long folderId, String keywords,
+			int pageNumber, int messagesPerPage, String orderByField,
+			String orderByType)
+		throws PortalException, SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Message.class, PortletClassLoaderUtil.getClassLoader());
+
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
+
+		if (orderByType.equals("desc")) {
+			dynamicQuery.addOrder(OrderFactoryUtil.desc(orderByField));
+		}
+		else {
+			dynamicQuery.addOrder(OrderFactoryUtil.asc(orderByField));
+		}
+
+		if (Validator.isNotNull(keywords)) {
+			Junction junction = RestrictionsFactoryUtil.conjunction()
+				.add(RestrictionsFactoryUtil.ilike("subject", "%" + keywords + "%"))
+				.add(RestrictionsFactoryUtil.ilike("body", "%" + keywords + "%"));
+
+			dynamicQuery.add(junction);
+		}
+
+		int start = messagesPerPage * (pageNumber - 1);
+		int end = messagesPerPage * pageNumber;
+
+		List<Object> results = messagePersistence.findWithDynamicQuery(dynamicQuery, start, end);
+
+		messages = toMessages(results);
+
+		return dynamicQueryCount(dynamicQuery);
+	}
+
 	public Message updateFlag(long messageId, int flag, boolean value)
 		throws PortalException, SystemException {
 
@@ -229,6 +269,34 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		indexer.reindex(message);
 
 		return message;
+	}
+
+	public Message updateMessageSize(long messageId, long size)
+		throws PortalException, SystemException {
+
+		Message message = messagePersistence.findByPrimaryKey(messageId);
+
+		message.setSize(size);
+
+		messagePersistence.update(message, false);
+
+		// Indexer
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
+
+		indexer.reindex(message);
+
+		return message;
+	}
+
+	protected List<Message> toMessages(List<Object> results) {
+		List<Message> messages = new ArrayList<Message>(results.size());
+
+		for (Object result : results) {
+			messages.add((Message)result);
+		}
+
+		return messages;
 	}
 
 }

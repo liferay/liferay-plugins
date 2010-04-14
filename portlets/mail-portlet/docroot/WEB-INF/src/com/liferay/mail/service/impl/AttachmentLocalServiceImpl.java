@@ -187,16 +187,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 		}
 	}
 
-	protected String getDirectoryPath(long messageId) {
-		return _DIRECTORY_PATH_PREFIX.concat(String.valueOf(messageId));
-	}
-
-	protected String getFilePath(long messageId, String filename) {
-		return getDirectoryPath(messageId).concat(StringPool.SLASH).concat(
-			filename);
-	}
-
-	protected InputStream getInputStream(long attachmentId)
+	public InputStream getInputStream(long attachmentId)
 		throws PortalException, SystemException {
 
 		Attachment attachment = attachmentPersistence.findByPrimaryKey(
@@ -207,6 +198,15 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 
 		return DLLocalServiceUtil.getFileAsStream(
 			attachment.getCompanyId(), _REPOSITORY_ID, filePath);
+	}
+
+	protected String getDirectoryPath(long messageId) {
+		return _DIRECTORY_PATH_PREFIX.concat(String.valueOf(messageId));
+	}
+
+	protected String getFilePath(long messageId, String filename) {
+		return getDirectoryPath(messageId).concat(StringPool.SLASH).concat(
+			filename);
 	}
 
 	private static final String _DIRECTORY_PATH_PREFIX = "mail/";
