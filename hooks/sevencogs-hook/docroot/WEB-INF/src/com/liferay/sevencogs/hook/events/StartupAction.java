@@ -1249,7 +1249,7 @@ public class StartupAction extends SimpleAction {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		// Products Landing Intro content portlet
+		// Home Page Intro content portlet
 
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-5");
@@ -1260,7 +1260,7 @@ public class StartupAction extends SimpleAction {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Home Page Intro",
-			"/sample/journal/articles/products_landing_intro.xml",
+			"/sample/journal/articles/home_page_intro.xml",
 			serviceContext);
 
 		content = StringUtil.replace(
@@ -1277,23 +1277,6 @@ public class StartupAction extends SimpleAction {
 		JournalArticleLocalServiceUtil.updateContent(
 			group.getGroupId(), journalArticle.getArticleId(),
 			journalArticle.getVersion(), content);
-
-		configureJournalContent(
-			layout, portletId, journalArticle.getArticleId());
-
-		// Products Landing Intro Info content portlet
-
-		portletId = addPortletId(
-			layout, PortletKeys.JOURNAL_CONTENT, "column-5");
-
-		removePortletBorder(layout, portletId);
-
-		serviceContext.setAssetTagNames(new String[] {"front"});
-
-		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Home Page Intro Info",
-			"/sample/journal/articles/products_landing_intro_info.xml",
-			serviceContext);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -1360,7 +1343,7 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setAssetTagNames(new String[] {"products"});
 
 		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Gartner",
+			defaultUserId, group.getGroupId(), "Products Landing Intro",
 			"/sample/journal/articles/products_landing_intro.xml",
 			serviceContext);
 
@@ -1392,7 +1375,7 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setAssetTagNames(new String[] {"products"});
 
 		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Gartner",
+			defaultUserId, group.getGroupId(), "Products Landing Intro Info",
 			"/sample/journal/articles/products_landing_intro_info.xml",
 			serviceContext);
 
@@ -1438,7 +1421,7 @@ public class StartupAction extends SimpleAction {
 
 		layout = addLayout(group, "Blogs", false, "/blogs", "1_2_columns_i");
 
-		// Introducing Vix content portlet
+		// Blogs Banner content portlet
 
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-1");
