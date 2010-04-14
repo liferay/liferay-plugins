@@ -1049,6 +1049,22 @@ public class StartupAction extends SimpleAction {
 			null, defaultUserId, 0, "7Cogs Web Content",
 			"Images used for content", serviceContext);
 
+		serviceContext.setAssetTagNames(new String[] {"icons"});
+		serviceContext.setAssetCategoryIds(
+			new long[] {iconAssetCategory.getCategoryId()});
+
+		IGImage cogBlueIconIGImage = addIGImage(
+			defaultUserId, igFolder.getFolderId(), "cog_blue.png",
+			"/sample/images/cog_blue.png", serviceContext);
+
+		IGImage cogLightBlueIconIGImage = addIGImage(
+			defaultUserId, igFolder.getFolderId(), "cog_light-blue.png",
+			"/sample/images/cog_light-blue.png", serviceContext);
+
+		IGImage cogOrangeIconIGImage = addIGImage(
+			defaultUserId, igFolder.getFolderId(), "cog_orange.png",
+			"/sample/images/cog_light-blue.png", serviceContext);
+
 		serviceContext.setAssetTagNames(new String[] {"home page", "blogs"});
 		serviceContext.setAssetCategoryIds(
 			new long[] {iconAssetCategory.getCategoryId()});
@@ -1100,6 +1116,14 @@ public class StartupAction extends SimpleAction {
 			defaultUserId, igFolder.getFolderId(),
 			"home-page_products-button.png",
 			"/sample/images/home-page_products-button.png", serviceContext);
+
+		serviceContext.setAssetTagNames(new String[] {"products"});
+		serviceContext.setAssetCategoryIds(
+			new long[] {productsAssetCategory.getCategoryId()});
+
+		IGImage productsLandingIGImage = addIGImage(
+			defaultUserId, igFolder.getFolderId(), "product-landing.png",
+			"/sample/images/product-landing.png", serviceContext);
 
 		// Home layout
 
@@ -1241,6 +1265,21 @@ public class StartupAction extends SimpleAction {
 			"/sample/journal/articles/products_landing_intro.xml",
 			serviceContext);
 
+		content = StringUtil.replace(
+			journalArticle.getContent(),
+			new String[] {
+				"[$GROUP_ID$]",
+				"[$PRODUCT_LANDING_IG_IMAGE_UUID$]"
+			},
+			new String[] {
+				String.valueOf(group.getGroupId()),
+				String.valueOf(productsLandingIGImage.getUuid())
+			});
+
+		JournalArticleLocalServiceUtil.updateContent(
+			group.getGroupId(), journalArticle.getArticleId(),
+			journalArticle.getVersion(), content);
+
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
@@ -1295,7 +1334,7 @@ public class StartupAction extends SimpleAction {
 		// Products layout
 
 		layout = addLayout(
-			group, "Products", false, "/products", "1_2_columns_i");
+			group, "Products", false, "/products", "1_2_columns_ii");
 
 		// Products Banner content portlet
 
@@ -1309,10 +1348,6 @@ public class StartupAction extends SimpleAction {
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Products Banner",
 			"/sample/journal/articles/products_banner.xml", serviceContext);
-
-		JournalArticleLocalServiceUtil.updateContent(
-			group.getGroupId(), journalArticle.getArticleId(),
-			journalArticle.getVersion(), content);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
@@ -1330,6 +1365,17 @@ public class StartupAction extends SimpleAction {
 			defaultUserId, group.getGroupId(), "Gartner",
 			"/sample/journal/articles/products_landing_intro.xml",
 			serviceContext);
+
+		content = StringUtil.replace(
+			journalArticle.getContent(),
+			new String[] {
+				"[$GROUP_ID$]",
+				"[$PRODUCT_LANDING_IG_IMAGE_UUID$]"
+			},
+			new String[] {
+				String.valueOf(group.getGroupId()),
+				String.valueOf(productsLandingIGImage.getUuid())
+			});
 
 		JournalArticleLocalServiceUtil.updateContent(
 			group.getGroupId(), journalArticle.getArticleId(),
@@ -1352,10 +1398,6 @@ public class StartupAction extends SimpleAction {
 			"/sample/journal/articles/products_landing_intro_info.xml",
 			serviceContext);
 
-		JournalArticleLocalServiceUtil.updateContent(
-			group.getGroupId(), journalArticle.getArticleId(),
-			journalArticle.getVersion(), content);
-
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
@@ -1371,6 +1413,25 @@ public class StartupAction extends SimpleAction {
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Products Catalog",
 			"/sample/journal/articles/products_catalog.xml", serviceContext);
+
+		content = StringUtil.replace(
+			journalArticle.getContent(),
+			new String[] {
+				"[$COG_BLUE_IG_IMAGE_UUID$]",
+				"[$COG_LIGHT_BLUE_IG_IMAGE_UUID$]",
+				"[$COG_ORANGE_IG_IMAGE_UUID$]",
+				"[$GROUP_ID$]"
+			},
+			new String[] {
+				String.valueOf(cogBlueIconIGImage.getUuid()),
+				String.valueOf(cogLightBlueIconIGImage.getUuid()),
+				String.valueOf(cogOrangeIconIGImage.getUuid()),
+				String.valueOf(group.getGroupId())
+			});
+
+		JournalArticleLocalServiceUtil.updateContent(
+			group.getGroupId(), journalArticle.getArticleId(),
+			journalArticle.getVersion(), content);
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
