@@ -1447,9 +1447,23 @@ public class StartupAction extends SimpleAction {
 
 		layout = addLayout(group, "Wiki", false, "/wiki", "1_column");
 
-		addPortletId(layout, PortletKeys.WIKI, "column-1");
+		// Wiki Banner content portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-1");
+
+		removePortletBorder(layout, portletId);
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Wiki Banner",
+			"/sample/journal/articles/wiki_banner.xml", serviceContext);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
 
 		// Wiki
+
+		addPortletId(layout, PortletKeys.WIKI, "column-1");
 
 		WikiNode wikiNode = WikiNodeLocalServiceUtil.addNode(
 			defaultUserId, "Main", StringPool.BLANK, serviceContext);
@@ -1474,15 +1488,47 @@ public class StartupAction extends SimpleAction {
 
 		layout = addLayout(group, "Forums", false, "/forums", "1_column");
 
+		// Forums Banner content portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-1");
+
+		removePortletBorder(layout, portletId);
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Forums Banner",
+			"/sample/journal/articles/forums_banner.xml", serviceContext);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// Message Boards
+
 		addPortletId(layout, PortletKeys.MESSAGE_BOARDS, "column-1");
 
 		// About Us layout
 
 		layout = addLayout(
-			group, "About Us", false, "/about_us", "2_columns_ii");
+			group, "About Us", false, "/about_us", "1_2_columns_ii");
+
+		// About Us Banner content portlet
 
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-1");
+
+		removePortletBorder(layout, portletId);
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "About Us Banner",
+			"/sample/journal/articles/about_us_banner.xml", serviceContext);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// About Us content portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
 
 		highlightPortlet(layout, portletId);
 
@@ -1510,9 +1556,9 @@ public class StartupAction extends SimpleAction {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		addPortletId(layout, "1_WAR_webformportlet", "column-2");
+		// Google Maps
 
-		portletId = addPortletId(layout, "1_WAR_googlemapsportlet", "column-1");
+		portletId = addPortletId(layout, "1_WAR_googlemapsportlet", "column-2");
 
 		Map<String, String> preferences = new HashMap<String, String>();
 
@@ -1520,6 +1566,10 @@ public class StartupAction extends SimpleAction {
 		preferences.put("height", "300");
 
 		updatePortletSetup(layout, portletId, preferences);
+
+		// Web Form
+
+		addPortletId(layout, "1_WAR_webformportlet", "column-3");
 
 		// Home layout
 
