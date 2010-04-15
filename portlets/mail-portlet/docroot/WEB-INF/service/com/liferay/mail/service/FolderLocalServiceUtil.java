@@ -145,6 +145,24 @@ public class FolderLocalServiceUtil {
 		return getService().getFolders(accountId);
 	}
 
+	public static int getLocalPageCount(long folderId, int messagesPerPage)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getLocalPageCount(folderId, messagesPerPage);
+	}
+
+	public static int getPercentDownloaded(long folderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getPercentDownloaded(folderId);
+	}
+
+	public static int getRemotePageCount(long folderId, int messagesPerPage)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getRemotePageCount(folderId, messagesPerPage);
+	}
+
 	public static com.liferay.mail.model.Folder updateFolder(long folderId,
 		java.lang.String fullName, java.lang.String displayName,
 		int remoteMessageCount)

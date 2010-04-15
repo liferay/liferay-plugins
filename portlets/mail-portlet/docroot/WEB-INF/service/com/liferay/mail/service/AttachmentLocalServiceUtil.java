@@ -146,6 +146,12 @@ public class AttachmentLocalServiceUtil {
 		return getService().getFile(attachmentId);
 	}
 
+	public static java.io.InputStream getInputStream(long attachmentId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getInputStream(attachmentId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

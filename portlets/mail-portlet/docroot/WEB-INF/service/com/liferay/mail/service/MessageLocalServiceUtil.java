@@ -173,6 +173,17 @@ public class MessageLocalServiceUtil {
 		return getService().getMessage(folderId, remoteMessageId);
 	}
 
+	public static int populateMessages(
+		java.util.List<com.liferay.mail.model.Message> messages, long folderId,
+		java.lang.String keywords, int pageNumber, int messagesPerPage,
+		java.lang.String orderByField, java.lang.String orderByType)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .populateMessages(messages, folderId, keywords, pageNumber,
+			messagesPerPage, orderByField, orderByType);
+	}
+
 	public static com.liferay.mail.model.Message updateFlag(long messageId,
 		int flag, boolean value)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -190,6 +201,13 @@ public class MessageLocalServiceUtil {
 		return getService()
 				   .updateMessage(messageId, folderId, sender, to, cc, bcc,
 			sentDate, subject, body, flags, size, remoteMessageId);
+	}
+
+	public static com.liferay.mail.model.Message updateMessageSize(
+		long messageId, long size)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().updateMessageSize(messageId, size);
 	}
 
 	public static void clearService() {

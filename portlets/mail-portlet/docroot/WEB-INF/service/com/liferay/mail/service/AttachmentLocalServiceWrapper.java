@@ -141,6 +141,12 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService {
 		return _attachmentLocalService.getFile(attachmentId);
 	}
 
+	public java.io.InputStream getInputStream(long attachmentId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _attachmentLocalService.getInputStream(attachmentId);
+	}
+
 	public AttachmentLocalService getWrappedAttachmentLocalService() {
 		return _attachmentLocalService;
 	}

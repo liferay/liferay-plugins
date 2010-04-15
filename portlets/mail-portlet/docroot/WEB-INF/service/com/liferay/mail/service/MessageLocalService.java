@@ -145,6 +145,13 @@ public interface MessageLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public int populateMessages(
+		java.util.List<com.liferay.mail.model.Message> messages, long folderId,
+		java.lang.String keywords, int pageNumber, int messagesPerPage,
+		java.lang.String orderByField, java.lang.String orderByType)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public com.liferay.mail.model.Message updateFlag(long messageId, int flag,
 		boolean value)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -155,6 +162,11 @@ public interface MessageLocalService {
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
 		java.lang.String subject, java.lang.String body,
 		java.lang.String flags, long size, long remoteMessageId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Message updateMessageSize(long messageId,
+		long size)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

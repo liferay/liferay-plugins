@@ -170,6 +170,16 @@ public class MessageLocalServiceWrapper implements MessageLocalService {
 		return _messageLocalService.getMessage(folderId, remoteMessageId);
 	}
 
+	public int populateMessages(
+		java.util.List<com.liferay.mail.model.Message> messages, long folderId,
+		java.lang.String keywords, int pageNumber, int messagesPerPage,
+		java.lang.String orderByField, java.lang.String orderByType)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _messageLocalService.populateMessages(messages, folderId,
+			keywords, pageNumber, messagesPerPage, orderByField, orderByType);
+	}
+
 	public com.liferay.mail.model.Message updateFlag(long messageId, int flag,
 		boolean value)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -186,6 +196,13 @@ public class MessageLocalServiceWrapper implements MessageLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		return _messageLocalService.updateMessage(messageId, folderId, sender,
 			to, cc, bcc, sentDate, subject, body, flags, size, remoteMessageId);
+	}
+
+	public com.liferay.mail.model.Message updateMessageSize(long messageId,
+		long size)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _messageLocalService.updateMessageSize(messageId, size);
 	}
 
 	public MessageLocalService getWrappedMessageLocalService() {

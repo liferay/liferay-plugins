@@ -141,6 +141,24 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 		return _folderLocalService.getFolders(accountId);
 	}
 
+	public int getLocalPageCount(long folderId, int messagesPerPage)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _folderLocalService.getLocalPageCount(folderId, messagesPerPage);
+	}
+
+	public int getPercentDownloaded(long folderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _folderLocalService.getPercentDownloaded(folderId);
+	}
+
+	public int getRemotePageCount(long folderId, int messagesPerPage)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _folderLocalService.getRemotePageCount(folderId, messagesPerPage);
+	}
+
 	public com.liferay.mail.model.Folder updateFolder(long folderId,
 		java.lang.String fullName, java.lang.String displayName,
 		int remoteMessageCount)
