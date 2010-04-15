@@ -1,7 +1,42 @@
 <?xml version="1.0"?>
 
-<project name="hooks" basedir="." default="deploy">
+<project name="hooks" basedir="." default="deploy" xmlns:antelope="antlib:ise.antelope.tasks">
 	<property name="project.dir" value=".." />
 
 	<import file="../build-common-plugins.xml" />
+
+	<target name="create">
+		<if>
+			<not>
+				<isset property="hook.name" />
+			</not>
+			<then>
+				<echo message="This task must be called by create.bat." />
+			</then>
+			<else>
+				<if>
+					<not>
+						<isset property="hook.parent.dir" />
+					</not>
+					<then>
+						<property name="hook.parent.dir" value="${basedir}" />
+					</then>
+				</if>
+				<if>
+					<available file="${hook.parent.dir}/${hook.name}-hook" />
+					<then>
+						<echo message="${hook.name}-hook already exists." />
+					</then>
+					<else>
+						<unzip src="hook.zip" dest="${hook.parent.dir}/${hook.name}-hook" />
+
+						<replace dir="${hook.parent.dir}/${hook.name}-hook">
+							<replacefilter token="@hook.name@" value="${hook.name}" />
+							<replacefilter token="@hook.display.name@" value="${hook.display.name}" />
+						</replace>
+					</else>
+				</if>
+			</else>
+		</if>
+	</target>
 </project>
