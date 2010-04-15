@@ -353,12 +353,10 @@ public class WSRPConsumerPortletLocalServiceImpl
 			wsrpConsumerManager.getPortletDescription(
 				wsrpConsumerPortlet.getPortletHandle());
 
-		long companyId = wsrpConsumerPortlet.getCompanyId();
-
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(ConsumerPortlet.PORTLET_NAME_PREFIX);
-		sb.append(companyId);
+		sb.append(wsrpConsumerPortlet.getCompanyId());
 		sb.append(StringPool.UNDERLINE);
 		sb.append(wsrpConsumerPortlet.getWsrpConsumerPortletId());
 
