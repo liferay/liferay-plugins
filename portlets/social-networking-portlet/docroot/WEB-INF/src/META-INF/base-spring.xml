@@ -25,7 +25,7 @@
 			</bean>
 		</property>
 	</bean>
-	<aop:config>
+	<aop:config proxy-target-class="false">
 		<aop:pointcut id="transactionOperation" expression="bean(*Service)" />
 		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionOperation" />
 	</aop:config>
