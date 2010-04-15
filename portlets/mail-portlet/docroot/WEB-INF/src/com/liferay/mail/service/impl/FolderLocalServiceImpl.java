@@ -114,17 +114,18 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 		return (int)Math.ceil(localMessageCount / (double)messagesPerPage);
 	}
 
-	public int getPercentageDownloaded(long folderId)
+	public int getPercentDownloaded(long folderId)
 		throws PortalException, SystemException {
 
 		Folder folder = folderPersistence.findByPrimaryKey(folderId);
 
-		int localMessageCount = messagePersistence.countByFolderId(folderId);
 		int remoteMessageCount = folder.getRemoteMessageCount();
 
 		if (remoteMessageCount == 0) {
 			return 100;
 		}
+
+		int localMessageCount = messagePersistence.countByFolderId(folderId);
 
 		return (int)((localMessageCount / (double)remoteMessageCount) * 100);
 	}

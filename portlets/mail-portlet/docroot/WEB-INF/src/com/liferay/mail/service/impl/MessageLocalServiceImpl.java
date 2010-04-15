@@ -18,9 +18,9 @@ import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.base.MessageLocalServiceBaseImpl;
 import com.liferay.mail.util.MailConstants;
+import com.liferay.portal.kernel.dao.orm.Conjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.Junction;
 import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -202,11 +202,12 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		if (Validator.isNotNull(keywords)) {
 			String value = "%" + keywords + "%";
 
-			Junction junction = RestrictionsFactoryUtil.conjunction()
-				.add(RestrictionsFactoryUtil.ilike("subject", value))
-				.add(RestrictionsFactoryUtil.ilike("body", value));
+			Conjunction conjunction = RestrictionsFactoryUtil.conjunction();
 
-			dynamicQuery.add(junction);
+			conjunction.add(RestrictionsFactoryUtil.ilike("subject", value));
+			conjunction.add(RestrictionsFactoryUtil.ilike("body", value));
+
+			dynamicQuery.add(conjunction);
 		}
 
 		int start = messagesPerPage * (pageNumber - 1);
@@ -276,6 +277,8 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 
 	public Message updateMessageSize(long messageId, long size)
 		throws PortalException, SystemException {
+
+		// Message
 
 		Message message = messagePersistence.findByPrimaryKey(messageId);
 
