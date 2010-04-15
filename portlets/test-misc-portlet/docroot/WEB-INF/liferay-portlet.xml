@@ -5,7 +5,15 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
-		<scheduler-class>com.liferay.testmisc.job.TestScheduler</scheduler-class>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.testmisc.job.TestSchedulerListener</scheduler-event-listener-class>
+			<trigger>
+				<simple>
+					<simple-trigger-value>1</simple-trigger-value>
+					<time-unit>hour</time-unit>
+				</simple>
+			</trigger>
+		</scheduler-entry>
 		<friendly-url-mapper-class>com.liferay.testmisc.portlet.TestFriendlyURLMapper</friendly-url-mapper-class>
 	</portlet>
 	<role-mapper>
