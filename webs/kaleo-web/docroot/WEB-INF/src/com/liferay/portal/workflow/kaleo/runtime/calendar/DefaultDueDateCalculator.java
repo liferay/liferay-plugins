@@ -37,22 +37,22 @@ public class DefaultDueDateCalculator implements DueDateCalculator {
 
 		int duration = (int)Math.round(dueDateDuration.getDuration());
 
-		if (durationScale.equals(DurationScale.SECONDS)) {
+		if (durationScale.equals(DurationScale.SECOND)) {
 			cal.add(Calendar.SECOND, duration);
 		}
-		else if (durationScale.equals(DurationScale.MINUTES)) {
+		else if (durationScale.equals(DurationScale.MINUTE)) {
 			cal.add(Calendar.MINUTE, duration);
 		}
-		else if (durationScale.equals(DurationScale.HOURS)) {
+		else if (durationScale.equals(DurationScale.HOUR)) {
 			cal.add(Calendar.HOUR, duration);
 		}
-		else if (durationScale.equals(DurationScale.DAYS)) {
+		else if (durationScale.equals(DurationScale.DAY)) {
 			cal.add(Calendar.DAY_OF_YEAR, duration);
 		}
-		else if (durationScale.equals(DurationScale.MONTHS)) {
+		else if (durationScale.equals(DurationScale.MONTH)) {
 			cal.add(Calendar.MONTH, duration);
 		}
-		else if (durationScale.equals(DurationScale.YEARS)) {
+		else if (durationScale.equals(DurationScale.YEAR)) {
 			cal.add(Calendar.YEAR, duration);
 		}
 
