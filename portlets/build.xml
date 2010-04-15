@@ -15,21 +15,29 @@
 			</then>
 			<else>
 				<if>
-					<available file="${portlet.name}-portlet" />
+					<not>
+						<isset property="portlet.parent.dir" />
+					</not>
+					<then>
+						<property name="portlet.parent.dir" value="${basedir}" />
+					</then>
+				</if>
+				<if>
+					<available file="${portlet.parent.dir}/${portlet.name}-portlet" />
 					<then>
 						<echo message="${portlet.name}-portlet already exists." />
 					</then>
 					<else>
-						<unzip src="portlet.zip" dest="${portlet.name}-portlet" />
+						<unzip src="portlet.zip" dest="${portlet.parent.dir}/${portlet.name}-portlet" />
 
-						<replace dir="${portlet.name}-portlet">
+						<replace dir="${portlet.parent.dir}/${portlet.name}-portlet">
 							<replacefilter token="@portlet.name@" value="${portlet.name}" />
 							<replacefilter token="@portlet.display.name@" value="${portlet.display.name}" />
 						</replace>
 
-						<mkdir dir="${portlet.name}-portlet/docroot/WEB-INF/tld" />
+						<mkdir dir="${portlet.parent.dir}/${portlet.name}-portlet/docroot/WEB-INF/tld" />
 
-						<copy todir="${portlet.name}-portlet/docroot/WEB-INF/tld">
+						<copy todir="${portlet.parent.dir}/${portlet.name}-portlet/docroot/WEB-INF/tld">
 						    <fileset dir="${app.server.portal.dir}/WEB-INF/tld">
 								<include name="liferay-portlet.tld" />
 								<include name="liferay-portlet-ext.tld" />
