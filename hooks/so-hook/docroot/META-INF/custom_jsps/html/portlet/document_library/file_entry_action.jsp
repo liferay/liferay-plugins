@@ -30,7 +30,17 @@ boolean view = false;
 if (row != null) {
 	Object result = row.getObject();
 
-	if (result instanceof DLFileEntry) {
+	if (result instanceof AssetEntry) {
+		AssetEntry assetEntry = (AssetEntry)result;
+
+		if (assetEntry.getClassName().equals(DLFileEntry.class.getName())) {
+			fileEntry = DLFileEntryLocalServiceUtil.getFileEntry(assetEntry.getClassPK());
+		}
+		else {
+			fileShortcut = DLFileShortcutLocalServiceUtil.getFileShortcut(assetEntry.getClassPK());
+		}
+	}
+	else if (result instanceof DLFileEntry) {
 		fileEntry = (DLFileEntry)result;
 	}
 	else {

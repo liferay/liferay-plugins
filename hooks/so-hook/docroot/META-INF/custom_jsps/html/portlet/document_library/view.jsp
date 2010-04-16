@@ -46,6 +46,24 @@ if (permissionChecker.isCompanyAdmin() || permissionChecker.isCommunityAdmin(sco
 int foldersCount = DLFolderLocalServiceUtil.getFoldersCount(scopeGroupId, folderId);
 int fileEntriesCount = DLFolderLocalServiceUtil.getFileEntriesAndFileShortcutsCount(scopeGroupId, folderId, status);
 
+long categoryId = ParamUtil.getLong(request, "categoryId");
+String tagName = ParamUtil.getString(request, "tag");
+
+String categoryName = null;
+String vocabularyName = null;
+
+if (categoryId != 0) {
+	AssetCategory assetCategory = AssetCategoryLocalServiceUtil.getAssetCategory(categoryId);
+
+	categoryName = assetCategory.getName();
+
+	AssetVocabulary assetVocabulary = AssetVocabularyLocalServiceUtil.getAssetVocabulary(assetCategory.getVocabularyId());
+
+	vocabularyName = assetVocabulary.getName();
+}
+
+boolean useAssetEntryQuery = (categoryId > 0) || Validator.isNotNull(tagName);
+
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("struts_action", "/document_library/view");
@@ -57,6 +75,8 @@ request.setAttribute("view.jsp-folder", folder);
 request.setAttribute("view.jsp-folderId", String.valueOf(folderId));
 
 request.setAttribute("view.jsp-viewFolder", Boolean.TRUE.toString());
+
+request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntryQuery));
 %>
 
 <liferay-util:include page="/html/portlet/document_library/sidebar.jsp" />
