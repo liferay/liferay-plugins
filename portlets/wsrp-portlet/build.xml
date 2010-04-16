@@ -5,6 +5,11 @@
 
 	<taskdef classpathref="portal.classpath" resource="axis-tasks.properties" />
 
+	<!--
+	See http://wiki.oasis-open.org/wsrp/WSRP_Producers for a list of demo
+	producers.
+	-->
+
 	<target name="build-oasis-wsrp">
 		<tstamp>
 			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
