@@ -51,6 +51,10 @@
 		<finder name="UserId" return-type="Collection">
 			<finder-column name="userId" />
 		</finder>
+		<finder name="U_A" return-type="Account">
+			<finder-column name="userId" />
+			<finder-column name="address" />
+		</finder>
 	</entity>
 	<entity name="Attachment" local-service="true" remote-service="false">
 
