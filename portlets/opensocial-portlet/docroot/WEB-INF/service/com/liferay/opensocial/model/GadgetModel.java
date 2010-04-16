@@ -74,11 +74,6 @@ public interface GadgetModel extends BaseModel<Gadget> {
 
 	public void setUrl(String url);
 
-	@AutoEscape
-	public String getXml();
-
-	public void setXml(String xml);
-
 	public Gadget toEscapedModel();
 
 	public boolean isNew();

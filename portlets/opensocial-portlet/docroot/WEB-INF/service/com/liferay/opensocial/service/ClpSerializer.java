@@ -100,13 +100,6 @@ public class ClpSerializer {
 
 					method5.invoke(newModel, value5);
 
-					Method method6 = newModelClass.getMethod("setXml",
-							new Class[] { String.class });
-
-					String value6 = oldCplModel.getXml();
-
-					method6.invoke(newModel, value6);
-
 					return newModel;
 				}
 				catch (Exception e) {
@@ -198,13 +191,6 @@ public class ClpSerializer {
 							(Object[])null);
 
 					newModel.setUrl(value5);
-
-					Method method6 = oldModelClass.getMethod("getXml");
-
-					String value6 = (String)method6.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setXml(value6);
 
 					return newModel;
 				}

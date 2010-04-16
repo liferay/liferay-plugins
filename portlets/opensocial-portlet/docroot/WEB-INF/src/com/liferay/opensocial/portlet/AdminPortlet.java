@@ -85,14 +85,13 @@ public class AdminPortlet extends MVCPortlet {
 
 		String name = ParamUtil.getString(actionRequest, "name");
 		String url = ParamUtil.getString(actionRequest, "url");
-		String xml = ParamUtil.getString(actionRequest, "xml");
 
 		if (gadgetId <= 0) {
 			GadgetLocalServiceUtil.addGadget(
-				themeDisplay.getCompanyId(), name, url, xml);
+				themeDisplay.getCompanyId(), name, url);
 		}
 		else {
-			GadgetLocalServiceUtil.updateGadget(gadgetId, name, xml);
+			GadgetLocalServiceUtil.updateGadget(gadgetId, name);
 		}
 	}
 

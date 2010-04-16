@@ -8,8 +8,5 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="name" type="String" />
 		<field name="url" type="String" />
-		<field name="xml" type="String">
-			<hint-collection name="TEXTAREA" />
-		</field>
 	</model>
 </model-hints>

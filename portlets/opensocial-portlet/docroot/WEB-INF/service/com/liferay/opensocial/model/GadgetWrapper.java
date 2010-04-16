@@ -92,14 +92,6 @@ public class GadgetWrapper implements Gadget {
 		_gadget.setUrl(url);
 	}
 
-	public java.lang.String getXml() {
-		return _gadget.getXml();
-	}
-
-	public void setXml(java.lang.String xml) {
-		_gadget.setXml(xml);
-	}
-
 	public com.liferay.opensocial.model.Gadget toEscapedModel() {
 		return _gadget.toEscapedModel();
 	}

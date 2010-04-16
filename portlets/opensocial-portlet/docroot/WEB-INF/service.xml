@@ -18,7 +18,6 @@
 
 		<column name="name" type="String" />
 		<column name="url" type="String" />
-		<column name="xml" type="String" />
 
 		<!-- Order -->
 

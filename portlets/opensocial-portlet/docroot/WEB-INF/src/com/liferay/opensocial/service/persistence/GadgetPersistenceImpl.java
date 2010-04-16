@@ -251,7 +251,6 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		gadgetImpl.setModifiedDate(gadget.getModifiedDate());
 		gadgetImpl.setName(gadget.getName());
 		gadgetImpl.setUrl(gadget.getUrl());
-		gadgetImpl.setXml(gadget.getXml());
 
 		return gadgetImpl;
 	}

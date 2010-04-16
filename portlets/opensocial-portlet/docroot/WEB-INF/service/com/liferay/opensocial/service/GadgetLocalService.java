@@ -101,7 +101,7 @@ public interface GadgetLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
-		java.lang.String name, java.lang.String url, java.lang.String xml)
+		java.lang.String name, java.lang.String url)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -123,7 +123,7 @@ public interface GadgetLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.opensocial.model.Gadget updateGadget(long gadgetId,
-		java.lang.String name, java.lang.String xml)
+		java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

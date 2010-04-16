@@ -54,7 +54,7 @@ import javax.portlet.WindowState;
 public class GadgetLocalServiceImpl
 	extends GadgetLocalServiceBaseImpl {
 
-	public Gadget addGadget(long companyId, String name, String url, String xml)
+	public Gadget addGadget(long companyId, String name, String url)
 		throws PortalException, SystemException {
 
 		Date now = new Date();
@@ -70,7 +70,6 @@ public class GadgetLocalServiceImpl
 		gadget.setModifiedDate(now);
 		gadget.setName(name);
 		gadget.setUrl(url);
-		gadget.setXml(xml);
 
 		gadgetPersistence.update(gadget, false);
 
@@ -119,7 +118,7 @@ public class GadgetLocalServiceImpl
 		}
 	}
 
-	public Gadget updateGadget(long gadgetId, String name, String xml)
+	public Gadget updateGadget(long gadgetId, String name)
 		throws PortalException, SystemException {
 
 		Date now = new Date();
@@ -130,7 +129,6 @@ public class GadgetLocalServiceImpl
 
 		gadget.setModifiedDate(now);
 		gadget.setName(name);
-		gadget.setXml(xml);
 
 		gadgetPersistence.update(gadget, false);
 
@@ -189,18 +187,21 @@ public class GadgetLocalServiceImpl
 			return portlet;
 		}
 
+		long companyId = gadget.getCompanyId();
+
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(GadgetPortlet.PORTLET_NAME_PREFIX);
-		sb.append(gadget.getCompanyId());
+		sb.append(companyId);
 		sb.append(StringPool.UNDERLINE);
 		sb.append(gadget.getGadgetId());
 
 		String portletId = PortalUtil.getJsSafePortletId(sb.toString());
 
-		portlet = PortletLocalServiceUtil.newPortlet(
-			gadget.getCompanyId(), portletId);
+		portlet = PortletLocalServiceUtil.clonePortlet(
+			companyId, _GADGET_PORTLET_ID);
 
+		portlet.setPortletId(portletId);
 		portlet.setTimestamp(System.currentTimeMillis());
 
 		PortletApp portletApp = PortletLocalServiceUtil.getPortletApp(

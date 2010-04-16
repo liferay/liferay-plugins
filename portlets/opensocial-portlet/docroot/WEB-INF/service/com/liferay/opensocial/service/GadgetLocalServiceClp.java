@@ -440,7 +440,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
-		java.lang.String name, java.lang.String url, java.lang.String xml)
+		java.lang.String name, java.lang.String url)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);
@@ -457,17 +457,11 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 			paramObj2 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj3 = ClpSerializer.translateInput(xml);
-
-		if (xml == null) {
-			paramObj3 = new NullWrapper("java.lang.String");
-		}
-
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("addGadget",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -600,7 +594,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	public com.liferay.opensocial.model.Gadget updateGadget(long gadgetId,
-		java.lang.String name, java.lang.String xml)
+		java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(gadgetId);
@@ -611,17 +605,11 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 			paramObj1 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj2 = ClpSerializer.translateInput(xml);
-
-		if (xml == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
-
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("updateGadget",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {

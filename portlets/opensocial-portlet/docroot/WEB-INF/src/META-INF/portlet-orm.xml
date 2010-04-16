@@ -19,7 +19,6 @@
 			</basic>
 			<basic name="name" />
 			<basic name="url" />
-			<basic name="xml" />
 			<transient name="primaryKey" />
 		</attributes>
 	</mapped-superclass>

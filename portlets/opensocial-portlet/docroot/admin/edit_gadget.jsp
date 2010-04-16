@@ -74,14 +74,6 @@ catch (NoSuchGadgetException nsge) {
 		</c:choose>
 	</td>
 </tr>
-<tr>
-	<td>
-		<liferay-ui:message key="xml" />
-	</td>
-	<td>
-		<liferay-ui:input-textarea param="xml" defaultValue="<%= ((gadget == null) ? StringPool.BLANK : gadget.getXml()) %>" />
-	</td>
-</tr>
 </table>
 
 <br />
