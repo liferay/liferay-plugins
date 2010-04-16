@@ -353,17 +353,19 @@ public class WSRPConsumerPortletLocalServiceImpl
 			wsrpConsumerManager.getPortletDescription(
 				wsrpConsumerPortlet.getPortletHandle());
 
+		long companyId = wsrpConsumerPortlet.getCompanyId();
+
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(ConsumerPortlet.PORTLET_NAME_PREFIX);
-		sb.append(wsrpConsumerPortlet.getCompanyId());
+		sb.append(companyId);
 		sb.append(StringPool.UNDERLINE);
 		sb.append(wsrpConsumerPortlet.getWsrpConsumerPortletId());
 
 		String portletId = PortalUtil.getJsSafePortletId(sb.toString());
 
 		portlet = PortletLocalServiceUtil.clonePortlet(
-			wsrpConsumerPortlet.getCompanyId(), _CONSUMER_PORTLET_ID);
+			companyId, _CONSUMER_PORTLET_ID);
 
 		portlet.setPortletId(portletId);
 		portlet.setTimestamp(System.currentTimeMillis());
