@@ -93,7 +93,7 @@ if (supportsInbandRegistration) {
 		</select>
 	</td>
 </tr>
-<tbody id="<portlet:namespace />registrationHandleSettings" <%= supportsInbandRegistration ? "style=\"display: none;\"" : "" %>>
+<tbody <%= supportsInbandRegistration ? "class=\"aui-helper-hidden\"" : "" %> id="<portlet:namespace />registrationHandleSettings">
 	<tr>
 		<td>
 			<liferay-ui:message key="registration-handle" />
@@ -103,7 +103,7 @@ if (supportsInbandRegistration) {
 		</td>
 	</tr>
 </tbody>
-<tbody id="<portlet:namespace />registrationPropertiesSettings" <%= !supportsInbandRegistration ? "style=\"display: none;\"" : "" %>>
+<tbody <%= !supportsInbandRegistration ? "class=\"aui-helper-hidden\"" : "" %> id="<portlet:namespace />registrationPropertiesSettings">
 	<tr>
 		<td>
 			<liferay-ui:message key="registration-properties" />
@@ -189,15 +189,12 @@ if (supportsInbandRegistration) {
 
 </form>
 
-<script type="text/javascript">
-	jQuery(
-		function() {
-			jQuery('#<portlet:namespace />inbandRegistration').change(
-				function() {
-					jQuery('#<portlet:namespace />registrationHandleSettings').toggle();
-					jQuery('#<portlet:namespace />registrationPropertiesSettings').toggle();
-				}
-			);
+<aui:script use="aui-base">
+	A.one('#<portlet:namespace />inbandRegistration').on(
+		'change',
+		function(event) {
+			A.one('#<portlet:namespace />registrationHandleSettings').toggle();
+			A.one('#<portlet:namespace />registrationPropertiesSettings').toggle();
 		}
 	);
-</script>
+</aui:script>
