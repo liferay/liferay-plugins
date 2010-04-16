@@ -6,7 +6,7 @@
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.testmisc.job.TestSchedulerListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.testmisc.messaging.TestSchedulerMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<simple>
 					<simple-trigger-value>1</simple-trigger-value>

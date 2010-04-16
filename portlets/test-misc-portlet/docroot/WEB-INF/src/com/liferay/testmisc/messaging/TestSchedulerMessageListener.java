@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.testmisc.job;
+package com.liferay.testmisc.messaging;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -20,20 +20,30 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
 
 /**
- * <a href="TestIntervalJob.java.html"><b><i>View Source</i></b></a>
+ * <a href="TestSchedulerMessageListener.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class TestSchedulerListener implements MessageListener {
+public class TestSchedulerMessageListener implements MessageListener {
 
 	public void receive(Message message) {
+		try {
+			doReceive(message);
+		}
+		catch (Exception e) {
+			_log.error("Unable to process message " + message, e);
+		}
+	}
 
+	protected void doReceive(Message message) throws Exception {
 		if (_log.isInfoEnabled()) {
 			_log.info("Execute");
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(TestSchedulerListener.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		TestSchedulerMessageListener.class);
 
 }
