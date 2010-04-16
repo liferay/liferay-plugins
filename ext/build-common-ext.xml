@@ -243,6 +243,8 @@ loader.
 			<arg line="docroot/WEB-INF docroot/WEB-INF ${plugin.name}" />
 		</java>
 
+		<mkdir dir="${project.dir}/dist" />
+
 		<zip destfile="${plugin.file}">
 			<zipfileset
 				dir="docroot"
