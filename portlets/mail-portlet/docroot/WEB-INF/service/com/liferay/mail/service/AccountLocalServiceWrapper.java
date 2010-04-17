@@ -139,9 +139,16 @@ public class AccountLocalServiceWrapper implements AccountLocalService {
 		_accountLocalService.deleteAccounts(userId);
 	}
 
-	public java.util.List<com.liferay.mail.model.Account> getAccountEntries(
+	public com.liferay.mail.model.Account getAccount(long userId,
+		java.lang.String address)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _accountLocalService.getAccount(userId, address);
+	}
+
+	public java.util.List<com.liferay.mail.model.Account> getAccounts(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
-		return _accountLocalService.getAccountEntries(userId);
+		return _accountLocalService.getAccounts(userId);
 	}
 
 	public com.liferay.mail.model.Account updateAccount(long accountId,

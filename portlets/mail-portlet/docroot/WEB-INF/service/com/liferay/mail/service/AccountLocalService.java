@@ -119,7 +119,13 @@ public interface AccountLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.mail.model.Account> getAccountEntries(
+	public com.liferay.mail.model.Account getAccount(long userId,
+		java.lang.String address)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.mail.model.Account> getAccounts(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.mail.model.Account updateAccount(long accountId,

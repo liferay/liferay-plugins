@@ -157,6 +157,25 @@ public class AccountUtil {
 			orderByComparator);
 	}
 
+	public static com.liferay.mail.model.Account findByU_A(long userId,
+		java.lang.String address)
+		throws com.liferay.mail.NoSuchAccountException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU_A(userId, address);
+	}
+
+	public static com.liferay.mail.model.Account fetchByU_A(long userId,
+		java.lang.String address)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByU_A(userId, address);
+	}
+
+	public static com.liferay.mail.model.Account fetchByU_A(long userId,
+		java.lang.String address, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByU_A(userId, address, retrieveFromCache);
+	}
+
 	public static java.util.List<com.liferay.mail.model.Account> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
@@ -180,6 +199,12 @@ public class AccountUtil {
 		getPersistence().removeByUserId(userId);
 	}
 
+	public static void removeByU_A(long userId, java.lang.String address)
+		throws com.liferay.mail.NoSuchAccountException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByU_A(userId, address);
+	}
+
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
@@ -188,6 +213,11 @@ public class AccountUtil {
 	public static int countByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByUserId(userId);
+	}
+
+	public static int countByU_A(long userId, java.lang.String address)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU_A(userId, address);
 	}
 
 	public static int countAll()

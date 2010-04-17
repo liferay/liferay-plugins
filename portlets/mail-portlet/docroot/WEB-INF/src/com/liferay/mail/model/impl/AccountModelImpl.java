@@ -185,6 +185,12 @@ public class AccountModelImpl extends BaseModelImpl<Account> {
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = userId;
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -193,6 +199,10 @@ public class AccountModelImpl extends BaseModelImpl<Account> {
 
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	public String getUserName() {
@@ -235,6 +245,14 @@ public class AccountModelImpl extends BaseModelImpl<Account> {
 
 	public void setAddress(String address) {
 		_address = address;
+
+		if (_originalAddress == null) {
+			_originalAddress = address;
+		}
+	}
+
+	public String getOriginalAddress() {
+		return GetterUtil.getString(_originalAddress);
 	}
 
 	public String getPersonalName() {
@@ -726,10 +744,13 @@ public class AccountModelImpl extends BaseModelImpl<Account> {
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _address;
+	private String _originalAddress;
 	private String _personalName;
 	private String _protocol;
 	private String _incomingHostName;

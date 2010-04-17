@@ -595,14 +595,53 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		}
 	}
 
-	public java.util.List<com.liferay.mail.model.Account> getAccountEntries(
+	public com.liferay.mail.model.Account getAccount(long userId,
+		java.lang.String address)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object paramObj1 = ClpSerializer.translateInput(address);
+
+		if (address == null) {
+			paramObj1 = new NullWrapper("java.lang.String");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getAccount",
+					new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.mail.model.Account)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.mail.model.Account> getAccounts(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getAccountEntries",
+			returnObj = _classLoaderProxy.invoke("getAccounts",
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {

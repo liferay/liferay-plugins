@@ -142,9 +142,16 @@ public class AccountLocalServiceUtil {
 		getService().deleteAccounts(userId);
 	}
 
-	public static java.util.List<com.liferay.mail.model.Account> getAccountEntries(
+	public static com.liferay.mail.model.Account getAccount(long userId,
+		java.lang.String address)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getAccount(userId, address);
+	}
+
+	public static java.util.List<com.liferay.mail.model.Account> getAccounts(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getAccountEntries(userId);
+		return getService().getAccounts(userId);
 	}
 
 	public static com.liferay.mail.model.Account updateAccount(long accountId,

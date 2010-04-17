@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -82,6 +83,14 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByUserId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FETCH_BY_U_A = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
+			AccountModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
+			"fetchByU_A",
+			new String[] { Long.class.getName(), String.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_U_A = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
+			AccountModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByU_A",
+			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findAll", new String[0]);
@@ -92,6 +101,10 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	public void cacheResult(Account account) {
 		EntityCacheUtil.putResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountImpl.class, account.getPrimaryKey(), account);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A,
+			new Object[] { new Long(account.getUserId()), account.getAddress() },
+			account);
 	}
 
 	public void cacheResult(List<Account> accounts) {
@@ -201,6 +214,15 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		AccountModelImpl accountModelImpl = (AccountModelImpl)account;
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
+			new Object[] {
+				new Long(accountModelImpl.getOriginalUserId()),
+				
+			accountModelImpl.getOriginalAddress()
+			});
+
 		EntityCacheUtil.removeResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountImpl.class, account.getPrimaryKey());
 
@@ -210,6 +232,10 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	public Account updateImpl(com.liferay.mail.model.Account account,
 		boolean merge) throws SystemException {
 		account = toUnwrappedModel(account);
+
+		boolean isNew = account.isNew();
+
+		AccountModelImpl accountModelImpl = (AccountModelImpl)account;
 
 		Session session = null;
 
@@ -231,6 +257,27 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 
 		EntityCacheUtil.putResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountImpl.class, account.getPrimaryKey(), account);
+
+		if (!isNew &&
+				((account.getUserId() != accountModelImpl.getOriginalUserId()) ||
+				!Validator.equals(account.getAddress(),
+					accountModelImpl.getOriginalAddress()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
+				new Object[] {
+					new Long(accountModelImpl.getOriginalUserId()),
+					
+				accountModelImpl.getOriginalAddress()
+				});
+		}
+
+		if (isNew ||
+				((account.getUserId() != accountModelImpl.getOriginalUserId()) ||
+				!Validator.equals(account.getAddress(),
+					accountModelImpl.getOriginalAddress()))) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A,
+				new Object[] { new Long(account.getUserId()), account.getAddress() },
+				account);
+		}
 
 		return account;
 	}
@@ -564,6 +611,134 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		}
 	}
 
+	public Account findByU_A(long userId, String address)
+		throws NoSuchAccountException, SystemException {
+		Account account = fetchByU_A(userId, address);
+
+		if (account == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("userId=");
+			msg.append(userId);
+
+			msg.append(", address=");
+			msg.append(address);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchAccountException(msg.toString());
+		}
+
+		return account;
+	}
+
+	public Account fetchByU_A(long userId, String address)
+		throws SystemException {
+		return fetchByU_A(userId, address, true);
+	}
+
+	public Account fetchByU_A(long userId, String address,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(userId), address };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_A,
+					finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(4);
+
+				query.append(_SQL_SELECT_ACCOUNT_WHERE);
+
+				query.append(_FINDER_COLUMN_U_A_USERID_2);
+
+				if (address == null) {
+					query.append(_FINDER_COLUMN_U_A_ADDRESS_1);
+				}
+				else {
+					if (address.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_U_A_ADDRESS_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_U_A_ADDRESS_2);
+					}
+				}
+
+				query.append(AccountModelImpl.ORDER_BY_JPQL);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				if (address != null) {
+					qPos.add(address);
+				}
+
+				List<Account> list = q.list();
+
+				result = list;
+
+				Account account = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A,
+						finderArgs, list);
+				}
+				else {
+					account = list.get(0);
+
+					cacheResult(account);
+
+					if ((account.getUserId() != userId) ||
+							(account.getAddress() == null) ||
+							!account.getAddress().equals(address)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A,
+							finderArgs, account);
+					}
+				}
+
+				return account;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (result == null) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A,
+						finderArgs, new ArrayList<Account>());
+				}
+
+				closeSession(session);
+			}
+		}
+		else {
+			if (result instanceof List<?>) {
+				return null;
+			}
+			else {
+				return (Account)result;
+			}
+		}
+	}
+
 	public List<Account> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -645,6 +820,13 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		}
 	}
 
+	public void removeByU_A(long userId, String address)
+		throws NoSuchAccountException, SystemException {
+		Account account = findByU_A(userId, address);
+
+		remove(account);
+	}
+
 	public void removeAll() throws SystemException {
 		for (Account account : findAll()) {
 			remove(account);
@@ -689,6 +871,69 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID,
 					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public int countByU_A(long userId, String address)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(userId), address };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_U_A,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(3);
+
+				query.append(_SQL_COUNT_ACCOUNT_WHERE);
+
+				query.append(_FINDER_COLUMN_U_A_USERID_2);
+
+				if (address == null) {
+					query.append(_FINDER_COLUMN_U_A_ADDRESS_1);
+				}
+				else {
+					if (address.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_U_A_ADDRESS_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_U_A_ADDRESS_2);
+					}
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				if (address != null) {
+					qPos.add(address);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_A, finderArgs,
+					count);
 
 				closeSession(session);
 			}
@@ -770,6 +1015,10 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	private static final String _SQL_COUNT_ACCOUNT = "SELECT COUNT(account) FROM Account account";
 	private static final String _SQL_COUNT_ACCOUNT_WHERE = "SELECT COUNT(account) FROM Account account WHERE ";
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "account.userId = ?";
+	private static final String _FINDER_COLUMN_U_A_USERID_2 = "account.userId = ? AND ";
+	private static final String _FINDER_COLUMN_U_A_ADDRESS_1 = "account.address IS NULL";
+	private static final String _FINDER_COLUMN_U_A_ADDRESS_2 = "account.address = ?";
+	private static final String _FINDER_COLUMN_U_A_ADDRESS_3 = "(account.address IS NULL OR account.address = ?)";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "account.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Account exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Account exists with the key {";

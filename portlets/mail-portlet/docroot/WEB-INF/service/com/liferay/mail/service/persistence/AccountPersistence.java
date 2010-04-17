@@ -82,6 +82,19 @@ public interface AccountPersistence extends BasePersistence<Account> {
 		throws com.liferay.mail.NoSuchAccountException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public com.liferay.mail.model.Account findByU_A(long userId,
+		java.lang.String address)
+		throws com.liferay.mail.NoSuchAccountException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Account fetchByU_A(long userId,
+		java.lang.String address)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Account fetchByU_A(long userId,
+		java.lang.String address, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public java.util.List<com.liferay.mail.model.Account> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -96,10 +109,17 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	public void removeByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public void removeByU_A(long userId, java.lang.String address)
+		throws com.liferay.mail.NoSuchAccountException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int countByU_A(long userId, java.lang.String address)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countAll()
