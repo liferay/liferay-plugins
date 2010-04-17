@@ -41,7 +41,9 @@ public class GadgetPortlet extends MVCPortlet {
 		throws IOException, PortletException {
 
 		try {
-			doRender(renderRequest, renderResponse);
+			Gadget gadget = getGadget();
+
+			renderRequest.setAttribute(WebKeys.GADGET, gadget);
 
 			super.render(renderRequest, renderResponse);
 		}
@@ -56,23 +58,13 @@ public class GadgetPortlet extends MVCPortlet {
 		}
 	}
 
-	protected void doRender(
-			RenderRequest renderRequest, RenderResponse renderResponse)
-		throws Exception {
-
-		Gadget gadget = getGadget();
-
-		renderRequest.setAttribute(WebKeys.GADGET, gadget);
-	}
-
 	protected Gadget getGadget() throws Exception {
 		String portletName = getPortletConfig().getPortletName();
 
 		int pos = portletName.indexOf(
 			StringPool.UNDERLINE, PORTLET_NAME_PREFIX.length());
 
-		long gadgetId = GetterUtil.getLong(
-			portletName.substring(pos + 1));
+		long gadgetId = GetterUtil.getLong(portletName.substring(pos + 1));
 
 		Gadget gadget = GadgetLocalServiceUtil.getGadget(gadgetId);
 

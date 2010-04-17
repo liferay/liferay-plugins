@@ -4,4 +4,77 @@
 	<import file="../build-common-portlet.xml" />
 
 	<property name="original.war.file" value="shindig-server-1.1-BETA5-incubating.war" />
+
+	<target name="merge">
+		<antcall target="build-common-plugin.merge" />
+
+		<java
+			classname="com.liferay.portal.tools.WebXMLBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+			<arg value="tmp/WEB-INF/web.full.xml" />
+			<arg value="docroot/WEB-INF/web.xml" />
+			<arg value="tmp/WEB-INF/web.xml" />
+		</java>
+
+		<if>
+			<not>
+				<available file="tmp/WEB-INF/classes/shindig.properties.original" />
+			</not>
+			<then>
+				<unzip
+					src="tmp/WEB-INF/lib/shindig-common-1.1-BETA5-incubating.jar"
+					dest="tmp/WEB-INF/classes"
+				>
+					<patternset
+						includes="**/shindig.properties"
+					/>
+					<chainedmapper>
+						<flattenmapper />
+						<globmapper
+							from="shindig.properties"
+							to="shindig.properties.original"
+						/>
+					</chainedmapper>
+				</unzip>
+			</then>
+		</if>
+
+		<copy
+			file="tmp/WEB-INF/classes/shindig.properties.original"
+			tofile="tmp/WEB-INF/classes/shindig.properties"
+			overwrite="true"
+		/>
+
+		<replace file="tmp/WEB-INF/classes/shindig.properties">
+			<replacefilter token="/gadgets/" value="/opensocial-portlet/gadgets/" />
+		</replace>
+
+		<if>
+			<not>
+				<available file="tmp/WEB-INF/classes/containers/default/container.js.original" />
+			</not>
+			<then>
+				<copy
+					file="tmp/WEB-INF/classes/containers/default/container.js"
+					tofile="tmp/WEB-INF/classes/containers/default/container.js.original"
+				/>
+			</then>
+		</if>
+
+		<copy
+			file="tmp/WEB-INF/classes/containers/default/container.js.original"
+			tofile="tmp/WEB-INF/classes/containers/default/container.js"
+			overwrite="true"
+		/>
+
+		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
+			<replacefilter token="localhost" value="%host%" />
+			<replacefilter token="/gadgets/" value="/opensocial-portlet/gadgets/" />
+			<replacefilter token="/social/" value="/opensocial-portlet/social/" />
+		</replace>
+	</target>
 </project>

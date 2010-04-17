@@ -187,19 +187,17 @@ public class GadgetLocalServiceImpl
 			return portlet;
 		}
 
-		long companyId = gadget.getCompanyId();
-
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(GadgetPortlet.PORTLET_NAME_PREFIX);
-		sb.append(companyId);
+		sb.append(gadget.getCompanyId());
 		sb.append(StringPool.UNDERLINE);
 		sb.append(gadget.getGadgetId());
 
 		String portletId = PortalUtil.getJsSafePortletId(sb.toString());
 
 		portlet = PortletLocalServiceUtil.clonePortlet(
-			companyId, _GADGET_PORTLET_ID);
+			gadget.getCompanyId(), _GADGET_PORTLET_ID);
 
 		portlet.setPortletId(portletId);
 		portlet.setTimestamp(System.currentTimeMillis());

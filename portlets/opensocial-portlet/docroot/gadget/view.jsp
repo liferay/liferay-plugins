@@ -20,7 +20,7 @@
 Gadget gadget = (Gadget)renderRequest.getAttribute(WebKeys.GADGET);
 %>
 
-<div id="gadget" class="gadgets-gadget-chrome"></div>
+<div class="gadgets-gadget-chrome" id="gadget"></div>
 
 <aui:script use="aui-base">
 	var gadget = gadgets.container.createGadget({specUrl: '<%= gadget.getUrl() %>'});
