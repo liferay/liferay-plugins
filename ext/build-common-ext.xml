@@ -245,6 +245,8 @@ loader.
 
 		<mkdir dir="${project.dir}/dist" />
 
+		<delete file="${plugin.file}" />
+
 		<zip destfile="${plugin.file}">
 			<zipfileset
 				dir="docroot"
