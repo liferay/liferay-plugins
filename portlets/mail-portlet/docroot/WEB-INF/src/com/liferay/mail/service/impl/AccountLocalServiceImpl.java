@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 
 import java.util.Date;
@@ -37,7 +38,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 			long userId, String address, String personalName, String protocol,
 			String incomingHostName, int incomingPort, boolean incomingSecure,
 			String outgoingHostName, int outgoingPort, boolean outgoingSecure,
-			String login, String password, boolean savePassword,
+			String login, String unencryptedPassword, boolean savePassword,
 			String signature, boolean useSignature, String folderPrefix,
 			long inboxFolderId, long draftFolderId, long sentFolderId,
 			long trashFolderId, boolean defaultSender)
@@ -65,7 +66,14 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		account.setOutgoingPort(outgoingPort);
 		account.setOutgoingSecure(outgoingSecure);
 		account.setLogin(login);
-		account.setPassword(password);
+
+		if (savePassword) {
+			account.setPasswordDecrypted(unencryptedPassword);
+		}
+		else {
+			account.setPassword(StringPool.BLANK);
+		}
+
 		account.setSavePassword(savePassword);
 		account.setSignature(signature);
 		account.setUseSignature(useSignature);
