@@ -673,7 +673,7 @@ public class StartupAction extends SimpleAction {
 	protected InputStream getInputStream(String path) throws Exception {
 		ClassLoader classLoader = getClass().getClassLoader();
 
-		return classLoader.getResourceAsStream("/resources" +path);
+		return classLoader.getResourceAsStream("/resources" + path);
 	}
 
 	protected String getString(String path) throws Exception {
