@@ -169,4 +169,7 @@
 			<finder-column name="remoteMessageId" />
 		</finder>
 	</entity>
+	<exceptions>
+		<exception>Mail</exception>
+	</exceptions>
 </service-builder>
