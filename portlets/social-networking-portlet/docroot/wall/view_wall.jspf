@@ -144,9 +144,23 @@
 							postMessage = LanguageUtil.format(pageContext, "write-on-x-wall", wallUser.getFirstName());
 						}
 
-						String wallFriendlyURL = PortletPropsValues.WALL_FRIENDLY_URL;
-						String wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallFriendlyURL + "/-/wall/" + wallUser.getScreenName();
-						String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallFriendlyURL + "/-/wall";
+						Group wallGroup = wallUser.getGroup();
+
+						Long wallPlid = LayoutLocalServiceUtil.getDefaultPlid(wallGroup.getGroupId(), false, portletDisplay.getId());
+
+						String wallLayoutFriendlyURL = null;
+
+						if (wallPlid == 0) {
+							wallLayoutFriendlyURL = PortletPropsValues.WALL_LAYOUT_FRIENDLY_URL;
+						}
+						else {
+							Layout wallUserLayout = LayoutLocalServiceUtil.getLayout(wallPlid);
+
+							wallLayoutFriendlyURL = wallUserLayout.getFriendlyURL();
+						}
+
+						String wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallLayoutFriendlyURL + "/-/wall/" + wallUser.getScreenName();
+						String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallLayoutFriendlyURL + "/-/wall";
 						String deleteHREF = "javascript:" + renderResponse.getNamespace() + "deleteWallEntry(" + wallEntry.getWallEntryId() + ");";
 						%>
 
@@ -191,7 +205,7 @@
 						</c:when>
 						<c:otherwise>
 							<liferay-portlet:actionURL var="addAsFriendURL" name="addFriend" portletName="1_WAR_socialnetworkingportlet">
-								<liferay-portlet:param name="redirect" value='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + PortletPropsValues.WALL_FRIENDLY_URL %>' />
+								<liferay-portlet:param name="redirect" value='<%= currentURL %>' />
 							</liferay-portlet:actionURL>
 
 							<a href="<%= addAsFriendURL %>"><%= LanguageUtil.format(pageContext, "ask-x-to-be-your-friend", user2.getFirstName()) %></a>
