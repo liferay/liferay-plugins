@@ -61,14 +61,26 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="accountId" type="long" />
 		<field name="folderId" type="long" />
-		<field name="sender" type="String" />
-		<field name="to" type="String" />
-		<field name="cc" type="String" />
-		<field name="bcc" type="String" />
+		<field name="sender" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="to" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="cc" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="bcc" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
 		<field name="sentDate" type="Date" />
-		<field name="subject" type="String" />
+		<field name="subject" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
 		<field name="preview" type="String" />
-		<field name="body" type="String" />
+		<field name="body" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
 		<field name="flags" type="String" />
 		<field name="size" type="long" />
 		<field name="remoteMessageId" type="long" />
