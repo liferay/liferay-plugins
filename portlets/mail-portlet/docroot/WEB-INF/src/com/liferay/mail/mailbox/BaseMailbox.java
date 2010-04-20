@@ -14,7 +14,12 @@
 
 package com.liferay.mail.mailbox;
 
+import com.liferay.mail.MailException;
+import com.liferay.mail.NoSuchAccountException;
 import com.liferay.mail.model.Account;
+import com.liferay.mail.service.AccountLocalServiceUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 
 /**
@@ -23,6 +28,39 @@ import com.liferay.portal.model.User;
  * @author Scott Lee
  */
 public abstract class BaseMailbox implements Mailbox {
+
+	public Account addAccount(
+			String address, String protocol, String incomingHostName,
+			int incomingPort, boolean incomingSecure, String outgoingHostName,
+			int outgoingPort, boolean outgoingSecure, String folderPrefix,
+			String password, boolean savePassword, String login,
+			String personalName, String signature, boolean useSignature)
+		throws PortalException, SystemException {
+
+		validateAccount(
+			incomingHostName, incomingPort, incomingSecure, outgoingHostName,
+			outgoingPort, outgoingSecure, login, password);
+
+		try {
+			AccountLocalServiceUtil.getAccount(user.getUserId(), address);
+		}
+		catch (NoSuchAccountException nsae) {
+			long inboxFolderId = 0;
+			long draftFolderId = 0;
+			long sentFolderId = 0;
+			long trashFolderId = 0;
+
+			return AccountLocalServiceUtil.addAccount(
+				user.getUserId(), address, personalName, protocol,
+				incomingHostName, incomingPort, incomingSecure,
+				outgoingHostName, outgoingPort, outgoingSecure, login, password,
+				savePassword, signature, useSignature, folderPrefix,
+				inboxFolderId, draftFolderId, sentFolderId, trashFolderId,
+				true);
+		}
+
+		throw new MailException("Address already exists");
+	}
 
 	public Account getAccount() {
 		return account;
