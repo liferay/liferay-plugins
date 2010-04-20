@@ -35,12 +35,20 @@ import javax.mail.internet.InternetAddress;
  */
 public interface Mailbox {
 
-	public void addFolder(String displayName)
+	public Account addAccount(
+			String address, String protocol, String incomingHostName,
+			int incomingPort, boolean incomingSecure, String outgoingHostName,
+			int outgoingPort, boolean outgoingSecure, String folderPrefix,
+			String password, boolean savePassword, String login,
+			String personalName, String signature, boolean useSignature)
+		throws PortalException, SystemException;
+
+	public Folder addFolder(String displayName)
 		throws PortalException, SystemException;
 
 	public void deleteAccount() throws PortalException, SystemException;
 
-	public void deleteAttachment(long messageId, long attachmentId)
+	public void deleteAttachment(long attachmentId)
 		throws PortalException, SystemException;
 
 	public void deleteFolder(long folderId)
@@ -51,10 +59,16 @@ public interface Mailbox {
 
 	public Account getAccount();
 
+	public long getAccountUnreadMessagesCount()
+		throws PortalException, SystemException;
+
 	public InputStream getAttachment(long attachmentId)
 		throws PortalException, SystemException;
 
 	public List<Folder> getFolders() throws SystemException;
+
+	public long getFolderUnreadMessagesCount(long folderId)
+		throws PortalException, SystemException;
 
 	public Message getMessage(long messageId)
 		throws PortalException, SystemException;
@@ -64,18 +78,10 @@ public interface Mailbox {
 			String orderByField, String orderByType)
 		throws PortalException, SystemException;
 
-	public List<Message> getMessages(
-			long folderId, String keywords, int pageNumber, int messagesPerPage,
-			String orderByField, String orderByType)
-		throws PortalException, SystemException;
-
-	public int getMessagesCount(long folderId)
+	public int getLocalMessagesCount(long folderId)
 		throws PortalException, SystemException;
 
 	public int getRemoteMessagesCount(long folderId)
-		throws PortalException, SystemException;
-
-	public long getUnreadMessagesCount()
 		throws PortalException, SystemException;
 
 	public User getUser();
@@ -84,12 +90,18 @@ public interface Mailbox {
 			long sourceFolderId, long desintationFolderId, long[] messageIds)
 		throws PortalException, SystemException;
 
-	public List<InternetAddress> parseAddresses(String addresses)
+	public InternetAddress[] parseAddresses(String addresses)
+		throws PortalException, SystemException;
+
+	public int populateMessages(
+			List<Message> messages, long folderId, String keywords,
+			int pageNumber, int messagesPerPage, String orderByField,
+			String orderByType)
 		throws PortalException, SystemException;
 
 	public Message saveDraft(
-			long messageId, String to, String cc, String bcc, String subject,
-			String body, List<MailFile> mailFiles)
+			long accountId, long messageId, String to, String cc, String bcc,
+			String subject, String body, List<MailFile> mailFiles)
 		throws PortalException, SystemException;
 
 	public void sendMessage(long accountId, long messageId)
