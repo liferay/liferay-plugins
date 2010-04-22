@@ -185,7 +185,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 			List<Message> messages, long folderId, String keywords,
 			int pageNumber, int messagesPerPage, String orderByField,
 			String orderByType)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			Message.class, PortletClassLoaderUtil.getClassLoader());

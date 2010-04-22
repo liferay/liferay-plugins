@@ -107,7 +107,7 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 	}
 
 	public int getLocalPageCount(long folderId, int messagesPerPage)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		int localMessageCount = messagePersistence.countByFolderId(folderId);
 
