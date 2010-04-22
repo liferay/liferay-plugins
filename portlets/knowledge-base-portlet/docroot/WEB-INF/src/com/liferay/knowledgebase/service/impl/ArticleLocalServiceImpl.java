@@ -34,9 +34,11 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MathUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.StatusConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -103,6 +105,12 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				serviceContext.getGuestPermissions());
 		}
 
+		// Message Boards
+
+		MBMessageLocalServiceUtil.addDiscussionMessage(
+			userId, article.getUserName(), Article.class.getName(),
+			resourcePrimKey, StatusConstants.APPROVED);
+
 		// Articles
 
 		updateDisplayOrder(article, parentResourcePrimKey, priority);
@@ -156,6 +164,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 	public void deleteArticle(Article article)
 		throws PortalException, SystemException {
+
+		// Message boards
+
+		MBMessageLocalServiceUtil.deleteDiscussionMessages(
+			Article.class.getName(), article.getResourcePrimKey());
 
 		// Resources
 

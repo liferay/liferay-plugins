@@ -42,19 +42,26 @@
 			<portlet-name>1</portlet-name>
 		</portlet-ref>
 		<supports>
+			<action-key>ADD_DISCUSSION</action-key>
 			<action-key>DELETE</action-key>
+			<action-key>DELETE_DISCUSSION</action-key>
 			<action-key>PERMISSIONS</action-key>
 			<action-key>UPDATE</action-key>
+			<action-key>UPDATE_DISCUSSION</action-key>
 			<action-key>VIEW</action-key>
 		</supports>
 		<community-defaults>
+			<action-key>ADD_DISCUSSION</action-key>
 			<action-key>VIEW</action-key>
 		</community-defaults>
 		<guest-defaults>
 			<action-key>VIEW</action-key>
 		</guest-defaults>
 		<guest-unsupported>
+			<action-key>ADD_DISCUSSION</action-key>
+			<action-key>DELETE_DISCUSSION</action-key>
 			<action-key>UPDATE</action-key>
+			<action-key>UPDATE_DISCUSSION</action-key>
 		</guest-unsupported>
 	</model-resource>
 </resource-action-mapping>
