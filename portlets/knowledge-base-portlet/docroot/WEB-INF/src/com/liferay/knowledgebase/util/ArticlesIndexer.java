@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.BaseIndexer;
@@ -194,17 +193,37 @@ public class ArticlesIndexer extends BaseIndexer {
 	}
 
 	private String[] _splitKeywords(String keywords) {
-		if (Validator.isNull(keywords)) {
+		String s = keywords.trim();
+
+		if (Validator.isNull(s)) {
 			return new String[0];
 		}
 
-		for (char c : keywords.toCharArray()) {
-			if (!Character.isLetterOrDigit(c) && !Character.isWhitespace(c)) {
+		List<String> list = new ArrayList<String>();
+
+		StringBuilder sb = new StringBuilder();
+
+		for (char c : s.toCharArray()) {
+			if (Character.isWhitespace(c)) {
+				if (sb.length() > 0) {
+					list.add(sb.toString());
+
+					sb = new StringBuilder();
+				}
+			}
+			else if (Character.isLetterOrDigit(c)) {
+				sb.append(c);
+			}
+			else {
 				return new String[0];
 			}
 		}
 
-		return StringUtil.split(keywords, StringPool.SPACE);
+		if (sb.length() > 0) {
+			list.add(sb.toString());
+		}
+
+		return list.toArray(new String[list.size()]);
 	}
 
 }
