@@ -134,44 +134,57 @@
 					<c:if test="<%= themeDisplay.isSignedIn() && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
 						<br />
 
-						<%
-						String postMessage = null;
-
-						if (wallUser.getUserId() == themeDisplay.getUserId()) {
-							postMessage = "write-on-my-wall";
-						}
-						else {
-							postMessage = LanguageUtil.format(pageContext, "write-on-x-wall", wallUser.getFirstName());
-						}
-
-						Group wallGroup = wallUser.getGroup();
-
-						Long wallPlid = LayoutLocalServiceUtil.getDefaultPlid(wallGroup.getGroupId(), false, portletDisplay.getId());
-
-						String wallLayoutFriendlyURL = null;
-
-						if (wallPlid == 0) {
-							wallLayoutFriendlyURL = PortletPropsValues.WALL_LAYOUT_FRIENDLY_URL;
-						}
-						else {
-							Layout wallUserLayout = LayoutLocalServiceUtil.getLayout(wallPlid);
-
-							wallLayoutFriendlyURL = wallUserLayout.getFriendlyURL();
-						}
-
-						String wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallLayoutFriendlyURL + "/-/wall/" + wallUser.getScreenName();
-						String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallLayoutFriendlyURL + "/-/wall";
-						String deleteHREF = "javascript:" + renderResponse.getNamespace() + "deleteWallEntry(" + wallEntry.getWallEntryId() + ");";
-						%>
-
 						<liferay-ui:icon-list>
-							<c:if test="<%= (wallToWallUser == null) && (wallUser.getUserId() != themeDisplay.getUserId()) %>">
+
+							<%
+							String wallToWallHREF = null;
+
+							if ((wallToWallUser == null) && (wallUser.getUserId() != themeDisplay.getUserId())) {
+								String wallLayoutFriendlyURL = PropsValues.WALL_LAYOUT_FRIENDLY_URL;
+
+								if (Validator.isNull(wallLayoutFriendlyURL)) {
+									Group wallGroup = wallUser.getGroup();
+
+									long wallPlid = LayoutLocalServiceUtil.getDefaultPlid(wallGroup.getGroupId(), false, portletDisplay.getId());
+
+									if (wallPlid != 0) {
+										Layout wallLayout = LayoutLocalServiceUtil.getLayout(wallPlid);
+
+										wallLayoutFriendlyURL = wallLayout.getFriendlyURL();
+									}
+								}
+
+								if (Validator.isNotNull(wallLayoutFriendlyURL)) {
+									wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallLayoutFriendlyURL + "/-/wall/" + wallUser.getScreenName();
+								}
+							}
+							%>
+
+							<c:if test="<%= Validator.isNotNull(wallToWallHREF) %>">
 								<liferay-ui:icon image="all_pages" message="wall-to-wall" url="<%= wallToWallHREF %>" label="<%= true %>" />
 							</c:if>
 
-							<liferay-ui:icon image="post" message='<%= postMessage %>' url="<%= postHREF %>" label="<%= true %>" />
+							<%
+							String postMessage = null;
+
+							if (wallUser.getUserId() == themeDisplay.getUserId()) {
+								postMessage = "write-on-my-wall";
+							}
+							else {
+								postMessage = LanguageUtil.format(pageContext, "write-on-x-wall", wallUser.getFirstName());
+							}
+
+							String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallLayoutFriendlyURL + "/-/wall";
+							%>
+
+							<liferay-ui:icon image="post" message="<%= postMessage %>" url="<%= postHREF %>" label="<%= true %>" />
 
 							<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
+
+								<%
+								String deleteHREF = "javascript:" + renderResponse.getNamespace() + "deleteWallEntry(" + wallEntry.getWallEntryId() + ");";
+								%>
+
 								<liferay-ui:icon-delete url="<%= deleteHREF %>" label="<%= true %>" />
 							</c:if>
 						</liferay-ui:icon-list>
