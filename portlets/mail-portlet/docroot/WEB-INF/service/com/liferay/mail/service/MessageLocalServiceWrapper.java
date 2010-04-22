@@ -174,8 +174,7 @@ public class MessageLocalServiceWrapper implements MessageLocalService {
 		java.util.List<com.liferay.mail.model.Message> messages, long folderId,
 		java.lang.String keywords, int pageNumber, int messagesPerPage,
 		java.lang.String orderByField, java.lang.String orderByType)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _messageLocalService.populateMessages(messages, folderId,
 			keywords, pageNumber, messagesPerPage, orderByField, orderByType);
 	}

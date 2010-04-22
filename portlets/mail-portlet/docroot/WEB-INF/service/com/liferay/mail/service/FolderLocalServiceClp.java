@@ -590,8 +590,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 	}
 
 	public int getLocalPageCount(long folderId, int messagesPerPage)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(folderId);
 
 		Object paramObj1 = new IntegerWrapper(messagesPerPage);
@@ -603,10 +602,6 @@ public class FolderLocalServiceClp implements FolderLocalService {
 					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}

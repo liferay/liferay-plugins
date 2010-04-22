@@ -123,8 +123,7 @@ public interface FolderLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getLocalPageCount(long folderId, int messagesPerPage)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getPercentDownloaded(long folderId)

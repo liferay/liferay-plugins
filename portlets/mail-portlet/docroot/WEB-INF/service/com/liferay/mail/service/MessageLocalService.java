@@ -149,8 +149,7 @@ public interface MessageLocalService {
 		java.util.List<com.liferay.mail.model.Message> messages, long folderId,
 		java.lang.String keywords, int pageNumber, int messagesPerPage,
 		java.lang.String orderByField, java.lang.String orderByType)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.mail.model.Message updateFlag(long messageId, int flag,
 		boolean value)

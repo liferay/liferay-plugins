@@ -122,7 +122,7 @@ public class AccountLocalServiceUtil {
 		int incomingPort, boolean incomingSecure,
 		java.lang.String outgoingHostName, int outgoingPort,
 		boolean outgoingSecure, java.lang.String login,
-		java.lang.String password, boolean savePassword,
+		java.lang.String unencryptedPassword, boolean savePassword,
 		java.lang.String signature, boolean useSignature,
 		java.lang.String folderPrefix, long inboxFolderId, long draftFolderId,
 		long sentFolderId, long trashFolderId, boolean defaultSender)
@@ -131,8 +131,8 @@ public class AccountLocalServiceUtil {
 		return getService()
 				   .addAccount(userId, address, personalName, protocol,
 			incomingHostName, incomingPort, incomingSecure, outgoingHostName,
-			outgoingPort, outgoingSecure, login, password, savePassword,
-			signature, useSignature, folderPrefix, inboxFolderId,
+			outgoingPort, outgoingSecure, login, unencryptedPassword,
+			savePassword, signature, useSignature, folderPrefix, inboxFolderId,
 			draftFolderId, sentFolderId, trashFolderId, defaultSender);
 	}
 

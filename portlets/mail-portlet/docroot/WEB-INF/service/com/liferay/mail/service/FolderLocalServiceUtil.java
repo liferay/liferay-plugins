@@ -146,8 +146,7 @@ public class FolderLocalServiceUtil {
 	}
 
 	public static int getLocalPageCount(long folderId, int messagesPerPage)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getLocalPageCount(folderId, messagesPerPage);
 	}
 

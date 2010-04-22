@@ -71,18 +71,18 @@ public class MessageModelImpl extends BaseModelImpl<Message> {
 			{ "accountId", new Integer(Types.BIGINT) },
 			{ "folderId", new Integer(Types.BIGINT) },
 			{ "sender", new Integer(Types.VARCHAR) },
-			{ "to_", new Integer(Types.VARCHAR) },
-			{ "cc", new Integer(Types.VARCHAR) },
-			{ "bcc", new Integer(Types.VARCHAR) },
+			{ "to_", new Integer(Types.CLOB) },
+			{ "cc", new Integer(Types.CLOB) },
+			{ "bcc", new Integer(Types.CLOB) },
 			{ "sentDate", new Integer(Types.TIMESTAMP) },
 			{ "subject", new Integer(Types.VARCHAR) },
 			{ "preview", new Integer(Types.VARCHAR) },
-			{ "body", new Integer(Types.VARCHAR) },
+			{ "body", new Integer(Types.CLOB) },
 			{ "flags", new Integer(Types.VARCHAR) },
 			{ "size_", new Integer(Types.BIGINT) },
 			{ "remoteMessageId", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Mail_Message (messageId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,accountId LONG,folderId LONG,sender VARCHAR(75) null,to_ VARCHAR(75) null,cc VARCHAR(75) null,bcc VARCHAR(75) null,sentDate DATE null,subject VARCHAR(75) null,preview VARCHAR(75) null,body VARCHAR(75) null,flags VARCHAR(75) null,size_ LONG,remoteMessageId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Mail_Message (messageId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,accountId LONG,folderId LONG,sender STRING null,to_ TEXT null,cc TEXT null,bcc TEXT null,sentDate DATE null,subject STRING null,preview VARCHAR(75) null,body TEXT null,flags VARCHAR(75) null,size_ LONG,remoteMessageId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Mail_Message";
 	public static final String ORDER_BY_JPQL = " ORDER BY message.sentDate ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Mail_Message.sentDate ASC";

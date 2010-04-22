@@ -142,8 +142,7 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 	}
 
 	public int getLocalPageCount(long folderId, int messagesPerPage)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _folderLocalService.getLocalPageCount(folderId, messagesPerPage);
 	}
 

@@ -773,8 +773,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		java.util.List<com.liferay.mail.model.Message> messages, long folderId,
 		java.lang.String keywords, int pageNumber, int messagesPerPage,
 		java.lang.String orderByField, java.lang.String orderByType)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(messages);
 
 		if (messages == null) {
@@ -815,10 +814,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 					});
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
