@@ -92,6 +92,8 @@
 		for (int i = 0; i < results.size(); i++) {
 			WallEntry wallEntry = results.get(i);
 
+			wallEntry = wallEntry.toEscapedModel();
+
 			User wallUser = null;
 
 			try {
