@@ -65,13 +65,13 @@
 			<hint-collection name="TEXTAREA" />
 		</field>
 		<field name="to" type="String">
-			<hint-collection name="TEXTAREA" />
+			<hint-collection name="CLOB" />
 		</field>
 		<field name="cc" type="String">
-			<hint-collection name="TEXTAREA" />
+			<hint-collection name="CLOB" />
 		</field>
 		<field name="bcc" type="String">
-			<hint-collection name="TEXTAREA" />
+			<hint-collection name="CLOB" />
 		</field>
 		<field name="sentDate" type="Date" />
 		<field name="subject" type="String">
@@ -79,7 +79,7 @@
 		</field>
 		<field name="preview" type="String" />
 		<field name="body" type="String">
-			<hint-collection name="TEXTAREA" />
+			<hint-collection name="CLOB" />
 		</field>
 		<field name="flags" type="String" />
 		<field name="size" type="long" />
