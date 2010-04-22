@@ -92,6 +92,11 @@ public abstract class ArticleLocalServiceBaseImpl implements ArticleLocalService
 		return articlePersistence.findByPrimaryKey(articleId);
 	}
 
+	public Article getArticleByUuidAndGroupId(String uuid, long groupId)
+		throws PortalException, SystemException {
+		return articlePersistence.findByUUID_G(uuid, groupId);
+	}
+
 	public List<Article> getArticles(int start, int end)
 		throws SystemException {
 		return articlePersistence.findAll(start, end);

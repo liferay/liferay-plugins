@@ -324,6 +324,45 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		return (com.liferay.knowledgebase.model.Template)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.knowledgebase.model.Template getTemplateByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(uuid);
+
+		if (uuid == null) {
+			paramObj0 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj1 = new LongWrapper(groupId);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getTemplateByUuidAndGroupId",
+					new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.knowledgebase.model.Template)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.knowledgebase.model.Template> getTemplates(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {

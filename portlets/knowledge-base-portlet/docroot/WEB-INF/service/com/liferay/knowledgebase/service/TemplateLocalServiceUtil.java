@@ -95,6 +95,13 @@ public class TemplateLocalServiceUtil {
 		return getService().getTemplate(templateId);
 	}
 
+	public static com.liferay.knowledgebase.model.Template getTemplateByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getTemplateByUuidAndGroupId(uuid, groupId);
+	}
+
 	public static java.util.List<com.liferay.knowledgebase.model.Template> getTemplates(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {

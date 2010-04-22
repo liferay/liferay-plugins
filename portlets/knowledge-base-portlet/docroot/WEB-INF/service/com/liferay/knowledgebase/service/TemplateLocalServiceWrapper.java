@@ -93,6 +93,13 @@ public class TemplateLocalServiceWrapper implements TemplateLocalService {
 		return _templateLocalService.getTemplate(templateId);
 	}
 
+	public com.liferay.knowledgebase.model.Template getTemplateByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _templateLocalService.getTemplateByUuidAndGroupId(uuid, groupId);
+	}
+
 	public java.util.List<com.liferay.knowledgebase.model.Template> getTemplates(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {

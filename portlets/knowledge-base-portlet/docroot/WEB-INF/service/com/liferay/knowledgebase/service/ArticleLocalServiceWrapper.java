@@ -91,6 +91,13 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.getArticle(articleId);
 	}
 
+	public com.liferay.knowledgebase.model.Article getArticleByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getArticleByUuidAndGroupId(uuid, groupId);
+	}
+
 	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {

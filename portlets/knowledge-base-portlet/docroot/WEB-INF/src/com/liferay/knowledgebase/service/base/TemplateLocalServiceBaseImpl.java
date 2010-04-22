@@ -93,6 +93,11 @@ public abstract class TemplateLocalServiceBaseImpl
 		return templatePersistence.findByPrimaryKey(templateId);
 	}
 
+	public Template getTemplateByUuidAndGroupId(String uuid, long groupId)
+		throws PortalException, SystemException {
+		return templatePersistence.findByUUID_G(uuid, groupId);
+	}
+
 	public List<Template> getTemplates(int start, int end)
 		throws SystemException {
 		return templatePersistence.findAll(start, end);

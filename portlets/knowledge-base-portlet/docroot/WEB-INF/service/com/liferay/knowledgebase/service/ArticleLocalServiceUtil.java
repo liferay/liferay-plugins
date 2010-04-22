@@ -96,6 +96,13 @@ public class ArticleLocalServiceUtil {
 		return getService().getArticle(articleId);
 	}
 
+	public static com.liferay.knowledgebase.model.Article getArticleByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getArticleByUuidAndGroupId(uuid, groupId);
+	}
+
 	public static java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
