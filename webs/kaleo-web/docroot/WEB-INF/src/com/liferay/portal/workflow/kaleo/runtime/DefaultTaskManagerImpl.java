@@ -159,8 +159,7 @@ public class DefaultTaskManagerImpl
 
 		ExecutionContext executionContext = new ExecutionContext(
 			newKaleoTaskInstanceToken.getKaleoInstanceToken(),
-			newKaleoTaskInstanceToken,
-			context, serviceContext);
+			newKaleoTaskInstanceToken, context, serviceContext);
 
 		KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
@@ -176,8 +175,7 @@ public class DefaultTaskManagerImpl
 			kaleoTaskInstanceToken, newKaleoTaskInstanceToken,
 			comment, context, serviceContext);
 
-		return new WorkflowTaskAdapter(
-			newKaleoTaskInstanceToken, context);
+		return new WorkflowTaskAdapter(newKaleoTaskInstanceToken, context);
 	}
 
 	protected WorkflowTask doCompleteWorkflowTask(

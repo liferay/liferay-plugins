@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -31,8 +31,9 @@ import java.util.List;
  * @author Michael C. Han
  */
 public class RoleRetrievalUtil {
+
 	public static List<Long> getRoleIds(ServiceContext serviceContext)
-		throws SystemException, PortalException {
+		throws PortalException, SystemException {
 
 		List<Role> roles = RoleLocalServiceUtil.getUserRoles(
 			serviceContext.getUserId());
@@ -56,4 +57,5 @@ public class RoleRetrievalUtil {
 
 		return roleIds;
 	}
+
 }

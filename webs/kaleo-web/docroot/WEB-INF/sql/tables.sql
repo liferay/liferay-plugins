@@ -1,4 +1,3 @@
-
 create table Kaleo_KaleoAction (
 	kaleoActionId LONG not null primary key,
 	companyId LONG,

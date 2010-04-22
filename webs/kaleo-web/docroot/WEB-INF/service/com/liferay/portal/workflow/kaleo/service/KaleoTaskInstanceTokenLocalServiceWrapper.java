@@ -156,12 +156,23 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 			serviceContext);
 	}
 
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> getCompanyKaleoTaskInstanceTokens(
+		long companyId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoTaskInstanceTokenLocalService.getCompanyKaleoTaskInstanceTokens(companyId,
+			start, end);
+	}
+
+	public int getCompanyKaleoTaskInstanceTokensCount(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoTaskInstanceTokenLocalService.getCompanyKaleoTaskInstanceTokensCount(companyId);
+	}
+
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
 		java.lang.Boolean completed, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceTokens(completed,
 			start, end, orderByComparator, serviceContext);
 	}
@@ -171,8 +182,7 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceTokens(roleIds,
 			completed, start, end, orderByComparator, serviceContext);
 	}
@@ -181,8 +191,7 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 		long kaleoInstanceId, java.lang.Boolean completed, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceTokens(kaleoInstanceId,
 			completed, start, end, orderByComparator, serviceContext);
 	}
@@ -192,19 +201,10 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 		java.lang.Boolean completed, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceTokens(assigneeClassName,
 			assigneeClassPK, completed, start, end, orderByComparator,
 			serviceContext);
-	}
-
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> getKaleoTaskInstanceTokensByCompanyId(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceTokensByCompanyId(companyId,
-			start, end);
 	}
 
 	public int getKaleoTaskInstanceTokensCount(java.lang.Boolean completed,
@@ -237,12 +237,6 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceTokensCount(assigneeClassName,
 			assigneeClassPK, completed, serviceContext);
-	}
-
-	public int getKaleoTaskInstanceTokensCountByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceTokensCountByCompanyId(companyId);
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> search(

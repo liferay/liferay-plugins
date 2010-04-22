@@ -57,8 +57,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	public KaleoTaskInstanceToken addKaleoTaskInstanceToken(
 			long kaleoInstanceTokenId, long kaleoTaskId, String kaleoTaskName,
 			KaleoTaskAssignment kaleoTaskAssignment, Date dueDate,
-			Map<String, Serializable> context,
-			ServiceContext serviceContext)
+			Map<String, Serializable> context, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		KaleoInstanceToken kaleoInstanceToken =
@@ -73,7 +72,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
 			kaleoTaskInstanceTokenPersistence.create(kaleoTaskInstanceTokenId);
 
-		kaleoTaskInstanceToken.setCompleted(false);
 		kaleoTaskInstanceToken.setCompanyId(user.getCompanyId());
 		kaleoTaskInstanceToken.setUserId(user.getUserId());
 		kaleoTaskInstanceToken.setUserName(user.getFullName());
@@ -82,10 +80,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		kaleoTaskInstanceToken.setDueDate(dueDate);
 		kaleoTaskInstanceToken.setKaleoInstanceId(
 			kaleoInstanceToken.getKaleoInstanceId());
-		kaleoTaskInstanceToken.setAssigneeClassName(
-			kaleoTaskAssignment.getAssigneeClassName());
-		kaleoTaskInstanceToken.setAssigneeClassPK(
-			kaleoTaskAssignment.getAssigneeClassPK());
 
 		KaleoInstanceToken childKaleoInstanceToken =
 			kaleoInstanceTokenLocalService.addKaleoInstanceToken(
@@ -97,6 +91,11 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		kaleoTaskInstanceToken.setKaleoTaskId(kaleoTaskId);
 		kaleoTaskInstanceToken.setKaleoTaskName(kaleoTaskName);
+		kaleoTaskInstanceToken.setAssigneeClassName(
+			kaleoTaskAssignment.getAssigneeClassName());
+		kaleoTaskInstanceToken.setAssigneeClassPK(
+			kaleoTaskAssignment.getAssigneeClassPK());
+		kaleoTaskInstanceToken.setCompleted(false);
 		kaleoTaskInstanceToken.setContext(ContextUtil.convert(context));
 
 		kaleoTaskInstanceTokenPersistence.update(kaleoTaskInstanceToken, false);
@@ -148,10 +147,24 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		return kaleoTaskInstanceToken;
 	}
 
+	public List<KaleoTaskInstanceToken> getCompanyKaleoTaskInstanceTokens(
+			long companyId, int start, int end)
+		throws SystemException {
+
+		return kaleoTaskInstanceTokenPersistence.findByCompanyId(
+			companyId, start, end);
+	}
+
+	public int getCompanyKaleoTaskInstanceTokensCount(long companyId)
+		throws SystemException {
+
+		return kaleoTaskInstanceTokenPersistence.countByCompanyId(companyId);
+	}
+
 	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
 			Boolean completed, int start, int end,
 			OrderByComparator orderByComparator, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			completed, serviceContext);
@@ -165,7 +178,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
 			List<Long> roleIds, Boolean completed, int start, int end,
 			OrderByComparator orderByComparator, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			roleIds, completed, serviceContext);
@@ -179,7 +192,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
 			long kaleoInstanceId, Boolean completed, int start, int end,
 			OrderByComparator orderByComparator, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			kaleoInstanceId, completed, serviceContext);
@@ -194,7 +207,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			String assigneeClassName, long assigneeClassPK, Boolean completed,
 			int start, int end, OrderByComparator orderByComparator,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			assigneeClassName, assigneeClassPK, completed, serviceContext);
@@ -203,14 +216,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			dynamicQuery, start, end, orderByComparator);
 
 		return toKaleoTaskInstanceTokens(results);
-	}
-
-	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokensByCompanyId(
-			long companyId, int start, int end)
-		throws PortalException, SystemException {
-
-		return kaleoTaskInstanceTokenPersistence.findByCompanyId(
-			companyId, start, end);
 	}
 
 	public int getKaleoTaskInstanceTokensCount(
@@ -256,12 +261,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		return dynamicQueryCount(dynamicQuery);
 	}
 
-	public int getKaleoTaskInstanceTokensCountByCompanyId(long companyId)
-		throws PortalException, SystemException {
-
-		return kaleoTaskInstanceTokenPersistence.countByCompanyId(companyId);
-	}
-
 	public List<KaleoTaskInstanceToken> search(
 			String keywords, Boolean completed, Boolean searchByUserRoles,
 			int start, int end, OrderByComparator orderByComparator,
@@ -269,9 +268,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		throws PortalException, SystemException {
 
 		return search(
-			keywords, keywords, null, null, completed,
-			searchByUserRoles, false, start, end,
-			orderByComparator, serviceContext);
+			keywords, keywords, null, null, completed, searchByUserRoles, false,
+			start, end, orderByComparator, serviceContext);
 	}
 
 	public List<KaleoTaskInstanceToken> search(
@@ -283,8 +281,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		DynamicQuery query = buildDynamicQuery(
 			taskName, assetType, dueDateGT, dueDateLT, completed,
-			searchByUserRoles,
-			andOperator, serviceContext);
+			searchByUserRoles, andOperator, serviceContext);
 
 		return toKaleoTaskInstanceTokens(dynamicQuery(query));
 	}
@@ -295,8 +292,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		throws PortalException, SystemException {
 
 		return searchCount(
-			keywords, keywords, null, null, completed,
-			searchByUserRoles, false, serviceContext);
+			keywords, keywords, null, null, completed, searchByUserRoles, false,
+			serviceContext);
 	}
 
 	public int searchCount(
@@ -307,8 +304,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			taskName, assetType, dueDateGT, dueDateLT, completed,
-			searchByUserRoles,
-			andOperator, serviceContext);
+			searchByUserRoles, andOperator, serviceContext);
 
 		return dynamicQueryCount(dynamicQuery);
 	}
@@ -349,10 +345,10 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			PropertyFactoryUtil.forName("completed").eq(completed));
 	}
 
-	protected void addSearchByUserRoles(
+	protected void addSearchByUserRolesCriterion(
 			DynamicQuery dynamicQuery, Boolean searchByUserRoles,
 			ServiceContext serviceContext)
-		throws SystemException, PortalException {
+		throws PortalException, SystemException {
 
 		if (searchByUserRoles == null) {
 			return;
@@ -381,6 +377,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 	protected DynamicQuery buildDynamicQuery(
 		Boolean completed, ServiceContext serviceContext) {
+
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			KaleoTaskInstanceToken.class);
 
@@ -389,44 +386,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 				serviceContext.getCompanyId()));
 
 		addCompletedCriterion(dynamicQuery, completed);
-		return dynamicQuery;
-	}
 
-	protected DynamicQuery buildDynamicQuery(
-		long kaleoInstanceId, Boolean completed,
-		ServiceContext serviceContext) {
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoTaskInstanceToken.class);
-
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("companyId").eq(
-				serviceContext.getCompanyId()));
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("kaleoInstanceId").eq(
-				kaleoInstanceId));
-
-		addCompletedCriterion(dynamicQuery, completed);
-		return dynamicQuery;
-	}
-
-	protected DynamicQuery buildDynamicQuery(
-		String assigneeClassName, long assigneeClassPK, Boolean completed,
-		ServiceContext serviceContext) {
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoTaskInstanceToken.class);
-
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("companyId").eq(
-				serviceContext.getCompanyId()));
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("assigneeClassName").eq(
-				assigneeClassName));
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("assigneeClassPK").eq(assigneeClassPK));
-
-		addCompletedCriterion(dynamicQuery, completed);
 		return dynamicQuery;
 	}
 
@@ -447,6 +407,47 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 				roleIds.toArray(new Long[roleIds.size()])));
 
 		addCompletedCriterion(dynamicQuery, completed);
+
+		return dynamicQuery;
+	}
+
+	protected DynamicQuery buildDynamicQuery(
+		long kaleoInstanceId, Boolean completed,
+		ServiceContext serviceContext) {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			KaleoTaskInstanceToken.class);
+
+		dynamicQuery.add(
+			PropertyFactoryUtil.forName("companyId").eq(
+				serviceContext.getCompanyId()));
+		dynamicQuery.add(
+			PropertyFactoryUtil.forName("kaleoInstanceId").eq(
+				kaleoInstanceId));
+
+		addCompletedCriterion(dynamicQuery, completed);
+
+		return dynamicQuery;
+	}
+
+	protected DynamicQuery buildDynamicQuery(
+		String assigneeClassName, long assigneeClassPK, Boolean completed,
+		ServiceContext serviceContext) {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			KaleoTaskInstanceToken.class);
+
+		dynamicQuery.add(
+			PropertyFactoryUtil.forName("companyId").eq(
+				serviceContext.getCompanyId()));
+		dynamicQuery.add(
+			PropertyFactoryUtil.forName("assigneeClassName").eq(
+				assigneeClassName));
+		dynamicQuery.add(
+			PropertyFactoryUtil.forName("assigneeClassPK").eq(assigneeClassPK));
+
+		addCompletedCriterion(dynamicQuery, completed);
+
 		return dynamicQuery;
 	}
 
@@ -454,7 +455,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			String taskName, String assetType, Date dueDateGT, Date dueDateLT,
 			Boolean completed, Boolean searchByUserRoles, boolean andOperator,
 			ServiceContext serviceContext)
-		throws SystemException, PortalException {
+		throws PortalException, SystemException {
+
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			KaleoTaskInstanceToken.class);
 
@@ -463,7 +465,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 				serviceContext.getCompanyId()));
 
 		if (Validator.isNotNull(taskName) || Validator.isNotNull(assetType) ||
-			Validator.isNotNull(dueDateGT) || Validator.isNotNull(dueDateLT)) {
+			(dueDateGT != null) || (dueDateLT != null)) {
 
 			Junction junction = null;
 
@@ -475,19 +477,19 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			}
 
 			if (Validator.isNotNull(taskName)) {
-				String[] taskNameKeyWords =
-					StringUtil.split(taskName, StringPool.SPACE);
+				String[] taskNameKeywords = StringUtil.split(
+					taskName, StringPool.SPACE);
 
-				for (String taskNameKeyWord : taskNameKeyWords) {
+				for (String taskNameKeyword : taskNameKeywords) {
 					junction.add(
 						PropertyFactoryUtil.forName("kaleoTaskName").like(
-							taskNameKeyWord));
+							taskNameKeyword));
 				}
 			}
 
 			if (Validator.isNotNull(assetType)) {
-				String[] assetTypeKeywords =
-					StringUtil.split(assetType, StringPool.SPACE);
+				String[] assetTypeKeywords = StringUtil.split(
+					assetType, StringPool.SPACE);
 
 				for (String assetTypeKeyword : assetTypeKeywords) {
 					junction.add(
@@ -498,28 +500,27 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 			if (dueDateGT != null) {
 				junction.add(
-					PropertyFactoryUtil.forName("dueDate").ge(
-						dueDateGT));
+					PropertyFactoryUtil.forName("dueDate").ge(dueDateGT));
 			}
 
 			if (dueDateLT != null) {
 				junction.add(
-					PropertyFactoryUtil.forName("dueDate").lt(
-						dueDateLT));
+					PropertyFactoryUtil.forName("dueDate").lt(dueDateLT));
 			}
 
 			dynamicQuery.add(junction);
 		}
 
-		addSearchByUserRoles(dynamicQuery, searchByUserRoles, serviceContext);
+		addSearchByUserRolesCriterion(
+			dynamicQuery, searchByUserRoles, serviceContext);
 
 		addCompletedCriterion(dynamicQuery, completed);
+
 		return dynamicQuery;
 	}
 
 	protected List<KaleoTaskInstanceToken> toKaleoTaskInstanceTokens(
-			List<Object> results)
-		throws PortalException, SystemException {
+		List<Object> results) {
 
 		List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
 			new ArrayList<KaleoTaskInstanceToken>(results.size());

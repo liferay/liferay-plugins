@@ -81,8 +81,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			kaleoTaskInstanceTokenLocalService.addKaleoTaskInstanceToken(
 				kaleoInstanceToken.getKaleoInstanceTokenId(),
 				kaleoTask.getKaleoTaskId(), kaleoTask.getName(),
-				kaleoTaskAssignment, dueDate,
-				context, serviceContext);
+				kaleoTaskAssignment, dueDate, context, serviceContext);
 
 		executionContext.setKaleoTaskInstanceToken(kaleoTaskInstanceToken);
 
@@ -95,8 +94,8 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			executionContext);
 
 		kaleoLogLocalService.addTaskAssignmentKaleoLog(
-			null, kaleoTaskInstanceToken,
-			"Assigned initial task.", context, serviceContext);
+			null, kaleoTaskInstanceToken, "Assigned initial task.", context,
+			serviceContext);
 	}
 
 	protected void doExit(

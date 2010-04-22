@@ -14,8 +14,8 @@
 
 package com.liferay.portal.workflow.jbpm;
 
+import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.workflow.DefaultWorkflowDefinition;
-import com.liferay.util.LocalizationUtil;
 
 import org.jbpm.graph.def.ProcessDefinition;
 

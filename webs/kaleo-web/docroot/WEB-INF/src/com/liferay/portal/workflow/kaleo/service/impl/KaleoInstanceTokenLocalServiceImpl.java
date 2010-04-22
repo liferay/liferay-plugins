@@ -57,7 +57,6 @@ public class KaleoInstanceTokenLocalServiceImpl
 			kaleoInstanceTokenPersistence.create(kaleoInstanceTokenId);
 
 		kaleoInstanceToken.setCompanyId(user.getCompanyId());
-		kaleoInstanceToken.setCompleted(false);
 		kaleoInstanceToken.setUserId(user.getUserId());
 		kaleoInstanceToken.setUserName(user.getFullName());
 		kaleoInstanceToken.setCreateDate(now);
@@ -70,6 +69,8 @@ public class KaleoInstanceTokenLocalServiceImpl
 		setCurrentKaleoNode(
 			kaleoInstanceToken,
 			parentKaleoInstanceToken.getCurrentKaleoNodeId());
+
+		kaleoInstanceToken.setCompleted(false);
 
 		kaleoInstanceTokenPersistence.update(kaleoInstanceToken, false);
 
@@ -185,6 +186,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 				kaleoInstanceTokenId);
 
 		kaleoInstanceToken.setModifiedDate(new Date());
+
 		setCurrentKaleoNode(kaleoInstanceToken, currentKaleoNodeId);
 
 		kaleoInstanceTokenPersistence.update(kaleoInstanceToken, false);
@@ -198,10 +200,10 @@ public class KaleoInstanceTokenLocalServiceImpl
 
 		kaleoInstanceToken.setCurrentKaleoNodeId(currentKaleoNodeId);
 
-		KaleoNode kaleoNode = kaleoNodeLocalService.getKaleoNode(
+		KaleoNode currentKaleoNode = kaleoNodeLocalService.getKaleoNode(
 			currentKaleoNodeId);
 
-		kaleoInstanceToken.setCurrentKaleoNodeName(kaleoNode.getName());
+		kaleoInstanceToken.setCurrentKaleoNodeName(currentKaleoNode.getName());
 	}
 
 }

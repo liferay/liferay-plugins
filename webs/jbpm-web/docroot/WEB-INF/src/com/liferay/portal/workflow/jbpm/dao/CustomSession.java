@@ -409,7 +409,7 @@ public class CustomSession {
 			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 
 			addSearchCriteria(
-				criteria, actorIds, pooledActors, taskName, assetType, 
+				criteria, actorIds, pooledActors, taskName, assetType,
 				dueDateGT, dueDateLT, completed, andOperator);
 
 			addPagination(criteria, start, end);

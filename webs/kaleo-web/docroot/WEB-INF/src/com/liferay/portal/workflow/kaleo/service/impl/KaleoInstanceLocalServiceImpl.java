@@ -57,7 +57,6 @@ public class KaleoInstanceLocalServiceImpl
 		KaleoInstance kaleoInstance =
 			kaleoInstancePersistence.create(kaleoInstanceId);
 
-		kaleoInstance.setCompleted(false);
 		kaleoInstance.setCompanyId(user.getCompanyId());
 		kaleoInstance.setUserId(user.getUserId());
 		kaleoInstance.setUserName(user.getFullName());
@@ -66,6 +65,7 @@ public class KaleoInstanceLocalServiceImpl
 		kaleoInstance.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoInstance.setKaleoDefinitionName(kaleoDefinitionName);
 		kaleoInstance.setKaleoDefinitionVersion(kaleoDefinitionVersion);
+		kaleoInstance.setCompleted(false);
 		kaleoInstance.setContext(ContextUtil.convert(context));
 
 		kaleoInstancePersistence.update(kaleoInstance, false);
