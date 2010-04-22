@@ -152,6 +152,18 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		_classPK = classPK;
 	}
 
+	public boolean getCompleted() {
+		return _completed;
+	}
+
+	public boolean isCompleted() {
+		return _completed;
+	}
+
+	public void setCompleted(boolean completed) {
+		_completed = completed;
+	}
+
 	public Date getCompletionDate() {
 		return _completionDate;
 	}
@@ -183,10 +195,6 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean isCompleted() {
-		throw new UnsupportedOperationException();
-	}
-
 	public KaleoInstance toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -213,6 +221,7 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		clone.setRootKaleoInstanceTokenId(getRootKaleoInstanceTokenId());
 		clone.setClassName(getClassName());
 		clone.setClassPK(getClassPK());
+		clone.setCompleted(getCompleted());
 		clone.setCompletionDate(getCompletionDate());
 		clone.setContext(getContext());
 
@@ -268,7 +277,7 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{kaleoInstanceId=");
 		sb.append(getKaleoInstanceId());
@@ -294,6 +303,8 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		sb.append(getClassName());
 		sb.append(", classPK=");
 		sb.append(getClassPK());
+		sb.append(", completed=");
+		sb.append(getCompleted());
 		sb.append(", completionDate=");
 		sb.append(getCompletionDate());
 		sb.append(", context=");
@@ -304,7 +315,7 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoInstance");
@@ -359,6 +370,10 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		sb.append(getClassPK());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>completed</column-name><column-value><![CDATA[");
+		sb.append(getCompleted());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>completionDate</column-name><column-value><![CDATA[");
 		sb.append(getCompletionDate());
 		sb.append("]]></column-value></column>");
@@ -385,6 +400,7 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 	private long _rootKaleoInstanceTokenId;
 	private String _className;
 	private long _classPK;
+	private boolean _completed;
 	private Date _completionDate;
 	private String _context;
 }

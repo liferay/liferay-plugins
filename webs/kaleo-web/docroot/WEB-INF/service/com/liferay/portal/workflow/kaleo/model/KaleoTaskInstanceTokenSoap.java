@@ -51,7 +51,11 @@ public class KaleoTaskInstanceTokenSoap implements Serializable {
 		soapModel.setKaleoInstanceId(model.getKaleoInstanceId());
 		soapModel.setKaleoInstanceTokenId(model.getKaleoInstanceTokenId());
 		soapModel.setKaleoTaskId(model.getKaleoTaskId());
+		soapModel.setKaleoTaskName(model.getKaleoTaskName());
+		soapModel.setAssigneeClassName(model.getAssigneeClassName());
+		soapModel.setAssigneeClassPK(model.getAssigneeClassPK());
 		soapModel.setCompletionUserId(model.getCompletionUserId());
+		soapModel.setCompleted(model.getCompleted());
 		soapModel.setCompletionDate(model.getCompletionDate());
 		soapModel.setDueDate(model.getDueDate());
 		soapModel.setContext(model.getContext());
@@ -182,12 +186,48 @@ public class KaleoTaskInstanceTokenSoap implements Serializable {
 		_kaleoTaskId = kaleoTaskId;
 	}
 
+	public String getKaleoTaskName() {
+		return _kaleoTaskName;
+	}
+
+	public void setKaleoTaskName(String kaleoTaskName) {
+		_kaleoTaskName = kaleoTaskName;
+	}
+
+	public String getAssigneeClassName() {
+		return _assigneeClassName;
+	}
+
+	public void setAssigneeClassName(String assigneeClassName) {
+		_assigneeClassName = assigneeClassName;
+	}
+
+	public long getAssigneeClassPK() {
+		return _assigneeClassPK;
+	}
+
+	public void setAssigneeClassPK(long assigneeClassPK) {
+		_assigneeClassPK = assigneeClassPK;
+	}
+
 	public long getCompletionUserId() {
 		return _completionUserId;
 	}
 
 	public void setCompletionUserId(long completionUserId) {
 		_completionUserId = completionUserId;
+	}
+
+	public boolean getCompleted() {
+		return _completed;
+	}
+
+	public boolean isCompleted() {
+		return _completed;
+	}
+
+	public void setCompleted(boolean completed) {
+		_completed = completed;
 	}
 
 	public Date getCompletionDate() {
@@ -223,7 +263,11 @@ public class KaleoTaskInstanceTokenSoap implements Serializable {
 	private long _kaleoInstanceId;
 	private long _kaleoInstanceTokenId;
 	private long _kaleoTaskId;
+	private String _kaleoTaskName;
+	private String _assigneeClassName;
+	private long _assigneeClassPK;
 	private long _completionUserId;
+	private boolean _completed;
 	private Date _completionDate;
 	private Date _dueDate;
 	private String _context;

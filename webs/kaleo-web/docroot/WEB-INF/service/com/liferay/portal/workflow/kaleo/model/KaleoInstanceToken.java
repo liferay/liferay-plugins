@@ -61,8 +61,6 @@ public interface KaleoInstanceToken extends KaleoInstanceTokenModel {
 	public boolean hasIncompleteChildrenKaleoInstanceToken()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public boolean isCompleted();
-
 	public void setCurrentKaleoNode(
 		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode)
 		throws com.liferay.portal.kernel.exception.PortalException,

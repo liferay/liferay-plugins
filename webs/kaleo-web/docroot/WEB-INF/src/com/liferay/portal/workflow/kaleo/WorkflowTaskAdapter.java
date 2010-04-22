@@ -22,7 +22,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.util.ContextUtil;
 
@@ -39,13 +38,12 @@ public class WorkflowTaskAdapter extends DefaultWorkflowTask {
 
 	public WorkflowTaskAdapter(
 			KaleoTaskInstanceToken kaleoTaskInstanceToken,
-			KaleoTaskInstanceAssignment kaleoTaskInstanceAssigment,
 			Map<String, Serializable> optionalAttributes)
 		throws PortalException, SystemException {
 
 		String assigneeClassName =
-			kaleoTaskInstanceAssigment.getAssigneeClassName();
-		long assigneeClassPK = kaleoTaskInstanceAssigment.getAssigneeClassPK();
+			kaleoTaskInstanceToken.getAssigneeClassName();
+		long assigneeClassPK = kaleoTaskInstanceToken.getAssigneeClassPK();
 
 		if (assigneeClassName.equals(Role.class.getName())) {
 			setAssigneeRoleId(assigneeClassPK);

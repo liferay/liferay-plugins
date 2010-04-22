@@ -125,6 +125,26 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		_kaleoInstanceToken.setCurrentKaleoNodeId(currentKaleoNodeId);
 	}
 
+	public java.lang.String getCurrentKaleoNodeName() {
+		return _kaleoInstanceToken.getCurrentKaleoNodeName();
+	}
+
+	public void setCurrentKaleoNodeName(java.lang.String currentKaleoNodeName) {
+		_kaleoInstanceToken.setCurrentKaleoNodeName(currentKaleoNodeName);
+	}
+
+	public boolean getCompleted() {
+		return _kaleoInstanceToken.getCompleted();
+	}
+
+	public boolean isCompleted() {
+		return _kaleoInstanceToken.isCompleted();
+	}
+
+	public void setCompleted(boolean completed) {
+		_kaleoInstanceToken.setCompleted(completed);
+	}
+
 	public java.util.Date getCompletionDate() {
 		return _kaleoInstanceToken.getCompletionDate();
 	}
@@ -226,10 +246,6 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 	public boolean hasIncompleteChildrenKaleoInstanceToken()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoInstanceToken.hasIncompleteChildrenKaleoInstanceToken();
-	}
-
-	public boolean isCompleted() {
-		return _kaleoInstanceToken.isCompleted();
 	}
 
 	public void setCurrentKaleoNode(

@@ -54,6 +54,4 @@ public interface KaleoInstance extends KaleoInstanceModel {
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
-
-	public boolean isCompleted();
 }

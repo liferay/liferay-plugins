@@ -128,6 +128,30 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		_kaleoTaskId = kaleoTaskId;
 	}
 
+	public String getKaleoTaskName() {
+		return _kaleoTaskName;
+	}
+
+	public void setKaleoTaskName(String kaleoTaskName) {
+		_kaleoTaskName = kaleoTaskName;
+	}
+
+	public String getAssigneeClassName() {
+		return _assigneeClassName;
+	}
+
+	public void setAssigneeClassName(String assigneeClassName) {
+		_assigneeClassName = assigneeClassName;
+	}
+
+	public long getAssigneeClassPK() {
+		return _assigneeClassPK;
+	}
+
+	public void setAssigneeClassPK(long assigneeClassPK) {
+		_assigneeClassPK = assigneeClassPK;
+	}
+
 	public long getCompletionUserId() {
 		return _completionUserId;
 	}
@@ -143,6 +167,18 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 
 	public void setCompletionUserUuid(String completionUserUuid) {
 		_completionUserUuid = completionUserUuid;
+	}
+
+	public boolean getCompleted() {
+		return _completed;
+	}
+
+	public boolean isCompleted() {
+		return _completed;
+	}
+
+	public void setCompleted(boolean completed) {
+		_completed = completed;
 	}
 
 	public Date getCompletionDate() {
@@ -177,14 +213,6 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		throw new UnsupportedOperationException();
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment getKaleoTaskInstanceAssignment() {
-		throw new UnsupportedOperationException();
-	}
-
-	public boolean isCompleted() {
-		throw new UnsupportedOperationException();
-	}
-
 	public KaleoTaskInstanceToken toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -208,7 +236,11 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		clone.setKaleoInstanceId(getKaleoInstanceId());
 		clone.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
 		clone.setKaleoTaskId(getKaleoTaskId());
+		clone.setKaleoTaskName(getKaleoTaskName());
+		clone.setAssigneeClassName(getAssigneeClassName());
+		clone.setAssigneeClassPK(getAssigneeClassPK());
 		clone.setCompletionUserId(getCompletionUserId());
+		clone.setCompleted(getCompleted());
 		clone.setCompletionDate(getCompletionDate());
 		clone.setDueDate(getDueDate());
 		clone.setContext(getContext());
@@ -265,7 +297,7 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{kaleoTaskInstanceTokenId=");
 		sb.append(getKaleoTaskInstanceTokenId());
@@ -285,8 +317,16 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		sb.append(getKaleoInstanceTokenId());
 		sb.append(", kaleoTaskId=");
 		sb.append(getKaleoTaskId());
+		sb.append(", kaleoTaskName=");
+		sb.append(getKaleoTaskName());
+		sb.append(", assigneeClassName=");
+		sb.append(getAssigneeClassName());
+		sb.append(", assigneeClassPK=");
+		sb.append(getAssigneeClassPK());
 		sb.append(", completionUserId=");
 		sb.append(getCompletionUserId());
+		sb.append(", completed=");
+		sb.append(getCompleted());
 		sb.append(", completionDate=");
 		sb.append(getCompletionDate());
 		sb.append(", dueDate=");
@@ -299,7 +339,7 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("<model><model-name>");
 		sb.append(
@@ -343,8 +383,24 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		sb.append(getKaleoTaskId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>kaleoTaskName</column-name><column-value><![CDATA[");
+		sb.append(getKaleoTaskName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>assigneeClassName</column-name><column-value><![CDATA[");
+		sb.append(getAssigneeClassName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>assigneeClassPK</column-name><column-value><![CDATA[");
+		sb.append(getAssigneeClassPK());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>completionUserId</column-name><column-value><![CDATA[");
 		sb.append(getCompletionUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>completed</column-name><column-value><![CDATA[");
+		sb.append(getCompleted());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>completionDate</column-name><column-value><![CDATA[");
@@ -374,8 +430,12 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 	private long _kaleoInstanceId;
 	private long _kaleoInstanceTokenId;
 	private long _kaleoTaskId;
+	private String _kaleoTaskName;
+	private String _assigneeClassName;
+	private long _assigneeClassPK;
 	private long _completionUserId;
 	private String _completionUserUuid;
+	private boolean _completed;
 	private Date _completionDate;
 	private Date _dueDate;
 	private String _context;

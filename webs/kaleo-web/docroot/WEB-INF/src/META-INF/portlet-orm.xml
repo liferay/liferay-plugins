@@ -75,6 +75,7 @@
 			<basic name="rootKaleoInstanceTokenId" />
 			<basic name="className" />
 			<basic name="classPK" />
+			<basic name="completed" />
 			<basic name="completionDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
@@ -98,6 +99,8 @@
 			<basic name="kaleoInstanceId" />
 			<basic name="parentKaleoInstanceTokenId" />
 			<basic name="currentKaleoNodeId" />
+			<basic name="currentKaleoNodeName" />
+			<basic name="completed" />
 			<basic name="completionDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
@@ -261,30 +264,6 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceAssignmentModelImpl">
-		<attributes>
-			<id name="kaleoTaskInstanceAssignmentId" />
-			<basic name="companyId" />
-			<basic name="userId" />
-			<basic name="userName" />
-			<basic name="createDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="modifiedDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="kaleoTaskInstanceTokenId" />
-			<basic name="kaleoTaskId" />
-			<basic name="assigneeClassName" />
-			<basic name="assigneeClassPK" />
-			<basic name="completionDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="context" />
-			<transient name="primaryKey" />
-			<transient name="userUuid" />
-		</attributes>
-	</mapped-superclass>
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenModelImpl">
 		<attributes>
 			<id name="kaleoTaskInstanceTokenId" />
@@ -300,7 +279,11 @@
 			<basic name="kaleoInstanceId" />
 			<basic name="kaleoInstanceTokenId" />
 			<basic name="kaleoTaskId" />
+			<basic name="kaleoTaskName" />
+			<basic name="assigneeClassName" />
+			<basic name="assigneeClassPK" />
 			<basic name="completionUserId" />
+			<basic name="completed" />
 			<basic name="completionDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
@@ -378,10 +361,6 @@
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentImpl" name="KaleoTaskAssignment">
 		<table name="Kaleo_KaleoTaskAssignment" />
-		<attributes />
-	</entity>
-	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceAssignmentImpl" name="KaleoTaskInstanceAssignment">
-		<table name="Kaleo_KaleoTaskInstanceAssignment" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenImpl" name="KaleoTaskInstanceToken">

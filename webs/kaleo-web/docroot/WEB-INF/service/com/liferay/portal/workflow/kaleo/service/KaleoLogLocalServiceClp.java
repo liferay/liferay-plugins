@@ -633,51 +633,43 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog addTaskAssignmentKaleoLog(
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment previousKaleoTaskAssignment,
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment newKaleoTaskAssignment,
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken previousKaleoTaskInstanceToken,
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken newKaleoTaskInstanceToken,
 		java.lang.String comment,
 		java.util.Map<String, java.io.Serializable> context,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(kaleoTaskInstanceToken);
+		Object paramObj0 = ClpSerializer.translateInput(previousKaleoTaskInstanceToken);
 
-		if (kaleoTaskInstanceToken == null) {
+		if (previousKaleoTaskInstanceToken == null) {
 			paramObj0 = new NullWrapper(
 					"com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken");
 		}
 
-		Object paramObj1 = ClpSerializer.translateInput(previousKaleoTaskAssignment);
+		Object paramObj1 = ClpSerializer.translateInput(newKaleoTaskInstanceToken);
 
-		if (previousKaleoTaskAssignment == null) {
+		if (newKaleoTaskInstanceToken == null) {
 			paramObj1 = new NullWrapper(
-					"com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment");
+					"com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken");
 		}
 
-		Object paramObj2 = ClpSerializer.translateInput(newKaleoTaskAssignment);
-
-		if (newKaleoTaskAssignment == null) {
-			paramObj2 = new NullWrapper(
-					"com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment");
-		}
-
-		Object paramObj3 = ClpSerializer.translateInput(comment);
+		Object paramObj2 = ClpSerializer.translateInput(comment);
 
 		if (comment == null) {
-			paramObj3 = new NullWrapper("java.lang.String");
+			paramObj2 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj4 = ClpSerializer.translateInput(context);
+		Object paramObj3 = ClpSerializer.translateInput(context);
 
 		if (context == null) {
-			paramObj4 = new NullWrapper("java.util.Map");
+			paramObj3 = new NullWrapper("java.util.Map");
 		}
 
-		Object paramObj5 = ClpSerializer.translateInput(serviceContext);
+		Object paramObj4 = ClpSerializer.translateInput(serviceContext);
 
 		if (serviceContext == null) {
-			paramObj5 = new NullWrapper(
+			paramObj4 = new NullWrapper(
 					"com.liferay.portal.service.ServiceContext");
 		}
 
@@ -686,8 +678,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		try {
 			returnObj = _classLoaderProxy.invoke("addTaskAssignmentKaleoLog",
 					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
 					});
 		}
 		catch (Throwable t) {
@@ -713,7 +704,6 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog addTaskCompletionKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment kaleoTaskInstanceAssignment,
 		java.lang.String comment,
 		java.util.Map<String, java.io.Serializable> context,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -726,29 +716,22 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 					"com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken");
 		}
 
-		Object paramObj1 = ClpSerializer.translateInput(kaleoTaskInstanceAssignment);
-
-		if (kaleoTaskInstanceAssignment == null) {
-			paramObj1 = new NullWrapper(
-					"com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(comment);
+		Object paramObj1 = ClpSerializer.translateInput(comment);
 
 		if (comment == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
+			paramObj1 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj3 = ClpSerializer.translateInput(context);
+		Object paramObj2 = ClpSerializer.translateInput(context);
 
 		if (context == null) {
-			paramObj3 = new NullWrapper("java.util.Map");
+			paramObj2 = new NullWrapper("java.util.Map");
 		}
 
-		Object paramObj4 = ClpSerializer.translateInput(serviceContext);
+		Object paramObj3 = ClpSerializer.translateInput(serviceContext);
 
 		if (serviceContext == null) {
-			paramObj4 = new NullWrapper(
+			paramObj3 = new NullWrapper(
 					"com.liferay.portal.service.ServiceContext");
 		}
 
@@ -756,9 +739,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 
 		try {
 			returnObj = _classLoaderProxy.invoke("addTaskCompletionKaleoLog",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
-					});
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {

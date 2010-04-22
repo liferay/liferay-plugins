@@ -69,6 +69,7 @@
 			<hint name="max-length">200</hint>
 		</field>
 		<field name="classPK" type="long" />
+		<field name="completed" type="boolean" />
 		<field name="completionDate" type="Date" />
 		<field name="context" type="String">
 			<hint-collection name="CLOB" />
@@ -86,6 +87,10 @@
 		<field name="kaleoInstanceId" type="long" />
 		<field name="parentKaleoInstanceTokenId" type="long" />
 		<field name="currentKaleoNodeId" type="long" />
+		<field name="currentKaleoNodeName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="completed" type="boolean" />
 		<field name="completionDate" type="Date" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoLog">
@@ -236,26 +241,6 @@
 		<field name="assigneeClassPK" type="long" />
 		<field name="defaultAssignment" type="boolean" />
 	</model>
-	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment">
-		<field name="kaleoTaskInstanceAssignmentId" type="long" />
-		<field name="companyId" type="long" />
-		<field name="userId" type="long" />
-		<field name="userName" type="String">
-			<hint name="max-length">200</hint>
-		</field>
-		<field name="createDate" type="Date" />
-		<field name="modifiedDate" type="Date" />
-		<field name="kaleoTaskInstanceTokenId" type="long" />
-		<field name="kaleoTaskId" type="long" />
-		<field name="assigneeClassName" type="String">
-			<hint name="max-length">200</hint>
-		</field>
-		<field name="assigneeClassPK" type="long" />
-		<field name="completionDate" type="Date" />
-		<field name="context" type="String">
-			<hint-collection name="CLOB" />
-		</field>
-	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken">
 		<field name="kaleoTaskInstanceTokenId" type="long" />
 		<field name="companyId" type="long" />
@@ -268,7 +253,15 @@
 		<field name="kaleoInstanceId" type="long" />
 		<field name="kaleoInstanceTokenId" type="long" />
 		<field name="kaleoTaskId" type="long" />
+		<field name="kaleoTaskName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="assigneeClassName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="assigneeClassPK" type="long" />
 		<field name="completionUserId" type="long" />
+		<field name="completed" type="boolean" />
 		<field name="completionDate" type="Date" />
 		<field name="dueDate" type="Date" />
 		<field name="context" type="String">

@@ -53,6 +53,7 @@ public class KaleoInstanceSoap implements Serializable {
 		soapModel.setRootKaleoInstanceTokenId(model.getRootKaleoInstanceTokenId());
 		soapModel.setClassName(model.getClassName());
 		soapModel.setClassPK(model.getClassPK());
+		soapModel.setCompleted(model.getCompleted());
 		soapModel.setCompletionDate(model.getCompletionDate());
 		soapModel.setContext(model.getContext());
 
@@ -203,6 +204,18 @@ public class KaleoInstanceSoap implements Serializable {
 		_classPK = classPK;
 	}
 
+	public boolean getCompleted() {
+		return _completed;
+	}
+
+	public boolean isCompleted() {
+		return _completed;
+	}
+
+	public void setCompleted(boolean completed) {
+		_completed = completed;
+	}
+
 	public Date getCompletionDate() {
 		return _completionDate;
 	}
@@ -231,6 +244,7 @@ public class KaleoInstanceSoap implements Serializable {
 	private long _rootKaleoInstanceTokenId;
 	private String _className;
 	private long _classPK;
+	private boolean _completed;
 	private Date _completionDate;
 	private String _context;
 }

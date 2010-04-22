@@ -150,29 +150,26 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog addTaskAssignmentKaleoLog(
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment previousKaleoTaskAssignment,
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment newKaleoTaskAssignment,
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken previousKaleoTaskInstanceToken,
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken newKaleoTaskInstanceToken,
 		java.lang.String comment,
 		java.util.Map<String, java.io.Serializable> context,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoLogLocalService.addTaskAssignmentKaleoLog(kaleoTaskInstanceToken,
-			previousKaleoTaskAssignment, newKaleoTaskAssignment, comment,
-			context, serviceContext);
+		return _kaleoLogLocalService.addTaskAssignmentKaleoLog(previousKaleoTaskInstanceToken,
+			newKaleoTaskInstanceToken, comment, context, serviceContext);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog addTaskCompletionKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment kaleoTaskInstanceAssignment,
 		java.lang.String comment,
 		java.util.Map<String, java.io.Serializable> context,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoLogLocalService.addTaskCompletionKaleoLog(kaleoTaskInstanceToken,
-			kaleoTaskInstanceAssignment, comment, context, serviceContext);
+			comment, context, serviceContext);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog addWorkflowInstanceEndKaleoLog(

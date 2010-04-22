@@ -39,7 +39,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoNotificationLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalService;
-import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceAssignmentLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalService;
@@ -52,7 +51,6 @@ import com.liferay.portal.workflow.kaleo.service.persistence.KaleoNodePersistenc
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoNotificationPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoNotificationRecipientPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskAssignmentPersistence;
-import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceAssignmentPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTransitionPersistence;
@@ -313,24 +311,6 @@ public abstract class KaleoLogLocalServiceBaseImpl
 		this.kaleoTaskAssignmentPersistence = kaleoTaskAssignmentPersistence;
 	}
 
-	public KaleoTaskInstanceAssignmentLocalService getKaleoTaskInstanceAssignmentLocalService() {
-		return kaleoTaskInstanceAssignmentLocalService;
-	}
-
-	public void setKaleoTaskInstanceAssignmentLocalService(
-		KaleoTaskInstanceAssignmentLocalService kaleoTaskInstanceAssignmentLocalService) {
-		this.kaleoTaskInstanceAssignmentLocalService = kaleoTaskInstanceAssignmentLocalService;
-	}
-
-	public KaleoTaskInstanceAssignmentPersistence getKaleoTaskInstanceAssignmentPersistence() {
-		return kaleoTaskInstanceAssignmentPersistence;
-	}
-
-	public void setKaleoTaskInstanceAssignmentPersistence(
-		KaleoTaskInstanceAssignmentPersistence kaleoTaskInstanceAssignmentPersistence) {
-		this.kaleoTaskInstanceAssignmentPersistence = kaleoTaskInstanceAssignmentPersistence;
-	}
-
 	public KaleoTaskInstanceTokenLocalService getKaleoTaskInstanceTokenLocalService() {
 		return kaleoTaskInstanceTokenLocalService;
 	}
@@ -475,10 +455,6 @@ public abstract class KaleoLogLocalServiceBaseImpl
 	protected KaleoTaskAssignmentLocalService kaleoTaskAssignmentLocalService;
 	@BeanReference(type = KaleoTaskAssignmentPersistence.class)
 	protected KaleoTaskAssignmentPersistence kaleoTaskAssignmentPersistence;
-	@BeanReference(type = KaleoTaskInstanceAssignmentLocalService.class)
-	protected KaleoTaskInstanceAssignmentLocalService kaleoTaskInstanceAssignmentLocalService;
-	@BeanReference(type = KaleoTaskInstanceAssignmentPersistence.class)
-	protected KaleoTaskInstanceAssignmentPersistence kaleoTaskInstanceAssignmentPersistence;
 	@BeanReference(type = KaleoTaskInstanceTokenLocalService.class)
 	protected KaleoTaskInstanceTokenLocalService kaleoTaskInstanceTokenLocalService;
 	@BeanReference(type = KaleoTaskInstanceTokenPersistence.class)

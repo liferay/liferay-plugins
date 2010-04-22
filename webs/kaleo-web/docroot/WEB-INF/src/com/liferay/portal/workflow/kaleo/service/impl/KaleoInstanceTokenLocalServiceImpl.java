@@ -20,6 +20,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
+import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceTokenImpl;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoInstanceTokenLocalServiceBaseImpl;
 
@@ -56,6 +57,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 			kaleoInstanceTokenPersistence.create(kaleoInstanceTokenId);
 
 		kaleoInstanceToken.setCompanyId(user.getCompanyId());
+		kaleoInstanceToken.setCompleted(false);
 		kaleoInstanceToken.setUserId(user.getUserId());
 		kaleoInstanceToken.setUserName(user.getFullName());
 		kaleoInstanceToken.setCreateDate(now);
@@ -64,9 +66,12 @@ public class KaleoInstanceTokenLocalServiceImpl
 			parentKaleoInstanceToken.getKaleoInstanceId());
 		kaleoInstanceToken.setParentKaleoInstanceTokenId(
 			parentKaleoInstanceToken.getKaleoInstanceTokenId());
-		kaleoInstanceToken.setCurrentKaleoNodeId(
+
+		setCurrentKaleoNode(
+			kaleoInstanceToken,
 			parentKaleoInstanceToken.getCurrentKaleoNodeId());
 
+		
 		kaleoInstanceTokenPersistence.update(kaleoInstanceToken, false);
 
 		return kaleoInstanceToken;
@@ -80,6 +85,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 			kaleoInstanceTokenPersistence.findByPrimaryKey(
 				kaleoInstanceTokenId);
 
+		kaleoInstanceToken.setCompleted(true);		
 		kaleoInstanceToken.setCompletionDate(new Date());
 
 		kaleoInstanceTokenPersistence.update(kaleoInstanceToken, false);
@@ -180,11 +186,23 @@ public class KaleoInstanceTokenLocalServiceImpl
 				kaleoInstanceTokenId);
 
 		kaleoInstanceToken.setModifiedDate(new Date());
-		kaleoInstanceToken.setCurrentKaleoNodeId(currentKaleoNodeId);
+		setCurrentKaleoNode(kaleoInstanceToken, currentKaleoNodeId);
 
 		kaleoInstanceTokenPersistence.update(kaleoInstanceToken, false);
 
 		return kaleoInstanceToken;
+	}
+
+	protected void setCurrentKaleoNode(
+			KaleoInstanceToken kaleoInstanceToken, long currentKaleoNodeId)
+		throws SystemException, PortalException {
+
+		kaleoInstanceToken.setCurrentKaleoNodeId(currentKaleoNodeId);
+
+		KaleoNode kaleoNode = kaleoNodeLocalService.getKaleoNode(
+			currentKaleoNodeId);
+
+		kaleoInstanceToken.setCurrentKaleoNodeName(kaleoNode.getName());
 	}
 
 }

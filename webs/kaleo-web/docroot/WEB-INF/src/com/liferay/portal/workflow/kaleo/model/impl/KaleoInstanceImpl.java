@@ -60,13 +60,4 @@ public class KaleoInstanceImpl
 		return getRootKaleoInstanceToken(null, serviceContext);
 	}
 
-	public boolean isCompleted() {
-		if (getCompletionDate() != null) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
 }

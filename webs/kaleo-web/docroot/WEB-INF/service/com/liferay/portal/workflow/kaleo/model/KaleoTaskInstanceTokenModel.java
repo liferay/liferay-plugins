@@ -90,6 +90,20 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 
 	public void setKaleoTaskId(long kaleoTaskId);
 
+	@AutoEscape
+	public String getKaleoTaskName();
+
+	public void setKaleoTaskName(String kaleoTaskName);
+
+	@AutoEscape
+	public String getAssigneeClassName();
+
+	public void setAssigneeClassName(String assigneeClassName);
+
+	public long getAssigneeClassPK();
+
+	public void setAssigneeClassPK(long assigneeClassPK);
+
 	public long getCompletionUserId();
 
 	public void setCompletionUserId(long completionUserId);
@@ -97,6 +111,12 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	public String getCompletionUserUuid() throws SystemException;
 
 	public void setCompletionUserUuid(String completionUserUuid);
+
+	public boolean getCompleted();
+
+	public boolean isCompleted();
+
+	public void setCompleted(boolean completed);
 
 	public Date getCompletionDate();
 

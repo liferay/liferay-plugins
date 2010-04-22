@@ -1,3 +1,4 @@
+
 create table Kaleo_KaleoAction (
 	kaleoActionId LONG not null primary key,
 	companyId LONG,
@@ -44,6 +45,7 @@ create table Kaleo_KaleoInstance (
 	rootKaleoInstanceTokenId LONG,
 	className VARCHAR(200) null,
 	classPK LONG,
+	completed BOOLEAN,
 	completionDate DATE null,
 	context TEXT null
 );
@@ -58,6 +60,8 @@ create table Kaleo_KaleoInstanceToken (
 	kaleoInstanceId LONG,
 	parentKaleoInstanceTokenId LONG,
 	currentKaleoNodeId LONG,
+	currentKaleoNodeName VARCHAR(200) null,
+	completed BOOLEAN,
 	completionDate DATE null
 );
 
@@ -167,21 +171,6 @@ create table Kaleo_KaleoTaskAssignment (
 	defaultAssignment BOOLEAN
 );
 
-create table Kaleo_KaleoTaskInstanceAssignment (
-	kaleoTaskInstanceAssignmentId LONG not null primary key,
-	companyId LONG,
-	userId LONG,
-	userName VARCHAR(200) null,
-	createDate DATE null,
-	modifiedDate DATE null,
-	kaleoTaskInstanceTokenId LONG,
-	kaleoTaskId LONG,
-	assigneeClassName VARCHAR(200) null,
-	assigneeClassPK LONG,
-	completionDate DATE null,
-	context TEXT null
-);
-
 create table Kaleo_KaleoTaskInstanceToken (
 	kaleoTaskInstanceTokenId LONG not null primary key,
 	companyId LONG,
@@ -192,7 +181,11 @@ create table Kaleo_KaleoTaskInstanceToken (
 	kaleoInstanceId LONG,
 	kaleoInstanceTokenId LONG,
 	kaleoTaskId LONG,
+	kaleoTaskName VARCHAR(200) null,
+	assigneeClassName VARCHAR(200) null,
+	assigneeClassPK LONG,
 	completionUserId LONG,
+	completed BOOLEAN,
 	completionDate DATE null,
 	dueDate DATE null,
 	context TEXT null

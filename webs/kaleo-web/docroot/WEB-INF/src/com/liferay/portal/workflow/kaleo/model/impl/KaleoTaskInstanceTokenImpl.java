@@ -18,10 +18,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceAssignmentLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalServiceUtil;
 
 /**
@@ -44,23 +42,6 @@ public class KaleoTaskInstanceTokenImpl
 
 	public KaleoTask getKaleoTask() throws PortalException, SystemException {
 		return KaleoTaskLocalServiceUtil.getKaleoTask(getKaleoTaskId());
-	}
-
-	public KaleoTaskInstanceAssignment getKaleoTaskInstanceAssignment()
-		throws PortalException, SystemException {
-
-		return KaleoTaskInstanceAssignmentLocalServiceUtil.
-			getKaleoTaskInstanceAssignmentByKaleoTaskInstanceTokenId(
-				getKaleoTaskInstanceTokenId());
-	}
-
-	public boolean isCompleted() {
-		if (getCompletionDate() != null) {
-			return true;
-		}
-		else {
-			return false;
-		}
 	}
 
 }

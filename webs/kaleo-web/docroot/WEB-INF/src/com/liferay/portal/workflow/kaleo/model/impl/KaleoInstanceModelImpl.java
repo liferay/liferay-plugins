@@ -72,10 +72,11 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 			{ "rootKaleoInstanceTokenId", new Integer(Types.BIGINT) },
 			{ "className", new Integer(Types.VARCHAR) },
 			{ "classPK", new Integer(Types.BIGINT) },
+			{ "completed", new Integer(Types.BOOLEAN) },
 			{ "completionDate", new Integer(Types.TIMESTAMP) },
 			{ "context", new Integer(Types.CLOB) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoInstance (kaleoInstanceId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoDefinitionName VARCHAR(200) null,kaleoDefinitionVersion INTEGER,rootKaleoInstanceTokenId LONG,className VARCHAR(200) null,classPK LONG,completionDate DATE null,context TEXT null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoInstance (kaleoInstanceId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoDefinitionName VARCHAR(200) null,kaleoDefinitionVersion INTEGER,rootKaleoInstanceTokenId LONG,className VARCHAR(200) null,classPK LONG,completed BOOLEAN,completionDate DATE null,context TEXT null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoInstance";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoInstance.kaleoInstanceId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoInstance.kaleoInstanceId ASC";
@@ -104,6 +105,7 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 		model.setRootKaleoInstanceTokenId(soapModel.getRootKaleoInstanceTokenId());
 		model.setClassName(soapModel.getClassName());
 		model.setClassPK(soapModel.getClassPK());
+		model.setCompleted(soapModel.getCompleted());
 		model.setCompletionDate(soapModel.getCompletionDate());
 		model.setContext(soapModel.getContext());
 
@@ -257,6 +259,18 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 		_classPK = classPK;
 	}
 
+	public boolean getCompleted() {
+		return _completed;
+	}
+
+	public boolean isCompleted() {
+		return _completed;
+	}
+
+	public void setCompleted(boolean completed) {
+		_completed = completed;
+	}
+
 	public Date getCompletionDate() {
 		return _completionDate;
 	}
@@ -317,6 +331,7 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 		clone.setRootKaleoInstanceTokenId(getRootKaleoInstanceTokenId());
 		clone.setClassName(getClassName());
 		clone.setClassPK(getClassPK());
+		clone.setCompleted(getCompleted());
 		clone.setCompletionDate(getCompletionDate());
 		clone.setContext(getContext());
 
@@ -372,7 +387,7 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{kaleoInstanceId=");
 		sb.append(getKaleoInstanceId());
@@ -398,6 +413,8 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 		sb.append(getClassName());
 		sb.append(", classPK=");
 		sb.append(getClassPK());
+		sb.append(", completed=");
+		sb.append(getCompleted());
 		sb.append(", completionDate=");
 		sb.append(getCompletionDate());
 		sb.append(", context=");
@@ -408,7 +425,7 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoInstance");
@@ -463,6 +480,10 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 		sb.append(getClassPK());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>completed</column-name><column-value><![CDATA[");
+		sb.append(getCompleted());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>completionDate</column-name><column-value><![CDATA[");
 		sb.append(getCompletionDate());
 		sb.append("]]></column-value></column>");
@@ -489,6 +510,7 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 	private long _rootKaleoInstanceTokenId;
 	private String _className;
 	private long _classPK;
+	private boolean _completed;
 	private Date _completionDate;
 	private String _context;
 	private transient ExpandoBridge _expandoBridge;

@@ -26,7 +26,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoLog;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoLogLocalServiceBaseImpl;
 import com.liferay.portal.workflow.kaleo.util.ContextUtil;
@@ -120,38 +119,37 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 	}
 
 	public KaleoLog addTaskAssignmentKaleoLog(
-			KaleoTaskInstanceToken kaleoTaskInstanceToken,
-			KaleoTaskInstanceAssignment previousKaleoTaskAssignment,
-			KaleoTaskInstanceAssignment newKaleoTaskAssignment,
+			KaleoTaskInstanceToken previousKaleoTaskInstanceToken,
+			KaleoTaskInstanceToken newKaleoTaskInstanceToken,
 			String comment, Map<String, Serializable> context,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		KaleoInstanceToken kaleoInstanceToken =
-			kaleoTaskInstanceToken.getKaleoInstanceToken();
+			newKaleoTaskInstanceToken.getKaleoInstanceToken();
 
 		KaleoLog kaleoLog = createKaleoLog(
 			kaleoInstanceToken, LogType.TASK_ASSIGNMENT, serviceContext);
 
 		kaleoLog.setKaleoTaskInstanceTokenId(
-			kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
+			newKaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
 
 		KaleoNode currentKaleoNode = kaleoInstanceToken.getCurrentKaleoNode();
 
 		kaleoLog.setKaleoNodeId(currentKaleoNode.getKaleoNodeId());
 		kaleoLog.setKaleoNodeName(currentKaleoNode.getName());
 
-		if (previousKaleoTaskAssignment != null) {
+		if (previousKaleoTaskInstanceToken != null) {
 			kaleoLog.setPreviousAssigneeClassName(
-				previousKaleoTaskAssignment.getAssigneeClassName());
+				previousKaleoTaskInstanceToken.getAssigneeClassName());
 			kaleoLog.setPreviousAssigneeClassPK(
-				previousKaleoTaskAssignment.getAssigneeClassPK());
+				previousKaleoTaskInstanceToken.getAssigneeClassPK());
 		}
 
 		kaleoLog.setCurrentAssigneeClassName(
-			newKaleoTaskAssignment.getAssigneeClassName());
+			newKaleoTaskInstanceToken.getAssigneeClassName());
 		kaleoLog.setCurrentAssigneeClassPK(
-			newKaleoTaskAssignment.getAssigneeClassPK());
+			newKaleoTaskInstanceToken.getAssigneeClassPK());
 
 		kaleoLog.setComment(comment);
 		kaleoLog.setContext(ContextUtil.convert(context));
@@ -163,7 +161,6 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 
 	public KaleoLog addTaskCompletionKaleoLog(
 			KaleoTaskInstanceToken kaleoTaskInstanceToken,
-			KaleoTaskInstanceAssignment kaleoTaskInstanceAssignment,
 			String comment, Map<String, Serializable> context,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -183,9 +180,9 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		kaleoLog.setKaleoNodeName(currentKaleoNode.getName());
 
 		kaleoLog.setCurrentAssigneeClassPK(
-			kaleoTaskInstanceAssignment.getAssigneeClassPK());
+			kaleoTaskInstanceToken.getAssigneeClassPK());
 		kaleoLog.setCurrentAssigneeClassName(
-			kaleoTaskInstanceAssignment.getAssigneeClassName());
+			kaleoTaskInstanceToken.getAssigneeClassName());
 		kaleoLog.setComment(comment);
 		kaleoLog.setContext(ContextUtil.convert(context));
 

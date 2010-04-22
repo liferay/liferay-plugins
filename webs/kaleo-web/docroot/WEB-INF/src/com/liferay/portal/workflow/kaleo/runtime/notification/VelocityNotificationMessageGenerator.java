@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.velocity.VelocityEngineUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.util.ContextUtil;
@@ -85,26 +84,23 @@ public class VelocityNotificationMessageGenerator
 			velocityContext.put(contextEntry.getKey(), contextEntry.getValue());
 		}
 
-		KaleoTaskInstanceAssignment kaleoTaskInstanceAssignment =
-			executionContext.getKaleoTaskInstanceAssigment();
+		KaleoTaskInstanceToken kaleoTaskInstanceToken =
+			executionContext.getKaleoTaskInstanceToken();
 
-		if (kaleoTaskInstanceAssignment != null) {
+		if (kaleoTaskInstanceToken != null) {
 			velocityContext.put(
 				"assigneeClassName",
-				kaleoTaskInstanceAssignment.getAssigneeClassName());
+				kaleoTaskInstanceToken.getAssigneeClassName());
 			velocityContext.put(
 				"assigneeClassPK",
-				kaleoTaskInstanceAssignment.getAssigneeClassPK());
-
-			KaleoTaskInstanceToken kaleoTaskInstanceToken =
-				executionContext.getKaleoTaskInstanceToken();
+				kaleoTaskInstanceToken.getAssigneeClassPK());
 
 			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
 			velocityContext.put("taskName", kaleoTask.getName());
 
 			velocityContext.put(
-				"userId", kaleoTaskInstanceAssignment.getUserId());
+				"userId", kaleoTaskInstanceToken.getUserId());
 		}
 		else {
 			KaleoInstanceToken kaleoInstanceToken =

@@ -100,15 +100,6 @@ public class KaleoInstanceTokenImpl
 		}
 	}
 
-	public boolean isCompleted() {
-		if (getCompletionDate() != null) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
 	public void setCurrentKaleoNode(KaleoNode kaleoNode)
 		throws PortalException, SystemException {
 

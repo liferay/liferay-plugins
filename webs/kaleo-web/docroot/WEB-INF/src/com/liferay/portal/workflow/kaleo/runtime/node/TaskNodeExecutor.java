@@ -25,7 +25,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
@@ -75,24 +74,17 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 				new Date(), dueDateDuration);
 		}
 
-		KaleoTaskInstanceToken kaleoTaskInstanceToken =
-			kaleoTaskInstanceTokenLocalService.addKaleoTaskInstanceToken(
-				kaleoInstanceToken.getKaleoInstanceTokenId(),
-				kaleoTask.getKaleoTaskId(), dueDate, context, serviceContext);
-
-		executionContext.setKaleoTaskInstanceToken(kaleoTaskInstanceToken);
-
 		KaleoTaskAssignment kaleoTaskAssignment =
 			kaleoTask.getDefaultKaleoTaskAssignment();
 
-		KaleoTaskInstanceAssignment kaleoTaskInstanceAssignment =
-			kaleoTaskInstanceAssignmentLocalService.
-				addKaleoTaskInstanceAssignment(
-					kaleoTaskInstanceToken,
-					kaleoTaskAssignment.getKaleoTaskAssignmentId(), context);
+		KaleoTaskInstanceToken kaleoTaskInstanceToken =
+			kaleoTaskInstanceTokenLocalService.addKaleoTaskInstanceToken(
+				kaleoInstanceToken.getKaleoInstanceTokenId(),
+				kaleoTask.getKaleoTaskId(), kaleoTask.getName(),
+				kaleoTaskAssignment, dueDate,
+				context, serviceContext);
 
-		executionContext.setKaleoTaskInstanceAssigment(
-			kaleoTaskInstanceAssignment);
+		executionContext.setKaleoTaskInstanceToken(kaleoTaskInstanceToken);
 
 		ActionExecutorUtil.executeKaleoActions(
 			currentKaleoNode.getKaleoNodeId(), ExecutionType.ON_ASSIGNMENT,
@@ -103,7 +95,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			executionContext);
 
 		kaleoLogLocalService.addTaskAssignmentKaleoLog(
-			kaleoTaskInstanceToken, null, kaleoTaskInstanceAssignment,
+			null, kaleoTaskInstanceToken,
 			"Assigned initial task.", context, serviceContext);
 	}
 

@@ -149,6 +149,18 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 		_kaleoInstance.setClassPK(classPK);
 	}
 
+	public boolean getCompleted() {
+		return _kaleoInstance.getCompleted();
+	}
+
+	public boolean isCompleted() {
+		return _kaleoInstance.isCompleted();
+	}
+
+	public void setCompleted(boolean completed) {
+		_kaleoInstance.setCompleted(completed);
+	}
+
 	public java.util.Date getCompletionDate() {
 		return _kaleoInstance.getCompletionDate();
 	}
@@ -246,10 +258,6 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoInstance.getRootKaleoInstanceToken(serviceContext);
-	}
-
-	public boolean isCompleted() {
-		return _kaleoInstance.isCompleted();
 	}
 
 	public KaleoInstance getWrappedKaleoInstance() {

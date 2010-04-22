@@ -90,6 +90,17 @@ public interface KaleoInstanceTokenModel extends BaseModel<KaleoInstanceToken> {
 
 	public void setCurrentKaleoNodeId(long currentKaleoNodeId);
 
+	@AutoEscape
+	public String getCurrentKaleoNodeName();
+
+	public void setCurrentKaleoNodeName(String currentKaleoNodeName);
+
+	public boolean getCompleted();
+
+	public boolean isCompleted();
+
+	public void setCompleted(boolean completed);
+
 	public Date getCompletionDate();
 
 	public void setCompletionDate(Date completionDate);

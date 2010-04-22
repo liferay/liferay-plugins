@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.freemarker.FreeMarkerEngineUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.util.ContextUtil;
@@ -88,26 +87,23 @@ public class FreeMarkerNotificationMessageGenerator
 				contextEntry.getKey(), contextEntry.getValue());
 		}
 
-		KaleoTaskInstanceAssignment kaleoTaskInstanceAssignment =
-			executionContext.getKaleoTaskInstanceAssigment();
+		KaleoTaskInstanceToken kaleoTaskInstanceToken =
+			executionContext.getKaleoTaskInstanceToken();
 
-		if (kaleoTaskInstanceAssignment != null) {
+		if (kaleoTaskInstanceToken != null) {
 			freeMarkerContext.put(
 				"assigneeClassName",
-				kaleoTaskInstanceAssignment.getAssigneeClassName());
+				kaleoTaskInstanceToken.getAssigneeClassName());
 			freeMarkerContext.put(
 				"assigneeClassPK",
-				kaleoTaskInstanceAssignment.getAssigneeClassPK());
-
-			KaleoTaskInstanceToken kaleoTaskInstanceToken =
-				executionContext.getKaleoTaskInstanceToken();
+				kaleoTaskInstanceToken.getAssigneeClassPK());
 
 			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
 			freeMarkerContext.put("taskName", kaleoTask.getName());
 
 			freeMarkerContext.put(
-				"userId", kaleoTaskInstanceAssignment.getUserId());
+				"userId", kaleoTaskInstanceToken.getUserId());
 		}
 		else {
 			KaleoInstanceToken kaleoInstanceToken =

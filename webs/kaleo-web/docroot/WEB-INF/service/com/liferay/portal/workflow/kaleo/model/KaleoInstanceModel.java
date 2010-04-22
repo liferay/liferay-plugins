@@ -104,6 +104,12 @@ public interface KaleoInstanceModel extends BaseModel<KaleoInstance> {
 
 	public void setClassPK(long classPK);
 
+	public boolean getCompleted();
+
+	public boolean isCompleted();
+
+	public void setCompleted(boolean completed);
+
 	public Date getCompletionDate();
 
 	public void setCompletionDate(Date completionDate);

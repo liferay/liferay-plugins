@@ -21,11 +21,8 @@ import com.liferay.portal.kernel.util.PrimitiveLongList;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManager;
-import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
@@ -37,9 +34,9 @@ import com.liferay.portal.workflow.kaleo.runtime.TaskManager;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.util.ContextUtil;
+import com.liferay.portal.workflow.kaleo.util.RoleRetrievalUtil;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -173,7 +170,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			return new WorkflowTaskAdapter(
 				kaleoTaskInstanceToken,
-				kaleoTaskInstanceToken.getKaleoTaskInstanceAssignment(),
 				ContextUtil.convert(kaleoTaskInstanceToken.getContext()));
 		}
 		catch (Exception e) {
@@ -245,7 +241,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			serviceContext.setCompanyId(companyId);
 			serviceContext.setUserId(userId);
 
-			List<Long> roleIds = getRoleIds(serviceContext);
+			List<Long> roleIds = RoleRetrievalUtil.getRoleIds(serviceContext);
 
 			return KaleoTaskInstanceTokenLocalServiceUtil.
 				getKaleoTaskInstanceTokensCount(
@@ -354,7 +350,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			serviceContext.setCompanyId(companyId);
 			serviceContext.setUserId(userId);
 
-			List<Long> roleIds = getRoleIds(serviceContext);
+			List<Long> roleIds = RoleRetrievalUtil.getRoleIds(serviceContext);
 
 			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
 				KaleoTaskInstanceTokenLocalServiceUtil.
@@ -417,7 +413,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public List<WorkflowTask> search(
-			long companyId, long userId, String name, String type, String state,
+			long companyId, long userId, String taskName, String assetType,
 			Date dueDateGT, Date dueDateLT, Boolean completed,
 			Boolean searchByUserRoles, boolean andOperator, int start, int end,
 			OrderByComparator orderByComparator)
@@ -431,7 +427,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
 				KaleoTaskInstanceTokenLocalServiceUtil.search(
-					name, type, state, dueDateGT, dueDateLT, completed,
+					taskName, assetType, dueDateGT, dueDateLT, completed,
 					searchByUserRoles, andOperator, start, end,
 					orderByComparator, serviceContext);
 
@@ -462,7 +458,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public int searchCount(
-			long companyId, long userId, String name, String type, String state,
+			long companyId, long userId, String taskName, String assetType,
 			Date dueDateGT, Date dueDateLT, Boolean completed,
 			Boolean searchByUserRoles, boolean andOperator)
 		throws WorkflowException {
@@ -474,7 +470,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			serviceContext.setUserId(userId);
 
 			return KaleoTaskInstanceTokenLocalServiceUtil.searchCount(
-				name, type, state, dueDateGT, dueDateLT, completed,
+				taskName, assetType, dueDateGT, dueDateLT, completed,
 				searchByUserRoles, andOperator, serviceContext);
 		}
 		catch (Exception e) {
@@ -500,32 +496,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			workflowTaskInstanceId, comment, dueDate, serviceContext);
 	}
 
-	protected List<Long> getRoleIds(ServiceContext serviceContext)
-		throws SystemException, PortalException {
-
-		List<Role> roles = RoleLocalServiceUtil.getUserRoles(
-			serviceContext.getUserId());
-
-		List<Group> groups = GroupLocalServiceUtil.getUserGroups(
-			serviceContext.getUserId(), true);
-
-		List<Role> relatedRoles = RoleLocalServiceUtil.getUserRelatedRoles(
-			serviceContext.getUserId(), groups);
-
-		List<Long> roleIds = new ArrayList<Long>(
-			roles.size() + relatedRoles.size());
-
-		for (Role role : roles) {
-			roleIds.add(role.getRoleId());
-		}
-
-		for (Role relatedRole : relatedRoles) {
-			roleIds.add(relatedRole.getRoleId());
-		}
-
-		return roleIds;
-	}
-
 	protected List<WorkflowTask> toWorkflowTasks(
 			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens)
 		throws PortalException, SystemException {
@@ -538,7 +508,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			WorkflowTask workflowTask = new WorkflowTaskAdapter(
 				kaleoTaskInstanceToken,
-				kaleoTaskInstanceToken.getKaleoTaskInstanceAssignment(),
 				ContextUtil.convert(kaleoTaskInstanceToken.getContext()));
 
 			workflowTasks.add(workflowTask);

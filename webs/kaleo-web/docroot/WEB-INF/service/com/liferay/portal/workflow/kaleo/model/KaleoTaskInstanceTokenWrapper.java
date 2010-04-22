@@ -126,6 +126,30 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 		_kaleoTaskInstanceToken.setKaleoTaskId(kaleoTaskId);
 	}
 
+	public java.lang.String getKaleoTaskName() {
+		return _kaleoTaskInstanceToken.getKaleoTaskName();
+	}
+
+	public void setKaleoTaskName(java.lang.String kaleoTaskName) {
+		_kaleoTaskInstanceToken.setKaleoTaskName(kaleoTaskName);
+	}
+
+	public java.lang.String getAssigneeClassName() {
+		return _kaleoTaskInstanceToken.getAssigneeClassName();
+	}
+
+	public void setAssigneeClassName(java.lang.String assigneeClassName) {
+		_kaleoTaskInstanceToken.setAssigneeClassName(assigneeClassName);
+	}
+
+	public long getAssigneeClassPK() {
+		return _kaleoTaskInstanceToken.getAssigneeClassPK();
+	}
+
+	public void setAssigneeClassPK(long assigneeClassPK) {
+		_kaleoTaskInstanceToken.setAssigneeClassPK(assigneeClassPK);
+	}
+
 	public long getCompletionUserId() {
 		return _kaleoTaskInstanceToken.getCompletionUserId();
 	}
@@ -141,6 +165,18 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 
 	public void setCompletionUserUuid(java.lang.String completionUserUuid) {
 		_kaleoTaskInstanceToken.setCompletionUserUuid(completionUserUuid);
+	}
+
+	public boolean getCompleted() {
+		return _kaleoTaskInstanceToken.getCompleted();
+	}
+
+	public boolean isCompleted() {
+		return _kaleoTaskInstanceToken.isCompleted();
+	}
+
+	public void setCompleted(boolean completed) {
+		_kaleoTaskInstanceToken.setCompleted(completed);
 	}
 
 	public java.util.Date getCompletionDate() {
@@ -239,16 +275,6 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskInstanceToken.getKaleoTask();
-	}
-
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment getKaleoTaskInstanceAssignment()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoTaskInstanceToken.getKaleoTaskInstanceAssignment();
-	}
-
-	public boolean isCompleted() {
-		return _kaleoTaskInstanceToken.isCompleted();
 	}
 
 	public KaleoTaskInstanceToken getWrappedKaleoTaskInstanceToken() {

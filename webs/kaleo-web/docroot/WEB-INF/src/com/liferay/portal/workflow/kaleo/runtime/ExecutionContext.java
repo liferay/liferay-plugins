@@ -16,7 +16,6 @@ package com.liferay.portal.workflow.kaleo.runtime;
 
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 
 import java.io.Serializable;
@@ -42,12 +41,10 @@ public class ExecutionContext {
 	public ExecutionContext(
 		KaleoInstanceToken kaleoInstanceToken,
 		KaleoTaskInstanceToken kaleoTaskInstanceToken,
-		KaleoTaskInstanceAssignment kaleoTaskInstanceAssigment,
 		Map<String, Serializable> context, ServiceContext serviceContext) {
 
 		_kaleoInstanceToken = kaleoInstanceToken;
 		_kaleoTaskInstanceToken = kaleoTaskInstanceToken;
-		_kaleoTaskInstanceAssigment = kaleoTaskInstanceAssigment;
 		_context = context;
 		_serviceContext = serviceContext;
 	}
@@ -58,10 +55,6 @@ public class ExecutionContext {
 
 	public KaleoInstanceToken getKaleoInstanceToken() {
 		return _kaleoInstanceToken;
-	}
-
-	public KaleoTaskInstanceAssignment getKaleoTaskInstanceAssigment() {
-		return _kaleoTaskInstanceAssigment;
 	}
 
 	public KaleoTaskInstanceToken getKaleoTaskInstanceToken() {
@@ -76,12 +69,6 @@ public class ExecutionContext {
 		return _transitionName;
 	}
 
-	public void setKaleoTaskInstanceAssigment(
-		KaleoTaskInstanceAssignment kaleoTaskInstanceAssigment) {
-
-		_kaleoTaskInstanceAssigment = kaleoTaskInstanceAssigment;
-	}
-
 	public void setKaleoTaskInstanceToken(
 		KaleoTaskInstanceToken kaleoTaskInstanceToken) {
 
@@ -94,7 +81,6 @@ public class ExecutionContext {
 
 	private Map<String, Serializable> _context;
 	private KaleoInstanceToken _kaleoInstanceToken;
-	private KaleoTaskInstanceAssignment _kaleoTaskInstanceAssigment;
 	private KaleoTaskInstanceToken _kaleoTaskInstanceToken;
 	private ServiceContext _serviceContext;
 	private String _transitionName;

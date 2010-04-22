@@ -128,6 +128,26 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		_currentKaleoNodeId = currentKaleoNodeId;
 	}
 
+	public String getCurrentKaleoNodeName() {
+		return _currentKaleoNodeName;
+	}
+
+	public void setCurrentKaleoNodeName(String currentKaleoNodeName) {
+		_currentKaleoNodeName = currentKaleoNodeName;
+	}
+
+	public boolean getCompleted() {
+		return _completed;
+	}
+
+	public boolean isCompleted() {
+		return _completed;
+	}
+
+	public void setCompleted(boolean completed) {
+		_completed = completed;
+	}
+
 	public Date getCompletionDate() {
 		return _completionDate;
 	}
@@ -160,10 +180,6 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean isCompleted() {
-		throw new UnsupportedOperationException();
-	}
-
 	public void setCurrentKaleoNode(
 		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode) {
 		throw new UnsupportedOperationException();
@@ -192,6 +208,8 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		clone.setKaleoInstanceId(getKaleoInstanceId());
 		clone.setParentKaleoInstanceTokenId(getParentKaleoInstanceTokenId());
 		clone.setCurrentKaleoNodeId(getCurrentKaleoNodeId());
+		clone.setCurrentKaleoNodeName(getCurrentKaleoNodeName());
+		clone.setCompleted(getCompleted());
 		clone.setCompletionDate(getCompletionDate());
 
 		return clone;
@@ -246,7 +264,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{kaleoInstanceTokenId=");
 		sb.append(getKaleoInstanceTokenId());
@@ -266,6 +284,10 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		sb.append(getParentKaleoInstanceTokenId());
 		sb.append(", currentKaleoNodeId=");
 		sb.append(getCurrentKaleoNodeId());
+		sb.append(", currentKaleoNodeName=");
+		sb.append(getCurrentKaleoNodeName());
+		sb.append(", completed=");
+		sb.append(getCompleted());
 		sb.append(", completionDate=");
 		sb.append(getCompletionDate());
 		sb.append("}");
@@ -274,7 +296,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken");
@@ -317,6 +339,14 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		sb.append(getCurrentKaleoNodeId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>currentKaleoNodeName</column-name><column-value><![CDATA[");
+		sb.append(getCurrentKaleoNodeName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>completed</column-name><column-value><![CDATA[");
+		sb.append(getCompleted());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>completionDate</column-name><column-value><![CDATA[");
 		sb.append(getCompletionDate());
 		sb.append("]]></column-value></column>");
@@ -336,5 +366,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 	private long _kaleoInstanceId;
 	private long _parentKaleoInstanceTokenId;
 	private long _currentKaleoNodeId;
+	private String _currentKaleoNodeName;
+	private boolean _completed;
 	private Date _completionDate;
 }
