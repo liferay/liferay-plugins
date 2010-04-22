@@ -30,6 +30,8 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MathUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -111,6 +113,12 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			userId, article.getUserName(), Article.class.getName(),
 			resourcePrimKey, StatusConstants.APPROVED);
 
+		// Indexer
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(Article.class);
+
+		indexer.reindex(article);
+
 		// Articles
 
 		updateDisplayOrder(article, parentResourcePrimKey, priority);
@@ -164,6 +172,12 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 	public void deleteArticle(Article article)
 		throws PortalException, SystemException {
+
+		// Indexer
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(Article.class);
+
+		indexer.delete(article);
 
 		// Message boards
 
@@ -338,6 +352,12 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				article, serviceContext.getCommunityPermissions(),
 				serviceContext.getGuestPermissions());
 		}
+
+		// Indexer
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(Article.class);
+
+		indexer.reindex(article);
 
 		// Articles
 
