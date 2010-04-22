@@ -17,15 +17,20 @@ package com.liferay.knowledgebase.util;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.comparator.ArticleCreateDateComparator;
+import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
+import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Summary;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.BaseIndexer;
@@ -72,6 +77,17 @@ public class ArticlesIndexer extends BaseIndexer {
 		portletURL.setParameter("resourcePrimKey", resourcePrimKey);
 
 		return new Summary(title, content, portletURL);
+	}
+
+	public Hits search(SearchContext searchContext) throws SearchException {
+		Hits hits = super.search(searchContext);
+
+		// See ArticlesIndexer#postProcessSearchQuery.
+
+		hits.setQueryTerms(ArrayUtil.append(
+			hits.getQueryTerms(), _splitKeywords(searchContext.getKeywords())));
+
+		return hits;
 	}
 
 	protected void doDelete(Object obj) throws Exception {
@@ -163,6 +179,32 @@ public class ArticlesIndexer extends BaseIndexer {
 
 	protected String getPortletId(SearchContext searchContext) {
 		return PORTLET_ID;
+	}
+
+	protected void postProcessSearchQuery(
+			BooleanQuery searchQuery, SearchContext searchContext)
+		throws Exception {
+
+		// Add additional query terms to return partial matches.
+
+		for (String value : _splitKeywords(searchContext.getKeywords())) {
+			searchQuery.addTerm(Field.TITLE, value, true);
+			searchQuery.addTerm(Field.CONTENT, value, true);
+		}
+	}
+
+	private String[] _splitKeywords(String keywords) {
+		if (Validator.isNull(keywords)) {
+			return new String[0];
+		}
+
+		for (char c : keywords.toCharArray()) {
+			if (!Character.isLetterOrDigit(c) && !Character.isWhitespace(c)) {
+				return new String[0];
+			}
+		}
+
+		return StringUtil.split(keywords, StringPool.SPACE);
 	}
 
 }
