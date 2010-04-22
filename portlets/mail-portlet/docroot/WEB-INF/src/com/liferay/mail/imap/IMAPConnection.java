@@ -15,20 +15,18 @@
 package com.liferay.mail.imap;
 
 import com.liferay.mail.MailException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.mail.util.PortletPropsValues;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.util.portlet.PortletProps;
 
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.mail.Folder;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.Transport;
+
+import javax.net.ssl.SSLSocketFactory;
 
 /**
  * <a href="IMAPConnection.java.html"><b><i>View Source</i></b></a>
@@ -53,49 +51,45 @@ public class IMAPConnection {
 	}
 
 	public Session getSession() {
-		if (Validator.isNull(_session)) {
-			boolean debug = GetterUtil.getBoolean(
-				PortletProps.get("javamail.debug"));
-
-			Properties props = new Properties();
-
-			props.put("mail.imap.host", _incomingHostName);
-			props.put("mail.imap.port", _incomingPort);
-
-			props.put("mail.imaps.auth", "true");
-			props.put("mail.imaps.host", _incomingHostName);
-			props.put("mail.imaps.port", _incomingPort);
-			props.put("mail.imaps.socketFactory.port", _incomingPort);
-			props.put("mail.imaps.socketFactory.class", _SSL_FACTORY);
-			props.put("mail.imaps.socketFactory.fallback", "false");
-
-			props.put("mail.smtp.host", _outgoingHostName);
-			props.put("mail.smtp.port", _outgoingPort);
-
-			props.put("mail.smtps.auth", "true");
-			props.put("mail.smtps.host", _outgoingHostName);
-			props.put("mail.smtps.port", _outgoingPort);
-
-			props.put("mail.smtps.socketFactory.port", _outgoingPort);
-			props.put("mail.smtps.socketFactory.class", _SSL_FACTORY);
-			props.put("mail.smtps.socketFactory.fallback", "false");
-
-			props.put("mail.debug", Boolean.toString(debug));
-
-			_session = Session.getInstance(props);
-
-			_session.setDebug(debug);
+		if (_session != null) {
+			return _session;
 		}
+
+		Properties properties = new Properties();
+
+		properties.put(
+			"mail.debug", String.valueOf(PortletPropsValues.JAVAMAIL_DEBUG));
+		properties.put("mail.imap.host", _incomingHostName);
+		properties.put("mail.imap.port", _incomingPort);
+		properties.put("mail.imaps.auth", "true");
+		properties.put("mail.imaps.host", _incomingHostName);
+		properties.put("mail.imaps.port", _incomingPort);
+		properties.put(
+			"mail.imaps.socketFactory.class", SSLSocketFactory.class.getName());
+		properties.put("mail.imaps.socketFactory.fallback", "false");
+		properties.put("mail.imaps.socketFactory.port", _incomingPort);
+		properties.put("mail.smtp.host", _outgoingHostName);
+		properties.put("mail.smtp.port", _outgoingPort);
+		properties.put("mail.smtps.auth", "true");
+		properties.put("mail.smtps.host", _outgoingHostName);
+		properties.put("mail.smtps.port", _outgoingPort);
+		properties.put(
+			"mail.smtps.socketFactory.class", SSLSocketFactory.class.getName());
+		properties.put("mail.smtps.socketFactory.fallback", "false");
+		properties.put("mail.smtps.socketFactory.port", _outgoingPort);
+
+		_session = Session.getInstance(properties);
+
+		_session.setDebug(PortletPropsValues.JAVAMAIL_DEBUG);
 
 		return _session;
 	}
 
-	public Store getStore(boolean useOldStores)
-		throws MessagingException {
-
+	public Store getStore(boolean useOldStores) throws MessagingException {
 		Store store = null;
 
-		String storeKey = _incomingHostName + _outgoingHostName + _login;
+		String storeKey = _incomingHostName.concat(_outgoingHostName).concat(
+			_login);
 
 		if (useOldStores) {
 			store = _allStores.get(storeKey);
@@ -107,7 +101,7 @@ public class IMAPConnection {
 			}
 		}
 
-		if (Validator.isNull(store)) {
+		if (store == null) {
 			Session session = getSession();
 
 			if (_incomingSecure) {
@@ -129,8 +123,6 @@ public class IMAPConnection {
 	}
 
 	public Transport getTransport() throws MessagingException {
-		String transportKey = _login + "_TRANSPORT_" + _incomingHostName;
-
 		Transport transport = null;
 
 		Session session = getSession();
@@ -142,8 +134,10 @@ public class IMAPConnection {
 			transport = session.getTransport("smtp");
 		}
 
-		transport.addConnectionListener(
-				new ConnectionListener(transportKey));
+		String transportKey = _login.concat(_TRANSPORT).concat(
+			_incomingHostName);
+
+		transport.addConnectionListener(new ConnectionListener(transportKey));
 
 		transport.connect(_outgoingHostName, _outgoingPort, _login, _password);
 
@@ -169,12 +163,6 @@ public class IMAPConnection {
 	protected void testIncomingConnection() throws MessagingException {
 		Store store = getStore(false);
 
-		Folder folder = store.getDefaultFolder();
-
-		if (Validator.isNotNull(folder) &&
-			Validator.isNotNull(folder.list())) {
-		}
-
 		store.close();
 	}
 
@@ -186,15 +174,10 @@ public class IMAPConnection {
 		transport.close();
 	}
 
-	protected IMAPConnection() {
-	}
-
-	private static final String _SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
-
 	private static ConcurrentHashMap<String, Store> _allStores =
 		new ConcurrentHashMap<String, Store>();
 
-	private static Log _log = LogFactoryUtil.getLog(IMAPConnection.class);
+	private static final String _TRANSPORT = "_TRANSPORT_";
 
 	private String _incomingHostName;
 	private int _incomingPort;

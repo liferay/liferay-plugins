@@ -31,31 +31,28 @@ public class ConnectionListener implements javax.mail.event.ConnectionListener {
 		_service = service;
 	}
 
-	public void closed(ConnectionEvent event) {
+	public void closed(ConnectionEvent connectionEvent) {
+		if (_log.isDebugEnabled()) {
+			long uptime = (System.currentTimeMillis() - _startTime) / 1000;
+
+			_log.debug("Closed " + _service + " after " + uptime + "seconds");
+		}
+	}
+
+	public void disconnected(ConnectionEvent connectionEvent) {
 		if (_log.isDebugEnabled()) {
 			long uptime = (System.currentTimeMillis() - _startTime) / 1000;
 
 			_log.debug(
-				"The " + _service + " service has been closed after " +
-					uptime + "secs of uptime.");
+				"Disconnected " + _service + " after " + uptime + "seconds");
 		}
 	}
 
-	public void disconnected(ConnectionEvent event) {
-		if (_log.isDebugEnabled()) {
-			long uptime = (System.currentTimeMillis() - _startTime) / 1000;
-
-			_log.debug(
-				"The " + _service + " service has been disconnected after " +
-					uptime + "secs of uptime.");
-		}
-	}
-
-	public void opened(ConnectionEvent event) {
+	public void opened(ConnectionEvent connectionEvent) {
 		_startTime = System.currentTimeMillis();
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("The " + _service + " service has been opened");
+			_log.debug("Opened " + _service);
 		}
 	}
 
