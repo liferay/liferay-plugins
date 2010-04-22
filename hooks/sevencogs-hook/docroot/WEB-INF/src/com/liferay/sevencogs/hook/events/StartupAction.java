@@ -322,7 +322,8 @@ public class StartupAction extends SimpleAction {
 			false, -1.0, false, serviceContext);
 	}
 
-	public String addPortletId(Layout layout, String portletId, String columnId)
+	protected String addPortletId(
+			Layout layout, String portletId, String columnId)
 		throws Exception {
 
 		LayoutTypePortlet layoutTypePortlet =
