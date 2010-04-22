@@ -14,9 +14,9 @@
 
 package com.liferay.portal.workflow.kaleo;
 
+import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.workflow.DefaultWorkflowDefinition;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
-import com.liferay.util.LocalizationUtil;
 
 /**
  * <a href="WorkflowDefinitionAdapter.java.html"><b><i>View Source</i></b></a>

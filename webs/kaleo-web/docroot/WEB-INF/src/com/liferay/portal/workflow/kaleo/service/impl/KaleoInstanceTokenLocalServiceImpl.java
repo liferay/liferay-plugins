@@ -71,7 +71,6 @@ public class KaleoInstanceTokenLocalServiceImpl
 			kaleoInstanceToken,
 			parentKaleoInstanceToken.getCurrentKaleoNodeId());
 
-		
 		kaleoInstanceTokenPersistence.update(kaleoInstanceToken, false);
 
 		return kaleoInstanceToken;
@@ -85,7 +84,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 			kaleoInstanceTokenPersistence.findByPrimaryKey(
 				kaleoInstanceTokenId);
 
-		kaleoInstanceToken.setCompleted(true);		
+		kaleoInstanceToken.setCompleted(true);
 		kaleoInstanceToken.setCompletionDate(new Date());
 
 		kaleoInstanceTokenPersistence.update(kaleoInstanceToken, false);

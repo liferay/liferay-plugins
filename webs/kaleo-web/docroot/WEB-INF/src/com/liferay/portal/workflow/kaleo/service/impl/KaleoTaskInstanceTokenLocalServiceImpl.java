@@ -38,6 +38,7 @@ import com.liferay.portal.workflow.kaleo.util.ContextUtil;
 import com.liferay.portal.workflow.kaleo.util.RoleRetrievalUtil;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -122,7 +123,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		return kaleoTaskInstanceToken;
 	}
-
 
 	public KaleoTaskInstanceToken completeKaleoTaskInstanceToken(
 			long kaleoTaskInstanceTokenId, ServiceContext serviceContext)
@@ -354,7 +354,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			ServiceContext serviceContext)
 		throws SystemException, PortalException {
 
-
 		if (searchByUserRoles == null) {
 			return;
 		}
@@ -368,7 +367,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 					serviceContext.getUserId()));
 			return;
 		}
-		
+
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("assigneeClassName").eq(
 				Role.class.getName()));
@@ -431,7 +430,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		return dynamicQuery;
 	}
 
-	
 	protected DynamicQuery buildDynamicQuery(
 		List<Long> roleIds, Boolean completed, ServiceContext serviceContext) {
 
@@ -518,7 +516,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		addCompletedCriterion(dynamicQuery, completed);
 		return dynamicQuery;
 	}
-	
+
 	protected List<KaleoTaskInstanceToken> toKaleoTaskInstanceTokens(
 			List<Object> results)
 		throws PortalException, SystemException {
