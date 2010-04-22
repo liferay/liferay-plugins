@@ -354,8 +354,8 @@ public class CustomSession {
 	}
 
 	public int searchCountTaskInstances(
-		String[] actorIds, Boolean pooledActors, String name, String type,
-		String state, Date dueDateGT, Date dueDateLT, Boolean completed,
+		String[] actorIds, Boolean pooledActors, String taskName,
+		String assetType, Date dueDateGT, Date dueDateLT, Boolean completed,
 		boolean andOperator) {
 
 		try {
@@ -364,7 +364,7 @@ public class CustomSession {
 			criteria.setProjection(Projections.countDistinct("id"));
 
 			addSearchCriteria(
-				criteria, actorIds, pooledActors, name, type, state,
+				criteria, actorIds, pooledActors, taskName, assetType,
 				dueDateGT, dueDateLT, completed, andOperator);
 
 			Number count = (Number)criteria.uniqueResult();
@@ -377,8 +377,8 @@ public class CustomSession {
 	}
 
 	public int searchCountTaskInstances(
-		String[] actorIds, Boolean pooledActors, String[] names,
-		String[] states, Boolean completed) {
+		String[] actorIds, Boolean pooledActors, String[] taskNames,
+		Boolean completed) {
 
 		try {
 			Criteria criteria = _session.createCriteria(TaskInstance.class);
@@ -386,7 +386,7 @@ public class CustomSession {
 			criteria.setProjection(Projections.countDistinct("id"));
 
 			addSearchCriteria(
-				criteria, actorIds, pooledActors, names, states, completed);
+				criteria, actorIds, pooledActors, taskNames, completed);
 
 			Number count = (Number)criteria.uniqueResult();
 
@@ -398,8 +398,8 @@ public class CustomSession {
 	}
 
 	public List<TaskInstance> searchTaskInstances(
-		String[] actorIds, Boolean pooledActors, String name, String type,
-		String state, Date dueDateGT, Date dueDateLT, Boolean completed,
+		String[] actorIds, Boolean pooledActors, String taskName,
+		String assetType, Date dueDateGT, Date dueDateLT, Boolean completed,
 		boolean andOperator, int start, int end,
 		OrderByComparator orderByComparator) {
 
@@ -409,7 +409,7 @@ public class CustomSession {
 			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 
 			addSearchCriteria(
-				criteria, actorIds, pooledActors, name, type, state,
+				criteria, actorIds, pooledActors, taskName, assetType, 
 				dueDateGT, dueDateLT, completed, andOperator);
 
 			addPagination(criteria, start, end);
@@ -423,8 +423,8 @@ public class CustomSession {
 	}
 
 	public List<TaskInstance> searchTaskInstances(
-		String[] actorIds, Boolean pooledActors, String[] names,
-		String[] states, Boolean completed,	int start, int end,
+		String[] actorIds, Boolean pooledActors, String[] taskNames,
+		Boolean completed,	int start, int end,
 		OrderByComparator orderByComparator) {
 
 		try {
@@ -433,7 +433,7 @@ public class CustomSession {
 			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 
 			addSearchCriteria(
-				criteria, actorIds, pooledActors, names, states, completed);
+				criteria, actorIds, pooledActors, taskNames, completed);
 
 			addPagination(criteria, start, end);
 			addOrder(criteria, orderByComparator);
@@ -500,7 +500,7 @@ public class CustomSession {
 
 	protected void addSearchCriteria(
 		Criteria criteria, String[] actorIds, Boolean pooledActors,
-		String name, String type, String state, Date dueDateGT, Date dueDateLT,
+		String taskName, String assetType, Date dueDateGT, Date dueDateLT,
 		Boolean completed, boolean andOperator) {
 
 		if (actorIds != null) {
@@ -526,23 +526,12 @@ public class CustomSession {
 			kewordsJunction = Restrictions.disjunction();
 		}
 
-		if (name != null) {
-			kewordsJunction.add(Restrictions.like("name", name));
+		if (taskName != null) {
+			kewordsJunction.add(Restrictions.like("name", taskName));
 		}
 
-		if (state != null) {
+		if (assetType != null){
 			criteria.createAlias("processInstance", "processInstance");
-			criteria.createAlias("processInstance.rootToken", "rootToken");
-			criteria.createAlias("rootToken.node", "node");
-
-			kewordsJunction.add(Restrictions.like("node.name", state));
-		}
-
-		if (type != null){
-			if (state == null) {
-				criteria.createAlias("processInstance", "processInstance");
-			}
-
 			criteria.createAlias("processInstance.instances", "instances");
 			criteria.createAlias("instances.tokenVariableMaps", "varMaps");
 			criteria.createAlias(
@@ -551,7 +540,7 @@ public class CustomSession {
 			Criterion typeCriterion = Restrictions.and(
 				Restrictions.eq(
 					"varInstances.name", ContextConstants.ENTRY_TYPE),
-				Restrictions.like("varInstances.value", type));
+				Restrictions.like("varInstances.value", assetType));
 
 			kewordsJunction.add(typeCriterion);
 		}
@@ -575,7 +564,7 @@ public class CustomSession {
 
 	protected void addSearchCriteria(
 		Criteria criteria, String[] actorIds, Boolean pooledActors,
-		String[] names, String[] states, Boolean completed) {
+		String[] taskNames, Boolean completed) {
 
 		if (actorIds != null) {
 			if ((pooledActors != null) && pooledActors.booleanValue()) {
@@ -593,16 +582,8 @@ public class CustomSession {
 
 		Disjunction kewordsDisjunction = Restrictions.disjunction();
 
-		if ((names != null) && (names.length > 0)) {
-			addDisjunction(kewordsDisjunction, "name", names);
-		}
-
-		if ((states != null) && (states.length > 0)) {
-			criteria.createAlias("processInstance", "processInstance");
-			criteria.createAlias("processInstance.rootToken", "rootToken");
-			criteria.createAlias("rootToken.node", "node");
-
-			addDisjunction(kewordsDisjunction, "node.name", states);
+		if ((taskNames != null) && (taskNames.length > 0)) {
+			addDisjunction(kewordsDisjunction, "name", taskNames);
 		}
 
 		criteria.add(kewordsDisjunction);

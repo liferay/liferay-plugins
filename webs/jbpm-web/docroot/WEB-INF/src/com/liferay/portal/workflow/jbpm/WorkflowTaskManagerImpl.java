@@ -528,12 +528,11 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			CustomSession customSession = new CustomSession(jbpmContext);
 
 			String[] actorIds = getActorIds(userId, searchByUserRoles);
-			String[] names = CustomSQLUtil.keywords(keywords);
-			String[] states = CustomSQLUtil.keywords(keywords);
+			String[] taskNames = CustomSQLUtil.keywords(keywords);
 
 			List<TaskInstance> taskInstances =
 				customSession.searchTaskInstances(
-					actorIds, searchByUserRoles, names, states, completed,
+					actorIds, searchByUserRoles, taskNames, completed,
 					start, end,	orderByComparator);
 
 			return toWorkflowTasks(taskInstances);
@@ -547,7 +546,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public List<WorkflowTask> search(
-			long companyId, long userId, String name, String type, String state,
+			long companyId, long userId, String taskName, String assetType,
 			Date dueDateGT, Date dueDateLT, Boolean completed,
 			Boolean searchByUserRoles, boolean andOperator, int start, int end,
 			OrderByComparator orderByComparator)
@@ -562,7 +561,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			List<TaskInstance> taskInstances =
 				customSession.searchTaskInstances(
-					actorIds, searchByUserRoles, name, type, state, dueDateGT,
+					actorIds, searchByUserRoles, taskName, assetType, dueDateGT,
 					dueDateLT, completed, andOperator, start, end,
 					orderByComparator);
 
@@ -587,11 +586,10 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			CustomSession customSession = new CustomSession(jbpmContext);
 
 			String[] actorIds = getActorIds(userId, searchByUserRoles);
-			String[] names = CustomSQLUtil.keywords(keywords);
-			String[] states = CustomSQLUtil.keywords(keywords);
+			String[] taskNames = CustomSQLUtil.keywords(keywords);
 
 			return customSession.searchCountTaskInstances(
-				actorIds, searchByUserRoles, names, states, completed);
+				actorIds, searchByUserRoles, taskNames, completed);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -602,7 +600,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public int searchCount(
-			long companyId, long userId, String name, String type, String state,
+		long companyId, long userId, String taskName, String assetType,
 			Date dueDateGT, Date dueDateLT, Boolean completed,
 			Boolean searchByUserRoles, boolean andOperator)
 		throws WorkflowException {
@@ -615,7 +613,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			String[] actorIds = getActorIds(userId, searchByUserRoles);
 
 			return customSession.searchCountTaskInstances(
-				actorIds, searchByUserRoles, name, type, state, dueDateGT,
+				actorIds, searchByUserRoles, taskName, assetType, dueDateGT,
 				dueDateLT, completed, andOperator);
 		}
 		catch (Exception e) {
