@@ -55,8 +55,7 @@ public class MailboxFactoryUtil {
 		MailboxFactory mailboxFactory = _mailboxFactories.get(protocol);
 
 		if (mailboxFactory == null) {
-			throw new IllegalArgumentException(
-				"Invalid protocol " + protocol);
+			throw new IllegalArgumentException("Invalid protocol " + protocol);
 		}
 
 		return mailboxFactory.getMailbox(user, protocol);

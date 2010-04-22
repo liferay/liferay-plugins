@@ -15,6 +15,7 @@
 package com.liferay.mail.mailbox;
 
 import com.liferay.mail.MailFile;
+import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
 
@@ -31,16 +32,27 @@ import javax.mail.internet.InternetAddress;
  */
 public class IMAPMailbox extends BaseMailbox {
 
-	protected IMAPMailbox() {
+	public IMAPMailbox() {
 	}
 
-	public void addFolder(String displayName) {
+	public Account addAccount(
+		String address, String protocol, String incomingHostName,
+		int incomingPort, boolean incomingSecure, String outgoingHostName,
+		int outgoingPort, boolean outgoingSecure, String folderPrefix,
+		String password, boolean savePassword, String login,
+		String personalName, String signature, boolean useSignature) {
+
+		return null;
+	}
+
+	public Folder addFolder(String displayName) {
+		return null;
 	}
 
 	public void deleteAccount() {
 	}
 
-	public void deleteAttachment(long messageId, long attachmentId) {
+	public void deleteAttachment(long attachmentId) {
 	}
 
 	public void deleteFolder(long folderId) {
@@ -49,12 +61,28 @@ public class IMAPMailbox extends BaseMailbox {
 	public void deleteMessages(long folderId, long[] messageIds) {
 	}
 
+	public long getAccountUnreadMessagesCount() {
+		return 0;
+	}
+
 	public InputStream getAttachment(long attachmentId) {
 		return null;
 	}
 
+	public int getFolderLocalMessagesCount(long folderId) {
+		return 0;
+	}
+
+	public int getFolderRemoteMessagesCount(long folderId) {
+		return 0;
+	}
+
 	public List<Folder> getFolders() {
 		return null;
+	}
+
+	public long getFolderUnreadMessagesCount(long folderId) {
+		return 0;
 	}
 
 	public Message getMessage(long messageId) {
@@ -75,29 +103,24 @@ public class IMAPMailbox extends BaseMailbox {
 		return null;
 	}
 
-	public int getMessagesCount(long folderId) {
-		return 0;
-	}
-
-	public int getRemoteMessagesCount(long folderId) {
-		return 0;
-	}
-
-	public long getUnreadMessagesCount() {
-		return 0;
-	}
-
 	public void moveMessages(
 		long sourceFolderId, long desintationFolderId, long[] messageIds) {
 	}
 
-	public List<InternetAddress> parseAddresses(String addresses) {
+	public InternetAddress[] parseAddresses(String addresses) {
 		return null;
 	}
 
+	public int populateMessages(
+		List<Message> messages, long folderId, String keywords, int pageNumber,
+		int messagesPerPage, String orderByField, String orderByType) {
+
+		return 0;
+	}
+
 	public Message saveDraft(
-		long messageId, String to, String cc, String bcc, String subject,
-		String body, List<MailFile> mailFiles) {
+		long accountId, long messageId, String to, String cc, String bcc,
+		String subject, String body, List<MailFile> mailFiles) {
 
 		return null;
 	}

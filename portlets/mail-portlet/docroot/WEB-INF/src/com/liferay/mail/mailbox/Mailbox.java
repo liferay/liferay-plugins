@@ -65,6 +65,12 @@ public interface Mailbox {
 	public InputStream getAttachment(long attachmentId)
 		throws PortalException, SystemException;
 
+	public int getFolderLocalMessagesCount(long folderId)
+		throws PortalException, SystemException;
+
+	public int getFolderRemoteMessagesCount(long folderId)
+		throws PortalException, SystemException;
+
 	public List<Folder> getFolders() throws SystemException;
 
 	public long getFolderUnreadMessagesCount(long folderId)
@@ -76,12 +82,6 @@ public interface Mailbox {
 	public Message getMessage(
 			long folderId, String keywords, int messageNumber, int offset,
 			String orderByField, String orderByType)
-		throws PortalException, SystemException;
-
-	public int getLocalMessagesCount(long folderId)
-		throws PortalException, SystemException;
-
-	public int getRemoteMessagesCount(long folderId)
 		throws PortalException, SystemException;
 
 	public User getUser();
