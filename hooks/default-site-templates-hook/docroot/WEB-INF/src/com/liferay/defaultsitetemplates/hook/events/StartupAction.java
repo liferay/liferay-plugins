@@ -31,17 +31,22 @@ import com.liferay.portal.service.LayoutPrototypeLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
+import com.liferay.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.portlet.calendar.model.CalEvent;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.portlet.PortletPreferences;
+
 /**
  * <a href="StartupAction.java.html"><b><i>View Source</i></b></a>
  *
- * @author Sergio Gonz�lez
+ * @author Sergio González
  */
 public class StartupAction extends SimpleAction {
 
@@ -70,6 +75,26 @@ public class StartupAction extends SimpleAction {
 		addPortletId(layout, PortletKeys.BLOGS, "column-1");
 		addPortletId(layout, PortletKeys.TAGS_CLOUD, "column-2");
 		addPortletId(layout, PortletKeys.RECENT_BLOGGERS, "column-2");
+	}
+
+	protected void addContentPage(
+			long companyId, long defaultUserId,
+			List<LayoutPrototype> layoutPrototypes)
+		throws Exception {
+
+		Layout layout = addLayoutPrototype(
+			companyId, defaultUserId, "Content", "Content Description",
+			"2_columns_ii", layoutPrototypes);
+
+		if (layout == null) {
+			return;
+		}
+
+		addPortletId(layout, PortletKeys.TAGS_ENTRIES_NAVIGATION, "column-1");
+		addPortletId(layout, PortletKeys.TAGS_CATEGORIES_NAVIGATION,
+				"column-1");
+		addPortletId(layout, PortletKeys.SEARCH, "column-2");
+		addPortletId(layout, PortletKeys.ASSET_PUBLISHER, "column-2");
 	}
 
 	protected Layout addLayout(
@@ -191,12 +216,28 @@ public class StartupAction extends SimpleAction {
 		Layout layout = addLayout(layoutSet, "Home", "/home", "2_columns_iii");
 
 		addPortletId(layout, PortletKeys.ANNOUNCEMENTS, "column-1");
-		addPortletId(layout, PortletKeys.CALENDAR, "column-1");
 		addPortletId(layout, PortletKeys.ACTIVITIES, "column-1");
-		addPortletId(layout, PortletKeys.DIRECTORY, "column-2");
-		addPortletId(layout, PortletKeys.COMMUNITIES, "column-2");
 		addPortletId(layout, PortletKeys.INVITATION, "column-2");
-		addPortletId(layout, PortletKeys.RSS, "column-2");
+		addPortletId(layout, PortletKeys.DIRECTORY, "column-2");
+
+		// Calendar layout
+
+		layout = addLayout(layoutSet, "Calendar", "/calendar", "2_columns_iii");
+
+		addPortletId(layout, PortletKeys.CALENDAR, "column-1");
+
+		String portletId = addPortletId(layout, PortletKeys.ASSET_PUBLISHER,
+				"column-2");
+		String classNameId = String.valueOf(
+				PortalUtil.getClassNameId(CalEvent.class));
+
+		setPortletPreference(layout, portletId, "any-asset-type", "false");
+		setPortletPreference(layout, portletId, "class-name-ids",
+				String.valueOf(classNameId));
+		setPortletPreference(layout, portletId, "portlet-setup-title-en_US",
+				"Upcoming events");
+		setPortletPreference(layout, portletId,
+				"portlet-setup-use-custom-title", "true");
 
 		// Documents layout
 
@@ -286,6 +327,7 @@ public class StartupAction extends SimpleAction {
 				companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		addBlogPage(companyId, defaultUserId, layoutPrototypes);
+		addContentPage(companyId, defaultUserId, layoutPrototypes);
 		addWikiPage(companyId, defaultUserId, layoutPrototypes);
 
 		List<LayoutSetPrototype> layoutSetPrototypes =
@@ -294,6 +336,17 @@ public class StartupAction extends SimpleAction {
 
 		addPublicSite(companyId, defaultUserId, layoutSetPrototypes);
 		addPrivateSite(companyId, defaultUserId, layoutSetPrototypes);
+	}
+
+	protected void setPortletPreference(Layout layout, String portletId,
+			String property, String value) throws Exception {
+
+		PortletPreferences portletPreferences =
+				PortletPreferencesFactoryUtil.getLayoutPortletSetup(layout,
+						portletId);
+
+		portletPreferences.setValue(property, value);
+		portletPreferences.store();
 	}
 
 	protected void updateLayout(Layout layout) throws Exception {
