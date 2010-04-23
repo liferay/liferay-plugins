@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.ArticleContentException;
 import com.liferay.knowledgebase.ArticleTitleException;
+import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.base.ArticleLocalServiceBaseImpl;
@@ -35,12 +36,14 @@ import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MathUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.StatusConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
+import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -113,6 +116,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			userId, article.getUserName(), Article.class.getName(),
 			resourcePrimKey, StatusConstants.APPROVED);
 
+		// Social
+
+		SocialActivityLocalServiceUtil.addActivity(
+			userId, article.getGroupId(), Article.class.getName(),
+			resourcePrimKey, AdminActivityKeys.ADD_ARTICLE, StringPool.BLANK,
+			0);
+
 		// Indexer
 
 		Indexer indexer = IndexerRegistryUtil.getIndexer(Article.class);
@@ -178,6 +188,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		Indexer indexer = IndexerRegistryUtil.getIndexer(Article.class);
 
 		indexer.delete(article);
+
+		// Social
+
+		SocialActivityLocalServiceUtil.deleteActivities(
+			Article.class.getName(), article.getResourcePrimKey());
 
 		// Message boards
 
@@ -352,6 +367,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				article, serviceContext.getCommunityPermissions(),
 				serviceContext.getGuestPermissions());
 		}
+
+		// Social
+
+		SocialActivityLocalServiceUtil.addActivity(
+			userId, article.getGroupId(), Article.class.getName(),
+			resourcePrimKey, AdminActivityKeys.UPDATE_ARTICLE, StringPool.BLANK,
+			0);
 
 		// Indexer
 

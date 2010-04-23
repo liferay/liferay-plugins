@@ -7,6 +7,7 @@
 		<indexer-class>com.liferay.knowledgebase.util.KnowledgeBaseIndexer</indexer-class>
 		<open-search-class>com.liferay.knowledgebase.util.KnowledgeBaseOpenSearchImpl</open-search-class>
 		<friendly-url-mapper-class>com.liferay.knowledgebase.admin.portlet.AdminFriendlyURLMapper</friendly-url-mapper-class>
+		<social-activity-interpreter-class>com.liferay.knowledgebase.admin.social.AdminActivityInterpreter</social-activity-interpreter-class>
 		<css-class-wrapper>knowledge-base-portlet-admin</css-class-wrapper>
 	</portlet>
 	<portlet>
