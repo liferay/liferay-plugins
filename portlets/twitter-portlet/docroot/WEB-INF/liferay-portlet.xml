@@ -5,7 +5,15 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
-		<scheduler-class>com.liferay.twitter.job.TwitterScheduler</scheduler-class>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.twitter.messaging.SynchronizeTwitterMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<simple>
+					<property-key>twitter.synchronization.interval</property-key>
+					<time-unit>hour</time-unit>
+				</simple>
+			</trigger>
+		</scheduler-entry>
 		<social-activity-interpreter-class>com.liferay.twitter.social.TwitterActivityInterpreter</social-activity-interpreter-class>
 		<css-class-wrapper>twitter-portlet</css-class-wrapper>
 	</portlet>

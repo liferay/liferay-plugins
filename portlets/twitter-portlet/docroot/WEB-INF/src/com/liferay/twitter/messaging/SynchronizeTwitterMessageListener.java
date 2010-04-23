@@ -12,12 +12,12 @@
  * details.
  */
 
-package com.liferay.twitter.job;
+package com.liferay.twitter.messaging;
 
-import com.liferay.portal.kernel.job.IntervalJob;
-import com.liferay.portal.kernel.job.JobExecutionContext;
-import com.liferay.portal.kernel.job.JobExecutionException;
 import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.messaging.MessageListener;
+
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Time;
@@ -25,32 +25,27 @@ import com.liferay.twitter.service.FeedLocalServiceUtil;
 import com.liferay.util.portlet.PortletProps;
 
 /**
- * <a href="SynchronizeTwitterJob.java.html"><b><i>View Source</i></b></a>
+ * <a href="SynchronizeTwitterMessageListener.java.html"><b><i>View Source</i>
+ * </b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
-public class SynchronizeTwitterJob implements IntervalJob {
+public class SynchronizeTwitterMessageListener implements MessageListener {
 
-	public static final long INTERVAL = GetterUtil.getLong(PortletProps.get(
-		"twitter.synchronization.interval")) * Time.MINUTE;
-
-	public void execute(JobExecutionContext context)
-		throws JobExecutionException {
-
+	public void receive(Message message) {
 		try {
-			FeedLocalServiceUtil.updateFeeds();
+			doReceive(message);
 		}
 		catch (Exception e) {
-			_log.error(e.getMessage());
+			_log.error("Unable to process message " + message, e);
 		}
 	}
 
-	public long getInterval() {
-		return INTERVAL;
+	protected void doReceive(Message message) throws Exception {
+		FeedLocalServiceUtil.updateFeeds();
 	}
 
-	private static Log _log =
-		 LogFactoryUtil.getLog(SynchronizeTwitterJob.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		SynchronizeTwitterMessageListener.class);
 
 }
