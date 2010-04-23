@@ -2,11 +2,11 @@
 
 <project name="build-common">
 	<property environment="env" />
-	<property name="env.COMPUTERNAME" value="${env.HOST}" />
-	<property name="env.COMPUTERNAME" value="${env.HOSTNAME}" />
 
 	<property file="${project.dir}/build.${user.name}.properties" />
 	<property file="${project.dir}/build.${env.COMPUTERNAME}.properties" />
+	<property file="${project.dir}/build.${env.HOST}.properties" />
+	<property file="${project.dir}/build.${env.HOSTNAME}.properties" />
 	<property file="${project.dir}/build.properties" />
 
     <property name="app.server.classes.portal.dir" value="${app.server.portal.dir}/WEB-INF/classes" />
