@@ -5,6 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<indexer-class>com.liferay.knowledgebase.util.KnowledgeBaseIndexer</indexer-class>
+		<open-search-class>com.liferay.knowledgebase.util.KnowledgeBaseOpenSearchImpl</open-search-class>
 		<css-class-wrapper>knowledge-base-portlet-admin</css-class-wrapper>
 	</portlet>
 	<portlet>
