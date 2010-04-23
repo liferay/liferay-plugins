@@ -10,7 +10,7 @@
 			<trigger>
 				<simple>
 					<property-key>twitter.synchronization.interval</property-key>
-					<time-unit>hour</time-unit>
+					<time-unit>minute</time-unit>
 				</simple>
 			</trigger>
 		</scheduler-entry>
