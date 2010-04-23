@@ -45,11 +45,11 @@ import java.util.List;
 import javax.portlet.PortletURL;
 
 /**
- * <a href="ArticlesIndexer.java.html"><b><i>View Source</i></b></a>
+ * <a href="KnowledgeBaseIndexer.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  */
-public class ArticlesIndexer extends BaseIndexer {
+public class KnowledgeBaseIndexer extends BaseIndexer {
 
 	public static final String[] CLASS_NAMES = {Article.class.getName()};
 
@@ -81,7 +81,7 @@ public class ArticlesIndexer extends BaseIndexer {
 	public Hits search(SearchContext searchContext) throws SearchException {
 		Hits hits = super.search(searchContext);
 
-		// See ArticlesIndexer#postProcessSearchQuery.
+		// See KnowledgeBaseIndexer#postProcessSearchQuery.
 
 		hits.setQueryTerms(ArrayUtil.append(
 			hits.getQueryTerms(), _splitKeywords(searchContext.getKeywords())));
