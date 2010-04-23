@@ -120,7 +120,7 @@ public class AlfrescoOpenSearchImpl implements OpenSearch {
 		return search(request, url);
 	}
 
-	private static Log _log =
-		 LogFactoryUtil.getLog(AlfrescoOpenSearchImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		AlfrescoOpenSearchImpl.class);
 
 }

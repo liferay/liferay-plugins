@@ -81,8 +81,8 @@ public class AlfrescoContentCacheUtil {
 		return sb.toString();
 	}
 
-	private static Log _log =
-		 LogFactoryUtil.getLog(AlfrescoContentCacheUtil.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		AlfrescoContentCacheUtil.class);
 
 	private static PortalCache _cache = MultiVMPoolUtil.getCache(CACHE_NAME);
 
