@@ -15,14 +15,10 @@
 package com.liferay.twitter.messaging;
 
 import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
-
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.Time;
 import com.liferay.twitter.service.FeedLocalServiceUtil;
-import com.liferay.util.portlet.PortletProps;
 
 /**
  * <a href="SynchronizeTwitterMessageListener.java.html"><b><i>View Source</i>
