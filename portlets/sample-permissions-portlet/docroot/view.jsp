@@ -20,6 +20,7 @@
 
 <%@ taglib uri="http://liferay.com/tld/security" prefix="liferay-security" %>
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
+<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <portlet:defineObjects />
 
@@ -29,10 +30,10 @@
 long groupId = scopeGroupId;
 String name = portletDisplay.getRootPortletId();
 String primKey = portletDisplay.getResourcePK();
-String actionId = "VIEW";
+String actionId = "ADD_SOMETHING";
 %>
 
-Do you have the VIEW permission for this portlet?
+Do you have the <i><liferay-ui:message key='<%= "action." + actionId %>' /></i> permission for this portlet?
 
 <strong>
 
@@ -52,10 +53,10 @@ Do you have the VIEW permission for this portlet?
 <%
 name = "com.sample.permissions.model.Something";
 primKey = "1";
-actionId = "DELETE";
+actionId = "VIEW";
 %>
 
-Does you have the DELETE permission for the model <%= name %> with the primary key <%= primKey %>?
+Do you have the <i><liferay-ui:message key='<%= "action." + actionId %>' /></i> permission for the model <i><liferay-ui:message key='<%= "model.resource." + name %>' /></i> with the primary key <i><%= primKey %></i>?
 
 <strong>
 
@@ -82,4 +83,4 @@ Does you have the DELETE permission for the model <%= name %> with the primary k
 	var="permissionsURL"
 />
 
-Click <a href="<%= permissionsURL %>">here</a> to edit the permissions for the <%= name %> model.
+Click <a href="<%= permissionsURL %>">here</a> to edit the permissions for the <i><liferay-ui:message key='<%= "model.resource." + name %>' /></i> model.
