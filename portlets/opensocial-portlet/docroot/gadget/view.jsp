@@ -20,15 +20,13 @@
 Gadget gadget = (Gadget)renderRequest.getAttribute(WebKeys.GADGET);
 %>
 
-<div class="gadgets-gadget-chrome" id="gadget"></div>
+<div class="gadgets-gadget-chrome" id="<portlet:namespace />gadget"></div>
 
-<aui:script use="aui-base">
-	var gadget = gadgets.container.createGadget({specUrl: '<%= gadget.getUrl() %>'});
-
-	gadget.setServerBase('<%= renderRequest.getContextPath() %>/gadgets/');
-
-	gadgets.container.addGadget(gadget);
-	gadgets.container.layoutManager.setGadgetChromeIds(['gadget']);
-
-	gadgets.container.renderGadget(gadget);
+<aui:script use="liferay-open-social-gadget">
+	new Liferay.OpenSocial.Gadget(
+		{
+			serverBase: '<%= renderRequest.getContextPath() %>/gadgets/',
+			specUrl: '<%= gadget.getUrl() %>'
+		}
+	).render('#<portlet:namespace />gadget');
 </aui:script>

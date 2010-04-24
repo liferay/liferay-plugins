@@ -11,9 +11,7 @@
 		<portlet-name>2</portlet-name>
 		<header-portlet-css>/css/gadgets.css</header-portlet-css>
 		<footer-portlet-javascript>/gadgets/js/rpc.js?c=1&amp;debug=1</footer-portlet-javascript>
-		<footer-portlet-javascript>/gadgets/files/container/util.js</footer-portlet-javascript>
-		<footer-portlet-javascript>/gadgets/files/container/gadgets.js</footer-portlet-javascript>
-		<footer-portlet-javascript>/gadgets/files/container/cookiebaseduserprefstore.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/gadget/javascript.js</footer-portlet-javascript>
 		<css-class-wrapper>opensocial-portlet-gadget</css-class-wrapper>
 	</portlet>
 	<role-mapper>

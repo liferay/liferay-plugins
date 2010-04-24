@@ -12,45 +12,7 @@
  * details.
  */
 
-.gadgets-gadget {
+.opensocial-portlet-gadget .aui-gadget {
 	border: none;
 	width: 100%;
-}
-
-.gadgets-gadget-chrome {
-	display: block;
-	margin: 0px;
-}
-
-.gadgets-gadget-content {
-	padding: 4px;
-}
-
-.gadgets-gadget-title {
-	color: #3366cc;
-	font-weight: bold;
-}
-
-.gadgets-gadget-title-bar {
-	background-color: #e5ecf9;
-	padding: 0px;
-}
-
-.gadgets-gadget-title-button {
-}
-
-.gadgets-gadget-title-button-bar {
-	font-size: smaller;
-}
-
-.gadgets-gadget-user-prefs-dialog {
-	background-color: #e5ecf9;
-	padding: 0px 4px;
-}
-
-.gadgets-gadget-user-prefs-dialog-action-bar {
-	padding: 4px 4px 0px 4px;
-}
-
-.gadgets-log-entry {
 }
