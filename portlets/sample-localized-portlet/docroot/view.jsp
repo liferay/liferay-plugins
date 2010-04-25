@@ -15,27 +15,275 @@
 %>
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="java.util.Locale" %>
+<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
+<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+<%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
+
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
+
 <%@ page import="java.util.ResourceBundle" %>
 
 <portlet:defineObjects />
 
-<%
-Locale locale = renderRequest.getLocale();
+<liferay-theme:defineObjects />
 
-ResourceBundle bundle = portletConfig.getResourceBundle(locale);
+<%
+ResourceBundle resourceBundle = portletConfig.getResourceBundle(locale);
 %>
 
-<p>
-	<%= bundle.getString("welcome") %>
-</p>
+Test only in
 
-<p>
-	<liferay-ui:message key="now-testing-the-message-taglib" />
-</p>
+<a href="/zh<%= PortalUtil.getPathMain() %>/portal/layout?p_l_id=<%= themeDisplay.getPlid() %>&p_p_id=<%= portletDisplay.getId() %>&p_p_state=maximized">Chinese</a>,
 
-<p>
-	<liferay-ui:message key="now-testing-deployable-language-properties-defined-in-liferay-hook-xml" />
-</p>
+<a href="/en<%= PortalUtil.getPathMain() %>/portal/layout?p_l_id=<%= themeDisplay.getPlid() %>&p_p_id=<%= portletDisplay.getId() %>&p_p_state=maximized">English</a>,
+
+<a href="/fr<%= PortalUtil.getPathMain() %>/portal/layout?p_l_id=<%= themeDisplay.getPlid() %>&p_p_id=<%= portletDisplay.getId() %>&p_p_state=maximized">French</a>, or
+
+<a href="/es<%= PortalUtil.getPathMain() %>/portal/layout?p_l_id=<%= themeDisplay.getPlid() %>&p_p_id=<%= portletDisplay.getId() %>&p_p_state=maximized">Spanish</a>.
+
+<br /><br />
+
+<table class="lfr-table">
+<tr>
+	<th>
+		Description
+	</th>
+	<th>
+		Key
+	</th>
+	<th>
+		Resource Bundle Value
+	</th>
+	<th>
+		Tag Library Value
+	</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<%
+String[] expectedResourceBundleValues = null;
+
+String[] expectedTaglibValues = null;
+
+if (locale.getLanguage().equals("fr")) {
+	expectedResourceBundleValues = new String[] {
+		"first-name",
+		"Bienvenue 2.0",
+		"playing-basketball-is-fun",
+		"Veuillez prendre une boisson fra\u00eeche.",
+		"post",
+		"post[adjective]",
+		"post[noun]",
+		"post[verb]",
+		"comment",
+		"comment[adjective]",
+		"comment[noun]",
+		"comment[verb]"
+	};
+
+	expectedTaglibValues = new String[] {
+		"Pr\u00e9nom 2.0",
+		"Bienvenue 2.0",
+		"Jouer au basket-ball est amusement.",
+		"Veuillez prendre une boisson fra\u00eeche.",
+		"Envoyer",
+		"Envoyer",
+		"Envoyer",
+		"Envoyer",
+		"Commentaire",
+		"Commentaire",
+		"Commentaire",
+		"Commentaire"
+	};
+}
+else if (locale.getLanguage().equals("es")) {
+	expectedResourceBundleValues = new String[] {
+		"first-name",
+		"Recepción 2.0",
+		"playing-basketball-is-fun",
+		"Tome por favor una bebida fresca.",
+		"post",
+		"post[adjective]",
+		"post[noun]",
+		"post[verb]",
+		"comment",
+		"comment[adjective]",
+		"Comentario 2.0",
+		"Comentar 2.0"
+	};
+
+	expectedTaglibValues = new String[] {
+		"Nombre 2.0",
+		"Recepción 2.0",
+		"Jugar a baloncesto es diversi\u00f3n.",
+		"Tome por favor una bebida fresca.",
+		"Mensaje",
+		"Mensaje",
+		"Mensaje 2.0",
+		"Publicar 2.0",
+		"Comentario",
+		"Comentario",
+		"Comentario 2.0",
+		"Comentar 2.0"
+	};
+}
+else if (locale.getLanguage().equals("zh")) {
+	expectedResourceBundleValues = new String[] {
+		"first-name",
+		"Welcome 2.0",
+		"playing-basketball-is-fun",
+		"Please take a cool drink.",
+		"post",
+		"post[adjective]",
+		"post[noun]",
+		"post[verb]",
+		"comment",
+		"comment[adjective]",
+		"comment[noun]",
+		"comment[verb]"
+	};
+
+	expectedTaglibValues = new String[] {
+		"\u540d\u5b57",
+		"Welcome 2.0",
+		"Playing basketball is fun.",
+		"Please take a cool drink.",
+		"\u53d1\u5e03",
+		"\u53d1\u5e03",
+		"\u53d1\u5e03",
+		"\u53d1\u5e03",
+		"\u8bc4\u8bba",
+		"\u8bc4\u8bba",
+		"\u8bc4\u8bba",
+		"\u8bc4\u8bba"
+	};
+}
+else {
+	expectedResourceBundleValues = new String[] {
+		"first-name",
+		"Welcome 2.0",
+		"playing-basketball-is-fun",
+		"Please take a cool drink.",
+		"post",
+		"post[adjective]",
+		"post[noun]",
+		"post[verb]",
+		"comment",
+		"comment[adjective]",
+		"comment[noun]",
+		"comment[verb]"
+	};
+
+	expectedTaglibValues = new String[] {
+		"First Name 2.0",
+		"Welcome 2.0",
+		"Playing basketball is fun.",
+		"Please take a cool drink.",
+		"Post",
+		"Post",
+		"Post",
+		"Post",
+		"Comment",
+		"Comment",
+		"Comment",
+		"Comment"
+	};
+}
+
+String[][] tests = new String[][] {
+	new String[] {"Override a portal language entry from a hook.", "first-name"},
+	new String[] {"Override a portal language entry from a portlet.", "welcome"},
+	new String[] {"Add a new portlet language entry from a hook.", "playing-basketball-is-fun"},
+	new String[] {"Add a new portlet language entry from a portlet.", "please-take-a-cool-drink"},
+	new String[] {"Override the default modifier for a portal language entry from a hook.", "post"},
+	new String[] {"Override the adjective modifier for a portal language entry from a hook.", "post[adjective]"},
+	new String[] {"Override the noun modifier for a portal language entry from a hook.", "post[noun]"},
+	new String[] {"Override the verb modifier for a portal language entry from a hook.", "post[verb]"},
+	new String[] {"Override the default modifier for a portal language entry from a portlet.", "comment"},
+	new String[] {"Override the adjective modifier for a portal language entry from a portlet.", "comment[adjective]"},
+	new String[] {"Override the noun modifier for a portal language entry from a portlet.", "comment[noun]"},
+	new String[] {"Override the verb modifier for a portal language entry from a portlet.", "comment[verb]"}
+};
+
+for (int i = 0; i < tests.length; i++) {
+	String[] test = tests[i];
+
+	String description = test[0];
+	String key = test[1];
+%>
+
+	<tr>
+		<td>
+			<%= test[0] %>
+		</td>
+		<td>
+			<%= key %>
+		</td>
+		<td>
+
+			<%
+			String resourceBundleActualValue = key;
+
+			try {
+				resourceBundleActualValue = resourceBundle.getString(key);
+			}
+			catch (Exception e) {
+			}
+			%>
+
+			<%= resourceBundleActualValue %>
+		</td>
+		<td>
+			<liferay-util:buffer var="taglibActualValue"><liferay-ui:message key="<%= key %>" /></liferay-util:buffer>
+
+			<%= taglibActualValue %>
+		</td>
+		<td>
+
+			<%
+			if (expectedResourceBundleValues[i].equals(resourceBundleActualValue) && expectedTaglibValues[i].equals(taglibActualValue)) {
+			%>
+
+				PASSED
+
+			<%
+			}
+			else {
+			%>
+
+				FAILED
+
+			<%
+			}
+			%>
+
+		</td>
+		<td>
+
+			<%
+			if (!expectedResourceBundleValues[i].equals(resourceBundleActualValue)) {
+			%>
+
+				The resource bundle is returning <strong><%= resourceBundleActualValue %></strong> when the expected value is <strong><%= expectedResourceBundleValues[i] %></strong>.
+
+			<%
+			}
+			else if (!expectedTaglibValues[i].equals(taglibActualValue)) {
+			%>
+
+				The tag library is returning <strong><%= taglibActualValue %></strong> when the expected value is <strong><%= expectedTaglibValues[i] %></strong>.
+
+			<%
+			}
+			%>
+
+		</td>
+	</tr>
+
+<%
+}
+%>
+
+</table>

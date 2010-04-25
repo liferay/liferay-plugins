@@ -19,11 +19,12 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<supported-locale>en</supported-locale>
+		<supported-locale>es</supported-locale>
 		<supported-locale>fr_FR</supported-locale>
 		<resource-bundle>com.liferay.samplelocalized.resources.Resource</resource-bundle>
 		<portlet-info>
 			<title>Sample Localized</title>
-			<short-title>SampleLocalizedPortlet</short-title>
+			<short-title>SampleLocalized</short-title>
 			<keywords>Sample Localized</keywords>
 		</portlet-info>
 		<security-role-ref>
