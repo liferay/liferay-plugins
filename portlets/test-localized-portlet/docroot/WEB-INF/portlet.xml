@@ -8,7 +8,7 @@
 >
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<display-name>Sample Localized</display-name>
+		<display-name>Test Localized</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
@@ -21,11 +21,11 @@
 		<supported-locale>en</supported-locale>
 		<supported-locale>es</supported-locale>
 		<supported-locale>fr_FR</supported-locale>
-		<resource-bundle>com.liferay.samplelocalized.resources.Resource</resource-bundle>
+		<resource-bundle>com.liferay.testlocalized.resources.Resource</resource-bundle>
 		<portlet-info>
-			<title>Sample Localized</title>
-			<short-title>SampleLocalized</short-title>
-			<keywords>Sample Localized</keywords>
+			<title>Test Localized</title>
+			<short-title>TestLocalized</short-title>
+			<keywords>Test Localized</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
