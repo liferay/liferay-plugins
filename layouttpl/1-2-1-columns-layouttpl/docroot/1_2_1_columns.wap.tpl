@@ -13,7 +13,6 @@
 			<td class="aui-w50 portlet-column portlet-column-first" id="column-2">
 				$processor.processColumn("column-2", "portlet-column-content portlet-column-content-first")
 			</td>
-
 			<td class="aui-w50 portlet-column portlet-column-last" id="column-4">
 				$processor.processColumn("column-4", "portlet-column-content portlet-column-content-last")
 			</td>

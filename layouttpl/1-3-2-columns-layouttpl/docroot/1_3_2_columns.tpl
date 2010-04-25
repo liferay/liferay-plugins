@@ -13,11 +13,9 @@
 			<td class="portlet-column portlet-column-first aui-w33">
 				$processor.processColumn("column-2", "portlet-column-content portlet-column-content-first")
 			</td>
-
 			<td class="portlet-column aui-w33">
 				$processor.processColumn("column-3", "portlet-column-content")
 			</td>
-
 			<td class="portlet-column portlet-column-last aui-w33">
 				$processor.processColumn("column-4", "portlet-column-content portlet-column-content-last")
 			</td>
@@ -40,14 +38,12 @@
 					<td class="portlet-column portlet-column-first aui-w50">
 						$processor.processColumn("column-6", "portlet-column-content portlet-column-content-first")
 					</td>
-
 					<td class="portlet-column aui-w50">
 						$processor.processColumn("column-7", "portlet-column-content")
 					</td>
 				</tr>
 				</table>
 			</td>
-
 			<td class="portlet-column portlet-column-last aui-w33">
 				$processor.processColumn("column-8", "portlet-column-content portlet-column-content-last")
 			</td>
