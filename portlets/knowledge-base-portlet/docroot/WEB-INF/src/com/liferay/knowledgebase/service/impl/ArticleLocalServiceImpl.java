@@ -73,8 +73,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		long articleId = counterLocalService.increment();
 
-		long resourcePrimKey = counterLocalService.increment(
-			Article.class.getName());
+		long resourcePrimKey = counterLocalService.increment();
 
 		Article article = articlePersistence.create(articleId);
 
