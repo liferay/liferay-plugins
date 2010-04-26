@@ -64,7 +64,7 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		if (Validator.isNotNull(layoutFullURL)) {
 			link =
 				layoutFullURL + Portal.FRIENDLY_URL_SEPARATOR +
-					"knowledge_base/article/" + activity.getClassPK();
+					"admin/article/" + activity.getClassPK();
 		}
 
 		// Title
