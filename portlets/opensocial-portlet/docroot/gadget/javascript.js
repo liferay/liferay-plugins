@@ -389,7 +389,7 @@ AUI().add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'cookie', 'json', 'liferay-gadgets', 'substitute'],
+		requires: ['aui-base', 'cookie', 'json', 'substitute'],
 		use: []
 	}
 );
