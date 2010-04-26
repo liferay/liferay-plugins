@@ -91,8 +91,8 @@ public class StartupAction extends SimpleAction {
 		}
 
 		addPortletId(layout, PortletKeys.TAGS_ENTRIES_NAVIGATION, "column-1");
-		addPortletId(layout, PortletKeys.TAGS_CATEGORIES_NAVIGATION,
-				"column-1");
+		addPortletId(
+			layout, PortletKeys.TAGS_CATEGORIES_NAVIGATION, "column-1");
 		addPortletId(layout, PortletKeys.SEARCH, "column-2");
 		addPortletId(layout, PortletKeys.ASSET_PUBLISHER, "column-2");
 	}
@@ -226,18 +226,23 @@ public class StartupAction extends SimpleAction {
 
 		addPortletId(layout, PortletKeys.CALENDAR, "column-1");
 
-		String portletId = addPortletId(layout, PortletKeys.ASSET_PUBLISHER,
-				"column-2");
-		String classNameId = String.valueOf(
-				PortalUtil.getClassNameId(CalEvent.class));
+		String portletId = addPortletId(
+			layout, PortletKeys.ASSET_PUBLISHER, "column-2");
 
-		setPortletPreference(layout, portletId, "any-asset-type", "false");
-		setPortletPreference(layout, portletId, "class-name-ids",
-				String.valueOf(classNameId));
-		setPortletPreference(layout, portletId, "portlet-setup-title-en_US",
-				"Upcoming events");
-		setPortletPreference(layout, portletId,
-				"portlet-setup-use-custom-title", "true");
+		Map<String, String> preferences = new HashMap<String, String>();
+
+		preferences.put("any-asset-type", Boolean.FALSE.toString());
+
+		long classNameId = PortalUtil.getClassNameId(CalEvent.class);
+
+		preferences.put("class-name-ids", String.valueOf(classNameId));
+
+		preferences.put(
+			"portlet-setup-title-en_US", "Upcoming Events");
+		preferences.put(
+			"portlet-setup-use-custom-title", Boolean.TRUE.toString());
+
+		updatePortletSetup(layout, portletId, preferences);
 
 		// Documents layout
 
@@ -338,21 +343,35 @@ public class StartupAction extends SimpleAction {
 		addPrivateSite(companyId, defaultUserId, layoutSetPrototypes);
 	}
 
-	protected void setPortletPreference(Layout layout, String portletId,
-			String property, String value) throws Exception {
-
-		PortletPreferences portletPreferences =
-				PortletPreferencesFactoryUtil.getLayoutPortletSetup(layout,
-						portletId);
-
-		portletPreferences.setValue(property, value);
-		portletPreferences.store();
-	}
-
 	protected void updateLayout(Layout layout) throws Exception {
 		LayoutLocalServiceUtil.updateLayout(
 			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
 			layout.getTypeSettings());
+	}
+
+	protected PortletPreferences updatePortletSetup(
+			Layout layout, String portletId, Map<String, String> preferences)
+		throws Exception {
+
+		PortletPreferences portletSetup =
+			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+				layout, portletId);
+
+		Iterator<Map.Entry<String, String>> itr =
+			preferences.entrySet().iterator();
+
+		while (itr.hasNext()) {
+			Map.Entry<String, String> entry = itr.next();
+
+			String key = entry.getKey();
+			String value = entry.getValue();
+
+			portletSetup.setValue(key, value);
+		}
+
+		portletSetup.store();
+
+		return portletSetup;
 	}
 
 }
