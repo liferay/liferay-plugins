@@ -20,7 +20,6 @@ import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.base.ArticleLocalServiceBaseImpl;
-import com.liferay.knowledgebase.util.comparator.ArticleCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -216,11 +215,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		List<Article> articles = getGroupArticles(
-			groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new ArticleCreateDateComparator(true));
+			groupId, 0, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new ArticlePriorityComparator());
 
 		for (Article article : articles) {
-			deleteArticle(article);
+			deleteArticle(article.getResourcePrimKey());
 		}
 	}
 
