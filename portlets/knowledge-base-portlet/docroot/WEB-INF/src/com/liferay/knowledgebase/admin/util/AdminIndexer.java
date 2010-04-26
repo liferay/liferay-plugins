@@ -152,7 +152,7 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	protected void doReindex(String className, long classPK) throws Exception {
-		Article article = ArticleLocalServiceUtil.getArticleByResourcePrimKey(
+		Article article = ArticleLocalServiceUtil.geLatestArticle(
 			classPK);
 
 		doReindex(article);

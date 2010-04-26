@@ -92,7 +92,7 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		Object[] arguments = new Object[0];
 
-		Article article = ArticleLocalServiceUtil.getArticleByResourcePrimKey(
+		Article article = ArticleLocalServiceUtil.geLatestArticle(
 			activity.getClassPK());
 
 		String text = HtmlUtil.escape(cleanContent(article.getTitle()));
