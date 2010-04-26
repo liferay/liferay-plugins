@@ -54,6 +54,7 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextUtil;
+import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.util.Portal;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -153,6 +154,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		indexer.reindex(article);
 
+		// Subscriptions
+
+		notifySubscribers(article, false, serviceContext);
+
 		return article;
 	}
 
@@ -229,6 +234,12 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		Indexer indexer = IndexerRegistryUtil.getIndexer(Article.class);
 
 		indexer.delete(article);
+
+		// Subscriptions
+
+		SubscriptionLocalServiceUtil.deleteSubscriptions(
+			article.getCompanyId(), Article.class.getName(),
+			article.getResourcePrimKey());
 	}
 
 	public void deleteGroupArticles(long groupId)
@@ -342,6 +353,32 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			resourcePrimKey, new ArticleVersionComparator());
 	}
 
+	public void subscribe(long groupId, long userId, long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		if (resourcePrimKey > 0) {
+			SubscriptionLocalServiceUtil.addSubscription(
+				userId, Article.class.getName(), resourcePrimKey);
+		}
+		else {
+			SubscriptionLocalServiceUtil.addSubscription(
+				userId, Article.class.getName(), groupId);
+		}
+	}
+
+	public void unsubscribe(long groupId, long userId, long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		if (resourcePrimKey > 0) {
+			SubscriptionLocalServiceUtil.deleteSubscription(
+				userId, Article.class.getName(), resourcePrimKey);
+		}
+		else {
+			SubscriptionLocalServiceUtil.deleteSubscription(
+				userId, Article.class.getName(), groupId);
+		}
+	}
+
 	public Article updateArticle(
 			long userId, long resourcePrimKey, long parentResourcePrimKey,
 			String title, String content, String description, int priority,
@@ -404,6 +441,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		Indexer indexer = IndexerRegistryUtil.getIndexer(Article.class);
 
 		indexer.reindex(article);
+
+		// Subscriptions
+
+		notifySubscribers(article, true, serviceContext);
 
 		return article;
 	}
