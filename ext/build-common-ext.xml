@@ -192,11 +192,11 @@ loader.
 		<mkdir dir="docroot/WEB-INF/ext-${module.name}/classes" />
 
 		<path id="plugin-lib.classpath">
-			<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
 			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
 			<fileset dir="docroot/WEB-INF/ext-lib/portal" includes="*.jar" />
 			<pathelement location="docroot/WEB-INF/ext-service/classes" />
 			<pathelement location="docroot/WEB-INF/ext-${module.name}/classes" />
+			<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
 		</path>
 
 		<antcall target="compile-java">
