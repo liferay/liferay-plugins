@@ -29,18 +29,33 @@ import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MathUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.StatusConstants;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextUtil;
+import com.liferay.portal.util.Portal;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 
@@ -49,6 +64,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.portlet.PortletPreferences;
 
 /**
  * <a href="ArticleLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -481,6 +498,263 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 
 		return articles;
+	}
+
+	protected void notifySubscribers(
+			Article article, boolean update, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		try {
+			String layoutFullURL = serviceContext.getLayoutFullURL();
+
+			if (Validator.isNull(layoutFullURL)) {
+				return;
+			}
+
+			PortletPreferences preferences =
+				ServiceContextUtil.getPortletPreferences(serviceContext);
+
+			if (preferences == null) {
+				long ownerId = article.getGroupId();
+				int ownerType = PortletKeys.PREFS_OWNER_TYPE_GROUP;
+				long plid = PortletKeys.PREFS_PLID_SHARED;
+				String portletId = "1_WAR_knowledgebaseportlet";
+				String defaultPreferences = null;
+
+				preferences = PortletPreferencesLocalServiceUtil.getPreferences(
+					article.getCompanyId(), ownerId, ownerType, plid, portletId,
+					defaultPreferences);
+			}
+
+			String emailArticleAddedEnabled = preferences.getValue(
+				"email-article-added-enabled", Boolean.TRUE.toString());
+
+			if (!update && !GetterUtil.getBoolean(emailArticleAddedEnabled)) {
+				return;
+			}
+
+			String emailArticleUpdatedEnabled = preferences.getValue(
+				"email-article-updated-enabled", Boolean.TRUE.toString());
+
+			if (update && !GetterUtil.getBoolean(emailArticleUpdatedEnabled)) {
+				return;
+			}
+
+			Company company = CompanyLocalServiceUtil.getCompany(
+				article.getCompanyId());
+
+			Group group = GroupLocalServiceUtil.getGroup(
+				serviceContext.getScopeGroupId());
+
+			User user = userPersistence.fetchByPrimaryKey(article.getUserId());
+
+			String fullName = article.getUserName();
+			String emailAddress = StringPool.BLANK;
+
+			if (user != null) {
+				fullName = user.getFullName();
+				emailAddress = user.getEmailAddress();
+			}
+
+			String portletName = PortalUtil.getPortletTitle(
+				"1_WAR_knowledgebaseportlet", LocaleUtil.getDefault());
+
+			String fromName = preferences.getValue("email-from-name", null);
+			String fromAddress = preferences.getValue(
+				"email-from-address", null);
+
+			if (fromName == null) {
+				fromName = PrefsPropsUtil.getString(
+					company.getCompanyId(), "admin.email.from.name");
+			}
+
+			if (fromAddress == null) {
+				fromAddress = PrefsPropsUtil.getString(
+					company.getCompanyId(), "admin.email.from.address");
+			}
+
+			fromName = StringUtil.replace(
+				fromName,
+				new String[] {
+					"[$ARTICLE_USER_ADDRESS$]",
+					"[$ARTICLE_USER_NAME$]",
+					"[$COMPANY_ID$]",
+					"[$COMPANY_MX$]",
+					"[$COMPANY_NAME$]",
+					"[$COMMUNITY_NAME$]",
+					"[$PORTLET_NAME$]"
+				},
+				new String[] {
+					emailAddress,
+					fullName,
+					String.valueOf(company.getCompanyId()),
+					company.getMx(),
+					company.getName(),
+					group.getName(),
+					portletName
+				});
+
+			fromAddress = StringUtil.replace(
+				fromAddress,
+				new String[] {
+					"[$ARTICLE_USER_ADDRESS$]",
+					"[$ARTICLE_USER_NAME$]",
+					"[$COMPANY_ID$]",
+					"[$COMPANY_MX$]",
+					"[$COMPANY_NAME$]",
+					"[$COMMUNITY_NAME$]",
+					"[$PORTLET_NAME$]"
+				},
+				new String[] {
+					emailAddress,
+					fullName,
+					String.valueOf(company.getCompanyId()),
+					company.getMx(),
+					company.getName(),
+					group.getName(),
+					portletName
+				});
+
+			String articleURL =
+				layoutFullURL + Portal.FRIENDLY_URL_SEPARATOR +
+					"admin/article/" + article.getResourcePrimKey();
+
+			String subject = null;
+			String body = null;
+
+			if (!update) {
+				subject = preferences.getValue(
+					"email-article-added-subject", null);
+
+				if (subject == null) {
+					subject = StringUtil.read(
+						getClass().getClassLoader(),
+						"com/liferay/knowledgebase/admin/dependencies/" +
+							"email_article_added_subject.tmpl");
+				}
+
+				body = preferences.getValue("email-article-added-body", null);
+
+				if (body == null) {
+					body = StringUtil.read(
+						getClass().getClassLoader(),
+						"com/liferay/knowledgebase/admin/dependencies/" +
+							"email_article_added_body.tmpl");
+				}
+			}
+			else {
+				subject = preferences.getValue(
+					"email-article-updated-subject", null);
+
+				if (subject == null) {
+					subject = StringUtil.read(
+						getClass().getClassLoader(),
+						"com/liferay/knowledgebase/admin/dependencies/" +
+							"email_article_updated_subject.tmpl");
+				}
+
+				body = preferences.getValue("email-article-updated-body", null);
+
+				if (body == null) {
+					body = StringUtil.read(
+						getClass().getClassLoader(),
+						"com/liferay/knowledgebase/admin/dependencies/" +
+							"email_article_updated_body.tmpl");
+				}
+			}
+
+			subject = StringUtil.replace(
+				subject,
+				new String[] {
+					"[$ARTICLE_TITLE$]",
+					"[$ARTICLE_USER_ADDRESS$]",
+					"[$ARTICLE_USER_NAME$]",
+					"[$ARTICLE_URL$]",
+					"[$COMPANY_ID$]",
+					"[$COMPANY_MX$]",
+					"[$COMPANY_NAME$]",
+					"[$COMMUNITY_NAME$]",
+					"[$FROM_ADDRESS$]",
+					"[$FROM_NAME$]",
+					"[$PORTAL_URL$]",
+					"[$PORTLET_NAME$]"
+				},
+				new String[] {
+					article.getTitle(),
+					emailAddress,
+					fullName,
+					articleURL,
+					String.valueOf(company.getCompanyId()),
+					company.getMx(),
+					company.getName(),
+					group.getName(),
+					fromAddress,
+					fromName,
+					company.getVirtualHost(),
+					portletName
+				});
+
+			body = StringUtil.replace(
+				body,
+				new String[] {
+					"[$ARTICLE_TITLE$]",
+					"[$ARTICLE_USER_ADDRESS$]",
+					"[$ARTICLE_USER_NAME$]",
+					"[$ARTICLE_URL$]",
+					"[$COMPANY_ID$]",
+					"[$COMPANY_MX$]",
+					"[$COMPANY_NAME$]",
+					"[$COMMUNITY_NAME$]",
+					"[$FROM_ADDRESS$]",
+					"[$FROM_NAME$]",
+					"[$PORTAL_URL$]",
+					"[$PORTLET_NAME$]"
+				},
+				new String[] {
+					article.getTitle(),
+					emailAddress,
+					fullName,
+					articleURL,
+					String.valueOf(company.getCompanyId()),
+					company.getMx(),
+					company.getName(),
+					group.getName(),
+					fromAddress,
+					fromName,
+					company.getVirtualHost(),
+					portletName
+				});
+
+			String mailId =
+				StringPool.LESS_THAN + "knowledge_base.article." +
+					article.getResourcePrimKey() + StringPool.AT +
+						company.getMx() + StringPool.GREATER_THAN;
+
+			Message message = new Message();
+
+			message.put("companyId", article.getCompanyId());
+			message.put("groupId", article.getGroupId());
+			message.put("userId", article.getUserId());
+			message.put("resourcePrimKey", article.getResourcePrimKey());
+			message.put("fromName", fromName);
+			message.put("fromAddress", fromAddress);
+			message.put("subject", subject);
+			message.put("body", body);
+			message.put("replyToAddress", fromAddress);
+			message.put("mailId", mailId);
+			message.put("htmlFormat", Boolean.TRUE);
+
+			MessageBusUtil.sendMessage("liferay/knowledge_base/admin", message);
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (SystemException se) {
+			throw se;
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
 	}
 
 	protected void validate(String title, String content)
