@@ -222,7 +222,15 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 	}
 
-	public Article getArticle(long resourcePrimKey, double version)
+	public Article getArticleByResourcePrimKey(long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		return articlePersistence.findByResourcePrimKey_First(
+			resourcePrimKey, new ArticleVersionComparator());
+	}
+
+	public Article getArticleByResourcePrimKeyAndVersion(
+			long resourcePrimKey, double version)
 		throws PortalException, SystemException {
 
 		return articlePersistence.findByR_V(resourcePrimKey, version);
@@ -312,13 +320,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		params.put("parentResourcePrimKey", new Long(parentResourcePrimKey));
 
 		return dynamicQueryCount(getDynamicQuery(params));
-	}
-
-	public Article getLatestArticle(long resourcePrimKey)
-		throws PortalException, SystemException {
-
-		return articlePersistence.findByResourcePrimKey_First(
-			resourcePrimKey, new ArticleVersionComparator());
 	}
 
 	public Article updateArticle(

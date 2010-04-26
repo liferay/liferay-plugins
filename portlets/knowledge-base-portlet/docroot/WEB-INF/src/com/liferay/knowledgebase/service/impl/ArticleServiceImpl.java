@@ -59,13 +59,24 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		articleLocalService.deleteArticle(resourcePrimKey);
 	}
 
-	public Article getArticle(long resourcePrimKey, double version)
+	public Article getArticleByResourcePrimKey(long resourcePrimKey)
 		throws PortalException, SystemException {
 
 		ArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey, ActionKeys.VIEW);
 
-		return articleLocalService.getArticle(resourcePrimKey, version);
+		return articleLocalService.getArticleByResourcePrimKey(resourcePrimKey);
+	}
+
+	public Article getArticleByResourcePrimKeyAndVersion(
+			long resourcePrimKey, double version)
+		throws PortalException, SystemException {
+
+		ArticlePermission.check(
+			getPermissionChecker(), resourcePrimKey, ActionKeys.VIEW);
+
+		return articleLocalService.getArticleByResourcePrimKeyAndVersion(
+			resourcePrimKey, version);
 	}
 
 	public List<Article> getArticles(
@@ -129,15 +140,6 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 		return articleLocalService.getGroupArticlesCount(
 			groupId, parentResourcePrimKey);
-	}
-
-	public Article getLatestArticle(long resourcePrimKey)
-		throws PortalException, SystemException {
-
-		ArticlePermission.check(
-			getPermissionChecker(), resourcePrimKey, ActionKeys.VIEW);
-
-		return articleLocalService.getLatestArticle(resourcePrimKey);
 	}
 
 	public Article updateArticle(
