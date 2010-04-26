@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.knowledgebase.util;
+package com.liferay.knowledgebase.admin.util;
 
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
@@ -45,12 +45,12 @@ import java.util.List;
 import javax.portlet.PortletURL;
 
 /**
- * <a href="KnowledgeBaseIndexer.java.html"><b><i>View Source</i></b></a>
+ * <a href="AdminIndexer.java.html"><b><i>View Source</i></b></a>
  *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class KnowledgeBaseIndexer extends BaseIndexer {
+public class AdminIndexer extends BaseIndexer {
 
 	public static final String[] CLASS_NAMES = {Article.class.getName()};
 

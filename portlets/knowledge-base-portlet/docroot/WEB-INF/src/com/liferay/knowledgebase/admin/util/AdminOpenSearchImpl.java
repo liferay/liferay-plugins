@@ -12,24 +12,24 @@
  * details.
  */
 
-package com.liferay.knowledgebase.util;
+package com.liferay.knowledgebase.admin.util;
 
 import com.liferay.portal.search.HitsOpenSearchImpl;
 
 /**
- * <a href="KnowledgeBaseOpenSearchImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="AdminOpenSearchImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class KnowledgeBaseOpenSearchImpl extends HitsOpenSearchImpl {
+public class AdminOpenSearchImpl extends HitsOpenSearchImpl {
 
 	public static final String SEARCH_PATH = "/c/knowledge_base/open_search";
 
 	public static final String TITLE = "Liferay Knowledge Base Search: ";
 
 	public String getPortletId() {
-		return KnowledgeBaseIndexer.PORTLET_ID;
+		return AdminIndexer.PORTLET_ID;
 	}
 
 	public String getSearchPath() {
