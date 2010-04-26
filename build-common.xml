@@ -17,10 +17,10 @@
 	</path>
 
 	<path id="plugin.classpath">
+		<path refid="plugin-lib.classpath" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="annotations.jar,commons-logging.jar,log4j.jar,util-bridges.jar,util-java.jar,util-taglib.jar" />
 		<fileset dir="${project.dir}/lib" includes="activation.jar,jsp-api.jar,mail.jar,servlet-api.jar" />
-		<path refid="plugin-lib.classpath" />
 	</path>
 
 	<path id="portal.classpath">
