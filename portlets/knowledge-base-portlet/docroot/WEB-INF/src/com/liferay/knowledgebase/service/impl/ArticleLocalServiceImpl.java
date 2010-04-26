@@ -502,259 +502,246 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 	protected void notifySubscribers(
 			Article article, boolean update, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws Exception {
 
-		try {
-			String layoutFullURL = serviceContext.getLayoutFullURL();
+		String layoutFullURL = serviceContext.getLayoutFullURL();
 
-			if (Validator.isNull(layoutFullURL)) {
-				return;
+		if (Validator.isNull(layoutFullURL)) {
+			return;
+		}
+
+		PortletPreferences preferences =
+			ServiceContextUtil.getPortletPreferences(serviceContext);
+
+		if (preferences == null) {
+			long ownerId = article.getGroupId();
+			int ownerType = PortletKeys.PREFS_OWNER_TYPE_GROUP;
+			long plid = PortletKeys.PREFS_PLID_SHARED;
+			String portletId = "1_WAR_knowledgebaseportlet";
+			String defaultPreferences = null;
+
+			preferences = PortletPreferencesLocalServiceUtil.getPreferences(
+				article.getCompanyId(), ownerId, ownerType, plid, portletId,
+				defaultPreferences);
+		}
+
+		String emailArticleAddedEnabled = preferences.getValue(
+			"email-article-added-enabled", Boolean.TRUE.toString());
+
+		if (!update && !GetterUtil.getBoolean(emailArticleAddedEnabled)) {
+			return;
+		}
+
+		String emailArticleUpdatedEnabled = preferences.getValue(
+			"email-article-updated-enabled", Boolean.TRUE.toString());
+
+		if (update && !GetterUtil.getBoolean(emailArticleUpdatedEnabled)) {
+			return;
+		}
+
+		Company company = CompanyLocalServiceUtil.getCompany(
+			article.getCompanyId());
+
+		Group group = GroupLocalServiceUtil.getGroup(
+			serviceContext.getScopeGroupId());
+
+		User user = userPersistence.fetchByPrimaryKey(article.getUserId());
+
+		String fullName = article.getUserName();
+		String emailAddress = StringPool.BLANK;
+
+		if (user != null) {
+			fullName = user.getFullName();
+			emailAddress = user.getEmailAddress();
+		}
+
+		String portletName = PortalUtil.getPortletTitle(
+			"1_WAR_knowledgebaseportlet", LocaleUtil.getDefault());
+
+		String fromName = preferences.getValue("email-from-name", null);
+		String fromAddress = preferences.getValue("email-from-address", null);
+
+		if (fromName == null) {
+			fromName = PrefsPropsUtil.getString(
+				company.getCompanyId(), "admin.email.from.name");
+		}
+
+		if (fromAddress == null) {
+			fromAddress = PrefsPropsUtil.getString(
+				company.getCompanyId(), "admin.email.from.address");
+		}
+
+		fromName = StringUtil.replace(
+			fromName,
+			new String[] {
+				"[$ARTICLE_USER_ADDRESS$]",
+				"[$ARTICLE_USER_NAME$]",
+				"[$COMPANY_ID$]",
+				"[$COMPANY_MX$]",
+				"[$COMPANY_NAME$]",
+				"[$COMMUNITY_NAME$]",
+				"[$PORTLET_NAME$]"
+			},
+			new String[] {
+				emailAddress,
+				fullName,
+				String.valueOf(company.getCompanyId()),
+				company.getMx(),
+				company.getName(),
+				group.getName(),
+				portletName
+			});
+
+		fromAddress = StringUtil.replace(
+			fromAddress,
+			new String[] {
+				"[$ARTICLE_USER_ADDRESS$]",
+				"[$ARTICLE_USER_NAME$]",
+				"[$COMPANY_ID$]",
+				"[$COMPANY_MX$]",
+				"[$COMPANY_NAME$]",
+				"[$COMMUNITY_NAME$]",
+				"[$PORTLET_NAME$]"
+			},
+			new String[] {
+				emailAddress,
+				fullName,
+				String.valueOf(company.getCompanyId()),
+				company.getMx(),
+				company.getName(),
+				group.getName(),
+				portletName
+			});
+
+		String articleURL =
+			layoutFullURL + Portal.FRIENDLY_URL_SEPARATOR +
+				"admin/article/" + article.getResourcePrimKey();
+
+		String subject = null;
+		String body = null;
+
+		if (!update) {
+			subject = preferences.getValue("email-article-added-subject", null);
+
+			if (subject == null) {
+				subject = StringUtil.read(
+					getClass().getClassLoader(),
+					"com/liferay/knowledgebase/admin/dependencies/" +
+						"email_article_added_subject.tmpl");
 			}
 
-			PortletPreferences preferences =
-				ServiceContextUtil.getPortletPreferences(serviceContext);
+			body = preferences.getValue("email-article-added-body", null);
 
-			if (preferences == null) {
-				long ownerId = article.getGroupId();
-				int ownerType = PortletKeys.PREFS_OWNER_TYPE_GROUP;
-				long plid = PortletKeys.PREFS_PLID_SHARED;
-				String portletId = "1_WAR_knowledgebaseportlet";
-				String defaultPreferences = null;
+			if (body == null) {
+				body = StringUtil.read(
+					getClass().getClassLoader(),
+					"com/liferay/knowledgebase/admin/dependencies/" +
+						"email_article_added_body.tmpl");
+			}
+		}
+		else {
+			subject = preferences.getValue(
+				"email-article-updated-subject", null);
 
-				preferences = PortletPreferencesLocalServiceUtil.getPreferences(
-					article.getCompanyId(), ownerId, ownerType, plid, portletId,
-					defaultPreferences);
+			if (subject == null) {
+				subject = StringUtil.read(
+					getClass().getClassLoader(),
+					"com/liferay/knowledgebase/admin/dependencies/" +
+						"email_article_updated_subject.tmpl");
 			}
 
-			String emailArticleAddedEnabled = preferences.getValue(
-				"email-article-added-enabled", Boolean.TRUE.toString());
+			body = preferences.getValue("email-article-updated-body", null);
 
-			if (!update && !GetterUtil.getBoolean(emailArticleAddedEnabled)) {
-				return;
+			if (body == null) {
+				body = StringUtil.read(
+					getClass().getClassLoader(),
+					"com/liferay/knowledgebase/admin/dependencies/" +
+						"email_article_updated_body.tmpl");
 			}
+		}
 
-			String emailArticleUpdatedEnabled = preferences.getValue(
-				"email-article-updated-enabled", Boolean.TRUE.toString());
-
-			if (update && !GetterUtil.getBoolean(emailArticleUpdatedEnabled)) {
-				return;
-			}
-
-			Company company = CompanyLocalServiceUtil.getCompany(
-				article.getCompanyId());
-
-			Group group = GroupLocalServiceUtil.getGroup(
-				serviceContext.getScopeGroupId());
-
-			User user = userPersistence.fetchByPrimaryKey(article.getUserId());
-
-			String fullName = article.getUserName();
-			String emailAddress = StringPool.BLANK;
-
-			if (user != null) {
-				fullName = user.getFullName();
-				emailAddress = user.getEmailAddress();
-			}
-
-			String portletName = PortalUtil.getPortletTitle(
-				"1_WAR_knowledgebaseportlet", LocaleUtil.getDefault());
-
-			String fromName = preferences.getValue("email-from-name", null);
-			String fromAddress = preferences.getValue(
-				"email-from-address", null);
-
-			if (fromName == null) {
-				fromName = PrefsPropsUtil.getString(
-					company.getCompanyId(), "admin.email.from.name");
-			}
-
-			if (fromAddress == null) {
-				fromAddress = PrefsPropsUtil.getString(
-					company.getCompanyId(), "admin.email.from.address");
-			}
-
-			fromName = StringUtil.replace(
-				fromName,
-				new String[] {
-					"[$ARTICLE_USER_ADDRESS$]",
-					"[$ARTICLE_USER_NAME$]",
-					"[$COMPANY_ID$]",
-					"[$COMPANY_MX$]",
-					"[$COMPANY_NAME$]",
-					"[$COMMUNITY_NAME$]",
-					"[$PORTLET_NAME$]"
-				},
-				new String[] {
-					emailAddress,
-					fullName,
-					String.valueOf(company.getCompanyId()),
-					company.getMx(),
-					company.getName(),
-					group.getName(),
-					portletName
-				});
-
-			fromAddress = StringUtil.replace(
+		subject = StringUtil.replace(
+			subject,
+			new String[] {
+				"[$ARTICLE_TITLE$]",
+				"[$ARTICLE_URL$]",
+				"[$ARTICLE_USER_ADDRESS$]",
+				"[$ARTICLE_USER_NAME$]",
+				"[$COMPANY_ID$]",
+				"[$COMPANY_MX$]",
+				"[$COMPANY_NAME$]",
+				"[$COMMUNITY_NAME$]",
+				"[$FROM_ADDRESS$]",
+				"[$FROM_NAME$]",
+				"[$PORTAL_URL$]",
+				"[$PORTLET_NAME$]"
+			},
+			new String[] {
+				article.getTitle(),
+				articleURL,
+				emailAddress,
+				fullName,
+				String.valueOf(company.getCompanyId()),
+				company.getMx(),
+				company.getName(),
+				group.getName(),
 				fromAddress,
-				new String[] {
-					"[$ARTICLE_USER_ADDRESS$]",
-					"[$ARTICLE_USER_NAME$]",
-					"[$COMPANY_ID$]",
-					"[$COMPANY_MX$]",
-					"[$COMPANY_NAME$]",
-					"[$COMMUNITY_NAME$]",
-					"[$PORTLET_NAME$]"
-				},
-				new String[] {
-					emailAddress,
-					fullName,
-					String.valueOf(company.getCompanyId()),
-					company.getMx(),
-					company.getName(),
-					group.getName(),
-					portletName
-				});
+				fromName,
+				company.getVirtualHost(),
+				portletName
+			});
 
-			String articleURL =
-				layoutFullURL + Portal.FRIENDLY_URL_SEPARATOR +
-					"admin/article/" + article.getResourcePrimKey();
+		body = StringUtil.replace(
+			body,
+			new String[] {
+				"[$ARTICLE_TITLE$]",
+				"[$ARTICLE_URL$]",
+				"[$ARTICLE_USER_ADDRESS$]",
+				"[$ARTICLE_USER_NAME$]",
+				"[$COMPANY_ID$]",
+				"[$COMPANY_MX$]",
+				"[$COMPANY_NAME$]",
+				"[$COMMUNITY_NAME$]",
+				"[$FROM_ADDRESS$]",
+				"[$FROM_NAME$]",
+				"[$PORTAL_URL$]",
+				"[$PORTLET_NAME$]"
+			},
+			new String[] {
+				article.getTitle(),
+				articleURL,
+				emailAddress,
+				fullName,
+				String.valueOf(company.getCompanyId()),
+				company.getMx(),
+				company.getName(),
+				group.getName(),
+				fromAddress,
+				fromName,
+				company.getVirtualHost(),
+				portletName
+			});
 
-			String subject = null;
-			String body = null;
+		String mailId =
+			StringPool.LESS_THAN + "knowledge_base.article." +
+				article.getResourcePrimKey() + StringPool.AT +
+					company.getMx() + StringPool.GREATER_THAN;
 
-			if (!update) {
-				subject = preferences.getValue(
-					"email-article-added-subject", null);
+		Message message = new Message();
 
-				if (subject == null) {
-					subject = StringUtil.read(
-						getClass().getClassLoader(),
-						"com/liferay/knowledgebase/admin/dependencies/" +
-							"email_article_added_subject.tmpl");
-				}
+		message.put("companyId", article.getCompanyId());
+		message.put("groupId", article.getGroupId());
+		message.put("userId", article.getUserId());
+		message.put("resourcePrimKey", article.getResourcePrimKey());
+		message.put("fromName", fromName);
+		message.put("fromAddress", fromAddress);
+		message.put("subject", subject);
+		message.put("body", body);
+		message.put("replyToAddress", fromAddress);
+		message.put("mailId", mailId);
+		message.put("htmlFormat", Boolean.TRUE);
 
-				body = preferences.getValue("email-article-added-body", null);
-
-				if (body == null) {
-					body = StringUtil.read(
-						getClass().getClassLoader(),
-						"com/liferay/knowledgebase/admin/dependencies/" +
-							"email_article_added_body.tmpl");
-				}
-			}
-			else {
-				subject = preferences.getValue(
-					"email-article-updated-subject", null);
-
-				if (subject == null) {
-					subject = StringUtil.read(
-						getClass().getClassLoader(),
-						"com/liferay/knowledgebase/admin/dependencies/" +
-							"email_article_updated_subject.tmpl");
-				}
-
-				body = preferences.getValue("email-article-updated-body", null);
-
-				if (body == null) {
-					body = StringUtil.read(
-						getClass().getClassLoader(),
-						"com/liferay/knowledgebase/admin/dependencies/" +
-							"email_article_updated_body.tmpl");
-				}
-			}
-
-			subject = StringUtil.replace(
-				subject,
-				new String[] {
-					"[$ARTICLE_TITLE$]",
-					"[$ARTICLE_USER_ADDRESS$]",
-					"[$ARTICLE_USER_NAME$]",
-					"[$ARTICLE_URL$]",
-					"[$COMPANY_ID$]",
-					"[$COMPANY_MX$]",
-					"[$COMPANY_NAME$]",
-					"[$COMMUNITY_NAME$]",
-					"[$FROM_ADDRESS$]",
-					"[$FROM_NAME$]",
-					"[$PORTAL_URL$]",
-					"[$PORTLET_NAME$]"
-				},
-				new String[] {
-					article.getTitle(),
-					emailAddress,
-					fullName,
-					articleURL,
-					String.valueOf(company.getCompanyId()),
-					company.getMx(),
-					company.getName(),
-					group.getName(),
-					fromAddress,
-					fromName,
-					company.getVirtualHost(),
-					portletName
-				});
-
-			body = StringUtil.replace(
-				body,
-				new String[] {
-					"[$ARTICLE_TITLE$]",
-					"[$ARTICLE_USER_ADDRESS$]",
-					"[$ARTICLE_USER_NAME$]",
-					"[$ARTICLE_URL$]",
-					"[$COMPANY_ID$]",
-					"[$COMPANY_MX$]",
-					"[$COMPANY_NAME$]",
-					"[$COMMUNITY_NAME$]",
-					"[$FROM_ADDRESS$]",
-					"[$FROM_NAME$]",
-					"[$PORTAL_URL$]",
-					"[$PORTLET_NAME$]"
-				},
-				new String[] {
-					article.getTitle(),
-					emailAddress,
-					fullName,
-					articleURL,
-					String.valueOf(company.getCompanyId()),
-					company.getMx(),
-					company.getName(),
-					group.getName(),
-					fromAddress,
-					fromName,
-					company.getVirtualHost(),
-					portletName
-				});
-
-			String mailId =
-				StringPool.LESS_THAN + "knowledge_base.article." +
-					article.getResourcePrimKey() + StringPool.AT +
-						company.getMx() + StringPool.GREATER_THAN;
-
-			Message message = new Message();
-
-			message.put("companyId", article.getCompanyId());
-			message.put("groupId", article.getGroupId());
-			message.put("userId", article.getUserId());
-			message.put("resourcePrimKey", article.getResourcePrimKey());
-			message.put("fromName", fromName);
-			message.put("fromAddress", fromAddress);
-			message.put("subject", subject);
-			message.put("body", body);
-			message.put("replyToAddress", fromAddress);
-			message.put("mailId", mailId);
-			message.put("htmlFormat", Boolean.TRUE);
-
-			MessageBusUtil.sendMessage("liferay/knowledge_base/admin", message);
-		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (SystemException se) {
-			throw se;
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
+		MessageBusUtil.sendMessage("liferay/knowledge_base_admin", message);
 	}
 
 	protected void validate(String title, String content)
