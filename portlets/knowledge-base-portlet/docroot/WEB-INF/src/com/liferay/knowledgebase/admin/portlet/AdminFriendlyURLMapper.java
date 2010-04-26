@@ -28,6 +28,7 @@ import javax.portlet.WindowState;
 /**
  * <a href="AdminFriendlyURLMapper.java.html"><b><i>View Source</i></b></a>
  *
+ * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class AdminFriendlyURLMapper extends BaseFriendlyURLMapper {

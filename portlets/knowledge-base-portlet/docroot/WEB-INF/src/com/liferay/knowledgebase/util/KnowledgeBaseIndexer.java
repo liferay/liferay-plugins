@@ -47,6 +47,7 @@ import javax.portlet.PortletURL;
 /**
  * <a href="KnowledgeBaseIndexer.java.html"><b><i>View Source</i></b></a>
  *
+ * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class KnowledgeBaseIndexer extends BaseIndexer {

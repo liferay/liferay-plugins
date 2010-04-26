@@ -19,6 +19,7 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 /**
  * <a href="DisplayPortlet.java.html"><b><i>View Source</i></b></a>
  *
+ * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class DisplayPortlet extends MVCPortlet {

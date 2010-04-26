@@ -19,6 +19,7 @@ import com.liferay.knowledgebase.model.Template;
 /**
  * <a href="TemplateImpl.java.html"><b><i>View Source</i></b></a>
  *
+ * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class TemplateImpl extends TemplateModelImpl implements Template {

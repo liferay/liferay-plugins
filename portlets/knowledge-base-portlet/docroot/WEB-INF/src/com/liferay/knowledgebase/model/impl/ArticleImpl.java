@@ -19,6 +19,7 @@ import com.liferay.knowledgebase.model.Article;
 /**
  * <a href="ArticleImpl.java.html"><b><i>View Source</i></b></a>
  *
+ * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class ArticleImpl extends ArticleModelImpl implements Article {

@@ -32,6 +32,7 @@ import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 /**
  * <a href="AdminActivityInterpreter.java.html"><b><i>View Source</i></b></a>
  *
+ * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {

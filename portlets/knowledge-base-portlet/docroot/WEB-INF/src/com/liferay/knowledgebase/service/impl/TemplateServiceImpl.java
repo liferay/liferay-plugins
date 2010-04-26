@@ -19,6 +19,7 @@ import com.liferay.knowledgebase.service.base.TemplateServiceBaseImpl;
 /**
  * <a href="TemplateServiceImpl.java.html"><b><i>View Source</i></b></a>
  *
+ * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class TemplateServiceImpl extends TemplateServiceBaseImpl {

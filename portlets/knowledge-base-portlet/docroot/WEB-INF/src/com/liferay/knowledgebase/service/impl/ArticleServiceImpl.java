@@ -31,6 +31,7 @@ import java.util.List;
 /**
  * <a href="ArticleServiceImpl.java.html"><b><i>View Source</i></b></a>
  *
+ * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class ArticleServiceImpl extends ArticleServiceBaseImpl {

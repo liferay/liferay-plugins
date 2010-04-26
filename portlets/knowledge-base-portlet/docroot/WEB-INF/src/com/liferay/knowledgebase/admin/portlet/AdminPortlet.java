@@ -19,6 +19,7 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 /**
  * <a href="AdminPortlet.java.html"><b><i>View Source</i></b></a>
  *
+ * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class AdminPortlet extends MVCPortlet {

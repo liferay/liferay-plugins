@@ -19,6 +19,7 @@ import com.liferay.portal.search.HitsOpenSearchImpl;
 /**
  * <a href="KnowledgeBaseOpenSearchImpl.java.html"><b><i>View Source</i></b></a>
  *
+ * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class KnowledgeBaseOpenSearchImpl extends HitsOpenSearchImpl {
