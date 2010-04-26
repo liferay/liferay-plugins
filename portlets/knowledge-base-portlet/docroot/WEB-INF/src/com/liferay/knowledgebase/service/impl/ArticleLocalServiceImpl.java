@@ -110,6 +110,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				serviceContext.getGuestPermissions());
 		}
 
+		// Articles
+
+		updateDisplayOrder(article, parentResourcePrimKey, priority);
+
 		// Message Boards
 
 		MBMessageLocalServiceUtil.addDiscussionMessage(
@@ -128,10 +132,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		Indexer indexer = IndexerRegistryUtil.getIndexer(Article.class);
 
 		indexer.reindex(article);
-
-		// Articles
-
-		updateDisplayOrder(article, parentResourcePrimKey, priority);
 
 		return article;
 	}
@@ -183,32 +183,32 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public void deleteArticle(Article article)
 		throws PortalException, SystemException {
 
-		// Indexer
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(Article.class);
-
-		indexer.delete(article);
-
-		// Social
-
-		SocialActivityLocalServiceUtil.deleteActivities(
-			Article.class.getName(), article.getResourcePrimKey());
-
-		// Message boards
-
-		MBMessageLocalServiceUtil.deleteDiscussionMessages(
-			Article.class.getName(), article.getResourcePrimKey());
-
 		// Resources
 
 		resourceLocalService.deleteResource(
 			article.getCompanyId(), Article.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL, article.getResourcePrimKey());
 
-		// Article
+		// Articles
 
 		articlePersistence.removeByResourcePrimKey(
 			article.getResourcePrimKey());
+
+		// Message boards
+
+		MBMessageLocalServiceUtil.deleteDiscussionMessages(
+			Article.class.getName(), article.getResourcePrimKey());
+
+		// Social
+
+		SocialActivityLocalServiceUtil.deleteActivities(
+			Article.class.getName(), article.getResourcePrimKey());
+
+		// Indexer
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(Article.class);
+
+		indexer.delete(article);
 	}
 
 	public void deleteGroupArticles(long groupId)
@@ -368,6 +368,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				serviceContext.getGuestPermissions());
 		}
 
+		// Articles
+
+		updateDisplayOrder(article, parentResourcePrimKey, priority);
+
 		// Social
 
 		SocialActivityLocalServiceUtil.addActivity(
@@ -380,10 +384,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		Indexer indexer = IndexerRegistryUtil.getIndexer(Article.class);
 
 		indexer.reindex(article);
-
-		// Articles
-
-		updateDisplayOrder(article, parentResourcePrimKey, priority);
 
 		return article;
 	}

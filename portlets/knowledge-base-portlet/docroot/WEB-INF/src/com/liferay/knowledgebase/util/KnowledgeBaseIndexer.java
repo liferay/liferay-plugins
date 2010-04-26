@@ -81,10 +81,12 @@ public class KnowledgeBaseIndexer extends BaseIndexer {
 	public Hits search(SearchContext searchContext) throws SearchException {
 		Hits hits = super.search(searchContext);
 
-		// See KnowledgeBaseIndexer#postProcessSearchQuery.
+		String[] queryTerms = hits.getQueryTerms();
 
-		hits.setQueryTerms(ArrayUtil.append(
-			hits.getQueryTerms(), _splitKeywords(searchContext.getKeywords())));
+		queryTerms = ArrayUtil.append(
+			queryTerms, splitKeywords(searchContext.getKeywords()));
+
+		hits.setQueryTerms(queryTerms);
 
 		return hits;
 	}
@@ -156,24 +158,8 @@ public class KnowledgeBaseIndexer extends BaseIndexer {
 
 	protected void doReindex(String[] ids) throws Exception {
 		long companyId = GetterUtil.getLong(ids[0]);
-		int count = ArticleLocalServiceUtil.getCompanyArticlesCount(companyId);
-		int pages = count / Indexer.DEFAULT_INTERVAL;
 
-		for (int i = 0; i <= pages; i++) {
-			int start = (i * Indexer.DEFAULT_INTERVAL);
-			int end = start + Indexer.DEFAULT_INTERVAL;
-
-			List<Article> articles = ArticleLocalServiceUtil.getCompanyArticles(
-				companyId, start, end, new ArticleCreateDateComparator());
-
-			Collection<Document> documents = new ArrayList<Document>();
-
-			for (Article article : articles) {
-				documents.add(getDocument(article));
-			}
-
-			SearchEngineUtil.updateDocuments(companyId, documents);
-		}
+		reindexArticles(companyId);
 	}
 
 	protected String getPortletId(SearchContext searchContext) {
@@ -184,29 +170,61 @@ public class KnowledgeBaseIndexer extends BaseIndexer {
 			BooleanQuery searchQuery, SearchContext searchContext)
 		throws Exception {
 
-		// Add additional query terms to return partial matches.
-
-		for (String value : _splitKeywords(searchContext.getKeywords())) {
+		for (String value : splitKeywords(searchContext.getKeywords())) {
 			searchQuery.addTerm(Field.TITLE, value, true);
 			searchQuery.addTerm(Field.CONTENT, value, true);
 		}
 	}
 
-	private String[] _splitKeywords(String keywords) {
-		String s = keywords.trim();
+	protected void reindexArticles(long companyId) throws Exception {
+		int count = ArticleLocalServiceUtil.getCompanyArticlesCount(companyId);
 
-		if (Validator.isNull(s)) {
+		int pages = count / Indexer.DEFAULT_INTERVAL;
+
+		for (int i = 0; i <= pages; i++) {
+			int start = (i * Indexer.DEFAULT_INTERVAL);
+			int end = start + Indexer.DEFAULT_INTERVAL;
+
+			reindexArticles(companyId, start, end);
+		}
+	}
+
+	protected void reindexArticles(long companyId, int start, int end)
+		throws Exception {
+
+		List<Article> articles = ArticleLocalServiceUtil.getCompanyArticles(
+			companyId, start, end, new ArticleCreateDateComparator());
+
+		if (articles.isEmpty()) {
+			return;
+		}
+
+		Collection<Document> documents = new ArrayList<Document>();
+
+		for (Article article : articles) {
+			Document document = getDocument(article);
+
+			documents.add(document);
+		}
+
+		SearchEngineUtil.updateDocuments(companyId, documents);
+	}
+
+	protected String[] splitKeywords(String keywords) {
+		keywords = keywords.trim();
+
+		if (Validator.isNull(keywords)) {
 			return new String[0];
 		}
 
-		List<String> list = new ArrayList<String>();
+		List<String> keywordsList = new ArrayList<String>();
 
 		StringBuilder sb = new StringBuilder();
 
-		for (char c : s.toCharArray()) {
+		for (char c : keywords.toCharArray()) {
 			if (Character.isWhitespace(c)) {
 				if (sb.length() > 0) {
-					list.add(sb.toString());
+					keywordsList.add(sb.toString());
 
 					sb = new StringBuilder();
 				}
@@ -220,10 +238,10 @@ public class KnowledgeBaseIndexer extends BaseIndexer {
 		}
 
 		if (sb.length() > 0) {
-			list.add(sb.toString());
+			keywordsList.add(sb.toString());
 		}
 
-		return list.toArray(new String[list.size()]);
+		return keywordsList.toArray(new String[keywordsList.size()]);
 	}
 
 }
