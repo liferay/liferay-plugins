@@ -29,6 +29,8 @@ import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
@@ -39,7 +41,6 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MathUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -58,6 +59,9 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
+import com.liferay.util.portlet.PortletProps;
+
+import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -502,7 +506,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 	protected void notifySubscribers(
 			Article article, boolean update, ServiceContext serviceContext)
-		throws Exception {
+		throws PortalException, SystemException {
 
 		String layoutFullURL = serviceContext.getLayoutFullURL();
 
@@ -526,14 +530,16 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 
 		String emailArticleAddedEnabled = preferences.getValue(
-			"email-article-added-enabled", Boolean.TRUE.toString());
+			"email-article-added-enabled",
+			PortletProps.get("admin.email.article.added.enabled"));
 
 		if (!update && !GetterUtil.getBoolean(emailArticleAddedEnabled)) {
 			return;
 		}
 
 		String emailArticleUpdatedEnabled = preferences.getValue(
-			"email-article-updated-enabled", Boolean.TRUE.toString());
+			"email-article-updated-enabled",
+			PortletProps.get("admin.email.article.updated.enabled"));
 
 		if (update && !GetterUtil.getBoolean(emailArticleUpdatedEnabled)) {
 			return;
@@ -558,18 +564,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		String portletName = PortalUtil.getPortletTitle(
 			"1_WAR_knowledgebaseportlet", LocaleUtil.getDefault());
 
-		String fromName = preferences.getValue("email-from-name", null);
-		String fromAddress = preferences.getValue("email-from-address", null);
-
-		if (fromName == null) {
-			fromName = PrefsPropsUtil.getString(
-				company.getCompanyId(), "admin.email.from.name");
-		}
-
-		if (fromAddress == null) {
-			fromAddress = PrefsPropsUtil.getString(
-				company.getCompanyId(), "admin.email.from.address");
-		}
+		String fromName = preferences.getValue(
+			"email-from-name", PortletProps.get("admin.email.from.name"));
+		String fromAddress = preferences.getValue(
+			"email-from-address", PortletProps.get("admin.email.from.address"));
 
 		fromName = StringUtil.replace(
 			fromName,
@@ -624,19 +622,30 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			subject = preferences.getValue("email-article-added-subject", null);
 
 			if (subject == null) {
-				subject = StringUtil.read(
-					getClass().getClassLoader(),
-					"com/liferay/knowledgebase/admin/dependencies/" +
-						"email_article_added_subject.tmpl");
+				String name = PortletProps.get(
+					"admin.email.article.added.subject");
+
+				try {
+					subject = StringUtil.read(
+						getClass().getClassLoader(), name);
+				}
+				catch (IOException ioe) {
+					_log.error(ioe, ioe);
+				}
 			}
 
 			body = preferences.getValue("email-article-added-body", null);
 
 			if (body == null) {
-				body = StringUtil.read(
-					getClass().getClassLoader(),
-					"com/liferay/knowledgebase/admin/dependencies/" +
-						"email_article_added_body.tmpl");
+				String name = PortletProps.get(
+					"admin.email.article.added.body");
+
+				try {
+					body = StringUtil.read(getClass().getClassLoader(), name);
+				}
+				catch (IOException ioe) {
+					_log.error(ioe, ioe);
+				}
 			}
 		}
 		else {
@@ -644,19 +653,30 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"email-article-updated-subject", null);
 
 			if (subject == null) {
-				subject = StringUtil.read(
-					getClass().getClassLoader(),
-					"com/liferay/knowledgebase/admin/dependencies/" +
-						"email_article_updated_subject.tmpl");
+				String name = PortletProps.get(
+					"admin.email.article.updated.subject");
+
+				try {
+					subject = StringUtil.read(
+						getClass().getClassLoader(), name);
+				}
+				catch (IOException ioe) {
+					_log.error(ioe, ioe);
+				}
 			}
 
 			body = preferences.getValue("email-article-updated-body", null);
 
 			if (body == null) {
-				body = StringUtil.read(
-					getClass().getClassLoader(),
-					"com/liferay/knowledgebase/admin/dependencies/" +
-						"email_article_updated_body.tmpl");
+				String name = PortletProps.get(
+					"admin.email.article.updated.body");
+
+				try {
+					body = StringUtil.read(getClass().getClassLoader(), name);
+				}
+				catch (IOException ioe) {
+					_log.error(ioe, ioe);
+				}
 			}
 		}
 
@@ -755,5 +775,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			throw new ArticleContentException();
 		}
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		ArticleLocalServiceImpl.class);
 
 }
