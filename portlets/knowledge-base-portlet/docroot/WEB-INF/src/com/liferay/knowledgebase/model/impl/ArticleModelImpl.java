@@ -80,8 +80,8 @@ public class ArticleModelImpl extends BaseModelImpl<Article> {
 		};
 	public static final String TABLE_SQL_CREATE = "create table KB_Article (uuid_ VARCHAR(75) null,articleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentResourcePrimKey LONG,version DOUBLE,title VARCHAR(75) null,content VARCHAR(75) null,description VARCHAR(75) null,priority INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table KB_Article";
-	public static final String ORDER_BY_JPQL = " ORDER BY article.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY KB_Article.createDate DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY article.modifiedDate DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY KB_Article.modifiedDate DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -381,7 +381,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article> {
 	public int compareTo(Article article) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(), article.getCreateDate());
+		value = DateUtil.compareTo(getModifiedDate(), article.getModifiedDate());
 
 		value = value * -1;
 

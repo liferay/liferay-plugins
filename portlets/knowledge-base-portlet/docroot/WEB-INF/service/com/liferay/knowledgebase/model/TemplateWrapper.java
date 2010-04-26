@@ -141,7 +141,7 @@ public class TemplateWrapper implements Template {
 		_template.setDescription(description);
 	}
 
-	public com.liferay.knowledgebase.model.Template toEscapedModel() {
+	public Template toEscapedModel() {
 		return _template.toEscapedModel();
 	}
 
@@ -186,7 +186,7 @@ public class TemplateWrapper implements Template {
 		return _template.clone();
 	}
 
-	public int compareTo(com.liferay.knowledgebase.model.Template template) {
+	public int compareTo(Template template) {
 		return _template.compareTo(template);
 	}
 

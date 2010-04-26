@@ -1,4 +1,3 @@
-
 create table KB_Article (
 	uuid_ VARCHAR(75) null,
 	articleId LONG not null primary key,

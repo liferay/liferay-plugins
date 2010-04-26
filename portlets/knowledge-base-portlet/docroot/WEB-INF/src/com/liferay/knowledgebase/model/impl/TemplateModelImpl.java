@@ -76,8 +76,8 @@ public class TemplateModelImpl extends BaseModelImpl<Template> {
 		};
 	public static final String TABLE_SQL_CREATE = "create table KB_Template (uuid_ VARCHAR(75) null,templateId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,content VARCHAR(75) null,description VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table KB_Template";
-	public static final String ORDER_BY_JPQL = " ORDER BY template.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY KB_Template.createDate DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY template.modifiedDate DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY KB_Template.modifiedDate DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -317,7 +317,7 @@ public class TemplateModelImpl extends BaseModelImpl<Template> {
 	public int compareTo(Template template) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(), template.getCreateDate());
+		value = DateUtil.compareTo(getModifiedDate(), template.getModifiedDate());
 
 		value = value * -1;
 

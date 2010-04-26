@@ -66,7 +66,7 @@ public class ArticlePermission {
 			String actionId)
 		throws PortalException, SystemException {
 
-		Article article = ArticleLocalServiceUtil.geLatestArticle(
+		Article article = ArticleLocalServiceUtil.getLatestArticle(
 			resourcePrimKey);
 
 		return contains(permissionChecker, article, actionId);
@@ -88,7 +88,7 @@ public class ArticlePermission {
 		}
 
 		if (article.getParentResourcePrimKey() > 0) {
-			article = ArticleLocalServiceUtil.geLatestArticle(
+			article = ArticleLocalServiceUtil.getLatestArticle(
 				article.getParentResourcePrimKey());
 
 			return _hasPermission(permissionChecker, article);
@@ -113,7 +113,7 @@ public class ArticlePermission {
 		}
 
 		if (article.getParentResourcePrimKey() > 0) {
-			article = ArticleLocalServiceUtil.geLatestArticle(
+			article = ArticleLocalServiceUtil.getLatestArticle(
 				article.getParentResourcePrimKey());
 
 			return _hasPermission(permissionChecker, article, actionId);

@@ -175,7 +175,7 @@ public class TemplateClp extends BaseModelImpl<Template> implements Template {
 	public int compareTo(Template template) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(), template.getCreateDate());
+		value = DateUtil.compareTo(getModifiedDate(), template.getModifiedDate());
 
 		value = value * -1;
 

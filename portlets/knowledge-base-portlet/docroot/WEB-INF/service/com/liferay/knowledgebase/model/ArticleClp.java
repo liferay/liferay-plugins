@@ -211,7 +211,7 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 	public int compareTo(Article article) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(), article.getCreateDate());
+		value = DateUtil.compareTo(getModifiedDate(), article.getModifiedDate());
 
 		value = value * -1;
 
