@@ -19,23 +19,24 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
 /**
- * <a href="ArticleCreateDateComparator.java.html"><b><i>View Source</i></b></a>
+ * <a href="ArticleModifiedDateComparator.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
  */
-public class ArticleCreateDateComparator extends OrderByComparator {
+public class ArticleModifiedDateComparator extends OrderByComparator {
 
-	public static String ORDER_BY_ASC = "createDate ASC";
+	public static String ORDER_BY_ASC = "modifiedDate ASC";
 
-	public static String ORDER_BY_DESC = "createDate DESC";
+	public static String ORDER_BY_DESC = "modifiedDate DESC";
 
-	public static String[] ORDER_BY_FIELDS = {"createDate"};
+	public static String[] ORDER_BY_FIELDS = {"modifiedDate"};
 
-	public ArticleCreateDateComparator() {
+	public ArticleModifiedDateComparator() {
 		this(false);
 	}
 
-	public ArticleCreateDateComparator(boolean ascending) {
+	public ArticleModifiedDateComparator(boolean ascending) {
 		_ascending = ascending;
 	}
 
@@ -44,7 +45,7 @@ public class ArticleCreateDateComparator extends OrderByComparator {
 		Article article2 = (Article)obj2;
 
 		int value = DateUtil.compareTo(
-			article1.getCreateDate(), article2.getCreateDate());
+			article1.getModifiedDate(), article2.getModifiedDate());
 
 		if (_ascending) {
 			return value;

@@ -16,7 +16,7 @@ package com.liferay.knowledgebase.admin.util;
 
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
-import com.liferay.knowledgebase.util.comparator.ArticleCreateDateComparator;
+import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
@@ -195,7 +195,7 @@ public class AdminIndexer extends BaseIndexer {
 		throws Exception {
 
 		List<Article> articles = ArticleLocalServiceUtil.getCompanyArticles(
-			companyId, start, end, new ArticleCreateDateComparator());
+			companyId, start, end, new ArticleModifiedDateComparator());
 
 		if (articles.isEmpty()) {
 			return;
