@@ -495,25 +495,24 @@ public class StartupAction extends SimpleAction {
 
 		portletId = addPortletId(layout, PortletKeys.IFRAME, "column-1");
 
-		Map<String, String> iframePreferences = new HashMap<String, String>();
+		Map<String, String> preferences = new HashMap<String, String>();
 
-		iframePreferences.put (
-			"portlet-setup-show-borders", String.valueOf(Boolean.FALSE));
+		preferences.put("portlet-setup-show-borders", Boolean.FALSE.toString());
 
 		if (screenName.equals("bruno") || screenName.equals("john")) {
-			iframePreferences.put("src","http://iphone.facebook.com");
-			iframePreferences.put("height-normal","460");
+			preferences.put("src","http://iphone.facebook.com");
+			preferences.put("height-normal","460");
 		}
 		else if (screenName.equals("michelle")) {
-			iframePreferences.put("src","http://m.digg.com");
-			iframePreferences.put("height-normal","400");
+			preferences.put("src","http://m.digg.com");
+			preferences.put("height-normal","400");
 		}
 		else if (screenName.equals("richard")) {
-			iframePreferences.put("src","http://m.linkedin.com");
-			iframePreferences.put("height-normal","350");
+			preferences.put("src","http://m.linkedin.com");
+			preferences.put("height-normal","350");
 		}
 
-		updatePortletSetup(layout, portletId, iframePreferences);
+		updatePortletSetup(layout, portletId, preferences);
 
 		// Workspace layout
 
