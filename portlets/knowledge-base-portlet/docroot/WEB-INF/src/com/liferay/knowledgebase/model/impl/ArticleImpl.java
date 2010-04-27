@@ -14,11 +14,7 @@
 
 package com.liferay.knowledgebase.model.impl;
 
-import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.knowledgebase.model.Article;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.model.CompanyConstants;
 
 /**
  * <a href="ArticleImpl.java.html"><b><i>View Source</i></b></a>
@@ -29,17 +25,6 @@ import com.liferay.portal.model.CompanyConstants;
 public class ArticleImpl extends ArticleModelImpl implements Article {
 
 	public ArticleImpl() {
-	}
-
-	public String getAttachmentsDirName() {
-		return "knowledgebase/articles/" + getResourcePrimKey();
-	}
-
-	public String[] getAttachmentsFileNames()
-		throws PortalException, SystemException {
-
-		return DLServiceUtil.getFileNames(
-			getCompanyId(), CompanyConstants.SYSTEM, getAttachmentsDirName());
 	}
 
 }

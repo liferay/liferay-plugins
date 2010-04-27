@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.service.impl;
 
-import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.knowledgebase.ArticleContentException;
 import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
@@ -37,7 +36,6 @@ import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -48,9 +46,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.StatusConstants;
 import com.liferay.portal.model.Company;
-import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
@@ -462,49 +458,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			article.getCompanyId(), article.getGroupId(),
 			Article.class.getName(), article.getResourcePrimKey(),
 			communityPermissions, guestPermissions);
-	}
-
-	public String updateAttachments(long companyId, long resourcePrimKey)
-		throws PortalException, SystemException {
-
-		long folderId = counterLocalService.increment(
-			Article.class.getName() + "#folder");
-		long attachmentsId = (folderId / 50) % 2;
-		String dirName =
-			"knowledgebase/cache/attachments/" + attachmentsId +
-				StringPool.SLASH + folderId;
-
-		if (((folderId / 50) > 1) && ((folderId % 50) == 0)) {
-			DLServiceUtil.deleteDirectory(
-				companyId, CompanyConstants.SYSTEM_STRING,
-				CompanyConstants.SYSTEM,
-				"knowledgebase/cache/attachments/" + attachmentsId);
-		}
-
-		DLServiceUtil.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
-
-		if (resourcePrimKey > 0) {
-			Article article = articlePersistence.findByResourcePrimKey_First(
-				resourcePrimKey, new ArticleVersionComparator());
-			Date now = new Date();
-
-			ServiceContext serviceContext = new ServiceContext();
-
-			for (String fileName : article.getAttachmentsFileNames()) {
-				String shortFileName = FileUtil.getShortFileName(fileName);
-				byte[] bytes = DLServiceUtil.getFile(
-					article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
-
-				DLServiceUtil.addFile(
-					companyId, CompanyConstants.SYSTEM_STRING,
-					GroupConstants.DEFAULT_PARENT_GROUP_ID,
-					CompanyConstants.SYSTEM,
-					dirName + StringPool.SLASH + shortFileName, 0,
-					StringPool.BLANK, now, serviceContext, bytes);
-			}
-		}
-
-		return dirName;
 	}
 
 	public Article updateDisplayOrder(
