@@ -185,7 +185,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	public WorkflowTask completeWorkflowTask(
 			long companyId, long userId, long workflowTaskId,
 			String transitionName, String comment,
-			Map<String, Serializable> context)
+			Map<String, Serializable> workflowContext)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -212,8 +212,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			taskInstance.addComment(comment);
 
-			if (context != null) {
-				taskInstance.addVariables(new HashMap<String, Object>(context));
+			if (workflowContext != null) {
+				taskInstance.addVariables(
+					new HashMap<String, Object>(workflowContext));
 			}
 
 			if (transitionName == null) {

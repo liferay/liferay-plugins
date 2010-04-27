@@ -20,7 +20,6 @@ import java.io.Serializable;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.jbpm.context.exe.ContextInstance;
@@ -56,11 +55,8 @@ public class WorkflowInstanceImpl extends DefaultWorkflowInstance {
 		Map<String, Serializable> workflowContext =
 			new HashMap<String, Serializable>();
 
-		Iterator<Map.Entry<String, Object>> itr =
-			variables.entrySet().iterator();
-
-		while (itr.hasNext()) {
-			Map.Entry<String, Object> entry = itr.next();
+		for (Map.Entry<String, Object> entry :
+				variables.entrySet()) {
 
 			workflowContext.put(entry.getKey(), (Serializable)entry.getValue());
 		}

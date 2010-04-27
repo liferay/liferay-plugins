@@ -137,7 +137,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			context, serviceContext);
 	}
 
-	public WorkflowInstance updateContext(
+	public WorkflowInstance updateWorkflowContext(
 			long companyId, long workflowInstanceId,
 			Map<String, Serializable> context)
 		throws WorkflowException {

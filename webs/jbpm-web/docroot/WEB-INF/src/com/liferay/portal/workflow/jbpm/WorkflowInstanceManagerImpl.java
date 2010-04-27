@@ -211,7 +211,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 	public WorkflowInstance signalWorkflowInstance(
 			long companyId, long userId, long workflowInstanceId,
-			String transitionName, Map<String, Serializable> context)
+			String transitionName, Map<String, Serializable> workflowContext)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -219,14 +219,14 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		try {
 			Token token = jbpmContext.loadToken(workflowInstanceId);
 
-			if (context != null) {
+			if (workflowContext != null) {
 				ProcessInstance processInstance = token.getProcessInstance();
 
 				ContextInstance contextInstance =
 					processInstance.getContextInstance();
 
 				for (Map.Entry<String, Serializable> entry :
-						context.entrySet()) {
+						workflowContext.entrySet()) {
 
 					contextInstance.setVariableLocally(
 						entry.getKey(), entry.getValue(), token);
@@ -257,7 +257,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	public WorkflowInstance startWorkflowInstance(
 			long companyId, long userId, String workflowDefinitionName,
 			Integer workflowDefinitionVersion, String transitionName,
-			Map<String, Serializable> context)
+			Map<String, Serializable> workflowContext)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -269,14 +269,14 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			ProcessInstance processInstance = new ProcessInstance(
 				processDefinition);
 
-			if (context != null) {
+			if (workflowContext != null) {
 				ContextInstance contextInstance =
 					processInstance.getContextInstance();
 
-				Map<String, Object> contextObjects =
-					new HashMap<String, Object>(context);
+				Map<String, Object> variables =
+					new HashMap<String, Object>(workflowContext);
 
-				contextInstance.addVariables(contextObjects);
+				contextInstance.addVariables(variables);
 			}
 
 			if (Validator.isNotNull(transitionName)) {
@@ -300,9 +300,9 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		}
 	}
 
-	public WorkflowInstance updateContext(
+	public WorkflowInstance updateWorkflowContext(
 			long companyId, long workflowInstanceId,
-			Map<String, Serializable> context)
+			Map<String, Serializable> workflowContext)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -310,14 +310,14 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		try {
 			Token token = jbpmContext.loadToken(workflowInstanceId);
 
-			if (context != null) {
+			if (workflowContext != null) {
 				ProcessInstance processInstance = token.getProcessInstance();
 
 				ContextInstance contextInstance =
 					processInstance.getContextInstance();
 
 				for (Map.Entry<String, Serializable> entry :
-						context.entrySet()) {
+						workflowContext.entrySet()) {
 
 					contextInstance.setVariableLocally(
 						entry.getKey(), entry.getValue(), token);

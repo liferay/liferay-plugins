@@ -87,7 +87,7 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
 					companyId, defaultUserId,
 					childWorkflowTask.getWorkflowTaskId(), guestRoleId, null,
-					null);
+					null, null);
 
 			assertEquals(guestRoleId, childWorkflowTask.getAssigneeRoleId());
 		}
@@ -138,13 +138,13 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
 					companyId, defaultUserId,
 					childWorkflowTask.getWorkflowTaskId(), guestRoleId, null,
-					null);
+					null, null);
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
 					companyId, defaultUserId,
 					childWorkflowTask.getWorkflowTaskId(), defaultUserId, null,
-					null);
+					null, null);
 
 			assertEquals(defaultUserId, childWorkflowTask.getAssigneeUserId());
 		}
@@ -199,13 +199,13 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
 					companyId, defaultUserId,
 					childWorkflowTask.getWorkflowTaskId(), guestRoleId, null,
-					null);
+					null, null);
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
 					companyId, defaultUserId,
 					childWorkflowTask.getWorkflowTaskId(), defaultUserId, null,
-					null);
+					null, null);
 
 			childWorkflowTask = WorkflowTaskManagerUtil.completeWorkflowTask(
 				companyId, defaultUserId, childWorkflowTask.getWorkflowTaskId(),
@@ -256,11 +256,11 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		workflowTask1 = WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
 			companyId, defaultUserId, workflowTask1.getWorkflowTaskId(),
-			guestRoleId, null, null);
+			guestRoleId, null, null, null);
 
 		workflowTask1 = WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
 			companyId, defaultUserId, workflowTask1.getWorkflowTaskId(),
-			defaultUserId, null, null);
+			defaultUserId, null, null, null);
 
 		List<String> nextTransitionNames1 =
 			WorkflowTaskManagerUtil.getNextTransitionNames(
@@ -284,11 +284,11 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		workflowTask2 = WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
 			companyId, defaultUserId, workflowTask2.getWorkflowTaskId(),
-			guestRoleId, null, null);
+			guestRoleId, null, null, null);
 
 		workflowTask2 = WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
 			companyId, defaultUserId, workflowTask2.getWorkflowTaskId(),
-			defaultUserId, null, null);
+			defaultUserId, null, null, null);
 
 		List<String> nextTransitionNames2 =
 			WorkflowTaskManagerUtil.getNextTransitionNames(
@@ -312,11 +312,11 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 
 		workflowTask3 = WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
 			companyId, defaultUserId, workflowTask3.getWorkflowTaskId(),
-			guestRoleId, null, null);
+			guestRoleId, null, null, null);
 
 		workflowTask3 = WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
 			companyId, defaultUserId, workflowTask3.getWorkflowTaskId(),
-			defaultUserId,null, null);
+			defaultUserId,null, null, null);
 
 		List<String> nextTransitionNames3 =
 			WorkflowTaskManagerUtil.getNextTransitionNames(
@@ -362,13 +362,13 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
 					companyId, defaultUserId,
 					childWorkflowTask.getWorkflowTaskId(), guestRoleId, null,
-					null);
+					null, null);
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
 					companyId, defaultUserId,
 					childWorkflowTask.getWorkflowTaskId(), defaultUserId, null,
-					null);
+					null, null);
 
 			assertEquals(guestRoleId, childWorkflowTask.getAssigneeRoleId());
 		}
@@ -458,13 +458,13 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
 					companyId, defaultUserId,
 					childWorkflowTask.getWorkflowTaskId(), guestRoleId, null,
-					null);
+					null, null);
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
 					companyId, defaultUserId,
 					childWorkflowTask.getWorkflowTaskId(), defaultUserId, null,
-					null);
+					null, null);
 
 			assertEquals(guestRoleId, childWorkflowTask.getAssigneeRoleId());
 		}
@@ -604,13 +604,13 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
 					companyId, defaultUserId,
 					childWorkflowTask.getWorkflowTaskId(), guestRoleId, null,
-					null);
+					null, null);
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
 					companyId, defaultUserId,
 					childWorkflowTask.getWorkflowTaskId(), defaultUserId, null,
-					null);
+					null, null);
 
 			assertEquals(guestRoleId, childWorkflowTask.getAssigneeRoleId());
 		}
@@ -785,13 +785,13 @@ public class WorkflowTaskManagerTestCase extends WorkflowTestCase {
 				WorkflowTaskManagerUtil.assignWorkflowTaskToRole(
 					companyId, defaultUserId,
 					childWorkflowTask.getWorkflowTaskId(), guestRoleId, null,
-					null);
+					null, null);
 
 			childWorkflowTask =
 				WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
 					companyId, defaultUserId,
 					childWorkflowTask.getWorkflowTaskId(), defaultUserId, null,
-					null);
+					null, null);
 
 			assertEquals(defaultUserId, childWorkflowTask.getAssigneeUserId());
 		}

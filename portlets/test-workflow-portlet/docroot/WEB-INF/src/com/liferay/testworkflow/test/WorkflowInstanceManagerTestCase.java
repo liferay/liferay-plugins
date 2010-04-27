@@ -193,11 +193,12 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(0, workflowInstance1.getChildrenWorkflowInstanceCount());
 
-		Map<String, Serializable> context1 = workflowInstance1.getContext();
+		Map<String, Serializable> workflowContext1 =
+			workflowInstance1.getWorkflowContext();
 
-		assertNotNull(context1);
-		assertEquals(1, context1.size());
-		assertEquals("success", context1.get("javaNode11"));
+		assertNotNull(workflowContext1);
+		assertEquals(1, workflowContext1.size());
+		assertEquals("success", workflowContext1.get("javaNode11"));
 
 		assertEquals("State1-1", workflowInstance1.getState());
 		assertNull(workflowInstance1.getEndDate());
@@ -220,11 +221,12 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(0, workflowInstance2.getChildrenWorkflowInstanceCount());
 
-		Map<String, Serializable> context2 = workflowInstance2.getContext();
+		Map<String, Serializable> workflowContext2 =
+			workflowInstance2.getWorkflowContext();
 
-		assertNotNull(context2);
-		assertEquals(1, context2.size());
-		assertEquals("success", context2.get("javaNode21"));
+		assertNotNull(workflowContext2);
+		assertEquals(1, workflowContext2.size());
+		assertEquals("success", workflowContext2.get("javaNode21"));
 
 		assertEquals("taskNode3", workflowInstance2.getState());
 		assertNull(workflowInstance2.getEndDate());
@@ -257,12 +259,12 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(
 			0, childWorkflowInstance3_1.getChildrenWorkflowInstanceCount());
 
-		Map<String, Serializable> context3_1 =
-			childWorkflowInstance3_1.getContext();
+		Map<String, Serializable> workflowContext3_1 =
+			childWorkflowInstance3_1.getWorkflowContext();
 
-		assertNotNull(context3_1);
-		assertEquals(1, context3_1.size());
-		assertEquals("success", context3_1.get("javaNode31"));
+		assertNotNull(workflowContext3_1);
+		assertEquals(1, workflowContext3_1.size());
+		assertEquals("success", workflowContext3_1.get("javaNode31"));
 
 		assertEquals("taskNode1", childWorkflowInstance3_1.getState());
 		assertNull(childWorkflowInstance3_1.getEndDate());
@@ -284,12 +286,12 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(
 			0, childWorkflowInstance3_2.getChildrenWorkflowInstanceCount());
 
-		Map<String, Serializable> context3_2 =
-			childWorkflowInstance3_2.getContext();
+		Map<String, Serializable> workflowContext3_2 =
+			childWorkflowInstance3_2.getWorkflowContext();
 
-		assertNotNull(context3_2);
-		assertEquals(1, context3_2.size());
-		assertEquals("success", context3_2.get("javaNode31"));
+		assertNotNull(workflowContext3_2);
+		assertEquals(1, workflowContext3_2.size());
+		assertEquals("success", workflowContext3_2.get("javaNode31"));
 
 		assertEquals("taskNode2", childWorkflowInstance3_2.getState());
 		assertNull(childWorkflowInstance3_2.getEndDate());
@@ -311,12 +313,12 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertEquals(
 			0, childWorkflowInstance3_3.getChildrenWorkflowInstanceCount());
 
-		Map<String, Serializable> context3_3 =
-			childWorkflowInstance3_3.getContext();
+		Map<String, Serializable> workflowContext3_3 =
+			childWorkflowInstance3_3.getWorkflowContext();
 
-		assertNotNull(context3_3);
-		assertEquals(1, context3_3.size());
-		assertEquals("success", context3_3.get("javaNode31"));
+		assertNotNull(workflowContext3_3);
+		assertEquals(1, workflowContext3_3.size());
+		assertEquals("success", workflowContext3_3.get("javaNode31"));
 
 		assertEquals("taskNode3", childWorkflowInstance3_3.getState());
 		assertNull(childWorkflowInstance3_3.getEndDate());
@@ -331,11 +333,12 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 			_workflowDefinition3.getVersion(),
 			childWorkflowInstance3_3.getWorkflowDefinitionVersion());
 
-		Map<String, Serializable> context3 = workflowInstance3.getContext();
+		Map<String, Serializable> workflowContext3 =
+			workflowInstance3.getWorkflowContext();
 
-		assertNotNull(context3);
-		assertEquals(1, context3.size());
-		assertEquals("success", context3.get("javaNode31"));
+		assertNotNull(workflowContext3);
+		assertEquals(1, workflowContext3.size());
+		assertEquals("success", workflowContext3.get("javaNode31"));
 
 		assertEquals("forkNode", workflowInstance3.getState());
 		assertNull(workflowInstance3.getEndDate());
@@ -534,10 +537,11 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(0, workflowInstance1.getChildrenWorkflowInstanceCount());
 
-		Map<String, Serializable> context1 = workflowInstance1.getContext();
+		Map<String, Serializable> workflowContext1 =
+			workflowInstance1.getWorkflowContext();
 
-		assertEquals(1, context1.size());
-		assertEquals("success", context1.get("javaNode11"));
+		assertEquals(1, workflowContext1.size());
+		assertEquals("success", workflowContext1.get("javaNode11"));
 
 		assertEquals("end", workflowInstance1.getState());
 		assertNotNull(workflowInstance1.getEndDate());
@@ -556,10 +560,11 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(0, workflowInstance2.getChildrenWorkflowInstanceCount());
 
-		Map<String, Serializable> context2 = workflowInstance2.getContext();
+		Map<String, Serializable> workflowContext2 =
+			workflowInstance2.getWorkflowContext();
 
-		assertEquals(1, context2.size());
-		assertEquals("success", context2.get("javaNode11"));
+		assertEquals(1, workflowContext2.size());
+		assertEquals("success", workflowContext2.get("javaNode11"));
 
 		assertEquals("end", workflowInstance2.getState());
 		assertNotNull(workflowInstance2.getEndDate());
@@ -587,10 +592,11 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(0, workflowInstance3.getChildrenWorkflowInstanceCount());
 
-		Map<String, Serializable> context3 = workflowInstance3.getContext();
+		Map<String, Serializable> workflowContext3 =
+			workflowInstance3.getWorkflowContext();
 
-		assertEquals(1, context3.size());
-		assertEquals("success", context3.get("javaNode11"));
+		assertEquals(1, workflowContext3.size());
+		assertEquals("success", workflowContext3.get("javaNode11"));
 
 		assertEquals("end", workflowInstance3.getState());
 		assertNotNull(workflowInstance3.getEndDate());
@@ -618,10 +624,11 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(0, workflowInstance4.getChildrenWorkflowInstanceCount());
 
-		Map<String, Serializable> context4 = workflowInstance4.getContext();
+		Map<String, Serializable> workflowContext4 =
+			workflowInstance4.getWorkflowContext();
 
-		assertEquals(1, context4.size());
-		assertEquals("success", context4.get("javaNode11"));
+		assertEquals(1, workflowContext4.size());
+		assertEquals("success", workflowContext4.get("javaNode11"));
 
 		assertEquals("State1-1", workflowInstance4.getState());
 		assertNull(workflowInstance4.getEndDate());
@@ -649,10 +656,11 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(0, workflowInstance5.getChildrenWorkflowInstanceCount());
 
-		Map<String, Serializable> context5 = workflowInstance5.getContext();
+		Map<String, Serializable> workflowContext5 =
+			workflowInstance5.getWorkflowContext();
 
-		assertEquals(1, context5.size());
-		assertEquals("success", context5.get("javaNode21"));
+		assertEquals(1, workflowContext5.size());
+		assertEquals("success", workflowContext5.get("javaNode21"));
 
 		assertEquals("end", workflowInstance5.getState());
 		assertNotNull(workflowInstance5.getEndDate());
@@ -680,10 +688,11 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		assertEquals(0, workflowInstance6.getChildrenWorkflowInstanceCount());
 
-		Map<String, Serializable> context6 = workflowInstance6.getContext();
+		Map<String, Serializable> workflowContext6 =
+			workflowInstance6.getWorkflowContext();
 
-		assertEquals(1, context6.size());
-		assertEquals("success", context6.get("javaNode21"));
+		assertEquals(1, workflowContext6.size());
+		assertEquals("success", workflowContext6.get("javaNode21"));
 
 		assertEquals("taskNode3", workflowInstance6.getState());
 		assertNull(workflowInstance6.getEndDate());
@@ -783,11 +792,12 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertNotNull(workflowInstance1);
 		assertEquals(0, workflowInstance1.getChildrenWorkflowInstanceCount());
 
-		Map<String, Serializable> context1 = workflowInstance1.getContext();
+		Map<String, Serializable> workflowContext1 =
+			workflowInstance1.getWorkflowContext();
 
-		assertNotNull(context1);
-		assertEquals(1, context1.size());
-		assertEquals("success", context1.get("javaNode11"));
+		assertNotNull(workflowContext1);
+		assertEquals(1, workflowContext1.size());
+		assertEquals("success", workflowContext1.get("javaNode11"));
 
 		assertEquals("State1-1", workflowInstance1.getState());
 		assertNull(workflowInstance1.getEndDate());
@@ -809,11 +819,12 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertNotNull(workflowInstance2);
 		assertEquals(0, workflowInstance2.getChildrenWorkflowInstanceCount());
 
-		Map<String, Serializable> context2 = workflowInstance2.getContext();
+		Map<String, Serializable> workflowContext2 =
+			workflowInstance2.getWorkflowContext();
 
-		assertNotNull(context2);
-		assertEquals(1, context2.size());
-		assertEquals("success", context2.get("javaNode21"));
+		assertNotNull(workflowContext2);
+		assertEquals(1, workflowContext2.size());
+		assertEquals("success", workflowContext2.get("javaNode21"));
 
 		assertEquals("taskNode3", workflowInstance2.getState());
 		assertNull(workflowInstance2.getEndDate());
@@ -835,11 +846,12 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 		assertNotNull(workflowInstance3);
 		assertEquals(0, workflowInstance3.getChildrenWorkflowInstanceCount());
 
-		Map<String, Serializable> context3 = workflowInstance3.getContext();
+		Map<String, Serializable> workflowContext3 =
+			workflowInstance3.getWorkflowContext();
 
-		assertNotNull(context3);
-		assertEquals(1, context3.size());
-		assertEquals("success", context3.get("javaNode31"));
+		assertNotNull(workflowContext3);
+		assertEquals(1, workflowContext3.size());
+		assertEquals("success", workflowContext3.get("javaNode31"));
 
 		assertEquals("forkNode", workflowInstance3.getState());
 		assertNull(workflowInstance3.getEndDate());
@@ -863,7 +875,7 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 			companyId, workflowInstance3.getWorkflowInstanceId());
 	}
 
-	public void testUpdateContext() throws Exception {
+	public void testUpdateWorkflowContext() throws Exception {
 
 		// Prepare
 
@@ -872,11 +884,12 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 				companyId, defaultUserId, _workflowDefinition1.getName(),
 				_workflowDefinition1.getVersion(), null, null);
 
-		Map<String, Serializable> context = workflowInstance.getContext();
+		Map<String, Serializable> workflowContext =
+			workflowInstance.getWorkflowContext();
 
-		assertNotNull(context);
-		assertEquals(1, context.size());
-		assertEquals("success", context.get("javaNode11"));
+		assertNotNull(workflowContext);
+		assertEquals(1, workflowContext.size());
+		assertEquals("success", workflowContext.get("javaNode11"));
 
 		String testKey = "testKey";
 		String testValue1 = "testValue1";
@@ -889,15 +902,15 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		// Add new variable
 
-		workflowInstance = WorkflowInstanceManagerUtil.updateContext(
+		workflowInstance = WorkflowInstanceManagerUtil.updateWorkflowContext(
 			companyId, workflowInstance.getWorkflowInstanceId(), updateContext);
 
-		context = workflowInstance.getContext();
+		workflowContext = workflowInstance.getWorkflowContext();
 
-		assertNotNull(context);
-		assertEquals(2, context.size());
-		assertEquals("success", context.get("javaNode11"));
-		assertEquals(testValue1, context.get(testKey));
+		assertNotNull(workflowContext);
+		assertEquals(2, workflowContext.size());
+		assertEquals("success", workflowContext.get("javaNode11"));
+		assertEquals(testValue1, workflowContext.get(testKey));
 
 		updateContext = new HashMap<String, Serializable>();
 
@@ -905,15 +918,15 @@ public class WorkflowInstanceManagerTestCase extends WorkflowTestCase {
 
 		// Update variable
 
-		workflowInstance = WorkflowInstanceManagerUtil.updateContext(
+		workflowInstance = WorkflowInstanceManagerUtil.updateWorkflowContext(
 			companyId, workflowInstance.getWorkflowInstanceId(), updateContext);
 
-		context = workflowInstance.getContext();
+		workflowContext = workflowInstance.getWorkflowContext();
 
-		assertNotNull(context);
-		assertEquals(2, context.size());
-		assertEquals("success", context.get("javaNode11"));
-		assertEquals(testValue2, context.get(testKey));
+		assertNotNull(workflowContext);
+		assertEquals(2, workflowContext.size());
+		assertEquals("success", workflowContext.get("javaNode11"));
+		assertEquals(testValue2, workflowContext.get(testKey));
 
 		// Clean up
 
