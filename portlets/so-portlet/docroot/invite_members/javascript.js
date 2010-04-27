@@ -1,181 +1,187 @@
-Liferay.SO = Liferay.SO || {};
+AUI().use(
+	'aui-base', 'aui-live-search',
+	function(A) {
+		Liferay.namespace('SO');
 
-Liferay.SO.InviteMembers = {
-	init: function(params) {
-		var instance = this;
+		Liferay.SO.InviteMembers = {
+			init: function(params) {
+				var instance = this;
 
-		if (!instance._initialized) {
-			instance._assignEvents();
-			instance._setupLiveSearch();
-			instance._setupEventHandler();
+				if (!instance._initialized) {
+					instance._assignEvents();
+					instance._setupEventHandler();
 
-			instance._initialized = true;
-		}
-	},
+					instance._initialized = true;
+				}
+			},
 
-	addEmailInvite: function() {
-		var instance = this;
+			addEmailInvite: function() {
+				var instance = this;
 
-		var address = instance._emailInput;
+				var address = instance._emailInput;
 
-		var emailAddress = jQuery.trim(address.val());
+				var emailAddress = A.Lang.trim(address.val());
 
-		if (emailAddress) {
-			var emailHTML = '<div class="user" data-emailAddress="' + emailAddress + '"><span class="email">' + emailAddress + '</span></div>';
+				if (emailAddress) {
+					var emailHTML = '<div class="user" data-emailAddress="' + emailAddress + '"><span class="email">' + emailAddress + '</span></div>';
 
-			jQuery('.so-portlet-invite-members .email-invited .list').append(emailHTML);
+					A.one('.so-portlet-invite-members .email-invited .list').append(emailHTML);
 
-			address.val('');
-		}
-	},
-	
-	addMemberInvite: function(member) {
-		var instance = this;
-
-		var invitedUser = member.clone().appendTo('.so-portlet-invite-members .invited .list');
-
-		invitedUser.data('originalUser', member);
-		member.data('invitedUser', invitedUser);
-
-		member.addClass('invited-user');
-	},
-
-	prepareMemberInvite: function(data) {
-		var userIdsToInvite = jQuery('.so-portlet-invite-members .invited .user');
-		var emailAddressesToInvite = jQuery('.so-portlet-invite-members .email-invited .user');
-
-		var receiverUserIds = [];
-		var receiverEmailAddresses = [];
-
-		userIdsToInvite.each(
-			function(index) {
-				user = jQuery(this);
+					address.val('');
+				}
+			},
 			
-				receiverUserIds.push(user.attr('data-userId'));
-			}
-		);
+			addMemberInvite: function(member) {
+				var instance = this;
 
-		emailAddressesToInvite.each(
-			function(index) {
-				emailAddress = jQuery(this);
+				var invitedUser = member.clone().appendTo('.so-portlet-invite-members .invited .list');
 
-				receiverEmailAddresses.push(emailAddress.attr('data-emailAddress'));
-			}
-		)
+				invitedUser.data('originalUser', member);
+				member.data('invitedUser', invitedUser);
 
-		receiverUserIds = receiverUserIds.join();
-		receiverEmailAddresses = receiverEmailAddresses.join();
+				member.addClass('invited-user');
+			},
 
-		for(var i = 0; i < data.length; i++){
-			var obj = data[i];
+			prepareMemberInvite: function(data) {
+				var userIdsToInvite = A.all('.so-portlet-invite-members .invited .user');
+				var emailAddressesToInvite = A.all('.so-portlet-invite-members .email-invited .user');
 
-			if(obj.name.indexOf('receiverUserIds') > -1){
-				obj.value = receiverUserIds;
-			}
-			else if(obj.name.indexOf('receiverEmailAddresses') > -1){
-				obj.value = receiverEmailAddresses;
-			}
-		}
-	},
+				var receiverUserIds = [];
+				var receiverEmailAddresses = [];
 
-	removeEmailInvite: function(address) {
-		address.remove();
-	},
-
-	removeMemberInvite: function(member) {
-		var userId = member.attr('data-userId');
-
-		var originalUser = member.data('originalUser');
-		var invitedUser = member.data('invitedUser');
-
-		if(originalUser){
-			originalUser.removeClass('invited-user');
-			member.remove();
-		}
-		else if(invitedUser){
-			member.removeClass('invited-user');
-			invitedUser.remove();
-		}
-	},
-
-	_assignAddEmailEvents: function() {
-		var instance = this;
-
-		jQuery('.so-portlet-invite-members #add-email-address').click(
-			function() {
-				var emailAddress = jQuery('.so-portlet-invite-members #new-member-email-address');
-
-				instance.addEmailInvite(jQuery(emailAddress));
-			}
-		);
-	},
-
-	_assignEvents: function() {
-		jQuery('.so-portlet-members .invite-members a').click(
-			function() {
-				jQuery('.so-portlet-profiles .profile-wrapper').hide();
-				jQuery('.so-portlet-invite-members .invite-members-wrapper').show();
-			}
-		);
-	},
-
-	_setupEventHandler: function() {
-		var instance = this;
-
-		instance._emailInput = jQuery('#new-member-email-address');
-
-		instance._emailInput.livequery(
-			'keypress',
-			function(event){
-				if(event.which == 13){
-					instance.addEmailInvite();
-				}			
-			}
-		);
-
-		jQuery('.so-portlet-invite-members').click(
-			function (event) {
-				var target = jQuery(event.target);
-				var userTarget = jQuery([]);
-
-				if (target.hasClass('user') || (userTarget = target.parents('.user:first')).length) {
-					target = target.hasClass('user') ? target : userTarget;
-
-					var userEmail = target.attr('data-emailAddress');
-					var userId = target.attr('data-userId');
-
-					if(userEmail){
-						instance.removeEmailInvite(target);
+				userIdsToInvite.each(
+					function(user, index, users) {
+						receiverUserIds.push(user.attr('data-userId'));
 					}
-					else {
-						if (target.parents('.uninvited:first').length) {
-							if (target.hasClass('invited-user')) {
-								instance.removeMemberInvite(target);
+				);
+
+				emailAddressesToInvite.each(
+					function(emailAddress, index, emailAddresses) {
+						receiverEmailAddresses.push(emailAddress.attr('data-emailAddress'));
+					}
+				)
+
+				receiverUserIds = receiverUserIds.join();
+				receiverEmailAddresses = receiverEmailAddresses.join();
+
+				for(var i = 0; i < data.length; i++){
+					var obj = data[i];
+
+					if(obj.name.indexOf('receiverUserIds') > -1){
+						obj.value = receiverUserIds;
+					}
+					else if(obj.name.indexOf('receiverEmailAddresses') > -1){
+						obj.value = receiverEmailAddresses;
+					}
+				}
+			},
+
+			removeEmailInvite: function(address) {
+				address.remove();
+			},
+
+			removeMemberInvite: function(member) {
+				var userId = member.attr('data-userId');
+
+				var originalUser = member.data('originalUser');
+				var invitedUser = member.data('invitedUser');
+
+				if(originalUser){
+					originalUser.removeClass('invited-user');
+					member.remove();
+				}
+				else if(invitedUser){
+					member.removeClass('invited-user');
+					invitedUser.remove();
+				}
+			},
+
+			_assignAddEmailEvents: function() {
+				var instance = this;
+
+				A.one('.so-portlet-invite-members #add-email-address').on(
+					'click',
+					function() {
+						var emailAddress = A.one('.so-portlet-invite-members #new-member-email-address');
+
+						instance.addEmailInvite(emailAddress);
+					}
+				);
+			},
+
+			_assignEvents: function() {
+				A.one('.so-portlet-members .invite-members a').on(
+					'click',
+					function(event) {
+						A.one('.so-portlet-profiles .profile-wrapper').hide();
+						A.one('.so-portlet-invite-members .invite-members-wrapper').show();
+					}
+				);
+			},
+
+			_setupEventHandler: function() {
+				var instance = this;
+
+				// Live Search
+
+				A.LiveSearch(
+					{
+						input: '#invite-user-search',
+						nodes: '.so-portlet-invite-members .uninvited .user'
+					}
+				);
+
+				// Email Input
+
+				instance._emailInput = A.one('#new-member-email-address');
+
+				instance._emailInput.on(
+					'keypress',
+					function(event){
+						if(event.which == 13){
+							instance.addEmailInvite();
+						}
+					}
+				);
+
+				// User List
+
+				A.one('.so-portlet-invite-members').on(
+					'click',
+					function (event) {
+						var target = event.target;
+						var userTarget = null;
+
+						if (target.hasClass('user') || (userTarget = target.ancestor('.user'))) {
+							target = target.hasClass('user') ? target : userTarget;
+
+							var userEmail = target.attr('data-emailAddress');
+							var userId = target.attr('data-userId');
+
+							if(userEmail){
+								instance.removeEmailInvite(target);
 							}
 							else {
-								instance.addMemberInvite(target);
+								if (target.ancestor('.uninvited')) {
+									if (target.hasClass('invited-user')) {
+										instance.removeMemberInvite(target);
+									}
+									else {
+										instance.addMemberInvite(target);
+									}
+								}
+								else if (target.ancestor('.invited')) {
+									instance.removeMemberInvite(target);
+								}
 							}
 						}
-						else if (target.parents('.invited:first').length) {
-							instance.removeMemberInvite(target);
+						else if(target.attr('id') == 'add-email-address') {
+							instance._emailInput = A.one('#new-member-email-address');
+							instance.addEmailInvite();
 						}
 					}
-				}
-				else if(target.attr('id') == 'add-email-address') {
-					instance._emailInput = jQuery('#new-member-email-address');
-					instance.addEmailInvite();
-				}
+				);
 			}
-		);
-	},
-
-	_setupLiveSearch: function() {
-		var input = jQuery('#invite-user-search');
-
-		var options = {
-			list: jQuery('.so-portlet-invite-members .uninvited .user')
 		};
-
-		input.liveSearch(options);
 	}
-}
+);
