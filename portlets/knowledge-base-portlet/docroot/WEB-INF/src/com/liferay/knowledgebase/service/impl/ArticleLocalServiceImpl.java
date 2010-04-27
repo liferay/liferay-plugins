@@ -188,6 +188,17 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			communityPermissions, guestPermissions);
 	}
 
+	public void addAttachment(
+			long companyId, String dirName, String shortFileName, byte[] bytes)
+		throws PortalException, SystemException {
+
+		DLServiceUtil.addFile(
+			companyId, CompanyConstants.SYSTEM_STRING,
+			GroupConstants.DEFAULT_PARENT_GROUP_ID, CompanyConstants.SYSTEM,
+			dirName + StringPool.SLASH + shortFileName, 0, StringPool.BLANK,
+			new Date(), new ServiceContext(), bytes);
+	}
+
 	public void checkAttachments() throws PortalException, SystemException {
 		for (long companyId : PortalUtil.getCompanyIds()) {
 			long folderId = counterLocalService.increment();
@@ -271,6 +282,14 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		SubscriptionLocalServiceUtil.deleteSubscriptions(
 			article.getCompanyId(), Article.class.getName(),
 			article.getResourcePrimKey());
+	}
+
+	public void deleteAttachment(long companyId, String fileName)
+		throws PortalException, SystemException {
+
+		DLServiceUtil.deleteFile(
+			companyId, CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
+			fileName);
 	}
 
 	public void deleteGroupArticles(long groupId)
