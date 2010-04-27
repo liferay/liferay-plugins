@@ -77,15 +77,15 @@ if (fileEntry != null) {
 	}
 }
 
-int status = StatusConstants.APPROVED;
+int status = WorkflowConstants.STATUS_APPROVED;
 
 if (fileEntry == null) {
 	if (WorkflowDefinitionLinkLocalServiceUtil.hasWorkflowDefinitionLink(company.getCompanyId(), scopeGroupId, DLFileEntry.class.getName())) {
-		status = StatusConstants.PENDING;
+		status = WorkflowConstants.STATUS_PENDING;
 	}
 }
 else if (WorkflowInstanceLinkLocalServiceUtil.hasWorkflowInstanceLink(company.getCompanyId(), fileEntry.getGroupId(), DLFileEntry.class.getName(), fileEntry.getFileEntryId())) {
-	status = StatusConstants.PENDING;
+	status = WorkflowConstants.STATUS_PENDING;
 }
 
 UnicodeProperties extraSettingsProperties = new UnicodeProperties();
@@ -293,7 +293,7 @@ portletURL.setParameter("name", name);
 
 				document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.UPDATE %>";
 				document.<portlet:namespace />fm.<portlet:namespace />majorVersion.value = document.<portlet:namespace />fm.<portlet:namespace />version[0].checked;
-				document.<portlet:namespace />fm.<portlet:namespace />status.value = "<%= StatusConstants.APPROVED %>";
+				document.<portlet:namespace />fm.<portlet:namespace />status.value = "<%= WorkflowConstants.STATUS_APPROVED %>";
 
 				<c:if test='<%= displaySection.equals("online") %>'>
 					if (document.<portlet:namespace />fm.<portlet:namespace />version[2].checked) {

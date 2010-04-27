@@ -37,10 +37,10 @@ if ((folder == null) && (defaultFolderId != DLFolderConstants.DEFAULT_PARENT_FOL
 	}
 }
 
-int status = StatusConstants.APPROVED;
+int status = WorkflowConstants.STATUS_APPROVED;
 
 if (permissionChecker.isCompanyAdmin() || permissionChecker.isCommunityAdmin(scopeGroupId)) {
-	status = StatusConstants.ANY;
+	status = WorkflowConstants.STATUS_ANY;
 }
 
 int foldersCount = DLFolderLocalServiceUtil.getFoldersCount(scopeGroupId, folderId);

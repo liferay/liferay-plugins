@@ -323,7 +323,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 					searchContainer.setRowChecker(new RowChecker(renderResponse, RowChecker.ALIGN, RowChecker.VALIGN, RowChecker.FORM_NAME, null, RowChecker.ROW_IDS));
 				}
 
-				List results = DLFileVersionLocalServiceUtil.getFileVersions(scopeGroupId, folderId, name, StatusConstants.ANY);
+				List results = DLFileVersionLocalServiceUtil.getFileVersions(scopeGroupId, folderId, name, WorkflowConstants.STATUS_ANY);
 				List resultRows = searchContainer.getResultRows();
 
 				for (int i = 0; i < results.size(); i++) {
@@ -348,7 +348,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 					</portlet:actionURL>
 
 					<%
-					List<DLFileVersion> fileVersions = DLFileVersionLocalServiceUtil.getFileVersions(scopeGroupId, folderId, name, StatusConstants.APPROVED);
+					List<DLFileVersion> fileVersions = DLFileVersionLocalServiceUtil.getFileVersions(scopeGroupId, folderId, name, WorkflowConstants.STATUS_APPROVED);
 
 					for (DLFileVersion fileVersion : fileVersions) {
 					%>
