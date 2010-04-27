@@ -140,6 +140,36 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		return articleLocalService.getLatestArticle(resourcePrimKey);
 	}
 
+	public void subscribe(long groupId, long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		if (resourcePrimKey > 0) {
+			ArticlePermission.check(
+				getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
+		}
+		else {
+			AdminPermission.check(
+				getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
+		}
+
+		articleLocalService.subscribe(groupId, getUserId(), resourcePrimKey);
+	}
+
+	public void unsubscribe(long groupId, long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		if (resourcePrimKey > 0) {
+			ArticlePermission.check(
+				getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
+		}
+		else {
+			AdminPermission.check(
+				getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
+		}
+
+		articleLocalService.unsubscribe(groupId, getUserId(), resourcePrimKey);
+	}
+
 	public Article updateArticle(
 			long resourcePrimKey, long parentResourcePrimKey, String title,
 			String content, String description, int priority,
