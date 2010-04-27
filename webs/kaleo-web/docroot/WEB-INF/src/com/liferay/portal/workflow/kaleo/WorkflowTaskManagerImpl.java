@@ -171,7 +171,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			return new WorkflowTaskAdapter(
 				kaleoTaskInstanceToken,
-				WorkflowContextUtil.convert(
+				WorkflowContextUtil.convertTo(
 					kaleoTaskInstanceToken.getWorkflowContext()));
 		}
 		catch (Exception e) {
@@ -510,7 +510,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			WorkflowTask workflowTask = new WorkflowTaskAdapter(
 				kaleoTaskInstanceToken,
-				WorkflowContextUtil.convert(
+				WorkflowContextUtil.convertTo(
 					kaleoTaskInstanceToken.getWorkflowContext()));
 
 			workflowTasks.add(workflowTask);

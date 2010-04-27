@@ -119,7 +119,7 @@ public class DefaultTaskManagerImpl
 			}
 
 			Map<String, Serializable> workflowContext =
-				WorkflowContextUtil.convert(
+				WorkflowContextUtil.convertTo(
 					kaleoTaskInstanceToken.getWorkflowContext());
 
 			kaleoLogLocalService.addTaskAssignmentKaleoLog(

@@ -15,11 +15,12 @@
 package com.liferay.portal.workflow.kaleo.util;
 
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.Serializable;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -29,17 +30,19 @@ import java.util.Map;
  */
 public class WorkflowContextUtil {
 
-	public static String convert(Map<String, Serializable> workflowContext) {
+	public static String convertFrom(
+		Map<String, Serializable> workflowContext) {
+
 		if (workflowContext == null) {
-			return null;
+			return StringPool.BLANK;
 		}
 
 		return JSONFactoryUtil.serialize(workflowContext);
 	}
 
-	public static Map<String, Serializable> convert(String json) {
+	public static Map<String, Serializable> convertTo(String json) {
 		if (Validator.isNull(json)) {
-			return Collections.EMPTY_MAP;
+			return new HashMap<String, Serializable>();
 		}
 
 		return (Map<String, Serializable>)JSONFactoryUtil.deserialize(json);

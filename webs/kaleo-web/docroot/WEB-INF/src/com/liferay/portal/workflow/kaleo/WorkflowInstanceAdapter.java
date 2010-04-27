@@ -53,7 +53,7 @@ public class WorkflowInstanceAdapter extends DefaultWorkflowInstance {
 		}
 		else {
 			setWorkflowContext(
-				WorkflowContextUtil.convert(
+				WorkflowContextUtil.convertTo(
 					kaleoInstance.getWorkflowContext()));
 		}
 

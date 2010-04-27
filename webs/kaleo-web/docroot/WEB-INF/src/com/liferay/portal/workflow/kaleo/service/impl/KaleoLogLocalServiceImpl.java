@@ -153,7 +153,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 
 		kaleoLog.setComment(comment);
 		kaleoLog.setWorkflowContext(
-			WorkflowContextUtil.convert(workflowContext));
+			WorkflowContextUtil.convertFrom(workflowContext));
 
 		kaleoLogPersistence.update(kaleoLog, false);
 
@@ -186,7 +186,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 			kaleoTaskInstanceToken.getAssigneeClassName());
 		kaleoLog.setComment(comment);
 		kaleoLog.setWorkflowContext(
-			WorkflowContextUtil.convert(workflowContext));
+			WorkflowContextUtil.convertFrom(workflowContext));
 
 		kaleoLogPersistence.update(kaleoLog, false);
 
