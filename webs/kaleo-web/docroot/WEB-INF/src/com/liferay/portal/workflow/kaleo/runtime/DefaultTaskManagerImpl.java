@@ -29,7 +29,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorUtil;
 import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationUtil;
-import com.liferay.portal.workflow.kaleo.util.ContextUtil;
+import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
 
@@ -117,7 +117,7 @@ public class DefaultTaskManagerImpl
 					workflowTaskInstanceId, dueDate, serviceContext);
 			}
 
-			Map<String, Serializable> context = ContextUtil.convert(
+			Map<String, Serializable> context = WorkflowContextUtil.convert(
 				kaleoTaskInstanceToken.getContext());
 
 			kaleoLogLocalService.addTaskAssignmentKaleoLog(

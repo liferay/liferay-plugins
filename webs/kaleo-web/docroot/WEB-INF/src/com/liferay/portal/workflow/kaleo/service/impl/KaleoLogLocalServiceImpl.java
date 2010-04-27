@@ -28,7 +28,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoLog;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoLogLocalServiceBaseImpl;
-import com.liferay.portal.workflow.kaleo.util.ContextUtil;
+import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
 
@@ -152,7 +152,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 			newKaleoTaskInstanceToken.getAssigneeClassPK());
 
 		kaleoLog.setComment(comment);
-		kaleoLog.setContext(ContextUtil.convert(context));
+		kaleoLog.setContext(WorkflowContextUtil.convert(context));
 
 		kaleoLogPersistence.update(kaleoLog, false);
 
@@ -184,7 +184,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		kaleoLog.setCurrentAssigneeClassName(
 			kaleoTaskInstanceToken.getAssigneeClassName());
 		kaleoLog.setComment(comment);
-		kaleoLog.setContext(ContextUtil.convert(context));
+		kaleoLog.setContext(WorkflowContextUtil.convert(context));
 
 		kaleoLogPersistence.update(kaleoLog, false);
 

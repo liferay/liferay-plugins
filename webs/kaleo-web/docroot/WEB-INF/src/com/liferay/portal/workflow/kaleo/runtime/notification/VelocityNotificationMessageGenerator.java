@@ -22,7 +22,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
-import com.liferay.portal.workflow.kaleo.util.ContextUtil;
+import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
 import java.io.StringWriter;
@@ -77,7 +77,7 @@ public class VelocityNotificationMessageGenerator
 
 			KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
 
-			context = ContextUtil.convert(kaleoInstance.getContext());
+			context = WorkflowContextUtil.convert(kaleoInstance.getContext());
 		}
 
 		for (Map.Entry<String, Serializable> contextEntry: context.entrySet()) {

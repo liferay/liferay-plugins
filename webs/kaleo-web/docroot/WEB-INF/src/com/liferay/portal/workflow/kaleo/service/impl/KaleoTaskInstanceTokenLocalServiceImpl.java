@@ -34,8 +34,8 @@ import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTaskInstanceTokenLocalServiceBaseImpl;
-import com.liferay.portal.workflow.kaleo.util.ContextUtil;
 import com.liferay.portal.workflow.kaleo.util.RoleRetrievalUtil;
+import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
 
@@ -96,7 +96,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		kaleoTaskInstanceToken.setAssigneeClassPK(
 			kaleoTaskAssignment.getAssigneeClassPK());
 		kaleoTaskInstanceToken.setCompleted(false);
-		kaleoTaskInstanceToken.setContext(ContextUtil.convert(context));
+		kaleoTaskInstanceToken.setContext(WorkflowContextUtil.convert(context));
 
 		kaleoTaskInstanceTokenPersistence.update(kaleoTaskInstanceToken, false);
 
@@ -116,7 +116,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		kaleoTaskInstanceToken.setModifiedDate(new Date());
 		kaleoTaskInstanceToken.setAssigneeClassName(assigneeClassName);
 		kaleoTaskInstanceToken.setAssigneeClassPK(assigneeClassPK);
-		kaleoTaskInstanceToken.setContext(ContextUtil.convert(context));
+		kaleoTaskInstanceToken.setContext(WorkflowContextUtil.convert(context));
 
 		kaleoTaskInstanceTokenPersistence.update(kaleoTaskInstanceToken, false);
 

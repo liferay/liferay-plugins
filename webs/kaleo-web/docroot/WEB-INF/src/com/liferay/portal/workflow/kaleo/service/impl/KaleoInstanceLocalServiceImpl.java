@@ -24,7 +24,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoInstanceLocalServiceBaseImpl;
-import com.liferay.portal.workflow.kaleo.util.ContextUtil;
+import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
 
@@ -66,7 +66,7 @@ public class KaleoInstanceLocalServiceImpl
 		kaleoInstance.setKaleoDefinitionName(kaleoDefinitionName);
 		kaleoInstance.setKaleoDefinitionVersion(kaleoDefinitionVersion);
 		kaleoInstance.setCompleted(false);
-		kaleoInstance.setContext(ContextUtil.convert(context));
+		kaleoInstance.setContext(WorkflowContextUtil.convert(context));
 
 		kaleoInstancePersistence.update(kaleoInstance, false);
 
@@ -159,7 +159,7 @@ public class KaleoInstanceLocalServiceImpl
 		KaleoInstance kaleoInstance = kaleoInstancePersistence.findByPrimaryKey(
 			kaleoInstanceId);
 
-		kaleoInstance.setContext(ContextUtil.convert(context));
+		kaleoInstance.setContext(WorkflowContextUtil.convert(context));
 
 		return kaleoInstance;
 	}

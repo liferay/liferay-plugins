@@ -33,8 +33,8 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.runtime.TaskManager;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.util.ContextUtil;
 import com.liferay.portal.workflow.kaleo.util.RoleRetrievalUtil;
+import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
 
@@ -171,7 +171,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			return new WorkflowTaskAdapter(
 				kaleoTaskInstanceToken,
-				ContextUtil.convert(kaleoTaskInstanceToken.getContext()));
+				WorkflowContextUtil.convert(
+					kaleoTaskInstanceToken.getContext()));
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -509,7 +510,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			WorkflowTask workflowTask = new WorkflowTaskAdapter(
 				kaleoTaskInstanceToken,
-				ContextUtil.convert(kaleoTaskInstanceToken.getContext()));
+				WorkflowContextUtil.convert(
+					kaleoTaskInstanceToken.getContext()));
 
 			workflowTasks.add(workflowTask);
 		}

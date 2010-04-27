@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.DefaultWorkflowInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
-import com.liferay.portal.workflow.kaleo.util.ContextUtil;
+import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
 
@@ -41,14 +41,15 @@ public class WorkflowInstanceAdapter extends DefaultWorkflowInstance {
 
 	public WorkflowInstanceAdapter(
 			KaleoInstance kaleoInstance, KaleoInstanceToken kaleoInstanceToken,
-			Map<String, Serializable> context)
+			Map<String, Serializable> workflowContext)
 		throws PortalException, SystemException {
 
-		if (context != null) {
-			setContext(context);
+		if (workflowContext != null) {
+			setWorkflowContext(workflowContext);
 		}
 		else {
-			setContext(ContextUtil.convert(kaleoInstance.getContext()));
+			setWorkflowContext(
+				WorkflowContextUtil.convert(kaleoInstance.getContext()));
 		}
 
 		setEndDate(kaleoInstance.getCompletionDate());

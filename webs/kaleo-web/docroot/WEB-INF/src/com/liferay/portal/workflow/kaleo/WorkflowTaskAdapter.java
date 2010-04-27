@@ -23,7 +23,7 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
-import com.liferay.portal.workflow.kaleo.util.ContextUtil;
+import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
 
@@ -67,7 +67,8 @@ public class WorkflowTaskAdapter extends DefaultWorkflowTask {
 		}
 		else {
 			setOptionalAttributes(
-				ContextUtil.convert(kaleoTaskInstanceToken.getContext()));
+				WorkflowContextUtil.convert(
+					kaleoTaskInstanceToken.getContext()));
 		}
 
 		KaleoInstanceToken kaleoInstanceToken =

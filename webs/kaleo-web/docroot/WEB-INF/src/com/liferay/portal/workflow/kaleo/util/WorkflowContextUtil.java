@@ -23,18 +23,18 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
- * <a href="ContextUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="WorkflowContextUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael C. Han
  */
-public class ContextUtil {
+public class WorkflowContextUtil {
 
-	public static String convert(Map<String, Serializable> context) {
-		if (context == null) {
+	public static String convert(Map<String, Serializable> workflowContext) {
+		if (workflowContext == null) {
 			return null;
 		}
 
-		return JSONFactoryUtil.serialize(context);
+		return JSONFactoryUtil.serialize(workflowContext);
 	}
 
 	public static Map<String, Serializable> convert(String json) {
