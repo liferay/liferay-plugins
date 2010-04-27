@@ -188,6 +188,32 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			communityPermissions, guestPermissions);
 	}
 
+	public void checkAttachments() throws PortalException, SystemException {
+		for (long companyId : PortalUtil.getCompanyIds()) {
+			long folderId = counterLocalService.increment();
+			String dirName = "knowledgebase/cache/attachments/" + folderId;
+
+			DLServiceUtil.addDirectory(
+				companyId, CompanyConstants.SYSTEM, dirName);
+
+			String[] fileNames = DLServiceUtil.getFileNames(
+				companyId, CompanyConstants.SYSTEM,
+				"knowledgebase/cache/attachments");
+
+			Arrays.sort(fileNames);
+
+			for (int i = 0; i < fileNames.length - 50; i++) {
+				DLServiceUtil.deleteDirectory(
+					companyId, CompanyConstants.SYSTEM_STRING,
+					CompanyConstants.SYSTEM, fileNames[i]);
+			}
+
+			DLServiceUtil.deleteDirectory(
+				companyId, CompanyConstants.SYSTEM_STRING,
+				CompanyConstants.SYSTEM, dirName);
+		}
+	}
+
 	public void deleteArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
 
@@ -472,20 +498,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		String dirName = "knowledgebase/cache/attachments/" + folderId;
 
 		DLServiceUtil.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
-
-		String[] fileNames = DLServiceUtil.getFileNames(
-			companyId, CompanyConstants.SYSTEM,
-			"knowledgebase/cache/attachments");
-
-		if (fileNames.length > 50) {
-			Arrays.sort(fileNames);
-
-			for (int i = 0; i < fileNames.length - 50; i++) {
-				DLServiceUtil.deleteDirectory(
-					companyId, CompanyConstants.SYSTEM_STRING,
-					CompanyConstants.SYSTEM, fileNames[i]);
-			}
-		}
 
 		if (resourcePrimKey > 0) {
 			Article article = articlePersistence.findByResourcePrimKey_First(
