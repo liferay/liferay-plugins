@@ -18,6 +18,9 @@ import com.liferay.portal.kernel.scripting.ScriptingUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.workflow.jbpm.util.WorkflowContextUtil;
+
+import java.io.Serializable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,14 +42,16 @@ public class ScriptingWorkflowActionHandler implements ActionHandler {
 		ContextInstance contextInstance =
 			executionContext.getContextInstance();
 
-		Map<String, Object> workflowContext = contextInstance.getVariables();
+		Map<String, Serializable> workflowContext = WorkflowContextUtil.convert(
+			contextInstance.getVariables());
 
 		Map<String, Object> inputObjects = new HashMap<String, Object>(
 			workflowContext);
 
 		inputObjects.put("workflowContext", workflowContext);
 
-		Long companyId = (Long)inputObjects.get(WorkflowConstants.COMPANY_ID);
+		Long companyId = (Long)workflowContext.get(
+			WorkflowConstants.CONTEXT_COMPANY_ID);
 
 		TaskInstance taskInstance = executionContext.getTaskInstance();
 

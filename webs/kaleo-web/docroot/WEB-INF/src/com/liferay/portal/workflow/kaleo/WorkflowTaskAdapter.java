@@ -67,7 +67,7 @@ public class WorkflowTaskAdapter extends DefaultWorkflowTask {
 		}
 		else {
 			setOptionalAttributes(
-				WorkflowContextUtil.convertTo(
+				WorkflowContextUtil.convert(
 					kaleoTaskInstanceToken.getWorkflowContext()));
 		}
 

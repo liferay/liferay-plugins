@@ -15,11 +15,10 @@
 package com.liferay.portal.workflow.jbpm;
 
 import com.liferay.portal.kernel.workflow.DefaultWorkflowInstance;
+import com.liferay.portal.workflow.jbpm.util.WorkflowContextUtil;
 
 import java.io.Serializable;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.jbpm.context.exe.ContextInstance;
@@ -48,20 +47,10 @@ public class WorkflowInstanceImpl extends DefaultWorkflowInstance {
 
 		Map<String, Object> variables = contextInstance.getVariables(token);
 
-		if (variables == null) {
-			variables = new HashMap<String, Object>();
-		}
+		Map<String, Serializable> workflowContext = WorkflowContextUtil.convert(
+			variables);
 
-		Map<String, Serializable> workflowContext =
-			new HashMap<String, Serializable>();
-
-		for (Map.Entry<String, Object> entry :
-				variables.entrySet()) {
-
-			workflowContext.put(entry.getKey(), (Serializable)entry.getValue());
-		}
-
-		setWorkflowContext(Collections.unmodifiableMap(workflowContext));
+		setWorkflowContext(workflowContext);
 
 		setWorkflowDefinitionName(processDefinition.getName());
 		setWorkflowDefinitionVersion(processDefinition.getVersion());

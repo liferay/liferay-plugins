@@ -20,7 +20,13 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.workflow.jbpm.util.WorkflowContextUtil;
 
+import java.io.Serializable;
+
+import java.util.Map;
+
+import org.jbpm.context.exe.ContextInstance;
 import org.jbpm.graph.def.ActionHandler;
 import org.jbpm.graph.exe.ExecutionContext;
 import org.jbpm.taskmgmt.exe.TaskInstance;
@@ -33,10 +39,13 @@ import org.jbpm.taskmgmt.exe.TaskInstance;
 public class WorkflowStatusActionHandler implements ActionHandler {
 
 	public void execute(ExecutionContext executionContext) throws Exception {
-		long companyId = (Long)executionContext.getVariable(
-			WorkflowConstants.COMPANY_ID);
-		long groupId = (Long)executionContext.getVariable(
-			WorkflowConstants.GROUP_ID);
+		ContextInstance contextInstance = executionContext.getContextInstance();
+
+		Map<String, Serializable> workflowContext = WorkflowContextUtil.convert(
+			contextInstance.getVariables());
+
+		long companyId = (Long)workflowContext.get(
+			WorkflowConstants.CONTEXT_COMPANY_ID);
 
 		if (userId == 0) {
 			TaskInstance taskInstance = executionContext.getTaskInstance();
@@ -46,14 +55,10 @@ public class WorkflowStatusActionHandler implements ActionHandler {
 			}
 		}
 
-		String className = (String)executionContext.getVariable(
-			WorkflowConstants.ENTRY_CLASS_NAME);
-		long classPK = (Long)executionContext.getVariable(
-			WorkflowConstants.ENTRY_CLASS_PK);
+		workflowContext.put("userId", userId);
 
 		WorkflowStatusManagerUtil.updateStatus(
-			companyId, groupId, userId, className, classPK,
-			WorkflowConstants.fromLabel(status));
+			WorkflowConstants.toStatus(status), workflowContext);
 	}
 
 	protected long getUserId(long companyId, String actorId) throws Exception {

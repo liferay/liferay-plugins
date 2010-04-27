@@ -539,7 +539,7 @@ public class CustomSession {
 
 			Criterion typeCriterion = Restrictions.and(
 				Restrictions.eq(
-					"varInstances.name", WorkflowConstants.ENTRY_TYPE),
+					"varInstances.name", WorkflowConstants.CONTEXT_ENTRY_TYPE),
 				Restrictions.like("varInstances.value", assetType));
 
 			kewordsJunction.add(typeCriterion);

@@ -60,7 +60,7 @@ public class ScriptActionExecutor implements ActionExecutor {
 
 			KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
 
-			workflowContext = WorkflowContextUtil.convertTo(
+			workflowContext = WorkflowContextUtil.convert(
 				kaleoInstance.getWorkflowContext());
 		}
 

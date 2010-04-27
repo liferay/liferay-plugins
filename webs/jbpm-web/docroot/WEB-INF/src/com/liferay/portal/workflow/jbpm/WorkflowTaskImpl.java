@@ -17,11 +17,8 @@ package com.liferay.portal.workflow.jbpm;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.DefaultWorkflowTask;
+import com.liferay.portal.workflow.jbpm.util.WorkflowContextUtil;
 
-import java.io.Serializable;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 import org.jbpm.graph.def.ProcessDefinition;
@@ -65,28 +62,13 @@ public class WorkflowTaskImpl extends DefaultWorkflowTask {
 		setDescription(taskInstance.getDescription());
 		setDueDate(taskInstance.getDueDate());
 		setName(taskInstance.getName());
-		setOptionalAttributes(_getOptionalAttributes(taskInstance));
+		setOptionalAttributes(
+			WorkflowContextUtil.convert(taskInstance.getVariables()));
 		setWorkflowDefinitionId(processDefinition.getId());
 		setWorkflowDefinitionName(processDefinition.getName());
 		setWorkflowDefinitionVersion(processDefinition.getVersion());
 		setWorkflowInstanceId(token.getId());
 		setWorkflowTaskId(taskInstance.getId());
-	}
-
-	private Map<String, Serializable> _getOptionalAttributes(
-		TaskInstance taskInstance) {
-
-		Map<String, Serializable> optionalAttributes =
-			new HashMap<String, Serializable>();
-
-		Map<String, Object> variables = taskInstance.getVariables();
-
-		for (Map.Entry<String, Object> variable : variables.entrySet()) {
-			optionalAttributes.put(
-				variable.getKey(), (Serializable)variable.getValue());
-		}
-
-		return optionalAttributes;
 	}
 
 }
