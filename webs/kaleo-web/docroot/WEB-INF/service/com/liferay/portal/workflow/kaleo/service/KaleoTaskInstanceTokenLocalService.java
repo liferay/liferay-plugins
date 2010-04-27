@@ -109,7 +109,7 @@ public interface KaleoTaskInstanceTokenLocalService {
 		java.lang.String kaleoTaskName,
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment kaleoTaskAssignment,
 		java.util.Date dueDate,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -117,7 +117,7 @@ public interface KaleoTaskInstanceTokenLocalService {
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken assignKaleoTaskInstanceToken(
 		long kaleoTaskInstanceTokenId, java.lang.String assigneeClassName,
 		long assigneeClassPK,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

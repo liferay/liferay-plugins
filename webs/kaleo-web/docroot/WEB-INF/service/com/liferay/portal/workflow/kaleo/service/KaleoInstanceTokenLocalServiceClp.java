@@ -453,15 +453,15 @@ public class KaleoInstanceTokenLocalServiceClp
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken addKaleoInstanceToken(
 		long parentKaleoInstanceTokenId,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(parentKaleoInstanceTokenId);
 
-		Object paramObj1 = ClpSerializer.translateInput(context);
+		Object paramObj1 = ClpSerializer.translateInput(workflowContext);
 
-		if (context == null) {
+		if (workflowContext == null) {
 			paramObj1 = new NullWrapper("java.util.Map");
 		}
 
@@ -689,15 +689,15 @@ public class KaleoInstanceTokenLocalServiceClp
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getRootKaleoInstanceToken(
 		long kaleoInstanceId,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(kaleoInstanceId);
 
-		Object paramObj1 = ClpSerializer.translateInput(context);
+		Object paramObj1 = ClpSerializer.translateInput(workflowContext);
 
-		if (context == null) {
+		if (workflowContext == null) {
 			paramObj1 = new NullWrapper("java.util.Map");
 		}
 

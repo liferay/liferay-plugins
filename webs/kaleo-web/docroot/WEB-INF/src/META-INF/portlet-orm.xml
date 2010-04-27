@@ -79,7 +79,7 @@
 			<basic name="completionDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="context" />
+			<basic name="workflowContext" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />
 		</attributes>
@@ -146,7 +146,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="duration" />
-			<basic name="context" />
+			<basic name="workflowContext" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />
 		</attributes>
@@ -290,7 +290,7 @@
 			<basic name="dueDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="context" />
+			<basic name="workflowContext" />
 			<transient name="completionUserUuid" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />

@@ -407,10 +407,10 @@ public class ClpSerializer {
 
 					method13.invoke(newModel, value13);
 
-					Method method14 = newModelClass.getMethod("setContext",
+					Method method14 = newModelClass.getMethod("setWorkflowContext",
 							new Class[] { String.class });
 
-					String value14 = oldCplModel.getContext();
+					String value14 = oldCplModel.getWorkflowContext();
 
 					method14.invoke(newModel, value14);
 
@@ -732,10 +732,10 @@ public class ClpSerializer {
 
 					method25.invoke(newModel, value25);
 
-					Method method26 = newModelClass.getMethod("setContext",
+					Method method26 = newModelClass.getMethod("setWorkflowContext",
 							new Class[] { String.class });
 
-					String value26 = oldCplModel.getContext();
+					String value26 = oldCplModel.getWorkflowContext();
 
 					method26.invoke(newModel, value26);
 
@@ -1435,10 +1435,10 @@ public class ClpSerializer {
 
 					method15.invoke(newModel, value15);
 
-					Method method16 = newModelClass.getMethod("setContext",
+					Method method16 = newModelClass.getMethod("setWorkflowContext",
 							new Class[] { String.class });
 
-					String value16 = oldCplModel.getContext();
+					String value16 = oldCplModel.getWorkflowContext();
 
 					method16.invoke(newModel, value16);
 
@@ -1950,12 +1950,13 @@ public class ClpSerializer {
 
 					newModel.setCompletionDate(value13);
 
-					Method method14 = oldModelClass.getMethod("getContext");
+					Method method14 = oldModelClass.getMethod(
+							"getWorkflowContext");
 
 					String value14 = (String)method14.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setContext(value14);
+					newModel.setWorkflowContext(value14);
 
 					return newModel;
 				}
@@ -2270,12 +2271,13 @@ public class ClpSerializer {
 
 					newModel.setDuration(value25.longValue());
 
-					Method method26 = oldModelClass.getMethod("getContext");
+					Method method26 = oldModelClass.getMethod(
+							"getWorkflowContext");
 
 					String value26 = (String)method26.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setContext(value26);
+					newModel.setWorkflowContext(value26);
 
 					return newModel;
 				}
@@ -2929,12 +2931,13 @@ public class ClpSerializer {
 
 					newModel.setDueDate(value15);
 
-					Method method16 = oldModelClass.getMethod("getContext");
+					Method method16 = oldModelClass.getMethod(
+							"getWorkflowContext");
 
 					String value16 = (String)method16.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setContext(value16);
+					newModel.setWorkflowContext(value16);
 
 					return newModel;
 				}

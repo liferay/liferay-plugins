@@ -123,12 +123,13 @@ public class KaleoInstanceLocalServiceWrapper
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance addKaleoInstance(
 		long kaleoDefinitionId, java.lang.String kaleoDefinitionName,
 		int kaleoDefinitionVersion,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoInstanceLocalService.addKaleoInstance(kaleoDefinitionId,
-			kaleoDefinitionName, kaleoDefinitionVersion, context, serviceContext);
+			kaleoDefinitionName, kaleoDefinitionVersion, workflowContext,
+			serviceContext);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance completeKaleoInstance(
@@ -159,12 +160,12 @@ public class KaleoInstanceLocalServiceWrapper
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance updateKaleoInstance(
 		long kaleoInstanceId,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoInstanceLocalService.updateKaleoInstance(kaleoInstanceId,
-			context, serviceContext);
+			workflowContext, serviceContext);
 	}
 
 	public KaleoInstanceLocalService getWrappedKaleoInstanceLocalService() {

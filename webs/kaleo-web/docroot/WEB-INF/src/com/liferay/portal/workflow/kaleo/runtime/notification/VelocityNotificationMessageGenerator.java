@@ -79,7 +79,7 @@ public class VelocityNotificationMessageGenerator
 			KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
 
 			workflowContext = WorkflowContextUtil.convert(
-				kaleoInstance.getContext());
+				kaleoInstance.getWorkflowContext());
 		}
 
 		for (Map.Entry<String, Serializable> entry :

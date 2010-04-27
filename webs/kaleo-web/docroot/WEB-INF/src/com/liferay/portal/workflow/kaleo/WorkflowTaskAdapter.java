@@ -38,7 +38,7 @@ public class WorkflowTaskAdapter extends DefaultWorkflowTask {
 
 	public WorkflowTaskAdapter(
 			KaleoTaskInstanceToken kaleoTaskInstanceToken,
-			Map<String, Serializable> optionalAttributes)
+			Map<String, Serializable> workflowContext)
 		throws PortalException, SystemException {
 
 		String assigneeClassName =
@@ -62,13 +62,13 @@ public class WorkflowTaskAdapter extends DefaultWorkflowTask {
 		setName(kaleoTaskInstanceToken.getKaleoTask().getName());
 		setDescription(kaleoTaskInstanceToken.getKaleoTask().getDescription());
 
-		if (optionalAttributes != null) {
-			setOptionalAttributes(optionalAttributes);
+		if (workflowContext != null) {
+			setOptionalAttributes(workflowContext);
 		}
 		else {
 			setOptionalAttributes(
 				WorkflowContextUtil.convert(
-					kaleoTaskInstanceToken.getContext()));
+					kaleoTaskInstanceToken.getWorkflowContext()));
 		}
 
 		KaleoInstanceToken kaleoInstanceToken =

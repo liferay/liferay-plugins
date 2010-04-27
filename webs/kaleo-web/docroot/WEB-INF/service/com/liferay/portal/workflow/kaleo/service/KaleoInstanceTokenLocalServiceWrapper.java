@@ -123,12 +123,12 @@ public class KaleoInstanceTokenLocalServiceWrapper
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken addKaleoInstanceToken(
 		long parentKaleoInstanceTokenId,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoInstanceTokenLocalService.addKaleoInstanceToken(parentKaleoInstanceTokenId,
-			context, serviceContext);
+			workflowContext, serviceContext);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken completeKaleoInstanceToken(
@@ -171,12 +171,12 @@ public class KaleoInstanceTokenLocalServiceWrapper
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getRootKaleoInstanceToken(
 		long kaleoInstanceId,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoInstanceTokenLocalService.getRootKaleoInstanceToken(kaleoInstanceId,
-			context, serviceContext);
+			workflowContext, serviceContext);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken updateKaleoInstanceToken(

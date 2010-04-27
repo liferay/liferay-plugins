@@ -636,7 +636,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken previousKaleoTaskInstanceToken,
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken newKaleoTaskInstanceToken,
 		java.lang.String comment,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -660,9 +660,9 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 			paramObj2 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj3 = ClpSerializer.translateInput(context);
+		Object paramObj3 = ClpSerializer.translateInput(workflowContext);
 
-		if (context == null) {
+		if (workflowContext == null) {
 			paramObj3 = new NullWrapper("java.util.Map");
 		}
 
@@ -705,7 +705,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog addTaskCompletionKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
 		java.lang.String comment,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -722,9 +722,9 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 			paramObj1 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj2 = ClpSerializer.translateInput(context);
+		Object paramObj2 = ClpSerializer.translateInput(workflowContext);
 
-		if (context == null) {
+		if (workflowContext == null) {
 			paramObj2 = new NullWrapper("java.util.Map");
 		}
 

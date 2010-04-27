@@ -86,9 +86,9 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 			{ "startDate", new Integer(Types.TIMESTAMP) },
 			{ "endDate", new Integer(Types.TIMESTAMP) },
 			{ "duration", new Integer(Types.BIGINT) },
-			{ "context", new Integer(Types.CLOB) }
+			{ "workflowContext", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoLog (kaleoLogId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskInstanceTokenId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,terminalKaleoNode BOOLEAN,kaleoActionId LONG,kaleoActionName VARCHAR(200) null,kaleoActionDescription VARCHAR(2000) null,previousKaleoNodeId LONG,previousKaleoNodeName VARCHAR(200) null,previousAssigneeClassName VARCHAR(200) null,previousAssigneeClassPK LONG,currentAssigneeClassName VARCHAR(200) null,currentAssigneeClassPK LONG,type_ VARCHAR(50) null,comment VARCHAR(2000) null,startDate DATE null,endDate DATE null,duration LONG,context TEXT null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoLog (kaleoLogId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskInstanceTokenId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,terminalKaleoNode BOOLEAN,kaleoActionId LONG,kaleoActionName VARCHAR(200) null,kaleoActionDescription VARCHAR(2000) null,previousKaleoNodeId LONG,previousKaleoNodeName VARCHAR(200) null,previousAssigneeClassName VARCHAR(200) null,previousAssigneeClassPK LONG,currentAssigneeClassName VARCHAR(200) null,currentAssigneeClassPK LONG,type_ VARCHAR(50) null,comment VARCHAR(2000) null,startDate DATE null,endDate DATE null,duration LONG,workflowContext VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoLog";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoLog.kaleoLogId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoLog.kaleoLogId ASC";
@@ -131,7 +131,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 		model.setStartDate(soapModel.getStartDate());
 		model.setEndDate(soapModel.getEndDate());
 		model.setDuration(soapModel.getDuration());
-		model.setContext(soapModel.getContext());
+		model.setWorkflowContext(soapModel.getWorkflowContext());
 
 		return model;
 	}
@@ -429,17 +429,17 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 		_duration = duration;
 	}
 
-	public String getContext() {
-		if (_context == null) {
+	public String getWorkflowContext() {
+		if (_workflowContext == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _context;
+			return _workflowContext;
 		}
 	}
 
-	public void setContext(String context) {
-		_context = context;
+	public void setWorkflowContext(String workflowContext) {
+		_workflowContext = workflowContext;
 	}
 
 	public KaleoLog toEscapedModel() {
@@ -494,7 +494,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 		clone.setStartDate(getStartDate());
 		clone.setEndDate(getEndDate());
 		clone.setDuration(getDuration());
-		clone.setContext(getContext());
+		clone.setWorkflowContext(getWorkflowContext());
 
 		return clone;
 	}
@@ -602,8 +602,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 		sb.append(getEndDate());
 		sb.append(", duration=");
 		sb.append(getDuration());
-		sb.append(", context=");
-		sb.append(getContext());
+		sb.append(", workflowContext=");
+		sb.append(getWorkflowContext());
 		sb.append("}");
 
 		return sb.toString();
@@ -721,8 +721,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 		sb.append(getDuration());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>context</column-name><column-value><![CDATA[");
-		sb.append(getContext());
+			"<column><column-name>workflowContext</column-name><column-value><![CDATA[");
+		sb.append(getWorkflowContext());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -757,6 +757,6 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 	private Date _startDate;
 	private Date _endDate;
 	private long _duration;
-	private String _context;
+	private String _workflowContext;
 	private transient ExpandoBridge _expandoBridge;
 }

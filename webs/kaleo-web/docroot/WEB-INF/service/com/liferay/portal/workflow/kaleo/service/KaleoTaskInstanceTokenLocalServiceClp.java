@@ -457,7 +457,7 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 		java.lang.String kaleoTaskName,
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment kaleoTaskAssignment,
 		java.util.Date dueDate,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -484,9 +484,9 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 			paramObj4 = new NullWrapper("java.util.Date");
 		}
 
-		Object paramObj5 = ClpSerializer.translateInput(context);
+		Object paramObj5 = ClpSerializer.translateInput(workflowContext);
 
-		if (context == null) {
+		if (workflowContext == null) {
 			paramObj5 = new NullWrapper("java.util.Map");
 		}
 
@@ -530,7 +530,7 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken assignKaleoTaskInstanceToken(
 		long kaleoTaskInstanceTokenId, java.lang.String assigneeClassName,
 		long assigneeClassPK,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -544,9 +544,9 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 
 		Object paramObj2 = new LongWrapper(assigneeClassPK);
 
-		Object paramObj3 = ClpSerializer.translateInput(context);
+		Object paramObj3 = ClpSerializer.translateInput(workflowContext);
 
-		if (context == null) {
+		if (workflowContext == null) {
 			paramObj3 = new NullWrapper("java.util.Map");
 		}
 

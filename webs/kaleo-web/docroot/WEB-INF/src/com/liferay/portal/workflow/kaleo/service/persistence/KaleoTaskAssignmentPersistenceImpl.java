@@ -576,52 +576,20 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		throws NoSuchTaskAssignmentException, SystemException {
 		KaleoTaskAssignment kaleoTaskAssignment = findByPrimaryKey(kaleoTaskAssignmentId);
 
-		int count = countByKaleoTaskId(kaleoTaskId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
-
-			query.append(_FINDER_COLUMN_KALEOTASKID_KALEOTASKID_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(KaleoTaskAssignmentModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(kaleoTaskId);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, kaleoTaskAssignment);
-
 			KaleoTaskAssignment[] array = new KaleoTaskAssignmentImpl[3];
 
-			array[0] = (KaleoTaskAssignment)objArray[0];
-			array[1] = (KaleoTaskAssignment)objArray[1];
-			array[2] = (KaleoTaskAssignment)objArray[2];
+			array[0] = getByKaleoTaskId_PrevAndNext(session,
+					kaleoTaskAssignment, kaleoTaskId, orderByComparator, true);
+
+			array[1] = kaleoTaskAssignment;
+
+			array[2] = getByKaleoTaskId_PrevAndNext(session,
+					kaleoTaskAssignment, kaleoTaskId, orderByComparator, false);
 
 			return array;
 		}
@@ -630,6 +598,109 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected KaleoTaskAssignment getByKaleoTaskId_PrevAndNext(
+		Session session, KaleoTaskAssignment kaleoTaskAssignment,
+		long kaleoTaskId, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
+
+		query.append(_FINDER_COLUMN_KALEOTASKID_KALEOTASKID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(KaleoTaskAssignmentModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(kaleoTaskId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(kaleoTaskAssignment);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<KaleoTaskAssignment> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -977,68 +1048,20 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		throws NoSuchTaskAssignmentException, SystemException {
 		KaleoTaskAssignment kaleoTaskAssignment = findByPrimaryKey(kaleoTaskAssignmentId);
 
-		int count = countByACN_ACP(assigneeClassName, assigneeClassPK);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(4);
-			}
-
-			query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
-
-			if (assigneeClassName == null) {
-				query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_1);
-			}
-			else {
-				if (assigneeClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_2);
-				}
-			}
-
-			query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSPK_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(KaleoTaskAssignmentModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			if (assigneeClassName != null) {
-				qPos.add(assigneeClassName);
-			}
-
-			qPos.add(assigneeClassPK);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, kaleoTaskAssignment);
-
 			KaleoTaskAssignment[] array = new KaleoTaskAssignmentImpl[3];
 
-			array[0] = (KaleoTaskAssignment)objArray[0];
-			array[1] = (KaleoTaskAssignment)objArray[1];
-			array[2] = (KaleoTaskAssignment)objArray[2];
+			array[0] = getByACN_ACP_PrevAndNext(session, kaleoTaskAssignment,
+					assigneeClassName, assigneeClassPK, orderByComparator, true);
+
+			array[1] = kaleoTaskAssignment;
+
+			array[2] = getByACN_ACP_PrevAndNext(session, kaleoTaskAssignment,
+					assigneeClassName, assigneeClassPK, orderByComparator, false);
 
 			return array;
 		}
@@ -1047,6 +1070,126 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected KaleoTaskAssignment getByACN_ACP_PrevAndNext(Session session,
+		KaleoTaskAssignment kaleoTaskAssignment, String assigneeClassName,
+		long assigneeClassPK, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
+
+		if (assigneeClassName == null) {
+			query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_1);
+		}
+		else {
+			if (assigneeClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_2);
+			}
+		}
+
+		query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSPK_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(KaleoTaskAssignmentModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (assigneeClassName != null) {
+			qPos.add(assigneeClassName);
+		}
+
+		qPos.add(assigneeClassPK);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(kaleoTaskAssignment);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<KaleoTaskAssignment> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 

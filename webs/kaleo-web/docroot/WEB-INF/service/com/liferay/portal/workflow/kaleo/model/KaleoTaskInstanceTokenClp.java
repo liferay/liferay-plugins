@@ -197,12 +197,12 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		_dueDate = dueDate;
 	}
 
-	public String getContext() {
-		return _context;
+	public String getWorkflowContext() {
+		return _workflowContext;
 	}
 
-	public void setContext(String context) {
-		_context = context;
+	public void setWorkflowContext(String workflowContext) {
+		_workflowContext = workflowContext;
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getKaleoInstanceToken() {
@@ -243,7 +243,7 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		clone.setCompleted(getCompleted());
 		clone.setCompletionDate(getCompletionDate());
 		clone.setDueDate(getDueDate());
-		clone.setContext(getContext());
+		clone.setWorkflowContext(getWorkflowContext());
 
 		return clone;
 	}
@@ -331,8 +331,8 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		sb.append(getCompletionDate());
 		sb.append(", dueDate=");
 		sb.append(getDueDate());
-		sb.append(", context=");
-		sb.append(getContext());
+		sb.append(", workflowContext=");
+		sb.append(getWorkflowContext());
 		sb.append("}");
 
 		return sb.toString();
@@ -411,8 +411,8 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		sb.append(getDueDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>context</column-name><column-value><![CDATA[");
-		sb.append(getContext());
+			"<column><column-name>workflowContext</column-name><column-value><![CDATA[");
+		sb.append(getWorkflowContext());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -438,5 +438,5 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 	private boolean _completed;
 	private Date _completionDate;
 	private Date _dueDate;
-	private String _context;
+	private String _workflowContext;
 }

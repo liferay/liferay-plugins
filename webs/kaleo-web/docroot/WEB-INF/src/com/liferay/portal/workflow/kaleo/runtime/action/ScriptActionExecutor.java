@@ -61,7 +61,7 @@ public class ScriptActionExecutor implements ActionExecutor {
 			KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
 
 			workflowContext = WorkflowContextUtil.convert(
-				kaleoInstance.getContext());
+				kaleoInstance.getWorkflowContext());
 		}
 
 		Map<String, Object> inputObjects = new HashMap<String, Object>(

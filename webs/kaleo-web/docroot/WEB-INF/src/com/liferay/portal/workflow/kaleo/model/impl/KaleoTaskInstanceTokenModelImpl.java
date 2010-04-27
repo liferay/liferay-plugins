@@ -76,9 +76,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			{ "completed", new Integer(Types.BOOLEAN) },
 			{ "completionDate", new Integer(Types.TIMESTAMP) },
 			{ "dueDate", new Integer(Types.TIMESTAMP) },
-			{ "context", new Integer(Types.CLOB) }
+			{ "workflowContext", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTaskInstanceToken (kaleoTaskInstanceTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskId LONG,kaleoTaskName VARCHAR(200) null,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG,completionUserId LONG,completed BOOLEAN,completionDate DATE null,dueDate DATE null,context TEXT null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTaskInstanceToken (kaleoTaskInstanceTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskId LONG,kaleoTaskName VARCHAR(200) null,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG,completionUserId LONG,completed BOOLEAN,completionDate DATE null,dueDate DATE null,workflowContext VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoTaskInstanceToken";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTaskInstanceToken.kaleoTaskInstanceTokenId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoTaskInstanceToken.kaleoTaskInstanceTokenId ASC";
@@ -112,7 +112,7 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		model.setCompleted(soapModel.getCompleted());
 		model.setCompletionDate(soapModel.getCompletionDate());
 		model.setDueDate(soapModel.getDueDate());
-		model.setContext(soapModel.getContext());
+		model.setWorkflowContext(soapModel.getWorkflowContext());
 
 		return model;
 	}
@@ -310,17 +310,17 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		_dueDate = dueDate;
 	}
 
-	public String getContext() {
-		if (_context == null) {
+	public String getWorkflowContext() {
+		if (_workflowContext == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _context;
+			return _workflowContext;
 		}
 	}
 
-	public void setContext(String context) {
-		_context = context;
+	public void setWorkflowContext(String workflowContext) {
+		_workflowContext = workflowContext;
 	}
 
 	public KaleoTaskInstanceToken toEscapedModel() {
@@ -366,7 +366,7 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		clone.setCompleted(getCompleted());
 		clone.setCompletionDate(getCompletionDate());
 		clone.setDueDate(getDueDate());
-		clone.setContext(getContext());
+		clone.setWorkflowContext(getWorkflowContext());
 
 		return clone;
 	}
@@ -454,8 +454,8 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		sb.append(getCompletionDate());
 		sb.append(", dueDate=");
 		sb.append(getDueDate());
-		sb.append(", context=");
-		sb.append(getContext());
+		sb.append(", workflowContext=");
+		sb.append(getWorkflowContext());
 		sb.append("}");
 
 		return sb.toString();
@@ -534,8 +534,8 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		sb.append(getDueDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>context</column-name><column-value><![CDATA[");
-		sb.append(getContext());
+			"<column><column-name>workflowContext</column-name><column-value><![CDATA[");
+		sb.append(getWorkflowContext());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -561,6 +561,6 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	private boolean _completed;
 	private Date _completionDate;
 	private Date _dueDate;
-	private String _context;
+	private String _workflowContext;
 	private transient ExpandoBridge _expandoBridge;
 }

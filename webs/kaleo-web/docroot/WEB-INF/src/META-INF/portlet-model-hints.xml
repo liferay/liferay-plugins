@@ -71,9 +71,7 @@
 		<field name="classPK" type="long" />
 		<field name="completed" type="boolean" />
 		<field name="completionDate" type="Date" />
-		<field name="context" type="String">
-			<hint-collection name="CLOB" />
-		</field>
+		<field name="workflowContext" type="String" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken">
 		<field name="kaleoInstanceTokenId" type="long" />
@@ -138,9 +136,7 @@
 		<field name="startDate" type="Date" />
 		<field name="endDate" type="Date" />
 		<field name="duration" type="long" />
-		<field name="context" type="String">
-			<hint-collection name="CLOB" />
-		</field>
+		<field name="workflowContext" type="String" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoNode">
 		<field name="kaleoNodeId" type="long" />
@@ -264,9 +260,7 @@
 		<field name="completed" type="boolean" />
 		<field name="completionDate" type="Date" />
 		<field name="dueDate" type="Date" />
-		<field name="context" type="String">
-			<hint-collection name="CLOB" />
-		</field>
+		<field name="workflowContext" type="String" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTransition">
 		<field name="kaleoTransitionId" type="long" />

@@ -97,7 +97,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		kaleoTaskInstanceToken.setAssigneeClassPK(
 			kaleoTaskAssignment.getAssigneeClassPK());
 		kaleoTaskInstanceToken.setCompleted(false);
-		kaleoTaskInstanceToken.setContext(
+		kaleoTaskInstanceToken.setWorkflowContext(
 			WorkflowContextUtil.convert(workflowContext));
 
 		kaleoTaskInstanceTokenPersistence.update(kaleoTaskInstanceToken, false);
@@ -118,7 +118,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		kaleoTaskInstanceToken.setModifiedDate(new Date());
 		kaleoTaskInstanceToken.setAssigneeClassName(assigneeClassName);
 		kaleoTaskInstanceToken.setAssigneeClassPK(assigneeClassPK);
-		kaleoTaskInstanceToken.setContext(
+		kaleoTaskInstanceToken.setWorkflowContext(
 			WorkflowContextUtil.convert(workflowContext));
 
 		kaleoTaskInstanceTokenPersistence.update(kaleoTaskInstanceToken, false);
@@ -496,7 +496,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 				for (String assetTypeKeyword : assetTypeKeywords) {
 					junction.add(
-						PropertyFactoryUtil.forName("context").like(
+						PropertyFactoryUtil.forName("workflowContext").like(
 							assetTypeKeyword));
 				}
 			}

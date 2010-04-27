@@ -115,9 +115,9 @@ public interface KaleoInstanceModel extends BaseModel<KaleoInstance> {
 	public void setCompletionDate(Date completionDate);
 
 	@AutoEscape
-	public String getContext();
+	public String getWorkflowContext();
 
-	public void setContext(String context);
+	public void setWorkflowContext(String workflowContext);
 
 	public KaleoInstance toEscapedModel();
 

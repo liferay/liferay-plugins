@@ -69,7 +69,7 @@
 		<property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="completed" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="completionDate" type="org.hibernate.type.TimestampType" />
-		<property name="context" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workflowContext" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceTokenImpl" table="Kaleo_KaleoInstanceToken">
 		<cache usage="read-write" />
@@ -118,7 +118,7 @@
 		<property name="startDate" type="org.hibernate.type.TimestampType" />
 		<property name="endDate" type="org.hibernate.type.TimestampType" />
 		<property name="duration" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="context" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workflowContext" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl" table="Kaleo_KaleoNode">
 		<cache usage="read-write" />
@@ -226,7 +226,7 @@
 		<property name="completed" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="completionDate" type="org.hibernate.type.TimestampType" />
 		<property name="dueDate" type="org.hibernate.type.TimestampType" />
-		<property name="context" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workflowContext" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionImpl" table="Kaleo_KaleoTransition">
 		<cache usage="read-write" />

@@ -67,7 +67,7 @@ public class KaleoLogSoap implements Serializable {
 		soapModel.setStartDate(model.getStartDate());
 		soapModel.setEndDate(model.getEndDate());
 		soapModel.setDuration(model.getDuration());
-		soapModel.setContext(model.getContext());
+		soapModel.setWorkflowContext(model.getWorkflowContext());
 
 		return soapModel;
 	}
@@ -332,12 +332,12 @@ public class KaleoLogSoap implements Serializable {
 		_duration = duration;
 	}
 
-	public String getContext() {
-		return _context;
+	public String getWorkflowContext() {
+		return _workflowContext;
 	}
 
-	public void setContext(String context) {
-		_context = context;
+	public void setWorkflowContext(String workflowContext) {
+		_workflowContext = workflowContext;
 	}
 
 	private long _kaleoLogId;
@@ -366,5 +366,5 @@ public class KaleoLogSoap implements Serializable {
 	private Date _startDate;
 	private Date _endDate;
 	private long _duration;
-	private String _context;
+	private String _workflowContext;
 }

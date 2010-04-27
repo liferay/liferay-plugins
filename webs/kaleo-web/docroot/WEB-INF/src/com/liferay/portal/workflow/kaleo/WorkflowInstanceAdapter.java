@@ -44,17 +44,19 @@ public class WorkflowInstanceAdapter extends DefaultWorkflowInstance {
 			Map<String, Serializable> workflowContext)
 		throws PortalException, SystemException {
 
+		setEndDate(kaleoInstance.getCompletionDate());
+		setStartDate(kaleoInstance.getCreateDate());
+		setState(kaleoInstanceToken.getCurrentKaleoNode().getName());
+
 		if (workflowContext != null) {
 			setWorkflowContext(workflowContext);
 		}
 		else {
 			setWorkflowContext(
-				WorkflowContextUtil.convert(kaleoInstance.getContext()));
+				WorkflowContextUtil.convert(
+					kaleoInstance.getWorkflowContext()));
 		}
 
-		setEndDate(kaleoInstance.getCompletionDate());
-		setStartDate(kaleoInstance.getCreateDate());
-		setState(kaleoInstanceToken.getCurrentKaleoNode().getName());
 		setWorkflowDefinitionName(kaleoInstance.getKaleoDefinitionName());
 		setWorkflowDefinitionVersion(kaleoInstance.getKaleoDefinitionVersion());
 		setWorkflowInstanceId(kaleoInstance.getKaleoInstanceId());

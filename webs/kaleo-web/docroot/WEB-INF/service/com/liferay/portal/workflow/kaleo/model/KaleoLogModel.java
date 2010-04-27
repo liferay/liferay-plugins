@@ -169,9 +169,9 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 	public void setDuration(long duration);
 
 	@AutoEscape
-	public String getContext();
+	public String getWorkflowContext();
 
-	public void setContext(String context);
+	public void setWorkflowContext(String workflowContext);
 
 	public KaleoLog toEscapedModel();
 

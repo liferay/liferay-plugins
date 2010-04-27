@@ -58,7 +58,7 @@ public class KaleoTaskInstanceTokenSoap implements Serializable {
 		soapModel.setCompleted(model.getCompleted());
 		soapModel.setCompletionDate(model.getCompletionDate());
 		soapModel.setDueDate(model.getDueDate());
-		soapModel.setContext(model.getContext());
+		soapModel.setWorkflowContext(model.getWorkflowContext());
 
 		return soapModel;
 	}
@@ -246,12 +246,12 @@ public class KaleoTaskInstanceTokenSoap implements Serializable {
 		_dueDate = dueDate;
 	}
 
-	public String getContext() {
-		return _context;
+	public String getWorkflowContext() {
+		return _workflowContext;
 	}
 
-	public void setContext(String context) {
-		_context = context;
+	public void setWorkflowContext(String workflowContext) {
+		_workflowContext = workflowContext;
 	}
 
 	private long _kaleoTaskInstanceTokenId;
@@ -270,5 +270,5 @@ public class KaleoTaskInstanceTokenSoap implements Serializable {
 	private boolean _completed;
 	private Date _completionDate;
 	private Date _dueDate;
-	private String _context;
+	private String _workflowContext;
 }

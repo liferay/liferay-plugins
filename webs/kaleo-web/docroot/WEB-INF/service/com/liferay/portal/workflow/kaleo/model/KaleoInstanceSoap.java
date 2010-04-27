@@ -55,7 +55,7 @@ public class KaleoInstanceSoap implements Serializable {
 		soapModel.setClassPK(model.getClassPK());
 		soapModel.setCompleted(model.getCompleted());
 		soapModel.setCompletionDate(model.getCompletionDate());
-		soapModel.setContext(model.getContext());
+		soapModel.setWorkflowContext(model.getWorkflowContext());
 
 		return soapModel;
 	}
@@ -224,12 +224,12 @@ public class KaleoInstanceSoap implements Serializable {
 		_completionDate = completionDate;
 	}
 
-	public String getContext() {
-		return _context;
+	public String getWorkflowContext() {
+		return _workflowContext;
 	}
 
-	public void setContext(String context) {
-		_context = context;
+	public void setWorkflowContext(String workflowContext) {
+		_workflowContext = workflowContext;
 	}
 
 	private long _kaleoInstanceId;
@@ -246,5 +246,5 @@ public class KaleoInstanceSoap implements Serializable {
 	private long _classPK;
 	private boolean _completed;
 	private Date _completionDate;
-	private String _context;
+	private String _workflowContext;
 }

@@ -268,12 +268,12 @@ public class KaleoLogWrapper implements KaleoLog {
 		_kaleoLog.setDuration(duration);
 	}
 
-	public java.lang.String getContext() {
-		return _kaleoLog.getContext();
+	public java.lang.String getWorkflowContext() {
+		return _kaleoLog.getWorkflowContext();
 	}
 
-	public void setContext(java.lang.String context) {
-		_kaleoLog.setContext(context);
+	public void setWorkflowContext(java.lang.String workflowContext) {
+		_kaleoLog.setWorkflowContext(workflowContext);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog toEscapedModel() {

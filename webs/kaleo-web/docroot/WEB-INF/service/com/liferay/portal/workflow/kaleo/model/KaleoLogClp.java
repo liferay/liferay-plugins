@@ -267,12 +267,12 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		_duration = duration;
 	}
 
-	public String getContext() {
-		return _context;
+	public String getWorkflowContext() {
+		return _workflowContext;
 	}
 
-	public void setContext(String context) {
-		_context = context;
+	public void setWorkflowContext(String workflowContext) {
+		_workflowContext = workflowContext;
 	}
 
 	public KaleoLog toEscapedModel() {
@@ -314,7 +314,7 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		clone.setStartDate(getStartDate());
 		clone.setEndDate(getEndDate());
 		clone.setDuration(getDuration());
-		clone.setContext(getContext());
+		clone.setWorkflowContext(getWorkflowContext());
 
 		return clone;
 	}
@@ -422,8 +422,8 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		sb.append(getEndDate());
 		sb.append(", duration=");
 		sb.append(getDuration());
-		sb.append(", context=");
-		sb.append(getContext());
+		sb.append(", workflowContext=");
+		sb.append(getWorkflowContext());
 		sb.append("}");
 
 		return sb.toString();
@@ -541,8 +541,8 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		sb.append(getDuration());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>context</column-name><column-value><![CDATA[");
-		sb.append(getContext());
+			"<column><column-name>workflowContext</column-name><column-value><![CDATA[");
+		sb.append(getWorkflowContext());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -577,5 +577,5 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 	private Date _startDate;
 	private Date _endDate;
 	private long _duration;
-	private String _context;
+	private String _workflowContext;
 }

@@ -152,7 +152,8 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 			newKaleoTaskInstanceToken.getAssigneeClassPK());
 
 		kaleoLog.setComment(comment);
-		kaleoLog.setContext(WorkflowContextUtil.convert(workflowContext));
+		kaleoLog.setWorkflowContext(
+			WorkflowContextUtil.convert(workflowContext));
 
 		kaleoLogPersistence.update(kaleoLog, false);
 
@@ -184,7 +185,8 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		kaleoLog.setCurrentAssigneeClassName(
 			kaleoTaskInstanceToken.getAssigneeClassName());
 		kaleoLog.setComment(comment);
-		kaleoLog.setContext(WorkflowContextUtil.convert(workflowContext));
+		kaleoLog.setWorkflowContext(
+			WorkflowContextUtil.convert(workflowContext));
 
 		kaleoLogPersistence.update(kaleoLog, false);
 
@@ -232,7 +234,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 
 		KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
 
-		kaleoLog.setContext(kaleoInstance.getContext());
+		kaleoLog.setWorkflowContext(kaleoInstance.getWorkflowContext());
 
 		kaleoLogPersistence.update(kaleoLog, false);
 

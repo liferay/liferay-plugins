@@ -157,25 +157,25 @@ public class KaleoLogLocalServiceUtil {
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken previousKaleoTaskInstanceToken,
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken newKaleoTaskInstanceToken,
 		java.lang.String comment,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addTaskAssignmentKaleoLog(previousKaleoTaskInstanceToken,
-			newKaleoTaskInstanceToken, comment, context, serviceContext);
+			newKaleoTaskInstanceToken, comment, workflowContext, serviceContext);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog addTaskCompletionKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
 		java.lang.String comment,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addTaskCompletionKaleoLog(kaleoTaskInstanceToken, comment,
-			context, serviceContext);
+			workflowContext, serviceContext);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog addWorkflowInstanceEndKaleoLog(

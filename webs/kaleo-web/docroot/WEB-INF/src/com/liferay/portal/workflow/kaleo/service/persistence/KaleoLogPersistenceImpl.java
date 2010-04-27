@@ -316,7 +316,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		kaleoLogImpl.setStartDate(kaleoLog.getStartDate());
 		kaleoLogImpl.setEndDate(kaleoLog.getEndDate());
 		kaleoLogImpl.setDuration(kaleoLog.getDuration());
-		kaleoLogImpl.setContext(kaleoLog.getContext());
+		kaleoLogImpl.setWorkflowContext(kaleoLog.getWorkflowContext());
 
 		return kaleoLogImpl;
 	}
@@ -561,52 +561,20 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		throws NoSuchLogException, SystemException {
 		KaleoLog kaleoLog = findByPrimaryKey(kaleoLogId);
 
-		int count = countByKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_KALEOLOG_WHERE);
-
-			query.append(_FINDER_COLUMN_KALEOTASKINSTANCETOKENID_KALEOTASKINSTANCETOKENID_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(KaleoLogModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(kaleoTaskInstanceTokenId);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, kaleoLog);
-
 			KaleoLog[] array = new KaleoLogImpl[3];
 
-			array[0] = (KaleoLog)objArray[0];
-			array[1] = (KaleoLog)objArray[1];
-			array[2] = (KaleoLog)objArray[2];
+			array[0] = getByKaleoTaskInstanceTokenId_PrevAndNext(session,
+					kaleoLog, kaleoTaskInstanceTokenId, orderByComparator, true);
+
+			array[1] = kaleoLog;
+
+			array[2] = getByKaleoTaskInstanceTokenId_PrevAndNext(session,
+					kaleoLog, kaleoTaskInstanceTokenId, orderByComparator, false);
 
 			return array;
 		}
@@ -615,6 +583,109 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected KaleoLog getByKaleoTaskInstanceTokenId_PrevAndNext(
+		Session session, KaleoLog kaleoLog, long kaleoTaskInstanceTokenId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_KALEOLOG_WHERE);
+
+		query.append(_FINDER_COLUMN_KALEOTASKINSTANCETOKENID_KALEOTASKINSTANCETOKENID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(KaleoLogModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(kaleoTaskInstanceTokenId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(kaleoLog);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<KaleoLog> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -841,68 +912,20 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		throws NoSuchLogException, SystemException {
 		KaleoLog kaleoLog = findByPrimaryKey(kaleoLogId);
 
-		int count = countByKITI_T(kaleoInstanceTokenId, type);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(4);
-			}
-
-			query.append(_SQL_SELECT_KALEOLOG_WHERE);
-
-			query.append(_FINDER_COLUMN_KITI_T_KALEOINSTANCETOKENID_2);
-
-			if (type == null) {
-				query.append(_FINDER_COLUMN_KITI_T_TYPE_1);
-			}
-			else {
-				if (type.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KITI_T_TYPE_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KITI_T_TYPE_2);
-				}
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(KaleoLogModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(kaleoInstanceTokenId);
-
-			if (type != null) {
-				qPos.add(type);
-			}
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, kaleoLog);
-
 			KaleoLog[] array = new KaleoLogImpl[3];
 
-			array[0] = (KaleoLog)objArray[0];
-			array[1] = (KaleoLog)objArray[1];
-			array[2] = (KaleoLog)objArray[2];
+			array[0] = getByKITI_T_PrevAndNext(session, kaleoLog,
+					kaleoInstanceTokenId, type, orderByComparator, true);
+
+			array[1] = kaleoLog;
+
+			array[2] = getByKITI_T_PrevAndNext(session, kaleoLog,
+					kaleoInstanceTokenId, type, orderByComparator, false);
 
 			return array;
 		}
@@ -911,6 +934,125 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected KaleoLog getByKITI_T_PrevAndNext(Session session,
+		KaleoLog kaleoLog, long kaleoInstanceTokenId, String type,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_KALEOLOG_WHERE);
+
+		query.append(_FINDER_COLUMN_KITI_T_KALEOINSTANCETOKENID_2);
+
+		if (type == null) {
+			query.append(_FINDER_COLUMN_KITI_T_TYPE_1);
+		}
+		else {
+			if (type.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KITI_T_TYPE_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_KITI_T_TYPE_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(KaleoLogModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(kaleoInstanceTokenId);
+
+		if (type != null) {
+			qPos.add(type);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(kaleoLog);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<KaleoLog> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -1157,72 +1299,22 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		throws NoSuchLogException, SystemException {
 		KaleoLog kaleoLog = findByPrimaryKey(kaleoLogId);
 
-		int count = countByKITI_KNI_T(kaleoInstanceTokenId, kaleoNodeId, type);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(5);
-			}
-
-			query.append(_SQL_SELECT_KALEOLOG_WHERE);
-
-			query.append(_FINDER_COLUMN_KITI_KNI_T_KALEOINSTANCETOKENID_2);
-
-			query.append(_FINDER_COLUMN_KITI_KNI_T_KALEONODEID_2);
-
-			if (type == null) {
-				query.append(_FINDER_COLUMN_KITI_KNI_T_TYPE_1);
-			}
-			else {
-				if (type.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KITI_KNI_T_TYPE_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KITI_KNI_T_TYPE_2);
-				}
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(KaleoLogModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(kaleoInstanceTokenId);
-
-			qPos.add(kaleoNodeId);
-
-			if (type != null) {
-				qPos.add(type);
-			}
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, kaleoLog);
-
 			KaleoLog[] array = new KaleoLogImpl[3];
 
-			array[0] = (KaleoLog)objArray[0];
-			array[1] = (KaleoLog)objArray[1];
-			array[2] = (KaleoLog)objArray[2];
+			array[0] = getByKITI_KNI_T_PrevAndNext(session, kaleoLog,
+					kaleoInstanceTokenId, kaleoNodeId, type, orderByComparator,
+					true);
+
+			array[1] = kaleoLog;
+
+			array[2] = getByKITI_KNI_T_PrevAndNext(session, kaleoLog,
+					kaleoInstanceTokenId, kaleoNodeId, type, orderByComparator,
+					false);
 
 			return array;
 		}
@@ -1231,6 +1323,129 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected KaleoLog getByKITI_KNI_T_PrevAndNext(Session session,
+		KaleoLog kaleoLog, long kaleoInstanceTokenId, long kaleoNodeId,
+		String type, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_KALEOLOG_WHERE);
+
+		query.append(_FINDER_COLUMN_KITI_KNI_T_KALEOINSTANCETOKENID_2);
+
+		query.append(_FINDER_COLUMN_KITI_KNI_T_KALEONODEID_2);
+
+		if (type == null) {
+			query.append(_FINDER_COLUMN_KITI_KNI_T_TYPE_1);
+		}
+		else {
+			if (type.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KITI_KNI_T_TYPE_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_KITI_KNI_T_TYPE_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(KaleoLogModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(kaleoInstanceTokenId);
+
+		qPos.add(kaleoNodeId);
+
+		if (type != null) {
+			qPos.add(type);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(kaleoLog);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<KaleoLog> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 

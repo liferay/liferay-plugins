@@ -453,7 +453,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance addKaleoInstance(
 		long kaleoDefinitionId, java.lang.String kaleoDefinitionName,
 		int kaleoDefinitionVersion,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -467,9 +467,9 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 
 		Object paramObj2 = new IntegerWrapper(kaleoDefinitionVersion);
 
-		Object paramObj3 = ClpSerializer.translateInput(context);
+		Object paramObj3 = ClpSerializer.translateInput(workflowContext);
 
-		if (context == null) {
+		if (workflowContext == null) {
 			paramObj3 = new NullWrapper("java.util.Map");
 		}
 
@@ -648,15 +648,15 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance updateKaleoInstance(
 		long kaleoInstanceId,
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(kaleoInstanceId);
 
-		Object paramObj1 = ClpSerializer.translateInput(context);
+		Object paramObj1 = ClpSerializer.translateInput(workflowContext);
 
-		if (context == null) {
+		if (workflowContext == null) {
 			paramObj1 = new NullWrapper("java.util.Map");
 		}
 

@@ -74,9 +74,9 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 			{ "classPK", new Integer(Types.BIGINT) },
 			{ "completed", new Integer(Types.BOOLEAN) },
 			{ "completionDate", new Integer(Types.TIMESTAMP) },
-			{ "context", new Integer(Types.CLOB) }
+			{ "workflowContext", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoInstance (kaleoInstanceId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoDefinitionName VARCHAR(200) null,kaleoDefinitionVersion INTEGER,rootKaleoInstanceTokenId LONG,className VARCHAR(200) null,classPK LONG,completed BOOLEAN,completionDate DATE null,context TEXT null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoInstance (kaleoInstanceId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoDefinitionName VARCHAR(200) null,kaleoDefinitionVersion INTEGER,rootKaleoInstanceTokenId LONG,className VARCHAR(200) null,classPK LONG,completed BOOLEAN,completionDate DATE null,workflowContext VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoInstance";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoInstance.kaleoInstanceId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoInstance.kaleoInstanceId ASC";
@@ -107,7 +107,7 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 		model.setClassPK(soapModel.getClassPK());
 		model.setCompleted(soapModel.getCompleted());
 		model.setCompletionDate(soapModel.getCompletionDate());
-		model.setContext(soapModel.getContext());
+		model.setWorkflowContext(soapModel.getWorkflowContext());
 
 		return model;
 	}
@@ -279,17 +279,17 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 		_completionDate = completionDate;
 	}
 
-	public String getContext() {
-		if (_context == null) {
+	public String getWorkflowContext() {
+		if (_workflowContext == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _context;
+			return _workflowContext;
 		}
 	}
 
-	public void setContext(String context) {
-		_context = context;
+	public void setWorkflowContext(String workflowContext) {
+		_workflowContext = workflowContext;
 	}
 
 	public KaleoInstance toEscapedModel() {
@@ -333,7 +333,7 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 		clone.setClassPK(getClassPK());
 		clone.setCompleted(getCompleted());
 		clone.setCompletionDate(getCompletionDate());
-		clone.setContext(getContext());
+		clone.setWorkflowContext(getWorkflowContext());
 
 		return clone;
 	}
@@ -417,8 +417,8 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 		sb.append(getCompleted());
 		sb.append(", completionDate=");
 		sb.append(getCompletionDate());
-		sb.append(", context=");
-		sb.append(getContext());
+		sb.append(", workflowContext=");
+		sb.append(getWorkflowContext());
 		sb.append("}");
 
 		return sb.toString();
@@ -488,8 +488,8 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 		sb.append(getCompletionDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>context</column-name><column-value><![CDATA[");
-		sb.append(getContext());
+			"<column><column-name>workflowContext</column-name><column-value><![CDATA[");
+		sb.append(getWorkflowContext());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -512,6 +512,6 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 	private long _classPK;
 	private boolean _completed;
 	private Date _completionDate;
-	private String _context;
+	private String _workflowContext;
 	private transient ExpandoBridge _expandoBridge;
 }

@@ -67,7 +67,8 @@ public class KaleoInstanceLocalServiceImpl
 		kaleoInstance.setKaleoDefinitionName(kaleoDefinitionName);
 		kaleoInstance.setKaleoDefinitionVersion(kaleoDefinitionVersion);
 		kaleoInstance.setCompleted(false);
-		kaleoInstance.setContext(WorkflowContextUtil.convert(workflowContext));
+		kaleoInstance.setWorkflowContext(
+			WorkflowContextUtil.convert(workflowContext));
 
 		kaleoInstancePersistence.update(kaleoInstance, false);
 
@@ -160,7 +161,8 @@ public class KaleoInstanceLocalServiceImpl
 		KaleoInstance kaleoInstance = kaleoInstancePersistence.findByPrimaryKey(
 			kaleoInstanceId);
 
-		kaleoInstance.setContext(WorkflowContextUtil.convert(workflowContext));
+		kaleoInstance.setWorkflowContext(
+			WorkflowContextUtil.convert(workflowContext));
 
 		return kaleoInstance;
 	}

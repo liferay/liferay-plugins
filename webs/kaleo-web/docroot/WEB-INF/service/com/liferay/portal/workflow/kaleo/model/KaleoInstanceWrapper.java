@@ -169,12 +169,12 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 		_kaleoInstance.setCompletionDate(completionDate);
 	}
 
-	public java.lang.String getContext() {
-		return _kaleoInstance.getContext();
+	public java.lang.String getWorkflowContext() {
+		return _kaleoInstance.getWorkflowContext();
 	}
 
-	public void setContext(java.lang.String context) {
-		_kaleoInstance.setContext(context);
+	public void setWorkflowContext(java.lang.String workflowContext) {
+		_kaleoInstance.setWorkflowContext(workflowContext);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance toEscapedModel() {
@@ -246,11 +246,12 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getRootKaleoInstanceToken(
-		java.util.Map<String, java.io.Serializable> context,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoInstance.getRootKaleoInstanceToken(context, serviceContext);
+		return _kaleoInstance.getRootKaleoInstanceToken(workflowContext,
+			serviceContext);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getRootKaleoInstanceToken(

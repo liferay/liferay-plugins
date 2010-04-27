@@ -127,9 +127,9 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	public void setDueDate(Date dueDate);
 
 	@AutoEscape
-	public String getContext();
+	public String getWorkflowContext();
 
-	public void setContext(String context);
+	public void setWorkflowContext(String workflowContext);
 
 	public KaleoTaskInstanceToken toEscapedModel();
 

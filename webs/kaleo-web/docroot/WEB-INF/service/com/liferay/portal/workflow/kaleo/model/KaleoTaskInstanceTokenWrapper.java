@@ -195,12 +195,12 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 		_kaleoTaskInstanceToken.setDueDate(dueDate);
 	}
 
-	public java.lang.String getContext() {
-		return _kaleoTaskInstanceToken.getContext();
+	public java.lang.String getWorkflowContext() {
+		return _kaleoTaskInstanceToken.getWorkflowContext();
 	}
 
-	public void setContext(java.lang.String context) {
-		_kaleoTaskInstanceToken.setContext(context);
+	public void setWorkflowContext(java.lang.String workflowContext) {
+		_kaleoTaskInstanceToken.setWorkflowContext(workflowContext);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken toEscapedModel() {
