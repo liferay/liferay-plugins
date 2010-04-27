@@ -16,7 +16,7 @@ package com.liferay.portal.workflow.jbpm.dao;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.workflow.ContextConstants;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowLog;
 import com.liferay.portal.workflow.jbpm.WorkflowDefinitionExtensionImpl;
 import com.liferay.portal.workflow.jbpm.WorkflowLogImpl;
@@ -539,7 +539,7 @@ public class CustomSession {
 
 			Criterion typeCriterion = Restrictions.and(
 				Restrictions.eq(
-					"varInstances.name", ContextConstants.ENTRY_TYPE),
+					"varInstances.name", WorkflowConstants.ENTRY_TYPE),
 				Restrictions.like("varInstances.value", assetType));
 
 			kewordsJunction.add(typeCriterion);

@@ -57,7 +57,7 @@
 				<execution-type>onEntry</execution-type>
 				<script>
 					<![CDATA[
-						Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(Packages.com.liferay.portal.kernel.workflow.StatusConstants.fromLabel("approved"), workflowContext);
+						Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(Packages.com.liferay.portal.kernel.workflow.WorkflowConstants.fromLabel("approved"), workflowContext);
 					]]>
 				</script>
 				<script-language>javascript</script-language>

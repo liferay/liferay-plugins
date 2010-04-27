@@ -15,7 +15,7 @@
 package com.liferay.portal.workflow.jbpm.handler;
 
 import com.liferay.portal.kernel.scripting.ScriptingUtil;
-import com.liferay.portal.kernel.workflow.ContextConstants;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
@@ -46,7 +46,7 @@ public class ScriptingWorkflowActionHandler implements ActionHandler {
 
 		inputObjects.put("workflowContext", workflowContext);
 
-		Long companyId = (Long)inputObjects.get(ContextConstants.COMPANY_ID);
+		Long companyId = (Long)inputObjects.get(WorkflowConstants.COMPANY_ID);
 
 		TaskInstance taskInstance = executionContext.getTaskInstance();
 
