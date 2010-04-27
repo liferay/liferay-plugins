@@ -56,15 +56,18 @@ public class ScriptingWorkflowActionHandler implements ActionHandler {
 		TaskInstance taskInstance = executionContext.getTaskInstance();
 
 		if (taskInstance != null) {
+			inputObjects.put(
+				WorkflowConstants.CONTEXT_USER_ID, taskInstance.getActorId());
+
 			inputObjects.put("assigneeClassName", User.class.getName());
 			inputObjects.put("assigneeClassPK", taskInstance.getActorId());
 			inputObjects.put("taskName", taskInstance.getName());
-			inputObjects.put("userId", taskInstance.getActorId());
 		}
 		else if (companyId != null) {
 			User user = UserLocalServiceUtil.getDefaultUser(companyId);
 
-			inputObjects.put("userId", user.getUserId());
+			inputObjects.put(
+				WorkflowConstants.CONTEXT_USER_ID, user.getUserId());
 		}
 
 		ScriptingUtil.exec(null, inputObjects, language, script);

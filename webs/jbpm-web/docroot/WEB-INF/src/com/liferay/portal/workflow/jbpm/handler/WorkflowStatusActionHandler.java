@@ -55,7 +55,7 @@ public class WorkflowStatusActionHandler implements ActionHandler {
 			}
 		}
 
-		workflowContext.put("userId", userId);
+		workflowContext.put(WorkflowConstants.CONTEXT_USER_ID, userId);
 
 		WorkflowStatusManagerUtil.updateStatus(
 			WorkflowConstants.toStatus(status), workflowContext);
