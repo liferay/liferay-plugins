@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.service.impl;
 
+import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.knowledgebase.ArticleContentException;
 import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
@@ -36,6 +37,7 @@ import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -46,7 +48,9 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.StatusConstants;
 import com.liferay.portal.model.Company;
+import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
@@ -65,6 +69,7 @@ import com.liferay.util.portlet.PortletProps;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -458,6 +463,52 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			article.getCompanyId(), article.getGroupId(),
 			Article.class.getName(), article.getResourcePrimKey(),
 			communityPermissions, guestPermissions);
+	}
+
+	public String updateAttachments(long companyId, long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		long folderId = counterLocalService.increment();
+		String dirName = "knowledgebase/cache/attachments/" + folderId;
+
+		DLServiceUtil.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
+
+		String[] fileNames = DLServiceUtil.getFileNames(
+			companyId, CompanyConstants.SYSTEM,
+			"knowledgebase/cache/attachments");
+
+		if (fileNames.length > 50) {
+			Arrays.sort(fileNames);
+
+			for (int i = 0; i < fileNames.length - 50; i++) {
+				DLServiceUtil.deleteDirectory(
+					companyId, CompanyConstants.SYSTEM_STRING,
+					CompanyConstants.SYSTEM, fileNames[i]);
+			}
+		}
+
+		if (resourcePrimKey > 0) {
+			Article article = articlePersistence.findByResourcePrimKey_First(
+				resourcePrimKey, new ArticleVersionComparator());
+			Date now = new Date();
+
+			ServiceContext serviceContext = new ServiceContext();
+
+			for (String fileName : article.getAttachmentsFileNames()) {
+				String shortFileName = FileUtil.getShortFileName(fileName);
+				byte[] bytes = DLServiceUtil.getFile(
+					article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+
+				DLServiceUtil.addFile(
+					companyId, CompanyConstants.SYSTEM_STRING,
+					GroupConstants.DEFAULT_PARENT_GROUP_ID,
+					CompanyConstants.SYSTEM,
+					dirName + StringPool.SLASH + shortFileName, 0,
+					StringPool.BLANK, now, serviceContext, bytes);
+			}
+		}
+
+		return dirName;
 	}
 
 	public Article updateDisplayOrder(
