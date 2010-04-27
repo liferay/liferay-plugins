@@ -50,6 +50,24 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			description, priority, serviceContext);
 	}
 
+	public void addAttachment(
+			long companyId, long groupId, long resourcePrimKey, String dirName,
+			String shortFileName, byte[] bytes)
+		throws PortalException, SystemException {
+
+		if (resourcePrimKey <= 0) {
+			AdminPermission.check(
+				getPermissionChecker(), groupId, ActionKeys.ADD_ARTICLE);
+		}
+		else {
+			ArticlePermission.check(
+				getPermissionChecker(), resourcePrimKey, ActionKeys.UPDATE);
+		}
+
+		articleLocalService.addAttachment(
+			companyId, dirName, shortFileName, bytes);
+	}
+
 	public void deleteArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
 
@@ -57,6 +75,22 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			getPermissionChecker(), resourcePrimKey, ActionKeys.DELETE);
 
 		articleLocalService.deleteArticle(resourcePrimKey);
+	}
+
+	public void deleteAttachment(
+			long companyId, long groupId, long resourcePrimKey, String fileName)
+		throws PortalException, SystemException {
+
+		if (resourcePrimKey <= 0) {
+			AdminPermission.check(
+				getPermissionChecker(), groupId, ActionKeys.ADD_ARTICLE);
+		}
+		else {
+			ArticlePermission.check(
+				getPermissionChecker(), resourcePrimKey, ActionKeys.UPDATE);
+		}
+
+		articleLocalService.deleteAttachment(companyId, fileName);
 	}
 
 	public Article getArticle(long resourcePrimKey, double version)
@@ -182,6 +216,23 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		return articleLocalService.updateArticle(
 			getUserId(), resourcePrimKey, parentResourcePrimKey, title, content,
 			description, priority, serviceContext);
+	}
+
+	public String updateAttachments(
+			long companyId, long groupId, long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		if (resourcePrimKey <= 0) {
+			AdminPermission.check(
+				getPermissionChecker(), groupId, ActionKeys.ADD_ARTICLE);
+		}
+		else {
+			ArticlePermission.check(
+				getPermissionChecker(), resourcePrimKey, ActionKeys.UPDATE);
+		}
+
+		return articleLocalService.updateAttachments(
+			companyId, resourcePrimKey);
 	}
 
 	protected List<Article> filterArticles(List<Article> articles)
