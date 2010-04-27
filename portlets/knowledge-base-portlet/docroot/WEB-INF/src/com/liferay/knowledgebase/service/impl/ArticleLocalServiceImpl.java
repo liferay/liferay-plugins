@@ -406,26 +406,26 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public void subscribe(long groupId, long userId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		if (resourcePrimKey > 0) {
+		if (resourcePrimKey <= 0) {
 			SubscriptionLocalServiceUtil.addSubscription(
-				userId, Article.class.getName(), resourcePrimKey);
+				userId, Article.class.getName(), groupId);
 		}
 		else {
 			SubscriptionLocalServiceUtil.addSubscription(
-				userId, Article.class.getName(), groupId);
+				userId, Article.class.getName(), resourcePrimKey);
 		}
 	}
 
 	public void unsubscribe(long groupId, long userId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		if (resourcePrimKey > 0) {
+		if (resourcePrimKey <= 0) {
 			SubscriptionLocalServiceUtil.deleteSubscription(
-				userId, Article.class.getName(), resourcePrimKey);
+				userId, Article.class.getName(), groupId);
 		}
 		else {
 			SubscriptionLocalServiceUtil.deleteSubscription(
-				userId, Article.class.getName(), groupId);
+				userId, Article.class.getName(), resourcePrimKey);
 		}
 	}
 

@@ -177,13 +177,13 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	public void subscribe(long groupId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		if (resourcePrimKey > 0) {
-			ArticlePermission.check(
-				getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
-		}
-		else {
+		if (resourcePrimKey <= 0) {
 			AdminPermission.check(
 				getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
+		}
+		else {
+			ArticlePermission.check(
+				getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
 		}
 
 		articleLocalService.subscribe(groupId, getUserId(), resourcePrimKey);
@@ -192,13 +192,13 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	public void unsubscribe(long groupId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		if (resourcePrimKey > 0) {
-			ArticlePermission.check(
-				getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
-		}
-		else {
+		if (resourcePrimKey <= 0) {
 			AdminPermission.check(
 				getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
+		}
+		else {
+			ArticlePermission.check(
+				getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
 		}
 
 		articleLocalService.unsubscribe(groupId, getUserId(), resourcePrimKey);
