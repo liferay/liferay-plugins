@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.jbpm.context.exe.ContextInstance;
@@ -40,27 +41,32 @@ public class WorkflowInstanceImpl extends DefaultWorkflowInstance {
 		ProcessDefinition processDefinition =
 			processInstance.getProcessDefinition();
 
-		ContextInstance contextInstance = processInstance.getContextInstance();
-
-		Map<String, Object> context = contextInstance.getVariables(token);
-
-		if (context == null) {
-			context = new HashMap<String, Object>();
-		}
-
-		Map<String, Serializable> serializables =
-			new HashMap<String, Serializable>();
-
-		for (Map.Entry<String, Object> contextEntry : context.entrySet()) {
-			serializables.put(
-				contextEntry.getKey(), (Serializable)contextEntry.getValue());
-		}
-
-		setContext(Collections.unmodifiableMap(serializables));
-
 		setEndDate(token.getEnd());
 		setStartDate(token.getStart());
 		setState(token.getNode().getName());
+
+		ContextInstance contextInstance = processInstance.getContextInstance();
+
+		Map<String, Object> variables = contextInstance.getVariables(token);
+
+		if (variables == null) {
+			variables = new HashMap<String, Object>();
+		}
+
+		Map<String, Serializable> workflowContext =
+			new HashMap<String, Serializable>();
+
+		Iterator<Map.Entry<String, Object>> itr =
+			variables.entrySet().iterator();
+
+		while (itr.hasNext()) {
+			Map.Entry<String, Object> entry = itr.next();
+
+			workflowContext.put(entry.getKey(), (Serializable)entry.getValue());
+		}
+
+		setWorkflowContext(Collections.unmodifiableMap(workflowContext));
+
 		setWorkflowDefinitionName(processDefinition.getName());
 		setWorkflowDefinitionVersion(processDefinition.getVersion());
 		setWorkflowInstanceId(token.getId());
