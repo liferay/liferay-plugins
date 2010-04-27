@@ -47,14 +47,14 @@ public class DefaultTaskManagerImpl
 
 	public WorkflowTask assignWorkflowTaskToRole(
 			long workflowTaskInstanceId, long roleId, String comment,
-			Date dueDate, Map<String, Serializable> context,
+			Date dueDate, Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws WorkflowException {
 
 		try {
 			return assignWorkflowTask(
 				workflowTaskInstanceId, Role.class.getName(), roleId, comment,
-				dueDate, context, serviceContext);
+				dueDate, workflowContext, serviceContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -63,14 +63,14 @@ public class DefaultTaskManagerImpl
 
 	public WorkflowTask assignWorkflowTaskToUser(
 			long workflowTaskInstanceId, long assigneeUserId, String comment,
-			Date dueDate, Map<String, Serializable> context,
+			Date dueDate, Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws WorkflowException {
 
 		try {
 			return assignWorkflowTask(
 				workflowTaskInstanceId, User.class.getName(), assigneeUserId,
-				comment, dueDate, context, serviceContext);
+				comment, dueDate, workflowContext, serviceContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -79,13 +79,14 @@ public class DefaultTaskManagerImpl
 
 	public WorkflowTask completeWorkflowTask(
 			long workflowTaskInstanceId, String transitionName, String comment,
-			Map<String, Serializable> context, ServiceContext serviceContext)
+			Map<String, Serializable> workflowContext,
+			ServiceContext serviceContext)
 		throws WorkflowException {
 
 		try {
 			return doCompleteWorkflowTask(
-				workflowTaskInstanceId, transitionName, comment, context,
-				serviceContext);
+				workflowTaskInstanceId, transitionName, comment,
+				workflowContext, serviceContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -117,15 +118,16 @@ public class DefaultTaskManagerImpl
 					workflowTaskInstanceId, dueDate, serviceContext);
 			}
 
-			Map<String, Serializable> context = WorkflowContextUtil.convert(
-				kaleoTaskInstanceToken.getContext());
+			Map<String, Serializable> workflowContext =
+				WorkflowContextUtil.convert(
+					kaleoTaskInstanceToken.getContext());
 
 			kaleoLogLocalService.addTaskAssignmentKaleoLog(
 				kaleoTaskInstanceToken, kaleoTaskInstanceToken,
-				comment, context, serviceContext);
+				comment, workflowContext, serviceContext);
 
 			return new WorkflowTaskAdapter(
-				kaleoTaskInstanceToken, context);
+				kaleoTaskInstanceToken, workflowContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -135,7 +137,8 @@ public class DefaultTaskManagerImpl
 	protected WorkflowTask assignWorkflowTask(
 			long workflowTaskInstanceId, String assigneeClassName,
 			long assigneeClassPK, String comment, Date dueDate,
-			Map<String, Serializable> context, ServiceContext serviceContext)
+			Map<String, Serializable> workflowContext,
+			ServiceContext serviceContext)
 		throws Exception {
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
@@ -155,11 +158,12 @@ public class DefaultTaskManagerImpl
 		KaleoTaskInstanceToken newKaleoTaskInstanceToken =
 			kaleoTaskInstanceTokenLocalService.assignKaleoTaskInstanceToken(
 				kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId(),
-				assigneeClassName, assigneeClassPK, context, serviceContext);
+				assigneeClassName, assigneeClassPK, workflowContext,
+				serviceContext);
 
 		ExecutionContext executionContext = new ExecutionContext(
 			newKaleoTaskInstanceToken.getKaleoInstanceToken(),
-			newKaleoTaskInstanceToken, context, serviceContext);
+			newKaleoTaskInstanceToken, workflowContext, serviceContext);
 
 		KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
@@ -173,14 +177,16 @@ public class DefaultTaskManagerImpl
 
 		kaleoLogLocalService.addTaskAssignmentKaleoLog(
 			kaleoTaskInstanceToken, newKaleoTaskInstanceToken,
-			comment, context, serviceContext);
+			comment, workflowContext, serviceContext);
 
-		return new WorkflowTaskAdapter(newKaleoTaskInstanceToken, context);
+		return new WorkflowTaskAdapter(
+			newKaleoTaskInstanceToken, workflowContext);
 	}
 
 	protected WorkflowTask doCompleteWorkflowTask(
 			long workflowTaskInstanceId, String transitionName, String comment,
-			Map<String, Serializable> context, ServiceContext serviceContext)
+			Map<String, Serializable> workflowContext,
+			ServiceContext serviceContext)
 		throws Exception {
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
@@ -208,14 +214,14 @@ public class DefaultTaskManagerImpl
 				kaleoInstanceToken.getParentKaleoInstanceTokenId());
 
 		kaleoLogLocalService.addTaskCompletionKaleoLog(
-			kaleoTaskInstanceToken, comment, context, serviceContext);
+			kaleoTaskInstanceToken, comment, workflowContext, serviceContext);
 
 		ExecutionContext executionContext = new ExecutionContext(
-			parentKaleoInstanceToken, context, serviceContext);
+			parentKaleoInstanceToken, workflowContext, serviceContext);
 
 		_kaleoSignaler.signalExit(transitionName, executionContext);
 
-		return new WorkflowTaskAdapter(kaleoTaskInstanceToken, context);
+		return new WorkflowTaskAdapter(kaleoTaskInstanceToken, workflowContext);
 	}
 
 	private KaleoSignaler _kaleoSignaler;

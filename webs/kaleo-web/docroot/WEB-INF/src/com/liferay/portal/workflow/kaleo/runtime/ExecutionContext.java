@@ -31,26 +31,24 @@ public class ExecutionContext {
 
 	public ExecutionContext(
 		KaleoInstanceToken kaleoInstanceToken,
-		Map<String, Serializable> context, ServiceContext serviceContext) {
+		Map<String, Serializable> workflowContext,
+		ServiceContext serviceContext) {
 
 		_kaleoInstanceToken = kaleoInstanceToken;
+		_workflowContext = workflowContext;
 		_serviceContext = serviceContext;
-		_context = context;
 	}
 
 	public ExecutionContext(
 		KaleoInstanceToken kaleoInstanceToken,
 		KaleoTaskInstanceToken kaleoTaskInstanceToken,
-		Map<String, Serializable> context, ServiceContext serviceContext) {
+		Map<String, Serializable> workflowContext,
+		ServiceContext serviceContext) {
 
 		_kaleoInstanceToken = kaleoInstanceToken;
 		_kaleoTaskInstanceToken = kaleoTaskInstanceToken;
-		_context = context;
+		_workflowContext = workflowContext;
 		_serviceContext = serviceContext;
-	}
-
-	public Map<String, Serializable> getContext() {
-		return _context;
 	}
 
 	public KaleoInstanceToken getKaleoInstanceToken() {
@@ -69,6 +67,10 @@ public class ExecutionContext {
 		return _transitionName;
 	}
 
+	public Map<String, Serializable> getWorkflowContext() {
+		return _workflowContext;
+	}
+
 	public void setKaleoTaskInstanceToken(
 		KaleoTaskInstanceToken kaleoTaskInstanceToken) {
 
@@ -79,10 +81,10 @@ public class ExecutionContext {
 		_transitionName = transitionName;
 	}
 
-	private Map<String, Serializable> _context;
 	private KaleoInstanceToken _kaleoInstanceToken;
 	private KaleoTaskInstanceToken _kaleoTaskInstanceToken;
 	private ServiceContext _serviceContext;
 	private String _transitionName;
+	private Map<String, Serializable> _workflowContext;
 
 }

@@ -55,7 +55,8 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			List<PathElement> remainingPathElement)
 		throws PortalException, SystemException {
 
-		Map<String, Serializable> context = executionContext.getContext();
+		Map<String, Serializable> workflowContext =
+			executionContext.getWorkflowContext();
 		ServiceContext serviceContext = executionContext.getServiceContext();
 
 		KaleoInstanceToken kaleoInstanceToken =
@@ -81,7 +82,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			kaleoTaskInstanceTokenLocalService.addKaleoTaskInstanceToken(
 				kaleoInstanceToken.getKaleoInstanceTokenId(),
 				kaleoTask.getKaleoTaskId(), kaleoTask.getName(),
-				kaleoTaskAssignment, dueDate, context, serviceContext);
+				kaleoTaskAssignment, dueDate, workflowContext, serviceContext);
 
 		executionContext.setKaleoTaskInstanceToken(kaleoTaskInstanceToken);
 
@@ -94,8 +95,8 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			executionContext);
 
 		kaleoLogLocalService.addTaskAssignmentKaleoLog(
-			null, kaleoTaskInstanceToken, "Assigned initial task.", context,
-			serviceContext);
+			null, kaleoTaskInstanceToken, "Assigned initial task.",
+			workflowContext, serviceContext);
 	}
 
 	protected void doExit(
@@ -103,7 +104,8 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			List<PathElement> remainingPathElement)
 		throws PortalException, SystemException {
 
-		Map<String, Serializable> context = executionContext.getContext();
+		Map<String, Serializable> workflowContext =
+			executionContext.getWorkflowContext();
 		ServiceContext serviceContext = executionContext.getServiceContext();
 
 		String transitionName = executionContext.getTransitionName();
@@ -119,7 +121,8 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 		}
 
 		ExecutionContext newExecutionContext = new ExecutionContext(
-			executionContext.getKaleoInstanceToken(), context, serviceContext);
+			executionContext.getKaleoInstanceToken(), workflowContext,
+			serviceContext);
 
 		PathElement pathElement = new PathElement(
 			null, kaleoTransition.getTargetKaleoNode(), newExecutionContext);

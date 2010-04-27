@@ -42,7 +42,8 @@ public class StateNodeExecutor extends BaseNodeExecutor {
 			List<PathElement> remainingPathElement)
 		throws PortalException, SystemException {
 
-		Map<String, Serializable> context = executionContext.getContext();
+		Map<String, Serializable> workflowContext =
+			executionContext.getWorkflowContext();
 		ServiceContext serviceContext = executionContext.getServiceContext();
 
 		KaleoInstanceToken kaleoInstanceToken =
@@ -77,7 +78,7 @@ public class StateNodeExecutor extends BaseNodeExecutor {
 		}
 
 		ExecutionContext newExecutionContext = new ExecutionContext(
-			kaleoInstanceToken, context, serviceContext);
+			kaleoInstanceToken, workflowContext, serviceContext);
 
 		PathElement pathElement = new PathElement(
 			currentKaleoNode, kaleoTransition.getTargetKaleoNode(),

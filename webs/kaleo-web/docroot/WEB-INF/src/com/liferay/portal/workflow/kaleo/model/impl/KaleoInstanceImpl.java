@@ -46,11 +46,12 @@ public class KaleoInstanceImpl
 	}
 
 	public KaleoInstanceToken getRootKaleoInstanceToken(
-			Map<String, Serializable> context, ServiceContext serviceContext)
+			Map<String, Serializable> workflowContext,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		return KaleoInstanceTokenLocalServiceUtil.getRootKaleoInstanceToken(
-			getKaleoInstanceId(), context, serviceContext);
+			getKaleoInstanceId(), workflowContext, serviceContext);
 	}
 
 	public KaleoInstanceToken getRootKaleoInstanceToken(

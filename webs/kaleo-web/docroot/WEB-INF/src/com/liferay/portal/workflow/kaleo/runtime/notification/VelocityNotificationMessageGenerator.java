@@ -69,19 +69,23 @@ public class VelocityNotificationMessageGenerator
 			VelocityContext velocityContext, ExecutionContext executionContext)
 		throws Exception {
 
-		Map<String, Serializable> context = executionContext.getContext();
+		Map<String, Serializable> workflowContext =
+			executionContext.getWorkflowContext();
 
-		if (context == null) {
+		if (workflowContext == null) {
 			KaleoInstanceToken kaleoInstanceToken =
 				executionContext.getKaleoInstanceToken();
 
 			KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
 
-			context = WorkflowContextUtil.convert(kaleoInstance.getContext());
+			workflowContext = WorkflowContextUtil.convert(
+				kaleoInstance.getContext());
 		}
 
-		for (Map.Entry<String, Serializable> contextEntry: context.entrySet()) {
-			velocityContext.put(contextEntry.getKey(), contextEntry.getValue());
+		for (Map.Entry<String, Serializable> entry :
+				workflowContext.entrySet()) {
+
+			velocityContext.put(entry.getKey(), entry.getValue());
 		}
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =

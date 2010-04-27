@@ -41,7 +41,8 @@ public class ForkNodeExecutor extends BaseNodeExecutor {
 			List<PathElement> remainingPathElement)
 		throws PortalException, SystemException {
 
-		Map<String, Serializable> context = executionContext.getContext();
+		Map<String, Serializable> workflowContext =
+			executionContext.getWorkflowContext();
 		ServiceContext serviceContext = executionContext.getServiceContext();
 
 		List<KaleoTransition> kaleoTransitions =
@@ -56,8 +57,8 @@ public class ForkNodeExecutor extends BaseNodeExecutor {
 
 			KaleoInstanceToken childKaleoInstanceToken =
 				kaleoInstanceTokenLocalService.addKaleoInstanceToken(
-					parentKaleoInstanceToken.getKaleoInstanceTokenId(), context,
-					serviceContext);
+					parentKaleoInstanceToken.getKaleoInstanceTokenId(),
+					workflowContext, serviceContext);
 
 			childKaleoInstanceTokens.put(
 				kaleoTransition.getName(), childKaleoInstanceToken);
@@ -68,7 +69,7 @@ public class ForkNodeExecutor extends BaseNodeExecutor {
 				childKaleoInstanceTokens.get(kaleoTransition.getName());
 
 			ExecutionContext forkedExecutionContext = new ExecutionContext(
-				childKaleoInstanceToken, context, serviceContext);
+				childKaleoInstanceToken, workflowContext, serviceContext);
 
 			PathElement pathElement = new PathElement(
 				currentKaleoNode, kaleoTransition.getTargetKaleoNode(),

@@ -51,21 +51,23 @@ public class ScriptActionExecutor implements ActionExecutor {
 			KaleoAction kaleoAction, ExecutionContext executionContext)
 		throws Exception {
 
-		Map<String, Serializable> context = executionContext.getContext();
+		Map<String, Serializable> workflowContext =
+			executionContext.getWorkflowContext();
 
-		if (context == null) {
+		if (workflowContext == null) {
 			KaleoInstanceToken kaleoInstanceToken =
 				executionContext.getKaleoInstanceToken();
 
 			KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
 
-			context = WorkflowContextUtil.convert(kaleoInstance.getContext());
+			workflowContext = WorkflowContextUtil.convert(
+				kaleoInstance.getContext());
 		}
 
 		Map<String, Object> inputObjects = new HashMap<String, Object>(
-			context);
+			workflowContext);
 
-		inputObjects.put("workflowContext", context);
+		inputObjects.put("workflowContext", workflowContext);
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
 			executionContext.getKaleoTaskInstanceToken();

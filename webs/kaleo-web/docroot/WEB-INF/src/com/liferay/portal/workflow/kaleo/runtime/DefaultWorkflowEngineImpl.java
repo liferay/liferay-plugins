@@ -180,23 +180,24 @@ public class DefaultWorkflowEngineImpl
 
 	public WorkflowInstance signalWorkflowInstance(
 			long workflowInstanceId, String transitionName,
-			Map<String, Serializable> context, ServiceContext serviceContext)
+			Map<String, Serializable> workflowContext,
+			ServiceContext serviceContext)
 		throws WorkflowException {
 
 		try {
 			KaleoInstance kaleoInstance = doUpdateContext(
-				workflowInstanceId, context, serviceContext);
+				workflowInstanceId, workflowContext, serviceContext);
 
 			KaleoInstanceToken kaleoInstanceToken =
 				kaleoInstance.getRootKaleoInstanceToken(serviceContext);
 
 			ExecutionContext executionContext = new ExecutionContext(
-				kaleoInstanceToken, context, serviceContext);
+				kaleoInstanceToken, workflowContext, serviceContext);
 
 			_kaleoSignaler.signalExit(transitionName, executionContext);
 
 			return new WorkflowInstanceAdapter(
-				kaleoInstance, kaleoInstanceToken, context);
+				kaleoInstance, kaleoInstanceToken, workflowContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -205,7 +206,7 @@ public class DefaultWorkflowEngineImpl
 
 	public WorkflowInstance startWorkflowInstance(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			String transitionName, Map<String, Serializable> context,
+			String transitionName, Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws WorkflowException {
 
@@ -226,22 +227,22 @@ public class DefaultWorkflowEngineImpl
 				kaleoInstanceLocalService.addKaleoInstance(
 					kaleoDefinition.getKaleoDefinitionId(),
 					kaleoDefinition.getName(), kaleoDefinition.getVersion(),
-					context, serviceContext);
+					workflowContext, serviceContext);
 
 			KaleoInstanceToken rootKaleoInstanceToken =
 				kaleoInstance.getRootKaleoInstanceToken(
-					context, serviceContext);
+					workflowContext, serviceContext);
 
 			kaleoLogLocalService.addWorkflowInstanceStartKaleoLog(
 				rootKaleoInstanceToken, serviceContext);
 
 			ExecutionContext executionContext = new ExecutionContext(
-				rootKaleoInstanceToken, context, serviceContext);
+				rootKaleoInstanceToken, workflowContext, serviceContext);
 
 			_kaleoSignaler.signalEntry(transitionName, executionContext);
 
 			return new WorkflowInstanceAdapter(
-				kaleoInstance, rootKaleoInstanceToken, context);
+				kaleoInstance, rootKaleoInstanceToken, workflowContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -249,13 +250,13 @@ public class DefaultWorkflowEngineImpl
 	}
 
 	public WorkflowInstance updateContext(
-			long workflowInstanceId, Map<String, Serializable> context,
+			long workflowInstanceId, Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws WorkflowException {
 
 		try {
 			KaleoInstance kaleoInstance = doUpdateContext(
-				workflowInstanceId, context, serviceContext);
+				workflowInstanceId, workflowContext, serviceContext);
 
 			KaleoInstanceToken rootKaleoInstanceToken =
 				kaleoInstance.getRootKaleoInstanceToken(serviceContext);
@@ -269,12 +270,12 @@ public class DefaultWorkflowEngineImpl
 	}
 
 	protected KaleoInstance doUpdateContext(
-			long workflowInstanceId, Map<String, Serializable> context,
+			long workflowInstanceId, Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws Exception {
 
 		return kaleoInstanceLocalService.updateKaleoInstance(
-			workflowInstanceId, context, serviceContext);
+			workflowInstanceId, workflowContext, serviceContext);
 	}
 
 	protected void getNextTransitionNames(

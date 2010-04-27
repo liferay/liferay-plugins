@@ -40,7 +40,8 @@ public class JoinNodeExecutor extends BaseNodeExecutor {
 			List<PathElement> remainingPathElement)
 		throws PortalException, SystemException {
 
-		Map<String, Serializable> context = executionContext.getContext();
+		Map<String, Serializable> workflowContext =
+			executionContext.getWorkflowContext();
 		ServiceContext serviceContext = executionContext.getServiceContext();
 
 		KaleoInstanceToken kaleoInstanceToken =
@@ -68,7 +69,7 @@ public class JoinNodeExecutor extends BaseNodeExecutor {
 			currentKaleoNode.getDefaultKaleoTransition();
 
 		ExecutionContext newExecutionContext = new ExecutionContext(
-			parentKaleoInstanceToken, context, serviceContext);
+			parentKaleoInstanceToken, workflowContext, serviceContext);
 
 		PathElement pathElement = new PathElement(
 			currentKaleoNode, kaleoTransition.getTargetKaleoNode(),

@@ -53,7 +53,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	public WorkflowTask assignWorkflowTaskToRole(
 			long companyId, long userId, long workflowTaskInstanceId,
 			long roleId, String comment, Date dueDate,
-			Map<String, Serializable> context)
+			Map<String, Serializable> workflowContext)
 		throws WorkflowException {
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -62,14 +62,14 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		serviceContext.setUserId(userId);
 
 		return _taskManager.assignWorkflowTaskToRole(
-			workflowTaskInstanceId, roleId, comment, dueDate, context,
+			workflowTaskInstanceId, roleId, comment, dueDate, workflowContext,
 			serviceContext);
 	}
 
 	public WorkflowTask assignWorkflowTaskToUser(
 			long companyId, long userId, long workflowTaskInstanceId,
 			long assigneeUserId, String comment, Date dueDate,
-			Map<String, Serializable> context)
+			Map<String, Serializable> workflowContext)
 		throws WorkflowException {
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -78,14 +78,14 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		serviceContext.setUserId(userId);
 
 		return _taskManager.assignWorkflowTaskToUser(
-			workflowTaskInstanceId, assigneeUserId, comment, dueDate, context,
-			serviceContext);
+			workflowTaskInstanceId, assigneeUserId, comment, dueDate,
+			workflowContext, serviceContext);
 	}
 
 	public WorkflowTask completeWorkflowTask(
 			long companyId, long userId, long workflowTaskInstanceId,
 			String transitionName, String comment,
-			Map<String, Serializable> context)
+			Map<String, Serializable> workflowContext)
 		throws WorkflowException {
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -94,7 +94,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		serviceContext.setUserId(userId);
 
 		return _taskManager.completeWorkflowTask(
-			workflowTaskInstanceId, transitionName, comment, context,
+			workflowTaskInstanceId, transitionName, comment, workflowContext,
 			serviceContext);
 	}
 

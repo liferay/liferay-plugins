@@ -57,7 +57,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	public KaleoTaskInstanceToken addKaleoTaskInstanceToken(
 			long kaleoInstanceTokenId, long kaleoTaskId, String kaleoTaskName,
 			KaleoTaskAssignment kaleoTaskAssignment, Date dueDate,
-			Map<String, Serializable> context, ServiceContext serviceContext)
+			Map<String, Serializable> workflowContext,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		KaleoInstanceToken kaleoInstanceToken =
@@ -83,7 +84,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		KaleoInstanceToken childKaleoInstanceToken =
 			kaleoInstanceTokenLocalService.addKaleoInstanceToken(
-				kaleoInstanceToken.getKaleoInstanceTokenId(), context,
+				kaleoInstanceToken.getKaleoInstanceTokenId(), workflowContext,
 				serviceContext);
 
 		kaleoTaskInstanceToken.setKaleoInstanceTokenId(
@@ -96,7 +97,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		kaleoTaskInstanceToken.setAssigneeClassPK(
 			kaleoTaskAssignment.getAssigneeClassPK());
 		kaleoTaskInstanceToken.setCompleted(false);
-		kaleoTaskInstanceToken.setContext(WorkflowContextUtil.convert(context));
+		kaleoTaskInstanceToken.setContext(
+			WorkflowContextUtil.convert(workflowContext));
 
 		kaleoTaskInstanceTokenPersistence.update(kaleoTaskInstanceToken, false);
 
@@ -105,7 +107,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 	public KaleoTaskInstanceToken assignKaleoTaskInstanceToken(
 			long kaleoTaskInstanceTokenId, String assigneeClassName,
-			long assigneeClassPK, Map<String, Serializable> context,
+			long assigneeClassPK, Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -116,7 +118,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		kaleoTaskInstanceToken.setModifiedDate(new Date());
 		kaleoTaskInstanceToken.setAssigneeClassName(assigneeClassName);
 		kaleoTaskInstanceToken.setAssigneeClassPK(assigneeClassPK);
-		kaleoTaskInstanceToken.setContext(WorkflowContextUtil.convert(context));
+		kaleoTaskInstanceToken.setContext(
+			WorkflowContextUtil.convert(workflowContext));
 
 		kaleoTaskInstanceTokenPersistence.update(kaleoTaskInstanceToken, false);
 

@@ -109,7 +109,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 	public WorkflowInstance signalWorkflowInstance(
 			long companyId, long userId, long workflowInstanceId,
-			String transitionName, Map<String, Serializable> context)
+			String transitionName, Map<String, Serializable> workflowContext)
 		throws WorkflowException {
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -118,13 +118,14 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		serviceContext.setUserId(userId);
 
 		return _workflowEngine.signalWorkflowInstance(
-			workflowInstanceId, transitionName, context, serviceContext);
+			workflowInstanceId, transitionName, workflowContext,
+			serviceContext);
 	}
 
 	public WorkflowInstance startWorkflowInstance(
 			long companyId, long userId, String workflowDefinitionName,
 			Integer workflowDefinitionVersion, String transitionName,
-			Map<String, Serializable> context)
+			Map<String, Serializable> workflowContext)
 		throws WorkflowException {
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -134,12 +135,12 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 		return _workflowEngine.startWorkflowInstance(
 			workflowDefinitionName, workflowDefinitionVersion, transitionName,
-			context, serviceContext);
+			workflowContext, serviceContext);
 	}
 
 	public WorkflowInstance updateWorkflowContext(
 			long companyId, long workflowInstanceId,
-			Map<String, Serializable> context)
+			Map<String, Serializable> workflowContext)
 		throws WorkflowException {
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -147,7 +148,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		serviceContext.setCompanyId(companyId);
 
 		return _workflowEngine.updateContext(
-			workflowInstanceId, context, serviceContext);
+			workflowInstanceId, workflowContext, serviceContext);
 	}
 
 	private WorkflowEngine _workflowEngine;

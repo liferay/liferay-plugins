@@ -121,7 +121,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 	public KaleoLog addTaskAssignmentKaleoLog(
 			KaleoTaskInstanceToken previousKaleoTaskInstanceToken,
 			KaleoTaskInstanceToken newKaleoTaskInstanceToken,
-			String comment, Map<String, Serializable> context,
+			String comment, Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -152,7 +152,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 			newKaleoTaskInstanceToken.getAssigneeClassPK());
 
 		kaleoLog.setComment(comment);
-		kaleoLog.setContext(WorkflowContextUtil.convert(context));
+		kaleoLog.setContext(WorkflowContextUtil.convert(workflowContext));
 
 		kaleoLogPersistence.update(kaleoLog, false);
 
@@ -161,7 +161,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 
 	public KaleoLog addTaskCompletionKaleoLog(
 			KaleoTaskInstanceToken kaleoTaskInstanceToken,
-			String comment, Map<String, Serializable> context,
+			String comment, Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -184,7 +184,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		kaleoLog.setCurrentAssigneeClassName(
 			kaleoTaskInstanceToken.getAssigneeClassName());
 		kaleoLog.setComment(comment);
-		kaleoLog.setContext(WorkflowContextUtil.convert(context));
+		kaleoLog.setContext(WorkflowContextUtil.convert(workflowContext));
 
 		kaleoLogPersistence.update(kaleoLog, false);
 

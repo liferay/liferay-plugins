@@ -40,7 +40,8 @@ public class KaleoInstanceTokenLocalServiceImpl
 	extends KaleoInstanceTokenLocalServiceBaseImpl {
 
 	public KaleoInstanceToken addKaleoInstanceToken(
-			long parentKaleoInstanceTokenId, Map<String, Serializable> context,
+			long parentKaleoInstanceTokenId,
+			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -130,7 +131,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 	}
 
 	public KaleoInstanceToken getRootKaleoInstanceToken(
-			long kaleoInstanceId, Map<String, Serializable> context,
+			long kaleoInstanceId, Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
