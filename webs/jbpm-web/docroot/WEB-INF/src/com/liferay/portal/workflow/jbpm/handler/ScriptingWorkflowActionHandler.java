@@ -39,8 +39,12 @@ public class ScriptingWorkflowActionHandler implements ActionHandler {
 		ContextInstance contextInstance =
 			executionContext.getContextInstance();
 
+		Map<String, Object> workflowContext = contextInstance.getVariables();
+
 		Map<String, Object> inputObjects = new HashMap<String, Object>(
-			contextInstance.getVariables());
+			workflowContext);
+
+		inputObjects.put("workflowContext", workflowContext);
 
 		Long companyId = (Long)inputObjects.get(ContextConstants.COMPANY_ID);
 

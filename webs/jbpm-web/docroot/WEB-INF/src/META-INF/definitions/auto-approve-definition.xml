@@ -11,7 +11,7 @@
 				<language>javascript</language>
 				<script>
 					<![CDATA[
-						Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(companyId, groupId, userId, entryClassName, entryClassPK, Packages.com.liferay.portal.kernel.workflow.StatusConstants.fromLabel("approved"));
+						Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(Packages.com.liferay.portal.kernel.workflow.StatusConstants.fromLabel("approved"), workflowContext);
 					]]>
 				</script>
 			</action>
