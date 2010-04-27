@@ -17,6 +17,6 @@
  */
 %>
 
-<div id="so-profile-wrapper">
+<div class="profile-wrapper">
 	<%@ include file="/profiles/user_profile.jsp" %>
 </div>

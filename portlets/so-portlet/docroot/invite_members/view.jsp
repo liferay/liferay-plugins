@@ -28,7 +28,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 		<%@ include file="/invite_members/view_user.jspf" %>
 	</c:when>
 	<c:when test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.UPDATE) %>">
-		<div class="invite-members-wrapper aui-helper-hidden">
+		<div class="invite-members-wrapper" style="display: none;">
 			<%@ include file="/invite_members/view_community.jspf" %>
 		</div>
 	</c:when>

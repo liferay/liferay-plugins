@@ -103,6 +103,10 @@ int invitedMembersCount = ParamUtil.getInteger(renderRequest, "invitedMembersCou
 	</div>
 </c:if>
 
-<aui:script>
-	Liferay.SO.Profiles.init();
-</aui:script>
+<script type="text/javascript">
+	jQuery(
+		function() {
+			Liferay.SO.Profiles.init();
+		}
+	);
+</script>
