@@ -46,7 +46,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.workflow.StatusConstants;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
@@ -144,7 +144,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		MBMessageLocalServiceUtil.addDiscussionMessage(
 			userId, article.getUserName(), Article.class.getName(),
-			resourcePrimKey, StatusConstants.APPROVED);
+			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
 		// Social
 
