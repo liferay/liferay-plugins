@@ -101,7 +101,7 @@
 
 			<a href="javascript:;" onClick="<portlet:namespace />deleteUserPortrait('<%= deleteUserPortraitURL %>');"><liferay-ui:message key="delete-picture" /></a>
 
-			<a href="javascript:;" onClick="Liferay.SO.Profiles.displayUserProfile(<%= user.getUserId() %>);"><liferay-ui:message key="cancel-edit" /></a>
+			<a class="so-display-profile" href="javascript:;"><liferay-ui:message key="cancel-edit" /></a>
 		</div>
 	</td>
 	<td class="profile-area edit-profile">
@@ -378,7 +378,7 @@
 		<div>
 			<input id="<portlet:namespace />submit" type="submit" value="<liferay-ui:message key="save" />" />
 
-			<input type="button" value="<liferay-ui:message key="cancel" />" onClick="Liferay.SO.Profiles.displayUserProfile(<%= user.getUserId() %>);" />
+			<input class="so-display-profile" type="button" value="<liferay-ui:message key="cancel" />" />
 		</div>
 	</td>
 </tr>

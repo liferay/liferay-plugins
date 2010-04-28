@@ -70,7 +70,7 @@ String timeZoneId = BeanParamUtil.getString(user, request, "timeZoneId", user.ge
 		<img alt="<%= user.getFullName() %>" src="<%= themeDisplay.getPathImage() %>/user_<%= (user.isFemale() ? "female" : "male") %>_portrait?img_id=<%= user.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user.getPortraitId()) %>" />
 
 		<div class="profile-controls">
-			<a href="javascript:;" onClick="Liferay.SO.Profiles.displayUserProfile(<%= user.getUserId() %>);"><liferay-ui:message key="cancel-edit" /></a>
+			<a class="so-display-profile" href="javascript:;"><liferay-ui:message key="cancel-edit" /></a>
 		</div>
 	</td>
 	<td class="profile-area edit-profile">
@@ -179,7 +179,7 @@ String timeZoneId = BeanParamUtil.getString(user, request, "timeZoneId", user.ge
 		<div>
 			<input id="<portlet:namespace />submit" type="submit" value="<liferay-ui:message key="save" />" />
 
-			<input type="button" value="<liferay-ui:message key="cancel" />" onClick="Liferay.SO.Profiles.displayUserProfile(<%= user.getUserId() %>);" />
+			<input class="so-display-profile" type="button" value="<liferay-ui:message key="cancel" />" />
 		</div>
 	</td>
 </tr>

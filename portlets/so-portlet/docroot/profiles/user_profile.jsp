@@ -65,11 +65,11 @@ else {
 
 					<c:if test="<%= curUser.getUserId() == user.getUserId() %>">
 						<div class="profile-controls">
-							<a href="javascript:;" onClick="Liferay.SO.Profiles.editUserProfile(<%= curUser.getUserId() %>);"><liferay-ui:message key="edit-profile" /></a>
+							<a class="so-edit-profile" href="javascript:;"><liferay-ui:message key="edit-profile" /></a>
 
-							<a href="javascript:;" onClick="Liferay.SO.Profiles.editUserProjects(<%= curUser.getUserId() %>);"><liferay-ui:message key="edit-projects" /></a>
+							<a class="so-edit-projects" href="javascript:;"><liferay-ui:message key="edit-projects" /></a>
 
-							<a href="javascript:;" onClick="Liferay.SO.Profiles.editUserSettings(<%= curUser.getUserId() %>);"><liferay-ui:message key="change-settings" /></a>
+							<a class="so-change-settings" href="javascript:;"><liferay-ui:message key="change-settings" /></a>
 						</div>
 					</c:if>
 
