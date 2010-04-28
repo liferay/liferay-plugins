@@ -14,9 +14,11 @@
 
 package com.liferay.mail.service.impl;
 
+import com.liferay.mail.model.Attachment;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.base.MessageLocalServiceBaseImpl;
+import com.liferay.mail.util.HtmlContentUtil;
 import com.liferay.mail.util.MailConstants;
 import com.liferay.portal.kernel.dao.orm.Conjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -46,7 +48,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 	public Message addMessage(
 			long userId, long folderId, String sender, String to, String cc,
 			String bcc, Date sentDate, String subject, String body,
-			String flags, long size, long remoteMessageId)
+			String flags, long remoteMessageId)
 		throws PortalException, SystemException {
 
 		// Message
@@ -72,10 +74,10 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setBcc(bcc);
 		message.setSentDate(sentDate);
 		message.setSubject(subject);
-		message.setPreview(body);
-		message.setBody(body);
+		message.setPreview(getPreview(body));
+		message.setBody(HtmlContentUtil.getInlineHtml(body));
 		message.setFlags(flags);
-		message.setSize(size);
+		message.setSize(getMessageSize(messageId, body));
 		message.setRemoteMessageId(remoteMessageId);
 
 		messagePersistence.update(message, false);
@@ -181,6 +183,35 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		return messagePersistence.findByF_R(folderId, remoteMessageId);
 	}
 
+	public Message getRemoteMessage(long folderId, boolean oldest)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Message.class, PortletClassLoaderUtil.getClassLoader());
+
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
+		dynamicQuery.add(
+			RestrictionsFactoryUtil.gt("remoteMessageId", new Long(0)));
+
+		if (oldest) {
+			dynamicQuery.addOrder(OrderFactoryUtil.asc("sentDate"));
+		}
+		else {
+			dynamicQuery.addOrder(OrderFactoryUtil.desc("sentDate"));
+		}
+
+		List<Object> results = messagePersistence.findWithDynamicQuery(
+			dynamicQuery, 0, 1);
+
+		if (results.size() > 0) {
+			List<Message> messages = toMessages(results);
+
+			return messages.get(0);
+		}
+
+		return null;
+	}
+
 	public int populateMessages(
 			List<Message> messages, long folderId, String keywords,
 			int pageNumber, int messagesPerPage, String orderByField,
@@ -216,7 +247,9 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		List<Object> results = messagePersistence.findWithDynamicQuery(
 			dynamicQuery, start, end);
 
-		messages = toMessages(results);
+		for (Object result : results) {
+			messages.add((Message)result);
+		}
 
 		return dynamicQueryCount(dynamicQuery);
 	}
@@ -243,7 +276,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 	public Message updateMessage(
 			long messageId, long folderId, String sender, String to, String cc,
 			String bcc, Date sentDate, String subject, String body,
-			String flags, long size, long remoteMessageId)
+			String flags, long remoteMessageId)
 		throws PortalException, SystemException {
 
 		// Message
@@ -258,10 +291,10 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setBcc(bcc);
 		message.setSentDate(sentDate);
 		message.setSubject(subject);
-		message.setPreview(body);
-		message.setBody(body);
+		message.setPreview(getPreview(body));
+		message.setBody(HtmlContentUtil.getInlineHtml(body));
 		message.setFlags(flags);
-		message.setSize(size);
+		message.setSize(getMessageSize(messageId, body));
 		message.setRemoteMessageId(remoteMessageId);
 
 		messagePersistence.update(message, false);
@@ -275,24 +308,45 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		return message;
 	}
 
-	public Message updateMessageSize(long messageId, long size)
+	public Message updateMessageContent(
+			long messageId, String body, String flags)
 		throws PortalException, SystemException {
-
-		// Message
 
 		Message message = messagePersistence.findByPrimaryKey(messageId);
 
-		message.setSize(size);
+		message.setModifiedDate(new Date());
+		message.setPreview(getPreview(body));
+		message.setBody(HtmlContentUtil.getInlineHtml(body));
+		message.setFlags(flags);
+		message.setSize(getMessageSize(messageId, body));
 
 		messagePersistence.update(message, false);
 
-		// Indexer
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
-
-		indexer.reindex(message);
-
 		return message;
+	}
+
+	protected long getMessageSize(long messageId, String body)
+		throws SystemException {
+
+		long size = body.getBytes().length;
+
+		List<Attachment> attachments = attachmentPersistence.findByMessageId(
+			messageId);
+
+		for (Attachment attachment : attachments) {
+			size += attachment.getSize();
+		}
+
+		return size;
+	}
+
+	protected String getPreview(String body) {
+		if (Validator.isNull(body)) {
+			return body;
+		}
+		else {
+			return StringUtil.shorten(HtmlContentUtil.getPlainText(body), 50);
+		}
 	}
 
 	protected List<Message> toMessages(List<Object> results) {
