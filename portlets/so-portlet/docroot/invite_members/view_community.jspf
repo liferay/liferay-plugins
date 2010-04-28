@@ -184,10 +184,6 @@
 	</div>
 </div>
 
-<script type="text/javascript">
-	jQuery(
-		function() {
-			Liferay.SO.InviteMembers.init();
-		}
-	);
-</script>
+<aui:script>
+	Liferay.SO.InviteMembers.init();
+</aui:script>

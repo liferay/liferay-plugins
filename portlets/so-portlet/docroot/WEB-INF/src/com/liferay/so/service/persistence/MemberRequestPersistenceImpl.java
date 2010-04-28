@@ -730,52 +730,20 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		throws NoSuchMemberRequestException, SystemException {
 		MemberRequest memberRequest = findByPrimaryKey(memberRequestId);
 
-		int count = countByReceiverUserId(receiverUserId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_MEMBERREQUEST_WHERE);
-
-			query.append(_FINDER_COLUMN_RECEIVERUSERID_RECEIVERUSERID_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(MemberRequestModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(receiverUserId);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, memberRequest);
-
 			MemberRequest[] array = new MemberRequestImpl[3];
 
-			array[0] = (MemberRequest)objArray[0];
-			array[1] = (MemberRequest)objArray[1];
-			array[2] = (MemberRequest)objArray[2];
+			array[0] = getByReceiverUserId_PrevAndNext(session, memberRequest,
+					receiverUserId, orderByComparator, true);
+
+			array[1] = memberRequest;
+
+			array[2] = getByReceiverUserId_PrevAndNext(session, memberRequest,
+					receiverUserId, orderByComparator, false);
 
 			return array;
 		}
@@ -784,6 +752,109 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected MemberRequest getByReceiverUserId_PrevAndNext(Session session,
+		MemberRequest memberRequest, long receiverUserId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_MEMBERREQUEST_WHERE);
+
+		query.append(_FINDER_COLUMN_RECEIVERUSERID_RECEIVERUSERID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(MemberRequestModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(receiverUserId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(memberRequest);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<MemberRequest> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -985,56 +1056,20 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		throws NoSuchMemberRequestException, SystemException {
 		MemberRequest memberRequest = findByPrimaryKey(memberRequestId);
 
-		int count = countByR_S(receiverUserId, status);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(4);
-			}
-
-			query.append(_SQL_SELECT_MEMBERREQUEST_WHERE);
-
-			query.append(_FINDER_COLUMN_R_S_RECEIVERUSERID_2);
-
-			query.append(_FINDER_COLUMN_R_S_STATUS_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(MemberRequestModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(receiverUserId);
-
-			qPos.add(status);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, memberRequest);
-
 			MemberRequest[] array = new MemberRequestImpl[3];
 
-			array[0] = (MemberRequest)objArray[0];
-			array[1] = (MemberRequest)objArray[1];
-			array[2] = (MemberRequest)objArray[2];
+			array[0] = getByR_S_PrevAndNext(session, memberRequest,
+					receiverUserId, status, orderByComparator, true);
+
+			array[1] = memberRequest;
+
+			array[2] = getByR_S_PrevAndNext(session, memberRequest,
+					receiverUserId, status, orderByComparator, false);
 
 			return array;
 		}
@@ -1043,6 +1078,113 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected MemberRequest getByR_S_PrevAndNext(Session session,
+		MemberRequest memberRequest, long receiverUserId, int status,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_MEMBERREQUEST_WHERE);
+
+		query.append(_FINDER_COLUMN_R_S_RECEIVERUSERID_2);
+
+		query.append(_FINDER_COLUMN_R_S_STATUS_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(MemberRequestModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(receiverUserId);
+
+		qPos.add(status);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(memberRequest);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<MemberRequest> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
