@@ -19,9 +19,43 @@ import com.liferay.portal.kernel.exception.PortalException;
 /**
  * <a href="MailException.java.html"><b><i>View Source</i></b></a>
  *
- * @author Brian Wing Shun Chan
+ * @author Scott Lee
  */
 public class MailException extends PortalException {
+
+	// Account
+
+	public static final int ACCOUNT_CONNECTIONS_FAILED = 1;
+
+	public static final int ACCOUNT_INCOMING_CONNECTION_FAILED = 2;
+
+	public static final int ACCOUNT_OUTGOING_CONNECTION_FAILED = 3;
+
+	// Folder
+
+	public static final int FOLDER_DENIED_BY_SERVER = 4;
+
+	public static final int FOLDER_ALREADY_EXISTS = 5;
+
+	public static final int FOLDER_DOES_NOT_EXISTS = 6;
+
+	public static final int FOLDER_PAGE_DOES_NOT_EXIST = 7;
+
+	public static final int FOLDER_REQUIRED = 8;
+
+	public static final int FOLDER_INVALID_DESTINATION = 9;
+
+	// Message
+
+	public static final int MESSAGE_INVALID_ADDRESS = 10;
+
+	public static final int MESSAGE_INVALID_FLAG = 11;
+
+	public static final int MESSAGE_NOT_FOUND_ON_SERVER = 12;
+
+	public static final int MESSAGE_HAS_NO_RECIPIENTS = 13;
+
+	public static final int MESSAGE_NOT_SELECTED = 14;
 
 	public MailException() {
 		super();
@@ -38,5 +72,38 @@ public class MailException extends PortalException {
 	public MailException(Throwable cause) {
 		super(cause);
 	}
+
+	public MailException(int type) {
+		_type = type;
+	}
+
+	public MailException(int type, Throwable cause) {
+		super(cause);
+
+		_type = type;
+	}
+
+	public MailException(int type, String value) {
+		_type = type;
+		_value = value;
+	}
+
+	public MailException(int type, Throwable cause, String value) {
+		super(cause);
+
+		_type = type;
+		_value = value;
+	}
+
+	public int getType() {
+		return _type;
+	}
+
+	public String getValue() {
+		return _value;
+	}
+
+	private int _type;
+	private String _value;
 
 }
