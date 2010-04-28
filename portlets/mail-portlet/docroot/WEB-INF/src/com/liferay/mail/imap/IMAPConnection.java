@@ -16,7 +16,6 @@ package com.liferay.mail.imap;
 
 import com.liferay.mail.MailException;
 import com.liferay.mail.util.PortletPropsValues;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
@@ -85,93 +84,136 @@ public class IMAPConnection {
 		return _session;
 	}
 
-	public Store getStore(boolean useOldStores) throws MessagingException {
+	public Store getStore(boolean useOldStores) throws MailException {
 		Store store = null;
 
-		String storeKey = _incomingHostName.concat(_outgoingHostName).concat(
-			_login);
-
-		if (useOldStores) {
-			store = _allStores.get(storeKey);
-
-			if (Validator.isNotNull(store) && !store.isConnected()) {
-				store.close();
-
-				store = null;
-			}
-		}
-
-		if (store == null) {
-			Session session = getSession();
-
-			if (_incomingSecure) {
-				store = session.getStore("imaps");
-			}
-			else {
-				store = session.getStore("imap");
-			}
-
-			store.addConnectionListener(new ConnectionListener(storeKey));
-			store.connect(_incomingHostName, _incomingPort, _login, _password);
+		try {
+			String storeKey = _incomingHostName.concat(
+				_outgoingHostName).concat(_login);
 
 			if (useOldStores) {
-				_allStores.put(storeKey, store);
-			}
-		}
+				store = _allStores.get(storeKey);
 
-		return store;
+				if ((store != null) && !store.isConnected()) {
+					store.close();
+
+					store = null;
+				}
+			}
+
+			if (store == null) {
+				Session session = getSession();
+
+				if (_incomingSecure) {
+					store = session.getStore("imaps");
+				}
+				else {
+					store = session.getStore("imap");
+				}
+
+				store.addConnectionListener(new ConnectionListener(storeKey));
+				store.connect(
+					_incomingHostName, _incomingPort, _login, _password);
+
+				if (useOldStores) {
+					_allStores.put(storeKey, store);
+				}
+			}
+
+			return store;
+		}
+		catch (MessagingException me) {
+			throw new MailException(
+				MailException.ACCOUNT_INCOMING_CONNECTION_FAILED, me);
+		}
 	}
 
-	public Transport getTransport() throws MessagingException {
+	public Transport getTransport() throws MailException {
 		Transport transport = null;
 
-		Session session = getSession();
+		try {
+			Session session = getSession();
 
-		if (_outgoingSecure) {
-			transport = session.getTransport("smtps");
+			if (_outgoingSecure) {
+				transport = session.getTransport("smtps");
+			}
+			else {
+				transport = session.getTransport("smtp");
+			}
+
+			String transportKey = _login.concat(_TRANSPORT).concat(
+				_incomingHostName);
+
+			transport.addConnectionListener(
+				new ConnectionListener(transportKey));
+
+			transport.connect(
+				_outgoingHostName, _outgoingPort, _login, _password);
+
+			return transport;
 		}
-		else {
-			transport = session.getTransport("smtp");
+		catch (MessagingException me) {
+			throw new MailException(
+				MailException.ACCOUNT_OUTGOING_CONNECTION_FAILED, me);
 		}
-
-		String transportKey = _login.concat(_TRANSPORT).concat(
-			_incomingHostName);
-
-		transport.addConnectionListener(new ConnectionListener(transportKey));
-
-		transport.connect(_outgoingHostName, _outgoingPort, _login, _password);
-
-		return transport;
 	}
 
 	public void testConnection() throws MailException {
+		boolean incomingConnection = false;
+		boolean outgoingConnection = false;
+
 		try {
 			testIncomingConnection();
+			incomingConnection = true;
 		}
-		catch (MessagingException me) {
-			throw new MailException(me);
+		catch (MailException me) {
 		}
 
 		try {
 			testOutgoingConnection();
+			outgoingConnection = true;
+		}
+		catch (MailException me) {
+		}
+
+		if (!incomingConnection && !outgoingConnection) {
+			throw new MailException(
+				MailException.ACCOUNT_CONNECTIONS_FAILED);
+		}
+		else if (!incomingConnection) {
+			throw new MailException(
+				MailException.ACCOUNT_INCOMING_CONNECTION_FAILED);
+		}
+		else if (!outgoingConnection) {
+			throw new MailException(
+				MailException.ACCOUNT_OUTGOING_CONNECTION_FAILED);
+		}
+	}
+
+	protected void testIncomingConnection() throws MailException {
+		try {
+			Store store = getStore(false);
+
+			store.close();
 		}
 		catch (MessagingException me) {
-			throw new MailException(me);
+			throw new MailException(
+				MailException.ACCOUNT_INCOMING_CONNECTION_FAILED, me);
 		}
 	}
 
-	protected void testIncomingConnection() throws MessagingException {
-		Store store = getStore(false);
+	protected void testOutgoingConnection() throws MailException {
+		try {
+			Transport transport = getTransport();
 
-		store.close();
-	}
+			transport.isConnected();
 
-	protected void testOutgoingConnection() throws MessagingException {
-		Transport transport = getTransport();
-
-		transport.isConnected();
-
-		transport.close();
+			transport.close();
+		}
+		catch (MessagingException me) {
+			throw new MailException(
+				MailException.ACCOUNT_OUTGOING_CONNECTION_FAILED, me);
+		}
 	}
 
 	private static ConcurrentHashMap<String, Store> _allStores =
