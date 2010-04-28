@@ -1,4 +1,3 @@
-
 create table WSRP_WSRPConsumer (
 	wsrpConsumerId LONG not null primary key,
 	companyId LONG,
