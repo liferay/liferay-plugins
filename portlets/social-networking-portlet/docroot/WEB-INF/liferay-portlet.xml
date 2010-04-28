@@ -20,7 +20,6 @@
 		<icon>/icons/wall.png</icon>
 		<friendly-url-mapper-class>com.liferay.socialnetworking.wall.portlet.WallFriendlyURLMapper</friendly-url-mapper-class>
 		<social-activity-interpreter-class>com.liferay.socialnetworking.wall.social.WallActivityInterpreter</social-activity-interpreter-class>
-		<restore-current-view>false</restore-current-view>
 		<css-class-wrapper>social-networking-portlet-wall</css-class-wrapper>
 	</portlet>
 	<portlet>
@@ -45,7 +44,6 @@
 	<portlet>
 		<portlet-name>7</portlet-name>
 		<friendly-url-mapper-class>com.liferay.socialnetworking.meetups.portlet.MeetupsFriendlyURLMapper</friendly-url-mapper-class>
-		<restore-current-view>false</restore-current-view>
 		<header-portlet-css>/meetups/css.jsp</header-portlet-css>
 		<css-class-wrapper>social-networking-portlet-meetups</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>

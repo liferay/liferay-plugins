@@ -6,7 +6,6 @@
 		<portlet-name>1</portlet-name>
 		<portlet-url-class>com.liferay.portal.apache.bridges.struts.LiferayStrutsPortletURLImpl</portlet-url-class>
 		<use-default-template>true</use-default-template>
-		<restore-current-view>true</restore-current-view>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

@@ -6,7 +6,6 @@
 		<portlet-name>1</portlet-name>
 		<struts-path>sample_struts_liferay_portlet</struts-path>
 		<use-default-template>true</use-default-template>
-		<restore-current-view>true</restore-current-view>
 		<instanceable>true</instanceable>
 		<private-request-attributes>false</private-request-attributes>
 	</portlet>
