@@ -15,9 +15,11 @@
 package com.liferay.mail.mailbox;
 
 import com.liferay.mail.MailFile;
-import com.liferay.mail.model.Account;
+import com.liferay.mail.MessagesDisplay;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 
 import java.io.InputStream;
 
@@ -33,16 +35,6 @@ import javax.mail.internet.InternetAddress;
 public class IMAPMailbox extends BaseMailbox {
 
 	public IMAPMailbox() {
-	}
-
-	public Account addAccount(
-		String address, String protocol, String incomingHostName,
-		int incomingPort, boolean incomingSecure, String outgoingHostName,
-		int outgoingPort, boolean outgoingSecure, String folderPrefix,
-		String password, boolean savePassword, String login,
-		String personalName, String signature, boolean useSignature) {
-
-		return null;
 	}
 
 	public Folder addFolder(String displayName) {
@@ -90,7 +82,7 @@ public class IMAPMailbox extends BaseMailbox {
 	}
 
 	public Message getMessage(
-		long folderId, String keywords, int messageNumber, int offset,
+		long folderId, String keywords, int messageNumber,
 		String orderByField, String orderByType) {
 
 		return null;
@@ -103,19 +95,19 @@ public class IMAPMailbox extends BaseMailbox {
 		return null;
 	}
 
-	public void moveMessages(
-		long sourceFolderId, long desintationFolderId, long[] messageIds) {
+	public void moveMessages(long folderId, long[] messageIds) {
 	}
 
 	public InternetAddress[] parseAddresses(String addresses) {
 		return null;
 	}
 
-	public int populateMessages(
-		List<Message> messages, long folderId, String keywords, int pageNumber,
-		int messagesPerPage, String orderByField, String orderByType) {
+	public MessagesDisplay getMessagesDisplay(
+			long folderId, String keywords, int pageNumber, int messagesPerPage,
+			String orderByField, String orderByType)
+		throws PortalException, SystemException {
 
-		return 0;
+		return null;
 	}
 
 	public Message saveDraft(
@@ -145,9 +137,6 @@ public class IMAPMailbox extends BaseMailbox {
 		String incomingHostName, int incomingPort, boolean incomingSecure,
 		String outgoingHostName, int outgoingPort, boolean outgoingSecure,
 		String login, String password) {
-	}
-
-	public void validateAddresses(String addresses) {
 	}
 
 }

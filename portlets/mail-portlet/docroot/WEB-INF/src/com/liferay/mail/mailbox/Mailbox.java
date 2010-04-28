@@ -15,6 +15,7 @@
 package com.liferay.mail.mailbox;
 
 import com.liferay.mail.MailFile;
+import com.liferay.mail.MessagesDisplay;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
@@ -22,6 +23,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.List;
@@ -63,7 +65,7 @@ public interface Mailbox {
 		throws PortalException, SystemException;
 
 	public InputStream getAttachment(long attachmentId)
-		throws PortalException, SystemException;
+		throws IOException, PortalException, SystemException;
 
 	public int getFolderLocalMessagesCount(long folderId)
 		throws PortalException, SystemException;
@@ -80,23 +82,21 @@ public interface Mailbox {
 		throws PortalException, SystemException;
 
 	public Message getMessage(
-			long folderId, String keywords, int messageNumber, int offset,
+			long folderId, String keywords, int messageNumber,
 			String orderByField, String orderByType)
 		throws PortalException, SystemException;
 
 	public User getUser();
 
-	public void moveMessages(
-			long sourceFolderId, long desintationFolderId, long[] messageIds)
+	public void moveMessages(long folderId, long[] messageIds)
 		throws PortalException, SystemException;
 
 	public InternetAddress[] parseAddresses(String addresses)
 		throws PortalException, SystemException;
 
-	public int populateMessages(
-			List<Message> messages, long folderId, String keywords,
-			int pageNumber, int messagesPerPage, String orderByField,
-			String orderByType)
+	public MessagesDisplay getMessagesDisplay(
+			long folderId, String keywords, int pageNumber, int messagesPerPage,
+			String orderByField, String orderByType)
 		throws PortalException, SystemException;
 
 	public Message saveDraft(
@@ -127,9 +127,6 @@ public interface Mailbox {
 			String incomingHostName, int incomingPort, boolean incomingSecure,
 			String outgoingHostName, int outgoingPort, boolean outgoingSecure,
 			String login, String password)
-		throws PortalException, SystemException;
-
-	public void validateAddresses(String addresses)
 		throws PortalException, SystemException;
 
 }
