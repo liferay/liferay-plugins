@@ -101,9 +101,9 @@ public class AntiSamySanitizerImpl implements Sanitizer {
 				}
 			}
 
-			AntiSamy as = new AntiSamy();
-			CleanResults cr = as.scan(s, _policy);
-			s = cr.getCleanHTML();
+			AntiSamy antiSamy = new AntiSamy();
+			CleanResults results = antiSamy.scan(s, _policy);
+			s = results.getCleanHTML();
 
 			return s;
 		} catch (Exception e) {
