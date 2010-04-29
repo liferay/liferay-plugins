@@ -41,9 +41,6 @@ public class IMAPMailbox extends BaseMailbox {
 		return null;
 	}
 
-	public void deleteAccount() {
-	}
-
 	public void deleteAttachment(long attachmentId) {
 	}
 
@@ -53,31 +50,11 @@ public class IMAPMailbox extends BaseMailbox {
 	public void deleteMessages(long folderId, long[] messageIds) {
 	}
 
-	public long getAccountUnreadMessagesCount() {
-		return 0;
-	}
-
 	public InputStream getAttachment(long attachmentId) {
 		return null;
 	}
 
-	public int getFolderLocalMessagesCount(long folderId) {
-		return 0;
-	}
-
-	public int getFolderRemoteMessagesCount(long folderId) {
-		return 0;
-	}
-
 	public List<Folder> getFolders() {
-		return null;
-	}
-
-	public long getFolderUnreadMessagesCount(long folderId) {
-		return 0;
-	}
-
-	public Message getMessage(long messageId) {
 		return null;
 	}
 
@@ -124,6 +101,15 @@ public class IMAPMailbox extends BaseMailbox {
 	}
 
 	public void synchronize(long folderId) {
+	}
+
+	public void synchronizeMessage(long messageId)
+		throws PortalException, SystemException {
+	}
+	
+	public void synchronizePage(
+			long folderId, int pageNumber, int messagesPerPage)
+		throws PortalException, SystemException {
 	}
 
 	public void updateFolder(long folderId, String displayName) {

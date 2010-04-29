@@ -61,28 +61,16 @@ public interface Mailbox {
 
 	public Account getAccount();
 
-	public long getAccountUnreadMessagesCount()
-		throws PortalException, SystemException;
-
 	public InputStream getAttachment(long attachmentId)
 		throws IOException, PortalException, SystemException;
 
-	public int getFolderLocalMessagesCount(long folderId)
-		throws PortalException, SystemException;
-
-	public int getFolderRemoteMessagesCount(long folderId)
-		throws PortalException, SystemException;
-
-	public List<Folder> getFolders() throws SystemException;
-
-	public long getFolderUnreadMessagesCount(long folderId)
-		throws PortalException, SystemException;
-
-	public Message getMessage(long messageId)
-		throws PortalException, SystemException;
-
 	public Message getMessage(
 			long folderId, String keywords, int messageNumber,
+			String orderByField, String orderByType)
+		throws PortalException, SystemException;
+
+	public MessagesDisplay getMessagesDisplay(
+			long folderId, String keywords, int pageNumber, int messagesPerPage,
 			String orderByField, String orderByType)
 		throws PortalException, SystemException;
 
@@ -92,11 +80,6 @@ public interface Mailbox {
 		throws PortalException, SystemException;
 
 	public InternetAddress[] parseAddresses(String addresses)
-		throws PortalException, SystemException;
-
-	public MessagesDisplay getMessagesDisplay(
-			long folderId, String keywords, int pageNumber, int messagesPerPage,
-			String orderByField, String orderByType)
 		throws PortalException, SystemException;
 
 	public Message saveDraft(
@@ -114,6 +97,13 @@ public interface Mailbox {
 	public void synchronize() throws PortalException, SystemException;
 
 	public void synchronize(long folderId)
+		throws PortalException, SystemException;
+
+	public void synchronizeMessage(long messageId)
+		throws PortalException, SystemException;
+
+	public void synchronizePage(
+			long folderId, int pageNumber, int messagesPerPage)
 		throws PortalException, SystemException;
 
 	public void updateFolder(long folderId, String displayName)

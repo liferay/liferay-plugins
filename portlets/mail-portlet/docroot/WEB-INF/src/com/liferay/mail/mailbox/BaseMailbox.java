@@ -62,6 +62,10 @@ public abstract class BaseMailbox implements Mailbox {
 		throw new MailException("Address already exists");
 	}
 
+	public void deleteAccount() throws PortalException, SystemException {
+		AccountLocalServiceUtil.deleteAccount(account.getAccountId());
+	}
+
 	public Account getAccount() {
 		return account;
 	}
