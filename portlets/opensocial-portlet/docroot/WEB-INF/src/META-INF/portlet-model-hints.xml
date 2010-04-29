@@ -7,6 +7,8 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="name" type="String" />
-		<field name="url" type="String" />
+		<field name="url" type="String">
+			<hint name="max-length">4000</hint>
+		</field>
 	</model>
 </model-hints>

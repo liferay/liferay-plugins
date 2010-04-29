@@ -27,6 +27,7 @@
 <%@ page import="com.liferay.opensocial.NoSuchGadgetException" %>
 <%@ page import="com.liferay.opensocial.model.Gadget" %>
 <%@ page import="com.liferay.opensocial.service.GadgetLocalServiceUtil" %>
+<%@ page import="com.liferay.opensocial.util.ShindigUtil" %>
 <%@ page import="com.liferay.opensocial.util.WebKeys" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>

@@ -66,7 +66,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget> {
 			{ "name", new Integer(Types.VARCHAR) },
 			{ "url", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table OpenSocial_Gadget (gadgetId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table OpenSocial_Gadget (gadgetId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_Gadget";
 	public static final String ORDER_BY_JPQL = " ORDER BY gadget.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY OpenSocial_Gadget.name ASC";

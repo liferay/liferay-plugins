@@ -22,6 +22,31 @@
 
 		<if>
 			<not>
+				<available file="tmp/WEB-INF/web.xml.original" />
+			</not>
+			<then>
+				<copy
+					file="tmp/WEB-INF/web.xml"
+					tofile="tmp/WEB-INF/web.xml.original"
+				/>
+			</then>
+		</if>
+
+		<copy
+			file="tmp/WEB-INF/web.xml.original"
+			tofile="tmp/WEB-INF/web.xml"
+			overwrite="true"
+		/>
+
+		<replace file="tmp/WEB-INF/web.xml">
+			<replacefilter 
+				token="org.apache.shindig.social.sample.SampleModule"
+				value="com.liferay.opensocial.guice.LiferayGuiceModule" 
+			/>
+		</replace>
+
+		<if>
+			<not>
 				<available file="tmp/WEB-INF/classes/shindig.properties.original" />
 			</not>
 			<then>

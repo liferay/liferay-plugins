@@ -18,6 +18,16 @@
 
 <%
 Gadget gadget = (Gadget)renderRequest.getAttribute(WebKeys.GADGET);
+
+long classPK = layout.getGroup().getClassPK();
+
+String ownerId = "G-" + classPK;
+
+if (layout.getGroup().isUser()) {
+	ownerId = String.valueOf(classPK);
+}
+
+String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUserId(), renderResponse.getNamespace(), PortalUtil.getPortalURL(themeDisplay), gadget.getUrl(), PortalUtil.getCurrentURL(renderRequest));
 %>
 
 <div class="gadgets-gadget-chrome" id="<portlet:namespace />gadget"></div>
@@ -25,6 +35,7 @@ Gadget gadget = (Gadget)renderRequest.getAttribute(WebKeys.GADGET);
 <aui:script use="liferay-open-social-gadget">
 	new Liferay.OpenSocial.Gadget(
 		{
+			secureToken: '<%= secureToken %>',
 			serverBase: '<%= renderRequest.getContextPath() %>/gadgets/',
 			specUrl: '<%= gadget.getUrl() %>'
 		}

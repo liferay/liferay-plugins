@@ -125,7 +125,7 @@ public class GadgetLocalServiceImpl
 
 		validate(name);
 
-		Gadget gadget = gadgetPersistence.create(gadgetId);
+		Gadget gadget = gadgetPersistence.findByPrimaryKey(gadgetId);
 
 		gadget.setModifiedDate(now);
 		gadget.setName(name);
