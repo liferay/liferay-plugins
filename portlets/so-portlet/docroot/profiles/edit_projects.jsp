@@ -195,22 +195,7 @@
 						%>
 
 					</fieldset>
-
-					<script type="text/javascript">
-						jQuery(
-							function () {
-								new Liferay.AutoFields(
-									{
-										container: '#projectsEntries > fieldset',
-										baseRows: '#projectsEntries > fieldset .lfr-form-row',
-										fieldIndexes: '<portlet:namespace />projectsEntriesIndexes'
-									}
-								);
-							}
-						);
-					</script>
 				</div>
-
 			</td>
 		</tr>
 		</table>
@@ -227,3 +212,12 @@
 </table>
 
 </form>
+
+<aui:script use="liferay-auto-fields">
+	new Liferay.AutoFields(
+		{
+			contentBox: '#projectsEntries > fieldset',
+			fieldIndexes: '<portlet:namespace />projectsEntriesIndexes'
+		}
+	).render();
+</aui:script>
