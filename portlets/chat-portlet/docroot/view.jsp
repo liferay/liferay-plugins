@@ -38,7 +38,7 @@
 	String statusMessage = HtmlUtil.escape(status.getMessage());
 	boolean playSound = status.getPlaySound();
 
-	List<Object[]> buddies = ChatUtil.getBuddies(themeDisplay.getUserId());
+	List<Object[]> buddies = ChatUtil.getBuddies(themeDisplay.getCompanyId(), themeDisplay.getUserId());
 
 	int buddiesCount = buddies.size();
 	%>

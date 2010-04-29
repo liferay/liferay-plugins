@@ -39,7 +39,7 @@ public class ChatUtil {
 
 	public static final long ONLINE_DELTA = Time.MINUTE;
 
-	public static List<Object[]> getBuddies(long userId)
+	public static List<Object[]> getBuddies(long companyId, long userId)
 		throws SystemException {
 
 		long modifiedDate = System.currentTimeMillis() - ONLINE_DELTA;
@@ -48,7 +48,8 @@ public class ChatUtil {
 
 		if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals("all")) {
 			buddies = StatusLocalServiceUtil.getAllStatuses(
-				userId, modifiedDate, 0, SearchContainer.DEFAULT_DELTA);
+				companyId, userId, modifiedDate, 0,
+				SearchContainer.DEFAULT_DELTA);
 		}
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals("communities")) {
 			buddies = StatusLocalServiceUtil.getGroupStatuses(

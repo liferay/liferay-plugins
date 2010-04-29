@@ -59,7 +59,8 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
-		List<Object[]> buddies = ChatUtil.getBuddies(pollerRequest.getUserId());
+		List<Object[]> buddies = ChatUtil.getBuddies(
+			pollerRequest.getCompanyId(), pollerRequest.getUserId());
 
 		JSONArray buddiesJSON = JSONFactoryUtil.createJSONArray();
 
