@@ -20,8 +20,8 @@ package com.liferay.chat.service.persistence;
  * @author Brian Wing Shun Chan
  */
 public interface StatusFinder {
-	public java.util.List<Object[]> findByModifiedDate(long userId,
-		long modifiedDate, int start, int end)
+	public java.util.List<Object[]> findByModifiedDate(long companyId,
+		long userId, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<Object[]> findBySocialRelationType(long userId,

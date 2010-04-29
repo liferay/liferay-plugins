@@ -59,19 +59,19 @@ public class StatusLocalServiceUtil {
 		getService().deleteStatus(status);
 	}
 
-	public static java.util.List<Object> dynamicQuery(
+	public static java.util.List<com.liferay.chat.model.Status> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
-	public static java.util.List<Object> dynamicQuery(
+	public static java.util.List<com.liferay.chat.model.Status> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
-	public static java.util.List<Object> dynamicQuery(
+	public static java.util.List<com.liferay.chat.model.Status> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -80,7 +80,7 @@ public class StatusLocalServiceUtil {
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
-	public static int dynamicQueryCount(
+	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQueryCount(dynamicQuery);
@@ -115,10 +115,11 @@ public class StatusLocalServiceUtil {
 		return getService().updateStatus(status, merge);
 	}
 
-	public static java.util.List<Object[]> getAllStatuses(long userId,
-		long modifiedDate, int start, int end)
+	public static java.util.List<Object[]> getAllStatuses(long companyId,
+		long userId, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getAllStatuses(userId, modifiedDate, start, end);
+		return getService()
+				   .getAllStatuses(companyId, userId, modifiedDate, start, end);
 	}
 
 	public static java.util.List<Object[]> getGroupStatuses(long userId,

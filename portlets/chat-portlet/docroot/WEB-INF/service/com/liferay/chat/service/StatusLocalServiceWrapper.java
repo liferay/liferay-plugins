@@ -57,19 +57,19 @@ public class StatusLocalServiceWrapper implements StatusLocalService {
 		_statusLocalService.deleteStatus(status);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List<com.liferay.chat.model.Status> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.dynamicQuery(dynamicQuery);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List<com.liferay.chat.model.Status> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List<com.liferay.chat.model.Status> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -78,7 +78,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService {
 			orderByComparator);
 	}
 
-	public int dynamicQueryCount(
+	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.dynamicQueryCount(dynamicQuery);
@@ -113,11 +113,11 @@ public class StatusLocalServiceWrapper implements StatusLocalService {
 		return _statusLocalService.updateStatus(status, merge);
 	}
 
-	public java.util.List<Object[]> getAllStatuses(long userId,
+	public java.util.List<Object[]> getAllStatuses(long companyId, long userId,
 		long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _statusLocalService.getAllStatuses(userId, modifiedDate, start,
-			end);
+		return _statusLocalService.getAllStatuses(companyId, userId,
+			modifiedDate, start, end);
 	}
 
 	public java.util.List<Object[]> getGroupStatuses(long userId,

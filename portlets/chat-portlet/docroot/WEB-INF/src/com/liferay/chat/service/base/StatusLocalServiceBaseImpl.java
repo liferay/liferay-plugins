@@ -65,23 +65,23 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService {
 		statusPersistence.remove(status);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
+	public List<Status> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return statusPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
+	public List<Status> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end) throws SystemException {
 		return statusPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
+	public List<Status> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		return statusPersistence.findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
 
-	public int dynamicQueryCount(DynamicQuery dynamicQuery)
+	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return statusPersistence.countWithDynamicQuery(dynamicQuery);
 	}

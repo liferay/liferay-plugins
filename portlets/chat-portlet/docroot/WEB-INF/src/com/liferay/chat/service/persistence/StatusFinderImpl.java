@@ -44,7 +44,7 @@ public class StatusFinderImpl
 		StatusFinder.class.getName() + ".findByUsersGroups";
 
 	public List<Object[]> findByModifiedDate(
-			long userId, long modifiedDate, int start, int end)
+			long companyId, long userId, long modifiedDate, int start, int end)
 		throws SystemException {
 
 		Session session = null;
@@ -65,6 +65,7 @@ public class StatusFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
+			qPos.add(companyId);
 			qPos.add(userId);
 			qPos.add(modifiedDate);
 

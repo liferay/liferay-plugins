@@ -22,10 +22,12 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
  * @author Brian Wing Shun Chan
  */
 public class StatusFinderUtil {
-	public static java.util.List<Object[]> findByModifiedDate(long userId,
-		long modifiedDate, int start, int end)
+	public static java.util.List<Object[]> findByModifiedDate(long companyId,
+		long userId, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getFinder().findByModifiedDate(userId, modifiedDate, start, end);
+		return getFinder()
+				   .findByModifiedDate(companyId, userId, modifiedDate, start,
+			end);
 	}
 
 	public static java.util.List<Object[]> findBySocialRelationType(

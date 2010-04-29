@@ -137,7 +137,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		}
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List<com.liferay.chat.model.Status> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -167,10 +167,10 @@ public class StatusLocalServiceClp implements StatusLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<com.liferay.chat.model.Status>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List<com.liferay.chat.model.Status> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -204,10 +204,10 @@ public class StatusLocalServiceClp implements StatusLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<com.liferay.chat.model.Status>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List<com.liferay.chat.model.Status> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -250,10 +250,10 @@ public class StatusLocalServiceClp implements StatusLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<com.liferay.chat.model.Status>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int dynamicQueryCount(
+	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -283,7 +283,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 			}
 		}
 
-		return ((Integer)returnObj).intValue();
+		return ((Long)returnObj).longValue();
 	}
 
 	public com.liferay.chat.model.Status getStatus(long statusId)
@@ -439,22 +439,26 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		return (com.liferay.chat.model.Status)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<Object[]> getAllStatuses(long userId,
+	public java.util.List<Object[]> getAllStatuses(long companyId, long userId,
 		long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
+		Object paramObj0 = new LongWrapper(companyId);
 
-		Object paramObj1 = new LongWrapper(modifiedDate);
+		Object paramObj1 = new LongWrapper(userId);
 
-		Object paramObj2 = new IntegerWrapper(start);
+		Object paramObj2 = new LongWrapper(modifiedDate);
 
-		Object paramObj3 = new IntegerWrapper(end);
+		Object paramObj3 = new IntegerWrapper(start);
+
+		Object paramObj4 = new IntegerWrapper(end);
 
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("getAllStatuses",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+					});
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {

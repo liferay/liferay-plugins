@@ -651,48 +651,20 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		throws NoSuchStatusException, SystemException {
 		Status status = findByPrimaryKey(statusId);
 
-		int count = countByModifiedDate(modifiedDate);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(2);
-			}
-
-			query.append(_SQL_SELECT_STATUS_WHERE);
-
-			query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(modifiedDate);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, status);
-
 			Status[] array = new StatusImpl[3];
 
-			array[0] = (Status)objArray[0];
-			array[1] = (Status)objArray[1];
-			array[2] = (Status)objArray[2];
+			array[0] = getByModifiedDate_PrevAndNext(session, status,
+					modifiedDate, orderByComparator, true);
+
+			array[1] = status;
+
+			array[2] = getByModifiedDate_PrevAndNext(session, status,
+					modifiedDate, orderByComparator, false);
 
 			return array;
 		}
@@ -701,6 +673,105 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected Status getByModifiedDate_PrevAndNext(Session session,
+		Status status, long modifiedDate, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_STATUS_WHERE);
+
+		query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(modifiedDate);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(status);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Status> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -876,48 +947,20 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		throws NoSuchStatusException, SystemException {
 		Status status = findByPrimaryKey(statusId);
 
-		int count = countByOnline(online);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(2);
-			}
-
-			query.append(_SQL_SELECT_STATUS_WHERE);
-
-			query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(online);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, status);
-
 			Status[] array = new StatusImpl[3];
 
-			array[0] = (Status)objArray[0];
-			array[1] = (Status)objArray[1];
-			array[2] = (Status)objArray[2];
+			array[0] = getByOnline_PrevAndNext(session, status, online,
+					orderByComparator, true);
+
+			array[1] = status;
+
+			array[2] = getByOnline_PrevAndNext(session, status, online,
+					orderByComparator, false);
 
 			return array;
 		}
@@ -926,6 +969,104 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected Status getByOnline_PrevAndNext(Session session, Status status,
+		boolean online, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_STATUS_WHERE);
+
+		query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(online);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(status);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Status> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -1119,52 +1260,20 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		throws NoSuchStatusException, SystemException {
 		Status status = findByPrimaryKey(statusId);
 
-		int count = countByM_O(modifiedDate, online);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_STATUS_WHERE);
-
-			query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
-
-			query.append(_FINDER_COLUMN_M_O_ONLINE_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(modifiedDate);
-
-			qPos.add(online);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, status);
-
 			Status[] array = new StatusImpl[3];
 
-			array[0] = (Status)objArray[0];
-			array[1] = (Status)objArray[1];
-			array[2] = (Status)objArray[2];
+			array[0] = getByM_O_PrevAndNext(session, status, modifiedDate,
+					online, orderByComparator, true);
+
+			array[1] = status;
+
+			array[2] = getByM_O_PrevAndNext(session, status, modifiedDate,
+					online, orderByComparator, false);
 
 			return array;
 		}
@@ -1173,6 +1282,109 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected Status getByM_O_PrevAndNext(Session session, Status status,
+		long modifiedDate, boolean online, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_STATUS_WHERE);
+
+		query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
+
+		query.append(_FINDER_COLUMN_M_O_ONLINE_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(modifiedDate);
+
+		qPos.add(online);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(status);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Status> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
