@@ -18,13 +18,21 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.sanitizer.Sanitizer;
 import com.liferay.portal.kernel.sanitizer.SanitizerException;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.StreamUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 import java.util.Map;
+
+import org.owasp.validator.html.AntiSamy;
+import org.owasp.validator.html.CleanResults;
+import org.owasp.validator.html.Policy;
+import org.owasp.validator.html.PolicyException;
 
 /**
  * <a href="AntiSamySanitizerImpl.java.html"><b><i>View Source</i></b></a>
@@ -74,8 +82,67 @@ public class AntiSamySanitizerImpl implements Sanitizer {
 			_log.debug("Sanitizing " + className + "#" + classPK);
 		}
 
-		return s;
+		if (_disabled) {
+			return s;
+		}
+
+		if (Validator.isNull(contentType) ||
+			!contentType.equals(ContentTypes.TEXT_HTML)) {
+
+			return s;
+		}
+
+		try {
+			if (_policy == null) {
+				_init();
+
+				if (_disabled) {
+					return s;
+				}
+			}
+
+			AntiSamy as = new AntiSamy();
+			CleanResults cr = as.scan(s, _policy);
+			s = cr.getCleanHTML();
+
+			return s;
+		} catch (Exception e) {
+			_log.error(
+				"Error with sanitizing input, returning blank string", e);
+
+			return StringPool.BLANK;
+		}
 	}
+
+	private void _init() {
+		InputStream policyInputStream =
+			getClass().getClassLoader().getResourceAsStream(
+				"sanitizer-configuration.xml");
+
+		if (policyInputStream == null) {
+			_log.error(
+				"Couldn't find the policy file sanitizer-configuration.xml, " +
+					"AntiSamy filter is disabled");
+
+			_disabled = true;
+			return;
+		}
+
+		try {
+			_policy = Policy.getInstance(policyInputStream);
+
+		}
+		catch (PolicyException e) {
+			_log.error(
+				"AntiSamy policy file had some problems, the filter is " +
+					"disabled.", e);
+
+			_disabled = true;
+		}
+	}
+
+	private static boolean _disabled;
+	private static Policy _policy;
 
 	private static Log _log = LogFactoryUtil.getLog(
 		AntiSamySanitizerImpl.class);
