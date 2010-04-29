@@ -41,13 +41,13 @@ public class ShindigUtil {
 			String appUrl, String activeUrl)
 		throws Exception {
 
-	    String securityTokenType =
-	    	_containerConfig.getString(
-	    		ContainerConfig.DEFAULT_CONTAINER, "gadgets.securityTokenType");
+		String securityTokenType =
+			_containerConfig.getString(
+				ContainerConfig.DEFAULT_CONTAINER, "gadgets.securityTokenType");
 
-	    String viewerIdString = String.valueOf(viewerId);
+		String viewerIdString = String.valueOf(viewerId);
 
-	    String securityToken = StringPool.BLANK;
+		String securityToken = StringPool.BLANK;
 
 		if (securityTokenType.equals("insecure")) {
 			BasicSecurityToken basicSecurityToken = new BasicSecurityToken(
@@ -60,8 +60,8 @@ public class ShindigUtil {
 		}
 		else if (securityTokenType.equals("secure")) {
 			String securityTokenKeyPath = _containerConfig.getString(
-		    	ContainerConfig.DEFAULT_CONTAINER,
-		    		"gadgets.securityTokenKeyFile");
+				ContainerConfig.DEFAULT_CONTAINER,
+			"gadgets.securityTokenKeyFile");
 
 			File securityTokenKeyFile = new File(securityTokenKeyPath);
 
@@ -90,4 +90,5 @@ public class ShindigUtil {
 
 	@Inject
 	private static BasicSecurityTokenDecoder _basicSecurityTokenDecoder;
+
 }
