@@ -17,5 +17,9 @@
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/antisamy.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/batik-css.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/batik-util.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xml-apis-ext.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
