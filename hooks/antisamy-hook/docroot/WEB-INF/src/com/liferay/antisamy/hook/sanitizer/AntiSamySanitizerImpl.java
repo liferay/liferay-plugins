@@ -130,7 +130,6 @@ public class AntiSamySanitizerImpl implements Sanitizer {
 
 		try {
 			_policy = Policy.getInstance(policyInputStream);
-
 		}
 		catch (PolicyException e) {
 			_log.error(
