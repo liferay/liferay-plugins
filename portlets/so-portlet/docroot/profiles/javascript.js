@@ -49,7 +49,7 @@ AUI.add(
 
 					instance._profileWrapper.delegate(
 						'click',
-						function(event){
+						function(event) {
 							instance._loadProfileAction('edit_profile');
 						},
 						'.so-edit-profile'
@@ -57,7 +57,7 @@ AUI.add(
 
 					instance._profileWrapper.delegate(
 						'click',
-						function(event){
+						function(event) {
 							instance._loadProfileAction('edit_projects');
 						},
 						'.so-edit-projects'
@@ -65,10 +65,20 @@ AUI.add(
 
 					instance._profileWrapper.delegate(
 						'click',
-						function(event){
+						function(event) {
 							instance._loadProfileAction('edit_settings');
 						},
 						'.so-change-settings'
+					);
+
+					instance._profileWrapper.delegate(
+						'submit',
+						function(event) {
+							event.preventDefault();
+
+							instance._submitForm(event.currentTarget);
+						},
+						'form'
 					);
 				},
 
@@ -78,14 +88,10 @@ AUI.add(
 					instance._loadProfileAction('user_profile');
 				},
 
-				_loadProfileAction: function(action) {
+				_getProfileIO: function() {
 					var instance = this;
 
-					var userId = instance.get('userID');
-
-					instance._showProfile();
-
-					var profile = instance._profileWrapper;
+					profile = instance._profileWrapper;
 
 					if (!profile.io) {
 						profile.plug(
@@ -97,11 +103,28 @@ AUI.add(
 						);
 					}
 
+					profile.io.set('data', null);
+					profile.io.set('uri', null);
+					profile.io.set('form', null);
+
+					return profile;
+				},
+
+				_loadProfileAction: function(action) {
+					var instance = this;
+
+					var userId = instance.get('userID');
+
+					instance._showProfile();
+
+					var profile = instance._getProfileIO();
+
 					profile.io.set('data', {userId: userId});
 					profile.io.set('uri', themeDisplay.getLayoutURL() + '/-/profiles/' + action);
 
 					profile.io.start();
 
+					window.scrollTo(0,0);
 				},
 
 				_showProfile: function() {
@@ -114,6 +137,21 @@ AUI.add(
 					}
 
 					instance._profileWrapper.show();
+				},
+
+				_submitForm: function(form) {
+					var instance = this;
+
+					var profile = instance._getProfileIO();
+
+					Liferay.fire('submitForm', {form: form});
+
+					profile.io.set('form', {id: form.getDOM()});
+					profile.io.set('uri', form.getAttribute('action'));
+
+					profile.io.start();
+
+					window.scrollTo(0,0);
 				}
 			}
 		);

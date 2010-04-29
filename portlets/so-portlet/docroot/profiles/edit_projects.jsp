@@ -19,34 +19,6 @@
 
 <%@ include file="/init.jsp" %>
 
-<script type="text/javascript">
-	jQuery(
-		function() {
-			var form = jQuery(document.<portlet:namespace />fm);
-
-			jQuery('#<portlet:namespace />submit').click(
-				function() {
-					Liferay.trigger('submitForm', {form: form});
-				}
-			);
-
-			form.ajaxForm(
-				{
-					type: "POST",
-					beforeSubmit: function() {
-						document.getElementById('<portlet:namespace />submit').disabled = true;
-					},
-					success: function(message) {
-						jQuery('.profile-wrapper').html(message);
-
-						window.scrollTo(0,0);
-					}
-				}
-			);
-		}
-	);
-</script>
-
 <h1><%= user.getFullName() %> : <liferay-ui:message key="edit-projects" /></h1>
 
 <form action="<portlet:actionURL name="updateUserProjects"></portlet:actionURL>" name="<portlet:namespace />fm">

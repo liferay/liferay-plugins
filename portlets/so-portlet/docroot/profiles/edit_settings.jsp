@@ -33,28 +33,6 @@ String languageId = BeanParamUtil.getString(user, request, "languageId", user.ge
 String timeZoneId = BeanParamUtil.getString(user, request, "timeZoneId", user.getTimeZoneId());
 %>
 
-<script type="text/javascript">
-	jQuery(
-		function() {
-			var form = jQuery(document.<portlet:namespace />fm);
-
-			form.ajaxForm(
-				{
-					type: "POST",
-					beforeSubmit: function() {
-						document.getElementById('<portlet:namespace />submit').disabled = true;
-					},
-					success: function(message) {
-						jQuery('.profile-wrapper').html(message);
-
-						window.scrollTo(0,0);
-					}
-				}
-			);
-		}
-	);
-</script>
-
 <h1><%= user.getFullName() %> : <liferay-ui:message key="edit-settings" /></h1>
 
 <form action="<portlet:actionURL name="updateUserSettings"></portlet:actionURL>" name="<portlet:namespace />fm">

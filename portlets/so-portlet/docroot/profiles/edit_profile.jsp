@@ -19,58 +19,6 @@
 
 <%@ include file="/init.jsp" %>
 
-<span></span>
-
-<script type="text/javascript">
-	function <portlet:namespace />deleteUserPortrait(deleteUserPortraitURL) {
-		jQuery.ajax(
-			{
-				url: deleteUserPortraitURL,
-				success: function(result) {
-					jQuery('#<portlet:namespace />avatar').attr('src', '<%= themeDisplay.getPathImage() + "/user_" + (user.isFemale() ? "female" : "male") + "_portrait?img_id=0" %>');
-				},
-				type: 'POST'
-			}
-		);
-	}
-
-	function <%= PortalUtil.getPortletNamespace(PortletKeys.MY_ACCOUNT) %>changePortrait(newPortraitURL) {
-		jQuery('#<portlet:namespace />avatar').attr('src', newPortraitURL);
-	}
-
-	function <portlet:namespace />editUserPortrait(editUserPortraitURL) {
-		var editUserPortraitWindow = window.open(editUserPortraitURL, '<liferay-ui:message key="change" />', 'directories=no,height=400,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=500');
-
-		editUserPortraitWindow.focus();
-	}
-
-	jQuery(
-		function() {
-			var form = jQuery(document.<portlet:namespace />fm);
-
-			jQuery('#<portlet:namespace />submit').click(
-				function() {
-					Liferay.trigger('submitForm', {form: form});
-				}
-			);
-
-			form.ajaxForm(
-				{
-					type: "POST",
-					beforeSubmit: function() {
-						document.getElementById('<portlet:namespace />submit').disabled = true;
-					},
-					success: function(message) {
-						jQuery('.profile-wrapper').html(message);
-
-						window.scrollTo(0,0);
-					}
-				}
-			);
-		}
-	);
-</script>
-
 <h1><%= user.getFullName() %> : <liferay-ui:message key="edit-profile" /></h1>
 
 <form action="<portlet:actionURL name="updateUserProfile"></portlet:actionURL>" name="<portlet:namespace />fm">
@@ -385,6 +333,37 @@
 </table>
 
 </form>
+
+<aui:script>
+	function <portlet:namespace />deleteUserPortrait(deleteUserPortraitURL) {
+		A.use(
+			'aui-io',
+			function(A) {
+				A.io.request(
+					deleteUserPortraitURL,
+					{
+						method: 'POST',
+						on: {
+							success: function(event) {
+								A.one('#<portlet:namespace />avatar').attr('src', '<%= themeDisplay.getPathImage() + "/user_" + (user.isFemale() ? "female" : "male") + "_portrait?img_id=0" %>');
+							}
+						}
+					}
+				);
+			}
+		);
+	}
+
+	function <%= PortalUtil.getPortletNamespace(PortletKeys.MY_ACCOUNT) %>changePortrait(newPortraitURL) {
+		A.one('#<portlet:namespace />avatar').attr('src', newPortraitURL);
+	}
+
+	function <portlet:namespace />editUserPortrait(editUserPortraitURL) {
+		var editUserPortraitWindow = window.open(editUserPortraitURL, '<liferay-ui:message key="change" />', 'directories=no,height=400,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=500');
+
+		editUserPortraitWindow.focus();
+	}
+</aui:script>
 
 <%!
 private String _formatHTML(String html) {
