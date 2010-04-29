@@ -80,6 +80,8 @@ else {
 								<%
 								PortletURL removeFriendURL = renderResponse.createActionURL();
 
+								removeFriendURL.setWindowState(WindowState.NORMAL);
+
 								removeFriendURL.setParameter(ActionRequest.ACTION_NAME, "deleteFriend");
 								removeFriendURL.setParameter("redirect", currentURL);
 								removeFriendURL.setParameter("userId", String.valueOf(curUser.getUserId()));
@@ -98,6 +100,8 @@ else {
 
 								<%
 								PortletURL addAsFriendURL = renderResponse.createActionURL();
+
+								addAsFriendURL.setWindowState(WindowState.NORMAL);
 
 								addAsFriendURL.setParameter(ActionRequest.ACTION_NAME, "addFriend");
 								addAsFriendURL.setParameter("redirect", currentURL);
