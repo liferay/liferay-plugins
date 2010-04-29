@@ -89,6 +89,8 @@
 		<table class="lfr-table" width="100%">
 
 		<%
+		String myWallLayoutFriendlyURL = null;
+
 		for (int i = 0; i < results.size(); i++) {
 			WallEntry wallEntry = results.get(i);
 
@@ -139,10 +141,11 @@
 						<liferay-ui:icon-list>
 
 							<%
+							String wallLayoutFriendlyURL = null;
 							String wallToWallHREF = null;
 
-							if ((wallToWallUser == null) && (wallUser.getUserId() != themeDisplay.getUserId())) {
-								String wallLayoutFriendlyURL = PropsValues.WALL_LAYOUT_FRIENDLY_URL;
+							if ((wallUser.getUserId() != themeDisplay.getUserId()) || ((wallUser.getUserId() == themeDisplay.getUserId()) && (Validator.isNull(myWallLayoutFriendlyURL)))) {
+								wallLayoutFriendlyURL = PortletPropsValues.WALL_LAYOUT_FRIENDLY_URL;
 
 								if (Validator.isNull(wallLayoutFriendlyURL)) {
 									Group wallGroup = wallUser.getGroup();
@@ -156,13 +159,13 @@
 									}
 								}
 
-								if (Validator.isNotNull(wallLayoutFriendlyURL)) {
+								if ((Validator.isNotNull(wallLayoutFriendlyURL)) && (wallUser.getUserId() != themeDisplay.getUserId())) {
 									wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallLayoutFriendlyURL + "/-/wall/" + wallUser.getScreenName();
 								}
 							}
 							%>
 
-							<c:if test="<%= Validator.isNotNull(wallToWallHREF) %>">
+							<c:if test="<%= Validator.isNotNull(wallToWallHREF) && wallToWallUser == null %>">
 								<liferay-ui:icon image="all_pages" message="wall-to-wall" url="<%= wallToWallHREF %>" label="<%= true %>" />
 							</c:if>
 
@@ -170,6 +173,13 @@
 							String postMessage = null;
 
 							if (wallUser.getUserId() == themeDisplay.getUserId()) {
+								if (Validator.isNull(myWallLayoutFriendlyURL)) {
+									myWallLayoutFriendlyURL = wallLayoutFriendlyURL;
+								}
+								else {
+									wallLayoutFriendlyURL = myWallLayoutFriendlyURL;
+								}
+
 								postMessage = "write-on-my-wall";
 							}
 							else {
