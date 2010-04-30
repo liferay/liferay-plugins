@@ -143,7 +143,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		MBMessageLocalServiceUtil.addDiscussionMessage(
 			userId, article.getUserName(), Article.class.getName(),
-			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
+			resourcePrimKey, WorkflowConstants.ACTION_PUBLISH);
 
 		// Social
 
@@ -507,11 +507,9 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 			DLServiceUtil.addFile(
 				companyId, CompanyConstants.SYSTEM_STRING,
-				GroupConstants.DEFAULT_PARENT_GROUP_ID,
-				CompanyConstants.SYSTEM,
-				dirName + StringPool.SLASH + shortFileName, 0,
-				StringPool.BLANK, article.getModifiedDate(), serviceContext,
-				bytes);
+				GroupConstants.DEFAULT_PARENT_GROUP_ID, CompanyConstants.SYSTEM,
+				dirName + StringPool.SLASH + shortFileName, 0, StringPool.BLANK,
+				article.getModifiedDate(), serviceContext, bytes);
 		}
 
 		return dirName;
@@ -537,7 +535,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				curArticle.getParentResourcePrimKey();
 
 			if (priority == i) {
-					curParentResourcePrimKey = parentResourcePrimKey;
+				curParentResourcePrimKey = parentResourcePrimKey;
 			}
 
 			List<Article> childrenArticles =
