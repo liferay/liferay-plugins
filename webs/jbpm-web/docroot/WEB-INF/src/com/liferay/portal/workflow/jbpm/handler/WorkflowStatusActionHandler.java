@@ -44,8 +44,8 @@ public class WorkflowStatusActionHandler implements ActionHandler {
 		Map<String, Serializable> workflowContext = WorkflowContextUtil.convert(
 			contextInstance.getVariables());
 
-		long companyId = (Long)workflowContext.get(
-			WorkflowConstants.CONTEXT_COMPANY_ID);
+		long companyId = GetterUtil.getLong(
+			(String)workflowContext.get(WorkflowConstants.CONTEXT_COMPANY_ID));
 
 		if (userId == 0) {
 			TaskInstance taskInstance = executionContext.getTaskInstance();
@@ -55,7 +55,8 @@ public class WorkflowStatusActionHandler implements ActionHandler {
 			}
 		}
 
-		workflowContext.put(WorkflowConstants.CONTEXT_USER_ID, userId);
+		workflowContext.put(
+			WorkflowConstants.CONTEXT_USER_ID, String.valueOf(userId));
 
 		WorkflowStatusManagerUtil.updateStatus(
 			WorkflowConstants.toStatus(status), workflowContext);

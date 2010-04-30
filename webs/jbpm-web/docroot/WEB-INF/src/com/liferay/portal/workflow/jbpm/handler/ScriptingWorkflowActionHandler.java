@@ -15,6 +15,7 @@
 package com.liferay.portal.workflow.jbpm.handler;
 
 import com.liferay.portal.kernel.scripting.ScriptingUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -50,24 +51,27 @@ public class ScriptingWorkflowActionHandler implements ActionHandler {
 
 		inputObjects.put("workflowContext", workflowContext);
 
-		Long companyId = (Long)workflowContext.get(
-			WorkflowConstants.CONTEXT_COMPANY_ID);
+		Long companyId = GetterUtil.getLong(
+			(String)workflowContext.get(WorkflowConstants.CONTEXT_COMPANY_ID));
 
 		TaskInstance taskInstance = executionContext.getTaskInstance();
 
 		if (taskInstance != null) {
 			inputObjects.put(
-				WorkflowConstants.CONTEXT_USER_ID, taskInstance.getActorId());
+				WorkflowConstants.CONTEXT_USER_ID,
+				String.valueOf(taskInstance.getActorId()));
 
 			inputObjects.put("assigneeClassName", User.class.getName());
-			inputObjects.put("assigneeClassPK", taskInstance.getActorId());
+			inputObjects.put(
+				"assigneeClassPK", String.valueOf(taskInstance.getActorId()));
 			inputObjects.put("taskName", taskInstance.getName());
 		}
 		else if (companyId != null) {
 			User user = UserLocalServiceUtil.getDefaultUser(companyId);
 
 			inputObjects.put(
-				WorkflowConstants.CONTEXT_USER_ID, user.getUserId());
+				WorkflowConstants.CONTEXT_USER_ID,
+				String.valueOf(user.getUserId()));
 		}
 
 		ScriptingUtil.exec(null, inputObjects, language, script);
