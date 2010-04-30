@@ -40,4 +40,9 @@ package com.liferay.knowledgebase.model;
  * @generated
  */
 public interface Article extends ArticleModel {
+	public java.lang.String getAttachmentsDirName();
+
+	public java.lang.String[] getAttachmentsFileNames()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

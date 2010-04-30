@@ -61,21 +61,21 @@ public interface ArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.kernel.exception.PortalException;
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List<com.liferay.knowledgebase.model.Article> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List<com.liferay.knowledgebase.model.Article> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List<com.liferay.knowledgebase.model.Article> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int dynamicQueryCount(
+	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -125,6 +125,19 @@ public interface ArticleLocalService {
 		com.liferay.knowledgebase.model.Article article,
 		java.lang.String[] communityPermissions,
 		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void addAttachment(long companyId, java.lang.String dirName,
+		java.lang.String shortFileName, byte[] bytes)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void checkAttachments()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void deleteAttachment(long companyId, java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -184,6 +197,14 @@ public interface ArticleLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public void subscribe(long groupId, long userId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void unsubscribe(long groupId, long userId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public com.liferay.knowledgebase.model.Article updateArticle(long userId,
 		long resourcePrimKey, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
@@ -196,6 +217,11 @@ public interface ArticleLocalService {
 		com.liferay.knowledgebase.model.Article article,
 		java.lang.String[] communityPermissions,
 		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public java.lang.String updateAttachments(long companyId,
+		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

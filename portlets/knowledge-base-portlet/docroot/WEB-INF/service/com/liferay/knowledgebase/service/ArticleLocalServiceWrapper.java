@@ -58,19 +58,19 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		_articleLocalService.deleteArticle(article);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List<com.liferay.knowledgebase.model.Article> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.dynamicQuery(dynamicQuery);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List<com.liferay.knowledgebase.model.Article> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List<com.liferay.knowledgebase.model.Article> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -79,7 +79,7 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			orderByComparator);
 	}
 
-	public int dynamicQueryCount(
+	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.dynamicQueryCount(dynamicQuery);
@@ -150,6 +150,26 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		_articleLocalService.addArticleResources(article, communityPermissions,
 			guestPermissions);
+	}
+
+	public void addAttachment(long companyId, java.lang.String dirName,
+		java.lang.String shortFileName, byte[] bytes)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleLocalService.addAttachment(companyId, dirName, shortFileName,
+			bytes);
+	}
+
+	public void checkAttachments()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleLocalService.checkAttachments();
+	}
+
+	public void deleteAttachment(long companyId, java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleLocalService.deleteAttachment(companyId, fileName);
 	}
 
 	public void deleteGroupArticles(long groupId)
@@ -225,6 +245,18 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.getLatestArticle(resourcePrimKey);
 	}
 
+	public void subscribe(long groupId, long userId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleLocalService.subscribe(groupId, userId, resourcePrimKey);
+	}
+
+	public void unsubscribe(long groupId, long userId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleLocalService.unsubscribe(groupId, userId, resourcePrimKey);
+	}
+
 	public com.liferay.knowledgebase.model.Article updateArticle(long userId,
 		long resourcePrimKey, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
@@ -245,6 +277,13 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		_articleLocalService.updateArticleResources(article,
 			communityPermissions, guestPermissions);
+	}
+
+	public java.lang.String updateAttachments(long companyId,
+		long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.updateAttachments(companyId, resourcePrimKey);
 	}
 
 	public com.liferay.knowledgebase.model.Article updateDisplayOrder(

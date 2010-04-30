@@ -176,6 +176,14 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		_priority = priority;
 	}
 
+	public java.lang.String getAttachmentsDirName() {
+		throw new UnsupportedOperationException();
+	}
+
+	public java.lang.String[] getAttachmentsFileNames() {
+		throw new UnsupportedOperationException();
+	}
+
 	public Article toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;

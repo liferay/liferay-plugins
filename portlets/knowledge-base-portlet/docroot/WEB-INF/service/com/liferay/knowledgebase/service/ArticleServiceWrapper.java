@@ -46,10 +46,27 @@ public class ArticleServiceWrapper implements ArticleService {
 			content, description, priority, serviceContext);
 	}
 
+	public void addAttachment(long companyId, long groupId,
+		long resourcePrimKey, java.lang.String dirName,
+		java.lang.String shortFileName, byte[] bytes)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleService.addAttachment(companyId, groupId, resourcePrimKey,
+			dirName, shortFileName, bytes);
+	}
+
 	public void deleteArticle(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_articleService.deleteArticle(resourcePrimKey);
+	}
+
+	public void deleteAttachment(long companyId, long groupId,
+		long resourcePrimKey, java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleService.deleteAttachment(companyId, groupId, resourcePrimKey,
+			fileName);
 	}
 
 	public com.liferay.knowledgebase.model.Article getArticle(
@@ -123,6 +140,18 @@ public class ArticleServiceWrapper implements ArticleService {
 		return _articleService.getLatestArticle(resourcePrimKey);
 	}
 
+	public void subscribe(long groupId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleService.subscribe(groupId, resourcePrimKey);
+	}
+
+	public void unsubscribe(long groupId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleService.unsubscribe(groupId, resourcePrimKey);
+	}
+
 	public com.liferay.knowledgebase.model.Article updateArticle(
 		long resourcePrimKey, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
@@ -133,6 +162,14 @@ public class ArticleServiceWrapper implements ArticleService {
 		return _articleService.updateArticle(resourcePrimKey,
 			parentResourcePrimKey, title, content, description, priority,
 			serviceContext);
+	}
+
+	public java.lang.String updateAttachments(long companyId, long groupId,
+		long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.updateAttachments(companyId, groupId,
+			resourcePrimKey);
 	}
 
 	public ArticleService getWrappedArticleService() {

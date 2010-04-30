@@ -49,10 +49,28 @@ public class ArticleServiceUtil {
 			description, priority, serviceContext);
 	}
 
+	public static void addAttachment(long companyId, long groupId,
+		long resourcePrimKey, java.lang.String dirName,
+		java.lang.String shortFileName, byte[] bytes)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.addAttachment(companyId, groupId, resourcePrimKey, dirName,
+			shortFileName, bytes);
+	}
+
 	public static void deleteArticle(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteArticle(resourcePrimKey);
+	}
+
+	public static void deleteAttachment(long companyId, long groupId,
+		long resourcePrimKey, java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.deleteAttachment(companyId, groupId, resourcePrimKey, fileName);
 	}
 
 	public static com.liferay.knowledgebase.model.Article getArticle(
@@ -127,6 +145,18 @@ public class ArticleServiceUtil {
 		return getService().getLatestArticle(resourcePrimKey);
 	}
 
+	public static void subscribe(long groupId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().subscribe(groupId, resourcePrimKey);
+	}
+
+	public static void unsubscribe(long groupId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().unsubscribe(groupId, resourcePrimKey);
+	}
+
 	public static com.liferay.knowledgebase.model.Article updateArticle(
 		long resourcePrimKey, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
@@ -137,6 +167,14 @@ public class ArticleServiceUtil {
 		return getService()
 				   .updateArticle(resourcePrimKey, parentResourcePrimKey,
 			title, content, description, priority, serviceContext);
+	}
+
+	public static java.lang.String updateAttachments(long companyId,
+		long groupId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateAttachments(companyId, groupId, resourcePrimKey);
 	}
 
 	public static void clearService() {

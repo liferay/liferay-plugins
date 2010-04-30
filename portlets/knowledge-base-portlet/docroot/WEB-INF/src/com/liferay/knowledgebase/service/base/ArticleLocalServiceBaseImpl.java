@@ -66,23 +66,23 @@ public abstract class ArticleLocalServiceBaseImpl implements ArticleLocalService
 		articlePersistence.remove(article);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
+	public List<Article> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return articlePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
+	public List<Article> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end) throws SystemException {
 		return articlePersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
+	public List<Article> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		return articlePersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
 
-	public int dynamicQueryCount(DynamicQuery dynamicQuery)
+	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return articlePersistence.countWithDynamicQuery(dynamicQuery);
 	}

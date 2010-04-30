@@ -95,6 +95,61 @@ public class ArticleServiceClp implements ArticleService {
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public void addAttachment(long companyId, long groupId,
+		long resourcePrimKey, java.lang.String dirName,
+		java.lang.String shortFileName, byte[] bytes)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object paramObj1 = new LongWrapper(groupId);
+
+		Object paramObj2 = new LongWrapper(resourcePrimKey);
+
+		Object paramObj3 = ClpSerializer.translateInput(dirName);
+
+		if (dirName == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj4 = ClpSerializer.translateInput(shortFileName);
+
+		if (shortFileName == null) {
+			paramObj4 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj5 = ClpSerializer.translateInput(bytes);
+
+		if (bytes == null) {
+			paramObj5 = new NullWrapper("[B");
+		}
+
+		try {
+			_classLoaderProxy.invoke("addAttachment",
+				new Object[] {
+					paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+					paramObj5
+				});
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public void deleteArticle(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -102,6 +157,45 @@ public class ArticleServiceClp implements ArticleService {
 
 		try {
 			_classLoaderProxy.invoke("deleteArticle", new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	public void deleteAttachment(long companyId, long groupId,
+		long resourcePrimKey, java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object paramObj1 = new LongWrapper(groupId);
+
+		Object paramObj2 = new LongWrapper(resourcePrimKey);
+
+		Object paramObj3 = ClpSerializer.translateInput(fileName);
+
+		if (fileName == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
+		}
+
+		try {
+			_classLoaderProxy.invoke("deleteAttachment",
+				new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -484,6 +578,66 @@ public class ArticleServiceClp implements ArticleService {
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public void subscribe(long groupId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(groupId);
+
+		Object paramObj1 = new LongWrapper(resourcePrimKey);
+
+		try {
+			_classLoaderProxy.invoke("subscribe",
+				new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	public void unsubscribe(long groupId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(groupId);
+
+		Object paramObj1 = new LongWrapper(resourcePrimKey);
+
+		try {
+			_classLoaderProxy.invoke("unsubscribe",
+				new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.knowledgebase.model.Article updateArticle(
 		long resourcePrimKey, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
@@ -550,6 +704,43 @@ public class ArticleServiceClp implements ArticleService {
 		}
 
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.lang.String updateAttachments(long companyId, long groupId,
+		long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object paramObj1 = new LongWrapper(groupId);
+
+		Object paramObj2 = new LongWrapper(resourcePrimKey);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateAttachments",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public ClassLoaderProxy getClassLoaderProxy() {
