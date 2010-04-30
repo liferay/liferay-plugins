@@ -29,7 +29,6 @@
 	<classpathentry kind="lib" path="/portal/lib/portal/spring-orm.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/spring-transaction.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/spring-web.jar" />
-	<classpathentry kind="lib" path="/portal/portal-kernel/portal-kernel.jar" />
 	<classpathentry kind="lib" path="/portal/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />

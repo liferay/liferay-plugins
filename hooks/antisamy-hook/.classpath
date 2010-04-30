@@ -16,7 +16,6 @@
 	<classpathentry kind="lib" path="/portal/lib/portal/nekohtml.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/xercesImpl.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/xml-apis.jar" />
-	<classpathentry kind="lib" path="/portal/portal-kernel/portal-kernel.jar" />
 	<classpathentry kind="lib" path="/portal/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />

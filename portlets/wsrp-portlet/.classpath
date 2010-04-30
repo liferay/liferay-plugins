@@ -26,7 +26,6 @@
 	<classpathentry kind="lib" path="/portal/lib/portal/slf4j-log4j12.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/wsdl4j.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/xmlsec.jar" />
-	<classpathentry kind="lib" path="/portal/portal-kernel/portal-kernel.jar" />
 	<classpathentry kind="lib" path="/portal/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
