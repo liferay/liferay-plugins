@@ -39,7 +39,6 @@ import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -172,10 +171,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			completed, serviceContext);
 
-		List<Object> results = dynamicQuery(
-			dynamicQuery, start, end, orderByComparator);
-
-		return toKaleoTaskInstanceTokens(results);
+		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
 	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
@@ -186,10 +182,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			roleIds, completed, serviceContext);
 
-		List<Object> results = dynamicQuery(
-			dynamicQuery, start, end, orderByComparator);
-
-		return toKaleoTaskInstanceTokens(results);
+		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
 	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
@@ -200,10 +193,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			kaleoInstanceId, completed, serviceContext);
 
-		List<Object> results = dynamicQuery(
-			dynamicQuery, start, end, orderByComparator);
-
-		return toKaleoTaskInstanceTokens(results);
+		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
 	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
@@ -215,10 +205,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			assigneeClassName, assigneeClassPK, completed, serviceContext);
 
-		List<Object> results = dynamicQuery(
-			dynamicQuery, start, end, orderByComparator);
-
-		return toKaleoTaskInstanceTokens(results);
+		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
 	public int getKaleoTaskInstanceTokensCount(
@@ -228,7 +215,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			completed, serviceContext);
 
-		return dynamicQueryCount(dynamicQuery);
+		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
 	public int getKaleoTaskInstanceTokensCount(
@@ -239,7 +226,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			roleIds, completed, serviceContext);
 
-		return dynamicQueryCount(dynamicQuery);
+		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
 	public int getKaleoTaskInstanceTokensCount(
@@ -250,7 +237,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			kaleoInstanceId, completed, serviceContext);
 
-		return dynamicQueryCount(dynamicQuery);
+		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
 	public int getKaleoTaskInstanceTokensCount(
@@ -261,7 +248,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			assigneeClassName, assigneeClassPK, completed, serviceContext);
 
-		return dynamicQueryCount(dynamicQuery);
+		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
 	public List<KaleoTaskInstanceToken> search(
@@ -286,7 +273,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			taskName, assetType, dueDateGT, dueDateLT, completed,
 			searchByUserRoles, andOperator, serviceContext);
 
-		return toKaleoTaskInstanceTokens(dynamicQuery(query));
+		return dynamicQuery(query);
 	}
 
 	public int searchCount(
@@ -309,7 +296,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			taskName, assetType, dueDateGT, dueDateLT, completed,
 			searchByUserRoles, andOperator, serviceContext);
 
-		return dynamicQueryCount(dynamicQuery);
+		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
 	public KaleoTaskInstanceToken updateDueDate(
@@ -520,19 +507,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		addCompletedCriterion(dynamicQuery, completed);
 
 		return dynamicQuery;
-	}
-
-	protected List<KaleoTaskInstanceToken> toKaleoTaskInstanceTokens(
-		List<Object> results) {
-
-		List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
-			new ArrayList<KaleoTaskInstanceToken>(results.size());
-
-		for (Object result : results) {
-			kaleoTaskInstanceTokens.add((KaleoTaskInstanceToken)result);
-		}
-
-		return kaleoTaskInstanceTokens;
 	}
 
 }

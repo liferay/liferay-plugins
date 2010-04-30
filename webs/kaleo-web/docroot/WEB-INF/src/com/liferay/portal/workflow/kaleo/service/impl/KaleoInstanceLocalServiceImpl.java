@@ -28,7 +28,6 @@ import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -117,10 +116,7 @@ public class KaleoInstanceLocalServiceImpl
 				PropertyFactoryUtil.forName("completionDate").isNull());
 		}
 
-		List<Object> results = dynamicQuery(
-			dynamicQuery, start, end, orderByComparator);
-
-		return toKaleoInstances(results);
+		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
 	public int getKaleoInstancesCount(
@@ -150,7 +146,7 @@ public class KaleoInstanceLocalServiceImpl
 				PropertyFactoryUtil.forName("completionDate").isNull());
 		}
 
-		return dynamicQueryCount(dynamicQuery);
+		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
 	public KaleoInstance updateKaleoInstance(
@@ -165,17 +161,6 @@ public class KaleoInstanceLocalServiceImpl
 			WorkflowContextUtil.convert(workflowContext));
 
 		return kaleoInstance;
-	}
-
-	protected List<KaleoInstance> toKaleoInstances(List<Object> results) {
-		List<KaleoInstance> kaleoInstances =
-			new ArrayList<KaleoInstance>(results.size());
-
-		for (Object result : results) {
-			kaleoInstances.add((KaleoInstance)result);
-		}
-
-		return kaleoInstances;
 	}
 
 }

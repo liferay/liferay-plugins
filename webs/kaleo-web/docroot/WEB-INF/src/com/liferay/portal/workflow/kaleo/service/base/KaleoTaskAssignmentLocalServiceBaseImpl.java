@@ -90,24 +90,25 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 		kaleoTaskAssignmentPersistence.remove(kaleoTaskAssignment);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
+	public List<KaleoTaskAssignment> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return kaleoTaskAssignmentPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) throws SystemException {
+	public List<KaleoTaskAssignment> dynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
 		return kaleoTaskAssignmentPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+	public List<KaleoTaskAssignment> dynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
 		return kaleoTaskAssignmentPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
 
-	public int dynamicQueryCount(DynamicQuery dynamicQuery)
+	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return kaleoTaskAssignmentPersistence.countWithDynamicQuery(dynamicQuery);
 	}

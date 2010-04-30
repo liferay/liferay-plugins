@@ -60,19 +60,19 @@ public class KaleoTaskLocalServiceWrapper implements KaleoTaskLocalService {
 		_kaleoTaskLocalService.deleteKaleoTask(kaleoTask);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskLocalService.dynamicQuery(dynamicQuery);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -81,7 +81,7 @@ public class KaleoTaskLocalServiceWrapper implements KaleoTaskLocalService {
 			orderByComparator);
 	}
 
-	public int dynamicQueryCount(
+	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskLocalService.dynamicQueryCount(dynamicQuery);

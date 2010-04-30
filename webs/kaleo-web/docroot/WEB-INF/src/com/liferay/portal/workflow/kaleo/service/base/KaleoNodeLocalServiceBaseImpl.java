@@ -85,24 +85,24 @@ public abstract class KaleoNodeLocalServiceBaseImpl
 		kaleoNodePersistence.remove(kaleoNode);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
+	public List<KaleoNode> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return kaleoNodePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
+	public List<KaleoNode> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end) throws SystemException {
 		return kaleoNodePersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
+	public List<KaleoNode> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		return kaleoNodePersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
 
-	public int dynamicQueryCount(DynamicQuery dynamicQuery)
+	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return kaleoNodePersistence.countWithDynamicQuery(dynamicQuery);
 	}
