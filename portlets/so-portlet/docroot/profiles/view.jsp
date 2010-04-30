@@ -21,11 +21,10 @@
 	<%@ include file="/profiles/user_profile.jsp" %>
 </div>
 
-
 <aui:script use="liferay-soffice-profile">
 	new Liferay.SO.Profiles(
 		{
-			userID: themeDisplay.getUserId()
+			userID: <%= curUser.getUserId() %>
 		}
 	);
 </aui:script>

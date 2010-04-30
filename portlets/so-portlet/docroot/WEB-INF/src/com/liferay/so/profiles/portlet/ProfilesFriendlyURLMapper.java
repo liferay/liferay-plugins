@@ -50,8 +50,8 @@ public class ProfilesFriendlyURLMapper extends BaseFriendlyURLMapper {
 		String friendlyURLPath, Map<String, String[]> params) {
 
 		int x = friendlyURLPath.indexOf("/", 1);
-
 		int y = friendlyURLPath.indexOf("/", x + 1);
+		int z = friendlyURLPath.indexOf("/", y + 1);
 
 		if (y == -1) {
 			y = friendlyURLPath.length();
@@ -69,6 +69,10 @@ public class ProfilesFriendlyURLMapper extends BaseFriendlyURLMapper {
 		addParam(params, "p_p_mode", PortletMode.VIEW);
 
 		addParam(params, "jspPage", "/profiles/" + jspPage + ".jsp");
+
+		if ((z > 0) && jspPage.equals("user_profile.jsp")) {
+			addParam(params, "userId", friendlyURLPath.substring(y + 1, z));
+		}
 	}
 
 	private static final String _MAPPING = "profiles";

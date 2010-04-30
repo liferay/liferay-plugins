@@ -22,7 +22,7 @@
 <h1><%= user.getFullName() %> : <liferay-ui:message key="edit-profile" /></h1>
 
 <form action="<portlet:actionURL name="updateUserProfile"></portlet:actionURL>" name="<portlet:namespace />fm">
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= PortalUtil.getLayoutURL(layout, themeDisplay) %>/-/profiles/user_profile" />
+<input name="<portlet:namespace />redirect" type="hidden" value="<%= PortalUtil.getLayoutURL(layout, themeDisplay) %>/-/profiles/user_profile/<%= user.getUserId() %>" />
 <input name="<portlet:namespace />redirectOnError" type="hidden" value="<%= PortalUtil.getLayoutURL(layout, themeDisplay) %>/-/profiles/edit_profile" />
 <input name="<portlet:namespace />userId" type="hidden" value="<%= user.getUserId() %>" />
 
