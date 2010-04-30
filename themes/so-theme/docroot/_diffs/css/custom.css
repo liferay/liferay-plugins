@@ -1478,20 +1478,8 @@ table.calendar {
 	display: none;
 }
 
-.so-portlet-profiles #addresses .ctrl-holder,
-.so-portlet-profiles #projectsEntries .ctrl-holder {
-	margin-bottom: 3px;
-}
-
 .so-portlet-profiles #addresses .aui-field {
 	float: none;
-}
-
-.so-portlet-profiles #additionalEmailAddresses .ctrl-holder,
-.so-portlet-profiles #phoneNumbers .ctrl-holder,
-.so-portlet-profiles #websites .ctrl-holder {
-	float: left;
-	margin-right: 1em;
 }
 
 .so-portlet-profiles #additionalEmailAddresses label,
@@ -1506,15 +1494,6 @@ table.calendar {
 
 .so-portlet-profiles #projectsEntries .date-selectors {
 	height: 41px;
-}
-
-.so-portlet-profiles #projectsEntries .date-selectors .ctrl-holder {
-	float: left;
-	margin-right: 2em;
-}
-
-.so-portlet-profiles #projectsEntries .ctrl-holder.last {
-	margin-bottom: 25px;
 }
 
 /* SO: Sites */
