@@ -68,7 +68,6 @@ import com.liferay.util.portlet.PortletProps;
 
 import java.io.IOException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -201,27 +200,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 	public void checkAttachments() throws PortalException, SystemException {
 		for (long companyId : PortalUtil.getCompanyIds()) {
-			long folderId = counterLocalService.increment();
-			String dirName = "knowledgebase/cache/attachments/" + folderId;
-
-			DLServiceUtil.addDirectory(
-				companyId, CompanyConstants.SYSTEM, dirName);
-
-			String[] fileNames = DLServiceUtil.getFileNames(
-				companyId, CompanyConstants.SYSTEM,
-				"knowledgebase/cache/attachments");
-
-			Arrays.sort(fileNames);
-
-			for (int i = 0; i < fileNames.length - 50; i++) {
-				DLServiceUtil.deleteDirectory(
-					companyId, CompanyConstants.SYSTEM_STRING,
-					CompanyConstants.SYSTEM, fileNames[i]);
-			}
-
-			DLServiceUtil.deleteDirectory(
-				companyId, CompanyConstants.SYSTEM_STRING,
-				CompanyConstants.SYSTEM, dirName);
+			checkAttachments(companyId);
 		}
 	}
 
@@ -332,10 +311,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		params.put("companyId", new Long(companyId));
 
-		List<Object> results = dynamicQuery(
+		return dynamicQuery(
 			getDynamicQuery(params), start, end, orderByComparator);
-
-		return toArticles(results);
 	}
 
 	public int getCompanyArticlesCount(long companyId) throws SystemException {
@@ -343,7 +320,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		params.put("companyId", new Long(companyId));
 
-		return dynamicQueryCount(getDynamicQuery(params));
+		return (int)dynamicQueryCount(getDynamicQuery(params));
 	}
 
 	public List<Article> getGroupArticles(
@@ -355,10 +332,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		params.put("groupId", new Long(groupId));
 
-		List<Object> results = dynamicQuery(
+		return dynamicQuery(
 			getDynamicQuery(params), start, end, orderByComparator);
-
-		return toArticles(results);
 	}
 
 	public List<Article> getGroupArticles(
@@ -371,10 +346,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		params.put("groupId", new Long(groupId));
 		params.put("parentResourcePrimKey", new Long(parentResourcePrimKey));
 
-		List<Object> results = dynamicQuery(
+		return dynamicQuery(
 			getDynamicQuery(params), start, end, orderByComparator);
-
-		return toArticles(results);
 	}
 
 	public int getGroupArticlesCount(long groupId) throws SystemException {
@@ -382,7 +355,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		params.put("groupId", new Long(groupId));
 
-		return dynamicQueryCount(getDynamicQuery(params));
+		return (int)dynamicQueryCount(getDynamicQuery(params));
 	}
 
 	public int getGroupArticlesCount(long groupId, long parentResourcePrimKey)
@@ -393,7 +366,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		params.put("groupId", new Long(groupId));
 		params.put("parentResourcePrimKey", new Long(parentResourcePrimKey));
 
-		return dynamicQueryCount(getDynamicQuery(params));
+		return (int)dynamicQueryCount(getDynamicQuery(params));
 	}
 
 	public Article getLatestArticle(long resourcePrimKey)
@@ -513,30 +486,32 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public String updateAttachments(long companyId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		long folderId = counterLocalService.increment();
-		String dirName = "knowledgebase/cache/attachments/" + folderId;
+		String dirName =
+			"knowledgebase/cache/attachments/" +
+				counterLocalService.increment();
 
 		DLServiceUtil.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
 
-		if (resourcePrimKey > 0) {
-			Article article = articlePersistence.findByResourcePrimKey_First(
-				resourcePrimKey, new ArticleVersionComparator());
-			Date now = new Date();
+		if (resourcePrimKey <= 0) {
+			return dirName;
+		}
 
-			ServiceContext serviceContext = new ServiceContext();
+		Article article = getLatestArticle(resourcePrimKey);
 
-			for (String fileName : article.getAttachmentsFileNames()) {
-				String shortFileName = FileUtil.getShortFileName(fileName);
-				byte[] bytes = DLServiceUtil.getFile(
-					article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+		ServiceContext serviceContext = new ServiceContext();
 
-				DLServiceUtil.addFile(
-					companyId, CompanyConstants.SYSTEM_STRING,
-					GroupConstants.DEFAULT_PARENT_GROUP_ID,
-					CompanyConstants.SYSTEM,
-					dirName + StringPool.SLASH + shortFileName, 0,
-					StringPool.BLANK, now, serviceContext, bytes);
-			}
+		for (String fileName : article.getAttachmentsFileNames()) {
+			String shortFileName = FileUtil.getShortFileName(fileName);
+			byte[] bytes = DLServiceUtil.getFile(
+				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+
+			DLServiceUtil.addFile(
+				companyId, CompanyConstants.SYSTEM_STRING,
+				GroupConstants.DEFAULT_PARENT_GROUP_ID,
+				CompanyConstants.SYSTEM,
+				dirName + StringPool.SLASH + shortFileName, 0,
+				StringPool.BLANK, article.getModifiedDate(), serviceContext,
+				bytes);
 		}
 
 		return dirName;
@@ -562,7 +537,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				curArticle.getParentResourcePrimKey();
 
 			if (priority == i) {
-				curParentResourcePrimKey = parentResourcePrimKey;
+					curParentResourcePrimKey = parentResourcePrimKey;
 			}
 
 			List<Article> childrenArticles =
@@ -583,6 +558,32 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 
 		return article;
+	}
+
+	protected void checkAttachments(long companyId)
+		throws PortalException, SystemException {
+
+		String dirName =
+			"knowledgebase/cache/attachments/" +
+				counterLocalService.increment();
+
+		DLServiceUtil.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
+
+		String[] fileNames = DLServiceUtil.getFileNames(
+			companyId, CompanyConstants.SYSTEM,
+			"knowledgebase/cache/attachments");
+
+		Arrays.sort(fileNames);
+
+		for (int i = 0; i < fileNames.length - 50; i++) {
+			DLServiceUtil.deleteDirectory(
+				companyId, CompanyConstants.SYSTEM_STRING,
+				CompanyConstants.SYSTEM, fileNames[i]);
+		}
+
+		DLServiceUtil.deleteDirectory(
+			companyId, CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
+			dirName);
 	}
 
 	protected DynamicQuery getDynamicQuery(Map<String, Long> params) {
@@ -615,16 +616,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			PropertyFactoryUtil.forName("version").in(subselectDynamicQuery));
 
 		return dynamicQuery;
-	}
-
-	protected List<Article> toArticles(List<Object> results) {
-		List<Article> articles = new ArrayList<Article>(results.size());
-
-		for (Object result : results) {
-			articles.add((Article)result);
-		}
-
-		return articles;
 	}
 
 	protected void notifySubscribers(
