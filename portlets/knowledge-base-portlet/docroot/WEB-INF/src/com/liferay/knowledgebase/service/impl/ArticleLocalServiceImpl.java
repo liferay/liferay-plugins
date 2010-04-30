@@ -86,7 +86,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 	public Article addArticle(
 			String uuid, long userId, long parentResourcePrimKey, String title,
-			String content, String description, int priority,
+			String content, String description, int priority, String dirName,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -139,6 +139,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		updateDisplayOrder(article, parentResourcePrimKey, priority);
 
+		// Attachments
+
+		addArticleAttachments(article, serviceContext.getCompanyId(), dirName);
+
 		// Message Boards
 
 		MBMessageLocalServiceUtil.addDiscussionMessage(
@@ -163,6 +167,38 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		notifySubscribers(article, false, serviceContext);
 
 		return article;
+	}
+
+	public void addArticleAttachments(
+			Article article, long companyId, String dirName)
+		throws PortalException, SystemException {
+
+		String articleDirName = article.getAttachmentsDirName();
+
+		DLServiceUtil.addDirectory(
+			article.getCompanyId(), CompanyConstants.SYSTEM, articleDirName);
+
+		if (Validator.isNull(dirName)) {
+			return;
+		}
+
+		String[] fileNames = DLServiceUtil.getFileNames(
+			companyId, CompanyConstants.SYSTEM, dirName);
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		for (String fileName : fileNames) {
+			String shortFileName = FileUtil.getShortFileName(fileName);
+			byte[] bytes = DLServiceUtil.getFile(
+				companyId, CompanyConstants.SYSTEM, fileName);
+
+			DLServiceUtil.addFile(
+				article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+				GroupConstants.DEFAULT_PARENT_GROUP_ID, CompanyConstants.SYSTEM,
+				articleDirName + StringPool.SLASH + shortFileName, 0,
+				StringPool.BLANK, article.getModifiedDate(), serviceContext,
+				bytes);
+		}
 	}
 
 	public void addArticleResources(
@@ -239,6 +275,12 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		articlePersistence.removeByResourcePrimKey(
 			article.getResourcePrimKey());
+
+		// Attachments
+
+		DLServiceUtil.deleteDirectory(
+			article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+			CompanyConstants.SYSTEM, article.getAttachmentsDirName());
 
 		// Message boards
 
@@ -405,7 +447,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public Article updateArticle(
 			long userId, long resourcePrimKey, long parentResourcePrimKey,
 			String title, String content, String description, int priority,
-			ServiceContext serviceContext)
+			String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Article
@@ -452,6 +494,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		updateDisplayOrder(article, parentResourcePrimKey, priority);
 
+		// Attachments
+
+		updateArticleAttachments(
+			article, serviceContext.getCompanyId(), dirName);
+
 		// Social
 
 		SocialActivityLocalServiceUtil.addActivity(
@@ -470,6 +517,19 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		notifySubscribers(article, true, serviceContext);
 
 		return article;
+	}
+
+	public void updateArticleAttachments(
+			Article article, long companyId, String dirName)
+		throws PortalException, SystemException {
+
+		if (Validator.isNotNull(dirName)) {
+			DLServiceUtil.deleteDirectory(
+				article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+				CompanyConstants.SYSTEM, article.getAttachmentsDirName());
+
+			addArticleAttachments(article, companyId, dirName);
+		}
 	}
 
 	public void updateArticleResources(

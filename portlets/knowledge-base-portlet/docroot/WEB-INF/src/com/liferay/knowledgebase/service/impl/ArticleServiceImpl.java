@@ -38,7 +38,8 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 	public Article addArticle(
 			long parentResourcePrimKey, String title, String content,
-			String description, int priority, ServiceContext serviceContext)
+			String description, int priority, String dirName,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		AdminPermission.check(
@@ -47,7 +48,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 		return articleLocalService.addArticle(
 			null, getUserId(), parentResourcePrimKey, title, content,
-			description, priority, serviceContext);
+			description, priority, dirName, serviceContext);
 	}
 
 	public void addAttachment(
@@ -206,7 +207,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 	public Article updateArticle(
 			long resourcePrimKey, long parentResourcePrimKey, String title,
-			String content, String description, int priority,
+			String content, String description, int priority, String dirName,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -215,7 +216,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 		return articleLocalService.updateArticle(
 			getUserId(), resourcePrimKey, parentResourcePrimKey, title, content,
-			description, priority, serviceContext);
+			description, priority, dirName, serviceContext);
 	}
 
 	public String updateAttachments(
