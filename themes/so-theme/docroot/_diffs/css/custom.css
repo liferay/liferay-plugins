@@ -1483,6 +1483,10 @@ table.calendar {
 	margin-bottom: 3px;
 }
 
+.so-portlet-profiles #addresses .aui-field {
+	float: none;
+}
+
 .so-portlet-profiles #additionalEmailAddresses .ctrl-holder,
 .so-portlet-profiles #phoneNumbers .ctrl-holder,
 .so-portlet-profiles #websites .ctrl-holder {
