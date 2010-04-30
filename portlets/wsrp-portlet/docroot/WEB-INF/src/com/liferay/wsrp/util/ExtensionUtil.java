@@ -40,47 +40,41 @@ public class ExtensionUtil {
 		messageElements.add(messageElement);
 	}
 
-	public static Extension getExtension(List<MessageElement> messageElements) {
-		MessageElement[] messageElementsArray = messageElements.toArray(
-			new MessageElement[messageElements.size()]);
-
-		return new Extension(messageElementsArray);
-	}
-
 	public static Extension[] getExtensions(
 		List<MessageElement> messageElements) {
 
-		List<Extension> extensions = new ArrayList<Extension>();
+		int size = messageElements.size();
 
-		extensions.add(getExtension(messageElements));
+		Extension[] extensions = new Extension[size];
 
-		return extensions.toArray(new Extension[extensions.size()]);
+		for (int i = 0; i < size; i ++) {
+			MessageElement messageElement = messageElements.get(i);
+
+			extensions[i] =
+				new Extension(new MessageElement[] {messageElement});
+		}
+
+		return extensions;
 	}
 
 	public static Extension[] getExtensions(String localPart, String value) {
-		MessageElement messageElement = new MessageElement(
-			"liferay", localPart);
+		List<MessageElement> messageElements = new ArrayList<MessageElement>();
 
-		messageElement.setValue(value);
+		addMessageElement(messageElements, localPart, value);
 
-		MessageElement[] messageElements = new MessageElement[] {
-			messageElement
-		};
-
-		Extension extension = new Extension(messageElements);
-
-		return new Extension[] {extension};
+		return getExtensions(messageElements);
 	}
 
 	public static MessageElement[] getMessageElements(
 		Extension[] extensions) {
 
-		MessageElement[] messageElements = null;
+		MessageElement[] messageElements =
+			new MessageElement[extensions.length];
 
-		if ((extensions != null) && (extensions.length == 1)) {
-			Extension extension = extensions[0];
+		for (int i = 0; i < extensions.length; i++) {
+			 MessageElement[] messageElementsWrapper = extensions[i].get_any();
 
-			messageElements = extension.get_any();
+			 messageElements[i] = messageElementsWrapper[0];
 		}
 
 		return messageElements;
