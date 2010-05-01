@@ -14,6 +14,7 @@
 
 package com.liferay.wsrp.util;
 
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.wsrp.model.WSRPConsumer;
 
@@ -61,6 +62,10 @@ public class WSRPConsumerManagerFactory {
 			String userToken)
 		throws Exception {
 
+		if(!_isWSRPConsumerAlive(url)) {
+			return null;
+		}
+
 		Map<String, WSRPConsumerManager> wsrpConsumerManagersByUserToken =
 			_wsrpConsumerManagersByUrl.get(url);
 
@@ -91,6 +96,22 @@ public class WSRPConsumerManagerFactory {
 		wsrpConsumerManagersByUserToken.put(userTokenKey, wsrpConsumerManager);
 
 		return wsrpConsumerManager;
+	}
+
+	private static boolean _isWSRPConsumerAlive(String url) {
+
+		try{
+			String wsdl = HttpUtil.URLtoString(url);
+			
+			if(Validator.isNull(wsdl)) {
+				return false;
+			}
+		}
+		catch(Exception e) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private static final String _DEFAULT_USER_TOKEN =

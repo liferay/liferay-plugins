@@ -23,48 +23,59 @@ WSRPConsumer wsrpConsumer = (WSRPConsumer)row.getObject();
 
 WSRPConsumerManager wsrpConsumerManager = WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer, userToken);
 
-ServiceDescription serviceDescription = wsrpConsumerManager.getServiceDescription();
+ServiceDescription serviceDescription = null;
+
+if(wsrpConsumerManager != null) {
+	serviceDescription = wsrpConsumerManager.getServiceDescription();
+}
 %>
 
-<liferay-ui:icon-menu>
-	<portlet:renderURL var="editURL">
-		<portlet:param name="jspPage" value="/admin/edit_consumer.jsp" />
-		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
-	</portlet:renderURL>
+<c:choose>
+	<c:when test="<%= serviceDescription == null %>">
+		<liferay-ui:message key="not-available" />
+	</c:when>
+	<c:otherwise>
+		<liferay-ui:icon-menu>
+			<portlet:renderURL var="editURL">
+				<portlet:param name="jspPage" value="/admin/edit_consumer.jsp" />
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
+			</portlet:renderURL>
 
-	<liferay-ui:icon image="edit" url="<%= editURL %>" />
+			<liferay-ui:icon image="edit" url="<%= editURL %>" />
 
-	<c:if test="<%= serviceDescription.isRequiresRegistration() %>">
-		<portlet:renderURL var="editRegistrationURL">
-			<portlet:param name="jspPage" value="/admin/edit_consumer_registration.jsp" />
-			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
-		</portlet:renderURL>
+			<c:if test="<%= serviceDescription.isRequiresRegistration() %>">
+				<portlet:renderURL var="editRegistrationURL">
+					<portlet:param name="jspPage" value="/admin/edit_consumer_registration.jsp" />
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
+				</portlet:renderURL>
 
-		<liferay-ui:icon image="edit" message="edit-registration" url="<%= editRegistrationURL %>" />
-	</c:if>
+				<liferay-ui:icon image="edit" message="edit-registration" url="<%= editRegistrationURL %>" />
+			</c:if>
 
-	<c:if test="<%= !serviceDescription.isRequiresRegistration() || (wsrpConsumer.getRegistrationContext() != null) %>">
-		<portlet:renderURL var="managePortletsURL">
-			<portlet:param name="jspPage" value="/admin/view_consumer_portlets.jsp" />
-			<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
-		</portlet:renderURL>
+			<c:if test="<%= !serviceDescription.isRequiresRegistration() || (wsrpConsumer.getRegistrationContext() != null) %>">
+				<portlet:renderURL var="managePortletsURL">
+					<portlet:param name="jspPage" value="/admin/view_consumer_portlets.jsp" />
+					<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
+				</portlet:renderURL>
 
-		<liferay-ui:icon image="portlet" message="manage-portlets" url="<%= managePortletsURL %>" />
-	</c:if>
+				<liferay-ui:icon image="portlet" message="manage-portlets" url="<%= managePortletsURL %>" />
+			</c:if>
 
-	<portlet:actionURL name="updateServiceDescription" var="updateServiceDescriptionURL">
-		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
-	</portlet:actionURL>
+			<portlet:actionURL name="updateServiceDescription" var="updateServiceDescriptionURL">
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
+			</portlet:actionURL>
 
-	<liferay-ui:icon image="portlet" message="update-service-description" url="<%= updateServiceDescriptionURL %>" />
+			<liferay-ui:icon image="portlet" message="update-service-description" url="<%= updateServiceDescriptionURL %>" />
 
-	<portlet:actionURL name="deleteWSRPConsumer" var="deleteURL">
-		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
-	</portlet:actionURL>
+			<portlet:actionURL name="deleteWSRPConsumer" var="deleteURL">
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
+			</portlet:actionURL>
 
-	<liferay-ui:icon-delete url="<%= deleteURL %>" />
-</liferay-ui:icon-menu>
+			<liferay-ui:icon-delete url="<%= deleteURL %>" />
+		</liferay-ui:icon-menu>
+	</c:otherwise>
+</c:choose>
