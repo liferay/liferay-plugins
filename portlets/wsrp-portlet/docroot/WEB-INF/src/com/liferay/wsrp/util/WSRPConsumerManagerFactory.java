@@ -62,7 +62,7 @@ public class WSRPConsumerManagerFactory {
 			String userToken)
 		throws Exception {
 
-		if(!_isWSRPConsumerAlive(url)) {
+		if (!_isWSRPConsumerAlive(url)) {
 			return null;
 		}
 
@@ -102,8 +102,8 @@ public class WSRPConsumerManagerFactory {
 
 		try{
 			String wsdl = HttpUtil.URLtoString(url);
-			
-			if(Validator.isNull(wsdl)) {
+
+			if (Validator.isNull(wsdl)) {
 				return false;
 			}
 		}
