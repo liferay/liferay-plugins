@@ -76,9 +76,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			{ "completed", new Integer(Types.BOOLEAN) },
 			{ "completionDate", new Integer(Types.TIMESTAMP) },
 			{ "dueDate", new Integer(Types.TIMESTAMP) },
-			{ "workflowContext", new Integer(Types.VARCHAR) }
+			{ "workflowContext", new Integer(Types.CLOB) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTaskInstanceToken (kaleoTaskInstanceTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskId LONG,kaleoTaskName VARCHAR(200) null,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG,completionUserId LONG,completed BOOLEAN,completionDate DATE null,dueDate DATE null,workflowContext VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTaskInstanceToken (kaleoTaskInstanceTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskId LONG,kaleoTaskName VARCHAR(200) null,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG,completionUserId LONG,completed BOOLEAN,completionDate DATE null,dueDate DATE null,workflowContext TEXT null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoTaskInstanceToken";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTaskInstanceToken.kaleoTaskInstanceTokenId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoTaskInstanceToken.kaleoTaskInstanceTokenId ASC";

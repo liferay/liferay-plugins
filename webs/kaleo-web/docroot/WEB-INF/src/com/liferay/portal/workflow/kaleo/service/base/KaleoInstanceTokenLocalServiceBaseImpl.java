@@ -87,20 +87,22 @@ public abstract class KaleoInstanceTokenLocalServiceBaseImpl
 		kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
 	}
 
-	public List<KaleoInstanceToken> dynamicQuery(DynamicQuery dynamicQuery)
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return kaleoInstanceTokenPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<KaleoInstanceToken> dynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
+		throws SystemException {
 		return kaleoInstanceTokenPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
 
-	public List<KaleoInstanceToken> dynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		return kaleoInstanceTokenPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}

@@ -74,9 +74,9 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance> {
 			{ "classPK", new Integer(Types.BIGINT) },
 			{ "completed", new Integer(Types.BOOLEAN) },
 			{ "completionDate", new Integer(Types.TIMESTAMP) },
-			{ "workflowContext", new Integer(Types.VARCHAR) }
+			{ "workflowContext", new Integer(Types.CLOB) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoInstance (kaleoInstanceId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoDefinitionName VARCHAR(200) null,kaleoDefinitionVersion INTEGER,rootKaleoInstanceTokenId LONG,className VARCHAR(200) null,classPK LONG,completed BOOLEAN,completionDate DATE null,workflowContext VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoInstance (kaleoInstanceId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoDefinitionName VARCHAR(200) null,kaleoDefinitionVersion INTEGER,rootKaleoInstanceTokenId LONG,className VARCHAR(200) null,classPK LONG,completed BOOLEAN,completionDate DATE null,workflowContext TEXT null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoInstance";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoInstance.kaleoInstanceId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoInstance.kaleoInstanceId ASC";

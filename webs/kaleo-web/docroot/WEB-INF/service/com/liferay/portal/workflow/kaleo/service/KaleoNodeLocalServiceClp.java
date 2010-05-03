@@ -143,7 +143,7 @@ public class KaleoNodeLocalServiceClp implements KaleoNodeLocalService {
 		}
 	}
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> dynamicQuery(
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -173,10 +173,10 @@ public class KaleoNodeLocalServiceClp implements KaleoNodeLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> dynamicQuery(
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -210,10 +210,10 @@ public class KaleoNodeLocalServiceClp implements KaleoNodeLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> dynamicQuery(
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -256,7 +256,7 @@ public class KaleoNodeLocalServiceClp implements KaleoNodeLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public long dynamicQueryCount(

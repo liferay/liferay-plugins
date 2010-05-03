@@ -46,7 +46,7 @@ create table Kaleo_KaleoInstance (
 	classPK LONG,
 	completed BOOLEAN,
 	completionDate DATE null,
-	workflowContext VARCHAR(75) null
+	workflowContext TEXT null
 );
 
 create table Kaleo_KaleoInstanceToken (
@@ -91,7 +91,7 @@ create table Kaleo_KaleoLog (
 	startDate DATE null,
 	endDate DATE null,
 	duration LONG,
-	workflowContext VARCHAR(75) null
+	workflowContext TEXT null
 );
 
 create table Kaleo_KaleoNode (
@@ -187,7 +187,7 @@ create table Kaleo_KaleoTaskInstanceToken (
 	completed BOOLEAN,
 	completionDate DATE null,
 	dueDate DATE null,
-	workflowContext VARCHAR(75) null
+	workflowContext TEXT null
 );
 
 create table Kaleo_KaleoTransition (

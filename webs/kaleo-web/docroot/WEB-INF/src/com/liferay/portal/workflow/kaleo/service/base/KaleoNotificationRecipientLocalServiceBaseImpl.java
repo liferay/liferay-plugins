@@ -94,20 +94,21 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 		kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipient);
 	}
 
-	public List<KaleoNotificationRecipient> dynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
 		return kaleoNotificationRecipientPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<KaleoNotificationRecipient> dynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
 		return kaleoNotificationRecipientPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
 
-	public List<KaleoNotificationRecipient> dynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end,
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		return kaleoNotificationRecipientPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
