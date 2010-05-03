@@ -560,64 +560,52 @@ public class IMAPUtil {
 				javax.mail.Message newestMessage = getStoredMessage(
 					imapFolder, folderId, false);
 
-				if (_log.isDebugEnabled()) {
-					sw.stop();
-
-					_log.debug(
-						"getStoredMessage (oldest and newest) completed in " +
-						sw.getTime() + " ms");
-
-					sw.reset();
-					sw.start();
-				}
-
 				javax.mail.Message messages[] = new javax.mail.Message[0];
 
-				if ((oldestMessage != null) && (newestMessage != null)) {
+				if ((oldestMessage == null) && (newestMessage == null)) {
 					_log.debug(
 						"downloading messages in folder for the first time");
 
-					if ((messageCount - _MAX_MESSAGES_TO_STORE_PER_SYNC) < 0) {
-						messages = imapFolder.getMessages(1, messageCount);
+					int startingMessageNumber =
+						messageCount - _MAX_MESSAGES_TO_STORE_PER_SYNC;
+
+					if (startingMessageNumber < 1) {
+						startingMessageNumber = 1;
 					}
-					else {
-						messages = imapFolder.getMessages(
-							messageCount - _MAX_MESSAGES_TO_STORE_PER_SYNC,
-							messageCount);
-					}
+
+					messages = imapFolder.getMessages(
+						startingMessageNumber, messageCount);
 
 					storeMessagesEnvelope(imapFolder, messages, folderId);
 				}
 				else {
-					if (newestMessage != null) {
+					int newestMessageNumber = newestMessage.getMessageNumber();
+
+					if (newestMessageNumber != messageCount) {
 						_log.debug("downloading new messages in folder");
 
-						int messageNumber = newestMessage.getMessageNumber();
+						messages = imapFolder.getMessages(
+							newestMessageNumber + 1, messageCount);
 
-						if (messageNumber != messageCount) {
-							messages = imapFolder.getMessages(
-								messageNumber, messageCount);
-
-							storeMessagesEnvelope(
-								imapFolder, messages, folderId);
-						}
+						storeMessagesEnvelope(
+							imapFolder, messages, folderId);
 					}
 
-					if ((oldestMessage != null) && (messageCount != 1)) {
+					int oldestMessageNumber = oldestMessage.getMessageNumber();
+
+					if (oldestMessageNumber != 1) {
 						_log.debug("downloading old messages in folder");
 
-						int messageNumber = oldestMessage.getMessageNumber();
+						int startingMessageNumber =
+							oldestMessageNumber -
+								_MAX_MESSAGES_TO_STORE_PER_SYNC;
 
-						if ((messageNumber - _MAX_MESSAGES_TO_STORE_PER_SYNC)
-								< 0) {
+						if (startingMessageNumber < 1) {
+							startingMessageNumber = 1;
+						}
 
-							messages = imapFolder.getMessages(1, messageNumber);
-						}
-						else {
-							messages = imapFolder.getMessages(
-								messageNumber - _MAX_MESSAGES_TO_STORE_PER_SYNC,
-								messageNumber);
-						}
+						messages = imapFolder.getMessages(
+							startingMessageNumber, oldestMessageNumber - 1);
 
 						storeMessagesEnvelope(imapFolder, messages, folderId);
 					}
@@ -627,8 +615,8 @@ public class IMAPUtil {
 					sw.stop();
 
 					_log.debug(
-						"determining start and end positions for downloading " +
-							"messages completed in " + sw.getTime() + " ms");
+						"storeNewMessagesEnvelope completed in " +
+							sw.getTime() + " ms");
 				}
 			}
 		}
