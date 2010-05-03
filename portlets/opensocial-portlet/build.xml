@@ -41,7 +41,7 @@
 		<replace file="tmp/WEB-INF/web.xml">
 			<replacefilter 
 				token="org.apache.shindig.social.sample.SampleModule"
-				value="com.liferay.opensocial.guice.LiferayGuiceModule" 
+				value="com.liferay.opensocial.shindig.guice.LiferayGuiceModule" 
 			/>
 		</replace>
 
