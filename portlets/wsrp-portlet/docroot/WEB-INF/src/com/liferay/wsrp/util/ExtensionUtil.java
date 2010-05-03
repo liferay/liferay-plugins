@@ -47,6 +47,9 @@ public class ExtensionUtil {
 
 		Extension[] extensions = new Extension[size];
 
+		// Wrap the extension in an extension to be compatible with Oracle's
+		// Producer
+
 		for (int i = 0; i < size; i ++) {
 			MessageElement messageElement = messageElements.get(i);
 
