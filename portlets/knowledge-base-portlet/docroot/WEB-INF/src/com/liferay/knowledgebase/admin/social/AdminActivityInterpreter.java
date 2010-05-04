@@ -18,12 +18,14 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.Portal;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
@@ -48,8 +50,11 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
+		Article article = ArticleLocalServiceUtil.getLatestArticle(
+			activity.getClassPK());
+
 		if (!ArticlePermission.contains(
-				permissionChecker, activity.getClassPK(), ActionKeys.VIEW)) {
+				permissionChecker, article, ActionKeys.VIEW)) {
 
 			return null;
 		}
@@ -58,13 +63,22 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String link = StringPool.BLANK;
 
-		String layoutFullURL = PortalUtil.getLayoutFullURL(
-			activity.getGroupId(), "1_WAR_knowledgebaseportlet");
+		long plid = PortalUtil.getPlidFromPortletId(
+			article.getGroupId(), "1_WAR_knowledgebaseportlet");
 
-		if (Validator.isNotNull(layoutFullURL)) {
-			link =
-				layoutFullURL + Portal.FRIENDLY_URL_SEPARATOR +
-					"admin/article/" + activity.getClassPK();
+		if (plid != LayoutConstants.DEFAULT_PLID) {
+			String layoutFullURL = PortalUtil.getLayoutFullURL(
+				LayoutLocalServiceUtil.getLayout(plid), themeDisplay);
+			String namespace = PortalUtil.getPortletNamespace(
+				"1_WAR_knowledgebaseportlet");
+
+			link = HttpUtil.setParameter(
+				layoutFullURL, "p_p_id", "1_WAR_knowledgebaseportlet");
+			link = HttpUtil.setParameter(
+				link, namespace + "jspPage", "/admin/view_article.jsp");
+			link = HttpUtil.setParameter(
+				link, namespace + "resourcePrimKey",
+				article.getResourcePrimKey());
 		}
 
 		// Title
@@ -91,9 +105,6 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		}
 
 		Object[] arguments = new Object[0];
-
-		Article article = ArticleLocalServiceUtil.getLatestArticle(
-			activity.getClassPK());
 
 		String text = HtmlUtil.escape(cleanContent(article.getTitle()));
 
