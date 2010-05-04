@@ -82,6 +82,10 @@ public class AntiSamySanitizerImpl implements Sanitizer {
 			_log.debug("Sanitizing " + className + "#" + classPK);
 		}
 
+		if (!_initialized) {
+			_init();
+		}
+
 		if (_disabled) {
 			return s;
 		}
@@ -93,57 +97,50 @@ public class AntiSamySanitizerImpl implements Sanitizer {
 		}
 
 		try {
-			if (_policy == null) {
-				_init();
-
-				if (_disabled) {
-					return s;
-				}
-			}
-
 			AntiSamy antiSamy = new AntiSamy();
-			CleanResults results = antiSamy.scan(s, _policy);
-			s = results.getCleanHTML();
+
+			CleanResults cleanResults = antiSamy.scan(s, _policy);
+
+			s = cleanResults.getCleanHTML();
 
 			return s;
-		} catch (Exception e) {
-			_log.error(
-				"Error with sanitizing input, returning blank string", e);
+		}
+		catch (Exception e) {
+			_log.error("Unable to sanitize input", e);
 
 			return StringPool.BLANK;
 		}
 	}
 
 	private void _init() {
-		InputStream policyInputStream =
-			getClass().getClassLoader().getResourceAsStream(
-				"sanitizer-configuration.xml");
+		ClassLoader classLoader = getClass().getClassLoader();
 
-		if (policyInputStream == null) {
-			_log.error(
-				"Couldn't find the policy file sanitizer-configuration.xml, " +
-					"AntiSamy filter is disabled");
+		InputStream inputStream = classLoader.getResourceAsStream(
+			"sanitizer-configuration.xml");
+
+		if (inputStream == null) {
+			_log.error("Sanitizer configuration could not be found");
 
 			_disabled = true;
+
 			return;
 		}
 
 		try {
-			_policy = Policy.getInstance(policyInputStream);
+			_policy = Policy.getInstance(inputStream);
 		}
-		catch (PolicyException e) {
-			_log.error(
-				"AntiSamy policy file had some problems, the filter is " +
-					"disabled.", e);
+		catch (PolicyException pe) {
+			_log.error("Sanitizer policy could not be initialized", pe);
 
 			_disabled = true;
 		}
 	}
 
-	private static boolean _disabled;
-	private static Policy _policy;
-
 	private static Log _log = LogFactoryUtil.getLog(
 		AntiSamySanitizerImpl.class);
+
+	private boolean _disabled;
+	private boolean _initialized;
+	private Policy _policy;
 
 }
