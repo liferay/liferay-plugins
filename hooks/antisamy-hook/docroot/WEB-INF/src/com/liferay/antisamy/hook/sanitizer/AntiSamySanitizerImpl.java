@@ -117,7 +117,7 @@ public class AntiSamySanitizerImpl implements Sanitizer {
 			"sanitizer-configuration.xml");
 
 		if (inputStream == null) {
-			_log.error("Sanitizer configuration could not be found");
+			_log.error("Configuration could not be found");
 
 			_disabled = true;
 
@@ -128,7 +128,7 @@ public class AntiSamySanitizerImpl implements Sanitizer {
 			_policy = Policy.getInstance(inputStream);
 		}
 		catch (PolicyException pe) {
-			_log.error("Sanitizer policy could not be initialized", pe);
+			_log.error("Policy could not be initialized", pe);
 
 			_disabled = true;
 		}
