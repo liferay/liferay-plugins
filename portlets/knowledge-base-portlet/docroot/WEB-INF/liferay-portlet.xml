@@ -19,6 +19,7 @@
 		<friendly-url-mapper-class>com.liferay.knowledgebase.admin.portlet.AdminFriendlyURLMapper</friendly-url-mapper-class>
 		<social-activity-interpreter-class>com.liferay.knowledgebase.admin.social.AdminActivityInterpreter</social-activity-interpreter-class>
 		<css-class-wrapper>knowledge-base-portlet-admin</css-class-wrapper>
+		<add-default-resource>true</add-default-resource>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
