@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Map;
 
@@ -52,7 +53,7 @@ public class AdminFriendlyURLMapper extends BaseFriendlyURLMapper {
 		if (friendlyURLPath != null) {
 			WindowState windowState = portletURL.getWindowState();
 
-			if (!windowState.equals(WindowState.NORMAL)) {
+			if (!Validator.equals(windowState, WindowState.NORMAL)) {
 				friendlyURLPath += StringPool.SLASH + windowState;
 			}
 
