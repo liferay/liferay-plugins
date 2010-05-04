@@ -101,9 +101,7 @@ public class AntiSamySanitizerImpl implements Sanitizer {
 
 			CleanResults cleanResults = antiSamy.scan(s, _policy);
 
-			s = cleanResults.getCleanHTML();
-
-			return s;
+			return cleanResults.getCleanHTML();
 		}
 		catch (Exception e) {
 			_log.error("Unable to sanitize input", e);
