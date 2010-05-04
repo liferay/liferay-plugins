@@ -43,7 +43,7 @@
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<display-name>Knowledge Base Aggregator</display-name>
-		<portlet-class>com.liferay.knowledgebase.aggregator.portlet.AggregatorPortlet</portlet-class>
+		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
 			<name>jsp-path</name>
 			<value>/aggregator/</value>
@@ -77,7 +77,7 @@
 	<portlet>
 		<portlet-name>3</portlet-name>
 		<display-name>Knowledge Base Display</display-name>
-		<portlet-class>com.liferay.knowledgebase.display.portlet.DisplayPortlet</portlet-class>
+		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
 			<name>jsp-path</name>
 			<value>/display/</value>
