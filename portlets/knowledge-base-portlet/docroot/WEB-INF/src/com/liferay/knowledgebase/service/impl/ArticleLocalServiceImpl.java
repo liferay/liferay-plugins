@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MathUtil;
@@ -51,15 +52,17 @@ import com.liferay.portal.model.Company;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
+import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextUtil;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
-import com.liferay.portal.util.Portal;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
@@ -679,9 +682,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			Article article, boolean update, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		String layoutFullURL = serviceContext.getLayoutFullURL();
-
-		if (Validator.isNull(layoutFullURL)) {
+		if (Validator.isNull(serviceContext.getLayoutFullURL())) {
 			return;
 		}
 
@@ -782,9 +783,40 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				portletName
 			});
 
-		String articleURL =
-			layoutFullURL + Portal.FRIENDLY_URL_SEPARATOR +
-				"admin/article/" + article.getResourcePrimKey();
+		String articleURL = null;
+
+		Layout layout = LayoutLocalServiceUtil.getLayout(
+			serviceContext.getPlid());
+		LayoutTypePortlet layoutTypePortlet =
+			(LayoutTypePortlet)layout.getLayoutType();
+
+		if (layoutTypePortlet.hasPortletId("1_WAR_knowledgebaseportlet")) {
+			long scopeGroupId = PortalUtil.getScopeGroupId(
+				layout, "1_WAR_knowledgebaseportlet");
+
+			if (scopeGroupId == article.getGroupId()) {
+				String namespace = PortalUtil.getPortletNamespace(
+					"1_WAR_knowledgebaseportlet");
+
+				articleURL = HttpUtil.setParameter(
+					serviceContext.getLayoutFullURL(), "p_p_id",
+					"1_WAR_knowledgebaseportlet");
+				articleURL = HttpUtil.setParameter(
+					articleURL, namespace + "jspPage",
+					"/admin/view_article.jsp");
+				articleURL = HttpUtil.setParameter(
+					articleURL, namespace + "resourcePrimKey",
+					article.getResourcePrimKey());
+			}
+		}
+
+		if (articleURL == null) {
+
+			// Article was updated on a dynamically added portlet. See element
+			// add-default-resource in liferay-portlet.xml.
+
+			articleURL = serviceContext.getLayoutFullURL();
+		}
 
 		String subject = null;
 		String body = null;
