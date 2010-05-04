@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 
 import java.util.Date;
@@ -38,7 +39,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 			long userId, String address, String personalName, String protocol,
 			String incomingHostName, int incomingPort, boolean incomingSecure,
 			String outgoingHostName, int outgoingPort, boolean outgoingSecure,
-			String login, String unencryptedPassword, boolean savePassword,
+			String login, String password, boolean savePassword,
 			String signature, boolean useSignature, String folderPrefix,
 			long inboxFolderId, long draftFolderId, long sentFolderId,
 			long trashFolderId, boolean defaultSender)
@@ -67,11 +68,11 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		account.setOutgoingSecure(outgoingSecure);
 		account.setLogin(login);
 
-		if (savePassword) {
-			account.setPasswordDecrypted(unencryptedPassword);
+		if (savePassword && Validator.isNotNull(password)) {
+			account.setPasswordDecrypted(password);
 		}
 		else {
-			account.setPassword(StringPool.BLANK);
+			account.setPasswordDecrypted(StringPool.BLANK);
 		}
 
 		account.setSavePassword(savePassword);
@@ -138,38 +139,47 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 	}
 
 	public Account updateAccount(
-			long accountId, String address, String personalName,
-			String protocol, String incomingHostName, int incomingPort,
-			boolean incomingSecure, String outgoingHostName, int outgoingPort,
-			boolean outgoingSecure, String login, String password,
+			long accountId, String personalName, String password,
 			boolean savePassword, String signature, boolean useSignature,
-			long inboxFolderId, long draftFolderId, long sentFolderId,
-			long trashFolderId, String folderPrefix, boolean defaultSender)
+			String folderPrefix, boolean defaultSender)
 		throws PortalException, SystemException {
 
 		Account account = accountPersistence.findByPrimaryKey(accountId);
 
 		account.setModifiedDate(new Date());
-		account.setAddress(address);
 		account.setPersonalName(personalName);
-		account.setProtocol(protocol);
-		account.setIncomingHostName(incomingHostName);
-		account.setIncomingPort(incomingPort);
-		account.setIncomingSecure(incomingSecure);
-		account.setOutgoingHostName(outgoingHostName);
-		account.setOutgoingPort(outgoingPort);
-		account.setOutgoingSecure(outgoingSecure);
-		account.setLogin(login);
-		account.setPassword(password);
+
+		if (savePassword && Validator.isNotNull(password)) {
+			account.setPasswordDecrypted(password);
+		}
+		else {
+			account.setPassword(StringPool.BLANK);
+		}
+
 		account.setSavePassword(savePassword);
 		account.setSignature(signature);
 		account.setUseSignature(useSignature);
 		account.setFolderPrefix(folderPrefix);
+		account.setDefaultSender(defaultSender);
+
+		accountPersistence.update(account, false);
+
+		return account;
+	}
+
+	public Account updateAccountFolders(
+			long accountId, long inboxFolderId, long draftFolderId,
+			long sentFolderId, long trashFolderId)
+		throws PortalException, SystemException {
+
+		Account account = accountPersistence.findByPrimaryKey(accountId);
+
+		account.setModifiedDate(new Date());
+
 		account.setInboxFolderId(inboxFolderId);
 		account.setDraftFolderId(draftFolderId);
 		account.setSentFolderId(sentFolderId);
 		account.setTrashFolderId(trashFolderId);
-		account.setDefaultSender(defaultSender);
 
 		accountPersistence.update(account, false);
 
