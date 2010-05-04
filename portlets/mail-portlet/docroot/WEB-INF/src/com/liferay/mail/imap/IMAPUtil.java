@@ -628,7 +628,7 @@ public class IMAPUtil {
 						mailFile.getSize(), mailFile.getFile());
 				}
 
-				MessageLocalServiceUtil.updateContent(
+				MessageLocalServiceUtil.updateMessageContent(
 					storedMessage.getMessageId(), bodyHtml.toString(), flags);
 			}
 		}
