@@ -58,19 +58,22 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		_articleLocalService.deleteArticle(article);
 	}
 
-	public java.util.List<com.liferay.knowledgebase.model.Article> dynamicQuery(
+	@SuppressWarnings("unchecked")
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.dynamicQuery(dynamicQuery);
 	}
 
-	public java.util.List<com.liferay.knowledgebase.model.Article> dynamicQuery(
+	@SuppressWarnings("unchecked")
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
-	public java.util.List<com.liferay.knowledgebase.model.Article> dynamicQuery(
+	@SuppressWarnings("unchecked")
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -124,13 +127,21 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 	public com.liferay.knowledgebase.model.Article addArticle(
 		java.lang.String uuid, long userId, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, int priority,
+		java.lang.String description, int priority, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.addArticle(uuid, userId,
 			parentResourcePrimKey, title, content, description, priority,
-			serviceContext);
+			dirName, serviceContext);
+	}
+
+	public void addArticleAttachments(
+		com.liferay.knowledgebase.model.Article article,
+		java.lang.String dirName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleLocalService.addArticleAttachments(article, dirName);
 	}
 
 	public void addArticleResources(
@@ -260,13 +271,21 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 	public com.liferay.knowledgebase.model.Article updateArticle(long userId,
 		long resourcePrimKey, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, int priority,
+		java.lang.String description, int priority, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.updateArticle(userId, resourcePrimKey,
 			parentResourcePrimKey, title, content, description, priority,
-			serviceContext);
+			dirName, serviceContext);
+	}
+
+	public void updateArticleAttachments(
+		com.liferay.knowledgebase.model.Article article,
+		java.lang.String dirName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleLocalService.updateArticleAttachments(article, dirName);
 	}
 
 	public void updateArticleResources(

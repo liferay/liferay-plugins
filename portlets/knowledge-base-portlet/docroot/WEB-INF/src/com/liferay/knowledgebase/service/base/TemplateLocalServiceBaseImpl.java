@@ -67,18 +67,21 @@ public abstract class TemplateLocalServiceBaseImpl
 		templatePersistence.remove(template);
 	}
 
-	public List<Template> dynamicQuery(DynamicQuery dynamicQuery)
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return templatePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<Template> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) throws SystemException {
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
+		throws SystemException {
 		return templatePersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
-	public List<Template> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		return templatePersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}

@@ -39,11 +39,12 @@ public class ArticleServiceWrapper implements ArticleService {
 	public com.liferay.knowledgebase.model.Article addArticle(
 		long parentResourcePrimKey, java.lang.String title,
 		java.lang.String content, java.lang.String description, int priority,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _articleService.addArticle(parentResourcePrimKey, title,
-			content, description, priority, serviceContext);
+			content, description, priority, dirName, serviceContext);
 	}
 
 	public void addAttachment(long companyId, long groupId,
@@ -155,13 +156,13 @@ public class ArticleServiceWrapper implements ArticleService {
 	public com.liferay.knowledgebase.model.Article updateArticle(
 		long resourcePrimKey, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, int priority,
+		java.lang.String description, int priority, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _articleService.updateArticle(resourcePrimKey,
 			parentResourcePrimKey, title, content, description, priority,
-			serviceContext);
+			dirName, serviceContext);
 	}
 
 	public java.lang.String updateAttachments(long companyId, long groupId,

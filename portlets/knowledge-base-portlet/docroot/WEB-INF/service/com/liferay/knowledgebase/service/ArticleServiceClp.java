@@ -33,6 +33,7 @@ public class ArticleServiceClp implements ArticleService {
 	public com.liferay.knowledgebase.model.Article addArticle(
 		long parentResourcePrimKey, java.lang.String title,
 		java.lang.String content, java.lang.String description, int priority,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -58,10 +59,16 @@ public class ArticleServiceClp implements ArticleService {
 
 		Object paramObj4 = new IntegerWrapper(priority);
 
-		Object paramObj5 = ClpSerializer.translateInput(serviceContext);
+		Object paramObj5 = ClpSerializer.translateInput(dirName);
+
+		if (dirName == null) {
+			paramObj5 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj6 = ClpSerializer.translateInput(serviceContext);
 
 		if (serviceContext == null) {
-			paramObj5 = new NullWrapper(
+			paramObj6 = new NullWrapper(
 					"com.liferay.portal.service.ServiceContext");
 		}
 
@@ -71,7 +78,7 @@ public class ArticleServiceClp implements ArticleService {
 			returnObj = _classLoaderProxy.invoke("addArticle",
 					new Object[] {
 						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5
+						paramObj5, paramObj6
 					});
 		}
 		catch (Throwable t) {
@@ -641,7 +648,7 @@ public class ArticleServiceClp implements ArticleService {
 	public com.liferay.knowledgebase.model.Article updateArticle(
 		long resourcePrimKey, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, int priority,
+		java.lang.String description, int priority, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -669,10 +676,16 @@ public class ArticleServiceClp implements ArticleService {
 
 		Object paramObj5 = new IntegerWrapper(priority);
 
-		Object paramObj6 = ClpSerializer.translateInput(serviceContext);
+		Object paramObj6 = ClpSerializer.translateInput(dirName);
+
+		if (dirName == null) {
+			paramObj6 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj7 = ClpSerializer.translateInput(serviceContext);
 
 		if (serviceContext == null) {
-			paramObj6 = new NullWrapper(
+			paramObj7 = new NullWrapper(
 					"com.liferay.portal.service.ServiceContext");
 		}
 
@@ -682,7 +695,7 @@ public class ArticleServiceClp implements ArticleService {
 			returnObj = _classLoaderProxy.invoke("updateArticle",
 					new Object[] {
 						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6
+						paramObj5, paramObj6, paramObj7
 					});
 		}
 		catch (Throwable t) {

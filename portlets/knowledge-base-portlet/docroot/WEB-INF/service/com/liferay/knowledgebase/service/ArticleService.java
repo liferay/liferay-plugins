@@ -50,6 +50,7 @@ public interface ArticleService {
 	public com.liferay.knowledgebase.model.Article addArticle(
 		long parentResourcePrimKey, java.lang.String title,
 		java.lang.String content, java.lang.String description, int priority,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -136,7 +137,7 @@ public interface ArticleService {
 	public com.liferay.knowledgebase.model.Article updateArticle(
 		long resourcePrimKey, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, int priority,
+		java.lang.String description, int priority, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

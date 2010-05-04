@@ -145,7 +145,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		}
 	}
 
-	public java.util.List<com.liferay.knowledgebase.model.Article> dynamicQuery(
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -175,10 +175,10 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.knowledgebase.model.Article> dynamicQuery(
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -212,10 +212,10 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.knowledgebase.model.Article> dynamicQuery(
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -258,7 +258,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public long dynamicQueryCount(
@@ -491,7 +491,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 	public com.liferay.knowledgebase.model.Article addArticle(
 		java.lang.String uuid, long userId, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, int priority,
+		java.lang.String description, int priority, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -525,10 +525,16 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 
 		Object paramObj6 = new IntegerWrapper(priority);
 
-		Object paramObj7 = ClpSerializer.translateInput(serviceContext);
+		Object paramObj7 = ClpSerializer.translateInput(dirName);
+
+		if (dirName == null) {
+			paramObj7 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj8 = ClpSerializer.translateInput(serviceContext);
 
 		if (serviceContext == null) {
-			paramObj7 = new NullWrapper(
+			paramObj8 = new NullWrapper(
 					"com.liferay.portal.service.ServiceContext");
 		}
 
@@ -538,7 +544,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 			returnObj = _classLoaderProxy.invoke("addArticle",
 					new Object[] {
 						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7
+						paramObj5, paramObj6, paramObj7, paramObj8
 					});
 		}
 		catch (Throwable t) {
@@ -560,6 +566,47 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		}
 
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void addArticleAttachments(
+		com.liferay.knowledgebase.model.Article article,
+		java.lang.String dirName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(article);
+
+		if (article == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.knowledgebase.model.Article");
+		}
+
+		Object paramObj1 = ClpSerializer.translateInput(dirName);
+
+		if (dirName == null) {
+			paramObj1 = new NullWrapper("java.lang.String");
+		}
+
+		try {
+			_classLoaderProxy.invoke("addArticleAttachments",
+				new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
 	}
 
 	public void addArticleResources(
@@ -1192,7 +1239,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 	public com.liferay.knowledgebase.model.Article updateArticle(long userId,
 		long resourcePrimKey, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, int priority,
+		java.lang.String description, int priority, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1222,10 +1269,16 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 
 		Object paramObj6 = new IntegerWrapper(priority);
 
-		Object paramObj7 = ClpSerializer.translateInput(serviceContext);
+		Object paramObj7 = ClpSerializer.translateInput(dirName);
+
+		if (dirName == null) {
+			paramObj7 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj8 = ClpSerializer.translateInput(serviceContext);
 
 		if (serviceContext == null) {
-			paramObj7 = new NullWrapper(
+			paramObj8 = new NullWrapper(
 					"com.liferay.portal.service.ServiceContext");
 		}
 
@@ -1235,7 +1288,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 			returnObj = _classLoaderProxy.invoke("updateArticle",
 					new Object[] {
 						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7
+						paramObj5, paramObj6, paramObj7, paramObj8
 					});
 		}
 		catch (Throwable t) {
@@ -1257,6 +1310,47 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		}
 
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void updateArticleAttachments(
+		com.liferay.knowledgebase.model.Article article,
+		java.lang.String dirName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(article);
+
+		if (article == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.knowledgebase.model.Article");
+		}
+
+		Object paramObj1 = ClpSerializer.translateInput(dirName);
+
+		if (dirName == null) {
+			paramObj1 = new NullWrapper("java.lang.String");
+		}
+
+		try {
+			_classLoaderProxy.invoke("updateArticleAttachments",
+				new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
 	}
 
 	public void updateArticleResources(
