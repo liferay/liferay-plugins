@@ -144,7 +144,7 @@
 							String wallLayoutFriendlyURL = null;
 							String wallToWallHREF = null;
 
-							if ((wallUser.getUserId() != themeDisplay.getUserId()) || ((wallUser.getUserId() == themeDisplay.getUserId()) && (Validator.isNull(myWallLayoutFriendlyURL)))) {
+							if ((wallUser.getUserId() != themeDisplay.getUserId()) || ((wallUser.getUserId() == themeDisplay.getUserId()) && Validator.isNull(myWallLayoutFriendlyURL))) {
 								wallLayoutFriendlyURL = PortletPropsValues.WALL_LAYOUT_FRIENDLY_URL;
 
 								if (Validator.isNull(wallLayoutFriendlyURL)) {
