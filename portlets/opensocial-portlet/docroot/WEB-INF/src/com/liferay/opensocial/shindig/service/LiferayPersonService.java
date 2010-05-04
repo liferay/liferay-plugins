@@ -114,11 +114,10 @@ public class LiferayPersonService implements PersonService {
 
 			GroupId.Type groupIdType = groupId.getType();
 
-			if (groupIdType.equals(GroupId.Type.all)) {				
-			}
-			else if (groupIdType.equals(GroupId.Type.friends)) {				
-			}
-			else if (groupIdType.equals(GroupId.Type.groupId)) {				
+			if (groupIdType.equals(GroupId.Type.all) ||
+				groupIdType.equals(GroupId.Type.friends) ||
+				groupIdType.equals(GroupId.Type.groupId)) {
+
 				long liferayUserId = GetterUtil.getLong(userIdString);
 
 				User owner = UserLocalServiceUtil.getUserById(liferayUserId);
