@@ -96,7 +96,7 @@ public interface Mailbox {
 
 	public void synchronize() throws PortalException, SystemException;
 
-	public void synchronize(long folderId)
+	public void synchronizeFolder(long folderId)
 		throws PortalException, SystemException;
 
 	public void synchronizeMessage(long messageId)
@@ -106,11 +106,11 @@ public interface Mailbox {
 			long folderId, int pageNumber, int messagesPerPage)
 		throws PortalException, SystemException;
 
-	public void updateFolder(long folderId, String displayName)
+	public void updateFlags(
+			long folderId, long[] messageIds, int flag, boolean value)
 		throws PortalException, SystemException;
 
-	public void updateMessagesFlag(
-			long folderId, long[] messageIds, int flag, boolean value)
+	public void updateFolder(long folderId, String displayName)
 		throws PortalException, SystemException;
 
 	public void validateAccount(

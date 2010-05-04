@@ -18,8 +18,6 @@ import com.liferay.mail.MailFile;
 import com.liferay.mail.MessagesDisplay;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import java.io.InputStream;
 
@@ -59,8 +57,8 @@ public class IMAPMailbox extends BaseMailbox {
 	}
 
 	public Message getMessage(
-		long folderId, String keywords, int messageNumber,
-		String orderByField, String orderByType) {
+		long folderId, String keywords, int messageNumber, String orderByField,
+		String orderByType) {
 
 		return null;
 	}
@@ -80,9 +78,8 @@ public class IMAPMailbox extends BaseMailbox {
 	}
 
 	public MessagesDisplay getMessagesDisplay(
-			long folderId, String keywords, int pageNumber, int messagesPerPage,
-			String orderByField, String orderByType)
-		throws PortalException, SystemException {
+		long folderId, String keywords, int pageNumber, int messagesPerPage,
+		String orderByField, String orderByType) {
 
 		return null;
 	}
@@ -100,23 +97,21 @@ public class IMAPMailbox extends BaseMailbox {
 	public void synchronize() {
 	}
 
-	public void synchronize(long folderId) {
+	public void synchronizeFolder(long folderId) {
 	}
 
-	public void synchronizeMessage(long messageId)
-		throws PortalException, SystemException {
+	public void synchronizeMessage(long messageId) {
 	}
-	
+
 	public void synchronizePage(
-			long folderId, int pageNumber, int messagesPerPage)
-		throws PortalException, SystemException {
+		long folderId, int pageNumber, int messagesPerPage) {
+	}
+
+	public void updateFlags(
+		long folderId, long[] messageIds, int flag, boolean value) {
 	}
 
 	public void updateFolder(long folderId, String displayName) {
-	}
-
-	public void updateMessagesFlag(
-		long folderId, long[] messageIds, int flag, boolean value) {
 	}
 
 	public void validateAccount(

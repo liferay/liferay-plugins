@@ -15,6 +15,7 @@
 package com.liferay.mail.imap;
 
 import com.liferay.mail.MailException;
+import com.liferay.mail.model.Account;
 import com.liferay.mail.util.PortletPropsValues;
 
 import java.util.Properties;
@@ -33,6 +34,14 @@ import javax.net.ssl.SSLSocketFactory;
  * @author Scott Lee
  */
 public class IMAPConnection {
+
+	public IMAPConnection(Account account) {
+		this(
+			account.getIncomingHostName(), account.getIncomingPort(),
+			account.getIncomingSecure(), account.getOutgoingHostName(),
+			account.getOutgoingPort(), account.getOutgoingSecure(),
+			account.getLogin(), account.getPasswordDecrypted());
+	}
 
 	public IMAPConnection(
 			String incomingHostName, int incomingPort, boolean incomingSecure,
@@ -159,32 +168,33 @@ public class IMAPConnection {
 	}
 
 	public void testConnection() throws MailException {
-		boolean incomingConnection = false;
-		boolean outgoingConnection = false;
+		boolean failedIncomingConnection = false;
 
 		try {
 			testIncomingConnection();
-			incomingConnection = true;
 		}
 		catch (MailException me) {
+			failedIncomingConnection = true;
 		}
+
+		boolean failedOutgoingConnection = false;
 
 		try {
 			testOutgoingConnection();
-			outgoingConnection = true;
 		}
 		catch (MailException me) {
+			failedOutgoingConnection = true;
 		}
 
-		if (!incomingConnection && !outgoingConnection) {
+		if (failedIncomingConnection || failedOutgoingConnection) {
 			throw new MailException(
 				MailException.ACCOUNT_CONNECTIONS_FAILED);
 		}
-		else if (!incomingConnection) {
+		else if (failedIncomingConnection) {
 			throw new MailException(
 				MailException.ACCOUNT_INCOMING_CONNECTION_FAILED);
 		}
-		else if (!outgoingConnection) {
+		else if (failedOutgoingConnection) {
 			throw new MailException(
 				MailException.ACCOUNT_OUTGOING_CONNECTION_FAILED);
 		}
@@ -196,9 +206,9 @@ public class IMAPConnection {
 
 			store.close();
 		}
-		catch (MessagingException me) {
+		catch (Exception e) {
 			throw new MailException(
-				MailException.ACCOUNT_INCOMING_CONNECTION_FAILED, me);
+				MailException.ACCOUNT_INCOMING_CONNECTION_FAILED, e);
 		}
 	}
 
@@ -210,16 +220,16 @@ public class IMAPConnection {
 
 			transport.close();
 		}
-		catch (MessagingException me) {
+		catch (Exception e) {
 			throw new MailException(
-				MailException.ACCOUNT_OUTGOING_CONNECTION_FAILED, me);
+				MailException.ACCOUNT_OUTGOING_CONNECTION_FAILED, e);
 		}
 	}
 
+	private static final String _TRANSPORT = "_TRANSPORT_";
+
 	private static ConcurrentHashMap<String, Store> _allStores =
 		new ConcurrentHashMap<String, Store>();
-
-	private static final String _TRANSPORT = "_TRANSPORT_";
 
 	private String _incomingHostName;
 	private int _incomingPort;

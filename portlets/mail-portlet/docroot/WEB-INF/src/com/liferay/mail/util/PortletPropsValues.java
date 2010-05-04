@@ -27,4 +27,7 @@ import com.liferay.util.portlet.PortletProps;
 	public static final boolean JAVAMAIL_DEBUG = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.JAVAMAIL_DEBUG));
 
+	public static final int MESSAGES_SYNC_COUNT = GetterUtil.getInteger(
+		PortletProps.get(PortletPropsKeys.MESSAGES_SYNC_COUNT));
+
 }

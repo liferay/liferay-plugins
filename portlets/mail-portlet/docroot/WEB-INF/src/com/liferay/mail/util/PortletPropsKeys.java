@@ -23,4 +23,6 @@ public interface PortletPropsKeys {
 
 	public static final String JAVAMAIL_DEBUG = "javamail.debug";
 
+	public static final String MESSAGES_SYNC_COUNT = "messages.sync.count";
+
 }

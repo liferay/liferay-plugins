@@ -26,14 +26,13 @@ import java.util.List;
 public class MessagesDisplay {
 
 	public MessagesDisplay(
-			List<Message> messages, int pageNumber, int messagesPerPage,
-			int messageCount) {
+		List<Message> messages, int pageNumber, int messagesPerPage,
+		int messageCount) {
 
 		_messages = messages;
-
+		_pageNumber = pageNumber;
 		_messagesPerPage = messagesPerPage;
 		_messageCount = messageCount;
-		_pageNumber = pageNumber;
 	}
 
 	public int getEndMessageNumber() {
@@ -51,16 +50,16 @@ public class MessagesDisplay {
 		return _messageCount;
 	}
 
+	public List<Message> getMessages() {
+		return _messages;
+	}
+
 	public int getPageCount() {
-		return (int)(Math.ceil(_messageCount / (double) _messagesPerPage));
+		return (int)(Math.ceil(_messageCount / (double)_messagesPerPage));
 	}
 
 	public int getPageNumber() {
 		return _pageNumber;
-	}
-
-	public List<Message> getMessages() {
-		return _messages;
 	}
 
 	public int getStartMessageNumber() {
@@ -68,12 +67,12 @@ public class MessagesDisplay {
 			return 0;
 		}
 
-		return (_pageNumber - 1) * _messagesPerPage + 1;
+		return ((_pageNumber - 1) * _messagesPerPage) + 1;
 	}
 
 	private int _messageCount;
-	private int _messagesPerPage;
 	private List<Message> _messages;
+	private int _messagesPerPage;
 	private int _pageNumber;
 
 }

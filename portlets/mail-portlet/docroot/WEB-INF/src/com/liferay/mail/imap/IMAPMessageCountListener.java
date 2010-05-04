@@ -17,7 +17,6 @@ package com.liferay.mail.imap;
 import com.liferay.mail.MailException;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Folder;
-import com.liferay.mail.model.Message;
 import com.liferay.mail.service.FolderLocalServiceUtil;
 import com.liferay.mail.service.MessageLocalServiceUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -26,6 +25,7 @@ import com.liferay.portal.model.User;
 
 import com.sun.mail.imap.IMAPFolder;
 
+import javax.mail.Message;
 import javax.mail.event.MessageCountEvent;
 import javax.mail.event.MessageCountListener;
 
@@ -42,8 +42,8 @@ public class IMAPMessageCountListener implements MessageCountListener {
 		_imapUtil = new IMAPUtil(user, account);
 	}
 
-	public void messagesAdded(MessageCountEvent event) {
-		javax.mail.Message[] messages = event.getMessages();
+	public void messagesAdded(MessageCountEvent messageCountEvent) {
+		Message[] messages = messageCountEvent.getMessages();
 
 		IMAPFolder imapFolder = null;
 
@@ -51,27 +51,27 @@ public class IMAPMessageCountListener implements MessageCountListener {
 			imapFolder = _imapUtil.openFolder(
 				(IMAPFolder)messages[0].getFolder());
 
-			Folder folder = FolderLocalServiceUtil.getFolder(
+			Folder localFolder = FolderLocalServiceUtil.getFolder(
 				_account.getAccountId(), imapFolder.getFullName());
 
-			_imapUtil.storeMessagesEnvelope(
-				imapFolder, messages, folder.getFolderId());
+			_imapUtil.storeEnvelopes(
+				localFolder.getFolderId(), imapFolder, messages);
 		}
 		catch (Exception e) {
-			_log.error("Unable to download messages via listener", e);
+			_log.error("Unable to add messages", e);
 		}
 		finally {
 			try {
 				_imapUtil.closeFolder(imapFolder, false);
 			}
 			catch (MailException me) {
-				_log.error(me);
+				_log.error(me, me);
 			}
 		}
 	}
 
-	public void messagesRemoved(MessageCountEvent event) {
-		javax.mail.Message[] messages = event.getMessages();
+	public void messagesRemoved(MessageCountEvent messageCountEvent) {
+		Message[] messages = messageCountEvent.getMessages();
 
 		IMAPFolder imapFolder = null;
 
@@ -79,21 +79,22 @@ public class IMAPMessageCountListener implements MessageCountListener {
 			imapFolder = _imapUtil.openFolder(
 				(IMAPFolder)messages[0].getFolder());
 
-			Folder folder = FolderLocalServiceUtil.getFolder(
+			Folder localFolder = FolderLocalServiceUtil.getFolder(
 				_account.getAccountId(), imapFolder.getFullName());
 
-			long[] remoteMessageIds = _imapUtil.getMessageUIDs(
-				imapFolder, messages);
+			long[] messageIds = _imapUtil.getMessageUIDs(imapFolder, messages);
 
-			for (long remoteMessageId : remoteMessageIds) {
-				Message message = MessageLocalServiceUtil.getMessage(
-					folder.getFolderId(), remoteMessageId);
+			for (long messageId : messageIds) {
+				com.liferay.mail.model.Message localMessage =
+					MessageLocalServiceUtil.getMessage(
+						localFolder.getFolderId(), messageId);
 
-				MessageLocalServiceUtil.deleteMessage(message.getMessageId());
+				MessageLocalServiceUtil.deleteMessage(
+					localMessage.getMessageId());
 			}
 		}
 		catch (Exception e) {
-			_log.error("Unable to delete messages via listener", e);
+			_log.error("Unable to delete messages", e);
 		}
 		finally {
 			try {
