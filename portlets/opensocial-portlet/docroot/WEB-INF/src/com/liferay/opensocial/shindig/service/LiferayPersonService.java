@@ -61,7 +61,6 @@ import org.apache.shindig.social.opensocial.spi.UserId;
  * <a href="LiferayPersonService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael Young
- *
  */
 public class LiferayPersonService implements PersonService {
 
@@ -72,9 +71,8 @@ public class LiferayPersonService implements PersonService {
 		throws ProtocolException {
 
 		try {
-			RestfulCollection<Person> people =
-				doGetPeople(
-					userIds, groupId, collectionOptions, fields, securityToken);
+			RestfulCollection<Person> people = doGetPeople(
+				userIds, groupId, collectionOptions, fields, securityToken);
 
 			return ImmediateFuture.newInstance(people);
 		}
@@ -110,41 +108,35 @@ public class LiferayPersonService implements PersonService {
 		List<Person> people =  new ArrayList<Person>();
 
 		for (UserId userId : userIds) {
-
 			Person person = null;
 
 			String userIdString = userId.getUserId(securityToken);
 
-			switch (groupId.getType()) {
-				case all:
-				case friends:
-				case groupId:
-					long liferayUserId = GetterUtil.getLong(userIdString);
+			GroupId.Type groupIdType = groupId.getType();
 
-					User owner =
-						UserLocalServiceUtil.getUserById(liferayUserId);
+			if (groupIdType.equals(GroupId.Type.all)) {				
+			}
+			else if (groupIdType.equals(GroupId.Type.friends)) {				
+			}
+			else if (groupIdType.equals(GroupId.Type.groupId)) {				
+				long liferayUserId = GetterUtil.getLong(userIdString);
 
-					List<User> friends =
-						UserLocalServiceUtil.getSocialUsers(
-							owner.getUserId(),
-							SocialRelationConstants.TYPE_BI_FRIEND,
-							QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+				User owner = UserLocalServiceUtil.getUserById(liferayUserId);
 
-					for (User friend : friends) {
-						person =
-							getUserPerson(friend, fields, securityToken);
+				List<User> friends = UserLocalServiceUtil.getSocialUsers(
+					owner.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND,
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-						people.add(person);
-					}
-
-					break;
-				case self:
-					person = getUserPerson(userIdString, fields, securityToken);
+				for (User friend : friends) {
+					person = getUserPerson(friend, fields, securityToken);
 
 					people.add(person);
-
-					break;
-
+				}
+			}
+			else if (groupIdType.equals(GroupId.Type.self)) {
+				person = getUserPerson(userIdString, fields, securityToken);
+	
+				people.add(person);
 			}
 		}
 
@@ -170,18 +162,18 @@ public class LiferayPersonService implements PersonService {
 			person = getUserPerson(userIdString, fields, securityToken);
 		}
 
-		if (securityToken.getViewerId().equals(person.getId())) {
-			person.setIsViewer(true);
-		}
-
 		if (securityToken.getOwnerId().equals(person.getId())) {
 			person.setIsOwner(true);
+		}
+
+		if (securityToken.getViewerId().equals(person.getId())) {
+			person.setIsViewer(true);
 		}
 
 		return person;
 	}
 
-	protected static List<ListField> getEmails(User user) throws Exception {
+	protected List<ListField> getEmails(User user) throws Exception {
 		List<ListField> emails = new ArrayList<ListField>();
 
 		ListField email = new ListFieldImpl(
@@ -206,8 +198,8 @@ public class LiferayPersonService implements PersonService {
 	protected Person getGroupPerson(String groupId) throws Exception {
 		Person person = null;
 
-		Group group =
-			GroupLocalServiceUtil.getGroup(GetterUtil.getLong(groupId));
+		Group group = GroupLocalServiceUtil.getGroup(
+			GetterUtil.getLong(groupId));
 
 		if (group.isCommunity()) {
 			Name name = new NameImpl(group.getName() + " (Community)");
@@ -225,10 +217,10 @@ public class LiferayPersonService implements PersonService {
 
 			person = new PersonImpl(groupId, name.getFormatted(), name);
 
-			person.setPhoneNumbers(
-				getPhoneNumbers(
-					Organization.class.getName(),
-					organization.getOrganizationId()));
+			List<ListField> phoneNumbers = getPhoneNumbers(
+				Organization.class.getName(), organization.getOrganizationId()); 
+
+			person.setPhoneNumbers(phoneNumbers);
 		}
 
 		person.setGender(Gender.male);
@@ -255,15 +247,13 @@ public class LiferayPersonService implements PersonService {
 	}
 
 	protected Person getUserPerson(
-			String userId, Set<String> fields,
-			SecurityToken securityToken)
+			String userId, Set<String> fields, SecurityToken securityToken)
 		throws Exception {
 
-		User user =
-			UserLocalServiceUtil.getUserById(GetterUtil.getLong(userId));
+		User user = UserLocalServiceUtil.getUserById(
+			GetterUtil.getLong(userId));
 
 		return getUserPerson(user, fields, securityToken);
-
 	}
 
 	protected Person getUserPerson(
@@ -283,7 +273,7 @@ public class LiferayPersonService implements PersonService {
 
 		person.setProfileUrl(sb.toString());
 
-		sb = new StringBundler();
+		sb.setIndex(0);
 
 		sb.append(securityToken.getDomain());
 		sb.append(PortalUtil.getPathImage());
@@ -338,10 +328,11 @@ public class LiferayPersonService implements PersonService {
 			person.setNickname(user.getScreenName());
 		}
 
-		if (fields.contains(
-				Person.Field.PHONE_NUMBERS.toString())) {
-			person.setPhoneNumbers(
-				getPhoneNumbers(Contact.class.getName(), user.getContactId()));
+		if (fields.contains(Person.Field.PHONE_NUMBERS.toString())) {
+			List<ListField> phoneNumbers = getPhoneNumbers(
+				Contact.class.getName(), user.getContactId());
+
+			person.setPhoneNumbers(phoneNumbers);
 		}
 
 		if (fields.contains(Person.Field.UTC_OFFSET.toString())) {
@@ -349,7 +340,6 @@ public class LiferayPersonService implements PersonService {
 		}
 
 		return person;
-
 	}
 
 }

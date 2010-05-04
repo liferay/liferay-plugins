@@ -32,7 +32,6 @@ import org.apache.shindig.config.ContainerConfig;
  * <a href="ShindigUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael Young
- *
  */
 public class ShindigUtil {
 
@@ -41,43 +40,39 @@ public class ShindigUtil {
 			String appUrl, String activeUrl)
 		throws Exception {
 
-		String securityTokenType =
-			_containerConfig.getString(
-				ContainerConfig.DEFAULT_CONTAINER, "gadgets.securityTokenType");
-
-		String viewerIdString = String.valueOf(viewerId);
-
 		String securityToken = StringPool.BLANK;
 
-		if (securityTokenType.equals("insecure")) {
-			BasicSecurityToken basicSecurityToken = new BasicSecurityToken(
-				ownerId, viewerIdString, appId, domain, appUrl,
-				"0", ContainerConfig.DEFAULT_CONTAINER,
-				activeUrl);
+		String securityTokenType = _containerConfig.getString(
+			ContainerConfig.DEFAULT_CONTAINER, "gadgets.securityTokenType");
 
-			securityToken =
-				_basicSecurityTokenDecoder.encodeToken(basicSecurityToken);
-		}
-		else if (securityTokenType.equals("secure")) {
+		if (securityTokenType.equals("secure")) {
 			String securityTokenKeyPath = _containerConfig.getString(
 				ContainerConfig.DEFAULT_CONTAINER,
-			"gadgets.securityTokenKeyFile");
+				"gadgets.securityTokenKeyFile");
 
 			File securityTokenKeyFile = new File(securityTokenKeyPath);
 
-			BlobCrypter blobCrypter =
-				new BasicBlobCrypter(securityTokenKeyFile);
+			BlobCrypter blobCrypter = new BasicBlobCrypter(
+				securityTokenKeyFile);
 
 			BlobCrypterSecurityToken blobCrypterSecurityToken =
 				new BlobCrypterSecurityToken(
 					blobCrypter, ContainerConfig.DEFAULT_CONTAINER, domain);
 
-			blobCrypterSecurityToken.setOwnerId(ownerId);
-			blobCrypterSecurityToken.setViewerId(viewerIdString);
 			blobCrypterSecurityToken.setAppUrl(appUrl);
 			blobCrypterSecurityToken.setModuleId(0);
+			blobCrypterSecurityToken.setOwnerId(ownerId);
+			blobCrypterSecurityToken.setViewerId(String.valueOf(viewerId));
 
 			securityToken = blobCrypterSecurityToken.encrypt();
+		}
+		else if (securityTokenType.equals("insecure")) {
+			BasicSecurityToken basicSecurityToken = new BasicSecurityToken(
+				ownerId, String.valueOf(viewerId), appId, domain, appUrl, "0",
+				ContainerConfig.DEFAULT_CONTAINER, activeUrl);
+
+			securityToken = _basicSecurityTokenDecoder.encodeToken(
+				basicSecurityToken);
 		}
 
 		securityToken = HttpUtil.encodeURL(securityToken);
@@ -86,9 +81,9 @@ public class ShindigUtil {
 	}
 
 	@Inject
-	private static ContainerConfig _containerConfig;
+	private static BasicSecurityTokenDecoder _basicSecurityTokenDecoder;
 
 	@Inject
-	private static BasicSecurityTokenDecoder _basicSecurityTokenDecoder;
+	private static ContainerConfig _containerConfig;
 
 }

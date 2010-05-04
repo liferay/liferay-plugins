@@ -32,23 +32,21 @@ import org.apache.shindig.social.sample.spi.JsonDbOpensocialService;
  * <a href="LiferayGuiceModule.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael Young
- *
  */
 public class LiferayGuiceModule extends SocialApiGuiceModule {
 
 	protected void configure() {
 		super.configure();
 
-		bind(String.class)
-			.annotatedWith(Names.named("shindig.canonical.json.db"))
-			.toInstance("sampledata/canonicaldb.json");
+		bind(String.class).annotatedWith(
+			Names.named("shindig.canonical.json.db")).toInstance(
+				"sampledata/canonicaldb.json");
 
 		bind(ActivityService.class).to(JsonDbOpensocialService.class);
 		bind(AppDataService.class).to(JsonDbOpensocialService.class);
 		bind(MessageService.class).to(JsonDbOpensocialService.class);
-		bind(PersonService.class).to(LiferayPersonService.class);
-
 		bind(OAuthDataStore.class).to(SampleOAuthDataStore.class);
+		bind(PersonService.class).to(LiferayPersonService.class);
 
 		requestStaticInjection(ShindigUtil.class);
 	}
