@@ -137,7 +137,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		}
 	}
 
-	public java.util.List<com.liferay.chat.model.Entry> dynamicQuery(
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -167,10 +167,10 @@ public class EntryLocalServiceClp implements EntryLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.chat.model.Entry>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.chat.model.Entry> dynamicQuery(
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -204,10 +204,10 @@ public class EntryLocalServiceClp implements EntryLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.chat.model.Entry>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.chat.model.Entry> dynamicQuery(
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -250,7 +250,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.chat.model.Entry>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public long dynamicQueryCount(

@@ -146,7 +146,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		}
 	}
 
-	public java.util.List<com.liferay.wsrp.model.WSRPProducer> dynamicQuery(
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -176,10 +176,10 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.wsrp.model.WSRPProducer>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.wsrp.model.WSRPProducer> dynamicQuery(
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -213,10 +213,10 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.wsrp.model.WSRPProducer>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.wsrp.model.WSRPProducer> dynamicQuery(
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -259,7 +259,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.wsrp.model.WSRPProducer>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public long dynamicQueryCount(

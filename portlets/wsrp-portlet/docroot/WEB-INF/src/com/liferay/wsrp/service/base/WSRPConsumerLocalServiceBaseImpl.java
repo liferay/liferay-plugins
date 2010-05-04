@@ -69,20 +69,22 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 		wsrpConsumerPersistence.remove(wsrpConsumer);
 	}
 
-	public List<WSRPConsumer> dynamicQuery(DynamicQuery dynamicQuery)
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return wsrpConsumerPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<WSRPConsumer> dynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
+		throws SystemException {
 		return wsrpConsumerPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
 
-	public List<WSRPConsumer> dynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		return wsrpConsumerPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
