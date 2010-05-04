@@ -186,7 +186,7 @@ public class IMAPConnection {
 			failedOutgoingConnection = true;
 		}
 
-		if (failedIncomingConnection || failedOutgoingConnection) {
+		if (failedIncomingConnection && failedOutgoingConnection) {
 			throw new MailException(
 				MailException.ACCOUNT_CONNECTIONS_FAILED);
 		}
