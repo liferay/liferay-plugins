@@ -75,7 +75,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setSentDate(sentDate);
 		message.setSubject(subject);
 		message.setPreview(getPreview(body));
-		message.setBody(HtmlContentUtil.getInlineHtml(body));
+		message.setBody(getBody(body));
 		message.setFlags(flags);
 		message.setSize(getMessageSize(messageId, body));
 		message.setRemoteMessageId(remoteMessageId);
@@ -194,10 +194,10 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 			RestrictionsFactoryUtil.gt("remoteMessageId", new Long(0)));
 
 		if (oldest) {
-			dynamicQuery.addOrder(OrderFactoryUtil.asc("sentDate"));
+			dynamicQuery.addOrder(OrderFactoryUtil.asc("remoteMessageId"));
 		}
 		else {
-			dynamicQuery.addOrder(OrderFactoryUtil.desc("sentDate"));
+			dynamicQuery.addOrder(OrderFactoryUtil.desc("remoteMessageId"));
 		}
 
 		List<Object> results = messagePersistence.findWithDynamicQuery(
@@ -292,7 +292,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setSentDate(sentDate);
 		message.setSubject(subject);
 		message.setPreview(getPreview(body));
-		message.setBody(HtmlContentUtil.getInlineHtml(body));
+		message.setBody(getBody(body));
 		message.setFlags(flags);
 		message.setSize(getMessageSize(messageId, body));
 		message.setRemoteMessageId(remoteMessageId);
@@ -316,7 +316,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 
 		message.setModifiedDate(new Date());
 		message.setPreview(getPreview(body));
-		message.setBody(HtmlContentUtil.getInlineHtml(body));
+		message.setBody(getBody(body));
 		message.setFlags(flags);
 		message.setSize(getMessageSize(messageId, body));
 
@@ -325,8 +325,20 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		return message;
 	}
 
+	protected String getBody(String body) {
+		if (Validator.isNull(body)) {
+			return body;
+		}
+
+		return HtmlContentUtil.getInlineHtml(body);
+	}
+
 	protected long getMessageSize(long messageId, String body)
 		throws SystemException {
+
+		if (Validator.isNull(body)) {
+			return 0;
+		}
 
 		long size = body.getBytes().length;
 
@@ -344,9 +356,8 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		if (Validator.isNull(body)) {
 			return body;
 		}
-		else {
-			return StringUtil.shorten(HtmlContentUtil.getPlainText(body), 50);
-		}
+
+		return StringUtil.shorten(HtmlContentUtil.getPlainText(body), 50);
 	}
 
 	protected List<Message> toMessages(List<Object> results) {
