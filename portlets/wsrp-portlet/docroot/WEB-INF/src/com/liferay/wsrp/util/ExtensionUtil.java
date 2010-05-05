@@ -48,7 +48,7 @@ public class ExtensionUtil {
 		Extension[] extensions = new Extension[size];
 
 		// Wrap the extension in an extension to be compatible with Oracle's
-		// Producer
+		// producer
 
 		for (int i = 0; i < size; i ++) {
 			MessageElement messageElement = messageElements.get(i);
@@ -71,7 +71,7 @@ public class ExtensionUtil {
 	public static MessageElement[] getMessageElements(
 		Extension[] extensions) {
 
-		if (extensions == null || extensions.length <= 0) {
+		if ((extensions == null) || (extensions.length <= 0)) {
 			return null;
 		}
 
