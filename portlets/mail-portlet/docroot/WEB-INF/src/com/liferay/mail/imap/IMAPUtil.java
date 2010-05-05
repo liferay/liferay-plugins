@@ -140,11 +140,11 @@ public class IMAPUtil {
 		}
 	}
 
-	public void deleteFolder(long storedFolderId)
+	public void deleteFolder(long folderId)
 		throws PortalException, SystemException {
 
 		try {
-			IMAPFolder imapFolder = getFolder(storedFolderId);
+			IMAPFolder imapFolder = getFolder(folderId);
 
 			if (!imapFolder.exists()) {
 				throw new MailException(MailException.FOLDER_DOES_NOT_EXIST);
@@ -161,21 +161,22 @@ public class IMAPUtil {
 		}
 	}
 
-	public void deleteMessages(long storedFolderId, long[] messageIds)
+	public void deleteMessages(long folderId, long[] messageIds)
 		throws PortalException, SystemException {
 
 		IMAPFolder imapFolder = null;
 
 		try {
-			imapFolder = openFolder(storedFolderId);
+			imapFolder = openFolder(folderId);
 
 			imapFolder.addMessageCountListener(
 				new IMAPMessageCountListener(_user, _account));
 
-			List<Message> messages = getMessages(imapFolder, messageIds, true);
+			List<Message> jxMessages = getMessages(
+				imapFolder, messageIds, true);
 
-			for (Message message : messages) {
-				message.setFlag(Flags.Flag.DELETED, true);
+			for (Message jxMessage : jxMessages) {
+				jxMessage.setFlag(Flags.Flag.DELETED, true);
 			}
 		}
 		catch (MessagingException me) {
@@ -187,22 +188,22 @@ public class IMAPUtil {
 	}
 
 	public InputStream getAttachment(
-			long storedFolderId, long messageId, String contentPath)
+			long folderId, long messageId, String contentPath)
 		throws IOException, PortalException, SystemException {
 
 		IMAPFolder imapFolder = null;
 
 		try {
-			imapFolder = openFolder(storedFolderId);
+			imapFolder = openFolder(folderId);
 
-			Message message = getMessage(imapFolder, messageId);
+			Message jxMessage = getMessage(imapFolder, messageId);
 
-			if (message == null) {
+			if (jxMessage == null) {
 				throw new MailException(
 					MailException.MESSAGE_NOT_FOUND_ON_SERVER);
 			}
 
-			Part part = getPart(message, contentPath);
+			Part part = getPart(jxMessage, contentPath);
 
 			return part.getInputStream();
 		}
@@ -216,22 +217,22 @@ public class IMAPUtil {
 
 	public List<Folder> getFolders() throws MailException {
 		try {
-			List<Folder> folders = new ArrayList<Folder>();
+			List<Folder> jxFolders = new ArrayList<Folder>();
 
 			Store store = _imapConnection.getStore(true);
 
-			Folder folder = store.getDefaultFolder();
+			Folder jxFolder = store.getDefaultFolder();
 
-			getFolders(folders, folder.list());
+			getFolders(jxFolders, jxFolder.list());
 
-			return folders;
+			return jxFolders;
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
 		}
 	}
 
-	public long[] getMessageUIDs(IMAPFolder imapFolder, Message[] messages)
+	public long[] getMessageUIDs(IMAPFolder imapFolder, Message[] jxMessages)
 		throws MailException {
 
 		try {
@@ -239,17 +240,17 @@ public class IMAPUtil {
 
 			fetchProfile.add(UIDFolder.FetchProfileItem.UID);
 
-			imapFolder.fetch(messages, fetchProfile);
+			imapFolder.fetch(jxMessages, fetchProfile);
 
-			long[] messageIds = new long[messages.length];
+			long[] remoteMessageIds = new long[jxMessages.length];
 
-			for (int i = 0; i < messages.length; i++) {
-				Message message = messages[i];
+			for (int i = 0; i < jxMessages.length; i++) {
+				Message jxMessage = jxMessages[i];
 
-				messageIds[i] = imapFolder.getUID(message);
+				remoteMessageIds[i] = imapFolder.getUID(jxMessage);
 			}
 
-			return messageIds;
+			return remoteMessageIds;
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
@@ -257,21 +258,21 @@ public class IMAPUtil {
 	}
 
 	public long[] getMessageUIDs(
-			long storedFolderId, int pageNumber, int messagesPerPage)
+			long folderId, int pageNumber, int messagesPerPage)
 		throws PortalException, SystemException {
 
 		IMAPFolder imapFolder = null;
 
 		try {
-			imapFolder = openFolder(storedFolderId);
+			imapFolder = openFolder(folderId);
 
 			int[] messageIndexes = getMessageIndexes(
 				imapFolder.getMessageCount(), pageNumber, messagesPerPage);
 
-			Message[] messages = imapFolder.getMessages(
+			Message[] jxMessages = imapFolder.getMessages(
 				messageIndexes[0], messageIndexes[1]);
 
-			return getMessageUIDs(imapFolder, messages);
+			return getMessageUIDs(imapFolder, jxMessages);
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
@@ -282,31 +283,31 @@ public class IMAPUtil {
 	}
 
 	public void moveMessages(
-			long sourceStoredFolderId, long destinationStoredFolderId,
-			long[] messageIds, boolean deleteMissingMessages)
+			long sourceFolderId, long destinationFolderId, long[] messageIds,
+			boolean deleteMissingMessages)
 		throws PortalException, SystemException {
 
 		IMAPFolder sourceIMAPFolder = null;
 		IMAPFolder destinationIMAPFolder = null;
 
 		try {
-			sourceIMAPFolder = openFolder(sourceStoredFolderId);
+			sourceIMAPFolder = openFolder(sourceFolderId);
 
 			sourceIMAPFolder.addMessageCountListener(
 				new IMAPMessageCountListener(_user, _account));
 
-			destinationIMAPFolder = openFolder(destinationStoredFolderId);
+			destinationIMAPFolder = openFolder(destinationFolderId);
 
 			destinationIMAPFolder.addMessageCountListener(
 				new IMAPMessageCountListener(_user, _account));
 
-			List<Message> messages = getMessages(
+			List<Message> jxMessages = getMessages(
 				sourceIMAPFolder, messageIds, deleteMissingMessages);
 
-			for (Message message : messages) {
-				destinationIMAPFolder.appendMessages(new Message[] {message});
+			for (Message jxMessage : jxMessages) {
+				destinationIMAPFolder.appendMessages(new Message[] {jxMessage});
 
-				message.setFlag(Flags.Flag.DELETED, true);
+				jxMessage.setFlag(Flags.Flag.DELETED, true);
 			}
 		}
 		catch (MessagingException me) {
@@ -333,11 +334,11 @@ public class IMAPUtil {
 		}
 	}
 
-	public String[] renameFolder(long storedFolderId, String newDisplayName)
+	public String[] renameFolder(long folderId, String newDisplayName)
 		throws PortalException, SystemException {
 
 		try {
-			IMAPFolder imapFolder = getFolder(storedFolderId);
+			IMAPFolder imapFolder = getFolder(folderId);
 
 			String newFullName = StringPool.BLANK;
 
@@ -381,19 +382,19 @@ public class IMAPUtil {
 		try {
 			imapFolder = openFolder(_account.getSentFolderId());
 
-			Message message = createMessage(
+			Message jxMessage = createMessage(
 				personalName, sender, to, cc, bcc, subject, body, mailFiles);
 
 			Transport transport = _imapConnection.getTransport();
 
-			transport.sendMessage(message, message.getAllRecipients());
+			transport.sendMessage(jxMessage, jxMessage.getAllRecipients());
 
 			transport.close();
 
 			imapFolder.addMessageCountListener(
 				new IMAPMessageCountListener(_user, _account));
 
-			imapFolder.appendMessages(new Message[] {message});
+			imapFolder.appendMessages(new Message[] {jxMessage});
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
@@ -406,35 +407,33 @@ public class IMAPUtil {
 		}
 	}
 
-	public void storeEnvelopes(long storedFolderId)
+	public void storeEnvelopes(long folderId)
 		throws PortalException, SystemException {
 
 		IMAPFolder imapFolder = null;
 
 		try {
-			imapFolder = openFolder(storedFolderId);
+			imapFolder = openFolder(folderId);
 
-			com.liferay.mail.model.Folder storedFolder =
-				FolderLocalServiceUtil.getFolder(storedFolderId);
+			com.liferay.mail.model.Folder folder =
+				FolderLocalServiceUtil.getFolder(folderId);
 
 			int messageCount = imapFolder.getMessageCount();
 
 			FolderLocalServiceUtil.updateFolder(
-				storedFolderId, storedFolder.getFullName(),
-				storedFolder.getDisplayName(), messageCount);
+				folderId, folder.getFullName(), folder.getDisplayName(),
+				messageCount);
 
 			if (messageCount == 0) {
 				return;
 			}
 
-			Message oldestMessage = getMessage(
-				storedFolderId, imapFolder, true);
-			Message newestMessage = getMessage(
-				storedFolderId, imapFolder, false);
+			Message oldestJxMessage = getMessage(folderId, imapFolder, true);
+			Message newestJxMessage = getMessage(folderId, imapFolder, false);
 
-			Message messages[] = new Message[0];
+			Message[] jxMessages = new Message[0];
 
-			if ((oldestMessage == null) && (newestMessage == null)) {
+			if ((oldestJxMessage == null) && (newestJxMessage == null)) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Downloading messages from folder " +
@@ -448,13 +447,13 @@ public class IMAPUtil {
 					startingMessageNumber = 1;
 				}
 
-				messages = imapFolder.getMessages(
+				jxMessages = imapFolder.getMessages(
 					startingMessageNumber, messageCount);
 
-				storeEnvelopes(storedFolderId, imapFolder, messages);
+				storeEnvelopes(folderId, imapFolder, jxMessages);
 			}
 			else {
-				int newestMessageNumber = newestMessage.getMessageNumber();
+				int newestMessageNumber = newestJxMessage.getMessageNumber();
 
 				if (newestMessageNumber != messageCount) {
 					if (_log.isDebugEnabled()) {
@@ -463,13 +462,13 @@ public class IMAPUtil {
 								imapFolder.getFullName());
 					}
 
-					messages = imapFolder.getMessages(
+					jxMessages = imapFolder.getMessages(
 						newestMessageNumber + 1, messageCount);
 
-					storeEnvelopes(storedFolderId, imapFolder, messages);
+					storeEnvelopes(folderId, imapFolder, jxMessages);
 				}
 
-				int oldestMessageNumber = oldestMessage.getMessageNumber();
+				int oldestMessageNumber = oldestJxMessage.getMessageNumber();
 
 				if (oldestMessageNumber != 1) {
 					if (_log.isDebugEnabled()) {
@@ -486,10 +485,10 @@ public class IMAPUtil {
 						startingMessageNumber = 1;
 					}
 
-					messages = imapFolder.getMessages(
+					jxMessages = imapFolder.getMessages(
 						startingMessageNumber, oldestMessageNumber - 1);
 
-					storeEnvelopes(storedFolderId, imapFolder, messages);
+					storeEnvelopes(folderId, imapFolder, jxMessages);
 				}
 			}
 		}
@@ -502,7 +501,7 @@ public class IMAPUtil {
 	}
 
 	public void storeEnvelopes(
-			long storedFolderId, IMAPFolder imapFolder, Message[] messages)
+			long folderId, IMAPFolder imapFolder, Message[] jxMessages)
 		throws PortalException, SystemException {
 
 		StopWatch stopWatch = null;
@@ -519,31 +518,32 @@ public class IMAPUtil {
 			fetchProfile.add(UIDFolder.FetchProfileItem.UID);
 			fetchProfile.add(UIDFolder.FetchProfileItem.ENVELOPE);
 
-			imapFolder.fetch(messages, fetchProfile);
+			imapFolder.fetch(jxMessages, fetchProfile);
 
-			for (Message message : messages) {
-				String sender = InternetAddressUtil.toString(message.getFrom());
+			for (Message jxMessage : jxMessages) {
+				String sender = InternetAddressUtil.toString(
+					jxMessage.getFrom());
 				String to = InternetAddressUtil.toString(
-					message.getRecipients(RecipientType.TO));
+					jxMessage.getRecipients(RecipientType.TO));
 				String cc = InternetAddressUtil.toString(
-					message.getRecipients(RecipientType.CC));
+					jxMessage.getRecipients(RecipientType.CC));
 				String bcc = InternetAddressUtil.toString(
-					message.getRecipients(RecipientType.BCC));
-				Date sentDate = message.getSentDate();
-				String subject = message.getSubject();
-				long messageId = imapFolder.getUID(message);
+					jxMessage.getRecipients(RecipientType.BCC));
+				Date sentDate = jxMessage.getSentDate();
+				String subject = jxMessage.getSubject();
+				long remoteMessageId = imapFolder.getUID(jxMessage);
 
 				MessageLocalServiceUtil.addMessage(
-					_user.getUserId(), storedFolderId, sender, to, cc, bcc,
-					sentDate, subject, null, StringPool.BLANK, messageId);
+					_user.getUserId(), folderId, sender, to, cc, bcc,
+					sentDate, subject, null, StringPool.BLANK, remoteMessageId);
 			}
 
-			com.liferay.mail.model.Folder storedFolder =
-				FolderLocalServiceUtil.getFolder(storedFolderId);
+			com.liferay.mail.model.Folder folder =
+				FolderLocalServiceUtil.getFolder(folderId);
 
 			FolderLocalServiceUtil.updateFolder(
-				storedFolderId, storedFolder.getFullName(),
-				storedFolder.getDisplayName(), imapFolder.getMessageCount());
+				folderId, folder.getFullName(), folder.getDisplayName(),
+				imapFolder.getMessageCount());
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
@@ -553,23 +553,24 @@ public class IMAPUtil {
 			stopWatch.stop();
 
 			_log.debug(
-				"Downloaded " + messages.length + " messages from folder " +
+				"Downloaded " + jxMessages.length + " messages from folder " +
 					imapFolder.getFullName() + " completed in " +
 						stopWatch.getTime() + " ms");
 		}
 	}
 
-	public void storeEnvelopes(long storedFolderId, long[] messageIds)
+	public void storeEnvelopes(long folderId, long[] remoteMessageIds)
 		throws PortalException, SystemException {
 
 		IMAPFolder imapFolder = null;
 
 		try {
-			imapFolder = openFolder(storedFolderId);
+			imapFolder = openFolder(folderId);
 
-			Message[] messages = imapFolder.getMessagesByUID(messageIds);
+			Message[] jxMessages = imapFolder.getMessagesByUID(
+				remoteMessageIds);
 
-			storeEnvelopes(storedFolderId, imapFolder, messages);
+			storeEnvelopes(folderId, imapFolder, jxMessages);
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
@@ -579,31 +580,32 @@ public class IMAPUtil {
 		}
 	}
 
-	public void storeMessages(long storedFolderId, long[] messageIds)
+	public void storeMessages(long folderId, long[] remoteMessageIds)
 		throws IOException, PortalException, SystemException {
 
 		IMAPFolder imapFolder = null;
 
 		try {
-			imapFolder = openFolder(storedFolderId);
+			imapFolder = openFolder(folderId);
 
-			Message[] messages = imapFolder.getMessagesByUID(messageIds);
+			Message[] jxMessages = imapFolder.getMessagesByUID(
+				remoteMessageIds);
 
 			FetchProfile fetchProfile = new FetchProfile();
 
 			fetchProfile.add(UIDFolder.FetchProfileItem.UID);
 			fetchProfile.add(UIDFolder.FetchProfileItem.CONTENT_INFO);
 
-			imapFolder.fetch(messages, fetchProfile);
+			imapFolder.fetch(jxMessages, fetchProfile);
 
-			for (Message message : messages) {
-				String flags = getFlags(message);
+			for (Message jxMessage : jxMessages) {
+				String flags = getFlags(jxMessage);
 
-				long messageId = imapFolder.getUID(message);
+				long remoteMessageId = imapFolder.getUID(jxMessage);
 
-				com.liferay.mail.model.Message storedMessage =
+				com.liferay.mail.model.Message message =
 					MessageLocalServiceUtil.getMessage(
-						storedFolderId, messageId);
+						folderId, remoteMessageId);
 
 				StringBundler bodyPlain = new StringBundler();
 				StringBundler bodyHtml = new StringBundler();
@@ -611,25 +613,25 @@ public class IMAPUtil {
 
 				getParts(
 					_user.getUserId(), bodyPlain, bodyHtml, StringPool.BLANK,
-					message, mailFiles);
+					jxMessage, mailFiles);
 
 				if (bodyHtml.length() == 0) {
 					bodyHtml = bodyPlain;
 				}
 
 				if (flags.indexOf(MailConstants.FLAG_SEEN) == -1) {
-					message.setFlag(Flags.Flag.SEEN, false);
+					jxMessage.setFlag(Flags.Flag.SEEN, false);
 				}
 
 				for (MailFile mailFile : mailFiles) {
 					AttachmentLocalServiceUtil.addAttachment(
-						_user.getUserId(), storedMessage.getMessageId(),
+						_user.getUserId(), message.getMessageId(),
 						mailFile.getContentPath(), mailFile.getFileName(),
 						mailFile.getSize(), mailFile.getFile());
 				}
 
 				MessageLocalServiceUtil.updateContent(
-					storedMessage.getMessageId(), bodyHtml.toString(), flags);
+					message.getMessageId(), bodyHtml.toString(), flags);
 			}
 		}
 		catch (MessagingException me) {
@@ -641,24 +643,24 @@ public class IMAPUtil {
 	}
 
 	public void updateFlags(
-			long storedFolderId, long[] messageIds, int flag, boolean value,
+			long folderId, long[] messageIds, int flag, boolean value,
 			boolean deleteMissingMessages)
 		throws PortalException, SystemException {
 
 		IMAPFolder imapFolder = null;
 
 		try {
-			imapFolder = openFolder(storedFolderId);
+			imapFolder = openFolder(folderId);
 
-			List<Message> messages = getMessages(
+			List<Message> jxMessages = getMessages(
 				imapFolder, messageIds, deleteMissingMessages);
 
-			for (Message message : messages) {
+			for (Message jxMessage : jxMessages) {
 				if (flag == MailConstants.FLAG_FLAGGED) {
-					message.setFlag(Flags.Flag.FLAGGED, value);
+					jxMessage.setFlag(Flags.Flag.FLAGGED, value);
 				}
 				else if (flag == MailConstants.FLAG_SEEN) {
-					message.setFlag(Flags.Flag.SEEN, value);
+					jxMessage.setFlag(Flags.Flag.SEEN, value);
 				}
 				else {
 					throw new MailException(MailException.MESSAGE_INVALID_FLAG);
@@ -679,14 +681,14 @@ public class IMAPUtil {
 			List<MailFile> mailFiles)
 		throws MessagingException, UnsupportedEncodingException {
 
-		Message message = new MimeMessage(_imapConnection.getSession());
+		Message jxMessage = new MimeMessage(_imapConnection.getSession());
 
-		message.setFrom(new InternetAddress(sender, personalName));
-		message.addRecipients(Message.RecipientType.TO, to);
-		message.addRecipients(Message.RecipientType.CC, cc);
-		message.addRecipients(Message.RecipientType.BCC, bcc);
-		message.setSentDate(new Date());
-		message.setSubject(subject);
+		jxMessage.setFrom(new InternetAddress(sender, personalName));
+		jxMessage.addRecipients(Message.RecipientType.TO, to);
+		jxMessage.addRecipients(Message.RecipientType.CC, cc);
+		jxMessage.addRecipients(Message.RecipientType.BCC, bcc);
+		jxMessage.setSentDate(new Date());
+		jxMessage.setSubject(subject);
 
 		MimeMultipart multipart = new MimeMultipart();
 
@@ -716,20 +718,20 @@ public class IMAPUtil {
 			}
 		}
 
-		message.setContent(multipart);
+		jxMessage.setContent(multipart);
 
-		return message;
+		return jxMessage;
 	}
 
-	protected String getFlags(Message message) throws MessagingException {
+	protected String getFlags(Message jxMessage) throws MessagingException {
 		StringBundler sb = new StringBundler();
 
-		if (message.isSet(Flags.Flag.FLAGGED)) {
+		if (jxMessage.isSet(Flags.Flag.FLAGGED)) {
 			sb.append(MailConstants.FLAG_FLAGGED);
 			sb.append(StringPool.COMMA);
 		}
 
-		if (message.isSet(Flags.Flag.SEEN)) {
+		if (jxMessage.isSet(Flags.Flag.SEEN)) {
 			sb.append(MailConstants.FLAG_SEEN);
 			sb.append(StringPool.COMMA);
 		}
@@ -737,15 +739,15 @@ public class IMAPUtil {
 		return sb.toString();
 	}
 
-	protected IMAPFolder getFolder(long storedFolderId)
+	protected IMAPFolder getFolder(long folderId)
 		throws MessagingException, PortalException, SystemException {
 
 		Store store = _imapConnection.getStore(true);
 
-		com.liferay.mail.model.Folder storedFolder =
-			FolderLocalServiceUtil.getFolder(storedFolderId);
+		com.liferay.mail.model.Folder folder = FolderLocalServiceUtil.getFolder(
+			folderId);
 
-		return (IMAPFolder)store.getFolder(storedFolder.getFullName());
+		return (IMAPFolder)store.getFolder(folder.getFullName());
 	}
 
 	protected IMAPFolder getFolder(String fullName)
@@ -756,56 +758,56 @@ public class IMAPUtil {
 		return (IMAPFolder)store.getFolder(fullName);
 	}
 
-	protected void getFolders(List<Folder> allFolders, Folder[] folders) {
-		for (Folder folder : folders) {
+	protected void getFolders(List<Folder> allJxFolders, Folder[] jxFolders) {
+		for (Folder jxFolder : jxFolders) {
 			try {
-				int folderType = folder.getType();
+				int folderType = jxFolder.getType();
 
 				if ((folderType & Folder.HOLDS_MESSAGES) != 0) {
-					allFolders.add(folder);
+					allJxFolders.add(jxFolder);
 				}
 
 				if ((folderType & Folder.HOLDS_FOLDERS) != 0) {
-					getFolders(allFolders, folder.list());
+					getFolders(allJxFolders, jxFolder.list());
 				}
 			}
 			catch (MessagingException me) {
-				_log.error("Unable to get folder " + folder.getFullName(), me);
+				_log.error("Unable to get folder " + jxFolder.getFullName(), me);
 			}
 		}
 	}
 
-	protected Message getMessage(IMAPFolder imapFolder, long messageId)
+	protected Message getMessage(IMAPFolder imapFolder, long remoteMessageId)
 		throws MessagingException {
 
-		return imapFolder.getMessageByUID(messageId);
+		return imapFolder.getMessageByUID(remoteMessageId);
 	}
 
 	protected Message getMessage(
-			long storedFolderId, IMAPFolder imapFolder, boolean oldest)
+			long folderId, IMAPFolder imapFolder, boolean oldest)
 		throws MessagingException, PortalException, SystemException {
 
-		com.liferay.mail.model.Message storedMessage = null;
+		com.liferay.mail.model.Message message = null;
 
 		try {
-			storedMessage = MessageLocalServiceUtil.getRemoteMessage(
-				storedFolderId, oldest);
+			message = MessageLocalServiceUtil.getRemoteMessage(
+				folderId, oldest);
 		}
 		catch (NoSuchMessageException nsme) {
 			return null;
 		}
 
-		long messageId = storedMessage.getRemoteMessageId();
+		long remoteMessageId = message.getRemoteMessageId();
 
-		Message message = getMessage(imapFolder, messageId);
+		Message jxMessage = getMessage(imapFolder, remoteMessageId);
 
-		if (message == null) {
-			MessageLocalServiceUtil.deleteMessage(storedMessage);
+		if (jxMessage == null) {
+			MessageLocalServiceUtil.deleteMessage(message);
 
-			return getMessage(storedFolderId, imapFolder, oldest);
+			return getMessage(folderId, imapFolder, oldest);
 		}
 		else {
-			return message;
+			return jxMessage;
 		}
 	}
 
@@ -838,35 +840,36 @@ public class IMAPUtil {
 	}
 
 	protected List<Message> getMessages(
-			IMAPFolder imapFolder, long[] storedMessageIds,
+			IMAPFolder imapFolder, long[] messageIds,
 			boolean deleteMissingMessages)
 		throws MessagingException, PortalException, SystemException {
 
-		long[] messageIds = new long[storedMessageIds.length];
+		long[] remoteMessageIds = new long[messageIds.length];
 
-		for (int i = 0; i < storedMessageIds.length; i++) {
-			com.liferay.mail.model.Message storedmessage =
-				MessageLocalServiceUtil.getMessage(storedMessageIds[i]);
+		for (int i = 0; i < messageIds.length; i++) {
+			com.liferay.mail.model.Message message =
+				MessageLocalServiceUtil.getMessage(messageIds[i]);
 
-			messageIds[i] = storedmessage.getRemoteMessageId();
+			remoteMessageIds[i] = message.getRemoteMessageId();
 		}
 
-		List<Message> messages = new ArrayList<javax.mail.Message>();
+		List<Message> jxMessages = new ArrayList<Message>();
 
-		Message[] messagesArray = imapFolder.getMessagesByUID(messageIds);
+		Message[] jxMessagesArray = imapFolder.getMessagesByUID(
+			remoteMessageIds);
 
-		for (int i = 0; i < messagesArray.length; i++) {
-			Message message = messagesArray[i];
+		for (int i = 0; i < jxMessagesArray.length; i++) {
+			Message jxMessage = jxMessagesArray[i];
 
-			if (message != null) {
-				messages.add(message);
+			if (jxMessage != null) {
+				jxMessages.add(jxMessage);
 			}
-			else if (deleteMissingMessages && (messageIds[i] != 0)) {
-				MessageLocalServiceUtil.deleteMessage(storedMessageIds[i]);
+			else if (deleteMissingMessages && (remoteMessageIds[i] != 0)) {
+				MessageLocalServiceUtil.deleteMessage(messageIds[i]);
 			}
 		}
 
-		return messages;
+		return jxMessages;
 	}
 
 	protected Part getPart(Part part, String contentPath)
@@ -875,18 +878,22 @@ public class IMAPUtil {
 		int index = GetterUtil.getInteger(
 			StringUtil.split(contentPath.substring(1), StringPool.PERIOD)[0]);
 
-		if (part.getContent() instanceof Multipart) {
+		if (!(part.getContent() instanceof Multipart)) {
+			return part;
+		}
+
+		Multipart multipart = (Multipart)part.getContent();
+
+		for (int i = 0; i < multipart.getCount(); i++) {
+			if (i != index) {
+				continue;
+			}
+
 			String prefix = String.valueOf(index).concat(StringPool.PERIOD);
 
-			Multipart multipart = (Multipart)part.getContent();
-
-			for (int i = 0; i < multipart.getCount(); i++) {
-				if (index == i) {
-					return getPart(
-						multipart.getBodyPart(i),
-						contentPath.substring(prefix.length()));
-				}
-			}
+			return getPart(
+				multipart.getBodyPart(i),
+				contentPath.substring(prefix.length()));
 		}
 
 		return part;
@@ -936,20 +943,20 @@ public class IMAPUtil {
 		}
 	}
 
-	protected InternetAddress[] getRecipients(long storedMessageId)
+	protected InternetAddress[] getRecipients(long messageId)
 		throws PortalException, SystemException {
 
 		try {
-			com.liferay.mail.model.Message storedMessage =
-				MessageLocalServiceUtil.getMessage(storedMessageId);
+			com.liferay.mail.model.Message message =
+				MessageLocalServiceUtil.getMessage(messageId);
 
 			StringBundler sb = new StringBundler(6);
 
-			sb.append(storedMessage.getTo());
+			sb.append(message.getTo());
 			sb.append(StringPool.COMMA);
-			sb.append(storedMessage.getCc());
+			sb.append(message.getCc());
 			sb.append(StringPool.COMMA);
-			sb.append(storedMessage.getBcc());
+			sb.append(message.getBcc());
 			sb.append(StringPool.COMMA);
 
 			return InternetAddress.parse(sb.toString(), true);
@@ -960,21 +967,21 @@ public class IMAPUtil {
 	}
 
 	protected InternetAddress[] getRecipients(
-			long storedMessageId, RecipientType recipientType)
+			long messageId, RecipientType recipientType)
 		throws PortalException, SystemException {
 
 		try {
-			com.liferay.mail.model.Message storedMessage =
-				MessageLocalServiceUtil.getMessage(storedMessageId);
+			com.liferay.mail.model.Message message =
+				MessageLocalServiceUtil.getMessage(messageId);
 
 			if (recipientType.equals(RecipientType.TO)) {
-				return InternetAddress.parse(storedMessage.getTo());
+				return InternetAddress.parse(message.getTo());
 			}
 			else if (recipientType.equals(RecipientType.CC)) {
-				return InternetAddress.parse(storedMessage.getCc());
+				return InternetAddress.parse(message.getCc());
 			}
 			else if (recipientType.equals(RecipientType.BCC)) {
-				return InternetAddress.parse(storedMessage.getBcc());
+				return InternetAddress.parse(message.getBcc());
 			}
 			else {
 				throw new IllegalArgumentException(
@@ -986,10 +993,10 @@ public class IMAPUtil {
 		}
 	}
 
-	protected IMAPFolder openFolder(long storedFolderId)
+	protected IMAPFolder openFolder(long folderId)
 		throws MessagingException, PortalException, SystemException {
 
-		return openFolder(getFolder(storedFolderId));
+		return openFolder(getFolder(folderId));
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(IMAPUtil.class);
