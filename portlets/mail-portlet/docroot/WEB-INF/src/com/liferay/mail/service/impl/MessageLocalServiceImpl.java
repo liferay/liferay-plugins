@@ -200,14 +200,14 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 			dynamicQuery.addOrder(OrderFactoryUtil.desc("remoteMessageId"));
 		}
 
-		List<Message> messages = messagePersistence.findWithDynamicQuery(
+		List<Object> results = messagePersistence.findWithDynamicQuery(
 			dynamicQuery, 0, 1);
 
-		if (messages.isEmpty()) {
+		if (results.isEmpty()) {
 			throw new NoSuchMessageException();
 		}
 
-		return messages.get(0);
+		return (Message)results.get(0);
 	}
 
 	public int populateMessages(
@@ -242,8 +242,12 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		int start = messagesPerPage * (pageNumber - 1);
 		int end = messagesPerPage * pageNumber;
 
-		messages.addAll(
-			messagePersistence.findWithDynamicQuery(dynamicQuery, start, end));
+		List<Object> results =
+			messagePersistence.findWithDynamicQuery(dynamicQuery, start, end);
+
+		for (Object result : results) {
+			messages.add((Message)result);
+		}
 
 		return (int)dynamicQueryCount(dynamicQuery);
 	}
