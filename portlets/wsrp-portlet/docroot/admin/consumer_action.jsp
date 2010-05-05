@@ -21,12 +21,14 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 
 WSRPConsumer wsrpConsumer = (WSRPConsumer)row.getObject();
 
-WSRPConsumerManager wsrpConsumerManager = WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer, userToken);
-
 ServiceDescription serviceDescription = null;
 
-if(wsrpConsumerManager != null) {
+try {
+	WSRPConsumerManager wsrpConsumerManager = WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer, userToken);
+
 	serviceDescription = wsrpConsumerManager.getServiceDescription();
+}
+catch (Exception e) {
 }
 %>
 
