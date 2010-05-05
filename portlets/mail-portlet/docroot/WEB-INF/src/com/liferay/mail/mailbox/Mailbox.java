@@ -38,11 +38,12 @@ import javax.mail.internet.InternetAddress;
 public interface Mailbox {
 
 	public Account addAccount(
-			String address, String protocol, String incomingHostName,
-			int incomingPort, boolean incomingSecure, String outgoingHostName,
-			int outgoingPort, boolean outgoingSecure, String folderPrefix,
-			String password, boolean savePassword, String login,
-			String personalName, String signature, boolean useSignature)
+			String address, String personalName, String protocol,
+			String incomingHostName, int incomingPort, boolean incomingSecure,
+			String outgoingHostName, int outgoingPort, boolean outgoingSecure,
+			String login, String password, boolean savePassword,
+			String signature, boolean useSignature, String folderPrefix,
+			boolean defaultSender)
 		throws PortalException, SystemException;
 
 	public Folder addFolder(String displayName)
@@ -82,6 +83,9 @@ public interface Mailbox {
 	public InternetAddress[] parseAddresses(String addresses)
 		throws PortalException, SystemException;
 
+	public void renameFolder(long folderId, String displayName)
+	throws PortalException, SystemException;
+
 	public Message saveDraft(
 			long accountId, long messageId, String to, String cc, String bcc,
 			String subject, String body, List<MailFile> mailFiles)
@@ -106,11 +110,14 @@ public interface Mailbox {
 			long folderId, int pageNumber, int messagesPerPage)
 		throws PortalException, SystemException;
 
-	public void updateFlags(
-			long folderId, long[] messageIds, int flag, boolean value)
+	public Account updateAccount(
+			long accountId, String personalName, String password,
+			boolean savePassword, String signature, boolean useSignature,
+			String folderPrefix, boolean defaultSender)
 		throws PortalException, SystemException;
 
-	public void updateFolder(long folderId, String displayName)
+	public void updateFlags(
+			long folderId, long[] messageIds, int flag, boolean value)
 		throws PortalException, SystemException;
 
 	public void validateAccount(

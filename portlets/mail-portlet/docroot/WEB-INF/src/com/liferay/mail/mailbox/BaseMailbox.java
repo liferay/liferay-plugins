@@ -30,11 +30,12 @@ import com.liferay.portal.model.User;
 public abstract class BaseMailbox implements Mailbox {
 
 	public Account addAccount(
-			String address, String protocol, String incomingHostName,
-			int incomingPort, boolean incomingSecure, String outgoingHostName,
-			int outgoingPort, boolean outgoingSecure, String folderPrefix,
-			String password, boolean savePassword, String login,
-			String personalName, String signature, boolean useSignature)
+			String address, String personalName, String protocol,
+			String incomingHostName, int incomingPort, boolean incomingSecure,
+			String outgoingHostName, int outgoingPort, boolean outgoingSecure,
+			String login, String password, boolean savePassword,
+			String signature, boolean useSignature, String folderPrefix,
+			boolean defaultSender)
 		throws PortalException, SystemException {
 
 		validateAccount(
@@ -43,6 +44,8 @@ public abstract class BaseMailbox implements Mailbox {
 
 		try {
 			AccountLocalServiceUtil.getAccount(user.getUserId(), address);
+
+			throw new MailException("Address already exists");
 		}
 		catch (NoSuchAccountException nsae) {
 			long inboxFolderId = 0;
@@ -50,16 +53,20 @@ public abstract class BaseMailbox implements Mailbox {
 			long sentFolderId = 0;
 			long trashFolderId = 0;
 
-			return AccountLocalServiceUtil.addAccount(
+			Account account = AccountLocalServiceUtil.addAccount(
 				user.getUserId(), address, personalName, protocol,
 				incomingHostName, incomingPort, incomingSecure,
-				outgoingHostName, outgoingPort, outgoingSecure, login, password,
-				savePassword, signature, useSignature, folderPrefix,
+				outgoingHostName, outgoingPort, outgoingSecure, login,
+				password, savePassword, signature, useSignature, folderPrefix,
 				inboxFolderId, draftFolderId, sentFolderId, trashFolderId,
-				true);
-		}
+				defaultSender);
 
-		throw new MailException("Address already exists");
+			setAccount(account);
+
+			synchronize();
+		
+			return account;
+		}
 	}
 
 	public void deleteAccount() throws PortalException, SystemException {
@@ -80,6 +87,25 @@ public abstract class BaseMailbox implements Mailbox {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Account updateAccount(
+			long accountId, String personalName, String password,
+			boolean savePassword, String signature, boolean useSignature,
+			String folderPrefix, boolean defaultSender)
+		throws PortalException, SystemException {
+
+		Account account = AccountLocalServiceUtil.getAccount(accountId);
+
+		validateAccount(
+			account.getIncomingHostName(), account.getIncomingPort(),
+			account.getIncomingSecure(), account.getOutgoingHostName(),
+			account.getOutgoingPort(), account.getOutgoingSecure(),
+			account.getLogin(), password);
+
+		return AccountLocalServiceUtil.updateAccount(
+			accountId, personalName, password, savePassword, signature,
+			useSignature, folderPrefix, defaultSender);
 	}
 
 	protected Account account;
