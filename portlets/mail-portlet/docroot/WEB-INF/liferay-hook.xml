@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hook>
+	<event>
+		<event-class>com.liferay.mail.hook.events.LoginPostAction</event-class>
+		<event-type>login.events.post</event-type>
+	</event>
+	<model-listener>
+		<model-listener-class>com.liferay.mail.hook.listeners.UserListener</model-listener-class>
+		<model-name>com.liferay.portal.model.User</model-name>
+	</model-listener>
+</hook>
