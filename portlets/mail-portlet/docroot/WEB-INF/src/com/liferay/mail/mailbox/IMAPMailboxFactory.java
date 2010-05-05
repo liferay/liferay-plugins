@@ -35,4 +35,12 @@ public class IMAPMailboxFactory implements MailboxFactory {
 		return mailbox;
 	}
 
+	public Mailbox getMailbox(User user, String protocol) {
+		Mailbox mailbox = new IMAPMailbox();
+
+		mailbox.setUser(user);
+
+		return mailbox;
+	}
+
 }
