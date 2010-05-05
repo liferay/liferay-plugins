@@ -64,7 +64,7 @@ public abstract class BaseMailbox implements Mailbox {
 			setAccount(account);
 
 			synchronize();
-		
+
 			return account;
 		}
 	}

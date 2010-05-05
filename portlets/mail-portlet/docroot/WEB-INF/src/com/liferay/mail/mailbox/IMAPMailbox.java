@@ -347,7 +347,7 @@ public class IMAPMailbox extends BaseMailbox {
 		long inboxFolderId = account.getInboxFolderId();
 		long sentFolderId = account.getSentFolderId();
 		long trashFolderId = account.getTrashFolderId();
-		
+
 		for (javax.mail.Folder imapFolder : imapFolders) {
 			Folder folder;
 
