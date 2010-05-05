@@ -66,6 +66,9 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		else if (tabs2.equals("email-from")) {
 			updateEmailFrom(actionRequest, preferences);
 		}
+		else if (tabs2.equals("rss")) {
+			updateRSS(actionRequest, preferences);
+		}
 
 		if (SessionErrors.isEmpty(actionRequest)) {
 			preferences.store();
@@ -160,6 +163,20 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			preferences.setValue("email-from-name", emailFromName);
 			preferences.setValue("email-from-address", emailFromAddress);
 		}
+	}
+
+	protected void updateRSS(
+			ActionRequest actionRequest, PortletPreferences preferences)
+		throws Exception {
+
+		int rssDelta = ParamUtil.getInteger(actionRequest, "rssDelta");
+		String rssDisplayStyle = ParamUtil.getString(
+			actionRequest, "rssDisplayStyle");
+		String rssFormat = ParamUtil.getString(actionRequest, "rssFormat");
+
+		preferences.setValue("rss-delta", String.valueOf(rssDelta));
+		preferences.setValue("rss-display-style", rssDisplayStyle);
+		preferences.setValue("rss-format", rssFormat);
 	}
 
 }
