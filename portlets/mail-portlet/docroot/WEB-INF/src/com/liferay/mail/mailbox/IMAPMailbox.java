@@ -332,27 +332,27 @@ public class IMAPMailbox extends BaseMailbox {
 			_log.debug("Synchronizing account");
 		}
 
-		List<javax.mail.Folder> imapFolders = _imapUtil.getFolders();
+		List<javax.mail.Folder> jxFolders = _imapUtil.getFolders();
 
 		long draftFolderId = account.getDraftFolderId();
 		long inboxFolderId = account.getInboxFolderId();
 		long sentFolderId = account.getSentFolderId();
 		long trashFolderId = account.getTrashFolderId();
 
-		for (javax.mail.Folder imapFolder : imapFolders) {
+		for (javax.mail.Folder jxFolder : jxFolders) {
 			Folder folder = null;
 
 			try {
 				folder = FolderLocalServiceUtil.getFolder(
-					account.getAccountId(), imapFolder.getFullName());
+					account.getAccountId(), jxFolder.getFullName());
 			}
 			catch (NoSuchFolderException nsfe) {
 				folder = FolderLocalServiceUtil.addFolder(
 					user.getUserId(), account.getAccountId(),
-					imapFolder.getFullName(), imapFolder.getName(), 0);
+					jxFolder.getFullName(), jxFolder.getName(), 0);
 			}
 
-			String folderName = imapFolder.getName().toLowerCase();
+			String folderName = jxFolder.getName().toLowerCase();
 
 			if ((draftFolderId == 0) && folderName.contains("draft")) {
 				draftFolderId = folder.getFolderId();
@@ -447,13 +447,11 @@ public class IMAPMailbox extends BaseMailbox {
 		Account account = AccountLocalServiceUtil.getAccount(
 			folder.getAccountId());
 
-		if (account.getDraftFolderId() == folder.getFolderId()) {
-			_imapUtil.updateFlags(
-				folder.getFolderId(), messageIds, flag, value, false);
+		if (account.getDraftFolderId() == folderId) {
+			_imapUtil.updateFlags(folderId, messageIds, flag, value, false);
 		}
 		else {
-			_imapUtil.updateFlags(
-				folder.getFolderId(), messageIds, flag, value, true);
+			_imapUtil.updateFlags(folderId, messageIds, flag, value, true);
 		}
 	}
 
