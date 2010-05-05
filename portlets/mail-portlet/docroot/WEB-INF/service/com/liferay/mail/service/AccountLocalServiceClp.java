@@ -450,7 +450,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		int incomingPort, boolean incomingSecure,
 		java.lang.String outgoingHostName, int outgoingPort,
 		boolean outgoingSecure, java.lang.String login,
-		java.lang.String unencryptedPassword, boolean savePassword,
+		java.lang.String password, boolean savePassword,
 		java.lang.String signature, boolean useSignature,
 		java.lang.String folderPrefix, long inboxFolderId, long draftFolderId,
 		long sentFolderId, long trashFolderId, boolean defaultSender)
@@ -502,9 +502,9 @@ public class AccountLocalServiceClp implements AccountLocalService {
 			paramObj10 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj11 = ClpSerializer.translateInput(unencryptedPassword);
+		Object paramObj11 = ClpSerializer.translateInput(password);
 
-		if (unencryptedPassword == null) {
+		if (password == null) {
 			paramObj11 = new NullWrapper("java.lang.String");
 		}
 
@@ -662,94 +662,42 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	}
 
 	public com.liferay.mail.model.Account updateAccount(long accountId,
-		java.lang.String address, java.lang.String personalName,
-		java.lang.String protocol, java.lang.String incomingHostName,
-		int incomingPort, boolean incomingSecure,
-		java.lang.String outgoingHostName, int outgoingPort,
-		boolean outgoingSecure, java.lang.String login,
-		java.lang.String password, boolean savePassword,
-		java.lang.String signature, boolean useSignature, long inboxFolderId,
-		long draftFolderId, long sentFolderId, long trashFolderId,
+		java.lang.String personalName, java.lang.String password,
+		boolean savePassword, java.lang.String signature, boolean useSignature,
 		java.lang.String folderPrefix, boolean defaultSender)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(accountId);
 
-		Object paramObj1 = ClpSerializer.translateInput(address);
+		Object paramObj1 = ClpSerializer.translateInput(personalName);
 
-		if (address == null) {
+		if (personalName == null) {
 			paramObj1 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj2 = ClpSerializer.translateInput(personalName);
+		Object paramObj2 = ClpSerializer.translateInput(password);
 
-		if (personalName == null) {
+		if (password == null) {
 			paramObj2 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj3 = ClpSerializer.translateInput(protocol);
+		Object paramObj3 = new BooleanWrapper(savePassword);
 
-		if (protocol == null) {
-			paramObj3 = new NullWrapper("java.lang.String");
-		}
+		Object paramObj4 = ClpSerializer.translateInput(signature);
 
-		Object paramObj4 = ClpSerializer.translateInput(incomingHostName);
-
-		if (incomingHostName == null) {
+		if (signature == null) {
 			paramObj4 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj5 = new IntegerWrapper(incomingPort);
+		Object paramObj5 = new BooleanWrapper(useSignature);
 
-		Object paramObj6 = new BooleanWrapper(incomingSecure);
-
-		Object paramObj7 = ClpSerializer.translateInput(outgoingHostName);
-
-		if (outgoingHostName == null) {
-			paramObj7 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj8 = new IntegerWrapper(outgoingPort);
-
-		Object paramObj9 = new BooleanWrapper(outgoingSecure);
-
-		Object paramObj10 = ClpSerializer.translateInput(login);
-
-		if (login == null) {
-			paramObj10 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj11 = ClpSerializer.translateInput(password);
-
-		if (password == null) {
-			paramObj11 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj12 = new BooleanWrapper(savePassword);
-
-		Object paramObj13 = ClpSerializer.translateInput(signature);
-
-		if (signature == null) {
-			paramObj13 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj14 = new BooleanWrapper(useSignature);
-
-		Object paramObj15 = new LongWrapper(inboxFolderId);
-
-		Object paramObj16 = new LongWrapper(draftFolderId);
-
-		Object paramObj17 = new LongWrapper(sentFolderId);
-
-		Object paramObj18 = new LongWrapper(trashFolderId);
-
-		Object paramObj19 = ClpSerializer.translateInput(folderPrefix);
+		Object paramObj6 = ClpSerializer.translateInput(folderPrefix);
 
 		if (folderPrefix == null) {
-			paramObj19 = new NullWrapper("java.lang.String");
+			paramObj6 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj20 = new BooleanWrapper(defaultSender);
+		Object paramObj7 = new BooleanWrapper(defaultSender);
 
 		Object returnObj = null;
 
@@ -757,10 +705,51 @@ public class AccountLocalServiceClp implements AccountLocalService {
 			returnObj = _classLoaderProxy.invoke("updateAccount",
 					new Object[] {
 						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
-						paramObj10, paramObj11, paramObj12, paramObj13,
-						paramObj14, paramObj15, paramObj16, paramObj17,
-						paramObj18, paramObj19, paramObj20
+						paramObj5, paramObj6, paramObj7
+					});
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.mail.model.Account)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.mail.model.Account updateFolders(long accountId,
+		long inboxFolderId, long draftFolderId, long sentFolderId,
+		long trashFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(accountId);
+
+		Object paramObj1 = new LongWrapper(inboxFolderId);
+
+		Object paramObj2 = new LongWrapper(draftFolderId);
+
+		Object paramObj3 = new LongWrapper(sentFolderId);
+
+		Object paramObj4 = new LongWrapper(trashFolderId);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateFolders",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
 					});
 		}
 		catch (Throwable t) {
