@@ -45,7 +45,7 @@ public abstract class BaseMailbox implements Mailbox {
 		try {
 			AccountLocalServiceUtil.getAccount(user.getUserId(), address);
 
-			throw new MailException("Address already exists");
+			throw new MailException(MailException.ACCOUNT_ALREADY_EXISTS);
 		}
 		catch (NoSuchAccountException nsae) {
 			long inboxFolderId = 0;

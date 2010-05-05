@@ -12,9 +12,7 @@
  * details.
  */
 
-package com.liferay.mail;
-
-import com.liferay.mail.model.Message;
+package com.liferay.mail.model;
 
 import java.util.List;
 

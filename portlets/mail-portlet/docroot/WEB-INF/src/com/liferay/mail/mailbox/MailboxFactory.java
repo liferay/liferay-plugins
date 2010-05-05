@@ -26,6 +26,4 @@ public interface MailboxFactory {
 
 	public Mailbox getMailbox(User user, Account account);
 
-	public Mailbox getMailbox(User user, String protocol);
-
 }

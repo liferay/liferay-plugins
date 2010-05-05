@@ -167,7 +167,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		return account;
 	}
 
-	public Account updateAccountFolders(
+	public Account updateFolders(
 			long accountId, long inboxFolderId, long draftFolderId,
 			long sentFolderId, long trashFolderId)
 		throws PortalException, SystemException {

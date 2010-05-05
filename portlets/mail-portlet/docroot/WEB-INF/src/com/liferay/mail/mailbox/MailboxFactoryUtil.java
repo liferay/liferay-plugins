@@ -47,20 +47,6 @@ public class MailboxFactoryUtil {
 		return mailboxFactory.getMailbox(user, account);
 	}
 
-	public static Mailbox getMailbox(long userId, String protocol)
-		throws PortalException, SystemException {
-
-		User user = UserLocalServiceUtil.getUser(userId);
-
-		MailboxFactory mailboxFactory = _mailboxFactories.get(protocol);
-
-		if (mailboxFactory == null) {
-			throw new IllegalArgumentException("Invalid protocol " + protocol);
-		}
-
-		return mailboxFactory.getMailbox(user, protocol);
-	}
-
 	public void setMailboxFactories(
 		Map<String, MailboxFactory> mailboxFactories) {
 

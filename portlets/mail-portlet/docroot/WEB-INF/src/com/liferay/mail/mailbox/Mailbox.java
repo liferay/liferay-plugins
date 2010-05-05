@@ -14,11 +14,11 @@
 
 package com.liferay.mail.mailbox;
 
-import com.liferay.mail.MailFile;
-import com.liferay.mail.MessagesDisplay;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Folder;
+import com.liferay.mail.model.MailFile;
 import com.liferay.mail.model.Message;
+import com.liferay.mail.model.MessagesDisplay;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
@@ -48,6 +48,8 @@ public interface Mailbox {
 
 	public Folder addFolder(String displayName)
 		throws PortalException, SystemException;
+
+	public void afterPropertiesSet();
 
 	public void deleteAccount() throws PortalException, SystemException;
 
@@ -81,10 +83,10 @@ public interface Mailbox {
 		throws PortalException, SystemException;
 
 	public InternetAddress[] parseAddresses(String addresses)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void renameFolder(long folderId, String displayName)
-	throws PortalException, SystemException;
+		throws PortalException, SystemException;
 
 	public Message saveDraft(
 			long accountId, long messageId, String to, String cc, String bcc,

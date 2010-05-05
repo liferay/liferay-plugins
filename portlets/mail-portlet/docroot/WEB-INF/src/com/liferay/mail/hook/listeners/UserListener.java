@@ -29,7 +29,6 @@ import java.util.List;
  * <a href="UserListener.java.html"><b><i>View Source</i></b></a>
  *
  * @author Scott Lee
- *
  */
 public class UserListener extends BaseModelListener {
 
@@ -37,8 +36,7 @@ public class UserListener extends BaseModelListener {
 		try {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Removing message accounts for user " +
-						user.getUserId());
+					"Removing message accounts for user " + user.getUserId());
 			}
 
 			List<Account> accounts = AccountLocalServiceUtil.getAccounts(

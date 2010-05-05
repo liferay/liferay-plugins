@@ -30,13 +30,7 @@ public class IMAPMailboxFactory implements MailboxFactory {
 		mailbox.setAccount(account);
 		mailbox.setUser(user);
 
-		return mailbox;
-	}
-
-	public Mailbox getMailbox(User user, String protocol) {
-		Mailbox mailbox = new IMAPMailbox();
-
-		mailbox.setUser(user);
+		mailbox.afterPropertiesSet();
 
 		return mailbox;
 	}

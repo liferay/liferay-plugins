@@ -14,6 +14,7 @@
 
 package com.liferay.mail.service.impl;
 
+import com.liferay.mail.NoSuchMessageException;
 import com.liferay.mail.model.Attachment;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
@@ -34,7 +35,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -77,7 +77,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setPreview(getPreview(body));
 		message.setBody(getBody(body));
 		message.setFlags(flags);
-		message.setSize(getMessageSize(messageId, body));
+		message.setSize(getSize(messageId, body));
 		message.setRemoteMessageId(remoteMessageId);
 
 		messagePersistence.update(message, false);
@@ -139,7 +139,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 				RestrictionsFactoryUtil.like(
 					"flags", "%" + MailConstants.FLAG_SEEN + ",%")));
 
-		return dynamicQueryCount(dynamicQuery);
+		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
 	public List<Message> getCompanyMessages(long companyId, int start, int end)
@@ -174,7 +174,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 				RestrictionsFactoryUtil.like(
 					"flags", "%" + MailConstants.FLAG_SEEN + ",%")));
 
-		return dynamicQueryCount(dynamicQuery);
+		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
 	public Message getMessage(long folderId, long remoteMessageId)
@@ -184,7 +184,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 	}
 
 	public Message getRemoteMessage(long folderId, boolean oldest)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			Message.class, PortletClassLoaderUtil.getClassLoader());
@@ -200,16 +200,14 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 			dynamicQuery.addOrder(OrderFactoryUtil.desc("remoteMessageId"));
 		}
 
-		List<Object> results = messagePersistence.findWithDynamicQuery(
+		List<Message> messages = messagePersistence.findWithDynamicQuery(
 			dynamicQuery, 0, 1);
 
-		if (results.size() > 0) {
-			List<Message> messages = toMessages(results);
-
-			return messages.get(0);
+		if (messages.isEmpty()) {
+			throw new NoSuchMessageException();
 		}
 
-		return null;
+		return messages.get(0);
 	}
 
 	public int populateMessages(
@@ -244,14 +242,27 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		int start = messagesPerPage * (pageNumber - 1);
 		int end = messagesPerPage * pageNumber;
 
-		List<Object> results = messagePersistence.findWithDynamicQuery(
-			dynamicQuery, start, end);
+		messages.addAll(
+			messagePersistence.findWithDynamicQuery(dynamicQuery, start, end));
 
-		for (Object result : results) {
-			messages.add((Message)result);
-		}
+		return (int)dynamicQueryCount(dynamicQuery);
+	}
 
-		return dynamicQueryCount(dynamicQuery);
+	public Message updateContent(
+			long messageId, String body, String flags)
+		throws PortalException, SystemException {
+
+		Message message = messagePersistence.findByPrimaryKey(messageId);
+
+		message.setModifiedDate(new Date());
+		message.setPreview(getPreview(body));
+		message.setBody(getBody(body));
+		message.setFlags(flags);
+		message.setSize(getSize(messageId, body));
+
+		messagePersistence.update(message, false);
+
+		return message;
 	}
 
 	public Message updateFlag(long messageId, int flag, boolean value)
@@ -294,7 +305,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setPreview(getPreview(body));
 		message.setBody(getBody(body));
 		message.setFlags(flags);
-		message.setSize(getMessageSize(messageId, body));
+		message.setSize(getSize(messageId, body));
 		message.setRemoteMessageId(remoteMessageId);
 
 		messagePersistence.update(message, false);
@@ -308,23 +319,6 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		return message;
 	}
 
-	public Message updateMessageContent(
-			long messageId, String body, String flags)
-		throws PortalException, SystemException {
-
-		Message message = messagePersistence.findByPrimaryKey(messageId);
-
-		message.setModifiedDate(new Date());
-		message.setPreview(getPreview(body));
-		message.setBody(getBody(body));
-		message.setFlags(flags);
-		message.setSize(getMessageSize(messageId, body));
-
-		messagePersistence.update(message, false);
-
-		return message;
-	}
-
 	protected String getBody(String body) {
 		if (Validator.isNull(body)) {
 			return body;
@@ -333,7 +327,15 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		return HtmlContentUtil.getInlineHtml(body);
 	}
 
-	protected long getMessageSize(long messageId, String body)
+	protected String getPreview(String body) {
+		if (Validator.isNull(body)) {
+			return body;
+		}
+
+		return StringUtil.shorten(HtmlContentUtil.getPlainText(body), 50);
+	}
+
+	protected long getSize(long messageId, String body)
 		throws SystemException {
 
 		if (Validator.isNull(body)) {
@@ -350,24 +352,6 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		}
 
 		return size;
-	}
-
-	protected String getPreview(String body) {
-		if (Validator.isNull(body)) {
-			return body;
-		}
-
-		return StringUtil.shorten(HtmlContentUtil.getPlainText(body), 50);
-	}
-
-	protected List<Message> toMessages(List<Object> results) {
-		List<Message> messages = new ArrayList<Message>(results.size());
-
-		for (Object result : results) {
-			messages.add((Message)result);
-		}
-
-		return messages;
 	}
 
 }

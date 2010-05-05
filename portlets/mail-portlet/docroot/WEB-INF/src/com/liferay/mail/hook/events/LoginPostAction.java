@@ -14,8 +14,8 @@
 
 package com.liferay.mail.hook.events;
 
-import com.liferay.mail.MailManager;
 import com.liferay.mail.model.Account;
+import com.liferay.mail.util.MailManager;
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -30,7 +30,6 @@ import javax.servlet.http.HttpServletResponse;
  * <a href="LoginPostAction.java.html"><b><i>View Source</i></b></a>
  *
  * @author Scott Lee
- *
  */
 public class LoginPostAction extends Action {
 
