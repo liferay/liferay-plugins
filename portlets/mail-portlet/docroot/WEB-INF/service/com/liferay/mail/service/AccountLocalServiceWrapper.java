@@ -58,19 +58,22 @@ public class AccountLocalServiceWrapper implements AccountLocalService {
 		_accountLocalService.deleteAccount(account);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	@SuppressWarnings("unchecked")
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _accountLocalService.dynamicQuery(dynamicQuery);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	@SuppressWarnings("unchecked")
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _accountLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	@SuppressWarnings("unchecked")
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -79,7 +82,7 @@ public class AccountLocalServiceWrapper implements AccountLocalService {
 			orderByComparator);
 	}
 
-	public int dynamicQueryCount(
+	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _accountLocalService.dynamicQueryCount(dynamicQuery);

@@ -71,24 +71,27 @@ public abstract class AttachmentLocalServiceBaseImpl
 		attachmentPersistence.remove(attachment);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return attachmentPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) throws SystemException {
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
+		throws SystemException {
 		return attachmentPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		return attachmentPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
 
-	public int dynamicQueryCount(DynamicQuery dynamicQuery)
+	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return attachmentPersistence.countWithDynamicQuery(dynamicQuery);
 	}

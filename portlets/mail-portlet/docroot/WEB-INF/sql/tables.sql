@@ -1,4 +1,3 @@
-
 create table Mail_Account (
 	accountId LONG not null primary key,
 	companyId LONG,

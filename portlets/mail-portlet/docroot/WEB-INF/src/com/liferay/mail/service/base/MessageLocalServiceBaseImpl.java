@@ -68,23 +68,26 @@ public abstract class MessageLocalServiceBaseImpl implements MessageLocalService
 		messagePersistence.remove(message);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return messagePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) throws SystemException {
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
+		throws SystemException {
 		return messagePersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		return messagePersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
 
-	public int dynamicQueryCount(DynamicQuery dynamicQuery)
+	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return messagePersistence.countWithDynamicQuery(dynamicQuery);
 	}

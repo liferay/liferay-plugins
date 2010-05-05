@@ -142,7 +142,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		}
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -172,10 +172,10 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -209,10 +209,10 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<Object> dynamicQuery(
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -255,10 +255,10 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int dynamicQueryCount(
+	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -288,7 +288,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			}
 		}
 
-		return ((Integer)returnObj).intValue();
+		return ((Long)returnObj).longValue();
 	}
 
 	public com.liferay.mail.model.Message getMessage(long messageId)
@@ -448,7 +448,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		long folderId, java.lang.String sender, java.lang.String to,
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
 		java.lang.String subject, java.lang.String body,
-		java.lang.String flags, long size, long remoteMessageId)
+		java.lang.String flags, long remoteMessageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
@@ -503,9 +503,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			paramObj9 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj10 = new LongWrapper(size);
-
-		Object paramObj11 = new LongWrapper(remoteMessageId);
+		Object paramObj10 = new LongWrapper(remoteMessageId);
 
 		Object returnObj = null;
 
@@ -514,7 +512,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 					new Object[] {
 						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
 						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
-						paramObj10, paramObj11
+						paramObj10
 					});
 		}
 		catch (Throwable t) {
@@ -769,6 +767,41 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		return (com.liferay.mail.model.Message)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.mail.model.Message getRemoteMessage(long folderId,
+		boolean oldest)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(folderId);
+
+		Object paramObj1 = new BooleanWrapper(oldest);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getRemoteMessage",
+					new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.mail.model.Message)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public int populateMessages(
 		java.util.List<com.liferay.mail.model.Message> messages, long folderId,
 		java.lang.String keywords, int pageNumber, int messagesPerPage,
@@ -830,6 +863,51 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	public com.liferay.mail.model.Message updateContent(long messageId,
+		java.lang.String body, java.lang.String flags)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(messageId);
+
+		Object paramObj1 = ClpSerializer.translateInput(body);
+
+		if (body == null) {
+			paramObj1 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj2 = ClpSerializer.translateInput(flags);
+
+		if (flags == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateContent",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.mail.model.Message)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.mail.model.Message updateFlag(long messageId, int flag,
 		boolean value)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -871,7 +949,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		long folderId, java.lang.String sender, java.lang.String to,
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
 		java.lang.String subject, java.lang.String body,
-		java.lang.String flags, long size, long remoteMessageId)
+		java.lang.String flags, long remoteMessageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(messageId);
@@ -926,9 +1004,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			paramObj9 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj10 = new LongWrapper(size);
-
-		Object paramObj11 = new LongWrapper(remoteMessageId);
+		Object paramObj10 = new LongWrapper(remoteMessageId);
 
 		Object returnObj = null;
 
@@ -937,43 +1013,8 @@ public class MessageLocalServiceClp implements MessageLocalService {
 					new Object[] {
 						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
 						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
-						paramObj10, paramObj11
+						paramObj10
 					});
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.mail.model.Message)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public com.liferay.mail.model.Message updateMessageSize(long messageId,
-		long size)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(messageId);
-
-		Object paramObj1 = new LongWrapper(size);
-
-		Object returnObj = null;
-
-		try {
-			returnObj = _classLoaderProxy.invoke("updateMessageSize",
-					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {

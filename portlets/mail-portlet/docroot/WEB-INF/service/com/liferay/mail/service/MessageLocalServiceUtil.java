@@ -60,19 +60,22 @@ public class MessageLocalServiceUtil {
 		getService().deleteMessage(message);
 	}
 
-	public static java.util.List<Object> dynamicQuery(
+	@SuppressWarnings("unchecked")
+	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
-	public static java.util.List<Object> dynamicQuery(
+	@SuppressWarnings("unchecked")
+	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
-	public static java.util.List<Object> dynamicQuery(
+	@SuppressWarnings("unchecked")
+	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -81,7 +84,7 @@ public class MessageLocalServiceUtil {
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
-	public static int dynamicQueryCount(
+	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQueryCount(dynamicQuery);
@@ -120,12 +123,12 @@ public class MessageLocalServiceUtil {
 		long folderId, java.lang.String sender, java.lang.String to,
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
 		java.lang.String subject, java.lang.String body,
-		java.lang.String flags, long size, long remoteMessageId)
+		java.lang.String flags, long remoteMessageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addMessage(userId, folderId, sender, to, cc, bcc, sentDate,
-			subject, body, flags, size, remoteMessageId);
+			subject, body, flags, remoteMessageId);
 	}
 
 	public static void deleteMessages(long folderId)
@@ -173,6 +176,13 @@ public class MessageLocalServiceUtil {
 		return getService().getMessage(folderId, remoteMessageId);
 	}
 
+	public static com.liferay.mail.model.Message getRemoteMessage(
+		long folderId, boolean oldest)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getRemoteMessage(folderId, oldest);
+	}
+
 	public static int populateMessages(
 		java.util.List<com.liferay.mail.model.Message> messages, long folderId,
 		java.lang.String keywords, int pageNumber, int messagesPerPage,
@@ -181,6 +191,13 @@ public class MessageLocalServiceUtil {
 		return getService()
 				   .populateMessages(messages, folderId, keywords, pageNumber,
 			messagesPerPage, orderByField, orderByType);
+	}
+
+	public static com.liferay.mail.model.Message updateContent(long messageId,
+		java.lang.String body, java.lang.String flags)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().updateContent(messageId, body, flags);
 	}
 
 	public static com.liferay.mail.model.Message updateFlag(long messageId,
@@ -194,19 +211,12 @@ public class MessageLocalServiceUtil {
 		long folderId, java.lang.String sender, java.lang.String to,
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
 		java.lang.String subject, java.lang.String body,
-		java.lang.String flags, long size, long remoteMessageId)
+		java.lang.String flags, long remoteMessageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateMessage(messageId, folderId, sender, to, cc, bcc,
-			sentDate, subject, body, flags, size, remoteMessageId);
-	}
-
-	public static com.liferay.mail.model.Message updateMessageSize(
-		long messageId, long size)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().updateMessageSize(messageId, size);
+			sentDate, subject, body, flags, remoteMessageId);
 	}
 
 	public static void clearService() {
