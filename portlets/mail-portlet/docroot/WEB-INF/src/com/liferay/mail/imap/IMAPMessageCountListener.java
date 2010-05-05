@@ -39,30 +39,30 @@ public class IMAPMessageCountListener implements MessageCountListener {
 
 	public IMAPMessageCountListener(User user, Account account) {
 		_account = account;
-		_imapUtil = new IMAPUtil(user, account);
+		_imapAccessor = new IMAPAccessor(user, account);
 	}
 
 	public void messagesAdded(MessageCountEvent messageCountEvent) {
-		Message[] messages = messageCountEvent.getMessages();
+		Message[] jxMessages = messageCountEvent.getMessages();
 
 		IMAPFolder imapFolder = null;
 
 		try {
-			imapFolder = _imapUtil.openFolder(
-				(IMAPFolder)messages[0].getFolder());
+			imapFolder = _imapAccessor.openFolder(
+				(IMAPFolder)jxMessages[0].getFolder());
 
-			Folder localFolder = FolderLocalServiceUtil.getFolder(
+			Folder folder = FolderLocalServiceUtil.getFolder(
 				_account.getAccountId(), imapFolder.getFullName());
 
-			_imapUtil.storeEnvelopes(
-				localFolder.getFolderId(), imapFolder, messages);
+			_imapAccessor.storeEnvelopes(
+				folder.getFolderId(), imapFolder, jxMessages);
 		}
 		catch (Exception e) {
 			_log.error("Unable to add messages", e);
 		}
 		finally {
 			try {
-				_imapUtil.closeFolder(imapFolder, false);
+				_imapAccessor.closeFolder(imapFolder, false);
 			}
 			catch (MailException me) {
 				_log.error(me, me);
@@ -71,26 +71,26 @@ public class IMAPMessageCountListener implements MessageCountListener {
 	}
 
 	public void messagesRemoved(MessageCountEvent messageCountEvent) {
-		Message[] messages = messageCountEvent.getMessages();
+		Message[] jxMessages = messageCountEvent.getMessages();
 
 		IMAPFolder imapFolder = null;
 
 		try {
-			imapFolder = _imapUtil.openFolder(
-				(IMAPFolder)messages[0].getFolder());
+			imapFolder = _imapAccessor.openFolder(
+				(IMAPFolder)jxMessages[0].getFolder());
 
-			Folder localFolder = FolderLocalServiceUtil.getFolder(
+			Folder folder = FolderLocalServiceUtil.getFolder(
 				_account.getAccountId(), imapFolder.getFullName());
 
-			long[] messageIds = _imapUtil.getMessageUIDs(imapFolder, messages);
+			long[] remoteMessageIds = _imapAccessor.getMessageUIDs(
+				imapFolder, jxMessages);
 
-			for (long messageId : messageIds) {
-				com.liferay.mail.model.Message localMessage =
+			for (long remoteMessageId : remoteMessageIds) {
+				com.liferay.mail.model.Message message =
 					MessageLocalServiceUtil.getMessage(
-						localFolder.getFolderId(), messageId);
+						folder.getFolderId(), remoteMessageId);
 
-				MessageLocalServiceUtil.deleteMessage(
-					localMessage.getMessageId());
+				MessageLocalServiceUtil.deleteMessage(message.getMessageId());
 			}
 		}
 		catch (Exception e) {
@@ -98,7 +98,7 @@ public class IMAPMessageCountListener implements MessageCountListener {
 		}
 		finally {
 			try {
-				_imapUtil.closeFolder(imapFolder, false);
+				_imapAccessor.closeFolder(imapFolder, false);
 			}
 			catch (MailException me) {
 				_log.error(me);
@@ -110,6 +110,6 @@ public class IMAPMessageCountListener implements MessageCountListener {
 		IMAPMessageCountListener.class);
 
 	private Account _account;
-	private IMAPUtil _imapUtil;
+	private IMAPAccessor _imapAccessor;
 
 }

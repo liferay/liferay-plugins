@@ -17,8 +17,8 @@ package com.liferay.mail.mailbox;
 import com.liferay.mail.MailException;
 import com.liferay.mail.NoSuchFolderException;
 import com.liferay.mail.NoSuchMessageException;
+import com.liferay.mail.imap.IMAPAccessor;
 import com.liferay.mail.imap.IMAPConnection;
-import com.liferay.mail.imap.IMAPUtil;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Attachment;
 import com.liferay.mail.model.Folder;
@@ -60,14 +60,14 @@ public class IMAPMailbox extends BaseMailbox {
 	public Folder addFolder(String displayName)
 		throws PortalException, SystemException {
 
-		String[] names = _imapUtil.addFolder(displayName);
+		String[] names = _imapAccessor.addFolder(displayName);
 
 		return FolderLocalServiceUtil.addFolder(
 			user.getUserId(), account.getAccountId(), names[0], names[1], 0);
 	}
 
 	public void afterPropertiesSet() {
-		_imapUtil = new IMAPUtil(user, account);
+		_imapAccessor = new IMAPAccessor(user, account);
 	}
 
 	public void deleteAttachment(long attachmentId)
@@ -87,7 +87,7 @@ public class IMAPMailbox extends BaseMailbox {
 			throw new MailException(MailException.FOLDER_REQUIRED);
 		}
 
-		_imapUtil.deleteFolder(folderId);
+		_imapAccessor.deleteFolder(folderId);
 
 		FolderLocalServiceUtil.deleteFolder(folderId);
 	}
@@ -101,11 +101,11 @@ public class IMAPMailbox extends BaseMailbox {
 			Folder trashFolder = FolderLocalServiceUtil.getFolder(
 				account.getTrashFolderId());
 
-			_imapUtil.moveMessages(
+			_imapAccessor.moveMessages(
 				folderId, trashFolder.getFolderId(), messageIds, true);
 		}
 		else {
-			_imapUtil.deleteMessages(folderId, messageIds);
+			_imapAccessor.deleteMessages(folderId, messageIds);
 		}
 	}
 
@@ -123,7 +123,7 @@ public class IMAPMailbox extends BaseMailbox {
 				attachmentId);
 		}
 		else {
-			return _imapUtil.getAttachment(
+			return _imapAccessor.getAttachment(
 				attachment.getFolderId(), message.getRemoteMessageId(),
 				attachment.getContentPath());
 		}
@@ -199,7 +199,7 @@ public class IMAPMailbox extends BaseMailbox {
 					MailException.FOLDER_INVALID_DESTINATION);
 			}
 
-			_imapUtil.moveMessages(
+			_imapAccessor.moveMessages(
 				sourceFolderId, folderId, new long[] {messageId}, true);
 		}
 	}
@@ -241,7 +241,7 @@ public class IMAPMailbox extends BaseMailbox {
 
 		Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
-		String[] names = _imapUtil.renameFolder(folderId, displayName);
+		String[] names = _imapAccessor.renameFolder(folderId, displayName);
 
 		FolderLocalServiceUtil.updateFolder(
 			folderId, names[0], names[1], folder.getRemoteMessageCount());
@@ -321,7 +321,7 @@ public class IMAPMailbox extends BaseMailbox {
 			mailFiles.add(mailFile);
 		}
 
-		_imapUtil.sendMessage(
+		_imapAccessor.sendMessage(
 			account.getPersonalName(), account.getAddress(), toAddresses,
 			ccAddresses, bccAddresses, message.getSubject(), message.getBody(),
 			mailFiles);
@@ -332,7 +332,7 @@ public class IMAPMailbox extends BaseMailbox {
 			_log.debug("Synchronizing account");
 		}
 
-		List<javax.mail.Folder> jxFolders = _imapUtil.getFolders();
+		List<javax.mail.Folder> jxFolders = _imapAccessor.getFolders();
 
 		long draftFolderId = account.getDraftFolderId();
 		long inboxFolderId = account.getInboxFolderId();
@@ -391,7 +391,7 @@ public class IMAPMailbox extends BaseMailbox {
 			_log.debug("Synchronizing folder " + folderId);
 		}
 
-		_imapUtil.storeEnvelopes(folderId);
+		_imapAccessor.storeEnvelopes(folderId);
 	}
 
 	public void synchronizeMessage(long messageId)
@@ -406,7 +406,7 @@ public class IMAPMailbox extends BaseMailbox {
 		}
 
 		try {
-			_imapUtil.storeMessages(
+			_imapAccessor.storeMessages(
 				message.getFolderId(),
 				new long[] {message.getRemoteMessageId()});
 		}
@@ -419,7 +419,7 @@ public class IMAPMailbox extends BaseMailbox {
 			long folderId, int pageNumber, int messagesPerPage)
 		throws PortalException, SystemException {
 
-		long[] remoteMessageIds = _imapUtil.getMessageUIDs(
+		long[] remoteMessageIds = _imapAccessor.getMessageUIDs(
 			folderId, pageNumber, messagesPerPage);
 
 		List<Long> missingRemoteMessageIds = new ArrayList<Long>();
@@ -434,7 +434,7 @@ public class IMAPMailbox extends BaseMailbox {
 		}
 
 		if (!missingRemoteMessageIds.isEmpty()) {
-			//_imapUtil.storeEnvelopes(folderId, remoteMessageIds);
+			//_imapAccessor.storeEnvelopes(folderId, remoteMessageIds);
 		}
 	}
 
@@ -448,10 +448,10 @@ public class IMAPMailbox extends BaseMailbox {
 			folder.getAccountId());
 
 		if (account.getDraftFolderId() == folderId) {
-			_imapUtil.updateFlags(folderId, messageIds, flag, value, false);
+			_imapAccessor.updateFlags(folderId, messageIds, flag, value, false);
 		}
 		else {
-			_imapUtil.updateFlags(folderId, messageIds, flag, value, true);
+			_imapAccessor.updateFlags(folderId, messageIds, flag, value, true);
 		}
 	}
 
@@ -470,6 +470,6 @@ public class IMAPMailbox extends BaseMailbox {
 
 	private static Log _log = LogFactoryUtil.getLog(IMAPMailbox.class);
 
-	private IMAPUtil _imapUtil;
+	private IMAPAccessor _imapAccessor;
 
 }

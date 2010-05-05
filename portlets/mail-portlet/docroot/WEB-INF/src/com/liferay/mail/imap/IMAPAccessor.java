@@ -74,13 +74,13 @@ import javax.mail.internet.MimeMultipart;
 import org.apache.commons.lang.time.StopWatch;
 
 /**
- * <a href="IMAPUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="IMAPAccessor.java.html"><b><i>View Source</i></b></a>
  *
  * @author Scott Lee
  */
-public class IMAPUtil {
+public class IMAPAccessor {
 
-	public IMAPUtil(User user, Account account) {
+	public IMAPAccessor(User user, Account account) {
 		_user = user;
 		_account = account;
 		_imapConnection = new IMAPConnection(account);
@@ -772,7 +772,8 @@ public class IMAPUtil {
 				}
 			}
 			catch (MessagingException me) {
-				_log.error("Unable to get folder " + jxFolder.getFullName(), me);
+				_log.error(
+					"Unable to get folder " + jxFolder.getFullName(), me);
 			}
 		}
 	}
@@ -999,7 +1000,7 @@ public class IMAPUtil {
 		return openFolder(getFolder(folderId));
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(IMAPUtil.class);
+	private static Log _log = LogFactoryUtil.getLog(IMAPAccessor.class);
 
 	private Account _account;
 	private IMAPConnection _imapConnection;
