@@ -16,7 +16,6 @@ package com.liferay.mail.imap;
 
 import com.liferay.mail.MailException;
 import com.liferay.mail.MailFile;
-import com.liferay.mail.NoSuchMessageException;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.service.AttachmentLocalServiceUtil;
 import com.liferay.mail.service.FolderLocalServiceUtil;
@@ -787,11 +786,10 @@ public class IMAPUtil {
 
 		com.liferay.mail.model.Message storedMessage = null;
 
-		try {
-			storedMessage = MessageLocalServiceUtil.getRemoteMessage(
-				storedFolderId, oldest);
-		}
-		catch (NoSuchMessageException nsme) {
+		storedMessage = MessageLocalServiceUtil.getRemoteMessage(
+			storedFolderId, oldest);
+
+		if (storedMessage == null) {
 			return null;
 		}
 
