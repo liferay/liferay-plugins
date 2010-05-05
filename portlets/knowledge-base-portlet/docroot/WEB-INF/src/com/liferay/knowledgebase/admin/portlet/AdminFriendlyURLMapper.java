@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.Validator;
 import java.util.Map;
 
 import javax.portlet.PortletMode;
+import javax.portlet.ResourceURL;
 import javax.portlet.WindowState;
 
 /**
@@ -37,26 +38,35 @@ public class AdminFriendlyURLMapper extends BaseFriendlyURLMapper {
 	public String buildPath(LiferayPortletURL portletURL) {
 		String friendlyURLPath = null;
 
+		String resourceID = GetterUtil.getString(portletURL.getResourceID());
+
 		String jspPage = GetterUtil.getString(
 			portletURL.getParameter("jspPage"));
 
-		if (jspPage.equals("/admin/view_article.jsp")) {
+		if (resourceID.equals("rss")) {
+			friendlyURLPath = "/knowledge_base/rss";
+
+			portletURL.addParameterIncludedInPath("p_p_cacheability");
+			portletURL.addParameterIncludedInPath("p_p_lifecycle");
+			portletURL.addParameterIncludedInPath("p_p_resource_id");
+		}
+		else if (jspPage.equals("/admin/view_article.jsp")) {
 			String resourcePrimKey = GetterUtil.getString(
 				portletURL.getParameter("resourcePrimKey"));
 
 			friendlyURLPath = "/admin/article/" + resourcePrimKey;
 
-			portletURL.addParameterIncludedInPath("jspPage");
-			portletURL.addParameterIncludedInPath("resourcePrimKey");
-		}
-
-		if (friendlyURLPath != null) {
 			WindowState windowState = portletURL.getWindowState();
 
 			if (!Validator.equals(windowState, WindowState.NORMAL)) {
 				friendlyURLPath += StringPool.SLASH + windowState;
 			}
 
+			portletURL.addParameterIncludedInPath("jspPage");
+			portletURL.addParameterIncludedInPath("resourcePrimKey");
+		}
+
+		if (friendlyURLPath != null) {
 			portletURL.addParameterIncludedInPath("p_p_id");
 		}
 
@@ -85,7 +95,12 @@ public class AdminFriendlyURLMapper extends BaseFriendlyURLMapper {
 			return;
 		}
 
-		if (urlParams[2].equals("article")) {
+		if (urlParams[2].equals("rss")) {
+			addParam(params, "p_p_cacheability", ResourceURL.PAGE);
+			addParam(params, "p_p_lifecycle", "2");
+			addParam(params, "p_p_resource_id", "rss");
+		}
+		else if (urlParams[2].equals("article")) {
 			if (urlParams.length >= 4) {
 				addParam(params, "jspPage", "/admin/view_article.jsp");
 				addParam(params, "resourcePrimKey", urlParams[3]);
