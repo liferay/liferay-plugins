@@ -15,6 +15,8 @@
 package com.liferay.opensocial.shindig.service;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.ImageServletTokenUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -77,6 +79,10 @@ public class LiferayPersonService implements PersonService {
 			return ImmediateFuture.newInstance(people);
 		}
 		catch (Exception e) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(e, e);
+			}
+
 			throw new ProtocolException(
 				HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(),
 				e);
@@ -93,6 +99,10 @@ public class LiferayPersonService implements PersonService {
 			return ImmediateFuture.newInstance(person);
 		}
 		catch (Exception e) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(e, e);
+			}
+
 			throw new ProtocolException(
 				HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(),
 				e);
@@ -133,8 +143,8 @@ public class LiferayPersonService implements PersonService {
 				}
 			}
 			else if (groupIdType.equals(GroupId.Type.self)) {
-				person = getUserPerson(userIdString, fields, securityToken);
-	
+				person = doGetPerson(userId, fields, securityToken);
+
 				people.add(person);
 			}
 		}
@@ -158,15 +168,10 @@ public class LiferayPersonService implements PersonService {
 			person = getGroupPerson(groupId);
 		}
 		else {
-			person = getUserPerson(userIdString, fields, securityToken);
-		}
+			User user = UserLocalServiceUtil.getUserById(
+				GetterUtil.getLong(userIdString));
 
-		if (securityToken.getOwnerId().equals(person.getId())) {
-			person.setIsOwner(true);
-		}
-
-		if (securityToken.getViewerId().equals(person.getId())) {
-			person.setIsViewer(true);
+			person = getUserPerson(user, fields, securityToken);
 		}
 
 		return person;
@@ -217,7 +222,7 @@ public class LiferayPersonService implements PersonService {
 			person = new PersonImpl(groupId, name.getFormatted(), name);
 
 			List<ListField> phoneNumbers = getPhoneNumbers(
-				Organization.class.getName(), organization.getOrganizationId()); 
+				Organization.class.getName(), organization.getOrganizationId());
 
 			person.setPhoneNumbers(phoneNumbers);
 		}
@@ -243,16 +248,6 @@ public class LiferayPersonService implements PersonService {
 		}
 
 		return phoneNumbers;
-	}
-
-	protected Person getUserPerson(
-			String userId, Set<String> fields, SecurityToken securityToken)
-		throws Exception {
-
-		User user = UserLocalServiceUtil.getUserById(
-			GetterUtil.getLong(userId));
-
-		return getUserPerson(user, fields, securityToken);
 	}
 
 	protected Person getUserPerson(
@@ -338,7 +333,17 @@ public class LiferayPersonService implements PersonService {
 			person.setUtcOffset(new Long(user.getTimeZone().getRawOffset()));
 		}
 
+		if (securityToken.getOwnerId().equals(person.getId())) {
+			person.setIsOwner(true);
+		}
+
+		if (securityToken.getViewerId().equals(person.getId())) {
+			person.setIsViewer(true);
+		}
+
 		return person;
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(LiferayPersonService.class);
 
 }
