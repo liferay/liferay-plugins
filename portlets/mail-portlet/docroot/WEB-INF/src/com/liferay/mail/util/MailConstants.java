@@ -35,12 +35,12 @@ public class MailConstants {
 
 	public static final int FLAG_USER = 7;
 
-	public static final String ORDER_BY_ADDRESS = "";
+	public static final String ORDER_BY_ADDRESS = "address";
 
-	public static final String ORDER_BY_SENT_DATE = "";
+	public static final String ORDER_BY_SENT_DATE = "sentDate";
 
-	public static final String ORDER_BY_SIZE = "";
+	public static final String ORDER_BY_SIZE = "size";
 
-	public static final String ORDER_BY_SUBJECT = "";
+	public static final String ORDER_BY_SUBJECT = "subject";
 
 }
