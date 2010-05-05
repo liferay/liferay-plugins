@@ -788,7 +788,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			long scopeGroupId = PortalUtil.getScopeGroupId(
 				layout, "1_WAR_knowledgebaseportlet");
 
-			if (scopeGroupId == article.getGroupId()) {
+			if (article.getGroupId() == scopeGroupId) {
 				String namespace = PortalUtil.getPortletNamespace(
 					"1_WAR_knowledgebaseportlet");
 
@@ -805,10 +805,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 
 		if (articleURL == null) {
-
-			// Article was updated on a dynamically added portlet. See element
-			// add-default-resource in liferay-portlet.xml.
-
 			articleURL = serviceContext.getLayoutFullURL();
 		}
 
