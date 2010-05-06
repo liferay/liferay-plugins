@@ -136,7 +136,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 		}
 	}
 
-	public void deleteAttachments(long messageId)
+	public void deleteAttachments(long companyId, long messageId)
 		throws PortalException, SystemException {
 
 		// Attachments
@@ -150,14 +150,11 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 
 		// File
 
-		Message message = messagePersistence.findByPrimaryKey(messageId);
-
 		String directoryPath = getDirectoryPath(messageId);
 
 		try {
 			DLServiceUtil.deleteDirectory(
-				message.getCompanyId(), _PORTLET_ID, _REPOSITORY_ID,
-				directoryPath);
+				companyId, _PORTLET_ID, _REPOSITORY_ID, directoryPath);
 		}
 		catch (NoSuchDirectoryException nsde) {
 			if (_log.isDebugEnabled()) {

@@ -108,7 +108,8 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 
 		// Attachments
 
-		attachmentLocalService.deleteAttachments(message.getMessageId());
+		attachmentLocalService.deleteAttachments(
+			message.getCompanyId(), message.getMessageId());
 
 		// Indexer
 
