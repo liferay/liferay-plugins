@@ -91,6 +91,15 @@ public class ArticleServiceWrapper implements ArticleService {
 		return _articleService.getArticlesCount(resourcePrimKey);
 	}
 
+	public java.lang.String getArticlesRSS(long resourcePrimKey, int max,
+		java.lang.String type, double version, java.lang.String displayStyle,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getArticlesRSS(resourcePrimKey, max, type,
+			version, displayStyle, themeDisplay);
+	}
+
 	public java.util.List<com.liferay.knowledgebase.model.Article> getCompanyArticles(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -132,6 +141,15 @@ public class ArticleServiceWrapper implements ArticleService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleService.getGroupArticlesCount(groupId,
 			parentResourcePrimKey);
+	}
+
+	public java.lang.String getGroupArticlesRSS(int max, java.lang.String type,
+		double version, java.lang.String displayStyle,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getGroupArticlesRSS(max, type, version,
+			displayStyle, themeDisplay);
 	}
 
 	public com.liferay.knowledgebase.model.Article getLatestArticle(

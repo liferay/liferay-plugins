@@ -88,6 +88,13 @@ public interface ArticleService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.lang.String getArticlesRSS(long resourcePrimKey, int max,
+		java.lang.String type, double version, java.lang.String displayStyle,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.knowledgebase.model.Article> getCompanyArticles(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -119,6 +126,13 @@ public interface ArticleService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getGroupArticlesCount(long groupId, long parentResourcePrimKey)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.lang.String getGroupArticlesRSS(int max, java.lang.String type,
+		double version, java.lang.String displayStyle,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.knowledgebase.model.Article getLatestArticle(

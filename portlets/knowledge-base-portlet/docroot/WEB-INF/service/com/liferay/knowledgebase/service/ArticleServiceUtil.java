@@ -95,6 +95,17 @@ public class ArticleServiceUtil {
 		return getService().getArticlesCount(resourcePrimKey);
 	}
 
+	public static java.lang.String getArticlesRSS(long resourcePrimKey,
+		int max, java.lang.String type, double version,
+		java.lang.String displayStyle,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getArticlesRSS(resourcePrimKey, max, type, version,
+			displayStyle, themeDisplay);
+	}
+
 	public static java.util.List<com.liferay.knowledgebase.model.Article> getCompanyArticles(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -137,6 +148,16 @@ public class ArticleServiceUtil {
 		long parentResourcePrimKey)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getGroupArticlesCount(groupId, parentResourcePrimKey);
+	}
+
+	public static java.lang.String getGroupArticlesRSS(int max,
+		java.lang.String type, double version, java.lang.String displayStyle,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getGroupArticlesRSS(max, type, version, displayStyle,
+			themeDisplay);
 	}
 
 	public static com.liferay.knowledgebase.model.Article getLatestArticle(
