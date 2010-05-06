@@ -30,7 +30,7 @@ import java.util.List;
  *
  * @author Scott Lee
  */
-public class UserListener extends BaseModelListener {
+public class UserListener extends BaseModelListener<User> {
 
 	public void onAfterRemove(User user) {
 		try {

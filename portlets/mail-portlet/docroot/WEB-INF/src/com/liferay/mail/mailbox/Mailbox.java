@@ -49,8 +49,6 @@ public interface Mailbox {
 	public Folder addFolder(String displayName)
 		throws PortalException, SystemException;
 
-	public void afterPropertiesSet();
-
 	public void deleteAccount() throws PortalException, SystemException;
 
 	public void deleteAttachment(long attachmentId)

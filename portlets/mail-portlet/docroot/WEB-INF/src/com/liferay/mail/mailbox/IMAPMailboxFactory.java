@@ -25,22 +25,11 @@ import com.liferay.portal.model.User;
 public class IMAPMailboxFactory implements MailboxFactory {
 
 	public Mailbox getMailbox(User user, Account account) {
-		Mailbox mailbox = new IMAPMailbox();
-
-		mailbox.setAccount(account);
-		mailbox.setUser(user);
-
-		mailbox.afterPropertiesSet();
-
-		return mailbox;
+		return new IMAPMailbox(user, account);
 	}
 
 	public Mailbox getMailbox(User user, String protocol) {
-		Mailbox mailbox = new IMAPMailbox();
-
-		mailbox.setUser(user);
-
-		return mailbox;
+		return new IMAPMailbox(user, null);
 	}
 
 }

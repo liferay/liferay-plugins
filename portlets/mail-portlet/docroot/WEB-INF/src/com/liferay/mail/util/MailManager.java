@@ -14,10 +14,6 @@
 
 package com.liferay.mail.util;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.liferay.mail.MailException;
 import com.liferay.mail.mailbox.Mailbox;
 import com.liferay.mail.mailbox.MailboxFactoryUtil;
@@ -32,8 +28,11 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <a href="MailManager.java.html"><b><i>View Source</i></b></a>
@@ -42,14 +41,16 @@ import com.liferay.portal.util.PortalUtil;
  */
 public class MailManager {
 
-	public static MailManager getInstance(HttpServletRequest request) {
-		long userId = PortalUtil.getUserId(request);
+	public static MailManager getInstance(HttpServletRequest request)
+		throws PortalException, SystemException {
 
-		return new MailManager(userId);
+		User user = PortalUtil.getUser(request);
+
+		return new MailManager(user);
 	}
 
-	public MailManager(long userId) {
-		_userId = userId;
+	public MailManager(User user) {
+		_user = user;
 	}
 
 	public JSONObject addAccount(
@@ -62,7 +63,8 @@ public class MailManager {
 		throws PortalException, SystemException {
 
 		try {
-			Mailbox mailbox = MailboxFactoryUtil.getMailbox(_userId, protocol);
+			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
+				_user.getUserId(), protocol);
 
 			mailbox.addAccount(
 				address, personalName, protocol, incomingHostName, incomingPort,
@@ -70,53 +72,49 @@ public class MailManager {
 				login, unencryptedPassword, savePassword, signature,
 				useSignature, folderPrefix, defaultSender);
 
-			return createJSONResult(true, "account-has-been-created");
+			return createJSONResult("success", "account-has-been-created");
 		}
 		catch (MailException me) {
-			_log.error(me);
+			_log.error(me, me);
 
-			return createJSONResult(false, "unable-to-add-account");
+			return createJSONResult("failure", "unable-to-add-account");
 		}
 	}
 
 	public List<Account> getAccounts() throws SystemException {
-		return AccountLocalServiceUtil.getAccounts(_userId);
+		return AccountLocalServiceUtil.getAccounts(_user.getUserId());
 	}
 
 	public void synchronizeAccount(long accountId)
 		throws PortalException, SystemException {
 
-		Mailbox mailbox = MailboxFactoryUtil.getMailbox(_userId, accountId);
+		Mailbox mailbox = MailboxFactoryUtil.getMailbox(
+			_user.getUserId(), accountId);
 
 		mailbox.synchronize();
 	}
 
-	protected JSONObject createJSONResult(boolean success, String message)
-		throws PortalException, SystemException {
-
-		return createJSONResult(success, message, null);
+	protected JSONObject createJSONResult(String status, String message) {
+		return createJSONResult(status, message, null);
 	}
 
 	protected JSONObject createJSONResult(
-			boolean success, String message, String value)
-		throws PortalException, SystemException {
+		String status, String message, String value) {
 
-		User user = UserLocalServiceUtil.getUser(_userId);
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONObject result = JSONFactoryUtil.createJSONObject();
-
-		result.put("success", success);
-		result.put("message", LanguageUtil.get(user.getLocale(), message));
+		jsonObject.put("status", status);
+		jsonObject.put("message", LanguageUtil.get(_user.getLocale(), message));
 
 		if (Validator.isNotNull(value)) {
-			result.put("value", value);
+			jsonObject.put("value", value);
 		}
 
-		return result;
+		return jsonObject;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(MailManager.class);
 
-	private long _userId;
+	private User _user;
 
 }

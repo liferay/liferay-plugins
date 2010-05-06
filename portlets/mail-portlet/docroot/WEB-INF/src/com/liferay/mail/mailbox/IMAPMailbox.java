@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.User;
 import com.liferay.util.mail.InternetAddressUtil;
 
 import java.io.File;
@@ -57,6 +58,15 @@ import javax.mail.internet.InternetAddress;
  */
 public class IMAPMailbox extends BaseMailbox {
 
+	public IMAPMailbox(User user, Account account) {
+		setUser(user);
+		setAccount(account);
+
+		if (account != null) {
+			_imapAccessor = new IMAPAccessor(user, account);
+		}
+	}
+
 	public Folder addFolder(String displayName)
 		throws PortalException, SystemException {
 
@@ -64,10 +74,6 @@ public class IMAPMailbox extends BaseMailbox {
 
 		return FolderLocalServiceUtil.addFolder(
 			user.getUserId(), account.getAccountId(), names[0], names[1], 0);
-	}
-
-	public void afterPropertiesSet() {
-		_imapAccessor = new IMAPAccessor(user, account);
 	}
 
 	public void deleteAttachment(long attachmentId)
