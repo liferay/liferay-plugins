@@ -36,9 +36,5 @@
 		<finder name="Field2" return-type="Collection">
 			<finder-column name="field2" />
 		</finder>
-
-		<!-- References -->
-
-		<reference package-path="com.liferay.portal" entity="User" />
 	</entity>
 </service-builder>
