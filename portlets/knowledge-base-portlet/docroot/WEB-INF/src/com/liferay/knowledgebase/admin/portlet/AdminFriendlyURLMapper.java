@@ -45,7 +45,7 @@ public class AdminFriendlyURLMapper extends BaseFriendlyURLMapper {
 			portletURL.getParameter("jspPage"));
 
 		if (resourceID.equals("rss")) {
-			friendlyURLPath = "/knowledge_base/rss";
+			friendlyURLPath = "/admin/rss";
 
 			portletURL.addParameterIncludedInPath("p_p_cacheability");
 			portletURL.addParameterIncludedInPath("p_p_lifecycle");
