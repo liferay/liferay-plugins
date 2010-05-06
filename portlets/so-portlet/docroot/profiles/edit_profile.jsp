@@ -336,7 +336,7 @@
 
 <aui:script>
 	function <portlet:namespace />deleteUserPortrait(deleteUserPortraitURL) {
-		A.use(
+		AUI.use(
 			'aui-io',
 			function(A) {
 				A.io.request(

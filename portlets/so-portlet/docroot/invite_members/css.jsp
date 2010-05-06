@@ -33,7 +33,7 @@
 	position: relative;
 }
 
-.so-portlet-invite-members .uninvited{
+.so-portlet-invite-members .search{
 	background: #FFF url(<%= themeImagesPath %>/forms/input_shadow.png) no-repeat;
 	border-color: #BFBFBF #DEDEDE #DEDEDE #BFBFBF;
 	border-style: solid;
@@ -95,7 +95,7 @@
 	margin-right: 12px;
 }
 
-.so-portlet-invite-members .invited h2 span {
+.so-portlet-invite-members .user-invited h2 span {
 	color: #999;
 	font-size: .8em;
 	font-weight: normal;
@@ -105,7 +105,7 @@
 }
 
 .so-portlet-invite-members .user,
-.so-portlet-invite-members .invited-user {
+.so-portlet-invite-members .invited {
 	background: transparent url(<%= themeImagesPath %>/arrows/01_plus.png) no-repeat 0 50%;
 	border-top: 1px solid transparent;
 	border-bottom: 1px solid transparent;
@@ -115,7 +115,7 @@
 	white-space: nowrap;
 }
 
-.so-portlet-invite-members .invited .user,
+.so-portlet-invite-members .user-invited .user,
 .so-portlet-invite-members .email-invited .user {
 	background: #DFD url(<%= themeImagesPath %>/arrows/01_minus.png) no-repeat 99% 50%;
 	border-bottom: 1px solid #CCC;
@@ -126,19 +126,19 @@
 	background-color: #EEF;
 }
 
-.so-portlet-invite-members .invited .user span {
+.so-portlet-invite-members .user-invited .user span {
 	display: block;
 	clear: none;
 }
 
-.so-portlet-invite-members .invited .user .name {
+.so-portlet-invite-members .user-invited .user .name {
 	color: #555;
 	font-weight: bold;
 	float: left;
 	width: 40%;
 }
 
-.so-portlet-invite-members .invited .user .email {
+.so-portlet-invite-members .user-invited .user .email {
 	color: #000;
 	font-size: 1em;
 	width: 50%;
@@ -152,7 +152,7 @@
 	width: 40%;
 }
 
-.so-portlet-invite-members .invited-user {
+.so-portlet-invite-members .invited {
 	background: #DFD url(<%= themeImagesPath %>/arrows/01_minus.png) no-repeat 0 50%;
 	border-color: #AFA;
 }

@@ -24,17 +24,13 @@ AUI.add(
 
 					instance._profileWrapper = A.one('#so-profile-wrapper');
 
-					instance._assignEvents();
-				},
-
-				_assignEvents: function() {
-					var instance = this;
-
 					instance.after('userIDChange', instance._afterUserIDChange);
 
 					A.all('.so-portlet-members .user').on(
 						'click',
 						function(event) {
+							instance._showProfile();
+
 							instance.set('userID', event.currentTarget.getAttribute('data-userId'));
 						}
 					);
@@ -42,7 +38,7 @@ AUI.add(
 					instance._profileWrapper.delegate(
 						'click',
 						function(event) {
-							instance._loadProfileAction('user_profile');
+							instance._loadProfileAction('user_profile', false);
 						},
 						'.so-display-profile'
 					);
@@ -50,7 +46,7 @@ AUI.add(
 					instance._profileWrapper.delegate(
 						'click',
 						function(event) {
-							instance._loadProfileAction('edit_profile');
+							instance._loadProfileAction('edit_profile', true);
 						},
 						'.so-edit-profile'
 					);
@@ -58,7 +54,7 @@ AUI.add(
 					instance._profileWrapper.delegate(
 						'click',
 						function(event) {
-							instance._loadProfileAction('edit_projects');
+							instance._loadProfileAction('edit_projects', true);
 						},
 						'.so-edit-projects'
 					);
@@ -66,26 +62,40 @@ AUI.add(
 					instance._profileWrapper.delegate(
 						'click',
 						function(event) {
-							instance._loadProfileAction('edit_settings');
+							instance._loadProfileAction('edit_settings', true);
 						},
 						'.so-change-settings'
-					);
-
-					instance._profileWrapper.delegate(
-						'submit',
-						function(event) {
-							event.preventDefault();
-
-							instance._submitForm(event.currentTarget);
-						},
-						'form'
 					);
 				},
 
 				_afterUserIDChange: function(event) {
 					var instance = this;
 
-					instance._loadProfileAction('user_profile');
+					instance._loadProfileAction('user_profile', false);
+				},
+
+				_bindForm: function() {
+					var instance = this;
+
+					var form = instance._profileWrapper.one('form');
+
+					form.on(
+						'submit',
+						function(event) {
+							event.preventDefault();
+
+							var profile = instance._getProfileIO();
+
+							Liferay.fire('submitForm', {form: form});
+
+							profile.io.set('form', {id: form.getDOM()});
+							profile.io.set('uri', form.getAttribute('action'));
+
+							profile.io.start();
+
+							window.scrollTo(0,0);
+						}
+					);
 				},
 
 				_getProfileIO: function() {
@@ -107,10 +117,12 @@ AUI.add(
 					profile.io.set('uri', null);
 					profile.io.set('form', null);
 
+					profile.io.detach('success', instance._bindForm);
+
 					return profile;
 				},
 
-				_loadProfileAction: function(action) {
+				_loadProfileAction: function(action, hasForm) {
 					var instance = this;
 
 					var userId = instance.get('userID');
@@ -118,6 +130,10 @@ AUI.add(
 					instance._showProfile();
 
 					var profile = instance._getProfileIO();
+
+					if (hasForm) {
+						profile.io.on('success', instance._bindForm, instance);
+					}
 
 					profile.io.set('data', {userId: userId});
 					profile.io.set('uri', themeDisplay.getLayoutURL() + '/-/profiles/' + action);
@@ -130,28 +146,13 @@ AUI.add(
 				_showProfile: function() {
 					var instance = this;
 
-					var inviteMembers = A.one('.so-portlet-invite-members .invite-members-wrapper');
+					var inviteMembers = A.one('#so-invitemembers-wrapper');
 
 					if (inviteMembers) {
 						inviteMembers.hide();
 					}
 
 					instance._profileWrapper.show();
-				},
-
-				_submitForm: function(form) {
-					var instance = this;
-
-					var profile = instance._getProfileIO();
-
-					Liferay.fire('submitForm', {form: form});
-
-					profile.io.set('form', {id: form.getDOM()});
-					profile.io.set('uri', form.getAttribute('action'));
-
-					profile.io.start();
-
-					window.scrollTo(0,0);
 				}
 			}
 		);

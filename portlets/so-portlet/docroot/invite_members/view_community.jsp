@@ -17,35 +17,11 @@
  */
 %>
 
-<script>
-	function <portlet:namespace />selectInvitedTeam(teamId) {
-		document.<portlet:namespace />fm.<portlet:namespace />invitedTeamId.value = teamId;
-	}
+<%@ include file="/init.jsp" %>
 
-	jQuery(
-		function() {
-			var form = jQuery(document.<portlet:namespace />fm);
-
-			form.ajaxForm(
-				{
-					type: "POST",
-					beforeSubmit: function(data, form) {
-						document.getElementById('<portlet:namespace />submit').disabled = true;
-
-						Liferay.SO.InviteMembers.prepareMemberInvite(data);
-					},
-					success: function(message) {
-						jQuery('.invite-members-wrapper').parent().html(message);
-
-						jQuery('.invite-members-wrapper').show();
-
-						window.scrollTo(0,0);
-					}
-				}
-			);
-		}
-	);
-</script>
+<%
+Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
+%>
 
 <h1>
 	<liferay-ui:message key="invite-members" />
@@ -64,7 +40,7 @@
 
 	<input id="invite-user-search" name="<portlet:namespace />userName" type="text" />
 
-	<div class="uninvited">
+	<div class="search">
 		<div class="list">
 
 			<%
@@ -115,7 +91,7 @@
 </div>
 
 <div class="invited-users-wrapper">
-	<div class="invited">
+	<div class="user-invited">
 		<h2>
 			<liferay-ui:message key="members-to-invite" />
 
@@ -139,7 +115,7 @@
 		<div class="controls">
 			<input id="new-member-email-address" name="<portlet:namespace />emailAddress" size="50" type="text" />
 
-			<input id="add-email-address" type="button" value="<liferay-ui:message key="add-email-address" />" />
+			<input id="so-add-email-address" type="button" value="<liferay-ui:message key="add-email-address" />" />
 		</div>
 	</div>
 
@@ -171,8 +147,8 @@
 	</c:if>
 
 	<div class="invite-actions">
-		<form action="<portlet:actionURL name="sendInvites" />" method="post" name="<portlet:namespace />fm">
-		<input name="<portlet:namespace />redirect" type="hidden" value="<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/invite_members/view.jsp" /></portlet:renderURL>" />
+		<form id="<portlet:namespace />fm" action="<portlet:actionURL name="sendInvites" />" method="post" name="<portlet:namespace />fm">
+		<input name="<portlet:namespace />redirect" type="hidden" value="<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/invite_members/view_community.jsp" /></portlet:renderURL>" />
 		<input name="<portlet:namespace />groupId" type="hidden" value="<%= themeDisplay.getScopeGroupId() %>" />
 		<input name="<portlet:namespace />receiverUserIds" type="hidden" value="" />
 		<input name="<portlet:namespace />receiverEmailAddresses" type="hidden" value="" />
@@ -183,7 +159,3 @@
 		</form>
 	</div>
 </div>
-
-<aui:script>
-	Liferay.SO.InviteMembers.init();
-</aui:script>
