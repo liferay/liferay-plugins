@@ -34,7 +34,17 @@ catch (Exception e) {
 
 <c:choose>
 	<c:when test="<%= serviceDescription == null %>">
-		<liferay-ui:message key="not-available" />
+		<liferay-ui:icon-menu>
+			<liferay-ui:icon image="portlet" message="not-available" />
+
+			<portlet:actionURL name="deleteWSRPConsumer" var="deleteURL">
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
+			</portlet:actionURL>
+
+			<liferay-ui:icon-delete url="<%= deleteURL %>" />
+
+		</liferay-ui:icon-menu>
 	</c:when>
 	<c:otherwise>
 		<liferay-ui:icon-menu>
