@@ -132,11 +132,10 @@ AUI().add(
 										autoLoad: false,
 										form: {id: form.getDOM()},
 										method: 'POST',
+										on: {success: A.bind(instance._bindForm, instance)},
 										uri: form.getAttribute('action')
 									}
 								);
-
-								instance._inviteMembersWrapper.on('success', instance._bindForm, instance);
 							}
 
 							instance._inviteMembersWrapper.io.start();
