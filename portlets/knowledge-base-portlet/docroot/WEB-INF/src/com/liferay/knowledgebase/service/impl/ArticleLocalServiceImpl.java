@@ -549,8 +549,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		String dirName =
-			"knowledgebase/cache/attachments/" +
-				counterLocalService.increment();
+			"knowledgebase/temp/attachments/" + counterLocalService.increment();
 
 		DLServiceUtil.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
 
@@ -618,14 +617,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		String dirName =
-			"knowledgebase/cache/attachments/" +
-				counterLocalService.increment();
+			"knowledgebase/temp/attachments/" + counterLocalService.increment();
 
 		DLServiceUtil.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
 
 		String[] fileNames = DLServiceUtil.getFileNames(
 			companyId, CompanyConstants.SYSTEM,
-			"knowledgebase/cache/attachments");
+			"knowledgebase/temp/attachments");
 
 		Arrays.sort(fileNames);
 
