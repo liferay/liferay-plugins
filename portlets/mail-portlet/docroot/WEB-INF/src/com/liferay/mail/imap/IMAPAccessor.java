@@ -83,11 +83,7 @@ public class IMAPAccessor {
 	public IMAPAccessor(User user, Account account) {
 		_user = user;
 		_account = account;
-		_imapConnection = new IMAPConnection(
-			account.getIncomingHostName(), account.getIncomingPort(),
-			account.getIncomingSecure(), account.getOutgoingHostName(),
-			account.getOutgoingPort(), account.getOutgoingSecure(),
-			account.getLogin(), account.getPasswordDecrypted());
+		_imapConnection = new IMAPConnection(account);
 	}
 
 	public String[] addFolder(String displayName) throws MailException {
