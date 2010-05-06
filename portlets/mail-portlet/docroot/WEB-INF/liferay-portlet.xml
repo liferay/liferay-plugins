@@ -6,6 +6,9 @@
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<indexer-class>com.liferay.mail.util.MessageIndexer</indexer-class>
+		<friendly-url-mapper-class>com.liferay.mail.portlet.MailFriendlyURLMapper</friendly-url-mapper-class>
+		<header-portlet-css>/css.jsp</header-portlet-css>
+		<footer-portlet-javascript>/javascript.js</footer-portlet-javascript>
 		<css-class-wrapper>mail-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
