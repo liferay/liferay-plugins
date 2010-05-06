@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.util.PortletKeys;
 
 import java.util.Map;
 
@@ -114,6 +115,6 @@ public class AdminFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 	private static final String _MAPPING = "admin";
 
-	private static final String _PORTLET_ID = "1_WAR_knowledgebaseportlet";
+	private static final String _PORTLET_ID = PortletKeys.KNOWLEDGE_BASE_ADMIN;
 
 }

@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.BaseIndexer;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeIndexerUtil;
 
@@ -54,7 +55,7 @@ public class AdminIndexer extends BaseIndexer {
 
 	public static final String[] CLASS_NAMES = {Article.class.getName()};
 
-	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
+	public static final String PORTLET_ID = PortletKeys.KNOWLEDGE_BASE_ADMIN;
 
 	public String[] getClassNames() {
 		return CLASS_NAMES;

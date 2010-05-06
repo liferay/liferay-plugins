@@ -27,6 +27,7 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
@@ -64,16 +65,16 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		String link = StringPool.BLANK;
 
 		long plid = PortalUtil.getPlidFromPortletId(
-			article.getGroupId(), "1_WAR_knowledgebaseportlet");
+			article.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN);
 
 		if (plid != LayoutConstants.DEFAULT_PLID) {
 			String layoutFullURL = PortalUtil.getLayoutFullURL(
 				LayoutLocalServiceUtil.getLayout(plid), themeDisplay);
 			String namespace = PortalUtil.getPortletNamespace(
-				"1_WAR_knowledgebaseportlet");
+				PortletKeys.KNOWLEDGE_BASE_ADMIN);
 
 			link = HttpUtil.setParameter(
-				layoutFullURL, "p_p_id", "1_WAR_knowledgebaseportlet");
+				layoutFullURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ADMIN);
 			link = HttpUtil.setParameter(
 				link, namespace + "jspPage", "/admin/view_article.jsp");
 			link = HttpUtil.setParameter(

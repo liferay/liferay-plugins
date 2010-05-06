@@ -34,6 +34,7 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.PortletKeys;
 import com.liferay.util.RSSUtil;
 
 import com.sun.syndication.feed.synd.SyndContent;
@@ -157,31 +158,22 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		String entryURL = layoutFullURL;
 
 		String namespace = PortalUtil.getPortletNamespace(
-			"1_WAR_knowledgebaseportlet");
+			PortletKeys.KNOWLEDGE_BASE_ADMIN);
 
 		feedURL = HttpUtil.setParameter(
-			feedURL, "p_p_id", "1_WAR_knowledgebaseportlet");
+			feedURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ADMIN);
 		feedURL = HttpUtil.setParameter(
 			feedURL, namespace + "jspPage", "/admin/view_article.jsp");
 		feedURL = HttpUtil.setParameter(
 			feedURL, namespace + "resourcePrimKey",
 			article.getResourcePrimKey());
 
-		boolean isDynamicPortlet = true;
-
 		LayoutTypePortlet layoutTypePortlet =
 			themeDisplay.getLayoutTypePortlet();
 
-		if (layoutTypePortlet.hasPortletId("1_WAR_knowledgebaseportlet")) {
-			long scopeGroupId = PortalUtil.getScopeGroupId(
-				themeDisplay.getLayout(), "1_WAR_knowledgebaseportlet");
+		if (!layoutTypePortlet.hasDefaultScopePortletId(
+				article.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
 
-			if (article.getGroupId() == scopeGroupId) {
-				isDynamicPortlet = false;
-			}
-		}
-
-		if (isDynamicPortlet) {
 			feedURL = null;
 			entryURL = null;
 		}
@@ -256,21 +248,12 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		String feedURL = layoutFullURL;
 		String entryURL = layoutFullURL;
 
-		boolean isDynamicPortlet = true;
-
 		LayoutTypePortlet layoutTypePortlet =
 			themeDisplay.getLayoutTypePortlet();
 
-		if (layoutTypePortlet.hasPortletId("1_WAR_knowledgebaseportlet")) {
-			long scopeGroupId = PortalUtil.getScopeGroupId(
-				themeDisplay.getLayout(), "1_WAR_knowledgebaseportlet");
+		if (!layoutTypePortlet.hasDefaultScopePortletId(
+				group.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
 
-			if (group.getGroupId() == scopeGroupId) {
-				isDynamicPortlet = false;
-			}
-		}
-
-		if (isDynamicPortlet) {
 			feedURL = null;
 			entryURL = null;
 		}
@@ -393,10 +376,10 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 			if (link != null) {
 				String namespace = PortalUtil.getPortletNamespace(
-					"1_WAR_knowledgebaseportlet");
+					PortletKeys.KNOWLEDGE_BASE_ADMIN);
 
 				link = HttpUtil.setParameter(
-					link, "p_p_id", "1_WAR_knowledgebaseportlet");
+					link, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ADMIN);
 				link = HttpUtil.setParameter(
 					link, namespace + "jspPage", "/kb/view_article.jsp");
 				link = HttpUtil.setParameter(
@@ -459,12 +442,12 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	protected List<Article> filterArticles(Article article, int max)
 		throws PortalException, SystemException {
 
-		List<Article> articles = ListUtil.toList(new Article[] {article});
+		List<Article> articles = new ArrayList<Article>();
 
-		if (!ArticlePermission.contains(
+		if (ArticlePermission.contains(
 				getPermissionChecker(), article, ActionKeys.VIEW)) {
 
-			articles.remove(article);
+			articles.add(article);
 		}
 
 		int index = -1;
@@ -472,11 +455,11 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		while ((index = index + 1) < articles.size()) {
 			Article curArticle = articles.get(index);
 
-			List<Article> articles2 = getGroupArticles(
+			List<Article> groupArticles = getGroupArticles(
 				curArticle.getGroupId(), curArticle.getResourcePrimKey(),
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-			articles.addAll(articles2);
+			articles.addAll(groupArticles);
 		}
 
 		Collections.sort(articles, new ArticleModifiedDateComparator());

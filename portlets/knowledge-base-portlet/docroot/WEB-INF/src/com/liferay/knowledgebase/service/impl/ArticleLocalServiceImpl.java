@@ -687,7 +687,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			long ownerId = article.getGroupId();
 			int ownerType = PortletKeys.PREFS_OWNER_TYPE_GROUP;
 			long plid = PortletKeys.PREFS_PLID_SHARED;
-			String portletId = "1_WAR_knowledgebaseportlet";
+			String portletId = PortletKeys.KNOWLEDGE_BASE_ADMIN;
 			String defaultPreferences = null;
 
 			preferences = PortletPreferencesLocalServiceUtil.getPreferences(
@@ -728,7 +728,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 
 		String portletName = PortalUtil.getPortletTitle(
-			"1_WAR_knowledgebaseportlet", LocaleUtil.getDefault());
+			PortletKeys.KNOWLEDGE_BASE_ADMIN, LocaleUtil.getDefault());
 
 		String fromName = preferences.getValue(
 			"email-from-name", PortletProps.get("admin.email.from.name"));
@@ -784,24 +784,20 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
 
-		if (layoutTypePortlet.hasPortletId("1_WAR_knowledgebaseportlet")) {
-			long scopeGroupId = PortalUtil.getScopeGroupId(
-				layout, "1_WAR_knowledgebaseportlet");
+		if (layoutTypePortlet.hasDefaultScopePortletId(
+				article.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
 
-			if (article.getGroupId() == scopeGroupId) {
-				String namespace = PortalUtil.getPortletNamespace(
-					"1_WAR_knowledgebaseportlet");
+			String namespace = PortalUtil.getPortletNamespace(
+				PortletKeys.KNOWLEDGE_BASE_ADMIN);
 
-				articleURL = HttpUtil.setParameter(
-					serviceContext.getLayoutFullURL(), "p_p_id",
-					"1_WAR_knowledgebaseportlet");
-				articleURL = HttpUtil.setParameter(
-					articleURL, namespace + "jspPage",
-					"/admin/view_article.jsp");
-				articleURL = HttpUtil.setParameter(
-					articleURL, namespace + "resourcePrimKey",
-					article.getResourcePrimKey());
-			}
+			articleURL = HttpUtil.setParameter(
+				serviceContext.getLayoutFullURL(), "p_p_id",
+				PortletKeys.KNOWLEDGE_BASE_ADMIN);
+			articleURL = HttpUtil.setParameter(
+				articleURL, namespace + "jspPage", "/admin/view_article.jsp");
+			articleURL = HttpUtil.setParameter(
+				articleURL, namespace + "resourcePrimKey",
+				article.getResourcePrimKey());
 		}
 
 		if (articleURL == null) {
