@@ -18,6 +18,7 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.persistence.ArticleUtil;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
+import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -140,8 +141,36 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		context.addPermissions(Article.class, article.getResourcePrimKey());
 
+		exportArticleVersions(context, articleEl, article.getResourcePrimKey());
+
 		if (context.getBooleanParameter(_ARTICLE, "comments")) {
 			context.addComments(Article.class, article.getResourcePrimKey());
+		}
+	}
+
+	protected void exportArticleVersions(
+			PortletDataContext context, Element articleEl, long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		Element versionsEl = articleEl.addElement("versions");
+
+		String rootPath =
+			context.getPortletPath(PortletKeys.KNOWLEDGE_BASE_ADMIN) +
+				"/articles/versions/" + resourcePrimKey;
+
+		List<Article> articles = ArticleUtil.findByResourcePrimKey(
+			resourcePrimKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new ArticleVersionComparator(true));
+
+		for (Article article : articles) {
+			String path =
+				rootPath + StringPool.SLASH + article.getArticleId() + ".xml";
+
+			Element curArticleEl = versionsEl.addElement("article");
+
+			curArticleEl.addAttribute("path", path);
+
+			context.addZipEntry(path, article);
 		}
 	}
 
@@ -203,7 +232,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	protected void importArticle(
 			PortletDataContext context, Map<Long, Long> resourcePrimKeys,
-			Article article)
+			Element articleEl, Article article)
 		throws Exception {
 
 		long userId = context.getUserId(article.getUserUuid());
@@ -236,11 +265,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				article.getUuid(), context.getGroupId());
 
 			if (existingArticle == null) {
-				importedArticle = ArticleLocalServiceUtil.addArticle(
-					article.getUuid(), userId, parentResourcePrimKey,
-					article.getTitle(), article.getContent(),
-					article.getDescription(), priority, dirName,
-					serviceContext);
+				importedArticle = importArticleVersions(
+					context, article.getUuid(), parentResourcePrimKey, priority,
+					dirName, articleEl);
 			}
 			else {
 				importedArticle = ArticleLocalServiceUtil.updateArticle(
@@ -251,10 +278,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			}
 		}
 		else {
-			importedArticle = ArticleLocalServiceUtil.addArticle(
-				null, userId, parentResourcePrimKey, article.getTitle(),
-				article.getContent(), article.getDescription(), priority,
-				dirName, serviceContext);
+			importedArticle = importArticleVersions(
+				context, null, parentResourcePrimKey, priority, dirName,
+				articleEl);
 		}
 
 		resourcePrimKeys.put(
@@ -271,6 +297,49 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
+	protected Article importArticleVersions(
+			PortletDataContext context, String uuid, long parentResourcePrimKey,
+			int priority, String dirName, Element articleEl)
+		throws Exception {
+
+		Element versionsEl = articleEl.element("versions");
+
+		List<Element> articlesEl = versionsEl.elements("article");
+
+		Article importedArticle = null;
+
+		for (Element curArticleEl : articlesEl) {
+			Article curArticle = (Article)context.getZipEntryAsObject(
+				curArticleEl.attributeValue("path"));
+
+			long userId = context.getUserId(curArticle.getUserUuid());
+
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setAddCommunityPermissions(true);
+			serviceContext.setAddGuestPermissions(true);
+			serviceContext.setCreateDate(curArticle.getCreateDate());
+			serviceContext.setModifiedDate(curArticle.getModifiedDate());
+			serviceContext.setScopeGroupId(context.getGroupId());
+
+			if (importedArticle == null) {
+				importedArticle = ArticleLocalServiceUtil.addArticle(
+					uuid, userId, parentResourcePrimKey, curArticle.getTitle(),
+					curArticle.getContent(), curArticle.getDescription(),
+					priority, dirName, serviceContext);
+			}
+			else {
+				importedArticle = ArticleLocalServiceUtil.updateArticle(
+					userId, importedArticle.getResourcePrimKey(),
+					parentResourcePrimKey, curArticle.getTitle(),
+					curArticle.getContent(), curArticle.getDescription(),
+					priority, dirName, serviceContext);
+			}
+		}
+
+		return importedArticle;
+	}
+
 	protected void importArticles(PortletDataContext context, Element root)
 		throws Exception {
 
@@ -285,7 +354,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 			Article article = (Article)context.getZipEntryAsObject(path);
 
-			importArticle(context, resourcePrimKeys, article);
+			importArticle(context, resourcePrimKeys, articleEl, article);
 		}
 	}
 
