@@ -44,6 +44,13 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(WSRPConsumer)
+	 */
+	public static void clearCache(WSRPConsumer wsrpConsumer) {
+		getPersistence().clearCache(wsrpConsumer);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
 	public long countWithDynamicQuery(DynamicQuery dynamicQuery)

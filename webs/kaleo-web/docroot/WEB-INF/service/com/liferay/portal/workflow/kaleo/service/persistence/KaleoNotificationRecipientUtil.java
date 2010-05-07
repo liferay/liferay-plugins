@@ -43,6 +43,14 @@ public class KaleoNotificationRecipientUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(KaleoNotificationRecipient)
+	 */
+	public static void clearCache(
+		KaleoNotificationRecipient kaleoNotificationRecipient) {
+		getPersistence().clearCache(kaleoNotificationRecipient);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
 	public long countWithDynamicQuery(DynamicQuery dynamicQuery)

@@ -119,6 +119,13 @@ public class KaleoNotificationRecipientPersistenceImpl
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(
+		KaleoNotificationRecipient kaleoNotificationRecipient) {
+		EntityCacheUtil.removeResult(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoNotificationRecipientImpl.class,
+			kaleoNotificationRecipient.getPrimaryKey());
+	}
+
 	public KaleoNotificationRecipient create(long kaleoNotificationRecipientId) {
 		KaleoNotificationRecipient kaleoNotificationRecipient = new KaleoNotificationRecipientImpl();
 

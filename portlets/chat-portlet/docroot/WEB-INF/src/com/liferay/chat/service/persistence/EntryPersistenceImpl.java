@@ -219,6 +219,11 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(Entry entry) {
+		EntityCacheUtil.removeResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
+			EntryImpl.class, entry.getPrimaryKey());
+	}
+
 	public Entry create(long entryId) {
 		Entry entry = new EntryImpl();
 

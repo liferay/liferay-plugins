@@ -114,6 +114,11 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(WSRPProducer wsrpProducer) {
+		EntityCacheUtil.removeResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPProducerImpl.class, wsrpProducer.getPrimaryKey());
+	}
+
 	public WSRPProducer create(long wsrpProducerId) {
 		WSRPProducer wsrpProducer = new WSRPProducerImpl();
 

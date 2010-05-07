@@ -143,6 +143,11 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(SVNRevision svnRevision) {
+		EntityCacheUtil.removeResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+			SVNRevisionImpl.class, svnRevision.getPrimaryKey());
+	}
+
 	public SVNRevision create(long svnRevisionId) {
 		SVNRevision svnRevision = new SVNRevisionImpl();
 
@@ -550,64 +555,20 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		throws NoSuchSVNRevisionException, SystemException {
 		SVNRevision svnRevision = findByPrimaryKey(svnRevisionId);
 
-		int count = countBySVNUserId(svnUserId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_SVNREVISION_WHERE);
-
-			if (svnUserId == null) {
-				query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_1);
-			}
-			else {
-				if (svnUserId.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_2);
-				}
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			if (svnUserId != null) {
-				qPos.add(svnUserId);
-			}
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, svnRevision);
-
 			SVNRevision[] array = new SVNRevisionImpl[3];
 
-			array[0] = (SVNRevision)objArray[0];
-			array[1] = (SVNRevision)objArray[1];
-			array[2] = (SVNRevision)objArray[2];
+			array[0] = getBySVNUserId_PrevAndNext(session, svnRevision,
+					svnUserId, orderByComparator, true);
+
+			array[1] = svnRevision;
+
+			array[2] = getBySVNUserId_PrevAndNext(session, svnRevision,
+					svnUserId, orderByComparator, false);
 
 			return array;
 		}
@@ -616,6 +577,121 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected SVNRevision getBySVNUserId_PrevAndNext(Session session,
+		SVNRevision svnRevision, String svnUserId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_SVNREVISION_WHERE);
+
+		if (svnUserId == null) {
+			query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_1);
+		}
+		else {
+			if (svnUserId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (svnUserId != null) {
+			qPos.add(svnUserId);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(svnRevision);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<SVNRevision> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -801,52 +877,20 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		throws NoSuchSVNRevisionException, SystemException {
 		SVNRevision svnRevision = findByPrimaryKey(svnRevisionId);
 
-		int count = countBySVNRepositoryId(svnRepositoryId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_SVNREVISION_WHERE);
-
-			query.append(_FINDER_COLUMN_SVNREPOSITORYID_SVNREPOSITORYID_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(svnRepositoryId);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, svnRevision);
-
 			SVNRevision[] array = new SVNRevisionImpl[3];
 
-			array[0] = (SVNRevision)objArray[0];
-			array[1] = (SVNRevision)objArray[1];
-			array[2] = (SVNRevision)objArray[2];
+			array[0] = getBySVNRepositoryId_PrevAndNext(session, svnRevision,
+					svnRepositoryId, orderByComparator, true);
+
+			array[1] = svnRevision;
+
+			array[2] = getBySVNRepositoryId_PrevAndNext(session, svnRevision,
+					svnRepositoryId, orderByComparator, false);
 
 			return array;
 		}
@@ -855,6 +899,109 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected SVNRevision getBySVNRepositoryId_PrevAndNext(Session session,
+		SVNRevision svnRevision, long svnRepositoryId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_SVNREVISION_WHERE);
+
+		query.append(_FINDER_COLUMN_SVNREPOSITORYID_SVNREPOSITORYID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(svnRepositoryId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(svnRevision);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<SVNRevision> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -1079,68 +1226,20 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		throws NoSuchSVNRevisionException, SystemException {
 		SVNRevision svnRevision = findByPrimaryKey(svnRevisionId);
 
-		int count = countBySVNU_SVNR(svnUserId, svnRepositoryId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(4);
-			}
-
-			query.append(_SQL_SELECT_SVNREVISION_WHERE);
-
-			if (svnUserId == null) {
-				query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_1);
-			}
-			else {
-				if (svnUserId.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_2);
-				}
-			}
-
-			query.append(_FINDER_COLUMN_SVNU_SVNR_SVNREPOSITORYID_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			if (svnUserId != null) {
-				qPos.add(svnUserId);
-			}
-
-			qPos.add(svnRepositoryId);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, svnRevision);
-
 			SVNRevision[] array = new SVNRevisionImpl[3];
 
-			array[0] = (SVNRevision)objArray[0];
-			array[1] = (SVNRevision)objArray[1];
-			array[2] = (SVNRevision)objArray[2];
+			array[0] = getBySVNU_SVNR_PrevAndNext(session, svnRevision,
+					svnUserId, svnRepositoryId, orderByComparator, true);
+
+			array[1] = svnRevision;
+
+			array[2] = getBySVNU_SVNR_PrevAndNext(session, svnRevision,
+					svnUserId, svnRepositoryId, orderByComparator, false);
 
 			return array;
 		}
@@ -1149,6 +1248,125 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected SVNRevision getBySVNU_SVNR_PrevAndNext(Session session,
+		SVNRevision svnRevision, String svnUserId, long svnRepositoryId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_SVNREVISION_WHERE);
+
+		if (svnUserId == null) {
+			query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_1);
+		}
+		else {
+			if (svnUserId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_2);
+			}
+		}
+
+		query.append(_FINDER_COLUMN_SVNU_SVNR_SVNREPOSITORYID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (svnUserId != null) {
+			qPos.add(svnUserId);
+		}
+
+		qPos.add(svnRepositoryId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(svnRevision);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<SVNRevision> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 

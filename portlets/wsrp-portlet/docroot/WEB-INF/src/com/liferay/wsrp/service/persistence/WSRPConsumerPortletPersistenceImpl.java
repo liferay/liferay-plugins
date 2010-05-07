@@ -131,6 +131,18 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(WSRPConsumerPortlet wsrpConsumerPortlet) {
+		EntityCacheUtil.removeResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPConsumerPortletImpl.class, wsrpConsumerPortlet.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_W_P,
+			new Object[] {
+				new Long(wsrpConsumerPortlet.getWsrpConsumerId()),
+				
+			wsrpConsumerPortlet.getPortletHandle()
+			});
+	}
+
 	public WSRPConsumerPortlet create(long wsrpConsumerPortletId) {
 		WSRPConsumerPortlet wsrpConsumerPortlet = new WSRPConsumerPortletImpl();
 

@@ -123,6 +123,11 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(KaleoInstance kaleoInstance) {
+		EntityCacheUtil.removeResult(KaleoInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoInstanceImpl.class, kaleoInstance.getPrimaryKey());
+	}
+
 	public KaleoInstance create(long kaleoInstanceId) {
 		KaleoInstance kaleoInstance = new KaleoInstanceImpl();
 

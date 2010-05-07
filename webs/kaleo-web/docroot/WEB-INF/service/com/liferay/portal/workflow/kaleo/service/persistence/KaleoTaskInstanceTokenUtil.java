@@ -43,6 +43,13 @@ public class KaleoTaskInstanceTokenUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(KaleoTaskInstanceToken)
+	 */
+	public static void clearCache(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+		getPersistence().clearCache(kaleoTaskInstanceToken);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
 	public long countWithDynamicQuery(DynamicQuery dynamicQuery)

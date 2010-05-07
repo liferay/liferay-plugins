@@ -67,20 +67,22 @@ public abstract class MemberRequestLocalServiceBaseImpl
 		memberRequestPersistence.remove(memberRequest);
 	}
 
-	public List<MemberRequest> dynamicQuery(DynamicQuery dynamicQuery)
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return memberRequestPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<MemberRequest> dynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
+		throws SystemException {
 		return memberRequestPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
 
-	public List<MemberRequest> dynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+	@SuppressWarnings("unchecked")
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		return memberRequestPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}

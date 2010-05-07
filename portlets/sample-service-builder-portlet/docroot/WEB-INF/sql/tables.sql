@@ -1,4 +1,3 @@
-
 create table SSB_Foo (
 	fooId LONG not null primary key,
 	companyId LONG,

@@ -112,6 +112,11 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(KaleoAction kaleoAction) {
+		EntityCacheUtil.removeResult(KaleoActionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoActionImpl.class, kaleoAction.getPrimaryKey());
+	}
+
 	public KaleoAction create(long kaleoActionId) {
 		KaleoAction kaleoAction = new KaleoActionImpl();
 

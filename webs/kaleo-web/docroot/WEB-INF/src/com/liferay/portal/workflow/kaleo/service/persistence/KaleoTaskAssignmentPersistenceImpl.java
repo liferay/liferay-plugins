@@ -146,6 +146,17 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(KaleoTaskAssignment kaleoTaskAssignment) {
+		EntityCacheUtil.removeResult(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTaskAssignmentImpl.class, kaleoTaskAssignment.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KTI_DA,
+			new Object[] {
+				new Long(kaleoTaskAssignment.getKaleoTaskId()),
+				Boolean.valueOf(kaleoTaskAssignment.getDefaultAssignment())
+			});
+	}
+
 	public KaleoTaskAssignment create(long kaleoTaskAssignmentId) {
 		KaleoTaskAssignment kaleoTaskAssignment = new KaleoTaskAssignmentImpl();
 

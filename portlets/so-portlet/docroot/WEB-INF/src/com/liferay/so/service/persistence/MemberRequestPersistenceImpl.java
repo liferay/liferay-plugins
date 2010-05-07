@@ -165,6 +165,21 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(MemberRequest memberRequest) {
+		EntityCacheUtil.removeResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
+			MemberRequestImpl.class, memberRequest.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
+			new Object[] { memberRequest.getKey() });
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_R_S,
+			new Object[] {
+				new Long(memberRequest.getGroupId()),
+				new Long(memberRequest.getReceiverUserId()),
+				new Integer(memberRequest.getStatus())
+			});
+	}
+
 	public MemberRequest create(long memberRequestId) {
 		MemberRequest memberRequest = new MemberRequestImpl();
 

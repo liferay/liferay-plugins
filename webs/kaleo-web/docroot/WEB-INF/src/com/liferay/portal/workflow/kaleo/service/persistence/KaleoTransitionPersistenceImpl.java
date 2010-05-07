@@ -144,6 +144,24 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(KaleoTransition kaleoTransition) {
+		EntityCacheUtil.removeResult(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTransitionImpl.class, kaleoTransition.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_N,
+			new Object[] {
+				new Long(kaleoTransition.getKaleoNodeId()),
+				
+			kaleoTransition.getName()
+			});
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_DT,
+			new Object[] {
+				new Long(kaleoTransition.getKaleoNodeId()),
+				Boolean.valueOf(kaleoTransition.getDefaultTransition())
+			});
+	}
+
 	public KaleoTransition create(long kaleoTransitionId) {
 		KaleoTransition kaleoTransition = new KaleoTransitionImpl();
 

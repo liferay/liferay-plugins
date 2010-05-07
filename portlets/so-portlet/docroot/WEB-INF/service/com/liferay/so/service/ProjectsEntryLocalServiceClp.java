@@ -142,7 +142,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		}
 	}
 
-	public java.util.List<com.liferay.so.model.ProjectsEntry> dynamicQuery(
+	@SuppressWarnings("unchecked")
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -172,10 +173,11 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.so.model.ProjectsEntry>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.so.model.ProjectsEntry> dynamicQuery(
+	@SuppressWarnings("unchecked")
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
@@ -209,10 +211,11 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.so.model.ProjectsEntry>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.so.model.ProjectsEntry> dynamicQuery(
+	@SuppressWarnings("unchecked")
+	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -255,7 +258,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.so.model.ProjectsEntry>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public long dynamicQueryCount(

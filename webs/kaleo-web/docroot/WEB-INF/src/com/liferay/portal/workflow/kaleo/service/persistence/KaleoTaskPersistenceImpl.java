@@ -111,6 +111,14 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(KaleoTask kaleoTask) {
+		EntityCacheUtil.removeResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTaskImpl.class, kaleoTask.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
+			new Object[] { new Long(kaleoTask.getKaleoNodeId()) });
+	}
+
 	public KaleoTask create(long kaleoTaskId) {
 		KaleoTask kaleoTask = new KaleoTaskImpl();
 

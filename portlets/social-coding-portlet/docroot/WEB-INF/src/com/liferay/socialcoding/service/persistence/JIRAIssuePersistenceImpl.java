@@ -300,6 +300,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(JIRAIssue jiraIssue) {
+		EntityCacheUtil.removeResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueImpl.class, jiraIssue.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
+			new Object[] { jiraIssue.getKey() });
+	}
+
 	public JIRAIssue create(long jiraIssueId) {
 		JIRAIssue jiraIssue = new JIRAIssueImpl();
 
@@ -710,52 +718,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
-		int count = countByProjectId(projectId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-			query.append(_FINDER_COLUMN_PROJECTID_PROJECTID_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(projectId);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, jiraIssue);
-
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
-			array[0] = (JIRAIssue)objArray[0];
-			array[1] = (JIRAIssue)objArray[1];
-			array[2] = (JIRAIssue)objArray[2];
+			array[0] = getByProjectId_PrevAndNext(session, jiraIssue,
+					projectId, orderByComparator, true);
+
+			array[1] = jiraIssue;
+
+			array[2] = getByProjectId_PrevAndNext(session, jiraIssue,
+					projectId, orderByComparator, false);
 
 			return array;
 		}
@@ -764,6 +740,109 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected JIRAIssue getByProjectId_PrevAndNext(Session session,
+		JIRAIssue jiraIssue, long projectId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+		query.append(_FINDER_COLUMN_PROJECTID_PROJECTID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(projectId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(jiraIssue);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<JIRAIssue> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -1092,64 +1171,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
-		int count = countByReporterJiraUserId(reporterJiraUserId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-			if (reporterJiraUserId == null) {
-				query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_1);
-			}
-			else {
-				if (reporterJiraUserId.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_2);
-				}
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			if (reporterJiraUserId != null) {
-				qPos.add(reporterJiraUserId);
-			}
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, jiraIssue);
-
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
-			array[0] = (JIRAIssue)objArray[0];
-			array[1] = (JIRAIssue)objArray[1];
-			array[2] = (JIRAIssue)objArray[2];
+			array[0] = getByReporterJiraUserId_PrevAndNext(session, jiraIssue,
+					reporterJiraUserId, orderByComparator, true);
+
+			array[1] = jiraIssue;
+
+			array[2] = getByReporterJiraUserId_PrevAndNext(session, jiraIssue,
+					reporterJiraUserId, orderByComparator, false);
 
 			return array;
 		}
@@ -1158,6 +1193,121 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected JIRAIssue getByReporterJiraUserId_PrevAndNext(Session session,
+		JIRAIssue jiraIssue, String reporterJiraUserId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+		if (reporterJiraUserId == null) {
+			query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_1);
+		}
+		else {
+			if (reporterJiraUserId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (reporterJiraUserId != null) {
+			qPos.add(reporterJiraUserId);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(jiraIssue);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<JIRAIssue> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -1367,64 +1517,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
-		int count = countByAssigneeJiraUserId(assigneeJiraUserId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-			if (assigneeJiraUserId == null) {
-				query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_1);
-			}
-			else {
-				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_2);
-				}
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			if (assigneeJiraUserId != null) {
-				qPos.add(assigneeJiraUserId);
-			}
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, jiraIssue);
-
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
-			array[0] = (JIRAIssue)objArray[0];
-			array[1] = (JIRAIssue)objArray[1];
-			array[2] = (JIRAIssue)objArray[2];
+			array[0] = getByAssigneeJiraUserId_PrevAndNext(session, jiraIssue,
+					assigneeJiraUserId, orderByComparator, true);
+
+			array[1] = jiraIssue;
+
+			array[2] = getByAssigneeJiraUserId_PrevAndNext(session, jiraIssue,
+					assigneeJiraUserId, orderByComparator, false);
 
 			return array;
 		}
@@ -1433,6 +1539,121 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected JIRAIssue getByAssigneeJiraUserId_PrevAndNext(Session session,
+		JIRAIssue jiraIssue, String assigneeJiraUserId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+		if (assigneeJiraUserId == null) {
+			query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_1);
+		}
+		else {
+			if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (assigneeJiraUserId != null) {
+			qPos.add(assigneeJiraUserId);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(jiraIssue);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<JIRAIssue> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -1646,63 +1867,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
-		int count = countByMD_P(modifiedDate, projectId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(4);
-			}
-
-			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-			if (modifiedDate == null) {
-				query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_1);
-			}
-			else {
-				query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_2);
-			}
-
-			query.append(_FINDER_COLUMN_MD_P_PROJECTID_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			if (modifiedDate != null) {
-				qPos.add(CalendarUtil.getTimestamp(modifiedDate));
-			}
-
-			qPos.add(projectId);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, jiraIssue);
-
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
-			array[0] = (JIRAIssue)objArray[0];
-			array[1] = (JIRAIssue)objArray[1];
-			array[2] = (JIRAIssue)objArray[2];
+			array[0] = getByMD_P_PrevAndNext(session, jiraIssue, modifiedDate,
+					projectId, orderByComparator, true);
+
+			array[1] = jiraIssue;
+
+			array[2] = getByMD_P_PrevAndNext(session, jiraIssue, modifiedDate,
+					projectId, orderByComparator, false);
 
 			return array;
 		}
@@ -1711,6 +1889,120 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected JIRAIssue getByMD_P_PrevAndNext(Session session,
+		JIRAIssue jiraIssue, Date modifiedDate, long projectId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+		if (modifiedDate == null) {
+			query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_1);
+		}
+		else {
+			query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_2);
+		}
+
+		query.append(_FINDER_COLUMN_MD_P_PROJECTID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (modifiedDate != null) {
+			qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+		}
+
+		qPos.add(projectId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(jiraIssue);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<JIRAIssue> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -1942,68 +2234,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
-		int count = countByP_RJUI(projectId, reporterJiraUserId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(4);
-			}
-
-			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-			query.append(_FINDER_COLUMN_P_RJUI_PROJECTID_2);
-
-			if (reporterJiraUserId == null) {
-				query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_1);
-			}
-			else {
-				if (reporterJiraUserId.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_2);
-				}
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(projectId);
-
-			if (reporterJiraUserId != null) {
-				qPos.add(reporterJiraUserId);
-			}
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, jiraIssue);
-
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
-			array[0] = (JIRAIssue)objArray[0];
-			array[1] = (JIRAIssue)objArray[1];
-			array[2] = (JIRAIssue)objArray[2];
+			array[0] = getByP_RJUI_PrevAndNext(session, jiraIssue, projectId,
+					reporterJiraUserId, orderByComparator, true);
+
+			array[1] = jiraIssue;
+
+			array[2] = getByP_RJUI_PrevAndNext(session, jiraIssue, projectId,
+					reporterJiraUserId, orderByComparator, false);
 
 			return array;
 		}
@@ -2012,6 +2256,125 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected JIRAIssue getByP_RJUI_PrevAndNext(Session session,
+		JIRAIssue jiraIssue, long projectId, String reporterJiraUserId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+		query.append(_FINDER_COLUMN_P_RJUI_PROJECTID_2);
+
+		if (reporterJiraUserId == null) {
+			query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_1);
+		}
+		else {
+			if (reporterJiraUserId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(projectId);
+
+		if (reporterJiraUserId != null) {
+			qPos.add(reporterJiraUserId);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(jiraIssue);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<JIRAIssue> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -2243,68 +2606,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
-		int count = countByP_AJUI(projectId, assigneeJiraUserId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(4);
-			}
-
-			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-			query.append(_FINDER_COLUMN_P_AJUI_PROJECTID_2);
-
-			if (assigneeJiraUserId == null) {
-				query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_1);
-			}
-			else {
-				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_2);
-				}
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(projectId);
-
-			if (assigneeJiraUserId != null) {
-				qPos.add(assigneeJiraUserId);
-			}
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, jiraIssue);
-
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
-			array[0] = (JIRAIssue)objArray[0];
-			array[1] = (JIRAIssue)objArray[1];
-			array[2] = (JIRAIssue)objArray[2];
+			array[0] = getByP_AJUI_PrevAndNext(session, jiraIssue, projectId,
+					assigneeJiraUserId, orderByComparator, true);
+
+			array[1] = jiraIssue;
+
+			array[2] = getByP_AJUI_PrevAndNext(session, jiraIssue, projectId,
+					assigneeJiraUserId, orderByComparator, false);
 
 			return array;
 		}
@@ -2313,6 +2628,125 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected JIRAIssue getByP_AJUI_PrevAndNext(Session session,
+		JIRAIssue jiraIssue, long projectId, String assigneeJiraUserId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+		query.append(_FINDER_COLUMN_P_AJUI_PROJECTID_2);
+
+		if (assigneeJiraUserId == null) {
+			query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_1);
+		}
+		else {
+			if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(projectId);
+
+		if (assigneeJiraUserId != null) {
+			qPos.add(assigneeJiraUserId);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(jiraIssue);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<JIRAIssue> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -2573,79 +3007,22 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
-		int count = countByMD_P_RJUI(modifiedDate, projectId, reporterJiraUserId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(5);
-			}
-
-			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-			if (modifiedDate == null) {
-				query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_1);
-			}
-			else {
-				query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_2);
-			}
-
-			query.append(_FINDER_COLUMN_MD_P_RJUI_PROJECTID_2);
-
-			if (reporterJiraUserId == null) {
-				query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_1);
-			}
-			else {
-				if (reporterJiraUserId.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_2);
-				}
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			if (modifiedDate != null) {
-				qPos.add(CalendarUtil.getTimestamp(modifiedDate));
-			}
-
-			qPos.add(projectId);
-
-			if (reporterJiraUserId != null) {
-				qPos.add(reporterJiraUserId);
-			}
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, jiraIssue);
-
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
-			array[0] = (JIRAIssue)objArray[0];
-			array[1] = (JIRAIssue)objArray[1];
-			array[2] = (JIRAIssue)objArray[2];
+			array[0] = getByMD_P_RJUI_PrevAndNext(session, jiraIssue,
+					modifiedDate, projectId, reporterJiraUserId,
+					orderByComparator, true);
+
+			array[1] = jiraIssue;
+
+			array[2] = getByMD_P_RJUI_PrevAndNext(session, jiraIssue,
+					modifiedDate, projectId, reporterJiraUserId,
+					orderByComparator, false);
 
 			return array;
 		}
@@ -2654,6 +3031,137 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected JIRAIssue getByMD_P_RJUI_PrevAndNext(Session session,
+		JIRAIssue jiraIssue, Date modifiedDate, long projectId,
+		String reporterJiraUserId, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+		if (modifiedDate == null) {
+			query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_1);
+		}
+		else {
+			query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_2);
+		}
+
+		query.append(_FINDER_COLUMN_MD_P_RJUI_PROJECTID_2);
+
+		if (reporterJiraUserId == null) {
+			query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_1);
+		}
+		else {
+			if (reporterJiraUserId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (modifiedDate != null) {
+			qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+		}
+
+		qPos.add(projectId);
+
+		if (reporterJiraUserId != null) {
+			qPos.add(reporterJiraUserId);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(jiraIssue);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<JIRAIssue> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -2914,79 +3422,22 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
-		int count = countByMD_P_AJUI(modifiedDate, projectId, assigneeJiraUserId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(5);
-			}
-
-			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-			if (modifiedDate == null) {
-				query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_1);
-			}
-			else {
-				query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_2);
-			}
-
-			query.append(_FINDER_COLUMN_MD_P_AJUI_PROJECTID_2);
-
-			if (assigneeJiraUserId == null) {
-				query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_1);
-			}
-			else {
-				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_2);
-				}
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			if (modifiedDate != null) {
-				qPos.add(CalendarUtil.getTimestamp(modifiedDate));
-			}
-
-			qPos.add(projectId);
-
-			if (assigneeJiraUserId != null) {
-				qPos.add(assigneeJiraUserId);
-			}
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, jiraIssue);
-
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
-			array[0] = (JIRAIssue)objArray[0];
-			array[1] = (JIRAIssue)objArray[1];
-			array[2] = (JIRAIssue)objArray[2];
+			array[0] = getByMD_P_AJUI_PrevAndNext(session, jiraIssue,
+					modifiedDate, projectId, assigneeJiraUserId,
+					orderByComparator, true);
+
+			array[1] = jiraIssue;
+
+			array[2] = getByMD_P_AJUI_PrevAndNext(session, jiraIssue,
+					modifiedDate, projectId, assigneeJiraUserId,
+					orderByComparator, false);
 
 			return array;
 		}
@@ -2995,6 +3446,137 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected JIRAIssue getByMD_P_AJUI_PrevAndNext(Session session,
+		JIRAIssue jiraIssue, Date modifiedDate, long projectId,
+		String assigneeJiraUserId, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+		if (modifiedDate == null) {
+			query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_1);
+		}
+		else {
+			query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_2);
+		}
+
+		query.append(_FINDER_COLUMN_MD_P_AJUI_PROJECTID_2);
+
+		if (assigneeJiraUserId == null) {
+			query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_1);
+		}
+		else {
+			if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (modifiedDate != null) {
+			qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+		}
+
+		qPos.add(projectId);
+
+		if (assigneeJiraUserId != null) {
+			qPos.add(assigneeJiraUserId);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(jiraIssue);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<JIRAIssue> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -3271,84 +3853,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
-		int count = countByP_RJUI_S(projectId, reporterJiraUserId, status);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(5);
-			}
-
-			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-			query.append(_FINDER_COLUMN_P_RJUI_S_PROJECTID_2);
-
-			if (reporterJiraUserId == null) {
-				query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_1);
-			}
-			else {
-				if (reporterJiraUserId.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_2);
-				}
-			}
-
-			if (status == null) {
-				query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_1);
-			}
-			else {
-				if (status.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_2);
-				}
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(projectId);
-
-			if (reporterJiraUserId != null) {
-				qPos.add(reporterJiraUserId);
-			}
-
-			if (status != null) {
-				qPos.add(status);
-			}
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, jiraIssue);
-
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
-			array[0] = (JIRAIssue)objArray[0];
-			array[1] = (JIRAIssue)objArray[1];
-			array[2] = (JIRAIssue)objArray[2];
+			array[0] = getByP_RJUI_S_PrevAndNext(session, jiraIssue, projectId,
+					reporterJiraUserId, status, orderByComparator, true);
+
+			array[1] = jiraIssue;
+
+			array[2] = getByP_RJUI_S_PrevAndNext(session, jiraIssue, projectId,
+					reporterJiraUserId, status, orderByComparator, false);
 
 			return array;
 		}
@@ -3357,6 +3875,141 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected JIRAIssue getByP_RJUI_S_PrevAndNext(Session session,
+		JIRAIssue jiraIssue, long projectId, String reporterJiraUserId,
+		String status, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+		query.append(_FINDER_COLUMN_P_RJUI_S_PROJECTID_2);
+
+		if (reporterJiraUserId == null) {
+			query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_1);
+		}
+		else {
+			if (reporterJiraUserId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_2);
+			}
+		}
+
+		if (status == null) {
+			query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_1);
+		}
+		else {
+			if (status.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(projectId);
+
+		if (reporterJiraUserId != null) {
+			qPos.add(reporterJiraUserId);
+		}
+
+		if (status != null) {
+			qPos.add(status);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(jiraIssue);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<JIRAIssue> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -3633,84 +4286,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
-		int count = countByP_AJUI_S(projectId, assigneeJiraUserId, status);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(5);
-			}
-
-			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-			query.append(_FINDER_COLUMN_P_AJUI_S_PROJECTID_2);
-
-			if (assigneeJiraUserId == null) {
-				query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_1);
-			}
-			else {
-				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_2);
-				}
-			}
-
-			if (status == null) {
-				query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_1);
-			}
-			else {
-				if (status.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_2);
-				}
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(projectId);
-
-			if (assigneeJiraUserId != null) {
-				qPos.add(assigneeJiraUserId);
-			}
-
-			if (status != null) {
-				qPos.add(status);
-			}
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, jiraIssue);
-
 			JIRAIssue[] array = new JIRAIssueImpl[3];
 
-			array[0] = (JIRAIssue)objArray[0];
-			array[1] = (JIRAIssue)objArray[1];
-			array[2] = (JIRAIssue)objArray[2];
+			array[0] = getByP_AJUI_S_PrevAndNext(session, jiraIssue, projectId,
+					assigneeJiraUserId, status, orderByComparator, true);
+
+			array[1] = jiraIssue;
+
+			array[2] = getByP_AJUI_S_PrevAndNext(session, jiraIssue, projectId,
+					assigneeJiraUserId, status, orderByComparator, false);
 
 			return array;
 		}
@@ -3719,6 +4308,141 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected JIRAIssue getByP_AJUI_S_PrevAndNext(Session session,
+		JIRAIssue jiraIssue, long projectId, String assigneeJiraUserId,
+		String status, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+		query.append(_FINDER_COLUMN_P_AJUI_S_PROJECTID_2);
+
+		if (assigneeJiraUserId == null) {
+			query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_1);
+		}
+		else {
+			if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_2);
+			}
+		}
+
+		if (status == null) {
+			query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_1);
+		}
+		else {
+			if (status.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(projectId);
+
+		if (assigneeJiraUserId != null) {
+			qPos.add(assigneeJiraUserId);
+		}
+
+		if (status != null) {
+			qPos.add(status);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(jiraIssue);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<JIRAIssue> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 

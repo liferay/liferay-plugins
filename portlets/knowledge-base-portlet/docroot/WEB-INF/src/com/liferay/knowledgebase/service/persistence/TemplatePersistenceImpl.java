@@ -140,6 +140,14 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(Template template) {
+		EntityCacheUtil.removeResult(TemplateModelImpl.ENTITY_CACHE_ENABLED,
+			TemplateImpl.class, template.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
+			new Object[] { template.getUuid(), new Long(template.getGroupId()) });
+	}
+
 	public Template create(long templateId) {
 		Template template = new TemplateImpl();
 

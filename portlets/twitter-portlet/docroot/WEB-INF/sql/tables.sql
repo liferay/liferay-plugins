@@ -1,4 +1,3 @@
-
 create table Twitter_Feed (
 	feedId LONG not null primary key,
 	twitterUserId LONG,

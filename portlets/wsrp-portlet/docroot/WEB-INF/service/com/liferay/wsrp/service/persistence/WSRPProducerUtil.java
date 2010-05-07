@@ -44,6 +44,13 @@ public class WSRPProducerUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(WSRPProducer)
+	 */
+	public static void clearCache(WSRPProducer wsrpProducer) {
+		getPersistence().clearCache(wsrpProducer);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
 	public long countWithDynamicQuery(DynamicQuery dynamicQuery)

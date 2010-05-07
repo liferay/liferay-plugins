@@ -201,6 +201,18 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(KaleoDefinition kaleoDefinition) {
+		EntityCacheUtil.removeResult(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoDefinitionImpl.class, kaleoDefinition.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_N_V,
+			new Object[] {
+				new Long(kaleoDefinition.getCompanyId()),
+				
+			kaleoDefinition.getName(), new Integer(kaleoDefinition.getVersion())
+			});
+	}
+
 	public KaleoDefinition create(long kaleoDefinitionId) {
 		KaleoDefinition kaleoDefinition = new KaleoDefinitionImpl();
 

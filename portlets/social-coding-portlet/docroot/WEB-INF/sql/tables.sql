@@ -1,4 +1,3 @@
-
 create table SC_SVNRepository (
 	svnRepositoryId LONG not null primary key,
 	url VARCHAR(200) null,

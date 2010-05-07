@@ -43,6 +43,13 @@ public class KaleoNodeUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(KaleoNode)
+	 */
+	public static void clearCache(KaleoNode kaleoNode) {
+		getPersistence().clearCache(kaleoNode);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
 	public long countWithDynamicQuery(DynamicQuery dynamicQuery)

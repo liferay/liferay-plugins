@@ -146,6 +146,17 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(MeetupsRegistration meetupsRegistration) {
+		EntityCacheUtil.removeResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsRegistrationImpl.class, meetupsRegistration.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_ME,
+			new Object[] {
+				new Long(meetupsRegistration.getUserId()),
+				new Long(meetupsRegistration.getMeetupsEntryId())
+			});
+	}
+
 	public MeetupsRegistration create(long meetupsRegistrationId) {
 		MeetupsRegistration meetupsRegistration = new MeetupsRegistrationImpl();
 
@@ -571,52 +582,21 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		MeetupsRegistration meetupsRegistration = findByPrimaryKey(meetupsRegistrationId);
 
-		int count = countByMeetupsEntryId(meetupsEntryId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_MEETUPSREGISTRATION_WHERE);
-
-			query.append(_FINDER_COLUMN_MEETUPSENTRYID_MEETUPSENTRYID_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(MeetupsRegistrationModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(meetupsEntryId);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, meetupsRegistration);
-
 			MeetupsRegistration[] array = new MeetupsRegistrationImpl[3];
 
-			array[0] = (MeetupsRegistration)objArray[0];
-			array[1] = (MeetupsRegistration)objArray[1];
-			array[2] = (MeetupsRegistration)objArray[2];
+			array[0] = getByMeetupsEntryId_PrevAndNext(session,
+					meetupsRegistration, meetupsEntryId, orderByComparator, true);
+
+			array[1] = meetupsRegistration;
+
+			array[2] = getByMeetupsEntryId_PrevAndNext(session,
+					meetupsRegistration, meetupsEntryId, orderByComparator,
+					false);
 
 			return array;
 		}
@@ -625,6 +605,110 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected MeetupsRegistration getByMeetupsEntryId_PrevAndNext(
+		Session session, MeetupsRegistration meetupsRegistration,
+		long meetupsEntryId, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_MEETUPSREGISTRATION_WHERE);
+
+		query.append(_FINDER_COLUMN_MEETUPSENTRYID_MEETUPSENTRYID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(MeetupsRegistrationModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(meetupsEntryId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(meetupsRegistration);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<MeetupsRegistration> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -945,56 +1029,20 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		MeetupsRegistration meetupsRegistration = findByPrimaryKey(meetupsRegistrationId);
 
-		int count = countByME_S(meetupsEntryId, status);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(4);
-			}
-
-			query.append(_SQL_SELECT_MEETUPSREGISTRATION_WHERE);
-
-			query.append(_FINDER_COLUMN_ME_S_MEETUPSENTRYID_2);
-
-			query.append(_FINDER_COLUMN_ME_S_STATUS_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(MeetupsRegistrationModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(meetupsEntryId);
-
-			qPos.add(status);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, meetupsRegistration);
-
 			MeetupsRegistration[] array = new MeetupsRegistrationImpl[3];
 
-			array[0] = (MeetupsRegistration)objArray[0];
-			array[1] = (MeetupsRegistration)objArray[1];
-			array[2] = (MeetupsRegistration)objArray[2];
+			array[0] = getByME_S_PrevAndNext(session, meetupsRegistration,
+					meetupsEntryId, status, orderByComparator, true);
+
+			array[1] = meetupsRegistration;
+
+			array[2] = getByME_S_PrevAndNext(session, meetupsRegistration,
+					meetupsEntryId, status, orderByComparator, false);
 
 			return array;
 		}
@@ -1003,6 +1051,113 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected MeetupsRegistration getByME_S_PrevAndNext(Session session,
+		MeetupsRegistration meetupsRegistration, long meetupsEntryId,
+		int status, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_MEETUPSREGISTRATION_WHERE);
+
+		query.append(_FINDER_COLUMN_ME_S_MEETUPSENTRYID_2);
+
+		query.append(_FINDER_COLUMN_ME_S_STATUS_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		else {
+			query.append(MeetupsRegistrationModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(meetupsEntryId);
+
+		qPos.add(status);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(meetupsRegistration);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<MeetupsRegistration> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 

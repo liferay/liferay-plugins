@@ -115,6 +115,11 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(ProjectsEntry projectsEntry) {
+		EntityCacheUtil.removeResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ProjectsEntryImpl.class, projectsEntry.getPrimaryKey());
+	}
+
 	public ProjectsEntry create(long projectsEntryId) {
 		ProjectsEntry projectsEntry = new ProjectsEntryImpl();
 

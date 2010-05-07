@@ -115,6 +115,12 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+		EntityCacheUtil.removeResult(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTaskInstanceTokenImpl.class,
+			kaleoTaskInstanceToken.getPrimaryKey());
+	}
+
 	public KaleoTaskInstanceToken create(long kaleoTaskInstanceTokenId) {
 		KaleoTaskInstanceToken kaleoTaskInstanceToken = new KaleoTaskInstanceTokenImpl();
 

@@ -44,6 +44,13 @@ public class AttachmentUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(Attachment)
+	 */
+	public static void clearCache(Attachment attachment) {
+		getPersistence().clearCache(attachment);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
 	public long countWithDynamicQuery(DynamicQuery dynamicQuery)

@@ -44,6 +44,13 @@ public class ProjectsEntryUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(ProjectsEntry)
+	 */
+	public static void clearCache(ProjectsEntry projectsEntry) {
+		getPersistence().clearCache(projectsEntry);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
 	public long countWithDynamicQuery(DynamicQuery dynamicQuery)

@@ -44,6 +44,13 @@ public class FolderUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(Folder)
+	 */
+	public static void clearCache(Folder folder) {
+		getPersistence().clearCache(folder);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
 	public long countWithDynamicQuery(DynamicQuery dynamicQuery)

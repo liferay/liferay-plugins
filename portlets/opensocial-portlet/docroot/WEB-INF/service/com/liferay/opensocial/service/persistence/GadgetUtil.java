@@ -44,6 +44,13 @@ public class GadgetUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(Gadget)
+	 */
+	public static void clearCache(Gadget gadget) {
+		getPersistence().clearCache(gadget);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
 	public long countWithDynamicQuery(DynamicQuery dynamicQuery)

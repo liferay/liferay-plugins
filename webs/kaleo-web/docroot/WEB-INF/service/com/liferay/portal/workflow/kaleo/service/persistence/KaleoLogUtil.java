@@ -43,6 +43,13 @@ public class KaleoLogUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(KaleoLog)
+	 */
+	public static void clearCache(KaleoLog kaleoLog) {
+		getPersistence().clearCache(kaleoLog);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
 	public long countWithDynamicQuery(DynamicQuery dynamicQuery)

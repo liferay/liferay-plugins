@@ -121,6 +121,11 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(KaleoNotification kaleoNotification) {
+		EntityCacheUtil.removeResult(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoNotificationImpl.class, kaleoNotification.getPrimaryKey());
+	}
+
 	public KaleoNotification create(long kaleoNotificationId) {
 		KaleoNotification kaleoNotification = new KaleoNotificationImpl();
 

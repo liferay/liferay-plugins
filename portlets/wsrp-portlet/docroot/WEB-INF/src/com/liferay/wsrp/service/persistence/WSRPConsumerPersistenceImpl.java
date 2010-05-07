@@ -112,6 +112,11 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(WSRPConsumer wsrpConsumer) {
+		EntityCacheUtil.removeResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPConsumerImpl.class, wsrpConsumer.getPrimaryKey());
+	}
+
 	public WSRPConsumer create(long wsrpConsumerId) {
 		WSRPConsumer wsrpConsumer = new WSRPConsumerImpl();
 

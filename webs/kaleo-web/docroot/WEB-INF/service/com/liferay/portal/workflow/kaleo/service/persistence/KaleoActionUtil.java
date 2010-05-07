@@ -43,6 +43,13 @@ public class KaleoActionUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(KaleoAction)
+	 */
+	public static void clearCache(KaleoAction kaleoAction) {
+		getPersistence().clearCache(kaleoAction);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
 	public long countWithDynamicQuery(DynamicQuery dynamicQuery)

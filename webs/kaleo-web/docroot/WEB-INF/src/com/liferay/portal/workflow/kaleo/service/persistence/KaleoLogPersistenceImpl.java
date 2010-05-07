@@ -155,6 +155,11 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(KaleoLog kaleoLog) {
+		EntityCacheUtil.removeResult(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoLogImpl.class, kaleoLog.getPrimaryKey());
+	}
+
 	public KaleoLog create(long kaleoLogId) {
 		KaleoLog kaleoLog = new KaleoLogImpl();
 

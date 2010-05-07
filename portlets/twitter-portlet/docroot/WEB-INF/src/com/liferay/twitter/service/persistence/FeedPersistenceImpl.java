@@ -114,6 +114,17 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(Feed feed) {
+		EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			FeedImpl.class, feed.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
+			new Object[] { new Long(feed.getTwitterUserId()) });
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
+			new Object[] { feed.getTwitterScreenName() });
+	}
+
 	public Feed create(long feedId) {
 		Feed feed = new FeedImpl();
 

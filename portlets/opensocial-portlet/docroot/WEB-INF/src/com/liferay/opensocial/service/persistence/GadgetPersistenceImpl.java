@@ -111,6 +111,11 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(Gadget gadget) {
+		EntityCacheUtil.removeResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,
+			GadgetImpl.class, gadget.getPrimaryKey());
+	}
+
 	public Gadget create(long gadgetId) {
 		Gadget gadget = new GadgetImpl();
 

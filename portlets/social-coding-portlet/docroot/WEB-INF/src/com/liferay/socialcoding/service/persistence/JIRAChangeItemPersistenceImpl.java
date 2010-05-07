@@ -115,6 +115,11 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(JIRAChangeItem jiraChangeItem) {
+		EntityCacheUtil.removeResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey());
+	}
+
 	public JIRAChangeItem create(long jiraChangeItemId) {
 		JIRAChangeItem jiraChangeItem = new JIRAChangeItemImpl();
 
@@ -497,48 +502,20 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		throws NoSuchJIRAChangeItemException, SystemException {
 		JIRAChangeItem jiraChangeItem = findByPrimaryKey(jiraChangeItemId);
 
-		int count = countByJiraChangeGroupId(jiraChangeGroupId);
-
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(2);
-			}
-
-			query.append(_SQL_SELECT_JIRACHANGEITEM_WHERE);
-
-			query.append(_FINDER_COLUMN_JIRACHANGEGROUPID_JIRACHANGEGROUPID_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			String sql = query.toString();
-
-			Query q = session.createQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(jiraChangeGroupId);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count,
-					orderByComparator, jiraChangeItem);
-
 			JIRAChangeItem[] array = new JIRAChangeItemImpl[3];
 
-			array[0] = (JIRAChangeItem)objArray[0];
-			array[1] = (JIRAChangeItem)objArray[1];
-			array[2] = (JIRAChangeItem)objArray[2];
+			array[0] = getByJiraChangeGroupId_PrevAndNext(session,
+					jiraChangeItem, jiraChangeGroupId, orderByComparator, true);
+
+			array[1] = jiraChangeItem;
+
+			array[2] = getByJiraChangeGroupId_PrevAndNext(session,
+					jiraChangeItem, jiraChangeGroupId, orderByComparator, false);
 
 			return array;
 		}
@@ -547,6 +524,105 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	protected JIRAChangeItem getByJiraChangeGroupId_PrevAndNext(
+		Session session, JIRAChangeItem jiraChangeItem, long jiraChangeGroupId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_JIRACHANGEITEM_WHERE);
+
+		query.append(_FINDER_COLUMN_JIRACHANGEGROUPID_JIRACHANGEGROUPID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+
+			query.append(WHERE_LIMIT_2);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(jiraChangeGroupId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(jiraChangeItem);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<JIRAChangeItem> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 

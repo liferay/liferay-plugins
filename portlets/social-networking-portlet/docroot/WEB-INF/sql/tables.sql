@@ -1,4 +1,3 @@
-
 create table SN_MeetupsEntry (
 	meetupsEntryId LONG not null primary key,
 	companyId LONG,
