@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.admin.lar;
 
+import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.persistence.ArticleUtil;
@@ -22,6 +24,7 @@ import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.xml.Document;
@@ -33,6 +36,8 @@ import com.liferay.portal.lar.PortletDataException;
 import com.liferay.portal.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.lar.PortletDataHandlerControl;
 import com.liferay.portal.lar.PortletDataHandlerKeys;
+import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 
@@ -143,8 +148,40 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		exportArticleVersions(context, articleEl, article.getResourcePrimKey());
 
+		if (context.getBooleanParameter(_ARTICLE, "attachments")) {
+			exportArticleAttachments(context, root, article);
+		}
+
 		if (context.getBooleanParameter(_ARTICLE, "comments")) {
 			context.addComments(Article.class, article.getResourcePrimKey());
+		}
+	}
+
+	protected void exportArticleAttachments(
+			PortletDataContext context, Element root, Article article)
+		throws PortalException, SystemException {
+
+		Element articleAttachmentsEl = root.addElement("article-attachments");
+
+		articleAttachmentsEl.addAttribute(
+			"resource-prim-key", String.valueOf(article.getResourcePrimKey()));
+
+		String rootPath =
+			context.getPortletPath(PortletKeys.KNOWLEDGE_BASE_ADMIN) +
+				"/articles/attachments/" + article.getResourcePrimKey();
+
+		for (String fileName : article.getAttachmentsFileNames()) {
+			String shortFileName = FileUtil.getShortFileName(fileName);
+			String path = rootPath + StringPool.SLASH + shortFileName;
+			byte[] bytes = DLServiceUtil.getFile(
+				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+
+			Element fileEl = articleAttachmentsEl.addElement("file");
+
+			fileEl.addAttribute("path", path);
+			fileEl.addAttribute("short-file-name", shortFileName);
+
+			context.addZipEntry(path, bytes);
 		}
 	}
 
@@ -232,14 +269,15 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	protected void importArticle(
 			PortletDataContext context, Map<Long, Long> resourcePrimKeys,
-			Element articleEl, Article article)
+			Map<String, String> dirNames, Element articleEl, Article article)
 		throws Exception {
 
 		long userId = context.getUserId(article.getUserUuid());
 		long parentResourcePrimKey = MapUtil.getLong(
 			resourcePrimKeys, article.getParentResourcePrimKey());
 		int priority = article.getPriority();
-		String dirName = StringPool.BLANK;
+		String dirName = MapUtil.getString(
+			dirNames, String.valueOf(article.getResourcePrimKey()));
 
 		int maxPriority = (int)ArticleLocalServiceUtil.getGroupArticlesCount(
 			context.getGroupId(), parentResourcePrimKey);
@@ -297,6 +335,42 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
+	protected void importArticleAttachments(
+			PortletDataContext context, long importId,
+			Map<String, String> dirNames, Element root)
+		throws Exception {
+
+		List<Element> articlesAttachmentsEl = root.elements(
+			"article-attachments");
+
+		for (Element articleAttachmentsEl : articlesAttachmentsEl) {
+			String resourcePrimKey = articleAttachmentsEl.attributeValue(
+				"resource-prim-key");
+			String importPath = "knowledgebase/temp/import/" + importId;
+			String dirName = importPath + StringPool.SLASH + resourcePrimKey;
+
+			DLServiceUtil.addDirectory(
+				context.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+
+			for (Element fileEl : articleAttachmentsEl.elements("file")) {
+				String shortFileName = fileEl.attributeValue("short-file-name");
+				String fileName = dirName + StringPool.SLASH + shortFileName;
+				byte[] bytes = context.getZipEntryAsByteArray(
+					fileEl.attributeValue("path"));
+
+				ServiceContext serviceContext = new ServiceContext();
+
+				DLServiceUtil.addFile(
+					context.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+					GroupConstants.DEFAULT_PARENT_GROUP_ID,
+					CompanyConstants.SYSTEM, fileName, 0, StringPool.BLANK,
+					serviceContext.getCreateDate(null), serviceContext, bytes);
+			}
+
+			dirNames.put(resourcePrimKey, dirName);
+		}
+	}
+
 	protected Article importArticleVersions(
 			PortletDataContext context, String uuid, long parentResourcePrimKey,
 			int priority, String dirName, Element articleEl)
@@ -314,6 +388,12 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 			long userId = context.getUserId(curArticle.getUserUuid());
 
+			String curDirName = StringPool.BLANK;
+
+			if (articlesEl.indexOf(curArticleEl) == (articlesEl.size() - 1)) {
+				curDirName = dirName;
+			}
+
 			ServiceContext serviceContext = new ServiceContext();
 
 			serviceContext.setAddCommunityPermissions(true);
@@ -326,14 +406,14 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				importedArticle = ArticleLocalServiceUtil.addArticle(
 					uuid, userId, parentResourcePrimKey, curArticle.getTitle(),
 					curArticle.getContent(), curArticle.getDescription(),
-					priority, dirName, serviceContext);
+					priority, curDirName, serviceContext);
 			}
 			else {
 				importedArticle = ArticleLocalServiceUtil.updateArticle(
 					userId, importedArticle.getResourcePrimKey(),
 					parentResourcePrimKey, curArticle.getTitle(),
 					curArticle.getContent(), curArticle.getDescription(),
-					priority, dirName, serviceContext);
+					priority, curDirName, serviceContext);
 			}
 		}
 
@@ -343,18 +423,39 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	protected void importArticles(PortletDataContext context, Element root)
 		throws Exception {
 
+		long importId = CounterLocalServiceUtil.increment();
+
 		Map<Long, Long> resourcePrimKeys = new HashMap<Long, Long>();
+		Map<String, String> dirNames = new HashMap<String, String>();
 
-		for (Element articleEl : root.elements("article")) {
-			String path = articleEl.attributeValue("path");
+		try {
+			if (context.getBooleanParameter(_ARTICLE, "attachments")) {
+				DLServiceUtil.addDirectory(
+					context.getCompanyId(), CompanyConstants.SYSTEM,
+					"knowledgebase/temp/import/" + importId);
 
-			if (!context.isPathNotProcessed(path)) {
-				continue;
+				importArticleAttachments(context, importId, dirNames, root);
 			}
 
-			Article article = (Article)context.getZipEntryAsObject(path);
+			for (Element articleEl : root.elements("article")) {
+				String path = articleEl.attributeValue("path");
 
-			importArticle(context, resourcePrimKeys, articleEl, article);
+				if (!context.isPathNotProcessed(path)) {
+					continue;
+				}
+
+				importArticle(
+					context, resourcePrimKeys, dirNames, articleEl,
+					(Article)context.getZipEntryAsObject(path));
+			}
+		}
+		finally {
+			if (context.getBooleanParameter(_ARTICLE, "attachments")) {
+				DLServiceUtil.deleteDirectory(
+					context.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+					CompanyConstants.SYSTEM,
+					"knowledgebase/temp/import/" + importId);
+			}
 		}
 	}
 
@@ -362,6 +463,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	private static final PortletDataHandlerControl[] _article_options =
 		new PortletDataHandlerControl[] {
+			new PortletDataHandlerBoolean(_ARTICLE, "attachments"),
 			new PortletDataHandlerBoolean(_ARTICLE, "comments")
 		};
 
