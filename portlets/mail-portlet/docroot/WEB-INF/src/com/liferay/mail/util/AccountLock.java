@@ -25,7 +25,6 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author Scott Lee
  * @author Alexander Chow
- *
  */
 public class AccountLock {
 
@@ -33,8 +32,8 @@ public class AccountLock {
 		synchronized (key) {
 			long nowTime = System.currentTimeMillis();
 
-			if (_lockMaps.containsKey(key)) {
-				long timeLocked = _lockMaps.get(key);
+			if (_locks.containsKey(key)) {
+				long timeLocked = _locks.get(key);
 				long expireTime = timeLocked + _EXPIRY_TIME;
 
 				if (nowTime < expireTime) {
@@ -46,27 +45,29 @@ public class AccountLock {
 				}
 			}
 
-			_lockMaps.put(key, nowTime);
+			_locks.put(key, nowTime);
 		}
 
 		return true;
 	}
 
 	public static String getKey(long userId, long accountEntryId) {
-		return userId + "_LOCK_" + accountEntryId;
+		return userId + _LOCK + accountEntryId;
 	}
 
 	public static void releaseLock(String key) {
 		synchronized (key) {
-			_lockMaps.remove(key);
+			_locks.remove(key);
 		}
 	}
 
 	private static final long _EXPIRY_TIME = Time.MINUTE * 5;
 
-	private static ConcurrentHashMap<String, Long> _lockMaps =
-		new ConcurrentHashMap<String, Long>();
+	private static final String _LOCK = "_LOCK_";
 
 	private static Log _log = LogFactoryUtil.getLog(AccountLock.class);
+
+	private static ConcurrentHashMap<String, Long> _locks =
+		new ConcurrentHashMap<String, Long>();
 
 }

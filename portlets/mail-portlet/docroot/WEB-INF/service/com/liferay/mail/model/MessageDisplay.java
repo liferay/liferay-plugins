@@ -27,7 +27,7 @@ import java.util.List;
 public class MessageDisplay {
 
 	public MessageDisplay(
-			Message message, List<Attachment> attachments, int messageCount) {
+		Message message, List<Attachment> attachments, int messageCount) {
 
 		_message = message;
 		_attachments = attachments;

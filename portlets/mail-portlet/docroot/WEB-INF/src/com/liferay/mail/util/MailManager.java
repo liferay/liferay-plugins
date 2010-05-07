@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
@@ -60,7 +59,7 @@ public class MailManager {
 
 		User user = PortalUtil.getUser(request);
 
-		if (Validator.isNull(user)) {
+		if (user == null) {
 			return null;
 		}
 
@@ -123,7 +122,7 @@ public class MailManager {
 					"a-folder-with-the-same-name-already-exists");
 			}
 
-			_log.error(me);
+			_log.error(me, me);
 
 			return createJSONResult("failure", "unable-to-create-folder");
 		}
@@ -141,7 +140,7 @@ public class MailManager {
 			return createJSONResult("success", "account-has-been-deleted");
 		}
 		catch (MailException me) {
-			_log.error(me);
+			_log.error(me, me);
 
 			return createJSONResult("failure", "unable-to-delete-account");
 		}
@@ -162,7 +161,7 @@ public class MailManager {
 			return createJSONResult("success", "attachment-has-been-deleted");
 		}
 		catch (MailException me) {
-			_log.error(me);
+			_log.error(me, me);
 
 			return createJSONResult("failure", "unable-to-delete-attachment");
 		}
@@ -175,7 +174,7 @@ public class MailManager {
 			Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-					_user.getUserId(), folder.getAccountId());
+				_user.getUserId(), folder.getAccountId());
 
 			mailbox.deleteFolder(folderId);
 
@@ -193,7 +192,7 @@ public class MailManager {
 					"the-mail-server-will-not-allow-this-folder-to-be-deleted");
 			}
 
-			_log.error(me);
+			_log.error(me, me);
 
 			return createJSONResult("failure", "unable-to-delete-folder");
 		}
@@ -228,7 +227,7 @@ public class MailManager {
 			}
 		}
 		catch (MailException me) {
-			_log.error(me);
+			_log.error(me, me);
 
 			return createJSONResult("failure", "unable-to-delete-messages");
 		}
@@ -259,7 +258,7 @@ public class MailManager {
 					"failure", "this-flag-is-not-supported");
 			}
 
-			_log.error(me);
+			_log.error(me, me);
 
 			return createJSONResult("failure", "unable-to-flag-messages");
 		}
@@ -267,6 +266,12 @@ public class MailManager {
 
 	public List<Account> getAccounts() throws SystemException {
 		return AccountLocalServiceUtil.getAccounts(_user.getUserId());
+	}
+
+	public long getAccountUnreadMessagesCount(long accountId)
+		throws SystemException {
+
+		return MessageLocalServiceUtil.getAccountUnreadMessagesCount(accountId);
 	}
 
 	public InputStream getAttachment(long attachmentId)
@@ -281,15 +286,7 @@ public class MailManager {
 		return mailbox.getAttachment(attachmentId);
 	}
 
-	public long getAccountUnreadMessagesCount(long accountId)
-		throws SystemException {
-
-		return MessageLocalServiceUtil.getAccountUnreadMessagesCount(accountId);
-	}
-
-	public List<Folder> getFolders(long accountId)
-		throws SystemException {
-
+	public List<Folder> getFolders(long accountId) throws SystemException {
 		return  FolderLocalServiceUtil.getFolders(accountId);
 	}
 
@@ -304,33 +301,33 @@ public class MailManager {
 			String orderByField, String orderByType, boolean synchronize)
 		throws PortalException, SystemException {
 
-		if (folderId != 0) {
-			MessagesDisplay messagesDisplay = getMessagesDisplay(
-				folderId, messageNumber, 1, orderByField,
-				orderByType, keywords);
-
-			Message message = messagesDisplay.getMessages().get(0);
-
-			if (synchronize && Validator.isNull(message.getBody())) {
-				Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-					_user.getUserId(), message.getAccountId());
-
-				mailbox.synchronizeMessage(message.getMessageId());
-
-				return getMessageDisplay(
-					folderId, keywords, messageNumber, orderByField,
-					orderByType, synchronize);
-			}
-
-			List<Attachment> attachments =
-				AttachmentLocalServiceUtil.getAttachments(
-					message.getMessageId());
-
-			return new MessageDisplay(
-				message, attachments, messagesDisplay.getMessageCount());
+		if (folderId <= 0) {
+			return null;
 		}
 
-		return null;
+		MessagesDisplay messagesDisplay = getMessagesDisplay(
+			folderId, messageNumber, 1, orderByField, orderByType, keywords);
+
+		List<Message> messages = messagesDisplay.getMessages();
+
+		Message message = messages.get(0);
+
+		if (synchronize && Validator.isNull(message.getBody())) {
+			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
+				_user.getUserId(), message.getAccountId());
+
+			mailbox.synchronizeMessage(message.getMessageId());
+
+			return getMessageDisplay(
+				folderId, keywords, messageNumber, orderByField, orderByType,
+				synchronize);
+		}
+
+		List<Attachment> attachments =
+			AttachmentLocalServiceUtil.getAttachments(message.getMessageId());
+
+		return new MessageDisplay(
+			message, attachments, messagesDisplay.getMessageCount());
 	}
 
 	public MessagesDisplay getMessagesDisplay(
@@ -353,7 +350,7 @@ public class MailManager {
 			new ArrayList<Message>(), pageNumber, messagesPerPage, 0);
 	}
 
-	public JSONObject moveMessages(long destinationFolderId, long[] messageIds)
+	public JSONObject moveMessages(long folderId, long[] messageIds)
 		throws PortalException, SystemException {
 
 		try {
@@ -361,14 +358,13 @@ public class MailManager {
 				return createJSONResult("failure", "no-messages-selected");
 			}
 
-			Folder folder = FolderLocalServiceUtil.getFolder(
-				destinationFolderId);
+			Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
 			Account account = AccountLocalServiceUtil.getAccount(
 				folder.getAccountId());
 
-			if ((account.getDraftFolderId() == destinationFolderId)
-					|| (account.getSentFolderId() == destinationFolderId)) {
+			if ((account.getDraftFolderId() == folderId) ||
+				(account.getSentFolderId() == folderId)) {
 
 				throw new MailException(
 					MailException.FOLDER_INVALID_DESTINATION);
@@ -380,7 +376,7 @@ public class MailManager {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
 				_user.getUserId(), message.getAccountId());
 
-			mailbox.moveMessages(destinationFolderId, messageIds);
+			mailbox.moveMessages(folderId, messageIds);
 
 			return createJSONResult("success", "messages-have-been-moved");
 		}
@@ -390,7 +386,7 @@ public class MailManager {
 					"failure", "cant-move-messages-to-this-folder");
 			}
 
-			_log.error(me);
+			_log.error(me, me);
 
 			return createJSONResult("failure", "unable-to-move-messages");
 		}
@@ -419,15 +415,15 @@ public class MailManager {
 					"failure", "a-folder-with-the-same-name-already-exists");
 			}
 
-			_log.error(me);
+			_log.error(me, me);
 
 			return createJSONResult("failure", "unable-to-rename-folder");
 		}
 	}
 
 	public JSONObject saveDraft(
-			long accountId, long messageId, String to, String cc,
-			String bcc, String subject, String body, List<MailFile> mailFiles)
+			long accountId, long messageId, String to, String cc, String bcc,
+			String subject, String body, List<MailFile> mailFiles)
 		throws PortalException, SystemException {
 
 		try {
@@ -454,15 +450,15 @@ public class MailManager {
 					me.getValue());
 			}
 
-			_log.error(me);
+			_log.error(me, me);
 
 			return createJSONResult("failure", "unable-to-save-draft");
 		}
 	}
 
 	public JSONObject sendMessage(
-			long accountId, long messageId, String to, String cc,
-			String bcc, String subject, String body, List<MailFile> mailFiles)
+			long accountId, long messageId, String to, String cc, String bcc,
+			String subject, String body, List<MailFile> mailFiles)
 		throws PortalException, SystemException {
 
 		try {
@@ -489,7 +485,7 @@ public class MailManager {
 					me.getValue());
 			}
 
-			_log.error(me);
+			_log.error(me, me);
 
 			return createJSONResult("failure", "unable-to-send-message");
 		}
@@ -502,7 +498,7 @@ public class MailManager {
 
 		if (AccountLock.acquireLock(key)) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Starting synch for accountId " + accountId);
+				_log.debug("Synchronizing account " + accountId);
 			}
 
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
@@ -515,7 +511,8 @@ public class MailManager {
 		else {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Unable to acquire synch lock for accountId " + accountId);
+					"Unable to acquire a synchronization lock for account " +
+						accountId);
 			}
 		}
 	}
@@ -539,13 +536,11 @@ public class MailManager {
 		Mailbox mailbox = MailboxFactoryUtil.getMailbox(
 			_user.getUserId(), accountId);
 
-		if ((pageNumber == 1)
-				&& orderByField.equals(MailConstants.ORDER_BY_SENT_DATE)
-				&& orderByType.equals("desc")
-				&& (keywords.equals(StringPool.BLANK))) {
+		if ((pageNumber == 1) &&
+			orderByField.equals(MailConstants.ORDER_BY_SENT_DATE) &&
+			orderByType.equals("desc") && Validator.isNull(keywords)) {
 
-			mailbox.synchronizePage(
-				folderId, pageNumber, messagesPerPage);
+			mailbox.synchronizePage(folderId, pageNumber, messagesPerPage);
 		}
 	}
 
@@ -577,7 +572,8 @@ public class MailManager {
 						"-formatted",
 					me.getValue());
 			}
-			_log.error(me);
+
+			_log.error(me, me);
 
 			return createJSONResult("failure", "unable-to-update-account");
 		}

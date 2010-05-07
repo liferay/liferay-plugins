@@ -25,11 +25,11 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.mail.model.MessageDisplay" %>
-<%@ page import="com.liferay.mail.model.MessagesDisplay" %>
 <%@ page import="com.liferay.mail.model.Account" %>
 <%@ page import="com.liferay.mail.model.Folder" %>
 <%@ page import="com.liferay.mail.model.Message" %>
+<%@ page import="com.liferay.mail.model.MessageDisplay" %>
+<%@ page import="com.liferay.mail.model.MessagesDisplay" %>
 <%@ page import="com.liferay.mail.service.AccountLocalServiceUtil" %>
 <%@ page import="com.liferay.mail.service.FolderLocalServiceUtil" %>
 <%@ page import="com.liferay.mail.service.MessageLocalServiceUtil" %>
