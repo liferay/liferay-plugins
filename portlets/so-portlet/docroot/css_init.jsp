@@ -17,6 +17,8 @@
  */
 %>
 
+<%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
+
 <%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
