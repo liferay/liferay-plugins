@@ -112,8 +112,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		article.setCompanyId(user.getCompanyId());
 		article.setUserId(user.getUserId());
 		article.setUserName(user.getFullName());
-		article.setCreateDate(now);
-		article.setModifiedDate(now);
+		article.setCreateDate(serviceContext.getCreateDate(now));
+		article.setModifiedDate(serviceContext.getModifiedDate(now));
 		article.setParentResourcePrimKey(parentResourcePrimKey);
 		article.setVersion(ArticleConstants.DEFAULT_VERSION);
 		article.setTitle(title);
@@ -229,11 +229,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			long companyId, String dirName, String shortFileName, byte[] bytes)
 		throws PortalException, SystemException {
 
+		ServiceContext serviceContext = new ServiceContext();
+
 		DLServiceUtil.addFile(
 			companyId, CompanyConstants.SYSTEM_STRING,
 			GroupConstants.DEFAULT_PARENT_GROUP_ID, CompanyConstants.SYSTEM,
 			dirName + StringPool.SLASH + shortFileName, 0, StringPool.BLANK,
-			new Date(), new ServiceContext(), bytes);
+			serviceContext.getCreateDate(null), serviceContext, bytes);
 	}
 
 	public void checkAttachments() throws PortalException, SystemException {
@@ -457,7 +459,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		User user = userPersistence.findByPrimaryKey(userId);
 		Article oldArticle = articlePersistence.findByResourcePrimKey_First(
 			resourcePrimKey, new ArticleVersionComparator());
-		Date now = new Date();
 
 		validate(title, content);
 
@@ -471,7 +472,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		article.setUserId(user.getUserId());
 		article.setUserName(user.getFullName());
 		article.setCreateDate(oldArticle.getCreateDate());
-		article.setModifiedDate(now);
+		article.setModifiedDate(serviceContext.getModifiedDate(null));
 		article.setParentResourcePrimKey(parentResourcePrimKey);
 		article.setVersion(
 			MathUtil.format(oldArticle.getVersion() + 0.1, 1, 1));
