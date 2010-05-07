@@ -33,7 +33,7 @@
 	position: relative;
 }
 
-.so-portlet-invite-members .search{
+.so-portlet-invite-members .search {
 	background: #FFF url(<%= themeImagesPath %>/forms/input_shadow.png) no-repeat;
 	border-color: #BFBFBF #DEDEDE #DEDEDE #BFBFBF;
 	border-style: solid;
