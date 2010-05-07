@@ -140,6 +140,17 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(Message message) {
+		EntityCacheUtil.removeResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
+			MessageImpl.class, message.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R,
+			new Object[] {
+				new Long(message.getFolderId()),
+				new Long(message.getRemoteMessageId())
+			});
+	}
+
 	public Message create(long messageId) {
 		Message message = new MessageImpl();
 

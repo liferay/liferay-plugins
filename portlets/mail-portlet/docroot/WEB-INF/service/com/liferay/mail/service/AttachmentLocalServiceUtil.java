@@ -131,10 +131,10 @@ public class AttachmentLocalServiceUtil {
 			size, file);
 	}
 
-	public static void deleteAttachments(long messageId)
+	public static void deleteAttachments(long companyId, long messageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteAttachments(messageId);
+		getService().deleteAttachments(companyId, messageId);
 	}
 
 	public static java.util.List<com.liferay.mail.model.Attachment> getAttachments(

@@ -124,6 +124,14 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	public void clearCache(Account account) {
+		EntityCacheUtil.removeResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
+			AccountImpl.class, account.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
+			new Object[] { new Long(account.getUserId()), account.getAddress() });
+	}
+
 	public Account create(long accountId) {
 		Account account = new AccountImpl();
 

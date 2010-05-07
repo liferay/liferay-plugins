@@ -503,14 +503,16 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (com.liferay.mail.model.Attachment)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteAttachments(long messageId)
+	public void deleteAttachments(long companyId, long messageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(messageId);
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object paramObj1 = new LongWrapper(messageId);
 
 		try {
 			_classLoaderProxy.invoke("deleteAttachments",
-				new Object[] { paramObj0 });
+				new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {

@@ -126,10 +126,10 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService {
 			contentPath, fileName, size, file);
 	}
 
-	public void deleteAttachments(long messageId)
+	public void deleteAttachments(long companyId, long messageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_attachmentLocalService.deleteAttachments(messageId);
+		_attachmentLocalService.deleteAttachments(companyId, messageId);
 	}
 
 	public java.util.List<com.liferay.mail.model.Attachment> getAttachments(
