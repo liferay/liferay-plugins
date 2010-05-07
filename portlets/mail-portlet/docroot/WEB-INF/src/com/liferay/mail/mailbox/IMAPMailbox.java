@@ -428,19 +428,28 @@ public class IMAPMailbox extends BaseMailbox {
 		long[] remoteMessageIds = _imapAccessor.getMessageUIDs(
 			folderId, pageNumber, messagesPerPage);
 
-		List<Long> missingRemoteMessageIds = new ArrayList<Long>();
+		boolean upToDate = true;
 
-		for (long remoteMessageId : remoteMessageIds) {
+		for (int i = 0; i < remoteMessageIds.length; i++) {
+			long remoteMessageId = remoteMessageIds[i];
+
 			try {
 				MessageLocalServiceUtil.getMessage(folderId, remoteMessageId);
+
+				remoteMessageIds[i] = 0;
 			}
 			catch (NoSuchMessageException nsme) {
-				missingRemoteMessageIds.add(remoteMessageId);
+				upToDate = false;
 			}
 		}
 
-		if (!missingRemoteMessageIds.isEmpty()) {
-			//_imapAccessor.storeEnvelopes(folderId, remoteMessageIds);
+		if (!upToDate) {
+			try {
+				_imapAccessor.storeMessages(folderId, remoteMessageIds);
+			}
+			catch (IOException ioe) {
+				throw new MailException(ioe);
+			}
 		}
 	}
 

@@ -51,8 +51,10 @@ public class AccountLock {
 		return true;
 	}
 
-	public static String getKey(long userId, long accountEntryId) {
-		return userId + _LOCK + accountEntryId;
+	public static String getKey(
+		long userId, long accountEntryId, long folderId, long messageId) {
+
+		return userId + "_" + accountEntryId + "_" + folderId + "_" + messageId;
 	}
 
 	public static void releaseLock(String key) {
@@ -62,8 +64,6 @@ public class AccountLock {
 	}
 
 	private static final long _EXPIRY_TIME = Time.MINUTE * 5;
-
-	private static final String _LOCK = "_LOCK_";
 
 	private static Log _log = LogFactoryUtil.getLog(AccountLock.class);
 

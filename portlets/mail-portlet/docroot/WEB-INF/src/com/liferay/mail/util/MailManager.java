@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
@@ -346,6 +347,14 @@ public class MailManager {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
 				_user.getUserId(), folder.getAccountId());
 
+			if ((pageNumber == 1) &&
+					orderByField.equals(MailConstants.ORDER_BY_SENT_DATE) &&
+					orderByType.equals("desc") && Validator.isNull(keywords)) {
+
+				sendSynchronizePageMessage(
+					folderId, pageNumber, messagesPerPage);
+			}
+
 			return mailbox.getMessagesDisplay(
 				folderId, keywords, pageNumber, messagesPerPage, orderByField,
 				orderByType);
@@ -496,57 +505,36 @@ public class MailManager {
 		}
 	}
 
-	public void synchronizeAccount(long accountId)
+	public void sendSynchronizeAccountMessage(long accountId)
 		throws PortalException, SystemException {
 
-		String key = AccountLock.getKey(_user.getUserId(), accountId);
-
-		if (AccountLock.acquireLock(key)) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Synchronizing account " + accountId);
-			}
-
-			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), accountId);
-
-			mailbox.synchronize();
-
-			AccountLock.releaseLock(key);
-		}
-		else {
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"Unable to acquire a synchronization lock for account " +
-						accountId);
-			}
-		}
+		sendSynchronizeMessage(accountId, 0, 0, 0, 0);
 	}
 
-	public void synchronizeMessage(long messageId)
+	public void sendSynchronizeFolderMessage(long folderId)
+		throws PortalException, SystemException {
+
+		Folder folder = FolderLocalServiceUtil.getFolder(folderId);
+
+		sendSynchronizeMessage(folder.getAccountId(), folderId, 0, 0, 0);
+	}
+
+	public void sendSynchronizeMessageMessage(long messageId)
 		throws PortalException, SystemException {
 
 		Message message = MessageLocalServiceUtil.getMessage(messageId);
 
-		Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-			_user.getUserId(), message.getAccountId());
-
-		mailbox.synchronizeMessage(messageId);
+		sendSynchronizeMessage(message.getAccountId(), 0, messageId, 0, 0);
 	}
 
-	public void synchronizePage(
-			long accountId, long folderId, int pageNumber, int messagesPerPage,
-			String orderByField, String orderByType, String keywords)
+	public void sendSynchronizePageMessage(
+			long folderId, int pageNumber, int messagesPerPage)
 		throws PortalException, SystemException {
 
-		Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-			_user.getUserId(), accountId);
+		Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
-		if ((pageNumber == 1) &&
-			orderByField.equals(MailConstants.ORDER_BY_SENT_DATE) &&
-			orderByType.equals("desc") && Validator.isNull(keywords)) {
-
-			mailbox.synchronizePage(folderId, pageNumber, messagesPerPage);
-		}
+		sendSynchronizeMessage(
+			folder.getAccountId(), folderId, 0, pageNumber, messagesPerPage);
 	}
 
 	public JSONObject updateAccount(
@@ -601,6 +589,26 @@ public class MailManager {
 		}
 
 		return jsonObject;
+	}
+
+	protected void sendSynchronizeMessage(
+			long accountId, long folderId, long messageId, int pageNumber,
+			int messagesPerPage)
+		throws PortalException, SystemException {
+
+		Account account = AccountLocalServiceUtil.getAccount(accountId);
+
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+
+		jsonObj.put("userId", _user.getUserId());
+		jsonObj.put("accountId", accountId);
+		jsonObj.put("folderId", folderId);
+		jsonObj.put("messageId", messageId);
+		jsonObj.put("pageNumber", pageNumber);
+		jsonObj.put("messagesPerPage", messagesPerPage);
+		jsonObj.put("password", account.getPasswordDecrypted());
+
+		MessageBusUtil.sendMessage("liferay/mail_synchronization", jsonObj);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(MailManager.class);
