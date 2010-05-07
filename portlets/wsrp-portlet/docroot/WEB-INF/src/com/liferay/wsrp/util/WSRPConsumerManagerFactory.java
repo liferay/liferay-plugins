@@ -56,7 +56,7 @@ public class WSRPConsumerManagerFactory {
 			userToken);
 	}
 
-	private static WSRPConsumerManager _getWSRPConsumerManager(
+	public static void setWSRPConsumerManager(
 			String url, RegistrationContext registrationContext,
 			String userToken)
 		throws Exception {
@@ -78,19 +78,42 @@ public class WSRPConsumerManagerFactory {
 			userTokenKey = _DEFAULT_USER_TOKEN;
 		}
 
-		WSRPConsumerManager wsrpConsumerManager =
-			wsrpConsumerManagersByUserToken.get(userTokenKey);
+		try {
+			WSRPConsumerManager wsrpConsumerManager = new WSRPConsumerManager(
+					url, registrationContext, userToken);
 
-		if (wsrpConsumerManager != null) {
-			return wsrpConsumerManager;
+			if (wsrpConsumerManagersByUserToken.get(userTokenKey) == null) {
+				wsrpConsumerManagersByUserToken.put(
+						userTokenKey, wsrpConsumerManager);
+			}
+		}
+		catch (Exception e) {
+			destroyWSRPConsumerManager(url);
+
+			throw e;
+		}
+	}
+
+	private static WSRPConsumerManager _getWSRPConsumerManager(
+			String url, RegistrationContext registrationContext,
+			String userToken)
+		throws Exception {
+
+		String userTokenKey = userToken;
+
+		if (Validator.isNull(userTokenKey)) {
+			userTokenKey = _DEFAULT_USER_TOKEN;
 		}
 
-		wsrpConsumerManager = new WSRPConsumerManager(
+		Map<String, WSRPConsumerManager> wsrpConsumerManagersByUserToken =
+			_wsrpConsumerManagersByUrl.get(url);
+
+		if (wsrpConsumerManagersByUserToken != null) {
+			return wsrpConsumerManagersByUserToken.get(userTokenKey);
+		}
+
+		return new WSRPConsumerManager(
 			url, registrationContext, userToken);
-
-		wsrpConsumerManagersByUserToken.put(userTokenKey, wsrpConsumerManager);
-
-		return wsrpConsumerManager;
 	}
 
 	private static final String _DEFAULT_USER_TOKEN =
