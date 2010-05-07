@@ -21,8 +21,8 @@ import com.liferay.opensocial.service.GadgetLocalService;
 import com.liferay.opensocial.service.persistence.GadgetPersistence;
 
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.dao.db.DB;
-import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
+import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
+import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -35,6 +35,8 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import java.util.List;
+
+import javax.sql.DataSource;
 
 /**
  * <a href="GadgetLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
@@ -187,9 +189,12 @@ public abstract class GadgetLocalServiceBaseImpl implements GadgetLocalService {
 
 	protected void runSQL(String sql) throws SystemException {
 		try {
-			DB db = DBFactoryUtil.getDB();
+			DataSource dataSource = gadgetPersistence.getDataSource();
 
-			db.runSQL(sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
+					sql, new int[0]);
+
+			sqlUpdate.update();
 		}
 		catch (Exception e) {
 			throw new SystemException(e);

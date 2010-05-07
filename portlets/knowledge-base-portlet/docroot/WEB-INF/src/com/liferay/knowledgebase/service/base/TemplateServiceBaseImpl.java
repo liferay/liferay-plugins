@@ -24,8 +24,8 @@ import com.liferay.knowledgebase.service.persistence.ArticlePersistence;
 import com.liferay.knowledgebase.service.persistence.TemplatePersistence;
 
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.dao.db.DB;
-import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
+import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
+import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -34,6 +34,8 @@ import com.liferay.portal.service.UserService;
 import com.liferay.portal.service.base.PrincipalBean;
 import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
+
+import javax.sql.DataSource;
 
 /**
  * <a href="TemplateServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
@@ -150,9 +152,12 @@ public abstract class TemplateServiceBaseImpl extends PrincipalBean
 
 	protected void runSQL(String sql) throws SystemException {
 		try {
-			DB db = DBFactoryUtil.getDB();
+			DataSource dataSource = templatePersistence.getDataSource();
 
-			db.runSQL(sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
+					sql, new int[0]);
+
+			sqlUpdate.update();
 		}
 		catch (Exception e) {
 			throw new SystemException(e);

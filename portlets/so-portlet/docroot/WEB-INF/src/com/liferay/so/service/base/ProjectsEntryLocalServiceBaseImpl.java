@@ -17,8 +17,8 @@ package com.liferay.so.service.base;
 import com.liferay.counter.service.CounterLocalService;
 
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.dao.db.DB;
-import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
+import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
+import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -37,6 +37,8 @@ import com.liferay.so.service.persistence.MemberRequestPersistence;
 import com.liferay.so.service.persistence.ProjectsEntryPersistence;
 
 import java.util.List;
+
+import javax.sql.DataSource;
 
 /**
  * <a href="ProjectsEntryLocalServiceBaseImpl.java.html"><b><i>View Source</i>
@@ -215,9 +217,12 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 
 	protected void runSQL(String sql) throws SystemException {
 		try {
-			DB db = DBFactoryUtil.getDB();
+			DataSource dataSource = projectsEntryPersistence.getDataSource();
 
-			db.runSQL(sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
+					sql, new int[0]);
+
+			sqlUpdate.update();
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
