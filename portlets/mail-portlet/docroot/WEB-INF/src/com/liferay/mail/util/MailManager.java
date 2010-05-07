@@ -83,11 +83,16 @@ public class MailManager {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
 				_user.getUserId(), protocol);
 
-			mailbox.addAccount(
+			Account account = mailbox.addAccount(
 				address, personalName, protocol, incomingHostName, incomingPort,
 				incomingSecure, outgoingHostName, outgoingPort, outgoingSecure,
 				login, unencryptedPassword, savePassword, signature,
 				useSignature, folderPrefix, defaultSender);
+
+			mailbox = MailboxFactoryUtil.getMailbox(
+				_user.getUserId(), account.getAccountId());
+
+			mailbox.synchronize();
 
 			return createJSONResult("success", "account-has-been-created");
 		}

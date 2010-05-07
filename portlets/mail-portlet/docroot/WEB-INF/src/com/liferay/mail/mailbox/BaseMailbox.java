@@ -53,19 +53,13 @@ public abstract class BaseMailbox implements Mailbox {
 			long sentFolderId = 0;
 			long trashFolderId = 0;
 
-			Account account = AccountLocalServiceUtil.addAccount(
+			return AccountLocalServiceUtil.addAccount(
 				user.getUserId(), address, personalName, protocol,
 				incomingHostName, incomingPort, incomingSecure,
 				outgoingHostName, outgoingPort, outgoingSecure, login,
 				password, savePassword, signature, useSignature, folderPrefix,
 				inboxFolderId, draftFolderId, sentFolderId, trashFolderId,
 				defaultSender);
-
-			setAccount(account);
-
-			synchronize();
-
-			return account;
 		}
 	}
 
