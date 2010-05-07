@@ -45,7 +45,7 @@ public class AdminFriendlyURLMapper extends BaseFriendlyURLMapper {
 			portletURL.getParameter("jspPage"));
 
 		if (resourceID.equals("rss")) {
-			friendlyURLPath = "/admin/rss";
+			friendlyURLPath = "/knowledge_base/rss";
 
 			portletURL.addParameterIncludedInPath("p_p_cacheability");
 			portletURL.addParameterIncludedInPath("p_p_lifecycle");
@@ -55,7 +55,7 @@ public class AdminFriendlyURLMapper extends BaseFriendlyURLMapper {
 			String resourcePrimKey = GetterUtil.getString(
 				portletURL.getParameter("resourcePrimKey"));
 
-			friendlyURLPath = "/admin/article/" + resourcePrimKey;
+			friendlyURLPath = "/knowledge_base/article/" + resourcePrimKey;
 
 			WindowState windowState = portletURL.getWindowState();
 
@@ -113,7 +113,7 @@ public class AdminFriendlyURLMapper extends BaseFriendlyURLMapper {
 		}
 	}
 
-	private static final String _MAPPING = "admin";
+	private static final String _MAPPING = "knowledge_base";
 
 	private static final String _PORTLET_ID = PortletKeys.KNOWLEDGE_BASE_ADMIN;
 
