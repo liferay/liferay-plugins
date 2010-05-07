@@ -139,6 +139,10 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		context.addZipEntry(path, article);
 
 		context.addPermissions(Article.class, article.getResourcePrimKey());
+
+		if (context.getBooleanParameter(_ARTICLE, "comments")) {
+			context.addComments(Article.class, article.getResourcePrimKey());
+		}
 	}
 
 	protected void exportArticles(PortletDataContext context, Element root)
@@ -259,6 +263,12 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		context.importPermissions(
 			Article.class, article.getResourcePrimKey(),
 			importedArticle.getResourcePrimKey());
+
+		if (context.getBooleanParameter(_ARTICLE, "comments")) {
+			context.importComments(
+				Article.class, article.getResourcePrimKey(),
+				importedArticle.getResourcePrimKey(), context.getGroupId());
+		}
 	}
 
 	protected void importArticles(PortletDataContext context, Element root)
@@ -281,7 +291,13 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	private static final String _ARTICLE = "knowledge_base_article";
 
+	private static final PortletDataHandlerControl[] _article_options =
+		new PortletDataHandlerControl[] {
+			new PortletDataHandlerBoolean(_ARTICLE, "comments")
+		};
+
 	private static final PortletDataHandlerBoolean _articles =
-		new PortletDataHandlerBoolean(_ARTICLE, "articles", true, true);
+		new PortletDataHandlerBoolean(
+			_ARTICLE, "articles", true, true, _article_options);
 
 }
