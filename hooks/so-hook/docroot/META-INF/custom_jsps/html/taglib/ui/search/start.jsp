@@ -26,17 +26,15 @@ Group group = layout.getGroup();
 <liferay-util:include page="/html/taglib/ui/search/start.portal.jsp" />
 
 <c:if test="<%= group.isUser() %>">
-	<script type="text/javascript">
-		var searchOptions = jQuery('select[name=<%= namespace %>groupId] option');
+	<aui:script>
+		var searchOptions = AUI().all('select[name=<%= namespace %>groupId] option');
 
 		searchOptions.each(
-			function(i) {
-				var searchOption = jQuery(this);
-
+			function(searchOption, index, collection) {
 				if (searchOption.val() != 0) {
 					searchOption.remove();
 				}
 			}
 		);
-	</script>
+	</aui:script>
 </c:if>

@@ -21,17 +21,15 @@
 
 <%@ include file="/html/portlet/blogs/view_entries.portal.jspf" %>
 
-<script type="text/javascript">
-	jQuery(
-		function() {
-			var addEntryButton = jQuery('#<portlet:namespace />addEntryButton');
+<aui:script>
+	var addEntryButton = AUI().one('#<portlet:namespace />addEntryButton');
 
-			addEntryButton.attr('onclick', '');
-			addEntryButton.click(
-				function() {
-					location.href = '<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/blogs/edit_entry" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';
-				}
-			);
+	addEntryButton.setAttribute('onclick', '');
+
+	addEntryButton.on(
+		'click',
+		function(event) {
+			location.href = '<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/blogs/edit_entry" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';
 		}
 	);
-</script>
+</aui:script>

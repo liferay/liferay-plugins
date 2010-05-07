@@ -39,17 +39,15 @@ if (x != -1) {
 <%= html %>
 
 <c:if test="<%= group.isUser() %>">
-	<script type="text/javascript">
-		var searchOptions = jQuery('select[name=<portlet:namespace />groupId] option');
+	<aui:script>
+		var searchOptions = AUI().all('select[name=<portlet:namespace />groupId] option');
 
 		searchOptions.each(
-			function(i) {
-				var searchOption = jQuery(this);
-
+			function(searchOption, index, collection) {
 				if (searchOption.val() != 0) {
 					searchOption.remove();
 				}
 			}
 		);
-	</script>
+	</aui:script>
 </c:if>
