@@ -269,6 +269,10 @@ public class IMAPAccessor {
 			int[] messageIndexes = getMessageIndexes(
 				imapFolder.getMessageCount(), pageNumber, messagesPerPage);
 
+			if (messageIndexes[0] == 0) {
+				return new long[0];
+			}
+
 			Message[] jxMessages = imapFolder.getMessages(
 				messageIndexes[0], messageIndexes[1]);
 
