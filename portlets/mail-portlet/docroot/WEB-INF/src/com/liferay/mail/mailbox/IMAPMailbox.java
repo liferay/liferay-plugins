@@ -412,7 +412,7 @@ public class IMAPMailbox extends BaseMailbox {
 		}
 
 		try {
-			_imapAccessor.storeMessages(
+			_imapAccessor.storeContents(
 				message.getFolderId(),
 				new long[] {message.getRemoteMessageId()});
 		}
@@ -444,12 +444,7 @@ public class IMAPMailbox extends BaseMailbox {
 		}
 
 		if (!upToDate) {
-			try {
-				_imapAccessor.storeMessages(folderId, remoteMessageIds);
-			}
-			catch (IOException ioe) {
-				throw new MailException(ioe);
-			}
+			_imapAccessor.storeEnvelopes(folderId, remoteMessageIds);
 		}
 	}
 

@@ -584,7 +584,7 @@ public class IMAPAccessor {
 		}
 	}
 
-	public void storeMessages(long folderId, long[] remoteMessageIds)
+	public void storeContents(long folderId, long[] remoteMessageIds)
 		throws IOException, PortalException, SystemException {
 
 		IMAPFolder imapFolder = null;
