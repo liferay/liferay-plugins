@@ -2,10 +2,8 @@ AUI.add(
 	'liferay-soffice-profile',
 	function(A) {
 		var Profiles = function() {
-			var instance = this;
-
-			Profiles.superclass.constructor.apply(instance, arguments);
-		}
+			Profiles.superclass.constructor.apply(this, arguments);
+		};
 
 		Profiles.NAME = 'soprofile';
 

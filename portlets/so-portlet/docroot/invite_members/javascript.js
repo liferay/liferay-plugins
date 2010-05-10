@@ -2,10 +2,8 @@ AUI().add(
 	'liferay-soffice-invitemembers',
 	function(A) {
 		var InviteMembers = function() {
-			var instance = this;
-
-			InviteMembers.superclass.constructor.apply(instance, arguments);
-		}
+			InviteMembers.superclass.constructor.apply(this, arguments);
+		};
 
 		InviteMembers.NAME = 'soinvitemembers';
 
