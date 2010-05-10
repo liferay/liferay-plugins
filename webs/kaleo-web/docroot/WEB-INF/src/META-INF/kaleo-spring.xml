@@ -35,7 +35,7 @@
 		<property name="taskManager" ref="com.liferay.portal.workflow.kaleo.runtime.TaskManager" />
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager" class="com.liferay.portal.workflow.kaleo.manager.DefaultPortalKaleoManager">
-		<property name="defaultDefinitionName" value="Automatic Approval" />
+		<property name="defaultDefinitionName" value="Single Approver" />
 		<property name="defaultRoles">
 			<map>
 				<entry key="Content Reviewers" value="This role is granted to all users who are reviewers in the content management workflow." />
