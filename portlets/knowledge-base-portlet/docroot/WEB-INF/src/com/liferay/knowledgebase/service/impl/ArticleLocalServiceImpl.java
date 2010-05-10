@@ -65,6 +65,7 @@ import com.liferay.portal.service.ServiceContextUtil;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
+import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.util.portlet.PortletProps;
@@ -120,6 +121,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		article.setContent(content);
 		article.setDescription(description);
 		article.setPriority(priority);
+		article.setExpandoBridgeAttributes(serviceContext);
 
 		articlePersistence.update(article, false);
 
@@ -280,6 +282,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		articlePersistence.removeByResourcePrimKey(
 			article.getResourcePrimKey());
+
+		// Expando
+
+		ExpandoValueLocalServiceUtil.deleteValues(
+			Article.class.getName(), article.getResourcePrimKey());
 
 		// Message boards
 
@@ -481,6 +488,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		article.setContent(content);
 		article.setDescription(description);
 		article.setPriority(priority);
+		article.setExpandoBridgeAttributes(serviceContext);
 
 		articlePersistence.update(article, false);
 
