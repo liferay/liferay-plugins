@@ -301,12 +301,25 @@ portletURL.setParameter("name", name);
 					}
 				</c:if>
 
-				jQuery(document.<portlet:namespace />fm).ajaxSubmit(
-					{
-						iframe: true,
-						success: function() {
-							<portlet:namespace />unlock();
-						}
+				AUI().use(
+					'aui-io-request',
+					function(A) {
+						var form = A.one(document.<portlet:namespace />fm);
+
+						A.io.request(
+							form.getAttribute('action'),
+							{
+								form: {
+									id: form.get('id'),
+									upload: true
+								},
+								on: {
+									complete: function(event) {
+										<portlet:namespace />unlock();
+									}
+								}
+							}
+						);
 					}
 				);
 			}
