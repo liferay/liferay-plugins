@@ -56,6 +56,21 @@ public class WSRPConsumerManagerFactory {
 			userToken);
 	}
 
+	public static boolean testWSRPConsumerManager(
+		WSRPConsumer wsrpConsumer, String userToken) {
+
+		try {
+			new WSRPConsumerManager(
+				wsrpConsumer.getUrl(), wsrpConsumer.getRegistrationContext(),
+				userToken);
+
+			return true;
+		}
+		catch (Exception e) {
+			return false;
+		}
+	}
+
 	private static WSRPConsumerManager _getWSRPConsumerManager(
 			String url, RegistrationContext registrationContext,
 			String userToken)
