@@ -41,17 +41,8 @@
 				<entry key="Content Reviewers" value="This role is granted to all users who are reviewers in the content management workflow." />
 			</map>
 		</property>
-		<property name="definitionAssets">
-			<map>
-				<entry key="com.liferay.portlet.documentlibrary.model.DLFileEntry" value="Automatic Approval" />
-				<entry key="com.liferay.portlet.journal.model.JournalArticle" value="Automatic Approver" />
-				<entry key="com.liferay.portlet.wiki.model.WikiPage" value="Automatic Approval" />
-				<entry key="com.liferay.portlet.blogs.model.BlogsEntry" value="Single Approver" />
-			</map>
-		</property>
 		<property name="definitionFiles">
 			<map>
-				<entry key="Automatic Approval" value="META-INF/definitions/auto-approve-definition.xml" />
 				<entry key="Single Approver" value="META-INF/definitions/single-approver-definition.xml" />
 			</map>
 		</property>

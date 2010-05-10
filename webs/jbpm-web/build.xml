@@ -10,11 +10,6 @@
 	<target name="build-samples">
 		<delete dir="samples" />
 
-		<copy 
-			file="docroot/WEB-INF/src/META-INF/definitions/auto-approve-definition.xml" 
-			tofile="samples/processdefinition.xml"
-		/>
-
 		<jar
 			basedir="samples"
 			jarfile="samples/${auto.approver.name}.jar"
