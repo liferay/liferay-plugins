@@ -22,9 +22,11 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -80,6 +82,12 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 				template, serviceContext.getCommunityPermissions(),
 				serviceContext.getGuestPermissions());
 		}
+
+		// Message Boards
+
+		MBMessageLocalServiceUtil.addDiscussionMessage(
+			userId, template.getUserName(), Template.class.getName(),
+			templateId, WorkflowConstants.ACTION_PUBLISH);
 
 		return template;
 	}
@@ -137,6 +145,11 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 		// Template
 
 		templatePersistence.remove(template);
+
+		// Message boards
+
+		MBMessageLocalServiceUtil.deleteDiscussionMessages(
+			Template.class.getName(), template.getTemplateId());
 	}
 
 	public List<Template> getGroupTemplates(
