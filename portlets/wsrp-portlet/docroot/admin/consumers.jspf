@@ -30,14 +30,6 @@
 		keyProperty="wsrpConsumerId"
 		modelVar="consumer"
 	>
-	<%
-	try {
-		WSRPConsumerManagerFactory.setWSRPConsumerManager(consumer.getUrl(), consumer.getRegistrationContext(), userToken);
-	}
-	catch (Exception e) {
-		row.setRestricted(true);
-	}
-	%>
 		<portlet:renderURL var="rowURL">
 			<portlet:param name="jspPage" value="/admin/edit_consumer.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
