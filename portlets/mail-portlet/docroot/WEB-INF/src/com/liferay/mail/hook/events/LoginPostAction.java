@@ -53,8 +53,7 @@ public class LoginPostAction extends Action {
 
 		for (Account account : accounts) {
 			if (account.isSavePassword()) {
-				mailManager.sendSynchronizeAccountMessage(
-					account.getAccountId());
+				mailManager.synchronizeAccount(account.getAccountId());
 			}
 		}
 	}

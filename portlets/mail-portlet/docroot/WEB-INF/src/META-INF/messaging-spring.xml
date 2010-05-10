@@ -10,27 +10,27 @@
 
 	<!-- Destinations -->
 
-	<bean id="destination.mail_synchronization" class="com.liferay.portal.kernel.messaging.ParallelDestination">
-		<property name="name" value="liferay/mail_synchronization" />
+	<bean id="destination.mail_synchronizer" class="com.liferay.portal.kernel.messaging.ParallelDestination">
+		<property name="name" value="liferay/mail_synchronizer" />
 	</bean>
 
 	<!-- Listeners -->
 
-	<bean id="messageListener.mail_synchronization" class="com.liferay.mail.messaging.MailSynchronizationMessageListener" />
+	<bean id="messageListener.mail_synchronizer" class="com.liferay.mail.messaging.MailSynchronizationMessageListener" />
 
 	<!-- Configurator -->
 
 	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator">
 		<property name="destinations">
 			<list>
-				<ref bean="destination.mail_synchronization" />
+				<ref bean="destination.mail_synchronizer" />
 			</list>
 		</property>
 		<property name="messageListeners">
 			<map key-type="java.lang.String" value-type="java.util.List">
-				<entry key="liferay/mail_synchronization">
+				<entry key="liferay/mail_synchronizer">
 					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
-						<ref bean="messageListener.mail_synchronization" />
+						<ref bean="messageListener.mail_synchronizer" />
 					</list>
 				</entry>
 			</map>

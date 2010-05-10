@@ -411,6 +411,68 @@ public class IMAPAccessor {
 		}
 	}
 
+	public void storeContents(long folderId, long[] remoteMessageIds)
+		throws IOException, PortalException, SystemException {
+
+		IMAPFolder imapFolder = null;
+
+		try {
+			imapFolder = openFolder(folderId);
+
+			Message[] jxMessages = imapFolder.getMessagesByUID(
+				remoteMessageIds);
+
+			FetchProfile fetchProfile = new FetchProfile();
+
+			fetchProfile.add(UIDFolder.FetchProfileItem.UID);
+			fetchProfile.add(UIDFolder.FetchProfileItem.CONTENT_INFO);
+
+			imapFolder.fetch(jxMessages, fetchProfile);
+
+			for (Message jxMessage : jxMessages) {
+				String flags = getFlags(jxMessage);
+
+				long remoteMessageId = imapFolder.getUID(jxMessage);
+
+				com.liferay.mail.model.Message message =
+					MessageLocalServiceUtil.getMessage(
+						folderId, remoteMessageId);
+
+				StringBundler bodyPlain = new StringBundler();
+				StringBundler bodyHtml = new StringBundler();
+				List<MailFile> mailFiles = new ArrayList<MailFile>();
+
+				getParts(
+					_user.getUserId(), bodyPlain, bodyHtml, StringPool.BLANK,
+					jxMessage, mailFiles);
+
+				if (bodyHtml.length() == 0) {
+					bodyHtml = bodyPlain;
+				}
+
+				if (flags.indexOf(MailConstants.FLAG_SEEN) == -1) {
+					jxMessage.setFlag(Flags.Flag.SEEN, false);
+				}
+
+				for (MailFile mailFile : mailFiles) {
+					AttachmentLocalServiceUtil.addAttachment(
+						_user.getUserId(), message.getMessageId(),
+						mailFile.getContentPath(), mailFile.getFileName(),
+						mailFile.getSize(), mailFile.getFile());
+				}
+
+				MessageLocalServiceUtil.updateContent(
+					message.getMessageId(), bodyHtml.toString(), flags);
+			}
+		}
+		catch (MessagingException me) {
+			throw new MailException(me);
+		}
+		finally {
+			closeFolder(imapFolder, false);
+		}
+	}
+
 	public void storeEnvelopes(long folderId)
 		throws PortalException, SystemException {
 
@@ -575,68 +637,6 @@ public class IMAPAccessor {
 				remoteMessageIds);
 
 			storeEnvelopes(folderId, imapFolder, jxMessages);
-		}
-		catch (MessagingException me) {
-			throw new MailException(me);
-		}
-		finally {
-			closeFolder(imapFolder, false);
-		}
-	}
-
-	public void storeContents(long folderId, long[] remoteMessageIds)
-		throws IOException, PortalException, SystemException {
-
-		IMAPFolder imapFolder = null;
-
-		try {
-			imapFolder = openFolder(folderId);
-
-			Message[] jxMessages = imapFolder.getMessagesByUID(
-				remoteMessageIds);
-
-			FetchProfile fetchProfile = new FetchProfile();
-
-			fetchProfile.add(UIDFolder.FetchProfileItem.UID);
-			fetchProfile.add(UIDFolder.FetchProfileItem.CONTENT_INFO);
-
-			imapFolder.fetch(jxMessages, fetchProfile);
-
-			for (Message jxMessage : jxMessages) {
-				String flags = getFlags(jxMessage);
-
-				long remoteMessageId = imapFolder.getUID(jxMessage);
-
-				com.liferay.mail.model.Message message =
-					MessageLocalServiceUtil.getMessage(
-						folderId, remoteMessageId);
-
-				StringBundler bodyPlain = new StringBundler();
-				StringBundler bodyHtml = new StringBundler();
-				List<MailFile> mailFiles = new ArrayList<MailFile>();
-
-				getParts(
-					_user.getUserId(), bodyPlain, bodyHtml, StringPool.BLANK,
-					jxMessage, mailFiles);
-
-				if (bodyHtml.length() == 0) {
-					bodyHtml = bodyPlain;
-				}
-
-				if (flags.indexOf(MailConstants.FLAG_SEEN) == -1) {
-					jxMessage.setFlag(Flags.Flag.SEEN, false);
-				}
-
-				for (MailFile mailFile : mailFiles) {
-					AttachmentLocalServiceUtil.addAttachment(
-						_user.getUserId(), message.getMessageId(),
-						mailFile.getContentPath(), mailFile.getFileName(),
-						mailFile.getSize(), mailFile.getFile());
-				}
-
-				MessageLocalServiceUtil.updateContent(
-					message.getMessageId(), bodyHtml.toString(), flags);
-			}
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);

@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
@@ -348,11 +349,10 @@ public class MailManager {
 				_user.getUserId(), folder.getAccountId());
 
 			if ((pageNumber == 1) &&
-					orderByField.equals(MailConstants.ORDER_BY_SENT_DATE) &&
-					orderByType.equals("desc") && Validator.isNull(keywords)) {
+				orderByField.equals(MailConstants.ORDER_BY_SENT_DATE) &&
+				orderByType.equals("desc") && Validator.isNull(keywords)) {
 
-				sendSynchronizePageMessage(
-					folderId, pageNumber, messagesPerPage);
+				synchronizePage(folderId, pageNumber, messagesPerPage);
 			}
 
 			return mailbox.getMessagesDisplay(
@@ -505,35 +505,35 @@ public class MailManager {
 		}
 	}
 
-	public void sendSynchronizeAccountMessage(long accountId)
+	public void synchronizeAccount(long accountId)
 		throws PortalException, SystemException {
 
-		sendSynchronizeMessage(accountId, 0, 0, 0, 0);
+		synchronize(accountId, 0, 0, 0, 0);
 	}
 
-	public void sendSynchronizeFolderMessage(long folderId)
+	public void synchronizeFolder(long folderId)
 		throws PortalException, SystemException {
 
 		Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
-		sendSynchronizeMessage(folder.getAccountId(), folderId, 0, 0, 0);
+		synchronize(folder.getAccountId(), folderId, 0, 0, 0);
 	}
 
-	public void sendSynchronizeMessageMessage(long messageId)
+	public void synchronizeMessage(long messageId)
 		throws PortalException, SystemException {
 
 		Message message = MessageLocalServiceUtil.getMessage(messageId);
 
-		sendSynchronizeMessage(message.getAccountId(), 0, messageId, 0, 0);
+		synchronize(message.getAccountId(), 0, messageId, 0, 0);
 	}
 
-	public void sendSynchronizePageMessage(
+	public void synchronizePage(
 			long folderId, int pageNumber, int messagesPerPage)
 		throws PortalException, SystemException {
 
 		Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
-		sendSynchronizeMessage(
+		synchronize(
 			folder.getAccountId(), folderId, 0, pageNumber, messagesPerPage);
 	}
 
@@ -591,24 +591,25 @@ public class MailManager {
 		return jsonObject;
 	}
 
-	protected void sendSynchronizeMessage(
+	protected void synchronize(
 			long accountId, long folderId, long messageId, int pageNumber,
 			int messagesPerPage)
 		throws PortalException, SystemException {
 
 		Account account = AccountLocalServiceUtil.getAccount(accountId);
 
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+		com.liferay.portal.kernel.messaging.Message message =
+			new com.liferay.portal.kernel.messaging.Message();
 
-		jsonObj.put("userId", _user.getUserId());
-		jsonObj.put("accountId", accountId);
-		jsonObj.put("folderId", folderId);
-		jsonObj.put("messageId", messageId);
-		jsonObj.put("pageNumber", pageNumber);
-		jsonObj.put("messagesPerPage", messagesPerPage);
-		jsonObj.put("password", account.getPasswordDecrypted());
+		message.put("userId", _user.getUserId());
+		message.put("accountId", accountId);
+		message.put("folderId", folderId);
+		message.put("messageId", messageId);
+		message.put("pageNumber", pageNumber);
+		message.put("messagesPerPage", messagesPerPage);
+		message.put("password", account.getPasswordDecrypted());
 
-		MessageBusUtil.sendMessage("liferay/mail_synchronization", jsonObj);
+		MessageBusUtil.sendMessage(DestinationNames.MAIL_SYNCHRONIZER, message);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(MailManager.class);

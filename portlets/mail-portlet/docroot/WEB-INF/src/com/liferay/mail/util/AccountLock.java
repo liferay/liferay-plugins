@@ -16,6 +16,8 @@ package com.liferay.mail.util;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -54,7 +56,17 @@ public class AccountLock {
 	public static String getKey(
 		long userId, long accountEntryId, long folderId, long messageId) {
 
-		return userId + "_" + accountEntryId + "_" + folderId + "_" + messageId;
+		StringBundler sb = new StringBundler(7);
+
+		sb.append(userId);
+		sb.append(StringPool.UNDERLINE);
+		sb.append(accountEntryId);
+		sb.append(StringPool.UNDERLINE);
+		sb.append(folderId);
+		sb.append(StringPool.UNDERLINE);
+		sb.append(messageId);
+
+		return sb.toString();
 	}
 
 	public static void releaseLock(String key) {

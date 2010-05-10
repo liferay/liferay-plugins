@@ -23,5 +23,5 @@ MailManager mailManager = MailManager.getInstance(request);
 %>
 
 <c:if test="<%= mailManager != null %>">
-	<%= mailManager.sendSynchronizeAccountMessage(accountId) %>
+	<%= mailManager.synchronizeAccount(accountId) %>
 </c:if>

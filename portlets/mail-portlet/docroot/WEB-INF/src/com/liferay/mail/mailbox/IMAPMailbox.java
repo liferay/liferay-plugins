@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -428,7 +429,7 @@ public class IMAPMailbox extends BaseMailbox {
 		long[] remoteMessageIds = _imapAccessor.getMessageUIDs(
 			folderId, pageNumber, messagesPerPage);
 
-		List<Long> missingRemoteMessageIds = new ArrayList<Long>();
+		List<Long> missingRemoteMessageIdsList = new ArrayList<Long>();
 
 		for (int i = 0; i < remoteMessageIds.length; i++) {
 			long remoteMessageId = remoteMessageIds[i];
@@ -437,19 +438,16 @@ public class IMAPMailbox extends BaseMailbox {
 				MessageLocalServiceUtil.getMessage(folderId, remoteMessageId);
 			}
 			catch (NoSuchMessageException nsme) {
-				missingRemoteMessageIds.add(remoteMessageId);
+				missingRemoteMessageIdsList.add(remoteMessageId);
 			}
 		}
 
-		if (!missingRemoteMessageIds.isEmpty()) {
-			long[] tempRemoteMessageIds =
-				new long[missingRemoteMessageIds.size()];
+		if (!missingRemoteMessageIdsList.isEmpty()) {
+			long[] missingRemoteMessageIds = ArrayUtil.toArray(
+				missingRemoteMessageIdsList.toArray(
+					new Long[missingRemoteMessageIdsList.size()]));
 
-			for (int i = 0; i < missingRemoteMessageIds.size(); i++) {
-				tempRemoteMessageIds[i] = missingRemoteMessageIds.get(i);
-			}
-
-			_imapAccessor.storeEnvelopes(folderId, tempRemoteMessageIds);
+			_imapAccessor.storeEnvelopes(folderId, missingRemoteMessageIds);
 		}
 	}
 
