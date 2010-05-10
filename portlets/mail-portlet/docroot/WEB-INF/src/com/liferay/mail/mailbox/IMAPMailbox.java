@@ -285,8 +285,8 @@ public class IMAPMailbox extends BaseMailbox {
 				messageId, account.getDraftFolderId(), sender,
 				InternetAddressUtil.toString(toAddresses),
 				InternetAddressUtil.toString(ccAddresses),
-				InternetAddressUtil.toString(bccAddresses), null,
-				subject, body, String.valueOf(MailConstants.FLAG_DRAFT), 0);
+				InternetAddressUtil.toString(bccAddresses), null, subject, body,
+				String.valueOf(MailConstants.FLAG_DRAFT), 0);
 		}
 		else {
 			return MessageLocalServiceUtil.addMessage(

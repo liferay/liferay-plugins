@@ -303,9 +303,29 @@ public class MailManager {
 		return MessageLocalServiceUtil.getFolderUnreadMessagesCount(folderId);
 	}
 
+	public MessageDisplay getMessageDisplay(long messageId)
+		throws PortalException, SystemException {
+
+		Message message = MessageLocalServiceUtil.getMessage(messageId);
+
+		if (Validator.isNull(message.getBody())) {
+			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
+				_user.getUserId(), message.getAccountId());
+
+			mailbox.synchronizeMessage(message.getMessageId());
+
+			message = MessageLocalServiceUtil.getMessage(messageId);
+		}
+
+		List<Attachment> attachments =
+			AttachmentLocalServiceUtil.getAttachments(messageId);
+
+		return new MessageDisplay(message, attachments, 0);
+	}
+
 	public MessageDisplay getMessageDisplay(
 			long folderId, String keywords, int messageNumber,
-			String orderByField, String orderByType, boolean synchronize)
+			String orderByField, String orderByType)
 		throws PortalException, SystemException {
 
 		if (folderId <= 0) {
@@ -319,15 +339,8 @@ public class MailManager {
 
 		Message message = messages.get(0);
 
-		if (synchronize && Validator.isNull(message.getBody())) {
-			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), message.getAccountId());
-
-			mailbox.synchronizeMessage(message.getMessageId());
-
-			return getMessageDisplay(
-				folderId, keywords, messageNumber, orderByField, orderByType,
-				synchronize);
+		if (Validator.isNull(message.getBody())) {
+			synchronizeMessage(message.getMessageId());
 		}
 
 		List<Attachment> attachments =

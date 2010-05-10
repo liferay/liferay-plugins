@@ -447,7 +447,12 @@ public class IMAPAccessor {
 					jxMessage, mailFiles);
 
 				if (bodyHtml.length() == 0) {
-					bodyHtml = bodyPlain;
+					if (bodyPlain.length() == 0) {
+						bodyHtml.append("&nbsp;");
+					}
+					else {
+						bodyHtml = bodyPlain;
+					}
 				}
 
 				if (flags.indexOf(MailConstants.FLAG_SEEN) == -1) {
@@ -601,7 +606,8 @@ public class IMAPAccessor {
 
 				MessageLocalServiceUtil.addMessage(
 					_user.getUserId(), folderId, sender, to, cc, bcc,
-					sentDate, subject, null, StringPool.BLANK, remoteMessageId);
+					sentDate, subject, StringPool.BLANK, StringPool.BLANK,
+					remoteMessageId);
 			}
 
 			com.liferay.mail.model.Folder folder =
