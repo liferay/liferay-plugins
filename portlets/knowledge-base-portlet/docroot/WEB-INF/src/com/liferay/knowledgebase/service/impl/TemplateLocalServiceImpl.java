@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 
@@ -65,7 +66,45 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 
 		templatePersistence.update(template, false);
 
+		// Resources
+
+		if (serviceContext.getAddCommunityPermissions() ||
+			serviceContext.getAddGuestPermissions()) {
+
+			addTemplateResources(
+				template, serviceContext.getAddCommunityPermissions(),
+				serviceContext.getAddGuestPermissions());
+		}
+		else {
+			addTemplateResources(
+				template, serviceContext.getCommunityPermissions(),
+				serviceContext.getGuestPermissions());
+		}
+
 		return template;
+	}
+
+	public void addTemplateResources(
+			Template template, boolean addCommunityPermissions,
+			boolean addGuestPermissions)
+		throws PortalException, SystemException {
+
+		resourceLocalService.addResources(
+			template.getCompanyId(), template.getGroupId(),
+			template.getUserId(), Template.class.getName(),
+			template.getTemplateId(), false, addCommunityPermissions,
+			addGuestPermissions);
+	}
+
+	public void addTemplateResources(
+			Template template, String[] communityPermissions,
+			String[] guestPermissions)
+		throws PortalException, SystemException {
+
+		resourceLocalService.addModelResources(
+			template.getCompanyId(), template.getGroupId(),
+			template.getUserId(), Template.class.getName(),
+			template.getTemplateId(), communityPermissions, guestPermissions);
 	}
 
 	public void deleteGroupTemplates(long groupId)
@@ -86,7 +125,14 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 		deleteTemplate(template);
 	}
 
-	public void deleteTemplate(Template template) throws SystemException {
+	public void deleteTemplate(Template template)
+		throws PortalException, SystemException {
+
+		// Resources
+
+		resourceLocalService.deleteResource(
+			template.getCompanyId(), Template.class.getName(),
+			ResourceConstants.SCOPE_INDIVIDUAL, template.getTemplateId());
 
 		// Template
 
@@ -124,7 +170,28 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 
 		templatePersistence.update(template, false);
 
+		// Resources
+
+		if ((serviceContext.getCommunityPermissions() != null) ||
+			(serviceContext.getGuestPermissions() != null)) {
+
+			updateTemplateResources(
+				template, serviceContext.getCommunityPermissions(),
+				serviceContext.getGuestPermissions());
+		}
+
 		return template;
+	}
+
+	public void updateTemplateResources(
+			Template template, String[] communityPermissions,
+			String[] guestPermissions)
+		throws PortalException, SystemException {
+
+		resourceLocalService.updateResources(
+			template.getCompanyId(), template.getGroupId(),
+			Template.class.getName(), template.getTemplateId(),
+			communityPermissions, guestPermissions);
 	}
 
 	protected void validate(String title, String content)
