@@ -191,6 +191,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		for (String fileName : fileNames) {
 			String shortFileName = FileUtil.getShortFileName(fileName);
+
 			byte[] bytes = DLServiceUtil.getFile(
 				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
@@ -562,6 +563,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		for (String fileName : article.getAttachmentsFileNames()) {
 			String shortFileName = FileUtil.getShortFileName(fileName);
+
 			byte[] bytes = DLServiceUtil.getFile(
 				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 

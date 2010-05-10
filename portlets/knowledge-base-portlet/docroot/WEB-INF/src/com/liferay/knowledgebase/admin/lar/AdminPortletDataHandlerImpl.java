@@ -148,11 +148,11 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		exportArticleVersions(context, articleEl, article.getResourcePrimKey());
 
-		if (context.getBooleanParameter(_ARTICLE, "attachments")) {
+		if (context.getBooleanParameter(_NAMESPACE, "attachments")) {
 			exportArticleAttachments(context, root, article);
 		}
 
-		if (context.getBooleanParameter(_ARTICLE, "comments")) {
+		if (context.getBooleanParameter(_NAMESPACE, "comments")) {
 			context.addComments(Article.class, article.getResourcePrimKey());
 		}
 	}
@@ -172,6 +172,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		for (String fileName : article.getAttachmentsFileNames()) {
 			String shortFileName = FileUtil.getShortFileName(fileName);
+
 			String path = rootPath + StringPool.SLASH + shortFileName;
 			byte[] bytes = DLServiceUtil.getFile(
 				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
@@ -187,7 +188,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	protected void exportArticleVersions(
 			PortletDataContext context, Element articleEl, long resourcePrimKey)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		Element versionsEl = articleEl.addElement("versions");
 
@@ -228,7 +229,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	protected List<Article> filterArticles(PortletDataContext context)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		// Sort articles to simplify import code. Order articles by depth and
 		// sort siblings by priority. See AdminPortletDataHandler#importArticle
@@ -279,7 +280,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		String dirName = MapUtil.getString(
 			dirNames, String.valueOf(article.getResourcePrimKey()));
 
-		int maxPriority = (int)ArticleLocalServiceUtil.getGroupArticlesCount(
+		int maxPriority = ArticleLocalServiceUtil.getGroupArticlesCount(
 			context.getGroupId(), parentResourcePrimKey);
 
 		if (priority > maxPriority) {
@@ -328,7 +329,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			Article.class, article.getResourcePrimKey(),
 			importedArticle.getResourcePrimKey());
 
-		if (context.getBooleanParameter(_ARTICLE, "comments")) {
+		if (context.getBooleanParameter(_NAMESPACE, "comments")) {
 			context.importComments(
 				Article.class, article.getResourcePrimKey(),
 				importedArticle.getResourcePrimKey(), context.getGroupId());
@@ -346,14 +347,17 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		for (Element articleAttachmentsEl : articlesAttachmentsEl) {
 			String resourcePrimKey = articleAttachmentsEl.attributeValue(
 				"resource-prim-key");
-			String importPath = "knowledgebase/temp/import/" + importId;
-			String dirName = importPath + StringPool.SLASH + resourcePrimKey;
+
+			String dirName =
+				"knowledgebase/temp/import/" + importId + StringPool.SLASH +
+					resourcePrimKey;
 
 			DLServiceUtil.addDirectory(
 				context.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
 			for (Element fileEl : articleAttachmentsEl.elements("file")) {
 				String shortFileName = fileEl.attributeValue("short-file-name");
+
 				String fileName = dirName + StringPool.SLASH + shortFileName;
 				byte[] bytes = context.getZipEntryAsByteArray(
 					fileEl.attributeValue("path"));
@@ -429,7 +433,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		Map<String, String> dirNames = new HashMap<String, String>();
 
 		try {
-			if (context.getBooleanParameter(_ARTICLE, "attachments")) {
+			if (context.getBooleanParameter(_NAMESPACE, "attachments")) {
 				DLServiceUtil.addDirectory(
 					context.getCompanyId(), CompanyConstants.SYSTEM,
 					"knowledgebase/temp/import/" + importId);
@@ -450,7 +454,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			}
 		}
 		finally {
-			if (context.getBooleanParameter(_ARTICLE, "attachments")) {
+			if (context.getBooleanParameter(_NAMESPACE, "attachments")) {
 				DLServiceUtil.deleteDirectory(
 					context.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 					CompanyConstants.SYSTEM,
@@ -459,16 +463,16 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
-	private static final String _ARTICLE = "knowledge_base_article";
+	private static final String _NAMESPACE = "knowledge_base";
 
-	private static final PortletDataHandlerControl[] _article_options =
+	private static final PortletDataHandlerControl[] _articleOptions =
 		new PortletDataHandlerControl[] {
-			new PortletDataHandlerBoolean(_ARTICLE, "attachments"),
-			new PortletDataHandlerBoolean(_ARTICLE, "comments")
+			new PortletDataHandlerBoolean(_NAMESPACE, "attachments"),
+			new PortletDataHandlerBoolean(_NAMESPACE, "comments")
 		};
 
 	private static final PortletDataHandlerBoolean _articles =
 		new PortletDataHandlerBoolean(
-			_ARTICLE, "articles", true, true, _article_options);
+			_NAMESPACE, "articles", true, true, _articleOptions);
 
 }
