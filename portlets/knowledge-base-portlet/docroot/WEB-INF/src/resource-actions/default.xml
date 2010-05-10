@@ -3,72 +3,78 @@
 <resource-action-mapping>
 	<portlet-resource>
 		<portlet-name>1</portlet-name>
-		<supports>
-			<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
-			<action-key>ADD_TO_PAGE</action-key>
-			<action-key>CONFIGURATION</action-key>
-			<action-key>VIEW</action-key>
-		</supports>
-		<community-defaults>
-			<action-key>VIEW</action-key>
-		</community-defaults>
-		<guest-defaults>
-			<action-key>VIEW</action-key>
-		</guest-defaults>
-		<guest-unsupported>
-			<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
-			<action-key>CONFIGURATION</action-key>
-		</guest-unsupported>
+		<permissions>
+			<supports>
+				<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
+				<action-key>ADD_TO_PAGE</action-key>
+				<action-key>CONFIGURATION</action-key>
+				<action-key>VIEW</action-key>
+			</supports>
+			<community-defaults>
+				<action-key>VIEW</action-key>
+			</community-defaults>
+			<guest-defaults>
+				<action-key>VIEW</action-key>
+			</guest-defaults>
+			<guest-unsupported>
+				<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
+				<action-key>CONFIGURATION</action-key>
+			</guest-unsupported>
+		</permissions>
 	</portlet-resource>
 	<model-resource>
 		<model-name>com.liferay.knowledgebase.admin</model-name>
 		<portlet-ref>
 			<portlet-name>1</portlet-name>
 		</portlet-ref>
-		<supports>
-			<action-key>ADD_ARTICLE</action-key>
-			<action-key>PERMISSIONS</action-key>
-			<action-key>SUBSCRIBE</action-key>
-		</supports>
-		<community-defaults>
-			<action-key>SUBSCRIBE</action-key>
-		</community-defaults>
-		<guest-defaults />
-		<guest-unsupported>
-			<action-key>ADD_ARTICLE</action-key>
-			<action-key>PERMISSIONS</action-key>
-			<action-key>SUBSCRIBE</action-key>
-		</guest-unsupported>
+		<permissions>
+			<supports>
+				<action-key>ADD_ARTICLE</action-key>
+				<action-key>PERMISSIONS</action-key>
+				<action-key>SUBSCRIBE</action-key>
+			</supports>
+			<community-defaults>
+				<action-key>SUBSCRIBE</action-key>
+			</community-defaults>
+			<guest-defaults />
+			<guest-unsupported>
+				<action-key>ADD_ARTICLE</action-key>
+				<action-key>PERMISSIONS</action-key>
+				<action-key>SUBSCRIBE</action-key>
+			</guest-unsupported>
+		</permissions>
 	</model-resource>
 	<model-resource>
 		<model-name>com.liferay.knowledgebase.model.Article</model-name>
 		<portlet-ref>
 			<portlet-name>1</portlet-name>
 		</portlet-ref>
-		<supports>
-			<action-key>ADD_DISCUSSION</action-key>
-			<action-key>DELETE</action-key>
-			<action-key>DELETE_DISCUSSION</action-key>
-			<action-key>PERMISSIONS</action-key>
-			<action-key>SUBSCRIBE</action-key>
-			<action-key>UPDATE</action-key>
-			<action-key>UPDATE_DISCUSSION</action-key>
-			<action-key>VIEW</action-key>
-		</supports>
-		<community-defaults>
-			<action-key>ADD_DISCUSSION</action-key>
-			<action-key>SUBSCRIBE</action-key>
-			<action-key>VIEW</action-key>
-		</community-defaults>
-		<guest-defaults>
-			<action-key>VIEW</action-key>
-		</guest-defaults>
-		<guest-unsupported>
-			<action-key>ADD_DISCUSSION</action-key>
-			<action-key>DELETE_DISCUSSION</action-key>
-			<action-key>SUBSCRIBE</action-key>
-			<action-key>UPDATE</action-key>
-			<action-key>UPDATE_DISCUSSION</action-key>
-		</guest-unsupported>
+		<permissions>
+			<supports>
+				<action-key>ADD_DISCUSSION</action-key>
+				<action-key>DELETE</action-key>
+				<action-key>DELETE_DISCUSSION</action-key>
+				<action-key>PERMISSIONS</action-key>
+				<action-key>SUBSCRIBE</action-key>
+				<action-key>UPDATE</action-key>
+				<action-key>UPDATE_DISCUSSION</action-key>
+				<action-key>VIEW</action-key>
+			</supports>
+			<community-defaults>
+				<action-key>ADD_DISCUSSION</action-key>
+				<action-key>SUBSCRIBE</action-key>
+				<action-key>VIEW</action-key>
+			</community-defaults>
+			<guest-defaults>
+				<action-key>VIEW</action-key>
+			</guest-defaults>
+			<guest-unsupported>
+				<action-key>ADD_DISCUSSION</action-key>
+				<action-key>DELETE_DISCUSSION</action-key>
+				<action-key>SUBSCRIBE</action-key>
+				<action-key>UPDATE</action-key>
+				<action-key>UPDATE_DISCUSSION</action-key>
+			</guest-unsupported>
+		</permissions>
 	</model-resource>
 </resource-action-mapping>
