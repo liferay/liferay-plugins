@@ -136,15 +136,15 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 	public void deleteTemplate(Template template)
 		throws PortalException, SystemException {
 
+		// Template
+
+		templatePersistence.remove(template);
+
 		// Resources
 
 		resourceLocalService.deleteResource(
 			template.getCompanyId(), Template.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL, template.getTemplateId());
-
-		// Template
-
-		templatePersistence.remove(template);
 
 		// Message boards
 
