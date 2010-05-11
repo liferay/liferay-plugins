@@ -30,8 +30,10 @@
 		<permissions>
 			<supports>
 				<action-key>ADD_ARTICLE</action-key>
+				<action-key>ADD_TEMPLATE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
+				<action-key>TEMPLATES</action-key>
 			</supports>
 			<community-defaults>
 				<action-key>SUBSCRIBE</action-key>
@@ -39,8 +41,10 @@
 			<guest-defaults />
 			<guest-unsupported>
 				<action-key>ADD_ARTICLE</action-key>
+				<action-key>ADD_TEMPLATE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
+				<action-key>TEMPLATES</action-key>
 			</guest-unsupported>
 		</permissions>
 	</model-resource>
@@ -72,6 +76,38 @@
 				<action-key>ADD_DISCUSSION</action-key>
 				<action-key>DELETE_DISCUSSION</action-key>
 				<action-key>SUBSCRIBE</action-key>
+				<action-key>UPDATE</action-key>
+				<action-key>UPDATE_DISCUSSION</action-key>
+			</guest-unsupported>
+		</permissions>
+	</model-resource>
+	<model-resource>
+		<model-name>com.liferay.knowledgebase.model.Template</model-name>
+		<portlet-ref>
+			<portlet-name>1</portlet-name>
+		</portlet-ref>
+		<permissions>
+			<supports>
+				<action-key>ADD_DISCUSSION</action-key>
+				<action-key>DELETE</action-key>
+				<action-key>DELETE_DISCUSSION</action-key>
+				<action-key>PERMISSIONS</action-key>
+				<action-key>UPDATE</action-key>
+				<action-key>UPDATE_DISCUSSION</action-key>
+				<action-key>VIEW</action-key>
+			</supports>
+			<community-defaults>
+				<action-key>ADD_DISCUSSION</action-key>
+				<action-key>VIEW</action-key>
+			</community-defaults>
+			<guest-defaults>
+				<action-key>VIEW</action-key>
+			</guest-defaults>
+			<guest-unsupported>
+				<action-key>ADD_DISCUSSION</action-key>
+				<action-key>DELETE</action-key>
+				<action-key>DELETE_DISCUSSION</action-key>
+				<action-key>PERMISSIONS</action-key>
 				<action-key>UPDATE</action-key>
 				<action-key>UPDATE_DISCUSSION</action-key>
 			</guest-unsupported>
