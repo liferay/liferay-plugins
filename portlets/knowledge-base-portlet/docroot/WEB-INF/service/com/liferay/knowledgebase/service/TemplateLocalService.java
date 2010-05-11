@@ -60,7 +60,8 @@ public interface TemplateLocalService {
 
 	public void deleteTemplate(
 		com.liferay.knowledgebase.model.Template template)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
@@ -110,4 +111,52 @@ public interface TemplateLocalService {
 	public com.liferay.knowledgebase.model.Template updateTemplate(
 		com.liferay.knowledgebase.model.Template template, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.knowledgebase.model.Template addTemplate(
+		java.lang.String uuid, long userId, java.lang.String title,
+		java.lang.String content, java.lang.String description,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void addTemplateResources(
+		com.liferay.knowledgebase.model.Template template,
+		boolean addCommunityPermissions, boolean addGuestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void addTemplateResources(
+		com.liferay.knowledgebase.model.Template template,
+		java.lang.String[] communityPermissions,
+		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void deleteGroupTemplates(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.knowledgebase.model.Template> getGroupTemplates(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getGroupTemplatesCount(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.knowledgebase.model.Template updateTemplate(
+		long templateId, java.lang.String title, java.lang.String content,
+		java.lang.String description,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void updateTemplateResources(
+		com.liferay.knowledgebase.model.Template template,
+		java.lang.String[] communityPermissions,
+		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

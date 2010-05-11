@@ -65,7 +65,8 @@ public abstract class TemplateLocalServiceBaseImpl
 		templatePersistence.remove(templateId);
 	}
 
-	public void deleteTemplate(Template template) throws SystemException {
+	public void deleteTemplate(Template template)
+		throws PortalException, SystemException {
 		templatePersistence.remove(template);
 	}
 
