@@ -52,6 +52,35 @@ AUI().use(
 				return instance._popup;
 			},
 
+			updateSites: function() {
+				var instance = this;
+
+				if (!instance._siteList) {
+					instance._siteList = A.one('.so-portlet-sites form');
+				}
+
+				if (!instance._siteList.io) {
+					instance._siteList.plug(
+						A.Plugin.IO,
+						{
+							autoLoad: false,
+							on: {
+								success: function(event, id, xhr) {
+									event.stopImmediatePropagation();
+
+									var html = A.Node.create(xhr.responseText).one('.so-portlet-sites form').get('innerHTML');
+
+									instance._siteList.set('innerHTML', html);
+								}
+							},
+							uri: themeDisplay.getLayoutURL()
+						}
+					);
+				}
+
+				instance._siteList.io.start();
+			},
+
 			_assignEvents: function() {
 				A.one('.so-portlet-sites').delegate(
 					'click',

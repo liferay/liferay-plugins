@@ -102,24 +102,39 @@ String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 	}
 
 	<c:if test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
-		jQuery(
-			function() {
-				jQuery(document.<portlet:namespace />fm).ajaxForm(
-					{
-						target: Liferay.SO.Sites.getPopup().bodyNode.getDOM(),
-						type: "POST",
-						success: function() {
-							var siteList = jQuery('.so-portlet-sites form');
+		A = AUI();
 
-							siteList.html('<div class="loading-animation" />');
-							siteList.load(themeDisplay.getLayoutURL() + ' .so-portlet-sites form', {t:(+new Date())});
+		var form = A.one(document.<portlet:namespace />fm);
 
-							if (jQuery('.contacts-portlet').length > 0) {
-								Liferay.Contacts.loadEntries(false);
+		form.on(
+			'submit',
+			function(event) {
+				event.preventDefault();
+
+				var popupNode = Liferay.SO.Sites.getPopup().bodyNode;
+
+				if (!popupNode.io) {
+					popupNode.plug(
+						A.Plugin.IO,
+						{
+							autoLoad: false,
+							on: {
+								success: function(event) {
+									Liferay.SO.Sites.updateSites();
+
+									if (Liferay.Contacts) {
+										Liferay.Contacts.loadEntries(false);
+									}
+								}
 							}
 						}
-					}
-				);
+					);
+				}
+
+				popupNode.io.set('form', {id: form.getDOM()});
+				popupNode.io.set('uri', form.getAttribute('action'));
+
+				popupNode.io.start();
 			}
 		);
 	</c:if>
