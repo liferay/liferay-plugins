@@ -209,7 +209,7 @@ public class MailManager {
 		throws PortalException, SystemException {
 
 		try {
-			if (messageIds.length > 0) {
+			if (messageIds.length == 0) {
 				return createJSONResult("failure", "no-messages-selected");
 			}
 
@@ -244,7 +244,7 @@ public class MailManager {
 		throws PortalException, SystemException {
 
 		try {
-			if (messageIds.length > 0) {
+			if (messageIds.length == 0) {
 				return createJSONResult("failure", "no-messages-selected");
 			}
 
@@ -338,10 +338,6 @@ public class MailManager {
 		List<Message> messages = messagesDisplay.getMessages();
 
 		Message message = messages.get(0);
-
-		if (Validator.isNull(message.getBody())) {
-			synchronizeMessage(message.getMessageId());
-		}
 
 		List<Attachment> attachments =
 			AttachmentLocalServiceUtil.getAttachments(message.getMessageId());
