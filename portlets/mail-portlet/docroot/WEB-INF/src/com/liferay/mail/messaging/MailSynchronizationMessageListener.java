@@ -18,7 +18,6 @@ import com.liferay.mail.NoSuchAccountException;
 import com.liferay.mail.mailbox.Mailbox;
 import com.liferay.mail.mailbox.MailboxFactoryUtil;
 import com.liferay.mail.util.AccountLock;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
@@ -43,15 +42,13 @@ public class MailSynchronizationMessageListener implements MessageListener {
 	}
 
 	protected void doReceive(Message message) throws Exception {
-		JSONObject jsonObj = (JSONObject)message.getPayload();
-
-		long userId = jsonObj.getLong("userId");
-		long accountId = jsonObj.getLong("accountId");
-		long folderId = jsonObj.getLong("folderId");
-		long messageId = jsonObj.getLong("messageId");
-		int pageNumber = jsonObj.getInt("pageNumber");
-		int messagesPerPage = jsonObj.getInt("messagesPerPage");
-		String password = jsonObj.getString("password");
+		long userId = message.getLong("userId");
+		long accountId = message.getLong("accountId");
+		long folderId = message.getLong("folderId");
+		long messageId = message.getLong("messageId");
+		int pageNumber = message.getInteger("pageNumber");
+		int messagesPerPage = message.getInteger("messagesPerPage");
+		String password = message.getString("password");
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
