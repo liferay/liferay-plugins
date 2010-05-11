@@ -25,7 +25,32 @@ MailManager mailManager = MailManager.getInstance(request);
 	long messageId = ParamUtil.getLong(request, "messageId");
 
 	MessageDisplay messageDisplay = mailManager.getMessageDisplay(messageId);
+	
+	List<Attachment> attachments = messageDisplay.getAttachments();
 	%>
 
 	<%= messageDisplay.getMessage().getBody() %>
+	
+	<c:if test="<%= !attachments.isEmpty() %>">
+		<hr />
+		<ul>
+
+		<%
+		for (Attachment attachment : attachments) {
+		%>
+
+			<liferay-portlet:resourceURL var="attachmentLink">
+				<liferay-portlet:param name="jspPage" value="/attachment.jsp" />
+				<liferay-portlet:param name="attachmentId" value="<%= String.valueOf(attachment.getAttachmentId()) %>" />
+			</liferay-portlet:resourceURL>
+
+			<li><aui:a href="<%= attachmentLink %>"><%= attachment.getFileName() + " - " + attachment.getSize() %></aui:a></li>
+			
+		<%
+		}
+		%>
+
+		</ul>
+	</c:if>		
+	
 </c:if>

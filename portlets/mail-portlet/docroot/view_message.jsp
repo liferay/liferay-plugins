@@ -20,11 +20,12 @@
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<c:if test="<%= mailManager != null %>">
+
+<%@page import="com.liferay.portal.kernel.util.WebKeys"%>
+<%@page import="com.liferay.portal.theme.ThemeDisplay"%><c:if test="<%= mailManager != null %>">
 	<%
 	long folderId = ParamUtil.getLong(request, "folderId");
 	String keywords = ParamUtil.getString(request, "keywords");
-	long messageId = ParamUtil.getLong(request, "messageId");
 	int messageNumber = ParamUtil.getInteger(request, "messageNumber");
 	int messagesPerPage = 25; //ParamUtil.getInteger(request, "messagesPerPage");
 	String orderByField = MailConstants.ORDER_BY_SENT_DATE; //ParamUtil.getString(request, "orderByField");
@@ -33,6 +34,7 @@ MailManager mailManager = MailManager.getInstance(request);
 	MessageDisplay messageDisplay = mailManager.getMessageDisplay(folderId, keywords, messageNumber, orderByField, orderByType);
 
 	Message message = messageDisplay.getMessage();
+	List<Attachment> attachments = messageDisplay.getAttachments();
 	int messageCount = messageDisplay.getMessageCount();
 
 	String folderLink = "&lt; Back to ";
@@ -123,6 +125,29 @@ MailManager mailManager = MailManager.getInstance(request);
 		</c:when>
 		<c:otherwise>
 			<%= message.getBody() %>
+
+			
+			<c:if test="<%= !attachments.isEmpty() %>">
+				<hr />
+				<ul>
+
+				<%
+				for (Attachment attachment : attachments) {
+				%>
+
+					<liferay-portlet:resourceURL var="attachmentLink">
+						<liferay-portlet:param name="jspPage" value="/attachment.jsp" />
+						<liferay-portlet:param name="attachmentId" value="<%= String.valueOf(attachment.getAttachmentId()) %>" />
+					</liferay-portlet:resourceURL>
+
+					<li><aui:a href="<%= attachmentLink %>"><%= attachment.getFileName() + " - " + attachment.getSize() %></aui:a></li>
+					
+				<%
+				}
+				%>
+
+				</ul>
+			</c:if>		
 		</c:otherwise>
 	</c:choose>
 
