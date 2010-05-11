@@ -20,9 +20,7 @@
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-
-<%@page import="com.liferay.portal.kernel.util.WebKeys"%>
-<%@page import="com.liferay.portal.theme.ThemeDisplay"%><c:if test="<%= mailManager != null %>">
+<c:if test="<%= mailManager != null %>">
 	<%
 	long folderId = ParamUtil.getLong(request, "folderId");
 	String keywords = ParamUtil.getString(request, "keywords");
@@ -126,7 +124,6 @@ MailManager mailManager = MailManager.getInstance(request);
 		<c:otherwise>
 			<%= message.getBody() %>
 
-			
 			<c:if test="<%= !attachments.isEmpty() %>">
 				<hr />
 				<ul>
@@ -141,13 +138,13 @@ MailManager mailManager = MailManager.getInstance(request);
 					</liferay-portlet:resourceURL>
 
 					<li><aui:a href="<%= attachmentLink %>"><%= attachment.getFileName() + " - " + attachment.getSize() %></aui:a></li>
-					
+
 				<%
 				}
 				%>
 
 				</ul>
-			</c:if>		
+			</c:if>
 		</c:otherwise>
 	</c:choose>
 

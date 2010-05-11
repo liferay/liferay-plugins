@@ -26,7 +26,7 @@
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.mail.model.Account" %>
-<%@ page import="com.liferay.mail.model.Attachment"%>
+<%@ page import="com.liferay.mail.model.Attachment" %>
 <%@ page import="com.liferay.mail.model.Folder" %>
 <%@ page import="com.liferay.mail.model.Message" %>
 <%@ page import="com.liferay.mail.model.MessageDisplay" %>

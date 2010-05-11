@@ -102,12 +102,12 @@ A.one('#<portlet:namespace />deleteAccount').on('click', function() {
 				on: {
 					failure: function (event, id, obj) {
 						var responseData = this.get('responseData');
-	
+
 						console.log(responseData);
 					},
 					success: function (event, id, obj) {
 						var responseData = this.get('responseData');
-	
+
 						console.log(responseData);
 					}
 				}

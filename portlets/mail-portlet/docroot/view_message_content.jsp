@@ -25,14 +25,15 @@ MailManager mailManager = MailManager.getInstance(request);
 	long messageId = ParamUtil.getLong(request, "messageId");
 
 	MessageDisplay messageDisplay = mailManager.getMessageDisplay(messageId);
-	
+
 	List<Attachment> attachments = messageDisplay.getAttachments();
 	%>
 
 	<%= messageDisplay.getMessage().getBody() %>
-	
+
 	<c:if test="<%= !attachments.isEmpty() %>">
 		<hr />
+
 		<ul>
 
 		<%
@@ -45,12 +46,11 @@ MailManager mailManager = MailManager.getInstance(request);
 			</liferay-portlet:resourceURL>
 
 			<li><aui:a href="<%= attachmentLink %>"><%= attachment.getFileName() + " - " + attachment.getSize() %></aui:a></li>
-			
+
 		<%
 		}
 		%>
 
 		</ul>
-	</c:if>		
-	
+	</c:if>
 </c:if>
