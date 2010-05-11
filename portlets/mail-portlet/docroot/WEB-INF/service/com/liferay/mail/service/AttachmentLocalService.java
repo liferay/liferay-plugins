@@ -54,8 +54,8 @@ public interface AttachmentLocalService {
 	public com.liferay.mail.model.Attachment createAttachment(long attachmentId);
 
 	public void deleteAttachment(long attachmentId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteAttachment(com.liferay.mail.model.Attachment attachment)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -83,8 +83,8 @@ public interface AttachmentLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.mail.model.Attachment getAttachment(long attachmentId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.mail.model.Attachment> getAttachments(

@@ -54,12 +54,12 @@ public interface FolderLocalService {
 	public com.liferay.mail.model.Folder createFolder(long folderId);
 
 	public void deleteFolder(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteFolder(com.liferay.mail.model.Folder folder)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
@@ -84,8 +84,8 @@ public interface FolderLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.mail.model.Folder getFolder(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.mail.model.Folder> getFolders(int start,

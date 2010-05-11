@@ -55,8 +55,8 @@ public interface JIRAChangeItemLocalService {
 		long jiraChangeItemId);
 
 	public void deleteJIRAChangeItem(long jiraChangeItemId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
@@ -86,8 +86,8 @@ public interface JIRAChangeItemLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.socialcoding.model.JIRAChangeItem getJIRAChangeItem(
 		long jiraChangeItemId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(

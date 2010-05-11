@@ -54,8 +54,8 @@ public interface FeedLocalService {
 	public com.liferay.twitter.model.Feed createFeed(long feedId);
 
 	public void deleteFeed(long feedId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteFeed(com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -83,8 +83,8 @@ public interface FeedLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.twitter.model.Feed getFeed(long feedId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.twitter.model.Feed> getFeeds(int start,

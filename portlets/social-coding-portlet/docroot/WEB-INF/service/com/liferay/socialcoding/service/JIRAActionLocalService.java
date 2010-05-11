@@ -55,8 +55,8 @@ public interface JIRAActionLocalService {
 		long jiraActionId);
 
 	public void deleteJIRAAction(long jiraActionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteJIRAAction(
 		com.liferay.socialcoding.model.JIRAAction jiraAction)
@@ -86,8 +86,8 @@ public interface JIRAActionLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.socialcoding.model.JIRAAction getJIRAAction(
 		long jiraActionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> getJIRAActions(

@@ -118,21 +118,21 @@ public class StatusLocalServiceUtil {
 		return getService().updateStatus(status, merge);
 	}
 
-	public static java.util.List<Object[]> getAllStatuses(long companyId,
-		long userId, long modifiedDate, int start, int end)
+	public static java.util.List<java.lang.Object[]> getAllStatuses(
+		long companyId, long userId, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getAllStatuses(companyId, userId, modifiedDate, start, end);
 	}
 
-	public static java.util.List<Object[]> getGroupStatuses(long userId,
-		long modifiedDate, int start, int end)
+	public static java.util.List<java.lang.Object[]> getGroupStatuses(
+		long userId, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getGroupStatuses(userId, modifiedDate, start, end);
 	}
 
-	public static java.util.List<Object[]> getSocialStatuses(long userId,
-		int type, long modifiedDate, int start, int end)
+	public static java.util.List<java.lang.Object[]> getSocialStatuses(
+		long userId, int type, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getSocialStatuses(userId, type, modifiedDate, start, end);

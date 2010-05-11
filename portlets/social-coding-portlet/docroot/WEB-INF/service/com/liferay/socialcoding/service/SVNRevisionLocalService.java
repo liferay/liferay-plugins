@@ -55,8 +55,8 @@ public interface SVNRevisionLocalService {
 		long svnRevisionId);
 
 	public void deleteSVNRevision(long svnRevisionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteSVNRevision(
 		com.liferay.socialcoding.model.SVNRevision svnRevision)
@@ -86,8 +86,8 @@ public interface SVNRevisionLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.socialcoding.model.SVNRevision getSVNRevision(
 		long svnRevisionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.socialcoding.model.SVNRevision> getSVNRevisions(

@@ -55,8 +55,8 @@ public interface JIRAIssueLocalService {
 		long jiraIssueId);
 
 	public void deleteJIRAIssue(long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteJIRAIssue(
 		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
@@ -86,8 +86,8 @@ public interface JIRAIssueLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.socialcoding.model.JIRAIssue getJIRAIssue(
 		long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getJIRAIssues(

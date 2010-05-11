@@ -54,8 +54,8 @@ public interface GadgetLocalService {
 	public com.liferay.opensocial.model.Gadget createGadget(long gadgetId);
 
 	public void deleteGadget(long gadgetId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteGadget(com.liferay.opensocial.model.Gadget gadget)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -83,8 +83,8 @@ public interface GadgetLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.opensocial.model.Gadget getGadget(long gadgetId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(

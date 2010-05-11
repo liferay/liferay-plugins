@@ -54,8 +54,8 @@ public interface EntryLocalService {
 	public com.liferay.chat.model.Entry createEntry(long entryId);
 
 	public void deleteEntry(long entryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteEntry(com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -83,8 +83,8 @@ public interface EntryLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Entry getEntry(long entryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> getEntries(int start,

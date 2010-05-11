@@ -55,8 +55,8 @@ public interface KaleoLogLocalService {
 		long kaleoLogId);
 
 	public void deleteKaleoLog(long kaleoLogId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog)
@@ -86,8 +86,8 @@ public interface KaleoLogLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog getKaleoLog(
 		long kaleoLogId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoLogs(
@@ -133,7 +133,7 @@ public interface KaleoLogLocalService {
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken previousKaleoTaskInstanceToken,
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken newKaleoTaskInstanceToken,
 		java.lang.String comment,
-		java.util.Map<String, java.io.Serializable> workflowContext,
+		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -141,7 +141,7 @@ public interface KaleoLogLocalService {
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog addTaskCompletionKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
 		java.lang.String comment,
-		java.util.Map<String, java.io.Serializable> workflowContext,
+		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

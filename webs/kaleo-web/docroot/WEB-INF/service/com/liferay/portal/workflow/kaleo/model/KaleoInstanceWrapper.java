@@ -246,7 +246,7 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getRootKaleoInstanceToken(
-		java.util.Map<String, java.io.Serializable> workflowContext,
+		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

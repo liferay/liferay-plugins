@@ -55,8 +55,8 @@ public interface ProjectsEntryLocalService {
 		long projectsEntryId);
 
 	public void deleteProjectsEntry(long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry)
@@ -86,8 +86,8 @@ public interface ProjectsEntryLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.so.model.ProjectsEntry getProjectsEntry(
 		long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.so.model.ProjectsEntry> getProjectsEntries(

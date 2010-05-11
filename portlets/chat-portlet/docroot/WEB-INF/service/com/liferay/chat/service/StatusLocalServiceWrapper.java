@@ -116,22 +116,22 @@ public class StatusLocalServiceWrapper implements StatusLocalService {
 		return _statusLocalService.updateStatus(status, merge);
 	}
 
-	public java.util.List<Object[]> getAllStatuses(long companyId, long userId,
-		long modifiedDate, int start, int end)
+	public java.util.List<java.lang.Object[]> getAllStatuses(long companyId,
+		long userId, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.getAllStatuses(companyId, userId,
 			modifiedDate, start, end);
 	}
 
-	public java.util.List<Object[]> getGroupStatuses(long userId,
+	public java.util.List<java.lang.Object[]> getGroupStatuses(long userId,
 		long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.getGroupStatuses(userId, modifiedDate,
 			start, end);
 	}
 
-	public java.util.List<Object[]> getSocialStatuses(long userId, int type,
-		long modifiedDate, int start, int end)
+	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,
+		int type, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.getSocialStatuses(userId, type,
 			modifiedDate, start, end);

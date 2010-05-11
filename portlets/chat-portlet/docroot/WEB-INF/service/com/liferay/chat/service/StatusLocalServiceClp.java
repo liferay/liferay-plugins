@@ -442,8 +442,8 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		return (com.liferay.chat.model.Status)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<Object[]> getAllStatuses(long companyId, long userId,
-		long modifiedDate, int start, int end)
+	public java.util.List<java.lang.Object[]> getAllStatuses(long companyId,
+		long userId, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);
 
@@ -477,10 +477,10 @@ public class StatusLocalServiceClp implements StatusLocalService {
 			}
 		}
 
-		return (java.util.List<Object[]>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<java.lang.Object[]>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<Object[]> getGroupStatuses(long userId,
+	public java.util.List<java.lang.Object[]> getGroupStatuses(long userId,
 		long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
@@ -511,11 +511,11 @@ public class StatusLocalServiceClp implements StatusLocalService {
 			}
 		}
 
-		return (java.util.List<Object[]>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<java.lang.Object[]>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<Object[]> getSocialStatuses(long userId, int type,
-		long modifiedDate, int start, int end)
+	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,
+		int type, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
 
@@ -549,7 +549,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 			}
 		}
 
-		return (java.util.List<Object[]>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<java.lang.Object[]>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.chat.model.Status getUserStatus(long userId)

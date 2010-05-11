@@ -54,8 +54,8 @@ public interface StatusLocalService {
 	public com.liferay.chat.model.Status createStatus(long statusId);
 
 	public void deleteStatus(long statusId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteStatus(com.liferay.chat.model.Status status)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -83,8 +83,8 @@ public interface StatusLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Status getStatus(long statusId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Status> getStatuses(
@@ -104,18 +104,18 @@ public interface StatusLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<Object[]> getAllStatuses(long companyId, long userId,
+	public java.util.List<java.lang.Object[]> getAllStatuses(long companyId,
+		long userId, long modifiedDate, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<java.lang.Object[]> getGroupStatuses(long userId,
 		long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<Object[]> getGroupStatuses(long userId,
-		long modifiedDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<Object[]> getSocialStatuses(long userId, int type,
-		long modifiedDate, int start, int end)
+	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,
+		int type, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

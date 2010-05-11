@@ -55,8 +55,8 @@ public interface MeetupsEntryLocalService {
 		long meetupsEntryId);
 
 	public void deleteMeetupsEntry(long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteMeetupsEntry(
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
@@ -86,8 +86,8 @@ public interface MeetupsEntryLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.socialnetworking.model.MeetupsEntry getMeetupsEntry(
 		long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntries(

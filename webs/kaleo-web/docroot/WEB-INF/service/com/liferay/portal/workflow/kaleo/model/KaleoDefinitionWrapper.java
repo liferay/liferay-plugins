@@ -130,7 +130,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		return _kaleoDefinition.getTitle(languageId, useDefault);
 	}
 
-	public java.util.Map<java.util.Locale, String> getTitleMap() {
+	public java.util.Map<java.util.Locale, java.lang.String> getTitleMap() {
 		return _kaleoDefinition.getTitleMap();
 	}
 
@@ -142,7 +142,8 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		_kaleoDefinition.setTitle(locale, title);
 	}
 
-	public void setTitleMap(java.util.Map<java.util.Locale, String> titleMap) {
+	public void setTitleMap(
+		java.util.Map<java.util.Locale, java.lang.String> titleMap) {
 		_kaleoDefinition.setTitleMap(titleMap);
 	}
 

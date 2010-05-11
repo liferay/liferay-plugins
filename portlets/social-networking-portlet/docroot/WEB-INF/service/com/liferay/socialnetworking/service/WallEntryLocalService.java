@@ -55,8 +55,8 @@ public interface WallEntryLocalService {
 		long wallEntryId);
 
 	public void deleteWallEntry(long wallEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
@@ -86,8 +86,8 @@ public interface WallEntryLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.socialnetworking.model.WallEntry getWallEntry(
 		long wallEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> getWallEntries(

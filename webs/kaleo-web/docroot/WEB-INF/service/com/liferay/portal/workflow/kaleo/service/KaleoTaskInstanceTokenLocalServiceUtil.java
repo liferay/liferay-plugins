@@ -130,7 +130,7 @@ public class KaleoTaskInstanceTokenLocalServiceUtil {
 		java.lang.String kaleoTaskName,
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment kaleoTaskAssignment,
 		java.util.Date dueDate,
-		java.util.Map<String, java.io.Serializable> workflowContext,
+		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -143,7 +143,7 @@ public class KaleoTaskInstanceTokenLocalServiceUtil {
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken assignKaleoTaskInstanceToken(
 		long kaleoTaskInstanceTokenId, java.lang.String assigneeClassName,
 		long assigneeClassPK,
-		java.util.Map<String, java.io.Serializable> workflowContext,
+		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -185,8 +185,8 @@ public class KaleoTaskInstanceTokenLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
-		java.util.List<Long> roleIds, java.lang.Boolean completed, int start,
-		int end,
+		java.util.List<java.lang.Long> roleIds, java.lang.Boolean completed,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -226,7 +226,7 @@ public class KaleoTaskInstanceTokenLocalServiceUtil {
 	}
 
 	public static int getKaleoTaskInstanceTokensCount(
-		java.util.List<Long> roleIds, java.lang.Boolean completed,
+		java.util.List<java.lang.Long> roleIds, java.lang.Boolean completed,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()

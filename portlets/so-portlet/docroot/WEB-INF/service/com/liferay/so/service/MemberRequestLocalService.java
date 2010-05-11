@@ -55,8 +55,8 @@ public interface MemberRequestLocalService {
 		long memberRequestId);
 
 	public void deleteMemberRequest(long memberRequestId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest)
@@ -86,8 +86,8 @@ public interface MemberRequestLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.so.model.MemberRequest getMemberRequest(
 		long memberRequestId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.so.model.MemberRequest> getMemberRequests(

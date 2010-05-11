@@ -185,7 +185,7 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getRootKaleoInstanceToken(
-		java.util.Map<String, java.io.Serializable> workflowContext,
+		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		throw new UnsupportedOperationException();
 	}
