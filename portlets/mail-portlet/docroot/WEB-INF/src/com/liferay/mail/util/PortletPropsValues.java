@@ -15,6 +15,7 @@
 package com.liferay.mail.util;
 
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.util.portlet.PortletProps;
 
 /**
@@ -24,10 +25,19 @@ import com.liferay.util.portlet.PortletProps;
  */
  public class PortletPropsValues {
 
+	public static final String DEFAULT_ACCOUNTS = PortletProps.get(
+		PortletPropsKeys.DEFAULT_ACCOUNTS);
+
 	public static final boolean JAVAMAIL_DEBUG = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.JAVAMAIL_DEBUG));
 
+	public static final int[] INCOMING_PORTS = StringUtil.split(
+		PortletProps.get(PortletPropsKeys.INCOMING_PORTS), 0);
+
 	public static final int MESSAGES_SYNC_COUNT = GetterUtil.getInteger(
 		PortletProps.get(PortletPropsKeys.MESSAGES_SYNC_COUNT));
+
+	public static final int[] OUTGOING_PORTS = StringUtil.split(
+		PortletProps.get(PortletPropsKeys.OUTGOING_PORTS), 0);
 
 }

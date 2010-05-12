@@ -37,6 +37,7 @@
 <%@ page import="com.liferay.mail.service.MessageLocalServiceUtil" %>
 <%@ page import="com.liferay.mail.util.MailConstants" %>
 <%@ page import="com.liferay.mail.util.MailManager" %>
+<%@ page import="com.liferay.mail.util.PortletPropsValues" %>
 <%@ page import="com.liferay.portal.kernel.json.JSONArray" %>
 <%@ page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.json.JSONObject" %>

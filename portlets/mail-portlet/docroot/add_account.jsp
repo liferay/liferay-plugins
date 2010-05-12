@@ -19,220 +19,217 @@
 <%
 MailManager mailManager = MailManager.getInstance(request);
 
-JSONObject preconfiguredAccounts = JSONFactoryUtil.createJSONObject(PortletProps.get("preconfigured.mail.accounts"));
+JSONObject defaultAccountsJSONObject = JSONFactoryUtil.createJSONObject(PortletPropsValues.DEFAULT_ACCOUNTS);
 
-JSONArray accounts = preconfiguredAccounts.getJSONArray("accounts");
+JSONArray accountsJSONArray = defaultAccountsJSONObject.getJSONArray("accounts");
 
-String tabs = "";
+String tabs1Names = "";
 
-for (int i = 0; i < accounts.length(); i++) {
-	JSONObject account = accounts.getJSONObject(i);
+for (int i = 0; i < accountsJSONArray.length(); i++) {
+	JSONObject accountJSONObject = accountsJSONArray.getJSONObject(i);
 
-	String titleLanguageKey = account.getString("titleLanguageKey");
+	String titleLanguageKey = accountJSONObject.getString("titleLanguageKey");
 
-	tabs += titleLanguageKey;
+	tabs1Names += titleLanguageKey;
 
-	if (i != (accounts.length() - 1)) {
-		tabs += ",";
+	if (i != (accountsJSONArray.length() - 1)) {
+		tabs1Names += ",";
 	}
 }
-
-String[] incomingPorts = StringUtil.split(PortletProps.get("incoming.ports"), ",");
-String[] outgoingPorts = StringUtil.split(PortletProps.get("outgoing.ports"), ",");
 %>
 
 <liferay-ui:tabs
-	names="<%= tabs %>"
+	names="<%= tabs1Names %>"
 	refresh="<%= false %>"
 >
 
-<%
-for (int i = 0; i < accounts.length(); i++) {
-	JSONObject account = accounts.getJSONObject(i);
+	<%
+	for (int i = 0; i < accountsJSONArray.length(); i++) {
+		JSONObject accountJSONObject = accountsJSONArray.getJSONObject(i);
 
-	String titleLanguageKey = account.getString("titleLanguageKey");
-	String descriptionLanguageKey = account.getString("descriptionLanguageKey");
-	String address = account.getString("address");
-	String protocol = account.getString("protocol");
-	boolean useLocalPartAsLogin = account.getBoolean("useLocalPartAsLogin");
-	boolean hideSettings = account.getBoolean("hideSettings");
-	String incomingHostName = account.getString("incomingHostName");
-	int incomingPort = account.getInt("incomingPort");
-	boolean incomingSecure = account.getBoolean("incomingSecure");
-	String outgoingHostName = account.getString("outgoingHostName");
-	int outgoingPort = account.getInt("outgoingPort");
-	boolean outgoingSecure = account.getBoolean("outgoingSecure");
-	String folderPrefix = account.getString("folderPrefix");
-%>
+		String titleLanguageKey = accountJSONObject.getString("titleLanguageKey");
+		String descriptionLanguageKey = accountJSONObject.getString("descriptionLanguageKey");
+		String address = accountJSONObject.getString("address");
+		String protocol = accountJSONObject.getString("protocol");
+		boolean useLocalPartAsLogin = accountJSONObject.getBoolean("useLocalPartAsLogin");
+		boolean hideSettings = accountJSONObject.getBoolean("hideSettings");
+		String incomingHostName = accountJSONObject.getString("incomingHostName");
+		int incomingPort = accountJSONObject.getInt("incomingPort");
+		boolean incomingSecure = accountJSONObject.getBoolean("incomingSecure");
+		String outgoingHostName = accountJSONObject.getString("outgoingHostName");
+		int outgoingPort = accountJSONObject.getInt("outgoingPort");
+		boolean outgoingSecure = accountJSONObject.getBoolean("outgoingSecure");
+		String folderPrefix = accountJSONObject.getString("folderPrefix");
+	%>
 
-	<liferay-ui:section>
-		<aui:fieldset>
-			<liferay-ui:message key="<%= descriptionLanguageKey %>" />
+		<liferay-ui:section>
+			<aui:fieldset>
+				<liferay-ui:message key="<%= descriptionLanguageKey %>" />
 
-			<aui:fieldset label="account-settings">
-				<aui:input name="address" value="<%= address %>" />
+				<aui:fieldset label="account-settings">
+					<aui:input name="address" value="<%= address %>" />
+
+					<c:choose>
+						<c:when test="<%= !useLocalPartAsLogin %>">
+							<aui:input name="login" />
+						</c:when>
+						<c:otherwise>
+							<aui:input name="login" type="hidden" />
+						</c:otherwise>
+					</c:choose>
+
+					<aui:input name="password" type="password" />
+
+					<aui:input name="savePassword" type="checkbox" value="false" />
+				</aui:fieldset>
 
 				<c:choose>
-					<c:when test="<%= !useLocalPartAsLogin %>">
-						<aui:input name="login" value="" />
+					<c:when test="<%= hideSettings %>">
+						<aui:input name="incomingHostName" type="hidden" value="<%= incomingHostName %>" />
+
+						<aui:input name="incomingPort" type="hidden" value="<%= incomingPort %>" />
+
+						<aui:input name="incomingSecure" type="hidden" value="<%= incomingSecure %>" />
+
+						<aui:input name="outgoingHostName" type="hidden" value="<%= outgoingHostName %>" />
+
+						<aui:input name="outgoingPort" type="hidden" value="<%= outgoingPort %>" />
+
+						<aui:input name="outgoingSecure" type="hidden" value="<%= outgoingSecure %>" />
 					</c:when>
 					<c:otherwise>
-						<aui:input type="hidden" name="login" value="" />
+						<aui:fieldset label="incoming-settings">
+							<aui:input name="incomingHostName" />
+
+							<aui:select name="incomingPort">
+
+								<%
+								for (int curIncomingPort : PortletPropsValues.INCOMING_PORTS) {
+								%>
+
+									<aui:option selected="<%= incomingPort == curIncomingPort %>" value="<%= curIncomingPort %>"><%= curIncomingPort %></aui:option>
+
+								<%
+								}
+								%>
+
+							</aui:select>
+
+							<aui:input label="use-secure-incoming-connection" name="incomingSecure" type="checkbox" />
+						</aui:fieldset>
+
+						<aui:fieldset label="outgoing-settings">
+							<aui:input label="outgoing-smtp-server" name="outgoingHostName" />
+
+							<aui:select name="outgoingPort">
+
+								<%
+								for (int curOutgoingPort : PortletPropsValues.OUTGOING_PORTS) {
+								%>
+
+									<aui:option selected="<%= outgoingPort == curOutgoingPort %>" value="<%= curOutgoingPort %>"><%= curOutgoingPort %></aui:option>
+
+								<%
+								}
+								%>
+
+							</aui:select>
+
+							<aui:input label="use-secure-outgoing-connection" name="outgoingSecure" type="checkbox" />
+						</aui:fieldset>
 					</c:otherwise>
 				</c:choose>
 
-				<aui:input type="password" name="password" />
+				<aui:input name="personalName" type="hidden" />
 
-				<aui:input type="checkbox" name="savePassword" value="false" />
+				<aui:input name="protocol" type="hidden" value="<%= protocol %>" />
+
+				<aui:input name="signature" type="hidden" />
+
+				<aui:input name="useSignature" type="hidden" value="false" />
+
+				<aui:input name="folderPrefix" type="hidden" value="<%= folderPrefix %>" />
+
+				<aui:input name="defaultSender" type="hidden" value="false" />
+
+				<aui:input name="useLocalPartAsLogin" type="hidden" value="<%= useLocalPartAsLogin %>" />
+
+				<aui:button cssClass="add-account" label="add-account" />
 			</aui:fieldset>
+		</liferay-ui:section>
 
-			<c:choose>
-				<c:when test="<%= hideSettings %>">
-					<aui:input type="hidden" name="incomingHostName" value="<%= incomingHostName %>" />
-
-					<aui:input type="hidden" name="incomingPort" value="<%= incomingPort %>" />
-
-					<aui:input type="hidden" name="incomingSecure" value="<%= incomingSecure %>" />
-
-					<aui:input type="hidden" name="outgoingHostName" value="<%= outgoingHostName %>" />
-
-					<aui:input type="hidden" name="outgoingPort" value="<%= outgoingPort %>" />
-
-					<aui:input type="hidden" name="outgoingSecure" value="<%= outgoingSecure %>" />
-				</c:when>
-				<c:otherwise>
-					<aui:fieldset label="incoming-settings">
-						<aui:input name="incomingHostName" />
-
-						<aui:select name="incomingPort">
-
-						<%
-						for (String tempIncomingPort : incomingPorts) {
-						%>
-
-							<aui:option selected="<%= tempIncomingPort.equals(incomingPort) %>" value="<%= tempIncomingPort %>"><%= tempIncomingPort %></aui:option>
-
-						<%
-						}
-						%>
-
-						</aui:select>
-
-						<aui:input label="use-secure-incoming-connection" name="incomingSecure" type="checkbox" />
-					</aui:fieldset>
-
-					<aui:fieldset label="outgoing-settings">
-						<aui:input label="outgoing-smtp-server" name="outgoingHostName" />
-
-						<aui:select name="outgoingPort">
-
-						<%
-						for (String tempOutgoingPort : outgoingPorts) {
-						%>
-
-							<aui:option selected="<%= tempOutgoingPort.equals(outgoingPort) %>" value="<%= tempOutgoingPort %>"><%= tempOutgoingPort %></aui:option>
-
-						<%
-						}
-						%>
-
-						</aui:select>
-
-						<aui:input label="use-secure-outgoing-connection" name="outgoingSecure" type="checkbox" />
-					</aui:fieldset>
-				</c:otherwise>
-			</c:choose>
-
-			<aui:input type="hidden" name="personalName" value="" />
-
-			<aui:input type="hidden" name="protocol" value="<%= protocol %>" />
-
-			<aui:input type="hidden" name="signature" value="" />
-
-			<aui:input type="hidden" name="useSignature" value="false" />
-
-			<aui:input type="hidden" name="folderPrefix" value="<%= folderPrefix %>" />
-
-			<aui:input type="hidden" name="defaultSender" value="false" />
-
-			<aui:input type="hidden" name="useLocalPartAsLogin" value="<%= useLocalPartAsLogin %>" />
-
-			<aui:button cssClass="add-account" label="add-account" />
-		</aui:fieldset>
-	</liferay-ui:section>
-
-<%
-}
-%>
+	<%
+	}
+	%>
 
 </liferay-ui:tabs>
 
 <aui:script>
-var A = AUI();
+	var A = AUI();
 
-A.all('.add-account').each(
-	function(node, idx, lst) {
-		node.on('click', function() {
-			var parent = this.get('parentNode');
+	A.all('.add-account').each(
+		function(node, idx, lst) {
+			node.on('click', function() {
+				var parent = this.get('parentNode');
 
-			console.log(parent);
+				console.log(parent);
 
-			var address = parent.one('#<portlet:namespace />address').get('value');
-			var personalName = parent.one('#<portlet:namespace />personalName').get('value');
-			var protocol = parent.one('#<portlet:namespace />protocol').get('value');
-			var incomingHostName = parent.one('#<portlet:namespace />incomingHostName').get('value');
-			var incomingPort = parent.one('#<portlet:namespace />incomingPort').get('value');
-			var incomingSecure = parent.one('#<portlet:namespace />incomingSecure').get('value');
-			var outgoingHostName = parent.one('#<portlet:namespace />outgoingHostName').get('value');
-			var outgoingPort = parent.one('#<portlet:namespace />outgoingPort').get('value');
-			var outgoingSecure = parent.one('#<portlet:namespace />outgoingSecure').get('value');
-			var login = parent.one('#<portlet:namespace />login').get('value');
-			var password = parent.one('#<portlet:namespace />password').get('value');
-			var savePassword = parent.one('#<portlet:namespace />savePassword').get('value');
-			var signature = parent.one('#<portlet:namespace />signature').get('value');
-			var useSignature = parent.one('#<portlet:namespace />useSignature').get('value');
-			var folderPrefix = parent.one('#<portlet:namespace />folderPrefix').get('value');
-			var defaultSender = parent.one('#<portlet:namespace />defaultSender').get('value');
-			var useLocalPartAsLogin = parent.one('#<portlet:namespace />useLocalPartAsLogin').get('value');
+				var address = parent.one('#<portlet:namespace />address').get('value');
+				var personalName = parent.one('#<portlet:namespace />personalName').get('value');
+				var protocol = parent.one('#<portlet:namespace />protocol').get('value');
+				var incomingHostName = parent.one('#<portlet:namespace />incomingHostName').get('value');
+				var incomingPort = parent.one('#<portlet:namespace />incomingPort').get('value');
+				var incomingSecure = parent.one('#<portlet:namespace />incomingSecure').get('value');
+				var outgoingHostName = parent.one('#<portlet:namespace />outgoingHostName').get('value');
+				var outgoingPort = parent.one('#<portlet:namespace />outgoingPort').get('value');
+				var outgoingSecure = parent.one('#<portlet:namespace />outgoingSecure').get('value');
+				var login = parent.one('#<portlet:namespace />login').get('value');
+				var password = parent.one('#<portlet:namespace />password').get('value');
+				var savePassword = parent.one('#<portlet:namespace />savePassword').get('value');
+				var signature = parent.one('#<portlet:namespace />signature').get('value');
+				var useSignature = parent.one('#<portlet:namespace />useSignature').get('value');
+				var folderPrefix = parent.one('#<portlet:namespace />folderPrefix').get('value');
+				var defaultSender = parent.one('#<portlet:namespace />defaultSender').get('value');
+				var useLocalPartAsLogin = parent.one('#<portlet:namespace />useLocalPartAsLogin').get('value');
 
-			A.io.request(
-				themeDisplay.getLayoutURL() + '/-/mail/update_account',
-				{
-					data: {
-						address: address,
-						personalName: personalName,
-						protocol: protocol,
-						incomingHostName: incomingHostName,
-						incomingPort: incomingPort,
-						incomingSecure: incomingSecure,
-						outgoingHostName: outgoingHostName,
-						outgoingPort: outgoingPort,
-						outgoingSecure: outgoingSecure,
-						login: login,
-						password: password,
-						savePassword: savePassword,
-						signature: signature,
-						useSignature: useSignature,
-						folderPrefix: folderPrefix,
-						defaultSender: defaultSender,
-						useLocalPartAsLogin: useLocalPartAsLogin
-					},
-					method: 'POST',
-					on: {
-						failure: function (event, id, obj) {
-							var responseData = this.get('responseData');
-
-							console.log(responseData);
+				A.io.request(
+					themeDisplay.getLayoutURL() + '/-/mail/update_account',
+					{
+						data: {
+							address: address,
+							personalName: personalName,
+							protocol: protocol,
+							incomingHostName: incomingHostName,
+							incomingPort: incomingPort,
+							incomingSecure: incomingSecure,
+							outgoingHostName: outgoingHostName,
+							outgoingPort: outgoingPort,
+							outgoingSecure: outgoingSecure,
+							login: login,
+							password: password,
+							savePassword: savePassword,
+							signature: signature,
+							useSignature: useSignature,
+							folderPrefix: folderPrefix,
+							defaultSender: defaultSender,
+							useLocalPartAsLogin: useLocalPartAsLogin
 						},
-						success: function (event, id, obj) {
-							var responseData = this.get('responseData');
+						method: 'POST',
+						on: {
+							failure: function (event, id, obj) {
+								var responseData = this.get('responseData');
 
-							console.log(responseData);
+								console.log(responseData);
+							},
+							success: function (event, id, obj) {
+								var responseData = this.get('responseData');
+
+								console.log(responseData);
+							}
 						}
 					}
-				}
-			);
-		});
-	}
-);
+				);
+			});
+		}
+	);
 </aui:script>

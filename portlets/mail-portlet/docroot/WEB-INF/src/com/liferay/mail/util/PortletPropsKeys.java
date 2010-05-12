@@ -21,8 +21,14 @@ package com.liferay.mail.util;
  */
 public interface PortletPropsKeys {
 
+	public static final String DEFAULT_ACCOUNTS = "default.accounts";
+
+	public static final String INCOMING_PORTS = "incoming.ports";
+
 	public static final String JAVAMAIL_DEBUG = "javamail.debug";
 
 	public static final String MESSAGES_SYNC_COUNT = "messages.sync.count";
+
+	public static final String OUTGOING_PORTS = "outgoing.ports";
 
 }

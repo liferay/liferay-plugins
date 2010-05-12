@@ -42,83 +42,89 @@ Account account = AccountLocalServiceUtil.getAccount(accountId);
 
 <aui:layout>
 	<aui:column>
-		<aui:button name="updateAccount" value="Update Account" />
+		<aui:button name="updateAccount" value="update-account" />
 	</aui:column>
 	<aui:column>
-		<aui:button name="deleteAccount" value="Delete Account" />
+		<aui:button name="deleteAccount" value="delete-account" />
 	</aui:column>
 </aui:layout>
 
 <aui:script>
-var A = AUI();
+	var A = AUI();
 
-A.one('#<portlet:namespace />deleteAccount').on('click', function() {
-	var accountId = A.one('#<portlet:namespace />accountId').get('value');
+	A.one('#<portlet:namespace />deleteAccount').on(
+		'click',
+		function() {
+			var accountId = A.one('#<portlet:namespace />accountId').get('value');
 
-	var answer = confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this-account" />');
+			var answer = confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this-account" />');
 
-	if (answer) {
-		A.io.request(
-			themeDisplay.getLayoutURL() + '/-/mail/delete_account',
-			{
-				data: {
-					accountId: accountId
-				},
-				method: 'POST',
-				on: {
-					failure: function (event, id, obj) {
-						var responseData = this.get('responseData');
+			if (answer) {
+				A.io.request(
+					themeDisplay.getLayoutURL() + '/-/mail/delete_account',
+					{
+						data: {
+							accountId: accountId
+						},
+						method: 'POST',
+						on: {
+							failure: function (event, id, obj) {
+								var responseData = this.get('responseData');
 
-						console.log(responseData);
-					},
-					success: function (event, id, obj) {
-						var responseData = this.get('responseData');
+								console.log(responseData);
+							},
+							success: function (event, id, obj) {
+								var responseData = this.get('responseData');
 
-						console.log(responseData);
+								console.log(responseData);
+							}
+						}
 					}
-				}
-			}
-		);
-	}
-});
-
-A.one('#<portlet:namespace />updateAccount').on('click', function() {
-	var accountId = A.one('#<portlet:namespace />accountId').get('value');
-	var personalName = A.one('#<portlet:namespace />personalName').get('value');
-	var password = A.one('#<portlet:namespace />password').get('value');
-	var savePassword = A.one('#<portlet:namespace />savePassword').get('value');
-	var signature = A.one('#<portlet:namespace />signature').get('value');
-	var useSignature = A.one('#<portlet:namespace />useSignature').get('value');
-	var folderPrefix = A.one('#<portlet:namespace />folderPrefix').get('value');
-	var defaultSender = A.one('#<portlet:namespace />defaultSender').get('value');
-
-	A.io.request(
-		themeDisplay.getLayoutURL() + '/-/mail/update_account',
-		{
-			data: {
-				accountId: accountId,
-				personalName: personalName,
-				password: password,
-				savePassword: savePassword,
-				signature: signature,
-				useSignature: useSignature,
-				folderPrefix: folderPrefix,
-				defaultSender: defaultSender
-			},
-			method: 'POST',
-			on: {
-				failure: function (event, id, obj) {
-					var responseData = this.get('responseData');
-
-					console.log(responseData);
-				},
-				success: function (event, id, obj) {
-					var responseData = this.get('responseData');
-
-					console.log(responseData);
-				}
+				);
 			}
 		}
 	);
-});
+
+	A.one('#<portlet:namespace />updateAccount').on(
+		'click',
+		function() {
+			var accountId = A.one('#<portlet:namespace />accountId').get('value');
+			var personalName = A.one('#<portlet:namespace />personalName').get('value');
+			var password = A.one('#<portlet:namespace />password').get('value');
+			var savePassword = A.one('#<portlet:namespace />savePassword').get('value');
+			var signature = A.one('#<portlet:namespace />signature').get('value');
+			var useSignature = A.one('#<portlet:namespace />useSignature').get('value');
+			var folderPrefix = A.one('#<portlet:namespace />folderPrefix').get('value');
+			var defaultSender = A.one('#<portlet:namespace />defaultSender').get('value');
+
+			A.io.request(
+				themeDisplay.getLayoutURL() + '/-/mail/update_account',
+				{
+					data: {
+						accountId: accountId,
+						personalName: personalName,
+						password: password,
+						savePassword: savePassword,
+						signature: signature,
+						useSignature: useSignature,
+						folderPrefix: folderPrefix,
+						defaultSender: defaultSender
+					},
+					method: 'POST',
+					on: {
+						failure: function (event, id, obj) {
+							var responseData = this.get('responseData');
+
+							console.log(responseData);
+						},
+						success: function (event, id, obj) {
+							var responseData = this.get('responseData');
+
+							console.log(responseData);
+						}
+					}
+				}
+			);
+		}
+	);
 </aui:script>
