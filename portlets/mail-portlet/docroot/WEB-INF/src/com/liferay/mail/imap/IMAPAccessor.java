@@ -459,6 +459,9 @@ public class IMAPAccessor {
 					jxMessage.setFlag(Flags.Flag.SEEN, false);
 				}
 
+				AttachmentLocalServiceUtil.deleteAttachments(
+					message.getCompanyId(), message.getMessageId());
+
 				for (MailFile mailFile : mailFiles) {
 					AttachmentLocalServiceUtil.addAttachment(
 						_user.getUserId(), message.getMessageId(),
