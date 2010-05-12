@@ -30,6 +30,16 @@ import com.liferay.portal.security.permission.PermissionChecker;
 public class TemplatePermission {
 
 	public static void check(
+			PermissionChecker permissionChecker, long templateId,
+			String actionId)
+		throws PortalException, SystemException {
+
+		if (!contains(permissionChecker, templateId, actionId)) {
+			throw new PrincipalException();
+		}
+	}
+
+	public static void check(
 			PermissionChecker permissionChecker, Template template,
 			String actionId)
 		throws PortalException {
@@ -39,14 +49,14 @@ public class TemplatePermission {
 		}
 	}
 
-	public static void check(
+	public static boolean contains(
 			PermissionChecker permissionChecker, long templateId,
 			String actionId)
 		throws PortalException, SystemException {
 
-		if (!contains(permissionChecker, templateId, actionId)) {
-			throw new PrincipalException();
-		}
+		Template template = TemplateLocalServiceUtil.getTemplate(templateId);
+
+		return contains(permissionChecker, template, actionId);
 	}
 
 	public static boolean contains(
@@ -63,16 +73,6 @@ public class TemplatePermission {
 		return permissionChecker.hasPermission(
 			template.getGroupId(), Template.class.getName(),
 			template.getTemplateId(), actionId);
-	}
-
-	public static boolean contains(
-			PermissionChecker permissionChecker, long templateId,
-			String actionId)
-		throws PortalException, SystemException {
-
-		Template template = TemplateLocalServiceUtil.getTemplate(templateId);
-
-		return contains(permissionChecker, template, actionId);
 	}
 
 }
