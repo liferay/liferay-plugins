@@ -140,7 +140,7 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 					</c:otherwise>
 				</c:choose>
 
-				<aui:input name="personalName" type="hidden" />
+				<aui:input name="personalName" type="hidden" value="<%= user.getFullName() %>" />
 
 				<aui:input name="protocol" type="hidden" value="<%= protocol %>" />
 
@@ -154,7 +154,7 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 
 				<aui:input name="useLocalPartAsLogin" type="hidden" value="<%= useLocalPartAsLogin %>" />
 
-				<aui:button cssClass="add-account" label="add-account" />
+				<aui:button cssClass="add-account" value="add-account" />
 			</aui:fieldset>
 		</liferay-ui:section>
 
@@ -217,14 +217,14 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 						method: 'POST',
 						on: {
 							failure: function (event, id, obj) {
-								var responseData = this.get('responseData');
+								var results = this.get('responseData');
 
-								console.log(responseData);
+								console.log(results);
 							},
 							success: function (event, id, obj) {
-								var responseData = this.get('responseData');
+								var results = this.get('responseData');
 
-								console.log(responseData);
+								console.log(results);
 							}
 						}
 					}

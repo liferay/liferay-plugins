@@ -21,24 +21,24 @@ long accountId = ParamUtil.getLong(request, "accountId");
 
 MailManager mailManager = MailManager.getInstance(request);
 
-Account account = AccountLocalServiceUtil.getAccount(accountId);
+Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 %>
 
-<aui:input name="accountId" type="hidden" value="<%= account.getAccountId() %>" />
+<aui:input name="accountId" type="hidden" value="<%= mailAccount.getAccountId() %>" />
 
-<aui:input name="personalName" value="<%= account.getPersonalName() %>" />
+<aui:input name="personalName" value="<%= mailAccount.getPersonalName() %>" />
 
 <aui:input name="password" type="password" />
 
-<aui:input name="savePassword" type="checkbox" value="<%= account.isSavePassword() %>" />
+<aui:input name="savePassword" type="checkbox" value="<%= mailAccount.isSavePassword() %>" />
 
-<aui:input name="signature" value="<%= account.getSignature() %>" />
+<aui:input name="signature" value="<%= mailAccount.getSignature() %>" />
 
-<aui:input name="useSignature" type="checkbox" value="<%= account.getUseSignature() %>" />
+<aui:input name="useSignature" type="checkbox" value="<%= mailAccount.getUseSignature() %>" />
 
-<aui:input name="folderPrefix" value="<%= account.getFolderPrefix() %>" />
+<aui:input name="folderPrefix" value="<%= mailAccount.getFolderPrefix() %>" />
 
-<aui:input name="defaultSender" type="checkbox" value="<%= account.getDefaultSender() %>" />
+<aui:input name="defaultSender" type="checkbox" value="<%= mailAccount.getDefaultSender() %>" />
 
 <aui:layout>
 	<aui:column>
@@ -66,17 +66,18 @@ Account account = AccountLocalServiceUtil.getAccount(accountId);
 						data: {
 							accountId: accountId
 						},
+						dataType: 'json',
 						method: 'POST',
 						on: {
 							failure: function (event, id, obj) {
-								var responseData = this.get('responseData');
+								var results = this.get('responseData');
 
-								console.log(responseData);
+								console.log(results);
 							},
 							success: function (event, id, obj) {
-								var responseData = this.get('responseData');
+								var results = this.get('responseData');
 
-								console.log(responseData);
+								console.log(results);
 							}
 						}
 					}
@@ -110,17 +111,18 @@ Account account = AccountLocalServiceUtil.getAccount(accountId);
 						folderPrefix: folderPrefix,
 						defaultSender: defaultSender
 					},
+					dataType: 'json',
 					method: 'POST',
 					on: {
 						failure: function (event, id, obj) {
-							var responseData = this.get('responseData');
+							var results = this.get('responseData');
 
-							console.log(responseData);
+							console.log(results);
 						},
 						success: function (event, id, obj) {
-							var responseData = this.get('responseData');
+							var results = this.get('responseData');
 
-							console.log(responseData);
+							console.log(results);
 						}
 					}
 				}

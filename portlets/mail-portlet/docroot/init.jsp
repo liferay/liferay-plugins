@@ -55,3 +55,5 @@
 <%@ page import="java.util.List" %>
 
 <portlet:defineObjects />
+
+<liferay-theme:defineObjects />

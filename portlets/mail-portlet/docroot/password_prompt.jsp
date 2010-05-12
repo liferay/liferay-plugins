@@ -30,36 +30,39 @@ MailManager mailManager = MailManager.getInstance(request);
 <aui:script use="liferay-plugin-mail">
 	var A = AUI();
 
-	A.one('#<portlet:namespace />login').on('click', function() {
-		var password = A.one('#<portlet:namespace />password').get('value');
+	A.one('#<portlet:namespace />login').on(
+		'click',
+		function() {
+			var password = A.one('#<portlet:namespace />password').get('value');
 
-		A.io.request(
-			themeDisplay.getLayoutURL() + '/-/mail/store_password',
-			{
-				data: {
-					accountId: '<%= accountId %>',
-					password: password
-				},
-				dataType: 'json',
-				method: 'POST',
-				on: {
-					failure: function (event, id, obj) {
-						var results = this.get('responseData');
-
-						console.log(responseData);
+			A.io.request(
+				themeDisplay.getLayoutURL() + '/-/mail/store_password',
+				{
+					data: {
+						accountId: '<%= accountId %>',
+						password: password
 					},
-					success: function (event, id, obj) {
-						var results = this.get('responseData');
+					dataType: 'json',
+					method: 'POST',
+					on: {
+						failure: function (event, id, obj) {
+							var results = this.get('responseData');
 
-						if (results.status == 'success') {
-							Liferay.Mail.loadAccount(<%= accountId %>, <%= inboxFolderId %>);
-						}
-						else {
-							//Liferay.Mail.setStatusMessage('error', results.message);
+							console.log(responseData);
+						},
+						success: function (event, id, obj) {
+							var results = this.get('responseData');
+
+							if (results.status == 'success') {
+								Liferay.Mail.loadAccount(<%= accountId %>, <%= inboxFolderId %>);
+							}
+							else {
+								//Liferay.Mail.setStatusMessage('error', results.message);
+							}
 						}
 					}
 				}
-			}
-		);
-	});
+			);
+		}
+	);
 </aui:script>
