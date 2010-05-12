@@ -16,6 +16,7 @@ package com.liferay.opensocial.shindig.guice;
 
 import com.google.inject.name.Names;
 
+import com.liferay.opensocial.shindig.service.LiferayAppDataService;
 import com.liferay.opensocial.shindig.service.LiferayPersonService;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 
@@ -43,7 +44,7 @@ public class LiferayGuiceModule extends SocialApiGuiceModule {
 				"sampledata/canonicaldb.json");
 
 		bind(ActivityService.class).to(JsonDbOpensocialService.class);
-		bind(AppDataService.class).to(JsonDbOpensocialService.class);
+		bind(AppDataService.class).to(LiferayAppDataService.class);
 		bind(MessageService.class).to(JsonDbOpensocialService.class);
 		bind(OAuthDataStore.class).to(SampleOAuthDataStore.class);
 		bind(PersonService.class).to(LiferayPersonService.class);
