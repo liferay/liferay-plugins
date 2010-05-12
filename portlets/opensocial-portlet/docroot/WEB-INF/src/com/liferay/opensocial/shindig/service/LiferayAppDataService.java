@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portlet.expando.NoSuchColumnException;
+import com.liferay.portlet.expando.NoSuchTableException;
 import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.portlet.expando.model.ExpandoTable;
@@ -47,7 +49,6 @@ import org.apache.shindig.social.opensocial.spi.UserId;
  * <a href="LiferayAppDataService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael Young
- *
  */
 public class LiferayAppDataService implements AppDataService {
 
@@ -94,9 +95,9 @@ public class LiferayAppDataService implements AppDataService {
 		}
 	}
 
-	public Future<Void> updatePersonData(UserId userId, GroupId groupId,
-			String appId, Set<String> fields, Map<String, String> values,
-			SecurityToken securityToken)
+	public Future<Void> updatePersonData(
+			UserId userId, GroupId groupId, String appId, Set<String> fields,
+			Map<String, String> values, SecurityToken securityToken)
 		throws ProtocolException {
 
 		try {
@@ -126,7 +127,7 @@ public class LiferayAppDataService implements AppDataService {
 		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
 
 		for (String field : fields) {
-			ExpandoColumn expandoColumn = getExpandoColumn(field);
+			ExpandoColumn expandoColumn = getExpandoColumn(companyId, field);
 
 			ExpandoValueLocalServiceUtil.deleteValue(
 				companyId, User.class.getName(), OPEN_SOCIAL_DATA,
@@ -177,7 +178,7 @@ public class LiferayAppDataService implements AppDataService {
 		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
 
 		for (String field : fields) {
-			ExpandoColumn expandoColumn = getExpandoColumn(field);
+			ExpandoColumn expandoColumn = getExpandoColumn(companyId, field);
 
 			ExpandoValueLocalServiceUtil.addValue(
 				companyId, User.class.getName(), OPEN_SOCIAL_DATA,
@@ -195,23 +196,27 @@ public class LiferayAppDataService implements AppDataService {
 		return user.getCompanyId();
 	}
 
-	protected ExpandoColumn getExpandoColumn(String columnName)
+	protected ExpandoColumn getExpandoColumn(long companyId, String columnName)
 		throws Exception {
 
-		ExpandoTable expandoTable = ExpandoTableLocalServiceUtil.getTable(
-			User.class.getName(), OPEN_SOCIAL_DATA);
+		ExpandoTable expandoTable = null;
 
-		if (expandoTable == null) {
+		try {
+			expandoTable = ExpandoTableLocalServiceUtil.getTable(
+				companyId, User.class.getName(), OPEN_SOCIAL_DATA);
+		}
+		catch (NoSuchTableException nste) {
 			expandoTable = ExpandoTableLocalServiceUtil.addTable(
-				User.class.getName(), OPEN_SOCIAL_DATA);
+				companyId, User.class.getName(), OPEN_SOCIAL_DATA);
 		}
 
 		ExpandoColumn expandoColumn = null;
 
-		expandoColumn = ExpandoColumnLocalServiceUtil.getColumn(
-			expandoTable.getTableId(), columnName);
-
-		if (expandoColumn == null) {
+		try {
+			expandoColumn = ExpandoColumnLocalServiceUtil.getColumn(
+				expandoTable.getTableId(), columnName);
+		}
+		catch (NoSuchColumnException nsce) {
 			expandoColumn = ExpandoColumnLocalServiceUtil.addColumn(
 				expandoTable.getTableId(), columnName,
 				ExpandoColumnConstants.STRING);
@@ -220,19 +225,19 @@ public class LiferayAppDataService implements AppDataService {
 		return expandoColumn;
 	}
 
-	protected String getExpandoValue(long companyId, long userId, String key) {
-		String value = StringPool.BLANK;
+	protected String getExpandoValue(
+		long companyId, long userId, String columnName) {
 
 		try {
 			ExpandoValue expandoValue = ExpandoValueLocalServiceUtil.getValue(
-				companyId, User.class.getName(), OPEN_SOCIAL_DATA, key, userId);
+				companyId, User.class.getName(), OPEN_SOCIAL_DATA, columnName,
+				userId);
 
-			value = expandoValue.getData();
+			return expandoValue.getData();
 		}
 		catch (Exception e) {
+			return StringPool.BLANK;
 		}
-
-		return value;
 	}
 
 	private static final String OPEN_SOCIAL_DATA = "OPEN_SOCIAL_DATA";
