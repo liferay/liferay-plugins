@@ -20,7 +20,6 @@ import com.liferay.mail.model.Account;
 import com.liferay.mail.service.AccountLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 
 /**
@@ -91,10 +90,6 @@ public abstract class BaseMailbox implements Mailbox {
 		throws PortalException, SystemException {
 
 		Account account = AccountLocalServiceUtil.getAccount(accountId);
-
-		if (Validator.isNull(password) && account.isSavePassword()) {
-			password = account.getPasswordDecrypted();
-		}
 
 		validateAccount(
 			account.getIncomingHostName(), account.getIncomingPort(),

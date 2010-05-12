@@ -1,3 +1,4 @@
+<%
 /**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
@@ -11,21 +12,15 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+%>
 
-package com.liferay.mail.mailbox;
+<%@ include file="/init.jsp" %>
 
-import com.liferay.mail.model.Account;
-import com.liferay.portal.model.User;
+<%
+long accountId = ParamUtil.getLong(request, "accountId");
+String password = ParamUtil.getString(request, "password");
 
-/**
- * <a href="MailboxFactory.java.html"><b><i>View Source</i></b></a>
- *
- * @author Scott Lee
- */
-public interface MailboxFactory {
+MailManager mailManager = MailManager.getInstance(request);
+%>
 
-	public Mailbox getMailbox(User user, Account account, String password);
-
-	public Mailbox getMailbox(User user, String protocol);
-
-}
+<%= mailManager.storePasswordInSession(accountId, password) %>

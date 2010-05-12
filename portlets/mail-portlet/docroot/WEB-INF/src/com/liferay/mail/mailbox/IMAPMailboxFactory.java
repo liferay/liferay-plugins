@@ -15,6 +15,7 @@
 package com.liferay.mail.mailbox;
 
 import com.liferay.mail.model.Account;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 
 /**
@@ -24,12 +25,12 @@ import com.liferay.portal.model.User;
  */
 public class IMAPMailboxFactory implements MailboxFactory {
 
-	public Mailbox getMailbox(User user, Account account) {
-		return new IMAPMailbox(user, account);
+	public Mailbox getMailbox(User user, Account account, String password) {
+		return new IMAPMailbox(user, account, password);
 	}
 
 	public Mailbox getMailbox(User user, String protocol) {
-		return new IMAPMailbox(user, null);
+		return new IMAPMailbox(user, null, StringPool.BLANK);
 	}
 
 }

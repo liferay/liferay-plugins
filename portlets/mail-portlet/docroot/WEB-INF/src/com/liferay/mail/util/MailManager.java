@@ -17,6 +17,7 @@ package com.liferay.mail.util;
 import com.liferay.mail.MailException;
 import com.liferay.mail.mailbox.Mailbox;
 import com.liferay.mail.mailbox.MailboxFactoryUtil;
+import com.liferay.mail.mailbox.PasswordRetriever;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Attachment;
 import com.liferay.mail.model.Folder;
@@ -65,18 +66,19 @@ public class MailManager {
 			return null;
 		}
 
-		return new MailManager(user);
+		return new MailManager(user, new PasswordRetriever(request));
 	}
 
-	public MailManager(User user) {
+	public MailManager(User user, PasswordRetriever passwordRetriever) {
 		_user = user;
+		_passwordRetriever = passwordRetriever;
 	}
 
 	public JSONObject addAccount(
 			String address, String personalName, String protocol,
 			String incomingHostName, int incomingPort, boolean incomingSecure,
 			String outgoingHostName, int outgoingPort, boolean outgoingSecure,
-			String login, String unencryptedPassword, boolean savePassword,
+			String login, String password, boolean savePassword,
 			String signature, boolean useSignature, String folderPrefix,
 			boolean defaultSender)
 		throws PortalException, SystemException {
@@ -88,11 +90,17 @@ public class MailManager {
 			Account account = mailbox.addAccount(
 				address, personalName, protocol, incomingHostName, incomingPort,
 				incomingSecure, outgoingHostName, outgoingPort, outgoingSecure,
-				login, unencryptedPassword, savePassword, signature,
-				useSignature, folderPrefix, defaultSender);
+				login, password, savePassword, signature, useSignature,
+				folderPrefix, defaultSender);
+
+			if (!savePassword) {
+				_passwordRetriever.setPassword(
+					account.getAccountId(), password);
+			}
 
 			mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), account.getAccountId());
+				_user.getUserId(), account.getAccountId(),
+				_passwordRetriever.getPassword(account.getAccountId()));
 
 			mailbox.synchronize();
 
@@ -116,7 +124,8 @@ public class MailManager {
 
 		try {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), accountId);
+				_user.getUserId(), accountId,
+				_passwordRetriever.getPassword(accountId));
 
 			mailbox.addFolder(displayName);
 
@@ -140,7 +149,10 @@ public class MailManager {
 
 		try {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), accountId);
+				_user.getUserId(), accountId,
+				_passwordRetriever.getPassword(accountId));
+
+			_passwordRetriever.removePassword(accountId);
 
 			mailbox.deleteAccount();
 
@@ -161,7 +173,8 @@ public class MailManager {
 				attachmentId);
 
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), attachment.getAccountId());
+				_user.getUserId(), attachment.getAccountId(),
+				_passwordRetriever.getPassword(attachment.getAccountId()));
 
 			mailbox.deleteAttachment(attachmentId);
 
@@ -181,7 +194,8 @@ public class MailManager {
 			Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), folder.getAccountId());
+				_user.getUserId(), folder.getAccountId(),
+				_passwordRetriever.getPassword(folder.getAccountId()));
 
 			mailbox.deleteFolder(folderId);
 
@@ -217,7 +231,8 @@ public class MailManager {
 				messageIds[0]);
 
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), message.getAccountId());
+				_user.getUserId(), message.getAccountId(),
+				_passwordRetriever.getPassword(message.getAccountId()));
 
 			mailbox.deleteMessages(message.getFolderId(), messageIds);
 
@@ -252,7 +267,8 @@ public class MailManager {
 				messageIds[0]);
 
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), message.getAccountId());
+				_user.getUserId(), message.getAccountId(),
+				_passwordRetriever.getPassword(message.getAccountId()));
 
 			mailbox.updateFlags(
 				message.getFolderId(), messageIds, flag, value);
@@ -288,7 +304,8 @@ public class MailManager {
 			attachmentId);
 
 		Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-			_user.getUserId(), attachment.getAccountId());
+			_user.getUserId(), attachment.getAccountId(),
+			_passwordRetriever.getPassword(attachment.getAccountId()));
 
 		return mailbox.getAttachment(attachmentId);
 	}
@@ -310,7 +327,8 @@ public class MailManager {
 
 		if (Validator.isNull(message.getBody())) {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), message.getAccountId());
+				_user.getUserId(), message.getAccountId(),
+				_passwordRetriever.getPassword(message.getAccountId()));
 
 			mailbox.synchronizeMessage(message.getMessageId());
 
@@ -355,7 +373,8 @@ public class MailManager {
 
 		if (folderId != 0) {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), folder.getAccountId());
+				_user.getUserId(), folder.getAccountId(),
+				_passwordRetriever.getPassword(folder.getAccountId()));
 
 			if ((pageNumber == 1) &&
 				orderByField.equals(MailConstants.ORDER_BY_SENT_DATE) &&
@@ -371,6 +390,12 @@ public class MailManager {
 
 		return new MessagesDisplay(
 			new ArrayList<Message>(), pageNumber, messagesPerPage, 0);
+	}
+
+	public String getPassword(long accountId)
+		throws PortalException, SystemException {
+
+		return _passwordRetriever.getPassword(accountId);
 	}
 
 	public JSONObject moveMessages(long folderId, long[] messageIds)
@@ -397,7 +422,8 @@ public class MailManager {
 				messageIds[0]);
 
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), message.getAccountId());
+				_user.getUserId(), message.getAccountId(),
+				_passwordRetriever.getPassword(message.getAccountId()));
 
 			mailbox.moveMessages(folderId, messageIds);
 
@@ -422,7 +448,8 @@ public class MailManager {
 
 		try {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), folder.getAccountId());
+				_user.getUserId(), folder.getAccountId(),
+				_passwordRetriever.getPassword(folder.getAccountId()));
 
 			mailbox.renameFolder(folderId, displayName);
 
@@ -451,7 +478,8 @@ public class MailManager {
 
 		try {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), accountId);
+				_user.getUserId(), accountId,
+				_passwordRetriever.getPassword(accountId));
 
 			Message message = mailbox.saveDraft(
 				accountId, messageId, to, cc, bcc, subject, body, mailFiles);
@@ -479,6 +507,37 @@ public class MailManager {
 		}
 	}
 
+	public JSONObject storePasswordInSession(long accountId, String password)
+		throws PortalException, SystemException {
+
+		Account account = AccountLocalServiceUtil.getAccount(accountId);
+
+		if (!account.isSavePassword()) {
+			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
+				_user.getUserId(), accountId,
+				_passwordRetriever.getPassword(accountId));
+
+			try {
+				mailbox.validateAccount(
+					account.getIncomingHostName(), account.getIncomingPort(),
+					account.getIncomingSecure(), account.getOutgoingHostName(),
+					account.getOutgoingPort(), account.getOutgoingSecure(),
+					account.getLogin(), password);
+
+				_passwordRetriever.setPassword(accountId, password);
+
+				return createJSONResult("success", "logged-in-successfully");
+			}
+			catch (MailException me) {
+				return createJSONResult("failure", "incorrect-password");
+			}
+		}
+		else {
+			return createJSONResult(
+				"success", "password-has-already-been-saved");
+		}
+	}
+
 	public JSONObject sendMessage(
 			long accountId, long messageId, String to, String cc, String bcc,
 			String subject, String body, List<MailFile> mailFiles)
@@ -486,7 +545,8 @@ public class MailManager {
 
 		try {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), accountId);
+				_user.getUserId(), accountId,
+				_passwordRetriever.getPassword(accountId));
 
 			Message message = mailbox.saveDraft(
 				accountId, messageId, to, cc, bcc, subject, body, mailFiles);
@@ -547,18 +607,34 @@ public class MailManager {
 	}
 
 	public JSONObject updateAccount(
-			long accountId, String personalName, String unencryptedPassword,
+			long accountId, String personalName, String password,
 			boolean savePassword, String signature, boolean useSignature,
 			String folderPrefix, boolean defaultSender)
 		throws PortalException, SystemException {
 
 		try {
+			if (savePassword) {
+				_passwordRetriever.removePassword(accountId);
+			}
+
+			if (Validator.isNull(password)) {
+				String oldPassword = _passwordRetriever.getPassword(
+					accountId);
+
+				if (Validator.isNull(oldPassword)) {
+					throw new MailException("no password");
+				}
+				else {
+					password = oldPassword;
+				}
+			}
+
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), accountId);
+				_user.getUserId(), accountId, password);
 
 			mailbox.updateAccount(
-				accountId, personalName, unencryptedPassword, savePassword,
-				signature, useSignature, folderPrefix, defaultSender);
+				accountId, personalName, password, savePassword, signature,
+				useSignature, folderPrefix, defaultSender);
 
 			return createJSONResult("success", "account-has-been-updated");
 		}
@@ -605,8 +681,6 @@ public class MailManager {
 			int messagesPerPage)
 		throws PortalException, SystemException {
 
-		Account account = AccountLocalServiceUtil.getAccount(accountId);
-
 		com.liferay.portal.kernel.messaging.Message message =
 			new com.liferay.portal.kernel.messaging.Message();
 
@@ -616,13 +690,14 @@ public class MailManager {
 		message.put("messageId", messageId);
 		message.put("pageNumber", pageNumber);
 		message.put("messagesPerPage", messagesPerPage);
-		message.put("password", account.getPasswordDecrypted());
+		message.put("password", _passwordRetriever.getPassword(accountId));
 
 		MessageBusUtil.sendMessage(DestinationNames.MAIL_SYNCHRONIZER, message);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(MailManager.class);
 
+	private PasswordRetriever _passwordRetriever;
 	private User _user;
 
 }

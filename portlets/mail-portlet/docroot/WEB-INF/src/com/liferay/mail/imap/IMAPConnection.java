@@ -39,12 +39,12 @@ import org.apache.commons.lang.time.StopWatch;
  */
 public class IMAPConnection {
 
-	public IMAPConnection(Account account) {
+	public IMAPConnection(Account account, String password) {
 		this(
 			account.getIncomingHostName(), account.getIncomingPort(),
 			account.getIncomingSecure(), account.getOutgoingHostName(),
 			account.getOutgoingPort(), account.getOutgoingSecure(),
-			account.getLogin(), account.getPasswordDecrypted());
+			account.getLogin(), password);
 	}
 
 	public IMAPConnection(

@@ -37,9 +37,11 @@ import javax.mail.event.MessageCountListener;
  */
 public class IMAPMessageCountListener implements MessageCountListener {
 
-	public IMAPMessageCountListener(User user, Account account) {
+	public IMAPMessageCountListener(
+		User user, Account account, String password) {
+
 		_account = account;
-		_imapAccessor = new IMAPAccessor(user, account);
+		_imapAccessor = new IMAPAccessor(user, account, password);
 	}
 
 	public void messagesAdded(MessageCountEvent messageCountEvent) {

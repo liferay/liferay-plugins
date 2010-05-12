@@ -30,7 +30,8 @@ import java.util.Map;
  */
 public class MailboxFactoryUtil {
 
-	public static Mailbox getMailbox(long userId, long accountId)
+	public static Mailbox getMailbox(
+			long userId, long accountId, String password)
 		throws PortalException, SystemException {
 
 		User user = UserLocalServiceUtil.getUser(userId);
@@ -44,7 +45,7 @@ public class MailboxFactoryUtil {
 				"Invalid protocol " + account.getProtocol());
 		}
 
-		return mailboxFactory.getMailbox(user, account);
+		return mailboxFactory.getMailbox(user, account, password);
 	}
 
 	public static Mailbox getMailbox(long userId, String protocol)

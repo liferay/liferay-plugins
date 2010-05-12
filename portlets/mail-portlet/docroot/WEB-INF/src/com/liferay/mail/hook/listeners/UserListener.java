@@ -20,6 +20,7 @@ import com.liferay.mail.model.Account;
 import com.liferay.mail.service.AccountLocalServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.User;
 
@@ -44,7 +45,7 @@ public class UserListener extends BaseModelListener<User> {
 
 			for (Account account : accounts) {
 				Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-					user.getUserId(), account.getAccountId());
+					user.getUserId(), account.getAccountId(), StringPool.BLANK);
 
 				mailbox.deleteAccount();
 			}

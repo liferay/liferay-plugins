@@ -80,10 +80,11 @@ import org.apache.commons.lang.time.StopWatch;
  */
 public class IMAPAccessor {
 
-	public IMAPAccessor(User user, Account account) {
+	public IMAPAccessor(User user, Account account, String password) {
 		_user = user;
 		_account = account;
-		_imapConnection = new IMAPConnection(account);
+		_password = password;
+		_imapConnection = new IMAPConnection(account, password);
 	}
 
 	public String[] addFolder(String displayName) throws MailException {
@@ -170,7 +171,7 @@ public class IMAPAccessor {
 			imapFolder = openFolder(folderId);
 
 			imapFolder.addMessageCountListener(
-				new IMAPMessageCountListener(_user, _account));
+				new IMAPMessageCountListener(_user, _account, _password));
 
 			List<Message> jxMessages = getMessages(
 				imapFolder, messageIds, true);
@@ -298,12 +299,12 @@ public class IMAPAccessor {
 			sourceIMAPFolder = openFolder(sourceFolderId);
 
 			sourceIMAPFolder.addMessageCountListener(
-				new IMAPMessageCountListener(_user, _account));
+				new IMAPMessageCountListener(_user, _account, _password));
 
 			destinationIMAPFolder = openFolder(destinationFolderId);
 
 			destinationIMAPFolder.addMessageCountListener(
-				new IMAPMessageCountListener(_user, _account));
+				new IMAPMessageCountListener(_user, _account, _password));
 
 			List<Message> jxMessages = getMessages(
 				sourceIMAPFolder, messageIds, deleteMissingMessages);
@@ -396,7 +397,7 @@ public class IMAPAccessor {
 			transport.close();
 
 			imapFolder.addMessageCountListener(
-				new IMAPMessageCountListener(_user, _account));
+				new IMAPMessageCountListener(_user, _account, _password));
 
 			imapFolder.appendMessages(new Message[] {jxMessage});
 		}
@@ -1017,6 +1018,7 @@ public class IMAPAccessor {
 
 	private Account _account;
 	private IMAPConnection _imapConnection;
+	private String _password;
 	private User _user;
 
 }

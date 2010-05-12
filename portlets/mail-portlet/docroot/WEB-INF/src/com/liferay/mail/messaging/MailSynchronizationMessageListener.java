@@ -63,7 +63,7 @@ public class MailSynchronizationMessageListener implements MessageListener {
 					AccountLock.acquireLock(key)) {
 
 				Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-					userId, accountId);
+					userId, accountId, password);
 
 				if (messageId != 0) {
 					mailbox.synchronizeMessage(messageId);
