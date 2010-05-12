@@ -73,13 +73,6 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 			FINDER_CLASS_NAME_LIST, "findByC_KDN_KDV_CD",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
-				Integer.class.getName(), Date.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_C_KDN_KDV_CD = new FinderPath(KaleoInstanceModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoInstanceModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByC_KDN_KDV_CD",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
 				Integer.class.getName(), Date.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
@@ -344,90 +337,9 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	public List<KaleoInstance> findByC_KDN_KDV_CD(long companyId,
 		String kaleoDefinitionName, int kaleoDefinitionVersion,
 		Date completionDate) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(companyId),
-				
-				kaleoDefinitionName, new Integer(kaleoDefinitionVersion),
-				
-				completionDate
-			};
-
-		List<KaleoInstance> list = (List<KaleoInstance>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_KDN_KDV_CD,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(6);
-
-				query.append(_SQL_SELECT_KALEOINSTANCE_WHERE);
-
-				query.append(_FINDER_COLUMN_C_KDN_KDV_CD_COMPANYID_2);
-
-				if (kaleoDefinitionName == null) {
-					query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_1);
-				}
-				else {
-					if (kaleoDefinitionName.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_2);
-					}
-				}
-
-				query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONVERSION_2);
-
-				if (completionDate == null) {
-					query.append(_FINDER_COLUMN_C_KDN_KDV_CD_COMPLETIONDATE_1);
-				}
-				else {
-					query.append(_FINDER_COLUMN_C_KDN_KDV_CD_COMPLETIONDATE_2);
-				}
-
-				query.append(KaleoInstanceModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(companyId);
-
-				if (kaleoDefinitionName != null) {
-					qPos.add(kaleoDefinitionName);
-				}
-
-				qPos.add(kaleoDefinitionVersion);
-
-				if (completionDate != null) {
-					qPos.add(CalendarUtil.getTimestamp(completionDate));
-				}
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<KaleoInstance>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_KDN_KDV_CD,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByC_KDN_KDV_CD(companyId, kaleoDefinitionName,
+			kaleoDefinitionVersion, completionDate, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	public List<KaleoInstance> findByC_KDN_KDV_CD(long companyId,
@@ -452,7 +364,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 				String.valueOf(orderByComparator)
 			};
 
-		List<KaleoInstance> list = (List<KaleoInstance>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_C_KDN_KDV_CD,
+		List<KaleoInstance> list = (List<KaleoInstance>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_KDN_KDV_CD,
 				finderArgs, this);
 
 		if (list == null) {
@@ -536,7 +448,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_C_KDN_KDV_CD,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_KDN_KDV_CD,
 					finderArgs, list);
 
 				closeSession(session);

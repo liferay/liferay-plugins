@@ -76,10 +76,6 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	public static final FinderPath FINDER_PATH_FIND_BY_C_KDI = new FinderPath(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNodeModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByC_KDI",
-			new String[] { Long.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_C_KDI = new FinderPath(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoNodeModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByC_KDI",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				
@@ -333,59 +329,8 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 	public List<KaleoNode> findByC_KDI(long companyId, long kaleoDefinitionId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(companyId), new Long(kaleoDefinitionId)
-			};
-
-		List<KaleoNode> list = (List<KaleoNode>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_KDI,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(4);
-
-				query.append(_SQL_SELECT_KALEONODE_WHERE);
-
-				query.append(_FINDER_COLUMN_C_KDI_COMPANYID_2);
-
-				query.append(_FINDER_COLUMN_C_KDI_KALEODEFINITIONID_2);
-
-				query.append(KaleoNodeModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(companyId);
-
-				qPos.add(kaleoDefinitionId);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<KaleoNode>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_KDI,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByC_KDI(companyId, kaleoDefinitionId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	public List<KaleoNode> findByC_KDI(long companyId, long kaleoDefinitionId,
@@ -403,7 +348,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 				String.valueOf(orderByComparator)
 			};
 
-		List<KaleoNode> list = (List<KaleoNode>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_C_KDI,
+		List<KaleoNode> list = (List<KaleoNode>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_KDI,
 				finderArgs, this);
 
 		if (list == null) {
@@ -460,7 +405,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_C_KDI,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_KDI,
 					finderArgs, list);
 
 				closeSession(session);

@@ -69,9 +69,6 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_FIELD2 = new FinderPath(FooModelImpl.ENTITY_CACHE_ENABLED,
 			FooModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByField2", new String[] { Boolean.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_FIELD2 = new FinderPath(FooModelImpl.ENTITY_CACHE_ENABLED,
-			FooModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByField2",
 			new String[] {
 				Boolean.class.getName(),
@@ -316,53 +313,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	}
 
 	public List<Foo> findByField2(boolean field2) throws SystemException {
-		Object[] finderArgs = new Object[] { Boolean.valueOf(field2) };
-
-		List<Foo> list = (List<Foo>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_FIELD2,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_SELECT_FOO_WHERE);
-
-				query.append(_FINDER_COLUMN_FIELD2_FIELD2_2);
-
-				query.append(FooModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(field2);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<Foo>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_FIELD2,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByField2(field2, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	public List<Foo> findByField2(boolean field2, int start, int end)
@@ -379,7 +330,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 				String.valueOf(orderByComparator)
 			};
 
-		List<Foo> list = (List<Foo>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_FIELD2,
+		List<Foo> list = (List<Foo>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_FIELD2,
 				finderArgs, this);
 
 		if (list == null) {
@@ -431,7 +382,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_FIELD2,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_FIELD2,
 					finderArgs, list);
 
 				closeSession(session);

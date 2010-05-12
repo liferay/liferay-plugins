@@ -70,10 +70,6 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	public static final FinderPath FINDER_PATH_FIND_BY_KALEOTASKID = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByKaleoTaskId",
-			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_KALEOTASKID = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByKaleoTaskId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -93,10 +89,6 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 			FINDER_CLASS_NAME_LIST, "countByKTI_DA",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_ACN_ACP = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByACN_ACP",
-			new String[] { String.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_ACN_ACP = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByACN_ACP",
 			new String[] {
@@ -406,53 +398,8 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 	public List<KaleoTaskAssignment> findByKaleoTaskId(long kaleoTaskId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoTaskId) };
-
-		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KALEOTASKID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
-
-				query.append(_FINDER_COLUMN_KALEOTASKID_KALEOTASKID_2);
-
-				query.append(KaleoTaskAssignmentModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(kaleoTaskId);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<KaleoTaskAssignment>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEOTASKID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByKaleoTaskId(kaleoTaskId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	public List<KaleoTaskAssignment> findByKaleoTaskId(long kaleoTaskId,
@@ -470,7 +417,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 				String.valueOf(orderByComparator)
 			};
 
-		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_KALEOTASKID,
+		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KALEOTASKID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -523,7 +470,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_KALEOTASKID,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEOTASKID,
 					finderArgs, list);
 
 				closeSession(session);
@@ -837,71 +784,8 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 	public List<KaleoTaskAssignment> findByACN_ACP(String assigneeClassName,
 		long assigneeClassPK) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				assigneeClassName, new Long(assigneeClassPK)
-			};
-
-		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ACN_ACP,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(4);
-
-				query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
-
-				if (assigneeClassName == null) {
-					query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_1);
-				}
-				else {
-					if (assigneeClassName.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_2);
-					}
-				}
-
-				query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSPK_2);
-
-				query.append(KaleoTaskAssignmentModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (assigneeClassName != null) {
-					qPos.add(assigneeClassName);
-				}
-
-				qPos.add(assigneeClassPK);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<KaleoTaskAssignment>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ACN_ACP,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByACN_ACP(assigneeClassName, assigneeClassPK,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	public List<KaleoTaskAssignment> findByACN_ACP(String assigneeClassName,
@@ -920,7 +804,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 				String.valueOf(orderByComparator)
 			};
 
-		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ACN_ACP,
+		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ACN_ACP,
 				finderArgs, this);
 
 		if (list == null) {
@@ -989,7 +873,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_ACN_ACP,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ACN_ACP,
 					finderArgs, list);
 
 				closeSession(session);

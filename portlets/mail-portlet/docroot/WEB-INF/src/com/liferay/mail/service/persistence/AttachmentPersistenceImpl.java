@@ -69,9 +69,6 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_MESSAGEID = new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
 			AttachmentModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByMessageId", new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_MESSAGEID = new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
-			AttachmentModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByMessageId",
 			new String[] {
 				Long.class.getName(),
@@ -321,51 +318,8 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 
 	public List<Attachment> findByMessageId(long messageId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(messageId) };
-
-		List<Attachment> list = (List<Attachment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_MESSAGEID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_SELECT_ATTACHMENT_WHERE);
-
-				query.append(_FINDER_COLUMN_MESSAGEID_MESSAGEID_2);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(messageId);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<Attachment>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MESSAGEID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByMessageId(messageId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	public List<Attachment> findByMessageId(long messageId, int start, int end)
@@ -382,7 +336,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 				String.valueOf(orderByComparator)
 			};
 
-		List<Attachment> list = (List<Attachment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_MESSAGEID,
+		List<Attachment> list = (List<Attachment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_MESSAGEID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -431,7 +385,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_MESSAGEID,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MESSAGEID,
 					finderArgs, list);
 
 				closeSession(session);

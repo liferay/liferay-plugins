@@ -75,9 +75,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			"countByUserId", new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_MODIFIEDDATE = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByModifiedDate", new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_MODIFIEDDATE = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByModifiedDate",
 			new String[] {
 				Long.class.getName(),
@@ -90,9 +87,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			"countByModifiedDate", new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_ONLINE = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByOnline", new String[] { Boolean.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_ONLINE = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByOnline",
 			new String[] {
 				Boolean.class.getName(),
@@ -104,10 +98,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByOnline", new String[] { Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_M_O = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByM_O",
-			new String[] { Long.class.getName(), Boolean.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_M_O = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByM_O",
 			new String[] {
@@ -487,51 +477,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 	public List<Status> findByModifiedDate(long modifiedDate)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(modifiedDate) };
-
-		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_MODIFIEDDATE,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_SELECT_STATUS_WHERE);
-
-				query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(modifiedDate);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<Status>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MODIFIEDDATE,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByModifiedDate(modifiedDate, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	public List<Status> findByModifiedDate(long modifiedDate, int start, int end)
@@ -548,7 +495,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				String.valueOf(orderByComparator)
 			};
 
-		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_MODIFIEDDATE,
+		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_MODIFIEDDATE,
 				finderArgs, this);
 
 		if (list == null) {
@@ -596,7 +543,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_MODIFIEDDATE,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MODIFIEDDATE,
 					finderArgs, list);
 
 				closeSession(session);
@@ -784,51 +731,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public List<Status> findByOnline(boolean online) throws SystemException {
-		Object[] finderArgs = new Object[] { Boolean.valueOf(online) };
-
-		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ONLINE,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_SELECT_STATUS_WHERE);
-
-				query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(online);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<Status>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ONLINE,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByOnline(online, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	public List<Status> findByOnline(boolean online, int start, int end)
@@ -845,7 +748,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				String.valueOf(orderByComparator)
 			};
 
-		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ONLINE,
+		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ONLINE,
 				finderArgs, this);
 
 		if (list == null) {
@@ -893,7 +796,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_ONLINE,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ONLINE,
 					finderArgs, list);
 
 				closeSession(session);
@@ -1080,57 +983,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 	public List<Status> findByM_O(long modifiedDate, boolean online)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(modifiedDate), Boolean.valueOf(online)
-			};
-
-		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_M_O,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_SELECT_STATUS_WHERE);
-
-				query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
-
-				query.append(_FINDER_COLUMN_M_O_ONLINE_2);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(modifiedDate);
-
-				qPos.add(online);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<Status>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_M_O, finderArgs,
-					list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByM_O(modifiedDate, online, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	public List<Status> findByM_O(long modifiedDate, boolean online, int start,
@@ -1147,7 +1001,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				String.valueOf(orderByComparator)
 			};
 
-		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_M_O,
+		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_M_O,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1199,8 +1053,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_M_O,
-					finderArgs, list);
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_M_O, finderArgs,
+					list);
 
 				closeSession(session);
 			}

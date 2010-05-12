@@ -70,10 +70,6 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	public static final FinderPath FINDER_PATH_FIND_BY_KALEONODEID = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByKaleoNodeId",
-			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_KALEONODEID = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByKaleoNodeId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -443,53 +439,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 	public List<KaleoTransition> findByKaleoNodeId(long kaleoNodeId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoNodeId) };
-
-		List<KaleoTransition> list = (List<KaleoTransition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KALEONODEID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_SELECT_KALEOTRANSITION_WHERE);
-
-				query.append(_FINDER_COLUMN_KALEONODEID_KALEONODEID_2);
-
-				query.append(KaleoTransitionModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(kaleoNodeId);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<KaleoTransition>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEONODEID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByKaleoNodeId(kaleoNodeId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	public List<KaleoTransition> findByKaleoNodeId(long kaleoNodeId, int start,
@@ -506,7 +457,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 				String.valueOf(orderByComparator)
 			};
 
-		List<KaleoTransition> list = (List<KaleoTransition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_KALEONODEID,
+		List<KaleoTransition> list = (List<KaleoTransition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KALEONODEID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -559,7 +510,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_KALEONODEID,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEONODEID,
 					finderArgs, list);
 
 				closeSession(session);

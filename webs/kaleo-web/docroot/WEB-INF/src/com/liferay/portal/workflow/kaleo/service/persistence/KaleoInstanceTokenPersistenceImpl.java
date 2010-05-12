@@ -71,10 +71,6 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	public static final FinderPath FINDER_PATH_FIND_BY_C_PKITI = new FinderPath(KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByC_PKITI",
-			new String[] { Long.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_C_PKITI = new FinderPath(KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByC_PKITI",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				
@@ -86,12 +82,6 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 			FINDER_CLASS_NAME_LIST, "countByC_PKITI",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_C_PKITI_CD = new FinderPath(KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByC_PKITI_CD",
-			new String[] {
-				Long.class.getName(), Long.class.getName(), Date.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_C_PKITI_CD = new FinderPath(KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByC_PKITI_CD",
 			new String[] {
@@ -357,59 +347,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 	public List<KaleoInstanceToken> findByC_PKITI(long companyId,
 		long parentKaleoInstanceTokenId) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(companyId), new Long(parentKaleoInstanceTokenId)
-			};
-
-		List<KaleoInstanceToken> list = (List<KaleoInstanceToken>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_PKITI,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(4);
-
-				query.append(_SQL_SELECT_KALEOINSTANCETOKEN_WHERE);
-
-				query.append(_FINDER_COLUMN_C_PKITI_COMPANYID_2);
-
-				query.append(_FINDER_COLUMN_C_PKITI_PARENTKALEOINSTANCETOKENID_2);
-
-				query.append(KaleoInstanceTokenModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(companyId);
-
-				qPos.add(parentKaleoInstanceTokenId);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<KaleoInstanceToken>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_PKITI,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByC_PKITI(companyId, parentKaleoInstanceTokenId,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	public List<KaleoInstanceToken> findByC_PKITI(long companyId,
@@ -429,7 +368,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 				String.valueOf(orderByComparator)
 			};
 
-		List<KaleoInstanceToken> list = (List<KaleoInstanceToken>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_C_PKITI,
+		List<KaleoInstanceToken> list = (List<KaleoInstanceToken>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_PKITI,
 				finderArgs, this);
 
 		if (list == null) {
@@ -486,7 +425,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_C_PKITI,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_PKITI,
 					finderArgs, list);
 
 				closeSession(session);
@@ -694,72 +633,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	public List<KaleoInstanceToken> findByC_PKITI_CD(long companyId,
 		long parentKaleoInstanceTokenId, Date completionDate)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(companyId), new Long(parentKaleoInstanceTokenId),
-				
-				completionDate
-			};
-
-		List<KaleoInstanceToken> list = (List<KaleoInstanceToken>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_PKITI_CD,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(5);
-
-				query.append(_SQL_SELECT_KALEOINSTANCETOKEN_WHERE);
-
-				query.append(_FINDER_COLUMN_C_PKITI_CD_COMPANYID_2);
-
-				query.append(_FINDER_COLUMN_C_PKITI_CD_PARENTKALEOINSTANCETOKENID_2);
-
-				if (completionDate == null) {
-					query.append(_FINDER_COLUMN_C_PKITI_CD_COMPLETIONDATE_1);
-				}
-				else {
-					query.append(_FINDER_COLUMN_C_PKITI_CD_COMPLETIONDATE_2);
-				}
-
-				query.append(KaleoInstanceTokenModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(companyId);
-
-				qPos.add(parentKaleoInstanceTokenId);
-
-				if (completionDate != null) {
-					qPos.add(CalendarUtil.getTimestamp(completionDate));
-				}
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<KaleoInstanceToken>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_PKITI_CD,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByC_PKITI_CD(companyId, parentKaleoInstanceTokenId,
+			completionDate, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	public List<KaleoInstanceToken> findByC_PKITI_CD(long companyId,
@@ -781,7 +656,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 				String.valueOf(orderByComparator)
 			};
 
-		List<KaleoInstanceToken> list = (List<KaleoInstanceToken>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_C_PKITI_CD,
+		List<KaleoInstanceToken> list = (List<KaleoInstanceToken>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_PKITI_CD,
 				finderArgs, this);
 
 		if (list == null) {
@@ -849,7 +724,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_C_PKITI_CD,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_PKITI_CD,
 					finderArgs, list);
 
 				closeSession(session);

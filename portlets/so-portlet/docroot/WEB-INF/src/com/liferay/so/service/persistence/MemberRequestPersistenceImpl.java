@@ -79,10 +79,6 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	public static final FinderPath FINDER_PATH_FIND_BY_RECEIVERUSERID = new FinderPath(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
 			MemberRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByReceiverUserId",
-			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_RECEIVERUSERID = new FinderPath(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
-			MemberRequestModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByReceiverUserId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -94,10 +90,6 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			FINDER_CLASS_NAME_LIST, "countByReceiverUserId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_R_S = new FinderPath(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
-			MemberRequestModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByR_S",
-			new String[] { Long.class.getName(), Integer.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_R_S = new FinderPath(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
 			MemberRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByR_S",
 			new String[] {
@@ -564,53 +556,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 	public List<MemberRequest> findByReceiverUserId(long receiverUserId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(receiverUserId) };
-
-		List<MemberRequest> list = (List<MemberRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_RECEIVERUSERID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_SELECT_MEMBERREQUEST_WHERE);
-
-				query.append(_FINDER_COLUMN_RECEIVERUSERID_RECEIVERUSERID_2);
-
-				query.append(MemberRequestModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(receiverUserId);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<MemberRequest>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_RECEIVERUSERID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByReceiverUserId(receiverUserId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	public List<MemberRequest> findByReceiverUserId(long receiverUserId,
@@ -628,7 +575,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				String.valueOf(orderByComparator)
 			};
 
-		List<MemberRequest> list = (List<MemberRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_RECEIVERUSERID,
+		List<MemberRequest> list = (List<MemberRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_RECEIVERUSERID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -681,7 +628,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_RECEIVERUSERID,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_RECEIVERUSERID,
 					finderArgs, list);
 
 				closeSession(session);
@@ -875,59 +822,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 	public List<MemberRequest> findByR_S(long receiverUserId, int status)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(receiverUserId), new Integer(status)
-			};
-
-		List<MemberRequest> list = (List<MemberRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_S,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(4);
-
-				query.append(_SQL_SELECT_MEMBERREQUEST_WHERE);
-
-				query.append(_FINDER_COLUMN_R_S_RECEIVERUSERID_2);
-
-				query.append(_FINDER_COLUMN_R_S_STATUS_2);
-
-				query.append(MemberRequestModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(receiverUserId);
-
-				qPos.add(status);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<MemberRequest>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_S, finderArgs,
-					list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByR_S(receiverUserId, status, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	public List<MemberRequest> findByR_S(long receiverUserId, int status,
@@ -945,7 +841,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				String.valueOf(orderByComparator)
 			};
 
-		List<MemberRequest> list = (List<MemberRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_R_S,
+		List<MemberRequest> list = (List<MemberRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_S,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1002,8 +898,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_R_S,
-					finderArgs, list);
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_S, finderArgs,
+					list);
 
 				closeSession(session);
 			}

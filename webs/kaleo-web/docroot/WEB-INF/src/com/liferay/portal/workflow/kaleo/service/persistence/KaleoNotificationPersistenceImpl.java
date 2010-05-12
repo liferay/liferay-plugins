@@ -76,10 +76,6 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	public static final FinderPath FINDER_PATH_FIND_BY_KNI_ET = new FinderPath(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNotificationModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByKNI_ET",
-			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_KNI_ET = new FinderPath(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoNotificationModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByKNI_ET",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				
@@ -344,69 +340,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 	public List<KaleoNotification> findByKNI_ET(long kaleoNodeId,
 		String executionType) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoNodeId), executionType };
-
-		List<KaleoNotification> list = (List<KaleoNotification>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KNI_ET,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(4);
-
-				query.append(_SQL_SELECT_KALEONOTIFICATION_WHERE);
-
-				query.append(_FINDER_COLUMN_KNI_ET_KALEONODEID_2);
-
-				if (executionType == null) {
-					query.append(_FINDER_COLUMN_KNI_ET_EXECUTIONTYPE_1);
-				}
-				else {
-					if (executionType.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_KNI_ET_EXECUTIONTYPE_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_KNI_ET_EXECUTIONTYPE_2);
-					}
-				}
-
-				query.append(KaleoNotificationModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(kaleoNodeId);
-
-				if (executionType != null) {
-					qPos.add(executionType);
-				}
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<KaleoNotification>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KNI_ET,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByKNI_ET(kaleoNodeId, executionType, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	public List<KaleoNotification> findByKNI_ET(long kaleoNodeId,
@@ -426,7 +361,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 				String.valueOf(orderByComparator)
 			};
 
-		List<KaleoNotification> list = (List<KaleoNotification>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_KNI_ET,
+		List<KaleoNotification> list = (List<KaleoNotification>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KNI_ET,
 				finderArgs, this);
 
 		if (list == null) {
@@ -495,7 +430,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_KNI_ET,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KNI_ET,
 					finderArgs, list);
 
 				closeSession(session);

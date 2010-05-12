@@ -70,10 +70,6 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	public static final FinderPath FINDER_PATH_FIND_BY_MEETUPSENTRYID = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByMeetupsEntryId",
-			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_MEETUPSENTRYID = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByMeetupsEntryId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -93,10 +89,6 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 			FINDER_CLASS_NAME_LIST, "countByU_ME",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_ME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByME_S",
-			new String[] { Long.class.getName(), Integer.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_ME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByME_S",
 			new String[] {
@@ -401,53 +393,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 	public List<MeetupsRegistration> findByMeetupsEntryId(long meetupsEntryId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(meetupsEntryId) };
-
-		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_MEETUPSENTRYID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_SELECT_MEETUPSREGISTRATION_WHERE);
-
-				query.append(_FINDER_COLUMN_MEETUPSENTRYID_MEETUPSENTRYID_2);
-
-				query.append(MeetupsRegistrationModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(meetupsEntryId);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<MeetupsRegistration>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MEETUPSENTRYID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByMeetupsEntryId(meetupsEntryId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	public List<MeetupsRegistration> findByMeetupsEntryId(long meetupsEntryId,
@@ -465,7 +412,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 				String.valueOf(orderByComparator)
 			};
 
-		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_MEETUPSENTRYID,
+		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_MEETUPSENTRYID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -518,7 +465,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_MEETUPSENTRYID,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MEETUPSENTRYID,
 					finderArgs, list);
 
 				closeSession(session);
@@ -832,59 +779,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 	public List<MeetupsRegistration> findByME_S(long meetupsEntryId, int status)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(meetupsEntryId), new Integer(status)
-			};
-
-		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ME_S,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(4);
-
-				query.append(_SQL_SELECT_MEETUPSREGISTRATION_WHERE);
-
-				query.append(_FINDER_COLUMN_ME_S_MEETUPSENTRYID_2);
-
-				query.append(_FINDER_COLUMN_ME_S_STATUS_2);
-
-				query.append(MeetupsRegistrationModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(meetupsEntryId);
-
-				qPos.add(status);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<MeetupsRegistration>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ME_S, finderArgs,
-					list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByME_S(meetupsEntryId, status, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	public List<MeetupsRegistration> findByME_S(long meetupsEntryId,
@@ -902,7 +798,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 				String.valueOf(orderByComparator)
 			};
 
-		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ME_S,
+		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ME_S,
 				finderArgs, this);
 
 		if (list == null) {
@@ -959,8 +855,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_ME_S,
-					finderArgs, list);
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ME_S, finderArgs,
+					list);
 
 				closeSession(session);
 			}

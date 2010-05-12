@@ -69,9 +69,6 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_JIRAUSERID = new FinderPath(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAActionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByJiraUserId", new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_JIRAUSERID = new FinderPath(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAActionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByJiraUserId",
 			new String[] {
 				String.class.getName(),
@@ -84,9 +81,6 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			"countByJiraUserId", new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_JIRAISSUEID = new FinderPath(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAActionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByJiraIssueId", new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_JIRAISSUEID = new FinderPath(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAActionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByJiraIssueId",
 			new String[] {
 				Long.class.getName(),
@@ -98,9 +92,6 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			JIRAActionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByJiraIssueId", new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_TYPE = new FinderPath(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAActionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByType", new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_TYPE = new FinderPath(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAActionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByType",
 			new String[] {
@@ -351,65 +342,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 	public List<JIRAAction> findByJiraUserId(String jiraUserId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { jiraUserId };
-
-		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_JIRAUSERID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_SELECT_JIRAACTION_WHERE);
-
-				if (jiraUserId == null) {
-					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1);
-				}
-				else {
-					if (jiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
-					}
-				}
-
-				query.append(JIRAActionModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (jiraUserId != null) {
-					qPos.add(jiraUserId);
-				}
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JIRAAction>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_JIRAUSERID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByJiraUserId(jiraUserId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	public List<JIRAAction> findByJiraUserId(String jiraUserId, int start,
@@ -426,7 +360,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 				String.valueOf(orderByComparator)
 			};
 
-		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_JIRAUSERID,
+		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_JIRAUSERID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -491,7 +425,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_JIRAUSERID,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_JIRAUSERID,
 					finderArgs, list);
 
 				closeSession(session);
@@ -696,53 +630,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 	public List<JIRAAction> findByJiraIssueId(long jiraIssueId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(jiraIssueId) };
-
-		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_JIRAISSUEID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_SELECT_JIRAACTION_WHERE);
-
-				query.append(_FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2);
-
-				query.append(JIRAActionModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(jiraIssueId);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JIRAAction>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_JIRAISSUEID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByJiraIssueId(jiraIssueId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	public List<JIRAAction> findByJiraIssueId(long jiraIssueId, int start,
@@ -759,7 +648,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 				String.valueOf(orderByComparator)
 			};
 
-		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_JIRAISSUEID,
+		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_JIRAISSUEID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -812,7 +701,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_JIRAISSUEID,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_JIRAISSUEID,
 					finderArgs, list);
 
 				closeSession(session);
@@ -1004,65 +893,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	}
 
 	public List<JIRAAction> findByType(String type) throws SystemException {
-		Object[] finderArgs = new Object[] { type };
-
-		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_TYPE,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_SELECT_JIRAACTION_WHERE);
-
-				if (type == null) {
-					query.append(_FINDER_COLUMN_TYPE_TYPE_1);
-				}
-				else {
-					if (type.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_TYPE_TYPE_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_TYPE_TYPE_2);
-					}
-				}
-
-				query.append(JIRAActionModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (type != null) {
-					qPos.add(type);
-				}
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JIRAAction>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_TYPE, finderArgs,
-					list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByType(type, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	public List<JIRAAction> findByType(String type, int start, int end)
@@ -1079,7 +910,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 				String.valueOf(orderByComparator)
 			};
 
-		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_TYPE,
+		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_TYPE,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1144,8 +975,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_TYPE,
-					finderArgs, list);
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_TYPE, finderArgs,
+					list);
 
 				closeSession(session);
 			}

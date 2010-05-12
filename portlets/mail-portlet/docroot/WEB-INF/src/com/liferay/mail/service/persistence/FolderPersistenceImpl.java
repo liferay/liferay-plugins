@@ -70,9 +70,6 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_ACCOUNTID = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
 			FolderModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByAccountId", new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_ACCOUNTID = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
-			FolderModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByAccountId",
 			new String[] {
 				Long.class.getName(),
@@ -373,53 +370,8 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 	public List<Folder> findByAccountId(long accountId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(accountId) };
-
-		List<Folder> list = (List<Folder>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ACCOUNTID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_SELECT_FOLDER_WHERE);
-
-				query.append(_FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2);
-
-				query.append(FolderModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(accountId);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<Folder>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ACCOUNTID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByAccountId(accountId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	public List<Folder> findByAccountId(long accountId, int start, int end)
@@ -436,7 +388,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				String.valueOf(orderByComparator)
 			};
 
-		List<Folder> list = (List<Folder>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ACCOUNTID,
+		List<Folder> list = (List<Folder>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ACCOUNTID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -488,7 +440,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_ACCOUNTID,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ACCOUNTID,
 					finderArgs, list);
 
 				closeSession(session);

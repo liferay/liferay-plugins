@@ -71,10 +71,6 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	public static final FinderPath FINDER_PATH_FIND_BY_WSRPCONSUMERID = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
 			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByWsrpConsumerId",
-			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_WSRPCONSUMERID = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByWsrpConsumerId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -390,53 +386,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 	public List<WSRPConsumerPortlet> findByWsrpConsumerId(long wsrpConsumerId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(wsrpConsumerId) };
-
-		List<WSRPConsumerPortlet> list = (List<WSRPConsumerPortlet>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_WSRPCONSUMERID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_SELECT_WSRPCONSUMERPORTLET_WHERE);
-
-				query.append(_FINDER_COLUMN_WSRPCONSUMERID_WSRPCONSUMERID_2);
-
-				query.append(WSRPConsumerPortletModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(wsrpConsumerId);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<WSRPConsumerPortlet>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_WSRPCONSUMERID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByWsrpConsumerId(wsrpConsumerId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	public List<WSRPConsumerPortlet> findByWsrpConsumerId(long wsrpConsumerId,
@@ -454,7 +405,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 				String.valueOf(orderByComparator)
 			};
 
-		List<WSRPConsumerPortlet> list = (List<WSRPConsumerPortlet>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_WSRPCONSUMERID,
+		List<WSRPConsumerPortlet> list = (List<WSRPConsumerPortlet>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_WSRPCONSUMERID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -507,7 +458,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_WSRPCONSUMERID,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_WSRPCONSUMERID,
 					finderArgs, list);
 
 				closeSession(session);

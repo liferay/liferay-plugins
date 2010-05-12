@@ -71,9 +71,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_UUID = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByUuid", new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_UUID = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
-			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByUuid",
 			new String[] {
 				String.class.getName(),
@@ -93,9 +90,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			"countByUUID_G",
 			new String[] { String.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_RESOURCEPRIMKEY = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
-			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByResourcePrimKey", new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_RESOURCEPRIMKEY = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByResourcePrimKey",
 			new String[] {
@@ -444,65 +438,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	public List<Article> findByUuid(String uuid) throws SystemException {
-		Object[] finderArgs = new Object[] { uuid };
-
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-				if (uuid == null) {
-					query.append(_FINDER_COLUMN_UUID_UUID_1);
-				}
-				else {
-					if (uuid.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_UUID_UUID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_UUID_UUID_2);
-					}
-				}
-
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<Article>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_UUID, finderArgs,
-					list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	public List<Article> findByUuid(String uuid, int start, int end)
@@ -519,7 +455,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				String.valueOf(orderByComparator)
 			};
 
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_UUID,
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -583,8 +519,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_UUID,
-					finderArgs, list);
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_UUID, finderArgs,
+					list);
 
 				closeSession(session);
 			}
@@ -914,53 +850,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 	public List<Article> findByResourcePrimKey(long resourcePrimKey)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(resourcePrimKey) };
-
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_RESOURCEPRIMKEY,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-				query.append(_FINDER_COLUMN_RESOURCEPRIMKEY_RESOURCEPRIMKEY_2);
-
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(resourcePrimKey);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<Article>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_RESOURCEPRIMKEY,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
+		return findByResourcePrimKey(resourcePrimKey, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	public List<Article> findByResourcePrimKey(long resourcePrimKey, int start,
@@ -977,7 +868,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				String.valueOf(orderByComparator)
 			};
 
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_RESOURCEPRIMKEY,
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_RESOURCEPRIMKEY,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1029,7 +920,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_RESOURCEPRIMKEY,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_RESOURCEPRIMKEY,
 					finderArgs, list);
 
 				closeSession(session);
