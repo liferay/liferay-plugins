@@ -17,6 +17,8 @@ package com.liferay.mail.imap;
 import com.liferay.mail.MailException;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.util.PortletPropsValues;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
@@ -27,6 +29,8 @@ import javax.mail.Store;
 import javax.mail.Transport;
 
 import javax.net.ssl.SSLSocketFactory;
+
+import org.apache.commons.lang.time.StopWatch;
 
 /**
  * <a href="IMAPConnection.java.html"><b><i>View Source</i></b></a>
@@ -201,6 +205,12 @@ public class IMAPConnection {
 	}
 
 	protected void testIncomingConnection() throws MailException {
+		StopWatch sw = new StopWatch();
+
+		if (_log.isDebugEnabled()) {
+			sw.start();
+		}
+
 		try {
 			Store store = getStore(false);
 
@@ -210,9 +220,24 @@ public class IMAPConnection {
 			throw new MailException(
 				MailException.ACCOUNT_INCOMING_CONNECTION_FAILED, e);
 		}
+		finally {
+			if (_log.isDebugEnabled()) {
+				sw.stop();
+
+				_log.debug(
+					"Test incoming connection completed in " + sw.getTime() +
+						" ms");
+			}
+		}
 	}
 
 	protected void testOutgoingConnection() throws MailException {
+		StopWatch sw = new StopWatch();
+
+		if (_log.isDebugEnabled()) {
+			sw.start();
+		}
+
 		try {
 			Transport transport = getTransport();
 
@@ -224,12 +249,23 @@ public class IMAPConnection {
 			throw new MailException(
 				MailException.ACCOUNT_OUTGOING_CONNECTION_FAILED, e);
 		}
+		finally {
+			if (_log.isDebugEnabled()) {
+				sw.stop();
+
+				_log.debug(
+					"Test outgoing connection completed in " + sw.getTime() +
+						" ms");
+			}
+		}
 	}
 
 	private static final String _TRANSPORT = "_TRANSPORT_";
 
 	private static ConcurrentHashMap<String, Store> _allStores =
 		new ConcurrentHashMap<String, Store>();
+
+	private static Log _log = LogFactoryUtil.getLog(IMAPConnection.class);
 
 	private String _incomingHostName;
 	private int _incomingPort;
