@@ -17,8 +17,11 @@ package com.liferay.knowledgebase.admin.lar;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.model.Template;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.TemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.persistence.ArticleUtil;
+import com.liferay.knowledgebase.service.persistence.TemplateUtil;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -67,6 +70,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 				ArticleLocalServiceUtil.deleteGroupArticles(
 					context.getGroupId());
+
+				TemplateLocalServiceUtil.deleteGroupTemplates(
+					context.getGroupId());
 			}
 
 			return null;
@@ -93,6 +99,10 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 			exportArticles(context, root);
 
+			if (context.getBooleanParameter(_NAMESPACE, "templates")) {
+				exportTemplates(context, root);
+			}
+
 			return doc.formattedString();
 		}
 		catch (Exception e) {
@@ -101,11 +111,11 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	public PortletDataHandlerControl[] getExportControls() {
-		return new PortletDataHandlerControl[] {_articles};
+		return new PortletDataHandlerControl[] {_articles, _templates};
 	}
 
 	public PortletDataHandlerControl[] getImportControls() {
-		return new PortletDataHandlerControl[] {_articles};
+		return new PortletDataHandlerControl[] {_articles, _templates};
 	}
 
 	public PortletPreferences importData(
@@ -123,6 +133,10 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			Element root = doc.getRootElement();
 
 			importArticles(context, root);
+
+			if (context.getBooleanParameter(_NAMESPACE, "templates")) {
+				importTemplates(context, root);
+			}
 
 			return null;
 		}
@@ -225,6 +239,45 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			}
 
 			exportArticle(context, root, path, article);
+		}
+	}
+
+	protected void exportTemplate(
+			PortletDataContext context, Element root, String path,
+			Template template)
+		throws PortalException, SystemException {
+
+		Element templateEl = root.addElement("template");
+
+		templateEl.addAttribute("path", path);
+
+		template.setUserUuid(template.getUserUuid());
+
+		context.addZipEntry(path, template);
+
+		context.addPermissions(Template.class, template.getTemplateId());
+	}
+
+	protected void exportTemplates(PortletDataContext context, Element root)
+		throws PortalException, SystemException {
+
+		List<Template> templates = TemplateUtil.findByGroupId(
+			context.getGroupId());
+
+		for (Template template : templates) {
+			if (!context.isWithinDateRange(template.getModifiedDate())) {
+				continue;
+			}
+
+			String path =
+				context.getPortletPath(PortletKeys.KNOWLEDGE_BASE_ADMIN) +
+					"/templates/" + template.getTemplateId() + ".xml";
+
+			if (!context.isPathNotProcessed(path)) {
+				continue;
+			}
+
+			exportTemplate(context, root, path, template);
 		}
 	}
 
@@ -468,6 +521,67 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
+	protected void importTemplate(PortletDataContext context, Template template)
+		throws Exception {
+
+		long userId = context.getUserId(template.getUserUuid());
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setAddCommunityPermissions(true);
+		serviceContext.setAddGuestPermissions(true);
+		serviceContext.setCreateDate(template.getCreateDate());
+		serviceContext.setModifiedDate(template.getModifiedDate());
+		serviceContext.setScopeGroupId(context.getGroupId());
+
+		Template importedTemplate = null;
+
+		if (context.getDataStrategy().equals(
+				PortletDataHandlerKeys.DATA_STRATEGY_MIRROR)) {
+
+			Template existingTemplate = TemplateUtil.fetchByUUID_G(
+				template.getUuid(), context.getGroupId());
+
+			if (existingTemplate == null) {
+				importedTemplate = TemplateLocalServiceUtil.addTemplate(
+					template.getUuid(), userId, template.getTitle(),
+					template.getContent(), template.getDescription(),
+					serviceContext);
+			}
+			else {
+				importedTemplate = TemplateLocalServiceUtil.updateTemplate(
+					existingTemplate.getTemplateId(), template.getTitle(),
+					template.getContent(), template.getDescription(),
+					serviceContext);
+			}
+		}
+		else {
+			importedTemplate = TemplateLocalServiceUtil.addTemplate(
+				null, userId, template.getTitle(), template.getContent(),
+				template.getDescription(), serviceContext);
+		}
+
+		context.importPermissions(
+			Template.class, template.getTemplateId(),
+			importedTemplate.getTemplateId());
+	}
+
+	protected void importTemplates(PortletDataContext context, Element root)
+		throws Exception {
+
+		for (Element templateEl : root.elements("template")) {
+			String path = templateEl.attributeValue("path");
+
+			if (!context.isPathNotProcessed(path)) {
+				continue;
+			}
+
+			Template template = (Template)context.getZipEntryAsObject(path);
+
+			importTemplate(context, template);
+		}
+	}
+
 	private static final String _NAMESPACE = "knowledge_base";
 
 	private static final String _NAMESPACE_ARTICLE = "knowledge_base_article";
@@ -481,5 +595,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	private static final PortletDataHandlerBoolean _articles =
 		new PortletDataHandlerBoolean(
 			_NAMESPACE, "articles", true, true, _articleOptions);
+
+	private static final PortletDataHandlerBoolean _templates =
+		new PortletDataHandlerBoolean(_NAMESPACE, "templates", true, false);
 
 }
