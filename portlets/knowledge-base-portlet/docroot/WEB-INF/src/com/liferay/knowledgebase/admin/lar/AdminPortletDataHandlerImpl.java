@@ -148,11 +148,11 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		exportArticleVersions(context, articleEl, article.getResourcePrimKey());
 
-		if (context.getBooleanParameter(_NAMESPACE, "attachments")) {
+		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "attachments")) {
 			exportArticleAttachments(context, root, article);
 		}
 
-		if (context.getBooleanParameter(_NAMESPACE, "comments")) {
+		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "comments")) {
 			context.addComments(Article.class, article.getResourcePrimKey());
 		}
 	}
@@ -329,7 +329,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			Article.class, article.getResourcePrimKey(),
 			importedArticle.getResourcePrimKey());
 
-		if (context.getBooleanParameter(_NAMESPACE, "comments")) {
+		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "comments")) {
 			context.importComments(
 				Article.class, article.getResourcePrimKey(),
 				importedArticle.getResourcePrimKey(), context.getGroupId());
@@ -433,7 +433,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		Map<String, String> dirNames = new HashMap<String, String>();
 
 		try {
-			if (context.getBooleanParameter(_NAMESPACE, "attachments")) {
+			if (context.getBooleanParameter(
+					_NAMESPACE_ARTICLE, "attachments")) {
+
 				DLServiceUtil.addDirectory(
 					context.getCompanyId(), CompanyConstants.SYSTEM,
 					"knowledgebase/temp/import/" + importId);
@@ -448,13 +450,16 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					continue;
 				}
 
+				Article article = (Article)context.getZipEntryAsObject(path);
+
 				importArticle(
-					context, resourcePrimKeys, dirNames, articleEl,
-					(Article)context.getZipEntryAsObject(path));
+					context, resourcePrimKeys, dirNames, articleEl, article);
 			}
 		}
 		finally {
-			if (context.getBooleanParameter(_NAMESPACE, "attachments")) {
+			if (context.getBooleanParameter(
+					_NAMESPACE_ARTICLE, "attachments")) {
+
 				DLServiceUtil.deleteDirectory(
 					context.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 					CompanyConstants.SYSTEM,
@@ -465,10 +470,12 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	private static final String _NAMESPACE = "knowledge_base";
 
+	private static final String _NAMESPACE_ARTICLE = "knowledge_base_article";
+
 	private static final PortletDataHandlerControl[] _articleOptions =
 		new PortletDataHandlerControl[] {
-			new PortletDataHandlerBoolean(_NAMESPACE, "attachments"),
-			new PortletDataHandlerBoolean(_NAMESPACE, "comments")
+			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "attachments"),
+			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "comments")
 		};
 
 	private static final PortletDataHandlerBoolean _articles =
