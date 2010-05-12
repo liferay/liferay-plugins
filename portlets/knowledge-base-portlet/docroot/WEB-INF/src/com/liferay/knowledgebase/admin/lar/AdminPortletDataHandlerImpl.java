@@ -256,6 +256,10 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		context.addZipEntry(path, template);
 
 		context.addPermissions(Template.class, template.getTemplateId());
+
+		if (context.getBooleanParameter(_NAMESPACE_TEMPLATE, "comments")) {
+			context.addComments(Template.class, template.getTemplateId());
+		}
 	}
 
 	protected void exportTemplates(PortletDataContext context, Element root)
@@ -564,6 +568,12 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		context.importPermissions(
 			Template.class, template.getTemplateId(),
 			importedTemplate.getTemplateId());
+
+		if (context.getBooleanParameter(_NAMESPACE_TEMPLATE, "comments")) {
+			context.importComments(
+				Template.class, template.getTemplateId(),
+				importedTemplate.getTemplateId(), context.getGroupId());
+		}
 	}
 
 	protected void importTemplates(PortletDataContext context, Element root)
@@ -586,6 +596,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	private static final String _NAMESPACE_ARTICLE = "knowledge_base_article";
 
+	private static final String _NAMESPACE_TEMPLATE = "knowledge_base_template";
+
 	private static final PortletDataHandlerControl[] _articleOptions =
 		new PortletDataHandlerControl[] {
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "attachments"),
@@ -596,7 +608,13 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		new PortletDataHandlerBoolean(
 			_NAMESPACE, "articles", true, true, _articleOptions);
 
+	private static final PortletDataHandlerControl[] _templateOptions =
+		new PortletDataHandlerControl[] {
+			new PortletDataHandlerBoolean(_NAMESPACE_TEMPLATE, "comments")
+		};
+
 	private static final PortletDataHandlerBoolean _templates =
-		new PortletDataHandlerBoolean(_NAMESPACE, "templates", true, false);
+		new PortletDataHandlerBoolean(
+			_NAMESPACE, "templates", true, false, _templateOptions);
 
 }
