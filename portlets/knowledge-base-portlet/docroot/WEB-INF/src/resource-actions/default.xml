@@ -33,7 +33,7 @@
 				<action-key>ADD_TEMPLATE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
-				<action-key>TEMPLATES</action-key>
+				<action-key>VIEW_TEMPLATES</action-key>
 			</supports>
 			<community-defaults>
 				<action-key>SUBSCRIBE</action-key>
@@ -44,7 +44,7 @@
 				<action-key>ADD_TEMPLATE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
-				<action-key>TEMPLATES</action-key>
+				<action-key>VIEW_TEMPLATES</action-key>
 			</guest-unsupported>
 		</permissions>
 	</model-resource>
