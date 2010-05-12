@@ -32,10 +32,7 @@
 	>
 
 		<%
-		try {
-			WSRPConsumerManagerFactory.testWSRPConsumerManager(consumer, userToken);
-		}
-		catch (Exception e) {
+		if (!WSRPConsumerManagerFactory.testWSRPConsumerManager(consumer, userToken)) {
 			row.setRestricted(true);
 		}
 		%>
