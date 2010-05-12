@@ -42,16 +42,45 @@ Account account = AccountLocalServiceUtil.getAccount(accountId);
 
 <aui:layout>
 	<aui:column>
-		<aui:button name="deleteAccount" value="Delete Account" />
-	</aui:column>
-
-	<aui:column>
 		<aui:button name="updateAccount" value="Update Account" />
+	</aui:column>
+	<aui:column>
+		<aui:button name="deleteAccount" value="Delete Account" />
 	</aui:column>
 </aui:layout>
 
 <aui:script>
 var A = AUI();
+
+A.one('#<portlet:namespace />deleteAccount').on('click', function() {
+	var accountId = A.one('#<portlet:namespace />accountId').get('value');
+
+	var answer = confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this-account" />');
+
+	if (answer) {
+		A.io.request(
+			themeDisplay.getLayoutURL() + '/-/mail/delete_account',
+			{
+				data: {
+					accountId: accountId
+				},
+				method: 'POST',
+				on: {
+					failure: function (event, id, obj) {
+						var responseData = this.get('responseData');
+
+						console.log(responseData);
+					},
+					success: function (event, id, obj) {
+						var responseData = this.get('responseData');
+
+						console.log(responseData);
+					}
+				}
+			}
+		);
+	}
+});
 
 A.one('#<portlet:namespace />updateAccount').on('click', function() {
 	var accountId = A.one('#<portlet:namespace />accountId').get('value');
@@ -91,36 +120,5 @@ A.one('#<portlet:namespace />updateAccount').on('click', function() {
 			}
 		}
 	);
-});
-
-A.one('#<portlet:namespace />deleteAccount').on('click', function() {
-	var accountId = A.one('#<portlet:namespace />accountId').get('value');
-
-	var answer = confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this-account" />');
-
-	if (answer) {
-
-		A.io.request(
-			themeDisplay.getLayoutURL() + '/-/mail/delete_account',
-			{
-				data: {
-					accountId: accountId
-				},
-				method: 'POST',
-				on: {
-					failure: function (event, id, obj) {
-						var responseData = this.get('responseData');
-
-						console.log(responseData);
-					},
-					success: function (event, id, obj) {
-						var responseData = this.get('responseData');
-
-						console.log(responseData);
-					}
-				}
-			}
-		);
-	}
 });
 </aui:script>
