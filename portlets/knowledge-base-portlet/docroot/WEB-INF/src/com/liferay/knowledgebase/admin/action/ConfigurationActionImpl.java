@@ -63,6 +63,9 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		else if (tabs2.equals("article-updated-email")) {
 			updateEmailArticleUpdated(actionRequest, preferences);
 		}
+		else if (tabs2.equals("display-settings")) {
+			updateDisplaySettings(actionRequest, preferences);
+		}
 		else if (tabs2.equals("email-from")) {
 			updateEmailFrom(actionRequest, preferences);
 		}
@@ -84,6 +87,74 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		throws Exception {
 
 		return "/admin/configuration.jsp";
+	}
+
+	protected void updateDisplaySettings(
+			ActionRequest actionRequest, PortletPreferences preferences)
+		throws Exception {
+
+		String tabs3 = ParamUtil.getString(actionRequest, "tabs3");
+
+		if (tabs3.equals("article")) {
+			updateDisplaySettingsArticle(actionRequest, preferences);
+		}
+		else if (tabs3.equals("template")) {
+			updateDisplaySettingsTemplate(actionRequest, preferences);
+		}
+	}
+
+	protected void updateDisplaySettingsArticle(
+			ActionRequest actionRequest, PortletPreferences preferences)
+		throws Exception {
+
+		String articlesDisplayStyle = ParamUtil.getString(
+			actionRequest, "articlesDisplayStyle");
+		int articlesDelta = ParamUtil.getInteger(
+			actionRequest, "articlesDelta");
+		boolean enableArticleDescription = ParamUtil.getBoolean(
+			actionRequest, "enableArticleDescription");
+		boolean enableArticleComments = ParamUtil.getBoolean(
+			actionRequest, "enableArticleComments");
+		boolean enableArticleCommentRatings = ParamUtil.getBoolean(
+			actionRequest, "enableArticleCommentRatings");
+
+		preferences.setValue("articles-display-style", articlesDisplayStyle);
+		preferences.setValue("articles-delta", String.valueOf(articlesDelta));
+		preferences.setValue(
+			"enable-article-description",
+			String.valueOf(enableArticleDescription));
+		preferences.setValue(
+			"enable-article-comments", String.valueOf(enableArticleComments));
+		preferences.setValue(
+			"enable-article-comment-ratings",
+			String.valueOf(enableArticleCommentRatings));
+	}
+
+	protected void updateDisplaySettingsTemplate(
+			ActionRequest actionRequest, PortletPreferences preferences)
+		throws Exception {
+
+		String templatesDisplayStyle = ParamUtil.getString(
+			actionRequest, "templatesDisplayStyle");
+		int templatesDelta = ParamUtil.getInteger(
+			actionRequest, "templatesDelta");
+		boolean enableTemplateDescription = ParamUtil.getBoolean(
+			actionRequest, "enableTemplateDescription");
+		boolean enableTemplateComments = ParamUtil.getBoolean(
+			actionRequest, "enableTemplateComments");
+		boolean enableTemplateCommentRatings = ParamUtil.getBoolean(
+			actionRequest, "enableTemplateCommentRatings");
+
+		preferences.setValue("templates-display-style", templatesDisplayStyle);
+		preferences.setValue("templates-delta", String.valueOf(templatesDelta));
+		preferences.setValue(
+			"enable-template-description",
+			String.valueOf(enableTemplateDescription));
+		preferences.setValue(
+			"enable-template-comments", String.valueOf(enableTemplateComments));
+		preferences.setValue(
+			"enable-template-comment-ratings",
+			String.valueOf(enableTemplateCommentRatings));
 	}
 
 	protected void updateEmailArticleAdded(
