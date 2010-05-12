@@ -13,9 +13,17 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="parentResourcePrimKey" type="long" />
 		<field name="version" type="double" />
-		<field name="title" type="String" />
-		<field name="content" type="String" />
-		<field name="description" type="String" />
+		<field name="title" type="String">
+			<hint name="max-length">150</hint>
+		</field>
+		<field name="content" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="description" type="String">
+			<hint-collection name="TEXTAREA" />
+			<hint name="display-height">40</hint>
+			<hint name="display-width">630</hint>
+		</field>
 		<field name="priority" type="int" />
 	</model>
 	<model name="com.liferay.knowledgebase.model.Template">
@@ -27,8 +35,16 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
-		<field name="title" type="String" />
-		<field name="content" type="String" />
-		<field name="description" type="String" />
+		<field name="title" type="String">
+			<hint name="max-length">150</hint>
+		</field>
+		<field name="content" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="description" type="String">
+			<hint-collection name="TEXTAREA" />
+			<hint name="display-height">40</hint>
+			<hint name="display-width">630</hint>
+		</field>
 	</model>
 </model-hints>
