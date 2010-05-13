@@ -31,16 +31,6 @@ import com.liferay.portal.security.permission.PermissionChecker;
 public class ArticlePermission {
 
 	public static void check(
-			PermissionChecker permissionChecker, long resourcePrimKey,
-			String actionId)
-		throws PortalException, SystemException {
-
-		if (!contains(permissionChecker, resourcePrimKey, actionId)) {
-			throw new PrincipalException();
-		}
-	}
-
-	public static void check(
 			PermissionChecker permissionChecker, Article article,
 			String actionId)
 		throws PortalException, SystemException {
@@ -50,15 +40,14 @@ public class ArticlePermission {
 		}
 	}
 
-	public static boolean contains(
+	public static void check(
 			PermissionChecker permissionChecker, long resourcePrimKey,
 			String actionId)
 		throws PortalException, SystemException {
 
-		Article article = ArticleLocalServiceUtil.getLatestArticle(
-			resourcePrimKey);
-
-		return contains(permissionChecker, article, actionId);
+		if (!contains(permissionChecker, resourcePrimKey, actionId)) {
+			throw new PrincipalException();
+		}
 	}
 
 	public static boolean contains(
@@ -71,6 +60,17 @@ public class ArticlePermission {
 		}
 
 		return _hasPermission(permissionChecker, article, actionId);
+	}
+
+	public static boolean contains(
+			PermissionChecker permissionChecker, long resourcePrimKey,
+			String actionId)
+		throws PortalException, SystemException {
+
+		Article article = ArticleLocalServiceUtil.getLatestArticle(
+			resourcePrimKey);
+
+		return contains(permissionChecker, article, actionId);
 	}
 
 	private static boolean _hasPermission(
