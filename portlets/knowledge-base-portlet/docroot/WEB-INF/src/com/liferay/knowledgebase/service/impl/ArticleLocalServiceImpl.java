@@ -44,7 +44,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.MathUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -348,7 +347,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 	}
 
-	public Article getArticle(long resourcePrimKey, double version)
+	public Article getArticle(long resourcePrimKey, int version)
 		throws PortalException, SystemException {
 
 		return articlePersistence.findByR_V(resourcePrimKey, version);
@@ -495,8 +494,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		article.setCreateDate(oldArticle.getCreateDate());
 		article.setModifiedDate(serviceContext.getModifiedDate(null));
 		article.setParentResourcePrimKey(parentResourcePrimKey);
-		article.setVersion(
-			MathUtil.format(oldArticle.getVersion() + 0.1, 1, 1));
+		article.setVersion(oldArticle.getVersion() + 1);
 		article.setTitle(title);
 		article.setContent(content);
 		article.setDescription(description);

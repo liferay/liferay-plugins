@@ -116,7 +116,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		articleLocalService.deleteAttachment(companyId, fileName);
 	}
 
-	public Article getArticle(long resourcePrimKey, double version)
+	public Article getArticle(long resourcePrimKey, int version)
 		throws PortalException, SystemException {
 
 		ArticlePermission.check(

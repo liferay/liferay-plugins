@@ -17,10 +17,11 @@ package com.liferay.knowledgebase.model;
 /**
  * <a href="ArticleConstants.java.html"><b><i>View Source</i></b></a>
  *
+ * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class ArticleConstants {
 
-	public static final double DEFAULT_VERSION = 1.0;
+	public static final int DEFAULT_VERSION = 1;
 
 }

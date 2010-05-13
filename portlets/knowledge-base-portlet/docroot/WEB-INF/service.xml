@@ -28,7 +28,7 @@
 		<!-- Other fields -->
 
 		<column name="parentResourcePrimKey" type="long" />
-		<column name="version" type="double" />
+		<column name="version" type="int" />
 		<column name="title" type="String" />
 		<column name="content" type="String" />
 		<column name="description" type="String" />
