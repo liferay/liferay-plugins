@@ -14,6 +14,9 @@
 
 package com.liferay.knowledgebase.service.impl;
 
+import com.liferay.documentlibrary.DuplicateDirectoryException;
+import com.liferay.documentlibrary.DuplicateFileException;
+import com.liferay.documentlibrary.NoSuchDirectoryException;
 import com.liferay.knowledgebase.ArticleContentException;
 import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
@@ -170,10 +173,18 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public void addArticleAttachments(Article article, String dirName)
 		throws PortalException, SystemException {
 
+		// Database and file system operations are processed independently.
+
 		String articleDirName = article.getAttachmentsDirName();
 
-		dlService.addDirectory(
-			article.getCompanyId(), CompanyConstants.SYSTEM, articleDirName);
+		try {
+			dlService.addDirectory(
+				article.getCompanyId(), CompanyConstants.SYSTEM,
+				articleDirName);
+		}
+		catch (DuplicateDirectoryException dde) {
+			_log.error("Directory already exists for " + dde.getMessage());
+		}
 
 		if (Validator.isNull(dirName)) {
 			return;
@@ -183,13 +194,17 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			article.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
 		for (String fileName : fileNames) {
-			String shortFileName = FileUtil.getShortFileName(fileName);
-
 			byte[] bytes = dlService.getFile(
 				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
-			addAttachment(
-				article.getCompanyId(), articleDirName, shortFileName, bytes);
+			try {
+				addAttachment(
+					article.getCompanyId(), articleDirName,
+					FileUtil.getShortFileName(fileName), bytes);
+			}
+			catch (DuplicateFileException dfe) {
+				_log.error("File already exists for " + dfe.getMessage());
+			}
 		}
 	}
 
@@ -295,9 +310,16 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Attachments
 
-		dlService.deleteDirectory(
-			article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
-			CompanyConstants.SYSTEM, article.getAttachmentsDirName());
+		// Database and file system operations are processed independently.
+
+		try {
+			dlService.deleteDirectory(
+				article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+				CompanyConstants.SYSTEM, article.getAttachmentsDirName());
+		}
+		catch (NoSuchDirectoryException nsde) {
+			_log.error("No directory found for " + nsde.getMessage());
+		}
 
 		// Subscriptions
 
@@ -524,13 +546,20 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public void updateArticleAttachments(Article article, String dirName)
 		throws PortalException, SystemException {
 
+		// Database and file system operations are processed independently.
+
 		if (Validator.isNull(dirName)) {
 			return;
 		}
 
-		dlService.deleteDirectory(
-			article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
-			CompanyConstants.SYSTEM, article.getAttachmentsDirName());
+		try {
+			dlService.deleteDirectory(
+				article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+				CompanyConstants.SYSTEM, article.getAttachmentsDirName());
+		}
+		catch (NoSuchDirectoryException nsde) {
+			_log.error("No directory found for " + nsde.getMessage());
+		}
 
 		addArticleAttachments(article, dirName);
 	}
@@ -818,7 +847,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 						getClass().getClassLoader(), name);
 				}
 				catch (IOException ioe) {
-					_log.error(ioe, ioe);
+					_log.error(ioe.getMessage());
 				}
 			}
 
@@ -832,7 +861,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 					body = StringUtil.read(getClass().getClassLoader(), name);
 				}
 				catch (IOException ioe) {
-					_log.error(ioe, ioe);
+					_log.error(ioe.getMessage());
 				}
 			}
 		}
@@ -849,7 +878,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 						getClass().getClassLoader(), name);
 				}
 				catch (IOException ioe) {
-					_log.error(ioe, ioe);
+					_log.error(ioe.getMessage());
 				}
 			}
 
@@ -863,7 +892,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 					body = StringUtil.read(getClass().getClassLoader(), name);
 				}
 				catch (IOException ioe) {
-					_log.error(ioe, ioe);
+					_log.error(ioe.getMessage());
 				}
 			}
 		}
