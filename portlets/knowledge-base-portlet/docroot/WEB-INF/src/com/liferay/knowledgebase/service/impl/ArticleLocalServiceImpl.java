@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.service.impl;
 
-import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.knowledgebase.ArticleContentException;
 import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
@@ -56,18 +55,10 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.CompanyLocalServiceUtil;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextUtil;
-import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
-import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
-import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
-import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.util.portlet.PortletProps;
 
 import java.io.IOException;
@@ -93,6 +84,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			String content, String description, int priority, String dirName,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
+
+		// See transaction.manager.impl in portal.properties.
 
 		// Article
 
@@ -146,13 +139,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Message Boards
 
-		MBMessageLocalServiceUtil.addDiscussionMessage(
+		mbMessageLocalService.addDiscussionMessage(
 			userId, article.getUserName(), Article.class.getName(),
 			resourcePrimKey, WorkflowConstants.ACTION_PUBLISH);
 
 		// Social
 
-		SocialActivityLocalServiceUtil.addActivity(
+		socialActivityLocalService.addActivity(
 			userId, article.getGroupId(), Article.class.getName(),
 			resourcePrimKey, AdminActivityKeys.ADD_ARTICLE, StringPool.BLANK,
 			0);
@@ -179,20 +172,20 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		String articleDirName = article.getAttachmentsDirName();
 
-		DLServiceUtil.addDirectory(
+		dlService.addDirectory(
 			article.getCompanyId(), CompanyConstants.SYSTEM, articleDirName);
 
 		if (Validator.isNull(dirName)) {
 			return;
 		}
 
-		String[] fileNames = DLServiceUtil.getFileNames(
+		String[] fileNames = dlService.getFileNames(
 			article.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
 		for (String fileName : fileNames) {
 			String shortFileName = FileUtil.getShortFileName(fileName);
 
-			byte[] bytes = DLServiceUtil.getFile(
+			byte[] bytes = dlService.getFile(
 				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
 			addAttachment(
@@ -228,7 +221,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		DLServiceUtil.addFile(
+		dlService.addFile(
 			companyId, CompanyConstants.SYSTEM_STRING,
 			GroupConstants.DEFAULT_PARENT_GROUP_ID, CompanyConstants.SYSTEM,
 			dirName + StringPool.SLASH + shortFileName, 0, StringPool.BLANK,
@@ -266,6 +259,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public void deleteArticle(Article article)
 		throws PortalException, SystemException {
 
+		// See transaction.manager.impl in portal.properties.
+
 		// Resources
 
 		resourceLocalService.deleteResource(
@@ -279,17 +274,17 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Expando
 
-		ExpandoValueLocalServiceUtil.deleteValues(
+		expandoValueLocalService.deleteValues(
 			Article.class.getName(), article.getResourcePrimKey());
 
 		// Message boards
 
-		MBMessageLocalServiceUtil.deleteDiscussionMessages(
+		mbMessageLocalService.deleteDiscussionMessages(
 			Article.class.getName(), article.getResourcePrimKey());
 
 		// Social
 
-		SocialActivityLocalServiceUtil.deleteActivities(
+		socialActivityLocalService.deleteActivities(
 			Article.class.getName(), article.getResourcePrimKey());
 
 		// Indexer
@@ -300,13 +295,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Attachments
 
-		DLServiceUtil.deleteDirectory(
+		dlService.deleteDirectory(
 			article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 			CompanyConstants.SYSTEM, article.getAttachmentsDirName());
 
 		// Subscriptions
 
-		SubscriptionLocalServiceUtil.deleteSubscriptions(
+		subscriptionLocalService.deleteSubscriptions(
 			article.getCompanyId(), Article.class.getName(),
 			article.getResourcePrimKey());
 	}
@@ -314,7 +309,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public void deleteAttachment(long companyId, String fileName)
 		throws PortalException, SystemException {
 
-		DLServiceUtil.deleteFile(
+		dlService.deleteFile(
 			companyId, CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
 			fileName);
 	}
@@ -428,11 +423,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if (resourcePrimKey <= 0) {
-			SubscriptionLocalServiceUtil.addSubscription(
+			subscriptionLocalService.addSubscription(
 				userId, Article.class.getName(), groupId);
 		}
 		else {
-			SubscriptionLocalServiceUtil.addSubscription(
+			subscriptionLocalService.addSubscription(
 				userId, Article.class.getName(), resourcePrimKey);
 		}
 	}
@@ -441,11 +436,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if (resourcePrimKey <= 0) {
-			SubscriptionLocalServiceUtil.deleteSubscription(
+			subscriptionLocalService.deleteSubscription(
 				userId, Article.class.getName(), groupId);
 		}
 		else {
-			SubscriptionLocalServiceUtil.deleteSubscription(
+			subscriptionLocalService.deleteSubscription(
 				userId, Article.class.getName(), resourcePrimKey);
 		}
 	}
@@ -455,6 +450,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			String title, String content, String description, int priority,
 			String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
+
+		// See transaction.manager.impl in portal.properties.
 
 		// Article
 
@@ -502,7 +499,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Social
 
-		SocialActivityLocalServiceUtil.addActivity(
+		socialActivityLocalService.addActivity(
 			userId, article.getGroupId(), Article.class.getName(),
 			resourcePrimKey, AdminActivityKeys.UPDATE_ARTICLE, StringPool.BLANK,
 			0);
@@ -531,7 +528,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			return;
 		}
 
-		DLServiceUtil.deleteDirectory(
+		dlService.deleteDirectory(
 			article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 			CompanyConstants.SYSTEM, article.getAttachmentsDirName());
 
@@ -555,7 +552,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		String dirName =
 			"knowledgebase/temp/attachments/" + counterLocalService.increment();
 
-		DLServiceUtil.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
+		dlService.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
 
 		if (resourcePrimKey <= 0) {
 			return dirName;
@@ -566,7 +563,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		for (String fileName : article.getAttachmentsFileNames()) {
 			String shortFileName = FileUtil.getShortFileName(fileName);
 
-			byte[] bytes = DLServiceUtil.getFile(
+			byte[] bytes = dlService.getFile(
 				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
 			addAttachment(companyId, dirName, shortFileName, bytes);
@@ -624,21 +621,21 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		String dirName =
 			"knowledgebase/temp/attachments/" + counterLocalService.increment();
 
-		DLServiceUtil.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
+		dlService.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
 
-		String[] fileNames = DLServiceUtil.getFileNames(
+		String[] fileNames = dlService.getFileNames(
 			companyId, CompanyConstants.SYSTEM,
 			"knowledgebase/temp/attachments");
 
 		Arrays.sort(fileNames);
 
 		for (int i = 0; i < fileNames.length - 50; i++) {
-			DLServiceUtil.deleteDirectory(
+			dlService.deleteDirectory(
 				companyId, CompanyConstants.SYSTEM_STRING,
 				CompanyConstants.SYSTEM, fileNames[i]);
 		}
 
-		DLServiceUtil.deleteDirectory(
+		dlService.deleteDirectory(
 			companyId, CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
 			dirName);
 	}
@@ -693,7 +690,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			String portletId = PortletKeys.KNOWLEDGE_BASE_ADMIN;
 			String defaultPreferences = null;
 
-			preferences = PortletPreferencesLocalServiceUtil.getPreferences(
+			preferences = portletPreferencesLocalService.getPreferences(
 				article.getCompanyId(), ownerId, ownerType, plid, portletId,
 				defaultPreferences);
 		}
@@ -714,10 +711,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			return;
 		}
 
-		Company company = CompanyLocalServiceUtil.getCompany(
+		Company company = companyPersistence.findByPrimaryKey(
 			article.getCompanyId());
 
-		Group group = GroupLocalServiceUtil.getGroup(
+		Group group = groupPersistence.findByPrimaryKey(
 			serviceContext.getScopeGroupId());
 
 		User user = userPersistence.fetchByPrimaryKey(article.getUserId());
@@ -782,8 +779,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		String articleURL = null;
 
-		Layout layout = LayoutLocalServiceUtil.getLayout(
-			serviceContext.getPlid());
+		Layout layout = layoutLocalService.getLayout(serviceContext.getPlid());
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
 
