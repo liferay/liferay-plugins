@@ -69,8 +69,8 @@ public class MailPortlet extends MVCPortlet {
 						attachment.getFileName());
 
 					PortletResponseUtil.sendFile(
-						resourceResponse, attachment.getFileName(), is,
-						contentType);
+						resourceRequest, resourceResponse,
+						attachment.getFileName(), is, contentType);
 				}
 			}
 			catch (Exception e) {

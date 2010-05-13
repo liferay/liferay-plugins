@@ -18,7 +18,7 @@ import com.liferay.mail.model.Account;
 import com.liferay.mail.service.AccountLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.StringPool;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,21 +26,21 @@ import javax.servlet.http.HttpSession;
 /**
  * <a href="PasswordRetriever.java.html"><b><i>View Source</i></b></a>
  *
- * @author Mike Han
+ * @author Michael C. Han
  * @author Scott Lee
  */
 public class PasswordRetriever {
 
 	public PasswordRetriever(HttpServletRequest request) {
+		if (_request == null) {
+			throw new IllegalStateException("Request is null");
+		}
+
 		_request = request;
 	}
 
 	public String getPassword(long accountId)
 		throws PortalException, SystemException {
-
-		if (Validator.isNull(_request)) {
-			throw new IllegalStateException("Uninitialized retriever");
-		}
 
 		Account account = AccountLocalServiceUtil.getAccount(accountId);
 
@@ -50,24 +50,25 @@ public class PasswordRetriever {
 		else {
 			HttpSession session = _request.getSession();
 
-			return (String)session.getAttribute(getPasswordKey(accountId));
+			return (String)session.getAttribute(encodeKey(accountId));
 		}
 	}
 
 	public void removePassword(long accountId) {
 		HttpSession session = _request.getSession();
 
-		session.removeAttribute(getPasswordKey(accountId));
+		session.removeAttribute(encodeKey(accountId));
 	}
 
 	public void setPassword(long accountId, String password) {
 		HttpSession session = _request.getSession();
 
-		session.setAttribute(getPasswordKey(accountId), password);
+		session.setAttribute(encodeKey(accountId), password);
 	}
 
-	public String getPasswordKey(long accountId) {
-		return "mail_p_key_" + accountId;
+	protected String encodeKey(long accountId) {
+		return PasswordRetriever.class.getName().concat(
+			StringPool.POUND).concat(String.valueOf(accountId));
 	}
 
 	private HttpServletRequest _request;

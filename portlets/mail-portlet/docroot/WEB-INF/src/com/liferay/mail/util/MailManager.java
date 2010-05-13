@@ -507,37 +507,6 @@ public class MailManager {
 		}
 	}
 
-	public JSONObject storePasswordInSession(long accountId, String password)
-		throws PortalException, SystemException {
-
-		Account account = AccountLocalServiceUtil.getAccount(accountId);
-
-		if (!account.isSavePassword()) {
-			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), accountId,
-				_passwordRetriever.getPassword(accountId));
-
-			try {
-				mailbox.validateAccount(
-					account.getIncomingHostName(), account.getIncomingPort(),
-					account.getIncomingSecure(), account.getOutgoingHostName(),
-					account.getOutgoingPort(), account.getOutgoingSecure(),
-					account.getLogin(), password);
-
-				_passwordRetriever.setPassword(accountId, password);
-
-				return createJSONResult("success", "logged-in-successfully");
-			}
-			catch (MailException me) {
-				return createJSONResult("failure", "incorrect-password");
-			}
-		}
-		else {
-			return createJSONResult(
-				"success", "password-has-already-been-saved");
-		}
-	}
-
 	public JSONObject sendMessage(
 			long accountId, long messageId, String to, String cc, String bcc,
 			String subject, String body, List<MailFile> mailFiles)
@@ -571,6 +540,37 @@ public class MailManager {
 			_log.error(me, me);
 
 			return createJSONResult("failure", "unable-to-send-message");
+		}
+	}
+
+	public JSONObject storePassword(long accountId, String password)
+		throws PortalException, SystemException {
+
+		Account account = AccountLocalServiceUtil.getAccount(accountId);
+
+		if (!account.isSavePassword()) {
+			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
+				_user.getUserId(), accountId,
+				_passwordRetriever.getPassword(accountId));
+
+			try {
+				mailbox.validateAccount(
+					account.getIncomingHostName(), account.getIncomingPort(),
+					account.getIncomingSecure(), account.getOutgoingHostName(),
+					account.getOutgoingPort(), account.getOutgoingSecure(),
+					account.getLogin(), password);
+
+				_passwordRetriever.setPassword(accountId, password);
+
+				return createJSONResult("success", "logged-in-successfully");
+			}
+			catch (MailException me) {
+				return createJSONResult("failure", "incorrect-password");
+			}
+		}
+		else {
+			return createJSONResult(
+				"success", "password-has-already-been-saved");
 		}
 	}
 

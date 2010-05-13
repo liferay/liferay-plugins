@@ -23,4 +23,4 @@ String password = ParamUtil.getString(request, "password");
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<%= mailManager.storePasswordInSession(accountId, password) %>
+<%= mailManager.storePassword(accountId, password) %>

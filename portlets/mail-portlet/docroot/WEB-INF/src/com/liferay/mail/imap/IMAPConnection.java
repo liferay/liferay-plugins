@@ -205,10 +205,12 @@ public class IMAPConnection {
 	}
 
 	protected void testIncomingConnection() throws MailException {
-		StopWatch sw = new StopWatch();
+		StopWatch stopWatch = null;
 
 		if (_log.isDebugEnabled()) {
-			sw.start();
+			stopWatch = new StopWatch();
+
+			stopWatch.start();
 		}
 
 		try {
@@ -222,20 +224,22 @@ public class IMAPConnection {
 		}
 		finally {
 			if (_log.isDebugEnabled()) {
-				sw.stop();
+				stopWatch.stop();
 
 				_log.debug(
-					"Test incoming connection completed in " + sw.getTime() +
-						" ms");
+					"Testing incoming connection completed in " +
+						stopWatch.getTime() + " ms");
 			}
 		}
 	}
 
 	protected void testOutgoingConnection() throws MailException {
-		StopWatch sw = new StopWatch();
+		StopWatch stopWatch = null;
 
 		if (_log.isDebugEnabled()) {
-			sw.start();
+			stopWatch = new StopWatch();
+
+			stopWatch.start();
 		}
 
 		try {
@@ -251,21 +255,21 @@ public class IMAPConnection {
 		}
 		finally {
 			if (_log.isDebugEnabled()) {
-				sw.stop();
+				stopWatch.stop();
 
 				_log.debug(
-					"Test outgoing connection completed in " + sw.getTime() +
-						" ms");
+					"Testing outgoing connection completed in " +
+						stopWatch.getTime() + " ms");
 			}
 		}
 	}
 
 	private static final String _TRANSPORT = "_TRANSPORT_";
 
+	private static Log _log = LogFactoryUtil.getLog(IMAPConnection.class);
+
 	private static ConcurrentHashMap<String, Store> _allStores =
 		new ConcurrentHashMap<String, Store>();
-
-	private static Log _log = LogFactoryUtil.getLog(IMAPConnection.class);
 
 	private String _incomingHostName;
 	private int _incomingPort;
