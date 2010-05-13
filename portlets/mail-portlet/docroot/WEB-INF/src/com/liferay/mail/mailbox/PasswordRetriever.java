@@ -32,7 +32,7 @@ import javax.servlet.http.HttpSession;
 public class PasswordRetriever {
 
 	public PasswordRetriever(HttpServletRequest request) {
-		if (_request == null) {
+		if (request == null) {
 			throw new IllegalStateException("Request is null");
 		}
 
