@@ -71,10 +71,10 @@ public class TemplateModelImpl extends BaseModelImpl<Template> {
 			{ "createDate", new Integer(Types.TIMESTAMP) },
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
 			{ "title", new Integer(Types.VARCHAR) },
-			{ "content", new Integer(Types.VARCHAR) },
+			{ "content", new Integer(Types.CLOB) },
 			{ "description", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_Template (uuid_ VARCHAR(75) null,templateId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,content VARCHAR(75) null,description VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table KB_Template (uuid_ VARCHAR(75) null,templateId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(150) null,content TEXT null,description STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table KB_Template";
 	public static final String ORDER_BY_JPQL = " ORDER BY template.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY KB_Template.modifiedDate DESC";
