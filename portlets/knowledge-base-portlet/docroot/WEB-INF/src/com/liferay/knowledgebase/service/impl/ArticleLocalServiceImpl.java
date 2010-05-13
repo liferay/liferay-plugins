@@ -172,7 +172,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public void addArticleAttachments(Article article, String dirName)
 		throws PortalException, SystemException {
 
-		// Database and file system operations are processed independently.
+		// File system operations are performed independent from database
+		// transactions and can leave the file system in an inconsistent state.
 
 		String articleDirName = article.getAttachmentsDirName();
 
@@ -309,7 +310,20 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Attachments
 
-		// Database and file system operations are processed independently.
+		deleteArticleAttachments(article);
+
+		// Subscriptions
+
+		subscriptionLocalService.deleteSubscriptions(
+			article.getCompanyId(), Article.class.getName(),
+			article.getResourcePrimKey());
+	}
+
+	public void deleteArticleAttachments(Article article)
+		throws PortalException, SystemException {
+
+		// File system operations are performed independent from database
+		// transactions and can leave the file system in an inconsistent state.
 
 		try {
 			dlService.deleteDirectory(
@@ -319,12 +333,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		catch (NoSuchDirectoryException nsde) {
 			_log.error("No directory found for " + nsde.getMessage());
 		}
-
-		// Subscriptions
-
-		subscriptionLocalService.deleteSubscriptions(
-			article.getCompanyId(), Article.class.getName(),
-			article.getResourcePrimKey());
 	}
 
 	public void deleteAttachment(long companyId, String fileName)
@@ -544,7 +552,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public void updateArticleAttachments(Article article, String dirName)
 		throws PortalException, SystemException {
 
-		// Database and file system operations are processed independently.
+		// File system operations are performed independent from database
+		// transactions and can leave the file system in an inconsistent state.
 
 		if (Validator.isNull(dirName)) {
 			return;
