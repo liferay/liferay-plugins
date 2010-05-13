@@ -189,20 +189,14 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		String[] fileNames = DLServiceUtil.getFileNames(
 			article.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
-		ServiceContext serviceContext = new ServiceContext();
-
 		for (String fileName : fileNames) {
 			String shortFileName = FileUtil.getShortFileName(fileName);
 
 			byte[] bytes = DLServiceUtil.getFile(
 				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
-			DLServiceUtil.addFile(
-				article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
-				GroupConstants.DEFAULT_PARENT_GROUP_ID, CompanyConstants.SYSTEM,
-				articleDirName + StringPool.SLASH + shortFileName, 0,
-				StringPool.BLANK, article.getModifiedDate(), serviceContext,
-				bytes);
+			addAttachment(
+				article.getCompanyId(), articleDirName, shortFileName, bytes);
 		}
 	}
 
