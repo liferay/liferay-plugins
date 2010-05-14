@@ -658,6 +658,28 @@ Please find a solution that does not require portal-impl.jar.
 		<delete dir="docroot/WEB-INF/service-classes" />
 	</target>
 
+	<target name="build-wsdd" depends="compile">
+		<path id="wsdd.classpath">
+			<path refid="lib.classpath" />
+			<path refid="portal.classpath" />
+			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+			<pathelement location="docroot/WEB-INF/classes" />
+		</path>
+
+		<java
+			classname="com.liferay.portal.tools.WSDDBuilder"
+			classpathref="wsdd.classpath"
+			fork="true"
+			maxmemory="256m"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+			<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
+			<arg value="docroot/WEB-INF/service.xml" />
+			<arg value="docroot/WEB-INF/server-config.wsdd" />
+		</java>
+	</target>
+
 	<target name="merge" if="original.war.file">
 		<if>
 			<not>
