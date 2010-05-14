@@ -87,8 +87,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		// See transaction.manager.impl in portal.properties.
-
 		// Article
 
 		User user = userPersistence.findByPrimaryKey(userId);
@@ -160,52 +158,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Attachments
 
-		addArticleAttachments(article, dirName);
+		addAttachments(article, dirName);
 
 		// Subscriptions
 
 		notifySubscribers(article, false, serviceContext);
 
 		return article;
-	}
-
-	public void addArticleAttachments(Article article, String dirName)
-		throws PortalException, SystemException {
-
-		// File system operations are performed independent from database
-		// transactions and can leave the file system in an inconsistent state.
-
-		String articleDirName = article.getAttachmentsDirName();
-
-		try {
-			dlService.addDirectory(
-				article.getCompanyId(), CompanyConstants.SYSTEM,
-				articleDirName);
-		}
-		catch (DuplicateDirectoryException dde) {
-			_log.error("Directory already exists for " + dde.getMessage());
-		}
-
-		if (Validator.isNull(dirName)) {
-			return;
-		}
-
-		String[] fileNames = dlService.getFileNames(
-			article.getCompanyId(), CompanyConstants.SYSTEM, dirName);
-
-		for (String fileName : fileNames) {
-			byte[] bytes = dlService.getFile(
-				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
-
-			try {
-				addAttachment(
-					article.getCompanyId(), articleDirName,
-					FileUtil.getShortFileName(fileName), bytes);
-			}
-			catch (DuplicateFileException dfe) {
-				_log.error("File already exists for " + dfe.getMessage());
-			}
-		}
 	}
 
 	public void addArticleResources(
@@ -274,8 +233,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public void deleteArticle(Article article)
 		throws PortalException, SystemException {
 
-		// See transaction.manager.impl in portal.properties.
-
 		// Resources
 
 		resourceLocalService.deleteResource(
@@ -321,9 +278,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 	public void deleteArticleAttachments(Article article)
 		throws PortalException, SystemException {
-
-		// File system operations are performed independent from database
-		// transactions and can leave the file system in an inconsistent state.
 
 		try {
 			dlService.deleteDirectory(
@@ -480,8 +434,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		// See transaction.manager.impl in portal.properties.
-
 		// Article
 
 		User user = userPersistence.findByPrimaryKey(userId);
@@ -540,35 +492,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Attachments
 
-		updateArticleAttachments(article, dirName);
+		updateAttachments(article, dirName);
 
 		// Subscriptions
 
 		notifySubscribers(article, true, serviceContext);
 
 		return article;
-	}
-
-	public void updateArticleAttachments(Article article, String dirName)
-		throws PortalException, SystemException {
-
-		// File system operations are performed independent from database
-		// transactions and can leave the file system in an inconsistent state.
-
-		if (Validator.isNull(dirName)) {
-			return;
-		}
-
-		try {
-			dlService.deleteDirectory(
-				article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
-				CompanyConstants.SYSTEM, article.getAttachmentsDirName());
-		}
-		catch (NoSuchDirectoryException nsde) {
-			_log.error("No directory found for " + nsde.getMessage());
-		}
-
-		addArticleAttachments(article, dirName);
 	}
 
 	public void updateArticleResources(
@@ -649,6 +579,42 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 
 		return article;
+	}
+
+	protected void addAttachments(Article article, String dirName)
+		throws PortalException, SystemException {
+
+		String articleDirName = article.getAttachmentsDirName();
+
+		try {
+			dlService.addDirectory(
+				article.getCompanyId(), CompanyConstants.SYSTEM,
+				articleDirName);
+		}
+		catch (DuplicateDirectoryException dde) {
+			_log.error("Directory already exists for " + dde.getMessage());
+		}
+
+		if (Validator.isNull(dirName)) {
+			return;
+		}
+
+		String[] fileNames = dlService.getFileNames(
+			article.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+
+		for (String fileName : fileNames) {
+			byte[] bytes = dlService.getFile(
+				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+
+			try {
+				addAttachment(
+					article.getCompanyId(), articleDirName,
+					FileUtil.getShortFileName(fileName), bytes);
+			}
+			catch (DuplicateFileException dfe) {
+				_log.error("File already exists for " + dfe.getMessage());
+			}
+		}
 	}
 
 	protected void checkAttachments(long companyId)
@@ -854,7 +820,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 						getClass().getClassLoader(), name);
 				}
 				catch (IOException ioe) {
-					_log.error(ioe.getMessage());
+					_log.error(ioe, ioe);
 				}
 			}
 
@@ -868,7 +834,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 					body = StringUtil.read(getClass().getClassLoader(), name);
 				}
 				catch (IOException ioe) {
-					_log.error(ioe.getMessage());
+					_log.error(ioe, ioe);
 				}
 			}
 		}
@@ -885,7 +851,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 						getClass().getClassLoader(), name);
 				}
 				catch (IOException ioe) {
-					_log.error(ioe.getMessage());
+					_log.error(ioe, ioe);
 				}
 			}
 
@@ -899,7 +865,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 					body = StringUtil.read(getClass().getClassLoader(), name);
 				}
 				catch (IOException ioe) {
-					_log.error(ioe.getMessage());
+					_log.error(ioe, ioe);
 				}
 			}
 		}
@@ -986,6 +952,25 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		message.put("htmlFormat", Boolean.TRUE);
 
 		MessageBusUtil.sendMessage("liferay/knowledge_base_admin", message);
+	}
+
+	protected void updateAttachments(Article article, String dirName)
+		throws PortalException, SystemException {
+
+		if (Validator.isNull(dirName)) {
+			return;
+		}
+
+		try {
+			dlService.deleteDirectory(
+				article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+				CompanyConstants.SYSTEM, article.getAttachmentsDirName());
+		}
+		catch (NoSuchDirectoryException nsde) {
+			_log.error("No directory found for " + nsde.getMessage());
+		}
+
+		addAttachments(article, dirName);
 	}
 
 	protected void validate(String title, String content)
