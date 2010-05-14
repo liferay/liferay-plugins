@@ -32,13 +32,13 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 
 <aui:input name="savePassword" type="checkbox" value="<%= mailAccount.isSavePassword() %>" />
 
-<aui:input name="signature" value="<%= mailAccount.getSignature() %>" />
+<aui:input name="signature" type="hidden" value="<%= mailAccount.getSignature() %>" />
 
-<aui:input name="useSignature" type="checkbox" value="<%= mailAccount.getUseSignature() %>" />
+<aui:input name="useSignature" type="hidden" value="<%= mailAccount.getUseSignature() %>" />
 
-<aui:input name="folderPrefix" value="<%= mailAccount.getFolderPrefix() %>" />
+<aui:input name="folderPrefix" type="hidden" value="<%= mailAccount.getFolderPrefix() %>" />
 
-<aui:input name="defaultSender" type="checkbox" value="<%= mailAccount.getDefaultSender() %>" />
+<aui:input name="defaultSender" type="hidden" value="<%= mailAccount.getDefaultSender() %>" />
 
 <aui:layout>
 	<aui:column>
