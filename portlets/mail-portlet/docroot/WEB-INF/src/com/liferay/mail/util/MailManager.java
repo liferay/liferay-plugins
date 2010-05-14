@@ -342,8 +342,8 @@ public class MailManager {
 	}
 
 	public MessageDisplay getMessageDisplay(
-			long folderId, String keywords, int messageNumber,
-			String orderByField, String orderByType)
+			long folderId, int messageNumber, String orderByField,
+			String orderByType, String keywords)
 		throws PortalException, SystemException {
 
 		if (folderId <= 0) {
