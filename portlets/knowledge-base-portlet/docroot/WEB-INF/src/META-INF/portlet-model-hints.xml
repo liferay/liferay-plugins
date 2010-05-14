@@ -12,7 +12,7 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="parentResourcePrimKey" type="long" />
-		<field name="version" type="double" />
+		<field name="version" type="int" />
 		<field name="title" type="String">
 			<hint name="max-length">150</hint>
 		</field>

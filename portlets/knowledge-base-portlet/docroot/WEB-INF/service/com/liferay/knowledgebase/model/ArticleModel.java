@@ -95,9 +95,9 @@ public interface ArticleModel extends BaseModel<Article> {
 
 	public void setParentResourcePrimKey(long parentResourcePrimKey);
 
-	public double getVersion();
+	public int getVersion();
 
-	public void setVersion(double version);
+	public void setVersion(int version);
 
 	@AutoEscape
 	public String getTitle();

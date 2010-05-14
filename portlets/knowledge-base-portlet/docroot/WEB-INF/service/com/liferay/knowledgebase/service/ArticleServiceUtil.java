@@ -75,7 +75,7 @@ public class ArticleServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.Article getArticle(
-		long resourcePrimKey, double version)
+		long resourcePrimKey, int version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getArticle(resourcePrimKey, version);

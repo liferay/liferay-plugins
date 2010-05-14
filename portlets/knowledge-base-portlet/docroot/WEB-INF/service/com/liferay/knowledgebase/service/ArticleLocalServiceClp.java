@@ -16,7 +16,6 @@ package com.liferay.knowledgebase.service;
 
 import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.DoubleWrapper;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
@@ -571,47 +570,6 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void addArticleAttachments(
-		com.liferay.knowledgebase.model.Article article,
-		java.lang.String dirName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(article);
-
-		if (article == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.knowledgebase.model.Article");
-		}
-
-		Object paramObj1 = ClpSerializer.translateInput(dirName);
-
-		if (dirName == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
-		try {
-			_classLoaderProxy.invoke("addArticleAttachments",
-				new Object[] { paramObj0, paramObj1 });
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
 	public void addArticleResources(
 		com.liferay.knowledgebase.model.Article article,
 		boolean addCommunityPermissions, boolean addGuestPermissions)
@@ -771,6 +729,40 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		}
 	}
 
+	public void deleteArticleAttachments(
+		com.liferay.knowledgebase.model.Article article)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(article);
+
+		if (article == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.knowledgebase.model.Article");
+		}
+
+		try {
+			_classLoaderProxy.invoke("deleteArticleAttachments",
+				new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public void deleteAttachment(long companyId, java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -834,12 +826,12 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 	}
 
 	public com.liferay.knowledgebase.model.Article getArticle(
-		long resourcePrimKey, double version)
+		long resourcePrimKey, int version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(resourcePrimKey);
 
-		Object paramObj1 = new DoubleWrapper(version);
+		Object paramObj1 = new IntegerWrapper(version);
 
 		Object returnObj = null;
 
@@ -1313,47 +1305,6 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		}
 
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public void updateArticleAttachments(
-		com.liferay.knowledgebase.model.Article article,
-		java.lang.String dirName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(article);
-
-		if (article == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.knowledgebase.model.Article");
-		}
-
-		Object paramObj1 = ClpSerializer.translateInput(dirName);
-
-		if (dirName == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
-		try {
-			_classLoaderProxy.invoke("updateArticleAttachments",
-				new Object[] { paramObj0, paramObj1 });
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
 	}
 
 	public void updateArticleResources(

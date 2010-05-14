@@ -72,13 +72,13 @@ public class ArticleModelImpl extends BaseModelImpl<Article> {
 			{ "createDate", new Integer(Types.TIMESTAMP) },
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
 			{ "parentResourcePrimKey", new Integer(Types.BIGINT) },
-			{ "version", new Integer(Types.DOUBLE) },
+			{ "version", new Integer(Types.INTEGER) },
 			{ "title", new Integer(Types.VARCHAR) },
 			{ "content", new Integer(Types.CLOB) },
 			{ "description", new Integer(Types.VARCHAR) },
 			{ "priority", new Integer(Types.INTEGER) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_Article (uuid_ VARCHAR(75) null,articleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentResourcePrimKey LONG,version DOUBLE,title VARCHAR(150) null,content TEXT null,description STRING null,priority INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table KB_Article (uuid_ VARCHAR(75) null,articleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentResourcePrimKey LONG,version INTEGER,title VARCHAR(150) null,content TEXT null,description STRING null,priority INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table KB_Article";
 	public static final String ORDER_BY_JPQL = " ORDER BY article.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY KB_Article.modifiedDate DESC";
@@ -268,11 +268,11 @@ public class ArticleModelImpl extends BaseModelImpl<Article> {
 		_parentResourcePrimKey = parentResourcePrimKey;
 	}
 
-	public double getVersion() {
+	public int getVersion() {
 		return _version;
 	}
 
-	public void setVersion(double version) {
+	public void setVersion(int version) {
 		_version = version;
 
 		if (!_setOriginalVersion) {
@@ -282,7 +282,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article> {
 		}
 	}
 
-	public double getOriginalVersion() {
+	public int getOriginalVersion() {
 		return _originalVersion;
 	}
 
@@ -547,8 +547,8 @@ public class ArticleModelImpl extends BaseModelImpl<Article> {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _parentResourcePrimKey;
-	private double _version;
-	private double _originalVersion;
+	private int _version;
+	private int _originalVersion;
 	private boolean _setOriginalVersion;
 	private String _title;
 	private String _content;

@@ -133,11 +133,11 @@ public class ArticleWrapper implements Article {
 		_article.setParentResourcePrimKey(parentResourcePrimKey);
 	}
 
-	public double getVersion() {
+	public int getVersion() {
 		return _article.getVersion();
 	}
 
-	public void setVersion(double version) {
+	public void setVersion(int version) {
 		_article.setVersion(version);
 	}
 

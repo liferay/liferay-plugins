@@ -141,14 +141,6 @@ public class ArticleLocalServiceUtil {
 			content, description, priority, dirName, serviceContext);
 	}
 
-	public static void addArticleAttachments(
-		com.liferay.knowledgebase.model.Article article,
-		java.lang.String dirName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().addArticleAttachments(article, dirName);
-	}
-
 	public static void addArticleResources(
 		com.liferay.knowledgebase.model.Article article,
 		boolean addCommunityPermissions, boolean addGuestPermissions)
@@ -182,6 +174,13 @@ public class ArticleLocalServiceUtil {
 		getService().checkAttachments();
 	}
 
+	public static void deleteArticleAttachments(
+		com.liferay.knowledgebase.model.Article article)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteArticleAttachments(article);
+	}
+
 	public static void deleteAttachment(long companyId,
 		java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -196,7 +195,7 @@ public class ArticleLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.Article getArticle(
-		long resourcePrimKey, double version)
+		long resourcePrimKey, int version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getArticle(resourcePrimKey, version);
@@ -287,14 +286,6 @@ public class ArticleLocalServiceUtil {
 				   .updateArticle(userId, resourcePrimKey,
 			parentResourcePrimKey, title, content, description, priority,
 			dirName, serviceContext);
-	}
-
-	public static void updateArticleAttachments(
-		com.liferay.knowledgebase.model.Article article,
-		java.lang.String dirName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().updateArticleAttachments(article, dirName);
 	}
 
 	public static void updateArticleResources(

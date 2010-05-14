@@ -188,11 +188,11 @@ public class ArticleSoap implements Serializable {
 		_parentResourcePrimKey = parentResourcePrimKey;
 	}
 
-	public double getVersion() {
+	public int getVersion() {
 		return _version;
 	}
 
-	public void setVersion(double version) {
+	public void setVersion(int version) {
 		_version = version;
 	}
 
@@ -238,7 +238,7 @@ public class ArticleSoap implements Serializable {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _parentResourcePrimKey;
-	private double _version;
+	private int _version;
 	private String _title;
 	private String _content;
 	private String _description;

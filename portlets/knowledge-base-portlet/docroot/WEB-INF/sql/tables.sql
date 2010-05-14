@@ -9,7 +9,7 @@ create table KB_Article (
 	createDate DATE null,
 	modifiedDate DATE null,
 	parentResourcePrimKey LONG,
-	version DOUBLE,
+	version INTEGER,
 	title VARCHAR(150) null,
 	content TEXT null,
 	description STRING null,

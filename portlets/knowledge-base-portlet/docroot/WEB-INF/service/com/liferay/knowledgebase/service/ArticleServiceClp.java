@@ -224,12 +224,12 @@ public class ArticleServiceClp implements ArticleService {
 	}
 
 	public com.liferay.knowledgebase.model.Article getArticle(
-		long resourcePrimKey, double version)
+		long resourcePrimKey, int version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(resourcePrimKey);
 
-		Object paramObj1 = new DoubleWrapper(version);
+		Object paramObj1 = new IntegerWrapper(version);
 
 		Object returnObj = null;
 

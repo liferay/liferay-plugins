@@ -130,9 +130,9 @@ public class ClpSerializer {
 					method9.invoke(newModel, value9);
 
 					Method method10 = newModelClass.getMethod("setVersion",
-							new Class[] { Double.TYPE });
+							new Class[] { Integer.TYPE });
 
-					Double value10 = new Double(oldCplModel.getVersion());
+					Integer value10 = new Integer(oldCplModel.getVersion());
 
 					method10.invoke(newModel, value10);
 
@@ -387,10 +387,10 @@ public class ClpSerializer {
 
 					Method method10 = oldModelClass.getMethod("getVersion");
 
-					Double value10 = (Double)method10.invoke(oldModel,
+					Integer value10 = (Integer)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setVersion(value10.doubleValue());
+					newModel.setVersion(value10.intValue());
 
 					Method method11 = oldModelClass.getMethod("getTitle");
 

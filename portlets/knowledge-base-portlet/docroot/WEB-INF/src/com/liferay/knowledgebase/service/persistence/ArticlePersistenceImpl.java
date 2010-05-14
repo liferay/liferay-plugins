@@ -41,9 +41,18 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
+import com.liferay.portal.service.persistence.CompanyPersistence;
+import com.liferay.portal.service.persistence.GroupPersistence;
+import com.liferay.portal.service.persistence.LayoutPersistence;
+import com.liferay.portal.service.persistence.PortletPreferencesPersistence;
 import com.liferay.portal.service.persistence.ResourcePersistence;
+import com.liferay.portal.service.persistence.SubscriptionPersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
+
+import com.liferay.portlet.expando.service.persistence.ExpandoValuePersistence;
+import com.liferay.portlet.messageboards.service.persistence.MBMessagePersistence;
+import com.liferay.portlet.social.service.persistence.SocialActivityPersistence;
 
 import java.io.Serializable;
 
@@ -104,11 +113,11 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	public static final FinderPath FINDER_PATH_FETCH_BY_R_V = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
 			"fetchByR_V",
-			new String[] { Long.class.getName(), Double.class.getName() });
+			new String[] { Long.class.getName(), Integer.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_R_V = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByR_V",
-			new String[] { Long.class.getName(), Double.class.getName() });
+			new String[] { Long.class.getName(), Integer.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findAll", new String[0]);
@@ -127,7 +136,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_V,
 			new Object[] {
 				new Long(article.getResourcePrimKey()),
-				new Double(article.getVersion())
+				new Integer(article.getVersion())
 			}, article);
 	}
 
@@ -158,7 +167,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_V,
 			new Object[] {
 				new Long(article.getResourcePrimKey()),
-				new Double(article.getVersion())
+				new Integer(article.getVersion())
 			});
 	}
 
@@ -267,7 +276,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_V,
 			new Object[] {
 				new Long(articleModelImpl.getOriginalResourcePrimKey()),
-				new Double(articleModelImpl.getOriginalVersion())
+				new Integer(articleModelImpl.getOriginalVersion())
 			});
 
 		EntityCacheUtil.removeResult(ArticleModelImpl.ENTITY_CACHE_ENABLED,
@@ -337,7 +346,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_V,
 				new Object[] {
 					new Long(articleModelImpl.getOriginalResourcePrimKey()),
-					new Double(articleModelImpl.getOriginalVersion())
+					new Integer(articleModelImpl.getOriginalVersion())
 				});
 		}
 
@@ -347,7 +356,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_V,
 				new Object[] {
 					new Long(article.getResourcePrimKey()),
-					new Double(article.getVersion())
+					new Integer(article.getVersion())
 				}, article);
 		}
 
@@ -1111,7 +1120,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
-	public Article findByR_V(long resourcePrimKey, double version)
+	public Article findByR_V(long resourcePrimKey, int version)
 		throws NoSuchArticleException, SystemException {
 		Article article = fetchByR_V(resourcePrimKey, version);
 
@@ -1138,15 +1147,15 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return article;
 	}
 
-	public Article fetchByR_V(long resourcePrimKey, double version)
+	public Article fetchByR_V(long resourcePrimKey, int version)
 		throws SystemException {
 		return fetchByR_V(resourcePrimKey, version, true);
 	}
 
-	public Article fetchByR_V(long resourcePrimKey, double version,
+	public Article fetchByR_V(long resourcePrimKey, int version,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(resourcePrimKey), new Double(version)
+				new Long(resourcePrimKey), new Integer(version)
 			};
 
 		Object result = null;
@@ -1323,7 +1332,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
-	public void removeByR_V(long resourcePrimKey, double version)
+	public void removeByR_V(long resourcePrimKey, int version)
 		throws NoSuchArticleException, SystemException {
 		Article article = findByR_V(resourcePrimKey, version);
 
@@ -1504,10 +1513,10 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return count.intValue();
 	}
 
-	public int countByR_V(long resourcePrimKey, double version)
+	public int countByR_V(long resourcePrimKey, int version)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(resourcePrimKey), new Double(version)
+				new Long(resourcePrimKey), new Integer(version)
 			};
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_V,
@@ -1617,10 +1626,26 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	protected ArticlePersistence articlePersistence;
 	@BeanReference(type = TemplatePersistence.class)
 	protected TemplatePersistence templatePersistence;
+	@BeanReference(type = CompanyPersistence.class)
+	protected CompanyPersistence companyPersistence;
+	@BeanReference(type = GroupPersistence.class)
+	protected GroupPersistence groupPersistence;
+	@BeanReference(type = LayoutPersistence.class)
+	protected LayoutPersistence layoutPersistence;
+	@BeanReference(type = PortletPreferencesPersistence.class)
+	protected PortletPreferencesPersistence portletPreferencesPersistence;
 	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
+	@BeanReference(type = SubscriptionPersistence.class)
+	protected SubscriptionPersistence subscriptionPersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	@BeanReference(type = ExpandoValuePersistence.class)
+	protected ExpandoValuePersistence expandoValuePersistence;
+	@BeanReference(type = MBMessagePersistence.class)
+	protected MBMessagePersistence mbMessagePersistence;
+	@BeanReference(type = SocialActivityPersistence.class)
+	protected SocialActivityPersistence socialActivityPersistence;
 	private static final String _SQL_SELECT_ARTICLE = "SELECT article FROM Article article";
 	private static final String _SQL_SELECT_ARTICLE_WHERE = "SELECT article FROM Article article WHERE ";
 	private static final String _SQL_COUNT_ARTICLE = "SELECT COUNT(article) FROM Article article";

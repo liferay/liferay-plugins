@@ -136,14 +136,6 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			dirName, serviceContext);
 	}
 
-	public void addArticleAttachments(
-		com.liferay.knowledgebase.model.Article article,
-		java.lang.String dirName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.addArticleAttachments(article, dirName);
-	}
-
 	public void addArticleResources(
 		com.liferay.knowledgebase.model.Article article,
 		boolean addCommunityPermissions, boolean addGuestPermissions)
@@ -177,6 +169,13 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		_articleLocalService.checkAttachments();
 	}
 
+	public void deleteArticleAttachments(
+		com.liferay.knowledgebase.model.Article article)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleLocalService.deleteArticleAttachments(article);
+	}
+
 	public void deleteAttachment(long companyId, java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -190,7 +189,7 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 	}
 
 	public com.liferay.knowledgebase.model.Article getArticle(
-		long resourcePrimKey, double version)
+		long resourcePrimKey, int version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.getArticle(resourcePrimKey, version);
@@ -278,14 +277,6 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.updateArticle(userId, resourcePrimKey,
 			parentResourcePrimKey, title, content, description, priority,
 			dirName, serviceContext);
-	}
-
-	public void updateArticleAttachments(
-		com.liferay.knowledgebase.model.Article article,
-		java.lang.String dirName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.updateArticleAttachments(article, dirName);
 	}
 
 	public void updateArticleResources(

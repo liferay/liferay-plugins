@@ -132,16 +132,16 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.knowledgebase.model.Article findByR_V(
-		long resourcePrimKey, double version)
+		long resourcePrimKey, int version)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.knowledgebase.model.Article fetchByR_V(
-		long resourcePrimKey, double version)
+		long resourcePrimKey, int version)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.knowledgebase.model.Article fetchByR_V(
-		long resourcePrimKey, double version, boolean retrieveFromCache)
+		long resourcePrimKey, int version, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.knowledgebase.model.Article> findAll()
@@ -166,7 +166,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	public void removeByResourcePrimKey(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void removeByR_V(long resourcePrimKey, double version)
+	public void removeByR_V(long resourcePrimKey, int version)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -182,7 +182,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	public int countByResourcePrimKey(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countByR_V(long resourcePrimKey, double version)
+	public int countByR_V(long resourcePrimKey, int version)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countAll()

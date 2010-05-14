@@ -71,7 +71,7 @@ public class ArticleServiceWrapper implements ArticleService {
 	}
 
 	public com.liferay.knowledgebase.model.Article getArticle(
-		long resourcePrimKey, double version)
+		long resourcePrimKey, int version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _articleService.getArticle(resourcePrimKey, version);
