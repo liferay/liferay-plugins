@@ -25,11 +25,7 @@
 		float: right;
 		height: 30.5em;
 	}
-/*
-	#controls {
-		width: 34em;
-	}
-*/
+
 	#<portlet:namespace />fm select {
 		padding: 4px;
 	}
@@ -68,13 +64,16 @@
 	#<portlet:namespace />fm .aui-field-select .aui-field-label {
 		display: block;
 	}
+
 	.lfr-panel-container {
 		border: 0;
 	}
+
 	.annotations .aui-field-input,
 	.closed-captioning .aui-field-input {
 		width: 11em;
 	}
+
 	.invisible {
 		visibility: hidden;
 	}
