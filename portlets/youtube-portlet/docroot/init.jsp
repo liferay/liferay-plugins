@@ -49,7 +49,7 @@ String startTime = preferences.getValue("startTime", StringPool.BLANK);
 
 String url = preferences.getValue("url", StringPool.BLANK);
 
-String id = url.replaceAll(".*v=([A-z0-9-]+).*", "$1");
+String id = url.replaceAll("^.*?v=([a-zA-Z0-9_-]+).*$", "$1");
 String imageURL = "http://img.youtube.com/vi/" + id + "/0.jpg";
 String swfURL = "http://www.youtube.com/v/";
 String watchURL = "http://www.youtube.com/watch?v=";

@@ -174,7 +174,7 @@
 			return (hex) ? '0x' + hex.replace('#', '').replace(/^(.)(.)(.)$/, '$1$1$2$2$3$3').toLowerCase() : '';
 		},
 		urlToVideoId = function (url) {
-			return url.replace(/.*v=([A-z0-9-]+).*/, '$1');
+			return url.replace(/^.*?v=([a-zA-Z0-9_-]+).*$/, '$1');
 		},
 		createPlayer = function () {
 			var id = urlToVideoId(urlNode.val()),
