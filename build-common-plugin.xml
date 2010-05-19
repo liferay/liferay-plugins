@@ -760,4 +760,79 @@ Please find a solution that does not require portal-impl.jar.
 			<fileset dir="docroot" />
 		</copy>
 	</target>
+
+	<target name="test">
+		<delete dir="docroot/WEB-INF/test-classes" />
+		<mkdir dir="docroot/WEB-INF/test-classes" />
+
+		<delete dir="docroot/WEB-INF/test-results" />
+		<mkdir dir="docroot/WEB-INF/test-results" />
+
+		<copy todir="docroot/WEB-INF/test-classes">
+			<fileset dir="docroot/WEB-INF/test" includes="**/*.png,**/*.properties,**/*.xml" />
+		</copy>
+
+		<path id="test.classpath">
+			<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
+			<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" excludes="ant.jar" />
+			<fileset dir="${project.dir}/lib" includes="*.jar" />
+			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+			<pathelement location="${app.server.classes.portal.dir}" />
+			<pathelement location="docroot/WEB-INF/classes" />
+			<pathelement location="docroot/WEB-INF/test-classes" />
+		</path>
+
+		<javac
+			classpathref="test.classpath"
+			compiler="${javac.compiler}"
+			debug="${javac.debug}"
+			deprecation="${javac.deprecation}"
+			destdir="docroot/WEB-INF/test-classes"
+			includeAntRuntime="false"
+			nowarn="${javac.nowarn}"
+			srcdir="docroot/WEB-INF/test"
+		/>
+
+		<fileset dir="docroot/WEB-INF/test-classes" id="test.suite.classes">
+			<include name="**/*TestSuite.class" />
+		</fileset>
+
+		<pathconvert
+			property="test.suite.classes.available"
+			refid="test.suite.classes"
+			setonempty="false"
+		/>
+
+		<if>
+			<not>
+				<isset property="test.suite.classes.available" />
+			</not>
+			<then>
+				<junit dir="." fork="on" forkmode="once" printsummary="on">
+					<jvmarg value="-Xmx256m" />
+					<jvmarg value="-Duser.timezone=GMT" />
+					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+					<classpath refid="test.classpath" />
+					<formatter type="brief" usefile="false" />
+					<formatter type="xml" />
+					<batchtest todir="docroot/WEB-INF/test-results">
+						<fileset dir="docroot/WEB-INF/test-classes" includes="**/*Test.class" />
+					</batchtest>
+				</junit>
+			</then>
+			<else>
+				<junit dir="." fork="on" forkmode="once" printsummary="on">
+					<jvmarg value="-Xmx256m" />
+					<jvmarg value="-Duser.timezone=GMT" />
+					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+					<classpath refid="test.classpath" />
+					<formatter type="brief" usefile="false" />
+					<formatter type="xml" />
+					<batchtest todir="docroot/WEB-INF/test-results">
+						<fileset dir="docroot/WEB-INF/test-classes" includes="**/*TestSuite.class" />
+					</batchtest>
+				</junit>
+			</else>
+		</if>
+	</target>
 </project>
