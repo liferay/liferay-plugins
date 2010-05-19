@@ -10,7 +10,6 @@
 
 #signIn {
 	border-bottom: 1px solid #EEF0F2;
-	margin: 0 10px;
 	min-width: 960px;
 	padding: 3px;
 	text-align: right;
@@ -18,6 +17,7 @@
 
 #signIn a {
 	color: #FFF;
+	margin-right: 10px;
 }
 
 #content {
