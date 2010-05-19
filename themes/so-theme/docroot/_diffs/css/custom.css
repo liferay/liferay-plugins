@@ -1508,6 +1508,10 @@ table.calendar {
 	display: none;
 }
 
+.page-maximized .so-portlet-sites th {
+	display: table-cell;
+}
+
 .so-portlet-sites .control-wrapper {
 	margin-top: 1em;
 	position: relative;
