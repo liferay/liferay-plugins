@@ -18,6 +18,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Activities</title>
 			<short-title>Activities</short-title>
@@ -48,6 +49,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Invite Members</title>
 			<short-title>Invite Members</short-title>
@@ -79,6 +81,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Members</title>
 			<short-title>Members</short-title>
@@ -110,6 +113,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Profiles</title>
 			<short-title>Profiles</short-title>
@@ -140,6 +144,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Sites</title>
 			<short-title>Sites</short-title>
