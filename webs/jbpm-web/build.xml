@@ -9,6 +9,7 @@
 
 	<target name="build-samples">
 		<delete dir="samples" />
+		<mkdir dir="samples" />
 
 		<jar
 			basedir="samples"
