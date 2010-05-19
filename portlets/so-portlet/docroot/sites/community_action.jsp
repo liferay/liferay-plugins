@@ -38,6 +38,18 @@ Group group = (Group)row.getObject();
 		%>
 
 		<liferay-ui:icon image="edit" url="<%= taglibEditURL %>" />
+
+		<liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="redirectURL">
+			<portlet:param name="jspPage" value="/sites/view.jsp" />
+		</liferay-portlet:renderURL>
+
+		<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="manageMembersURL">
+			<portlet:param name="jspPage" value="/sites/edit_members.jsp" />
+			<portlet:param name="redirect" value="<%= redirectURL %>" />
+			<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+		</liferay-portlet:renderURL>
+
+		<liferay-ui:icon image="assign" message="manage-members" url="<%= manageMembersURL %>" />
 	</c:if>
 
 	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_TEAMS) %>">
