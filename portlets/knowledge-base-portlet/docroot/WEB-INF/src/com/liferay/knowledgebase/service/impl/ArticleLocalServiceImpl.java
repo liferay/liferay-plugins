@@ -267,26 +267,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Attachments
 
-		deleteArticleAttachments(article);
+		deleteAttachments(article);
 
 		// Subscriptions
 
 		subscriptionLocalService.deleteSubscriptions(
 			article.getCompanyId(), Article.class.getName(),
 			article.getResourcePrimKey());
-	}
-
-	public void deleteArticleAttachments(Article article)
-		throws PortalException, SystemException {
-
-		try {
-			dlService.deleteDirectory(
-				article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
-				CompanyConstants.SYSTEM, article.getAttachmentsDirName());
-		}
-		catch (NoSuchDirectoryException nsde) {
-			_log.error("No directory found for " + nsde.getMessage());
-		}
 	}
 
 	public void deleteAttachment(long companyId, String fileName)
@@ -642,6 +629,19 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			dirName);
 	}
 
+	protected void deleteAttachments(Article article)
+		throws PortalException, SystemException {
+
+		try {
+			dlService.deleteDirectory(
+				article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+				CompanyConstants.SYSTEM, article.getAttachmentsDirName());
+		}
+		catch (NoSuchDirectoryException nsde) {
+			_log.error("No directory found for " + nsde.getMessage());
+		}
+	}
+
 	protected DynamicQuery getDynamicQuery(Map<String, Long> params) {
 		DynamicQuery subselectDynamicQuery = DynamicQueryFactoryUtil.forClass(
 			Article.class, "article2", PortletClassLoaderUtil.getClassLoader());
@@ -961,14 +961,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			return;
 		}
 
-		try {
-			dlService.deleteDirectory(
-				article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
-				CompanyConstants.SYSTEM, article.getAttachmentsDirName());
-		}
-		catch (NoSuchDirectoryException nsde) {
-			_log.error("No directory found for " + nsde.getMessage());
-		}
+		deleteAttachments(article);
 
 		addAttachments(article, dirName);
 	}
