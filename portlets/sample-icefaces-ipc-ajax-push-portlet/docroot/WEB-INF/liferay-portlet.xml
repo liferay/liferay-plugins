@@ -5,14 +5,10 @@
 	<portlet>
 		<portlet-name>sample_icefaces_ipc_customers_portlet</portlet-name>
 		<instanceable>true</instanceable>
-		<render-weight>1</render-weight>
-		<ajaxable>false</ajaxable>
 	</portlet>
 	<portlet>
 		<portlet-name>sample_icefaces_ipc_bookings_portlet</portlet-name>
 		<instanceable>true</instanceable>
-		<render-weight>1</render-weight>
-		<ajaxable>false</ajaxable>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

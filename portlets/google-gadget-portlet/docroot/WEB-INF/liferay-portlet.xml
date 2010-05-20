@@ -7,8 +7,6 @@
 		<icon>/icon.png</icon>
 		<configuration-action-class>com.liferay.googlegadget.action.ConfigurationActionImpl</configuration-action-class>
 		<instanceable>true</instanceable>
-		<render-weight>1</render-weight>
-		<ajaxable>false</ajaxable>
 		<css-class-wrapper>google-gadget-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>

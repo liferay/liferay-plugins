@@ -28,7 +28,6 @@
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
-
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 
 <%@ page import="javax.portlet.PortletPreferences" %>
@@ -77,6 +76,4 @@ String url = preferences.getValue("url", StringPool.BLANK);
 String urlSort = preferences.getValue("urlSort", "promote_date-desc");
 String userUsername = preferences.getValue("userUsername", StringPool.BLANK);
 String width = preferences.getValue("width", StringPool.BLANK);
-
-String widgetDim = "height:" + height + "px;width:" + width + "px;";
 %>

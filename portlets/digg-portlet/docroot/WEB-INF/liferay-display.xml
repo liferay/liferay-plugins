@@ -3,6 +3,6 @@
 
 <display>
 	<category name="category.news">
-		<portlet id="digg" />
+		<portlet id="1" />
 	</category>
 </display>

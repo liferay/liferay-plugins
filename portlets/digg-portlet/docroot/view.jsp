@@ -16,7 +16,7 @@
 
 <%@ include file="init.jsp" %>
 
-<div class="digg-widget" id="<portlet:namespace />digg-widget" style="<%= widgetDim %>"></div>
+<div class="digg-widget" id="<portlet:namespace />digg-widget" style="height: <%= height %>px; width: <%= width %>px;""></div>
 
 <aui:script>
 	(function (newsType) {
@@ -89,7 +89,7 @@
 				break;
 		}
 
-		if (window.DiggWidget && typeof DiggWidget == 'function') {
+		if (window.DiggWidget && (typeof DiggWidget == 'function')) {
 			new DiggWidget(config);
 		}
 	}('<%= newsType %>'));

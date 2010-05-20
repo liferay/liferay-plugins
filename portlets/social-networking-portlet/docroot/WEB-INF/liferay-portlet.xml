@@ -38,7 +38,6 @@
 	<portlet>
 		<portlet-name>6</portlet-name>
 		<friendly-url-mapper-class>com.liferay.socialnetworking.map.portlet.MapFriendlyURLMapper</friendly-url-mapper-class>
-		<ajaxable>false</ajaxable>
 		<css-class-wrapper>social-networking-portlet-map</css-class-wrapper>
 	</portlet>
 	<portlet>

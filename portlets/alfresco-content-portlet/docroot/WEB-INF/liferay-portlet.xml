@@ -9,7 +9,6 @@
 		<open-search-class>com.liferay.alfrescocontent.util.AlfrescoOpenSearchImpl</open-search-class>
 		<layout-cacheable>true</layout-cacheable>
 		<instanceable>true</instanceable>
-		<render-weight>1</render-weight>
 		<header-portlet-css>/portlet.css</header-portlet-css>
 		<css-class-wrapper>alfresco-content-portlet</css-class-wrapper>
 	</portlet>
