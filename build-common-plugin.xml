@@ -433,9 +433,6 @@ Please find a solution that does not require portal-impl.jar.
 			<fileset dir="docroot/WEB-INF/client/classes" />
 			<fileset dir="docroot/WEB-INF/client/src" />
 		</jar>
-
-		<delete dir="docroot/WEB-INF/client/classes" />
-		<delete dir="docroot/WEB-INF/client/src" />
 	</target>
 
 	<target name="build-javascript-cmd">
