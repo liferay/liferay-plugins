@@ -42,7 +42,10 @@
 	width: 205px;
 	overflow-x: hidden;
 	overflow-y: auto;
-	position: relative;
+}
+
+.ie6 .so-portlet-invite-members .search {
+	background-image: none;
 }
 
 .so-portlet-invite-members .user-search-wrapper {
@@ -113,6 +116,12 @@
 	list-style-type: none;
 	padding: 2px 5px 2px 18px;
 	white-space: nowrap;
+}
+
+.ie6 .so-portlet-invite-members .user,
+.ie6 .so-portlet-invite-members .invited {
+	border-top: 1px solid #FFF;
+	border-bottom: 1px solid #FFF;
 }
 
 .so-portlet-invite-members .user-invited .user,

@@ -885,6 +885,10 @@ body #banner h1.logo a {
 	float: right;
 }
 
+.ie6 .portlet-calendar .event-selector .aui-field-content {
+	display: inline;
+}
+
 .portlet-calendar .day-grid {
 	border-top: 2px solid #CCC;
 	margin-left: 50px;
