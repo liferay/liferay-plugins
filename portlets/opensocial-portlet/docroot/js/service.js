@@ -1,0 +1,1 @@
+Liferay.Service.register("Liferay.Service.OpenSocial", "com.liferay.opensocial.service");
