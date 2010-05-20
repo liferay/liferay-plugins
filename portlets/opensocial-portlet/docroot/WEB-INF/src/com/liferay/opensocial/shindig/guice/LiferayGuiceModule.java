@@ -16,6 +16,7 @@ package com.liferay.opensocial.shindig.guice;
 
 import com.google.inject.name.Names;
 
+import com.liferay.opensocial.shindig.service.LiferayActivityService;
 import com.liferay.opensocial.shindig.service.LiferayAppDataService;
 import com.liferay.opensocial.shindig.service.LiferayPersonService;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
@@ -24,10 +25,10 @@ import org.apache.shindig.social.core.config.SocialApiGuiceModule;
 import org.apache.shindig.social.opensocial.oauth.OAuthDataStore;
 import org.apache.shindig.social.opensocial.spi.ActivityService;
 import org.apache.shindig.social.opensocial.spi.AppDataService;
+import org.apache.shindig.social.opensocial.spi.MessageService.NotImplementedMessageService;
 import org.apache.shindig.social.opensocial.spi.MessageService;
 import org.apache.shindig.social.opensocial.spi.PersonService;
 import org.apache.shindig.social.sample.oauth.SampleOAuthDataStore;
-import org.apache.shindig.social.sample.spi.JsonDbOpensocialService;
 
 /**
  * <a href="LiferayGuiceModule.java.html"><b><i>View Source</i></b></a>
@@ -43,9 +44,9 @@ public class LiferayGuiceModule extends SocialApiGuiceModule {
 			Names.named("shindig.canonical.json.db")).toInstance(
 				"sampledata/canonicaldb.json");
 
-		bind(ActivityService.class).to(JsonDbOpensocialService.class);
+		bind(ActivityService.class).to(LiferayActivityService.class);
 		bind(AppDataService.class).to(LiferayAppDataService.class);
-		bind(MessageService.class).to(JsonDbOpensocialService.class);
+		bind(MessageService.class).to(NotImplementedMessageService.class);
 		bind(OAuthDataStore.class).to(SampleOAuthDataStore.class);
 		bind(PersonService.class).to(LiferayPersonService.class);
 
