@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" path="docroot/WEB-INF/src"/>
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/wicket-1.4.7.jar"/>
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/slf4j-api-1.5.8.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/portal/portal-service/portal-service.jar"/>
-	<classpathentry kind="output" path="docroot/WEB-INF/classes"/>
-</classpath>
