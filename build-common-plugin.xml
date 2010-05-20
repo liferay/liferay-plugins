@@ -386,55 +386,6 @@ Please find a solution that does not require portal-impl.jar.
 		<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
 	</target>
 
-	<target name="build-client">
-		<property name="client.url" value="http://localhost:8080/${plugin.name}/axis" />
-
-		<echo message="Make sure the server is listening on ${client.url}." />
-		<echo message="" />
-
-		<delete dir="docroot/WEB-INF/client/src" />
-		<mkdir dir="docroot/WEB-INF/client/src" />
-
-		<java
-			classname="com.liferay.portal.tools.PortalClientBuilder"
-			classpathref="portal.classpath"
-			failonerror="true"
-			fork="true"
-			newenvironment="true"
-		>
-			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<arg value="docroot/WEB-INF/server-config.wsdd" />
-			<arg value="docroot/WEB-INF/client/src" />
-			<arg value="docroot/WEB-INF/client/namespace-mapping.properties" />
-			<arg value="${client.url}" />
-		</java>
-
-		<delete dir="docroot/WEB-INF/client/classes" />
-		<mkdir dir="docroot/WEB-INF/client/classes" />
-
-		<copy todir="docroot/WEB-INF/client/classes">
-			<fileset dir="docroot/WEB-INF/client/src" excludes="**/*.java" />
-		</copy>
-
-		<javac
-			classpathref="portal.classpath"
-			compiler="${javac.compiler}"
-			debug="${javac.debug}"
-			deprecation="${javac.deprecation}"
-			destdir="docroot/WEB-INF/client/classes"
-			includeAntRuntime="false"
-			nowarn="${javac.nowarn}"
-			srcdir="docroot/WEB-INF/client/src"
-		/>
-
-		<delete file="docroot/WEB-INF/lib/${plugin.name}-client.jar" />
-
-		<jar jarfile="docroot/WEB-INF/lib/${plugin.name}-client.jar">
-			<fileset dir="docroot/WEB-INF/client/classes" />
-			<fileset dir="docroot/WEB-INF/client/src" />
-		</jar>
-	</target>
-
 	<target name="build-javascript-cmd">
 		<java
 			classname="com.yahoo.platform.yui.compressor.YUICompressor"
