@@ -539,30 +539,21 @@ public class WSRPConsumerPortletLocalServiceClp
 		}
 	}
 
-	public void destroyWSRPConsumerPortlet(
-		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(wsrpConsumerPortlet);
+	public void destroyWSRPConsumerPortlet(long wsrpConsumerPortletId,
+		java.lang.String url) {
+		Object paramObj0 = new LongWrapper(wsrpConsumerPortletId);
 
-		if (wsrpConsumerPortlet == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.wsrp.model.WSRPConsumerPortlet");
+		Object paramObj1 = ClpSerializer.translateInput(url);
+
+		if (url == null) {
+			paramObj1 = new NullWrapper("java.lang.String");
 		}
 
 		try {
 			_classLoaderProxy.invoke("destroyWSRPConsumerPortlet",
-				new Object[] { paramObj0 });
+				new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -697,27 +688,41 @@ public class WSRPConsumerPortletLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
-	public void initWSRPConsumerPortlet(
-		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet,
-		java.lang.String userToken)
+	public void initWSRPConsumerPortlet(long companyId, long wsrpConsumerId,
+		long wsrpConsumerPortletId, java.lang.String name,
+		java.lang.String portletHandle, java.lang.String userToken)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(wsrpConsumerPortlet);
+		Object paramObj0 = new LongWrapper(companyId);
 
-		if (wsrpConsumerPortlet == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.wsrp.model.WSRPConsumerPortlet");
+		Object paramObj1 = new LongWrapper(wsrpConsumerId);
+
+		Object paramObj2 = new LongWrapper(wsrpConsumerPortletId);
+
+		Object paramObj3 = ClpSerializer.translateInput(name);
+
+		if (name == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj1 = ClpSerializer.translateInput(userToken);
+		Object paramObj4 = ClpSerializer.translateInput(portletHandle);
+
+		if (portletHandle == null) {
+			paramObj4 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj5 = ClpSerializer.translateInput(userToken);
 
 		if (userToken == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
+			paramObj5 = new NullWrapper("java.lang.String");
 		}
 
 		try {
 			_classLoaderProxy.invoke("initWSRPConsumerPortlet",
-				new Object[] { paramObj0, paramObj1 });
+				new Object[] {
+					paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+					paramObj5
+				});
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {

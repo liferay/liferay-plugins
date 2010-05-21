@@ -12,24 +12,20 @@
  * details.
  */
 
-package com.liferay.wsrp.portlet;
+package com.liferay.wsrp.messaging;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
-import com.liferay.portal.kernel.util.Base64;
-import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
 /**
- * <a href="WSRPRepositoryMessageListener.java.html"><b><i>View Source</i></b>
- * </a>
+ * <a href="WSRPMessageListener.java.html"><b><i>View Source</i></b></a>
  *
  * @author Hugo Huijser
  */
-public class WSRPRepositoryMessageListener implements MessageListener {
+public class WSRPMessageListener implements MessageListener {
 
 	public void receive(Message message){
 		try {
@@ -41,29 +37,31 @@ public class WSRPRepositoryMessageListener implements MessageListener {
 	}
 
 	protected void doReceive(Message message) throws Exception {
-		String wsrpConsumerPortletInfo =
-			(String)message.get("wsrpConsumerPortlet");
-
-		String command = (String)message.get("command");
-
-		WSRPConsumerPortlet wsrpConsumerPortlet =
-			(WSRPConsumerPortlet)Base64.stringToObject(
-				wsrpConsumerPortletInfo,
-				PortletClassLoaderUtil.getClassLoader());
+		String command = message.getString("command");
 
 		if (command.equals("add")) {
-			String userToken = (String)message.get("userToken");
+			long companyId = message.getLong("companyId");
+			String name = message.getString("name");
+			String portletHandle = message.getString("portletHandle");
+			String userToken = message.getString("userToken");
+			long wsrpConsumerId = message.getLong("wsrpConsumerId");
+			long wsrpConsumerPortletId = message.getLong(
+				"wsrpConsumerPortletId");
 
 			WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlet(
-				wsrpConsumerPortlet, userToken);
+				companyId, wsrpConsumerId, wsrpConsumerPortletId, name,
+				portletHandle, userToken);
 		}
 		else if (command.equals("delete")) {
+			String url = message.getString("url");
+			long wsrpConsumerPortletId = message.getLong(
+				"wsrpConsumerPortletId");
+
 			WSRPConsumerPortletLocalServiceUtil.destroyWSRPConsumerPortlet(
-				wsrpConsumerPortlet);
+				wsrpConsumerPortletId, url);
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		WSRPRepositoryMessageListener.class);
+	private static Log _log = LogFactoryUtil.getLog(WSRPMessageListener.class);
 
 }

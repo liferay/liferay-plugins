@@ -96,10 +96,10 @@ public class WSRPConsumerLocalServiceImpl
 	public void deleteWSRPConsumer(WSRPConsumer wsrpConsumer)
 		throws PortalException, SystemException {
 
+		wsrpConsumerPersistence.remove(wsrpConsumer);
+
 		wsrpConsumerPortletLocalService.deleteWSRPConsumerPortlets(
 			wsrpConsumer.getWsrpConsumerId());
-
-		wsrpConsumerPersistence.remove(wsrpConsumer);
 	}
 
 	public List<WSRPConsumer> getWSRPConsumers(
