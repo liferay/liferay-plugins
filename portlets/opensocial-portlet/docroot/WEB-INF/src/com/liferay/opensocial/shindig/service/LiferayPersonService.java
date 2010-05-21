@@ -111,7 +111,7 @@ public class LiferayPersonService implements PersonService {
 
 	protected RestfulCollection<Person> doGetPeople(
 			Set<UserId> userIds, GroupId groupId,
-			CollectionOptions collectionOptions, Set<String> fields,
+			CollectionOptions collectionsOptions, Set<String> fields,
 			SecurityToken securityToken)
 		throws Exception {
 
@@ -150,8 +150,8 @@ public class LiferayPersonService implements PersonService {
 		}
 
 		return new RestfulCollection<Person>(
-			people, collectionOptions.getFirst(), people.size(),
-			collectionOptions.getMax());
+			people, collectionsOptions.getFirst(), people.size(),
+			collectionsOptions.getMax());
 	}
 
 	protected Person doGetPerson(
