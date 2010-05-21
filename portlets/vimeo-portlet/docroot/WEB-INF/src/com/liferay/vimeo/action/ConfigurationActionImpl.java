@@ -1,0 +1,98 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.vimeo.action;
+
+import com.liferay.portal.kernel.portlet.ConfigurationAction;
+import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portlet.PortletPreferencesFactoryUtil;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.PortletConfig;
+import javax.portlet.PortletPreferences;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+
+/**
+ * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author David Truong
+ *
+ */
+public class ConfigurationActionImpl implements ConfigurationAction {
+
+	public void processAction(
+			PortletConfig portletConfig, ActionRequest actionRequest,
+			ActionResponse actionResponse)
+		throws Exception {
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		if (!cmd.equals(Constants.UPDATE)) {
+			return;
+		}
+
+		boolean autoplay = ParamUtil.getBoolean(actionRequest, "autoplay");
+		boolean enableFullscreen = ParamUtil.getBoolean(
+			actionRequest, "enableFullscreen");
+		boolean showByline = ParamUtil.getBoolean(actionRequest, "showByline");
+		boolean showPortrait = ParamUtil.getBoolean(
+			actionRequest, "showPortrait");
+		boolean showTitle = ParamUtil.getBoolean(actionRequest, "showTitle");
+
+		String annotations = ParamUtil.getString(actionRequest, "annotations");
+		String borderColor = ParamUtil.getString(actionRequest, "borderColor");
+		String height = ParamUtil.getString(actionRequest, "height");
+		String playerColor = ParamUtil.getString(actionRequest, "playerColor");
+		String startTime = ParamUtil.getString(actionRequest, "startTime");
+		String url = ParamUtil.getString(actionRequest, "url");
+		String width = ParamUtil.getString(actionRequest, "width");
+
+		String portletResource = ParamUtil.getString(
+			actionRequest, "portletResource");
+
+		PortletPreferences preferences =
+			PortletPreferencesFactoryUtil.getPortletSetup(
+				actionRequest, portletResource);
+
+		preferences.setValue("autoplay", String.valueOf(autoplay));
+		preferences.setValue(
+			"enableFullscreen", String.valueOf(enableFullscreen));
+		preferences.setValue("showByline", String.valueOf(showByline));
+		preferences.setValue("showPortrait", String.valueOf(showPortrait));
+		preferences.setValue("showTitle", String.valueOf(showTitle));
+
+		preferences.setValue("height", height);
+		preferences.setValue("playerColor", playerColor);
+		preferences.setValue("url", url);
+		preferences.setValue("width", width);
+
+		preferences.store();
+
+		SessionMessages.add(
+			actionRequest, portletConfig.getPortletName() + ".doConfigure");
+	}
+
+	public String render(
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
+		throws Exception {
+
+		return "/configuration.jsp";
+	}
+
+}
