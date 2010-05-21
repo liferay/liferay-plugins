@@ -592,7 +592,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
-	private static final String _NAMESPACE = "admin";
+	private static final String _NAMESPACE = "knowledge_base";
 
 	private static final String _NAMESPACE_ARTICLE = "knowledge_base_article";
 
