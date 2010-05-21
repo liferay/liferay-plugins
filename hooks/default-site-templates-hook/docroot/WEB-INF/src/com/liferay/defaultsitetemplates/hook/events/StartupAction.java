@@ -66,7 +66,8 @@ public class StartupAction extends SimpleAction {
 		throws Exception {
 
 		Layout layout = addLayoutPrototype(
-			companyId, defaultUserId, "Blog", "Blog Description",
+			companyId, defaultUserId, "Blog", "Post a blog entry, visit " +
+			"recent bloggers' entries and navigate using tags.",
 			"2_columns_iii", layoutPrototypes);
 
 		if (layout == null) {
@@ -84,8 +85,9 @@ public class StartupAction extends SimpleAction {
 		throws Exception {
 
 		Layout layout = addLayoutPrototype(
-			companyId, defaultUserId, "Content", "Content Description",
-			"2_columns_ii", layoutPrototypes);
+			companyId, defaultUserId, "Content", "Published content is " +
+			"accessible here, where users can search and navigate through " +
+			"tags and categories.", "2_columns_ii", layoutPrototypes);
 
 		if (layout == null) {
 			return;
@@ -205,7 +207,9 @@ public class StartupAction extends SimpleAction {
 		throws Exception {
 
 		LayoutSet layoutSet = addLayoutSetPrototype(
-			companyId, defaultUserId, "Private", "Private Description",
+			companyId, defaultUserId, "Personal site", "Personal place to " +
+			"manage your documents and images, follow your upcoming events " +
+			"in the calendar, search the directory or see the announcements.",
 			layoutSetPrototypes);
 
 		if (layoutSet == null) {
@@ -266,8 +270,9 @@ public class StartupAction extends SimpleAction {
 		throws Exception {
 
 		LayoutSet layoutSet = addLayoutSetPrototype(
-			companyId, defaultUserId, "Public", "Public Description",
-			layoutSetPrototypes);
+			companyId, defaultUserId, "Social Collaboration", "A suite of " +
+			"social collaboration tools including blogs, polls, wiki, and " +
+			"message boards.", layoutSetPrototypes);
 
 		if (layoutSet == null) {
 			return;
@@ -312,8 +317,9 @@ public class StartupAction extends SimpleAction {
 		throws Exception {
 
 		Layout layout = addLayoutPrototype(
-			companyId, defaultUserId, "Wiki", "Wiki Description",
-			"2_columns_iii", layoutPrototypes);
+			companyId, defaultUserId, "Wiki", "Share your knowledge with the " +
+			"rest of the users through the wiki and navigate using tags " +
+			"and categories.", "2_columns_iii", layoutPrototypes);
 
 		if (layout == null) {
 			return;
