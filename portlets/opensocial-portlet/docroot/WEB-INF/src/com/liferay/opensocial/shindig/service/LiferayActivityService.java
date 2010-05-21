@@ -172,7 +172,7 @@ public class LiferayActivityService implements ActivityService {
 
 	public RestfulCollection<Activity> doGetActivities(
 			Set<UserId> userIds, GroupId groupId, String appId,
-			Set<String> fields, CollectionOptions collectionsOptions,
+			Set<String> fields, CollectionOptions collectionOptions,
 			SecurityToken securityToken)
 		throws Exception {
 
@@ -191,13 +191,13 @@ public class LiferayActivityService implements ActivityService {
 		}
 
 		return new RestfulCollection<Activity>(
-			activities, collectionsOptions.getFirst(), activities.size(),
-			collectionsOptions.getMax());
+			activities, collectionOptions.getFirst(), activities.size(),
+			collectionOptions.getMax());
 	}
 
 	public RestfulCollection<Activity> doGetActivities(
 			UserId userId, GroupId groupId, String appId, Set<String> fields,
-			CollectionOptions collectionsOptions, Set<String> activityIds,
+			CollectionOptions collectionOptions, Set<String> activityIds,
 			SecurityToken securityToken)
 		throws Exception {
 
@@ -208,8 +208,8 @@ public class LiferayActivityService implements ActivityService {
 		List<Activity> activities = getActivities(themeDisplay, userIdLong);
 
 		return new RestfulCollection<Activity>(
-			activities, collectionsOptions.getFirst(), activities.size(),
-			collectionsOptions.getMax());
+			activities, collectionOptions.getFirst(), activities.size(),
+			collectionOptions.getMax());
 	}
 
 	public Activity doGetActivity(
