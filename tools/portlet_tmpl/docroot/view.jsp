@@ -18,4 +18,4 @@
 
 <portlet:defineObjects />
 
-This is the <b>@portlet.display.name@</b>.
+This is the <b>@portlet.display.name@</b> portlet.
