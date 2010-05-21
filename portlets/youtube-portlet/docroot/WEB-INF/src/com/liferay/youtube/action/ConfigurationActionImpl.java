@@ -46,39 +46,40 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			return;
 		}
 
-		boolean autoplay = ParamUtil.getBoolean(actionRequest, "autoplay");
-		boolean enableEnhancedGenieMenu = ParamUtil.getBoolean(
-			actionRequest, "enableEnhancedGenieMenu");
-		boolean enableFullscreen = ParamUtil.getBoolean(
-			actionRequest, "enableFullscreen");
-		boolean enableKeyboardControls = ParamUtil.getBoolean(
-			actionRequest, "enableKeyboardControls");
-		boolean enableRelatedVideos = ParamUtil.getBoolean(
-			actionRequest, "enableRelatedVideos");
-		boolean enableSearch = ParamUtil.getBoolean(
-			actionRequest, "enableSearch");
-		boolean hd = ParamUtil.getBoolean(actionRequest, "hd");
-		boolean loop = ParamUtil.getBoolean(actionRequest, "loop");
-		boolean showInfo = ParamUtil.getBoolean(actionRequest, "showInfo");
-		boolean showThickerBorder = ParamUtil.getBoolean(
-			actionRequest, "showThickerBorder");
-
 		String annotations = ParamUtil.getString(actionRequest, "annotations");
+		boolean autoplay = ParamUtil.getBoolean(actionRequest, "autoplay");
 		String borderColor = ParamUtil.getString(actionRequest, "borderColor");
+		boolean enableEnhancedGenieMenu =
+			ParamUtil.getBoolean(actionRequest, "enableEnhancedGenieMenu");
+		boolean enableFullscreen =
+			ParamUtil.getBoolean(actionRequest, "enableFullscreen");
+		boolean enableKeyboardControls =
+			ParamUtil.getBoolean(actionRequest, "enableKeyboardControls");
+		boolean enableRelatedVideos =
+			ParamUtil.getBoolean(actionRequest, "enableRelatedVideos");
+		boolean enableSearch =
+			ParamUtil.getBoolean(actionRequest, "enableSearch");
+		boolean hd = ParamUtil.getBoolean(actionRequest, "hd");
 		String height = ParamUtil.getString(actionRequest, "height");
+		boolean loop = ParamUtil.getBoolean(actionRequest, "loop");
 		String playerColor = ParamUtil.getString(actionRequest, "playerColor");
+		boolean showInfo = ParamUtil.getBoolean(actionRequest, "showInfo");
+		boolean showThickerBorder =
+			ParamUtil.getBoolean(actionRequest, "showThickerBorder");
 		String startTime = ParamUtil.getString(actionRequest, "startTime");
 		String url = ParamUtil.getString(actionRequest, "url");
 		String width = ParamUtil.getString(actionRequest, "width");
 
-		String portletResource = ParamUtil.getString(
-			actionRequest, "portletResource");
+		String portletResource =
+			ParamUtil.getString(actionRequest, "portletResource");
 
 		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				actionRequest, portletResource);
 
+		preferences.setValue("annotations", annotations);
 		preferences.setValue("autoplay", String.valueOf(autoplay));
+		preferences.setValue("borderColor", borderColor);
 		preferences.setValue(
 			"enableEnhancedGenieMenu", String.valueOf(enableEnhancedGenieMenu));
 		preferences.setValue(
@@ -89,15 +90,12 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			"enableRelatedVideos", String.valueOf(enableRelatedVideos));
 		preferences.setValue("enableSearch", String.valueOf(enableSearch));
 		preferences.setValue("hd", String.valueOf(hd));
+		preferences.setValue("height", height);
 		preferences.setValue("loop", String.valueOf(loop));
+		preferences.setValue("playerColor", playerColor);
 		preferences.setValue("showInfo", String.valueOf(showInfo));
 		preferences.setValue(
 			"showThickerBorder", String.valueOf(showThickerBorder));
-
-		preferences.setValue("annotations", annotations);
-		preferences.setValue("borderColor", borderColor);
-		preferences.setValue("height", height);
-		preferences.setValue("playerColor", playerColor);
 		preferences.setValue("startTime", startTime);
 		preferences.setValue("url", url);
 		preferences.setValue("width", width);
