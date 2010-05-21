@@ -14,53 +14,6 @@ DiggPortletWidget = function () {
 };
 
 DiggPortletWidget.prototype = {
-	createInterval: function () {
-		var instance = this;
-
-		window.clearInterval(instance.intervalTask);
-
-		instance.intervalTask = window.setInterval(
-			function () {
-				instance.createScript.apply(instance);
-			},
-			instance.intervalTime
-		);
-	},
-	createScript: function () {
-		var instance = this;
-
-		instance.nodes.head = instance.nodes.head || document.getElementsByTagName('head')[0];
-
-		if (instance.nodes.script && instance.nodes.script.parentNode) {
-			instance.nodes.head.removeChild(instance.nodes.script);
-		}
-
-		instance.nodes.script = document.createElement('script');
-
-		instance.nodes.script.setAttribute('src', instance.createScriptURL());
-
-		instance.nodes.head.appendChild(instance.nodes.script);
-	},
-	createParams: function () {
-		var instance = this,
-			query = instance.query,
-			queryArray = [],
-			i,
-			ii;
-
-		for (i in query) {
-			if (query[i] || query[i] == '') {
-				queryArray.push(i + '=' + encodeURIComponent(query[i]));
-			}
-		}
-
-		return queryArray.join('&')
-	},
-	createScriptURL: function () {
-		var instance = this;
-
-		return ['http://widgets.digg.com/widgets/stories?endPoint=/1.0/endpoint&', instance.createParams(), '&type=javascript&size=a&callback=', instance.callbackName, '.callback', '#', (new Date()).getTime()].join('');
-	},
 	callback: function (response) {
 		var instance = this;
 
@@ -147,6 +100,53 @@ DiggPortletWidget.prototype = {
 		var ret = week || day || hr || min || sec;
 
 		return 'about ' + ret + ' ' + ((week & (ret = week)) ? 'week' : (day & (ret = day)) ? 'day' : (hr & (ret = hr)) ? 'hour' : (min && (ret = min)) ? 'minute' : (sec && (ret = sec)) ? 'second' : '') + ((ret > 1) ? 's' : '') + ' ago';
+	},
+	createInterval: function () {
+		var instance = this;
+
+		window.clearInterval(instance.intervalTask);
+
+		instance.intervalTask = window.setInterval(
+			function () {
+				instance.createScript.apply(instance);
+			},
+			instance.intervalTime
+		);
+	},
+	createParams: function () {
+		var instance = this,
+			query = instance.query,
+			queryArray = [],
+			i,
+			ii;
+
+		for (i in query) {
+			if (query[i] || query[i] == '') {
+				queryArray.push(i + '=' + encodeURIComponent(query[i]));
+			}
+		}
+
+		return queryArray.join('&')
+	},
+	createScript: function () {
+		var instance = this;
+
+		instance.nodes.head = instance.nodes.head || document.getElementsByTagName('head')[0];
+
+		if (instance.nodes.script && instance.nodes.script.parentNode) {
+			instance.nodes.head.removeChild(instance.nodes.script);
+		}
+
+		instance.nodes.script = document.createElement('script');
+
+		instance.nodes.script.setAttribute('src', instance.createScriptURL());
+
+		instance.nodes.head.appendChild(instance.nodes.script);
+	},
+	createScriptURL: function () {
+		var instance = this;
+
+		return ['http://widgets.digg.com/widgets/stories?endPoint=/1.0/endpoint&', instance.createParams(), '&type=javascript&size=a&callback=', instance.callbackName, '.callback', '#', (new Date()).getTime()].join('');
 	},
 	render: function (options) {
 		var instance = this;
