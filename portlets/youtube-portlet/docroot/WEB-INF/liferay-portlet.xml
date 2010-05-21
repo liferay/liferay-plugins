@@ -6,8 +6,6 @@
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<instanceable>true</instanceable>
-		<header-portlet-css>/css/main.css</header-portlet-css>
-		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>youtube-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
