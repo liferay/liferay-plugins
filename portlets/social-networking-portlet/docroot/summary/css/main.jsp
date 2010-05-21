@@ -65,7 +65,7 @@
 }
 
 .social-networking-portlet-summary .summary-container .user-twitter-link {
-	background: url(<%= request.getContextPath() %>/summary/images/twitter.png) no-repeat 0 50%;
+	background: url(../images/twitter.png) no-repeat 0 50%;
 	padding-left: 18px;
 }
 

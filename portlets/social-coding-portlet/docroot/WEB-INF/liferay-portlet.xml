@@ -16,7 +16,7 @@
 		</scheduler-entry>
 		<friendly-url-mapper-class>com.liferay.socialcoding.svn.portlet.SVNFriendlyURLMapper</friendly-url-mapper-class>
 		<social-activity-interpreter-class>com.liferay.socialcoding.svn.social.SVNActivityInterpreter</social-activity-interpreter-class>
-		<header-portlet-css>/svn/css/main.jsp</header-portlet-css>
+		<header-portlet-css>/svn/css/main.css</header-portlet-css>
 		<css-class-wrapper>social-coding-portlet-svn</css-class-wrapper>
 	</portlet>
 	<portlet>
@@ -32,7 +32,7 @@
 			</trigger>
 		</scheduler-entry>
 		<social-activity-interpreter-class>com.liferay.socialcoding.jira.social.JIRAActivityInterpreter</social-activity-interpreter-class>
-		<header-portlet-css>/jira/css/main.jsp</header-portlet-css>
+		<header-portlet-css>/jira/css/main.css</header-portlet-css>
 		<css-class-wrapper>social-coding-portlet-jira</css-class-wrapper>
 	</portlet>
 	<role-mapper>
