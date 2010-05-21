@@ -340,8 +340,6 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 
 	<aui:button-row>
 		<aui:button type="submit" />
-
-		<aui:button onclick="<%= redirect %>" type="cancel" />
 	</aui:button-row>
 </aui:form>
 
