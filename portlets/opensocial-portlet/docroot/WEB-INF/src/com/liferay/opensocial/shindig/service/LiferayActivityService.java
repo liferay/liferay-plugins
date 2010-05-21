@@ -298,26 +298,6 @@ public class LiferayActivityService implements ActivityService {
 		return mediaItems;
 	}
 
-	protected JSONArray getMediaItems(List<MediaItem> mediaItems) {
-		if (mediaItems == null) {
-			return null;
-		}
-
-		JSONArray mediaItemsJSONArray = JSONFactoryUtil.createJSONArray();
-
-		for (MediaItem mediaItem : mediaItems) {
-			JSONObject mediaItemJSON = JSONFactoryUtil.createJSONObject();
-
-			mediaItemJSON.put("mimeType", mediaItem.getMimeType());
-			mediaItemJSON.put("type", mediaItem.getType().toString());
-			mediaItemJSON.put("url", mediaItem.getUrl());
-
-			mediaItemsJSONArray.put(mediaItemJSON);
-		}
-
-		return mediaItemsJSONArray;
-	}
-
 	protected List<Activity> getActivities(
 			ThemeDisplay themeDisplay, long userId)
 		throws Exception {
@@ -457,6 +437,26 @@ public class LiferayActivityService implements ActivityService {
 		}
 
 		return activity;
+	}
+
+	protected JSONArray getMediaItems(List<MediaItem> mediaItems) {
+		if (mediaItems == null) {
+			return null;
+		}
+
+		JSONArray mediaItemsJSONArray = JSONFactoryUtil.createJSONArray();
+
+		for (MediaItem mediaItem : mediaItems) {
+			JSONObject mediaItemJSON = JSONFactoryUtil.createJSONObject();
+
+			mediaItemJSON.put("mimeType", mediaItem.getMimeType());
+			mediaItemJSON.put("type", mediaItem.getType().toString());
+			mediaItemJSON.put("url", mediaItem.getUrl());
+
+			mediaItemsJSONArray.put(mediaItemJSON);
+		}
+
+		return mediaItemsJSONArray;
 	}
 
 	protected Map<String, String> getTemplateParams(JSONArray jsonArray) {
