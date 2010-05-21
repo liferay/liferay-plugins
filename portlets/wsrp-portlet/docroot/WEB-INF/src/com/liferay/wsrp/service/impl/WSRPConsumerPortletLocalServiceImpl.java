@@ -17,8 +17,11 @@ package com.liferay.wsrp.service.impl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
+import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -95,7 +98,14 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		wsrpConsumerPortletPersistence.update(wsrpConsumerPortlet, false);
 
-		initWSRPConsumerPortlet(wsrpConsumerPortlet, userToken);
+		Message message = new Message();
+
+		message.put("command", "add");
+		message.put(
+			"wsrpConsumerPortlet", Base64.objectToString(wsrpConsumerPortlet));
+		message.put("userToken", userToken);
+
+		MessageBusUtil.sendMessage(_WSRP_REPOSITORY, message);
 
 		return wsrpConsumerPortlet;
 	}
@@ -114,7 +124,13 @@ public class WSRPConsumerPortletLocalServiceImpl
 			WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws PortalException, SystemException {
 
-		destroyWSRPConsumerPortlet(wsrpConsumerPortlet);
+		Message message = new Message();
+
+		message.put("command", "delete");
+		message.put(
+			"wsrpConsumerPortlet", Base64.objectToString(wsrpConsumerPortlet));
+
+		MessageBusUtil.sendMessage(_WSRP_REPOSITORY, message);
 
 		wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
 	}
@@ -127,6 +143,40 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		for (WSRPConsumerPortlet wsrpConsumerPortlet : wsrpConsumerPortlets) {
 			deleteWSRPConsumerPortlet(wsrpConsumerPortlet);
+		}
+	}
+
+	public void destroyWSRPConsumerPortlet(
+			WSRPConsumerPortlet wsrpConsumerPortlet)
+		throws PortalException, SystemException {
+
+		try {
+			Portlet portlet = _portletsPool.get(
+				wsrpConsumerPortlet.getWsrpConsumerPortletId());
+
+			if (portlet == null) {
+				return;
+			}
+
+			WSRPConsumer wsrpConsumer =
+				wsrpConsumerPersistence.findByPrimaryKey(
+					wsrpConsumerPortlet.getWsrpConsumerId());
+
+			WSRPConsumerManagerFactory.destroyWSRPConsumerManager(
+				wsrpConsumer.getUrl());
+
+			PortletLocalServiceUtil.destroyRemotePortlet(portlet);
+
+			PortletInstanceFactoryUtil.destroy(portlet);
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (SystemException se) {
+			throw se;
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
 		}
 	}
 
@@ -162,6 +212,27 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		return wsrpConsumerPortletPersistence.countByWsrpConsumerId(
 			wsrpConsumerId);
+	}
+
+	public void initWSRPConsumerPortlet(
+			WSRPConsumerPortlet wsrpConsumerPortlet, String userToken)
+		throws PortalException, SystemException {
+
+		try {
+			Portlet portlet = getPortlet(wsrpConsumerPortlet, userToken);
+
+			PortletLocalServiceUtil.deployRemotePortlet(
+				portlet, _WSRP_CATEGORY);
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (SystemException se) {
+			throw se;
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
 	}
 
 	public void initWSRPConsumerPortlets()
@@ -297,40 +368,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 		}
 	}
 
-	protected void destroyWSRPConsumerPortlet(
-			WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws PortalException, SystemException {
-
-		try {
-			Portlet portlet = _portletsPool.get(
-				wsrpConsumerPortlet.getWsrpConsumerPortletId());
-
-			if (portlet == null) {
-				return;
-			}
-
-			WSRPConsumer wsrpConsumer =
-				wsrpConsumerPersistence.findByPrimaryKey(
-					wsrpConsumerPortlet.getWsrpConsumerId());
-
-			WSRPConsumerManagerFactory.destroyWSRPConsumerManager(
-				wsrpConsumer.getUrl());
-
-			PortletLocalServiceUtil.destroyRemotePortlet(portlet);
-
-			PortletInstanceFactoryUtil.destroy(portlet);
-		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (SystemException se) {
-			throw se;
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-	}
-
 	protected Portlet getPortlet(
 			WSRPConsumerPortlet wsrpConsumerPortlet, String userToken)
 		throws Exception {
@@ -418,27 +455,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 		return SAXReaderUtil.createQName(localPart, namespace);
 	}
 
-	protected void initWSRPConsumerPortlet(
-			WSRPConsumerPortlet wsrpConsumerPortlet, String userToken)
-		throws PortalException, SystemException {
-
-		try {
-			Portlet portlet = getPortlet(wsrpConsumerPortlet, userToken);
-
-			PortletLocalServiceUtil.deployRemotePortlet(
-				portlet, _WSRP_CATEGORY);
-		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (SystemException se) {
-			throw se;
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-	}
-
 	protected void setExtension(
 		Portlet portlet, MessageElement messageElement) {
 
@@ -495,6 +511,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 	private static final String _CONSUMER_PORTLET_NAME = "2";
 
 	private static final String _WSRP_CATEGORY = "category.wsrp";
+
+	private static final String _WSRP_REPOSITORY = "liferay/wsrp_repository";
 
 	private static Map<Long, Portlet> _portletsPool =
 		new ConcurrentHashMap<Long, Portlet>();

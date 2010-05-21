@@ -118,6 +118,11 @@ public interface WSRPConsumerPortletLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public void destroyWSRPConsumerPortlet(
+		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public void destroyWSRPConsumerPortlets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -136,6 +141,12 @@ public interface WSRPConsumerPortletLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getWSRPConsumerPortletsCount(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void initWSRPConsumerPortlet(
+		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet,
+		java.lang.String userToken)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void initWSRPConsumerPortlets()
 		throws com.liferay.portal.kernel.exception.PortalException,

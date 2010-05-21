@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+	default-destroy-method="destroy"
+	default-init-method="afterPropertiesSet"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+>
+	<bean id="destination.wsrp_repository" class="com.liferay.portal.kernel.messaging.ParallelDestination">
+		<property name="name" value="liferay/wsrp_repository" />
+	</bean>
+	<bean id="messageListener.wsrp_repository" class="com.liferay.wsrp.portlet.WSRPRepositoryMessageListener" />
+	<bean id="messageListener.wsrp_repository_cluster" class="com.liferay.portal.kernel.cluster.messaging.ClusterBridgeMessageListener">
+		<property name="priority">
+			<util:constant static-field="com.liferay.portal.kernel.cluster.Priority.LEVEL5" />
+		</property>
+	</bean>
+	<bean id="messagingConfigurator.wsrp" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator">
+		<property name="destinations">
+			<list>
+				<ref bean="destination.wsrp_repository" />
+			</list>
+		</property>
+		<property name="messageListeners">
+			<map key-type="java.lang.String" value-type="java.util.List">
+				<entry key="liferay/wsrp_repository">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.wsrp_repository" />
+						<ref bean="messageListener.wsrp_repository_cluster" />
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>
