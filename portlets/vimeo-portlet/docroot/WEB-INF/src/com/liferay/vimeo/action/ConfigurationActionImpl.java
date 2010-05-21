@@ -47,23 +47,19 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		}
 
 		boolean autoplay = ParamUtil.getBoolean(actionRequest, "autoplay");
-		boolean enableFullscreen = ParamUtil.getBoolean(
-			actionRequest, "enableFullscreen");
-		boolean showByline = ParamUtil.getBoolean(actionRequest, "showByline");
-		boolean showPortrait = ParamUtil.getBoolean(
-			actionRequest, "showPortrait");
-		boolean showTitle = ParamUtil.getBoolean(actionRequest, "showTitle");
-
-		String annotations = ParamUtil.getString(actionRequest, "annotations");
-		String borderColor = ParamUtil.getString(actionRequest, "borderColor");
+		boolean enableFullscreen =
+			ParamUtil.getBoolean(actionRequest, "enableFullscreen");
 		String height = ParamUtil.getString(actionRequest, "height");
 		String playerColor = ParamUtil.getString(actionRequest, "playerColor");
-		String startTime = ParamUtil.getString(actionRequest, "startTime");
+		boolean showByline = ParamUtil.getBoolean(actionRequest, "showByline");
+		boolean showPortrait =
+			ParamUtil.getBoolean(actionRequest, "showPortrait");
+		boolean showTitle = ParamUtil.getBoolean(actionRequest, "showTitle");
 		String url = ParamUtil.getString(actionRequest, "url");
 		String width = ParamUtil.getString(actionRequest, "width");
 
-		String portletResource = ParamUtil.getString(
-			actionRequest, "portletResource");
+		String portletResource =
+			ParamUtil.getString(actionRequest, "portletResource");
 
 		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
@@ -72,12 +68,11 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		preferences.setValue("autoplay", String.valueOf(autoplay));
 		preferences.setValue(
 			"enableFullscreen", String.valueOf(enableFullscreen));
+		preferences.setValue("height", height);
+		preferences.setValue("playerColor", playerColor);
 		preferences.setValue("showByline", String.valueOf(showByline));
 		preferences.setValue("showPortrait", String.valueOf(showPortrait));
 		preferences.setValue("showTitle", String.valueOf(showTitle));
-
-		preferences.setValue("height", height);
-		preferences.setValue("playerColor", playerColor);
 		preferences.setValue("url", url);
 		preferences.setValue("width", width);
 
