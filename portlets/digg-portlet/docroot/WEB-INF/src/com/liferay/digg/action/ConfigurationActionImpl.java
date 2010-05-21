@@ -46,45 +46,39 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			return;
 		}
 
-		boolean polling = ParamUtil.getBoolean(actionRequest, "polling");
-		boolean showDiggs = ParamUtil.getBoolean(actionRequest, "showDiggs");
-		boolean showDesc = ParamUtil.getBoolean(actionRequest, "showDesc");
-		boolean showThumbs = ParamUtil.getBoolean(actionRequest, "showThumbs");
-		boolean targetBlank = ParamUtil.getBoolean(actionRequest, "targetBlank");
-
 		String apiSearch = ParamUtil.getString(actionRequest, "apiSearch");
-		String friendsUsername = ParamUtil.getString(
-			actionRequest, "friendsUsername");
+		String friendsUsername =
+			ParamUtil.getString(actionRequest, "friendsUsername");
 		String minDate = ParamUtil.getString(actionRequest, "minDate");
 		String newsFriends = ParamUtil.getString(actionRequest, "newsFriends");
 		String newsFront = ParamUtil.getString(actionRequest, "newsFront");
 		String newsTop = ParamUtil.getString(actionRequest, "newsTop");
 		String newsType = ParamUtil.getString(actionRequest, "newsType");
 		String newsUser = ParamUtil.getString(actionRequest, "newsUser");
+		boolean polling = ParamUtil.getBoolean(actionRequest, "polling");
 		String pollingRate = ParamUtil.getString(actionRequest, "pollingRate");
 		String searchSort = ParamUtil.getString(actionRequest, "searchSort");
-		String searchTopics = ParamUtil.getString(
-			actionRequest, "searchTopics");
-		String sourcePopOrUp = ParamUtil.getString(
-			actionRequest, "sourcePopOrUp");
+		String searchTopics =
+			ParamUtil.getString(actionRequest, "searchTopics");
+		boolean showDiggs = ParamUtil.getBoolean(actionRequest, "showDiggs");
+		boolean showDesc = ParamUtil.getBoolean(actionRequest, "showDesc");
+		boolean showThumbs = ParamUtil.getBoolean(actionRequest, "showThumbs");
+		String sourcePopOrUp =
+			ParamUtil.getString(actionRequest, "sourcePopOrUp");
 		String storyCount = ParamUtil.getString(actionRequest, "storyCount");
+		boolean targetBlank =
+			ParamUtil.getBoolean(actionRequest, "targetBlank");
 		String url = ParamUtil.getString(actionRequest, "url");
 		String urlSort = ParamUtil.getString(actionRequest, "urlSort");
-		String userUsername = ParamUtil.getString(
-			actionRequest, "userUsername");
+		String userUsername =
+			ParamUtil.getString(actionRequest, "userUsername");
 
-		String portletResource = ParamUtil.getString(
-			actionRequest, "portletResource");
+		String portletResource =
+			ParamUtil.getString(actionRequest, "portletResource");
 
 		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				actionRequest, portletResource);
-
-		preferences.setValue("polling", String.valueOf(polling));
-		preferences.setValue("showDiggs", String.valueOf(showDiggs));
-		preferences.setValue("showDesc", String.valueOf(showDesc));
-		preferences.setValue("showThumbs", String.valueOf(showThumbs));
-		preferences.setValue("targetBlank", String.valueOf(targetBlank));
 
 		preferences.setValue("apiSearch", apiSearch);
 		preferences.setValue("friendsUsername", friendsUsername);
@@ -94,11 +88,16 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		preferences.setValue("newsTop", newsTop);
 		preferences.setValue("newsType", newsType);
 		preferences.setValue("newsUser", newsUser);
+		preferences.setValue("polling", String.valueOf(polling));
 		preferences.setValue("pollingRate", pollingRate);
 		preferences.setValue("searchSort", searchSort);
 		preferences.setValue("searchTopics", searchTopics);
+		preferences.setValue("showDiggs", String.valueOf(showDiggs));
+		preferences.setValue("showDesc", String.valueOf(showDesc));
+		preferences.setValue("showThumbs", String.valueOf(showThumbs));
 		preferences.setValue("sourcePopOrUp", sourcePopOrUp);
 		preferences.setValue("storyCount", storyCount);
+		preferences.setValue("targetBlank", String.valueOf(targetBlank));
 		preferences.setValue("url", url);
 		preferences.setValue("urlSort", urlSort);
 		preferences.setValue("userUsername", userUsername);
