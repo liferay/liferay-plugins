@@ -592,28 +592,28 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
-	private static final String _NAMESPACE = "knowledge_base";
+	private static final String _NAMESPACE = "admin";
 
 	private static final String _NAMESPACE_ARTICLE = "knowledge_base_article";
 
 	private static final String _NAMESPACE_TEMPLATE = "knowledge_base_template";
 
-	private static final PortletDataHandlerControl[] _articleOptions =
+	private static PortletDataHandlerControl[] _articleOptions =
 		new PortletDataHandlerControl[] {
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "attachments"),
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "comments")
 		};
 
-	private static final PortletDataHandlerBoolean _articles =
+	private static PortletDataHandlerBoolean _articles =
 		new PortletDataHandlerBoolean(
 			_NAMESPACE, "articles", true, true, _articleOptions);
 
-	private static final PortletDataHandlerControl[] _templateOptions =
+	private static PortletDataHandlerControl[] _templateOptions =
 		new PortletDataHandlerControl[] {
 			new PortletDataHandlerBoolean(_NAMESPACE_TEMPLATE, "comments")
 		};
 
-	private static final PortletDataHandlerBoolean _templates =
+	private static PortletDataHandlerBoolean _templates =
 		new PortletDataHandlerBoolean(
 			_NAMESPACE, "templates", true, false, _templateOptions);
 
