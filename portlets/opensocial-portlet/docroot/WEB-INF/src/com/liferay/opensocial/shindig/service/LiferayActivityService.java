@@ -277,27 +277,6 @@ public class LiferayActivityService implements ActivityService {
 		}
 	}
 
-	public List<MediaItem> getMediaItems(JSONArray jsonArray) {
-		if (jsonArray == null) {
-			return null;
-		}
-
-		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
-
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-			MediaItem mediaItem = new MediaItemImpl(
-				jsonObject.getString("mimeType"),
-				Type.valueOf(jsonObject.getString("type")),
-				jsonObject.getString("url"));
-
-			mediaItems.add(mediaItem);
-		}
-
-		return mediaItems;
-	}
-
 	protected List<Activity> getActivities(
 			ThemeDisplay themeDisplay, long userId)
 		throws Exception {
@@ -437,6 +416,27 @@ public class LiferayActivityService implements ActivityService {
 		}
 
 		return activity;
+	}
+
+	protected List<MediaItem> getMediaItems(JSONArray jsonArray) {
+		if (jsonArray == null) {
+			return null;
+		}
+
+		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+			MediaItem mediaItem = new MediaItemImpl(
+				jsonObject.getString("mimeType"),
+				Type.valueOf(jsonObject.getString("type")),
+				jsonObject.getString("url"));
+
+			mediaItems.add(mediaItem);
+		}
+
+		return mediaItems;
 	}
 
 	protected JSONArray getMediaItems(List<MediaItem> mediaItems) {
