@@ -61,26 +61,6 @@ import org.apache.shindig.social.opensocial.spi.UserId;
  */
 public class LiferayActivityService implements ActivityService {
 
-	public static JSONArray getMediaItems(List<MediaItem> mediaItems) {
-		if (mediaItems == null) {
-			return null;
-		}
-
-		JSONArray mediaItemsJSONArray = JSONFactoryUtil.createJSONArray();
-
-		for (MediaItem mediaItem : mediaItems) {
-			JSONObject mediaItemJSON = JSONFactoryUtil.createJSONObject();
-
-			mediaItemJSON.put("mimeType", mediaItem.getMimeType());
-			mediaItemJSON.put("type", mediaItem.getType().toString());
-			mediaItemJSON.put("url", mediaItem.getUrl());
-
-			mediaItemsJSONArray.put(mediaItemJSON);
-		}
-
-		return mediaItemsJSONArray;
-	}
-
 	public Future<Void> createActivity(
 			UserId userId, GroupId groupId, String appId, Set<String> fields,
 			Activity activity, SecurityToken securityToken)
@@ -316,6 +296,26 @@ public class LiferayActivityService implements ActivityService {
 		}
 
 		return mediaItems;
+	}
+
+	protected JSONArray getMediaItems(List<MediaItem> mediaItems) {
+		if (mediaItems == null) {
+			return null;
+		}
+
+		JSONArray mediaItemsJSONArray = JSONFactoryUtil.createJSONArray();
+
+		for (MediaItem mediaItem : mediaItems) {
+			JSONObject mediaItemJSON = JSONFactoryUtil.createJSONObject();
+
+			mediaItemJSON.put("mimeType", mediaItem.getMimeType());
+			mediaItemJSON.put("type", mediaItem.getType().toString());
+			mediaItemJSON.put("url", mediaItem.getUrl());
+
+			mediaItemsJSONArray.put(mediaItemJSON);
+		}
+
+		return mediaItemsJSONArray;
 	}
 
 	protected List<Activity> getActivities(
