@@ -128,9 +128,9 @@ public class LiferayPersonService implements PersonService {
 				groupIdType.equals(GroupId.Type.friends) ||
 				groupIdType.equals(GroupId.Type.groupId)) {
 
-				long liferayUserId = GetterUtil.getLong(userIdString);
+				long userIdLong = GetterUtil.getLong(userIdString);
 
-				User owner = UserLocalServiceUtil.getUserById(liferayUserId);
+				User owner = UserLocalServiceUtil.getUserById(userIdLong);
 
 				List<User> friends = UserLocalServiceUtil.getSocialUsers(
 					owner.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND,
@@ -168,8 +168,9 @@ public class LiferayPersonService implements PersonService {
 			person = getGroupPerson(groupId);
 		}
 		else {
-			User user = UserLocalServiceUtil.getUserById(
-				GetterUtil.getLong(userIdString));
+			long userIdLong = GetterUtil.getLong(userIdString);
+
+			User user = UserLocalServiceUtil.getUserById(userIdLong);
 
 			person = getUserPerson(user, fields, securityToken);
 		}
@@ -202,8 +203,9 @@ public class LiferayPersonService implements PersonService {
 	protected Person getGroupPerson(String groupId) throws Exception {
 		Person person = null;
 
-		Group group = GroupLocalServiceUtil.getGroup(
-			GetterUtil.getLong(groupId));
+		long groupIdLong = GetterUtil.getLong(groupId);
+
+		Group group = GroupLocalServiceUtil.getGroup(groupIdLong);
 
 		if (group.isCommunity()) {
 			Name name = new NameImpl(group.getName() + " (Community)");

@@ -189,9 +189,9 @@ public class LiferayAppDataService implements AppDataService {
 	}
 
 	protected long getCompanyId(SecurityToken securityToken) throws Exception {
-		long userId = GetterUtil.getLong(securityToken.getViewerId());
+		long userIdLong = GetterUtil.getLong(securityToken.getViewerId());
 
-		User user = UserLocalServiceUtil.getUser(userId);
+		User user = UserLocalServiceUtil.getUser(userIdLong);
 
 		return user.getCompanyId();
 	}

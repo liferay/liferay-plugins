@@ -14,9 +14,8 @@
 
 package com.liferay.opensocial.shindig.service;
 
-import com.liferay.portal.json.JSONArrayImpl;
-import com.liferay.portal.json.JSONObjectImpl;
 import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -62,6 +61,26 @@ import org.apache.shindig.social.opensocial.spi.UserId;
  */
 public class LiferayActivityService implements ActivityService {
 
+	public static JSONArray getMediaItems(List<MediaItem> mediaItems) {
+		if (mediaItems == null) {
+			return null;
+		}
+
+		JSONArray mediaItemsJSONArray = JSONFactoryUtil.createJSONArray();
+
+		for (MediaItem mediaItem : mediaItems) {
+			JSONObject mediaItemJSON = JSONFactoryUtil.createJSONObject();
+
+			mediaItemJSON.put("mimeType", mediaItem.getMimeType());
+			mediaItemJSON.put("type", mediaItem.getType().toString());
+			mediaItemJSON.put("url", mediaItem.getUrl());
+
+			mediaItemsJSONArray.put(mediaItemJSON);
+		}
+
+		return mediaItemsJSONArray;
+	}
+
 	public Future<Void> createActivity(
 			UserId userId, GroupId groupId, String appId, Set<String> fields,
 			Activity activity, SecurityToken securityToken)
@@ -104,6 +123,108 @@ public class LiferayActivityService implements ActivityService {
 				HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(),
 				e);
 		}
+	}
+
+	public void doCreateActivity(
+			UserId userId, GroupId groupId, String appId, Set<String> fields,
+			Activity activity, SecurityToken securityToken)
+		throws Exception {
+
+		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
+
+		JSONObject extraDataJSON = JSONFactoryUtil.createJSONObject();
+
+		extraDataJSON.put("appId", activity.getAppId());
+		extraDataJSON.put("body", activity.getBody());
+		extraDataJSON.put("bodyId", activity.getBodyId());
+		extraDataJSON.put("externalId", activity.getExternalId());
+		extraDataJSON.put(
+			"mediaItems", getMediaItems(activity.getMediaItems()));
+		extraDataJSON.put("postedTime", activity.getPostedTime());
+		extraDataJSON.put("priority", activity.getPriority());
+		extraDataJSON.put("streamFaviconUrl", activity.getStreamFaviconUrl());
+		extraDataJSON.put("streamSourceUrl", activity.getStreamSourceUrl());
+		extraDataJSON.put("streamTitle", activity.getStreamTitle());
+		extraDataJSON.put("streamUrl", activity.getStreamUrl());
+		extraDataJSON.put(
+			"templateParams", getTemplateParams(activity.getTemplateParams()));
+		extraDataJSON.put("title", activity.getTitle());
+		extraDataJSON.put("titleId", activity.getTitleId());
+		extraDataJSON.put("url", activity.getUrl());
+
+		SocialActivityLocalServiceUtil.addActivity(
+			userIdLong, 0L, Activity.class.getName(),
+			activity.getPostedTime().longValue(),
+			activity.getAppId().hashCode(), extraDataJSON.toString(), 0L);
+	}
+
+	public void doDeleteActivities(
+			UserId userId, GroupId groupId, String appId,
+			Set<String> activityIds, SecurityToken securityToken)
+		throws Exception {
+
+		for (String activityId : activityIds) {
+			long activityIdLong = GetterUtil.getLong(activityId);
+
+			SocialActivityLocalServiceUtil.deleteActivity(activityIdLong);
+		}
+	}
+
+	public RestfulCollection<Activity> doGetActivities(
+			Set<UserId> userIds, GroupId groupId, String appId,
+			Set<String> fields, CollectionOptions collectionsOptions,
+			SecurityToken securityToken)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = getThemeDisplay(securityToken);
+
+		List<Activity> activities = new ArrayList<Activity>();
+
+		for (UserId userId : userIds) {
+			long userIdLong = GetterUtil.getLong(
+				userId.getUserId(securityToken));
+
+			List<Activity> personActivities = getActivities(
+				themeDisplay, userIdLong);
+
+			activities.addAll(personActivities);
+		}
+
+		return new RestfulCollection<Activity>(
+			activities, collectionsOptions.getFirst(), activities.size(),
+			collectionsOptions.getMax());
+	}
+
+	public RestfulCollection<Activity> doGetActivities(
+			UserId userId, GroupId groupId, String appId, Set<String> fields,
+			CollectionOptions collectionsOptions, Set<String> activityIds,
+			SecurityToken securityToken)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = getThemeDisplay(securityToken);
+
+		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
+
+		List<Activity> activities = getActivities(themeDisplay, userIdLong);
+
+		return new RestfulCollection<Activity>(
+			activities, collectionsOptions.getFirst(), activities.size(),
+			collectionsOptions.getMax());
+	}
+
+	public Activity doGetActivity(
+			UserId userId, GroupId groupId, String appId, Set<String> fields,
+			String activityId, SecurityToken securityToken)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = getThemeDisplay(securityToken);
+
+		long activityIdLong = GetterUtil.getLong(activityId);
+
+		SocialActivity socialActivity =
+			SocialActivityLocalServiceUtil.getActivity(activityIdLong);
+
+		return getActivity(themeDisplay, socialActivity);
 	}
 
 	public Future<RestfulCollection<Activity>> getActivities(
@@ -176,115 +297,25 @@ public class LiferayActivityService implements ActivityService {
 		}
 	}
 
-	public void doCreateActivity(
-			UserId userId, GroupId groupId, String appId, Set<String> fields,
-			Activity activity, SecurityToken securityToken)
-		throws Exception {
-
-		JSONObject extraData = new JSONObjectImpl();
-
-		extraData.put("appId", activity.getAppId());
-		extraData.put("body", activity.getBody());
-		extraData.put("bodyId", activity.getBodyId());
-		extraData.put("externalId", activity.getExternalId());
-
-		extraData.put("mediaItems",getMediaItems(activity.getMediaItems()));
-
-		extraData.put("postedTime", activity.getPostedTime());
-		extraData.put("priority", activity.getPriority());
-		extraData.put("streamFaviconUrl", activity.getStreamFaviconUrl());
-		extraData.put("streamSourceUrl", activity.getStreamSourceUrl());
-		extraData.put("streamTitle", activity.getStreamTitle());
-		extraData.put("streamUrl", activity.getStreamUrl());
-
-		extraData.put("templateParams",
-			getTemplateParams(activity.getTemplateParams()));
-
-		extraData.put("title", activity.getTitle());
-		extraData.put("titleId", activity.getTitleId());
-		extraData.put("url", activity.getUrl());
-
-		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
-
-		SocialActivityLocalServiceUtil.addActivity(
-			userIdLong, 0L, Activity.class.getName(),
-			activity.getPostedTime().longValue(),
-			activity.getAppId().hashCode(), extraData.toString(), 0L);
-
-		return;
-	}
-
-	public void doDeleteActivities(
-			UserId userId, GroupId groupId, String appId,
-			Set<String> activityIds, SecurityToken securityToken)
-		throws Exception {
-
-		for (String activityId : activityIds) {
-			long activityIdLong = GetterUtil.getLong(activityId);
-
-			SocialActivityLocalServiceUtil.deleteActivity(activityIdLong);
+	public List<MediaItem> getMediaItems(JSONArray jsonArray) {
+		if (jsonArray == null) {
+			return null;
 		}
 
-		return;
-	}
+		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
 
-	public RestfulCollection<Activity> doGetActivities(
-			Set<UserId> userIds, GroupId groupId, String appId,
-			Set<String> fields, CollectionOptions collectionsOptions,
-			SecurityToken securityToken)
-		throws Exception {
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-		List<Activity> activities = new ArrayList<Activity>();
+			MediaItem mediaItem = new MediaItemImpl(
+				jsonObject.getString("mimeType"),
+				Type.valueOf(jsonObject.getString("type")),
+				jsonObject.getString("url"));
 
-		ThemeDisplay themeDisplay = getThemeDisplay(securityToken);
-
-		for (UserId userId : userIds) {
-			long userIdLong = GetterUtil.getLong(
-				userId.getUserId(securityToken));
-
-			List<Activity> personActivities =
-				getActivities(themeDisplay, userIdLong);
-
-			activities.addAll(personActivities);
+			mediaItems.add(mediaItem);
 		}
 
-		return new RestfulCollection<Activity>(
-			activities, collectionsOptions.getFirst(), activities.size(),
-			collectionsOptions.getMax());
-	}
-
-	public RestfulCollection<Activity> doGetActivities(
-			UserId userId, GroupId groupId, String appId, Set<String> fields,
-			CollectionOptions collectionsOptions, Set<String> activityIds,
-			SecurityToken securityToken)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = getThemeDisplay(securityToken);
-
-		long userIdLong = GetterUtil.getLong(
-			userId.getUserId(securityToken));
-
-		List<Activity> activities = getActivities(themeDisplay, userIdLong);
-
-		return new RestfulCollection<Activity>(
-			activities, collectionsOptions.getFirst(), activities.size(),
-			collectionsOptions.getMax());
-	}
-
-	public Activity doGetActivity(
-			UserId userId, GroupId groupId, String appId, Set<String> fields,
-			String activityId, SecurityToken securityToken)
-		throws Exception {
-
-		SocialActivity socialActivity =
-			SocialActivityLocalServiceUtil.getActivity(
-				GetterUtil.getLong(activityId));
-
-		ThemeDisplay themeDisplay = getThemeDisplay(securityToken);
-
-		Activity activity = getActivity(themeDisplay, socialActivity);
-
-		return activity;
+		return mediaItems;
 	}
 
 	protected List<Activity> getActivities(
@@ -300,7 +331,7 @@ public class LiferayActivityService implements ActivityService {
 			Activity activity = null;
 
 			if (socialActivity.getClassName().equals(
-				Activity.class.getName())) {
+					Activity.class.getName())) {
 
 				activity = getExternalActivity(socialActivity);
 			}
@@ -330,7 +361,7 @@ public class LiferayActivityService implements ActivityService {
 		Activity activity = null;
 
 		if (socialActivity.getClassName().equals(
-			Activity.class.getName())) {
+				Activity.class.getName())) {
 
 			activity = getExternalActivity(socialActivity);
 		}
@@ -357,115 +388,75 @@ public class LiferayActivityService implements ActivityService {
 			String.valueOf(socialActivity.getClassPK()),
 			String.valueOf(socialActivity.getUserId()));
 
-		JSONObject extraData = new JSONObjectImpl(
+		JSONObject extraDataJSON = JSONFactoryUtil.createJSONObject(
 			socialActivity.getExtraData());
 
-		if (extraData.has(Activity.Field.APP_ID.toString())) {
-			activity.setAppId(extraData.getString("appId"));
+		if (extraDataJSON.has(Activity.Field.APP_ID.toString())) {
+			activity.setAppId(extraDataJSON.getString("appId"));
 		}
 
-		if (extraData.has(Activity.Field.BODY.toString())) {
-			activity.setBody(extraData.getString("body"));
+		if (extraDataJSON.has(Activity.Field.BODY.toString())) {
+			activity.setBody(extraDataJSON.getString("body"));
 		}
 
-		if (extraData.has(Activity.Field.BODY_ID.toString())) {
-			activity.setBodyId(extraData.getString("bodyId"));
+		if (extraDataJSON.has(Activity.Field.BODY_ID.toString())) {
+			activity.setBodyId(extraDataJSON.getString("bodyId"));
 		}
 
-		if (extraData.has(Activity.Field.EXTERNAL_ID.toString())) {
-			activity.setExternalId(extraData.getString("externalId"));
+		if (extraDataJSON.has(Activity.Field.EXTERNAL_ID.toString())) {
+			activity.setExternalId(extraDataJSON.getString("externalId"));
 		}
 
-		if (extraData.has(Activity.Field.MEDIA_ITEMS.toString())) {
+		if (extraDataJSON.has(Activity.Field.MEDIA_ITEMS.toString())) {
 			activity.setMediaItems(
-				getMediaItems(extraData.getJSONArray("mediaItems")));
+				getMediaItems(extraDataJSON.getJSONArray("mediaItems")));
 		}
 
-		if (extraData.has(Activity.Field.POSTED_TIME.toString())) {
-			activity.setPostedTime(extraData.getLong("postedTime"));
+		if (extraDataJSON.has(Activity.Field.POSTED_TIME.toString())) {
+			activity.setPostedTime(extraDataJSON.getLong("postedTime"));
 		}
 
-		if (extraData.has(Activity.Field.PRIORITY.toString())) {
+		if (extraDataJSON.has(Activity.Field.PRIORITY.toString())) {
 			activity.setPriority(
-				Float.parseFloat(extraData.getString("priority")));
+				Float.parseFloat(extraDataJSON.getString("priority")));
 		}
 
-		if (extraData.has(Activity.Field.STREAM_FAVICON_URL.toString())) {
+		if (extraDataJSON.has(Activity.Field.STREAM_FAVICON_URL.toString())) {
 			activity.setStreamFaviconUrl(
-				extraData.getString("streamFaviconUrl"));
+				extraDataJSON.getString("streamFaviconUrl"));
 		}
 
-		if (extraData.has(Activity.Field.STREAM_SOURCE_URL.toString())) {
-			activity.setStreamSourceUrl(extraData.getString("streamSourceUrl"));
+		if (extraDataJSON.has(Activity.Field.STREAM_SOURCE_URL.toString())) {
+			activity.setStreamSourceUrl(
+				extraDataJSON.getString("streamSourceUrl"));
 		}
 
-		if (extraData.has(Activity.Field.STREAM_TITLE.toString())) {
-			activity.setStreamTitle(extraData.getString("streamTitle"));
+		if (extraDataJSON.has(Activity.Field.STREAM_TITLE.toString())) {
+			activity.setStreamTitle(extraDataJSON.getString("streamTitle"));
 		}
 
-		if (extraData.has(Activity.Field.STREAM_URL.toString())) {
-			activity.setStreamUrl(extraData.getString("streamUrl"));
+		if (extraDataJSON.has(Activity.Field.STREAM_URL.toString())) {
+			activity.setStreamUrl(extraDataJSON.getString("streamUrl"));
 		}
 
-		if (extraData.has(Activity.Field.TEMPLATE_PARAMS.toString())) {
+		if (extraDataJSON.has(Activity.Field.TEMPLATE_PARAMS.toString())) {
 			activity.setTemplateParams(getTemplateParams(
-				extraData.getJSONArray("templateParams")));
+				extraDataJSON.getJSONArray("templateParams")));
 		}
 
-		if (extraData.has(Activity.Field.TITLE.toString())) {
-			activity.setTitle(extraData.getString("title"));
+		if (extraDataJSON.has(Activity.Field.TITLE.toString())) {
+			activity.setTitle(extraDataJSON.getString("title"));
 		}
 
-		if (extraData.has(Activity.Field.TITLE_ID.toString())) {
-			activity.setTitleId(extraData.getString("titleId"));
+		if (extraDataJSON.has(Activity.Field.TITLE_ID.toString())) {
+			activity.setTitleId(extraDataJSON.getString("titleId"));
 		}
 
-		if (extraData.has(Activity.Field.URL.toString())) {
-			activity.setUrl(extraData.getString("url"));
+		if (extraDataJSON.has(Activity.Field.URL.toString())) {
+			activity.setUrl(extraDataJSON.getString("url"));
 		}
 
 		return activity;
-	}
-
-	public List<MediaItem> getMediaItems(JSONArray jsonArray) {
-		if (jsonArray == null) {
-			return null;
-		}
-
-		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
-
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-			MediaItem mediaItem = new MediaItemImpl(
-				jsonObject.getString("mimeType"),
-				Type.valueOf(jsonObject.getString("type")),
-				jsonObject.getString("url"));
-
-			mediaItems.add(mediaItem);
-		}
-
-		return mediaItems;
-	}
-
-	public static JSONArray getMediaItems(List<MediaItem> list) {
-		if (list == null) {
-			return null;
-		}
-
-		JSONArray mediaItems = new JSONArrayImpl();
-
-		for (MediaItem mediaItem : list) {
-			JSONObject mediaItemJson = new JSONObjectImpl();
-
-			mediaItemJson.put("mimeType", mediaItem.getMimeType());
-			mediaItemJson.put("type", mediaItem.getType().toString());
-			mediaItemJson.put("url", mediaItem.getUrl());
-
-			mediaItems.put(mediaItemJson);
-		}
-
-		return mediaItems;
 	}
 
 	protected Map<String, String> getTemplateParams(JSONArray jsonArray) {
@@ -495,24 +486,25 @@ public class LiferayActivityService implements ActivityService {
 			return null;
 		}
 
-		JSONArray templateParams = new JSONArrayImpl();
+		JSONArray templateParamsJSONArray = JSONFactoryUtil.createJSONArray();
 
-		for (Entry<String,String> entry : map.entrySet()) {
-			JSONObject jsonEntry = new JSONObjectImpl();
+		for (Entry<String, String> entry : map.entrySet()) {
+			JSONObject entryJSONObject = JSONFactoryUtil.createJSONObject();
 
-			jsonEntry.put(entry.getKey(), entry.getValue());
+			entryJSONObject.put(entry.getKey(), entry.getValue());
 
-			templateParams.put(jsonEntry);
+			templateParamsJSONArray.put(entryJSONObject);
 		}
 
-		return templateParams;
+		return templateParamsJSONArray;
 	}
 
 	protected ThemeDisplay getThemeDisplay(SecurityToken securityToken)
 		throws Exception {
 
-		User user = UserLocalServiceUtil.getUserById(
-			GetterUtil.getLong(securityToken.getViewerId()));
+		long userIdLong = GetterUtil.getLong(securityToken.getViewerId());
+
+		User user = UserLocalServiceUtil.getUserById(userIdLong);
 
 		Company company = CompanyLocalServiceUtil.getCompanyById(
 			user.getCompanyId());
