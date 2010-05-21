@@ -14,7 +14,7 @@
 
 package com.liferay.youtube.action;
 
-import com.liferay.portal.kernel.portlet.ConfigurationAction;
+import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -24,8 +24,6 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
 
 /**
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
@@ -33,7 +31,7 @@ import javax.portlet.RenderResponse;
  * @author David Truong
  * @author Jonathan Neal
  */
-public class ConfigurationActionImpl implements ConfigurationAction {
+public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 	public void processAction(
 			PortletConfig portletConfig, ActionRequest actionRequest,
@@ -49,29 +47,29 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		String annotations = ParamUtil.getString(actionRequest, "annotations");
 		boolean autoplay = ParamUtil.getBoolean(actionRequest, "autoplay");
 		String borderColor = ParamUtil.getString(actionRequest, "borderColor");
-		boolean enableEnhancedGenieMenu =
-			ParamUtil.getBoolean(actionRequest, "enableEnhancedGenieMenu");
-		boolean enableFullscreen =
-			ParamUtil.getBoolean(actionRequest, "enableFullscreen");
-		boolean enableKeyboardControls =
-			ParamUtil.getBoolean(actionRequest, "enableKeyboardControls");
-		boolean enableRelatedVideos =
-			ParamUtil.getBoolean(actionRequest, "enableRelatedVideos");
-		boolean enableSearch =
-			ParamUtil.getBoolean(actionRequest, "enableSearch");
+		boolean enableEnhancedGenieMenu = ParamUtil.getBoolean(
+			actionRequest, "enableEnhancedGenieMenu");
+		boolean enableFullscreen = ParamUtil.getBoolean(
+			actionRequest, "enableFullscreen");
+		boolean enableKeyboardControls = ParamUtil.getBoolean(
+			actionRequest, "enableKeyboardControls");
+		boolean enableRelatedVideos = ParamUtil.getBoolean(
+			actionRequest, "enableRelatedVideos");
+		boolean enableSearch = ParamUtil.getBoolean(
+			actionRequest, "enableSearch");
 		boolean hd = ParamUtil.getBoolean(actionRequest, "hd");
 		String height = ParamUtil.getString(actionRequest, "height");
 		boolean loop = ParamUtil.getBoolean(actionRequest, "loop");
 		String playerColor = ParamUtil.getString(actionRequest, "playerColor");
 		boolean showInfo = ParamUtil.getBoolean(actionRequest, "showInfo");
-		boolean showThickerBorder =
-			ParamUtil.getBoolean(actionRequest, "showThickerBorder");
+		boolean showThickerBorder = ParamUtil.getBoolean(
+			actionRequest, "showThickerBorder");
 		String startTime = ParamUtil.getString(actionRequest, "startTime");
 		String url = ParamUtil.getString(actionRequest, "url");
 		String width = ParamUtil.getString(actionRequest, "width");
 
-		String portletResource =
-			ParamUtil.getString(actionRequest, "portletResource");
+		String portletResource = ParamUtil.getString(
+			actionRequest, "portletResource");
 
 		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
@@ -104,14 +102,6 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 
 		SessionMessages.add(
 			actionRequest, portletConfig.getPortletName() + ".doConfigure");
-	}
-
-	public String render(
-			PortletConfig portletConfig, RenderRequest renderRequest,
-			RenderResponse renderResponse)
-		throws Exception {
-
-		return "/configuration.jsp";
 	}
 
 }

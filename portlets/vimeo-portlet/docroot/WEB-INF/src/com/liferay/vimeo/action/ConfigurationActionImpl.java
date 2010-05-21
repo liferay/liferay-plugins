@@ -14,7 +14,7 @@
 
 package com.liferay.vimeo.action;
 
-import com.liferay.portal.kernel.portlet.ConfigurationAction;
+import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -24,8 +24,6 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
 
 /**
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
@@ -33,7 +31,7 @@ import javax.portlet.RenderResponse;
  * @author David Truong
  * @author Jonathan Neal
  */
-public class ConfigurationActionImpl implements ConfigurationAction {
+public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 	public void processAction(
 			PortletConfig portletConfig, ActionRequest actionRequest,
@@ -47,19 +45,19 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		}
 
 		boolean autoplay = ParamUtil.getBoolean(actionRequest, "autoplay");
-		boolean enableFullscreen =
-			ParamUtil.getBoolean(actionRequest, "enableFullscreen");
+		boolean enableFullscreen = ParamUtil.getBoolean(
+			actionRequest, "enableFullscreen");
 		String height = ParamUtil.getString(actionRequest, "height");
 		String playerColor = ParamUtil.getString(actionRequest, "playerColor");
 		boolean showByline = ParamUtil.getBoolean(actionRequest, "showByline");
-		boolean showPortrait =
-			ParamUtil.getBoolean(actionRequest, "showPortrait");
+		boolean showPortrait = ParamUtil.getBoolean(
+			actionRequest, "showPortrait");
 		boolean showTitle = ParamUtil.getBoolean(actionRequest, "showTitle");
 		String url = ParamUtil.getString(actionRequest, "url");
 		String width = ParamUtil.getString(actionRequest, "width");
 
-		String portletResource =
-			ParamUtil.getString(actionRequest, "portletResource");
+		String portletResource = ParamUtil.getString(
+			actionRequest, "portletResource");
 
 		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
@@ -80,14 +78,6 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 
 		SessionMessages.add(
 			actionRequest, portletConfig.getPortletName() + ".doConfigure");
-	}
-
-	public String render(
-			PortletConfig portletConfig, RenderRequest renderRequest,
-			RenderResponse renderResponse)
-		throws Exception {
-
-		return "/configuration.jsp";
 	}
 
 }

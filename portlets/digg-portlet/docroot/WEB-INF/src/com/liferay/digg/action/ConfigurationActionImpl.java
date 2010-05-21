@@ -14,7 +14,7 @@
 
 package com.liferay.digg.action;
 
-import com.liferay.portal.kernel.portlet.ConfigurationAction;
+import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -24,8 +24,6 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
 
 /**
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
@@ -33,7 +31,7 @@ import javax.portlet.RenderResponse;
  * @author David Truong
  * @author Jonathan Neal
  */
-public class ConfigurationActionImpl implements ConfigurationAction {
+public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 	public void processAction(
 			PortletConfig portletConfig, ActionRequest actionRequest,
@@ -47,8 +45,8 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		}
 
 		String apiSearch = ParamUtil.getString(actionRequest, "apiSearch");
-		String friendsUsername =
-			ParamUtil.getString(actionRequest, "friendsUsername");
+		String friendsUsername = ParamUtil.getString(
+			actionRequest, "friendsUsername");
 		String minDate = ParamUtil.getString(actionRequest, "minDate");
 		String newsFriends = ParamUtil.getString(actionRequest, "newsFriends");
 		String newsFront = ParamUtil.getString(actionRequest, "newsFront");
@@ -58,23 +56,23 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		boolean polling = ParamUtil.getBoolean(actionRequest, "polling");
 		String pollingRate = ParamUtil.getString(actionRequest, "pollingRate");
 		String searchSort = ParamUtil.getString(actionRequest, "searchSort");
-		String searchTopics =
-			ParamUtil.getString(actionRequest, "searchTopics");
-		boolean showDiggs = ParamUtil.getBoolean(actionRequest, "showDiggs");
+		String searchTopics = ParamUtil.getString(
+			actionRequest, "searchTopics");
 		boolean showDesc = ParamUtil.getBoolean(actionRequest, "showDesc");
+		boolean showDiggs = ParamUtil.getBoolean(actionRequest, "showDiggs");
 		boolean showThumbs = ParamUtil.getBoolean(actionRequest, "showThumbs");
-		String sourcePopOrUp =
-			ParamUtil.getString(actionRequest, "sourcePopOrUp");
+		String sourcePopOrUp = ParamUtil.getString(
+			actionRequest, "sourcePopOrUp");
 		String storyCount = ParamUtil.getString(actionRequest, "storyCount");
-		boolean targetBlank =
-			ParamUtil.getBoolean(actionRequest, "targetBlank");
+		boolean targetBlank = ParamUtil.getBoolean(
+			actionRequest, "targetBlank");
 		String url = ParamUtil.getString(actionRequest, "url");
 		String urlSort = ParamUtil.getString(actionRequest, "urlSort");
-		String userUsername =
-			ParamUtil.getString(actionRequest, "userUsername");
+		String userUsername = ParamUtil.getString(
+			actionRequest, "userUsername");
 
-		String portletResource =
-			ParamUtil.getString(actionRequest, "portletResource");
+		String portletResource = ParamUtil.getString(
+			actionRequest, "portletResource");
 
 		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
@@ -92,8 +90,8 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		preferences.setValue("pollingRate", pollingRate);
 		preferences.setValue("searchSort", searchSort);
 		preferences.setValue("searchTopics", searchTopics);
-		preferences.setValue("showDiggs", String.valueOf(showDiggs));
 		preferences.setValue("showDesc", String.valueOf(showDesc));
+		preferences.setValue("showDiggs", String.valueOf(showDiggs));
 		preferences.setValue("showThumbs", String.valueOf(showThumbs));
 		preferences.setValue("sourcePopOrUp", sourcePopOrUp);
 		preferences.setValue("storyCount", storyCount);
@@ -106,14 +104,6 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 
 		SessionMessages.add(
 			actionRequest, portletConfig.getPortletName() + ".doConfigure");
-	}
-
-	public String render(
-			PortletConfig portletConfig, RenderRequest renderRequest,
-			RenderResponse renderResponse)
-		throws Exception {
-
-		return "/configuration.jsp";
 	}
 
 }
