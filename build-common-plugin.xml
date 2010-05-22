@@ -66,17 +66,6 @@
 		<antcall target="deploy" />
 	</target>
 
-	<target name="build-javascript-cmd">
-		<java
-			classname="com.yahoo.platform.yui.compressor.YUICompressor"
-			classpathref="lib.classpath"
-			fork="true"
-			newenvironment="true"
-		>
-			<arg line="--type js -o ${js.to.file} ${js.from.file}" />
-		</java>
-	</target>
-
 	<target name="build-lang-cmd">
 		<antcall target="build-lang-native2ascii-all" />
 
@@ -309,11 +298,6 @@
 
 		<delete file="ServiceBuilder.temp" />
 
-		<!--<antcall target="build-javascript-cmd">
-			<param name="js.from.file" value="docroot/js/service_unpacked.js" />
-			<param name="js.to.file" value="docroot/js/service_packed.js" />
-		</antcall>-->
-
 		<mkdir dir="docroot/WEB-INF/service-classes" />
 
 		<delete file="docroot/WEB-INF/lib/${plugin.name}-service.jar" />
@@ -401,24 +385,6 @@
 
 	<target name="compile">
 		<antcall target="merge" />
-
-		<for param="js.file">
-			<path>
-				<fileset dir="docroot" includes="unpacked.js" />
-			</path>
-			<sequential>
-				<antelope:stringutil string="@{js.file}" property="js.file.unix">
-					<antelope:replace regex="\\" replacement="/" />
-				</antelope:stringutil>
-
-				<antelope:grep in="${js.file.unix}" regex="(.*/)(.*)" group="1" property="js.dir" />
-
-				<antcall target="build-javascript-cmd">
-					<param name="js.from.file" value="${js.file.unix}" />
-					<param name="js.to.file" value="${js.dir}packed.js" />
-				</antcall>
-			</sequential>
-		</for>
 
 		<mkdir dir="docroot/WEB-INF/classes" />
 		<mkdir dir="docroot/WEB-INF/lib" />
