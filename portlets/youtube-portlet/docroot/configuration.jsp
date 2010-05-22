@@ -20,7 +20,7 @@
 	#preview {
 		-moz-border-radius: 4px;
 		-webkit-border-radius: 4px;
-		background: #d0d0d0 url(/youtube-portlet/images/preview_bg.png) no-repeat center center;
+		background: #d0d0d0 url(<%= request.getContextPath() %>/images/preview_bg.png) no-repeat center center;
 		border-radius: 4px;
 		float: right;
 		height: 30.5em;
@@ -137,7 +137,7 @@
 
 						<aui:input cssClass="enable-enhanced-genie-menu" helpMessage="enhanced-genie-menu-help" inlineField="true" label="enable-enhanced-genie-menu" name="enableEnhancedGenieMenu" value="<%= enableEnhancedGenieMenu %>" type="checkbox" />
 
-						<aui:input cssClass="enable-search" inlineField="true" label="enable-search" name="enableSearch" value="<%= enableSearch %>" type="checkbox" />
+						<aui:input cssClass="enable-search" inlineField="true" label="enable-search" name="enableSearch" type="checkbox" value="<%= enableSearch %>" />
 					</div>
 
 					<div class="aui-field-row">
@@ -164,13 +164,12 @@
 
 	<aui:button-row>
 		<aui:button type="submit" />
-
-		<aui:button type="reset" />
 	</aui:button-row>
 </aui:form>
 
 <aui:script use="aui-color-picker,aui-datatype,aui-swf">
-	var encodeHex = function (hex) {
+	var encodeHex =
+		function (hex) {
 			return (hex) ? '0x' + hex.replace('#', '').replace(/^(.)(.)(.)$/, '$1$1$2$2$3$3').toLowerCase() : '';
 		},
 		urlToVideoId = function (url) {
@@ -276,8 +275,8 @@
 	var widthNode = A.one('#<portlet:namespace />width');
 
 	var imageURL = '<%= imageURL %>';
-	var swfURL = '<%= swfURL %>';
-	var watchURL = '<%= watchURL %>';
+	var swfURL = '<%= _SWF_URL %>';
+	var watchURL = '<%= _WATCH_URL %>';
 
 	A.on(
 		'change',
@@ -361,7 +360,7 @@
 		}
 	).render();
 
-	if(presetSizeNode.val() == 'custom') {
+	if (presetSizeNode.val() == 'custom') {
 		A.one('.aui-field.height').removeClass('invisible');
 		A.one('.aui-field.width').removeClass('invisible');
 	}
