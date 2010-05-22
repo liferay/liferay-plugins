@@ -72,14 +72,6 @@ ECJ was automatically installed. Please rerun your task.
 		</then>
 	</if>
 
-	<target name="print-current-time">
-		<tstamp>
-			<format property="current.time" pattern="MMMM d, yyyy 'at' hh:mm aa" />
-		</tstamp>
-
-		<echo message="${current.time}" />
-	</target>
-
 	<target name="compile-java">
 		<if>
 			<equals arg1="${javac.compiler}" arg2="modern" />
@@ -127,6 +119,14 @@ ECJ was automatically installed. Please rerun your task.
 		</java>
 
 		<delete file="ServiceBuilder.temp" />
+	</target>
+
+	<target name="print-current-time">
+		<tstamp>
+			<format property="current.time" pattern="MMMM d, yyyy 'at' hh:mm aa" />
+		</tstamp>
+
+		<echo message="${current.time}" />
 	</target>
 
 	<target name="setup-eclipse">

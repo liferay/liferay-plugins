@@ -207,6 +207,55 @@ loader.
 		</antcall>
 	</target>
 
+	<target name="deploy" depends="war">
+		<copy todir="${app.server.lib.global.dir}" overwrite="true">
+			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
+			<fileset dir="docroot/WEB-INF/ext-service" includes="*.jar" />
+		</copy>
+
+		<copy todir="${app.server.lib.portal.dir}" overwrite="true">
+			<fileset dir="docroot/WEB-INF/ext-lib/portal" includes="*.jar" />
+			<fileset dir="docroot/WEB-INF/ext-impl" includes="*.jar" />
+		</copy>
+
+		<copy todir="${app.server.portal.dir}" overwrite="true">
+			<fileset dir="docroot/WEB-INF/ext-web/docroot" excludes="WEB-INF/web.xml" />
+		</copy>
+
+		<if>
+			<available file="docroot/WEB-INF/ext-web/docroot/WEB-INF/web.xml" />
+			<then>
+				<java
+					classname="com.liferay.portal.tools.WebXMLBuilder"
+					classpathref="portal.classpath"
+					fork="true"
+					newenvironment="true"
+				>
+					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+					<arg value="${app.server.portal.dir}/WEB-INF/web.xml" />
+					<arg value="docroot/WEB-INF/ext-web/docroot/WEB-INF/web.xml" />
+					<arg value="${app.server.portal.dir}/WEB-INF/web.xml.merged" />
+				</java>
+
+				<move file="${app.server.portal.dir}/WEB-INF/web.xml.merged" tofile="${app.server.portal.dir}/WEB-INF/web.xml" />
+			</then>
+		</if>
+
+		<unzip src="${plugin.file}" dest="${app.server.portal.dir}">
+			<patternset>
+				<include name="WEB-INF/ext-${plugin.name}.xml" />
+			</patternset>
+		</unzip>
+
+		<antcall target="deploy-properties" />
+	</target>
+
+	<target name="deploy-properties">
+		<copy todir="${app.server.classes.portal.dir}" overwrite="true">
+			<fileset dir="docroot/WEB-INF/ext-impl/src" includes="portal-*.properties,system-*.properties" />
+		</copy>
+	</target>
+
 	<target name="war" depends="compile">
 		<zip
 			basedir="docroot/WEB-INF/ext-service/classes"
@@ -273,54 +322,5 @@ loader.
 			file="docroot/WEB-INF/ext-util-${util.suffix}/ext-util-${util.suffix}.jar"
 			tofile="docroot/WEB-INF/ext-impl/classes/com/liferay/portal/deploy/dependencies/ext-${plugin.name}-util-${util.suffix}.jar"
 		/>
-	</target>
-
-	<target name="deploy" depends="war">
-		<copy todir="${app.server.lib.global.dir}" overwrite="true">
-			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
-			<fileset dir="docroot/WEB-INF/ext-service" includes="*.jar" />
-		</copy>
-
-		<copy todir="${app.server.lib.portal.dir}" overwrite="true">
-			<fileset dir="docroot/WEB-INF/ext-lib/portal" includes="*.jar" />
-			<fileset dir="docroot/WEB-INF/ext-impl" includes="*.jar" />
-		</copy>
-
-		<copy todir="${app.server.portal.dir}" overwrite="true">
-			<fileset dir="docroot/WEB-INF/ext-web/docroot" excludes="WEB-INF/web.xml" />
-		</copy>
-
-		<if>
-			<available file="docroot/WEB-INF/ext-web/docroot/WEB-INF/web.xml" />
-			<then>
-				<java
-					classname="com.liferay.portal.tools.WebXMLBuilder"
-					classpathref="portal.classpath"
-					fork="true"
-					newenvironment="true"
-				>
-					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-					<arg value="${app.server.portal.dir}/WEB-INF/web.xml" />
-					<arg value="docroot/WEB-INF/ext-web/docroot/WEB-INF/web.xml" />
-					<arg value="${app.server.portal.dir}/WEB-INF/web.xml.merged" />
-				</java>
-
-				<move file="${app.server.portal.dir}/WEB-INF/web.xml.merged" tofile="${app.server.portal.dir}/WEB-INF/web.xml" />
-			</then>
-		</if>
-
-		<unzip src="${plugin.file}" dest="${app.server.portal.dir}">
-			<patternset>
-				<include name="WEB-INF/ext-${plugin.name}.xml" />
-			</patternset>
-		</unzip>
-
-		<antcall target="deploy-properties" />
-	</target>
-
-	<target name="deploy-properties">
-		<copy todir="${app.server.classes.portal.dir}" overwrite="true">
-			<fileset dir="docroot/WEB-INF/ext-impl/src" includes="portal-*.properties,system-*.properties" />
-		</copy>
 	</target>
 </project>

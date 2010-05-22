@@ -66,326 +66,6 @@
 		<antcall target="deploy" />
 	</target>
 
-	<target name="clean" description="clean">
-		<delete dir="docroot/WEB-INF/classes" />
-		<delete dir="tmp" />
-		<delete file="${plugin.file}" />
-
-		<delete>
-			<fileset dir="docroot" includes="**/.sprite.png" />
-			<fileset dir="docroot" includes="**/.sprite.properties" />
-			<fileset dir="docroot" includes="**/Thumbs.db" />
-		</delete>
-
-		<antcall target="clean-portal-dependencies" />
-	</target>
-
-	<target name="clean-portal-dependencies">
-		<if>
-			<available file="docroot/WEB-INF/lib" />
-			<then>
-				<delete>
-					<fileset dir="docroot/WEB-INF/lib" includes="${required.portal.jars}" />
-					<fileset dir="docroot/WEB-INF/lib" includes="${plugin.jars}" />
-				</delete>
-			</then>
-		</if>
-
-		<if>
-			<available file="docroot/WEB-INF/tld" />
-			<then>
-				<delete>
-					<fileset dir="docroot/WEB-INF/tld" includes="${plugin.tlds}" />
-				</delete>
-			</then>
-		</if>
-	</target>
-
-	<target name="compile">
-		<antcall target="merge" />
-
-		<for param="js.file">
-			<path>
-				<fileset dir="docroot" includes="unpacked.js" />
-			</path>
-			<sequential>
-				<antelope:stringutil string="@{js.file}" property="js.file.unix">
-					<antelope:replace regex="\\" replacement="/" />
-				</antelope:stringutil>
-
-				<antelope:grep in="${js.file.unix}" regex="(.*/)(.*)" group="1" property="js.dir" />
-
-				<antcall target="build-javascript-cmd">
-					<param name="js.from.file" value="${js.file.unix}" />
-					<param name="js.to.file" value="${js.dir}packed.js" />
-				</antcall>
-			</sequential>
-		</for>
-
-		<mkdir dir="docroot/WEB-INF/classes" />
-		<mkdir dir="docroot/WEB-INF/lib" />
-
-		<copy todir="docroot/WEB-INF/lib">
-			<fileset dir="${app.server.lib.portal.dir}" includes="${plugin.jars}" />
-		</copy>
-
-		<copy todir="docroot/WEB-INF/tld">
-			<fileset dir="${app.server.portal.dir}/WEB-INF/tld" includes="${plugin.tlds}" />
-		</copy>
-
-		<if>
-			<available file="docroot/WEB-INF/src" />
-			<then>
-				<if>
-					<available file="tmp" />
-					<then>
-						<path id="plugin-lib.classpath">
-							<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-							<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
-							<pathelement location="docroot/WEB-INF/classes" />
-							<pathelement location="tmp/WEB-INF/classes" />
-						</path>
-					</then>
-					<else>
-						<path id="plugin-lib.classpath">
-							<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-							<pathelement location="docroot/WEB-INF/classes" />
-						</path>
-					</else>
-				</if>
-
-				<copy todir="docroot/WEB-INF/lib">
-					<fileset dir="${app.server.lib.portal.dir}" includes="${required.portal.jars}" />
-				</copy>
-
-				<if>
-					<available file="docroot/WEB-INF/lib/portal-impl.jar" />
-					<then>
-						<fail>
-.
-
-Detected inclusion of portal-impl.jar in WEB-INF/lib.
-
-portal-impl.jar is designed with a large number of singleton classes which are
-instantiated on the basis that they will exist alone in the application server.
-
-While compile time issues may be resolved, portlets cannot be made to work by
-simply adding portal-impl.jar, because doing so violates the above assumption,
-and the resulting problems will be extremely difficult to debug.
-
-Please find a solution that does not require portal-impl.jar.
-						</fail>
-					</then>
-				</if>
-
-				<antcall target="compile-java">
-					<param name="javac.classpathref" value="plugin.classpath" />
-					<param name="javac.destdir" value="docroot/WEB-INF/classes" />
-					<param name="javac.srcdir" value="docroot/WEB-INF/src" />
-					<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
-				</antcall>
-			</then>
-		</if>
-
-		<antcall target="merge" />
-	</target>
-
-	<target name="war" depends="compile">
-		<mkdir dir="${project.dir}/dist" />
-
-		<if>
-			<available file="tmp" />
-			<then>
-				<property name="docroot.dir" value="tmp" />
-			</then>
-			<else>
-				<property name="docroot.dir" value="docroot" />
-			</else>
-		</if>
-
-		<delete file="${plugin.file}" />
-
-		<antcall target="clean-portal-dependencies" />
-
-		<if>
-			<contains string="${app.server.dir}" substring="glassfish" />
-			<then>
-				<zip
-					basedir="${docroot.dir}"
-					destfile="${plugin.file}"
-					excludes="**/META-INF/context.xml"
-				/>
-			</then>
-		<else>
-				<zip
-					basedir="${docroot.dir}"
-					destfile="${plugin.file}"
-				/>
-			</else>
-		</if>
-	</target>
-
-	<target name="direct-deploy" depends="war">
-		<if>
-			<antelope:endswith string="${plugin.name}" with="-ext" />
-			<then>
-				<java
-					classname="com.liferay.portal.tools.deploy.ExtDeployer"
-					classpathref="portal.classpath"
-					fork="true"
-					newenvironment="true"
-				>
-
-					<!-- Required Arguments -->
-
-					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-					<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-					<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
-					<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
-					<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
-					<jvmarg value="-Ddeployer.unpack.war=true" />
-					<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-
-					<!-- Optional Arguments -->
-
-					<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
-
-					<!-- Dependent Libraries -->
-
-					<arg value="${app.server.lib.portal.dir}/util-java.jar" />
-				</java>
-			</then>
-			<elseif>
-				<antelope:endswith string="${plugin.name}" with="-hook" />
-				<then>
-					<java
-						classname="com.liferay.portal.tools.deploy.HookDeployer"
-						classpathref="portal.classpath"
-						fork="true"
-						newenvironment="true"
-					>
-
-						<!-- Required Arguments -->
-
-						<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-						<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
-						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
-						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
-						<jvmarg value="-Ddeployer.unpack.war=true" />
-						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-
-						<!-- Optional Arguments -->
-
-						<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
-
-						<!-- Dependent Libraries -->
-
-						<arg value="${app.server.lib.portal.dir}/util-java.jar" />
-					</java>
-				</then>
-			</elseif>
-			<elseif>
-				<antelope:endswith string="${plugin.name}" with="-layouttpl" />
-				<then>
-					<java
-						classname="com.liferay.portal.tools.deploy.LayoutTemplateDeployer"
-						classpathref="portal.classpath"
-						fork="true"
-						newenvironment="true"
-					>
-
-						<!-- Required Arguments -->
-
-						<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-						<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
-						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
-						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
-						<jvmarg value="-Ddeployer.unpack.war=true" />
-						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-					</java>
-				</then>
-			</elseif>
-			<elseif>
-				<antelope:endswith string="${plugin.name}" with="-portlet" />
-				<then>
-					<java
-						classname="com.liferay.portal.tools.deploy.PortletDeployer"
-						classpathref="portal.classpath"
-						fork="true"
-						newenvironment="true"
-					>
-
-						<!-- Required Arguments -->
-
-						<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-						<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
-						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
-						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
-						<jvmarg value="-Ddeployer.aui.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-aui.tld" />
-						<jvmarg value="-Ddeployer.portlet.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-portlet.tld" />
-						<jvmarg value="-Ddeployer.portlet-ext.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-portlet-ext.tld" />
-						<jvmarg value="-Ddeployer.security.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-security.tld" />
-						<jvmarg value="-Ddeployer.theme.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-theme.tld" />
-						<jvmarg value="-Ddeployer.ui.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-ui.tld" />
-						<jvmarg value="-Ddeployer.util.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-util.tld" />
-						<jvmarg value="-Ddeployer.unpack.war=true" />
-						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-
-						<!-- Optional Arguments -->
-
-						<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
-
-						<!-- Dependent Libraries -->
-
-						<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
-						<arg value="${app.server.lib.portal.dir}/util-java.jar" />
-						<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
-					</java>
-				</then>
-			</elseif>
-			<elseif>
-				<antelope:endswith string="${plugin.name}" with="-theme" />
-				<then>
-					<java
-						classname="com.liferay.portal.tools.deploy.ThemeDeployer"
-						classpathref="portal.classpath"
-						fork="true"
-						newenvironment="true"
-					>
-
-						<!-- Required Arguments -->
-
-						<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-						<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
-						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
-						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
-						<jvmarg value="-Ddeployer.theme.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-theme.tld" />
-						<jvmarg value="-Ddeployer.util.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-util.tld" />
-						<jvmarg value="-Ddeployer.unpack.war=true" />
-						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-
-						<!-- Optional Arguments -->
-
-						<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
-
-						<!-- Dependent Libraries -->
-
-						<arg value="${app.server.lib.portal.dir}/util-java.jar" />
-						<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
-					</java>
-				</then>
-			</elseif>
-		</if>
-	</target>
-
-	<target name="deploy" depends="war">
-		<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
-	</target>
-
 	<target name="build-javascript-cmd">
 		<java
 			classname="com.yahoo.platform.yui.compressor.YUICompressor"
@@ -684,6 +364,291 @@ Please find a solution that does not require portal-impl.jar.
 		</java>
 	</target>
 
+	<target name="clean" description="clean">
+		<delete dir="docroot/WEB-INF/classes" />
+		<delete dir="tmp" />
+		<delete file="${plugin.file}" />
+
+		<delete>
+			<fileset dir="docroot" includes="**/.sprite.png" />
+			<fileset dir="docroot" includes="**/.sprite.properties" />
+			<fileset dir="docroot" includes="**/Thumbs.db" />
+		</delete>
+
+		<antcall target="clean-portal-dependencies" />
+	</target>
+
+	<target name="clean-portal-dependencies">
+		<if>
+			<available file="docroot/WEB-INF/lib" />
+			<then>
+				<delete>
+					<fileset dir="docroot/WEB-INF/lib" includes="${required.portal.jars}" />
+					<fileset dir="docroot/WEB-INF/lib" includes="${plugin.jars}" />
+				</delete>
+			</then>
+		</if>
+
+		<if>
+			<available file="docroot/WEB-INF/tld" />
+			<then>
+				<delete>
+					<fileset dir="docroot/WEB-INF/tld" includes="${plugin.tlds}" />
+				</delete>
+			</then>
+		</if>
+	</target>
+
+	<target name="compile">
+		<antcall target="merge" />
+
+		<for param="js.file">
+			<path>
+				<fileset dir="docroot" includes="unpacked.js" />
+			</path>
+			<sequential>
+				<antelope:stringutil string="@{js.file}" property="js.file.unix">
+					<antelope:replace regex="\\" replacement="/" />
+				</antelope:stringutil>
+
+				<antelope:grep in="${js.file.unix}" regex="(.*/)(.*)" group="1" property="js.dir" />
+
+				<antcall target="build-javascript-cmd">
+					<param name="js.from.file" value="${js.file.unix}" />
+					<param name="js.to.file" value="${js.dir}packed.js" />
+				</antcall>
+			</sequential>
+		</for>
+
+		<mkdir dir="docroot/WEB-INF/classes" />
+		<mkdir dir="docroot/WEB-INF/lib" />
+
+		<copy todir="docroot/WEB-INF/lib">
+			<fileset dir="${app.server.lib.portal.dir}" includes="${plugin.jars}" />
+		</copy>
+
+		<copy todir="docroot/WEB-INF/tld">
+			<fileset dir="${app.server.portal.dir}/WEB-INF/tld" includes="${plugin.tlds}" />
+		</copy>
+
+		<if>
+			<available file="docroot/WEB-INF/src" />
+			<then>
+				<if>
+					<available file="tmp" />
+					<then>
+						<path id="plugin-lib.classpath">
+							<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+							<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
+							<pathelement location="docroot/WEB-INF/classes" />
+							<pathelement location="tmp/WEB-INF/classes" />
+						</path>
+					</then>
+					<else>
+						<path id="plugin-lib.classpath">
+							<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+							<pathelement location="docroot/WEB-INF/classes" />
+						</path>
+					</else>
+				</if>
+
+				<copy todir="docroot/WEB-INF/lib">
+					<fileset dir="${app.server.lib.portal.dir}" includes="${required.portal.jars}" />
+				</copy>
+
+				<if>
+					<available file="docroot/WEB-INF/lib/portal-impl.jar" />
+					<then>
+						<fail>
+.
+
+Detected inclusion of portal-impl.jar in WEB-INF/lib.
+
+portal-impl.jar is designed with a large number of singleton classes which are
+instantiated on the basis that they will exist alone in the application server.
+
+While compile time issues may be resolved, portlets cannot be made to work by
+simply adding portal-impl.jar, because doing so violates the above assumption,
+and the resulting problems will be extremely difficult to debug.
+
+Please find a solution that does not require portal-impl.jar.
+						</fail>
+					</then>
+				</if>
+
+				<antcall target="compile-java">
+					<param name="javac.classpathref" value="plugin.classpath" />
+					<param name="javac.destdir" value="docroot/WEB-INF/classes" />
+					<param name="javac.srcdir" value="docroot/WEB-INF/src" />
+					<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
+				</antcall>
+			</then>
+		</if>
+
+		<antcall target="merge" />
+	</target>
+
+	<target name="deploy" depends="war">
+		<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
+	</target>
+
+	<target name="direct-deploy" depends="war">
+		<if>
+			<antelope:endswith string="${plugin.name}" with="-ext" />
+			<then>
+				<java
+					classname="com.liferay.portal.tools.deploy.ExtDeployer"
+					classpathref="portal.classpath"
+					fork="true"
+					newenvironment="true"
+				>
+
+					<!-- Required Arguments -->
+
+					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+					<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+					<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
+					<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
+					<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
+					<jvmarg value="-Ddeployer.unpack.war=true" />
+					<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
+
+					<!-- Optional Arguments -->
+
+					<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
+
+					<!-- Dependent Libraries -->
+
+					<arg value="${app.server.lib.portal.dir}/util-java.jar" />
+				</java>
+			</then>
+			<elseif>
+				<antelope:endswith string="${plugin.name}" with="-hook" />
+				<then>
+					<java
+						classname="com.liferay.portal.tools.deploy.HookDeployer"
+						classpathref="portal.classpath"
+						fork="true"
+						newenvironment="true"
+					>
+
+						<!-- Required Arguments -->
+
+						<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+						<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
+						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
+						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
+						<jvmarg value="-Ddeployer.unpack.war=true" />
+						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
+
+						<!-- Optional Arguments -->
+
+						<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
+
+						<!-- Dependent Libraries -->
+
+						<arg value="${app.server.lib.portal.dir}/util-java.jar" />
+					</java>
+				</then>
+			</elseif>
+			<elseif>
+				<antelope:endswith string="${plugin.name}" with="-layouttpl" />
+				<then>
+					<java
+						classname="com.liferay.portal.tools.deploy.LayoutTemplateDeployer"
+						classpathref="portal.classpath"
+						fork="true"
+						newenvironment="true"
+					>
+
+						<!-- Required Arguments -->
+
+						<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+						<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
+						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
+						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
+						<jvmarg value="-Ddeployer.unpack.war=true" />
+						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
+					</java>
+				</then>
+			</elseif>
+			<elseif>
+				<antelope:endswith string="${plugin.name}" with="-portlet" />
+				<then>
+					<java
+						classname="com.liferay.portal.tools.deploy.PortletDeployer"
+						classpathref="portal.classpath"
+						fork="true"
+						newenvironment="true"
+					>
+
+						<!-- Required Arguments -->
+
+						<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+						<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
+						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
+						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
+						<jvmarg value="-Ddeployer.aui.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-aui.tld" />
+						<jvmarg value="-Ddeployer.portlet.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-portlet.tld" />
+						<jvmarg value="-Ddeployer.portlet-ext.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-portlet-ext.tld" />
+						<jvmarg value="-Ddeployer.security.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-security.tld" />
+						<jvmarg value="-Ddeployer.theme.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-theme.tld" />
+						<jvmarg value="-Ddeployer.ui.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-ui.tld" />
+						<jvmarg value="-Ddeployer.util.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-util.tld" />
+						<jvmarg value="-Ddeployer.unpack.war=true" />
+						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
+
+						<!-- Optional Arguments -->
+
+						<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
+
+						<!-- Dependent Libraries -->
+
+						<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
+						<arg value="${app.server.lib.portal.dir}/util-java.jar" />
+						<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
+					</java>
+				</then>
+			</elseif>
+			<elseif>
+				<antelope:endswith string="${plugin.name}" with="-theme" />
+				<then>
+					<java
+						classname="com.liferay.portal.tools.deploy.ThemeDeployer"
+						classpathref="portal.classpath"
+						fork="true"
+						newenvironment="true"
+					>
+
+						<!-- Required Arguments -->
+
+						<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+						<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
+						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
+						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
+						<jvmarg value="-Ddeployer.theme.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-theme.tld" />
+						<jvmarg value="-Ddeployer.util.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-util.tld" />
+						<jvmarg value="-Ddeployer.unpack.war=true" />
+						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
+
+						<!-- Optional Arguments -->
+
+						<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
+
+						<!-- Dependent Libraries -->
+
+						<arg value="${app.server.lib.portal.dir}/util-java.jar" />
+						<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
+					</java>
+				</then>
+			</elseif>
+		</if>
+	</target>
+
 	<target name="merge" if="original.war.file">
 		<if>
 			<not>
@@ -707,5 +672,40 @@ Please find a solution that does not require portal-impl.jar.
 		<copy todir="tmp">
 			<fileset dir="docroot" />
 		</copy>
+	</target>
+
+	<target name="war" depends="compile">
+		<mkdir dir="${project.dir}/dist" />
+
+		<if>
+			<available file="tmp" />
+			<then>
+				<property name="docroot.dir" value="tmp" />
+			</then>
+			<else>
+				<property name="docroot.dir" value="docroot" />
+			</else>
+		</if>
+
+		<delete file="${plugin.file}" />
+
+		<antcall target="clean-portal-dependencies" />
+
+		<if>
+			<contains string="${app.server.dir}" substring="glassfish" />
+			<then>
+				<zip
+					basedir="${docroot.dir}"
+					destfile="${plugin.file}"
+					excludes="**/META-INF/context.xml"
+				/>
+			</then>
+		<else>
+				<zip
+					basedir="${docroot.dir}"
+					destfile="${plugin.file}"
+				/>
+			</else>
+		</if>
 	</target>
 </project>

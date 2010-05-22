@@ -3,56 +3,6 @@
 <project name="build-common-plugins" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
 
-	<target name="clean">
-		<antcall target="loop-modules">
-			<param name="loop.modules.cmd" value="clean-module" />
-		</antcall>
-	</target>
-
-	<target name="clean-module">
-		<ant dir="${module.name}" target="clean" inheritAll="false" />
-	</target>
-
-	<target name="compile">
-		<antcall target="loop-modules">
-			<param name="loop.modules.cmd" value="compile-module" />
-		</antcall>
-	</target>
-
-	<target name="compile-module">
-		<ant dir="${module.name}" target="compile" inheritAll="false" />
-	</target>
-
-	<target name="jar">
-		<antcall target="loop-modules">
-			<param name="loop.modules.cmd" value="jar-module" />
-		</antcall>
-	</target>
-
-	<target name="jar-module">
-		<ant dir="${module.name}" target="jar" inheritAll="false" />
-	</target>
-
-	<target name="war">
-		<antcall target="loop-modules">
-			<param name="loop.modules.cmd" value="war-module" />
-		</antcall>
-	</target>
-
-	<target name="war-module">
-		<ant dir="${module.name}" target="war" inheritAll="false" />
-	</target>
-
-	<target name="deploy">
-		<antcall target="loop-modules">
-			<param name="loop.modules.cmd" value="deploy-module" />
-		</antcall>
-	</target>
-
-	<target name="deploy-module">
-		<ant dir="${module.name}" target="deploy" inheritAll="false" />
-	</target>
-
 	<target name="build-service">
 		<for param="service.file">
 			<path>
@@ -75,14 +25,44 @@
 		</for>
 	</target>
 
-	<target name="setup-eclipse">
+	<target name="clean">
 		<antcall target="loop-modules">
-			<param name="loop.modules.cmd" value="setup-eclipse-module" />
+			<param name="loop.modules.cmd" value="clean-module" />
 		</antcall>
 	</target>
 
-	<target name="setup-eclipse-module">
-		<ant dir="${module.name}" target="setup-eclipse" inheritAll="false" />
+	<target name="clean-module">
+		<ant dir="${module.name}" target="clean" inheritAll="false" />
+	</target>
+
+	<target name="compile">
+		<antcall target="loop-modules">
+			<param name="loop.modules.cmd" value="compile-module" />
+		</antcall>
+	</target>
+
+	<target name="compile-module">
+		<ant dir="${module.name}" target="compile" inheritAll="false" />
+	</target>
+
+	<target name="deploy">
+		<antcall target="loop-modules">
+			<param name="loop.modules.cmd" value="deploy-module" />
+		</antcall>
+	</target>
+
+	<target name="deploy-module">
+		<ant dir="${module.name}" target="deploy" inheritAll="false" />
+	</target>
+
+	<target name="jar">
+		<antcall target="loop-modules">
+			<param name="loop.modules.cmd" value="jar-module" />
+		</antcall>
+	</target>
+
+	<target name="jar-module">
+		<ant dir="${module.name}" target="jar" inheritAll="false" />
 	</target>
 
 	<target name="loop-modules">
@@ -100,5 +80,25 @@
 				<antcall target="${loop.modules.cmd}" />
 			</sequential>
 		</for>
+	</target>
+
+	<target name="setup-eclipse">
+		<antcall target="loop-modules">
+			<param name="loop.modules.cmd" value="setup-eclipse-module" />
+		</antcall>
+	</target>
+
+	<target name="setup-eclipse-module">
+		<ant dir="${module.name}" target="setup-eclipse" inheritAll="false" />
+	</target>
+
+	<target name="war">
+		<antcall target="loop-modules">
+			<param name="loop.modules.cmd" value="war-module" />
+		</antcall>
+	</target>
+
+	<target name="war-module">
+		<ant dir="${module.name}" target="war" inheritAll="false" />
 	</target>
 </project>
