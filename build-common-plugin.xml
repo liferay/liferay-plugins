@@ -66,6 +66,50 @@
 		<antcall target="deploy" />
 	</target>
 
+	<target name="build-client">
+		<property name="client.url" value="http://localhost:8080/${plugin.name}/axis" />
+
+		<echo message="Make sure the server is listening on ${client.url}." />
+		<echo message="" />
+
+		<mkdir dir="docroot/WEB-INF/client/src" />
+
+		<java
+			classname="com.liferay.portal.tools.PortalClientBuilder"
+			classpathref="portal.classpath"
+			failonerror="true"
+			fork="true"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+			<arg value="docroot/WEB-INF/server-config.wsdd" />
+			<arg value="docroot/WEB-INF/client/src" />
+			<arg value="docroot/WEB-INF/client/namespace-mapping.properties" />
+			<arg value="${client.url}" />
+		</java>
+
+		<mkdir dir="docroot/WEB-INF/client/classes" />
+
+		<javac
+			classpathref="portal.classpath"
+			compiler="${javac.compiler}"
+			debug="${javac.debug}"
+			deprecation="${javac.deprecation}"
+			destdir="docroot/WEB-INF/client/classes"
+			includeAntRuntime="false"
+			nowarn="${javac.nowarn}"
+			srcdir="docroot/WEB-INF/client/src"
+		/>
+
+		<zip destfile="docroot/WEB-INF/client/${plugin.name}-client.jar">
+			<fileset dir="docroot/WEB-INF/client/classes" />
+			<fileset dir="docroot/WEB-INF/client/src" />
+		</zip>
+
+		<delete dir="docroot/WEB-INF/client/classes" />
+		<delete dir="docroot/WEB-INF/client/src" />
+	</target>
+
 	<target name="build-lang-cmd">
 		<antcall target="build-lang-native2ascii-all" />
 
