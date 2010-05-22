@@ -174,13 +174,6 @@ public class ArticleLocalServiceUtil {
 		getService().checkAttachments();
 	}
 
-	public static void deleteArticleAttachments(
-		com.liferay.knowledgebase.model.Article article)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteArticleAttachments(article);
-	}
-
 	public static void deleteAttachment(long companyId,
 		java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,

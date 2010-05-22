@@ -332,32 +332,32 @@ public class ClpSerializer {
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setArticleId(value1.longValue());
+					newModel.setArticleId(value1);
 
 					Method method2 = oldModelClass.getMethod(
 							"getResourcePrimKey");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setResourcePrimKey(value2.longValue());
+					newModel.setResourcePrimKey(value2);
 
 					Method method3 = oldModelClass.getMethod("getGroupId");
 
 					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
 
-					newModel.setGroupId(value3.longValue());
+					newModel.setGroupId(value3);
 
 					Method method4 = oldModelClass.getMethod("getCompanyId");
 
 					Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value4.longValue());
+					newModel.setCompanyId(value4);
 
 					Method method5 = oldModelClass.getMethod("getUserId");
 
 					Long value5 = (Long)method5.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value5.longValue());
+					newModel.setUserId(value5);
 
 					Method method6 = oldModelClass.getMethod("getUserName");
 
@@ -383,14 +383,14 @@ public class ClpSerializer {
 
 					Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
 
-					newModel.setParentResourcePrimKey(value9.longValue());
+					newModel.setParentResourcePrimKey(value9);
 
 					Method method10 = oldModelClass.getMethod("getVersion");
 
 					Integer value10 = (Integer)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setVersion(value10.intValue());
+					newModel.setVersion(value10);
 
 					Method method11 = oldModelClass.getMethod("getTitle");
 
@@ -418,7 +418,7 @@ public class ClpSerializer {
 					Integer value14 = (Integer)method14.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setPriority(value14.intValue());
+					newModel.setPriority(value14);
 
 					return newModel;
 				}
@@ -453,25 +453,25 @@ public class ClpSerializer {
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setTemplateId(value1.longValue());
+					newModel.setTemplateId(value1);
 
 					Method method2 = oldModelClass.getMethod("getGroupId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setGroupId(value2.longValue());
+					newModel.setGroupId(value2);
 
 					Method method3 = oldModelClass.getMethod("getCompanyId");
 
 					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value3.longValue());
+					newModel.setCompanyId(value3);
 
 					Method method4 = oldModelClass.getMethod("getUserId");
 
 					Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value4.longValue());
+					newModel.setUserId(value4);
 
 					Method method5 = oldModelClass.getMethod("getUserName");
 

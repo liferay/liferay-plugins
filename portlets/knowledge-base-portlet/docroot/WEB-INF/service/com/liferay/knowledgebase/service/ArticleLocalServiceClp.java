@@ -729,40 +729,6 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		}
 	}
 
-	public void deleteArticleAttachments(
-		com.liferay.knowledgebase.model.Article article)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(article);
-
-		if (article == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.knowledgebase.model.Article");
-		}
-
-		try {
-			_classLoaderProxy.invoke("deleteArticleAttachments",
-				new Object[] { paramObj0 });
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
 	public void deleteAttachment(long companyId, java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

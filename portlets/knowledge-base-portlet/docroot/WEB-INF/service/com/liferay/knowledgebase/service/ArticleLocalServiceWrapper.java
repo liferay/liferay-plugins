@@ -169,13 +169,6 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		_articleLocalService.checkAttachments();
 	}
 
-	public void deleteArticleAttachments(
-		com.liferay.knowledgebase.model.Article article)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.deleteArticleAttachments(article);
-	}
-
 	public void deleteAttachment(long companyId, java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
