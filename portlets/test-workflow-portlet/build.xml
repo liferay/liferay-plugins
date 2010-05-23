@@ -37,16 +37,12 @@
 				<delete dir="@{test.dir}/classes" />
 				<mkdir dir="@{test.dir}/classes" />
 
-				<javac
-					classpathref="plugin.classpath"
-					compiler="${javac.compiler}"
-					debug="${javac.debug}"
-					deprecation="${javac.deprecation}"
-					destdir="@{test.dir}/classes"
-					includeAntRuntime="false"
-					nowarn="${javac.nowarn}"
-					srcdir="@{test.dir}/src"
-				/>
+				<antcall target="compile-java">
+					<param name="javac.classpathref" value="plugin.classpath" />
+					<param name="javac.destdir" value="@{test.dir}/classes" />
+					<param name="javac.srcdir" value="@{test.dir}/src" />
+					<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
+				</antcall>
 
 				<jar jarfile="${workflow.engine}-tests/${test.name}.jar">
 					<fileset dir="@{test.dir}" includes="classes/**,src/**/*.java" />

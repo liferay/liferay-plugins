@@ -90,16 +90,11 @@
 
 		<mkdir dir="docroot/WEB-INF/client/classes" />
 
-		<javac
-			classpathref="portal.classpath"
-			compiler="${javac.compiler}"
-			debug="${javac.debug}"
-			deprecation="${javac.deprecation}"
-			destdir="docroot/WEB-INF/client/classes"
-			includeAntRuntime="false"
-			nowarn="${javac.nowarn}"
-			srcdir="docroot/WEB-INF/client/src"
-		/>
+		<antcall target="compile-java">
+			<param name="javac.classpathref" value="portal.classpath" />
+			<param name="javac.destdir" value="docroot/WEB-INF/client/classes" />
+			<param name="javac.srcdir" value="docroot/WEB-INF/client/src" />
+		</antcall>
 
 		<zip destfile="docroot/WEB-INF/client/${plugin.name}-client.jar">
 			<fileset dir="docroot/WEB-INF/client/classes" />
@@ -351,16 +346,12 @@
 			<fileset dir="docroot/WEB-INF/lib" excludes="${plugin.name}-service.jar" includes="*.jar" />
 		</path>
 
-		<javac
-			classpathref="service.classpath"
-			compiler="${javac.compiler}"
-			debug="${javac.debug}"
-			deprecation="${javac.deprecation}"
-			destdir="docroot/WEB-INF/service-classes"
-			includeAntRuntime="false"
-			nowarn="${javac.nowarn}"
-			srcdir="docroot/WEB-INF/service"
-		/>
+		<antcall target="compile-java">
+			<param name="javac.classpathref" value="service.classpath" />
+			<param name="javac.destdir" value="docroot/WEB-INF/service-classes" />
+			<param name="javac.srcdir" value="docroot/WEB-INF/service" />
+			<reference refid="service.classpath" torefid="service.classpath" />
+		</antcall>
 
 		<zip
 			basedir="docroot/WEB-INF/service-classes"
