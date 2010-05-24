@@ -19,15 +19,22 @@ import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
+import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.messageboards.NoSuchMessageException;
+import com.liferay.util.RSSUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.liferay.util.servlet.PortletResponseUtil;
 
 import java.io.IOException;
 
@@ -38,6 +45,8 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
 
 /**
  * <a href="AdminPortlet.java.html"><b><i>View Source</i></b></a>
@@ -85,6 +94,63 @@ public class AdminPortlet extends MVCPortlet {
 		}
 
 		super.render(renderRequest, renderResponse);
+	}
+
+	public void serveRSS(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			resourceRequest, "resourcePrimKey");
+
+		int max = ParamUtil.getInteger(
+			resourceRequest, "max", SearchContainer.DEFAULT_DELTA);
+		String type = ParamUtil.getString(
+			resourceRequest, "type", RSSUtil.DEFAULT_TYPE);
+		double version = ParamUtil.getDouble(
+			resourceRequest, "version", RSSUtil.DEFAULT_VERSION);
+		String displayStyle = ParamUtil.getString(
+			resourceRequest, "displayStyle",
+			RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
+
+		String rss = StringPool.BLANK;
+
+		if (resourcePrimKey <= 0) {
+			rss = ArticleServiceUtil.getGroupArticlesRSS(
+				max, type, version, displayStyle, themeDisplay);
+		}
+		else {
+			rss = ArticleServiceUtil.getArticlesRSS(
+				resourcePrimKey, max, type, version, displayStyle,
+				themeDisplay);
+		}
+
+		PortletResponseUtil.sendFile(
+			resourceRequest, resourceResponse, null,
+			rss.getBytes(StringPool.UTF8), ContentTypes.TEXT_XML_UTF8);
+	}
+
+	public void serveResource(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws IOException, PortletException {
+
+		try {
+			String resourceID = resourceRequest.getResourceID();
+
+			if (resourceID.equals("rss")) {
+				serveRSS(resourceRequest, resourceResponse);
+			}
+		}
+		catch (Exception e) {
+			if (!(e instanceof PrincipalException)) {
+				String resourceID = resourceRequest.getResourceID();
+
+				_log.error("Unable to serve " + resourceID, e);
+			}
+		}
 	}
 
 	public void subscribe(
@@ -173,5 +239,7 @@ public class AdminPortlet extends MVCPortlet {
 
 		return false;
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(AdminPortlet.class);
 
 }
