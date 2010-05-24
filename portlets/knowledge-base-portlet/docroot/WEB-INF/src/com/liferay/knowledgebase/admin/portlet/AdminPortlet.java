@@ -21,9 +21,11 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.messageboards.NoSuchMessageException;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
@@ -83,6 +85,34 @@ public class AdminPortlet extends MVCPortlet {
 		}
 
 		super.render(renderRequest, renderResponse);
+	}
+
+	public void subscribe(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		ArticleServiceUtil.subscribe(
+			themeDisplay.getScopeGroupId(), resourcePrimKey);
+	}
+
+	public void unsubscribe(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		ArticleServiceUtil.unsubscribe(
+			themeDisplay.getScopeGroupId(), resourcePrimKey);
 	}
 
 	public void updateArticle(
