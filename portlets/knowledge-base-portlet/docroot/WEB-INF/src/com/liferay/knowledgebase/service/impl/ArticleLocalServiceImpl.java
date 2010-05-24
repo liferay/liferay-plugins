@@ -140,8 +140,9 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		// Message Boards
 
 		mbMessageLocalService.addDiscussionMessage(
-			userId, article.getUserName(), Article.class.getName(),
-			resourcePrimKey, WorkflowConstants.ACTION_PUBLISH);
+			userId, article.getUserName(), article.getGroupId(),
+			Article.class.getName(), resourcePrimKey,
+			WorkflowConstants.ACTION_PUBLISH);
 
 		// Social
 
