@@ -317,7 +317,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	public String updateAttachments(
-			long companyId, long groupId, long resourcePrimKey)
+			long companyId, long groupId, long resourcePrimKey, String dirName)
 		throws PortalException, SystemException {
 
 		if (resourcePrimKey <= 0) {
@@ -330,7 +330,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		}
 
 		return articleLocalService.updateAttachments(
-			companyId, resourcePrimKey);
+			companyId, resourcePrimKey, dirName);
 	}
 
 	protected String exportToRSS(

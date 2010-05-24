@@ -14,6 +14,10 @@
 
 package com.liferay.knowledgebase.admin.portlet;
 
+import com.liferay.documentlibrary.DuplicateFileException;
+import com.liferay.documentlibrary.FileSizeException;
+import com.liferay.documentlibrary.NoSuchFileException;
+import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.ArticleContentException;
 import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
@@ -23,20 +27,29 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.messageboards.NoSuchMessageException;
 import com.liferay.util.RSSUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import java.util.Set;
 
@@ -56,6 +69,41 @@ import javax.portlet.ResourceResponse;
  */
 public class AdminPortlet extends MVCPortlet {
 
+	public void addAttachment(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		try {
+			UploadPortletRequest uploadRequest =
+				PortalUtil.getUploadPortletRequest(actionRequest);
+
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			long resourcePrimKey = ParamUtil.getLong(
+				uploadRequest, "resourcePrimKey");
+
+			String dirName = ParamUtil.getString(uploadRequest, "dirName");
+			File file = uploadRequest.getFile("file");
+			String fileName = uploadRequest.getFileName("file");
+
+			ArticleServiceUtil.addAttachment(
+				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+				resourcePrimKey, dirName, fileName, FileUtil.getBytes(file));
+		}
+		catch (Exception e) {
+
+			// Request parameters are not persisted when UploadPortletRequest is
+			// used. See PortalImpl#getUploadPortletRequest and attachments.jsp.
+
+			String redirect = ParamUtil.getString(actionRequest, "redirect");
+
+			actionResponse.sendRedirect(redirect);
+
+			throw e;
+		}
+	}
+
 	public void deleteArticle(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -64,6 +112,23 @@ public class AdminPortlet extends MVCPortlet {
 			actionRequest, "resourcePrimKey");
 
 		ArticleServiceUtil.deleteArticle(resourcePrimKey);
+	}
+
+	public void deleteAttachment(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		String fileName = ParamUtil.getString(actionRequest, "fileName");
+
+		ArticleServiceUtil.deleteAttachment(
+			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+			resourcePrimKey, fileName);
 	}
 
 	public void render(
@@ -94,6 +159,22 @@ public class AdminPortlet extends MVCPortlet {
 		}
 
 		super.render(renderRequest, renderResponse);
+	}
+
+	public void serveAttachment(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		long companyId = ParamUtil.getLong(resourceRequest, "companyId");
+		String fileName = ParamUtil.getString(resourceRequest, "fileName");
+
+		String shortFileName = FileUtil.getShortFileName(fileName);
+		InputStream is = DLLocalServiceUtil.getFileAsStream(
+			companyId, CompanyConstants.SYSTEM, fileName);
+		String contentType = MimeTypesUtil.getContentType(fileName);
+
+		PortletResponseUtil.sendFile(
+			resourceRequest, resourceResponse, shortFileName, is, contentType);
 	}
 
 	public void serveRSS(
@@ -140,7 +221,10 @@ public class AdminPortlet extends MVCPortlet {
 		try {
 			String resourceID = resourceRequest.getResourceID();
 
-			if (resourceID.equals("rss")) {
+			if (resourceID.equals("attachment")) {
+				serveAttachment(resourceRequest, resourceResponse);
+			}
+			else if (resourceID.equals("rss")) {
 				serveRSS(resourceRequest, resourceResponse);
 			}
 		}
@@ -211,6 +295,57 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
+	public void updateAttachments(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		try {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			long resourcePrimKey = ParamUtil.getLong(
+				actionRequest, "resourcePrimKey");
+
+			String dirName = ParamUtil.getString(actionRequest, "dirName");
+
+			dirName = ArticleServiceUtil.updateAttachments(
+				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+				resourcePrimKey, dirName);
+
+			String redirect = ParamUtil.getString(actionRequest, "redirect");
+
+			redirect = HttpUtil.setParameter(
+				redirect, actionResponse.getNamespace() + "dirName", dirName);
+
+			actionRequest.setAttribute(
+				actionResponse.getNamespace() + "redirect", redirect);
+		}
+		catch (Exception e) {
+
+			// Attachments are updated in a separate popup window. See
+			// ArticleLocalServiceImpl#addArticle and edit_article.jsp.
+
+			String redirect = ParamUtil.getString(actionRequest, "redirect");
+
+			actionResponse.sendRedirect(redirect);
+
+			throw e;
+		}
+	}
+
+	protected void addSuccessMessage(
+		ActionRequest actionRequest, ActionResponse actionResponse) {
+
+		String actionName = ParamUtil.getString(
+			actionRequest, ActionRequest.ACTION_NAME);
+
+		if (actionName.equals("updateAttachments")) {
+			return;
+		}
+
+		super.addSuccessMessage(actionRequest, actionResponse);
+	}
+
 	protected void doDispatch(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -228,10 +363,29 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
+	protected String getRedirect(
+		ActionRequest actionRequest, ActionResponse actionResponse) {
+
+		String redirect = (String)actionRequest.getAttribute(
+			actionResponse.getNamespace() + "redirect");
+
+		if (Validator.isNull(redirect)) {
+			return super.getRedirect(actionRequest, actionResponse);
+		}
+
+		actionRequest.removeAttribute(
+			actionResponse.getNamespace() + "redirect");
+
+		return redirect;
+	}
+
 	protected boolean isSessionErrorException(Throwable cause) {
 		if (cause instanceof ArticleContentException ||
 			cause instanceof ArticleTitleException ||
+			cause instanceof DuplicateFileException ||
+			cause instanceof FileSizeException ||
 			cause instanceof NoSuchArticleException ||
+			cause instanceof NoSuchFileException ||
 			cause instanceof PrincipalException) {
 
 			return true;

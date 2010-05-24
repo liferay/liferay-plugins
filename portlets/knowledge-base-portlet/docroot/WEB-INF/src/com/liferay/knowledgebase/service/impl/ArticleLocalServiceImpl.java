@@ -499,10 +499,15 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			communityPermissions, guestPermissions);
 	}
 
-	public String updateAttachments(long companyId, long resourcePrimKey)
+	public String updateAttachments(
+			long companyId, long resourcePrimKey, String dirName)
 		throws PortalException, SystemException {
 
-		String dirName =
+		if (Validator.isNotNull(dirName)) {
+			return dirName;
+		}
+
+		dirName =
 			"knowledgebase/temp/attachments/" + counterLocalService.increment();
 
 		dlService.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
