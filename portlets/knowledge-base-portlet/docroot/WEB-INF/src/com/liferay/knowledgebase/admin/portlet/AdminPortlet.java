@@ -23,9 +23,8 @@ import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
+import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -34,8 +33,6 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
@@ -50,8 +47,6 @@ import com.liferay.util.servlet.PortletResponseUtil;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-
-import java.util.Set;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -73,35 +68,22 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		try {
-			UploadPortletRequest uploadRequest =
-				PortalUtil.getUploadPortletRequest(actionRequest);
+		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
+			actionRequest);
 
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
-			long resourcePrimKey = ParamUtil.getLong(
-				uploadRequest, "resourcePrimKey");
+		long resourcePrimKey = ParamUtil.getLong(
+			uploadRequest, "resourcePrimKey");
 
-			String dirName = ParamUtil.getString(uploadRequest, "dirName");
-			File file = uploadRequest.getFile("file");
-			String fileName = uploadRequest.getFileName("file");
+		String dirName = ParamUtil.getString(uploadRequest, "dirName");
+		File file = uploadRequest.getFile("file");
+		String fileName = uploadRequest.getFileName("file");
 
-			ArticleServiceUtil.addAttachment(
-				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				resourcePrimKey, dirName, fileName, FileUtil.getBytes(file));
-		}
-		catch (Exception e) {
-
-			// Request parameters are not persisted when UploadPortletRequest is
-			// used. See PortalImpl#getUploadPortletRequest and attachments.jsp.
-
-			String redirect = ParamUtil.getString(actionRequest, "redirect");
-
-			actionResponse.sendRedirect(redirect);
-
-			throw e;
-		}
+		ArticleServiceUtil.addAttachment(
+			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+			resourcePrimKey, dirName, fileName, FileUtil.getBytes(file));
 	}
 
 	public void deleteArticle(
@@ -145,7 +127,7 @@ public class AdminPortlet extends MVCPortlet {
 				article = ArticleServiceUtil.getLatestArticle(resourcePrimKey);
 			}
 
-			renderRequest.setAttribute("KNOWLEDGE_BASE_ARTICLE", article);
+			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
@@ -181,8 +163,8 @@ public class AdminPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		long resourcePrimKey = ParamUtil.getLong(
 			resourceRequest, "resourcePrimKey");
@@ -228,12 +210,14 @@ public class AdminPortlet extends MVCPortlet {
 				serveRSS(resourceRequest, resourceResponse);
 			}
 		}
+		catch (IOException ioe) {
+			throw ioe;
+		}
+		catch (PortletException pe) {
+			throw pe;
+		}
 		catch (Exception e) {
-			if (!(e instanceof PrincipalException)) {
-				String resourceID = resourceRequest.getResourceID();
-
-				_log.error("Unable to serve " + resourceID, e);
-			}
+			throw new PortletException(e);
 		}
 	}
 
@@ -299,38 +283,24 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		try {
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
-			long resourcePrimKey = ParamUtil.getLong(
-				actionRequest, "resourcePrimKey");
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
 
-			String dirName = ParamUtil.getString(actionRequest, "dirName");
+		String dirName = ParamUtil.getString(actionRequest, "dirName");
 
-			dirName = ArticleServiceUtil.updateAttachments(
-				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				resourcePrimKey, dirName);
+		dirName = ArticleServiceUtil.updateAttachments(
+			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+			resourcePrimKey, dirName);
 
-			String redirect = ParamUtil.getString(actionRequest, "redirect");
+		String redirect = ParamUtil.getString(actionRequest, "redirect");
 
-			redirect = HttpUtil.setParameter(
-				redirect, actionResponse.getNamespace() + "dirName", dirName);
+		redirect = HttpUtil.setParameter(
+			redirect, actionResponse.getNamespace() + "dirName", dirName);
 
-			actionRequest.setAttribute(
-				actionResponse.getNamespace() + "redirect", redirect);
-		}
-		catch (Exception e) {
-
-			// Attachments are updated in a separate popup window. See
-			// ArticleLocalServiceImpl#addArticle and edit_article.jsp.
-
-			String redirect = ParamUtil.getString(actionRequest, "redirect");
-
-			actionResponse.sendRedirect(redirect);
-
-			throw e;
-		}
+		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 	}
 
 	protected void addSuccessMessage(
@@ -350,33 +320,18 @@ public class AdminPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		Set<String> keySet = SessionErrors.keySet(renderRequest);
-
-		if (keySet.contains(NoSuchArticleException.class.getName()) ||
-			keySet.contains(NoSuchMessageException.class.getName()) ||
-			keySet.contains(PrincipalException.class.getName())) {
+		if (SessionErrors.contains(
+				renderRequest, NoSuchArticleException.class.getName()) ||
+			SessionErrors.contains(
+				renderRequest, NoSuchMessageException.class.getName()) ||
+			SessionErrors.contains(
+				renderRequest, PrincipalException.class.getName())) {
 
 			include("/admin/error.jsp", renderRequest, renderResponse);
 		}
 		else {
 			super.doDispatch(renderRequest, renderResponse);
 		}
-	}
-
-	protected String getRedirect(
-		ActionRequest actionRequest, ActionResponse actionResponse) {
-
-		String redirect = (String)actionRequest.getAttribute(
-			actionResponse.getNamespace() + "redirect");
-
-		if (Validator.isNull(redirect)) {
-			return super.getRedirect(actionRequest, actionResponse);
-		}
-
-		actionRequest.removeAttribute(
-			actionResponse.getNamespace() + "redirect");
-
-		return redirect;
 	}
 
 	protected boolean isSessionErrorException(Throwable cause) {
@@ -393,7 +348,5 @@ public class AdminPortlet extends MVCPortlet {
 
 		return false;
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(AdminPortlet.class);
 
 }
