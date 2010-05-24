@@ -331,10 +331,11 @@ public class ArticleServiceSoap {
 	}
 
 	public static java.lang.String updateAttachments(long companyId,
-		long groupId, long resourcePrimKey) throws RemoteException {
+		long groupId, long resourcePrimKey, java.lang.String dirName)
+		throws RemoteException {
 		try {
 			java.lang.String returnValue = ArticleServiceUtil.updateAttachments(companyId,
-					groupId, resourcePrimKey);
+					groupId, resourcePrimKey, dirName);
 
 			return returnValue;
 		}

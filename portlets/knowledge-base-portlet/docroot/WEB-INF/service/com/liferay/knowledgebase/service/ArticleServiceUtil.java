@@ -192,11 +192,12 @@ public class ArticleServiceUtil {
 	}
 
 	public static java.lang.String updateAttachments(long companyId,
-		long groupId, long resourcePrimKey)
+		long groupId, long resourcePrimKey, java.lang.String dirName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .updateAttachments(companyId, groupId, resourcePrimKey);
+				   .updateAttachments(companyId, groupId, resourcePrimKey,
+			dirName);
 	}
 
 	public static void clearService() {

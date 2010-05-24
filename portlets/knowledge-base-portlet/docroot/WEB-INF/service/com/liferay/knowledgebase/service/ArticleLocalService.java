@@ -224,7 +224,7 @@ public interface ArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public java.lang.String updateAttachments(long companyId,
-		long resourcePrimKey)
+		long resourcePrimKey, java.lang.String dirName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

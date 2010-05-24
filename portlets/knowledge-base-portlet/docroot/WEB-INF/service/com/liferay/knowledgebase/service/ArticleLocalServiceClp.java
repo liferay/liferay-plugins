@@ -1322,18 +1322,24 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 	}
 
 	public java.lang.String updateAttachments(long companyId,
-		long resourcePrimKey)
+		long resourcePrimKey, java.lang.String dirName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);
 
 		Object paramObj1 = new LongWrapper(resourcePrimKey);
 
+		Object paramObj2 = ClpSerializer.translateInput(dirName);
+
+		if (dirName == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("updateAttachments",
-					new Object[] { paramObj0, paramObj1 });
+					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {

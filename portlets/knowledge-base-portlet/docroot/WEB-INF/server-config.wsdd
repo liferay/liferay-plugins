@@ -133,6 +133,7 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="resourcePrimKey" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="dirName" type="tns:string"></parameter>
 		</operation>
 		<parameter name="allowedMethods" value="addArticle getArticle updateArticle addAttachment unsubscribe getLatestArticle updateAttachments getCompanyArticles getGroupArticlesCount getCompanyArticlesCount deleteAttachment getArticles subscribe deleteArticle getArticlesCount getGroupArticles" />
 		<typeMapping xmlns:ns="http://model.portal.liferay.com" qname="ns:PortletPreferencesIds" type="java:com.liferay.portal.model.PortletPreferencesIds" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>

@@ -835,7 +835,7 @@ public class ArticleServiceClp implements ArticleService {
 	}
 
 	public java.lang.String updateAttachments(long companyId, long groupId,
-		long resourcePrimKey)
+		long resourcePrimKey, java.lang.String dirName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);
@@ -844,11 +844,17 @@ public class ArticleServiceClp implements ArticleService {
 
 		Object paramObj2 = new LongWrapper(resourcePrimKey);
 
+		Object paramObj3 = ClpSerializer.translateInput(dirName);
+
+		if (dirName == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
+		}
+
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("updateAttachments",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {

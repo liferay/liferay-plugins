@@ -283,10 +283,11 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 	}
 
 	public java.lang.String updateAttachments(long companyId,
-		long resourcePrimKey)
+		long resourcePrimKey, java.lang.String dirName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _articleLocalService.updateAttachments(companyId, resourcePrimKey);
+		return _articleLocalService.updateAttachments(companyId,
+			resourcePrimKey, dirName);
 	}
 
 	public com.liferay.knowledgebase.model.Article updateDisplayOrder(

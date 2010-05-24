@@ -293,10 +293,11 @@ public class ArticleLocalServiceUtil {
 	}
 
 	public static java.lang.String updateAttachments(long companyId,
-		long resourcePrimKey)
+		long resourcePrimKey, java.lang.String dirName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().updateAttachments(companyId, resourcePrimKey);
+		return getService()
+				   .updateAttachments(companyId, resourcePrimKey, dirName);
 	}
 
 	public static com.liferay.knowledgebase.model.Article updateDisplayOrder(
