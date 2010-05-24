@@ -86,8 +86,9 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 		// Message Boards
 
 		MBMessageLocalServiceUtil.addDiscussionMessage(
-			userId, template.getUserName(), Template.class.getName(),
-			templateId, WorkflowConstants.ACTION_PUBLISH);
+			userId, template.getUserName(), template.getGroupId(),
+			Template.class.getName(), templateId,
+			WorkflowConstants.ACTION_PUBLISH);
 
 		return template;
 	}
