@@ -16,69 +16,6 @@
 
 <%@ include file="init.jsp" %>
 
-<style type="text/css">
-	#preview {
-		-moz-border-radius: 4px;
-		-webkit-border-radius: 4px;
-		background: #d0d0d0 url(<%= request.getContextPath() %>/images/preview_bg.png) no-repeat center center;
-		border-radius: 4px;
-		float: right;
-		height: 30.5em;
-	}
-
-	#<portlet:namespace />fm select {
-		padding: 4px;
-	}
-
-	#<portlet:namespace />fm .aui-field-inline {
-		vertical-align: text-top;
-	}
-
-	#<portlet:namespace />fm .aui-field-label {
-		vertical-align: bottom;
-	}
-
-	#<portlet:namespace />fm .aui-field-row .aui-field-content {
-		margin-right: 1em;
-	}
-
-	#<portlet:namespace />fm .aui-field-input-choice {
-		margin-right: 0.3em;
-	}
-
-	#<portlet:namespace />fm .url .aui-field-input {
-		width: 30em;
-	}
-
-	#<portlet:namespace />fm .height .aui-field-input,
-	#<portlet:namespace />fm .start-time .aui-field-input,
-	#<portlet:namespace />fm .width .aui-field-input {
-		width: 4.9em;
-	}
-
-	#<portlet:namespace />fm .aui-colorpicker-trigger {
-		vertical-align: top;
-	}
-
-	#<portlet:namespace />fm .aui-field-text .aui-field-label,
-	#<portlet:namespace />fm .aui-field-select .aui-field-label {
-		display: block;
-	}
-
-	.lfr-panel-container {
-		border: 0;
-	}
-
-	.annotations .aui-field-input,
-	.closed-captioning .aui-field-input {
-		width: 11em;
-	}
-
-	.invisible {
-		visibility: hidden;
-	}
-</style>
-
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
 
 <aui:form action="<%= configurationURL %>" method="post">
