@@ -120,16 +120,45 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 	</div>
 
 	<%
+	List<Role> roles = RoleLocalServiceUtil.search(layout.getCompanyId(), null, null, new Integer[] {RoleConstants.TYPE_COMMUNITY}, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new RoleNameComparator(false));
+
+	roles = EnterpriseAdminUtil.filterGroupRoles(permissionChecker, group.getGroupId(), roles);
+	%>
+
+	<c:if test="<%= !roles.isEmpty() && GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.ASSIGN_USER_ROLES) %>">
+		<div class="invite-to">
+			<h2>
+				<liferay-ui:message key="invite-to-role" />
+			</h2>
+
+			<select name="<portlet:namespace />roleId">
+				<option selected value="0"></option>
+
+				<%
+				for (Role role : roles) {
+				%>
+
+					<option value="<%= role.getRoleId() %>"><%= role.getName() %></option>
+
+				<%
+				}
+				%>
+
+			</select>
+		</div>
+	</c:if>
+
+	<%
 	List<Team> teams = TeamLocalServiceUtil.getGroupTeams(group.getGroupId());
 	%>
 
 	<c:if test="<%= !teams.isEmpty() && GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_TEAMS) %>">
-		<div class="team-invite">
+		<div class="invite-to">
 			<h2>
 				<liferay-ui:message key="invite-to-team" />
 			</h2>
 
-			<select name="<portlet:namespace />teamId" onChange="<portlet:namespace />selectInvitedTeam(this.value);">
+			<select name="<portlet:namespace />teamId">
 				<option selected value="0"></option>
 
 				<%
@@ -152,6 +181,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 		<input name="<portlet:namespace />groupId" type="hidden" value="<%= themeDisplay.getScopeGroupId() %>" />
 		<input name="<portlet:namespace />receiverUserIds" type="hidden" value="" />
 		<input name="<portlet:namespace />receiverEmailAddresses" type="hidden" value="" />
+		<input name="<portlet:namespace />invitedRoleId" type="hidden" value="" />
 		<input name="<portlet:namespace />invitedTeamId" type="hidden" value="" />
 
 		<input id="<portlet:namespace />submit" type="submit" value="<liferay-ui:message key="send-invitations" />" />

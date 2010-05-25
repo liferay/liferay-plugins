@@ -166,12 +166,12 @@
 	border-color: #AFA;
 }
 
-.so-portlet-invite-members .team-invite select {
+.so-portlet-invite-members .invite-to select {
 	margin-top: 1em;
 	min-width: 300px;
 }
 
-.ie .so-portlet-invite-members .team-invite select {
+.ie .so-portlet-invite-members .invite-to select {
 	width: 300px;
 }
 

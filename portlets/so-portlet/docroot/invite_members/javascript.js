@@ -187,11 +187,13 @@ AUI().add(
 						}
 					);
 
-					var teamId = form.one('select[name="' + instance.get('portletNamespace') + 'teamId"]') || '0';
+					var role = instance._inviteMembersWrapper.one('select[name=' + instance.get('portletNamespace') + 'roleId]');
+					var team = instance._inviteMembersWrapper.one('select[name=' + instance.get('portletNamespace') + 'teamId]');
 
 					form.one('input[name="' + instance.get('portletNamespace') + 'receiverUserIds"]').val(userIds.join());
 					form.one('input[name="' + instance.get('portletNamespace') + 'receiverEmailAddresses"]').val(emailAddresses.join());
-					form.one('input[name="' + instance.get('portletNamespace') + 'invitedTeamId"]').val(teamId);
+					form.one('input[name="' + instance.get('portletNamespace') + 'invitedRoleId"]').val(role ? role.val() : 0);
+					form.one('input[name="' + instance.get('portletNamespace') + 'invitedTeamId"]').val(team ? team.val() : 0);
 				}
 			}
 		);
