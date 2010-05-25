@@ -53,35 +53,36 @@ long accountId = ParamUtil.getLong(request, "accountId");
 	%>
 </c:if>
 
-<aui:script>
-var A = AUI();
+<aui:script use="aui-base, aui-io">
+A.one('#<portlet:namespace />addFolder').on(
+	'click',
+	function() {
+		var displayName = A.one('#<portlet:namespace />displayName').get('value');
 
-A.one('#<portlet:namespace />addFolder').on('click', function() {
-	var displayName = A.one('#<portlet:namespace />displayName').get('value');
-
-	A.io.request(
-		themeDisplay.getLayoutURL() + '/-/mail/add_folder',
-		{
-			data: {
-				accountId: <%= accountId %>,
-				displayName: displayName
-			},
-			method: 'POST',
-			on: {
-				failure: function (event, id, obj) {
-					Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
+		A.io.request(
+			themeDisplay.getLayoutURL() + '/-/mail/add_folder',
+			{
+				data: {
+					accountId: <%= accountId %>,
+					displayName: displayName
 				},
-				success: function (event, id, obj) {
-					var responseData = this.get('responseData');
+				method: 'POST',
+				on: {
+					failure: function (event, id, obj) {
+						Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
+					},
+					success: function (event, id, obj) {
+						var responseData = this.get('responseData');
 
-					Liferay.Mail.setStatus(results.status, results.message);
+						Liferay.Mail.setStatus(results.status, results.message);
 
-					if (results.status == 'success') {
-						Liferay.Mail.loadManageFolders(<%= accountId %>);
+						if (results.status == 'success') {
+							Liferay.Mail.loadManageFolders(<%= accountId %>);
+						}
 					}
 				}
 			}
-		}
-	);
-});
+		);
+	}
+);
 </aui:script>

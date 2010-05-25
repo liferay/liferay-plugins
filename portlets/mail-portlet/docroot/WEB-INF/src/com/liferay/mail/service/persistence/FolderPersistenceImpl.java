@@ -595,8 +595,6 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 					}
 				}
 			}
-
-			query.append(WHERE_LIMIT_2);
 		}
 
 		else {
@@ -606,6 +604,9 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		String sql = query.toString();
 
 		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
 
 		QueryPos qPos = QueryPos.getInstance(q);
 

@@ -616,8 +616,6 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 					}
 				}
 			}
-
-			query.append(WHERE_LIMIT_2);
 		}
 
 		else {
@@ -627,6 +625,9 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		String sql = query.toString();
 
 		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
@@ -878,8 +879,6 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 					}
 				}
 			}
-
-			query.append(WHERE_LIMIT_2);
 		}
 
 		else {
@@ -889,6 +888,9 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		String sql = query.toString();
 
 		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
 
 		QueryPos qPos = QueryPos.getInstance(q);
 

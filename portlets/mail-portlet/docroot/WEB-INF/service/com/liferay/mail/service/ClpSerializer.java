@@ -644,19 +644,19 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setAccountId(value0.longValue());
+					newModel.setAccountId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getUserName");
 
@@ -711,7 +711,7 @@ public class ClpSerializer {
 					Integer value10 = (Integer)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setIncomingPort(value10.intValue());
+					newModel.setIncomingPort(value10);
 
 					Method method11 = oldModelClass.getMethod(
 							"getIncomingSecure");
@@ -719,7 +719,7 @@ public class ClpSerializer {
 					Boolean value11 = (Boolean)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setIncomingSecure(value11.booleanValue());
+					newModel.setIncomingSecure(value11);
 
 					Method method12 = oldModelClass.getMethod(
 							"getOutgoingHostName");
@@ -734,7 +734,7 @@ public class ClpSerializer {
 					Integer value13 = (Integer)method13.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setOutgoingPort(value13.intValue());
+					newModel.setOutgoingPort(value13);
 
 					Method method14 = oldModelClass.getMethod(
 							"getOutgoingSecure");
@@ -742,7 +742,7 @@ public class ClpSerializer {
 					Boolean value14 = (Boolean)method14.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setOutgoingSecure(value14.booleanValue());
+					newModel.setOutgoingSecure(value14);
 
 					Method method15 = oldModelClass.getMethod("getLogin");
 
@@ -763,7 +763,7 @@ public class ClpSerializer {
 					Boolean value17 = (Boolean)method17.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setSavePassword(value17.booleanValue());
+					newModel.setSavePassword(value17);
 
 					Method method18 = oldModelClass.getMethod("getSignature");
 
@@ -777,7 +777,7 @@ public class ClpSerializer {
 					Boolean value19 = (Boolean)method19.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setUseSignature(value19.booleanValue());
+					newModel.setUseSignature(value19);
 
 					Method method20 = oldModelClass.getMethod("getFolderPrefix");
 
@@ -792,7 +792,7 @@ public class ClpSerializer {
 					Long value21 = (Long)method21.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setInboxFolderId(value21.longValue());
+					newModel.setInboxFolderId(value21);
 
 					Method method22 = oldModelClass.getMethod(
 							"getDraftFolderId");
@@ -800,14 +800,14 @@ public class ClpSerializer {
 					Long value22 = (Long)method22.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setDraftFolderId(value22.longValue());
+					newModel.setDraftFolderId(value22);
 
 					Method method23 = oldModelClass.getMethod("getSentFolderId");
 
 					Long value23 = (Long)method23.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setSentFolderId(value23.longValue());
+					newModel.setSentFolderId(value23);
 
 					Method method24 = oldModelClass.getMethod(
 							"getTrashFolderId");
@@ -815,7 +815,7 @@ public class ClpSerializer {
 					Long value24 = (Long)method24.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setTrashFolderId(value24.longValue());
+					newModel.setTrashFolderId(value24);
 
 					Method method25 = oldModelClass.getMethod(
 							"getDefaultSender");
@@ -823,7 +823,7 @@ public class ClpSerializer {
 					Boolean value25 = (Boolean)method25.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setDefaultSender(value25.booleanValue());
+					newModel.setDefaultSender(value25);
 
 					return newModel;
 				}
@@ -851,37 +851,37 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setAttachmentId(value0.longValue());
+					newModel.setAttachmentId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getAccountId");
 
 					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
 
-					newModel.setAccountId(value3.longValue());
+					newModel.setAccountId(value3);
 
 					Method method4 = oldModelClass.getMethod("getFolderId");
 
 					Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
 
-					newModel.setFolderId(value4.longValue());
+					newModel.setFolderId(value4);
 
 					Method method5 = oldModelClass.getMethod("getMessageId");
 
 					Long value5 = (Long)method5.invoke(oldModel, (Object[])null);
 
-					newModel.setMessageId(value5.longValue());
+					newModel.setMessageId(value5);
 
 					Method method6 = oldModelClass.getMethod("getContentPath");
 
@@ -901,7 +901,7 @@ public class ClpSerializer {
 
 					Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
 
-					newModel.setSize(value8.longValue());
+					newModel.setSize(value8);
 
 					return newModel;
 				}
@@ -928,19 +928,19 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setFolderId(value0.longValue());
+					newModel.setFolderId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getUserName");
 
@@ -965,7 +965,7 @@ public class ClpSerializer {
 
 					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setAccountId(value6.longValue());
+					newModel.setAccountId(value6);
 
 					Method method7 = oldModelClass.getMethod("getFullName");
 
@@ -987,7 +987,7 @@ public class ClpSerializer {
 					Integer value9 = (Integer)method9.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setRemoteMessageCount(value9.intValue());
+					newModel.setRemoteMessageCount(value9);
 
 					return newModel;
 				}
@@ -1014,19 +1014,19 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setMessageId(value0.longValue());
+					newModel.setMessageId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getUserName");
 
@@ -1051,13 +1051,13 @@ public class ClpSerializer {
 
 					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setAccountId(value6.longValue());
+					newModel.setAccountId(value6);
 
 					Method method7 = oldModelClass.getMethod("getFolderId");
 
 					Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
 
-					newModel.setFolderId(value7.longValue());
+					newModel.setFolderId(value7);
 
 					Method method8 = oldModelClass.getMethod("getSender");
 
@@ -1127,7 +1127,7 @@ public class ClpSerializer {
 					Long value17 = (Long)method17.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setSize(value17.longValue());
+					newModel.setSize(value17);
 
 					Method method18 = oldModelClass.getMethod(
 							"getRemoteMessageId");
@@ -1135,7 +1135,7 @@ public class ClpSerializer {
 					Long value18 = (Long)method18.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setRemoteMessageId(value18.longValue());
+					newModel.setRemoteMessageId(value18);
 
 					return newModel;
 				}
