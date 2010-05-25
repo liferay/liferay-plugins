@@ -320,7 +320,13 @@ public class AdminPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		if (isSessionErrorRedirect(renderRequest)) {
+		if (SessionErrors.contains(
+				renderRequest, NoSuchArticleException.class.getName()) ||
+			SessionErrors.contains(
+				renderRequest, NoSuchMessageException.class.getName()) ||
+			SessionErrors.contains(
+				renderRequest, PrincipalException.class.getName())) {
+
 			include("/admin/error.jsp", renderRequest, renderResponse);
 		}
 		else {
@@ -338,22 +344,6 @@ public class AdminPortlet extends MVCPortlet {
 			cause instanceof PrincipalException) {
 
 			return true;
-		}
-
-		return false;
-	}
-
-	protected boolean isSessionErrorRedirect(RenderRequest renderRequest) {
-		String[] keys = new String[] {
-			NoSuchArticleException.class.getName(),
-			NoSuchMessageException.class.getName(),
-			PrincipalException.class.getName()
-		};
-
-		for (String key : keys) {
-			if (SessionErrors.contains(renderRequest, key)) {
-				return true;
-			}
 		}
 
 		return false;
