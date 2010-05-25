@@ -30,7 +30,7 @@ Group group = (Group)row.getObject();
 		<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" portletName="<%= PortletKeys.COMMUNITIES %>" var="editURL">
 			<liferay-portlet:param name="struts_action" value="/communities/edit_community" />
 			<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+			<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 		</liferay-portlet:renderURL>
 
 		<%
@@ -40,13 +40,13 @@ Group group = (Group)row.getObject();
 		<liferay-ui:icon image="edit" url="<%= taglibEditURL %>" />
 
 		<liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="redirectURL">
-			<portlet:param name="jspPage" value="/sites/view.jsp" />
+			<liferay-portlet:param name="jspPage" value="/sites/view.jsp" />
 		</liferay-portlet:renderURL>
 
 		<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="manageMembersURL">
-			<portlet:param name="jspPage" value="/sites/edit_members.jsp" />
-			<portlet:param name="redirect" value="<%= redirectURL %>" />
-			<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+			<liferay-portlet:param name="jspPage" value="/sites/edit_members.jsp" />
+			<liferay-portlet:param name="redirect" value="<%= redirectURL %>" />
+			<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:icon image="assign" message="manage-members" url="<%= manageMembersURL %>" />
@@ -54,9 +54,9 @@ Group group = (Group)row.getObject();
 
 	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_TEAMS) %>">
 		<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="<%= PortletKeys.COMMUNITIES %>" var="manageTeamsURL">
-			<portlet:param name="struts_action" value="/communities/view_teams" />
-			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+			<liferay-portlet:param name="struts_action" value="/communities/view_teams" />
+			<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
+			<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:icon image="group" message="manage-teams" url="<%= manageTeamsURL %>" />
@@ -66,11 +66,11 @@ Group group = (Group)row.getObject();
 		<c:when test="<%= !GroupLocalServiceUtil.hasUserGroup(user.getUserId(), group.getGroupId()) %>">
 			<c:if test="<%= group.getType() == GroupConstants.TYPE_COMMUNITY_OPEN %>">
 				<liferay-portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="<%= PortletKeys.COMMUNITIES %>" var="joinURL">
-					<portlet:param name="struts_action" value="/communities/edit_community_assignments" />
-					<portlet:param name="<%= Constants.CMD %>" value="group_users" />
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-					<portlet:param name="addUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
+					<liferay-portlet:param name="struts_action" value="/communities/edit_community_assignments" />
+					<liferay-portlet:param name="<%= Constants.CMD %>" value="group_users" />
+					<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
+					<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+					<liferay-portlet:param name="addUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
 				</liferay-portlet:actionURL>
 
 				<liferay-ui:icon image="join" url="<%= joinURL %>" />
@@ -78,11 +78,11 @@ Group group = (Group)row.getObject();
 		</c:when>
 		<c:when test="<%= !GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.DELETE) %>">
 			<liferay-portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="<%= PortletKeys.COMMUNITIES %>" var="leaveURL">
-				<portlet:param name="struts_action" value="/communities/edit_community_assignments" />
-				<portlet:param name="<%= Constants.CMD %>" value="group_users" />
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-				<portlet:param name="removeUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
+				<liferay-portlet:param name="struts_action" value="/communities/edit_community_assignments" />
+				<liferay-portlet:param name="<%= Constants.CMD %>" value="group_users" />
+				<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
+				<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+				<liferay-portlet:param name="removeUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
 			</liferay-portlet:actionURL>
 
 			<liferay-ui:icon image="leave" url="<%= leaveURL %>" />
@@ -91,10 +91,10 @@ Group group = (Group)row.getObject();
 
 	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.DELETE) %>">
 		<liferay-portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="<%= PortletKeys.COMMUNITIES %>" var="deleteURL">
-			<portlet:param name="struts_action" value="/communities/edit_community" />
-			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+			<liferay-portlet:param name="struts_action" value="/communities/edit_community" />
+			<liferay-portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+			<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
+			<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 		</liferay-portlet:actionURL>
 
 		<liferay-ui:icon-delete url="<%= deleteURL %>" />
