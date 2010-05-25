@@ -42,50 +42,12 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 %>
 
 <style type="text/css">
-	.portlet-web-form .lfr-panel-content {
-		padding: 0 1em;
-	}
 
-	.portlet-web-form fieldset.rows-container {
-		border: none;
-		margin-top: 0;
-	}
-
-	.portlet-web-form .editing-disabled dt {
-		color: #999999;
-		float: left;
-		font-weight: bold;
-		width: 6em;
-	}
-
-	.portlet-web-form .lfr-form-row .aui-ctrl-holder {
-		margin-left: 2em;
-	}
-
-	.portlet-web-form .lfr-form-row .aui-ctrl-holder.optional-control {
-		margin: 1.3em;
-	}
-
-	.portlet-web-form .lfr-form-row .aui-ctrl-holder.options, .portlet-web-form .lfr-form-row .validation .aui-ctrl-holder {
-		clear: both;
-		float: none;
-	}
-
-	.portlet-web-form .lfr-form-row .field-title {
-		color: #000;
-		font-size: 120%;
-		font-weight: bold;
-		padding: 3px;
-	}
-
-	.portlet-web-form .validation {
-		clear: left;
-	}
 </style>
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
 
-<aui:form action="<%= configurationURL %>" cssClass="portlet-web-form" method="post" name="fm">
+<aui:form action="<%= configurationURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
