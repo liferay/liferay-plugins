@@ -165,6 +165,7 @@ public class InviteMembersPortlet extends MVCPortlet {
 		long[] receiverUserIds = getLongArray(actionRequest, "receiverUserIds");
 		String[] receiverEmailAddresses = getStringArray(
 			actionRequest, "receiverEmailAddresses");
+		long invitedRoleId = ParamUtil.getLong(actionRequest, "invitedRoleId");
 		long invitedTeamId = ParamUtil.getLong(actionRequest, "invitedTeamId");
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
@@ -177,12 +178,12 @@ public class InviteMembersPortlet extends MVCPortlet {
 		}
 
 		MemberRequestLocalServiceUtil.addMemberRequests(
-			themeDisplay.getUserId(), groupId, receiverUserIds, invitedTeamId,
-			themeDisplay);
+			themeDisplay.getUserId(), groupId, receiverUserIds, invitedRoleId,
+			invitedTeamId, themeDisplay);
 
 		MemberRequestLocalServiceUtil.addMemberRequests(
 			themeDisplay.getUserId(), groupId, receiverEmailAddresses,
-			invitedTeamId, themeDisplay);
+			invitedRoleId, invitedTeamId, themeDisplay);
 	}
 
 	protected void doUpdateInvite(

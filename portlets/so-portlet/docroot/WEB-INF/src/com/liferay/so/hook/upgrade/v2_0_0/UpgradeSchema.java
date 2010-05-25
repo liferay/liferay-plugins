@@ -27,8 +27,10 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 public class UpgradeSchema extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
+		runSQL("alter table SO_MemberRequest add invitedRoleId LONG");
 		runSQL("alter table SO_MemberRequest add invitedTeamId LONG");
 
+		runSQL("update SO_MemberRequest set invitedRoleId = 0");
 		runSQL("update SO_MemberRequest set invitedTeamId = 0");
 	}
 

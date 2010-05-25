@@ -32,6 +32,7 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -57,7 +58,7 @@ public class MemberRequestLocalServiceImpl
 
 	public MemberRequest addMemberRequest(
 			long userId, long groupId, long receiverUserId,
-			String receiverEmailAddress, long invitedTeamId,
+			String receiverEmailAddress, long invitedRoleId, long invitedTeamId,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
@@ -78,6 +79,7 @@ public class MemberRequestLocalServiceImpl
 		memberRequest.setModifiedDate(now);
 		memberRequest.setKey(PortalUUIDUtil.generate());
 		memberRequest.setReceiverUserId(receiverUserId);
+		memberRequest.setInvitedRoleId(invitedRoleId);
 		memberRequest.setInvitedTeamId(invitedTeamId);
 		memberRequest.setStatus(InviteMembersConstants.STATUS_PENDING);
 
@@ -97,7 +99,7 @@ public class MemberRequestLocalServiceImpl
 
 	public void addMemberRequests(
 			long userId, long groupId, long[] receiverUserIds,
-			long invitedTeamId, ThemeDisplay themeDisplay)
+			long invitedRoleId, long invitedTeamId, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		for (long receiverUserId : receiverUserIds) {
@@ -110,14 +112,14 @@ public class MemberRequestLocalServiceImpl
 			String emailAddress = user.getEmailAddress();
 
 			addMemberRequest(
-				userId, groupId, receiverUserId, emailAddress, invitedTeamId,
-				themeDisplay);
+				userId, groupId, receiverUserId, emailAddress, invitedRoleId,
+				invitedTeamId, themeDisplay);
 		}
 	}
 
 	public void addMemberRequests(
 			long userId, long groupId, String[] emailAddresses,
-			long invitedTeamId, ThemeDisplay themeDisplay)
+			long invitedRoleId, long invitedTeamId, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		for (String emailAddress : emailAddresses) {
@@ -126,7 +128,8 @@ public class MemberRequestLocalServiceImpl
 			}
 
 			addMemberRequest(
-				userId, groupId, 0, emailAddress, invitedTeamId, themeDisplay);
+				userId, groupId, 0, emailAddress, invitedRoleId, invitedTeamId,
+				themeDisplay);
 		}
 	}
 
@@ -199,7 +202,14 @@ public class MemberRequestLocalServiceImpl
 				memberRequest.getGroupId(),
 				new long[] {memberRequest.getReceiverUserId()});
 
-			if (memberRequest.getInvitedTeamId() > 0 ) {
+			if (memberRequest.getInvitedRoleId() > 0) {
+				UserGroupRoleLocalServiceUtil.addUserGroupRoles(
+					new long[] {memberRequest.getReceiverUserId()},
+					memberRequest.getGroupId(),
+					memberRequest.getInvitedRoleId());
+			}
+
+			if (memberRequest.getInvitedTeamId() > 0) {
 				userLocalService.addTeamUsers(
 					memberRequest.getInvitedTeamId(),
 					new long[] {memberRequest.getReceiverUserId()});

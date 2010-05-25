@@ -25,6 +25,7 @@
 
 		<column name="key" type="String" />
 		<column name="receiverUserId" type="long" />
+		<column name="invitedRoleId" type="long" />
 		<column name="invitedTeamId" type="long" />
 		<column name="status" type="int" />
 
