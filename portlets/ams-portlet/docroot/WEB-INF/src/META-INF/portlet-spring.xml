@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.liferay.ams.service.AMSAssetLocalService" class="com.liferay.ams.service.impl.AMSAssetLocalServiceImpl" />
+	<bean id="com.liferay.ams.service.AMSAssetLocalServiceUtil" class="com.liferay.ams.service.AMSAssetLocalServiceUtil">
+		<property name="service" ref="com.liferay.ams.service.AMSAssetLocalService" />
+	</bean>
+	<bean id="com.liferay.ams.service.persistence.AMSAssetPersistence" class="com.liferay.ams.service.persistence.AMSAssetPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.ams.service.AMSCheckoutLocalService" class="com.liferay.ams.service.impl.AMSCheckoutLocalServiceImpl" />
+	<bean id="com.liferay.ams.service.AMSCheckoutLocalServiceUtil" class="com.liferay.ams.service.AMSCheckoutLocalServiceUtil">
+		<property name="service" ref="com.liferay.ams.service.AMSCheckoutLocalService" />
+	</bean>
+	<bean id="com.liferay.ams.service.persistence.AMSCheckoutPersistence" class="com.liferay.ams.service.persistence.AMSCheckoutPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.ams.service.AMSDefinitionLocalService" class="com.liferay.ams.service.impl.AMSDefinitionLocalServiceImpl" />
+	<bean id="com.liferay.ams.service.AMSDefinitionLocalServiceUtil" class="com.liferay.ams.service.AMSDefinitionLocalServiceUtil">
+		<property name="service" ref="com.liferay.ams.service.AMSDefinitionLocalService" />
+	</bean>
+	<bean id="com.liferay.ams.service.persistence.AMSDefinitionPersistence" class="com.liferay.ams.service.persistence.AMSDefinitionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.ams.service.AMSTypeLocalService" class="com.liferay.ams.service.impl.AMSTypeLocalServiceImpl" />
+	<bean id="com.liferay.ams.service.AMSTypeLocalServiceUtil" class="com.liferay.ams.service.AMSTypeLocalServiceUtil">
+		<property name="service" ref="com.liferay.ams.service.AMSTypeLocalService" />
+	</bean>
+	<bean id="com.liferay.ams.service.persistence.AMSTypePersistence" class="com.liferay.ams.service.persistence.AMSTypePersistenceImpl" parent="basePersistence" />
+</beans>

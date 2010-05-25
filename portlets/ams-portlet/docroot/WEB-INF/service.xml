@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
+
+<service-builder package-path="com.liferay.ams">
+	<namespace>AMS</namespace>
+	<entity name="AMSAsset" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="amsAssetId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="assetDefinitionId" type="long" />
+		<column name="serialNumber" type="String" />
+		<column name="inactiveDate" type="Date" />
+		<column name="active" type="boolean" />
+	</entity>
+	<entity name="AMSCheckout" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="amsCheckoutId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="amsAssetId" type="long" />
+		<column name="checkOutDate" type="Date" />
+		<column name="expectedCheckInDate" type="Date" />
+		<column name="actualCheckInDate" type="Date" />
+	</entity>
+	<entity name="AMSDefinition" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="assetDefinitionId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="amsTypeId" type="long" />
+		<column name="manufacturer" type="String" />
+		<column name="model" type="String" />
+		<column name="orderDate" type="Date" />
+		<column name="quantity" type="int" />
+		<column name="price" type="double" />
+	</entity>
+	<entity name="AMSType" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="amsTypeId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="name" />
+		</order>
+	</entity>
+</service-builder>
