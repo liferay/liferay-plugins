@@ -18,7 +18,6 @@ package com.liferay.knowledgebase.util;
  * <a href="WebKeys.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 

@@ -90,6 +90,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		// Article
 
 		User user = userPersistence.findByPrimaryKey(userId);
+		long groupId = serviceContext.getScopeGroupId();
 		Date now = new Date();
 
 		validate(title, content);
@@ -102,7 +103,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		article.setUuid(uuid);
 		article.setResourcePrimKey(resourcePrimKey);
-		article.setGroupId(serviceContext.getScopeGroupId());
+		article.setGroupId(groupId);
 		article.setCompanyId(user.getCompanyId());
 		article.setUserId(user.getUserId());
 		article.setUserName(user.getFullName());
@@ -140,9 +141,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		// Message Boards
 
 		mbMessageLocalService.addDiscussionMessage(
-			userId, article.getUserName(), article.getGroupId(),
-			Article.class.getName(), resourcePrimKey,
-			WorkflowConstants.ACTION_PUBLISH);
+			userId, article.getUserName(), groupId, Article.class.getName(),
+			resourcePrimKey, WorkflowConstants.ACTION_PUBLISH);
 
 		// Social
 

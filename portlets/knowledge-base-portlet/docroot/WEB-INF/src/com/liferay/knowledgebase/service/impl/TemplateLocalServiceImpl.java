@@ -47,6 +47,7 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 		// Template
 
 		User user = userPersistence.findByPrimaryKey(userId);
+		long groupId = serviceContext.getScopeGroupId();
 		Date now = new Date();
 
 		validate(title, content);
@@ -56,7 +57,7 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 		Template template = templatePersistence.create(templateId);
 
 		template.setUuid(uuid);
-		template.setGroupId(serviceContext.getScopeGroupId());
+		template.setGroupId(groupId);
 		template.setCompanyId(user.getCompanyId());
 		template.setUserId(user.getUserId());
 		template.setUserName(user.getFullName());
@@ -86,9 +87,8 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 		// Message Boards
 
 		MBMessageLocalServiceUtil.addDiscussionMessage(
-			userId, template.getUserName(), template.getGroupId(),
-			Template.class.getName(), templateId,
-			WorkflowConstants.ACTION_PUBLISH);
+			userId, template.getUserName(), groupId, Template.class.getName(),
+			templateId, WorkflowConstants.ACTION_PUBLISH);
 
 		return template;
 	}
