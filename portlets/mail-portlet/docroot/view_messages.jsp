@@ -1,0 +1,227 @@
+<%
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+%>
+
+<%@ include file="/init.jsp" %>
+
+<%
+MailManager mailManager = MailManager.getInstance(request);
+%>
+
+<c:if test="<%= mailManager != null %>">
+	<%
+	long folderId = ParamUtil.getLong(request, "folderId");
+	int pageNumber = ParamUtil.getInteger(request, "pageNumber", 1);
+	int messagesPerPage = 25; //ParamUtil.getInteger(request, "messagesPerPage");
+	String orderByField = ParamUtil.getString(request, "orderByField");
+	String orderByType = ParamUtil.getString(request, "orderByType");
+	String keywords = ParamUtil.getString(request, "keywords");
+
+	MessagesDisplay messagesDisplay = mailManager.getMessagesDisplay(folderId, pageNumber, messagesPerPage, orderByField, orderByType, keywords);
+	%>
+
+	<c:choose>
+		<c:when test="<%= messagesDisplay.getMessageCount() == 0 %>">
+			<aui:layout>
+				<c:choose>
+					<c:when test="<%= keywords.equals(StringPool.BLANK) %>">
+						<liferay-ui:message key="there-are-no-message-in-this-folder" />
+					</c:when>
+					<c:otherwise>
+						<liferay-ui:message key="no-messages-matched-your-search" />
+					</c:otherwise>
+				</c:choose>
+			</aui:layout>
+		</c:when>
+		<c:otherwise>
+			<aui:layout>
+				<aui:column>
+					<aui:button cssClass="delete-messages" value="Delete" />
+				</aui:column>
+				<aui:column>
+					<aui:select cssClass="flag-messages" label="flagMessages" name="flagMessages" showEmptyOption="true">
+						<aui:option value="4,true"><liferay-ui:message key="flag-as-important" /></aui:option>
+						<aui:option value="4,false"><liferay-ui:message key="remove-flag" /></aui:option>
+						<aui:option value="6,true"><liferay-ui:message key="mark-as-read" /></aui:option>
+						<aui:option value="6,false"><liferay-ui:message key="mark-as-unread" /></aui:option>
+					</aui:select>
+				</aui:column>
+				<aui:column>
+					<aui:select cssClass="move-messages" label="moveMessages" name="moveMessages" showEmptyOption="true">
+						<%
+						Folder folder = FolderLocalServiceUtil.getFolder(folderId);
+
+						List<Folder> folders = FolderLocalServiceUtil.getFolders(folder.getAccountId());
+
+						for (Folder tempFolder : folders) {
+						%>
+
+							<aui:option value="<%= tempFolder.getFolderId() %>"><%= tempFolder.getDisplayName() %></aui:option>
+
+						<%
+						}
+						%>
+					</aui:select>
+				</aui:column>
+				<aui:column>
+					<c:if test="<%= messagesDisplay.getPageNumber() > 2 %>">
+						<aui:a cssClass="messages-link" folderId="<%= folderId %>" href="javascript:;" keywords="<%= keywords %>" label="&lt;&lt; Newest" orderByField="<%= orderByField %>" orderByType="<%= orderByType %>" pageNumber="1" />&nbsp;
+					</c:if>
+					<c:if test="<%= messagesDisplay.getPageNumber() > 1 %>">
+						<aui:a cssClass="messages-link" folderId="<%= folderId %>" href="javascript:;" keywords="<%= keywords %>" label="&lt; Newer" orderByField="<%= orderByField %>" orderByType="<%= orderByType %>" pageNumber="<%= pageNumber - 1 %>" />
+					</c:if>
+
+					<%= messagesDisplay.getStartMessageNumber() %> - <%= messagesDisplay.getEndMessageNumber() %>  of <%= messagesDisplay.getMessageCount() %>
+
+					<c:if test="<%= messagesDisplay.getPageNumber() < messagesDisplay.getPageCount() %>">
+						<aui:a cssClass="messages-link" folderId="<%= folderId %>" href="javascript:;" keywords="<%= keywords %>" label="Older >" orderByField="<%= orderByField %>" orderByType="<%= orderByType %>" pageNumber="<%= pageNumber + 1 %>" />&nbsp;
+					</c:if>
+				</aui:column>
+			</aui:layout>
+
+			<aui:layout>
+				<aui:column>
+					<liferay-ui:message key="select" />
+				</aui:column>
+				<aui:column>
+					<aui:a cssClass="select-all" href="javascript:;"><liferay-ui:message key="all" /></aui:a>
+				</aui:column>
+				<aui:column>
+					<aui:a cssClass="select-none" href="javascript:;"><liferay-ui:message key="none" /></aui:a>
+				</aui:column>
+			</aui:layout>
+
+			<br />
+
+			<aui:layout>
+				<aui:column columnWidth="5">
+					&nbsp;
+				</aui:column>
+				<aui:column columnWidth="95">
+					<aui:column columnWidth="25">
+
+						<%
+						String addressOrderByType = "asc";
+
+						if (orderByField.equals(MailConstants.ORDER_BY_ADDRESS) && orderByType.equals("asc")) {
+							addressOrderByType = "desc";
+						}
+						%>
+
+						<aui:a cssClass="messages-link" folderId="<%= folderId %>" href="javascript:;" keywords="<%= keywords %>" label="address" orderByField="<%= MailConstants.ORDER_BY_ADDRESS %>" orderByType="<%= addressOrderByType %>" pageNumber="1" />
+					</aui:column>
+					<aui:column cssClass="subject" columnWidth="55">
+
+						<%
+						String subjectOrderByType = "asc";
+
+						if (orderByField.equals(MailConstants.ORDER_BY_SUBJECT) && orderByType.equals("asc")) {
+							subjectOrderByType = "desc";
+						}
+						%>
+
+						<aui:a cssClass="messages-link" folderId="<%= folderId %>" href="javascript:;" keywords="<%= keywords %>" label="subject" orderByField="<%= MailConstants.ORDER_BY_SUBJECT %>" orderByType="<%= subjectOrderByType %>" pageNumber="1" />
+					</aui:column>
+					<aui:column cssClass="date" columnWidth="15">
+
+						<%
+						String dateOrderByType = "desc";
+
+						if (orderByField.equals(MailConstants.ORDER_BY_SENT_DATE) && orderByType.equals("desc")) {
+							dateOrderByType = "asc";
+						}
+						%>
+
+						<aui:a cssClass="messages-link" folderId="<%= folderId %>" href="javascript:;" keywords="<%= keywords %>" label="date" orderByField="<%= MailConstants.ORDER_BY_SENT_DATE %>" orderByType="<%= dateOrderByType %>" pageNumber="1" />
+					</aui:column>
+					<aui:column columnWidth="5">
+						&nbsp;
+					</aui:column>
+				</aui:column>
+			</aui:layout>
+
+			<%
+			List<Message> messages = messagesDisplay.getMessages();
+
+			int currentMessageNumber = messagesDisplay.getStartMessageNumber();
+
+			Folder folder = FolderLocalServiceUtil.getFolder(folderId);
+
+			Account mailAccount = AccountLocalServiceUtil.getAccount(folder.getAccountId());
+
+			for (Message message : messages) {
+				String address = StringPool.BLANK;
+				String date = StringPool.BLANK;
+
+				if (mailAccount.getSentFolderId() == folderId) {
+					address = message.getTo();
+
+					if (Validator.isNotNull(message.getCc())) {
+						address += ", " + message.getCc();
+					}
+
+					if (Validator.isNotNull(message.getBcc())) {
+						address += ", " + message.getBcc();
+					}
+				}
+				else {
+					address = message.getSender();
+				}
+
+				if (mailAccount.getDraftFolderId() == folderId) {
+					date = message.getModifiedDate().toString();
+				}
+				else {
+					date = message.getSentDate().toString();
+				}
+			%>
+
+				<aui:layout>
+					<aui:column columnWidth="5">
+						<aui:input id="message<%= message.getMessageId() %>" label="" messageId="<%= message.getMessageId() %>" name="message" type="checkbox" value="<%= message.getMessageId() %>" />
+					</aui:column>
+					<aui:column columnWidth="95" cssClass="message-link" folderId="<%= folderId %>" keywords="<%= keywords %>" messageNumber="<%= currentMessageNumber %>" orderByField="<%= orderByField %>" orderByType="<%= orderByType %>">
+						<aui:column cssClass="address" columnWidth="25">
+							<%= HtmlUtil.escape(address) %>
+						</aui:column>
+						<aui:column cssClass="subject" columnWidth="55">
+							<%= HtmlUtil.escape(message.getSubject()) %>
+						</aui:column>
+						<aui:column cssClass="date" columnWidth="15">
+							<%= HtmlUtil.escape(date) %>
+						</aui:column>
+						<aui:column cssClass="attachment" columnWidth="5">
+							<c:choose>
+								<c:when test="<%= AttachmentLocalServiceUtil.getAttachments(message.getMessageId()).isEmpty() %>">
+									&nbsp;
+								</c:when>
+								<c:otherwise>
+									<liferay-ui:icon image="../mail/clip" />
+								</c:otherwise>
+							</c:choose>
+						</aui:column>
+					</aui:column>
+				</aui:layout>
+
+			<%
+				currentMessageNumber++;
+			}
+			%>
+
+		</c:otherwise>
+	</c:choose>
+
+
+</c:if>
