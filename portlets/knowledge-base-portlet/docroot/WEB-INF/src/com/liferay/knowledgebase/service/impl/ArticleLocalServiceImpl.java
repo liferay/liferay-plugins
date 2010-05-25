@@ -227,13 +227,18 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Child Articles
 
-		List<Article> articles = getGroupArticles(
-			article.getGroupId(), article.getResourcePrimKey(),
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		params.put("groupId", new Long(article.getGroupId()));
+		params.put(
+			"parentResourcePrimKey", new Long(article.getResourcePrimKey()));
+
+		List<Article> childArticles = getArticles(
+			params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new ArticlePriorityComparator());
 
-		for (Article curArticle : articles) {
-			deleteArticle(curArticle.getResourcePrimKey());
+		for (Article childArticle : childArticles) {
+			deleteArticle(childArticle.getResourcePrimKey());
 		}
 
 		deleteArticle(article);
@@ -296,19 +301,31 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public void deleteGroupArticles(long groupId)
 		throws PortalException, SystemException {
 
-		List<Article> articles = getGroupArticles(
-			groupId, 0, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		params.put("groupId", new Long(groupId));
+		params.put(
+			"parentResourcePrimKey",
+			new Long(ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY));
+
+		List<Article> rootArticles = getArticles(
+			params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new ArticlePriorityComparator());
 
-		for (Article article : articles) {
-			deleteArticle(article.getResourcePrimKey());
+		for (Article rootArticle : rootArticles) {
+			deleteArticle(rootArticle.getResourcePrimKey());
 		}
 	}
 
 	public Article getArticle(long resourcePrimKey, int version)
-		throws PortalException, SystemException {
+		throws SystemException {
 
-		return articlePersistence.findByR_V(resourcePrimKey, version);
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		params.put("resourcePrimKey", new Long(resourcePrimKey));
+		params.put("version", new Integer(version));
+
+		return getArticles(params, true, 0, 1, null).get(0);
 	}
 
 	public List<Article> getArticles(
@@ -320,75 +337,70 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			resourcePrimKey, start, end, orderByComparator);
 	}
 
+	public List<Article> getArticles(
+			Map<String, Object> params, boolean allVersions, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = getDynamicQuery(params, allVersions);
+
+		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
+	}
+
 	public int getArticlesCount(long resourcePrimKey) throws SystemException {
 		return articlePersistence.countByResourcePrimKey(resourcePrimKey);
 	}
 
+	public int getArticlesCount(Map<String, Object> params, boolean allVersions)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = getDynamicQuery(params, allVersions);
+
+		return (int)dynamicQueryCount(dynamicQuery);
+	}
+
 	public List<Article> getCompanyArticles(
-			long companyId, int start, int end,
+			long companyId, boolean allVersions, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		Map<String, Long> params = new HashMap<String, Long>();
+		Map<String, Object> params = new HashMap<String, Object>();
 
 		params.put("companyId", new Long(companyId));
 
-		return dynamicQuery(
-			getDynamicQuery(params), start, end, orderByComparator);
+		return getArticles(params, allVersions, start, end, orderByComparator);
 	}
 
-	public int getCompanyArticlesCount(long companyId) throws SystemException {
-		Map<String, Long> params = new HashMap<String, Long>();
+	public int getCompanyArticlesCount(long companyId, boolean allVersions)
+		throws SystemException {
+
+		Map<String, Object> params = new HashMap<String, Object>();
 
 		params.put("companyId", new Long(companyId));
 
-		return (int)dynamicQueryCount(getDynamicQuery(params));
+		return getArticlesCount(params, allVersions);
 	}
 
 	public List<Article> getGroupArticles(
-			long groupId, int start, int end,
+			long groupId, boolean allVersions, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		Map<String, Long> params = new HashMap<String, Long>();
+		Map<String, Object> params = new HashMap<String, Object>();
 
 		params.put("groupId", new Long(groupId));
 
-		return dynamicQuery(
-			getDynamicQuery(params), start, end, orderByComparator);
+		return getArticles(params, allVersions, start, end, orderByComparator);
 	}
 
-	public List<Article> getGroupArticles(
-			long groupId, long parentResourcePrimKey, int start, int end,
-			OrderByComparator orderByComparator)
+	public int getGroupArticlesCount(long groupId, boolean allVersions)
 		throws SystemException {
 
-		Map<String, Long> params = new HashMap<String, Long>();
-
-		params.put("groupId", new Long(groupId));
-		params.put("parentResourcePrimKey", new Long(parentResourcePrimKey));
-
-		return dynamicQuery(
-			getDynamicQuery(params), start, end, orderByComparator);
-	}
-
-	public int getGroupArticlesCount(long groupId) throws SystemException {
-		Map<String, Long> params = new HashMap<String, Long>();
+		Map<String, Object> params = new HashMap<String, Object>();
 
 		params.put("groupId", new Long(groupId));
 
-		return (int)dynamicQueryCount(getDynamicQuery(params));
-	}
-
-	public int getGroupArticlesCount(long groupId, long parentResourcePrimKey)
-		throws SystemException {
-
-		Map<String, Long> params = new HashMap<String, Long>();
-
-		params.put("groupId", new Long(groupId));
-		params.put("parentResourcePrimKey", new Long(parentResourcePrimKey));
-
-		return (int)dynamicQueryCount(getDynamicQuery(params));
+		return getArticlesCount(params, allVersions);
 	}
 
 	public Article getLatestArticle(long resourcePrimKey)
@@ -543,38 +555,43 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			Article article, long parentResourcePrimKey, int priority)
 		throws SystemException {
 
-		List<Article> articles = ListUtil.copy(
-			getGroupArticles(
-				article.getGroupId(), article.getParentResourcePrimKey(),
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new ArticlePriorityComparator(true)));
+		Map<String, Object> params = new HashMap<String, Object>();
 
-		articles.remove(article);
-		articles.add(priority, article);
+		params.put("groupId", new Long(article.getGroupId()));
+		params.put(
+			"parentResourcePrimKey",
+			new Long(article.getParentResourcePrimKey()));
 
-		for (int i = 0; i < articles.size(); i++) {
-			Article curArticle = articles.get(i);
+		List<Article> siblingArticles = getArticles(
+			params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new ArticlePriorityComparator(true));
+
+		siblingArticles = ListUtil.copy(siblingArticles);
+
+		siblingArticles.remove(article);
+		siblingArticles.add(priority, article);
+
+		for (int i = 0; i < siblingArticles.size(); i++) {
+			Article siblingArticle = siblingArticles.get(i);
 
 			long curParentResourcePrimKey =
-				curArticle.getParentResourcePrimKey();
+				siblingArticle.getParentResourcePrimKey();
 
 			if (priority == i) {
 				curParentResourcePrimKey = parentResourcePrimKey;
 			}
 
-			List<Article> childrenArticles =
-				articlePersistence.findByResourcePrimKey(
-					curArticle.getResourcePrimKey());
+			List<Article> articles = articlePersistence.findByResourcePrimKey(
+				siblingArticle.getResourcePrimKey());
 
-			for (Article childrenArticle : childrenArticles) {
-				childrenArticle.setParentResourcePrimKey(
-					curParentResourcePrimKey);
-				childrenArticle.setPriority(i);
+			for (Article curArticle : articles) {
+				curArticle.setParentResourcePrimKey(curParentResourcePrimKey);
+				curArticle.setPriority(i);
 
-				articlePersistence.update(childrenArticle, false);
+				articlePersistence.update(curArticle, false);
 
-				if (article.getArticleId() == childrenArticle.getArticleId()) {
-					article = childrenArticle;
+				if (article.getArticleId() == curArticle.getArticleId()) {
+					article = curArticle;
 				}
 			}
 		}

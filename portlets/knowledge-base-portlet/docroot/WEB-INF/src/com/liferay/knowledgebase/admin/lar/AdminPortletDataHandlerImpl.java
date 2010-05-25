@@ -17,13 +17,14 @@ package com.liferay.knowledgebase.admin.lar;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.model.Template;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.TemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.persistence.ArticleUtil;
 import com.liferay.knowledgebase.service.persistence.TemplateUtil;
+import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
-import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -212,7 +213,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		List<Article> articles = ArticleUtil.findByResourcePrimKey(
 			resourcePrimKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new ArticleVersionComparator(true));
+			new ArticleModifiedDateComparator(true));
 
 		for (Article article : articles) {
 			String path =
@@ -294,13 +295,20 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		List<Article> articles = new ArrayList<Article>();
 
-		List<Article> groupArticles = ArticleLocalServiceUtil.getGroupArticles(
-			context.getGroupId(), 0, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		params.put("groupId", new Long(context.getGroupId()));
+		params.put(
+			"parentResourcePrimKey",
+			new Long(ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY));
+
+		List<Article> rootArticles = ArticleLocalServiceUtil.getArticles(
+			params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new ArticlePriorityComparator(true));
 
-		for (Article article : groupArticles) {
-			if (context.isWithinDateRange(article.getModifiedDate())) {
-				articles.add(article);
+		for (Article rootArticle : rootArticles) {
+			if (context.isWithinDateRange(rootArticle.getModifiedDate())) {
+				articles.add(rootArticle);
 			}
 		}
 
@@ -309,15 +317,20 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		while ((index = index + 1) < articles.size()) {
 			Article article = articles.get(index);
 
-			List<Article> curGroupArticles =
-				ArticleLocalServiceUtil.getGroupArticles(
-					article.getGroupId(), article.getResourcePrimKey(),
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new ArticlePriorityComparator(true));
+			Map<String, Object> curParams = new HashMap<String, Object>();
 
-			for (Article curArticle : curGroupArticles) {
-				if (context.isWithinDateRange(curArticle.getModifiedDate())) {
-					articles.add(curArticle);
+			curParams.put("groupId", new Long(article.getGroupId()));
+			curParams.put(
+				"parentResourcePrimKey",
+				new Long(article.getResourcePrimKey()));
+
+			List<Article> childArticles = ArticleLocalServiceUtil.getArticles(
+				params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new ArticlePriorityComparator(true));
+
+			for (Article childArticle : childArticles) {
+				if (context.isWithinDateRange(childArticle.getModifiedDate())) {
+					articles.add(childArticle);
 				}
 			}
 		}
@@ -337,8 +350,13 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		String dirName = MapUtil.getString(
 			dirNames, String.valueOf(article.getResourcePrimKey()));
 
-		int maxPriority = ArticleLocalServiceUtil.getGroupArticlesCount(
-			context.getGroupId(), parentResourcePrimKey);
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		params.put("groupId", new Long(context.getGroupId()));
+		params.put("parentResourcePrimKey", new Long(parentResourcePrimKey));
+
+		int maxPriority = ArticleLocalServiceUtil.getArticlesCount(
+			params, false);
 
 		if (priority > maxPriority) {
 			priority = maxPriority;

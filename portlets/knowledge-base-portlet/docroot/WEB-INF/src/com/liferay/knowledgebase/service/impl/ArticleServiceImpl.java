@@ -47,8 +47,10 @@ import com.sun.syndication.io.FeedException;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <a href="ArticleServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -136,8 +138,25 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		return filterArticles(articles);
 	}
 
+	public List<Article> getArticles(
+			Map<String, Object> params, boolean allVersions, int start, int end,
+			OrderByComparator orderByComparator)
+		throws PortalException, SystemException {
+
+		List<Article> articles = articleLocalService.getArticles(
+			params, allVersions, start, end, orderByComparator);
+
+		return filterArticles(articles);
+	}
+
 	public int getArticlesCount(long resourcePrimKey) throws SystemException {
 		return articleLocalService.getArticlesCount(resourcePrimKey);
+	}
+
+	public int getArticlesCount(Map<String, Object> params, boolean allVersions)
+		throws SystemException {
+
+		return articleLocalService.getArticlesCount(params, allVersions);
 	}
 
 	public String getArticlesRSS(
@@ -184,51 +203,38 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	public List<Article> getCompanyArticles(
-			long companyId, int start, int end,
+			long companyId, boolean allVersions, int start, int end,
 			OrderByComparator orderByComparator)
 		throws PortalException, SystemException {
 
 		List<Article> articles = articleLocalService.getCompanyArticles(
-			companyId, start, end, orderByComparator);
+			companyId, allVersions, start, end, orderByComparator);
 
 		return filterArticles(articles);
 	}
 
-	public int getCompanyArticlesCount(long companyId) throws SystemException {
-		return articleLocalService.getCompanyArticlesCount(companyId);
-	}
-
-	public List<Article> getGroupArticles(
-			long groupId, int start, int end,
-			OrderByComparator orderByComparator)
-		throws PortalException, SystemException {
-
-		List<Article> articles = articleLocalService.getGroupArticles(
-			groupId, start, end, orderByComparator);
-
-		return filterArticles(articles);
-	}
-
-	public List<Article> getGroupArticles(
-			long groupId, long parentResourcePrimKey, int start, int end,
-			OrderByComparator orderByComparator)
-		throws PortalException, SystemException {
-
-		List<Article> articles = articleLocalService.getGroupArticles(
-			groupId, parentResourcePrimKey, start, end, orderByComparator);
-
-		return filterArticles(articles);
-	}
-
-	public int getGroupArticlesCount(long groupId) throws SystemException {
-		return articleLocalService.getGroupArticlesCount(groupId);
-	}
-
-	public int getGroupArticlesCount(long groupId, long parentResourcePrimKey)
+	public int getCompanyArticlesCount(long companyId, boolean allVersions)
 		throws SystemException {
 
-		return articleLocalService.getGroupArticlesCount(
-			groupId, parentResourcePrimKey);
+		return articleLocalService.getCompanyArticlesCount(
+			companyId, allVersions);
+	}
+
+	public List<Article> getGroupArticles(
+			long groupId, boolean allVersions, int start, int end,
+			OrderByComparator orderByComparator)
+		throws PortalException, SystemException {
+
+		List<Article> articles = articleLocalService.getGroupArticles(
+			groupId, allVersions, start, end, orderByComparator);
+
+		return filterArticles(articles);
+	}
+
+	public int getGroupArticlesCount(long groupId, boolean allVersions)
+		throws SystemException {
+
+		return articleLocalService.getGroupArticlesCount(groupId, allVersions);
 	}
 
 	public String getGroupArticlesRSS(
@@ -455,11 +461,17 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		while ((index = index + 1) < articles.size()) {
 			Article curArticle = articles.get(index);
 
-			List<Article> groupArticles = getGroupArticles(
-				curArticle.getGroupId(), curArticle.getResourcePrimKey(),
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+			Map<String, Object> params = new HashMap<String, Object>();
 
-			articles.addAll(groupArticles);
+			params.put("groupId", new Long(curArticle.getGroupId()));
+			params.put(
+				"parentResourcePrimKey",
+				new Long(curArticle.getResourcePrimKey()));
+
+			List<Article> childArticles = getArticles(
+				params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+			articles.addAll(childArticles);
 		}
 
 		Collections.sort(articles, new ArticleModifiedDateComparator());
@@ -477,8 +489,8 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 		while ((articles.size() < max) && listNotExhausted) {
 			List<Article> articleList = articleLocalService.getGroupArticles(
-				group.getGroupId(), lastIntervalStart, lastIntervalStart + max,
-				new ArticleModifiedDateComparator());
+				group.getGroupId(), false, lastIntervalStart,
+				lastIntervalStart + max, new ArticleModifiedDateComparator());
 
 			Iterator<Article> itr = articleList.iterator();
 

@@ -179,7 +179,8 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	protected void reindexArticles(long companyId) throws Exception {
-		int count = ArticleLocalServiceUtil.getCompanyArticlesCount(companyId);
+		int count = ArticleLocalServiceUtil.getCompanyArticlesCount(
+			companyId, false);
 
 		int pages = count / Indexer.DEFAULT_INTERVAL;
 
@@ -195,7 +196,7 @@ public class AdminIndexer extends BaseIndexer {
 		throws Exception {
 
 		List<Article> articles = ArticleLocalServiceUtil.getCompanyArticles(
-			companyId, start, end, new ArticleModifiedDateComparator());
+			companyId, false, start, end, new ArticleModifiedDateComparator());
 
 		if (articles.isEmpty()) {
 			return;
