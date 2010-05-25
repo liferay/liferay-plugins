@@ -14,8 +14,40 @@
  */
 %>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ include file="init.jsp" %>
 
-<portlet:defineObjects />
+<c:choose>
+	<c:when test="<%= Validator.isNotNull(url) %>">
 
-This is the <b>Vimeo</b> portlet.
+		<%
+		StringBundler sb = new StringBundler();
+
+		sb.append("clip_id=" + id);
+
+		if (autoplay) {
+			sb.append("&amp;autoplay=1");
+		}
+
+		sb.append("&amp;color=" + playerColorHex);
+
+		sb.append("&amp;fullscreen=" + enableFullscreenBinary);
+
+		sb.append("&amp;server=vimeo.com");
+
+		sb.append("&amp;show_byline=" + showBylineBinary);
+
+		sb.append("&amp;show_portrait=" + showPortraitBinary);
+
+		sb.append("&amp;show_title=" + showTitleBinary);
+		%>
+
+		<liferay-ui:flash allowFullScreen="true" allowScriptAccess="true" height="<%= height %>" movie='<%= _SWF_URL + "?" + sb.toString() %>' width="<%= width %>" wmode="opaque">
+			<aui:a href="<%= _WATCH_URL + id %>" rel="external" title='LanguageUtil.get(pageContext, "watch-this-video-at-vimeo")'>
+				<liferay-ui:message key="vimeo-video" />
+			</aui:a>
+		</liferay-ui:flash>
+	</c:when>
+	<c:otherwise>
+		<liferay-util:include page="/html/portal/portlet_not_setup.jsp" />
+	</c:otherwise>
+</c:choose>
