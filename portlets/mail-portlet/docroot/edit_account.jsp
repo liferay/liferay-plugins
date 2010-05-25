@@ -24,105 +24,62 @@ MailManager mailManager = MailManager.getInstance(request);
 Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 %>
 
-<aui:input name="accountId" type="hidden" value="<%= mailAccount.getAccountId() %>" />
+<aui:form name="fm" onSubmit="event.preventDefault();">
+	<aui:input name="accountId" type="hidden" value="<%= mailAccount.getAccountId() %>" />
 
-<aui:input name="personalName" value="<%= mailAccount.getPersonalName() %>" />
+	<aui:input name="personalName" value="<%= mailAccount.getPersonalName() %>" />
 
-<aui:input name="password" type="password" />
+	<aui:input name="password" type="password" />
 
-<aui:input name="savePassword" type="checkbox" value="<%= mailAccount.isSavePassword() %>" />
+	<aui:input name="savePassword" type="checkbox" value="<%= mailAccount.isSavePassword() %>" />
 
-<aui:input name="signature" type="hidden" value="<%= mailAccount.getSignature() %>" />
+	<aui:input name="signature" type="hidden" value="<%= mailAccount.getSignature() %>" />
 
-<aui:input name="useSignature" type="hidden" value="<%= mailAccount.getUseSignature() %>" />
+	<aui:input name="useSignature" type="hidden" value="<%= mailAccount.getUseSignature() %>" />
 
-<aui:input name="folderPrefix" type="hidden" value="<%= mailAccount.getFolderPrefix() %>" />
+	<aui:input name="folderPrefix" type="hidden" value="<%= mailAccount.getFolderPrefix() %>" />
 
-<aui:input name="defaultSender" type="hidden" value="<%= mailAccount.getDefaultSender() %>" />
+	<aui:input name="defaultSender" type="hidden" value="<%= mailAccount.getDefaultSender() %>" />
 
-<aui:layout>
-	<aui:column>
-		<aui:button name="updateAccount" value="update-account" />
-	</aui:column>
-	<aui:column>
-		<aui:button name="deleteAccount" value="delete-account" />
-	</aui:column>
-</aui:layout>
+	<aui:layout>
+		<aui:column>
+			<aui:button name="updateAccount" type="submit" value="update-account" />
+		</aui:column>
+		<aui:column>
+			<aui:button cssClass="close-edit-account" name="cancel" value="cancel" />
+		</aui:column>
+	</aui:layout>
+
+	<aui:a href="javascript:;" onClick='<%= "Liferay.Mail.deleteAccount(" + accountId + ");" %>'><liferay-ui:message key="delete-account" /></aui:a>
+</aui:form>
 
 <aui:script>
 	var A = AUI();
 
-	A.one('#<portlet:namespace />deleteAccount').on(
-		'click',
-		function() {
-			var accountId = A.one('#<portlet:namespace />accountId').get('value');
+	var form = A.one('#<portlet:namespace />fm');
 
-			var answer = confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this-account" />');
-
-			if (answer) {
-				A.io.request(
-					themeDisplay.getLayoutURL() + '/-/mail/delete_account',
-					{
-						data: {
-							accountId: accountId
-						},
-						dataType: 'json',
-						method: 'POST',
-						on: {
-							failure: function (event, id, obj) {
-								var results = this.get('responseData');
-
-								console.log(results);
-							},
-							success: function (event, id, obj) {
-								var results = this.get('responseData');
-
-								console.log(results);
-							}
-						}
-					}
-				);
-			}
-		}
-	);
-
-	A.one('#<portlet:namespace />updateAccount').on(
-		'click',
-		function() {
-			var accountId = A.one('#<portlet:namespace />accountId').get('value');
-			var personalName = A.one('#<portlet:namespace />personalName').get('value');
-			var password = A.one('#<portlet:namespace />password').get('value');
-			var savePassword = A.one('#<portlet:namespace />savePassword').get('value');
-			var signature = A.one('#<portlet:namespace />signature').get('value');
-			var useSignature = A.one('#<portlet:namespace />useSignature').get('value');
-			var folderPrefix = A.one('#<portlet:namespace />folderPrefix').get('value');
-			var defaultSender = A.one('#<portlet:namespace />defaultSender').get('value');
+	form.on(
+		'submit',
+		function(event) {
+			event.preventDefault();
 
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/update_account',
 				{
-					data: {
-						accountId: accountId,
-						personalName: personalName,
-						password: password,
-						savePassword: savePassword,
-						signature: signature,
-						useSignature: useSignature,
-						folderPrefix: folderPrefix,
-						defaultSender: defaultSender
-					},
+					form: {id: form.getDOM()},
 					dataType: 'json',
-					method: 'POST',
 					on: {
 						failure: function (event, id, obj) {
-							var results = this.get('responseData');
-
-							console.log(results);
+							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 						},
 						success: function (event, id, obj) {
 							var results = this.get('responseData');
 
-							console.log(results);
+							Liferay.Mail.setStatus(results.status, results.message);
+
+							if (results.status == 'success') {
+								// close update window
+							}
 						}
 					}
 				}
