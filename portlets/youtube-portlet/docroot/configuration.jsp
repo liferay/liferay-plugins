@@ -106,86 +106,85 @@
 
 <aui:script use="aui-color-picker,aui-datatype,aui-swf">
 	var createPlayer = function () {
-			var id = urlToVideoId(urlNode.val()),
-				height = parseInt(heightNode.val(), 10) || 0,
-				maxWidth = (formNode.get('clientWidth') || formNode.get('scrollWidth')) - (controlsNode.get('clientWidth') || controlsNode.get('scrollWidth')),
-				playerOptions = {
-					border: showThickerBorderNode.val(),
-					cc_load_policy: closedCaptioningNode.val(),
-					color1: encodeHex(borderColorNode.val()),
-					color2: encodeHex(playerColorNode.val()),
-					disablekb: (!A.DataType.Boolean.parse(enableKeyboardControlsNode.val())).toString(),
-					egm: enableEnhancedGenieMenuNode.val(),
-					fs: enableFullscreenNode.val(),
-					hd: hdNode.val(),
-					iv_load_policy: annotationsNode.val(),
-					rel: enableEnhancedGenieMenuNode.val(),
-					showinfo: showInfoNode.val(),
-					showsearch: enableSearchNode.val(),
-					start: startTimeNode.val()
-				},
-				playerOptionsCompiled,
-				ratio,
-				value,
-				width = parseInt(widthNode.val(), 10) || 0,
-				x;
-
-			ratio = Math.min(maxWidth / width, 1);
-			height = Math.floor(height * ratio);
-			width = Math.floor(width * ratio);
-
-			playerOptionsCompiled = [swfURL + id];
-
-			for (x in playerOptions) {
-				if (playerOptions[x]) {
-					playerOptionsCompiled.push(x + '=' + playerOptions[x].replace(/^true$/, '1').replace(/^false$/, '0'));
-				}
-			}
-
-			if (id) {
-				previewNode.setContent(['<a href="', watchURL, id, '" rel="external" title="watch-this-video-at-youtube"><img src="', imageURL.replace('<%= id %>', id), '" alt="youtube-video" width="100%" height="100%" /></a>'].join(''));
-
-				new A.SWF(
-					{
-						boundingBox: previewNode,
-						height: height,
-						url: playerOptionsCompiled.join('&'),
-						width: width,
-						version: 0
-					}
-				).render();
-			}
-			else {
-				previewNode.setStyles(
-					{
-						height: height,
-						width: width
-					}
-				);
-			}
-		},
-		encodeHex =
-		function (hex) {
-			return (hex) ? '0x' + hex.replace('#', '').replace(/^(.)(.)(.)$/, '$1$1$2$2$3$3').toLowerCase() : '';
-		},
-		presetChange = function (e) {
-			if (this.val().indexOf('x') < 0) {
-				A.one('.aui-field.height').removeClass('invisible');
-				A.one('.aui-field.width').removeClass('invisible');
-
-				return;
-			}
-
-			var dimensions = this.val().split('x');
-
-			heightNode.val(dimensions[1]);
-			widthNode.val(dimensions[0]);
-
-			createPlayer();
-		},
-		urlToVideoId = function (url) {
-			return url.replace(/^.*?v=([a-zA-Z0-9_-]+).*$/, '$1');
+		var id = urlToVideoId(urlNode.val())
+		var height = parseInt(heightNode.val(), 10) || 0;
+		var maxWidth = (formNode.get('clientWidth') || formNode.get('scrollWidth')) - (controlsNode.get('clientWidth') || controlsNode.get('scrollWidth'));
+		var playerOptions = {
+				border: showThickerBorderNode.val(),
+				cc_load_policy: closedCaptioningNode.val(),
+				color1: encodeHex(borderColorNode.val()),
+				color2: encodeHex(playerColorNode.val()),
+				disablekb: (!A.DataType.Boolean.parse(enableKeyboardControlsNode.val())).toString(),
+				egm: enableEnhancedGenieMenuNode.val(),
+				fs: enableFullscreenNode.val(),
+				hd: hdNode.val(),
+				iv_load_policy: annotationsNode.val(),
+				rel: enableEnhancedGenieMenuNode.val(),
+				showinfo: showInfoNode.val(),
+				showsearch: enableSearchNode.val(),
+				start: startTimeNode.val()
 		};
+		var width = parseInt(widthNode.val(), 10) || 0;
+		var x;
+
+		var playerOptionsCompiled = [swfURL + id];
+		var ratio = Math.min(maxWidth / width, 1);
+
+		height = Math.floor(height * ratio);
+		width = Math.floor(width * ratio);
+
+		for (x in playerOptions) {
+			if (playerOptions[x]) {
+				playerOptionsCompiled.push(x + '=' + playerOptions[x].replace(/^true$/, '1').replace(/^false$/, '0'));
+			}
+		}
+
+		if (id) {
+			previewNode.setContent(['<a href="', watchURL, id, '" rel="external" title="watch-this-video-at-youtube"><img src="', imageURL.replace('<%= id %>', id), '" alt="youtube-video" width="100%" height="100%" /></a>'].join(''));
+
+			new A.SWF(
+				{
+					boundingBox: previewNode,
+					height: height,
+					url: playerOptionsCompiled.join('&'),
+					width: width,
+					version: 0
+				}
+			).render();
+		}
+		else {
+			previewNode.setStyles(
+				{
+					height: height,
+					width: width
+				}
+			);
+		}
+	};
+
+	var encodeHex = function (hex) {
+		return (hex) ? '0x' + hex.replace('#', '').replace(/^(.)(.)(.)$/, '$1$1$2$2$3$3').toLowerCase() : '';
+	};
+
+	var presetChange = function (e) {
+		if (this.val().indexOf('x') < 0) {
+			A.one('.aui-field.height').removeClass('invisible');
+			A.one('.aui-field.width').removeClass('invisible');
+
+			return;
+		}
+
+		var dimensions = this.val().split('x');
+
+		heightNode.val(dimensions[1]);
+		widthNode.val(dimensions[0]);
+
+		createPlayer();
+	};
+
+	var urlToVideoId = function (url) {
+		return url.replace(/^.*?v=([a-zA-Z0-9_-]+).*$/, '$1');
+	};
 
 	var allInputsNode = A.all('#<portlet:namespace />fm input');
 
