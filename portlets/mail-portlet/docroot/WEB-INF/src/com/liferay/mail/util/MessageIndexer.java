@@ -32,8 +32,6 @@ import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeIndexerUtil;
@@ -123,6 +121,8 @@ public class MessageIndexer extends BaseIndexer {
 		Message message = (Message)obj;
 
 		long companyId = message.getCompanyId();
+		long groupId = message.getGroupId();
+		long scopeGroupId = groupId;
 		long userId = message.getUserId();
 		long accountId = message.getAccountId();
 		long folderId = message.getFolderId();
@@ -131,8 +131,6 @@ public class MessageIndexer extends BaseIndexer {
 		String body = HtmlUtil.extractText(message.getBody());
 		long remoteMessageId = message.getRemoteMessageId();
 		Date modifiedDate = message.getModifiedDate();
-
-		User user = UserLocalServiceUtil.getUser(userId);
 
 		ExpandoBridge expandoBridge = message.getExpandoBridge();
 
@@ -144,8 +142,8 @@ public class MessageIndexer extends BaseIndexer {
 
 		document.addKeyword(Field.COMPANY_ID, companyId);
 		document.addKeyword(Field.PORTLET_ID, PORTLET_ID);
-		document.addKeyword(Field.GROUP_ID, user.getGroup().getGroupId());
-		document.addKeyword(Field.SCOPE_GROUP_ID, user.getGroup().getGroupId());
+		document.addKeyword(Field.GROUP_ID, groupId);
+		document.addKeyword(Field.SCOPE_GROUP_ID, scopeGroupId);
 		document.addKeyword(Field.USER_ID, userId);
 
 		document.addText(Field.TITLE, subject);

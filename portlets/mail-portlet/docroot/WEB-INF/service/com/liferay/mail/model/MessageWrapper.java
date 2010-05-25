@@ -266,6 +266,12 @@ public class MessageWrapper implements Message {
 		return _message.toXmlString();
 	}
 
+	public long getGroupId()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _message.getGroupId();
+	}
+
 	public Message getWrappedMessage() {
 		return _message;
 	}

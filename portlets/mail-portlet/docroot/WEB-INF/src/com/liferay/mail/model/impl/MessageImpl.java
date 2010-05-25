@@ -15,6 +15,11 @@
 package com.liferay.mail.model.impl;
 
 import com.liferay.mail.model.Message;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.UserLocalServiceUtil;
 
 /**
  * <a href="MessageImpl.java.html"><b><i>View Source</i></b></a>
@@ -24,6 +29,14 @@ import com.liferay.mail.model.Message;
 public class MessageImpl extends MessageModelImpl implements Message {
 
 	public MessageImpl() {
+	}
+
+	public long getGroupId() throws PortalException, SystemException {
+		User user = UserLocalServiceUtil.getUser(getUserId());
+
+		Group group = user.getGroup();
+
+		return group.getGroupId();
 	}
 
 }

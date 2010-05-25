@@ -208,6 +208,10 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		_remoteMessageId = remoteMessageId;
 	}
 
+	public long getGroupId() {
+		throw new UnsupportedOperationException();
+	}
+
 	public Message toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;

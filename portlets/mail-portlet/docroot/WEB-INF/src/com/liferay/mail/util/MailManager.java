@@ -339,9 +339,9 @@ public class MailManager {
 
 		for (Folder folder : folders) {
 			if ((folder.getFolderId() == account.getInboxFolderId()) ||
-					(folder.getFolderId() == account.getDraftFolderId()) ||
-					(folder.getFolderId() == account.getSentFolderId()) ||
-					(folder.getFolderId() == account.getTrashFolderId())) {
+				(folder.getFolderId() == account.getDraftFolderId()) ||
+				(folder.getFolderId() == account.getSentFolderId()) ||
+				(folder.getFolderId() == account.getTrashFolderId())) {
 
 				requiredFolders.add(folder);
 			}

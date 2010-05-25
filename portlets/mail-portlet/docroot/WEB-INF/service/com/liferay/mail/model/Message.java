@@ -40,4 +40,7 @@ package com.liferay.mail.model;
  * @generated
  */
 public interface Message extends MessageModel {
+	public long getGroupId()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

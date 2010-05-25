@@ -78,7 +78,9 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 							Liferay.Mail.setStatus(results.status, results.message);
 
 							if (results.status == 'success') {
-								// close update window
+
+								// Close update window
+
 							}
 						}
 					}
