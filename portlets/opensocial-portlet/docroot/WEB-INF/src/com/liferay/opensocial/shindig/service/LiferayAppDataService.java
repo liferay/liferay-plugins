@@ -31,6 +31,9 @@ import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
 import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map.Entry;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Future;
@@ -101,7 +104,7 @@ public class LiferayAppDataService implements AppDataService {
 		throws ProtocolException {
 
 		try {
-			updatePersonData(
+			doUpdatePersonData(
 				userId, groupId, appId, fields, values, securityToken);
 
 			return ImmediateFuture.newInstance(null);
@@ -147,6 +150,20 @@ public class LiferayAppDataService implements AppDataService {
 		Map<String, Map<String, String>> peopleAppData =
 			new HashMap<String, Map<String, String>>();
 
+		List<ExpandoColumn> expandoColumns = getExpandoColumns(companyId);
+
+		if (expandoColumns == null) {
+			return null;
+		}
+
+		if (fields.isEmpty()) {
+			fields = new LinkedHashSet<String>();
+
+			for (ExpandoColumn expandoColumn : expandoColumns) {
+				fields.add(expandoColumn.getName());
+			}
+		}
+
 		for (UserId userId : userIds) {
 			String userIdString = userId.getUserId(securityToken);
 
@@ -154,8 +171,9 @@ public class LiferayAppDataService implements AppDataService {
 
 			Map<String, String> personAppData = new HashMap<String, String>();
 
-			for (String field : fields) {
-				String value = getExpandoValue(companyId, userIdLong, field);
+			for	(String field : fields) {
+				String value = getExpandoValue(
+					companyId, userIdLong, field);
 
 				personAppData.put(field, value);
 			}
@@ -163,9 +181,7 @@ public class LiferayAppDataService implements AppDataService {
 			peopleAppData.put(userIdString, personAppData);
 		}
 
-		DataCollection dataCollection = null;
-
-		return dataCollection;
+		return new DataCollection(peopleAppData);
 	}
 
 	protected void doUpdatePersonData(UserId userId, GroupId groupId,
@@ -177,12 +193,19 @@ public class LiferayAppDataService implements AppDataService {
 
 		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
 
-		for (String field : fields) {
-			ExpandoColumn expandoColumn = getExpandoColumn(companyId, field);
+		for (Entry entry : values.entrySet()) {
+
+			// Work around a Shindig bug
+
+			String key = (String) entry.getKey();
+			String value = entry.getValue().toString();
+
+			ExpandoColumn expandoColumn = getExpandoColumn(
+				companyId, key);
 
 			ExpandoValueLocalServiceUtil.addValue(
 				companyId, User.class.getName(), OPEN_SOCIAL_DATA,
-				expandoColumn.getName(), userIdLong, values.get(field));
+				expandoColumn.getName(), userIdLong, value);
 		}
 
 		return;
@@ -223,6 +246,19 @@ public class LiferayAppDataService implements AppDataService {
 		}
 
 		return expandoColumn;
+	}
+
+	protected List<ExpandoColumn> getExpandoColumns(long companyId) {
+		try {
+			List<ExpandoColumn> expandoColumns =
+				ExpandoColumnLocalServiceUtil.getColumns(
+					companyId, User.class.getName(), OPEN_SOCIAL_DATA);
+
+			return expandoColumns;
+		}
+		catch (Exception e) {
+			return null;
+		}
 	}
 
 	protected String getExpandoValue(
