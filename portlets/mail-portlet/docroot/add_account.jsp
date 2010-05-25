@@ -224,7 +224,11 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 							success: function (event, id, obj) {
 								var results = this.get('responseData');
 
-								console.log(results);
+								Liferay.Mail.setStatus(results.status, results.message);
+
+								if (results.status = 'success') {
+									Liferay.Mail.loadAccounts(Liferay.Mail.getAccountId());
+								}
 							}
 						}
 					}

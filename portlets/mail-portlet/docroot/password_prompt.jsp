@@ -46,18 +46,15 @@ MailManager mailManager = MailManager.getInstance(request);
 					method: 'POST',
 					on: {
 						failure: function (event, id, obj) {
-							var results = this.get('responseData');
-
-							console.log(responseData);
+							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 						},
 						success: function (event, id, obj) {
 							var results = this.get('responseData');
 
+							Liferay.Mail.setStatus(results.status, results.message);
+
 							if (results.status == 'success') {
 								Liferay.Mail.loadAccount(<%= accountId %>, <%= inboxFolderId %>);
-							}
-							else {
-								//Liferay.Mail.setStatusMessage('error', results.message);
 							}
 						}
 					}

@@ -16,9 +16,17 @@
 
 <%@ include file="/init.jsp" %>
 
+<%
+MailManager mailManager = MailManager.getInstance(request);
+%>
+
 <div id="accountsContainer">
 	&nbsp;
 </div>
+
+<aui:layout cssClass="mail-status">
+	&nbsp;
+</aui:layout>
 
 <div id="mailContainer">
 	<aui:layout>
@@ -52,6 +60,24 @@
 	</aui:layout>
 </div>
 
+<%
+Account initialAccount = mailManager.getInitialAccount();
+
+long initialAccountId = 0;
+long initialFolderId = 0;
+
+if (initialAccount != null) {
+	initialAccountId = initialAccount.getAccountId();
+	initialFolderId = initialAccount.getInboxFolderId();
+}
+%>
+
 <aui:script use="liferay-plugin-mail">
-	Liferay.Mail.init();
+	Liferay.Mail.init(
+		{
+			initialAccountId: <%= initialAccountId %>,
+			initialFolderId: <%= initialFolderId %>,
+			namespace: '<portlet:namespace />'
+		}
+	);
 </aui:script>
