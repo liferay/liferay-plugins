@@ -7,7 +7,7 @@
 		<icon>/icon.png</icon>
 		<configuration-action-class>com.liferay.webform.action.ConfigurationActionImpl</configuration-action-class>
 		<instanceable>true</instanceable>
-		<header-portlet-css>/css.jsp</header-portlet-css>
+		<header-portlet-css>/css/main.css</header-portlet-css>
 		<css-class-wrapper>web-form-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
