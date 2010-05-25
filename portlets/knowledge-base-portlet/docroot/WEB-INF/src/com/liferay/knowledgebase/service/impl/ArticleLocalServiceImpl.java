@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -648,12 +647,38 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 	}
 
-	protected DynamicQuery getDynamicQuery(Map<String, Long> params) {
-		DynamicQuery subselectDynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Article.class, "article2", PortletClassLoaderUtil.getClassLoader());
+	protected DynamicQuery getDynamicQuery(
+		Map<String, Object> params, boolean allVersions) {
 
-		subselectDynamicQuery.setProjection(
-			PropertyFactoryUtil.forName("version").max());
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Article.class, "article1", getClass().getClassLoader());
+
+		for (Map.Entry<String, Object> entry : params.entrySet()) {
+			String key = entry.getKey();
+			Object value = entry.getValue();
+
+			if (value instanceof Object[]) {
+				Property property = PropertyFactoryUtil.forName(key);
+
+				dynamicQuery.add(property.in((Object[])value));
+			}
+			else {
+				Property property = PropertyFactoryUtil.forName(key);
+
+				dynamicQuery.add(property.eq(value));
+			}
+		}
+
+		if (allVersions) {
+			return dynamicQuery;
+		}
+
+		DynamicQuery subselectDynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Article.class, "article2", getClass().getClassLoader());
+
+		Property versionProperty = PropertyFactoryUtil.forName("version");
+
+		subselectDynamicQuery.setProjection(versionProperty.max());
 
 		Property resourcePrimKeyProperty1 = PropertyFactoryUtil.forName(
 			"article1.resourcePrimKey");
@@ -663,19 +688,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		subselectDynamicQuery.add(
 			resourcePrimKeyProperty1.eqProperty(resourcePrimKeyProperty2));
 
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Article.class, "article1", PortletClassLoaderUtil.getClassLoader());
-
-		for (Map.Entry<String, Long> entry : params.entrySet()) {
-			String name = entry.getKey();
-
-			Property property = PropertyFactoryUtil.forName(name);
-
-			dynamicQuery.add(property.eq(entry.getValue()));
-		}
-
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("version").in(subselectDynamicQuery));
+		dynamicQuery.add(versionProperty.in(subselectDynamicQuery));
 
 		return dynamicQuery;
 	}
