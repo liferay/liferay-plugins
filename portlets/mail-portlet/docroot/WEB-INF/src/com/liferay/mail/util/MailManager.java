@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
@@ -46,6 +47,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -117,6 +119,19 @@ public class MailManager {
 
 			return createJSONResult("failure", "unable-to-add-account");
 		}
+	}
+
+	public Message addDraft(long accountId)
+		throws PortalException, SystemException {
+
+		Account account = AccountLocalServiceUtil.getAccount(accountId);
+
+		Message message = MessageLocalServiceUtil.addMessage(
+			_user.getUserId(), account.getDraftFolderId(), account.getAddress(),
+			StringPool.BLANK, StringPool.BLANK, StringPool.BLANK, new Date(),
+			StringPool.BLANK, StringPool.BLANK, StringPool.BLANK, 0);
+
+		return message;
 	}
 
 	public JSONObject addFolder(long accountId, String displayName)
@@ -310,14 +325,62 @@ public class MailManager {
 		return mailbox.getAttachment(attachmentId);
 	}
 
-	public List<Folder> getFolders(long accountId) throws SystemException {
-		return  FolderLocalServiceUtil.getFolders(accountId);
+	public List<Folder> getFolders(
+			long accountId, boolean includeRequiredFolders,
+			boolean includeNonRequiredFolders)
+		throws PortalException, SystemException {
+
+		List<Folder> folders = FolderLocalServiceUtil.getFolders(accountId);
+
+		List<Folder> requiredFolders = new ArrayList<Folder>();
+		List<Folder> nonRequiredFolders = new ArrayList<Folder>();
+
+		Account account = AccountLocalServiceUtil.getAccount(accountId);
+
+		for (Folder folder : folders) {
+			if ((folder.getFolderId() == account.getInboxFolderId()) ||
+					(folder.getFolderId() == account.getDraftFolderId()) ||
+					(folder.getFolderId() == account.getSentFolderId()) ||
+					(folder.getFolderId() == account.getTrashFolderId())) {
+
+				requiredFolders.add(folder);
+			}
+			else {
+				nonRequiredFolders.add(folder);
+			}
+		}
+
+		if (includeRequiredFolders && includeNonRequiredFolders) {
+			requiredFolders.addAll(nonRequiredFolders);
+
+			// Required folders at front of list
+
+			return requiredFolders;
+		}
+		else if (includeNonRequiredFolders) {
+			return nonRequiredFolders;
+		}
+		else {
+			return requiredFolders;
+		}
 	}
 
 	public long getFolderUnreadMessagesCount(long folderId)
 		throws SystemException {
 
 		return MessageLocalServiceUtil.getFolderUnreadMessagesCount(folderId);
+	}
+
+	public Account getInitialAccount() throws SystemException {
+		List<Account> accounts = AccountLocalServiceUtil.getAccounts(
+			_user.getUserId());
+
+		if (accounts.isEmpty()) {
+			return null;
+		}
+		else {
+			return accounts.get(0);
+		}
 	}
 
 	public MessageDisplay getMessageDisplay(long messageId)
