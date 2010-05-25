@@ -25,6 +25,7 @@ import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.base.ArticleLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
+import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Property;
@@ -64,6 +65,12 @@ import com.liferay.util.portlet.PortletProps;
 
 import java.io.IOException;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -71,6 +78,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.portlet.PortletPreferences;
+
+import javax.sql.DataSource;
 
 /**
  * <a href="ArticleLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -648,7 +657,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	protected DynamicQuery getDynamicQuery(
-		Map<String, Object> params, boolean allVersions) {
+			Map<String, Object> params, boolean allVersions)
+		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			Article.class, "article1", getClass().getClassLoader());
@@ -656,6 +666,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			String key = entry.getKey();
 			Object value = entry.getValue();
+
+			if (key.equals("parentGroupId")) {
+				key = "groupId";
+				value = runSQL(key, value);
+			}
 
 			if (value instanceof Object[]) {
 				Property property = PropertyFactoryUtil.forName(key);
@@ -971,6 +986,53 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		message.put("htmlFormat", Boolean.TRUE);
 
 		MessageBusUtil.sendMessage("liferay/knowledge_base_admin", message);
+	}
+
+	protected Object[] runSQL(String key, Object value) throws SystemException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			Object[] array = new Object[0];
+
+			if (key.equals("groupId")) {
+				DataSource dataSource = groupPersistence.getDataSource();
+
+				connection = dataSource.getConnection();
+
+				preparedStatement = connection.prepareStatement(
+					"select distinct(groupId) from Group_ where " +
+						"((groupId = ?) and (classNameId != ?)) or " +
+							"((parentGroupId = ?) and (classNameId = ?))");
+
+				Long classNameId = PortalUtil.getClassNameId(Layout.class);
+				Long groupId = (Long)value;
+
+				preparedStatement.setLong(1, groupId);
+				preparedStatement.setLong(2, classNameId);
+				preparedStatement.setLong(3, groupId);
+				preparedStatement.setLong(4, classNameId);
+
+				resultSet = preparedStatement.executeQuery();
+
+				List<Long> list = new ArrayList<Long>();
+
+				while (resultSet.next()) {
+					list.add((Long)resultSet.getObject(1));
+				}
+
+				array = list.toArray(new Long[list.size()]);
+			}
+
+			return array;
+		}
+		catch (SQLException sqle) {
+			throw new SystemException(sqle);
+		}
+		finally {
+			DataAccess.cleanUp(connection, preparedStatement, resultSet);
+		}
 	}
 
 	protected void updateAttachments(Article article, String dirName)
