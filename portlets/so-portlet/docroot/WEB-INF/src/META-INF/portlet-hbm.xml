@@ -17,6 +17,7 @@
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="key" column="key_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="receiverUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="invitedRoleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="invitedTeamId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>

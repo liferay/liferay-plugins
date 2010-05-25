@@ -50,6 +50,7 @@ public class MemberRequestSoap implements Serializable {
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setKey(model.getKey());
 		soapModel.setReceiverUserId(model.getReceiverUserId());
+		soapModel.setInvitedRoleId(model.getInvitedRoleId());
 		soapModel.setInvitedTeamId(model.getInvitedTeamId());
 		soapModel.setStatus(model.getStatus());
 
@@ -176,6 +177,14 @@ public class MemberRequestSoap implements Serializable {
 		_receiverUserId = receiverUserId;
 	}
 
+	public long getInvitedRoleId() {
+		return _invitedRoleId;
+	}
+
+	public void setInvitedRoleId(long invitedRoleId) {
+		_invitedRoleId = invitedRoleId;
+	}
+
 	public long getInvitedTeamId() {
 		return _invitedTeamId;
 	}
@@ -201,6 +210,7 @@ public class MemberRequestSoap implements Serializable {
 	private Date _modifiedDate;
 	private String _key;
 	private long _receiverUserId;
+	private long _invitedRoleId;
 	private long _invitedTeamId;
 	private int _status;
 }

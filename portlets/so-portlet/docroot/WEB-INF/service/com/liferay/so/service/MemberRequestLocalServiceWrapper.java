@@ -124,30 +124,31 @@ public class MemberRequestLocalServiceWrapper
 
 	public com.liferay.so.model.MemberRequest addMemberRequest(long userId,
 		long groupId, long receiverUserId,
-		java.lang.String receiverEmailAddress, long invitedTeamId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		java.lang.String receiverEmailAddress, long invitedRoleId,
+		long invitedTeamId, com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.addMemberRequest(userId, groupId,
-			receiverUserId, receiverEmailAddress, invitedTeamId, themeDisplay);
+			receiverUserId, receiverEmailAddress, invitedRoleId, invitedTeamId,
+			themeDisplay);
 	}
 
 	public void addMemberRequests(long userId, long groupId,
-		long[] receiverUserIds, long invitedTeamId,
+		long[] receiverUserIds, long invitedRoleId, long invitedTeamId,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_memberRequestLocalService.addMemberRequests(userId, groupId,
-			receiverUserIds, invitedTeamId, themeDisplay);
+			receiverUserIds, invitedRoleId, invitedTeamId, themeDisplay);
 	}
 
 	public void addMemberRequests(long userId, long groupId,
-		java.lang.String[] emailAddresses, long invitedTeamId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		java.lang.String[] emailAddresses, long invitedRoleId,
+		long invitedTeamId, com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_memberRequestLocalService.addMemberRequests(userId, groupId,
-			emailAddresses, invitedTeamId, themeDisplay);
+			emailAddresses, invitedRoleId, invitedTeamId, themeDisplay);
 	}
 
 	public com.liferay.so.model.MemberRequest getMemberRequest(long groupId,

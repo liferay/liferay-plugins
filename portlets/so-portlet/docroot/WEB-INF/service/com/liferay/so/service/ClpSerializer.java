@@ -122,19 +122,26 @@ public class ClpSerializer {
 
 					method8.invoke(newModel, value8);
 
-					Method method9 = newModelClass.getMethod("setInvitedTeamId",
+					Method method9 = newModelClass.getMethod("setInvitedRoleId",
 							new Class[] { Long.TYPE });
 
-					Long value9 = new Long(oldCplModel.getInvitedTeamId());
+					Long value9 = new Long(oldCplModel.getInvitedRoleId());
 
 					method9.invoke(newModel, value9);
 
-					Method method10 = newModelClass.getMethod("setStatus",
-							new Class[] { Integer.TYPE });
+					Method method10 = newModelClass.getMethod("setInvitedTeamId",
+							new Class[] { Long.TYPE });
 
-					Integer value10 = new Integer(oldCplModel.getStatus());
+					Long value10 = new Long(oldCplModel.getInvitedTeamId());
 
 					method10.invoke(newModel, value10);
+
+					Method method11 = newModelClass.getMethod("setStatus",
+							new Class[] { Integer.TYPE });
+
+					Integer value11 = new Integer(oldCplModel.getStatus());
+
+					method11.invoke(newModel, value11);
 
 					return newModel;
 				}
@@ -351,18 +358,26 @@ public class ClpSerializer {
 
 					newModel.setReceiverUserId(value8);
 
-					Method method9 = oldModelClass.getMethod("getInvitedTeamId");
+					Method method9 = oldModelClass.getMethod("getInvitedRoleId");
 
 					Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
 
-					newModel.setInvitedTeamId(value9);
+					newModel.setInvitedRoleId(value9);
 
-					Method method10 = oldModelClass.getMethod("getStatus");
+					Method method10 = oldModelClass.getMethod(
+							"getInvitedTeamId");
 
-					Integer value10 = (Integer)method10.invoke(oldModel,
+					Long value10 = (Long)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setStatus(value10);
+					newModel.setInvitedTeamId(value10);
+
+					Method method11 = oldModelClass.getMethod("getStatus");
+
+					Integer value11 = (Integer)method11.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setStatus(value11);
 
 					return newModel;
 				}

@@ -11,6 +11,7 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="key" type="String" />
 		<field name="receiverUserId" type="long" />
+		<field name="invitedRoleId" type="long" />
 		<field name="invitedTeamId" type="long" />
 		<field name="status" type="int" />
 	</model>

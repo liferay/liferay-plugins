@@ -374,6 +374,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		memberRequestImpl.setModifiedDate(memberRequest.getModifiedDate());
 		memberRequestImpl.setKey(memberRequest.getKey());
 		memberRequestImpl.setReceiverUserId(memberRequest.getReceiverUserId());
+		memberRequestImpl.setInvitedRoleId(memberRequest.getInvitedRoleId());
 		memberRequestImpl.setInvitedTeamId(memberRequest.getInvitedTeamId());
 		memberRequestImpl.setStatus(memberRequest.getStatus());
 

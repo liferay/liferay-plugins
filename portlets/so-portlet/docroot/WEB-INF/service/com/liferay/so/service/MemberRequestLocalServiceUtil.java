@@ -123,33 +123,33 @@ public class MemberRequestLocalServiceUtil {
 
 	public static com.liferay.so.model.MemberRequest addMemberRequest(
 		long userId, long groupId, long receiverUserId,
-		java.lang.String receiverEmailAddress, long invitedTeamId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		java.lang.String receiverEmailAddress, long invitedRoleId,
+		long invitedTeamId, com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addMemberRequest(userId, groupId, receiverUserId,
-			receiverEmailAddress, invitedTeamId, themeDisplay);
+			receiverEmailAddress, invitedRoleId, invitedTeamId, themeDisplay);
 	}
 
 	public static void addMemberRequests(long userId, long groupId,
-		long[] receiverUserIds, long invitedTeamId,
+		long[] receiverUserIds, long invitedRoleId, long invitedTeamId,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.addMemberRequests(userId, groupId, receiverUserIds, invitedTeamId,
-			themeDisplay);
+			.addMemberRequests(userId, groupId, receiverUserIds, invitedRoleId,
+			invitedTeamId, themeDisplay);
 	}
 
 	public static void addMemberRequests(long userId, long groupId,
-		java.lang.String[] emailAddresses, long invitedTeamId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		java.lang.String[] emailAddresses, long invitedRoleId,
+		long invitedTeamId, com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.addMemberRequests(userId, groupId, emailAddresses, invitedTeamId,
-			themeDisplay);
+			.addMemberRequests(userId, groupId, emailAddresses, invitedRoleId,
+			invitedTeamId, themeDisplay);
 	}
 
 	public static com.liferay.so.model.MemberRequest getMemberRequest(

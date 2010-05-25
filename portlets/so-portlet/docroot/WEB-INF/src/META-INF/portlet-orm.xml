@@ -24,6 +24,7 @@
 				<column name="KEY_" />
 			</basic>
 			<basic name="receiverUserId" />
+			<basic name="invitedRoleId" />
 			<basic name="invitedTeamId" />
 			<basic name="status" />
 			<transient name="primaryKey" />

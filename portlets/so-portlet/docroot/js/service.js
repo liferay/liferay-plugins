@@ -1,0 +1,1 @@
+Liferay.Service.register("Liferay.Service.SO", "com.liferay.so.service");
