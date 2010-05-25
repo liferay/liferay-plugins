@@ -20,7 +20,7 @@
 	<c:when test="<%= Validator.isNotNull(url) %>">
 
 		<%
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		if (autoplay) {
 			sb.append("&amp;autoplay=1");
@@ -80,8 +80,9 @@
 		%>
 
 		<liferay-ui:flash allowFullScreen="true" allowScriptAccess="true" height="<%= height %>" movie="<%= _SWF_URL + id + sb.toString() %>" width="<%= width %>" wmode="opaque">
-			<%-- <aui:a href="" /> --%>
-			<a href="<%= watchURL + id %>" rel="external" title="<liferay-ui:message key="watch-this-video-at-youtube" />"><img alt="<liferay-ui:message key="youtube-video" />" height="<%= height %>" src="<%= imageURL %>" width="<%= width %>" /></a>
+			<aui:a href="<%= _WATCH_URL + id %>" rel="external" title='LanguageUtil.get(pageContext, "watch-this-video-at-youtube")'>
+				<img alt="<liferay-ui:message key="youtube-video" />" height="<%= height %>" src="<%= imageURL %>" width="<%= width %>" />
+			</aui:a>
 		</liferay-ui:flash>
 	</c:when>
 	<c:otherwise>

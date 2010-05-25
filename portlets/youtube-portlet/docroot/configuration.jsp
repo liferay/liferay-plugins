@@ -168,14 +168,7 @@
 </aui:form>
 
 <aui:script use="aui-color-picker,aui-datatype,aui-swf">
-	var encodeHex =
-		function (hex) {
-			return (hex) ? '0x' + hex.replace('#', '').replace(/^(.)(.)(.)$/, '$1$1$2$2$3$3').toLowerCase() : '';
-		},
-		urlToVideoId = function (url) {
-			return url.replace(/^.*?v=([a-zA-Z0-9_-]+).*$/, '$1');
-		},
-		createPlayer = function () {
+	var createPlayer = function () {
 			var id = urlToVideoId(urlNode.val()),
 				height = parseInt(heightNode.val(), 10) || 0,
 				maxWidth = (formNode.get('clientWidth') || formNode.get('scrollWidth')) - (controlsNode.get('clientWidth') || controlsNode.get('scrollWidth')),
@@ -234,6 +227,10 @@
 				);
 			}
 		},
+		encodeHex =
+		function (hex) {
+			return (hex) ? '0x' + hex.replace('#', '').replace(/^(.)(.)(.)$/, '$1$1$2$2$3$3').toLowerCase() : '';
+		},
 		presetChange = function (e) {
 			if (this.val().indexOf('x') < 0) {
 				A.one('.aui-field.height').removeClass('invisible');
@@ -248,6 +245,9 @@
 			widthNode.val(dimensions[0]);
 
 			createPlayer();
+		},
+		urlToVideoId = function (url) {
+			return url.replace(/^.*?v=([a-zA-Z0-9_-]+).*$/, '$1');
 		};
 
 	var allInputsNode = A.all('#<portlet:namespace />fm input');
