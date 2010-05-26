@@ -40,7 +40,7 @@ Group group = (Group)row.getObject();
 		<liferay-ui:icon image="edit" url="<%= taglibEditURL %>" />
 	</c:if>
 
-	<c:if test="<%= permissionChecker.isCommunityOwner(group.getGroupId()) || GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.ASSIGN_USER_ROLES) %>">
+	<c:if test="<%= permissionChecker.isCommunityAdmin(group.getGroupId()) || GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.ASSIGN_USER_ROLES) %>">
 		<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="<%= PortletKeys.COMMUNITIES %>" var="assignUserRolesURL">
 			<liferay-portlet:param name="struts_action" value="/communities/edit_user_roles" />
 			<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
