@@ -1631,19 +1631,19 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoActionId(value0.longValue());
+					newModel.setKaleoActionId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getUserName");
 
@@ -1669,13 +1669,13 @@ public class ClpSerializer {
 
 					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoDefinitionId(value6.longValue());
+					newModel.setKaleoDefinitionId(value6);
 
 					Method method7 = oldModelClass.getMethod("getKaleoNodeId");
 
 					Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoNodeId(value7.longValue());
+					newModel.setKaleoNodeId(value7);
 
 					Method method8 = oldModelClass.getMethod("getKaleoNodeName");
 
@@ -1726,7 +1726,7 @@ public class ClpSerializer {
 					Integer value14 = (Integer)method14.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setPriority(value14.intValue());
+					newModel.setPriority(value14);
 
 					return newModel;
 				}
@@ -1755,19 +1755,19 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoDefinitionId(value0.longValue());
+					newModel.setKaleoDefinitionId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getUserName");
 
@@ -1814,14 +1814,14 @@ public class ClpSerializer {
 					Integer value9 = (Integer)method9.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setVersion(value9.intValue());
+					newModel.setVersion(value9);
 
 					Method method10 = oldModelClass.getMethod("getActive");
 
 					Boolean value10 = (Boolean)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setActive(value10.booleanValue());
+					newModel.setActive(value10);
 
 					Method method11 = oldModelClass.getMethod(
 							"getStartKaleoNodeId");
@@ -1829,7 +1829,7 @@ public class ClpSerializer {
 					Long value11 = (Long)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setStartKaleoNodeId(value11.longValue());
+					newModel.setStartKaleoNodeId(value11);
 
 					return newModel;
 				}
@@ -1858,19 +1858,19 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoInstanceId(value0.longValue());
+					newModel.setKaleoInstanceId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getUserName");
 
@@ -1896,7 +1896,7 @@ public class ClpSerializer {
 
 					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoDefinitionId(value6.longValue());
+					newModel.setKaleoDefinitionId(value6);
 
 					Method method7 = oldModelClass.getMethod(
 							"getKaleoDefinitionName");
@@ -1912,14 +1912,14 @@ public class ClpSerializer {
 					Integer value8 = (Integer)method8.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setKaleoDefinitionVersion(value8.intValue());
+					newModel.setKaleoDefinitionVersion(value8);
 
 					Method method9 = oldModelClass.getMethod(
 							"getRootKaleoInstanceTokenId");
 
 					Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
 
-					newModel.setRootKaleoInstanceTokenId(value9.longValue());
+					newModel.setRootKaleoInstanceTokenId(value9);
 
 					Method method10 = oldModelClass.getMethod("getClassName");
 
@@ -1933,14 +1933,14 @@ public class ClpSerializer {
 					Long value11 = (Long)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setClassPK(value11.longValue());
+					newModel.setClassPK(value11);
 
 					Method method12 = oldModelClass.getMethod("getCompleted");
 
 					Boolean value12 = (Boolean)method12.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setCompleted(value12.booleanValue());
+					newModel.setCompleted(value12);
 
 					Method method13 = oldModelClass.getMethod(
 							"getCompletionDate");
@@ -1985,19 +1985,19 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoInstanceTokenId(value0.longValue());
+					newModel.setKaleoInstanceTokenId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getUserName");
 
@@ -2023,21 +2023,21 @@ public class ClpSerializer {
 
 					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoInstanceId(value6.longValue());
+					newModel.setKaleoInstanceId(value6);
 
 					Method method7 = oldModelClass.getMethod(
 							"getParentKaleoInstanceTokenId");
 
 					Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
 
-					newModel.setParentKaleoInstanceTokenId(value7.longValue());
+					newModel.setParentKaleoInstanceTokenId(value7);
 
 					Method method8 = oldModelClass.getMethod(
 							"getCurrentKaleoNodeId");
 
 					Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
 
-					newModel.setCurrentKaleoNodeId(value8.longValue());
+					newModel.setCurrentKaleoNodeId(value8);
 
 					Method method9 = oldModelClass.getMethod(
 							"getCurrentKaleoNodeName");
@@ -2052,7 +2052,7 @@ public class ClpSerializer {
 					Boolean value10 = (Boolean)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setCompleted(value10.booleanValue());
+					newModel.setCompleted(value10);
 
 					Method method11 = oldModelClass.getMethod(
 							"getCompletionDate");
@@ -2088,19 +2088,19 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoLogId(value0.longValue());
+					newModel.setKaleoLogId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getUserName");
 
@@ -2126,27 +2126,27 @@ public class ClpSerializer {
 
 					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoInstanceId(value6.longValue());
+					newModel.setKaleoInstanceId(value6);
 
 					Method method7 = oldModelClass.getMethod(
 							"getKaleoInstanceTokenId");
 
 					Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoInstanceTokenId(value7.longValue());
+					newModel.setKaleoInstanceTokenId(value7);
 
 					Method method8 = oldModelClass.getMethod(
 							"getKaleoTaskInstanceTokenId");
 
 					Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoTaskInstanceTokenId(value8.longValue());
+					newModel.setKaleoTaskInstanceTokenId(value8);
 
 					Method method9 = oldModelClass.getMethod("getKaleoNodeId");
 
 					Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoNodeId(value9.longValue());
+					newModel.setKaleoNodeId(value9);
 
 					Method method10 = oldModelClass.getMethod(
 							"getKaleoNodeName");
@@ -2162,7 +2162,7 @@ public class ClpSerializer {
 					Boolean value11 = (Boolean)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setTerminalKaleoNode(value11.booleanValue());
+					newModel.setTerminalKaleoNode(value11);
 
 					Method method12 = oldModelClass.getMethod(
 							"getKaleoActionId");
@@ -2170,7 +2170,7 @@ public class ClpSerializer {
 					Long value12 = (Long)method12.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setKaleoActionId(value12.longValue());
+					newModel.setKaleoActionId(value12);
 
 					Method method13 = oldModelClass.getMethod(
 							"getKaleoActionName");
@@ -2194,7 +2194,7 @@ public class ClpSerializer {
 					Long value15 = (Long)method15.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setPreviousKaleoNodeId(value15.longValue());
+					newModel.setPreviousKaleoNodeId(value15);
 
 					Method method16 = oldModelClass.getMethod(
 							"getPreviousKaleoNodeName");
@@ -2218,7 +2218,7 @@ public class ClpSerializer {
 					Long value18 = (Long)method18.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setPreviousAssigneeClassPK(value18.longValue());
+					newModel.setPreviousAssigneeClassPK(value18);
 
 					Method method19 = oldModelClass.getMethod(
 							"getCurrentAssigneeClassName");
@@ -2234,7 +2234,7 @@ public class ClpSerializer {
 					Long value20 = (Long)method20.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setCurrentAssigneeClassPK(value20.longValue());
+					newModel.setCurrentAssigneeClassPK(value20);
 
 					Method method21 = oldModelClass.getMethod("getType");
 
@@ -2269,7 +2269,7 @@ public class ClpSerializer {
 					Long value25 = (Long)method25.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setDuration(value25.longValue());
+					newModel.setDuration(value25);
 
 					Method method26 = oldModelClass.getMethod(
 							"getWorkflowContext");
@@ -2305,19 +2305,19 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoNodeId(value0.longValue());
+					newModel.setKaleoNodeId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getUserName");
 
@@ -2343,7 +2343,7 @@ public class ClpSerializer {
 
 					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoDefinitionId(value6.longValue());
+					newModel.setKaleoDefinitionId(value6);
 
 					Method method7 = oldModelClass.getMethod("getName");
 
@@ -2371,14 +2371,14 @@ public class ClpSerializer {
 					Boolean value10 = (Boolean)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setInitial(value10.booleanValue());
+					newModel.setInitial(value10);
 
 					Method method11 = oldModelClass.getMethod("getTerminal");
 
 					Boolean value11 = (Boolean)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setTerminal(value11.booleanValue());
+					newModel.setTerminal(value11);
 
 					return newModel;
 				}
@@ -2407,19 +2407,19 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoNotificationId(value0.longValue());
+					newModel.setKaleoNotificationId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getUserName");
 
@@ -2445,13 +2445,13 @@ public class ClpSerializer {
 
 					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoDefinitionId(value6.longValue());
+					newModel.setKaleoDefinitionId(value6);
 
 					Method method7 = oldModelClass.getMethod("getKaleoNodeId");
 
 					Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoNodeId(value7.longValue());
+					newModel.setKaleoNodeId(value7);
 
 					Method method8 = oldModelClass.getMethod("getKaleoNodeName");
 
@@ -2532,19 +2532,19 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoNotificationRecipientId(value0.longValue());
+					newModel.setKaleoNotificationRecipientId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getUserName");
 
@@ -2570,7 +2570,7 @@ public class ClpSerializer {
 
 					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoNotificationId(value6.longValue());
+					newModel.setKaleoNotificationId(value6);
 
 					Method method7 = oldModelClass.getMethod(
 							"getRecipientClassName");
@@ -2585,7 +2585,7 @@ public class ClpSerializer {
 
 					Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
 
-					newModel.setRecipientClassPK(value8.longValue());
+					newModel.setRecipientClassPK(value8);
 
 					Method method9 = oldModelClass.getMethod("getAddress");
 
@@ -2620,19 +2620,19 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoTaskId(value0.longValue());
+					newModel.setKaleoTaskId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getUserName");
 
@@ -2658,13 +2658,13 @@ public class ClpSerializer {
 
 					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoDefinitionId(value6.longValue());
+					newModel.setKaleoDefinitionId(value6);
 
 					Method method7 = oldModelClass.getMethod("getKaleoNodeId");
 
 					Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoNodeId(value7.longValue());
+					newModel.setKaleoNodeId(value7);
 
 					Method method8 = oldModelClass.getMethod("getName");
 
@@ -2686,7 +2686,7 @@ public class ClpSerializer {
 					Double value10 = (Double)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setDueDateDuration(value10.doubleValue());
+					newModel.setDueDateDuration(value10);
 
 					Method method11 = oldModelClass.getMethod("getDueDateScale");
 
@@ -2722,19 +2722,19 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoTaskAssignmentId(value0.longValue());
+					newModel.setKaleoTaskAssignmentId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getUserName");
 
@@ -2760,19 +2760,19 @@ public class ClpSerializer {
 
 					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoDefinitionId(value6.longValue());
+					newModel.setKaleoDefinitionId(value6);
 
 					Method method7 = oldModelClass.getMethod("getKaleoNodeId");
 
 					Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoNodeId(value7.longValue());
+					newModel.setKaleoNodeId(value7);
 
 					Method method8 = oldModelClass.getMethod("getKaleoTaskId");
 
 					Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoTaskId(value8.longValue());
+					newModel.setKaleoTaskId(value8);
 
 					Method method9 = oldModelClass.getMethod(
 							"getAssigneeClassName");
@@ -2788,7 +2788,7 @@ public class ClpSerializer {
 					Long value10 = (Long)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setAssigneeClassPK(value10.longValue());
+					newModel.setAssigneeClassPK(value10);
 
 					Method method11 = oldModelClass.getMethod(
 							"getDefaultAssignment");
@@ -2796,7 +2796,7 @@ public class ClpSerializer {
 					Boolean value11 = (Boolean)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setDefaultAssignment(value11.booleanValue());
+					newModel.setDefaultAssignment(value11);
 
 					return newModel;
 				}
@@ -2825,19 +2825,19 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoTaskInstanceTokenId(value0.longValue());
+					newModel.setKaleoTaskInstanceTokenId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getUserName");
 
@@ -2863,20 +2863,20 @@ public class ClpSerializer {
 
 					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoInstanceId(value6.longValue());
+					newModel.setKaleoInstanceId(value6);
 
 					Method method7 = oldModelClass.getMethod(
 							"getKaleoInstanceTokenId");
 
 					Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoInstanceTokenId(value7.longValue());
+					newModel.setKaleoInstanceTokenId(value7);
 
 					Method method8 = oldModelClass.getMethod("getKaleoTaskId");
 
 					Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoTaskId(value8.longValue());
+					newModel.setKaleoTaskId(value8);
 
 					Method method9 = oldModelClass.getMethod("getKaleoTaskName");
 
@@ -2899,7 +2899,7 @@ public class ClpSerializer {
 					Long value11 = (Long)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setAssigneeClassPK(value11.longValue());
+					newModel.setAssigneeClassPK(value11);
 
 					Method method12 = oldModelClass.getMethod(
 							"getCompletionUserId");
@@ -2907,14 +2907,14 @@ public class ClpSerializer {
 					Long value12 = (Long)method12.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setCompletionUserId(value12.longValue());
+					newModel.setCompletionUserId(value12);
 
 					Method method13 = oldModelClass.getMethod("getCompleted");
 
 					Boolean value13 = (Boolean)method13.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setCompleted(value13.booleanValue());
+					newModel.setCompleted(value13);
 
 					Method method14 = oldModelClass.getMethod(
 							"getCompletionDate");
@@ -2966,19 +2966,19 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoTransitionId(value0.longValue());
+					newModel.setKaleoTransitionId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value1.longValue());
+					newModel.setCompanyId(value1);
 
 					Method method2 = oldModelClass.getMethod("getUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value2.longValue());
+					newModel.setUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getUserName");
 
@@ -3004,13 +3004,13 @@ public class ClpSerializer {
 
 					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoDefinitionId(value6.longValue());
+					newModel.setKaleoDefinitionId(value6);
 
 					Method method7 = oldModelClass.getMethod("getKaleoNodeId");
 
 					Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoNodeId(value7.longValue());
+					newModel.setKaleoNodeId(value7);
 
 					Method method8 = oldModelClass.getMethod("getName");
 
@@ -3032,7 +3032,7 @@ public class ClpSerializer {
 					Long value10 = (Long)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setSourceKaleoNodeId(value10.longValue());
+					newModel.setSourceKaleoNodeId(value10);
 
 					Method method11 = oldModelClass.getMethod(
 							"getSourceKaleoNodeName");
@@ -3048,7 +3048,7 @@ public class ClpSerializer {
 					Long value12 = (Long)method12.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setTargetKaleoNodeId(value12.longValue());
+					newModel.setTargetKaleoNodeId(value12);
 
 					Method method13 = oldModelClass.getMethod(
 							"getTargetKaleoNodeName");
@@ -3064,7 +3064,7 @@ public class ClpSerializer {
 					Boolean value14 = (Boolean)method14.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setDefaultTransition(value14.booleanValue());
+					newModel.setDefaultTransition(value14);
 
 					return newModel;
 				}
