@@ -194,7 +194,7 @@ public class LiferayAppDataService implements AppDataService {
 
 		for (Entry entry : values.entrySet()) {
 
-			// Workaround a Shindig bug
+			// Work around a Shindig bug
 
 			String key = (String)entry.getKey();
 			String value = entry.getValue().toString();
