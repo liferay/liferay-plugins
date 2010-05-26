@@ -1,0 +1,25 @@
+@import url(color_schemes/nature.css);
+
+@import url(color_schemes/simple.css);
+
+/* ---------- Base styles ---------- */
+
+#main {
+	min-width: 960px;
+}
+
+#signIn {
+	border-bottom: 1px solid #EEF0F2;
+	min-width: 960px;
+	padding: 3px;
+	text-align: right;
+}
+
+#signIn a {
+	color: #FFF;
+	margin-right: 10px;
+}
+
+#content {
+	margin: 10px 10px 0;
+}
