@@ -40,16 +40,6 @@ Group group = (Group)row.getObject();
 		<liferay-ui:icon image="edit" url="<%= taglibEditURL %>" />
 	</c:if>
 
-	<c:if test="<%= permissionChecker.isCommunityAdmin(group.getGroupId()) || GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.ASSIGN_USER_ROLES) %>">
-		<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="<%= PortletKeys.COMMUNITIES %>" var="assignUserRolesURL">
-			<liferay-portlet:param name="struts_action" value="/communities/edit_user_roles" />
-			<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
-			<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-		</liferay-portlet:renderURL>
-
-		<liferay-ui:icon image="assign_user_roles" url="<%= assignUserRolesURL %>" />
-	</c:if>
-
 	<c:if test="<%= permissionChecker.isCommunityAdmin(group.getGroupId()) %>">
 		<liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="redirectURL">
 			<liferay-portlet:param name="jspPage" value="/sites/view.jsp" />
@@ -57,7 +47,7 @@ Group group = (Group)row.getObject();
 
 		<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="manageMembersURL">
 			<liferay-portlet:param name="jspPage" value="/sites/edit_members.jsp" />
-			<liferay-portlet:param name="redirect" value="<%= redirectURL %>" />
+			<liferay-portlet:param name="backURL" value="<%= redirectURL %>" />
 			<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 		</liferay-portlet:renderURL>
 

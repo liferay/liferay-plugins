@@ -20,7 +20,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String redirect = ParamUtil.getString(request, "redirect");
+String backURL = ParamUtil.getString(request, "backURL");
 
 long groupId = ParamUtil.getLong(request, "groupId");
 %>
@@ -42,13 +42,44 @@ long groupId = ParamUtil.getLong(request, "groupId");
 		/>
 
 		<liferay-ui:search-container-column-text
-			name="screenname"
+			name="screen-name"
 			value="<%= curUser.getScreenName() %>"
 		/>
 
 		<liferay-ui:search-container-column-text
 			name="email"
 			value="<%= curUser.getEmailAddress() %>"
+		/>
+
+		<%
+		List<UserGroupRole> communityRoles = UserGroupRoleLocalServiceUtil.getUserGroupRoles(curUser.getUserId(), groupId);
+
+		Iterator<UserGroupRole> itr = communityRoles.iterator();
+
+		while (itr.hasNext()) {
+			UserGroupRole userGroupRole = itr.next();
+
+			if (userGroupRole.getRole().getType() != RoleConstants.TYPE_COMMUNITY) {
+				itr.remove();
+
+				continue;
+			}
+
+			if (userGroupRole.getRole().getName().equals(RoleConstants.COMMUNITY_MEMBER)) {
+				itr.remove();
+			}
+		}
+
+		UserGroupRole communityRole = null;
+
+		if (communityRoles.size() > 0) {
+			communityRole = communityRoles.get(0);
+		}
+		%>
+
+		<liferay-ui:search-container-column-text
+			name="community-role"
+			value="<%= (communityRole == null) ? StringPool.BLANK : communityRole.getRole().getName() %>"
 		/>
 
 		<liferay-ui:search-container-column-jsp
@@ -62,4 +93,27 @@ long groupId = ParamUtil.getLong(request, "groupId");
 
 <br />
 
-<aui:button onClick="<%= redirect %>" value="back" />
+<aui:button onClick="<%= backURL %>" value="back" />
+
+<form id="<portlet:namespace />fm" action="<portlet:actionURL name="updateRoles"><portlet:param name="backURL" value="<%= backURL %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm">
+	<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
+	<input name="<portlet:namespace />userId" type="hidden" />
+	<input name="<portlet:namespace />groupId" type="hidden" />
+	<input name="<portlet:namespace />roleId" type="hidden" />
+</form>
+
+<aui:script>
+	function <portlet:namespace />openRoleSelector(url) {
+		var roleWindow = window.open(url, 'role', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680');
+
+		roleWindow.focus();
+	}
+
+	function <portlet:namespace />updateRole(userId, groupId, roleId) {
+		document.<portlet:namespace />fm.<portlet:namespace />userId.value = userId;
+		document.<portlet:namespace />fm.<portlet:namespace />groupId.value = groupId;
+		document.<portlet:namespace />fm.<portlet:namespace />roleId.value = roleId;
+
+		submitForm(document.<portlet:namespace />fm);
+	}
+</aui:script>
