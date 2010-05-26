@@ -171,9 +171,8 @@ public class LiferayAppDataService implements AppDataService {
 
 			Map<String, String> personAppData = new HashMap<String, String>();
 
-			for	(String field : fields) {
-				String value = getExpandoValue(
-					companyId, userIdLong, field);
+			for (String field : fields) {
+				String value = getExpandoValue(companyId, userIdLong, field);
 
 				personAppData.put(field, value);
 			}
@@ -195,13 +194,12 @@ public class LiferayAppDataService implements AppDataService {
 
 		for (Entry entry : values.entrySet()) {
 
-			// Work around a Shindig bug
+			// Workaround a Shindig bug
 
-			String key = (String) entry.getKey();
+			String key = (String)entry.getKey();
 			String value = entry.getValue().toString();
 
-			ExpandoColumn expandoColumn = getExpandoColumn(
-				companyId, key);
+			ExpandoColumn expandoColumn = getExpandoColumn(companyId, key);
 
 			ExpandoValueLocalServiceUtil.addValue(
 				companyId, User.class.getName(), OPEN_SOCIAL_DATA,
