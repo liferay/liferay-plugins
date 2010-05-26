@@ -297,10 +297,10 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put("groupId", new Long(context.getGroupId()));
+		params.put("groupId", context.getGroupId());
 		params.put(
 			"parentResourcePrimKey",
-			new Long(ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY));
+			ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 
 		List<Article> rootArticles = ArticleLocalServiceUtil.getArticles(
 			params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -319,10 +319,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 			Map<String, Object> curParams = new HashMap<String, Object>();
 
-			curParams.put("groupId", new Long(article.getGroupId()));
+			curParams.put("groupId", article.getGroupId());
 			curParams.put(
-				"parentResourcePrimKey",
-				new Long(article.getResourcePrimKey()));
+				"parentResourcePrimKey", article.getResourcePrimKey());
 
 			List<Article> childArticles = ArticleLocalServiceUtil.getArticles(
 				params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -352,8 +351,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put("groupId", new Long(context.getGroupId()));
-		params.put("parentResourcePrimKey", new Long(parentResourcePrimKey));
+		params.put("groupId", context.getGroupId());
+		params.put("parentResourcePrimKey", parentResourcePrimKey);
 
 		int maxPriority = ArticleLocalServiceUtil.getArticlesCount(
 			params, false);

@@ -25,7 +25,6 @@ import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.base.ArticleLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
-import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Property;
@@ -37,6 +36,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
+import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -65,12 +65,6 @@ import com.liferay.util.portlet.PortletProps;
 
 import java.io.IOException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -78,8 +72,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.portlet.PortletPreferences;
-
-import javax.sql.DataSource;
 
 /**
  * <a href="ArticleLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -217,33 +209,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 	}
 
-	public void deleteArticle(long resourcePrimKey)
-		throws PortalException, SystemException {
-
-		// Article
-
-		Article article = articlePersistence.findByResourcePrimKey_First(
-			resourcePrimKey, new ArticleVersionComparator());
-
-		// Child Articles
-
-		Map<String, Object> params = new HashMap<String, Object>();
-
-		params.put("groupId", new Long(article.getGroupId()));
-		params.put(
-			"parentResourcePrimKey", new Long(article.getResourcePrimKey()));
-
-		List<Article> childArticles = getArticles(
-			params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new ArticlePriorityComparator());
-
-		for (Article childArticle : childArticles) {
-			deleteArticle(childArticle.getResourcePrimKey());
-		}
-
-		deleteArticle(article);
-	}
-
 	public void deleteArticle(Article article)
 		throws PortalException, SystemException {
 
@@ -290,6 +255,32 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			article.getResourcePrimKey());
 	}
 
+	public void deleteArticle(long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		// Article
+
+		Article article = articlePersistence.findByResourcePrimKey_First(
+			resourcePrimKey, new ArticleVersionComparator());
+
+		// Child Articles
+
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		params.put("groupId", article.getGroupId());
+		params.put("parentResourcePrimKey", article.getResourcePrimKey());
+
+		List<Article> childArticles = getArticles(
+			params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new ArticlePriorityComparator());
+
+		for (Article childArticle : childArticles) {
+			deleteArticle(childArticle.getResourcePrimKey());
+		}
+
+		deleteArticle(article);
+	}
+
 	public void deleteAttachment(long companyId, String fileName)
 		throws PortalException, SystemException {
 
@@ -303,17 +294,17 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put("groupId", new Long(groupId));
+		params.put("groupId", groupId);
 		params.put(
 			"parentResourcePrimKey",
-			new Long(ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY));
+			ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 
-		List<Article> rootArticles = getArticles(
+		List<Article> articles = getArticles(
 			params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new ArticlePriorityComparator());
 
-		for (Article rootArticle : rootArticles) {
-			deleteArticle(rootArticle.getResourcePrimKey());
+		for (Article article : articles) {
+			deleteArticle(article.getResourcePrimKey());
 		}
 	}
 
@@ -322,8 +313,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put("resourcePrimKey", new Long(resourcePrimKey));
-		params.put("version", new Integer(version));
+		params.put("resourcePrimKey", resourcePrimKey);
+		params.put("version", version);
 
 		return getArticles(params, true, 0, 1, null).get(0);
 	}
@@ -366,7 +357,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put("companyId", new Long(companyId));
+		params.put("companyId", companyId);
 
 		return getArticles(params, allVersions, start, end, orderByComparator);
 	}
@@ -376,7 +367,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put("companyId", new Long(companyId));
+		params.put("companyId", companyId);
 
 		return getArticlesCount(params, allVersions);
 	}
@@ -388,7 +379,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put("groupId", new Long(groupId));
+		params.put("groupId", groupId);
 
 		return getArticles(params, allVersions, start, end, orderByComparator);
 	}
@@ -398,7 +389,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put("groupId", new Long(groupId));
+		params.put("groupId", groupId);
 
 		return getArticlesCount(params, allVersions);
 	}
@@ -557,10 +548,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put("groupId", new Long(article.getGroupId()));
-		params.put(
-			"parentResourcePrimKey",
-			new Long(article.getParentResourcePrimKey()));
+		params.put("groupId", article.getGroupId());
+		params.put("parentResourcePrimKey", article.getParentResourcePrimKey());
 
 		List<Article> siblingArticles = getArticles(
 			params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -574,18 +563,19 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		for (int i = 0; i < siblingArticles.size(); i++) {
 			Article siblingArticle = siblingArticles.get(i);
 
-			long curParentResourcePrimKey =
+			long siblingParentResourcePrimKey =
 				siblingArticle.getParentResourcePrimKey();
 
 			if (priority == i) {
-				curParentResourcePrimKey = parentResourcePrimKey;
+				siblingParentResourcePrimKey = parentResourcePrimKey;
 			}
 
 			List<Article> articles = articlePersistence.findByResourcePrimKey(
 				siblingArticle.getResourcePrimKey());
 
 			for (Article curArticle : articles) {
-				curArticle.setParentResourcePrimKey(curParentResourcePrimKey);
+				curArticle.setParentResourcePrimKey(
+					siblingParentResourcePrimKey);
 				curArticle.setPriority(i);
 
 				articlePersistence.update(curArticle, false);
@@ -674,20 +664,14 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	protected DynamicQuery getDynamicQuery(
-			Map<String, Object> params, boolean allVersions)
-		throws SystemException {
+		Map<String, Object> params, boolean allVersions) {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Article.class, "article1", getClass().getClassLoader());
+			Article.class, "article1", PortletClassLoaderUtil.getClassLoader());
 
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			String key = entry.getKey();
 			Object value = entry.getValue();
-
-			if (key.equals("parentGroupId")) {
-				key = "groupId";
-				value = runSQL(key, value);
-			}
 
 			if (value instanceof Object[]) {
 				Property property = PropertyFactoryUtil.forName(key);
@@ -706,7 +690,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 
 		DynamicQuery subselectDynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Article.class, "article2", getClass().getClassLoader());
+			Article.class, "article2", PortletClassLoaderUtil.getClassLoader());
 
 		Property versionProperty = PropertyFactoryUtil.forName("version");
 
@@ -1003,53 +987,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		message.put("htmlFormat", Boolean.TRUE);
 
 		MessageBusUtil.sendMessage("liferay/knowledge_base_admin", message);
-	}
-
-	protected Object[] runSQL(String key, Object value) throws SystemException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-
-		try {
-			Object[] array = new Object[0];
-
-			if (key.equals("groupId")) {
-				DataSource dataSource = groupPersistence.getDataSource();
-
-				connection = dataSource.getConnection();
-
-				preparedStatement = connection.prepareStatement(
-					"select distinct(groupId) from Group_ where " +
-						"((groupId = ?) and (classNameId != ?)) or " +
-							"((parentGroupId = ?) and (classNameId = ?))");
-
-				Long classNameId = PortalUtil.getClassNameId(Layout.class);
-				Long groupId = (Long)value;
-
-				preparedStatement.setLong(1, groupId);
-				preparedStatement.setLong(2, classNameId);
-				preparedStatement.setLong(3, groupId);
-				preparedStatement.setLong(4, classNameId);
-
-				resultSet = preparedStatement.executeQuery();
-
-				List<Long> list = new ArrayList<Long>();
-
-				while (resultSet.next()) {
-					list.add((Long)resultSet.getObject(1));
-				}
-
-				array = list.toArray(new Long[list.size()]);
-			}
-
-			return array;
-		}
-		catch (SQLException sqle) {
-			throw new SystemException(sqle);
-		}
-		finally {
-			DataAccess.cleanUp(connection, preparedStatement, resultSet);
-		}
 	}
 
 	protected void updateAttachments(Article article, String dirName)

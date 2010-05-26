@@ -427,24 +427,6 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		}
 	}
 
-	protected List<Article> filterArticles(List<Article> articles)
-		throws PortalException, SystemException {
-
-		articles = ListUtil.copy(articles);
-
-		Iterator<Article> itr = articles.iterator();
-
-		while (itr.hasNext()) {
-			if (!ArticlePermission.contains(
-					getPermissionChecker(), itr.next(), ActionKeys.VIEW)) {
-
-				itr.remove();
-			}
-		}
-
-		return articles;
-	}
-
 	protected List<Article> filterArticles(Article article, int max)
 		throws PortalException, SystemException {
 
@@ -463,10 +445,9 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 			Map<String, Object> params = new HashMap<String, Object>();
 
-			params.put("groupId", new Long(curArticle.getGroupId()));
+			params.put("groupId", curArticle.getGroupId());
 			params.put(
-				"parentResourcePrimKey",
-				new Long(curArticle.getResourcePrimKey()));
+				"parentResourcePrimKey", curArticle.getResourcePrimKey());
 
 			List<Article> childArticles = getArticles(
 				params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
@@ -477,6 +458,24 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		Collections.sort(articles, new ArticleModifiedDateComparator());
 
 		return ListUtil.subList(articles, 0, max);
+	}
+
+	protected List<Article> filterArticles(List<Article> articles)
+		throws PortalException, SystemException {
+
+		articles = ListUtil.copy(articles);
+
+		Iterator<Article> itr = articles.iterator();
+
+		while (itr.hasNext()) {
+			if (!ArticlePermission.contains(
+					getPermissionChecker(), itr.next(), ActionKeys.VIEW)) {
+
+				itr.remove();
+			}
+		}
+
+		return articles;
 	}
 
 	protected List<Article> filterGroupArticles(Group group, int max)
