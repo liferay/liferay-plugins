@@ -179,12 +179,12 @@ public class ArticleServiceSoap {
 	}
 
 	public static com.liferay.knowledgebase.model.ArticleSoap[] getCompanyArticles(
-		long companyId, int start, int end,
+		long companyId, boolean allVersions, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws RemoteException {
 		try {
 			java.util.List<com.liferay.knowledgebase.model.Article> returnValue = ArticleServiceUtil.getCompanyArticles(companyId,
-					start, end, orderByComparator);
+					allVersions, start, end, orderByComparator);
 
 			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModels(returnValue);
 		}
@@ -195,10 +195,11 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static int getCompanyArticlesCount(long companyId)
-		throws RemoteException {
+	public static int getCompanyArticlesCount(long companyId,
+		boolean allVersions) throws RemoteException {
 		try {
-			int returnValue = ArticleServiceUtil.getCompanyArticlesCount(companyId);
+			int returnValue = ArticleServiceUtil.getCompanyArticlesCount(companyId,
+					allVersions);
 
 			return returnValue;
 		}
@@ -210,12 +211,12 @@ public class ArticleServiceSoap {
 	}
 
 	public static com.liferay.knowledgebase.model.ArticleSoap[] getGroupArticles(
-		long groupId, int start, int end,
+		long groupId, boolean allVersions, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws RemoteException {
 		try {
 			java.util.List<com.liferay.knowledgebase.model.Article> returnValue = ArticleServiceUtil.getGroupArticles(groupId,
-					start, end, orderByComparator);
+					allVersions, start, end, orderByComparator);
 
 			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModels(returnValue);
 		}
@@ -226,42 +227,11 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static com.liferay.knowledgebase.model.ArticleSoap[] getGroupArticles(
-		long groupId, long parentResourcePrimKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+	public static int getGroupArticlesCount(long groupId, boolean allVersions)
 		throws RemoteException {
-		try {
-			java.util.List<com.liferay.knowledgebase.model.Article> returnValue = ArticleServiceUtil.getGroupArticles(groupId,
-					parentResourcePrimKey, start, end, orderByComparator);
-
-			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModels(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static int getGroupArticlesCount(long groupId)
-		throws RemoteException {
-		try {
-			int returnValue = ArticleServiceUtil.getGroupArticlesCount(groupId);
-
-			return returnValue;
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static int getGroupArticlesCount(long groupId,
-		long parentResourcePrimKey) throws RemoteException {
 		try {
 			int returnValue = ArticleServiceUtil.getGroupArticlesCount(groupId,
-					parentResourcePrimKey);
+					allVersions);
 
 			return returnValue;
 		}

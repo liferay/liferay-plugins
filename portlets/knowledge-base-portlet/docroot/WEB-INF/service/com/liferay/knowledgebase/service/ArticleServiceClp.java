@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.service;
 
+import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.DoubleWrapper;
 import com.liferay.portal.kernel.util.IntegerWrapper;
@@ -303,6 +304,60 @@ public class ArticleServiceClp implements ArticleService {
 		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
+		java.util.Map<java.lang.String, java.lang.Object> params,
+		boolean allVersions, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(params);
+
+		if (params == null) {
+			paramObj0 = new NullWrapper("java.util.Map");
+		}
+
+		Object paramObj1 = new BooleanWrapper(allVersions);
+
+		Object paramObj2 = new IntegerWrapper(start);
+
+		Object paramObj3 = new IntegerWrapper(end);
+
+		Object paramObj4 = ClpSerializer.translateInput(orderByComparator);
+
+		if (orderByComparator == null) {
+			paramObj4 = new NullWrapper(
+					"com.liferay.portal.kernel.util.OrderByComparator");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getArticles",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+					});
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public int getArticlesCount(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(resourcePrimKey);
@@ -312,6 +367,41 @@ public class ArticleServiceClp implements ArticleService {
 		try {
 			returnObj = _classLoaderProxy.invoke("getArticlesCount",
 					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	public int getArticlesCount(
+		java.util.Map<java.lang.String, java.lang.Object> params,
+		boolean allVersions)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(params);
+
+		if (params == null) {
+			paramObj0 = new NullWrapper("java.util.Map");
+		}
+
+		Object paramObj1 = new BooleanWrapper(allVersions);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getArticlesCount",
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -390,20 +480,22 @@ public class ArticleServiceClp implements ArticleService {
 	}
 
 	public java.util.List<com.liferay.knowledgebase.model.Article> getCompanyArticles(
-		long companyId, int start, int end,
+		long companyId, boolean allVersions, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);
 
-		Object paramObj1 = new IntegerWrapper(start);
+		Object paramObj1 = new BooleanWrapper(allVersions);
 
-		Object paramObj2 = new IntegerWrapper(end);
+		Object paramObj2 = new IntegerWrapper(start);
 
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
+		Object paramObj3 = new IntegerWrapper(end);
+
+		Object paramObj4 = ClpSerializer.translateInput(orderByComparator);
 
 		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
+			paramObj4 = new NullWrapper(
 					"com.liferay.portal.kernel.util.OrderByComparator");
 		}
 
@@ -411,7 +503,9 @@ public class ArticleServiceClp implements ArticleService {
 
 		try {
 			returnObj = _classLoaderProxy.invoke("getCompanyArticles",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+					});
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -434,15 +528,17 @@ public class ArticleServiceClp implements ArticleService {
 		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getCompanyArticlesCount(long companyId)
+	public int getCompanyArticlesCount(long companyId, boolean allVersions)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);
+
+		Object paramObj1 = new BooleanWrapper(allVersions);
 
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("getCompanyArticlesCount",
-					new Object[] { paramObj0 });
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -462,58 +558,13 @@ public class ArticleServiceClp implements ArticleService {
 	}
 
 	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
-		long groupId, int start, int end,
+		long groupId, boolean allVersions, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
 
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
-		Object returnObj = null;
-
-		try {
-			returnObj = _classLoaderProxy.invoke("getGroupArticles",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
-		long groupId, long parentResourcePrimKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(groupId);
-
-		Object paramObj1 = new LongWrapper(parentResourcePrimKey);
+		Object paramObj1 = new BooleanWrapper(allVersions);
 
 		Object paramObj2 = new IntegerWrapper(start);
 
@@ -555,38 +606,11 @@ public class ArticleServiceClp implements ArticleService {
 		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getGroupArticlesCount(long groupId)
+	public int getGroupArticlesCount(long groupId, boolean allVersions)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
 
-		Object returnObj = null;
-
-		try {
-			returnObj = _classLoaderProxy.invoke("getGroupArticlesCount",
-					new Object[] { paramObj0 });
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
-	public int getGroupArticlesCount(long groupId, long parentResourcePrimKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(groupId);
-
-		Object paramObj1 = new LongWrapper(parentResourcePrimKey);
+		Object paramObj1 = new BooleanWrapper(allVersions);
 
 		Object returnObj = null;
 

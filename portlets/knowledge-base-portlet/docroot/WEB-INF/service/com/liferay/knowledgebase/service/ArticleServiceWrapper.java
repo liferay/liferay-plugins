@@ -86,9 +86,26 @@ public class ArticleServiceWrapper implements ArticleService {
 			orderByComparator);
 	}
 
+	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
+		java.util.Map<java.lang.String, java.lang.Object> params,
+		boolean allVersions, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getArticles(params, allVersions, start, end,
+			orderByComparator);
+	}
+
 	public int getArticlesCount(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleService.getArticlesCount(resourcePrimKey);
+	}
+
+	public int getArticlesCount(
+		java.util.Map<java.lang.String, java.lang.Object> params,
+		boolean allVersions)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getArticlesCount(params, allVersions);
 	}
 
 	public java.lang.String getArticlesRSS(long resourcePrimKey, int max,
@@ -101,46 +118,31 @@ public class ArticleServiceWrapper implements ArticleService {
 	}
 
 	public java.util.List<com.liferay.knowledgebase.model.Article> getCompanyArticles(
-		long companyId, int start, int end,
+		long companyId, boolean allVersions, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.getCompanyArticles(companyId, start, end,
-			orderByComparator);
-	}
-
-	public int getCompanyArticlesCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.getCompanyArticlesCount(companyId);
-	}
-
-	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
-		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.getGroupArticles(groupId, start, end,
-			orderByComparator);
-	}
-
-	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
-		long groupId, long parentResourcePrimKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.getGroupArticles(groupId, parentResourcePrimKey,
+		return _articleService.getCompanyArticles(companyId, allVersions,
 			start, end, orderByComparator);
 	}
 
-	public int getGroupArticlesCount(long groupId)
+	public int getCompanyArticlesCount(long companyId, boolean allVersions)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.getGroupArticlesCount(groupId);
+		return _articleService.getCompanyArticlesCount(companyId, allVersions);
 	}
 
-	public int getGroupArticlesCount(long groupId, long parentResourcePrimKey)
+	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
+		long groupId, boolean allVersions, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getGroupArticles(groupId, allVersions, start,
+			end, orderByComparator);
+	}
+
+	public int getGroupArticlesCount(long groupId, boolean allVersions)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.getGroupArticlesCount(groupId,
-			parentResourcePrimKey);
+		return _articleService.getGroupArticlesCount(groupId, allVersions);
 	}
 
 	public java.lang.String getGroupArticlesRSS(int max, java.lang.String type,
