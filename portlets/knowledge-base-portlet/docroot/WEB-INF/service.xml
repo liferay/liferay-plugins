@@ -45,6 +45,10 @@
 		<finder name="ResourcePrimKey" return-type="Collection">
 			<finder-column name="resourcePrimKey" />
 		</finder>
+		<finder name="R_V" return-type="Article" unique="true">
+			<finder-column name="resourcePrimKey" />
+			<finder-column name="version" />
+		</finder>
 
 		<!-- References -->
 
