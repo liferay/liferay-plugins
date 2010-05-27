@@ -548,7 +548,7 @@ public class MailManager {
 				accountId, messageId, to, cc, bcc, subject, body, mailFiles);
 
 			return createJSONResult(
-				"success", "saved successfully",
+				"success", "saved-successfully",
 				String.valueOf(message.getMessageId()));
 		}
 		catch (MailException me) {
