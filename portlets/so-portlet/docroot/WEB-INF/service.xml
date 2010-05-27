@@ -52,6 +52,12 @@
 			<finder-column name="receiverUserId"/>
 			<finder-column name="status"/>
 		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portal" entity="Group" />
+		<reference package-path="com.liferay.portal" entity="Layout" />
+		<reference package-path="com.liferay.portal" entity="UserGroupRole" />
 	</entity>
 	<entity name="ProjectsEntry" local-service="true" remote-service="false">
 

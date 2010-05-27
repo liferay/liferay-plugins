@@ -30,9 +30,6 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -203,7 +200,7 @@ public class MemberRequestLocalServiceImpl
 				new long[] {memberRequest.getReceiverUserId()});
 
 			if (memberRequest.getInvitedRoleId() > 0) {
-				UserGroupRoleLocalServiceUtil.addUserGroupRoles(
+				userGroupRoleLocalService.addUserGroupRoles(
 					new long[] {memberRequest.getReceiverUserId()},
 					memberRequest.getGroupId(),
 					memberRequest.getInvitedRoleId());
@@ -245,13 +242,13 @@ public class MemberRequestLocalServiceImpl
 	protected String getLoginURL(String key, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		Group group = GroupLocalServiceUtil.getGroup(
+		Group group = groupLocalService.getGroup(
 			themeDisplay.getCompanyId(), GroupConstants.GUEST);
 
 		long plid = PortalUtil.getPlidFromPortletId(
 			group.getGroupId(), PortletKeys.LOGIN);
 
-		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
+		Layout layout = layoutLocalService.getLayout(plid);
 
 		return PortalUtil.getLayoutFriendlyURL(layout, themeDisplay) + "?key=" +
 			key;
@@ -264,8 +261,7 @@ public class MemberRequestLocalServiceImpl
 
 		long companyId = memberRequest.getCompanyId();
 
-		Group group = GroupLocalServiceUtil.getGroup(
-			memberRequest.getGroupId());
+		Group group = groupLocalService.getGroup(memberRequest.getGroupId());
 
 		User user = userLocalService.getUser(memberRequest.getUserId());
 
