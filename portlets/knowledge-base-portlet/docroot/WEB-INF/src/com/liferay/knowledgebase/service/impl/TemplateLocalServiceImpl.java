@@ -126,14 +126,6 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 		}
 	}
 
-	public void deleteTemplate(long templateId)
-		throws PortalException, SystemException {
-
-		Template template = templatePersistence.findByPrimaryKey(templateId);
-
-		deleteTemplate(template);
-	}
-
 	public void deleteTemplate(Template template)
 		throws PortalException, SystemException {
 
@@ -151,6 +143,14 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 
 		MBMessageLocalServiceUtil.deleteDiscussionMessages(
 			Template.class.getName(), template.getTemplateId());
+	}
+
+	public void deleteTemplate(long templateId)
+		throws PortalException, SystemException {
+
+		Template template = templatePersistence.findByPrimaryKey(templateId);
+
+		deleteTemplate(template);
 	}
 
 	public List<Template> getGroupTemplates(

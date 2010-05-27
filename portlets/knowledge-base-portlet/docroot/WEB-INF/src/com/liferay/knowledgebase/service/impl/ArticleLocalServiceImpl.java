@@ -309,14 +309,9 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	public Article getArticle(long resourcePrimKey, int version)
-		throws SystemException {
+		throws PortalException, SystemException {
 
-		Map<String, Object> params = new HashMap<String, Object>();
-
-		params.put("resourcePrimKey", resourcePrimKey);
-		params.put("version", version);
-
-		return getArticles(params, true, 0, 1, null).get(0);
+		return articlePersistence.findByR_V(resourcePrimKey, version);
 	}
 
 	public List<Article> getArticles(
