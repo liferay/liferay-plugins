@@ -21,11 +21,9 @@ MailManager mailManager = MailManager.getInstance(request);
 %>
 
 <div id="accountsContainer">
-	&nbsp;
 </div>
 
 <aui:layout cssClass="mail-status">
-	&nbsp;
 </aui:layout>
 
 <div id="mailContainer">
@@ -33,7 +31,6 @@ MailManager mailManager = MailManager.getInstance(request);
 		<aui:column columnWidth="20">
 			<div id="controlContainer">
 				<div id="foldersContainer">
-					&nbsp;
 				</div>
 			</div>
 		</aui:column>
@@ -41,19 +38,15 @@ MailManager mailManager = MailManager.getInstance(request);
 		<aui:column columnWidth="80">
 			<div id="contentContainer">
 				<div id="manageFoldersContainer">
-					&nbsp;
 				</div>
 
 				<div id="messagesContainer">
-					&nbsp;
 				</div>
 
 				<div id="messageContainer">
-					&nbsp;
 				</div>
 
 				<div id="composeContainer">
-					&nbsp;
 				</div>
 			</div>
 		</aui:column>
