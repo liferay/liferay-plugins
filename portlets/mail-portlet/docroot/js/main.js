@@ -41,6 +41,6 @@ AUI().add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-io', 'aui-dialog']
+		requires: ['aui-base', 'aui-dialog', 'aui-io']
 	}
 );
