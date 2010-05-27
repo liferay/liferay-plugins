@@ -20,8 +20,7 @@
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<div id="accountsContainer">
-</div>
+<div id="accountsContainer"></div>
 
 <aui:layout cssClass="mail-status">
 </aui:layout>
@@ -30,24 +29,19 @@ MailManager mailManager = MailManager.getInstance(request);
 	<aui:layout>
 		<aui:column columnWidth="20">
 			<div id="controlContainer">
-				<div id="foldersContainer">
-				</div>
+				<div id="foldersContainer"></div>
 			</div>
 		</aui:column>
 
 		<aui:column columnWidth="80">
 			<div id="contentContainer">
-				<div id="manageFoldersContainer">
-				</div>
+				<div id="manageFoldersContainer"></div>
 
-				<div id="messagesContainer">
-				</div>
+				<div id="messagesContainer"></div>
 
-				<div id="messageContainer">
-				</div>
+				<div id="messageContainer"></div>
 
-				<div id="composeContainer">
-				</div>
+				<div id="composeContainer"></div>
 			</div>
 		</aui:column>
 	</aui:layout>
