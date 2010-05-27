@@ -25,11 +25,14 @@ import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.base.ArticleLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
+import com.liferay.portal.kernel.dao.orm.Conjunction;
+import com.liferay.portal.kernel.dao.orm.Disjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -45,6 +48,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -659,7 +663,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	protected DynamicQuery getDynamicQuery(
-		Map<String, Object> params, boolean allVersions) {
+			Map<String, Object> params, boolean allVersions)
+		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			Article.class, "article1", PortletClassLoaderUtil.getClassLoader());
@@ -667,6 +672,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			String key = entry.getKey();
 			Object value = entry.getValue();
+
+			if (key.equals("parentGroupId")) {
+				key = "groupId";
+				value = getGroupIds((Long)value);
+			}
 
 			if (value instanceof Object[]) {
 				Property property = PropertyFactoryUtil.forName(key);
@@ -702,6 +712,47 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		dynamicQuery.add(versionProperty.in(subselectDynamicQuery));
 
 		return dynamicQuery;
+	}
+
+	protected Long[] getGroupIds(long parentGroupId) throws SystemException {
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Group.class, "group", PortalClassLoaderUtil.getClassLoader());
+
+		Property groupIdProperty = PropertyFactoryUtil.forName("groupId");
+		Property classNameIdProperty = PropertyFactoryUtil.forName(
+			"classNameId");
+		Property parentGroupIdProperty = PropertyFactoryUtil.forName(
+			"parentGroupId");
+
+		Long classNameId = PortalUtil.getClassNameId(Layout.class);
+
+		Conjunction conjunction1 = RestrictionsFactoryUtil.conjunction();
+
+		conjunction1.add(groupIdProperty.eq(parentGroupId));
+		conjunction1.add(classNameIdProperty.ne(classNameId));
+
+		Conjunction conjunction2 = RestrictionsFactoryUtil.conjunction();
+
+		conjunction2.add(classNameIdProperty.eq(classNameId));
+		conjunction2.add(parentGroupIdProperty.eq(parentGroupId));
+
+		Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
+
+		disjunction.add(conjunction1);
+		disjunction.add(conjunction2);
+
+		dynamicQuery.add(disjunction);
+
+		List<Group> groups = groupPersistence.findWithDynamicQuery(
+			dynamicQuery);
+
+		Long[] groupIds = new Long[groups.size()];
+
+		for (int i = 0; i < groups.size(); i++) {
+			groupIds[i] = groups.get(i).getGroupId();
+		}
+
+		return groupIds;
 	}
 
 	protected void notifySubscribers(
