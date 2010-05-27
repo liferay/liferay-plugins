@@ -42,6 +42,7 @@ import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -724,7 +725,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		Property parentGroupIdProperty = PropertyFactoryUtil.forName(
 			"parentGroupId");
 
-		Long classNameId = PortalUtil.getClassNameId(Layout.class);
+		long classNameId = PortalUtil.getClassNameId(Layout.class);
 
 		Conjunction conjunction1 = RestrictionsFactoryUtil.conjunction();
 
@@ -746,13 +747,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		List<Group> groups = groupPersistence.findWithDynamicQuery(
 			dynamicQuery);
 
-		Long[] groupIds = new Long[groups.size()];
-
-		for (int i = 0; i < groups.size(); i++) {
-			groupIds[i] = groups.get(i).getGroupId();
-		}
-
-		return groupIds;
+		return ArrayUtil.toArray(
+			StringUtil.split(ListUtil.toString(groups, "groupId"), 0L));
 	}
 
 	protected void notifySubscribers(
