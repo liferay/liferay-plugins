@@ -232,25 +232,25 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setEntryId(value0.longValue());
+					newModel.setEntryId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCreateDate");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setCreateDate(value1.longValue());
+					newModel.setCreateDate(value1);
 
 					Method method2 = oldModelClass.getMethod("getFromUserId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setFromUserId(value2.longValue());
+					newModel.setFromUserId(value2);
 
 					Method method3 = oldModelClass.getMethod("getToUserId");
 
 					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
 
-					newModel.setToUserId(value3.longValue());
+					newModel.setToUserId(value3);
 
 					Method method4 = oldModelClass.getMethod("getContent");
 
@@ -284,33 +284,33 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setStatusId(value0.longValue());
+					newModel.setStatusId(value0);
 
 					Method method1 = oldModelClass.getMethod("getUserId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value1.longValue());
+					newModel.setUserId(value1);
 
 					Method method2 = oldModelClass.getMethod("getModifiedDate");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setModifiedDate(value2.longValue());
+					newModel.setModifiedDate(value2);
 
 					Method method3 = oldModelClass.getMethod("getOnline");
 
 					Boolean value3 = (Boolean)method3.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setOnline(value3.booleanValue());
+					newModel.setOnline(value3);
 
 					Method method4 = oldModelClass.getMethod("getAwake");
 
 					Boolean value4 = (Boolean)method4.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setAwake(value4.booleanValue());
+					newModel.setAwake(value4);
 
 					Method method5 = oldModelClass.getMethod("getActivePanelId");
 
@@ -331,7 +331,7 @@ public class ClpSerializer {
 					Boolean value7 = (Boolean)method7.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setPlaySound(value7.booleanValue());
+					newModel.setPlaySound(value7);
 
 					return newModel;
 				}
