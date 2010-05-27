@@ -35,7 +35,10 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
+import com.liferay.portal.service.persistence.GroupPersistence;
+import com.liferay.portal.service.persistence.LayoutPersistence;
 import com.liferay.portal.service.persistence.ResourcePersistence;
+import com.liferay.portal.service.persistence.UserGroupRolePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -1614,10 +1617,16 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	protected MemberRequestPersistence memberRequestPersistence;
 	@BeanReference(type = ProjectsEntryPersistence.class)
 	protected ProjectsEntryPersistence projectsEntryPersistence;
+	@BeanReference(type = GroupPersistence.class)
+	protected GroupPersistence groupPersistence;
+	@BeanReference(type = LayoutPersistence.class)
+	protected LayoutPersistence layoutPersistence;
 	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	@BeanReference(type = UserGroupRolePersistence.class)
+	protected UserGroupRolePersistence userGroupRolePersistence;
 	private static final String _SQL_SELECT_MEMBERREQUEST = "SELECT memberRequest FROM MemberRequest memberRequest";
 	private static final String _SQL_SELECT_MEMBERREQUEST_WHERE = "SELECT memberRequest FROM MemberRequest memberRequest WHERE ";
 	private static final String _SQL_COUNT_MEMBERREQUEST = "SELECT COUNT(memberRequest) FROM MemberRequest memberRequest";

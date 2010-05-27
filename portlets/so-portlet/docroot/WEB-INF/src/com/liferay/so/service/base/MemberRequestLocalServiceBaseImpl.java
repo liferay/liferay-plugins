@@ -23,11 +23,20 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.service.GroupLocalService;
+import com.liferay.portal.service.GroupService;
+import com.liferay.portal.service.LayoutLocalService;
+import com.liferay.portal.service.LayoutService;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
+import com.liferay.portal.service.UserGroupRoleLocalService;
+import com.liferay.portal.service.UserGroupRoleService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
+import com.liferay.portal.service.persistence.GroupPersistence;
+import com.liferay.portal.service.persistence.LayoutPersistence;
 import com.liferay.portal.service.persistence.ResourcePersistence;
+import com.liferay.portal.service.persistence.UserGroupRolePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.so.model.MemberRequest;
@@ -166,6 +175,54 @@ public abstract class MemberRequestLocalServiceBaseImpl
 		this.counterLocalService = counterLocalService;
 	}
 
+	public GroupLocalService getGroupLocalService() {
+		return groupLocalService;
+	}
+
+	public void setGroupLocalService(GroupLocalService groupLocalService) {
+		this.groupLocalService = groupLocalService;
+	}
+
+	public GroupService getGroupService() {
+		return groupService;
+	}
+
+	public void setGroupService(GroupService groupService) {
+		this.groupService = groupService;
+	}
+
+	public GroupPersistence getGroupPersistence() {
+		return groupPersistence;
+	}
+
+	public void setGroupPersistence(GroupPersistence groupPersistence) {
+		this.groupPersistence = groupPersistence;
+	}
+
+	public LayoutLocalService getLayoutLocalService() {
+		return layoutLocalService;
+	}
+
+	public void setLayoutLocalService(LayoutLocalService layoutLocalService) {
+		this.layoutLocalService = layoutLocalService;
+	}
+
+	public LayoutService getLayoutService() {
+		return layoutService;
+	}
+
+	public void setLayoutService(LayoutService layoutService) {
+		this.layoutService = layoutService;
+	}
+
+	public LayoutPersistence getLayoutPersistence() {
+		return layoutPersistence;
+	}
+
+	public void setLayoutPersistence(LayoutPersistence layoutPersistence) {
+		this.layoutPersistence = layoutPersistence;
+	}
+
 	public ResourceLocalService getResourceLocalService() {
 		return resourceLocalService;
 	}
@@ -215,6 +272,33 @@ public abstract class MemberRequestLocalServiceBaseImpl
 		this.userPersistence = userPersistence;
 	}
 
+	public UserGroupRoleLocalService getUserGroupRoleLocalService() {
+		return userGroupRoleLocalService;
+	}
+
+	public void setUserGroupRoleLocalService(
+		UserGroupRoleLocalService userGroupRoleLocalService) {
+		this.userGroupRoleLocalService = userGroupRoleLocalService;
+	}
+
+	public UserGroupRoleService getUserGroupRoleService() {
+		return userGroupRoleService;
+	}
+
+	public void setUserGroupRoleService(
+		UserGroupRoleService userGroupRoleService) {
+		this.userGroupRoleService = userGroupRoleService;
+	}
+
+	public UserGroupRolePersistence getUserGroupRolePersistence() {
+		return userGroupRolePersistence;
+	}
+
+	public void setUserGroupRolePersistence(
+		UserGroupRolePersistence userGroupRolePersistence) {
+		this.userGroupRolePersistence = userGroupRolePersistence;
+	}
+
 	protected void runSQL(String sql) throws SystemException {
 		try {
 			DataSource dataSource = memberRequestPersistence.getDataSource();
@@ -239,6 +323,18 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	protected ProjectsEntryPersistence projectsEntryPersistence;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
+	@BeanReference(type = GroupLocalService.class)
+	protected GroupLocalService groupLocalService;
+	@BeanReference(type = GroupService.class)
+	protected GroupService groupService;
+	@BeanReference(type = GroupPersistence.class)
+	protected GroupPersistence groupPersistence;
+	@BeanReference(type = LayoutLocalService.class)
+	protected LayoutLocalService layoutLocalService;
+	@BeanReference(type = LayoutService.class)
+	protected LayoutService layoutService;
+	@BeanReference(type = LayoutPersistence.class)
+	protected LayoutPersistence layoutPersistence;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
 	@BeanReference(type = ResourceService.class)
@@ -251,4 +347,10 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	@BeanReference(type = UserGroupRoleLocalService.class)
+	protected UserGroupRoleLocalService userGroupRoleLocalService;
+	@BeanReference(type = UserGroupRoleService.class)
+	protected UserGroupRoleService userGroupRoleService;
+	@BeanReference(type = UserGroupRolePersistence.class)
+	protected UserGroupRolePersistence userGroupRolePersistence;
 }
