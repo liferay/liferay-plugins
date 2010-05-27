@@ -4,17 +4,11 @@
 	<import file="../build-common-web.xml" />
 
 	<property name="original.war.file" value="jbpm-installer-3.2.6.SP1.jar" />
-	<property name="auto.approver.name" value="Automatic Approval" />
 	<property name="single.approver.name" value="Single Approver" />
 
 	<target name="build-samples">
 		<delete dir="samples" />
 		<mkdir dir="samples" />
-
-		<jar
-			basedir="samples"
-			jarfile="samples/${auto.approver.name}.jar"
-		/>
 
 		<copy 
 			file="docroot/WEB-INF/src/META-INF/definitions/single-approver-definition.xml" 
