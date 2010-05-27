@@ -72,7 +72,7 @@ long groupId = ParamUtil.getLong(request, "groupId");
 
 		UserGroupRole communityRole = null;
 
-		if (communityRoles.size() > 0) {
+		if (!communityRoles.isEmpty()) {
 			communityRole = communityRoles.get(0);
 		}
 		%>
