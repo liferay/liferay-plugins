@@ -15,7 +15,9 @@
 package com.liferay.portal.workflow.jbpm.dao;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowLog;
 import com.liferay.portal.workflow.jbpm.WorkflowDefinitionExtensionImpl;
@@ -41,6 +43,7 @@ import org.hibernate.criterion.Restrictions;
 
 import org.jbpm.JbpmContext;
 import org.jbpm.JbpmException;
+import org.jbpm.context.exe.ContextInstance;
 import org.jbpm.graph.def.ProcessDefinition;
 import org.jbpm.graph.exe.ProcessInstance;
 import org.jbpm.taskmgmt.exe.TaskInstance;
@@ -173,6 +176,15 @@ public class CustomSession {
 		catch (Exception e) {
 			throw new JbpmException(e);
 		}
+	}
+
+	public int countTaksInstancesStartedByUser(
+		long companyId, long userId, Boolean completed) {
+
+		List<TaskInstance> tasksInstances = getTasksInstancesStartedByUser(
+			companyId, userId, completed, 0, -1, null);
+
+		return tasksInstances.size();
 	}
 
 	public void deleteWorkflowDefinitionExtension(long processDefinitionId) {
@@ -334,6 +346,14 @@ public class CustomSession {
 		catch (Exception e) {
 			throw new JbpmException(e);
 		}
+	}
+
+	public List<TaskInstance> findTaskInstancesStartedByUser(
+		long companyId, long userId, Boolean completed, int start, int end,
+		OrderByComparator orderByComparator) {
+
+		return getTasksInstancesStartedByUser(
+			companyId, userId, completed, start, end, orderByComparator);
 	}
 
 	public WorkflowDefinitionExtensionImpl findWorkflowDefinitonExtension(
@@ -638,6 +658,52 @@ public class CustomSession {
 		catch (Exception e) {
 			throw new JbpmException(e);
 		}
+	}
+
+	protected List<TaskInstance> getTasksInstancesStartedByUser(
+		long companyId, long userId, Boolean completed, int start, int end,
+		OrderByComparator orderByComparator) {
+
+		List<TaskInstance> taskInstances = new ArrayList<TaskInstance>();
+
+		try {
+			Criteria criteria = _session.createCriteria(TaskInstance.class);
+
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+			if (completed != null) {
+				if (completed.booleanValue()) {
+					criteria.add(Restrictions.isNotNull("end"));
+				}
+				else {
+					criteria.add(Restrictions.isNull("end"));
+				}
+			}
+
+			addOrder(criteria, orderByComparator);
+
+			List<TaskInstance> tasks = criteria.list();
+
+			for (TaskInstance taskInstance : tasks) {
+				ContextInstance contextInstance =
+					taskInstance.getProcessInstance().getContextInstance();
+
+				if (Validator.equals(Long.toString(userId),
+						(String) contextInstance.getVariable("userId"))) {
+
+					taskInstances.add(taskInstance);
+				}
+			}
+		}
+		catch (Exception e) {
+			throw new JbpmException(e);
+		}
+
+		if ((end != QueryUtil.ALL_POS) && (taskInstances.size() > end)) {
+			taskInstances = ListUtil.subList(taskInstances, start, end);
+		}
+
+		return taskInstances;
 	}
 
 	private static Map<String, String> _fieldMap =
