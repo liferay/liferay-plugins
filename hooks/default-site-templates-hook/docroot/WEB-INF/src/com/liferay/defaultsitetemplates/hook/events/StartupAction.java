@@ -66,9 +66,10 @@ public class StartupAction extends SimpleAction {
 		throws Exception {
 
 		Layout layout = addLayoutPrototype(
-			companyId, defaultUserId, "Blog", "Create, edit and view blogs from" +
-			"this page.  Explore hot topics using tags, and connect with other" +
-			" members that blog.", "2_columns_iii", layoutPrototypes);
+			companyId, defaultUserId, "Blog",
+			"Create, edit, and view blogs from this page. Explore topics " +
+				"using tags, and connect with other members that blog.",
+			"2_columns_iii", layoutPrototypes);
 
 		if (layout == null) {
 			return;
@@ -85,9 +86,10 @@ public class StartupAction extends SimpleAction {
 		throws Exception {
 
 		Layout layout = addLayoutPrototype(
-			companyId, defaultUserId, "Content", "Create, edit and explore " +
-			"content with this page.  Search available content, explore related" +
-			" content with tags, and browse content categories.",
+			companyId, defaultUserId, "Content",
+			"Create, edit, and explore content with this page. Search " +
+				"available content, explore related content with tags, and " +
+					"browse content categories.",
 			"2_columns_ii", layoutPrototypes);
 
 		if (layout == null) {
@@ -208,8 +210,9 @@ public class StartupAction extends SimpleAction {
 		throws Exception {
 
 		LayoutSet layoutSet = addLayoutSetPrototype(
-			companyId, defaultUserId, "Private", "Pages that are only available" +
-			" to members of this community or organization.", 
+			companyId, defaultUserId, "Private",
+			"Pages that are only available to members of this community " +
+				"or organization.",
 			layoutSetPrototypes);
 
 		if (layoutSet == null) {
@@ -270,8 +273,9 @@ public class StartupAction extends SimpleAction {
 		throws Exception {
 
 		LayoutSet layoutSet = addLayoutSetPrototype(
-			companyId, defaultUserId, "Public", "Pages that are available to " +
-			"both guests and members of this community or organization.",
+			companyId, defaultUserId, "Public",
+			"Pages that are available to both guests and members of this " +
+				"community or organization.",
 			layoutSetPrototypes);
 
 		if (layoutSet == null) {
@@ -317,9 +321,10 @@ public class StartupAction extends SimpleAction {
 		throws Exception {
 
 		Layout layout = addLayoutPrototype(
-			companyId, defaultUserId, "Wiki", "Collaborate with members through" +
-			" the wiki on this page.  Discover related content through tags, " +
-			"and navigate quickly and easily with categories.",
+			companyId, defaultUserId, "Wiki",
+			"Collaborate with members through the wiki on this page. " +
+				"Discover related content through tags, and navigate quickly " +
+					"and easily with categories.",
 			"2_columns_iii", layoutPrototypes);
 
 		if (layout == null) {
