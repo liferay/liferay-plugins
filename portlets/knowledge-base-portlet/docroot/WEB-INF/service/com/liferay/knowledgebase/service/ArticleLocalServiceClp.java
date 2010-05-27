@@ -793,7 +793,8 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 
 	public com.liferay.knowledgebase.model.Article getArticle(
 		long resourcePrimKey, int version)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(resourcePrimKey);
 
 		Object paramObj1 = new IntegerWrapper(version);
@@ -805,6 +806,10 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}

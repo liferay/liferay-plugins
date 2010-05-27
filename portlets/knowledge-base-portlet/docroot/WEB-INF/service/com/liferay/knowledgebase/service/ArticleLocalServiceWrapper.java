@@ -183,7 +183,8 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 
 	public com.liferay.knowledgebase.model.Article getArticle(
 		long resourcePrimKey, int version)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.getArticle(resourcePrimKey, version);
 	}
 
