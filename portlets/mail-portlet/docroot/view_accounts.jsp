@@ -53,5 +53,9 @@ MailManager mailManager = MailManager.getInstance(request);
 				</ul>
 			</aui:column>
 		</c:if>
+
+		<aui:column>
+			<aui:button onClick="Liferay.Mail.addAccount();" value="add-mail-account" />
+		</aui:column>
 	</aui:layout>
 </c:if>
