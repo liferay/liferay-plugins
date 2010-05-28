@@ -1,0 +1,1 @@
+Liferay.Service.register("Liferay.Service.SN", "com.liferay.socialnetworking.service");
