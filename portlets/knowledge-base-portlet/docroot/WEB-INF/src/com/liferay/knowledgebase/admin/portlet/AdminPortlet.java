@@ -21,8 +21,13 @@ import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.ArticleContentException;
 import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
+import com.liferay.knowledgebase.NoSuchTemplateException;
+import com.liferay.knowledgebase.TemplateContentException;
+import com.liferay.knowledgebase.TemplateTitleException;
 import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.model.Template;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
+import com.liferay.knowledgebase.service.TemplateServiceUtil;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -113,6 +118,15 @@ public class AdminPortlet extends MVCPortlet {
 			resourcePrimKey, fileName);
 	}
 
+	public void deleteTemplate(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long templateId = ParamUtil.getLong(actionRequest, "templateId");
+
+		TemplateServiceUtil.deleteTemplate(templateId);
+	}
+
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException, IOException {
@@ -128,9 +142,21 @@ public class AdminPortlet extends MVCPortlet {
 			}
 
 			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
+
+			Template template = null;
+
+			long templateId = ParamUtil.getLong(renderRequest, "templateId");
+
+			if (templateId > 0) {
+				template = TemplateServiceUtil.getTemplate(templateId);
+			}
+
+			renderRequest.setAttribute(
+				WebKeys.KNOWLEDGE_BASE_TEMPLATE, template);
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
+				e instanceof NoSuchTemplateException ||
 				e instanceof PrincipalException) {
 
 				SessionErrors.add(renderRequest, e.getClass().getName());
@@ -303,6 +329,29 @@ public class AdminPortlet extends MVCPortlet {
 		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 	}
 
+	public void updateTemplate(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long templateId = ParamUtil.getLong(actionRequest, "templateId");
+
+		String title = ParamUtil.getString(actionRequest, "title");
+		String content = ParamUtil.getString(actionRequest, "content");
+		String description = ParamUtil.getString(actionRequest, "description");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			Template.class.getName(), actionRequest);
+
+		if (templateId <= 0) {
+			TemplateServiceUtil.addTemplate(
+				title, content, description, serviceContext);
+		}
+		else {
+			TemplateServiceUtil.updateTemplate(
+				templateId, title, content, description, serviceContext);
+		}
+	}
+
 	protected void addSuccessMessage(
 		ActionRequest actionRequest, ActionResponse actionResponse) {
 
@@ -325,6 +374,8 @@ public class AdminPortlet extends MVCPortlet {
 			SessionErrors.contains(
 				renderRequest, NoSuchMessageException.class.getName()) ||
 			SessionErrors.contains(
+				renderRequest, NoSuchTemplateException.class.getName()) ||
+			SessionErrors.contains(
 				renderRequest, PrincipalException.class.getName())) {
 
 			include("/admin/error.jsp", renderRequest, renderResponse);
@@ -341,7 +392,10 @@ public class AdminPortlet extends MVCPortlet {
 			cause instanceof FileSizeException ||
 			cause instanceof NoSuchArticleException ||
 			cause instanceof NoSuchFileException ||
-			cause instanceof PrincipalException) {
+			cause instanceof NoSuchTemplateException ||
+			cause instanceof PrincipalException ||
+			cause instanceof TemplateContentException ||
+			cause instanceof TemplateTitleException) {
 
 			return true;
 		}
