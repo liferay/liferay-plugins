@@ -1,1 +1,0 @@
-Liferay.Service.register("Liferay.Service.Chat", "com.liferay.chat.service");
