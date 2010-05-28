@@ -272,6 +272,12 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
+	public int getWorkflowTaskCountStartedByUser(
+		long companyId, long userId, Boolean completed) {
+
+		throw new UnsupportedOperationException();
+	}
+
 	public List<WorkflowTask> getWorkflowTasks(
 			long companyId, Boolean completed, int start, int end,
 			OrderByComparator orderByComparator)
@@ -388,6 +394,13 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		catch (Exception e) {
 			throw new WorkflowException(e);
 		}
+	}
+
+	public List<WorkflowTask> getWorkflowTasksStartedByUser(
+		long companyId, long userId, Boolean completed, int start, int end,
+		OrderByComparator orderByComparator) {
+
+		throw new UnsupportedOperationException();
 	}
 
 	public List<WorkflowTask> search(
