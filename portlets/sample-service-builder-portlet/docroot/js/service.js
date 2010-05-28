@@ -1,0 +1,1 @@
+Liferay.Service.register("Liferay.Service.SSB", "com.liferay.sampleservicebuilder.service");
