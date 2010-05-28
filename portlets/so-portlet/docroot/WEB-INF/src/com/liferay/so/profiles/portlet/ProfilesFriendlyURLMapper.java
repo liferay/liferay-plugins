@@ -30,7 +30,6 @@ import javax.portlet.PortletMode;
  * <a href="ProfilesFriendlyURLMapper.java.html"><b><i>View Source</i></b></a>
  *
  * @author Ryan Park
- *
  */
 public class ProfilesFriendlyURLMapper extends BaseFriendlyURLMapper {
 
@@ -47,7 +46,8 @@ public class ProfilesFriendlyURLMapper extends BaseFriendlyURLMapper {
 	}
 
 	public void populateParams(
-		String friendlyURLPath, Map<String, String[]> params) {
+		String friendlyURLPath, Map<String, String[]> params,
+		Map<String, Object> requestContext) {
 
 		int x = friendlyURLPath.indexOf("/", 1);
 		int y = friendlyURLPath.indexOf("/", x + 1);

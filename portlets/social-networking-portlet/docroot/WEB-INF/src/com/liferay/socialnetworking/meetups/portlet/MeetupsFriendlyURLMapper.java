@@ -28,7 +28,6 @@ import javax.portlet.WindowState;
  * <a href="MeetupsFriendlyURLMapper.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class MeetupsFriendlyURLMapper extends BaseFriendlyURLMapper {
 
@@ -68,7 +67,8 @@ public class MeetupsFriendlyURLMapper extends BaseFriendlyURLMapper {
 	}
 
 	public void populateParams(
-		String friendlyURLPath, Map<String, String[]> params) {
+		String friendlyURLPath, Map<String, String[]> params,
+		Map<String, Object> requestContext) {
 
 		int x = friendlyURLPath.indexOf("/", 1);
 

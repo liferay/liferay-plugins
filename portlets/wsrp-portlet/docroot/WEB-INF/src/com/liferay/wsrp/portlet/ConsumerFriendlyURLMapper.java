@@ -95,7 +95,8 @@ public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 	}
 
 	public void populateParams(
-		String friendlyURLPath, Map<String, String[]> params) {
+		String friendlyURLPath, Map<String, String[]> params,
+		Map<String, Object> requestContext) {
 
 		int pos1 = friendlyURLPath.indexOf("/", 1);
 		int pos2 = friendlyURLPath.indexOf("/", pos1 + 1);

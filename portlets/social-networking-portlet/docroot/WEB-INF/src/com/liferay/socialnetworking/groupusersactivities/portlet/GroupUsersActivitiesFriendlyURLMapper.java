@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.portlet.RSSFriendlyURLMapper;
  * </i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class GroupUsersActivitiesFriendlyURLMapper
 	extends RSSFriendlyURLMapper {

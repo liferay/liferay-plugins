@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.portlet.RSSFriendlyURLMapper;
  * <a href="ActivitiesFriendlyURLMapper.java.html"><b><i>View Source</i></b></a>
  *
  * @author Ryan Park
- *
  */
 public class ActivitiesFriendlyURLMapper extends RSSFriendlyURLMapper {
 

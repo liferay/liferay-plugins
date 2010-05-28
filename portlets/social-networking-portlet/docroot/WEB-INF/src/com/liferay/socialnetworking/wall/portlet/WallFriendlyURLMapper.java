@@ -27,7 +27,6 @@ import javax.portlet.WindowState;
  * <a href="WallFriendlyURLMapper.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
  */
 public class WallFriendlyURLMapper extends BaseFriendlyURLMapper {
 
@@ -44,7 +43,8 @@ public class WallFriendlyURLMapper extends BaseFriendlyURLMapper {
 	}
 
 	public void populateParams(
-		String friendlyURLPath, Map<String, String[]> params) {
+		String friendlyURLPath, Map<String, String[]> params,
+		Map<String, Object> requestContext) {
 
 		addParam(params, "p_p_id", _PORTLET_ID);
 		addParam(params, "p_p_lifecycle", "0");

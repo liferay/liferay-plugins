@@ -89,7 +89,10 @@ public class TestFriendlyURLMapper extends BaseFriendlyURLMapper {
 		return _PORTLET_ID;
 	}
 
-	public void populateParams(String friendlyURLPath, Map params) {
+	public void populateParams(
+		String friendlyURLPath, Map<String, String[]> params,
+		Map<String, Object> requestContext) {
+
 		addParam(params, "p_p_id", _PORTLET_ID);
 		addParam(params, "p_p_lifecycle", "0");
 		addParam(params, "p_p_mode", PortletMode.VIEW);
