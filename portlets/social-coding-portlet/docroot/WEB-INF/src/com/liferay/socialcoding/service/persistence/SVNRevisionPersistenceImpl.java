@@ -592,8 +592,6 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 					}
 				}
 			}
-
-			query.append(WHERE_LIMIT_2);
 		}
 
 		else {
@@ -603,6 +601,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		String sql = query.toString();
 
 		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
@@ -859,8 +860,6 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 					}
 				}
 			}
-
-			query.append(WHERE_LIMIT_2);
 		}
 
 		else {
@@ -870,6 +869,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		String sql = query.toString();
 
 		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1159,8 +1161,6 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 					}
 				}
 			}
-
-			query.append(WHERE_LIMIT_2);
 		}
 
 		else {
@@ -1170,6 +1170,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		String sql = query.toString();
 
 		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
 
 		QueryPos qPos = QueryPos.getInstance(q);
 

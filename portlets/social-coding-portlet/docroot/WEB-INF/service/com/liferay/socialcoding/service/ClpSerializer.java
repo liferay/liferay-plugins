@@ -524,7 +524,7 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setJiraActionId(value0.longValue());
+					newModel.setJiraActionId(value0);
 
 					Method method1 = oldModelClass.getMethod("getJiraUserId");
 
@@ -549,7 +549,7 @@ public class ClpSerializer {
 
 					Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
 
-					newModel.setJiraIssueId(value4.longValue());
+					newModel.setJiraIssueId(value4);
 
 					Method method5 = oldModelClass.getMethod("getType");
 
@@ -599,7 +599,7 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setJiraChangeGroupId(value0.longValue());
+					newModel.setJiraChangeGroupId(value0);
 
 					Method method1 = oldModelClass.getMethod("getJiraUserId");
 
@@ -618,7 +618,7 @@ public class ClpSerializer {
 
 					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
 
-					newModel.setJiraIssueId(value3.longValue());
+					newModel.setJiraIssueId(value3);
 
 					return newModel;
 				}
@@ -647,14 +647,14 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setJiraChangeItemId(value0.longValue());
+					newModel.setJiraChangeItemId(value0);
 
 					Method method1 = oldModelClass.getMethod(
 							"getJiraChangeGroupId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setJiraChangeGroupId(value1.longValue());
+					newModel.setJiraChangeGroupId(value1);
 
 					Method method2 = oldModelClass.getMethod("getField");
 
@@ -717,7 +717,7 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setJiraIssueId(value0.longValue());
+					newModel.setJiraIssueId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCreateDate");
 
@@ -735,7 +735,7 @@ public class ClpSerializer {
 
 					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
 
-					newModel.setProjectId(value3.longValue());
+					newModel.setProjectId(value3);
 
 					Method method4 = oldModelClass.getMethod("getKey");
 
@@ -815,7 +815,7 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setSvnRepositoryId(value0.longValue());
+					newModel.setSvnRepositoryId(value0);
 
 					Method method1 = oldModelClass.getMethod("getUrl");
 
@@ -829,7 +829,7 @@ public class ClpSerializer {
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setRevisionNumber(value2.longValue());
+					newModel.setRevisionNumber(value2);
 
 					return newModel;
 				}
@@ -857,7 +857,7 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setSvnRevisionId(value0.longValue());
+					newModel.setSvnRevisionId(value0);
 
 					Method method1 = oldModelClass.getMethod("getSvnUserId");
 
@@ -877,14 +877,14 @@ public class ClpSerializer {
 
 					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
 
-					newModel.setSvnRepositoryId(value3.longValue());
+					newModel.setSvnRepositoryId(value3);
 
 					Method method4 = oldModelClass.getMethod(
 							"getRevisionNumber");
 
 					Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
 
-					newModel.setRevisionNumber(value4.longValue());
+					newModel.setRevisionNumber(value4);
 
 					Method method5 = oldModelClass.getMethod("getComments");
 

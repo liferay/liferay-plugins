@@ -1,0 +1,1 @@
+Liferay.Service.register("Liferay.Service.SC", "com.liferay.socialcoding.service");
