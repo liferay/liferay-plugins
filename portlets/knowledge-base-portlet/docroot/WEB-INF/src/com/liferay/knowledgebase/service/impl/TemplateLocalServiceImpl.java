@@ -28,8 +28,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
-import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -89,13 +87,13 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 
 		// Message Boards
 
-		MBMessageLocalServiceUtil.addDiscussionMessage(
+		mbMessageLocalService.addDiscussionMessage(
 			userId, template.getUserName(), groupId, Template.class.getName(),
 			templateId, WorkflowConstants.ACTION_PUBLISH);
 
 		// Social
 
-		SocialActivityLocalServiceUtil.addActivity(
+		socialActivityLocalService.addActivity(
 			userId, groupId, Template.class.getName(), templateId,
 			AdminActivityKeys.ADD_TEMPLATE, StringPool.BLANK, 0);
 
@@ -158,12 +156,12 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 
 		// Message boards
 
-		MBMessageLocalServiceUtil.deleteDiscussionMessages(
+		mbMessageLocalService.deleteDiscussionMessages(
 			Template.class.getName(), template.getTemplateId());
 
 		// Social
 
-		SocialActivityLocalServiceUtil.deleteActivities(
+		socialActivityLocalService.deleteActivities(
 			Template.class.getName(), template.getTemplateId());
 	}
 
@@ -210,7 +208,7 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 
 		// Social
 
-		SocialActivityLocalServiceUtil.addActivity(
+		socialActivityLocalService.addActivity(
 			template.getUserId(), template.getGroupId(),
 			Template.class.getName(), templateId,
 			AdminActivityKeys.UPDATE_TEMPLATE, StringPool.BLANK, 0);
