@@ -47,8 +47,6 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 	for (int i = 0; i < accountsJSONArray.length(); i++) {
 		JSONObject accountJSONObject = accountsJSONArray.getJSONObject(i);
 
-		String formName = "fm" + (i + 1);
-
 		String titleLanguageKey = accountJSONObject.getString("titleLanguageKey");
 		String descriptionLanguageKey = accountJSONObject.getString("descriptionLanguageKey");
 		String address = accountJSONObject.getString("address");
@@ -65,11 +63,9 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 	%>
 
 		<liferay-ui:section>
+			<aui:layout cssClass="mail-status" />
 
-			<aui:layout cssClass="mail-status">
-			</aui:layout>
-
-			<aui:form cssClass="account-form" name="<%= formName %>" onSubmit="event.preventDefault();">
+			<aui:form cssClass="account-form" name='<%= "fm" + (i + 1) %>' onSubmit="event.preventDefault();">
 				<aui:fieldset>
 					<liferay-ui:message key="<%= descriptionLanguageKey %>" />
 
@@ -161,7 +157,7 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 
 					<aui:input name="useLocalPartAsLogin" type="hidden" value="<%= useLocalPartAsLogin %>" />
 
-					<aui:button type="submit" cssClass="add-account" value="add-account" />
+					<aui:button cssClass="add-account" type="submit" value="add-account" />
 				</aui:fieldset>
 			</aui:form>
 		</liferay-ui:section>

@@ -25,7 +25,7 @@ MailManager mailManager = MailManager.getInstance(request);
 	<%
 	long folderId = ParamUtil.getLong(request, "folderId");
 	int pageNumber = ParamUtil.getInteger(request, "pageNumber", 1);
-	int messagesPerPage = 25; //ParamUtil.getInteger(request, "messagesPerPage");
+	int messagesPerPage = ParamUtil.getInteger(request, "messagesPerPage", 25);
 	String orderByField = ParamUtil.getString(request, "orderByField");
 	String orderByType = ParamUtil.getString(request, "orderByType");
 	String keywords = ParamUtil.getString(request, "keywords");
@@ -37,7 +37,7 @@ MailManager mailManager = MailManager.getInstance(request);
 		<c:when test="<%= messagesDisplay.getMessageCount() == 0 %>">
 			<aui:layout>
 				<c:choose>
-					<c:when test="<%= keywords.equals(StringPool.BLANK) %>">
+					<c:when test="<%= Validator.isNull(keywords) %>">
 						<liferay-ui:message key="there-are-no-message-in-this-folder" />
 					</c:when>
 					<c:otherwise>
@@ -49,7 +49,7 @@ MailManager mailManager = MailManager.getInstance(request);
 		<c:otherwise>
 			<aui:layout>
 				<aui:column>
-					<aui:button cssClass="delete-messages" value="Delete" />
+					<aui:button cssClass="delete-messages" value="delete" />
 				</aui:column>
 				<aui:column>
 					<aui:select cssClass="flag-messages" label="flagMessages" name="flagMessages" showEmptyOption="true">
@@ -67,10 +67,10 @@ MailManager mailManager = MailManager.getInstance(request);
 
 						List<Folder> folders = FolderLocalServiceUtil.getFolders(folder.getAccountId());
 
-						for (Folder tempFolder : folders) {
+						for (Folder curFolder : folders) {
 						%>
 
-							<aui:option value="<%= tempFolder.getFolderId() %>"><%= tempFolder.getDisplayName() %></aui:option>
+							<aui:option value="<%= curFolder.getFolderId() %>"><%= curFolder.getDisplayName() %></aui:option>
 
 						<%
 						}
@@ -157,13 +157,13 @@ MailManager mailManager = MailManager.getInstance(request);
 			</aui:layout>
 
 			<%
-			List<Message> messages = messagesDisplay.getMessages();
-
-			int currentMessageNumber = messagesDisplay.getStartMessageNumber();
-
 			Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
 			Account mailAccount = AccountLocalServiceUtil.getAccount(folder.getAccountId());
+
+			int messageNumber = messagesDisplay.getStartMessageNumber();
+
+			List<Message> messages = messagesDisplay.getMessages();
 
 			for (Message message : messages) {
 				String address = StringPool.BLANK;
@@ -196,7 +196,7 @@ MailManager mailManager = MailManager.getInstance(request);
 					<aui:column columnWidth="5">
 						<aui:input id="message<%= message.getMessageId() %>" label="" messageId="<%= message.getMessageId() %>" name="message" type="checkbox" value="<%= message.getMessageId() %>" />
 					</aui:column>
-					<aui:column columnWidth="95" cssClass="message-link" folderId="<%= folderId %>" keywords="<%= keywords %>" messageNumber="<%= currentMessageNumber %>" orderByField="<%= orderByField %>" orderByType="<%= orderByType %>">
+					<aui:column columnWidth="95" cssClass="message-link" folderId="<%= folderId %>" keywords="<%= keywords %>" messageNumber="<%= messageNumber %>" orderByField="<%= orderByField %>" orderByType="<%= orderByType %>">
 						<aui:column cssClass="address" columnWidth="25">
 							<%= HtmlUtil.escape(address) %>
 						</aui:column>
@@ -220,7 +220,7 @@ MailManager mailManager = MailManager.getInstance(request);
 				</aui:layout>
 
 			<%
-				currentMessageNumber++;
+				messageNumber++;
 			}
 			%>
 

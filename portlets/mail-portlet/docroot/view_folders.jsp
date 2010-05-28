@@ -31,30 +31,30 @@ MailManager mailManager = MailManager.getInstance(request);
 
 	<%
 	Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
+
 	List<Folder> folders = mailManager.getFolders(accountId, true, true);
 
 	for (Folder folder : folders) {
-		String folderLabel = folder.getDisplayName() + " (" + MessageLocalServiceUtil.getFolderUnreadMessagesCount(folder.getFolderId()) + ")";
-		String iconImage = "../common/folder";
+		String folderImage = "../common/folder";
 
 		if (folder.getFolderId() == mailAccount.getInboxFolderId()) {
-			iconImage = "../dock/home";
+			folderImage = "../dock/home";
 		}
 		else if (folder.getFolderId() == mailAccount.getDraftFolderId()) {
-			iconImage = "../mail/edit_draft";
+			folderImage = "../mail/edit_draft";
 		}
 		else if (folder.getFolderId() == mailAccount.getSentFolderId()) {
-			iconImage = "../mail/forward";
+			folderImage = "../mail/forward";
 		}
 		else if (folder.getFolderId() == mailAccount.getTrashFolderId()) {
-			iconImage = "../common/delete";
+			folderImage = "../common/delete";
 		}
 	%>
 
 		<aui:layout>
-			<liferay-ui:icon image="<%= iconImage %>" />
+			<liferay-ui:icon image="<%= folderImage %>" />
 
-			<aui:a cssClass="messages-link" data-accountId="<%= accountId %>" data-folderId="<%= folder.getFolderId() %>" data-keywords="" data-orderByField="<%= MailConstants.ORDER_BY_SENT_DATE %>" data-orderByType="desc" data-pageNumber="1" href="javascript:;" label="<%= folderLabel %>" />
+			<aui:a cssClass="messages-link" data-accountId="<%= accountId %>" data-folderId="<%= folder.getFolderId() %>" data-keywords="" data-orderByField="<%= MailConstants.ORDER_BY_SENT_DATE %>" data-orderByType="desc" data-pageNumber="1" href="javascript:;" label='<%= folder.getDisplayName() + " (" + MessageLocalServiceUtil.getFolderUnreadMessagesCount(folder.getFolderId()) + ")" %>' />
 		</aui:layout>
 
 	<%

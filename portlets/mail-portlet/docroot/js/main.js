@@ -92,6 +92,14 @@ AUI().add(
 				);
 			},
 
+			loadFolders: function(accountId) {
+				var instance = this;
+
+				instance.foldersContainer.io.set('data', {accountId: accountId});
+
+				instance.foldersContainer.io.start();
+			},
+
 			loadMessages: function(folderId, pageNumber, orderByField, orderByType, keywords) {
 				var instance = this;
 
@@ -107,14 +115,6 @@ AUI().add(
 				);
 
 				instance.messagesContainer.io.start();
-			},
-
-			loadFolders: function(accountId) {
-				var instance = this;
-
-				instance.foldersContainer.io.set('data', {accountId: accountId});
-
-				instance.foldersContainer.io.start();
 			},
 
 			setStatus: function(type, message) {
@@ -136,29 +136,29 @@ AUI().add(
 				instance.accountsContainer.plug(
 					A.Plugin.IO,
 					{
-						uri: themeDisplay.getLayoutURL() + '/-/mail/view_accounts',
 						autoLoad: true,
 						data: {accountId: instance.accountId},
+						method: 'POST',
 						showLoading: false,
-						method: 'POST'
+						uri: themeDisplay.getLayoutURL() + '/-/mail/view_accounts'
 					}
 				);
 
 				instance.foldersContainer.plug(
 					A.Plugin.IO,
 					{
-						uri: themeDisplay.getLayoutURL() + '/-/mail/view_folders',
 						autoLoad: false,
-						method: 'POST'
+						method: 'POST',
+						uri: themeDisplay.getLayoutURL() + '/-/mail/view_folders'
 					}
 				);
 
 				instance.messagesContainer.plug(
 					A.Plugin.IO,
 					{
-						uri: themeDisplay.getLayoutURL() + '/-/mail/view_messages',
 						autoLoad: false,
-						method: 'POST'
+						method: 'POST',
+						uri: themeDisplay.getLayoutURL() + '/-/mail/view_messages'
 					}
 				);
 
