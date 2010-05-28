@@ -3,8 +3,8 @@
 
 <web-app>
 	<taglib>
-		<taglib-uri>http://java.sun.com/jstl/core_rt</taglib-uri>
-		<taglib-location>/WEB-INF/tld/c-rt.tld</taglib-location>
+		<taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
+		<taglib-location>/WEB-INF/tld/c.tld</taglib-location>
 	</taglib>
 	<!--<resource-ref>
 		<res-ref-name>jdbc/JIRAPool</res-ref-name>
