@@ -27,6 +27,7 @@ AUI().add(
 				}
 
 				instance.loadFolders(instance.accountId);
+				instance.loadMessages(instance.folderId, 1, instance.orderByField, instance.orderByType, instance.keywords);
 			},
 
 			addAccount: function () {
@@ -80,6 +81,7 @@ AUI().add(
 
 								if (results == 'true') {
 									instance.loadFolders(accountId);
+									instance.loadMessages(inboxFolderId, 1, 'sentDate', 'desc', '');
 								}
 								else {
 									instance.promptForPassword(accountId, inboxFolderId);
@@ -88,6 +90,23 @@ AUI().add(
 						}
 					}
 				);
+			},
+
+			loadMessages: function(folderId, pageNumber, orderByField, orderByType, keywords) {
+				var instance = this;
+
+				instance.messagesContainer.io.set(
+					'data',
+					{
+						folderId: folderId,
+						pageNumber: pageNumber,
+						orderByField: orderByField,
+						orderByType: orderByType,
+						keywords: keywords
+					}
+				);
+
+				instance.messagesContainer.io.start();
 			},
 
 			loadFolders: function(accountId) {
@@ -134,6 +153,15 @@ AUI().add(
 					}
 				);
 
+				instance.messagesContainer.plug(
+					A.Plugin.IO,
+					{
+						uri: themeDisplay.getLayoutURL() + '/-/mail/view_messages',
+						autoLoad: false,
+						method: 'POST'
+					}
+				);
+
 				instance.accountsContainer.delegate(
 					'click',
 					function(event) {
@@ -146,6 +174,27 @@ AUI().add(
 						instance.loadAccount(accountId, inboxFolderId);
 					},
 					'.folders-link'
+				);
+
+				instance.mailContainer.delegate(
+					'click',
+					function(event) {
+						var link = event.currentTarget;
+
+						var folderId = link.getAttribute('data-folderId');
+						var pageNumber = link.getAttribute('data-pageNumber');
+						var orderByField = link.getAttribute('data-orderByField');
+						var orderByType = link.getAttribute('data-orderByType');
+						var keywords = link.getAttribute('data-keywords');
+
+						instance.manageFoldersContainer.hide();
+						instance.messagesContainer.show();
+						instance.messageContainer.hide();
+						instance.composeContainer.hide();
+
+						instance.loadMessages(folderId, pageNumber, orderByField, orderByType, keywords);
+					},
+					'.messages-link'
 				);
 			},
 

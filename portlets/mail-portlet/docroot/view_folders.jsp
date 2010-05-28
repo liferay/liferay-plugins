@@ -54,7 +54,7 @@ MailManager mailManager = MailManager.getInstance(request);
 		<aui:layout>
 			<liferay-ui:icon image="<%= iconImage %>" />
 
-			<aui:a accountId="<%= accountId %>" cssClass="messages-link" href="javascript:;" folderId="<%= folder.getFolderId() %>" keywords="" label="<%= folderLabel %>" orderByField="<%= MailConstants.ORDER_BY_SENT_DATE %>" orderByType="desc" pageNumber="1" />
+			<aui:a cssClass="messages-link" data-accountId="<%= accountId %>" data-folderId="<%= folder.getFolderId() %>" data-keywords="" data-orderByField="<%= MailConstants.ORDER_BY_SENT_DATE %>" data-orderByType="desc" data-pageNumber="1" href="javascript:;" label="<%= folderLabel %>" />
 		</aui:layout>
 
 	<%
