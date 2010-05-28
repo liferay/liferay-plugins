@@ -18,10 +18,14 @@ package com.liferay.knowledgebase.util;
  * <a href="WebKeys.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
+ * @author Peter Shin
  */
 public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 
 	public static final String KNOWLEDGE_BASE_ARTICLE =
 		"KNOWLEDGE_BASE_ARTICLE";
+
+	public static final String KNOWLEDGE_BASE_TEMPLATE =
+		"KNOWLEDGE_BASE_TEMPLATE";
 
 }
