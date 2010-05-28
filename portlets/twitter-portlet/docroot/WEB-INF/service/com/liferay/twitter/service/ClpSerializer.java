@@ -157,13 +157,13 @@ public class ClpSerializer {
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setFeedId(value0.longValue());
+					newModel.setFeedId(value0);
 
 					Method method1 = oldModelClass.getMethod("getTwitterUserId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setTwitterUserId(value1.longValue());
+					newModel.setTwitterUserId(value1);
 
 					Method method2 = oldModelClass.getMethod(
 							"getTwitterScreenName");
@@ -189,7 +189,7 @@ public class ClpSerializer {
 
 					Long value5 = (Long)method5.invoke(oldModel, (Object[])null);
 
-					newModel.setLastStatusId(value5.longValue());
+					newModel.setLastStatusId(value5);
 
 					return newModel;
 				}
