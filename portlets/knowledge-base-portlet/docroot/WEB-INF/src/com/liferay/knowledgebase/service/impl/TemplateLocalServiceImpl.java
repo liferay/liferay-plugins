@@ -16,17 +16,20 @@ package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.TemplateContentException;
 import com.liferay.knowledgebase.TemplateTitleException;
+import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.model.Template;
 import com.liferay.knowledgebase.service.base.TemplateLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
+import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -90,6 +93,12 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 			userId, template.getUserName(), groupId, Template.class.getName(),
 			templateId, WorkflowConstants.ACTION_PUBLISH);
 
+		// Social
+
+		SocialActivityLocalServiceUtil.addActivity(
+			userId, groupId, Template.class.getName(), templateId,
+			AdminActivityKeys.ADD_TEMPLATE, StringPool.BLANK, 0);
+
 		return template;
 	}
 
@@ -151,6 +160,11 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 
 		MBMessageLocalServiceUtil.deleteDiscussionMessages(
 			Template.class.getName(), template.getTemplateId());
+
+		// Social
+
+		SocialActivityLocalServiceUtil.deleteActivities(
+			Template.class.getName(), template.getTemplateId());
 	}
 
 	public List<Template> getGroupTemplates(
@@ -193,6 +207,13 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 				template, serviceContext.getCommunityPermissions(),
 				serviceContext.getGuestPermissions());
 		}
+
+		// Social
+
+		SocialActivityLocalServiceUtil.addActivity(
+			template.getUserId(), template.getGroupId(),
+			Template.class.getName(), templateId,
+			AdminActivityKeys.UPDATE_TEMPLATE, StringPool.BLANK, 0);
 
 		return template;
 	}

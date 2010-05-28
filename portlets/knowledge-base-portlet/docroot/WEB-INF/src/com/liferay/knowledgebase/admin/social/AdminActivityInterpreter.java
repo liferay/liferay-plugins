@@ -15,8 +15,11 @@
 package com.liferay.knowledgebase.admin.social;
 
 import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.model.Template;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.TemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
+import com.liferay.knowledgebase.service.permission.TemplatePermission;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -52,6 +55,9 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		if (className.equals(Article.class.getName())) {
 			return doInterpretArticle(activity, themeDisplay);
+		}
+		else if (className.equals(Template.class.getName())) {
+			return doInterpretTemplate(activity, themeDisplay);
 		}
 
 		return null;
@@ -116,6 +122,64 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		return new SocialActivityFeedEntry(link, title, body);
 	}
 
+	protected SocialActivityFeedEntry doInterpretTemplate(
+			SocialActivity activity, ThemeDisplay themeDisplay)
+		throws Exception {
+
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
+
+		Template template = TemplateLocalServiceUtil.getTemplate(
+			activity.getClassPK());
+
+		if (!TemplatePermission.contains(
+				permissionChecker, template, ActionKeys.VIEW)) {
+
+			return null;
+		}
+
+		// Link
+
+		String link = StringPool.BLANK;
+
+		long plid = PortalUtil.getPlidFromPortletId(
+			template.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN);
+
+		if (plid != LayoutConstants.DEFAULT_PLID) {
+			String layoutFullURL = PortalUtil.getLayoutFullURL(
+				LayoutLocalServiceUtil.getLayout(plid), themeDisplay);
+			String namespace = PortalUtil.getPortletNamespace(
+				PortletKeys.KNOWLEDGE_BASE_ADMIN);
+
+			link = HttpUtil.setParameter(
+				layoutFullURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ADMIN);
+			link = HttpUtil.setParameter(
+				link, namespace + "jspPage", "/admin/view_template.jsp");
+			link = HttpUtil.setParameter(
+				link, namespace + "templateId", template.getTemplateId());
+		}
+
+		// Title
+
+		String key = StringPool.BLANK;
+
+		if (activity.getType() == AdminActivityKeys.ADD_TEMPLATE) {
+			key = "activity-knowledge-base-admin-add-template";
+		}
+		else if (activity.getType() == AdminActivityKeys.UPDATE_TEMPLATE) {
+			key = "activity-knowledge-base-admin-update-template";
+		}
+
+		String title = getTitle(
+			activity, key, template.getTitle(), link, themeDisplay);
+
+		// Body
+
+		String body = StringPool.BLANK;
+
+		return new SocialActivityFeedEntry(link, title, body);
+	}
+
 	protected String getTitle(
 		SocialActivity activity, String key, String content, String link,
 		ThemeDisplay themeDisplay) {
@@ -145,7 +209,7 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {
-		Article.class.getName()
+		Article.class.getName(), Template.class.getName()
 	};
 
 }
