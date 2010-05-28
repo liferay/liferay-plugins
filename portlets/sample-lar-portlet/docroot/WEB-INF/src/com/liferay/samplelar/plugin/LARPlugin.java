@@ -14,18 +14,18 @@
 
 package com.liferay.samplelar.plugin;
 
+import com.liferay.portal.kernel.lar.BasePortletDataHandler;
+import com.liferay.portal.kernel.lar.PortletDataContext;
+import com.liferay.portal.kernel.lar.PortletDataException;
+import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
+import com.liferay.portal.kernel.lar.PortletDataHandlerChoice;
+import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipWriter;
-import com.liferay.portal.lar.BasePortletDataHandler;
-import com.liferay.portal.lar.PortletDataContext;
-import com.liferay.portal.lar.PortletDataException;
-import com.liferay.portal.lar.PortletDataHandlerBoolean;
-import com.liferay.portal.lar.PortletDataHandlerChoice;
-import com.liferay.portal.lar.PortletDataHandlerControl;
 
 import java.util.Date;
 import java.util.Map;
@@ -42,7 +42,7 @@ public class LARPlugin extends BasePortletDataHandler {
 
 	public PortletPreferences deleteData(
 			PortletDataContext context, String portletId,
-			PortletPreferences prefs)
+			PortletPreferences preferences)
 		throws PortletDataException {
 
 		return null;
@@ -50,7 +50,7 @@ public class LARPlugin extends BasePortletDataHandler {
 
 	public String exportData(
 			PortletDataContext context, String portletId,
-			PortletPreferences prefs)
+			PortletPreferences preferences)
 		throws PortletDataException {
 
 		Map parameterMap = context.getParameterMap();
@@ -79,9 +79,10 @@ public class LARPlugin extends BasePortletDataHandler {
 				_log.info("Exporting LAR on " + new Date(exportDate));
 			}
 
-			prefs.setValue("last-export-date", String.valueOf(exportDate));
+			preferences.setValue(
+				"last-export-date", String.valueOf(exportDate));
 
-			prefs.store();
+			preferences.store();
 
 			String data = "<data-file />";
 
@@ -159,7 +160,7 @@ public class LARPlugin extends BasePortletDataHandler {
 	}
 
 	public PortletPreferences importData(PortletDataContext context,
-			String portletId, PortletPreferences prefs, String data)
+			String portletId, PortletPreferences preferences, String data)
 			throws PortletDataException {
 
 		Map parameterMap = context.getParameterMap();
@@ -184,7 +185,8 @@ public class LARPlugin extends BasePortletDataHandler {
 		try {
 			long importDate = System.currentTimeMillis();
 
-			prefs.setValue("last-import-date", String.valueOf(importDate));
+			preferences.setValue(
+				"last-import-date", String.valueOf(importDate));
 
 			if (_log.isInfoEnabled()) {
 				_log.info("Importing data " + data);
@@ -198,7 +200,7 @@ public class LARPlugin extends BasePortletDataHandler {
 						zipReader.getEntryAsString(portletId + "/README.txt"));
 			}
 
-			return prefs;
+			return preferences;
 		}
 		catch (Exception e) {
 			throw new PortletDataException(e);
@@ -209,26 +211,26 @@ public class LARPlugin extends BasePortletDataHandler {
 		return _PUBLISH_TO_LIVE_BY_DEFAULT;
 	}
 
-	private static final boolean _PUBLISH_TO_LIVE_BY_DEFAULT = true;
-
 	private static final String _NAMESPACE = "lar-plugin";
 
-	private static final PortletDataHandlerBoolean _createReadme =
+	private static final boolean _PUBLISH_TO_LIVE_BY_DEFAULT = true;
+
+	private static Log _log = LogFactoryUtil.getLog(LARPlugin.class);
+
+	private static PortletDataHandlerBoolean _createReadme =
 		new PortletDataHandlerBoolean(_NAMESPACE, "create-readme", true, true);
 
-	private static final PortletDataHandlerChoice _dataType =
+	private static PortletDataHandlerChoice _dataType =
 		new PortletDataHandlerChoice(
 			_NAMESPACE, "data-type", 1, new String[] {"csv", "xml"});
 
-	private static final PortletDataHandlerBoolean _enableExport =
+	private static PortletDataHandlerBoolean _enableExport =
 		new PortletDataHandlerBoolean(
 			_NAMESPACE, "export-sample-lar-portlet-data", true,
 			new PortletDataHandlerControl[] {_createReadme, _dataType});
 
-	private static final PortletDataHandlerBoolean _enableImport =
+	private static PortletDataHandlerBoolean _enableImport =
 		new PortletDataHandlerBoolean(
 			_NAMESPACE, "import-sample-lar-portlet-data", true, true);
-
-	private static Log _log = LogFactoryUtil.getLog(LARPlugin.class);
 
 }
