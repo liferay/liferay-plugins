@@ -1,1 +1,0 @@
-Liferay.Service.register("Liferay.Service.WSRP", "com.liferay.wsrp.service");
