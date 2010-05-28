@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.workflow.StatusConstants;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
@@ -233,7 +233,7 @@ public class StartupAction extends SimpleAction {
 
 		JournalArticleLocalServiceUtil.updateStatus(
 			userId, groupId, journalArticle.getArticleId(),
-			journalArticle.getVersion(), StatusConstants.APPROVED,
+			journalArticle.getVersion(), WorkflowConstants.STATUS_APPROVED,
 			StringPool.BLANK, serviceContext);
 
 		return journalArticle;
