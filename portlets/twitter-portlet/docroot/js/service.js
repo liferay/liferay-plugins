@@ -1,1 +1,0 @@
-Liferay.Service.register("Liferay.Service.Twitter", "com.liferay.twitter.service");
