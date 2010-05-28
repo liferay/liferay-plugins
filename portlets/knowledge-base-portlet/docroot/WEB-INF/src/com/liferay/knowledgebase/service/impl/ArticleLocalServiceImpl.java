@@ -152,9 +152,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		// Social
 
 		socialActivityLocalService.addActivity(
-			userId, article.getGroupId(), Article.class.getName(),
-			resourcePrimKey, AdminActivityKeys.ADD_ARTICLE, StringPool.BLANK,
-			0);
+			userId, groupId, Article.class.getName(), resourcePrimKey,
+			AdminActivityKeys.ADD_ARTICLE, StringPool.BLANK, 0);
 
 		// Indexer
 
