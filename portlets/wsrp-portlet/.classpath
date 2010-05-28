@@ -17,8 +17,8 @@
 	<classpathentry kind="lib" path="/portal/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/jabsorb.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/jaxrpc.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/jstl-api.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/jstl-impl.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/jstl.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/saaj-api.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/saaj-impl.jar" />
