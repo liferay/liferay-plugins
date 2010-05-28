@@ -48,6 +48,19 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 			SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {
 
+		String className = activity.getClassName();
+
+		if (className.equals(Article.class.getName())) {
+			return doInterpretArticle(activity, themeDisplay);
+		}
+
+		return null;
+	}
+
+	protected SocialActivityFeedEntry doInterpretArticle(
+			SocialActivity activity, ThemeDisplay themeDisplay)
+		throws Exception {
+
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
@@ -84,7 +97,36 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		// Title
 
-		String title = StringPool.BLANK;
+		String key = StringPool.BLANK;
+
+		if (activity.getType() == AdminActivityKeys.ADD_ARTICLE) {
+			key = "activity-knowledge-base-admin-add-article";
+		}
+		else if (activity.getType() == AdminActivityKeys.UPDATE_ARTICLE) {
+			key = "activity-knowledge-base-admin-update-article";
+		}
+
+		String title = getTitle(
+			activity, key, article.getTitle(), link, themeDisplay);
+
+		// Body
+
+		String body = StringPool.BLANK;
+
+		return new SocialActivityFeedEntry(link, title, body);
+	}
+
+	protected String getTitle(
+		SocialActivity activity, String key, String content, String link,
+		ThemeDisplay themeDisplay) {
+
+		String userName = getUserName(activity.getUserId(), themeDisplay);
+
+		String text = HtmlUtil.escape(cleanContent(content));
+
+		if (Validator.isNotNull(link)) {
+			text = wrapLink(link, text);
+		}
 
 		String groupName = StringPool.BLANK;
 
@@ -92,38 +134,14 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 			groupName = getGroupName(activity.getGroupId(), themeDisplay);
 		}
 
-		String pattern = StringPool.BLANK;
-
-		if (activity.getType() == AdminActivityKeys.ADD_ARTICLE) {
-			pattern = "activity-knowledge-base-admin-add-article";
-		}
-		else if (activity.getType() == AdminActivityKeys.UPDATE_ARTICLE) {
-			pattern = "activity-knowledge-base-admin-update-article";
-		}
+		String pattern = key;
 
 		if (Validator.isNotNull(groupName)) {
 			pattern += "-in";
 		}
 
-		Object[] arguments = new Object[0];
-
-		String text = HtmlUtil.escape(cleanContent(article.getTitle()));
-
-		if (Validator.isNotNull(link)) {
-			text = wrapLink(link, text);
-		}
-
-		arguments = new Object[] {
-			getUserName(activity.getUserId(), themeDisplay), text, groupName
-		};
-
-		title = themeDisplay.translate(pattern, arguments);
-
-		// Body
-
-		String body = StringPool.BLANK;
-
-		return new SocialActivityFeedEntry(link, title, body);
+		return themeDisplay.translate(
+			pattern, new Object[] {userName, text, groupName});
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {
