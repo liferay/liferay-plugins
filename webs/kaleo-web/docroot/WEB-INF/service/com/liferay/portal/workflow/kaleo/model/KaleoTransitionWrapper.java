@@ -52,20 +52,20 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 		_kaleoTransition.setKaleoTransitionId(kaleoTransitionId);
 	}
 
-	public long getCompanyId() {
-		return _kaleoTransition.getCompanyId();
-	}
-
-	public void setCompanyId(long companyId) {
-		_kaleoTransition.setCompanyId(companyId);
-	}
-
 	public long getGroupId() {
 		return _kaleoTransition.getGroupId();
 	}
 
 	public void setGroupId(long groupId) {
 		_kaleoTransition.setGroupId(groupId);
+	}
+
+	public long getCompanyId() {
+		return _kaleoTransition.getCompanyId();
+	}
+
+	public void setCompanyId(long companyId) {
+		_kaleoTransition.setCompanyId(companyId);
 	}
 
 	public long getUserId() {

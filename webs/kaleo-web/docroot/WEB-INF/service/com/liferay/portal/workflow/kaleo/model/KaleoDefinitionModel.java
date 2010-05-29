@@ -55,13 +55,13 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition> {
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
-	public long getCompanyId();
-
-	public void setCompanyId(long companyId);
-
 	public long getGroupId();
 
 	public void setGroupId(long groupId);
+
+	public long getCompanyId();
+
+	public void setCompanyId(long companyId);
 
 	public long getUserId();
 

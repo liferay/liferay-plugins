@@ -116,7 +116,7 @@ public interface KaleoTransitionLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void deleteKaleoTransitionsByDefinitionId(long definitionId)
+	public void deleteKaleoTransitionsByDefinition(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

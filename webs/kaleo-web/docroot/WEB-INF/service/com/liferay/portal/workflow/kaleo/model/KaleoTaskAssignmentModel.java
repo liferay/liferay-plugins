@@ -53,13 +53,13 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 
 	public void setKaleoTaskAssignmentId(long kaleoTaskAssignmentId);
 
-	public long getCompanyId();
-
-	public void setCompanyId(long companyId);
-
 	public long getGroupId();
 
 	public void setGroupId(long groupId);
+
+	public long getCompanyId();
+
+	public void setCompanyId(long companyId);
 
 	public long getUserId();
 

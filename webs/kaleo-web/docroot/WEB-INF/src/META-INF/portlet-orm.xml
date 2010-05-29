@@ -10,8 +10,8 @@
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoActionModelImpl">
 		<attributes>
 			<id name="kaleoActionId" />
-			<basic name="companyId" />
 			<basic name="groupId" />
+			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -36,8 +36,8 @@
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionModelImpl">
 		<attributes>
 			<id name="kaleoDefinitionId" />
-			<basic name="companyId" />
 			<basic name="groupId" />
+			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -62,8 +62,8 @@
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceModelImpl">
 		<attributes>
 			<id name="kaleoInstanceId" />
-			<basic name="companyId" />
 			<basic name="groupId" />
+			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -90,8 +90,8 @@
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceTokenModelImpl">
 		<attributes>
 			<id name="kaleoInstanceTokenId" />
-			<basic name="companyId" />
 			<basic name="groupId" />
+			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -116,8 +116,8 @@
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoLogModelImpl">
 		<attributes>
 			<id name="kaleoLogId" />
-			<basic name="companyId" />
 			<basic name="groupId" />
+			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -161,8 +161,8 @@
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl">
 		<attributes>
 			<id name="kaleoNodeId" />
-			<basic name="companyId" />
 			<basic name="groupId" />
+			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -186,8 +186,8 @@
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationModelImpl">
 		<attributes>
 			<id name="kaleoNotificationId" />
-			<basic name="companyId" />
 			<basic name="groupId" />
+			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -212,8 +212,8 @@
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientModelImpl">
 		<attributes>
 			<id name="kaleoNotificationRecipientId" />
-			<basic name="companyId" />
 			<basic name="groupId" />
+			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -235,8 +235,8 @@
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskModelImpl">
 		<attributes>
 			<id name="kaleoTaskId" />
-			<basic name="companyId" />
 			<basic name="groupId" />
+			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -258,8 +258,8 @@
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentModelImpl">
 		<attributes>
 			<id name="kaleoTaskAssignmentId" />
-			<basic name="companyId" />
 			<basic name="groupId" />
+			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -281,8 +281,8 @@
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenModelImpl">
 		<attributes>
 			<id name="kaleoTaskInstanceTokenId" />
-			<basic name="companyId" />
 			<basic name="groupId" />
+			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -315,8 +315,8 @@
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionModelImpl">
 		<attributes>
 			<id name="kaleoTransitionId" />
-			<basic name="companyId" />
 			<basic name="groupId" />
+			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">

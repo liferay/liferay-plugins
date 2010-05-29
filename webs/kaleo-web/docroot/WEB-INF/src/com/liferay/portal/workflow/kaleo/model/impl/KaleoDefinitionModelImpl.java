@@ -68,8 +68,8 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition> {
 	public static final String TABLE_NAME = "Kaleo_KaleoDefinition";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoDefinitionId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
 			{ "groupId", new Integer(Types.BIGINT) },
+			{ "companyId", new Integer(Types.BIGINT) },
 			{ "userId", new Integer(Types.BIGINT) },
 			{ "userName", new Integer(Types.VARCHAR) },
 			{ "createDate", new Integer(Types.TIMESTAMP) },
@@ -81,7 +81,7 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition> {
 			{ "active_", new Integer(Types.BOOLEAN) },
 			{ "startKaleoNodeId", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoDefinition (kaleoDefinitionId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(200) null,title STRING null,description VARCHAR(2000) null,version INTEGER,active_ BOOLEAN,startKaleoNodeId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoDefinition (kaleoDefinitionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(200) null,title STRING null,description VARCHAR(2000) null,version INTEGER,active_ BOOLEAN,startKaleoNodeId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoDefinition";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoDefinition.version DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoDefinition.version DESC";
@@ -99,8 +99,8 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition> {
 		KaleoDefinition model = new KaleoDefinitionImpl();
 
 		model.setKaleoDefinitionId(soapModel.getKaleoDefinitionId());
-		model.setCompanyId(soapModel.getCompanyId());
 		model.setGroupId(soapModel.getGroupId());
+		model.setCompanyId(soapModel.getCompanyId());
 		model.setUserId(soapModel.getUserId());
 		model.setUserName(soapModel.getUserName());
 		model.setCreateDate(soapModel.getCreateDate());
@@ -152,6 +152,14 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition> {
 		_kaleoDefinitionId = kaleoDefinitionId;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -168,14 +176,6 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition> {
 
 	public long getOriginalCompanyId() {
 		return _originalCompanyId;
-	}
-
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
 	}
 
 	public long getUserId() {
@@ -402,8 +402,8 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition> {
 		KaleoDefinitionImpl clone = new KaleoDefinitionImpl();
 
 		clone.setKaleoDefinitionId(getKaleoDefinitionId());
-		clone.setCompanyId(getCompanyId());
 		clone.setGroupId(getGroupId());
+		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
@@ -473,10 +473,10 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition> {
 
 		sb.append("{kaleoDefinitionId=");
 		sb.append(getKaleoDefinitionId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
 		sb.append(", groupId=");
 		sb.append(getGroupId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append(", userId=");
 		sb.append(getUserId());
 		sb.append(", userName=");
@@ -514,12 +514,12 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition> {
 		sb.append(getKaleoDefinitionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>groupId</column-name><column-value><![CDATA[");
 		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
@@ -568,10 +568,10 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition> {
 	}
 
 	private long _kaleoDefinitionId;
+	private long _groupId;
 	private long _companyId;
 	private long _originalCompanyId;
 	private boolean _setOriginalCompanyId;
-	private long _groupId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;

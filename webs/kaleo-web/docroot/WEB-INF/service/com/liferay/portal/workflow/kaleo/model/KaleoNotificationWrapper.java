@@ -52,20 +52,20 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		_kaleoNotification.setKaleoNotificationId(kaleoNotificationId);
 	}
 
-	public long getCompanyId() {
-		return _kaleoNotification.getCompanyId();
-	}
-
-	public void setCompanyId(long companyId) {
-		_kaleoNotification.setCompanyId(companyId);
-	}
-
 	public long getGroupId() {
 		return _kaleoNotification.getGroupId();
 	}
 
 	public void setGroupId(long groupId) {
 		_kaleoNotification.setGroupId(groupId);
+	}
+
+	public long getCompanyId() {
+		return _kaleoNotification.getCompanyId();
+	}
+
+	public void setCompanyId(long companyId) {
+		_kaleoNotification.setCompanyId(companyId);
 	}
 
 	public long getUserId() {

@@ -56,20 +56,20 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		_kaleoTransitionId = kaleoTransitionId;
 	}
 
-	public long getCompanyId() {
-		return _companyId;
-	}
-
-	public void setCompanyId(long companyId) {
-		_companyId = companyId;
-	}
-
 	public long getGroupId() {
 		return _groupId;
 	}
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
 	}
 
 	public long getUserId() {
@@ -211,8 +211,8 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		KaleoTransitionClp clone = new KaleoTransitionClp();
 
 		clone.setKaleoTransitionId(getKaleoTransitionId());
-		clone.setCompanyId(getCompanyId());
 		clone.setGroupId(getGroupId());
+		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
@@ -283,10 +283,10 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 
 		sb.append("{kaleoTransitionId=");
 		sb.append(getKaleoTransitionId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
 		sb.append(", groupId=");
 		sb.append(getGroupId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append(", userId=");
 		sb.append(getUserId());
 		sb.append(", userName=");
@@ -330,12 +330,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		sb.append(getKaleoTransitionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>groupId</column-name><column-value><![CDATA[");
 		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
@@ -396,8 +396,8 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 	}
 
 	private long _kaleoTransitionId;
-	private long _companyId;
 	private long _groupId;
+	private long _companyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;

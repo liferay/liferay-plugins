@@ -52,20 +52,20 @@ public class KaleoLogWrapper implements KaleoLog {
 		_kaleoLog.setKaleoLogId(kaleoLogId);
 	}
 
-	public long getCompanyId() {
-		return _kaleoLog.getCompanyId();
-	}
-
-	public void setCompanyId(long companyId) {
-		_kaleoLog.setCompanyId(companyId);
-	}
-
 	public long getGroupId() {
 		return _kaleoLog.getGroupId();
 	}
 
 	public void setGroupId(long groupId) {
 		_kaleoLog.setGroupId(groupId);
+	}
+
+	public long getCompanyId() {
+		return _kaleoLog.getCompanyId();
+	}
+
+	public void setCompanyId(long companyId) {
+		_kaleoLog.setCompanyId(companyId);
 	}
 
 	public long getUserId() {

@@ -52,20 +52,20 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		_kaleoDefinition.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
-	public long getCompanyId() {
-		return _kaleoDefinition.getCompanyId();
-	}
-
-	public void setCompanyId(long companyId) {
-		_kaleoDefinition.setCompanyId(companyId);
-	}
-
 	public long getGroupId() {
 		return _kaleoDefinition.getGroupId();
 	}
 
 	public void setGroupId(long groupId) {
 		_kaleoDefinition.setGroupId(groupId);
+	}
+
+	public long getCompanyId() {
+		return _kaleoDefinition.getCompanyId();
+	}
+
+	public void setCompanyId(long companyId) {
+		_kaleoDefinition.setCompanyId(companyId);
 	}
 
 	public long getUserId() {
@@ -253,15 +253,15 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		return _kaleoDefinition.toXmlString();
 	}
 
-	public boolean hasIncompleteKaleoInstances()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoDefinition.hasIncompleteKaleoInstances();
-	}
-
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoStartNode()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoDefinition.getKaleoStartNode();
+	}
+
+	public boolean hasIncompleteKaleoInstances()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoDefinition.hasIncompleteKaleoInstances();
 	}
 
 	public KaleoDefinition getWrappedKaleoDefinition() {

@@ -53,13 +53,13 @@ public interface KaleoInstanceTokenModel extends BaseModel<KaleoInstanceToken> {
 
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId);
 
-	public long getCompanyId();
-
-	public void setCompanyId(long companyId);
-
 	public long getGroupId();
 
 	public void setGroupId(long groupId);
+
+	public long getCompanyId();
+
+	public void setCompanyId(long companyId);
 
 	public long getUserId();
 

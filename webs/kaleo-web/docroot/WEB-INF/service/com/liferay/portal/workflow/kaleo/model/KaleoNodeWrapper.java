@@ -52,20 +52,20 @@ public class KaleoNodeWrapper implements KaleoNode {
 		_kaleoNode.setKaleoNodeId(kaleoNodeId);
 	}
 
-	public long getCompanyId() {
-		return _kaleoNode.getCompanyId();
-	}
-
-	public void setCompanyId(long companyId) {
-		_kaleoNode.setCompanyId(companyId);
-	}
-
 	public long getGroupId() {
 		return _kaleoNode.getGroupId();
 	}
 
 	public void setGroupId(long groupId) {
 		_kaleoNode.setGroupId(groupId);
+	}
+
+	public long getCompanyId() {
+		return _kaleoNode.getCompanyId();
+	}
+
+	public void setCompanyId(long companyId) {
+		_kaleoNode.setCompanyId(companyId);
 	}
 
 	public long getUserId() {

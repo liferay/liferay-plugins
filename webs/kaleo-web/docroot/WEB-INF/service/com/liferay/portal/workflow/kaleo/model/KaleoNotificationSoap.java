@@ -42,8 +42,8 @@ public class KaleoNotificationSoap implements Serializable {
 		KaleoNotificationSoap soapModel = new KaleoNotificationSoap();
 
 		soapModel.setKaleoNotificationId(model.getKaleoNotificationId());
-		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setGroupId(model.getGroupId());
+		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
@@ -120,20 +120,20 @@ public class KaleoNotificationSoap implements Serializable {
 		_kaleoNotificationId = kaleoNotificationId;
 	}
 
-	public long getCompanyId() {
-		return _companyId;
-	}
-
-	public void setCompanyId(long companyId) {
-		_companyId = companyId;
-	}
-
 	public long getGroupId() {
 		return _groupId;
 	}
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
 	}
 
 	public long getUserId() {
@@ -241,8 +241,8 @@ public class KaleoNotificationSoap implements Serializable {
 	}
 
 	private long _kaleoNotificationId;
-	private long _companyId;
 	private long _groupId;
+	private long _companyId;
 	private long _userId;
 	private String _userName;
 	private Date _createDate;

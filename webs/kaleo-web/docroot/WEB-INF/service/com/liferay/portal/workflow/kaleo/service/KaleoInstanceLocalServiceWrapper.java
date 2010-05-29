@@ -142,16 +142,9 @@ public class KaleoInstanceLocalServiceWrapper
 		return _kaleoInstanceLocalService.completeKaleoInstance(kaleoInstanceId);
 	}
 
-	public void delete(long kaleoInstanceId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoInstanceLocalService.delete(kaleoInstanceId);
-	}
-
-	public void deleteKaleoInstanceByDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoInstanceLocalService.deleteKaleoInstanceByDefinitionId(kaleoDefinitionId);
+	public void deleteKaleoInstancesByDefinition(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoInstanceLocalService.deleteKaleoInstancesByDefinition(kaleoDefinitionId);
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
@@ -165,10 +158,9 @@ public class KaleoInstanceLocalServiceWrapper
 			serviceContext);
 	}
 
-	public int getKaleoInstanceCountByDefinitionAndCompletion(
-		long kaleoDefinitionId, boolean completed)
+	public int getKaleoInstancesCount(long kaleoDefinitionId, boolean completed)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoInstanceLocalService.getKaleoInstanceCountByDefinitionAndCompletion(kaleoDefinitionId,
+		return _kaleoInstanceLocalService.getKaleoInstancesCount(kaleoDefinitionId,
 			completed);
 	}
 

@@ -55,20 +55,20 @@ public class KaleoNotificationRecipientWrapper
 		_kaleoNotificationRecipient.setKaleoNotificationRecipientId(kaleoNotificationRecipientId);
 	}
 
-	public long getCompanyId() {
-		return _kaleoNotificationRecipient.getCompanyId();
-	}
-
-	public void setCompanyId(long companyId) {
-		_kaleoNotificationRecipient.setCompanyId(companyId);
-	}
-
 	public long getGroupId() {
 		return _kaleoNotificationRecipient.getGroupId();
 	}
 
 	public void setGroupId(long groupId) {
 		_kaleoNotificationRecipient.setGroupId(groupId);
+	}
+
+	public long getCompanyId() {
+		return _kaleoNotificationRecipient.getCompanyId();
+	}
+
+	public void setCompanyId(long companyId) {
+		_kaleoNotificationRecipient.setCompanyId(companyId);
 	}
 
 	public long getUserId() {

@@ -61,8 +61,8 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 	public static final String TABLE_NAME = "Kaleo_KaleoAction";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoActionId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
 			{ "groupId", new Integer(Types.BIGINT) },
+			{ "companyId", new Integer(Types.BIGINT) },
 			{ "userId", new Integer(Types.BIGINT) },
 			{ "userName", new Integer(Types.VARCHAR) },
 			{ "createDate", new Integer(Types.TIMESTAMP) },
@@ -77,7 +77,7 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 			{ "scriptLanguage", new Integer(Types.VARCHAR) },
 			{ "priority", new Integer(Types.INTEGER) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoAction (kaleoActionId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description VARCHAR(2000) null,executionType VARCHAR(75) null,script TEXT null,scriptLanguage VARCHAR(75) null,priority INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoAction (kaleoActionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description VARCHAR(2000) null,executionType VARCHAR(75) null,script TEXT null,scriptLanguage VARCHAR(75) null,priority INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoAction";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoAction.priority ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoAction.priority ASC";
@@ -95,8 +95,8 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 		KaleoAction model = new KaleoActionImpl();
 
 		model.setKaleoActionId(soapModel.getKaleoActionId());
-		model.setCompanyId(soapModel.getCompanyId());
 		model.setGroupId(soapModel.getGroupId());
+		model.setCompanyId(soapModel.getCompanyId());
 		model.setUserId(soapModel.getUserId());
 		model.setUserName(soapModel.getUserName());
 		model.setCreateDate(soapModel.getCreateDate());
@@ -150,20 +150,20 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 		_kaleoActionId = kaleoActionId;
 	}
 
-	public long getCompanyId() {
-		return _companyId;
-	}
-
-	public void setCompanyId(long companyId) {
-		_companyId = companyId;
-	}
-
 	public long getGroupId() {
 		return _groupId;
 	}
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
 	}
 
 	public long getUserId() {
@@ -341,8 +341,8 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 		KaleoActionImpl clone = new KaleoActionImpl();
 
 		clone.setKaleoActionId(getKaleoActionId());
-		clone.setCompanyId(getCompanyId());
 		clone.setGroupId(getGroupId());
+		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
@@ -413,10 +413,10 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 
 		sb.append("{kaleoActionId=");
 		sb.append(getKaleoActionId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
 		sb.append(", groupId=");
 		sb.append(getGroupId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append(", userId=");
 		sb.append(getUserId());
 		sb.append(", userName=");
@@ -460,12 +460,12 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 		sb.append(getKaleoActionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>groupId</column-name><column-value><![CDATA[");
 		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
@@ -526,8 +526,8 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction> {
 	}
 
 	private long _kaleoActionId;
-	private long _companyId;
 	private long _groupId;
+	private long _companyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;

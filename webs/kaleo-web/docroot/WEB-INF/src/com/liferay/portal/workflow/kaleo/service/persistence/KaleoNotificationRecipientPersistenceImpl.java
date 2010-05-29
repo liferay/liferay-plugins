@@ -281,8 +281,8 @@ public class KaleoNotificationRecipientPersistenceImpl
 		kaleoNotificationRecipientImpl.setPrimaryKey(kaleoNotificationRecipient.getPrimaryKey());
 
 		kaleoNotificationRecipientImpl.setKaleoNotificationRecipientId(kaleoNotificationRecipient.getKaleoNotificationRecipientId());
-		kaleoNotificationRecipientImpl.setCompanyId(kaleoNotificationRecipient.getCompanyId());
 		kaleoNotificationRecipientImpl.setGroupId(kaleoNotificationRecipient.getGroupId());
+		kaleoNotificationRecipientImpl.setCompanyId(kaleoNotificationRecipient.getCompanyId());
 		kaleoNotificationRecipientImpl.setUserId(kaleoNotificationRecipient.getUserId());
 		kaleoNotificationRecipientImpl.setUserName(kaleoNotificationRecipient.getUserName());
 		kaleoNotificationRecipientImpl.setCreateDate(kaleoNotificationRecipient.getCreateDate());

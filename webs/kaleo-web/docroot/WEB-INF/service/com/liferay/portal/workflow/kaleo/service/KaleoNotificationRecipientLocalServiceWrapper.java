@@ -136,10 +136,10 @@ public class KaleoNotificationRecipientLocalServiceWrapper
 			kaleoNotificationId, recipient, serviceContext);
 	}
 
-	public void deleteKaleoNotificationRecipientsByDefinitionId(
-		long definitionId)
+	public void deleteKaleoNotificationRecipientsByDefinition(
+		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoNotificationRecipientLocalService.deleteKaleoNotificationRecipientsByDefinitionId(definitionId);
+		_kaleoNotificationRecipientLocalService.deleteKaleoNotificationRecipientsByDefinition(kaleoDefinitionId);
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> getKaleoNotificationRecipients(

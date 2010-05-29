@@ -3,8 +3,8 @@
 <model-hints>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoAction">
 		<field name="kaleoActionId" type="long" />
-		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String">
 			<hint name="max-length">200</hint>
@@ -31,8 +31,8 @@
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoDefinition">
 		<field name="kaleoDefinitionId" type="long" />
-		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String">
 			<hint name="max-length">200</hint>
@@ -54,8 +54,8 @@
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoInstance">
 		<field name="kaleoInstanceId" type="long" />
-		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String">
 			<hint name="max-length">200</hint>
@@ -80,8 +80,8 @@
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken">
 		<field name="kaleoInstanceTokenId" type="long" />
-		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String">
 			<hint name="max-length">200</hint>
@@ -100,8 +100,8 @@
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoLog">
 		<field name="kaleoLogId" type="long" />
-		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String">
 			<hint name="max-length">200</hint>
@@ -151,8 +151,8 @@
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoNode">
 		<field name="kaleoNodeId" type="long" />
-		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String">
 			<hint name="max-length">200</hint>
@@ -174,8 +174,8 @@
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoNotification">
 		<field name="kaleoNotificationId" type="long" />
-		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String">
 			<hint name="max-length">200</hint>
@@ -206,8 +206,8 @@
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient">
 		<field name="kaleoNotificationRecipientId" type="long" />
-		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
@@ -221,8 +221,8 @@
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTask">
 		<field name="kaleoTaskId" type="long" />
-		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String">
 			<hint name="max-length">200</hint>
@@ -238,8 +238,8 @@
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment">
 		<field name="kaleoTaskAssignmentId" type="long" />
-		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String">
 			<hint name="max-length">200</hint>
@@ -257,8 +257,8 @@
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken">
 		<field name="kaleoTaskInstanceTokenId" type="long" />
-		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String">
 			<hint name="max-length">200</hint>
@@ -286,8 +286,8 @@
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTransition">
 		<field name="kaleoTransitionId" type="long" />
-		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String">
 			<hint name="max-length">200</hint>

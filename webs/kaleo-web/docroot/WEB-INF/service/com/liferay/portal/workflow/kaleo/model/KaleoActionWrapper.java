@@ -52,20 +52,20 @@ public class KaleoActionWrapper implements KaleoAction {
 		_kaleoAction.setKaleoActionId(kaleoActionId);
 	}
 
-	public long getCompanyId() {
-		return _kaleoAction.getCompanyId();
-	}
-
-	public void setCompanyId(long companyId) {
-		_kaleoAction.setCompanyId(companyId);
-	}
-
 	public long getGroupId() {
 		return _kaleoAction.getGroupId();
 	}
 
 	public void setGroupId(long groupId) {
 		_kaleoAction.setGroupId(groupId);
+	}
+
+	public long getCompanyId() {
+		return _kaleoAction.getCompanyId();
+	}
+
+	public void setCompanyId(long companyId) {
+		_kaleoAction.setCompanyId(companyId);
 	}
 
 	public long getUserId() {

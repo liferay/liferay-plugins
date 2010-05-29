@@ -114,7 +114,7 @@ public interface KaleoTaskLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void deleteKaleoTasksByDefinitionId(long definitionId)
+	public void deleteKaleoTasksByDefinition(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

@@ -52,20 +52,20 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		_kaleoTaskAssignment.setKaleoTaskAssignmentId(kaleoTaskAssignmentId);
 	}
 
-	public long getCompanyId() {
-		return _kaleoTaskAssignment.getCompanyId();
-	}
-
-	public void setCompanyId(long companyId) {
-		_kaleoTaskAssignment.setCompanyId(companyId);
-	}
-
 	public long getGroupId() {
 		return _kaleoTaskAssignment.getGroupId();
 	}
 
 	public void setGroupId(long groupId) {
 		_kaleoTaskAssignment.setGroupId(groupId);
+	}
+
+	public long getCompanyId() {
+		return _kaleoTaskAssignment.getCompanyId();
+	}
+
+	public void setCompanyId(long companyId) {
+		_kaleoTaskAssignment.setCompanyId(companyId);
 	}
 
 	public long getUserId() {

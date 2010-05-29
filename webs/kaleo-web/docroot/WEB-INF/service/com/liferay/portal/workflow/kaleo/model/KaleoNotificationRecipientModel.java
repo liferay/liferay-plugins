@@ -54,13 +54,13 @@ public interface KaleoNotificationRecipientModel extends BaseModel<KaleoNotifica
 	public void setKaleoNotificationRecipientId(
 		long kaleoNotificationRecipientId);
 
-	public long getCompanyId();
-
-	public void setCompanyId(long companyId);
-
 	public long getGroupId();
 
 	public void setGroupId(long groupId);
+
+	public long getCompanyId();
+
+	public void setCompanyId(long companyId);
 
 	public long getUserId();
 

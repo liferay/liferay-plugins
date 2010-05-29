@@ -524,12 +524,12 @@ public class KaleoTransitionLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTransition)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteKaleoTransitionsByDefinitionId(long definitionId)
+	public void deleteKaleoTransitionsByDefinition(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(definitionId);
+		Object paramObj0 = new LongWrapper(kaleoDefinitionId);
 
 		try {
-			_classLoaderProxy.invoke("deleteKaleoTransitionsByDefinitionId",
+			_classLoaderProxy.invoke("deleteKaleoTransitionsByDefinition",
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {

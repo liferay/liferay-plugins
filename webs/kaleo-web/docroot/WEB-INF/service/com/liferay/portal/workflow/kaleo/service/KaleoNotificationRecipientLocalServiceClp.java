@@ -507,13 +507,13 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteKaleoNotificationRecipientsByDefinitionId(
-		long definitionId)
+	public void deleteKaleoNotificationRecipientsByDefinition(
+		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(definitionId);
+		Object paramObj0 = new LongWrapper(kaleoDefinitionId);
 
 		try {
-			_classLoaderProxy.invoke("deleteKaleoNotificationRecipientsByDefinitionId",
+			_classLoaderProxy.invoke("deleteKaleoNotificationRecipientsByDefinition",
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {

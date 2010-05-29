@@ -291,8 +291,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		kaleoTaskImpl.setPrimaryKey(kaleoTask.getPrimaryKey());
 
 		kaleoTaskImpl.setKaleoTaskId(kaleoTask.getKaleoTaskId());
-		kaleoTaskImpl.setCompanyId(kaleoTask.getCompanyId());
 		kaleoTaskImpl.setGroupId(kaleoTask.getGroupId());
+		kaleoTaskImpl.setCompanyId(kaleoTask.getCompanyId());
 		kaleoTaskImpl.setUserId(kaleoTask.getUserId());
 		kaleoTaskImpl.setUserName(kaleoTask.getUserName());
 		kaleoTaskImpl.setCreateDate(kaleoTask.getCreateDate());
