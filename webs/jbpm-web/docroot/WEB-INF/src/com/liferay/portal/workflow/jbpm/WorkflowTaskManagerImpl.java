@@ -375,7 +375,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public int getWorkflowTaskCountBySubmittingUser(
-		long companyId, long userId, Boolean completed)
+			long companyId, long userId, Boolean completed)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -482,8 +482,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public List<WorkflowTask> getWorkflowTasksBySubmittingUser(
-		long companyId, long userId, Boolean completed, int start, int end,
-		OrderByComparator orderByComparator)
+			long companyId, long userId, Boolean completed, int start, int end,
+			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();

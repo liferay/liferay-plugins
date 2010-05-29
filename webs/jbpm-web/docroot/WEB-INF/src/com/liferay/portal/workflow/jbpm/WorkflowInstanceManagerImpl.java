@@ -255,7 +255,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public WorkflowInstance startWorkflowInstance(
-			long companyId, long scopeGroupId, long userId,
+			long companyId, long groupId, long userId,
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
 			String transitionName, Map<String, Serializable> workflowContext)
 		throws WorkflowException {
