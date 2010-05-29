@@ -223,6 +223,7 @@
 			<basic name="kaleoNotificationId" />
 			<basic name="recipientClassName" />
 			<basic name="recipientClassPK" />
+			<basic name="recipientRoleType" />
 			<basic name="address" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />

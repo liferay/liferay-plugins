@@ -79,6 +79,25 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countByCompanyId",
 			new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_C_G_ACN_ACP_CD = new FinderPath(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "findByC_G_ACN_ACP_CD",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), Long.class.getName(),
+				Boolean.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_C_G_ACN_ACP_CD = new FinderPath(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "countByC_G_ACN_ACP_CD",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), Long.class.getName(),
+				Boolean.class.getName()
+			});
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
@@ -607,6 +626,373 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		}
 	}
 
+	public List<KaleoTaskInstanceToken> findByC_G_ACN_ACP_CD(long companyId,
+		long groupId, String assigneeClassName, long assigneeClassPK,
+		boolean completed) throws SystemException {
+		return findByC_G_ACN_ACP_CD(companyId, groupId, assigneeClassName,
+			assigneeClassPK, completed, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
+	}
+
+	public List<KaleoTaskInstanceToken> findByC_G_ACN_ACP_CD(long companyId,
+		long groupId, String assigneeClassName, long assigneeClassPK,
+		boolean completed, int start, int end) throws SystemException {
+		return findByC_G_ACN_ACP_CD(companyId, groupId, assigneeClassName,
+			assigneeClassPK, completed, start, end, null);
+	}
+
+	public List<KaleoTaskInstanceToken> findByC_G_ACN_ACP_CD(long companyId,
+		long groupId, String assigneeClassName, long assigneeClassPK,
+		boolean completed, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(companyId), new Long(groupId),
+				
+				assigneeClassName, new Long(assigneeClassPK),
+				Boolean.valueOf(completed),
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<KaleoTaskInstanceToken> list = (List<KaleoTaskInstanceToken>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_G_ACN_ACP_CD,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = null;
+
+				if (orderByComparator != null) {
+					query = new StringBundler(7 +
+							(orderByComparator.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(7);
+				}
+
+				query.append(_SQL_SELECT_KALEOTASKINSTANCETOKEN_WHERE);
+
+				query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_COMPANYID_2);
+
+				query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_GROUPID_2);
+
+				if (assigneeClassName == null) {
+					query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSNAME_1);
+				}
+				else {
+					if (assigneeClassName.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSNAME_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSNAME_2);
+					}
+				}
+
+				query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSPK_2);
+
+				query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_COMPLETED_2);
+
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
+				}
+
+				else {
+					query.append(KaleoTaskInstanceTokenModelImpl.ORDER_BY_JPQL);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(companyId);
+
+				qPos.add(groupId);
+
+				if (assigneeClassName != null) {
+					qPos.add(assigneeClassName);
+				}
+
+				qPos.add(assigneeClassPK);
+
+				qPos.add(completed);
+
+				list = (List<KaleoTaskInstanceToken>)QueryUtil.list(q,
+						getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<KaleoTaskInstanceToken>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_G_ACN_ACP_CD,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public KaleoTaskInstanceToken findByC_G_ACN_ACP_CD_First(long companyId,
+		long groupId, String assigneeClassName, long assigneeClassPK,
+		boolean completed, OrderByComparator orderByComparator)
+		throws NoSuchTaskInstanceTokenException, SystemException {
+		List<KaleoTaskInstanceToken> list = findByC_G_ACN_ACP_CD(companyId,
+				groupId, assigneeClassName, assigneeClassPK, completed, 0, 1,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(12);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("companyId=");
+			msg.append(companyId);
+
+			msg.append(", groupId=");
+			msg.append(groupId);
+
+			msg.append(", assigneeClassName=");
+			msg.append(assigneeClassName);
+
+			msg.append(", assigneeClassPK=");
+			msg.append(assigneeClassPK);
+
+			msg.append(", completed=");
+			msg.append(completed);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchTaskInstanceTokenException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public KaleoTaskInstanceToken findByC_G_ACN_ACP_CD_Last(long companyId,
+		long groupId, String assigneeClassName, long assigneeClassPK,
+		boolean completed, OrderByComparator orderByComparator)
+		throws NoSuchTaskInstanceTokenException, SystemException {
+		int count = countByC_G_ACN_ACP_CD(companyId, groupId,
+				assigneeClassName, assigneeClassPK, completed);
+
+		List<KaleoTaskInstanceToken> list = findByC_G_ACN_ACP_CD(companyId,
+				groupId, assigneeClassName, assigneeClassPK, completed,
+				count - 1, count, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(12);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("companyId=");
+			msg.append(companyId);
+
+			msg.append(", groupId=");
+			msg.append(groupId);
+
+			msg.append(", assigneeClassName=");
+			msg.append(assigneeClassName);
+
+			msg.append(", assigneeClassPK=");
+			msg.append(assigneeClassPK);
+
+			msg.append(", completed=");
+			msg.append(completed);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchTaskInstanceTokenException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public KaleoTaskInstanceToken[] findByC_G_ACN_ACP_CD_PrevAndNext(
+		long kaleoTaskInstanceTokenId, long companyId, long groupId,
+		String assigneeClassName, long assigneeClassPK, boolean completed,
+		OrderByComparator orderByComparator)
+		throws NoSuchTaskInstanceTokenException, SystemException {
+		KaleoTaskInstanceToken kaleoTaskInstanceToken = findByPrimaryKey(kaleoTaskInstanceTokenId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			KaleoTaskInstanceToken[] array = new KaleoTaskInstanceTokenImpl[3];
+
+			array[0] = getByC_G_ACN_ACP_CD_PrevAndNext(session,
+					kaleoTaskInstanceToken, companyId, groupId,
+					assigneeClassName, assigneeClassPK, completed,
+					orderByComparator, true);
+
+			array[1] = kaleoTaskInstanceToken;
+
+			array[2] = getByC_G_ACN_ACP_CD_PrevAndNext(session,
+					kaleoTaskInstanceToken, companyId, groupId,
+					assigneeClassName, assigneeClassPK, completed,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected KaleoTaskInstanceToken getByC_G_ACN_ACP_CD_PrevAndNext(
+		Session session, KaleoTaskInstanceToken kaleoTaskInstanceToken,
+		long companyId, long groupId, String assigneeClassName,
+		long assigneeClassPK, boolean completed,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_KALEOTASKINSTANCETOKEN_WHERE);
+
+		query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_COMPANYID_2);
+
+		query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_GROUPID_2);
+
+		if (assigneeClassName == null) {
+			query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSNAME_1);
+		}
+		else {
+			if (assigneeClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSNAME_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSNAME_2);
+			}
+		}
+
+		query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSPK_2);
+
+		query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_COMPLETED_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(KaleoTaskInstanceTokenModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(companyId);
+
+		qPos.add(groupId);
+
+		if (assigneeClassName != null) {
+			qPos.add(assigneeClassName);
+		}
+
+		qPos.add(assigneeClassPK);
+
+		qPos.add(completed);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(kaleoTaskInstanceToken);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<KaleoTaskInstanceToken> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
 	public List<KaleoTaskInstanceToken> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -690,6 +1076,16 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		}
 	}
 
+	public void removeByC_G_ACN_ACP_CD(long companyId, long groupId,
+		String assigneeClassName, long assigneeClassPK, boolean completed)
+		throws SystemException {
+		for (KaleoTaskInstanceToken kaleoTaskInstanceToken : findByC_G_ACN_ACP_CD(
+				companyId, groupId, assigneeClassName, assigneeClassPK,
+				completed)) {
+			remove(kaleoTaskInstanceToken);
+		}
+	}
+
 	public void removeAll() throws SystemException {
 		for (KaleoTaskInstanceToken kaleoTaskInstanceToken : findAll()) {
 			remove(kaleoTaskInstanceToken);
@@ -733,6 +1129,87 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public int countByC_G_ACN_ACP_CD(long companyId, long groupId,
+		String assigneeClassName, long assigneeClassPK, boolean completed)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				new Long(companyId), new Long(groupId),
+				
+				assigneeClassName, new Long(assigneeClassPK),
+				Boolean.valueOf(completed)
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_G_ACN_ACP_CD,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(6);
+
+				query.append(_SQL_COUNT_KALEOTASKINSTANCETOKEN_WHERE);
+
+				query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_COMPANYID_2);
+
+				query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_GROUPID_2);
+
+				if (assigneeClassName == null) {
+					query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSNAME_1);
+				}
+				else {
+					if (assigneeClassName.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSNAME_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSNAME_2);
+					}
+				}
+
+				query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSPK_2);
+
+				query.append(_FINDER_COLUMN_C_G_ACN_ACP_CD_COMPLETED_2);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(companyId);
+
+				qPos.add(groupId);
+
+				if (assigneeClassName != null) {
+					qPos.add(assigneeClassName);
+				}
+
+				qPos.add(assigneeClassPK);
+
+				qPos.add(completed);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_G_ACN_ACP_CD,
 					finderArgs, count);
 
 				closeSession(session);
@@ -831,6 +1308,16 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	private static final String _SQL_COUNT_KALEOTASKINSTANCETOKEN = "SELECT COUNT(kaleoTaskInstanceToken) FROM KaleoTaskInstanceToken kaleoTaskInstanceToken";
 	private static final String _SQL_COUNT_KALEOTASKINSTANCETOKEN_WHERE = "SELECT COUNT(kaleoTaskInstanceToken) FROM KaleoTaskInstanceToken kaleoTaskInstanceToken WHERE ";
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "kaleoTaskInstanceToken.companyId = ?";
+	private static final String _FINDER_COLUMN_C_G_ACN_ACP_CD_COMPANYID_2 = "kaleoTaskInstanceToken.companyId = ? AND ";
+	private static final String _FINDER_COLUMN_C_G_ACN_ACP_CD_GROUPID_2 = "kaleoTaskInstanceToken.groupId = ? AND ";
+	private static final String _FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSNAME_1 =
+		"kaleoTaskInstanceToken.assigneeClassName IS NULL AND ";
+	private static final String _FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSNAME_2 =
+		"kaleoTaskInstanceToken.assigneeClassName = ? AND ";
+	private static final String _FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSNAME_3 =
+		"(kaleoTaskInstanceToken.assigneeClassName IS NULL OR kaleoTaskInstanceToken.assigneeClassName = ?) AND ";
+	private static final String _FINDER_COLUMN_C_G_ACN_ACP_CD_ASSIGNEECLASSPK_2 = "kaleoTaskInstanceToken.assigneeClassPK = ? AND ";
+	private static final String _FINDER_COLUMN_C_G_ACN_ACP_CD_COMPLETED_2 = "kaleoTaskInstanceToken.completed = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kaleoTaskInstanceToken.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No KaleoTaskInstanceToken exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoTaskInstanceToken exists with the key {";

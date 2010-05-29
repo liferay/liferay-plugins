@@ -28,6 +28,7 @@ create index IX_5EDD8F17 on Kaleo_KaleoTaskAssignment (kaleoTaskId);
 create index IX_787D75A7 on Kaleo_KaleoTaskAssignment (kaleoTaskId, defaultAssignment);
 
 create index IX_A9FF7F44 on Kaleo_KaleoTaskInstanceToken (companyId);
+create index IX_516A0505 on Kaleo_KaleoTaskInstanceToken (companyId, groupId, assigneeClassName, assigneeClassPK, completed);
 
 create index IX_E90AF711 on Kaleo_KaleoTransition (kaleoNodeId);
 create index IX_462C6BF5 on Kaleo_KaleoTransition (kaleoNodeId, defaultTransition);

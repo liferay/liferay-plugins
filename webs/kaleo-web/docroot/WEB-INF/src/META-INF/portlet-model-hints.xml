@@ -213,6 +213,7 @@
 		<field name="kaleoNotificationId" type="long" />
 		<field name="recipientClassName" type="String" />
 		<field name="recipientClassPK" type="long" />
+		<field name="recipientRoleType" type="int" />
 		<field name="address" type="String" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTask">

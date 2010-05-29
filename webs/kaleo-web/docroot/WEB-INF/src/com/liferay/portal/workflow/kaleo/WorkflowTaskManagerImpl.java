@@ -33,7 +33,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.runtime.TaskManager;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.util.RoleRetrievalUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
@@ -262,11 +261,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			serviceContext.setCompanyId(companyId);
 			serviceContext.setUserId(userId);
 
-			List<Long> roleIds = RoleRetrievalUtil.getRoleIds(serviceContext);
-
-			return KaleoTaskInstanceTokenLocalServiceUtil.
-				getKaleoTaskInstanceTokensCount(
-					roleIds, completed, serviceContext);
+			return KaleoTaskInstanceTokenLocalServiceUtil.searchCount(
+				null, completed, Boolean.TRUE, serviceContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -394,13 +390,10 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			serviceContext.setCompanyId(companyId);
 			serviceContext.setUserId(userId);
 
-			List<Long> roleIds = RoleRetrievalUtil.getRoleIds(serviceContext);
-
 			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
-				KaleoTaskInstanceTokenLocalServiceUtil.
-					getKaleoTaskInstanceTokens(
-						roleIds, completed, start, end, orderByComparator,
-						serviceContext);
+				KaleoTaskInstanceTokenLocalServiceUtil.search(
+					null, completed, Boolean.TRUE, start, end,
+					orderByComparator, serviceContext);
 
 			return toWorkflowTasks(kaleoTaskInstanceTokens);
 		}

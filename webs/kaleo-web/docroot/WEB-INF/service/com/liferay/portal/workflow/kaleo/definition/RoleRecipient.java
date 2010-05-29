@@ -23,16 +23,18 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class RoleRecipient extends Recipient {
 
-	public RoleRecipient(long roleId) {
+	public RoleRecipient(long roleId, String roleType) {
 		super(RecipientType.ROLE);
 
 		_roleId = roleId;
+		_roleType = roleType;
 	}
 
-	public RoleRecipient(String roleName) {
+	public RoleRecipient(String roleName, String roleType) {
 		super(RecipientType.ROLE);
 
 		_roleName = roleName;
+		_roleType = roleType;		
 	}
 
 	public boolean equals(Object obj) {
@@ -63,6 +65,10 @@ public class RoleRecipient extends Recipient {
 		return _roleName;
 	}
 
+	public String getRoleType() {
+		return _roleType;
+	}
+
 	public int hashCode() {
 		return _roleName.hashCode();
 	}
@@ -78,5 +84,6 @@ public class RoleRecipient extends Recipient {
 	private boolean _autoCreate;
 	private long _roleId;
 	private String _roleName;
+	private String _roleType;
 
 }

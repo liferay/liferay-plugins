@@ -23,16 +23,20 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class RoleAssignment extends Assignment {
 
-	public RoleAssignment(long roleId, boolean defaultValue) {
+	public RoleAssignment(long roleId, String roleType, boolean defaultValue) {
 		super(AssignmentType.ROLE, defaultValue);
 
 		_roleId = roleId;
+		_roleType = roleType;
 	}
 
-	public RoleAssignment(String roleName, boolean defaultValue) {
+	public RoleAssignment(
+		String roleName, String roleType, boolean defaultValue) {
+
 		super(AssignmentType.ROLE, defaultValue);
 
 		_roleName = roleName;
+		_roleType = roleType;
 	}
 
 	public boolean equals(Object obj) {
@@ -63,6 +67,10 @@ public class RoleAssignment extends Assignment {
 		return _roleName;
 	}
 
+	public String getRoleType() {
+		return _roleType;
+	}
+
 	public int hashCode() {
 		return _roleName.hashCode();
 	}
@@ -78,5 +86,6 @@ public class RoleAssignment extends Assignment {
 	private boolean _autoCreate;
 	private long _roleId;
 	private String _roleName;
+	private String _roleType;
 
 }

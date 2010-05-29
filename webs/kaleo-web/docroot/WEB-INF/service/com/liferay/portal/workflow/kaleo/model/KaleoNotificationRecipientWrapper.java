@@ -136,6 +136,14 @@ public class KaleoNotificationRecipientWrapper
 		_kaleoNotificationRecipient.setRecipientClassPK(recipientClassPK);
 	}
 
+	public int getRecipientRoleType() {
+		return _kaleoNotificationRecipient.getRecipientRoleType();
+	}
+
+	public void setRecipientRoleType(int recipientRoleType) {
+		_kaleoNotificationRecipient.setRecipientRoleType(recipientRoleType);
+	}
+
 	public java.lang.String getAddress() {
 		return _kaleoNotificationRecipient.getAddress();
 	}

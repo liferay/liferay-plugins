@@ -36,11 +36,6 @@
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager" class="com.liferay.portal.workflow.kaleo.manager.DefaultPortalKaleoManager">
 		<property name="defaultDefinitionName" value="Single Approver" />
-		<property name="defaultRoles">
-			<map>
-				<entry key="Content Reviewers" value="This role is granted to all users who are reviewers in the content management workflow." />
-			</map>
-		</property>
 		<property name="definitionFiles">
 			<map>
 				<entry key="Single Approver" value="META-INF/definitions/single-approver-definition.xml" />

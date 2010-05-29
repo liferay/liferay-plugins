@@ -1126,12 +1126,19 @@ public class ClpSerializer {
 
 					method9.invoke(newModel, value9);
 
-					Method method10 = newModelClass.getMethod("setAddress",
-							new Class[] { String.class });
+					Method method10 = newModelClass.getMethod("setRecipientRoleType",
+							new Class[] { Integer.TYPE });
 
-					String value10 = oldCplModel.getAddress();
+					Integer value10 = new Integer(oldCplModel.getRecipientRoleType());
 
 					method10.invoke(newModel, value10);
+
+					Method method11 = newModelClass.getMethod("setAddress",
+							new Class[] { String.class });
+
+					String value11 = oldCplModel.getAddress();
+
+					method11.invoke(newModel, value11);
 
 					return newModel;
 				}
@@ -2721,12 +2728,20 @@ public class ClpSerializer {
 
 					newModel.setRecipientClassPK(value9);
 
-					Method method10 = oldModelClass.getMethod("getAddress");
+					Method method10 = oldModelClass.getMethod(
+							"getRecipientRoleType");
 
-					String value10 = (String)method10.invoke(oldModel,
+					Integer value10 = (Integer)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setAddress(value10);
+					newModel.setRecipientRoleType(value10);
+
+					Method method11 = oldModelClass.getMethod("getAddress");
+
+					String value11 = (String)method11.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setAddress(value11);
 
 					return newModel;
 				}

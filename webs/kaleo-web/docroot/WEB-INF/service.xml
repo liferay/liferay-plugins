@@ -350,6 +350,7 @@
 		<column name="kaleoNotificationId" type="long" />
 		<column name="recipientClassName" type="String" />
 		<column name="recipientClassPK" type="long" />
+		<column name="recipientRoleType" type="int" />
 		<column name="address" type="String" />
 
 		<!-- Order -->
@@ -492,6 +493,13 @@
 		</order>
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
+		</finder>
+		<finder name="C_G_ACN_ACP_CD" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="groupId" />
+			<finder-column name="assigneeClassName" />
+			<finder-column name="assigneeClassPK" />
+			<finder-column name="completed" />
 		</finder>
 		
 	</entity>

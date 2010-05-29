@@ -96,6 +96,10 @@ public interface KaleoNotificationRecipientModel extends BaseModel<KaleoNotifica
 
 	public void setRecipientClassPK(long recipientClassPK);
 
+	public int getRecipientRoleType();
+
+	public void setRecipientRoleType(int recipientRoleType);
+
 	@AutoEscape
 	public String getAddress();
 

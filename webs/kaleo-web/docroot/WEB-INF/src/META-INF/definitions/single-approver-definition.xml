@@ -30,6 +30,7 @@
 				<notification-type>email</notification-type>
 				<recipients>
 					<role>
+						<role-type>community</role-type>
 						<name>Content Reviewers</name>
 					</role>
 				</recipients>
@@ -37,6 +38,7 @@
 		</actions>
 		<assignments>
 			<role>
+				<role-type>community</role-type>
 				<name>Content Reviewers</name>
 				<default>true</default>
 			</role>

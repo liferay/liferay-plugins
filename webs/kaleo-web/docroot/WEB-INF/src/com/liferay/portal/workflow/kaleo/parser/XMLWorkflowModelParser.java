@@ -191,13 +191,15 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			long roleId = GetterUtil.getLong(
 				roleAssignmentElement.elementText("role-id"));
 			String name = roleAssignmentElement.elementText("name");
+			String roleType = roleAssignmentElement.elementText("role-type");
 			boolean defaultValue = GetterUtil.getBoolean(
 				roleAssignmentElement.elementText("default"));
 
 			RoleAssignment roleAssignment = null;
 
 			if (Validator.isNotNull(name)) {
-				roleAssignment = new RoleAssignment(name, defaultValue);
+				roleAssignment = new RoleAssignment(
+					name, roleType, defaultValue);
 
 				boolean autoCreate = GetterUtil.getBoolean(
 					roleAssignmentElement.elementText("auto-create"), true);
@@ -205,7 +207,8 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 				roleAssignment.setAutoCreate(autoCreate);
 			}
 			else {
-				roleAssignment = new RoleAssignment(roleId, defaultValue);
+				roleAssignment = new RoleAssignment(
+					roleId, roleType, defaultValue);
 			}
 
 			assignments.add(roleAssignment);
@@ -287,14 +290,15 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			long roleId = GetterUtil.getLong(
 				roleAssignmentElement.elementText("role-id"));
 			String name = roleAssignmentElement.elementText("name");
+			String roleType = roleAssignmentElement.elementText("role-type");
 
 			RoleRecipient roleRecipient = null;
 
 			if (roleId > 0) {
-				roleRecipient = new RoleRecipient(roleId);
+				roleRecipient = new RoleRecipient(roleId, roleType);
 			}
 			else {
-				roleRecipient = new RoleRecipient(name);
+				roleRecipient = new RoleRecipient(name, roleType);
 
 				boolean autoCreate = GetterUtil.getBoolean(
 					roleAssignmentElement.elementText("auto-create"), true);

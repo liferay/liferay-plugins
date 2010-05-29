@@ -138,6 +138,14 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		_recipientClassPK = recipientClassPK;
 	}
 
+	public int getRecipientRoleType() {
+		return _recipientRoleType;
+	}
+
+	public void setRecipientRoleType(int recipientRoleType) {
+		_recipientRoleType = recipientRoleType;
+	}
+
 	public String getAddress() {
 		return _address;
 	}
@@ -170,6 +178,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		clone.setKaleoNotificationId(getKaleoNotificationId());
 		clone.setRecipientClassName(getRecipientClassName());
 		clone.setRecipientClassPK(getRecipientClassPK());
+		clone.setRecipientRoleType(getRecipientRoleType());
 		clone.setAddress(getAddress());
 
 		return clone;
@@ -224,7 +233,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{kaleoNotificationRecipientId=");
 		sb.append(getKaleoNotificationRecipientId());
@@ -246,6 +255,8 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		sb.append(getRecipientClassName());
 		sb.append(", recipientClassPK=");
 		sb.append(getRecipientClassPK());
+		sb.append(", recipientRoleType=");
+		sb.append(getRecipientRoleType());
 		sb.append(", address=");
 		sb.append(getAddress());
 		sb.append("}");
@@ -254,7 +265,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append(
@@ -302,6 +313,10 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		sb.append(getRecipientClassPK());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>recipientRoleType</column-name><column-value><![CDATA[");
+		sb.append(getRecipientRoleType());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>address</column-name><column-value><![CDATA[");
 		sb.append(getAddress());
 		sb.append("]]></column-value></column>");
@@ -322,5 +337,6 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	private long _kaleoNotificationId;
 	private String _recipientClassName;
 	private long _recipientClassPK;
+	private int _recipientRoleType;
 	private String _address;
 }

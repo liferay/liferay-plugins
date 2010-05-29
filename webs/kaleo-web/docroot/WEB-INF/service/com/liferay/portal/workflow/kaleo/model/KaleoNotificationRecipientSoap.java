@@ -52,6 +52,7 @@ public class KaleoNotificationRecipientSoap implements Serializable {
 		soapModel.setKaleoNotificationId(model.getKaleoNotificationId());
 		soapModel.setRecipientClassName(model.getRecipientClassName());
 		soapModel.setRecipientClassPK(model.getRecipientClassPK());
+		soapModel.setRecipientRoleType(model.getRecipientRoleType());
 		soapModel.setAddress(model.getAddress());
 
 		return soapModel;
@@ -189,6 +190,14 @@ public class KaleoNotificationRecipientSoap implements Serializable {
 		_recipientClassPK = recipientClassPK;
 	}
 
+	public int getRecipientRoleType() {
+		return _recipientRoleType;
+	}
+
+	public void setRecipientRoleType(int recipientRoleType) {
+		_recipientRoleType = recipientRoleType;
+	}
+
 	public String getAddress() {
 		return _address;
 	}
@@ -207,5 +216,6 @@ public class KaleoNotificationRecipientSoap implements Serializable {
 	private long _kaleoNotificationId;
 	private String _recipientClassName;
 	private long _recipientClassPK;
+	private int _recipientRoleType;
 	private String _address;
 }

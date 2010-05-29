@@ -145,6 +145,7 @@ create table Kaleo_KaleoNotificationRecipient (
 	kaleoNotificationId LONG,
 	recipientClassName VARCHAR(75) null,
 	recipientClassPK LONG,
+	recipientRoleType INTEGER,
 	address VARCHAR(75) null
 );
 

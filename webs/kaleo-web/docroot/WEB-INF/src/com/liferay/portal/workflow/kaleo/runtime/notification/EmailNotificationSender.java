@@ -17,7 +17,10 @@ package com.liferay.portal.workflow.kaleo.runtime.notification;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroupRole;
+import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
@@ -47,7 +50,8 @@ public class EmailNotificationSender implements NotificationSender {
 			MailMessage mailMessage = new MailMessage(
 				from, subject, notificationMessage, true);
 
-			mailMessage.setTo(getRecipients(kaleoNotificationRecipients));
+			mailMessage.setTo(
+				getRecipients(kaleoNotificationRecipients, executionContext));
 
 			MailServiceUtil.sendEmail(mailMessage);
 		}
@@ -66,7 +70,8 @@ public class EmailNotificationSender implements NotificationSender {
 	}
 
 	protected InternetAddress[] getRecipients(
-			List<KaleoNotificationRecipient> kaleoNotificationRecipients)
+			List<KaleoNotificationRecipient> kaleoNotificationRecipients,
+			ExecutionContext executionContext)
 		throws Exception {
 
 		List<InternetAddress> internetAddresses =
@@ -95,21 +100,54 @@ public class EmailNotificationSender implements NotificationSender {
 					internetAddresses.add(internetAddress);
 				}
 				else {
-					List<User> users = UserLocalServiceUtil.getRoleUsers(
-						kaleoNotificationRecipient.getRecipientClassPK());
-
-					for (User user : users) {
-						InternetAddress internetAddress = new InternetAddress(
-							user.getEmailAddress(), user.getFullName());
-
-						internetAddresses.add(internetAddress);
-					}
+					getRoleRecipientAddresses(
+						executionContext, internetAddresses,
+						kaleoNotificationRecipient);
 				}
 			}
 		}
 
 		return internetAddresses.toArray(
 			new InternetAddress[internetAddresses.size()]);
+	}
+
+	protected void getRoleRecipientAddresses(
+			ExecutionContext executionContext,
+			List<InternetAddress> internetAddresses,
+			KaleoNotificationRecipient kaleoNotificationRecipient)
+		throws Exception {
+		
+		if (kaleoNotificationRecipient.getRecipientRoleType() ==
+				RoleConstants.TYPE_REGULAR) {
+
+			List<User> users = UserLocalServiceUtil.getRoleUsers(
+				kaleoNotificationRecipient.getRecipientClassPK());
+
+			for (User user : users) {
+				InternetAddress internetAddress = new InternetAddress(
+						user.getEmailAddress(), user.getFullName());
+
+				internetAddresses.add(internetAddress);
+			}
+		}
+		else {
+			long groupId =
+				executionContext.getKaleoTaskInstanceToken().
+					getGroupId();
+
+			List<UserGroupRole> userGroupRoles =
+				UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
+					groupId, kaleoNotificationRecipient.getRecipientClassPK());
+
+			for (UserGroupRole userGroupRole : userGroupRoles) {
+				User user = userGroupRole.getUser();
+
+				InternetAddress internetAddress = new InternetAddress(
+					user.getEmailAddress(), user.getFullName());
+
+				internetAddresses.add(internetAddress);
+			}
+		}
 	}
 
 	private String _fromAddress;

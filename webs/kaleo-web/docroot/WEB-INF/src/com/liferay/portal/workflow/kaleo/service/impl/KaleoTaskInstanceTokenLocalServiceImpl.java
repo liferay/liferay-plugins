@@ -29,7 +29,9 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
@@ -395,15 +397,46 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			return;
 		}
 
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("assigneeClassName").eq(
-				Role.class.getName()));
 
 		List<Long> roleIds = RoleRetrievalUtil.getRoleIds(serviceContext);
 
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("assigneeClassPK").in(
-				roleIds.toArray(new Long[roleIds.size()])));
+		List<UserGroupRole> userGroupRoles =
+			UserGroupRoleLocalServiceUtil.getUserGroupRoles(
+				serviceContext.getUserId());
+
+		if (userGroupRoles.isEmpty()) {
+			dynamicQuery.add(
+				PropertyFactoryUtil.forName("assigneeClassName").eq(
+					Role.class.getName()));
+
+			dynamicQuery.add(
+				PropertyFactoryUtil.forName("assigneeClassPK").in(
+					roleIds.toArray(new Long[roleIds.size()])));
+		}
+		else {
+			Junction junction = RestrictionsFactoryUtil.disjunction();
+
+			junction.add(
+				RestrictionsFactoryUtil.and(
+					PropertyFactoryUtil.forName("assigneeClassName").eq(
+						Role.class.getName()),
+					PropertyFactoryUtil.forName("assigneeClassPK").in(
+						roleIds.toArray(new Long[roleIds.size()]))));
+
+			for (UserGroupRole userGroupRole : userGroupRoles) {
+				junction.add(
+					RestrictionsFactoryUtil.and(
+						PropertyFactoryUtil.forName("groupId").eq(
+							userGroupRole.getGroupId()),
+						RestrictionsFactoryUtil.and(
+							PropertyFactoryUtil.forName("assigneeClassName").eq(
+								Role.class.getName()),
+							PropertyFactoryUtil.forName("assigneeClassPK").eq(
+								userGroupRole.getRoleId()))));
+			}
+
+			dynamicQuery.add(junction);
+		}
 	}
 
 	protected DynamicQuery buildDynamicQuery(
