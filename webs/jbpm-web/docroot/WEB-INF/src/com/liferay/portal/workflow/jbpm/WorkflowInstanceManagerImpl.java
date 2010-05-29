@@ -255,9 +255,9 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public WorkflowInstance startWorkflowInstance(
-			long companyId, long userId, String workflowDefinitionName,
-			Integer workflowDefinitionVersion, String transitionName,
-			Map<String, Serializable> workflowContext)
+			long companyId, long scopeGroupId, long userId,
+			String workflowDefinitionName, Integer workflowDefinitionVersion,
+			String transitionName, Map<String, Serializable> workflowContext)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();

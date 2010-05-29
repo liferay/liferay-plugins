@@ -374,6 +374,23 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
+	public int getWorkflowTaskCountBySubmittingUser(
+		long companyId, long userId, Boolean completed)
+		throws WorkflowException {
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			CustomSession customSession = new CustomSession(jbpmContext);
+
+			return customSession.countTaksInstancesStartedByUser(
+				companyId, userId, completed);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
 	public int getWorkflowTaskCountByUser(
 			long companyId, long userId, Boolean completed)
 		throws WorkflowException {
@@ -433,23 +450,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
-	public int getWorkflowTaskCountStartedByUser(
-			long companyId, long userId, Boolean completed)
-		throws WorkflowException {
-
-		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
-
-		try {
-			CustomSession customSession = new CustomSession(jbpmContext);
-
-			return customSession.countTaksInstancesStartedByUser(
-				companyId, userId, completed);
-		}
-		catch (Exception e) {
-			throw new WorkflowException(e);
-		}
-	}
-
 	public List<WorkflowTask> getWorkflowTasks(
 			long companyId, Boolean completed, int start, int end,
 			OrderByComparator orderByComparator)
@@ -478,6 +478,31 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
+		}
+	}
+
+	public List<WorkflowTask> getWorkflowTasksBySubmittingUser(
+		long companyId, long userId, Boolean completed, int start, int end,
+		OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			CustomSession customSession = new CustomSession(jbpmContext);
+
+			List<TaskInstance> taskInstances =
+				customSession.findTaskInstancesStartedByUser(
+					companyId, userId, completed, start, end,
+					orderByComparator);
+
+			return toWorkflowTasks(taskInstances);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+		finally {
+			jbpmContext.close();
 		}
 	}
 
@@ -532,31 +557,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		return getWorkflowTasks(
 			workflowInstanceId, null, false, completed, start, end,
 			orderByComparator);
-	}
-
-	public List<WorkflowTask> getWorkflowTasksStartedByUser(
-			long companyId, long userId, Boolean completed, int start, int end,
-			OrderByComparator orderByComparator)
-		throws WorkflowException {
-
-		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
-
-		try {
-			CustomSession customSession = new CustomSession(jbpmContext);
-
-			List<TaskInstance> taskInstances =
-				customSession.findTaskInstancesStartedByUser(
-					companyId, userId, completed, start, end,
-					orderByComparator);
-
-			return toWorkflowTasks(taskInstances);
-		}
-		catch (Exception e) {
-			throw new WorkflowException(e);
-		}
-		finally {
-			jbpmContext.close();
-		}
 	}
 
 	public List<WorkflowTask> search(
