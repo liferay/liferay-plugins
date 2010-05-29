@@ -32,21 +32,24 @@ public class KaleoDefinitionImpl
 	public KaleoDefinitionImpl() {
 	}
 
-	public boolean hasIncompleteKaleoInstances()
-		throws SystemException {
-
-		int numIncompleteInstances =
-			KaleoInstanceLocalServiceUtil.
-				getKaleoInstanceCountByDefinitionAndCompletion(
-					getKaleoDefinitionId(), false);
-
-		return (numIncompleteInstances > 0);
-	}
-	
 	public KaleoNode getKaleoStartNode()
 		throws PortalException, SystemException {
 
 		return KaleoNodeLocalServiceUtil.getKaleoNode(getStartKaleoNodeId());
+	}
+
+	public boolean hasIncompleteKaleoInstances()
+		throws SystemException {
+
+		int count = KaleoInstanceLocalServiceUtil.getKaleoInstancesCount(
+			getKaleoDefinitionId(), false);
+
+		if (count > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 }

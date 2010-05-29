@@ -73,7 +73,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		KaleoLog kaleoLog = createKaleoLog(
 			kaleoInstanceToken, LogType.NODE_ENTRY, serviceContext);
 
-		kaleoLog.setKaleoDefinitionId(sourceKaleoNode.getKaleoDefinitionId());
+		kaleoLog.setKaleoDefinitionId(targetKaleoNode.getKaleoDefinitionId());
 		kaleoLog.setKaleoNodeId(targetKaleoNode.getKaleoNodeId());
 		kaleoLog.setKaleoNodeName(targetKaleoNode.getName());
 		kaleoLog.setTerminalKaleoNode(targetKaleoNode.isTerminal());
@@ -140,8 +140,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 
 		KaleoNode currentKaleoNode = kaleoInstanceToken.getCurrentKaleoNode();
 
-		kaleoLog.setKaleoDefinitionId(
-			currentKaleoNode.getKaleoDefinitionId());
+		kaleoLog.setKaleoDefinitionId(currentKaleoNode.getKaleoDefinitionId());
 		kaleoLog.setKaleoNodeId(currentKaleoNode.getKaleoNodeId());
 		kaleoLog.setKaleoNodeName(currentKaleoNode.getName());
 
@@ -183,8 +182,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 
 		KaleoNode currentKaleoNode = kaleoInstanceToken.getCurrentKaleoNode();
 
-		kaleoLog.setKaleoDefinitionId(
-			currentKaleoNode.getKaleoDefinitionId());
+		kaleoLog.setKaleoDefinitionId(currentKaleoNode.getKaleoDefinitionId());
 		kaleoLog.setKaleoNodeId(currentKaleoNode.getKaleoNodeId());
 		kaleoLog.setKaleoNodeName(currentKaleoNode.getName());
 
@@ -249,14 +247,14 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		return kaleoLog;
 	}
 
-	public void deleteKaleoLogsByDefinitionId(long kaleoDefinitionId)
-		throws PortalException, SystemException {
+	public void deleteKaleoLogsByDefinition(long kaleoDefinitionId)
+		throws SystemException {
 
 		kaleoLogPersistence.removeByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
-	public void deleteKaleoLogsByInstanceId(long kaleoInstanceId)
-		throws PortalException, SystemException {
+	public void deleteKaleoLogsByInstance(long kaleoInstanceId)
+		throws SystemException {
 
 		kaleoLogPersistence.removeByKaleoInstanceId(kaleoInstanceId);
 	}

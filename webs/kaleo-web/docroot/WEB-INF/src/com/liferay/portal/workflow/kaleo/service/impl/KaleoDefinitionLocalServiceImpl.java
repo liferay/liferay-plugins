@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.service.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
@@ -135,38 +136,46 @@ public class KaleoDefinitionLocalServiceImpl
 
 	public void deleteKaleoDefinition(
 			String name, int version, ServiceContext serviceContext)
-		throws SystemException, PortalException {
+		throws PortalException, SystemException {
+
+		// Definition
 
 		KaleoDefinition kaleoDefinition = getKaleoDefinition(
-				name, version, serviceContext);
+			name, version, serviceContext);
 
 		if (kaleoDefinition.isActive()) {
-			throw new PortalException(
-				"Cannot delete an active workflow definition version: " +
-				name + " " + version);
+			throw new WorkflowException(
+				"Cannot delete active workflow definition " +
+					kaleoDefinition.getKaleoDefinitionId());
 		}
 
 		if (kaleoDefinition.hasIncompleteKaleoInstances()) {
-			throw new PortalException(
-				"Cannot delete an workflow definition version " +
-				"with pending instances: " + name + " " + version);
+			throw new WorkflowException(
+				"Cannot delete incomplete workflow definition " +
+					kaleoDefinition.getKaleoDefinitionId());
 		}
 
-		kaleoInstanceLocalService.deleteKaleoInstanceByDefinitionId(
+		kaleoDefinitionPersistence.remove(kaleoDefinition);
+
+		// Instances
+
+		kaleoInstanceLocalService.deleteKaleoInstancesByDefinition(
 			kaleoDefinition.getKaleoDefinitionId());
 
-		kaleoTaskLocalService.deleteKaleoTasksByDefinitionId(
+		// Nodes
+
+		kaleoNodeLocalService.deleteKaleoNodesByDefinition(
 			kaleoDefinition.getKaleoDefinitionId());
 
-		kaleoTransitionLocalService.
-			deleteKaleoTransitionsByDefinitionId(
-				kaleoDefinition.getKaleoDefinitionId());
+		// Tasks
 
-		kaleoNodeLocalService.deleteKaleoNodesByDefinitionId(
+		kaleoTaskLocalService.deleteKaleoTasksByDefinition(
 			kaleoDefinition.getKaleoDefinitionId());
 
-		deleteKaleoDefinition(kaleoDefinition.getKaleoDefinitionId());
+		// Transitions
 
+		kaleoTransitionLocalService.deleteKaleoTransitionsByDefinition(
+			kaleoDefinition.getKaleoDefinitionId());
 	}
 
 	public KaleoDefinition getKaleoDefinition(

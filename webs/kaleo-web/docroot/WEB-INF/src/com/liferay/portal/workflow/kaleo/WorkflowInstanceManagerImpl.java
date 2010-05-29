@@ -123,7 +123,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public WorkflowInstance startWorkflowInstance(
-			long companyId, long scopeGroupId, long userId,
+			long companyId, long groupId, long userId,
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
 			String transitionName, Map<String, Serializable> workflowContext)
 		throws WorkflowException {
@@ -131,7 +131,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setCompanyId(companyId);
-		serviceContext.setScopeGroupId(scopeGroupId);
+		serviceContext.setScopeGroupId(groupId);
 		serviceContext.setUserId(userId);
 
 		return _workflowEngine.startWorkflowInstance(

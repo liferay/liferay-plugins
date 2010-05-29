@@ -190,8 +190,8 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		for (Element roleAssignmentElement : roleAssignmentElements) {
 			long roleId = GetterUtil.getLong(
 				roleAssignmentElement.elementText("role-id"));
-			String name = roleAssignmentElement.elementText("name");
 			String roleType = roleAssignmentElement.elementText("role-type");
+			String name = roleAssignmentElement.elementText("name");
 			boolean defaultValue = GetterUtil.getBoolean(
 				roleAssignmentElement.elementText("default"));
 
@@ -289,8 +289,8 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		for (Element roleAssignmentElement : roleReceipientElements) {
 			long roleId = GetterUtil.getLong(
 				roleAssignmentElement.elementText("role-id"));
-			String name = roleAssignmentElement.elementText("name");
 			String roleType = roleAssignmentElement.elementText("role-type");
+			String name = roleAssignmentElement.elementText("name");
 
 			RoleRecipient roleRecipient = null;
 

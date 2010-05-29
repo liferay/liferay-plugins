@@ -66,10 +66,10 @@ public class KaleoActionLocalServiceImpl
 		return kaleoAction;
 	}
 
-	public void deleteKaleoActionsByDefinitionId(long definitionId)
+	public void deleteKaleoActionsByDefinition(long kaleoDefinitionId)
 		throws SystemException {
 
-		kaleoActionPersistence.removeByKaleoDefinitionId(definitionId);
+		kaleoActionPersistence.removeByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	public List<KaleoAction> getKaleoActions(

@@ -70,11 +70,11 @@ public class KaleoTaskAssignmentLocalServiceImpl
 		return kaleoTaskAssignment;
 	}
 
-	public void deleteKaleoTaskAssignmentsByDefinitionId(long definitionId)
+	public void deleteKaleoTaskAssignmentsByDefinition(long kaleoDefinitionId)
 		throws SystemException {
 
 		kaleoTaskAssignmentPersistence.removeByKaleoDefinitionId(
-			definitionId);
+			kaleoDefinitionId);
 	}
 
 	public KaleoTaskAssignment getDefaultKaleoTaskAssignment(long kaleoTaskId)
@@ -123,16 +123,15 @@ public class KaleoTaskAssignmentLocalServiceImpl
 
 			RoleAssignment roleAssignment = (RoleAssignment)assignment;
 
-			int roleType = RoleRetrievalUtil.getRoleType(
-				roleAssignment.getRoleType());
-
 			Role role = null;
 
 			if (Validator.isNotNull(roleAssignment.getRoleName())) {
+				int roleType = RoleRetrievalUtil.getRoleType(
+					roleAssignment.getRoleType());
+
 				role = RoleRetrievalUtil.getRole(
 					roleAssignment.getRoleName(), roleType,
-					roleAssignment.isAutoCreate(), roleLocalService,
-					serviceContext);
+					roleAssignment.isAutoCreate(), serviceContext);
 			}
 			else {
 				role = roleLocalService.getRole(roleAssignment.getRoleId());

@@ -201,7 +201,7 @@ public class DefaultTaskManagerImpl
 		}
 
 		serviceContext.setScopeGroupId(kaleoTaskInstanceToken.getGroupId());
-		
+
 		kaleoTaskInstanceToken =
 			kaleoTaskInstanceTokenLocalService.completeKaleoTaskInstanceToken(
 				kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId(),

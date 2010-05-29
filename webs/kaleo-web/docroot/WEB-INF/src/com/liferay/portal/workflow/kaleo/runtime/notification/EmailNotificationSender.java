@@ -23,6 +23,7 @@ import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
+import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 import java.util.ArrayList;
@@ -101,8 +102,8 @@ public class EmailNotificationSender implements NotificationSender {
 				}
 				else {
 					getRoleRecipientAddresses(
-						executionContext, internetAddresses,
-						kaleoNotificationRecipient);
+						kaleoNotificationRecipient, internetAddresses,
+						executionContext);
 				}
 			}
 		}
@@ -112,11 +113,11 @@ public class EmailNotificationSender implements NotificationSender {
 	}
 
 	protected void getRoleRecipientAddresses(
-			ExecutionContext executionContext,
+			KaleoNotificationRecipient kaleoNotificationRecipient,
 			List<InternetAddress> internetAddresses,
-			KaleoNotificationRecipient kaleoNotificationRecipient)
+			ExecutionContext executionContext)
 		throws Exception {
-		
+
 		if (kaleoNotificationRecipient.getRecipientRoleType() ==
 				RoleConstants.TYPE_REGULAR) {
 
@@ -125,19 +126,19 @@ public class EmailNotificationSender implements NotificationSender {
 
 			for (User user : users) {
 				InternetAddress internetAddress = new InternetAddress(
-						user.getEmailAddress(), user.getFullName());
+					user.getEmailAddress(), user.getFullName());
 
 				internetAddresses.add(internetAddress);
 			}
 		}
 		else {
-			long groupId =
-				executionContext.getKaleoTaskInstanceToken().
-					getGroupId();
+			KaleoTaskInstanceToken kaleoTaskInstanceToken =
+				executionContext.getKaleoTaskInstanceToken();
 
 			List<UserGroupRole> userGroupRoles =
 				UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
-					groupId, kaleoNotificationRecipient.getRecipientClassPK());
+					kaleoTaskInstanceToken.getGroupId(),
+				kaleoNotificationRecipient.getRecipientClassPK());
 
 			for (UserGroupRole userGroupRole : userGroupRoles) {
 				User user = userGroupRole.getUser();

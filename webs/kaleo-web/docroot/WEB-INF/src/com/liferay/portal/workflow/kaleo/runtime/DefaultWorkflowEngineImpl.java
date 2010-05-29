@@ -64,7 +64,6 @@ public class DefaultWorkflowEngineImpl
 		}
 	}
 
-
 	public void deleteWorkflowInstance(
 			long workflowInstanceId, ServiceContext serviceContext)
 		throws WorkflowException {
@@ -206,7 +205,7 @@ public class DefaultWorkflowEngineImpl
 				kaleoInstance.getRootKaleoInstanceToken(serviceContext);
 
 			serviceContext.setScopeGroupId(kaleoInstanceToken.getGroupId());
-			
+
 			ExecutionContext executionContext = new ExecutionContext(
 				kaleoInstanceToken, workflowContext, serviceContext);
 

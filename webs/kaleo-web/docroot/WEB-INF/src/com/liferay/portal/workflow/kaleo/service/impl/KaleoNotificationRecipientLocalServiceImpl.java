@@ -61,8 +61,8 @@ public class KaleoNotificationRecipientLocalServiceImpl
 		kaleoNotificationRecipient.setUserName(user.getFullName());
 		kaleoNotificationRecipient.setCreateDate(now);
 		kaleoNotificationRecipient.setModifiedDate(now);
-		kaleoNotificationRecipient.setKaleoNotificationId(kaleoNotificationId);
 		kaleoNotificationRecipient.setKaleoDefinitionId(kaleoDefinitionId);
+		kaleoNotificationRecipient.setKaleoNotificationId(kaleoNotificationId);
 
 		setRecipient(kaleoNotificationRecipient, recipient, serviceContext);
 
@@ -72,12 +72,12 @@ public class KaleoNotificationRecipientLocalServiceImpl
 		return kaleoNotificationRecipient;
 	}
 
-	public void deleteKaleoNotificationRecipientsByDefinitionId(
-			long definitionId)
+	public void deleteKaleoNotificationRecipientsByDefinition(
+			long kaleoDefinitionId)
 		throws SystemException {
 
 		kaleoNotificationRecipientPersistence.removeByKaleoDefinitionId(
-			definitionId);
+			kaleoDefinitionId);
 	}
 
 	public List<KaleoNotificationRecipient> getKaleoNotificationRecipients(
@@ -100,6 +100,7 @@ public class KaleoNotificationRecipientLocalServiceImpl
 				Role.class.getName());
 
 			RoleRecipient roleRecipient = (RoleRecipient)recipient;
+
 			int roleType = RoleRetrievalUtil.getRoleType(
 				roleRecipient.getRoleType());
 
@@ -108,8 +109,7 @@ public class KaleoNotificationRecipientLocalServiceImpl
 			if (Validator.isNotNull(roleRecipient.getRoleName())) {
 				role = RoleRetrievalUtil.getRole(
 					roleRecipient.getRoleName(), roleType,
-					roleRecipient.isAutoCreate(), roleLocalService,
-					serviceContext);
+					roleRecipient.isAutoCreate(), serviceContext);
 			}
 			else {
 				role = roleLocalService.getRole(roleRecipient.getRoleId());

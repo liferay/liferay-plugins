@@ -213,7 +213,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public int getWorkflowTaskCountBySubmittingUser(
-		long companyId, long userId, Boolean completed)
+			long companyId, long userId, Boolean completed)
 		throws WorkflowException {
 
 		try {
@@ -222,13 +222,12 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			serviceContext.setCompanyId(companyId);
 
 			return KaleoTaskInstanceTokenLocalServiceUtil.
-				getKaleoTaskInstanceTokensCountBySubmittingUser(
+				getSubmittingUserKaleoTaskInstanceTokensCount(
 					userId, completed, serviceContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
 		}
-
 	}
 
 	public int getWorkflowTaskCountByUser(
@@ -334,8 +333,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public List<WorkflowTask> getWorkflowTasksBySubmittingUser(
-		long companyId, long userId, Boolean completed, int start, int end,
-		OrderByComparator orderByComparator)
+			long companyId, long userId, Boolean completed, int start, int end,
+			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		try {
@@ -345,9 +344,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
 				KaleoTaskInstanceTokenLocalServiceUtil.
-					getKaleoTaskInstanceTokensBySubmittingUser(
-						userId, completed, start, end,
-						orderByComparator, serviceContext);
+					getSubmittingUserKaleoTaskInstanceTokens(
+						userId, completed, start, end, orderByComparator,
+						serviceContext);
 
 			return toWorkflowTasks(kaleoTaskInstanceTokens);
 		}

@@ -9,10 +9,13 @@
 
 		<column name="kaleoActionId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="groupId" type="long" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />
@@ -52,10 +55,13 @@
 
 		<column name="kaleoDefinitionId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="groupId" type="long" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />
@@ -110,10 +116,13 @@
 
 		<column name="kaleoInstanceId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="groupId" type="long" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />
@@ -139,18 +148,18 @@
 
 		<!-- Finder methods -->
 
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
+		<finder name="KDI_C" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+			<finder-column name="completed" />
+		</finder>
 		<finder name="C_KDN_KDV_CD" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="kaleoDefinitionName" />
 			<finder-column name="kaleoDefinitionVersion" />
 			<finder-column name="completionDate" />
-		</finder>
-		<finder name="KaleoDefinitionId" return-type="Collection">
-			<finder-column name="kaleoDefinitionId" />
-		</finder>
-		<finder name="Completed_KDI" return-type="Collection">
-			<finder-column name="completed" />
-			<finder-column name="kaleoDefinitionId" />
 		</finder>
 	</entity>
 	<entity name="KaleoInstanceToken" local-service="true" remote-service="false">
@@ -159,10 +168,13 @@
 
 		<column name="kaleoInstanceTokenId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="groupId" type="long" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />
@@ -186,6 +198,12 @@
 
 		<!-- Finder methods -->
 
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
+		<finder name="KaleoInstanceId" return-type="Collection">
+			<finder-column name="kaleoInstanceId" />
+		</finder>
 		<finder name="C_PKITI" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="parentKaleoInstanceTokenId" />
@@ -195,12 +213,6 @@
 			<finder-column name="parentKaleoInstanceTokenId" />
 			<finder-column name="completionDate" />
 		</finder>
-		<finder name="KaleoDefinitionId" return-type="Collection">
-			<finder-column name="kaleoDefinitionId" />
-		</finder>
-		<finder name="KaleoInstanceId" return-type="Collection">
-			<finder-column name="kaleoInstanceId" />
-		</finder>
 	</entity>
 	<entity name="KaleoLog" local-service="true" remote-service="false">
 
@@ -208,10 +220,13 @@
 
 		<column name="kaleoLogId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="groupId" type="long" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />
@@ -275,10 +290,13 @@
 
 		<column name="kaleoNodeId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="groupId" type="long" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />
@@ -305,13 +323,13 @@
 
 		<!-- Finder methods -->
 
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
 		<finder name="C_KDI" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="kaleoDefinitionId" />
 		</finder>
-		<finder name="KaleoDefinitionId" return-type="Collection">
-			<finder-column name="kaleoDefinitionId" />
-		</finder>		
 	</entity>
 	<entity name="KaleoNotification" local-service="true" remote-service="false">
 
@@ -319,10 +337,13 @@
 
 		<column name="kaleoNotificationId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="groupId" type="long" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />
@@ -352,13 +373,13 @@
 
 		<!-- Finder methods -->
 
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
 		<finder name="KNI_ET" return-type="Collection">
 			<finder-column name="kaleoNodeId" />
 			<finder-column name="executionType" />
 		</finder>
-		<finder name="KaleoDefinitionId" return-type="Collection">
-			<finder-column name="kaleoDefinitionId" />
-		</finder>		
 	</entity>
 	<entity name="KaleoNotificationRecipient" local-service="true" remote-service="false">
 
@@ -366,10 +387,13 @@
 
 		<column name="kaleoNotificationRecipientId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="groupId" type="long" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />
@@ -409,10 +433,13 @@
 
 		<column name="kaleoTaskId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="groupId" type="long" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />
@@ -452,10 +479,13 @@
 
 		<column name="kaleoTaskAssignmentId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="groupId" type="long" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />
@@ -503,10 +533,13 @@
 
 		<column name="kaleoTaskInstanceTokenId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="groupId" type="long" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />
@@ -533,15 +566,10 @@
 			<order-column name="kaleoTaskInstanceTokenId" />
 		</order>
 
+		<!-- Finder methods -->
+
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
-		</finder>
-		<finder name="C_G_ACN_ACP_CD" return-type="Collection">
-			<finder-column name="companyId" />
-			<finder-column name="groupId" />
-			<finder-column name="assigneeClassName" />
-			<finder-column name="assigneeClassPK" />
-			<finder-column name="completed" />
 		</finder>
 		<finder name="KaleoDefinitionId" return-type="Collection">
 			<finder-column name="kaleoDefinitionId" />
@@ -549,7 +577,13 @@
 		<finder name="KaleoInstanceId" return-type="Collection">
 			<finder-column name="kaleoInstanceId" />
 		</finder>
-		
+		<finder name="G_C_ACN_ACP_C" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="companyId" />
+			<finder-column name="assigneeClassName" />
+			<finder-column name="assigneeClassPK" />
+			<finder-column name="completed" />
+		</finder>
 	</entity>
 	<entity name="KaleoTransition" local-service="true" remote-service="false">
 
@@ -557,10 +591,13 @@
 
 		<column name="kaleoTransitionId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="groupId" type="long" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />

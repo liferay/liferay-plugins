@@ -34,7 +34,7 @@ public class RoleRecipient extends Recipient {
 		super(RecipientType.ROLE);
 
 		_roleName = roleName;
-		_roleType = roleType;		
+		_roleType = roleType;
 	}
 
 	public boolean equals(Object obj) {

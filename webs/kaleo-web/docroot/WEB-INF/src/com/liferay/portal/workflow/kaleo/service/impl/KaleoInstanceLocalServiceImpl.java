@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -57,8 +58,8 @@ public class KaleoInstanceLocalServiceImpl
 		KaleoInstance kaleoInstance =
 			kaleoInstancePersistence.create(kaleoInstanceId);
 
-		kaleoInstance.setCompanyId(user.getCompanyId());
 		kaleoInstance.setGroupId(serviceContext.getScopeGroupId());
+		kaleoInstance.setCompanyId(user.getCompanyId());
 		kaleoInstance.setUserId(user.getUserId());
 		kaleoInstance.setUserName(user.getFullName());
 		kaleoInstance.setCreateDate(now);
@@ -89,34 +90,48 @@ public class KaleoInstanceLocalServiceImpl
 		return kaleoInstance;
 	}
 
-	public void delete(long kaleoInstanceId)
-		throws SystemException, PortalException {
-
-		kaleoTaskInstanceTokenLocalService.
-			deleteKaleoTaskInstanceTokensByInstanceId(kaleoInstanceId);
-
-		kaleoInstanceTokenLocalService.
-			deleteKaleoInstanceTokensByInstanceId(kaleoInstanceId);
-
-		kaleoLogLocalService.deleteKaleoLogsByInstanceId(
-			kaleoInstanceId);
-
-		deleteKaleoInstance(kaleoInstanceId);
-	}
-
-	public void deleteKaleoInstanceByDefinitionId(long kaleoDefinitionId)
+	public void deleteKaleoInstance(long kaleoInstanceId)
 		throws PortalException, SystemException {
 
-		kaleoTaskInstanceTokenLocalService.
-			deleteKaleoTaskInstanceTokensByDefinitionId(kaleoDefinitionId);
+		// Instance
 
-		kaleoLogLocalService.deleteKaleoLogsByDefinitionId(kaleoDefinitionId);
+		kaleoInstancePersistence.remove(kaleoInstanceId);
+
+		// Instance tokens
+
+		kaleoInstanceTokenLocalService.deleteKaleoInstanceTokensByInstance(
+			kaleoInstanceId);
+
+		// Logs
+
+		kaleoLogLocalService.deleteKaleoLogsByInstance(kaleoInstanceId);
+
+		// Task instance tokens
+
+		kaleoTaskInstanceTokenLocalService.
+			deleteKaleoTaskInstanceTokensByInstance(kaleoInstanceId);
+	}
+
+	public void deleteKaleoInstancesByDefinition(long kaleoDefinitionId)
+		throws SystemException {
+
+		// Instances
+
+		kaleoInstancePersistence.removeByKaleoDefinitionId(kaleoDefinitionId);
+
+		// Instance tokens
 
 		kaleoInstanceTokenLocalService.
-			deleteKaleoInstanceTokensByDefinitionId(kaleoDefinitionId);
+			deleteKaleoInstanceTokensByDefinition(kaleoDefinitionId);
 
-		kaleoInstancePersistence.removeByKaleoDefinitionId(
-			kaleoDefinitionId);
+		// Logs
+
+		kaleoLogLocalService.deleteKaleoLogsByDefinition(kaleoDefinitionId);
+
+		// Task instance tokens
+
+		kaleoTaskInstanceTokenLocalService.
+			deleteKaleoTaskInstanceTokensByDefinition(kaleoDefinitionId);
 	}
 
 	public List<KaleoInstance> getKaleoInstances(
@@ -126,7 +141,7 @@ public class KaleoInstanceLocalServiceImpl
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoInstance.class);
+			KaleoInstance.class, PortletClassLoaderUtil.getClassLoader());
 
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("companyId").eq(
@@ -150,12 +165,11 @@ public class KaleoInstanceLocalServiceImpl
 		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
-	public int getKaleoInstanceCountByDefinitionAndCompletion(
-			long kaleoDefinitionId, boolean completed)
+	public int getKaleoInstancesCount(long kaleoDefinitionId, boolean completed)
 		throws SystemException {
 
-		return kaleoInstancePersistence.countByCompleted_KDI(
-			completed, kaleoDefinitionId);
+		return kaleoInstancePersistence.countByKDI_C(
+			kaleoDefinitionId, completed);
 	}
 
 	public int getKaleoInstancesCount(
@@ -164,7 +178,7 @@ public class KaleoInstanceLocalServiceImpl
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoInstance.class);
+			KaleoInstance.class, PortletClassLoaderUtil.getClassLoader());
 
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("companyId").eq(
