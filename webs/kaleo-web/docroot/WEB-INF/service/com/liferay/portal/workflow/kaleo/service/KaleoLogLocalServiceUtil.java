@@ -201,6 +201,12 @@ public class KaleoLogLocalServiceUtil {
 			serviceContext);
 	}
 
+	public static void deleteKaleoLogsByInstanceId(long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteKaleoLogsByInstanceId(kaleoInstanceId);
+	}
+
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoLogs(
 		long kaleoTaskInstanceTokenId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)

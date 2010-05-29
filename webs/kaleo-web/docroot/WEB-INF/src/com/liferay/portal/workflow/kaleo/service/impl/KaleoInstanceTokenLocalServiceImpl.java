@@ -95,6 +95,13 @@ public class KaleoInstanceTokenLocalServiceImpl
 		return kaleoInstanceToken;
 	}
 
+	public void deleteKaleoInstanceTokensByInstanceId(long kaleoInstanceId)
+		throws PortalException, SystemException {
+
+		kaleoInstanceTokenPersistence.removeByKaleoInstanceId(
+			kaleoInstanceId);
+	}
+	
 	public List<KaleoInstanceToken> getKaleoInstanceTokens(
 			long parentKaleoInstanceTokenId, Date completionDate,
 			ServiceContext serviceContext)

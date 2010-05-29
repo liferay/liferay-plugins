@@ -152,6 +152,13 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		return kaleoTaskInstanceToken;
 	}
 
+	public void deleteKaleoTaskInstanceTokensByInstanceId(long kaleoInstanceId)
+		throws PortalException, SystemException {
+
+		kaleoTaskInstanceTokenPersistence.removeByKaleoInstanceId(
+			kaleoInstanceId);
+	}
+
 	public List<KaleoTaskInstanceToken> getCompanyKaleoTaskInstanceTokens(
 			long companyId, int start, int end)
 		throws SystemException {

@@ -56,6 +56,15 @@ public class DefaultWorkflowEngineImpl
 		throws WorkflowException {
 
 		try {
+			kaleoTaskInstanceTokenLocalService.
+				deleteKaleoTaskInstanceTokensByInstanceId(workflowInstanceId);
+
+			kaleoInstanceTokenLocalService.
+				deleteKaleoInstanceTokensByInstanceId(workflowInstanceId);
+
+			kaleoLogLocalService.deleteKaleoLogsByInstanceId(
+				workflowInstanceId);
+
 			kaleoInstanceLocalService.deleteKaleoInstance(workflowInstanceId);
 		}
 		catch (Exception e) {

@@ -130,6 +130,58 @@ public class KaleoLogUtil {
 		return getPersistence().fetchByPrimaryKey(kaleoLogId);
 	}
 
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByKaleoInstanceId(
+		long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByKaleoInstanceId(kaleoInstanceId);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByKaleoInstanceId(
+		long kaleoInstanceId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByKaleoInstanceId(kaleoInstanceId, start, end);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByKaleoInstanceId(
+		long kaleoInstanceId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByKaleoInstanceId(kaleoInstanceId, start, end,
+			orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKaleoInstanceId_First(
+		long kaleoInstanceId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchLogException {
+		return getPersistence()
+				   .findByKaleoInstanceId_First(kaleoInstanceId,
+			orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKaleoInstanceId_Last(
+		long kaleoInstanceId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchLogException {
+		return getPersistence()
+				   .findByKaleoInstanceId_Last(kaleoInstanceId,
+			orderByComparator);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoLog[] findByKaleoInstanceId_PrevAndNext(
+		long kaleoLogId, long kaleoInstanceId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchLogException {
+		return getPersistence()
+				   .findByKaleoInstanceId_PrevAndNext(kaleoLogId,
+			kaleoInstanceId, orderByComparator);
+	}
+
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByKaleoTaskInstanceTokenId(
 		long kaleoTaskInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -311,6 +363,11 @@ public class KaleoLogUtil {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
+	public static void removeByKaleoInstanceId(long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByKaleoInstanceId(kaleoInstanceId);
+	}
+
 	public static void removeByKaleoTaskInstanceTokenId(
 		long kaleoTaskInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -334,6 +391,11 @@ public class KaleoLogUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
+	}
+
+	public static int countByKaleoInstanceId(long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKaleoInstanceId(kaleoInstanceId);
 	}
 
 	public static int countByKaleoTaskInstanceTokenId(

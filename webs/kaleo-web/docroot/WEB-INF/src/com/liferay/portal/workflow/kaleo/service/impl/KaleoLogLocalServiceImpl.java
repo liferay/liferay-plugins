@@ -241,6 +241,12 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		return kaleoLog;
 	}
 
+	public void deleteKaleoLogsByInstanceId(long kaleoInstanceId)
+		throws PortalException, SystemException {
+
+		kaleoLogPersistence.removeByKaleoInstanceId(kaleoInstanceId);
+	}
+
 	public List<KaleoLog> getKaleoLogs(
 			long kaleoTaskInstanceTokenId, int start, int end,
 			OrderByComparator orderByComparator)

@@ -184,6 +184,9 @@
 			<finder-column name="parentKaleoInstanceTokenId" />
 			<finder-column name="completionDate" />
 		</finder>
+		<finder name="KaleoInstanceId" return-type="Collection">
+			<finder-column name="kaleoInstanceId" />
+		</finder>
 	</entity>
 	<entity name="KaleoLog" local-service="true" remote-service="false">
 
@@ -232,6 +235,9 @@
 
 		<!-- Finder methods -->
 
+		<finder name="KaleoInstanceId" return-type="Collection">
+			<finder-column name="kaleoInstanceId" />
+		</finder>
 		<finder name="KaleoTaskInstanceTokenId" return-type="Collection">
 			<finder-column name="kaleoTaskInstanceTokenId" />
 		</finder>
@@ -491,6 +497,7 @@
 		<order by="asc">
 			<order-column name="kaleoTaskInstanceTokenId" />
 		</order>
+
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
@@ -500,6 +507,9 @@
 			<finder-column name="assigneeClassName" />
 			<finder-column name="assigneeClassPK" />
 			<finder-column name="completed" />
+		</finder>
+		<finder name="KaleoInstanceId" return-type="Collection">
+			<finder-column name="kaleoInstanceId" />
 		</finder>
 		
 	</entity>
