@@ -33,6 +33,10 @@ import java.util.Map;
  */
 public interface WorkflowEngine {
 
+	public void deleteWorkflowDefinition(
+			String name, int version, ServiceContext serviceContext)
+		throws WorkflowException;
+	
 	public void deleteWorkflowInstance(
 			long workflowInstanceId, ServiceContext serviceContext)
 		throws WorkflowException;

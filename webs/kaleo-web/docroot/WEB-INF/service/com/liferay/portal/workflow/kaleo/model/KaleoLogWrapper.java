@@ -109,6 +109,14 @@ public class KaleoLogWrapper implements KaleoLog {
 		_kaleoLog.setModifiedDate(modifiedDate);
 	}
 
+	public long getKaleoDefinitionId() {
+		return _kaleoLog.getKaleoDefinitionId();
+	}
+
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoLog.setKaleoDefinitionId(kaleoDefinitionId);
+	}
+
 	public long getKaleoInstanceId() {
 		return _kaleoLog.getKaleoInstanceId();
 	}

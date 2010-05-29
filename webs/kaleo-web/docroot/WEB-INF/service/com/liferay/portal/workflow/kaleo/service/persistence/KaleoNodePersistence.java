@@ -90,6 +90,37 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchNodeException;
 
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByKaleoDefinitionId(
+		long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByKaleoDefinitionId(
+		long kaleoDefinitionId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByKaleoDefinitionId(
+		long kaleoDefinitionId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode findByKaleoDefinitionId_First(
+		long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNodeException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode findByKaleoDefinitionId_Last(
+		long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNodeException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode[] findByKaleoDefinitionId_PrevAndNext(
+		long kaleoNodeId, long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNodeException;
+
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -105,10 +136,16 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	public void removeByC_KDI(long companyId, long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByC_KDI(long companyId, long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int countByKaleoDefinitionId(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countAll()

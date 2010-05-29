@@ -132,6 +132,11 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 			kaleoNodeId, kaleoNodeName, action, serviceContext);
 	}
 
+	public void deleteKaleoActionsByDefinitionId(long definitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoActionLocalService.deleteKaleoActionsByDefinitionId(definitionId);
+	}
+
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
 		long kaleoNodeId, java.lang.String executionType)
 		throws com.liferay.portal.kernel.exception.SystemException {

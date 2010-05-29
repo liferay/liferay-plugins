@@ -111,6 +111,14 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		_modifiedDate = modifiedDate;
 	}
 
+	public long getKaleoDefinitionId() {
+		return _kaleoDefinitionId;
+	}
+
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoDefinitionId = kaleoDefinitionId;
+	}
+
 	public long getKaleoInstanceId() {
 		return _kaleoInstanceId;
 	}
@@ -303,6 +311,7 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
+		clone.setKaleoDefinitionId(getKaleoDefinitionId());
 		clone.setKaleoInstanceId(getKaleoInstanceId());
 		clone.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
 		clone.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
@@ -377,7 +386,7 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(57);
+		StringBundler sb = new StringBundler(59);
 
 		sb.append("{kaleoLogId=");
 		sb.append(getKaleoLogId());
@@ -393,6 +402,8 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
+		sb.append(", kaleoDefinitionId=");
+		sb.append(getKaleoDefinitionId());
 		sb.append(", kaleoInstanceId=");
 		sb.append(getKaleoInstanceId());
 		sb.append(", kaleoInstanceTokenId=");
@@ -441,7 +452,7 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(88);
+		StringBundler sb = new StringBundler(91);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoLog");
@@ -474,6 +485,10 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		sb.append(
 			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
 		sb.append(getModifiedDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>kaleoDefinitionId</column-name><column-value><![CDATA[");
+		sb.append(getKaleoDefinitionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>kaleoInstanceId</column-name><column-value><![CDATA[");
@@ -573,6 +588,7 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private long _kaleoDefinitionId;
 	private long _kaleoInstanceId;
 	private long _kaleoInstanceTokenId;
 	private long _kaleoTaskInstanceTokenId;

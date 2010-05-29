@@ -162,6 +162,14 @@ public class KaleoTaskInstanceTokenLocalServiceUtil {
 			serviceContext);
 	}
 
+	public static void deleteKaleoTaskInstanceTokensByDefinitionId(
+		long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.deleteKaleoTaskInstanceTokensByDefinitionId(kaleoDefinitionId);
+	}
+
 	public static void deleteKaleoTaskInstanceTokensByInstanceId(
 		long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException,

@@ -141,6 +141,12 @@ public class KaleoInstanceTokenLocalServiceWrapper
 		return _kaleoInstanceTokenLocalService.completeKaleoInstanceToken(kaleoInstanceTokenId);
 	}
 
+	public void deleteKaleoInstanceTokensByDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_kaleoInstanceTokenLocalService.deleteKaleoInstanceTokensByDefinitionId(kaleoDefinitionId);
+	}
+
 	public void deleteKaleoInstanceTokensByInstanceId(long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

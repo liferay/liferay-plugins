@@ -253,6 +253,11 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		return _kaleoDefinition.toXmlString();
 	}
 
+	public boolean hasIncompleteKaleoInstances()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoDefinition.hasIncompleteKaleoInstances();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoStartNode()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

@@ -133,6 +133,42 @@ public class KaleoDefinitionLocalServiceImpl
 		kaleoDefinitionPersistence.update(kaleoDefinition, false);
 	}
 
+	public void deleteKaleoDefinition(
+			String name, int version, ServiceContext serviceContext)
+		throws SystemException, PortalException {
+
+		KaleoDefinition kaleoDefinition = getKaleoDefinition(
+				name, version, serviceContext);
+
+		if (kaleoDefinition.isActive()) {
+			throw new PortalException(
+				"Cannot delete an active workflow definition version: " +
+				name + " " + version);
+		}
+
+		if (kaleoDefinition.hasIncompleteKaleoInstances()) {
+			throw new PortalException(
+				"Cannot delete an workflow definition version " +
+				"with pending instances: " + name + " " + version);
+		}
+
+		kaleoInstanceLocalService.deleteKaleoInstanceByDefinitionId(
+			kaleoDefinition.getKaleoDefinitionId());
+
+		kaleoTaskLocalService.deleteKaleoTasksByDefinitionId(
+			kaleoDefinition.getKaleoDefinitionId());
+
+		kaleoTransitionLocalService.
+			deleteKaleoTransitionsByDefinitionId(
+				kaleoDefinition.getKaleoDefinitionId());
+
+		kaleoNodeLocalService.deleteKaleoNodesByDefinitionId(
+			kaleoDefinition.getKaleoDefinitionId());
+
+		deleteKaleoDefinition(kaleoDefinition.getKaleoDefinitionId());
+
+	}
+
 	public KaleoDefinition getKaleoDefinition(
 			String name, int version, ServiceContext serviceContext)
 		throws PortalException, SystemException {

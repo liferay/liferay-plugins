@@ -38,6 +38,9 @@
 
 		<!-- Finder methods -->
 
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
 		<finder name="KNI_ET" return-type="Collection">
 			<finder-column name="kaleoNodeId" />
 			<finder-column name="executionType" />
@@ -142,6 +145,13 @@
 			<finder-column name="kaleoDefinitionVersion" />
 			<finder-column name="completionDate" />
 		</finder>
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
+		<finder name="Completed_KDI" return-type="Collection">
+			<finder-column name="completed" />
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
 	</entity>
 	<entity name="KaleoInstanceToken" local-service="true" remote-service="false">
 
@@ -160,6 +170,7 @@
 
 		<!-- Other fields -->
 
+		<column name="kaleoDefinitionId" type="long" />
 		<column name="kaleoInstanceId" type="long" />
 		<column name="parentKaleoInstanceTokenId" type="long" />
 		<column name="currentKaleoNodeId" type="long" />
@@ -184,6 +195,9 @@
 			<finder-column name="parentKaleoInstanceTokenId" />
 			<finder-column name="completionDate" />
 		</finder>
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
 		<finder name="KaleoInstanceId" return-type="Collection">
 			<finder-column name="kaleoInstanceId" />
 		</finder>
@@ -205,6 +219,7 @@
 
 		<!-- Other fields -->
 
+		<column name="kaleoDefinitionId" type="long" />
 		<column name="kaleoInstanceId" type="long" />
 		<column name="kaleoInstanceTokenId" type="long" />
 		<column name="kaleoTaskInstanceTokenId" type="long" />
@@ -235,6 +250,9 @@
 
 		<!-- Finder methods -->
 
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
 		<finder name="KaleoInstanceId" return-type="Collection">
 			<finder-column name="kaleoInstanceId" />
 		</finder>
@@ -291,6 +309,9 @@
 			<finder-column name="companyId" />
 			<finder-column name="kaleoDefinitionId" />
 		</finder>
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>		
 	</entity>
 	<entity name="KaleoNotification" local-service="true" remote-service="false">
 
@@ -335,6 +356,9 @@
 			<finder-column name="kaleoNodeId" />
 			<finder-column name="executionType" />
 		</finder>
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>		
 	</entity>
 	<entity name="KaleoNotificationRecipient" local-service="true" remote-service="false">
 
@@ -353,6 +377,7 @@
 
 		<!-- Other fields -->
 
+		<column name="kaleoDefinitionId" type="long" />
 		<column name="kaleoNotificationId" type="long" />
 		<column name="recipientClassName" type="String" />
 		<column name="recipientClassPK" type="long" />
@@ -367,6 +392,9 @@
 
 		<!-- Finder methods -->
 
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
 		<finder name="KaleoNotificationId" return-type="Collection">
 			<finder-column name="kaleoNotificationId" />
 		</finder>
@@ -411,6 +439,9 @@
 
 		<!-- Finder methods -->
 
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
 		<finder name="KaleoNodeId" return-type="KaleoTask">
 			<finder-column name="kaleoNodeId" />
 		</finder>
@@ -447,6 +478,9 @@
 
 		<!-- Finder methods -->
 
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
 		<finder name="KaleoTaskId" return-type="Collection">
 			<finder-column name="kaleoTaskId" />
 		</finder>
@@ -480,6 +514,7 @@
 
 		<!-- Other fields -->
 
+		<column name="kaleoDefinitionId" type="long" />
 		<column name="kaleoInstanceId" type="long" />
 		<column name="kaleoInstanceTokenId" type="long" />
 		<column name="kaleoTaskId" type="long" />
@@ -507,6 +542,9 @@
 			<finder-column name="assigneeClassName" />
 			<finder-column name="assigneeClassPK" />
 			<finder-column name="completed" />
+		</finder>
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
 		</finder>
 		<finder name="KaleoInstanceId" return-type="Collection">
 			<finder-column name="kaleoInstanceId" />
@@ -548,6 +586,9 @@
 
 		<!-- Finder methods -->
 
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
 		<finder name="KaleoNodeId" return-type="Collection">
 			<finder-column name="kaleoNodeId" />
 		</finder>

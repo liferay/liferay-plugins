@@ -100,6 +100,7 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="kaleoDefinitionId" />
 			<basic name="kaleoInstanceId" />
 			<basic name="parentKaleoInstanceTokenId" />
 			<basic name="currentKaleoNodeId" />
@@ -125,6 +126,7 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="kaleoDefinitionId" />
 			<basic name="kaleoInstanceId" />
 			<basic name="kaleoInstanceTokenId" />
 			<basic name="kaleoTaskInstanceTokenId" />
@@ -220,6 +222,7 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="kaleoDefinitionId" />
 			<basic name="kaleoNotificationId" />
 			<basic name="recipientClassName" />
 			<basic name="recipientClassPK" />
@@ -288,6 +291,7 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="kaleoDefinitionId" />
 			<basic name="kaleoInstanceId" />
 			<basic name="kaleoInstanceTokenId" />
 			<basic name="kaleoTaskId" />

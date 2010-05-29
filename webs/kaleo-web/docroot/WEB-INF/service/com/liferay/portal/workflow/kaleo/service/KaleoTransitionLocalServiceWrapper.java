@@ -137,6 +137,11 @@ public class KaleoTransitionLocalServiceWrapper
 			serviceContext);
 	}
 
+	public void deleteKaleoTransitionsByDefinitionId(long definitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoTransitionLocalService.deleteKaleoTransitionsByDefinitionId(definitionId);
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition getDefaultKaleoTransition(
 		long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.PortalException,

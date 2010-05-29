@@ -457,24 +457,26 @@ public class KaleoNotificationRecipientLocalServiceClp
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient addKaleoNotificationRecipient(
-		long kaleoNotificationId,
+		long kaleoDefinitionId, long kaleoNotificationId,
 		com.liferay.portal.workflow.kaleo.definition.Recipient recipient,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(kaleoNotificationId);
+		Object paramObj0 = new LongWrapper(kaleoDefinitionId);
 
-		Object paramObj1 = ClpSerializer.translateInput(recipient);
+		Object paramObj1 = new LongWrapper(kaleoNotificationId);
+
+		Object paramObj2 = ClpSerializer.translateInput(recipient);
 
 		if (recipient == null) {
-			paramObj1 = new NullWrapper(
+			paramObj2 = new NullWrapper(
 					"com.liferay.portal.workflow.kaleo.definition.Recipient");
 		}
 
-		Object paramObj2 = ClpSerializer.translateInput(serviceContext);
+		Object paramObj3 = ClpSerializer.translateInput(serviceContext);
 
 		if (serviceContext == null) {
-			paramObj2 = new NullWrapper(
+			paramObj3 = new NullWrapper(
 					"com.liferay.portal.service.ServiceContext");
 		}
 
@@ -482,7 +484,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 
 		try {
 			returnObj = _classLoaderProxy.invoke("addKaleoNotificationRecipient",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -503,6 +505,30 @@ public class KaleoNotificationRecipientLocalServiceClp
 		}
 
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void deleteKaleoNotificationRecipientsByDefinitionId(
+		long definitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(definitionId);
+
+		try {
+			_classLoaderProxy.invoke("deleteKaleoNotificationRecipientsByDefinitionId",
+				new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> getKaleoNotificationRecipients(

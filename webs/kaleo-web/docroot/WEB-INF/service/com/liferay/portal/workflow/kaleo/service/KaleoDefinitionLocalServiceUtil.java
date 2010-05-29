@@ -164,6 +164,13 @@ public class KaleoDefinitionLocalServiceUtil {
 		getService().deactivateKaleoDefinition(name, version, serviceContext);
 	}
 
+	public static void deleteKaleoDefinition(java.lang.String name,
+		int version, com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteKaleoDefinition(name, version, serviceContext);
+	}
+
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition getKaleoDefinition(
 		java.lang.String name, int version,
 		com.liferay.portal.service.ServiceContext serviceContext)

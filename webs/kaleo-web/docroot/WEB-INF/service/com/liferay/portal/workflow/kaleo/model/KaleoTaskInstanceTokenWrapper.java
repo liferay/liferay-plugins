@@ -110,6 +110,14 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 		_kaleoTaskInstanceToken.setModifiedDate(modifiedDate);
 	}
 
+	public long getKaleoDefinitionId() {
+		return _kaleoTaskInstanceToken.getKaleoDefinitionId();
+	}
+
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoTaskInstanceToken.setKaleoDefinitionId(kaleoDefinitionId);
+	}
+
 	public long getKaleoInstanceId() {
 		return _kaleoTaskInstanceToken.getKaleoInstanceId();
 	}

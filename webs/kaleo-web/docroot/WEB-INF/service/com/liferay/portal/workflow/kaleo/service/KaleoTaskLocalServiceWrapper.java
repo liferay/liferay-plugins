@@ -131,6 +131,11 @@ public class KaleoTaskLocalServiceWrapper implements KaleoTaskLocalService {
 			kaleoNodeId, task, serviceContext);
 	}
 
+	public void deleteKaleoTasksByDefinitionId(long definitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoTaskLocalService.deleteKaleoTasksByDefinitionId(definitionId);
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask getKaleoNodeKaleoTask(
 		long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.PortalException,

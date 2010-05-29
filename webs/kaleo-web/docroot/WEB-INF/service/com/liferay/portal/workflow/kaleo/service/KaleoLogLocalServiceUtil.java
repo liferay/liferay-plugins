@@ -201,6 +201,12 @@ public class KaleoLogLocalServiceUtil {
 			serviceContext);
 	}
 
+	public static void deleteKaleoLogsByDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteKaleoLogsByDefinitionId(kaleoDefinitionId);
+	}
+
 	public static void deleteKaleoLogsByInstanceId(long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

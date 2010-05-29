@@ -112,6 +112,14 @@ public class KaleoNotificationRecipientWrapper
 		_kaleoNotificationRecipient.setModifiedDate(modifiedDate);
 	}
 
+	public long getKaleoDefinitionId() {
+		return _kaleoNotificationRecipient.getKaleoDefinitionId();
+	}
+
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoNotificationRecipient.setKaleoDefinitionId(kaleoDefinitionId);
+	}
+
 	public long getKaleoNotificationId() {
 		return _kaleoNotificationRecipient.getKaleoNotificationId();
 	}

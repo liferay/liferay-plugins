@@ -112,6 +112,14 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		_modifiedDate = modifiedDate;
 	}
 
+	public long getKaleoDefinitionId() {
+		return _kaleoDefinitionId;
+	}
+
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoDefinitionId = kaleoDefinitionId;
+	}
+
 	public long getKaleoInstanceId() {
 		return _kaleoInstanceId;
 	}
@@ -214,6 +222,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
+		clone.setKaleoDefinitionId(getKaleoDefinitionId());
 		clone.setKaleoInstanceId(getKaleoInstanceId());
 		clone.setParentKaleoInstanceTokenId(getParentKaleoInstanceTokenId());
 		clone.setCurrentKaleoNodeId(getCurrentKaleoNodeId());
@@ -273,7 +282,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{kaleoInstanceTokenId=");
 		sb.append(getKaleoInstanceTokenId());
@@ -289,6 +298,8 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
+		sb.append(", kaleoDefinitionId=");
+		sb.append(getKaleoDefinitionId());
 		sb.append(", kaleoInstanceId=");
 		sb.append(getKaleoInstanceId());
 		sb.append(", parentKaleoInstanceTokenId=");
@@ -307,7 +318,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(46);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken");
@@ -340,6 +351,10 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		sb.append(
 			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
 		sb.append(getModifiedDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>kaleoDefinitionId</column-name><column-value><![CDATA[");
+		sb.append(getKaleoDefinitionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>kaleoInstanceId</column-name><column-value><![CDATA[");
@@ -379,6 +394,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private long _kaleoDefinitionId;
 	private long _kaleoInstanceId;
 	private long _parentKaleoInstanceTokenId;
 	private long _currentKaleoNodeId;

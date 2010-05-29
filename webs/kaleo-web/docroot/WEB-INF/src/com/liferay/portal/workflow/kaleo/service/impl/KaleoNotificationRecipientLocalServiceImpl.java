@@ -42,8 +42,8 @@ public class KaleoNotificationRecipientLocalServiceImpl
 	extends KaleoNotificationRecipientLocalServiceBaseImpl {
 
 	public KaleoNotificationRecipient addKaleoNotificationRecipient(
-			long kaleoNotificationId, Recipient recipient,
-			ServiceContext serviceContext)
+			long kaleoDefinitionId, long kaleoNotificationId,
+			Recipient recipient, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		User user = userPersistence.findByPrimaryKey(
@@ -62,6 +62,7 @@ public class KaleoNotificationRecipientLocalServiceImpl
 		kaleoNotificationRecipient.setCreateDate(now);
 		kaleoNotificationRecipient.setModifiedDate(now);
 		kaleoNotificationRecipient.setKaleoNotificationId(kaleoNotificationId);
+		kaleoNotificationRecipient.setKaleoDefinitionId(kaleoDefinitionId);
 
 		setRecipient(kaleoNotificationRecipient, recipient, serviceContext);
 
@@ -69,6 +70,14 @@ public class KaleoNotificationRecipientLocalServiceImpl
 			kaleoNotificationRecipient, false);
 
 		return kaleoNotificationRecipient;
+	}
+
+	public void deleteKaleoNotificationRecipientsByDefinitionId(
+			long definitionId)
+		throws SystemException {
+
+		kaleoNotificationRecipientPersistence.removeByKaleoDefinitionId(
+			definitionId);
 	}
 
 	public List<KaleoNotificationRecipient> getKaleoNotificationRecipients(

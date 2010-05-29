@@ -100,4 +100,15 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 		return kaleoNode;
 	}
 
+	public void deleteKaleoNodesByDefinitionId(long definitionId)
+		throws SystemException {
+
+		kaleoActionLocalService.deleteKaleoActionsByDefinitionId(definitionId);
+
+		kaleoNotificationLocalService.deleteKaleoNotificationsByDefinitionId(
+			definitionId);
+
+		kaleoNodePersistence.removeByKaleoDefinitionId(definitionId);
+	}
+
 }

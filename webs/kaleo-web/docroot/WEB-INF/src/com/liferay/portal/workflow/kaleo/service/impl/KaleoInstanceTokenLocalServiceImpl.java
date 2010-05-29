@@ -63,6 +63,8 @@ public class KaleoInstanceTokenLocalServiceImpl
 		kaleoInstanceToken.setUserName(user.getFullName());
 		kaleoInstanceToken.setCreateDate(now);
 		kaleoInstanceToken.setModifiedDate(now);
+		kaleoInstanceToken.setKaleoDefinitionId(
+			parentKaleoInstanceToken.getKaleoDefinitionId());
 		kaleoInstanceToken.setKaleoInstanceId(
 			parentKaleoInstanceToken.getKaleoInstanceId());
 		kaleoInstanceToken.setParentKaleoInstanceTokenId(
@@ -93,6 +95,13 @@ public class KaleoInstanceTokenLocalServiceImpl
 		kaleoInstanceTokenPersistence.update(kaleoInstanceToken, false);
 
 		return kaleoInstanceToken;
+	}
+
+	public void deleteKaleoInstanceTokensByDefinitionId(long kaleoDefinitionId)
+		throws PortalException, SystemException {
+
+		kaleoInstanceTokenPersistence.removeByKaleoDefinitionId(
+			kaleoDefinitionId);
 	}
 
 	public void deleteKaleoInstanceTokensByInstanceId(long kaleoInstanceId)
@@ -171,6 +180,8 @@ public class KaleoInstanceTokenLocalServiceImpl
 		kaleoInstanceToken.setUserName(user.getFullName());
 		kaleoInstanceToken.setCreateDate(now);
 		kaleoInstanceToken.setModifiedDate(now);
+		kaleoInstanceToken.setKaleoDefinitionId(
+			kaleoInstance.getKaleoDefinitionId());
 		kaleoInstanceToken.setKaleoInstanceId(
 			kaleoInstance.getKaleoInstanceId());
 		kaleoInstanceToken.setParentKaleoInstanceTokenId(

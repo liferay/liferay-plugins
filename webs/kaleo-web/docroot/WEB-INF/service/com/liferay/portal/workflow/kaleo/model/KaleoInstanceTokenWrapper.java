@@ -109,6 +109,14 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		_kaleoInstanceToken.setModifiedDate(modifiedDate);
 	}
 
+	public long getKaleoDefinitionId() {
+		return _kaleoInstanceToken.getKaleoDefinitionId();
+	}
+
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoInstanceToken.setKaleoDefinitionId(kaleoDefinitionId);
+	}
+
 	public long getKaleoInstanceId() {
 		return _kaleoInstanceToken.getKaleoInstanceId();
 	}

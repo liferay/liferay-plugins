@@ -114,6 +114,14 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		_modifiedDate = modifiedDate;
 	}
 
+	public long getKaleoDefinitionId() {
+		return _kaleoDefinitionId;
+	}
+
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoDefinitionId = kaleoDefinitionId;
+	}
+
 	public long getKaleoNotificationId() {
 		return _kaleoNotificationId;
 	}
@@ -175,6 +183,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
+		clone.setKaleoDefinitionId(getKaleoDefinitionId());
 		clone.setKaleoNotificationId(getKaleoNotificationId());
 		clone.setRecipientClassName(getRecipientClassName());
 		clone.setRecipientClassPK(getRecipientClassPK());
@@ -233,7 +242,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{kaleoNotificationRecipientId=");
 		sb.append(getKaleoNotificationRecipientId());
@@ -249,6 +258,8 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
+		sb.append(", kaleoDefinitionId=");
+		sb.append(getKaleoDefinitionId());
 		sb.append(", kaleoNotificationId=");
 		sb.append(getKaleoNotificationId());
 		sb.append(", recipientClassName=");
@@ -265,7 +276,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append(
@@ -301,6 +312,10 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>kaleoDefinitionId</column-name><column-value><![CDATA[");
+		sb.append(getKaleoDefinitionId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>kaleoNotificationId</column-name><column-value><![CDATA[");
 		sb.append(getKaleoNotificationId());
 		sb.append("]]></column-value></column>");
@@ -334,6 +349,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private long _kaleoDefinitionId;
 	private long _kaleoNotificationId;
 	private String _recipientClassName;
 	private long _recipientClassPK;

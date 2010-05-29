@@ -82,6 +82,10 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 
 	public void setModifiedDate(Date modifiedDate);
 
+	public long getKaleoDefinitionId();
+
+	public void setKaleoDefinitionId(long kaleoDefinitionId);
+
 	public long getKaleoInstanceId();
 
 	public void setKaleoInstanceId(long kaleoInstanceId);

@@ -88,6 +88,7 @@
 		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
+		<field name="kaleoDefinitionId" type="long" />
 		<field name="kaleoInstanceId" type="long" />
 		<field name="parentKaleoInstanceTokenId" type="long" />
 		<field name="currentKaleoNodeId" type="long" />
@@ -107,6 +108,7 @@
 		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
+		<field name="kaleoDefinitionId" type="long" />
 		<field name="kaleoInstanceId" type="long" />
 		<field name="kaleoInstanceTokenId" type="long" />
 		<field name="kaleoTaskInstanceTokenId" type="long" />
@@ -210,6 +212,7 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
+		<field name="kaleoDefinitionId" type="long" />
 		<field name="kaleoNotificationId" type="long" />
 		<field name="recipientClassName" type="String" />
 		<field name="recipientClassPK" type="long" />
@@ -262,6 +265,7 @@
 		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
+		<field name="kaleoDefinitionId" type="long" />
 		<field name="kaleoInstanceId" type="long" />
 		<field name="kaleoInstanceTokenId" type="long" />
 		<field name="kaleoTaskId" type="long" />

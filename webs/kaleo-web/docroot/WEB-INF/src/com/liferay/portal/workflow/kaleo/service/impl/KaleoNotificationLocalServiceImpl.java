@@ -103,10 +103,20 @@ public class KaleoNotificationLocalServiceImpl
 		for (Recipient recipient : recipients) {
 			kaleoNotificationRecipientLocalService.
 				addKaleoNotificationRecipient(
-					kaleoNotificationId, recipient, serviceContext);
+					kaleoDefinitionId, kaleoNotificationId,
+					recipient, serviceContext);
 		}
 
 		return kaleoNotification;
+	}
+
+	public void deleteKaleoNotificationsByDefinitionId(long definitionId)
+		throws SystemException {
+
+		kaleoNotificationRecipientLocalService.
+			deleteKaleoNotificationRecipientsByDefinitionId(definitionId);
+		
+		kaleoNotificationPersistence.removeByKaleoDefinitionId(definitionId);
 	}
 
 	public List<KaleoNotification> getKaleoNotifications(

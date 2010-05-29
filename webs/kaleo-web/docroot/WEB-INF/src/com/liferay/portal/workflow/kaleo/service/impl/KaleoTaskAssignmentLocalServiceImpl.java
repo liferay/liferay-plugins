@@ -70,6 +70,13 @@ public class KaleoTaskAssignmentLocalServiceImpl
 		return kaleoTaskAssignment;
 	}
 
+	public void deleteKaleoTaskAssignmentsByDefinitionId(long definitionId)
+		throws SystemException {
+
+		kaleoTaskAssignmentPersistence.removeByKaleoDefinitionId(
+			definitionId);
+	}
+
 	public KaleoTaskAssignment getDefaultKaleoTaskAssignment(long kaleoTaskId)
 		throws PortalException, SystemException {
 

@@ -51,20 +51,25 @@ import java.util.Map;
 public class DefaultWorkflowEngineImpl
 	extends BaseKaleoBean implements WorkflowEngine {
 
+	public void deleteWorkflowDefinition(
+			String name, int version, ServiceContext serviceContext)
+		throws WorkflowException {
+
+		try {
+			kaleoDefinitionLocalService.deleteKaleoDefinition(
+				name, version, serviceContext);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
+
 	public void deleteWorkflowInstance(
 			long workflowInstanceId, ServiceContext serviceContext)
 		throws WorkflowException {
 
 		try {
-			kaleoTaskInstanceTokenLocalService.
-				deleteKaleoTaskInstanceTokensByInstanceId(workflowInstanceId);
-
-			kaleoInstanceTokenLocalService.
-				deleteKaleoInstanceTokensByInstanceId(workflowInstanceId);
-
-			kaleoLogLocalService.deleteKaleoLogsByInstanceId(
-				workflowInstanceId);
-
 			kaleoInstanceLocalService.deleteKaleoInstance(workflowInstanceId);
 		}
 		catch (Exception e) {

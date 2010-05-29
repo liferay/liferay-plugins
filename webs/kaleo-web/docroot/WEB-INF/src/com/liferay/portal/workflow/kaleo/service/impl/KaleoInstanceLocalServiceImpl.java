@@ -89,6 +89,36 @@ public class KaleoInstanceLocalServiceImpl
 		return kaleoInstance;
 	}
 
+	public void delete(long kaleoInstanceId)
+		throws SystemException, PortalException {
+
+		kaleoTaskInstanceTokenLocalService.
+			deleteKaleoTaskInstanceTokensByInstanceId(kaleoInstanceId);
+
+		kaleoInstanceTokenLocalService.
+			deleteKaleoInstanceTokensByInstanceId(kaleoInstanceId);
+
+		kaleoLogLocalService.deleteKaleoLogsByInstanceId(
+			kaleoInstanceId);
+
+		deleteKaleoInstance(kaleoInstanceId);
+	}
+
+	public void deleteKaleoInstanceByDefinitionId(long kaleoDefinitionId)
+		throws PortalException, SystemException {
+
+		kaleoTaskInstanceTokenLocalService.
+			deleteKaleoTaskInstanceTokensByDefinitionId(kaleoDefinitionId);
+
+		kaleoLogLocalService.deleteKaleoLogsByDefinitionId(kaleoDefinitionId);
+
+		kaleoInstanceTokenLocalService.
+			deleteKaleoInstanceTokensByDefinitionId(kaleoDefinitionId);
+
+		kaleoInstancePersistence.removeByKaleoDefinitionId(
+			kaleoDefinitionId);
+	}
+
 	public List<KaleoInstance> getKaleoInstances(
 			String kaleoDefinitionName, int kaleoDefinitionVersion,
 			boolean completed, int start, int end,
@@ -118,6 +148,14 @@ public class KaleoInstanceLocalServiceImpl
 		}
 
 		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
+	}
+
+	public int getKaleoInstanceCountByDefinitionAndCompletion(
+			long kaleoDefinitionId, boolean completed)
+		throws SystemException {
+
+		return kaleoInstancePersistence.countByCompleted_KDI(
+			completed, kaleoDefinitionId);
 	}
 
 	public int getKaleoInstancesCount(

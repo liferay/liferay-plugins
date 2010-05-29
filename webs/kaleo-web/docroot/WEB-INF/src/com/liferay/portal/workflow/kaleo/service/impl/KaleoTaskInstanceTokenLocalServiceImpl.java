@@ -81,6 +81,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		kaleoTaskInstanceToken.setCreateDate(now);
 		kaleoTaskInstanceToken.setModifiedDate(now);
 		kaleoTaskInstanceToken.setDueDate(dueDate);
+		kaleoTaskInstanceToken.setKaleoDefinitionId(
+			kaleoInstanceToken.getKaleoDefinitionId());
 		kaleoTaskInstanceToken.setKaleoInstanceId(
 			kaleoInstanceToken.getKaleoInstanceId());
 
@@ -150,6 +152,14 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			kaleoTaskInstanceToken.getKaleoInstanceTokenId());
 
 		return kaleoTaskInstanceToken;
+	}
+
+	public void deleteKaleoTaskInstanceTokensByDefinitionId(
+			long kaleoDefinitionId)
+		throws PortalException, SystemException {
+
+		kaleoTaskInstanceTokenPersistence.removeByKaleoDefinitionId(
+			kaleoDefinitionId);
 	}
 
 	public void deleteKaleoTaskInstanceTokensByInstanceId(long kaleoInstanceId)

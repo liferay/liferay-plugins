@@ -83,6 +83,10 @@ public interface KaleoNotificationRecipientModel extends BaseModel<KaleoNotifica
 
 	public void setModifiedDate(Date modifiedDate);
 
+	public long getKaleoDefinitionId();
+
+	public void setKaleoDefinitionId(long kaleoDefinitionId);
+
 	public long getKaleoNotificationId();
 
 	public void setKaleoNotificationId(long kaleoNotificationId);

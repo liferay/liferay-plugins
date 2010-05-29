@@ -255,6 +255,10 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		_startKaleoNodeId = startKaleoNodeId;
 	}
 
+	public boolean hasIncompleteKaleoInstances() {
+		throw new UnsupportedOperationException();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoStartNode() {
 		throw new UnsupportedOperationException();
 	}

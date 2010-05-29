@@ -232,7 +232,7 @@ public class WorkflowDefinitionManagerImpl
 			serviceContext.setCompanyId(companyId);
 			serviceContext.setUserId(userId);
 
-			KaleoDefinitionLocalServiceUtil.deactivateKaleoDefinition(
+			_workflowEngine.deleteWorkflowDefinition(
 				name, version, serviceContext);
 		}
 		catch (Exception e) {
