@@ -62,6 +62,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoLogId", new Integer(Types.BIGINT) },
 			{ "companyId", new Integer(Types.BIGINT) },
+			{ "groupId", new Integer(Types.BIGINT) },
 			{ "userId", new Integer(Types.BIGINT) },
 			{ "userName", new Integer(Types.VARCHAR) },
 			{ "createDate", new Integer(Types.TIMESTAMP) },
@@ -88,7 +89,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 			{ "duration", new Integer(Types.BIGINT) },
 			{ "workflowContext", new Integer(Types.CLOB) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoLog (kaleoLogId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskInstanceTokenId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,terminalKaleoNode BOOLEAN,kaleoActionId LONG,kaleoActionName VARCHAR(200) null,kaleoActionDescription VARCHAR(2000) null,previousKaleoNodeId LONG,previousKaleoNodeName VARCHAR(200) null,previousAssigneeClassName VARCHAR(200) null,previousAssigneeClassPK LONG,currentAssigneeClassName VARCHAR(200) null,currentAssigneeClassPK LONG,type_ VARCHAR(50) null,comment VARCHAR(2000) null,startDate DATE null,endDate DATE null,duration LONG,workflowContext TEXT null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoLog (kaleoLogId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskInstanceTokenId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,terminalKaleoNode BOOLEAN,kaleoActionId LONG,kaleoActionName VARCHAR(200) null,kaleoActionDescription VARCHAR(2000) null,previousKaleoNodeId LONG,previousKaleoNodeName VARCHAR(200) null,previousAssigneeClassName VARCHAR(200) null,previousAssigneeClassPK LONG,currentAssigneeClassName VARCHAR(200) null,currentAssigneeClassPK LONG,type_ VARCHAR(50) null,comment VARCHAR(2000) null,startDate DATE null,endDate DATE null,duration LONG,workflowContext TEXT null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoLog";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoLog.kaleoLogId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoLog.kaleoLogId ASC";
@@ -107,6 +108,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 
 		model.setKaleoLogId(soapModel.getKaleoLogId());
 		model.setCompanyId(soapModel.getCompanyId());
+		model.setGroupId(soapModel.getGroupId());
 		model.setUserId(soapModel.getUserId());
 		model.setUserName(soapModel.getUserName());
 		model.setCreateDate(soapModel.getCreateDate());
@@ -178,6 +180,14 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+	}
+
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
 	}
 
 	public long getUserId() {
@@ -470,6 +480,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 
 		clone.setKaleoLogId(getKaleoLogId());
 		clone.setCompanyId(getCompanyId());
+		clone.setGroupId(getGroupId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
@@ -548,12 +559,14 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(57);
 
 		sb.append("{kaleoLogId=");
 		sb.append(getKaleoLogId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
 		sb.append(", userId=");
 		sb.append(getUserId());
 		sb.append(", userName=");
@@ -610,7 +623,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(85);
+		StringBundler sb = new StringBundler(88);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoLog");
@@ -623,6 +636,10 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
 		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
@@ -732,6 +749,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 
 	private long _kaleoLogId;
 	private long _companyId;
+	private long _groupId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;

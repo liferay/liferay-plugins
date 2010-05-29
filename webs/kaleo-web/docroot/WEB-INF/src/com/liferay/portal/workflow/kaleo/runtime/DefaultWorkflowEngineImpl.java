@@ -191,6 +191,8 @@ public class DefaultWorkflowEngineImpl
 			KaleoInstanceToken kaleoInstanceToken =
 				kaleoInstance.getRootKaleoInstanceToken(serviceContext);
 
+			serviceContext.setScopeGroupId(kaleoInstanceToken.getGroupId());
+			
 			ExecutionContext executionContext = new ExecutionContext(
 				kaleoInstanceToken, workflowContext, serviceContext);
 

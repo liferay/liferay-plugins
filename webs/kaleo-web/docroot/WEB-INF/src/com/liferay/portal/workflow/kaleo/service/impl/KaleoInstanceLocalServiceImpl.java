@@ -58,6 +58,7 @@ public class KaleoInstanceLocalServiceImpl
 			kaleoInstancePersistence.create(kaleoInstanceId);
 
 		kaleoInstance.setCompanyId(user.getCompanyId());
+		kaleoInstance.setGroupId(serviceContext.getScopeGroupId());
 		kaleoInstance.setUserId(user.getUserId());
 		kaleoInstance.setUserName(user.getFullName());
 		kaleoInstance.setCreateDate(now);

@@ -63,6 +63,14 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		_companyId = companyId;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	public long getUserId() {
 		return _userId;
 	}
@@ -178,6 +186,7 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 
 		clone.setKaleoTaskId(getKaleoTaskId());
 		clone.setCompanyId(getCompanyId());
+		clone.setGroupId(getGroupId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
@@ -241,12 +250,14 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{kaleoTaskId=");
 		sb.append(getKaleoTaskId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
 		sb.append(", userId=");
 		sb.append(getUserId());
 		sb.append(", userName=");
@@ -273,7 +284,7 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoTask");
@@ -286,6 +297,10 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
 		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
@@ -335,6 +350,7 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 
 	private long _kaleoTaskId;
 	private long _companyId;
+	private long _groupId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;

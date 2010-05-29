@@ -60,6 +60,14 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		_kaleoInstanceToken.setCompanyId(companyId);
 	}
 
+	public long getGroupId() {
+		return _kaleoInstanceToken.getGroupId();
+	}
+
+	public void setGroupId(long groupId) {
+		_kaleoInstanceToken.setGroupId(groupId);
+	}
+
 	public long getUserId() {
 		return _kaleoInstanceToken.getUserId();
 	}

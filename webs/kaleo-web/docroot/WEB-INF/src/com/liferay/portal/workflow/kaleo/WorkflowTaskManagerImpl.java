@@ -213,6 +213,25 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
+	public int getWorkflowTaskCountBySubmittingUser(
+		long companyId, long userId, Boolean completed)
+		throws WorkflowException {
+
+		try {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+
+			return KaleoTaskInstanceTokenLocalServiceUtil.
+				getKaleoTaskInstanceTokensCountBySubmittingUser(
+					userId, completed, serviceContext);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+
+	}
+
 	public int getWorkflowTaskCountByUser(
 			long companyId, long userId, Boolean completed)
 		throws WorkflowException {
@@ -272,12 +291,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
-	public int getWorkflowTaskCountStartedByUser(
-		long companyId, long userId, Boolean completed) {
-
-		throw new UnsupportedOperationException();
-	}
-
 	public List<WorkflowTask> getWorkflowTasks(
 			long companyId, Boolean completed, int start, int end,
 			OrderByComparator orderByComparator)
@@ -315,6 +328,29 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				KaleoTaskInstanceTokenLocalServiceUtil.
 					getKaleoTaskInstanceTokens(
 						Role.class.getName(), roleId, completed, start, end,
+						orderByComparator, serviceContext);
+
+			return toWorkflowTasks(kaleoTaskInstanceTokens);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
+	public List<WorkflowTask> getWorkflowTasksBySubmittingUser(
+		long companyId, long userId, Boolean completed, int start, int end,
+		OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		try {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+
+			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
+				KaleoTaskInstanceTokenLocalServiceUtil.
+					getKaleoTaskInstanceTokensBySubmittingUser(
+						userId, completed, start, end,
 						orderByComparator, serviceContext);
 
 			return toWorkflowTasks(kaleoTaskInstanceTokens);
@@ -394,13 +430,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		catch (Exception e) {
 			throw new WorkflowException(e);
 		}
-	}
-
-	public List<WorkflowTask> getWorkflowTasksStartedByUser(
-		long companyId, long userId, Boolean completed, int start, int end,
-		OrderByComparator orderByComparator) {
-
-		throw new UnsupportedOperationException();
 	}
 
 	public List<WorkflowTask> search(

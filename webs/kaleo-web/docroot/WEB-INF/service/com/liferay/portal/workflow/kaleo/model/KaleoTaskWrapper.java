@@ -60,6 +60,14 @@ public class KaleoTaskWrapper implements KaleoTask {
 		_kaleoTask.setCompanyId(companyId);
 	}
 
+	public long getGroupId() {
+		return _kaleoTask.getGroupId();
+	}
+
+	public void setGroupId(long groupId) {
+		_kaleoTask.setGroupId(groupId);
+	}
+
 	public long getUserId() {
 		return _kaleoTask.getUserId();
 	}

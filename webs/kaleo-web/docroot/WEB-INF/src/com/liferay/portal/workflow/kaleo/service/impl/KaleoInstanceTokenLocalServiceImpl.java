@@ -58,6 +58,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 			kaleoInstanceTokenPersistence.create(kaleoInstanceTokenId);
 
 		kaleoInstanceToken.setCompanyId(user.getCompanyId());
+		kaleoInstanceToken.setGroupId(serviceContext.getScopeGroupId());
 		kaleoInstanceToken.setUserId(user.getUserId());
 		kaleoInstanceToken.setUserName(user.getFullName());
 		kaleoInstanceToken.setCreateDate(now);
@@ -158,6 +159,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 			kaleoInstanceTokenPersistence.create(rootKaleoInstanceTokenId);
 
 		kaleoInstanceToken.setCompanyId(user.getCompanyId());
+		kaleoInstanceToken.setGroupId(serviceContext.getCompanyId());
 		kaleoInstanceToken.setUserId(user.getUserId());
 		kaleoInstanceToken.setUserName(user.getFullName());
 		kaleoInstanceToken.setCreateDate(now);

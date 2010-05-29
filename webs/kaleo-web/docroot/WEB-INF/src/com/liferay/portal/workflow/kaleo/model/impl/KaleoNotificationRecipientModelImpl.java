@@ -62,6 +62,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoNotificationRecipientId", new Integer(Types.BIGINT) },
 			{ "companyId", new Integer(Types.BIGINT) },
+			{ "groupId", new Integer(Types.BIGINT) },
 			{ "userId", new Integer(Types.BIGINT) },
 			{ "userName", new Integer(Types.VARCHAR) },
 			{ "createDate", new Integer(Types.TIMESTAMP) },
@@ -71,7 +72,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 			{ "recipientClassPK", new Integer(Types.BIGINT) },
 			{ "address", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoNotificationRecipient (kaleoNotificationRecipientId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoNotificationId LONG,recipientClassName VARCHAR(75) null,recipientClassPK LONG,address VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoNotificationRecipient (kaleoNotificationRecipientId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoNotificationId LONG,recipientClassName VARCHAR(75) null,recipientClassPK LONG,address VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoNotificationRecipient";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoNotificationRecipient.kaleoNotificationRecipientId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoNotificationRecipient.kaleoNotificationRecipientId ASC";
@@ -91,6 +92,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 
 		model.setKaleoNotificationRecipientId(soapModel.getKaleoNotificationRecipientId());
 		model.setCompanyId(soapModel.getCompanyId());
+		model.setGroupId(soapModel.getGroupId());
 		model.setUserId(soapModel.getUserId());
 		model.setUserName(soapModel.getUserName());
 		model.setCreateDate(soapModel.getCreateDate());
@@ -147,6 +149,14 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+	}
+
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
 	}
 
 	public long getUserId() {
@@ -265,6 +275,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 
 		clone.setKaleoNotificationRecipientId(getKaleoNotificationRecipientId());
 		clone.setCompanyId(getCompanyId());
+		clone.setGroupId(getGroupId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
@@ -326,12 +337,14 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{kaleoNotificationRecipientId=");
 		sb.append(getKaleoNotificationRecipientId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
 		sb.append(", userId=");
 		sb.append(getUserId());
 		sb.append(", userName=");
@@ -354,7 +367,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append(
@@ -368,6 +381,10 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
 		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
@@ -409,6 +426,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 
 	private long _kaleoNotificationRecipientId;
 	private long _companyId;
+	private long _groupId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;

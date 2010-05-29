@@ -57,6 +57,10 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask> {
 
 	public void setCompanyId(long companyId);
 
+	public long getGroupId();
+
+	public void setGroupId(long groupId);
+
 	public long getUserId();
 
 	public void setUserId(long userId);

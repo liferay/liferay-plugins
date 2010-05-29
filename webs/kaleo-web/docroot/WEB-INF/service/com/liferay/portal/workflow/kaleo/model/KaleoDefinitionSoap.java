@@ -43,6 +43,7 @@ public class KaleoDefinitionSoap implements Serializable {
 
 		soapModel.setKaleoDefinitionId(model.getKaleoDefinitionId());
 		soapModel.setCompanyId(model.getCompanyId());
+		soapModel.setGroupId(model.getGroupId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
@@ -121,6 +122,14 @@ public class KaleoDefinitionSoap implements Serializable {
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+	}
+
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
 	}
 
 	public long getUserId() {
@@ -209,6 +218,7 @@ public class KaleoDefinitionSoap implements Serializable {
 
 	private long _kaleoDefinitionId;
 	private long _companyId;
+	private long _groupId;
 	private long _userId;
 	private String _userName;
 	private Date _createDate;

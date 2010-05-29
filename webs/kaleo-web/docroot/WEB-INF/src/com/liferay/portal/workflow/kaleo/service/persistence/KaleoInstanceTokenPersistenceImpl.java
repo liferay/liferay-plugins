@@ -275,6 +275,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 		kaleoInstanceTokenImpl.setKaleoInstanceTokenId(kaleoInstanceToken.getKaleoInstanceTokenId());
 		kaleoInstanceTokenImpl.setCompanyId(kaleoInstanceToken.getCompanyId());
+		kaleoInstanceTokenImpl.setGroupId(kaleoInstanceToken.getGroupId());
 		kaleoInstanceTokenImpl.setUserId(kaleoInstanceToken.getUserId());
 		kaleoInstanceTokenImpl.setUserName(kaleoInstanceToken.getUserName());
 		kaleoInstanceTokenImpl.setCreateDate(kaleoInstanceToken.getCreateDate());

@@ -60,6 +60,14 @@ public class KaleoLogWrapper implements KaleoLog {
 		_kaleoLog.setCompanyId(companyId);
 	}
 
+	public long getGroupId() {
+		return _kaleoLog.getGroupId();
+	}
+
+	public void setGroupId(long groupId) {
+		_kaleoLog.setGroupId(groupId);
+	}
+
 	public long getUserId() {
 		return _kaleoLog.getUserId();
 	}

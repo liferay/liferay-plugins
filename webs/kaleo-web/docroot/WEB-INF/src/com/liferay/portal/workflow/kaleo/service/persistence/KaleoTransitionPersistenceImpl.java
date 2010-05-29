@@ -365,6 +365,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 		kaleoTransitionImpl.setKaleoTransitionId(kaleoTransition.getKaleoTransitionId());
 		kaleoTransitionImpl.setCompanyId(kaleoTransition.getCompanyId());
+		kaleoTransitionImpl.setGroupId(kaleoTransition.getGroupId());
 		kaleoTransitionImpl.setUserId(kaleoTransition.getUserId());
 		kaleoTransitionImpl.setUserName(kaleoTransition.getUserName());
 		kaleoTransitionImpl.setCreateDate(kaleoTransition.getCreateDate());

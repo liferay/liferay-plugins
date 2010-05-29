@@ -60,6 +60,14 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		_kaleoDefinition.setCompanyId(companyId);
 	}
 
+	public long getGroupId() {
+		return _kaleoDefinition.getGroupId();
+	}
+
+	public void setGroupId(long groupId) {
+		_kaleoDefinition.setGroupId(groupId);
+	}
+
 	public long getUserId() {
 		return _kaleoDefinition.getUserId();
 	}

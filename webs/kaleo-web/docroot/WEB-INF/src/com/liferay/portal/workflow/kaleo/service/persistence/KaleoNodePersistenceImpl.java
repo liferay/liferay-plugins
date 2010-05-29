@@ -258,6 +258,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 		kaleoNodeImpl.setKaleoNodeId(kaleoNode.getKaleoNodeId());
 		kaleoNodeImpl.setCompanyId(kaleoNode.getCompanyId());
+		kaleoNodeImpl.setGroupId(kaleoNode.getGroupId());
 		kaleoNodeImpl.setUserId(kaleoNode.getUserId());
 		kaleoNodeImpl.setUserName(kaleoNode.getUserName());
 		kaleoNodeImpl.setCreateDate(kaleoNode.getCreateDate());

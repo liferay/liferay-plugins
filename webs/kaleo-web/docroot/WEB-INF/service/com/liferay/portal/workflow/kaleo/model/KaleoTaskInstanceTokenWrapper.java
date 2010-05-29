@@ -61,6 +61,14 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 		_kaleoTaskInstanceToken.setCompanyId(companyId);
 	}
 
+	public long getGroupId() {
+		return _kaleoTaskInstanceToken.getGroupId();
+	}
+
+	public void setGroupId(long groupId) {
+		_kaleoTaskInstanceToken.setGroupId(groupId);
+	}
+
 	public long getUserId() {
 		return _kaleoTaskInstanceToken.getUserId();
 	}

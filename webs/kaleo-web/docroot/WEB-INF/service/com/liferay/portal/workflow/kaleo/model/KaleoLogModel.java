@@ -57,6 +57,10 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 
 	public void setCompanyId(long companyId);
 
+	public long getGroupId();
+
+	public void setGroupId(long groupId);
+
 	public long getUserId();
 
 	public void setUserId(long userId);

@@ -60,6 +60,14 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 		_kaleoTransition.setCompanyId(companyId);
 	}
 
+	public long getGroupId() {
+		return _kaleoTransition.getGroupId();
+	}
+
+	public void setGroupId(long groupId) {
+		_kaleoTransition.setGroupId(groupId);
+	}
+
 	public long getUserId() {
 		return _kaleoTransition.getUserId();
 	}

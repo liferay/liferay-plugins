@@ -60,6 +60,14 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		_kaleoTaskAssignment.setCompanyId(companyId);
 	}
 
+	public long getGroupId() {
+		return _kaleoTaskAssignment.getGroupId();
+	}
+
+	public void setGroupId(long groupId) {
+		_kaleoTaskAssignment.setGroupId(groupId);
+	}
+
 	public long getUserId() {
 		return _kaleoTaskAssignment.getUserId();
 	}

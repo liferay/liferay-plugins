@@ -11,6 +11,7 @@
 		<attributes>
 			<id name="kaleoActionId" />
 			<basic name="companyId" />
+			<basic name="groupId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -36,6 +37,7 @@
 		<attributes>
 			<id name="kaleoDefinitionId" />
 			<basic name="companyId" />
+			<basic name="groupId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -61,6 +63,7 @@
 		<attributes>
 			<id name="kaleoInstanceId" />
 			<basic name="companyId" />
+			<basic name="groupId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -88,6 +91,7 @@
 		<attributes>
 			<id name="kaleoInstanceTokenId" />
 			<basic name="companyId" />
+			<basic name="groupId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -112,6 +116,7 @@
 		<attributes>
 			<id name="kaleoLogId" />
 			<basic name="companyId" />
+			<basic name="groupId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -155,6 +160,7 @@
 		<attributes>
 			<id name="kaleoNodeId" />
 			<basic name="companyId" />
+			<basic name="groupId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -179,6 +185,7 @@
 		<attributes>
 			<id name="kaleoNotificationId" />
 			<basic name="companyId" />
+			<basic name="groupId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -204,6 +211,7 @@
 		<attributes>
 			<id name="kaleoNotificationRecipientId" />
 			<basic name="companyId" />
+			<basic name="groupId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -224,6 +232,7 @@
 		<attributes>
 			<id name="kaleoTaskId" />
 			<basic name="companyId" />
+			<basic name="groupId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -246,6 +255,7 @@
 		<attributes>
 			<id name="kaleoTaskAssignmentId" />
 			<basic name="companyId" />
+			<basic name="groupId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -268,6 +278,7 @@
 		<attributes>
 			<id name="kaleoTaskInstanceTokenId" />
 			<basic name="companyId" />
+			<basic name="groupId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">
@@ -300,6 +311,7 @@
 		<attributes>
 			<id name="kaleoTransitionId" />
 			<basic name="companyId" />
+			<basic name="groupId" />
 			<basic name="userId" />
 			<basic name="userName" />
 			<basic name="createDate">

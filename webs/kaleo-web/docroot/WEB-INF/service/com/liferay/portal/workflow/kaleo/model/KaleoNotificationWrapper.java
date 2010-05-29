@@ -60,6 +60,14 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		_kaleoNotification.setCompanyId(companyId);
 	}
 
+	public long getGroupId() {
+		return _kaleoNotification.getGroupId();
+	}
+
+	public void setGroupId(long groupId) {
+		_kaleoNotification.setGroupId(groupId);
+	}
+
 	public long getUserId() {
 		return _kaleoNotification.getUserId();
 	}

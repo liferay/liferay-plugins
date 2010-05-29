@@ -281,6 +281,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 		kaleoLogImpl.setKaleoLogId(kaleoLog.getKaleoLogId());
 		kaleoLogImpl.setCompanyId(kaleoLog.getCompanyId());
+		kaleoLogImpl.setGroupId(kaleoLog.getGroupId());
 		kaleoLogImpl.setUserId(kaleoLog.getUserId());
 		kaleoLogImpl.setUserName(kaleoLog.getUserName());
 		kaleoLogImpl.setCreateDate(kaleoLog.getCreateDate());

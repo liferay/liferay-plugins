@@ -60,6 +60,14 @@ public class KaleoNodeWrapper implements KaleoNode {
 		_kaleoNode.setCompanyId(companyId);
 	}
 
+	public long getGroupId() {
+		return _kaleoNode.getGroupId();
+	}
+
+	public void setGroupId(long groupId) {
+		_kaleoNode.setGroupId(groupId);
+	}
+
 	public long getUserId() {
 		return _kaleoNode.getUserId();
 	}

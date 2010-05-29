@@ -63,6 +63,14 @@ public class KaleoNotificationRecipientWrapper
 		_kaleoNotificationRecipient.setCompanyId(companyId);
 	}
 
+	public long getGroupId() {
+		return _kaleoNotificationRecipient.getGroupId();
+	}
+
+	public void setGroupId(long groupId) {
+		_kaleoNotificationRecipient.setGroupId(groupId);
+	}
+
 	public long getUserId() {
 		return _kaleoNotificationRecipient.getUserId();
 	}

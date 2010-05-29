@@ -73,6 +73,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			kaleoTaskInstanceTokenPersistence.create(kaleoTaskInstanceTokenId);
 
 		kaleoTaskInstanceToken.setCompanyId(user.getCompanyId());
+		kaleoTaskInstanceToken.setGroupId(serviceContext.getScopeGroupId());
 		kaleoTaskInstanceToken.setUserId(user.getUserId());
 		kaleoTaskInstanceToken.setUserName(user.getFullName());
 		kaleoTaskInstanceToken.setCreateDate(now);
@@ -208,6 +209,26 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
+	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokensBySubmittingUser(
+			long userId, Boolean completed, int start, int end,
+			OrderByComparator orderByComparator, ServiceContext serviceContext)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			KaleoTaskInstanceToken.class);
+
+		dynamicQuery.add(
+			PropertyFactoryUtil.forName("companyId").eq(
+				serviceContext.getCompanyId()));
+		dynamicQuery.add(
+			PropertyFactoryUtil.forName("workflowContext").like(
+				"\"userId\":" + userId));
+
+		addCompletedCriterion(dynamicQuery, completed);
+		
+		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
+	}
+
 	public int getKaleoTaskInstanceTokensCount(
 			Boolean completed, ServiceContext serviceContext)
 		throws SystemException {
@@ -250,6 +271,26 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		return (int)dynamicQueryCount(dynamicQuery);
 	}
+
+	public int getKaleoTaskInstanceTokensCountBySubmittingUser(
+			long userId, Boolean completed, ServiceContext serviceContext)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			KaleoTaskInstanceToken.class);
+
+		dynamicQuery.add(
+			PropertyFactoryUtil.forName("companyId").eq(
+				serviceContext.getCompanyId()));
+		dynamicQuery.add(
+			PropertyFactoryUtil.forName("workflowContext").like(
+				"\"userId\":" + userId));		
+
+		addCompletedCriterion(dynamicQuery, completed);
+
+		return (int)dynamicQueryCount(dynamicQuery);
+	}
+
 
 	public List<KaleoTaskInstanceToken> search(
 			String keywords, Boolean completed, Boolean searchByUserRoles,

@@ -262,6 +262,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 		kaleoInstanceImpl.setKaleoInstanceId(kaleoInstance.getKaleoInstanceId());
 		kaleoInstanceImpl.setCompanyId(kaleoInstance.getCompanyId());
+		kaleoInstanceImpl.setGroupId(kaleoInstance.getGroupId());
 		kaleoInstanceImpl.setUserId(kaleoInstance.getUserId());
 		kaleoInstanceImpl.setUserName(kaleoInstance.getUserName());
 		kaleoInstanceImpl.setCreateDate(kaleoInstance.getCreateDate());

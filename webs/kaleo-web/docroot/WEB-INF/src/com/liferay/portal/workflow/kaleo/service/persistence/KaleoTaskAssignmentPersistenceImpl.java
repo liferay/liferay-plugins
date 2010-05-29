@@ -326,6 +326,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 		kaleoTaskAssignmentImpl.setKaleoTaskAssignmentId(kaleoTaskAssignment.getKaleoTaskAssignmentId());
 		kaleoTaskAssignmentImpl.setCompanyId(kaleoTaskAssignment.getCompanyId());
+		kaleoTaskAssignmentImpl.setGroupId(kaleoTaskAssignment.getGroupId());
 		kaleoTaskAssignmentImpl.setUserId(kaleoTaskAssignment.getUserId());
 		kaleoTaskAssignmentImpl.setUserName(kaleoTaskAssignment.getUserName());
 		kaleoTaskAssignmentImpl.setCreateDate(kaleoTaskAssignment.getCreateDate());

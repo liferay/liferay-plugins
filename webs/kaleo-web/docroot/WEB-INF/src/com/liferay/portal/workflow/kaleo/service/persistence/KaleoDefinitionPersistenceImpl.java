@@ -378,6 +378,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 		kaleoDefinitionImpl.setKaleoDefinitionId(kaleoDefinition.getKaleoDefinitionId());
 		kaleoDefinitionImpl.setCompanyId(kaleoDefinition.getCompanyId());
+		kaleoDefinitionImpl.setGroupId(kaleoDefinition.getGroupId());
 		kaleoDefinitionImpl.setUserId(kaleoDefinition.getUserId());
 		kaleoDefinitionImpl.setUserName(kaleoDefinition.getUserName());
 		kaleoDefinitionImpl.setCreateDate(kaleoDefinition.getCreateDate());
