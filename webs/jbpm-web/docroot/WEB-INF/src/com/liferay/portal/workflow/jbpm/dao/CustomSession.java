@@ -178,10 +178,10 @@ public class CustomSession {
 		}
 	}
 
-	public int countTaksInstancesStartedByUser(
+	public int countTaksInstancesBySubmittingUser(
 		long companyId, long userId, Boolean completed) {
 
-		List<TaskInstance> tasksInstances = getTasksInstancesStartedByUser(
+		List<TaskInstance> tasksInstances = getTasksInstancesBySubmittingUser(
 			companyId, userId, completed, 0, -1, null);
 
 		return tasksInstances.size();
@@ -348,11 +348,11 @@ public class CustomSession {
 		}
 	}
 
-	public List<TaskInstance> findTaskInstancesStartedByUser(
+	public List<TaskInstance> findTaskInstancesBySubmittingUser(
 		long companyId, long userId, Boolean completed, int start, int end,
 		OrderByComparator orderByComparator) {
 
-		return getTasksInstancesStartedByUser(
+		return getTasksInstancesBySubmittingUser(
 			companyId, userId, completed, start, end, orderByComparator);
 	}
 
@@ -660,7 +660,7 @@ public class CustomSession {
 		}
 	}
 
-	protected List<TaskInstance> getTasksInstancesStartedByUser(
+	protected List<TaskInstance> getTasksInstancesBySubmittingUser(
 		long companyId, long userId, Boolean completed, int start, int end,
 		OrderByComparator orderByComparator) {
 

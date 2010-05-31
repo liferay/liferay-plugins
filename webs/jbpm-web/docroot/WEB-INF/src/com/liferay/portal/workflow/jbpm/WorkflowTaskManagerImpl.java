@@ -383,7 +383,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		try {
 			CustomSession customSession = new CustomSession(jbpmContext);
 
-			return customSession.countTaksInstancesStartedByUser(
+			return customSession.countTaksInstancesBySubmittingUser(
 				companyId, userId, completed);
 		}
 		catch (Exception e) {
@@ -492,7 +492,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			CustomSession customSession = new CustomSession(jbpmContext);
 
 			List<TaskInstance> taskInstances =
-				customSession.findTaskInstancesStartedByUser(
+				customSession.findTaskInstancesBySubmittingUser(
 					companyId, userId, completed, start, end,
 					orderByComparator);
 
