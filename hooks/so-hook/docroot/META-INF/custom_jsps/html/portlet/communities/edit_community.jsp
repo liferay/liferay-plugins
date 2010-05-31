@@ -31,7 +31,7 @@ String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 %>
 
 <form action="<portlet:actionURL windowState="<%= windowState.toString() %>"><portlet:param name="struts_action" value="/communities/edit_community" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= group == null ? Constants.ADD : Constants.UPDATE %>" />
+<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= (group == null) ? Constants.ADD : Constants.UPDATE %>" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) ? StringPool.BLANK : HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />groupId" type="hidden" value="<%= groupId %>" />
 <input name="<portlet:namespace />friendlyURL" type="hidden" value="<%= HtmlUtil.escapeAttribute(friendlyURL) %>" />
@@ -97,7 +97,7 @@ String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 
 <aui:script>
 	function <portlet:namespace />saveGroup() {
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= group == null ? Constants.ADD : Constants.UPDATE %>";
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (group == null) ? Constants.ADD : Constants.UPDATE %>";
 		submitForm(document.<portlet:namespace />fm);
 	}
 
