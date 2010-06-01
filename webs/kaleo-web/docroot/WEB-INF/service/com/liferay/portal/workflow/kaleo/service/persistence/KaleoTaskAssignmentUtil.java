@@ -254,58 +254,58 @@ public class KaleoTaskAssignmentUtil {
 			retrieveFromCache);
 	}
 
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> findByACN_ACP(
-		java.lang.String assigneeClassName, long assigneeClassPK)
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> findByACN_KTI(
+		java.lang.String assigneeClassName, long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByACN_ACP(assigneeClassName, assigneeClassPK);
+		return getPersistence().findByACN_KTI(assigneeClassName, kaleoTaskId);
 	}
 
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> findByACN_ACP(
-		java.lang.String assigneeClassName, long assigneeClassPK, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> findByACN_KTI(
+		java.lang.String assigneeClassName, long kaleoTaskId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByACN_ACP(assigneeClassName, assigneeClassPK, start, end);
+				   .findByACN_KTI(assigneeClassName, kaleoTaskId, start, end);
 	}
 
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> findByACN_ACP(
-		java.lang.String assigneeClassName, long assigneeClassPK, int start,
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> findByACN_KTI(
+		java.lang.String assigneeClassName, long kaleoTaskId, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByACN_ACP(assigneeClassName, assigneeClassPK, start,
-			end, orderByComparator);
+				   .findByACN_KTI(assigneeClassName, kaleoTaskId, start, end,
+			orderByComparator);
 	}
 
-	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment findByACN_ACP_First(
-		java.lang.String assigneeClassName, long assigneeClassPK,
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment findByACN_KTI_First(
+		java.lang.String assigneeClassName, long kaleoTaskId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException {
 		return getPersistence()
-				   .findByACN_ACP_First(assigneeClassName, assigneeClassPK,
+				   .findByACN_KTI_First(assigneeClassName, kaleoTaskId,
 			orderByComparator);
 	}
 
-	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment findByACN_ACP_Last(
-		java.lang.String assigneeClassName, long assigneeClassPK,
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment findByACN_KTI_Last(
+		java.lang.String assigneeClassName, long kaleoTaskId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException {
 		return getPersistence()
-				   .findByACN_ACP_Last(assigneeClassName, assigneeClassPK,
+				   .findByACN_KTI_Last(assigneeClassName, kaleoTaskId,
 			orderByComparator);
 	}
 
-	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment[] findByACN_ACP_PrevAndNext(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment[] findByACN_KTI_PrevAndNext(
 		long kaleoTaskAssignmentId, java.lang.String assigneeClassName,
-		long assigneeClassPK,
+		long kaleoTaskId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException {
 		return getPersistence()
-				   .findByACN_ACP_PrevAndNext(kaleoTaskAssignmentId,
-			assigneeClassName, assigneeClassPK, orderByComparator);
+				   .findByACN_KTI_PrevAndNext(kaleoTaskAssignmentId,
+			assigneeClassName, kaleoTaskId, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> findAll()
@@ -343,10 +343,10 @@ public class KaleoTaskAssignmentUtil {
 		getPersistence().removeByKTI_DA(kaleoTaskId, defaultAssignment);
 	}
 
-	public static void removeByACN_ACP(java.lang.String assigneeClassName,
-		long assigneeClassPK)
+	public static void removeByACN_KTI(java.lang.String assigneeClassName,
+		long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByACN_ACP(assigneeClassName, assigneeClassPK);
+		getPersistence().removeByACN_KTI(assigneeClassName, kaleoTaskId);
 	}
 
 	public static void removeAll()
@@ -369,11 +369,10 @@ public class KaleoTaskAssignmentUtil {
 		return getPersistence().countByKTI_DA(kaleoTaskId, defaultAssignment);
 	}
 
-	public static int countByACN_ACP(java.lang.String assigneeClassName,
-		long assigneeClassPK)
+	public static int countByACN_KTI(java.lang.String assigneeClassName,
+		long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .countByACN_ACP(assigneeClassName, assigneeClassPK);
+		return getPersistence().countByACN_KTI(assigneeClassName, kaleoTaskId);
 	}
 
 	public static int countAll()

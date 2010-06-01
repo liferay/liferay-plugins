@@ -34,7 +34,7 @@ create index IX_21EE3763 on Kaleo_KaleoNotificationRecipient (kaleoNotificationI
 create index IX_4977BD72 on Kaleo_KaleoTask (kaleoDefinitionId);
 create index IX_61E22421 on Kaleo_KaleoTask (kaleoNodeId);
 
-create index IX_34EC9969 on Kaleo_KaleoTaskAssignment (assigneeClassName, assigneeClassPK);
+create index IX_BCE28DE5 on Kaleo_KaleoTaskAssignment (assigneeClassName, kaleoTaskId);
 create index IX_572B5825 on Kaleo_KaleoTaskAssignment (kaleoDefinitionId);
 create index IX_5EDD8F17 on Kaleo_KaleoTaskAssignment (kaleoTaskId);
 create index IX_787D75A7 on Kaleo_KaleoTaskAssignment (kaleoTaskId, defaultAssignment);

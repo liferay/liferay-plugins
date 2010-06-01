@@ -134,35 +134,35 @@ public interface KaleoTaskAssignmentPersistence extends BasePersistence<KaleoTas
 		long kaleoTaskId, boolean defaultAssignment, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> findByACN_ACP(
-		java.lang.String assigneeClassName, long assigneeClassPK)
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> findByACN_KTI(
+		java.lang.String assigneeClassName, long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> findByACN_ACP(
-		java.lang.String assigneeClassName, long assigneeClassPK, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> findByACN_KTI(
+		java.lang.String assigneeClassName, long kaleoTaskId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> findByACN_ACP(
-		java.lang.String assigneeClassName, long assigneeClassPK, int start,
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> findByACN_KTI(
+		java.lang.String assigneeClassName, long kaleoTaskId, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment findByACN_ACP_First(
-		java.lang.String assigneeClassName, long assigneeClassPK,
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment findByACN_KTI_First(
+		java.lang.String assigneeClassName, long kaleoTaskId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException;
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment findByACN_ACP_Last(
-		java.lang.String assigneeClassName, long assigneeClassPK,
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment findByACN_KTI_Last(
+		java.lang.String assigneeClassName, long kaleoTaskId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException;
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment[] findByACN_ACP_PrevAndNext(
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment[] findByACN_KTI_PrevAndNext(
 		long kaleoTaskAssignmentId, java.lang.String assigneeClassName,
-		long assigneeClassPK,
+		long kaleoTaskId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException;
@@ -189,8 +189,8 @@ public interface KaleoTaskAssignmentPersistence extends BasePersistence<KaleoTas
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException;
 
-	public void removeByACN_ACP(java.lang.String assigneeClassName,
-		long assigneeClassPK)
+	public void removeByACN_KTI(java.lang.String assigneeClassName,
+		long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void removeAll()
@@ -205,8 +205,8 @@ public interface KaleoTaskAssignmentPersistence extends BasePersistence<KaleoTas
 	public int countByKTI_DA(long kaleoTaskId, boolean defaultAssignment)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countByACN_ACP(java.lang.String assigneeClassName,
-		long assigneeClassPK)
+	public int countByACN_KTI(java.lang.String assigneeClassName,
+		long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countAll()

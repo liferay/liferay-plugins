@@ -518,9 +518,9 @@
 			<finder-column name="kaleoTaskId" />
 			<finder-column name="defaultAssignment" />
 		</finder>
-		<finder name="ACN_ACP" return-type="Collection">
+		<finder name="ACN_KTI" return-type="Collection">
 			<finder-column name="assigneeClassName" />
-			<finder-column name="assigneeClassPK" />
+			<finder-column name="kaleoTaskId" />
 		</finder>
 
 		<!-- References -->

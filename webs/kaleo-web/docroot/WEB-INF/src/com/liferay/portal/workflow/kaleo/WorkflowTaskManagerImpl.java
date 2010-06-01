@@ -22,8 +22,12 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManager;
 import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroupRole;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
@@ -146,10 +150,25 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					kaleoTaskAssignments) {
 
 				long roleId = kaleoTaskAssignment.getAssigneeClassPK();
+				Role role = RoleLocalServiceUtil.getRole(roleId);
 
-				long[] userIds = UserLocalServiceUtil.getRoleUserIds(roleId);
+				if ((role.getType() == RoleConstants.TYPE_COMMUNITY) ||
+					(role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
 
-				pooledActors.addAll(userIds);
+					List<UserGroupRole> userGroupRoles =
+						UserGroupRoleLocalServiceUtil.
+							getUserGroupRolesByGroupAndRole(
+								kaleoTaskInstanceToken.getGroupId(), roleId);
+
+					for (UserGroupRole userGroupRole : userGroupRoles) {
+						pooledActors.add(userGroupRole.getUserId());
+					}
+				}
+				else {
+					long[] userIds = UserLocalServiceUtil.getRoleUserIds(roleId);
+
+					pooledActors.addAll(userIds);
+				}
 			}
 
 			return pooledActors.getArray();

@@ -153,10 +153,9 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
-		java.lang.String assigneeClassName, long assigneeClassPK)
+		java.lang.String assigneeClassName, long taskId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getKaleoTaskAssignments(assigneeClassName, assigneeClassPK);
+		return getService().getKaleoTaskAssignments(assigneeClassName, taskId);
 	}
 
 	public static int getKaleoTaskAssignmentsCount(long kaleoTaskId)
@@ -165,11 +164,10 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	}
 
 	public static int getKaleoTaskAssignmentsCount(
-		java.lang.String assigneeClassName, long assigneeClassPK)
+		java.lang.String assigneeClassName, long taskId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getKaleoTaskAssignmentsCount(assigneeClassName,
-			assigneeClassPK);
+				   .getKaleoTaskAssignmentsCount(assigneeClassName, taskId);
 	}
 
 	public static void clearService() {

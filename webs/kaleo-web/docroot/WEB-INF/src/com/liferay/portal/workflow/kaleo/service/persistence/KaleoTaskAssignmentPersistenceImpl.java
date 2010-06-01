@@ -101,18 +101,18 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countByKTI_DA",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_ACN_ACP = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_ACN_KTI = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByACN_ACP",
+			FINDER_CLASS_NAME_LIST, "findByACN_KTI",
 			new String[] {
 				String.class.getName(), Long.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_ACN_ACP = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_ACN_KTI = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByACN_ACP",
+			FINDER_CLASS_NAME_LIST, "countByACN_KTI",
 			new String[] { String.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
@@ -1067,29 +1067,28 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		}
 	}
 
-	public List<KaleoTaskAssignment> findByACN_ACP(String assigneeClassName,
-		long assigneeClassPK) throws SystemException {
-		return findByACN_ACP(assigneeClassName, assigneeClassPK,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<KaleoTaskAssignment> findByACN_KTI(String assigneeClassName,
+		long kaleoTaskId) throws SystemException {
+		return findByACN_KTI(assigneeClassName, kaleoTaskId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
-	public List<KaleoTaskAssignment> findByACN_ACP(String assigneeClassName,
-		long assigneeClassPK, int start, int end) throws SystemException {
-		return findByACN_ACP(assigneeClassName, assigneeClassPK, start, end,
-			null);
+	public List<KaleoTaskAssignment> findByACN_KTI(String assigneeClassName,
+		long kaleoTaskId, int start, int end) throws SystemException {
+		return findByACN_KTI(assigneeClassName, kaleoTaskId, start, end, null);
 	}
 
-	public List<KaleoTaskAssignment> findByACN_ACP(String assigneeClassName,
-		long assigneeClassPK, int start, int end,
+	public List<KaleoTaskAssignment> findByACN_KTI(String assigneeClassName,
+		long kaleoTaskId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				assigneeClassName, new Long(assigneeClassPK),
+				assigneeClassName, new Long(kaleoTaskId),
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
 			};
 
-		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ACN_ACP,
+		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ACN_KTI,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1111,18 +1110,18 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 				query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
 
 				if (assigneeClassName == null) {
-					query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_1);
+					query.append(_FINDER_COLUMN_ACN_KTI_ASSIGNEECLASSNAME_1);
 				}
 				else {
 					if (assigneeClassName.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_3);
+						query.append(_FINDER_COLUMN_ACN_KTI_ASSIGNEECLASSNAME_3);
 					}
 					else {
-						query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_2);
+						query.append(_FINDER_COLUMN_ACN_KTI_ASSIGNEECLASSNAME_2);
 					}
 				}
 
-				query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSPK_2);
+				query.append(_FINDER_COLUMN_ACN_KTI_KALEOTASKID_2);
 
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -1143,7 +1142,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 					qPos.add(assigneeClassName);
 				}
 
-				qPos.add(assigneeClassPK);
+				qPos.add(kaleoTaskId);
 
 				list = (List<KaleoTaskAssignment>)QueryUtil.list(q,
 						getDialect(), start, end);
@@ -1158,7 +1157,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ACN_ACP,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ACN_KTI,
 					finderArgs, list);
 
 				closeSession(session);
@@ -1168,11 +1167,11 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		return list;
 	}
 
-	public KaleoTaskAssignment findByACN_ACP_First(String assigneeClassName,
-		long assigneeClassPK, OrderByComparator orderByComparator)
+	public KaleoTaskAssignment findByACN_KTI_First(String assigneeClassName,
+		long kaleoTaskId, OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentException, SystemException {
-		List<KaleoTaskAssignment> list = findByACN_ACP(assigneeClassName,
-				assigneeClassPK, 0, 1, orderByComparator);
+		List<KaleoTaskAssignment> list = findByACN_KTI(assigneeClassName,
+				kaleoTaskId, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -1182,8 +1181,8 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 			msg.append("assigneeClassName=");
 			msg.append(assigneeClassName);
 
-			msg.append(", assigneeClassPK=");
-			msg.append(assigneeClassPK);
+			msg.append(", kaleoTaskId=");
+			msg.append(kaleoTaskId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1194,13 +1193,13 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		}
 	}
 
-	public KaleoTaskAssignment findByACN_ACP_Last(String assigneeClassName,
-		long assigneeClassPK, OrderByComparator orderByComparator)
+	public KaleoTaskAssignment findByACN_KTI_Last(String assigneeClassName,
+		long kaleoTaskId, OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentException, SystemException {
-		int count = countByACN_ACP(assigneeClassName, assigneeClassPK);
+		int count = countByACN_KTI(assigneeClassName, kaleoTaskId);
 
-		List<KaleoTaskAssignment> list = findByACN_ACP(assigneeClassName,
-				assigneeClassPK, count - 1, count, orderByComparator);
+		List<KaleoTaskAssignment> list = findByACN_KTI(assigneeClassName,
+				kaleoTaskId, count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(6);
@@ -1210,8 +1209,8 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 			msg.append("assigneeClassName=");
 			msg.append(assigneeClassName);
 
-			msg.append(", assigneeClassPK=");
-			msg.append(assigneeClassPK);
+			msg.append(", kaleoTaskId=");
+			msg.append(kaleoTaskId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1222,9 +1221,9 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		}
 	}
 
-	public KaleoTaskAssignment[] findByACN_ACP_PrevAndNext(
-		long kaleoTaskAssignmentId, String assigneeClassName,
-		long assigneeClassPK, OrderByComparator orderByComparator)
+	public KaleoTaskAssignment[] findByACN_KTI_PrevAndNext(
+		long kaleoTaskAssignmentId, String assigneeClassName, long kaleoTaskId,
+		OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentException, SystemException {
 		KaleoTaskAssignment kaleoTaskAssignment = findByPrimaryKey(kaleoTaskAssignmentId);
 
@@ -1235,13 +1234,13 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 			KaleoTaskAssignment[] array = new KaleoTaskAssignmentImpl[3];
 
-			array[0] = getByACN_ACP_PrevAndNext(session, kaleoTaskAssignment,
-					assigneeClassName, assigneeClassPK, orderByComparator, true);
+			array[0] = getByACN_KTI_PrevAndNext(session, kaleoTaskAssignment,
+					assigneeClassName, kaleoTaskId, orderByComparator, true);
 
 			array[1] = kaleoTaskAssignment;
 
-			array[2] = getByACN_ACP_PrevAndNext(session, kaleoTaskAssignment,
-					assigneeClassName, assigneeClassPK, orderByComparator, false);
+			array[2] = getByACN_KTI_PrevAndNext(session, kaleoTaskAssignment,
+					assigneeClassName, kaleoTaskId, orderByComparator, false);
 
 			return array;
 		}
@@ -1253,10 +1252,9 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		}
 	}
 
-	protected KaleoTaskAssignment getByACN_ACP_PrevAndNext(Session session,
+	protected KaleoTaskAssignment getByACN_KTI_PrevAndNext(Session session,
 		KaleoTaskAssignment kaleoTaskAssignment, String assigneeClassName,
-		long assigneeClassPK, OrderByComparator orderByComparator,
-		boolean previous) {
+		long kaleoTaskId, OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1270,18 +1268,18 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
 
 		if (assigneeClassName == null) {
-			query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_1);
+			query.append(_FINDER_COLUMN_ACN_KTI_ASSIGNEECLASSNAME_1);
 		}
 		else {
 			if (assigneeClassName.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_3);
+				query.append(_FINDER_COLUMN_ACN_KTI_ASSIGNEECLASSNAME_3);
 			}
 			else {
-				query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_2);
+				query.append(_FINDER_COLUMN_ACN_KTI_ASSIGNEECLASSNAME_2);
 			}
 		}
 
-		query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSPK_2);
+		query.append(_FINDER_COLUMN_ACN_KTI_KALEOTASKID_2);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -1354,7 +1352,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 			qPos.add(assigneeClassName);
 		}
 
-		qPos.add(assigneeClassPK);
+		qPos.add(kaleoTaskId);
 
 		if (orderByComparator != null) {
 			Object[] values = orderByComparator.getOrderByValues(kaleoTaskAssignment);
@@ -1473,10 +1471,10 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		remove(kaleoTaskAssignment);
 	}
 
-	public void removeByACN_ACP(String assigneeClassName, long assigneeClassPK)
+	public void removeByACN_KTI(String assigneeClassName, long kaleoTaskId)
 		throws SystemException {
-		for (KaleoTaskAssignment kaleoTaskAssignment : findByACN_ACP(
-				assigneeClassName, assigneeClassPK)) {
+		for (KaleoTaskAssignment kaleoTaskAssignment : findByACN_KTI(
+				assigneeClassName, kaleoTaskId)) {
 			remove(kaleoTaskAssignment);
 		}
 	}
@@ -1633,13 +1631,13 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		return count.intValue();
 	}
 
-	public int countByACN_ACP(String assigneeClassName, long assigneeClassPK)
+	public int countByACN_KTI(String assigneeClassName, long kaleoTaskId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				assigneeClassName, new Long(assigneeClassPK)
+				assigneeClassName, new Long(kaleoTaskId)
 			};
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ACN_ACP,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ACN_KTI,
 				finderArgs, this);
 
 		if (count == null) {
@@ -1653,18 +1651,18 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 				query.append(_SQL_COUNT_KALEOTASKASSIGNMENT_WHERE);
 
 				if (assigneeClassName == null) {
-					query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_1);
+					query.append(_FINDER_COLUMN_ACN_KTI_ASSIGNEECLASSNAME_1);
 				}
 				else {
 					if (assigneeClassName.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_3);
+						query.append(_FINDER_COLUMN_ACN_KTI_ASSIGNEECLASSNAME_3);
 					}
 					else {
-						query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_2);
+						query.append(_FINDER_COLUMN_ACN_KTI_ASSIGNEECLASSNAME_2);
 					}
 				}
 
-				query.append(_FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSPK_2);
+				query.append(_FINDER_COLUMN_ACN_KTI_KALEOTASKID_2);
 
 				String sql = query.toString();
 
@@ -1676,7 +1674,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 					qPos.add(assigneeClassName);
 				}
 
-				qPos.add(assigneeClassPK);
+				qPos.add(kaleoTaskId);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -1688,7 +1686,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ACN_ACP,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ACN_KTI,
 					finderArgs, count);
 
 				closeSession(session);
@@ -1793,10 +1791,10 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	private static final String _FINDER_COLUMN_KALEOTASKID_KALEOTASKID_2 = "kaleoTaskAssignment.kaleoTaskId = ?";
 	private static final String _FINDER_COLUMN_KTI_DA_KALEOTASKID_2 = "kaleoTaskAssignment.kaleoTaskId = ? AND ";
 	private static final String _FINDER_COLUMN_KTI_DA_DEFAULTASSIGNMENT_2 = "kaleoTaskAssignment.defaultAssignment = ?";
-	private static final String _FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_1 = "kaleoTaskAssignment.assigneeClassName IS NULL AND ";
-	private static final String _FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_2 = "kaleoTaskAssignment.assigneeClassName = ? AND ";
-	private static final String _FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSNAME_3 = "(kaleoTaskAssignment.assigneeClassName IS NULL OR kaleoTaskAssignment.assigneeClassName = ?) AND ";
-	private static final String _FINDER_COLUMN_ACN_ACP_ASSIGNEECLASSPK_2 = "kaleoTaskAssignment.assigneeClassPK = ?";
+	private static final String _FINDER_COLUMN_ACN_KTI_ASSIGNEECLASSNAME_1 = "kaleoTaskAssignment.assigneeClassName IS NULL AND ";
+	private static final String _FINDER_COLUMN_ACN_KTI_ASSIGNEECLASSNAME_2 = "kaleoTaskAssignment.assigneeClassName = ? AND ";
+	private static final String _FINDER_COLUMN_ACN_KTI_ASSIGNEECLASSNAME_3 = "(kaleoTaskAssignment.assigneeClassName IS NULL OR kaleoTaskAssignment.assigneeClassName = ?) AND ";
+	private static final String _FINDER_COLUMN_ACN_KTI_KALEOTASKID_2 = "kaleoTaskAssignment.kaleoTaskId = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kaleoTaskAssignment.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No KaleoTaskAssignment exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoTaskAssignment exists with the key {";
