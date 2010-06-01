@@ -14,6 +14,7 @@
 		<field name="parentResourcePrimKey" type="long" />
 		<field name="version" type="int" />
 		<field name="title" type="String">
+			<hint name="display-width">98%</hint>
 			<hint name="max-length">150</hint>
 		</field>
 		<field name="content" type="String">
@@ -22,7 +23,7 @@
 		<field name="description" type="String">
 			<hint-collection name="TEXTAREA" />
 			<hint name="display-height">40</hint>
-			<hint name="display-width">630</hint>
+			<hint name="display-width">98%</hint>
 		</field>
 		<field name="priority" type="int" />
 	</model>
@@ -36,6 +37,7 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="title" type="String">
+			<hint name="display-width">98%</hint>
 			<hint name="max-length">150</hint>
 		</field>
 		<field name="content" type="String">
@@ -44,7 +46,7 @@
 		<field name="description" type="String">
 			<hint-collection name="TEXTAREA" />
 			<hint name="display-height">40</hint>
-			<hint name="display-width">630</hint>
+			<hint name="display-width">98%</hint>
 		</field>
 	</model>
 </model-hints>
