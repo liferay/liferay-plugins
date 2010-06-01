@@ -35,13 +35,13 @@ MailManager mailManager = MailManager.getInstance(request);
 
 		<aui:column columnWidth="80">
 			<div id="contentContainer">
-				<div id="manageFoldersContainer"></div>
+				<div id="manageFoldersContainer" class="aui-helper-hidden"></div>
 
 				<div id="messagesContainer"></div>
 
-				<div id="messageContainer"></div>
+				<div id="messageContainer" class="aui-helper-hidden"></div>
 
-				<div id="composeContainer"></div>
+				<div id="composeContainer" class="aui-helper-hidden"></div>
 			</div>
 		</aui:column>
 	</aui:layout>
