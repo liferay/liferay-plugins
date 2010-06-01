@@ -53,6 +53,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 
 	public void setTaskAssignmentSelector(
 		TaskAssignmentSelector taskAssignmentSelector) {
+
 		_taskAssignmentSelector = taskAssignmentSelector;
 	}
 

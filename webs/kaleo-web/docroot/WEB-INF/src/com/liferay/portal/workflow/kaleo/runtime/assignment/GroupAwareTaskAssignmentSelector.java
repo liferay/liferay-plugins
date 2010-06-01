@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -31,7 +31,8 @@ import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import java.util.List;
 
 /**
- * <a href="GroupAwareTaskAssignmentSelector.java.html"><b><i>View Source</i></b></a>
+ * <a href="GroupAwareTaskAssignmentSelector.java.html"><b><i>View Source</i>
+ * </b></a>
  *
  * @author Michael C. Han
  */
@@ -39,65 +40,73 @@ public class GroupAwareTaskAssignmentSelector
 	implements TaskAssignmentSelector {
 
 	public KaleoTaskAssignment getTaskAssignment(
-			KaleoTask task, ExecutionContext executionContext)
-		throws SystemException, PortalException {
+			KaleoTask kaleoTask, ExecutionContext executionContext)
+		throws PortalException, SystemException {
 
-		KaleoInstanceToken instanceToken =
+		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
 
-		long groupId = instanceToken.getGroupId();
+		long groupId = kaleoInstanceToken.getGroupId();
+
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
-		//for scoping
 		if (group.isLayout()) {
-			group = GroupLocalServiceUtil.getGroup(group.getParentGroupId());			
+			group = GroupLocalServiceUtil.getGroup(group.getParentGroupId());
 		}
 
-		KaleoTaskAssignment defaultTaskAssignment =
-			task.getDefaultKaleoTaskAssignment();
+		KaleoTaskAssignment defaultKaleoTaskAssignment =
+			kaleoTask.getDefaultKaleoTaskAssignment();
 
-		if (isValidAssignment(defaultTaskAssignment, group)) {
-			return defaultTaskAssignment;
+		if (isValidAssignment(defaultKaleoTaskAssignment, group)) {
+			return defaultKaleoTaskAssignment;
 		}
 		else {
-			List<KaleoTaskAssignment> taskAssignments =
-				task.getKaleoTaskAssignments();
+			List<KaleoTaskAssignment> kaleoTaskAssignments =
+				kaleoTask.getKaleoTaskAssignments();
 
-			for (KaleoTaskAssignment taskAssignment : taskAssignments) {
-				if (isValidAssignment(taskAssignment, group)) {
-					return taskAssignment;
+			for (KaleoTaskAssignment kaleoTaskAssignment :
+					kaleoTaskAssignments) {
+
+				if (isValidAssignment(kaleoTaskAssignment, group)) {
+					return kaleoTaskAssignment;
 				}
 			}
 		}
 
 		throw new WorkflowException(
-			"Unable to select a valid assignment for task: " + task);
+			"Unable to select a valid assignment for task " +
+				kaleoTask.getKaleoTaskId());
 	}
 
 	protected boolean isValidAssignment(
-			KaleoTaskAssignment assignment, Group group)
-		throws SystemException, PortalException {
+			KaleoTaskAssignment kaleoTaskAssignment, Group group)
+		throws PortalException, SystemException {
 
-		if (User.class.getName().equals(assignment.getAssigneeClassName())) {
+		String assigneeClassName = kaleoTaskAssignment.getAssigneeClassName();
+
+		if (assigneeClassName.equals(User.class.getName())) {
 			return true;
 		}
 
-		long roleId = assignment.getAssigneeClassPK();
+		long roleId = kaleoTaskAssignment.getAssigneeClassPK();
+
 		Role role = RoleLocalServiceUtil.getRole(roleId);
-		int roleType = role.getType();
 
 		if (role.getType() == RoleConstants.TYPE_REGULAR) {
 			return true;
 		}
+		else if (group.isCommunity() &&
+				 (role.getType() == RoleConstants.TYPE_COMMUNITY)) {
 
-		if (group.isCommunity() && (roleType == RoleConstants.TYPE_COMMUNITY)) {
 			return true;
 		}
 		else if (group.isOrganization() &&
-				 (roleType == RoleConstants.TYPE_ORGANIZATION)) {
+				 (role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
+
 			return true;
 		}
 
 		return false;
 	}
+
 }

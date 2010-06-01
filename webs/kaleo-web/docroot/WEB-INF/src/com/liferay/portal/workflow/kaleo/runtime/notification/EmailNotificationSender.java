@@ -28,7 +28,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,6 +78,35 @@ public class EmailNotificationSender implements NotificationSender {
 		_fromName = fromName;
 	}
 
+	protected void getAssignedRecipients(
+			List<InternetAddress> internetAddresses,
+			ExecutionContext executionContext)
+		throws Exception {
+
+		KaleoTaskInstanceToken kaleoTaskInstanceToken =
+			executionContext.getKaleoTaskInstanceToken();
+
+		if (kaleoTaskInstanceToken == null) {
+			return;
+		}
+
+		String assigneeClassName =
+			kaleoTaskInstanceToken.getAssigneeClassName();
+
+		if (assigneeClassName.equals(User.class.getName())) {
+			getUserEmailAddress(
+				kaleoTaskInstanceToken.getAssigneeClassPK(), internetAddresses);
+		}
+		else {
+			long roleId = kaleoTaskInstanceToken.getAssigneeClassPK();
+
+			Role role = RoleLocalServiceUtil.getRole(roleId);
+
+			getRoleRecipientAddresses(
+				roleId, role.getType(), internetAddresses, executionContext);
+		}
+	}
+
 	protected InternetAddress[] getRecipients(
 			List<KaleoNotificationRecipient> kaleoNotificationRecipients,
 			ExecutionContext executionContext)
@@ -106,15 +134,15 @@ public class EmailNotificationSender implements NotificationSender {
 					String recipientClassName =
 						kaleoNotificationRecipient.getRecipientClassName();
 
-					if (User.class.getName().equals(recipientClassName)) {
+					if (recipientClassName.equals(User.class.getName())) {
 						getUserEmailAddress(
 							kaleoNotificationRecipient.getRecipientClassPK(),
 							internetAddresses);
 					}
 					else {
 						getRoleRecipientAddresses(
-							kaleoNotificationRecipient.getRecipientRoleType(),
 							kaleoNotificationRecipient.getRecipientClassPK(),
+							kaleoNotificationRecipient.getRecipientRoleType(),
 							internetAddresses, executionContext);
 					}
 				}
@@ -125,42 +153,12 @@ public class EmailNotificationSender implements NotificationSender {
 			new InternetAddress[internetAddresses.size()]);
 	}
 
-	protected void getAssignedRecipients(
-			List<InternetAddress> internetAddresses,
-			ExecutionContext executionContext)
-		throws Exception {
-
-		KaleoTaskInstanceToken kaleoTaskInstanceToken =
-			executionContext.getKaleoTaskInstanceToken();
-
-		if (kaleoTaskInstanceToken == null) {
-			return;
-		}
-
-		if (User.class.getName().equals(
-			kaleoTaskInstanceToken.getAssigneeClassName())) {
-
-			getUserEmailAddress(
-				kaleoTaskInstanceToken.getAssigneeClassPK(), internetAddresses);
-		}
-		else {
-			long roleId = kaleoTaskInstanceToken.getAssigneeClassPK();
-			Role role = RoleLocalServiceUtil.getRole(roleId);
-
-			getRoleRecipientAddresses(
-				role.getType(), roleId, internetAddresses, executionContext);
-			
-		}
-	}
-
 	protected void getRoleRecipientAddresses(
-			int roleType, long roleId, 
-			List<InternetAddress> internetAddresses,
+			long roleId, int roleType, List<InternetAddress> internetAddresses,
 			ExecutionContext executionContext)
 		throws Exception {
 
 		if (roleType == RoleConstants.TYPE_REGULAR) {
-
 			List<User> users = UserLocalServiceUtil.getRoleUsers(roleId);
 
 			for (User user : users) {
@@ -188,10 +186,11 @@ public class EmailNotificationSender implements NotificationSender {
 			}
 		}
 	}
-	
+
 	protected void getUserEmailAddress(
 			long userId, List<InternetAddress> internetAddresses)
 		throws Exception {
+
 		User user = UserLocalServiceUtil.getUser(userId);
 
 		InternetAddress internetAddress = new InternetAddress(
@@ -199,7 +198,6 @@ public class EmailNotificationSender implements NotificationSender {
 
 		internetAddresses.add(internetAddress);
 	}
-
 
 	private String _fromAddress;
 	private String _fromName;

@@ -150,6 +150,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					kaleoTaskAssignments) {
 
 				long roleId = kaleoTaskAssignment.getAssigneeClassPK();
+
 				Role role = RoleLocalServiceUtil.getRole(roleId);
 
 				if ((role.getType() == RoleConstants.TYPE_COMMUNITY) ||
@@ -165,7 +166,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					}
 				}
 				else {
-					long[] userIds = UserLocalServiceUtil.getRoleUserIds(roleId);
+					long[] userIds = UserLocalServiceUtil.getRoleUserIds(
+						roleId);
 
 					pooledActors.addAll(userIds);
 				}

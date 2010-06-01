@@ -24,14 +24,14 @@ public enum ExecutionType {
 	ON_ASSIGNMENT("onAssignment"), ON_ENTRY("onEntry"), ON_EXIT("onExit");
 
 	public static ExecutionType parse(String value) {
-		if (ON_ENTRY.getValue().equals(value)) {
+		if (ON_ASSIGNMENT.getValue().equals(value)) {
+			return ON_ASSIGNMENT;
+		}
+		else if (ON_ENTRY.getValue().equals(value)) {
 			return ON_ENTRY;
 		}
 		else if (ON_EXIT.getValue().equals(value)) {
 			return ON_EXIT;
-		}
-		else if (ON_ASSIGNMENT.getValue().equals(value)) {
-			return ON_ASSIGNMENT;
 		}
 		else {
 			throw new IllegalArgumentException("Invalid value " + value);
