@@ -22,6 +22,8 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowInstance;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.WorkflowInstanceAdapter;
@@ -236,6 +238,16 @@ public class DefaultWorkflowEngineImpl
 					"Inactive workflow definition with name " +
 						workflowDefinitionName + " and version " +
 							workflowDefinitionVersion);
+			}
+
+			Group group = GroupLocalServiceUtil.getGroup(
+				serviceContext.getScopeGroupId());
+
+			if (group.isLayout()) {
+				group = GroupLocalServiceUtil.getGroup(
+					group.getParentGroupId());
+
+				serviceContext.setScopeGroupId(group.getGroupId());
 			}
 
 			KaleoInstance kaleoInstance =
