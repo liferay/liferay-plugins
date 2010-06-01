@@ -973,7 +973,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				group.getName(),
 				fromAddress,
 				fromName,
-				company.getVirtualHost(),
+				serviceContext.getPortalURL(),
 				portletName
 			});
 
@@ -1004,7 +1004,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				group.getName(),
 				fromAddress,
 				fromName,
-				company.getVirtualHost(),
+				serviceContext.getPortalURL(),
 				portletName
 			});
 
