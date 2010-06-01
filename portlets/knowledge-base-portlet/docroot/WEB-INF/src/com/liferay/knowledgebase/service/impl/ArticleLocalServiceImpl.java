@@ -855,6 +855,17 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				portletName
 			});
 
+		String articleContent = StringUtil.replace(
+			article.getContent(),
+			new String[] {
+				"href=\"/",
+				"src=\"/"
+			},
+			new String[] {
+				"href=\"" + serviceContext.getPortalURL() + "/",
+				"src=\"" + serviceContext.getPortalURL() + "/"
+			});
+
 		String articleURL = null;
 
 		Layout layout = layoutLocalService.getLayout(serviceContext.getPlid());
@@ -949,6 +960,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		subject = StringUtil.replace(
 			subject,
 			new String[] {
+				"[$ARTICLE_CONTENT$]",
 				"[$ARTICLE_TITLE$]",
 				"[$ARTICLE_URL$]",
 				"[$ARTICLE_USER_ADDRESS$]",
@@ -963,6 +975,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"[$PORTLET_NAME$]"
 			},
 			new String[] {
+				articleContent,
 				article.getTitle(),
 				articleURL,
 				emailAddress,
@@ -980,6 +993,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		body = StringUtil.replace(
 			body,
 			new String[] {
+				"[$ARTICLE_CONTENT$]",
 				"[$ARTICLE_TITLE$]",
 				"[$ARTICLE_URL$]",
 				"[$ARTICLE_USER_ADDRESS$]",
@@ -994,6 +1008,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"[$PORTLET_NAME$]"
 			},
 			new String[] {
+				articleContent,
 				article.getTitle(),
 				articleURL,
 				emailAddress,
