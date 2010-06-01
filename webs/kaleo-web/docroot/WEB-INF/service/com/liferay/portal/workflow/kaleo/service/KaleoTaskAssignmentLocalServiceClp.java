@@ -594,7 +594,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
-		java.lang.String assigneeClassName, long taskId)
+		java.lang.String assigneeClassName, long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(assigneeClassName);
 
@@ -602,7 +602,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 			paramObj0 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj1 = new LongWrapper(taskId);
+		Object paramObj1 = new LongWrapper(kaleoTaskId);
 
 		Object returnObj = null;
 
@@ -655,7 +655,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 	}
 
 	public int getKaleoTaskAssignmentsCount(
-		java.lang.String assigneeClassName, long taskId)
+		java.lang.String assigneeClassName, long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(assigneeClassName);
 
@@ -663,7 +663,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 			paramObj0 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj1 = new LongWrapper(taskId);
+		Object paramObj1 = new LongWrapper(kaleoTaskId);
 
 		Object returnObj = null;
 
