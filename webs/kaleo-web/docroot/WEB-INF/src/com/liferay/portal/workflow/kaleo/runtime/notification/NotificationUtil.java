@@ -16,8 +16,6 @@ package com.liferay.portal.workflow.kaleo.runtime.notification;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
@@ -83,8 +81,5 @@ public class NotificationUtil {
 				notificationMessage, executionContext);
 		}
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		NotificationUtil.class);
 
 }
