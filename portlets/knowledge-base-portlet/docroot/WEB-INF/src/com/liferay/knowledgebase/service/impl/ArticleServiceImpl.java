@@ -367,8 +367,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 					new String[] {
 						"href=\"" + themeDisplay.getURLPortal() + "/",
 						"src=\"" + themeDisplay.getURLPortal() + "/"
-					}
-				);
+					});
 			}
 
 			String author = null;
