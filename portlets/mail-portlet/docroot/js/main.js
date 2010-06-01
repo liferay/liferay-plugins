@@ -59,10 +59,7 @@ AUI().add(
 			loadAccount: function(accountId, inboxFolderId) {
 				var instance = this;
 
-				instance.manageFoldersContainer.hide();
-				instance.messagesContainer.show();
-				instance.messageContainer.hide();
-				instance.composeContainer.hide();
+				instance._displayContainer(instance.messagesContainer);
 
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/password_saved',
@@ -100,8 +97,36 @@ AUI().add(
 				instance.foldersContainer.io.start();
 			},
 
+			loadMessage: function(folderId, messageNumber, orderByField, orderByType, keywords) {
+				var instance = this;
+
+				instance.folderId = folderId;
+				instance.orderByField = orderByField;
+				instance.orderByType = orderByType;
+				instance.keywords = keywords;
+
+				instance.messageContainer.io.set(
+					'data',
+					{
+						folderId: folderId,
+						messageNumber: messageNumber,
+						orderByField: orderByField,
+						orderByType: orderByType,
+						keywords: keywords
+					}
+				);
+
+				instance.messageContainer.io.start();
+			},
+
 			loadMessages: function(folderId, pageNumber, orderByField, orderByType, keywords) {
 				var instance = this;
+
+				instance.folderId = folderId;
+				instance.pageNumber = pageNumber;
+				instance.orderByField = orderByField;
+				instance.orderByType = orderByType;
+				instance.keywords = keywords;
 
 				instance.messagesContainer.io.set(
 					'data',
@@ -153,6 +178,15 @@ AUI().add(
 					}
 				);
 
+				instance.messageContainer.plug(
+					A.Plugin.IO,
+					{
+						autoLoad: false,
+						method: 'POST',
+						uri: themeDisplay.getLayoutURL() + '/-/mail/view_message'
+					}
+				);
+
 				instance.messagesContainer.plug(
 					A.Plugin.IO,
 					{
@@ -176,6 +210,24 @@ AUI().add(
 					'.folders-link'
 				);
 
+				instance.contentContainer.delegate(
+					'click',
+					function(event) {
+						var link = event.currentTarget;
+
+						var folderId = link.getAttribute('data-folderId');
+						var messageNumber = link.getAttribute('data-messageNumber');
+						var orderByField = link.getAttribute('data-orderByField');
+						var orderByType = link.getAttribute('data-orderByType');
+						var keywords = link.getAttribute('data-keywords');
+
+						instance._displayContainer(instance.messageContainer);
+
+						instance.loadMessage(folderId, messageNumber, orderByField, orderByType, keywords);
+					},
+					'.message-link'
+				);
+
 				instance.mailContainer.delegate(
 					'click',
 					function(event) {
@@ -187,10 +239,7 @@ AUI().add(
 						var orderByType = link.getAttribute('data-orderByType');
 						var keywords = link.getAttribute('data-keywords');
 
-						instance.manageFoldersContainer.hide();
-						instance.messagesContainer.show();
-						instance.messageContainer.hide();
-						instance.composeContainer.hide();
+						instance._displayContainer(instance.messagesContainer);
 
 						instance.loadMessages(folderId, pageNumber, orderByField, orderByType, keywords);
 					},
@@ -198,11 +247,23 @@ AUI().add(
 				);
 			},
 
+			_displayContainer: function(container) {
+				var instance = this;
+
+				instance.composeContainer.hide();
+				instance.manageFoldersContainer.hide();
+				instance.messagesContainer.hide();
+				instance.messageContainer.hide();
+
+				container.show();
+			},
+
 			accountId: null,
 			folderId: null,
 			keywords: '',
 			orderByField: 'sentDate',
-			orderByType: 'desc'
+			orderByType: 'desc',
+			pageNumber: 1
 		};
 	},
 	'',

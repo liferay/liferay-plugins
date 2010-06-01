@@ -87,7 +87,7 @@ MailManager mailManager = MailManager.getInstance(request);
 						<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber - 1 %>" href="javascript:;" label="&lt; Newer" />
 					</c:if>
 
-					<%= messagesDisplay.getStartMessageNumber() %> - <%= messagesDisplay.getEndMessageNumber() %>  of <%= messagesDisplay.getMessageCount() %>
+					<%= LanguageUtil.format(pageContext, "x-of-x", new Object[] {messagesDisplay.getStartMessageNumber() + " - " + messagesDisplay.getEndMessageNumber(), String.valueOf(messagesDisplay.getMessageCount())}) %>
 
 					<c:if test="<%= messagesDisplay.getPageNumber() < messagesDisplay.getPageCount() %>">
 						<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber + 1 %>" href="javascript:;" label="Older &gt;" />&nbsp;
@@ -196,7 +196,7 @@ MailManager mailManager = MailManager.getInstance(request);
 					<aui:column columnWidth="5">
 						<aui:input id="message<%= message.getMessageId() %>" label="" messageId="<%= message.getMessageId() %>" name="message" type="checkbox" value="<%= message.getMessageId() %>" />
 					</aui:column>
-					<aui:column columnWidth="95" cssClass="message-link" folderId="<%= folderId %>" keywords="<%= keywords %>" messageNumber="<%= messageNumber %>" orderByField="<%= orderByField %>" orderByType="<%= orderByType %>">
+					<aui:column columnWidth="95" cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
 						<aui:column cssClass="address" columnWidth="25">
 							<%= HtmlUtil.escape(address) %>
 						</aui:column>
@@ -207,14 +207,9 @@ MailManager mailManager = MailManager.getInstance(request);
 							<%= HtmlUtil.escape(date) %>
 						</aui:column>
 						<aui:column cssClass="attachment" columnWidth="5">
-							<c:choose>
-								<c:when test="<%= AttachmentLocalServiceUtil.getAttachments(message.getMessageId()).isEmpty() %>">
-									&nbsp;
-								</c:when>
-								<c:otherwise>
-									<liferay-ui:icon image="../mail/clip" />
-								</c:otherwise>
-							</c:choose>
+							<c:if test="<%= !AttachmentLocalServiceUtil.getAttachments(message.getMessageId()).isEmpty() %>">
+								<liferay-ui:icon image="../mail/clip" />
+							</c:if>
 						</aui:column>
 					</aui:column>
 				</aui:layout>
