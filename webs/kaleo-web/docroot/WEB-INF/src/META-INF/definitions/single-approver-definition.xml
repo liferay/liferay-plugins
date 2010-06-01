@@ -24,23 +24,22 @@
 		<actions>
 			<notification>
 				<name>Review Content Notification</name>
-				<execution-type>onEntry</execution-type>
+				<execution-type>onAssignment</execution-type>
 				<template>You have a new asset waiting for your review in the workflow.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
-				<recipients>
-					<role>
-						<role-type>community</role-type>
-						<name>Content Reviewers</name>
-					</role>
-				</recipients>
 			</notification>
 		</actions>
 		<assignments>
 			<role>
 				<role-type>community</role-type>
-				<name>Content Reviewers</name>
+				<name>Community Content Reviewer</name>
 				<default>true</default>
+			</role>
+			<role>
+				<role-type>organization</role-type>
+				<name>Organization Content Reviewer</name>
+				<default>false</default>
 			</role>
 		</assignments>
 		<transitions>

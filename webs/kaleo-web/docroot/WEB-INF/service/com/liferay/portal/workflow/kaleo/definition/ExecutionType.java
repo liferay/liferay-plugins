@@ -30,6 +30,9 @@ public enum ExecutionType {
 		else if (ON_EXIT.getValue().equals(value)) {
 			return ON_EXIT;
 		}
+		else if (ON_ASSIGNMENT.getValue().equals(value)) {
+			return ON_ASSIGNMENT;
+		}
 		else {
 			throw new IllegalArgumentException("Invalid value " + value);
 		}

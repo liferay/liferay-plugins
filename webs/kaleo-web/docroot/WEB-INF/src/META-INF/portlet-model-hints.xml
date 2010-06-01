@@ -22,7 +22,9 @@
 		<field name="description" type="String">
 			<hint name="max-length">2000</hint>
 		</field>
-		<field name="executionType" type="String" />
+		<field name="executionType" type="String">
+			<hint name="max-length">20</hint>
+		</field>
 		<field name="script" type="String">
 			<hint-collection name="CLOB" />
 		</field>
@@ -194,7 +196,7 @@
 			<hint name="max-length">2000</hint>
 		</field>
 		<field name="executionType" type="String">
-			<hint name="max-length">10</hint>
+			<hint name="max-length">20</hint>
 		</field>
 		<field name="template" type="String">
 			<hint-collection name="CLOB" />

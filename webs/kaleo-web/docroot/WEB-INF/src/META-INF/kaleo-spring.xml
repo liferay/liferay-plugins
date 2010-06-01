@@ -96,6 +96,9 @@
 						<property name="dueDateCalculator">
 							<bean class="com.liferay.portal.workflow.kaleo.runtime.calendar.DefaultDueDateCalculator" />
 						</property>
+						<property name="taskAssignmentSelector">
+							<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.GroupAwareTaskAssignmentSelector" />
+						</property>
 					</bean>
 				</entry>
 			</map>

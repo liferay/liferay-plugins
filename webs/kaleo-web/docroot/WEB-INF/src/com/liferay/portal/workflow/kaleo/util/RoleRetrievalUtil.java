@@ -82,7 +82,7 @@ public class RoleRetrievalUtil {
 		if (roleType.equals(RoleConstants.TYPE_COMMUNITY_LABEL)) {
 			return RoleConstants.TYPE_COMMUNITY;
 		}
-		else if (roleType.equals(RoleConstants.TYPE_ORGANIZATION)) {
+		else if (roleType.equals(RoleConstants.TYPE_ORGANIZATION_LABEL)) {
 			return RoleConstants.TYPE_ORGANIZATION;
 		}
 		else {

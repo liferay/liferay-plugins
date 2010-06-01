@@ -11,7 +11,7 @@ create table Kaleo_KaleoAction (
 	kaleoNodeName VARCHAR(200) null,
 	name VARCHAR(200) null,
 	description VARCHAR(2000) null,
-	executionType VARCHAR(75) null,
+	executionType VARCHAR(20) null,
 	script TEXT null,
 	scriptLanguage VARCHAR(75) null,
 	priority INTEGER
@@ -130,7 +130,7 @@ create table Kaleo_KaleoNotification (
 	kaleoNodeName VARCHAR(200) null,
 	name VARCHAR(200) null,
 	description VARCHAR(2000) null,
-	executionType VARCHAR(10) null,
+	executionType VARCHAR(20) null,
 	template TEXT null,
 	templateLanguage VARCHAR(75) null,
 	notificationTypes VARCHAR(25) null

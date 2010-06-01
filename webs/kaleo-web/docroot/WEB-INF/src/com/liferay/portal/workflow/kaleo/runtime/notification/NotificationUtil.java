@@ -73,17 +73,6 @@ public class NotificationUtil {
 				getKaleoNotificationRecipients(
 					kaleoNotification.getKaleoNotificationId());
 
-		if (kaleoNotificationRecipient.isEmpty()) {
-			if (_log.isInfoEnabled()) {
-				_log.info(
-					"No recipients found to notify with message " +
-						kaleoNotification.getName() + " " +
-							notificationMessage);
-			}
-
-			return;
-		}
-
 		for (String notificationType : notificationTypes) {
 			NotificationSender notificationSender =
 				NotificationSenderFactory.getNotificationSender(

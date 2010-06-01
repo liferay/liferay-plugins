@@ -29,6 +29,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorUtil;
+import com.liferay.portal.workflow.kaleo.runtime.assignment.TaskAssignmentSelector;
 import com.liferay.portal.workflow.kaleo.runtime.calendar.DueDateCalculator;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
 import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationUtil;
@@ -48,6 +49,11 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 
 	public void setDueDateCalculator(DueDateCalculator dueDateCalculator) {
 		_dueDateCalculator = dueDateCalculator;
+	}
+
+	public void setTaskAssignmentSelector(
+		TaskAssignmentSelector taskAssignmentSelector) {
+		_taskAssignmentSelector = taskAssignmentSelector;
 	}
 
 	protected void doEnter(
@@ -76,7 +82,8 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 		}
 
 		KaleoTaskAssignment kaleoTaskAssignment =
-			kaleoTask.getDefaultKaleoTaskAssignment();
+			_taskAssignmentSelector.getTaskAssignment(
+				kaleoTask, executionContext);
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
 			kaleoTaskInstanceTokenLocalService.addKaleoTaskInstanceToken(
@@ -131,5 +138,6 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 	}
 
 	private DueDateCalculator _dueDateCalculator;
+	private TaskAssignmentSelector _taskAssignmentSelector;
 
 }
