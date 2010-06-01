@@ -115,39 +115,11 @@ MailManager mailManager = MailManager.getInstance(request);
 		</aui:column>
 	</aui:layout>
 
-	<c:choose>
-		<c:when test="<%= Validator.isNull(message.getBody()) %>">
-			<div id="messageContentContainer"></div>
-		</c:when>
-		<c:otherwise>
-			<%= message.getBody() %>
-
-			<c:if test="<%= !attachments.isEmpty() %>">
-				<hr />
-
-				<ul>
-
-					<%
-					for (Attachment attachment : attachments) {
-					%>
-
-						<liferay-portlet:resourceURL var="attachmentURL">
-							<liferay-portlet:param name="jspPage" value="/attachment.jsp" />
-							<liferay-portlet:param name="attachmentId" value="<%= String.valueOf(attachment.getAttachmentId()) %>" />
-						</liferay-portlet:resourceURL>
-
-						<li>
-							<aui:a href="<%= attachmentURL %>"><%= attachment.getFileName() %> - <%= attachment.getSize() %></aui:a>
-						</li>
-
-					<%
-					}
-					%>
-
-				</ul>
-			</c:if>
-		</c:otherwise>
-	</c:choose>
+	<div id="messageContentContainer">
+		<c:if test="<%= Validator.isNotNull(message.getBody()) %>">
+			<liferay-util:include page="/view_message_content.jsp" portletId="<%= portletDisplay.getId() %>" />
+		</c:if>
+	</div>
 
 	<aui:layout>
 		<aui:column>
