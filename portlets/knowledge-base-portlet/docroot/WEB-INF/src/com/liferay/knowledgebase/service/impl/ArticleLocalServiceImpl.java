@@ -718,6 +718,162 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		return dynamicQuery;
 	}
 
+	protected String getEmailArticleAttachments(Article article)
+		throws PortalException, SystemException {
+
+		String[] fileNames = article.getAttachmentsFileNames();
+
+		StringBundler sb = new StringBundler(fileNames.length * 5);
+
+		for (String fileName : fileNames) {
+			long kb = dlService.getFileSize(
+				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+
+			sb.append(FileUtil.getShortFileName(fileName));
+			sb.append(" (");
+			sb.append(TextFormatter.formatKB(kb, LocaleUtil.getDefault()));
+			sb.append("k)");
+			sb.append("<br />");
+		}
+
+		return sb.toString();
+	}
+
+	protected String getEmailArticleContent(
+		Article article, ServiceContext serviceContext) {
+
+		return StringUtil.replace(
+			article.getContent(),
+			new String[] {
+				"href=\"/",
+				"src=\"/"
+			},
+			new String[] {
+				"href=\"" + serviceContext.getPortalURL() + "/",
+				"src=\"" + serviceContext.getPortalURL() + "/"
+			});
+	}
+
+	protected String getEmailArticleContentDiffs(
+			Article article, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		String articleContentDiffs = StringPool.BLANK;
+
+		String source = StringPool.BLANK;
+		String target = article.getContent();
+
+		if (article.getVersion() > ArticleConstants.DEFAULT_VERSION) {
+			Article previousArticle = articlePersistence.findByR_V(
+				article.getResourcePrimKey(), article.getVersion() - 1);
+
+			source = previousArticle.getContent();
+		}
+
+		try {
+			articleContentDiffs = DiffHtmlUtil.diff(
+				new UnsyncStringReader(source), new UnsyncStringReader(target));
+		}
+		catch (Exception e) {
+			long resourcePrimKey = article.getResourcePrimKey();
+			int version = article.getVersion();
+
+			_log.error(
+				"Unable to process diff for {resourcePrimKey=" +
+					resourcePrimKey + ", version=" + version + "}");
+		}
+
+		articleContentDiffs = StringUtil.replace(
+			articleContentDiffs,
+			new String[] {
+				"changeType=\"diff-added-image\"",
+				"changeType=\"diff-changed-image\"",
+				"changeType=\"diff-removed-image\"",
+				"class=\"diff-html-added\"",
+				"class=\"diff-html-changed\"",
+				"class=\"diff-html-removed\"",
+				"href=\"/",
+				"src=\"/"
+			},
+			new String[] {
+				"style=\"border: 10px solid #CFC;\"",
+				"style=\"border: 10px solid #C6C6FD;\"",
+				"style=\"border: 10px solid #FDC6C6;\"",
+				"style=\"background-color: #CFC;\"",
+				"style=\"background-color: #C6C6FD\"",
+				"style=\"background-color: #FDC6C6; " +
+					"text-decoration: line-through;\"",
+				"href=\"" + serviceContext.getPortalURL() + "/",
+				"src=\"" + serviceContext.getPortalURL() + "/"
+			});
+
+		int i = articleContentDiffs.indexOf("<img ");
+
+		while (i != -1) {
+			String oldImg = articleContentDiffs.substring(
+				i, articleContentDiffs.indexOf("/>", i) + 2);
+
+			int x = oldImg.indexOf("style=\"");
+			int y = oldImg.indexOf("style=\"", x + 7);
+			int z = oldImg.indexOf(StringPool.QUOTE, y + 7);
+
+			if (y != -1) {
+				String style = oldImg.substring(y, z + 1);
+
+				String newImg = StringUtil.replace(
+					oldImg,
+					new String[] {
+						style,
+						"style=\""
+					},
+					new String[] {
+						StringPool.BLANK,
+						style.substring(0, style.length() - 1)
+					});
+
+				articleContentDiffs = StringUtil.replace(
+					articleContentDiffs, oldImg, newImg);
+			}
+
+			i = articleContentDiffs.indexOf("<img ", i + 4);
+		}
+
+		return articleContentDiffs;
+	}
+
+	protected String getEmailArticleURL(
+			Article article, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		String articleURL = null;
+
+		Layout layout = layoutLocalService.getLayout(serviceContext.getPlid());
+		LayoutTypePortlet layoutTypePortlet =
+			(LayoutTypePortlet)layout.getLayoutType();
+
+		if (layoutTypePortlet.hasDefaultScopePortletId(
+				article.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+
+			String namespace = PortalUtil.getPortletNamespace(
+				PortletKeys.KNOWLEDGE_BASE_ADMIN);
+
+			articleURL = HttpUtil.setParameter(
+				serviceContext.getLayoutFullURL(), "p_p_id",
+				PortletKeys.KNOWLEDGE_BASE_ADMIN);
+			articleURL = HttpUtil.setParameter(
+				articleURL, namespace + "jspPage", "/admin/view_article.jsp");
+			articleURL = HttpUtil.setParameter(
+				articleURL, namespace + "resourcePrimKey",
+				article.getResourcePrimKey());
+		}
+
+		if (articleURL == null) {
+			articleURL = serviceContext.getLayoutFullURL();
+		}
+
+		return articleURL;
+	}
+
 	protected Long[] getGroupIds(long parentGroupId) throws SystemException {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			Group.class, "group", PortalClassLoaderUtil.getClassLoader());
@@ -859,140 +1015,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				portletName
 			});
 
-		String articleContent = StringUtil.replace(
-			article.getContent(),
-			new String[] {
-				"href=\"/",
-				"src=\"/"
-			},
-			new String[] {
-				"href=\"" + serviceContext.getPortalURL() + "/",
-				"src=\"" + serviceContext.getPortalURL() + "/"
-			});
-
-		String articleContentDiffs = StringPool.BLANK;
-
-		String source = StringPool.BLANK;
-		String target = article.getContent();
-
-		if (article.getVersion() > ArticleConstants.DEFAULT_VERSION) {
-			Article previousArticle = articlePersistence.findByR_V(
-				article.getResourcePrimKey(), article.getVersion() - 1);
-
-			source = previousArticle.getContent();
-		}
-
-		try {
-			articleContentDiffs = DiffHtmlUtil.diff(
-				new UnsyncStringReader(source), new UnsyncStringReader(target));
-		}
-		catch (Exception e) {
-			long resourcePrimKey = article.getResourcePrimKey();
-			int version = article.getVersion();
-
-			_log.error(
-				"Unable to process diff for {resourcePrimKey=" +
-					resourcePrimKey + ", version=" + version + "}");
-		}
-
-		articleContentDiffs = StringUtil.replace(
-			articleContentDiffs,
-			new String[] {
-				"changeType=\"diff-added-image\"",
-				"changeType=\"diff-changed-image\"",
-				"changeType=\"diff-removed-image\"",
-				"class=\"diff-html-added\"",
-				"class=\"diff-html-changed\"",
-				"class=\"diff-html-removed\"",
-				"href=\"/",
-				"src=\"/"
-			},
-			new String[] {
-				"style=\"border: 10px solid #CFC;\"",
-				"style=\"border: 10px solid #C6C6FD;\"",
-				"style=\"border: 10px solid #FDC6C6;\"",
-				"style=\"background-color: #CFC;\"",
-				"style=\"background-color: #C6C6FD\"",
-				"style=\"background-color: #FDC6C6; " +
-					"text-decoration: line-through;\"",
-				"href=\"" + serviceContext.getPortalURL() + "/",
-				"src=\"" + serviceContext.getPortalURL() + "/"
-			});
-
-		int i = articleContentDiffs.indexOf("<img ");
-
-		while (i != -1) {
-			String oldImg = articleContentDiffs.substring(
-				i, articleContentDiffs.indexOf("/>", i) + 2);
-
-			int x = oldImg.indexOf("style=\"");
-			int y = oldImg.indexOf("style=\"", x + 7);
-			int z = oldImg.indexOf(StringPool.QUOTE, y + 7);
-
-			if (y != -1) {
-				String style = oldImg.substring(y, z + 1);
-
-				String newImg = StringUtil.replace(
-					oldImg,
-					new String[] {
-						style,
-						"style=\""
-					},
-					new String[] {
-						StringPool.BLANK,
-						style.substring(0, style.length() - 1)
-					});
-
-				articleContentDiffs = StringUtil.replace(
-					articleContentDiffs, oldImg, newImg);
-			}
-
-			i = articleContentDiffs.indexOf("<img ", i + 4);
-		}
-
-		String articleAttachments = null;
-
-		String[] fileNames = article.getAttachmentsFileNames();
-		StringBundler sb = new StringBundler(fileNames.length * 5);
-
-		for (String fileName : fileNames) {
-			long kb = dlService.getFileSize(
-				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
-
-			sb.append(FileUtil.getShortFileName(fileName));
-			sb.append(" (");
-			sb.append(TextFormatter.formatKB(kb, LocaleUtil.getDefault()));
-			sb.append("k)");
-			sb.append("<br />");
-		}
-
-		articleAttachments = sb.toString();
-
-		String articleURL = null;
-
-		Layout layout = layoutLocalService.getLayout(serviceContext.getPlid());
-		LayoutTypePortlet layoutTypePortlet =
-			(LayoutTypePortlet)layout.getLayoutType();
-
-		if (layoutTypePortlet.hasDefaultScopePortletId(
-				article.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-
-			String namespace = PortalUtil.getPortletNamespace(
-				PortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-			articleURL = HttpUtil.setParameter(
-				serviceContext.getLayoutFullURL(), "p_p_id",
-				PortletKeys.KNOWLEDGE_BASE_ADMIN);
-			articleURL = HttpUtil.setParameter(
-				articleURL, namespace + "jspPage", "/admin/view_article.jsp");
-			articleURL = HttpUtil.setParameter(
-				articleURL, namespace + "resourcePrimKey",
-				article.getResourcePrimKey());
-		}
-
-		if (articleURL == null) {
-			articleURL = serviceContext.getLayoutFullURL();
-		}
+		String articleAttachments = getEmailArticleAttachments(article);
+		String articleContent = getEmailArticleContent(article, serviceContext);
+		String articleContentDiffs = getEmailArticleContentDiffs(
+			article, serviceContext);
+		String articleURL = getEmailArticleURL(article, serviceContext);
 
 		String subject = null;
 		String body = null;
