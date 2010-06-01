@@ -48,6 +48,11 @@ public class GroupAwareTaskAssignmentSelector
 		long groupId = instanceToken.getGroupId();
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
+		//for scoping
+		if (group.isLayout()) {
+			group = GroupLocalServiceUtil.getGroup(group.getParentGroupId());			
+		}
+
 		KaleoTaskAssignment defaultTaskAssignment =
 			task.getDefaultKaleoTaskAssignment();
 
