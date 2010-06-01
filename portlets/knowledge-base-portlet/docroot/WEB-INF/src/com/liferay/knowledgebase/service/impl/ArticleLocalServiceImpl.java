@@ -52,6 +52,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -68,6 +69,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
+import com.liferay.util.TextFormatter;
 import com.liferay.util.portlet.PortletProps;
 
 import java.io.IOException;
@@ -948,6 +950,24 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			i = articleContentDiffs.indexOf("<img ", i + 4);
 		}
 
+		String articleAttachments = null;
+
+		String[] fileNames = article.getAttachmentsFileNames();
+		StringBundler sb = new StringBundler(fileNames.length * 5);
+
+		for (String fileName : fileNames) {
+			long kb = dlService.getFileSize(
+				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+
+			sb.append(FileUtil.getShortFileName(fileName));
+			sb.append(" (");
+			sb.append(TextFormatter.formatKB(kb, LocaleUtil.getDefault()));
+			sb.append("k)");
+			sb.append("<br />");
+		}
+
+		articleAttachments = sb.toString();
+
 		String articleURL = null;
 
 		Layout layout = layoutLocalService.getLayout(serviceContext.getPlid());
@@ -1042,6 +1062,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		subject = StringUtil.replace(
 			subject,
 			new String[] {
+				"[$ARTICLE_ATTACHMENTS$]",
 				"[$ARTICLE_CONTENT$]",
 				"[$ARTICLE_CONTENT_DIFFS$]",
 				"[$ARTICLE_TITLE$]",
@@ -1058,6 +1079,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"[$PORTLET_NAME$]"
 			},
 			new String[] {
+				articleAttachments,
 				articleContent,
 				articleContentDiffs,
 				article.getTitle(),
@@ -1077,6 +1099,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		body = StringUtil.replace(
 			body,
 			new String[] {
+				"[$ARTICLE_ATTACHMENTS$]",
 				"[$ARTICLE_CONTENT$]",
 				"[$ARTICLE_CONTENT_DIFFS$]",
 				"[$ARTICLE_TITLE$]",
@@ -1093,6 +1116,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"[$PORTLET_NAME$]"
 			},
 			new String[] {
+				articleAttachments,
 				articleContent,
 				articleContentDiffs,
 				article.getTitle(),
