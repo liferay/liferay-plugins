@@ -48,6 +48,35 @@ AUI().add(
 				).render();
 			},
 
+			deleteMessages: function(messageIds) {
+				var instance = this;
+
+				instance.setStatus('info', Liferay.Language.get('deleting-messages'));
+
+				A.io.request(
+					themeDisplay.getLayoutURL() + '/-/mail/delete_messages',
+					{
+						data: {messageIds: messageIds},
+						dataType: 'json',
+						method: 'POST',
+						on: {
+							failure: function (event, id, obj) {
+								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
+							},
+							success: function (event, id, obj) {
+								var results = this.get('responseData');
+
+								instance.setStatus(results.status, results.message);
+
+								if (results.status == 'success') {
+									instance.loadMessages(instance.folderId, instance.pageNumber, instance.orderByField, instance.orderByType, instance.keywords);
+								}
+							}
+						}
+					}
+				);
+			},
+
 			loadAccounts: function(accountId) {
 				var instance = this;
 
@@ -105,6 +134,8 @@ AUI().add(
 				instance.orderByType = orderByType;
 				instance.keywords = keywords;
 
+				instance._displayContainer(instance.messageContainer);
+
 				instance.messageContainer.io.set(
 					'data',
 					{
@@ -127,6 +158,8 @@ AUI().add(
 				instance.orderByField = orderByField;
 				instance.orderByType = orderByType;
 				instance.keywords = keywords;
+
+				instance._displayContainer(instance.messagesContainer);
 
 				instance.messagesContainer.io.set(
 					'data',
@@ -221,8 +254,6 @@ AUI().add(
 						var orderByType = link.getAttribute('data-orderByType');
 						var keywords = link.getAttribute('data-keywords');
 
-						instance._displayContainer(instance.messageContainer);
-
 						instance.loadMessage(folderId, messageNumber, orderByField, orderByType, keywords);
 					},
 					'.message-link'
@@ -239,11 +270,55 @@ AUI().add(
 						var orderByType = link.getAttribute('data-orderByType');
 						var keywords = link.getAttribute('data-keywords');
 
-						instance._displayContainer(instance.messagesContainer);
-
 						instance.loadMessages(folderId, pageNumber, orderByField, orderByType, keywords);
 					},
 					'.messages-link'
+				);
+
+				instance.messageContainer.delegate(
+					'click',
+					function(event) {
+						var button = event.currentTarget.one('input[type="button"]');
+
+						var messageId = button.getAttribute('data-messageId');
+
+						instance.deleteMessages([messageId]);
+					},
+					'.delete-message'
+				);
+
+				instance.messagesContainer.delegate(
+					'click',
+					function(event) {
+						var messageIds = instance._getSelectedMessageIds();
+
+						instance.deleteMessages(messageIds);
+					},
+					'.delete-messages'
+				);
+
+				instance.messagesContainer.delegate(
+					'click',
+					function(event) {
+						instance.messagesContainer.all('input[type=checkbox]').each(
+							function(item, index, collection) {
+								item.set('checked', true);
+							}
+						);
+					},
+					'.select-all'
+				);
+
+				instance.messagesContainer.delegate(
+					'click',
+					function(event) {
+						instance.messagesContainer.all('input[type=checkbox]').each(
+							function(item, index, collection) {
+								item.set('checked', false);
+							}
+						);
+					},
+					'.select-none'
 				);
 			},
 
@@ -256,6 +331,24 @@ AUI().add(
 				instance.messageContainer.hide();
 
 				container.show();
+			},
+
+			_getSelectedMessageIds: function() {
+				var instance = this;
+
+				var messageIds = [];
+
+				instance.messagesContainer.all('input[type=checkbox]').each(
+					function(item, index, collection) {
+						var messageId = item.getAttribute('messageId');
+
+						if (messageId && item.get('checked')) {
+							messageIds.push(messageId);
+						}
+					}
+				);
+
+				return messageIds;
 			},
 
 			accountId: null,
