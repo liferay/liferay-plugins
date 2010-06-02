@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
@@ -287,25 +289,7 @@ public class LiferayActivityService implements ActivityService {
 			SocialActivityLocalServiceUtil.getUserActivities(userId, 0,  20);
 
 		for (SocialActivity socialActivity : socialActivities) {
-			Activity activity = null;
-
-			if (socialActivity.getClassName().equals(
-					Activity.class.getName())) {
-
-				activity = getExternalActivity(socialActivity);
-			}
-			else {
-				activity = new ActivityImpl(
-					String.valueOf(socialActivity.getClassPK()),
-					String.valueOf(socialActivity.getUserId()));
-
-				SocialActivityFeedEntry socialActivityFeedEntry =
-					SocialActivityInterpreterLocalServiceUtil.interpret(
-						socialActivity, themeDisplay);
-
-				activity.setBody(socialActivityFeedEntry.getBody());
-				activity.setTitle(socialActivityFeedEntry.getTitle());
-			}
+			Activity activity = getActivity(themeDisplay, socialActivity);
 
 			activities.add(activity);
 		}
@@ -335,6 +319,14 @@ public class LiferayActivityService implements ActivityService {
 
 			activity.setBody(socialActivityFeedEntry.getBody());
 			activity.setTitle(socialActivityFeedEntry.getTitle());
+
+			String url = socialActivityFeedEntry.getLink();
+
+			if (Validator.isNull(url)) {
+				url = StringPool.BLANK;
+			}
+
+			activity.setUrl(url);
 		}
 
 		return activity;
