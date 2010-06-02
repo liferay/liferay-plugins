@@ -39,10 +39,14 @@ MailManager mailManager = MailManager.getInstance(request);
 		messageDisplay = mailManager.getMessageDisplay(folderId, messageNumber, orderByField, orderByType, keywords);
 	}
 
-	List<Attachment> attachments = messageDisplay.getAttachments();
+	Message message = messageDisplay.getMessage();
 	%>
 
 	<%= messageDisplay.getMessage().getBody() %>
+
+	<%
+	List<Attachment> attachments = messageDisplay.getAttachments();
+	%>
 
 	<c:if test="<%= !attachments.isEmpty() %>">
 		<hr />

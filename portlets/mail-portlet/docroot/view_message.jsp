@@ -33,10 +33,9 @@ MailManager mailManager = MailManager.getInstance(request);
 	MessageDisplay messageDisplay = mailManager.getMessageDisplay(folderId, messageNumber, orderByField, orderByType, keywords);
 
 	Message message = messageDisplay.getMessage();
-	List<Attachment> attachments = messageDisplay.getAttachments();
 	int messageCount = messageDisplay.getMessageCount();
 
-	int pageNumber = (int)(Math.ceil(messageNumber / (double) messagesPerPage));
+	int pageNumber = (int)(Math.ceil(messageNumber / (double)messagesPerPage));
 	%>
 
 	<aui:layout>
@@ -52,7 +51,7 @@ MailManager mailManager = MailManager.getInstance(request);
 			}
 			%>
 
-			<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" href="javascript:;" label="<%= LanguageUtil.format(pageContext, "back-to-x", folderName) %>" />
+			<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" href="javascript:;" label='<%= LanguageUtil.format(pageContext, "back-to-x", folderName) %>' />
 		</aui:column>
 		<aui:column>
 			<aui:button cssClass="delete-message" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" value="delete" />
@@ -62,7 +61,7 @@ MailManager mailManager = MailManager.getInstance(request);
 				<aui:a cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber - 1 %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" href="javascript:;">&lt; <liferay-ui:message key="newer" /></aui:a>
 			</c:if>
 
-			<liferay-ui:message key="x-of-x" arguments='<%= new Object[] {String.valueOf(messageNumber), String.valueOf(messageCount)} %>' />
+			<liferay-ui:message key="x-of-x" arguments='<%= new Object[] {messageNumber, messageCount} %>' />
 
 			<c:if test="<%= messageNumber < messageCount %>">
 				<aui:a cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber + 1 %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" href="javascript:;"><liferay-ui:message key="older" /> &gt;</aui:a>
@@ -123,13 +122,13 @@ MailManager mailManager = MailManager.getInstance(request);
 
 	<aui:layout>
 		<aui:column>
-			<aui:a href="javascript:;" cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>"><liferay-ui:message key="reply" /></aui:a>
+			<aui:a cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;"><liferay-ui:message key="reply" /></aui:a>
 		</aui:column>
 		<aui:column>
-			<aui:a href="javascript:;" cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>"><liferay-ui:message key="reply-all" /></aui:a>
+			<aui:a cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;"><liferay-ui:message key="reply-all" /></aui:a>
 		</aui:column>
 		<aui:column>
-			<aui:a href="javascript:;" cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>"><liferay-ui:message key="forward" /></aui:a>
+			<aui:a cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;"><liferay-ui:message key="forward" /></aui:a>
 		</aui:column>
 	</aui:layout>
 
