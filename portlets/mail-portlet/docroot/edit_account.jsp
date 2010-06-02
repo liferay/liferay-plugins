@@ -24,8 +24,14 @@ MailManager mailManager = MailManager.getInstance(request);
 Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 %>
 
+<aui:layout cssClass="mail-status" />
+
 <aui:form name="fm" onSubmit="event.preventDefault();">
 	<aui:input name="accountId" type="hidden" value="<%= mailAccount.getAccountId() %>" />
+	<aui:input name="signature" type="hidden" value="<%= mailAccount.getSignature() %>" />
+	<aui:input name="useSignature" type="hidden" value="<%= mailAccount.getUseSignature() %>" />
+	<aui:input name="folderPrefix" type="hidden" value="<%= mailAccount.getFolderPrefix() %>" />
+	<aui:input name="defaultSender" type="hidden" value="<%= mailAccount.getDefaultSender() %>" />
 
 	<aui:input name="personalName" value="<%= mailAccount.getPersonalName() %>" />
 
@@ -33,29 +39,14 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 
 	<aui:input name="savePassword" type="checkbox" value="<%= mailAccount.isSavePassword() %>" />
 
-	<aui:input name="signature" type="hidden" value="<%= mailAccount.getSignature() %>" />
-
-	<aui:input name="useSignature" type="hidden" value="<%= mailAccount.getUseSignature() %>" />
-
-	<aui:input name="folderPrefix" type="hidden" value="<%= mailAccount.getFolderPrefix() %>" />
-
-	<aui:input name="defaultSender" type="hidden" value="<%= mailAccount.getDefaultSender() %>" />
-
-	<aui:layout>
-		<aui:column>
-			<aui:button name="updateAccount" type="submit" value="update-account" />
-		</aui:column>
-		<aui:column>
-			<aui:button cssClass="close-edit-account" name="cancel" value="cancel" />
-		</aui:column>
-	</aui:layout>
-
-	<aui:a href="javascript:;" onClick='<%= "Liferay.Mail.deleteAccount(" + accountId + ");" %>'><liferay-ui:message key="delete-account" /></aui:a>
+	<aui:button-row>
+		<aui:button name="updateAccount" type="submit" value="update-account" />
+	</aui:button-row>
 </aui:form>
 
-<aui:script>
-	var A = AUI();
+<aui:a cssClass="delete-account" href="javascript:;"><liferay-ui:message key="delete-account" /></aui:a>
 
+<aui:script use="aui-io">
 	var form = A.one('#<portlet:namespace />fm');
 
 	form.on(
@@ -69,7 +60,39 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 					form: {id: form.getDOM()},
 					dataType: 'json',
 					on: {
-						failure: function (event, id, obj) {
+						failure: function(event, id, obj) {
+							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
+						},
+						success: function (event, id, obj) {
+							var results = this.get('responseData');
+
+							Liferay.Mail.setStatus(results.status, results.message);
+
+							A.DialogManager.closeByChild(form);
+						}
+					}
+				}
+			);
+		}
+	);
+
+	A.one('.mail-dialog .delete-account').on(
+		'click',
+		function(event) {
+			if (!confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this-account" />')) {
+				return;
+			}
+
+			Liferay.Mail.setStatus('info', 'deleting-account');
+
+			A.io.request(
+				themeDisplay.getLayoutURL() + '/-/mail/delete_account',
+				{
+					data: {accountId: <%= accountId %>},
+					dataType: 'json',
+					method: 'POST',
+					on: {
+						failure: function(event, id, obj) {
 							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 						},
 						success: function (event, id, obj) {
@@ -78,9 +101,9 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 							Liferay.Mail.setStatus(results.status, results.message);
 
 							if (results.status == 'success') {
+								Liferay.Mail.reset();
 
-								// Close update window
-
+								A.DialogManager.closeByChild(form);
 							}
 						}
 					}

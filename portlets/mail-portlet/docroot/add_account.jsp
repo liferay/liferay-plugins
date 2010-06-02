@@ -66,99 +66,86 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 			<aui:layout cssClass="mail-status" />
 
 			<aui:form cssClass="account-form" name='<%= "fm" + (i + 1) %>' onSubmit="event.preventDefault();">
-				<aui:fieldset>
-					<liferay-ui:message key="<%= descriptionLanguageKey %>" />
+				<aui:input name="personalName" type="hidden" value="<%= user.getFullName() %>" />
+				<aui:input name="protocol" type="hidden" value="<%= protocol %>" />
+				<aui:input name="signature" type="hidden" />
+				<aui:input name="useSignature" type="hidden" value="false" />
+				<aui:input name="folderPrefix" type="hidden" value="<%= folderPrefix %>" />
+				<aui:input name="defaultSender" type="hidden" value="false" />
+				<aui:input name="useLocalPartAsLogin" type="hidden" value="<%= useLocalPartAsLogin %>" />
 
-					<aui:fieldset label="account-settings">
-						<aui:input name="address" value="<%= address %>" />
+				<c:if test="<%= hideSettings %>">
+					<aui:input name="incomingHostName" type="hidden" value="<%= incomingHostName %>" />
+					<aui:input name="incomingPort" type="hidden" value="<%= incomingPort %>" />
+					<aui:input name="incomingSecure" type="hidden" value="<%= incomingSecure %>" />
+					<aui:input name="outgoingHostName" type="hidden" value="<%= outgoingHostName %>" />
+					<aui:input name="outgoingPort" type="hidden" value="<%= outgoingPort %>" />
+					<aui:input name="outgoingSecure" type="hidden" value="<%= outgoingSecure %>" />
+				</c:if>
 
-						<c:choose>
-							<c:when test="<%= !useLocalPartAsLogin %>">
-								<aui:input name="login" />
-							</c:when>
-							<c:otherwise>
-								<aui:input name="login" type="hidden" />
-							</c:otherwise>
-						</c:choose>
+				<c:if test="<%= useLocalPartAsLogin %>">
+					<aui:input name="login" type="hidden" />
+				</c:if>
 
-						<aui:input name="password" type="password" />
+				<liferay-ui:message key="<%= descriptionLanguageKey %>" />
 
-						<aui:input name="savePassword" type="checkbox" value="false" />
+				<aui:fieldset label="account-settings">
+					<aui:input name="address" value="<%= address %>" />
+
+					<c:if test="<%= !useLocalPartAsLogin %>">
+						<aui:input name="login" />
+					</c:if>
+
+					<aui:input name="password" type="password" />
+
+					<aui:input name="savePassword" type="checkbox" value="false" />
+				</aui:fieldset>
+
+				<c:if test="<%= !hideSettings %>">
+					<aui:fieldset label="incoming-settings">
+						<aui:input name="incomingHostName" />
+
+						<aui:select name="incomingPort">
+
+							<%
+							for (int curIncomingPort : PortletPropsValues.INCOMING_PORTS) {
+							%>
+
+								<aui:option selected="<%= incomingPort == curIncomingPort %>" value="<%= curIncomingPort %>"><%= curIncomingPort %></aui:option>
+
+							<%
+							}
+							%>
+
+						</aui:select>
+
+						<aui:input label="use-secure-incoming-connection" name="incomingSecure" type="checkbox" />
 					</aui:fieldset>
 
-					<c:choose>
-						<c:when test="<%= hideSettings %>">
-							<aui:input name="incomingHostName" type="hidden" value="<%= incomingHostName %>" />
+					<aui:fieldset label="outgoing-settings">
+						<aui:input label="outgoing-smtp-server" name="outgoingHostName" />
 
-							<aui:input name="incomingPort" type="hidden" value="<%= incomingPort %>" />
+						<aui:select name="outgoingPort">
 
-							<aui:input name="incomingSecure" type="hidden" value="<%= incomingSecure %>" />
+							<%
+							for (int curOutgoingPort : PortletPropsValues.OUTGOING_PORTS) {
+							%>
 
-							<aui:input name="outgoingHostName" type="hidden" value="<%= outgoingHostName %>" />
+								<aui:option selected="<%= outgoingPort == curOutgoingPort %>" value="<%= curOutgoingPort %>"><%= curOutgoingPort %></aui:option>
 
-							<aui:input name="outgoingPort" type="hidden" value="<%= outgoingPort %>" />
+							<%
+							}
+							%>
 
-							<aui:input name="outgoingSecure" type="hidden" value="<%= outgoingSecure %>" />
-						</c:when>
-						<c:otherwise>
-							<aui:fieldset label="incoming-settings">
-								<aui:input name="incomingHostName" />
+						</aui:select>
 
-								<aui:select name="incomingPort">
+						<aui:input label="use-secure-outgoing-connection" name="outgoingSecure" type="checkbox" />
+					</aui:fieldset>
+				</c:if>
 
-									<%
-									for (int curIncomingPort : PortletPropsValues.INCOMING_PORTS) {
-									%>
-
-										<aui:option selected="<%= incomingPort == curIncomingPort %>" value="<%= curIncomingPort %>"><%= curIncomingPort %></aui:option>
-
-									<%
-									}
-									%>
-
-								</aui:select>
-
-								<aui:input label="use-secure-incoming-connection" name="incomingSecure" type="checkbox" />
-							</aui:fieldset>
-
-							<aui:fieldset label="outgoing-settings">
-								<aui:input label="outgoing-smtp-server" name="outgoingHostName" />
-
-								<aui:select name="outgoingPort">
-
-									<%
-									for (int curOutgoingPort : PortletPropsValues.OUTGOING_PORTS) {
-									%>
-
-										<aui:option selected="<%= outgoingPort == curOutgoingPort %>" value="<%= curOutgoingPort %>"><%= curOutgoingPort %></aui:option>
-
-									<%
-									}
-									%>
-
-								</aui:select>
-
-								<aui:input label="use-secure-outgoing-connection" name="outgoingSecure" type="checkbox" />
-							</aui:fieldset>
-						</c:otherwise>
-					</c:choose>
-
-					<aui:input name="personalName" type="hidden" value="<%= user.getFullName() %>" />
-
-					<aui:input name="protocol" type="hidden" value="<%= protocol %>" />
-
-					<aui:input name="signature" type="hidden" />
-
-					<aui:input name="useSignature" type="hidden" value="false" />
-
-					<aui:input name="folderPrefix" type="hidden" value="<%= folderPrefix %>" />
-
-					<aui:input name="defaultSender" type="hidden" value="false" />
-
-					<aui:input name="useLocalPartAsLogin" type="hidden" value="<%= useLocalPartAsLogin %>" />
-
+				<aui:button-row>
 					<aui:button cssClass="add-account" type="submit" value="add-account" />
-				</aui:fieldset>
+				</aui:button-row>
 			</aui:form>
 		</liferay-ui:section>
 

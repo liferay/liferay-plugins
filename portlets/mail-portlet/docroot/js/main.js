@@ -77,6 +77,27 @@ AUI().add(
 				);
 			},
 
+			editAccount: function(accountId) {
+				var instance = this;
+
+				var dialog = new A.Dialog(
+					{
+						centered: true,
+						cssClass: 'mail-dialog',
+						destroyOnClose: true,
+						modal: true,
+						title: Liferay.Language.get('edit-account'),
+						width: 600
+					}
+				).plug(
+					A.Plugin.IO,
+					{
+						data: {accountId: accountId},
+						uri: themeDisplay.getLayoutURL() + '/-/mail/edit_account'
+					}
+				).render();
+			},
+
 			loadAccounts: function(accountId) {
 				var instance = this;
 
@@ -87,6 +108,8 @@ AUI().add(
 
 			loadAccount: function(accountId, inboxFolderId) {
 				var instance = this;
+
+				instance.accountId = accountId;
 
 				instance._displayContainer(instance.messagesContainer);
 
@@ -175,6 +198,18 @@ AUI().add(
 				instance.messagesContainer.io.start();
 			},
 
+			reset: function() {
+				var instance = this;
+
+				instance.composeContainer.html('');
+				instance.foldersContainer.html('');
+				instance.manageFoldersContainer.html('');
+				instance.messageContainer.html('');
+				instance.messagesContainer.html('');
+
+				instance.loadAccounts();
+			},
+
 			setStatus: function(type, message) {
 				var messageType = 'portlet-msg-error';
 
@@ -257,6 +292,14 @@ AUI().add(
 						instance.loadMessage(folderId, messageNumber, orderByField, orderByType, keywords);
 					},
 					'.message-link'
+				);
+
+				instance.foldersContainer.delegate(
+					'click',
+					function(event) {
+						instance.editAccount(instance.accountId);
+					},
+					'.edit-account'
 				);
 
 				instance.mailContainer.delegate(
