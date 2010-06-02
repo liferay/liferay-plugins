@@ -20,51 +20,58 @@
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<div id="accountsContainer"></div>
+<c:choose>
+	<c:when test="<%= mailManager != null %>">
+		<div id="accountsContainer"></div>
 
-<aui:layout cssClass="mail-status">
-</aui:layout>
+		<aui:layout cssClass="mail-status">
+		</aui:layout>
 
-<div id="mailContainer">
-	<aui:layout>
-		<aui:column columnWidth="20">
-			<div id="controlContainer">
-				<div id="foldersContainer"></div>
-			</div>
-		</aui:column>
+		<div id="mailContainer">
+			<aui:layout>
+				<aui:column columnWidth="20">
+					<div id="controlContainer">
+						<div id="foldersContainer"></div>
+					</div>
+				</aui:column>
 
-		<aui:column columnWidth="80">
-			<div id="contentContainer">
-				<div class="aui-helper-hidden" id="manageFoldersContainer"></div>
+				<aui:column columnWidth="80">
+					<div id="contentContainer">
+						<div class="aui-helper-hidden" id="manageFoldersContainer"></div>
 
-				<div id="messagesContainer"></div>
+						<div id="messagesContainer"></div>
 
-				<div class="aui-helper-hidden" id="messageContainer"></div>
+						<div class="aui-helper-hidden" id="messageContainer"></div>
 
-				<div class="aui-helper-hidden" id="composeContainer"></div>
-			</div>
-		</aui:column>
-	</aui:layout>
-</div>
+						<div class="aui-helper-hidden" id="composeContainer"></div>
+					</div>
+				</aui:column>
+			</aui:layout>
+		</div>
 
-<%
-Account initialAccount = mailManager.getInitialAccount();
+		<%
+		Account initialAccount = mailManager.getInitialAccount();
 
-long initialAccountId = 0;
-long initialFolderId = 0;
+		long initialAccountId = 0;
+		long initialFolderId = 0;
 
-if (initialAccount != null) {
-	initialAccountId = initialAccount.getAccountId();
-	initialFolderId = initialAccount.getInboxFolderId();
-}
-%>
-
-<aui:script use="liferay-plugin-mail">
-	Liferay.Mail.init(
-		{
-			initialAccountId: <%= initialAccountId %>,
-			initialFolderId: <%= initialFolderId %>,
-			namespace: '<portlet:namespace />'
+		if (initialAccount != null) {
+			initialAccountId = initialAccount.getAccountId();
+			initialFolderId = initialAccount.getInboxFolderId();
 		}
-	);
-</aui:script>
+		%>
+
+		<aui:script use="liferay-plugin-mail">
+			Liferay.Mail.init(
+				{
+					initialAccountId: <%= initialAccountId %>,
+					initialFolderId: <%= initialFolderId %>,
+					namespace: '<portlet:namespace />'
+				}
+			);
+		</aui:script>
+	</c:when>
+	<c:otherwise>
+		<liferay-ui:message key="please-log-in-to-use-the-mail-portlet" />
+	</c:otherwise>
+</c:choose>
