@@ -22,6 +22,7 @@
 		<control-panel-entry-category>content</control-panel-entry-category>
 		<control-panel-entry-weight>7.5</control-panel-entry-weight>
 		<custom-attributes-display>com.liferay.knowledgebase.admin.portlet.ArticleCustomAttributesDisplay</custom-attributes-display>
+		<show-portlet-access-denied>false</show-portlet-access-denied>
 		<scopeable>true</scopeable>
 		<css-class-wrapper>knowledge-base-portlet-admin</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
