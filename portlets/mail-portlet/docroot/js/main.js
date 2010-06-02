@@ -149,6 +149,16 @@ AUI().add(
 				instance.foldersContainer.io.start();
 			},
 
+			loadManageFolders: function(accountId) {
+				var instance = this;
+
+				instance._displayContainer(instance.manageFoldersContainer);
+
+				instance.manageFoldersContainer.io.set('data', {accountId: accountId});
+
+				instance.manageFoldersContainer.io.start();
+			},
+
 			loadMessage: function(folderId, messageNumber, orderByField, orderByType, keywords) {
 				var instance = this;
 
@@ -302,6 +312,14 @@ AUI().add(
 					'.edit-account'
 				);
 
+				instance.foldersContainer.delegate(
+					'click',
+					function(event) {
+						instance.loadManageFolders(instance.accountId);
+					},
+					'.manage-folders'
+				);
+
 				instance.mailContainer.delegate(
 					'click',
 					function(event) {
@@ -316,6 +334,15 @@ AUI().add(
 						instance.loadMessages(folderId, pageNumber, orderByField, orderByType, keywords);
 					},
 					'.messages-link'
+				);
+
+				instance.manageFoldersContainer.plug(
+					A.Plugin.IO,
+					{
+						autoLoad: false,
+						method: 'POST',
+						uri: themeDisplay.getLayoutURL() + '/-/mail/manage_folders'
+					}
 				);
 
 				instance.messageContainer.delegate(
