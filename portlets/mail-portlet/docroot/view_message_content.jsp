@@ -42,7 +42,7 @@ MailManager mailManager = MailManager.getInstance(request);
 	Message message = messageDisplay.getMessage();
 	%>
 
-	<%= messageDisplay.getMessage().getBody() %>
+	<%= message.getBody() %>
 
 	<%
 	List<Attachment> attachments = messageDisplay.getAttachments();
