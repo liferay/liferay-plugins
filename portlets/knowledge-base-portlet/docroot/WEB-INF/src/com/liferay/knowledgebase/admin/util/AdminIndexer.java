@@ -67,7 +67,11 @@ public class AdminIndexer extends BaseIndexer {
 		String content = snippet;
 
 		if (Validator.isNull(snippet)) {
-			content = StringUtil.shorten(document.get(Field.CONTENT), 200);
+			content = document.get(Field.DESCRIPTION);
+
+			if (Validator.isNull(content)) {
+				content = StringUtil.shorten(document.get(Field.CONTENT), 200);
+			}
 		}
 
 		String resourcePrimKey = document.get(Field.ENTRY_CLASS_PK);

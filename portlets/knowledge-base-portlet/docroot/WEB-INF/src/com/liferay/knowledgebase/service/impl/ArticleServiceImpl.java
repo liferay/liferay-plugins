@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.security.permission.ActionKeys;
@@ -351,8 +352,12 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			String value = null;
 
 			if (displayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT)) {
-				value = StringUtil.shorten(
-					HtmlUtil.extractText(article.getContent()), 200);
+				value = HtmlUtil.extractText(article.getDescription());
+
+				if (Validator.isNull(value)) {
+					value = StringUtil.shorten(
+						HtmlUtil.extractText(article.getContent()), 200);
+				}
 			}
 			else if (displayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE)) {
 				value = StringPool.BLANK;
