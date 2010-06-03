@@ -324,7 +324,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				"parentResourcePrimKey", article.getResourcePrimKey());
 
 			List<Article> childArticles = ArticleLocalServiceUtil.getArticles(
-				params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				curParams, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				new ArticlePriorityComparator(true));
 
 			for (Article childArticle : childArticles) {
