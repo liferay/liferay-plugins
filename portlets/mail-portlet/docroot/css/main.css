@@ -29,3 +29,7 @@
 	cursor: hand;
 	text-decoration: underline;
 }
+
+.mail-portlet .search .aui-field-content {
+	display: inline-block;
+}

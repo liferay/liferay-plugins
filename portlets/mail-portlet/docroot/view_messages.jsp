@@ -33,6 +33,73 @@ MailManager mailManager = MailManager.getInstance(request);
 	MessagesDisplay messagesDisplay = mailManager.getMessagesDisplay(folderId, pageNumber, messagesPerPage, orderByField, orderByType, keywords);
 	%>
 
+	<aui:layout>
+		<aui:column>
+			<aui:button cssClass="delete-messages" value="delete" />
+		</aui:column>
+		<aui:column>
+			<aui:select cssClass="flag-messages" label="flagMessages" name="flagMessages" showEmptyOption="true">
+				<aui:option value="4,true"><liferay-ui:message key="flag-as-important" /></aui:option>
+				<aui:option value="4,false"><liferay-ui:message key="remove-flag" /></aui:option>
+				<aui:option value="6,true"><liferay-ui:message key="mark-as-read" /></aui:option>
+				<aui:option value="6,false"><liferay-ui:message key="mark-as-unread" /></aui:option>
+			</aui:select>
+		</aui:column>
+		<aui:column>
+			<aui:select cssClass="move-messages" label="moveMessages" name="moveMessages" showEmptyOption="true">
+
+				<%
+				Folder folder = FolderLocalServiceUtil.getFolder(folderId);
+
+				List<Folder> folders = FolderLocalServiceUtil.getFolders(folder.getAccountId());
+
+				for (Folder curFolder : folders) {
+				%>
+
+					<aui:option value="<%= curFolder.getFolderId() %>"><%= curFolder.getDisplayName() %></aui:option>
+
+				<%
+				}
+				%>
+
+			</aui:select>
+		</aui:column>
+		<aui:column cssClass="search">
+			<aui:input name="keywords" value="<%= keywords %>" />
+
+			<aui:button cssClass="search-messages" value="search" />
+		</aui:column>
+	</aui:layout>
+
+	<aui:layout>
+		<aui:column>
+			<liferay-ui:message key="select" />
+		</aui:column>
+		<aui:column>
+			<aui:a cssClass="select-all" href="javascript:;"><liferay-ui:message key="all" /></aui:a>
+		</aui:column>
+		<aui:column>
+			<aui:a cssClass="select-none" href="javascript:;"><liferay-ui:message key="none" /></aui:a>
+		</aui:column>
+		<aui:column>
+			<c:if test="<%= messagesDisplay.getPageNumber() > 2 %>">
+				<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="1" href="javascript:;" label="&lt;&lt; Newest" />&nbsp;
+			</c:if>
+
+			<c:if test="<%= messagesDisplay.getPageNumber() > 1 %>">
+				<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber - 1 %>" href="javascript:;" label="&lt; Newer" />
+			</c:if>
+
+			<liferay-ui:message key="x-of-x" arguments='<%= new Object[] {messagesDisplay.getStartMessageNumber() + " - " + messagesDisplay.getEndMessageNumber(), messagesDisplay.getMessageCount()} %>' />
+
+			<c:if test="<%= messagesDisplay.getPageNumber() < messagesDisplay.getPageCount() %>">
+				<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber + 1 %>" href="javascript:;" label="Older &gt;" />&nbsp;
+			</c:if>
+		</aui:column>
+	</aui:layout>
+
+	<br />
+
 	<c:choose>
 		<c:when test="<%= messagesDisplay.getMessageCount() == 0 %>">
 			<aui:layout>
@@ -47,68 +114,6 @@ MailManager mailManager = MailManager.getInstance(request);
 			</aui:layout>
 		</c:when>
 		<c:otherwise>
-			<aui:layout>
-				<aui:column>
-					<aui:button cssClass="delete-messages" value="delete" />
-				</aui:column>
-				<aui:column>
-					<aui:select cssClass="flag-messages" label="flagMessages" name="flagMessages" showEmptyOption="true">
-						<aui:option value="4,true"><liferay-ui:message key="flag-as-important" /></aui:option>
-						<aui:option value="4,false"><liferay-ui:message key="remove-flag" /></aui:option>
-						<aui:option value="6,true"><liferay-ui:message key="mark-as-read" /></aui:option>
-						<aui:option value="6,false"><liferay-ui:message key="mark-as-unread" /></aui:option>
-					</aui:select>
-				</aui:column>
-				<aui:column>
-					<aui:select cssClass="move-messages" label="moveMessages" name="moveMessages" showEmptyOption="true">
-
-						<%
-						Folder folder = FolderLocalServiceUtil.getFolder(folderId);
-
-						List<Folder> folders = FolderLocalServiceUtil.getFolders(folder.getAccountId());
-
-						for (Folder curFolder : folders) {
-						%>
-
-							<aui:option value="<%= curFolder.getFolderId() %>"><%= curFolder.getDisplayName() %></aui:option>
-
-						<%
-						}
-						%>
-
-					</aui:select>
-				</aui:column>
-				<aui:column>
-					<c:if test="<%= messagesDisplay.getPageNumber() > 2 %>">
-						<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="1" href="javascript:;" label="&lt;&lt; Newest" />&nbsp;
-					</c:if>
-
-					<c:if test="<%= messagesDisplay.getPageNumber() > 1 %>">
-						<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber - 1 %>" href="javascript:;" label="&lt; Newer" />
-					</c:if>
-
-					<liferay-ui:message key="x-of-x" arguments='<%= new Object[] {messagesDisplay.getStartMessageNumber() + " - " + messagesDisplay.getEndMessageNumber(), messagesDisplay.getMessageCount()} %>' />
-
-					<c:if test="<%= messagesDisplay.getPageNumber() < messagesDisplay.getPageCount() %>">
-						<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber + 1 %>" href="javascript:;" label="Older &gt;" />&nbsp;
-					</c:if>
-				</aui:column>
-			</aui:layout>
-
-			<aui:layout>
-				<aui:column>
-					<liferay-ui:message key="select" />
-				</aui:column>
-				<aui:column>
-					<aui:a cssClass="select-all" href="javascript:;"><liferay-ui:message key="all" /></aui:a>
-				</aui:column>
-				<aui:column>
-					<aui:a cssClass="select-none" href="javascript:;"><liferay-ui:message key="none" /></aui:a>
-				</aui:column>
-			</aui:layout>
-
-			<br />
-
 			<aui:layout>
 				<aui:column columnWidth="5">
 					&nbsp;

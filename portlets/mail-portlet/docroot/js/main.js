@@ -379,6 +379,30 @@ AUI().add(
 				instance.messagesContainer.delegate(
 					'click',
 					function(event) {
+						var keywords = instance.messagesContainer.one('.search input').val();
+
+						instance.loadMessages(instance.folderId, 1, instance.orderByField, instance.orderByType, keywords);
+					},
+					'.search-messages'
+				);
+
+				instance.messagesContainer.delegate(
+					'keyup',
+					function(event) {
+						if (event.keyCode != 13) {
+							return;
+						}
+
+						var keywords = instance.messagesContainer.one('.search input').val();
+
+						instance.loadMessages(instance.folderId, 1, instance.orderByField, instance.orderByType, keywords);
+					},
+					'.search'
+				);
+
+				instance.messagesContainer.delegate(
+					'click',
+					function(event) {
 						instance.messagesContainer.all('input[type=checkbox]').each(
 							function(item, index, collection) {
 								item.set('checked', true);
