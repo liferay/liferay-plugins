@@ -35,8 +35,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
-import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.util.ExpandoBridgeIndexerUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -118,8 +116,6 @@ public class AdminIndexer extends BaseIndexer {
 		String description = article.getDescription();
 		Date modifiedDate = article.getModifiedDate();
 
-		ExpandoBridge expandoBridge = article.getExpandoBridge();
-
 		Document document = new DocumentImpl();
 
 		document.addUID(PORTLET_ID, resourcePrimKey);
@@ -139,8 +135,6 @@ public class AdminIndexer extends BaseIndexer {
 
 		document.addKeyword(Field.ENTRY_CLASS_NAME, Article.class.getName());
 		document.addKeyword(Field.ENTRY_CLASS_PK, resourcePrimKey);
-
-		ExpandoBridgeIndexerUtil.addAttributes(document, expandoBridge);
 
 		return document;
 	}

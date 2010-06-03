@@ -124,7 +124,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		article.setContent(content);
 		article.setDescription(description);
 		article.setPriority(priority);
-		article.setExpandoBridgeAttributes(serviceContext);
 
 		articlePersistence.update(article, false);
 
@@ -230,11 +229,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		articlePersistence.removeByResourcePrimKey(
 			article.getResourcePrimKey());
-
-		// Expando
-
-		expandoValueLocalService.deleteValues(
-			Article.class.getName(), article.getResourcePrimKey());
 
 		// Message boards
 
@@ -461,7 +455,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		article.setContent(content);
 		article.setDescription(description);
 		article.setPriority(priority);
-		article.setExpandoBridgeAttributes(serviceContext);
 
 		articlePersistence.update(article, false);
 
