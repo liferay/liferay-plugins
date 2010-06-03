@@ -45,10 +45,10 @@ MailManager mailManager = MailManager.getInstance(request);
 					dataType: 'json',
 					method: 'POST',
 					on: {
-						failure: function (event, id, obj) {
+						failure: function(event, id, obj) {
 							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 						},
-						success: function (event, id, obj) {
+						success: function(event, id, obj) {
 							var results = this.get('responseData');
 
 							Liferay.Mail.setStatus(results.status, results.message);
