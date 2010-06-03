@@ -65,7 +65,7 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 		<liferay-ui:section>
 			<aui:layout cssClass="mail-status" />
 
-			<aui:form cssClass="account-form" name='<%= "fm" + (i + 1) %>' onSubmit="event.preventDefault();">
+			<aui:form cssClass="account-form" name='<%= "dialogFm" + (i + 1) %>' onSubmit="event.preventDefault();">
 				<aui:input name="personalName" type="hidden" value="<%= user.getFullName() %>" />
 				<aui:input name="protocol" type="hidden" value="<%= protocol %>" />
 				<aui:input name="signature" type="hidden" />

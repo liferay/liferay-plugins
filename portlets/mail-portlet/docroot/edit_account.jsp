@@ -26,7 +26,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 
 <aui:layout cssClass="mail-status" />
 
-<aui:form name="fm" onSubmit="event.preventDefault();">
+<aui:form name="dialogFm" onSubmit="event.preventDefault();">
 	<aui:input name="accountId" type="hidden" value="<%= mailAccount.getAccountId() %>" />
 	<aui:input name="signature" type="hidden" value="<%= mailAccount.getSignature() %>" />
 	<aui:input name="useSignature" type="hidden" value="<%= mailAccount.getUseSignature() %>" />
@@ -47,7 +47,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 <aui:a cssClass="delete-account" href="javascript:;"><liferay-ui:message key="delete-account" /></aui:a>
 
 <aui:script use="aui-io">
-	var form = A.one('#<portlet:namespace />fm');
+	var form = A.one('#<portlet:namespace />dialogFm');
 
 	form.on(
 		'submit',
