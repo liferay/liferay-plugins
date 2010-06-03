@@ -15,18 +15,18 @@
 		<property name="dataSource" ref="liferayDataSource" />
 		<property name="sessionFactory" ref="liferaySessionFactory" />
 	</bean>
-	<bean id="transactionAdvice" class="org.springframework.transaction.interceptor.TransactionInterceptor">
-		<property name="transactionManager" ref="liferayTransactionManager" />
-		<property name="transactionAttributeSource">
-			<bean class="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource">
-				<constructor-arg>
-					<bean class="com.liferay.portal.spring.annotation.PortalTransactionAnnotationParser" />
-				</constructor-arg>
+	<bean id="serviceAdvice" class="com.liferay.portal.cache.ThreadLocalCacheAdvice">
+		<property name="nextMethodInterceptor">
+			<bean class="com.liferay.portal.spring.transaction.TransactionInterceptor">
+				<property name="transactionManager" ref="liferayTransactionManager" />
+				<property name="transactionAttributeSource">
+					<bean class="com.liferay.portal.spring.transaction.AnnotationTransactionAttributeSource" />
+				</property>
 			</bean>
 		</property>
 	</bean>
 	<aop:config proxy-target-class="false">
-		<aop:pointcut id="transactionOperation" expression="bean(*Service)" />
-		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionOperation" />
+		<aop:pointcut id="serviceOperation" expression="bean(*Service)" />
+		<aop:advisor advice-ref="serviceAdvice" pointcut-ref="serviceOperation"/>
 	</aop:config>
 </beans>
