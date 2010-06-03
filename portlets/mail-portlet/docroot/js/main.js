@@ -230,7 +230,16 @@ AUI().add(
 					messageType = 'portlet-msg-info';
 				}
 
-				A.all('.mail-status').html('<table style="margin: 0 auto;"><tr><td>&nbsp;</td><td><span class="message ' + messageType + '">' + message + '</span></td><td>&nbsp;</td></tr></table>');
+				var statusContainers = A.all('.mail-status').html('<table style="margin: 0 auto;"><tr><td>&nbsp;</td><td><span class="message ' + messageType + '">' + message + '</span></td><td>&nbsp;</td></tr></table>');
+
+				var status = statusContainers.all('table');
+
+				setTimeout(
+					function() {
+						status.remove();
+					},
+					10000
+				);
 			},
 
 			_assignEvents: function() {
