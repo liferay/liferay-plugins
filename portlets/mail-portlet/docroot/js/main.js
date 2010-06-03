@@ -30,7 +30,7 @@ AUI().add(
 				instance.loadMessages(instance.folderId, 1, instance.orderByField, instance.orderByType, instance.keywords);
 			},
 
-			addAccount: function () {
+			addAccount: function() {
 				new A.Dialog(
 					{
 						centered: true,
@@ -60,10 +60,10 @@ AUI().add(
 						dataType: 'json',
 						method: 'POST',
 						on: {
-							failure: function (event, id, obj) {
+							failure: function(event, id, obj) {
 								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 							},
-							success: function (event, id, obj) {
+							success: function(event, id, obj) {
 								var results = this.get('responseData');
 
 								instance.setStatus(results.status, results.message);
@@ -122,10 +122,10 @@ AUI().add(
 						},
 						method: 'POST',
 						on: {
-							failure: function (event, id, obj) {
+							failure: function(event, id, obj) {
 								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 							},
-							success: function (event, id, obj) {
+							success: function(event, id, obj) {
 								var results = this.get('responseData');
 
 								if (results == 'true') {
@@ -139,6 +139,24 @@ AUI().add(
 						}
 					}
 				);
+			},
+
+			loadCompose: function(accountId, messageId, messageType, replyMessageId) {
+				var instance = this;
+
+				instance._displayContainer(instance.composeContainer);
+
+				instance.composeContainer.io.set(
+					'data',
+					{
+						accountId: accountId,
+						messageId: messageId,
+						messageType: messageType,
+						replyMessageId: replyMessageId
+					}
+				);
+
+				instance.composeContainer.io.start();
 			},
 
 			loadFolders: function(accountId) {
@@ -256,6 +274,15 @@ AUI().add(
 					}
 				);
 
+				instance.composeContainer.plug(
+					A.Plugin.IO,
+					{
+						autoLoad: false,
+						method: 'POST',
+						uri: themeDisplay.getLayoutURL() + '/-/mail/compose'
+					}
+				);
+
 				instance.foldersContainer.plug(
 					A.Plugin.IO,
 					{
@@ -295,6 +322,18 @@ AUI().add(
 						instance.loadAccount(accountId, inboxFolderId);
 					},
 					'.folders-link'
+				);
+
+				instance.composeContainer.delegate(
+					'click',
+					function(event) {
+						var button = event.currentTarget.one('input[type="button"]');
+
+						var messageId = button.getAttribute('data-messageId');
+
+						instance.deleteMessages([messageId]);
+					},
+					'.discard-draft'
 				);
 
 				instance.contentContainer.delegate(
@@ -343,6 +382,20 @@ AUI().add(
 						instance.loadMessages(folderId, pageNumber, orderByField, orderByType, keywords);
 					},
 					'.messages-link'
+				);
+
+				instance.mailContainer.delegate(
+					'click',
+					function(event) {
+						var link = event.currentTarget;
+
+						var messageId = link.getAttribute('data-messageId');
+						var messageType = link.getAttribute('data-messageType');
+						var replyMessageId = link.getAttribute('data-replyMessageId');
+
+						instance.loadCompose(instance.accountId, messageId, messageType, replyMessageId);
+					},
+					'.compose-message'
 				);
 
 				instance.manageFoldersContainer.plug(
