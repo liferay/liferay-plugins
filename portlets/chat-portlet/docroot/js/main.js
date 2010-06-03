@@ -2,6 +2,7 @@ AUI().use(
 	'aui-base',
 	'delayed-task',
 	'liferay-poller',
+	'swfobject',
 	function(A) {
 		Liferay.namespace('Chat');
 
