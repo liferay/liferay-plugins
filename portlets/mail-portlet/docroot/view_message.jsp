@@ -73,7 +73,7 @@ MailManager mailManager = MailManager.getInstance(request);
 		<aui:column columnWidth="10">
 			<liferay-ui:message key="from" />:
 		</aui:column>
-		<aui:column columnWidth="20">
+		<aui:column columnWidth="90">
 			<%= message.getSender() %>
 		</aui:column>
 	</aui:layout>
@@ -82,7 +82,7 @@ MailManager mailManager = MailManager.getInstance(request);
 		<aui:column columnWidth="10">
 			<liferay-ui:message key="to" />:
 		</aui:column>
-		<aui:column columnWidth="20">
+		<aui:column columnWidth="90">
 			<%= message.getTo() %>
 		</aui:column>
 	</aui:layout>
@@ -91,7 +91,7 @@ MailManager mailManager = MailManager.getInstance(request);
 		<aui:column columnWidth="10">
 			<liferay-ui:message key="cc" />:
 		</aui:column>
-		<aui:column columnWidth="20">
+		<aui:column columnWidth="90">
 			<%= message.getCc() %>
 		</aui:column>
 	</aui:layout>
@@ -100,8 +100,8 @@ MailManager mailManager = MailManager.getInstance(request);
 		<aui:column columnWidth="10">
 			<liferay-ui:message key="date" />:
 		</aui:column>
-		<aui:column columnWidth="20">
-			<%= message.getSentDate() %>
+		<aui:column columnWidth="90">
+			<%= dateFormatDateTime.format(message.getSentDate()) %>
 		</aui:column>
 	</aui:layout>
 
@@ -109,7 +109,7 @@ MailManager mailManager = MailManager.getInstance(request);
 		<aui:column columnWidth="10">
 			<liferay-ui:message key="subject" />:
 		</aui:column>
-		<aui:column columnWidth="20">
+		<aui:column columnWidth="90">
 			<%= message.getSubject() %>
 		</aui:column>
 	</aui:layout>

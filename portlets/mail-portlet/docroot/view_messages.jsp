@@ -190,10 +190,10 @@ MailManager mailManager = MailManager.getInstance(request);
 				}
 
 				if (mailAccount.getDraftFolderId() == folderId) {
-					date = message.getModifiedDate().toString();
+					date = dateFormatDateTime.format(message.getModifiedDate());
 				}
 				else {
-					date = message.getSentDate().toString();
+					date = dateFormatDateTime.format(message.getSentDate());
 				}
 			%>
 
