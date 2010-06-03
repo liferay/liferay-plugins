@@ -120,7 +120,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 							String optionValue = options[j];
 						%>
 
-							<aui:option selected="<%= fieldValue.equals(optionValue) %>"><%= HtmlUtil.escape(optionValue) %></aui:option>
+							<aui:option selected="<%= fieldValue.equals(optionValue) %>" value="<%= HtmlUtil.escape(optionValue) %>"><%= HtmlUtil.escape(optionValue) %></aui:option>
 
 						<%
 						}
