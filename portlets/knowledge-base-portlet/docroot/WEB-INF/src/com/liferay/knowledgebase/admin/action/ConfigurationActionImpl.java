@@ -107,10 +107,10 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
-		String articlesDisplayStyle = ParamUtil.getString(
-			actionRequest, "articlesDisplayStyle");
 		int articlesDelta = ParamUtil.getInteger(
 			actionRequest, "articlesDelta");
+		String articlesDisplayStyle = ParamUtil.getString(
+			actionRequest, "articlesDisplayStyle");
 		boolean enableArticleDescription = ParamUtil.getBoolean(
 			actionRequest, "enableArticleDescription");
 		boolean enableArticleComments = ParamUtil.getBoolean(
@@ -118,8 +118,8 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		boolean enableArticleCommentRatings = ParamUtil.getBoolean(
 			actionRequest, "enableArticleCommentRatings");
 
-		preferences.setValue("articles-display-style", articlesDisplayStyle);
 		preferences.setValue("articles-delta", String.valueOf(articlesDelta));
+		preferences.setValue("articles-display-style", articlesDisplayStyle);
 		preferences.setValue(
 			"enable-article-description",
 			String.valueOf(enableArticleDescription));
@@ -134,10 +134,10 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
-		String templatesDisplayStyle = ParamUtil.getString(
-			actionRequest, "templatesDisplayStyle");
 		int templatesDelta = ParamUtil.getInteger(
 			actionRequest, "templatesDelta");
+		String templatesDisplayStyle = ParamUtil.getString(
+			actionRequest, "templatesDisplayStyle");
 		boolean enableTemplateDescription = ParamUtil.getBoolean(
 			actionRequest, "enableTemplateDescription");
 		boolean enableTemplateComments = ParamUtil.getBoolean(
@@ -145,8 +145,8 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		boolean enableTemplateCommentRatings = ParamUtil.getBoolean(
 			actionRequest, "enableTemplateCommentRatings");
 
-		preferences.setValue("templates-display-style", templatesDisplayStyle);
 		preferences.setValue("templates-delta", String.valueOf(templatesDelta));
+		preferences.setValue("templates-display-style", templatesDisplayStyle);
 		preferences.setValue(
 			"enable-template-description",
 			String.valueOf(enableTemplateDescription));
