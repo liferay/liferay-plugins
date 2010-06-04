@@ -21,5 +21,5 @@
 	names="error"
 />
 
-<liferay-ui:error exception="<%= NoSuchArticleException.class %>" message="The article could not be found." />
+<liferay-ui:error exception="<%= NoSuchArticleException.class %>" message="the-article-could-not-be-found" />
 <liferay-ui:error exception="<%= PrincipalException.class %>" message="you-do-not-have-the-required-permissions" />

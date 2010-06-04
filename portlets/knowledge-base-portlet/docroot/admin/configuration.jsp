@@ -33,15 +33,9 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 <input name="tabs2" type="hidden" value="<%= HtmlUtil.escapeAttribute(tabs2) %>" />
 <input name="tabs3" type="hidden" value="<%= HtmlUtil.escapeAttribute(tabs3) %>" />
 
-<%
-String tabs2Names = "Email From,Article Added Email,Article Updated Email,Display Settings,RSS";
-String tabs2Values = StringUtil.replace(tabs2Names.toLowerCase(), " ", "-");
-%>
-
 <liferay-ui:tabs
-	names="<%= tabs2Names %>"
+	names="email-from,article-added-email,article-updated-email,display-settings,rss"
 	param="tabs2"
-	tabsValues="<%= tabs2Values %>"
 	url="<%= portletURL %>"
 />
 
@@ -111,19 +105,19 @@ String tabs2Values = StringUtil.replace(tabs2Names.toLowerCase(), " ", "-");
 
 				<input <%= enableArticleDescription ? "checked" : StringPool.BLANK %> name="<portlet:namespace />enableArticleDescription" type="checkbox" />
 
-				<strong>Enable Description</strong>
+				<strong><liferay-ui:message key="enable-description" /></strong>
 
 				<br /><br />
 
 				<input <%= enableArticleComments ? "checked" : StringPool.BLANK %> name="<portlet:namespace />enableArticleComments" type="checkbox" />
 
-				<strong>Enable Comments</strong>
+				<strong><liferay-ui:message key="enable-comments" /></strong>
 
 				<br /><br />
 
 				<input <%= enableArticleCommentRatings ? "checked" : StringPool.BLANK %> name="<portlet:namespace />enableArticleCommentRatings" type="checkbox" />
 
-				<strong>Enable Comment Ratings</strong>
+				<strong><liferay-ui:message key="enable-comment-ratings" /></strong>
 
 				<br /><br />
 			</c:when>
@@ -174,19 +168,19 @@ String tabs2Values = StringUtil.replace(tabs2Names.toLowerCase(), " ", "-");
 
 				<input <%= enableTemplateDescription ? "checked" : StringPool.BLANK %> name="<portlet:namespace />enableTemplateDescription" type="checkbox" />
 
-				<strong>Enable Description</strong>
+				<strong><liferay-ui:message key="enable-description" /></strong>
 
 				<br /><br />
 
 				<input <%= enableTemplateComments ? "checked" : StringPool.BLANK %> name="<portlet:namespace />enableTemplateComments" type="checkbox" />
 
-				<strong>Enable Comments</strong>
+				<strong><liferay-ui:message key="enable-comments" /></strong>
 
 				<br /><br />
 
 				<input <%= enableTemplateCommentRatings ? "checked" : StringPool.BLANK %> name="<portlet:namespace />enableTemplateCommentRatings" type="checkbox" />
 
-				<strong>Enable Comment Ratings</strong>
+				<strong><liferay-ui:message key="enable-comment-ratings" /></strong>
 
 				<br /><br />
 			</c:when>
