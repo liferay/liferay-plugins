@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.CalendarUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -1611,8 +1612,8 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 				List<ModelListener<KaleoInstance>> listenersList = new ArrayList<ModelListener<KaleoInstance>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener<KaleoInstance>)Class.forName(
-							listenerClassName).newInstance());
+					listenersList.add((ModelListener<KaleoInstance>)InstanceFactory.newInstance(
+							listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

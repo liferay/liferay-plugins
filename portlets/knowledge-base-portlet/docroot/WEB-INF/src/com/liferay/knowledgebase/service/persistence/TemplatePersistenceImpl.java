@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -1379,8 +1380,8 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 				List<ModelListener<Template>> listenersList = new ArrayList<ModelListener<Template>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener<Template>)Class.forName(
-							listenerClassName).newInstance());
+					listenersList.add((ModelListener<Template>)InstanceFactory.newInstance(
+							listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

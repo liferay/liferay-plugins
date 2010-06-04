@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -1005,8 +1006,8 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				List<ModelListener<Folder>> listenersList = new ArrayList<ModelListener<Folder>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener<Folder>)Class.forName(
-							listenerClassName).newInstance());
+					listenersList.add((ModelListener<Folder>)InstanceFactory.newInstance(
+							listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
