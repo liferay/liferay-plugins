@@ -26,7 +26,54 @@ long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey"
 String content = BeanParamUtil.getString(article, request, "content");
 %>
 
-<script type="text/javascript">
+<portlet:actionURL name="updateArticle" var="updateArticleURL">
+	<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
+	<portlet:param name="redirect" value="<%= redirect %>" />
+</portlet:actionURL>
+
+<aui:form action="<%= updateArticleURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateArticle();" %>'>
+	<aui:input name="resourcePrimKey" type="hidden" value="<%= resourcePrimKey %>" />
+
+	<liferay-ui:tabs
+		backURL="<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>"
+		names="article"
+	/>
+
+	<liferay-ui:error exception="<%= ArticleContentException.class %>" message="please-enter-valid-content" />
+	<liferay-ui:error exception="<%= ArticleTitleException.class %>" message="please-enter-a-valid-title" />
+
+	<aui:model-context bean="<%= article %>" model="<%= Article.class %>" />
+
+	<aui:fieldset>
+		<aui:input name="title" />
+
+		<aui:field-wrapper label="content">
+			<liferay-ui:input-editor width="100%" />
+
+			<aui:input name="content" type="hidden" />
+		</aui:field-wrapper>
+
+		<c:if test="<%= enableArticleDescription %>">
+			<aui:input name="description" />
+		</c:if>
+
+		<c:if test="<%= article == null %>">
+			<aui:field-wrapper label="permissions">
+				<liferay-ui:input-permissions
+					modelName="<%= Article.class.getName() %>"
+				/>
+			</aui:field-wrapper>
+		</c:if>
+
+		<aui:button-row>
+			<aui:button name="saveButton" type="submit" value="publish" />
+
+			<aui:button name="cancelButton" onClick="<%= redirect %>" type="cancel" />
+		</aui:button-row>
+	</aui:fieldset>
+</aui:form>
+
+<aui:script>
 	function <portlet:namespace />initEditor() {
 		return "<%= UnicodeFormatter.toString(content) %>";
 	}
@@ -35,56 +82,4 @@ String content = BeanParamUtil.getString(article, request, "content");
 		document.<portlet:namespace />fm.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();
 		submitForm(document.<portlet:namespace />fm);
 	}
-</script>
-
-<portlet:actionURL name="updateArticle" var="updateArticleURL">
-	<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
-	<portlet:param name="redirect" value="<%= redirect %>" />
-</portlet:actionURL>
-
-<form action="<%= updateArticleURL %>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />updateArticle(); return false;">
-<input name="<portlet:namespace />resourcePrimKey" type="hidden" value="<%= resourcePrimKey %>" />
-
-<liferay-ui:tabs
-	backURL="<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>"
-	names="article"
-/>
-
-<liferay-ui:error exception="<%= ArticleContentException.class %>" message="please-enter-valid-content" />
-<liferay-ui:error exception="<%= ArticleTitleException.class %>" message="please-enter-a-valid-title" />
-
-<strong><liferay-ui:message key="title" /></strong><br />
-
-<liferay-ui:input-field model="<%= Article.class %>" bean="<%= article %>" field="title" />
-
-<br /><br />
-
-<strong><liferay-ui:message key="content" /></strong><br />
-
-<liferay-ui:input-editor width="100%" /><br />
-
-<input name="<portlet:namespace />content" type="hidden" />
-
-<c:if test="<%= enableArticleDescription %>">
-	<strong><liferay-ui:message key="description" /></strong><br />
-
-	<liferay-ui:input-field model="<%= Article.class %>" bean="<%= article %>" field="description" />
-
-	<br /><br />
-</c:if>
-
-<c:if test="<%= article == null %>">
-	<strong><liferay-ui:message key="permissions" /></strong><br />
-
-	<liferay-ui:input-permissions
-		modelName="<%= Article.class.getName() %>"
-	/>
-
-	<br />
-</c:if>
-
-<input type="submit" value="<liferay-ui:message key="save" />" />
-
-<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>';" />
-
-</form>
+</aui:script>

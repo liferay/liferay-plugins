@@ -28,171 +28,120 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
 
-<form action="<%= configurationURL %>" method="post" name="fm">
-<input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-<input name="tabs2" type="hidden" value="<%= HtmlUtil.escapeAttribute(tabs2) %>" />
-<input name="tabs3" type="hidden" value="<%= HtmlUtil.escapeAttribute(tabs3) %>" />
+<aui:form action="<%= configurationURL %>" method="post" name="fm">
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
+	<aui:input name="tabs3" type="hidden" value="<%= tabs3 %>" />
 
-<liferay-ui:tabs
-	names="email-from,article-added-email,article-updated-email,display-settings,rss"
-	param="tabs2"
-	url="<%= portletURL %>"
-/>
+	<liferay-ui:tabs
+		names="email-from,article-added-email,article-updated-email,display-settings,rss"
+		param="tabs2"
+		url="<%= portletURL %>"
+	/>
 
-<c:choose>
-	<c:when test='<%= tabs2.equals("email-from") %>'>
-		Placeholder
-
-		<br /><br />
-	</c:when>
-	<c:when test='<%= tabs2.startsWith("article-") %>'>
-		Placeholder
-
-		<br /><br />
-	</c:when>
-	<c:when test='<%= tabs2.equals("display-settings") %>'>
-		<liferay-ui:tabs
-			names="article,template"
-			param="tabs3"
-			url="<%= portletURL %>"
-		/>
-
+	<aui:fieldset>
 		<c:choose>
-			<c:when test='<%= tabs3.equals("article") %>'>
-				<strong><liferay-ui:message key="maximum-items-to-display" /></strong><br />
-
-				<%
-				int[] deltaValues = new int[] {1,2,3,4,5,10,15,20,25,30,40,50,60,70,80,90,100};
-				%>
-
-				<select name="<portlet:namespace />articlesDelta">
-
-					<%
-					for (int i = 0; i < deltaValues.length; i++) {
-					%>
-
-						<option <%= (articlesDelta == deltaValues[i]) ? "selected" : StringPool.BLANK %> value="<%= deltaValues[i] %>"><%= deltaValues[i] %></option>
-
-					<%
-					}
-					%>
-
-				</select>
-
-				<br /><br />
-
-				<strong><liferay-ui:message key="display-style" /></strong><br />
-
-				<%
-				String[] displayStyleValues = new String[] {"full-content", "abstract", "title"};
-				%>
-
-				<select name="<portlet:namespace />articlesDisplayStyle">
-
-					<%
-					for (int i = 0; i < displayStyleValues.length; i++) {
-					%>
-
-						<option <%= articlesDisplayStyle.equals(displayStyleValues[i]) ? "selected" : StringPool.BLANK %> value="<%= displayStyleValues[i] %>"><liferay-ui:message key="<%= displayStyleValues[i] %>" /></option>
-
-					<%
-					}
-					%>
-
-				</select>
-
-				<br /><br />
-
-				<input <%= enableArticleDescription ? "checked" : StringPool.BLANK %> name="<portlet:namespace />enableArticleDescription" type="checkbox" />
-
-				<strong><liferay-ui:message key="enable-description" /></strong>
-
-				<br /><br />
-
-				<input <%= enableArticleComments ? "checked" : StringPool.BLANK %> name="<portlet:namespace />enableArticleComments" type="checkbox" />
-
-				<strong><liferay-ui:message key="enable-comments" /></strong>
-
-				<br /><br />
-
-				<input <%= enableArticleCommentRatings ? "checked" : StringPool.BLANK %> name="<portlet:namespace />enableArticleCommentRatings" type="checkbox" />
-
-				<strong><liferay-ui:message key="enable-comment-ratings" /></strong>
-
-				<br /><br />
+			<c:when test='<%= tabs2.equals("email-from") %>'>
+				Placeholder
 			</c:when>
-			<c:when test='<%= tabs3.equals("template") %>'>
-				<strong><liferay-ui:message key="maximum-items-to-display" /></strong><br />
+			<c:when test='<%= tabs2.startsWith("article-") %>'>
+				Placeholder
+			</c:when>
+			<c:when test='<%= tabs2.equals("display-settings") %>'>
+				<liferay-ui:tabs
+					names="article,template"
+					param="tabs3"
+					url="<%= portletURL %>"
+				/>
 
-				<%
-				int[] deltaValues = new int[] {1,2,3,4,5,10,15,20,25,30,40,50,60,70,80,90,100};
-				%>
+				<c:choose>
+					<c:when test='<%= tabs3.equals("article") %>'>
+						<aui:select label="maximum-items-to-display" name="articlesDelta">
 
-				<select name="<portlet:namespace />templatesDelta">
+							<%
+							int[] deltaValues = new int[] {1,2,3,4,5,10,15,20,25,30,40,50,60,70,80,90,100};
 
-					<%
-					for (int i = 0; i < deltaValues.length; i++) {
-					%>
+							for (int i = 0; i < deltaValues.length; i++) {
+							%>
 
-						<option <%= (templatesDelta == deltaValues[i]) ? "selected" : StringPool.BLANK %> value="<%= deltaValues[i] %>"><%= deltaValues[i] %></option>
+								<aui:option label="<%= deltaValues[i] %>" selected="<%= articlesDelta == deltaValues[i] %>" />
 
-					<%
-					}
-					%>
+							<%
+							}
+							%>
 
-				</select>
+						</aui:select>
 
-				<br /><br />
+						<aui:select label="display-style" name="articlesDisplayStyle">
 
-				<strong><liferay-ui:message key="display-style" /></strong><br />
+							<%
+							String[] displayStyleValues = new String[] {"full-content", "abstract", "title"};
 
-				<%
-				String[] displayStyleValues = new String[] {"full-content", "abstract", "title"};
-				%>
+							for (int i = 0; i < displayStyleValues.length; i++) {
+							%>
 
-				<select name="<portlet:namespace />templatesDisplayStyle">
+								<aui:option label="<%= displayStyleValues[i] %>" selected="<%= articlesDisplayStyle.equals(displayStyleValues[i]) %>" />
 
-					<%
-					for (int i = 0; i < displayStyleValues.length; i++) {
-					%>
+							<%
+							}
+							%>
 
-						<option <%= templatesDisplayStyle.equals(displayStyleValues[i]) ? "selected" : StringPool.BLANK %> value="<%= displayStyleValues[i] %>"><liferay-ui:message key="<%= displayStyleValues[i] %>" /></option>
+						</aui:select>
 
-					<%
-					}
-					%>
+						<aui:input inlineLabel="left" label="enable-description" name="enableArticleDescription" type="checkbox" value="<%= enableArticleDescription %>" />
 
-				</select>
+						<aui:input inlineLabel="left" label="enable-comments" name="enableArticleComments" type="checkbox" value="<%= enableArticleComments %>" />
 
-				<br /><br />
+						<aui:input inlineLabel="left" label="enable-comment-ratings" name="enableArticleCommentRatings" type="checkbox" value="<%= enableArticleCommentRatings %>" />
+					</c:when>
+					<c:when test='<%= tabs3.equals("template") %>'>
+						<aui:select label="maximum-items-to-display" name="templatesDelta">
 
-				<input <%= enableTemplateDescription ? "checked" : StringPool.BLANK %> name="<portlet:namespace />enableTemplateDescription" type="checkbox" />
+							<%
+							int[] deltaValues = new int[] {1,2,3,4,5,10,15,20,25,30,40,50,60,70,80,90,100};
 
-				<strong><liferay-ui:message key="enable-description" /></strong>
+							for (int i = 0; i < deltaValues.length; i++) {
+							%>
 
-				<br /><br />
+								<aui:option label="<%= deltaValues[i] %>" selected="<%= templatesDelta == deltaValues[i] %>" />
 
-				<input <%= enableTemplateComments ? "checked" : StringPool.BLANK %> name="<portlet:namespace />enableTemplateComments" type="checkbox" />
+							<%
+							}
+							%>
 
-				<strong><liferay-ui:message key="enable-comments" /></strong>
+						</aui:select>
 
-				<br /><br />
+						<aui:select label="display-style" name="templatesDisplayStyle">
 
-				<input <%= enableTemplateCommentRatings ? "checked" : StringPool.BLANK %> name="<portlet:namespace />enableTemplateCommentRatings" type="checkbox" />
+							<%
+							String[] displayStyleValues = new String[] {"full-content", "abstract", "title"};
 
-				<strong><liferay-ui:message key="enable-comment-ratings" /></strong>
+							for (int i = 0; i < displayStyleValues.length; i++) {
+							%>
 
-				<br /><br />
+								<aui:option label="<%= displayStyleValues[i] %>" selected="<%= templatesDisplayStyle.equals(displayStyleValues[i]) %>" />
+
+							<%
+							}
+							%>
+
+						</aui:select>
+
+						<aui:input inlineLabel="left" label="enable-description" name="enableTemplateDescription" type="checkbox" value="<%= enableTemplateDescription %>" />
+
+						<aui:input inlineLabel="left" label="enable-comments" name="enableTemplateComments" type="checkbox" value="<%= enableTemplateComments %>" />
+
+						<aui:input inlineLabel="left" label="enable-comment-ratings" name="enableTemplateCommentRatings" type="checkbox" value="<%= enableTemplateCommentRatings %>" />
+					</c:when>
+				</c:choose>
+			</c:when>
+			<c:when test='<%= tabs2.equals("rss") %>'>
+				Placeholder
 			</c:when>
 		</c:choose>
-	</c:when>
-	<c:when test='<%= tabs2.equals("rss") %>'>
-		Placeholder
 
-		<br /><br />
-	</c:when>
-</c:choose>
-
-<input type="submit" value="<liferay-ui:message key="save" />" />
-
-</form>
+		<aui:button-row>
+			<aui:button name="saveButton" type="submit" />
+		</aui:button-row>
+	</aui:fieldset>
+</aui:form>
