@@ -14,9 +14,28 @@
 
 package com.liferay.opensocial.shindig.service;
 
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
+import java.util.concurrent.Future;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.shindig.auth.SecurityToken;
+import org.apache.shindig.common.util.ImmediateFuture;
+import org.apache.shindig.protocol.DataCollection;
+import org.apache.shindig.protocol.ProtocolException;
+import org.apache.shindig.social.opensocial.spi.AppDataService;
+import org.apache.shindig.social.opensocial.spi.GroupId;
+import org.apache.shindig.social.opensocial.spi.UserId;
+
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -29,24 +48,6 @@ import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
-
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.Future;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.shindig.auth.SecurityToken;
-import org.apache.shindig.common.util.ImmediateFuture;
-import org.apache.shindig.protocol.DataCollection;
-import org.apache.shindig.protocol.ProtocolException;
-import org.apache.shindig.social.opensocial.spi.AppDataService;
-import org.apache.shindig.social.opensocial.spi.GroupId;
-import org.apache.shindig.social.opensocial.spi.UserId;
 
 /**
  * <a href="LiferayAppDataService.java.html"><b><i>View Source</i></b></a>
@@ -130,10 +131,11 @@ public class LiferayAppDataService implements AppDataService {
 		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
 
 		for (String field : fields) {
-			ExpandoColumn expandoColumn = getExpandoColumn(companyId, field);
+			ExpandoColumn expandoColumn = getExpandoColumn(
+				companyId, appId, field);
 
 			ExpandoValueLocalServiceUtil.deleteValue(
-				companyId, User.class.getName(), OPEN_SOCIAL_DATA,
+				companyId, User.class.getName(), getTableName(appId),
 				expandoColumn.getName(), userIdLong);
 		}
 
@@ -150,7 +152,8 @@ public class LiferayAppDataService implements AppDataService {
 		Map<String, Map<String, String>> peopleAppData =
 			new HashMap<String, Map<String, String>>();
 
-		List<ExpandoColumn> expandoColumns = getExpandoColumns(companyId);
+		List<ExpandoColumn> expandoColumns = 
+			getExpandoColumns(companyId, appId);
 
 		if (expandoColumns == null) {
 			return null;
@@ -172,7 +175,8 @@ public class LiferayAppDataService implements AppDataService {
 			Map<String, String> personAppData = new HashMap<String, String>();
 
 			for (String field : fields) {
-				String value = getExpandoValue(companyId, userIdLong, field);
+				String value = 
+					getExpandoValue(companyId, appId, userIdLong, field);
 
 				personAppData.put(field, value);
 			}
@@ -199,10 +203,11 @@ public class LiferayAppDataService implements AppDataService {
 			String key = (String)entry.getKey();
 			String value = entry.getValue().toString();
 
-			ExpandoColumn expandoColumn = getExpandoColumn(companyId, key);
+			ExpandoColumn expandoColumn = 
+				getExpandoColumn(companyId, appId, key);
 
 			ExpandoValueLocalServiceUtil.addValue(
-				companyId, User.class.getName(), OPEN_SOCIAL_DATA,
+				companyId, User.class.getName(), getTableName(appId),
 				expandoColumn.getName(), userIdLong, value);
 		}
 
@@ -217,18 +222,19 @@ public class LiferayAppDataService implements AppDataService {
 		return user.getCompanyId();
 	}
 
-	protected ExpandoColumn getExpandoColumn(long companyId, String columnName)
+	protected ExpandoColumn getExpandoColumn(
+			long companyId, String appId, String columnName)
 		throws Exception {
 
 		ExpandoTable expandoTable = null;
 
 		try {
 			expandoTable = ExpandoTableLocalServiceUtil.getTable(
-				companyId, User.class.getName(), OPEN_SOCIAL_DATA);
+				companyId, User.class.getName(), getTableName(appId));
 		}
 		catch (NoSuchTableException nste) {
 			expandoTable = ExpandoTableLocalServiceUtil.addTable(
-				companyId, User.class.getName(), OPEN_SOCIAL_DATA);
+				companyId, User.class.getName(), getTableName(appId));
 		}
 
 		ExpandoColumn expandoColumn = null;
@@ -246,11 +252,13 @@ public class LiferayAppDataService implements AppDataService {
 		return expandoColumn;
 	}
 
-	protected List<ExpandoColumn> getExpandoColumns(long companyId) {
+	protected List<ExpandoColumn> getExpandoColumns(
+		long companyId, String appId) {
+		
 		try {
 			List<ExpandoColumn> expandoColumns =
 				ExpandoColumnLocalServiceUtil.getColumns(
-					companyId, User.class.getName(), OPEN_SOCIAL_DATA);
+					companyId, User.class.getName(), getTableName(appId));
 
 			return expandoColumns;
 		}
@@ -260,12 +268,12 @@ public class LiferayAppDataService implements AppDataService {
 	}
 
 	protected String getExpandoValue(
-		long companyId, long userId, String columnName) {
+		long companyId, String appId, long userId, String columnName) {
 
 		try {
 			ExpandoValue expandoValue = ExpandoValueLocalServiceUtil.getValue(
-				companyId, User.class.getName(), OPEN_SOCIAL_DATA, columnName,
-				userId);
+				companyId, User.class.getName(), getTableName(appId), 
+				columnName,userId);
 
 			return expandoValue.getData();
 		}
@@ -273,8 +281,16 @@ public class LiferayAppDataService implements AppDataService {
 			return StringPool.BLANK;
 		}
 	}
+	
+	protected String getTableName(String appId) {
+		StringBundler sb = new StringBundler(OPEN_SOCIAL_DATA);
+		
+		sb.append(appId);
+		
+		return sb.toString();
+	}
 
-	private static final String OPEN_SOCIAL_DATA = "OPEN_SOCIAL_DATA";
+	private static final String OPEN_SOCIAL_DATA = "OPEN_SOCIAL_DATA_";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		LiferayAppDataService.class);
