@@ -10,6 +10,22 @@
 
 /* ---------- Portlet ---------- */
 
+.knowledge-base-portlet-admin .kb-entity-body {
+	padding: 0 7px;
+}
+
+.knowledge-base-portlet-admin .kb-entity-header {
+	border-bottom: 1px solid #CCC;
+	margin-bottom: 6px;
+	padding: 0 5px 3px;
+}
+
+.knowledge-base-portlet-admin .kb-entity-header .kb-title {
+	float: left;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
 .knowledge-base-portlet-admin .kb-results-body {
 	padding: 0 5px 0 25px;
 }
