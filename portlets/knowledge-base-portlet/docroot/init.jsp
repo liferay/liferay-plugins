@@ -19,9 +19,15 @@
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
 <%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
+<%@ taglib uri="http://liferay.com/tld/security" prefix="liferay-security" %>
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+<%@ page import="com.liferay.knowledgebase.model.Article" %>
+<%@ page import="com.liferay.knowledgebase.model.ArticleConstants" %>
+<%@ page import="com.liferay.knowledgebase.service.ArticleServiceUtil" %>
+<%@ page import="com.liferay.knowledgebase.service.permission.AdminPermission" %>
+<%@ page import="com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
@@ -29,7 +35,13 @@
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
+<%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
+<%@ page import="com.liferay.portal.service.permission.GroupPermissionUtil" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
+
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 
 <%@ page import="javax.portlet.PortletPreferences" %>
 

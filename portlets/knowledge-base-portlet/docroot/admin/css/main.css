@@ -1,9 +1,41 @@
 /* ---------- Portal ---------- */
 
-.knowledge-base-portlet-admin {
+.knowledge-base-portlet-admin .lfr-panel .lfr-panel-titlebar {
+	margin-bottom: 0;
+}
+
+.knowledge-base-portlet-admin .lfr-panel-container {
+	border-width: 0;
 }
 
 /* ---------- Portlet ---------- */
 
-.knowledge-base-portlet-admin {
+.knowledge-base-portlet-admin .kb-results-body {
+	padding: 0 5px 0 25px;
+}
+
+.knowledge-base-portlet-admin .kb-results-body .kb-title a {
+	display: block;
+	font-weight: bold;
+	margin: 6px 0 0 -20px;
+}
+
+.knowledge-base-portlet-admin .kb-results-footer {
+	margin: 6px 5px 0;
+}
+
+.knowledge-base-portlet-admin .kb-results-footer .delta-selector {
+	display: none;
+}
+
+.knowledge-base-portlet-admin .kb-results-footer .page-selector {
+	display: none;
+}
+
+.knowledge-base-portlet-admin .kb-results-header {
+	margin-bottom: 1em;
+}
+
+.knowledge-base-portlet-admin .kb-results-header .kb-buttons {
+	float: left;
 }
