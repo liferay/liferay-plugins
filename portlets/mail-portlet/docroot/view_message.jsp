@@ -120,17 +120,13 @@ MailManager mailManager = MailManager.getInstance(request);
 		</c:if>
 	</div>
 
-	<aui:layout>
-		<aui:column>
-			<aui:a cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;"><liferay-ui:message key="reply" /></aui:a>
-		</aui:column>
-		<aui:column>
-			<aui:a cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;"><liferay-ui:message key="reply-all" /></aui:a>
-		</aui:column>
-		<aui:column>
-			<aui:a cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;"><liferay-ui:message key="forward" /></aui:a>
-		</aui:column>
-	</aui:layout>
+	<aui:button-row>
+		<aui:button cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="reply" />
+
+		<aui:button cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="reply-all" />
+
+		<aui:button cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="forward" />
+	</aui:button-row>
 
 	<c:if test="<%= Validator.isNull(message.getBody()) %>">
 		<aui:script>

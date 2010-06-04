@@ -12,6 +12,29 @@
  * details.
  */
 
+.mail-portlet #controlContainer {
+	background-color: #D7F1FF;
+	border: 1px solid #88C5D9;
+	padding: 0.7em;
+}
+
+.mail-portlet #messageContentContainer {
+	background-color: #FFF;
+	border: 1px solid #C8C9CA;
+	margin: 1em 0;
+	min-height: 2em;
+	padding: 1em;
+}
+
+.ie6 .mail-portlet #messageContentContainer {
+	height: 2em;
+}
+
+.mail-portlet #messagesContainer .pagination,
+.mail-portlet #messagesContainer .search {
+	float: right;
+}
+
 .mail-portlet .address,
 .mail-portlet .subject,
 .mail-portlet .date {

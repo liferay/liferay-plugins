@@ -401,6 +401,10 @@ AUI().add(
 					function(event) {
 						var link = event.currentTarget;
 
+						if (!link.hasAttribute('data-messageType')) {
+							link = link.one('input[type="button"]');
+						}
+
 						var messageId = link.getAttribute('data-messageId');
 						var messageType = link.getAttribute('data-messageType');
 						var replyMessageId = link.getAttribute('data-replyMessageId');

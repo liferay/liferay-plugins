@@ -71,17 +71,17 @@ MailManager mailManager = MailManager.getInstance(request);
 		</aui:column>
 	</aui:layout>
 
+	<br />
+
 	<aui:layout>
 		<aui:column>
-			<liferay-ui:message key="select" />
+			<liferay-ui:message key="select" />:
+
+			<a class="select-all" href="javascript:;"><liferay-ui:message key="all" /></a>
+
+			<a class="select-none" href="javascript:;"><liferay-ui:message key="none" /></a>
 		</aui:column>
-		<aui:column>
-			<aui:a cssClass="select-all" href="javascript:;"><liferay-ui:message key="all" /></aui:a>
-		</aui:column>
-		<aui:column>
-			<aui:a cssClass="select-none" href="javascript:;"><liferay-ui:message key="none" /></aui:a>
-		</aui:column>
-		<aui:column>
+		<aui:column cssClass="pagination">
 			<c:if test="<%= messagesDisplay.getPageNumber() > 2 %>">
 				<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="1" href="javascript:;" label="&lt;&lt; Newest" />&nbsp;
 			</c:if>
