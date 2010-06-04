@@ -16,17 +16,28 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
+<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
 	<div class="float-container kb-results-header">
 		<div class="kb-buttons">
-			<liferay-security:permissionsURL
-				modelResource="com.liferay.knowledgebase.admin"
-				modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
-				resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
-				var="permissionsURL"
-			/>
+			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
+				<portlet:renderURL var="addArticleURL">
+					<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+				</portlet:renderURL>
 
-			<input type="button" value="<liferay-ui:message key="permissions" />" onClick="location.href = '<%= permissionsURL %>';" />
+				<input type="button" value="<liferay-ui:message key="add-article" />" onClick="location.href = '<%= addArticleURL %>';" />
+			</c:if>
+
+			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
+				<liferay-security:permissionsURL
+					modelResource="com.liferay.knowledgebase.admin"
+					modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
+					resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
+					var="permissionsURL"
+				/>
+
+				<input type="button" value="<liferay-ui:message key="permissions" />" onClick="location.href = '<%= permissionsURL %>';" />
+			</c:if>
 		</div>
 	</div>
 </c:if>
