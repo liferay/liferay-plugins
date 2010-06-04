@@ -716,6 +716,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		String[] fileNames = article.getAttachmentsFileNames();
 
+		if (fileNames.length <= 0) {
+			return StringPool.BLANK;
+		}
+
 		StringBundler sb = new StringBundler(fileNames.length * 5);
 
 		for (String fileName : fileNames) {
