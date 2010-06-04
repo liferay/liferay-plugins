@@ -19,6 +19,7 @@
 	overflow: hidden;
 }
 
+.mail-portlet .draft-link,
 .mail-portlet .message-link {
 	cursor: pointer;
 	cursor: hand;

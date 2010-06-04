@@ -352,6 +352,18 @@ AUI().add(
 					'.message-link'
 				);
 
+				instance.contentContainer.delegate(
+					'click',
+					function(event) {
+						var link = event.currentTarget;
+
+						var messageId = link.getAttribute('data-messageId');
+
+						instance.loadCompose(instance.accountId, messageId, "edit", 0);
+					},
+					'.draft-link'
+				);
+
 				instance.foldersContainer.delegate(
 					'click',
 					function(event) {

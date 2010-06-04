@@ -170,6 +170,12 @@ MailManager mailManager = MailManager.getInstance(request);
 
 			List<Message> messages = messagesDisplay.getMessages();
 
+			String cssClass = "message-link";
+
+			if (mailAccount.getDraftFolderId() == folderId) {
+				cssClass = "draft-link";
+			}
+
 			for (Message message : messages) {
 				String address = StringPool.BLANK;
 				String date = StringPool.BLANK;
@@ -201,7 +207,7 @@ MailManager mailManager = MailManager.getInstance(request);
 					<aui:column columnWidth="5">
 						<aui:input id="message<%= message.getMessageId() %>" label="" messageId="<%= message.getMessageId() %>" name="message" type="checkbox" value="<%= message.getMessageId() %>" />
 					</aui:column>
-					<aui:column columnWidth="95" cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
+					<aui:column columnWidth="95" cssClass="<%= cssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
 						<aui:column cssClass="address" columnWidth="25">
 							<%= HtmlUtil.escape(address) %>
 						</aui:column>

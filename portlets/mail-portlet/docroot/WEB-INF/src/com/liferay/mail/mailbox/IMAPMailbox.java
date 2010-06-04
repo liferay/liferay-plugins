@@ -155,11 +155,10 @@ public class IMAPMailbox extends BaseMailbox {
 		throws PortalException, SystemException {
 
 		if (orderByField.equals(MailConstants.ORDER_BY_ADDRESS)) {
+			orderByField = "sender";
+
 			if (account.getSentFolderId() == folderId) {
 				orderByField = "to";
-			}
-			else {
-				orderByField = "sender";
 			}
 		}
 		else if (!orderByField.equals(MailConstants.ORDER_BY_SENT_DATE) &&
@@ -169,23 +168,22 @@ public class IMAPMailbox extends BaseMailbox {
 			orderByField = MailConstants.ORDER_BY_SENT_DATE;
 		}
 
-		List<Message> messages = new ArrayList<Message>();
+		List<Message> messages = new ArrayList<Message>(messagesPerPage);
 
 		int messageCount = MessageLocalServiceUtil.populateMessages(
 			messages, folderId, keywords, pageNumber, messagesPerPage,
 			orderByField, orderByType);
 
-		if (Validator.isNotNull(keywords)) {
-			return new MessagesDisplay(
-				messages, pageNumber, messagesPerPage, messageCount);
-		}
-		else {
+		if (Validator.isNull(keywords) &&
+			(account.getDraftFolderId() != folderId)) {
+
 			Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
-			return new MessagesDisplay(
-				messages, pageNumber, messagesPerPage,
-				folder.getRemoteMessageCount());
+			messageCount = folder.getRemoteMessageCount();
 		}
+
+		return new MessagesDisplay(
+			messages, pageNumber, messagesPerPage, messageCount);
 	}
 
 	public void moveMessages(long folderId, long[] messageIds)
@@ -332,6 +330,8 @@ public class IMAPMailbox extends BaseMailbox {
 			account.getPersonalName(), account.getAddress(), toAddresses,
 			ccAddresses, bccAddresses, message.getSubject(), message.getBody(),
 			mailFiles);
+
+		MessageLocalServiceUtil.deleteMessage(messageId);
 	}
 
 	public void synchronize() throws PortalException, SystemException {

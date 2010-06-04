@@ -245,20 +245,24 @@ public class MailManager {
 			Message message = MessageLocalServiceUtil.getMessage(
 				messageIds[0]);
 
-			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
-				_user.getUserId(), message.getAccountId(),
-				_passwordRetriever.getPassword(message.getAccountId()));
-
-			mailbox.deleteMessages(message.getFolderId(), messageIds);
-
 			Account account = AccountLocalServiceUtil.getAccount(
 				message.getAccountId());
 
 			if (account.getDraftFolderId() == message.getFolderId()) {
+				for (long messageId : messageIds) {
+					MessageLocalServiceUtil.deleteMessage(messageId);
+				}
+
 				return createJSONResult(
 					"success", "drafts-have-been-discarded");
 			}
 			else {
+				Mailbox mailbox = MailboxFactoryUtil.getMailbox(
+					_user.getUserId(), message.getAccountId(),
+					_passwordRetriever.getPassword(message.getAccountId()));
+
+				mailbox.deleteMessages(message.getFolderId(), messageIds);
+
 				return createJSONResult(
 					"success", "messages-have-been-deleted");
 			}

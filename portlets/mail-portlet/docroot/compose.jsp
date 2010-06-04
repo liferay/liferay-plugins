@@ -33,6 +33,8 @@ String body = StringPool.BLANK;
 
 if (messageType.equals("new")) {
 	message = mailManager.addDraft(accountId);
+
+	messageId = message.getMessageId();
 }
 else if (messageType.equals("edit")) {
 	message = MessageLocalServiceUtil.getMessage(messageId);
@@ -44,6 +46,8 @@ else if (messageType.equals("edit")) {
 }
 else {
 	message = mailManager.addDraft(accountId);
+
+	messageId = message.getMessageId();
 
 	Message replyMessage = MessageLocalServiceUtil.getMessage(replyMessageId);
 
@@ -73,8 +77,7 @@ else {
 
 <form id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
 	<aui:input type="hidden" name="accountId" value="<%= accountId %>" />
-	<aui:input type="hidden" name="draftMessageId" value="" />
-	<aui:input type="hidden" name="sendMessage" value="true" />
+	<aui:input type="hidden" name="messageId" value="<%= messageId %>" />
 
 	<aui:input name="to" value="<%= to %>" />
 
@@ -93,9 +96,9 @@ else {
 	<aui:button-row>
 		<aui:button type="submit" value="send" />
 
-		<aui:button cssClass="save-draft" type="button" value="save" />
+		<aui:button cssClass="save-draft" data-messageId="<%= messageId %>" type="button" value="save" />
 
-		<aui:button cssClass="discard-draft" type="button" value="discard" />
+		<aui:button cssClass="discard-draft" data-messageId="<%= messageId %>" type="button" value="discard" />
 	</aui:button-row>
 </form>
 
