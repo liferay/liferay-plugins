@@ -15,14 +15,17 @@
 		<property name="dataSource" ref="liferayDataSource" />
 		<property name="sessionFactory" ref="liferaySessionFactory" />
 	</bean>
-	<bean id="serviceAdvice" class="com.liferay.portal.cache.ThreadLocalCacheAdvice">
-		<property name="nextMethodInterceptor">
-			<bean class="com.liferay.portal.spring.transaction.TransactionInterceptor">
-				<property name="transactionManager" ref="liferayTransactionManager" />
-				<property name="transactionAttributeSource">
-					<bean class="com.liferay.portal.spring.transaction.AnnotationTransactionAttributeSource" />
-				</property>
-			</bean>
+	<bean id="serviceAdvice" class="com.liferay.portal.messaging.async.AsyncAdvice">
+		<property name="defaultDestinationName" value="liferay/async_service" />
+		<property name="nextMethodInterceptor" ref="threadLocalCacheAdvice" />
+	</bean>
+	<bean id="threadLocalCacheAdvice" class="com.liferay.portal.cache.ThreadLocalCacheAdvice">
+		<property name="nextMethodInterceptor" ref="transactionAdvice" />
+	</bean>
+	<bean id="transactionAdvice" class="com.liferay.portal.spring.transaction.TransactionInterceptor">
+		<property name="transactionManager" ref="liferayTransactionManager" />
+		<property name="transactionAttributeSource">
+			<bean class="com.liferay.portal.spring.transaction.AnnotationTransactionAttributeSource" />
 		</property>
 	</bean>
 	<aop:config proxy-target-class="false">
