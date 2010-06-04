@@ -31,7 +31,9 @@ String path = GetterUtil.getString(request.getPathInfo());
 			</portlet:renderURL>
 
 			<%
-			homeURL = (path.endsWith("/admin/view.jsp") && topLink.equals("home")) ? StringPool.BLANK : homeURL;
+			if (path.endsWith("/admin/view.jsp") && topLink.equals("home")) {
+				homeURL = StringPool.BLANK;
+			}
 			%>
 
 			<liferay-ui:icon
