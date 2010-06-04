@@ -118,8 +118,10 @@ else {
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/send_message',
 				{
-					form: {id: form.getDOM()},
 					dataType: 'json',
+					form: {
+						id: form.getDOM()
+					},
 					on: {
 						failure: function(event, id, obj) {
 							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
@@ -147,8 +149,10 @@ else {
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/save_draft',
 				{
-					form: {id: form.getDOM()},
 					dataType: 'json',
+					form: {
+						id: form.getDOM()
+					},
 					on: {
 						failure: function(event, id, obj) {
 							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));

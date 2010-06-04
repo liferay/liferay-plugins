@@ -167,7 +167,9 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 				themeDisplay.getLayoutURL() + '/-/mail/update_account',
 				{
 					dataType: 'json',
-					form: {id: form.getDOM()},
+					form: {
+						id: form.getDOM()
+					},
 					method: 'POST',
 					on: {
 						failure: function(event, id, obj) {

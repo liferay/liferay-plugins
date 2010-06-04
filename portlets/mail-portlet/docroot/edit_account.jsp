@@ -57,8 +57,10 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/update_account',
 				{
-					form: {id: form.getDOM()},
 					dataType: 'json',
+					form: {
+						id: form.getDOM()
+					},
 					on: {
 						failure: function(event, id, obj) {
 							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));

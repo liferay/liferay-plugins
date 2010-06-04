@@ -47,8 +47,10 @@ Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/rename_folder',
 				{
-					form: {id: form.getDOM()},
 					dataType: 'json',
+					form: {
+						id: form.getDOM()
+					},
 					on: {
 						failure: function(event, id, obj) {
 							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
