@@ -16,6 +16,8 @@
 
 <%@ include file="/admin/init.jsp" %>
 
+<liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
+
 <c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
 	<div class="float-container kb-results-header">
 		<div class="kb-buttons">
@@ -46,6 +48,7 @@
 	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="knowledgeBaseAdminArticlesPanel" persistState="<%= true %>" title="Articles">
 		<liferay-portlet:renderURL varImpl="iteratorURL">
 			<portlet:param name="jspPage" value="/admin/view.jsp" />
+			<portlet:param name="topLink" value="home" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:search-container

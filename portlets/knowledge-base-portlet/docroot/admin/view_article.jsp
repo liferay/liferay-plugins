@@ -20,6 +20,8 @@
 Article article = (Article)request.getAttribute("KNOWLEDGE_BASE_ARTICLE");
 %>
 
+<liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
+
 <div class="float-container kb-entity-header">
 	<div class="kb-title">
 		<%= article.getTitle() %>

@@ -8,6 +8,10 @@
 	border-width: 0;
 }
 
+.knowledge-base-portlet-admin .top-links-container {
+	margin: 0 0 15px 0;
+}
+
 /* ---------- Portlet ---------- */
 
 .knowledge-base-portlet-admin .kb-entity-body {
