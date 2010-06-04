@@ -18,6 +18,10 @@
 	padding: 0 7px;
 }
 
+.knowledge-base-portlet-admin .kb-entity-body .kb-article-icons {
+	padding: 0 0 6px;
+}
+
 .knowledge-base-portlet-admin .kb-entity-header {
 	border-bottom: 1px solid #CCC;
 	margin-bottom: 6px;
@@ -32,6 +36,10 @@
 
 .knowledge-base-portlet-admin .kb-results-body {
 	padding: 0 5px 0 25px;
+}
+
+.knowledge-base-portlet-admin .kb-results-body .kb-article-icons {
+	padding: 6px 0;
 }
 
 .knowledge-base-portlet-admin .kb-results-body .kb-title a {

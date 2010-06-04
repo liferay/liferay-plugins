@@ -29,5 +29,7 @@ Article article = (Article)request.getAttribute("KNOWLEDGE_BASE_ARTICLE");
 </div>
 
 <div class="kb-entity-body">
+	<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
+
 	<%= article.getContent() %>
 </div>

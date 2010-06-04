@@ -88,6 +88,12 @@
 						url="<%= viewArticleURL %>"
 					/>
 
+					<%
+					request.setAttribute("KNOWLEDGE_BASE_ARTICLE", article);
+					%>
+
+					<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
+
 					<c:choose>
 						<c:when test='<%= articlesDisplayStyle.equals("full-content") %>'>
 							<%= article.getContent() %>
