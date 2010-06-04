@@ -14,24 +14,6 @@
 
 package com.liferay.opensocial.shindig.service;
 
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
-import java.util.concurrent.Future;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.shindig.auth.SecurityToken;
-import org.apache.shindig.common.util.ImmediateFuture;
-import org.apache.shindig.protocol.DataCollection;
-import org.apache.shindig.protocol.ProtocolException;
-import org.apache.shindig.social.opensocial.spi.AppDataService;
-import org.apache.shindig.social.opensocial.spi.GroupId;
-import org.apache.shindig.social.opensocial.spi.UserId;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -48,6 +30,24 @@ import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
+
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.Future;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.shindig.auth.SecurityToken;
+import org.apache.shindig.common.util.ImmediateFuture;
+import org.apache.shindig.protocol.DataCollection;
+import org.apache.shindig.protocol.ProtocolException;
+import org.apache.shindig.social.opensocial.spi.AppDataService;
+import org.apache.shindig.social.opensocial.spi.GroupId;
+import org.apache.shindig.social.opensocial.spi.UserId;
 
 /**
  * <a href="LiferayAppDataService.java.html"><b><i>View Source</i></b></a>
@@ -152,7 +152,7 @@ public class LiferayAppDataService implements AppDataService {
 		Map<String, Map<String, String>> peopleAppData =
 			new HashMap<String, Map<String, String>>();
 
-		List<ExpandoColumn> expandoColumns = 
+		List<ExpandoColumn> expandoColumns =
 			getExpandoColumns(companyId, appId);
 
 		if (expandoColumns == null) {
@@ -175,7 +175,7 @@ public class LiferayAppDataService implements AppDataService {
 			Map<String, String> personAppData = new HashMap<String, String>();
 
 			for (String field : fields) {
-				String value = 
+				String value =
 					getExpandoValue(companyId, appId, userIdLong, field);
 
 				personAppData.put(field, value);
@@ -203,7 +203,7 @@ public class LiferayAppDataService implements AppDataService {
 			String key = (String)entry.getKey();
 			String value = entry.getValue().toString();
 
-			ExpandoColumn expandoColumn = 
+			ExpandoColumn expandoColumn =
 				getExpandoColumn(companyId, appId, key);
 
 			ExpandoValueLocalServiceUtil.addValue(
@@ -254,7 +254,7 @@ public class LiferayAppDataService implements AppDataService {
 
 	protected List<ExpandoColumn> getExpandoColumns(
 		long companyId, String appId) {
-		
+
 		try {
 			List<ExpandoColumn> expandoColumns =
 				ExpandoColumnLocalServiceUtil.getColumns(
@@ -272,8 +272,8 @@ public class LiferayAppDataService implements AppDataService {
 
 		try {
 			ExpandoValue expandoValue = ExpandoValueLocalServiceUtil.getValue(
-				companyId, User.class.getName(), getTableName(appId), 
-				columnName,userId);
+				companyId, User.class.getName(), getTableName(appId),
+				columnName, userId);
 
 			return expandoValue.getData();
 		}
@@ -281,12 +281,12 @@ public class LiferayAppDataService implements AppDataService {
 			return StringPool.BLANK;
 		}
 	}
-	
+
 	protected String getTableName(String appId) {
 		StringBundler sb = new StringBundler(OPEN_SOCIAL_DATA);
-		
+
 		sb.append(appId);
-		
+
 		return sb.toString();
 	}
 
