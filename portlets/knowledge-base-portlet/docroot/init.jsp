@@ -32,6 +32,7 @@
 <%@ page import="com.liferay.knowledgebase.service.ArticleServiceUtil" %>
 <%@ page import="com.liferay.knowledgebase.service.permission.AdminPermission" %>
 <%@ page import="com.liferay.knowledgebase.service.permission.ArticlePermission" %>
+<%@ page import="com.liferay.knowledgebase.util.WebKeys" %>
 <%@ page import="com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator" %>
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>

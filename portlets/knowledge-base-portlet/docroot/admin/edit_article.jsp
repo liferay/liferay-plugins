@@ -19,7 +19,7 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-Article article = (Article)request.getAttribute("KNOWLEDGE_BASE_ARTICLE");
+Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey");
 

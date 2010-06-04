@@ -17,7 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Article article = (Article)request.getAttribute("KNOWLEDGE_BASE_ARTICLE");
+Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 %>
 
 <liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />

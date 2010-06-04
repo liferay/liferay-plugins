@@ -89,7 +89,7 @@
 					/>
 
 					<%
-					request.setAttribute("KNOWLEDGE_BASE_ARTICLE", article);
+					request.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
 					%>
 
 					<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />

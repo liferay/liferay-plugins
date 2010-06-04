@@ -17,7 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Article article = (Article)request.getAttribute("KNOWLEDGE_BASE_ARTICLE");
+Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 %>
