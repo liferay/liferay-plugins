@@ -38,7 +38,7 @@ MailManager mailManager = MailManager.getInstance(request);
 			<aui:button cssClass="delete-messages" value="delete" />
 		</aui:column>
 		<aui:column>
-			<aui:select cssClass="flag-messages" label="flagMessages" name="flagMessages" showEmptyOption="true">
+			<aui:select cssClass="flag-messages" name="flagMessages" showEmptyOption="true">
 				<aui:option value="4,true"><liferay-ui:message key="flag-as-important" /></aui:option>
 				<aui:option value="4,false"><liferay-ui:message key="remove-flag" /></aui:option>
 				<aui:option value="6,true"><liferay-ui:message key="mark-as-read" /></aui:option>
@@ -46,7 +46,7 @@ MailManager mailManager = MailManager.getInstance(request);
 			</aui:select>
 		</aui:column>
 		<aui:column>
-			<aui:select cssClass="move-messages" label="moveMessages" name="moveMessages" showEmptyOption="true">
+			<aui:select cssClass="move-messages" name="moveMessages" showEmptyOption="true">
 
 				<%
 				Folder folder = FolderLocalServiceUtil.getFolder(folderId);
