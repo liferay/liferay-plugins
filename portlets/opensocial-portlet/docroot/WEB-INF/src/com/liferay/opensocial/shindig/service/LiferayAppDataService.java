@@ -17,7 +17,6 @@ package com.liferay.opensocial.shindig.service;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -152,8 +151,8 @@ public class LiferayAppDataService implements AppDataService {
 		Map<String, Map<String, String>> peopleAppData =
 			new HashMap<String, Map<String, String>>();
 
-		List<ExpandoColumn> expandoColumns =
-			getExpandoColumns(companyId, appId);
+		List<ExpandoColumn> expandoColumns = getExpandoColumns(
+			companyId, appId);
 
 		if (expandoColumns == null) {
 			return null;
@@ -175,8 +174,8 @@ public class LiferayAppDataService implements AppDataService {
 			Map<String, String> personAppData = new HashMap<String, String>();
 
 			for (String field : fields) {
-				String value =
-					getExpandoValue(companyId, appId, userIdLong, field);
+				String value = getExpandoValue(
+					companyId, appId, userIdLong, field);
 
 				personAppData.put(field, value);
 			}
@@ -283,11 +282,7 @@ public class LiferayAppDataService implements AppDataService {
 	}
 
 	protected String getTableName(String appId) {
-		StringBundler sb = new StringBundler(OPEN_SOCIAL_DATA);
-
-		sb.append(appId);
-
-		return sb.toString();
+		return OPEN_SOCIAL_DATA.concat(appId);
 	}
 
 	private static final String OPEN_SOCIAL_DATA = "OPEN_SOCIAL_DATA_";
