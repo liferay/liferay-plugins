@@ -46,7 +46,7 @@ public class ProfilesFriendlyURLMapper extends BaseFriendlyURLMapper {
 	}
 
 	public void populateParams(
-		String friendlyURLPath, Map<String, String[]> params,
+		String friendlyURLPath, Map<String, String[]> parameterMap,
 		Map<String, Object> requestContext) {
 
 		int x = friendlyURLPath.indexOf("/", 1);
@@ -63,15 +63,16 @@ public class ProfilesFriendlyURLMapper extends BaseFriendlyURLMapper {
 			return;
 		}
 
-		addParam(params, "p_p_id", _PORTLET_ID);
-		addParam(params, "p_p_lifecycle", "0");
-		addParam(params, "p_p_state", LiferayWindowState.EXCLUSIVE);
-		addParam(params, "p_p_mode", PortletMode.VIEW);
+		addParameter(parameterMap, "p_p_id", _PORTLET_ID);
+		addParameter(parameterMap, "p_p_lifecycle", "0");
+		addParameter(parameterMap, "p_p_state", LiferayWindowState.EXCLUSIVE);
+		addParameter(parameterMap, "p_p_mode", PortletMode.VIEW);
 
-		addParam(params, "jspPage", "/profiles/" + jspPage + ".jsp");
+		addParameter(parameterMap, "jspPage", "/profiles/" + jspPage + ".jsp");
 
 		if ((z > 0) && jspPage.equals("user_profile.jsp")) {
-			addParam(params, "userId", friendlyURLPath.substring(y + 1, z));
+			addParameter(
+				parameterMap, "userId", friendlyURLPath.substring(y + 1, z));
 		}
 	}
 

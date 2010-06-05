@@ -67,7 +67,7 @@ public class MeetupsFriendlyURLMapper extends BaseFriendlyURLMapper {
 	}
 
 	public void populateParams(
-		String friendlyURLPath, Map<String, String[]> params,
+		String friendlyURLPath, Map<String, String[]> parameterMap,
 		Map<String, Object> requestContext) {
 
 		int x = friendlyURLPath.indexOf("/", 1);
@@ -97,13 +97,14 @@ public class MeetupsFriendlyURLMapper extends BaseFriendlyURLMapper {
 			return;
 		}
 
-		addParam(params, "p_p_id", _PORTLET_ID);
-		addParam(params, "p_p_lifecycle", "0");
-		addParam(params, "p_p_state", WindowState.MAXIMIZED);
-		addParam(params, "p_p_mode", PortletMode.VIEW);
+		addParameter(parameterMap, "p_p_id", _PORTLET_ID);
+		addParameter(parameterMap, "p_p_lifecycle", "0");
+		addParameter(parameterMap, "p_p_state", WindowState.MAXIMIZED);
+		addParameter(parameterMap, "p_p_mode", PortletMode.VIEW);
 
-		addParam(params, "jspPage", "/meetups/view_entry.jsp");
-		addParam(params, "meetupsEntryId", String.valueOf(meetupsEntryId));
+		addParameter(parameterMap, "jspPage", "/meetups/view_entry.jsp");
+		addParameter(
+			parameterMap, "meetupsEntryId", String.valueOf(meetupsEntryId));
 	}
 
 	private static final String _MAPPING = "meetups";

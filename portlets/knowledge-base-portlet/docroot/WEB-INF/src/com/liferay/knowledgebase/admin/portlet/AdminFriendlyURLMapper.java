@@ -83,12 +83,12 @@ public class AdminFriendlyURLMapper extends BaseFriendlyURLMapper {
 	}
 
 	public void populateParams(
-		String friendlyURLPath, Map<String, String[]> params,
+		String friendlyURLPath, Map<String, String[]> parameterMap,
 		Map<String, Object> requestContext) {
 
-		addParam(params, "p_p_id", _PORTLET_ID);
-		addParam(params, "p_p_lifecycle", "0");
-		addParam(params, "p_p_mode", PortletMode.VIEW);
+		addParameter(parameterMap, "p_p_id", _PORTLET_ID);
+		addParameter(parameterMap, "p_p_lifecycle", "0");
+		addParameter(parameterMap, "p_p_mode", PortletMode.VIEW);
 
 		String[] urlParams = StringUtil.split(
 			friendlyURLPath, StringPool.SLASH);
@@ -98,18 +98,19 @@ public class AdminFriendlyURLMapper extends BaseFriendlyURLMapper {
 		}
 
 		if (urlParams[2].equals("rss")) {
-			addParam(params, "p_p_cacheability", ResourceURL.PAGE);
-			addParam(params, "p_p_lifecycle", "2");
-			addParam(params, "p_p_resource_id", "rss");
+			addParameter(parameterMap, "p_p_cacheability", ResourceURL.PAGE);
+			addParameter(parameterMap, "p_p_lifecycle", "2");
+			addParameter(parameterMap, "p_p_resource_id", "rss");
 		}
 		else if (urlParams[2].equals("article")) {
 			if (urlParams.length >= 4) {
-				addParam(params, "jspPage", "/admin/view_article.jsp");
-				addParam(params, "resourcePrimKey", urlParams[3]);
+				addParameter(
+					parameterMap, "jspPage", "/admin/view_article.jsp");
+				addParameter(parameterMap, "resourcePrimKey", urlParams[3]);
 			}
 
 			if (urlParams.length >= 5) {
-				addParam(params, "p_p_state", urlParams[4]);
+				addParameter(parameterMap, "p_p_state", urlParams[4]);
 			}
 		}
 	}

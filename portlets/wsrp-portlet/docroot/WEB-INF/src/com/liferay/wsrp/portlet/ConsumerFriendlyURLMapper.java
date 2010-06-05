@@ -95,7 +95,7 @@ public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 	}
 
 	public void populateParams(
-		String friendlyURLPath, Map<String, String[]> params,
+		String friendlyURLPath, Map<String, String[]> parameterMap,
 		Map<String, Object> requestContext) {
 
 		int pos1 = friendlyURLPath.indexOf("/", 1);
@@ -106,19 +106,22 @@ public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 		String portletId = friendlyURLPath.substring(pos1 + 1, pos2);
 
-		addParam(params, "p_p_id", portletId);
-		addParam(
-			params, "p_p_state", friendlyURLPath.substring(pos2 + 1, pos3));
-		addParam(params, "p_p_mode", friendlyURLPath.substring(pos3 + 1, pos4));
-		addParam(
-			params, "p_p_cacheability",
+		addParameter(parameterMap, "p_p_id", portletId);
+		addParameter(
+			parameterMap, "p_p_state",
+			friendlyURLPath.substring(pos2 + 1, pos3));
+		addParameter(
+			parameterMap, "p_p_mode",
+			friendlyURLPath.substring(pos3 + 1, pos4));
+		addParameter(
+			parameterMap, "p_p_cacheability",
 			friendlyURLPath.substring(pos4 + 1, pos5));
 
 		String name =
 			PortalUtil.getPortletNamespace(portletId) +
 				"wsrp-navigationalState";
 
-		addParam(params, name, friendlyURLPath.substring(pos5 + 1));
+		addParameter(parameterMap, name, friendlyURLPath.substring(pos5 + 1));
 	}
 
 	protected void addPathElement(StringBuilder sb, String value) {
@@ -126,15 +129,15 @@ public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 		sb.append(GetterUtil.get(HttpUtil.encodeURL(value), StringPool.DASH));
 	}
 
-	protected void addParam(
-		Map<String, String[]> params, String name, String value) {
+	protected void addParameter(
+		Map<String, String[]> parameterMap, String name, String value) {
 
 		if (value.equals(StringPool.DASH)) {
 			return;
 		}
 
 		try {
-			params.put(name, new String[] {value});
+			parameterMap.put(name, new String[] {value});
 		}
 		catch (Exception e) {
 			_log.error(e, e);
