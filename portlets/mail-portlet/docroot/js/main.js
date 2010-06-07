@@ -304,6 +304,17 @@ AUI().add(
 					{
 						autoLoad: false,
 						method: 'POST',
+						on: {
+							success: function(event) {
+								try {
+									window[instance.namespace + 'editor'] = null;
+
+									delete window[instance.namespace + 'editor'];
+								}
+								catch (e) {
+								}
+							}
+						},
 						uri: themeDisplay.getLayoutURL() + '/-/mail/compose'
 					}
 				);
