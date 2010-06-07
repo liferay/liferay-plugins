@@ -30,7 +30,7 @@ MailManager mailManager = MailManager.getInstance(request);
 		<div id="mailContainer">
 			<aui:layout>
 				<aui:column columnWidth="20">
-					<div id="controlContainer">
+					<div class="aui-helper-hidden" id="controlContainer">
 						<div id="foldersContainer"></div>
 					</div>
 				</aui:column>

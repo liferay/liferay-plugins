@@ -26,8 +26,7 @@ AUI().add(
 					return;
 				}
 
-				instance.loadFolders(instance.accountId);
-				instance.loadMessages(instance.folderId, 1, instance.orderByField, instance.orderByType, instance.keywords);
+				loadAccount(instance.accountId, instance.folderId);
 			},
 
 			addAccount: function() {
@@ -161,6 +160,8 @@ AUI().add(
 
 			loadFolders: function(accountId) {
 				var instance = this;
+
+				instance.controlContainer.show();
 
 				instance.foldersContainer.io.set('data', {accountId: accountId});
 
