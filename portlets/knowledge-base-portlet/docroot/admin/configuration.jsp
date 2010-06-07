@@ -141,7 +141,7 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 		</c:choose>
 
 		<aui:button-row>
-			<aui:button name="saveButton" type="submit" />
+			<aui:button type="submit" />
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>

@@ -66,9 +66,9 @@ String content = BeanParamUtil.getString(article, request, "content");
 		</c:if>
 
 		<aui:button-row>
-			<aui:button name="saveButton" type="submit" value="publish" />
+			<aui:button type="submit" value="publish" />
 
-			<aui:button name="cancelButton" onClick="<%= redirect %>" type="cancel" />
+			<aui:button onClick="<%= redirect %>" type="cancel" />
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>
