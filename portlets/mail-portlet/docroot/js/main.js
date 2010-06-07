@@ -63,11 +63,11 @@ AUI().add(
 								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 							},
 							success: function(event, id, obj) {
-								var results = this.get('responseData');
+								var responseData = this.get('responseData');
 
-								instance.setStatus(results.status, results.message);
+								instance.setStatus(responseData.status, responseData.message);
 
-								if (results.status == 'success') {
+								if (responseData.status == 'success') {
 									instance.loadMessages(instance.folderId, instance.pageNumber, instance.orderByField, instance.orderByType, instance.keywords);
 								}
 							}
@@ -125,9 +125,9 @@ AUI().add(
 								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 							},
 							success: function(event, id, obj) {
-								var results = this.get('responseData');
+								var responseData = this.get('responseData');
 
-								if (results == 'true') {
+								if (responseData == 'true') {
 									instance.loadFolders(accountId);
 									instance.loadMessages(inboxFolderId, 1, 'sentDate', 'desc', '');
 								}

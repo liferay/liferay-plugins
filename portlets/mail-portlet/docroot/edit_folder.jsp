@@ -56,11 +56,11 @@ Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 						},
 						success: function(event, id, obj) {
-							var results = this.get('responseData');
+							var responseData = this.get('responseData');
 
-							Liferay.Mail.setStatus(results.status, results.message);
+							Liferay.Mail.setStatus(responseData.status, responseData.message);
 
-							if (results.status == 'success') {
+							if (responseData.status == 'success') {
 								Liferay.Mail.loadFolders(Liferay.Mail.accountId);
 
 								A.DialogManager.closeByChild(form);

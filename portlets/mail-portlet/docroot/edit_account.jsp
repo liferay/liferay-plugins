@@ -66,9 +66,9 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 						},
 						success: function(event, id, obj) {
-							var results = this.get('responseData');
+							var responseData = this.get('responseData');
 
-							Liferay.Mail.setStatus(results.status, results.message);
+							Liferay.Mail.setStatus(responseData.status, responseData.message);
 
 							A.DialogManager.closeByChild(form);
 						}
@@ -98,11 +98,11 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 						},
 						success: function(event, id, obj) {
-							var results = this.get('responseData');
+							var responseData = this.get('responseData');
 
-							Liferay.Mail.setStatus(results.status, results.message);
+							Liferay.Mail.setStatus(responseData.status, responseData.message);
 
-							if (results.status == 'success') {
+							if (responseData.status == 'success') {
 								Liferay.Mail.reset();
 
 								A.DialogManager.closeByChild(form);

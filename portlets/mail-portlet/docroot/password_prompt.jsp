@@ -23,38 +23,43 @@ long inboxFolderId = ParamUtil.getLong(request, "inboxFolderId");
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<aui:input label="please-enter-your-password" name="password" type="password" />
+<aui:layout cssClass="mail-status" />
 
-<aui:button name="login" value="login" />
+<aui:form name="dialogFm" onSubmit="event.preventDefault();">
+	<aui:input label="please-enter-your-password" name="password" type="password" />
 
-<aui:script use="liferay-plugin-mail">
-	var A = AUI();
+	<aui:button name="login" type="submit" value="login" />
+</aui:form>
+
+<aui:script use="aui-io">
+	var form = A.one('#<portlet:namespace />dialogFm');
 
 	A.one('#<portlet:namespace />login').on(
 		'click',
-		function() {
-			var password = A.one('#<portlet:namespace />password').get('value');
+		function(event) {
+			event.preventDefault();
 
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/store_password',
 				{
-					data: {
-						accountId: '<%= accountId %>',
-						password: password
-					},
 					dataType: 'json',
+					form: {
+						id: form.getDOM()
+					},
 					method: 'POST',
 					on: {
 						failure: function(event, id, obj) {
 							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 						},
 						success: function(event, id, obj) {
-							var results = this.get('responseData');
+							var responseData = this.get('responseData');
 
-							Liferay.Mail.setStatus(results.status, results.message);
+							Liferay.Mail.setStatus(responseData.status, responseData.message);
 
-							if (results.status == 'success') {
+							if (responseData.status == 'success') {
 								Liferay.Mail.loadAccount(<%= accountId %>, <%= inboxFolderId %>);
+
+								A.DialogManager.closeByChild(form);
 							}
 						}
 					}
