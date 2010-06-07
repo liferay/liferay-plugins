@@ -26,7 +26,7 @@ AUI().add(
 					return;
 				}
 
-				loadAccount(instance.accountId, instance.folderId);
+				instance.loadAccount(instance.accountId, instance.folderId);
 			},
 
 			addAccount: function() {
