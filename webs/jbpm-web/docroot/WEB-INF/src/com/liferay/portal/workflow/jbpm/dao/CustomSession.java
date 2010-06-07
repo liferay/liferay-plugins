@@ -15,13 +15,22 @@
 package com.liferay.portal.workflow.jbpm.dao;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowLog;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroupRole;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
+import com.liferay.portal.workflow.jbpm.TaskInstanceExtensionImpl;
 import com.liferay.portal.workflow.jbpm.WorkflowDefinitionExtensionImpl;
 import com.liferay.portal.workflow.jbpm.WorkflowLogImpl;
+import com.liferay.portal.workflow.jbpm.util.RoleRetrievalUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,8 +42,6 @@ import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Junction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.ProjectionList;
@@ -356,6 +363,23 @@ public class CustomSession {
 			companyId, userId, completed, start, end, orderByComparator);
 	}
 
+	public TaskInstanceExtensionImpl findTaskInstanceExtension(
+		long taskInstanceId) {
+
+		try {
+			Criteria criteria = _session.createCriteria(
+				TaskInstanceExtensionImpl.class);
+
+			criteria.add(
+				Restrictions.eq("taskInstance.id", taskInstanceId));
+
+			return (TaskInstanceExtensionImpl)criteria.uniqueResult();
+		}
+		catch (Exception e) {
+			throw new JbpmException(e);
+		}
+	}
+
 	public WorkflowDefinitionExtensionImpl findWorkflowDefinitonExtension(
 		long processDefinitionId){
 
@@ -374,43 +398,16 @@ public class CustomSession {
 	}
 
 	public int searchCountTaskInstances(
-		String[] actorIds, Boolean pooledActors, String taskName,
-		String assetType, Date dueDateGT, Date dueDateLT, Boolean completed,
-		boolean andOperator) {
+		String taskName, String assetType, Date dueDateGT, Date dueDateLT,
+		Boolean completed, Boolean searchByUserRoles, boolean andOperator,
+		ServiceContext serviceContext) {
 
 		try {
-			Criteria criteria = _session.createCriteria(TaskInstance.class);
+			Criteria criteria = buildTaskInstanceExtensionSearchCriteria(
+				taskName, assetType, dueDateGT, dueDateLT, completed,
+				searchByUserRoles, andOperator, serviceContext);
 
-			criteria.setProjection(Projections.countDistinct("id"));
-
-			addSearchCriteria(
-				criteria, actorIds, pooledActors, taskName, assetType,
-				dueDateGT, dueDateLT, completed, andOperator);
-
-			Number count = (Number)criteria.uniqueResult();
-
-			return count.intValue();
-		}
-		catch (Exception e) {
-			throw new JbpmException(e);
-		}
-	}
-
-	public int searchCountTaskInstances(
-		String[] actorIds, Boolean pooledActors, String[] taskNames,
-		Boolean completed) {
-
-		try {
-			Criteria criteria = _session.createCriteria(TaskInstance.class);
-
-			criteria.setProjection(Projections.countDistinct("id"));
-
-			addSearchCriteria(
-				criteria, actorIds, pooledActors, taskNames, completed);
-
-			Number count = (Number)criteria.uniqueResult();
-
-			return count.intValue();
+			return (int)criteriaCount(criteria);
 		}
 		catch (Exception e) {
 			throw new JbpmException(e);
@@ -418,63 +415,24 @@ public class CustomSession {
 	}
 
 	public List<TaskInstance> searchTaskInstances(
-		String[] actorIds, Boolean pooledActors, String taskName,
-		String assetType, Date dueDateGT, Date dueDateLT, Boolean completed,
-		boolean andOperator, int start, int end,
-		OrderByComparator orderByComparator) {
+		String taskName, String assetType, Date dueDateGT, Date dueDateLT,
+		Boolean completed, Boolean searchByUserRoles, boolean andOperator,
+		int start, int end, OrderByComparator orderByComparator,
+		ServiceContext serviceContext) {
 
 		try {
-			Criteria criteria = _session.createCriteria(TaskInstance.class);
-
-			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-
-			addSearchCriteria(
-				criteria, actorIds, pooledActors, taskName, assetType,
-				dueDateGT, dueDateLT, completed, andOperator);
+			Criteria criteria = buildTaskInstanceExtensionSearchCriteria(
+				taskName, assetType, dueDateGT, dueDateLT, completed,
+				searchByUserRoles, andOperator, serviceContext);
 
 			addPagination(criteria, start, end);
 			addOrder(criteria, orderByComparator);
 
-			return criteria.list();
+			return toTaskIntances(criteria.list());
 		}
 		catch (Exception e) {
 			throw new JbpmException(e);
 		}
-	}
-
-	public List<TaskInstance> searchTaskInstances(
-		String[] actorIds, Boolean pooledActors, String[] taskNames,
-		Boolean completed,	int start, int end,
-		OrderByComparator orderByComparator) {
-
-		try {
-			Criteria criteria = _session.createCriteria(TaskInstance.class);
-
-			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-
-			addSearchCriteria(
-				criteria, actorIds, pooledActors, taskNames, completed);
-
-			addPagination(criteria, start, end);
-			addOrder(criteria, orderByComparator);
-
-			return criteria.list();
-		}
-		catch (Exception e) {
-			throw new JbpmException(e);
-		}
-	}
-
-	protected void addDisjunction(
-		Junction junction, String propertyName, String[] values) {
-
-		Disjunction disjunction = Restrictions.disjunction();
-
-		for (String value : values) {
-			disjunction.add(Restrictions.like(propertyName, value));
-		}
-
-		junction.add(disjunction);
 	}
 
 	protected void addOrder(
@@ -518,103 +476,147 @@ public class CustomSession {
 		}
 	}
 
-	protected void addSearchCriteria(
-		Criteria criteria, String[] actorIds, Boolean pooledActors,
-		String taskName, String assetType, Date dueDateGT, Date dueDateLT,
-		Boolean completed, boolean andOperator) {
+	protected void addSearchByUserRolesCriterion(
+		Criteria criteria, Boolean searchByUserRoles,
+		ServiceContext serviceContext) throws SystemException {
 
-		if (actorIds != null) {
-			if ((pooledActors != null) && pooledActors.booleanValue()) {
-				Criteria subcriteria = criteria.createCriteria(
-					"pooledActors");
-
-				subcriteria.add(Restrictions.in("actorId", actorIds));
-
-				criteria.add(Restrictions.isNull("actorId"));
-			}
-			else {
-				criteria.add(Restrictions.in("actorId", actorIds));
-			}
+		if (searchByUserRoles == null) {
+			return;
 		}
 
-		Junction kewordsJunction;
+		if (!searchByUserRoles) {
+			criteria.add(
+				Restrictions.eq("assigneeClassName", User.class.getName()));
+			criteria.add(
+				Restrictions.eq("assigneeClassPK",serviceContext.getUserId()));
 
-		if (andOperator) {
-			kewordsJunction = Restrictions.conjunction();
+			return;
+		}
+
+		List<Long> roleIds = RoleRetrievalUtil.getRoleIds(serviceContext);
+
+		List<UserGroupRole> userGroupRoles =
+			UserGroupRoleLocalServiceUtil.getUserGroupRoles(
+				serviceContext.getUserId());
+
+		if (userGroupRoles.isEmpty()) {
+			criteria.add(
+				Restrictions.eq("assigneeClassName", Role.class.getName()));
+			criteria.add(
+				Restrictions.in("assigneeClassPK",
+					roleIds.toArray(new Long[roleIds.size()])));
 		}
 		else {
-			kewordsJunction = Restrictions.disjunction();
-		}
+			Junction junction = Restrictions.disjunction();
 
-		if (taskName != null) {
-			kewordsJunction.add(Restrictions.like("name", taskName));
-		}
+			junction.add(
+				Restrictions.and(
+				Restrictions.eq("assigneeClassName", Role.class.getName()),
+				Restrictions.in("assigneeClassPK",
+					roleIds.toArray(new Long[roleIds.size()]))));
 
-		if (assetType != null){
-			criteria.createAlias("processInstance", "processInstance");
-			criteria.createAlias("processInstance.instances", "instances");
-			criteria.createAlias("instances.tokenVariableMaps", "varMaps");
-			criteria.createAlias(
-				"varMaps.variableInstances", "varInstances");
-
-			Criterion typeCriterion = Restrictions.and(
-				Restrictions.eq(
-					"varInstances.name", WorkflowConstants.CONTEXT_ENTRY_TYPE),
-				Restrictions.like("varInstances.value", assetType));
-
-			kewordsJunction.add(typeCriterion);
-		}
-
-		if ((dueDateGT != null) && (dueDateLT != null)) {
-			kewordsJunction.add(
-				Restrictions.between("dueDate", dueDateGT, dueDateLT));
-		}
-
-		criteria.add(kewordsJunction);
-
-		if (completed != null) {
-			if (completed.booleanValue()) {
-				criteria.add(Restrictions.isNotNull("end"));
+			for (UserGroupRole userGroupRole : userGroupRoles) {
+				junction.add(
+					Restrictions.and(
+						Restrictions.eq("groupId", userGroupRole.getGroupId()),
+						Restrictions.and(
+							Restrictions.eq("assigneeClassName",
+								Role.class.getName()),
+							Restrictions.eq("assigneeClassPK",
+								userGroupRole.getRoleId()))));
 			}
-			else {
-				criteria.add(Restrictions.isNull("end"));
-			}
+
+			criteria.add(junction);
 		}
 	}
 
-	protected void addSearchCriteria(
-		Criteria criteria, String[] actorIds, Boolean pooledActors,
-		String[] taskNames, Boolean completed) {
+	protected Criteria buildTaskInstanceExtensionSearchCriteria(
+			String taskName, String assetType, Date dueDateGT, Date dueDateLT,
+			Boolean completed, Boolean searchByUserRoles, boolean andOperator,
+			ServiceContext serviceContext)
+		throws SystemException {
 
-		if (actorIds != null) {
-			if ((pooledActors != null) && pooledActors.booleanValue()) {
-				Criteria subcriteria = criteria.createCriteria(
-					"pooledActors");
+		Criteria criteria = _session.createCriteria(
+			TaskInstanceExtensionImpl.class);
 
-				subcriteria.add(Restrictions.in("actorId", actorIds));
+		criteria.createAlias("taskInstance", "taskInstance");
 
-				criteria.add(Restrictions.isNull("actorId"));
+		criteria.add(
+			Restrictions.eq("companyId" , serviceContext.getCompanyId()));
+
+		if (Validator.isNotNull(taskName) || Validator.isNotNull(assetType) ||
+			(dueDateGT != null) || (dueDateLT != null)) {
+
+			Junction junction = null;
+
+			if (andOperator) {
+				junction = Restrictions.conjunction();
 			}
 			else {
-				criteria.add(Restrictions.in("actorId", actorIds));
+				junction = Restrictions.disjunction();
 			}
+
+			if (Validator.isNotNull(taskName)) {
+				String[] taskNameKeywords = StringUtil.split(
+					taskName, StringPool.SPACE);
+
+				for (String taskNameKeyword : taskNameKeywords) {
+					junction.add(
+						Restrictions.like(
+							"taskInstance.name", "%" + taskNameKeyword + "%"));
+				}
+			}
+
+			if (Validator.isNotNull(assetType)) {
+				String[] assetTypeKeywords = StringUtil.split(
+					assetType, StringPool.SPACE);
+
+				for (String assetTypeKeyword : assetTypeKeywords) {
+					junction.add(
+						Restrictions.like(
+							"workflowContext",
+							"%\"entryType\":\"%" + assetTypeKeyword + "%\"%"));
+				}
+			}
+
+			if (dueDateGT != null) {
+				junction.add(
+					Restrictions.ge("taskInstance.dueDate", dueDateGT));
+			}
+
+			if (dueDateLT != null) {
+				junction.add(
+					Restrictions.lt("taskInstance.dueDate", dueDateGT));
+			}
+
+			criteria.add(junction);
 		}
 
-		Disjunction kewordsDisjunction = Restrictions.disjunction();
-
-		if ((taskNames != null) && (taskNames.length > 0)) {
-			addDisjunction(kewordsDisjunction, "name", taskNames);
-		}
-
-		criteria.add(kewordsDisjunction);
+		addSearchByUserRolesCriterion(
+			criteria, searchByUserRoles, serviceContext);
 
 		if (completed != null) {
 			if (completed.booleanValue()) {
-				criteria.add(Restrictions.isNotNull("end"));
+				criteria.add(Restrictions.isNotNull("taskInstance.end"));
 			}
 			else {
-				criteria.add(Restrictions.isNull("end"));
+				criteria.add(Restrictions.isNull("taskInstance.end"));
 			}
+		}
+
+		return criteria;
+	}
+
+	protected long criteriaCount(Criteria criteria){
+		criteria.setProjection(Projections.rowCount());
+
+		List results = criteria.list();
+
+		if (results.isEmpty()) {
+			return 0;
+		}
+		else {
+			return ((Long)results.get(0)).longValue();
 		}
 	}
 
@@ -701,6 +703,21 @@ public class CustomSession {
 
 		if ((end != QueryUtil.ALL_POS) && (taskInstances.size() > end)) {
 			taskInstances = ListUtil.subList(taskInstances, start, end);
+		}
+
+		return taskInstances;
+	}
+
+	protected List<TaskInstance> toTaskIntances(
+		List<TaskInstanceExtensionImpl> taskInstanceExtensions) {
+
+		List<TaskInstance> taskInstances = new ArrayList<TaskInstance>(
+			taskInstanceExtensions.size());
+
+		for (TaskInstanceExtensionImpl taskInstanceExtension :
+			taskInstanceExtensions) {
+
+			taskInstances.add(taskInstanceExtension.getTaskInstance());
 		}
 
 		return taskInstances;

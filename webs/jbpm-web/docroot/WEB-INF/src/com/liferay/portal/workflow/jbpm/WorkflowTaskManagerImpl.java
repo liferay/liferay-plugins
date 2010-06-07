@@ -29,9 +29,9 @@ import com.liferay.portal.kernel.workflow.WorkflowTaskManager;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
-import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.io.Serializable;
 
@@ -171,6 +171,16 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			Session session = jbpmContext.getSession();
 
 			session.save(workflowLogImpl);
+
+			CustomSession customSession = new CustomSession(jbpmContext);
+
+			TaskInstanceExtensionImpl taskInstanceExtension =
+				customSession.findTaskInstanceExtension(taskInstance.getId());
+
+			taskInstanceExtension.setAssigneeClassName(User.class.getName());
+			taskInstanceExtension.setAssigneeClassPK(assigneeUserId);
+
+			session.update(taskInstanceExtension);
 
 			return new WorkflowTaskImpl(taskInstance);
 		}
@@ -570,13 +580,16 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		try {
 			CustomSession customSession = new CustomSession(jbpmContext);
 
-			String[] actorIds = getActorIds(userId, searchByUserRoles);
-			String[] taskNames = CustomSQLUtil.keywords(keywords);
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+			serviceContext.setUserId(userId);
 
 			List<TaskInstance> taskInstances =
 				customSession.searchTaskInstances(
-					actorIds, searchByUserRoles, taskNames, completed,
-					start, end,	orderByComparator);
+					keywords, keywords, null, null, completed,
+					searchByUserRoles, false, start, end, orderByComparator,
+					serviceContext);
 
 			return toWorkflowTasks(taskInstances);
 		}
@@ -600,13 +613,16 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		try {
 			CustomSession customSession = new CustomSession(jbpmContext);
 
-			String[] actorIds = getActorIds(userId, searchByUserRoles);
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+			serviceContext.setUserId(userId);
 
 			List<TaskInstance> taskInstances =
 				customSession.searchTaskInstances(
-					actorIds, searchByUserRoles, taskName, assetType, dueDateGT,
-					dueDateLT, completed, andOperator, start, end,
-					orderByComparator);
+					taskName, assetType, dueDateGT, dueDateLT, completed,
+					searchByUserRoles, andOperator, start, end,
+					orderByComparator, serviceContext);
 
 			return toWorkflowTasks(taskInstances);
 		}
@@ -628,11 +644,14 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		try {
 			CustomSession customSession = new CustomSession(jbpmContext);
 
-			String[] actorIds = getActorIds(userId, searchByUserRoles);
-			String[] taskNames = CustomSQLUtil.keywords(keywords);
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+			serviceContext.setUserId(userId);
 
 			return customSession.searchCountTaskInstances(
-				actorIds, searchByUserRoles, taskNames, completed);
+				keywords, keywords, null, null, completed,
+				searchByUserRoles, false, serviceContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -653,11 +672,14 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		try {
 			CustomSession customSession = new CustomSession(jbpmContext);
 
-			String[] actorIds = getActorIds(userId, searchByUserRoles);
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+			serviceContext.setUserId(userId);
 
 			return customSession.searchCountTaskInstances(
-				actorIds, searchByUserRoles, taskName, assetType, dueDateGT,
-				dueDateLT, completed, andOperator);
+				taskName, assetType, dueDateGT, dueDateLT, completed,
+				searchByUserRoles, andOperator, serviceContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -721,37 +743,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		return StringUtil.split(
 			ListUtil.toString(roles, "roleId").concat(
 				StringPool.COMMA).concat(ListUtil.toString(roles, "name")));
-	}
-
-	protected String[] getActorIds(
-			long userId, Boolean searchByUserRoles)
-		throws WorkflowException{
-
-		String[] actorIds = null;
-
-		try{
-			if (userId > 0) {
-				if ((searchByUserRoles != null) &&
-						searchByUserRoles.booleanValue()) {
-
-					List<Role> roles = RoleLocalServiceUtil.getUserRoles(
-						userId);
-
-					actorIds = getActorIds(roles);
-				}
-				else {
-					User user = UserLocalServiceUtil.getUser(userId);
-
-					actorIds = new String[] {
-						String.valueOf(userId), user.getEmailAddress()};
-				}
-			}
-		}
-		catch (Exception e) {
-			throw new WorkflowException(e);
-		}
-
-		return actorIds;
 	}
 
 	protected int getWorkflowTaskCount(

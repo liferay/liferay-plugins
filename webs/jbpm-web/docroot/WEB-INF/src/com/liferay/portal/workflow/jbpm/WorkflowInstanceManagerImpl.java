@@ -24,10 +24,14 @@ import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManager;
 import com.liferay.portal.workflow.jbpm.comparator.WorkflowInstanceStateComparator;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
+import com.liferay.portal.workflow.jbpm.util.Assignee;
+import com.liferay.portal.workflow.jbpm.util.AssigneeRetrievalUtil;
+import com.liferay.portal.workflow.jbpm.util.WorkflowContextUtil;
 
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +47,7 @@ import org.jbpm.graph.def.ProcessDefinition;
 import org.jbpm.graph.def.Transition;
 import org.jbpm.graph.exe.ProcessInstance;
 import org.jbpm.graph.exe.Token;
+import org.jbpm.taskmgmt.exe.TaskInstance;
 
 /**
  * <a href="WorkflowInstanceManagerImpl.java.html"><b><i>View Source</i></b></a>
@@ -287,6 +292,29 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			}
 
 			jbpmContext.save(processInstance);
+
+			Collection<TaskInstance> taskInstances =
+				processInstance.getTaskMgmtInstance().getTaskInstances();
+
+			if (taskInstances != null) {
+				for (TaskInstance taskInstance : taskInstances) {
+					Assignee assignee = AssigneeRetrievalUtil.getAssignee(
+						companyId, taskInstance.getActorId(),
+						taskInstance.getPooledActors());
+
+					String context = WorkflowContextUtil.convert(
+						workflowContext);
+
+					TaskInstanceExtensionImpl taskInstanceExtensionImpl =
+						new TaskInstanceExtensionImpl(
+							companyId, groupId, userId,
+							assignee.getAssigneeClassName(),
+							assignee.getAssigneeClassPK(), context,
+							taskInstance);
+
+					jbpmContext.getSession().save(taskInstanceExtensionImpl);
+				}
+			}
 
 			Token token = processInstance.getRootToken();
 

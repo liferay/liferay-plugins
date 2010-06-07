@@ -14,6 +14,9 @@
 
 package com.liferay.portal.workflow.jbpm.util;
 
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
+
 import java.io.Serializable;
 
 import java.util.HashMap;
@@ -41,6 +44,16 @@ public class WorkflowContextUtil {
 		}
 
 		return workflowContext;
+	}
+
+	public static String convert(
+		Map<String, Serializable> workflowContext) {
+
+		if (workflowContext == null) {
+			return StringPool.BLANK;
+		}
+
+		return JSONFactoryUtil.serialize(workflowContext);
 	}
 
 }
