@@ -26,9 +26,19 @@ MailManager mailManager = MailManager.getInstance(request);
 <aui:layout cssClass="mail-status" />
 
 <aui:form name="dialogFm" onSubmit="event.preventDefault();">
-	<aui:input label="please-enter-your-password" name="password" type="password" />
+	<aui:input name="accountId" type="hidden" value="<%= accountId %>" />
 
-	<aui:button name="login" type="submit" value="login" />
+	<%
+	Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
+
+	String taglibLabel = LanguageUtil.format(pageContext, "please-enter-your-password-for-x", mailAccount.getAddress());
+	%>
+
+	<aui:input label="<%= taglibLabel %>" name="password" type="password" />
+
+	<aui:button-row>
+		<aui:button name="login" type="submit" value="login" />
+	</aui:button-row>
 </aui:form>
 
 <aui:script use="aui-io">

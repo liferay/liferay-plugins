@@ -132,7 +132,7 @@ AUI().add(
 									instance.loadMessages(inboxFolderId, 1, 'sentDate', 'desc', '');
 								}
 								else {
-									instance.promptForPassword(accountId, inboxFolderId);
+									instance.passwordPrompt(accountId, inboxFolderId);
 								}
 							}
 						}
@@ -225,6 +225,30 @@ AUI().add(
 				);
 
 				instance.messagesContainer.io.start();
+			},
+
+			passwordPrompt: function(accountId, inboxFolderId) {
+		 		var instance = this;
+
+				new A.Dialog(
+					{
+						centered: true,
+						cssClass: 'mail-dialog',
+						destroyOnClose: true,
+						modal: true,
+						title: Liferay.Language.get('password'),
+						width: 600
+					}
+				).plug(
+					A.Plugin.IO,
+					{
+						data: {
+							accountId: accountId,
+							inboxFolderId: inboxFolderId
+						},
+						uri: themeDisplay.getLayoutURL() + '/-/mail/password_prompt'
+					}
+				).render();
 			},
 
 			reset: function() {
