@@ -26,6 +26,14 @@ long groupId = ParamUtil.getLong(request, "groupId");
 
 <liferay-ui:tabs names="community-roles" />
 
+<%
+String taglibRemoveRole = "javascript:opener." + renderResponse.getNamespace() + "updateRole('" +  userId +  "', '" + groupId + "', ''); window.close();";
+%>
+
+<aui:button-row>
+	<aui:button onClick="<%= taglibRemoveRole %>" value="remove-role" />
+</aui:button-row>
+
 <liferay-ui:search-container>
 	<liferay-ui:search-container-results>
 

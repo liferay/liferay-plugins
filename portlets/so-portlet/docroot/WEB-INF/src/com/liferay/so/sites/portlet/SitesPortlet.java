@@ -75,8 +75,10 @@ public class SitesPortlet extends MVCPortlet {
 		UserGroupRoleServiceUtil.deleteUserGroupRoles(
 			userId, groupId, deleteRoleIds);
 
-		UserGroupRoleServiceUtil.addUserGroupRoles(
-			userId, groupId, new long[] {roleId});
+		if (roleId > 0) {
+			UserGroupRoleServiceUtil.addUserGroupRoles(
+				userId, groupId, new long[] {roleId});
+		}
 	}
 
 }
