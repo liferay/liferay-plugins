@@ -30,6 +30,7 @@ import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
 
@@ -47,9 +48,11 @@ import org.hibernate.Session;
 
 import org.jbpm.JbpmConfiguration;
 import org.jbpm.JbpmContext;
+import org.jbpm.context.exe.ContextInstance;
 import org.jbpm.db.TaskMgmtSession;
 import org.jbpm.graph.def.Node;
 import org.jbpm.graph.def.Transition;
+import org.jbpm.graph.exe.ProcessInstance;
 import org.jbpm.graph.exe.Token;
 import org.jbpm.graph.node.TaskNode;
 import org.jbpm.taskmgmt.def.Task;
@@ -126,22 +129,17 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			PooledActor pooledActor = pooledActors.iterator().next();
 
+			ProcessInstance processInstance = taskInstance.getProcessInstance();
+
+			ContextInstance contextInstance =
+				processInstance.getContextInstance();
+
+			long groupId = GetterUtil.getLong(
+				(String)contextInstance.getVariable("groupId"));
+
 			String actorId = pooledActor.getActorId();
 
-			boolean hasUserRole = false;
-
-			if (Validator.isNumber(actorId)) {
-				long roleId = GetterUtil.getLong(actorId);
-
-				hasUserRole = RoleLocalServiceUtil.hasUserRole(
-					assigneeUserId, roleId);
-			}
-			else {
-				hasUserRole = RoleLocalServiceUtil.hasUserRole(
-					assigneeUserId, companyId, actorId, true);
-			}
-
-			if (!hasUserRole) {
+			if (!hasRole(companyId, groupId, actorId, assigneeUserId)) {
 				throw new WorkflowException(
 					"Workflow task " + workflowTaskId +
 						" cannot be assigned to user " + assigneeUserId);
@@ -793,6 +791,41 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 		finally {
 			jbpmContext.close();
+		}
+	}
+
+	protected boolean hasRole(
+			long companyId, long groupId, String actorId, long assigneeUserId)
+		throws WorkflowException {
+
+		try {
+			if (Validator.isNumber(actorId)) {
+				long roleId = GetterUtil.getLong(actorId);
+
+				if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
+						assigneeUserId, groupId, roleId)) {
+
+					return true;
+				}
+				else {
+					return RoleLocalServiceUtil.hasUserRole(
+						assigneeUserId, roleId);
+				}
+			}
+			else {
+				if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
+						assigneeUserId, groupId, actorId)) {
+
+					return true;
+				}
+				else {
+					return RoleLocalServiceUtil.hasUserRole(
+						assigneeUserId, companyId, actorId, true);
+				}
+			}
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
 		}
 	}
 
