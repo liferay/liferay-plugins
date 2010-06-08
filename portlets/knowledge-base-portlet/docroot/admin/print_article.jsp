@@ -20,22 +20,20 @@
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 %>
 
-<liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
-
 <div class="float-container kb-entity-header">
 	<div class="kb-title">
 		<%= article.getTitle() %>
 	</div>
 
 	<div class="kb-tools">
-		<liferay-util:include page="/admin/article_tools.jsp" servletContext="<%= application %>" />
+		<liferay-ui:icon
+			image="print"
+			label="<%= true %>"
+			url="javascript:print();"
+		/>
 	</div>
 </div>
 
 <div class="kb-entity-body">
-	<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
-
 	<%= article.getContent() %>
-
-	<liferay-util:include page="/admin/article_discussion.jsp" servletContext="<%= application %>" />
 </div>

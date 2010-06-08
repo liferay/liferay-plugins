@@ -42,6 +42,10 @@
 	font-weight: bold;
 }
 
+.knowledge-base-portlet-admin .kb-entity-header .kb-tools {
+	float: right;
+}
+
 .knowledge-base-portlet-admin .kb-results-body {
 	padding: 0 5px 0 25px;
 }
