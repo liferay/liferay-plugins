@@ -24,6 +24,9 @@ import org.jbpm.taskmgmt.exe.TaskInstance;
  */
 public class TaskInstanceExtensionImpl {
 
+	public TaskInstanceExtensionImpl() {
+	}
+
 	public TaskInstanceExtensionImpl(
 		long companyId, long groupId, long userId,
 		String assigneeClassName, long assigneeClassPK,
