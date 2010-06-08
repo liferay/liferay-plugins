@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 6.0.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_6_0_0.dtd">
+
+<liferay-portlet-app>
+	<portlet>
+		<portlet-name>1</portlet-name>
+		<friendly-url-mapper-class>com.liferay.util.bridges.alloy.AlloyFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-routes>com/liferay/util/bridges/alloy/friendly-url-routes.xml</friendly-url-routes>
+		<css-class-wrapper>ams-portlet</css-class-wrapper>
+	</portlet>
+</liferay-portlet-app>
