@@ -48,6 +48,7 @@ import org.jbpm.graph.def.Transition;
 import org.jbpm.graph.exe.ProcessInstance;
 import org.jbpm.graph.exe.Token;
 import org.jbpm.taskmgmt.exe.TaskInstance;
+import org.jbpm.taskmgmt.exe.TaskMgmtInstance;
 
 /**
  * <a href="WorkflowInstanceManagerImpl.java.html"><b><i>View Source</i></b></a>
@@ -293,8 +294,11 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 			jbpmContext.save(processInstance);
 
+			TaskMgmtInstance taskMgmtInstance =
+				processInstance.getTaskMgmtInstance();
+
 			Collection<TaskInstance> taskInstances =
-				processInstance.getTaskMgmtInstance().getTaskInstances();
+				taskMgmtInstance.getTaskInstances();
 
 			if (taskInstances != null) {
 				for (TaskInstance taskInstance : taskInstances) {
@@ -302,7 +306,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 						companyId, taskInstance.getActorId(),
 						taskInstance.getPooledActors());
 
-					String context = WorkflowContextUtil.convert(
+					String context = WorkflowContextUtil.convertToJSON(
 						workflowContext);
 
 					TaskInstanceExtensionImpl taskInstanceExtensionImpl =

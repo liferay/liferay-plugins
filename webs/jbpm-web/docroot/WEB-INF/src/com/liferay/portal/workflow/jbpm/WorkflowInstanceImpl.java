@@ -47,8 +47,8 @@ public class WorkflowInstanceImpl extends DefaultWorkflowInstance {
 
 		Map<String, Object> variables = contextInstance.getVariables(token);
 
-		Map<String, Serializable> workflowContext = WorkflowContextUtil.convert(
-			variables);
+		Map<String, Serializable> workflowContext =
+			WorkflowContextUtil.convertToMap(variables);
 
 		setWorkflowContext(workflowContext);
 

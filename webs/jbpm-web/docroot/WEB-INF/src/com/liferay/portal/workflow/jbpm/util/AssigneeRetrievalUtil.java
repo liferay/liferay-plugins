@@ -40,7 +40,7 @@ public class AssigneeRetrievalUtil {
 
 		Assignee assignee = new Assignee();
 
-		if (pooledActors != null && !pooledActors.isEmpty()) {
+		if ((pooledActors != null) && !pooledActors.isEmpty()) {
 			assignee.setAssigneeClassName(Role.class.getName());
 
 			PooledActor pooledActor = pooledActors.iterator().next();

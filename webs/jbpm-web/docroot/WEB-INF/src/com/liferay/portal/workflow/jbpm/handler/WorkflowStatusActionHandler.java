@@ -41,8 +41,8 @@ public class WorkflowStatusActionHandler implements ActionHandler {
 	public void execute(ExecutionContext executionContext) throws Exception {
 		ContextInstance contextInstance = executionContext.getContextInstance();
 
-		Map<String, Serializable> workflowContext = WorkflowContextUtil.convert(
-			contextInstance.getVariables());
+		Map<String, Serializable> workflowContext =
+			WorkflowContextUtil.convertToMap(contextInstance.getVariables());
 
 		long companyId = GetterUtil.getLong(
 			(String)workflowContext.get(WorkflowConstants.CONTEXT_COMPANY_ID));

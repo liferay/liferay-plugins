@@ -63,7 +63,7 @@ public class WorkflowTaskImpl extends DefaultWorkflowTask {
 		setDueDate(taskInstance.getDueDate());
 		setName(taskInstance.getName());
 		setOptionalAttributes(
-			WorkflowContextUtil.convert(taskInstance.getVariables()));
+			WorkflowContextUtil.convertToMap(taskInstance.getVariables()));
 		setWorkflowDefinitionId(processDefinition.getId());
 		setWorkflowDefinitionName(processDefinition.getName());
 		setWorkflowDefinitionVersion(processDefinition.getVersion());

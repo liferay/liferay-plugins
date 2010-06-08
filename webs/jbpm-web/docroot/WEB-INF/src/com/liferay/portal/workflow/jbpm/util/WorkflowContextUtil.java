@@ -29,7 +29,17 @@ import java.util.Map;
  */
 public class WorkflowContextUtil {
 
-	public static Map<String, Serializable> convert(
+	public static String convertToJSON(
+		Map<String, Serializable> workflowContext) {
+
+		if (workflowContext == null) {
+			return StringPool.BLANK;
+		}
+
+		return JSONFactoryUtil.serialize(workflowContext);
+	}
+
+	public static Map<String, Serializable> convertToMap(
 		Map<String, Object> variables) {
 
 		if (variables == null) {
@@ -44,16 +54,6 @@ public class WorkflowContextUtil {
 		}
 
 		return workflowContext;
-	}
-
-	public static String convert(
-		Map<String, Serializable> workflowContext) {
-
-		if (workflowContext == null) {
-			return StringPool.BLANK;
-		}
-
-		return JSONFactoryUtil.serialize(workflowContext);
 	}
 
 }

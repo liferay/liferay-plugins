@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.jbpm.dao;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
@@ -488,7 +489,7 @@ public class CustomSession {
 			criteria.add(
 				Restrictions.eq("assigneeClassName", User.class.getName()));
 			criteria.add(
-				Restrictions.eq("assigneeClassPK",serviceContext.getUserId()));
+				Restrictions.eq("assigneeClassPK", serviceContext.getUserId()));
 
 			return;
 		}
@@ -610,13 +611,13 @@ public class CustomSession {
 	protected long criteriaCount(Criteria criteria){
 		criteria.setProjection(Projections.rowCount());
 
-		List results = criteria.list();
+		List<Long> results = criteria.list();
 
 		if (results.isEmpty()) {
 			return 0;
 		}
 		else {
-			return ((Long)results.get(0)).longValue();
+			return (results.get(0)).longValue();
 		}
 	}
 
@@ -684,15 +685,19 @@ public class CustomSession {
 
 			addOrder(criteria, orderByComparator);
 
-			List<TaskInstance> tasks = criteria.list();
+			for (TaskInstance taskInstance :
+					(List<TaskInstance>)criteria.list()) {
 
-			for (TaskInstance taskInstance : tasks) {
+				ProcessInstance processInstance =
+					taskInstance.getProcessInstance();
+
 				ContextInstance contextInstance =
-					taskInstance.getProcessInstance().getContextInstance();
+					processInstance.getContextInstance();
 
-				if (Validator.equals(Long.toString(userId),
-						(String) contextInstance.getVariable("userId"))) {
+				long taskInstanceUserId = GetterUtil.getLong(
+					(String)contextInstance.getVariable("userId"));
 
+				if (userId == taskInstanceUserId) {
 					taskInstances.add(taskInstance);
 				}
 			}
@@ -709,15 +714,15 @@ public class CustomSession {
 	}
 
 	protected List<TaskInstance> toTaskIntances(
-		List<TaskInstanceExtensionImpl> taskInstanceExtensions) {
+		List<TaskInstanceExtensionImpl> taskInstanceExtensionImpls) {
 
 		List<TaskInstance> taskInstances = new ArrayList<TaskInstance>(
-			taskInstanceExtensions.size());
+			taskInstanceExtensionImpls.size());
 
-		for (TaskInstanceExtensionImpl taskInstanceExtension :
-			taskInstanceExtensions) {
+		for (TaskInstanceExtensionImpl taskInstanceExtensionImpl :
+				taskInstanceExtensionImpls) {
 
-			taskInstances.add(taskInstanceExtension.getTaskInstance());
+			taskInstances.add(taskInstanceExtensionImpl.getTaskInstance());
 		}
 
 		return taskInstances;

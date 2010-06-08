@@ -43,8 +43,8 @@ public class ScriptingWorkflowActionHandler implements ActionHandler {
 		ContextInstance contextInstance =
 			executionContext.getContextInstance();
 
-		Map<String, Serializable> workflowContext = WorkflowContextUtil.convert(
-			contextInstance.getVariables());
+		Map<String, Serializable> workflowContext =
+			WorkflowContextUtil.convertToMap(contextInstance.getVariables());
 
 		Map<String, Object> inputObjects = new HashMap<String, Object>(
 			workflowContext);
