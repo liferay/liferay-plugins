@@ -32,4 +32,6 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 	<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
 
 	<%= article.getContent() %>
+
+	<liferay-util:include page="/admin/article_discussion.jsp" servletContext="<%= application %>" />
 </div>
