@@ -25,19 +25,6 @@ String redirect = ParamUtil.getString(request, "redirect");
 CalEvent event = (CalEvent)request.getAttribute(WebKeys.CALENDAR_EVENT);
 %>
 
-<script type="text/javascript">
-	function <portlet:namespace />updatePopup(editURL) {
-		if (Liferay.SO) {
-			Liferay.SO.Calendar.displayPopup(editURL, 'Calendar Event');
-		}
-		else {
-			editURL = editURL.replace(/p_p_state=<%= LiferayWindowState.EXCLUSIVE %>/gim, 'p_p_state=<%= LiferayWindowState.MAXIMIZED %>');
-
-			window.location.href = editURL;
-		}
-	};
-</script>
-
 <c:if test="<%= !windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
 	<liferay-util:include page="/html/portlet/calendar/sidebar.jsp" />
 </c:if>
@@ -66,3 +53,16 @@ CalEvent event = (CalEvent)request.getAttribute(WebKeys.CALENDAR_EVENT);
 
 	<input type="button" value="<liferay-ui:message key="delete" />" onclick="javascript:if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-this") %>')) { submitForm(document.hrefFm, '<%= deleteURL %>'); } else { self.focus(); }" />
 </c:if>
+
+<aui:script>
+	function <portlet:namespace />updatePopup(editURL) {
+		if (Liferay.SO) {
+			Liferay.SO.Calendar.displayPopup(editURL, 'Calendar Event');
+		}
+		else {
+			editURL = editURL.replace(/p_p_state=<%= LiferayWindowState.EXCLUSIVE %>/gim, 'p_p_state=<%= LiferayWindowState.MAXIMIZED %>');
+
+			window.location.href = editURL;
+		}
+	};
+</aui:script>
