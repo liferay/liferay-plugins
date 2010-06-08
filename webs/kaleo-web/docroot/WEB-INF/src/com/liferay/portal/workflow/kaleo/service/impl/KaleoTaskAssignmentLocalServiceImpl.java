@@ -149,15 +149,15 @@ public class KaleoTaskAssignmentLocalServiceImpl
 			if (userAssignment.getUserId() > 0) {
 				user = userLocalService.getUser(userAssignment.getUserId());
 			}
-			else if (Validator.isNotNull(userAssignment.getScreenName())) {
-				user = userLocalService.getUserByScreenName(
-					serviceContext.getCompanyId(),
-					userAssignment.getScreenName());
-			}
 			else if (Validator.isNotNull(userAssignment.getEmailAddress())) {
 				user = userLocalService.getUserByEmailAddress(
 					serviceContext.getCompanyId(),
 					userAssignment.getEmailAddress());
+			}
+			else if (Validator.isNotNull(userAssignment.getScreenName())) {
+				user = userLocalService.getUserByScreenName(
+					serviceContext.getCompanyId(),
+					userAssignment.getScreenName());
 			}
 
 			if (user != null) {

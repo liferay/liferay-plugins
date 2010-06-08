@@ -104,8 +104,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			User.class.getName().equals(
 				kaleoTaskAssignment.getAssigneeClassName())) {
 
-				kaleoTaskInstanceToken.setAssigneeClassPK(
-					kaleoInstanceToken.getUserId());
+			kaleoTaskInstanceToken.setAssigneeClassPK(
+				kaleoInstanceToken.getUserId());
 		}
 		else {
 			kaleoTaskInstanceToken.setAssigneeClassPK(
