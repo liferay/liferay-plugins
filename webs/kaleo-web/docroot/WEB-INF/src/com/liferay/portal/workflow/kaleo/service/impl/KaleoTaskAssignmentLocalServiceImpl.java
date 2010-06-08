@@ -154,13 +154,18 @@ public class KaleoTaskAssignmentLocalServiceImpl
 					serviceContext.getCompanyId(),
 					userAssignment.getScreenName());
 			}
-			else {
+			else if (Validator.isNotNull(userAssignment.getEmailAddress())) {
 				user = userLocalService.getUserByEmailAddress(
 					serviceContext.getCompanyId(),
 					userAssignment.getEmailAddress());
 			}
 
-			kaleoTaskAssignment.setAssigneeClassPK(user.getUserId());
+			if (user != null) {
+				kaleoTaskAssignment.setAssigneeClassPK(user.getUserId());
+			}
+			else {
+				kaleoTaskAssignment.setAssigneeClassPK(0);
+			}
 		}
 	}
 

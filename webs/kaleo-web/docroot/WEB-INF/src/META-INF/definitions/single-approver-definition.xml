@@ -20,6 +20,30 @@
 		</transitions>
 	</state>
 	<task>
+		<name>CREATOR_MODIFY</name>
+		<actions>
+			<notification>
+				<name>Creator Modification Notification</name>
+				<execution-type>onAssignment</execution-type>
+				<template>Your asset was rejected by a reviewer, please modify and resubmit.</template>
+				<template-language>text</template-language>
+				<notification-type>email</notification-type>
+			</notification>
+		</actions>
+		<assignments>
+			<user>
+				<default>true</default>
+			</user>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Resubmit</name>
+				<target>REVIEW_CONTENT</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
 		<name>REVIEW_CONTENT</name>
 		<actions>
 			<notification>
@@ -48,6 +72,11 @@
 				<target>APPROVED</target>
 				<default>true</default>
 			</transition>			
+			<transition>
+				<name>Review Failed</name>
+				<target>CREATOR_MODIFY</target>
+				<default>false</default>
+			</transition>
 		</transitions>
 	</task>
 	<state>

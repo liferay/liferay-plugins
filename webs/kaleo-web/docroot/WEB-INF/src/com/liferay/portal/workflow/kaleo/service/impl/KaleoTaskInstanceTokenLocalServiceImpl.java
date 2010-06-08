@@ -99,8 +99,19 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		kaleoTaskInstanceToken.setKaleoTaskName(kaleoTaskName);
 		kaleoTaskInstanceToken.setAssigneeClassName(
 			kaleoTaskAssignment.getAssigneeClassName());
-		kaleoTaskInstanceToken.setAssigneeClassPK(
-			kaleoTaskAssignment.getAssigneeClassPK());
+
+		if ((kaleoTaskAssignment.getAssigneeClassPK() == 0) &&
+			User.class.getName().equals(
+				kaleoTaskAssignment.getAssigneeClassName())) {
+
+				kaleoTaskInstanceToken.setAssigneeClassPK(
+					kaleoInstanceToken.getUserId());
+		}
+		else {
+			kaleoTaskInstanceToken.setAssigneeClassPK(
+				kaleoTaskAssignment.getAssigneeClassPK());
+		}
+
 		kaleoTaskInstanceToken.setCompleted(false);
 		kaleoTaskInstanceToken.setWorkflowContext(
 			WorkflowContextUtil.convert(workflowContext));
