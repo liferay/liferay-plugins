@@ -25,7 +25,7 @@ import java.util.Map;
  * @author Brian Wing Shun Chan
  *
  */
-public class SampleUserAttributes extends CustomUserAttributes {
+public class SampleUserAttributes implements CustomUserAttributes {
 
 	public String getValue(String name, Map userInfo) {
 		if (name == null) {
@@ -40,7 +40,7 @@ public class SampleUserAttributes extends CustomUserAttributes {
 			return "Test Name";
 		}
 		else {
-			return super.getValue(name, userInfo);
+			return null;
 		}
 	}
 
