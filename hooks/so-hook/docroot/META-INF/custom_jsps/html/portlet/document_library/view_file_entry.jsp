@@ -428,7 +428,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 
 						<li class="action-upload"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= editURL %>', '<liferay-ui:message key="upload-new-revision" />');"><liferay-ui:message key="upload-new-revision" /></a></li>
 					</c:when>
-					<c:when test="<%= permissionChecker.isCommunityAdmin(fileEntry.getGroupId()) %>">
+					<c:when test="<%= (isLocked.booleanValue() && permissionChecker.isCommunityAdmin(fileEntry.getGroupId())) %>">
 						<li class="action-unlock"><a href="javascript:;" onClick="<portlet:namespace />unlock();"><liferay-ui:message key="unlock-document" /></a></li>
 						<li class="action-upload"><liferay-ui:message key="upload-new-revision" /></li>
 					</c:when>
