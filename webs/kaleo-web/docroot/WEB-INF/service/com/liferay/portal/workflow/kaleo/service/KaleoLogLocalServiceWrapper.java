@@ -211,6 +211,19 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService {
 			start, end, orderByComparator);
 	}
 
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoLogsByKaleoInstanceId(
+		long kaleoInstanceId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoLogLocalService.getKaleoLogsByKaleoInstanceId(kaleoInstanceId,
+			start, end, orderByComparator);
+	}
+
+	public int getKaleoLogsCountByKaleoInstanceId(long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoLogLocalService.getKaleoLogsCountByKaleoInstanceId(kaleoInstanceId);
+	}
+
 	public int getKaleoLogsCount(long kaleoTaskInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoLogLocalService.getKaleoLogsCount(kaleoTaskInstanceTokenId);

@@ -43,6 +43,19 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 		}
 	}
 
+	public int getWorkflowLogCountByWorkflowInstance(
+			long companyId, long workflowInstanceId)
+		throws WorkflowException {
+
+		try {
+			return KaleoLogLocalServiceUtil.getKaleoLogsCount(
+				workflowInstanceId);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
 	public List<WorkflowLog> getWorkflowLogs(
 			long companyId, long workflowTaskInstanceId, int start, int end,
 			OrderByComparator orderByComparator)
@@ -57,6 +70,13 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 		catch (Exception e) {
 			throw new WorkflowException(e);
 		}
+	}
+
+	public List<WorkflowLog> getWorkflowLogsByWorkflowInstance(
+		long companyId, long workflowInstanceId, int start, int end,
+		OrderByComparator orderByComparator) throws WorkflowException {
+		throw new UnsupportedOperationException();
+
 	}
 
 	protected List<WorkflowLog> toWorkflowLogs(List<KaleoLog> kaleoLogs) {

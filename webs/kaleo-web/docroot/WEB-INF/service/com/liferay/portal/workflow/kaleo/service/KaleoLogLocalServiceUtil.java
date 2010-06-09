@@ -220,6 +220,20 @@ public class KaleoLogLocalServiceUtil {
 			orderByComparator);
 	}
 
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoLogsByKaleoInstanceId(
+		long kaleoInstanceId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getKaleoLogsByKaleoInstanceId(kaleoInstanceId, start, end,
+			orderByComparator);
+	}
+
+	public static int getKaleoLogsCountByKaleoInstanceId(long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getKaleoLogsCountByKaleoInstanceId(kaleoInstanceId);
+	}
+
 	public static int getKaleoLogsCount(long kaleoTaskInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getKaleoLogsCount(kaleoTaskInstanceTokenId);

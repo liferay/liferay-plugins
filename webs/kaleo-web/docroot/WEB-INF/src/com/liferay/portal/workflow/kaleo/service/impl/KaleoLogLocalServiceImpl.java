@@ -268,6 +268,22 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 			kaleoTaskInstanceTokenId, start, end, orderByComparator);
 	}
 
+	public List<KaleoLog> getKaleoLogsByKaleoInstanceId(
+			long kaleoInstanceId, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		return kaleoLogPersistence.findByKaleoInstanceId(
+			kaleoInstanceId, start, end, orderByComparator);
+	}
+
+	public int getKaleoLogsCountByKaleoInstanceId(long kaleoInstanceId)
+		throws SystemException {
+
+		return kaleoLogPersistence.countByKaleoInstanceId(
+			kaleoInstanceId);
+	}
+
 	public int getKaleoLogsCount(long kaleoTaskInstanceTokenId)
 		throws SystemException {
 
