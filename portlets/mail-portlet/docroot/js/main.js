@@ -228,7 +228,7 @@ AUI().add(
 			},
 
 			passwordPrompt: function(accountId, inboxFolderId) {
-		 		var instance = this;
+				var instance = this;
 
 				new A.Dialog(
 					{
