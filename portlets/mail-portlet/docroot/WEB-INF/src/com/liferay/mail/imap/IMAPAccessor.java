@@ -482,7 +482,7 @@ public class IMAPAccessor {
 		}
 	}
 
-	public void storeEnvelopes(long folderId)
+	public void storeEnvelopes(long folderId, boolean allMessages)
 		throws PortalException, SystemException {
 
 		IMAPFolder imapFolder = null;
@@ -508,7 +508,16 @@ public class IMAPAccessor {
 
 			Message[] jxMessages = new Message[0];
 
-			if ((oldestJxMessage == null) && (newestJxMessage == null)) {
+			if (allMessages) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						"Downloading all messages from folder " +
+							imapFolder.getFullName());
+				}
+
+				jxMessages = imapFolder.getMessages();
+			}
+			else if ((oldestJxMessage == null) && (newestJxMessage == null)) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Downloading messages from folder " +
@@ -524,11 +533,10 @@ public class IMAPAccessor {
 
 				jxMessages = imapFolder.getMessages(
 					startingMessageNumber, messageCount);
-
-				storeEnvelopes(folderId, imapFolder, jxMessages);
 			}
 			else {
 				int newestMessageNumber = newestJxMessage.getMessageNumber();
+				int oldestMessageNumber = oldestJxMessage.getMessageNumber();
 
 				if (newestMessageNumber != messageCount) {
 					if (_log.isDebugEnabled()) {
@@ -539,13 +547,8 @@ public class IMAPAccessor {
 
 					jxMessages = imapFolder.getMessages(
 						newestMessageNumber + 1, messageCount);
-
-					storeEnvelopes(folderId, imapFolder, jxMessages);
 				}
-
-				int oldestMessageNumber = oldestJxMessage.getMessageNumber();
-
-				if (oldestMessageNumber != 1) {
+				else if (oldestMessageNumber != 1) {
 					if (_log.isDebugEnabled()) {
 						_log.debug(
 							"Downloading old messages from folder " +
@@ -562,10 +565,10 @@ public class IMAPAccessor {
 
 					jxMessages = imapFolder.getMessages(
 						startingMessageNumber, oldestMessageNumber - 1);
-
-					storeEnvelopes(folderId, imapFolder, jxMessages);
 				}
 			}
+
+			storeEnvelopes(folderId, imapFolder, jxMessages);
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
@@ -608,10 +611,16 @@ public class IMAPAccessor {
 				String subject = jxMessage.getSubject();
 				long remoteMessageId = imapFolder.getUID(jxMessage);
 
-				MessageLocalServiceUtil.addMessage(
-					_user.getUserId(), folderId, sender, to, cc, bcc,
-					sentDate, subject, StringPool.BLANK, StringPool.BLANK,
-					remoteMessageId);
+				com.liferay.mail.model.Message message =
+					MessageLocalServiceUtil.getMessage(
+						folderId, remoteMessageId);
+
+				if (message == null) {
+					MessageLocalServiceUtil.addMessage(
+						_user.getUserId(), folderId, sender, to, cc, bcc,
+						sentDate, subject, StringPool.BLANK, StringPool.BLANK,
+						remoteMessageId);
+				}
 			}
 
 			com.liferay.mail.model.Folder folder =

@@ -44,7 +44,10 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 	</aui:button-row>
 </aui:form>
 
-<aui:a cssClass="delete-account" href="javascript:;"><liferay-ui:message key="delete-account" /></aui:a>
+<div>
+	<a class="delete-account" href="javascript:;"><liferay-ui:message key="delete-account" /></a> <br />
+	<a class="synchronize-account" href="javascript:;"><liferay-ui:message key="synchronize-account" /></a> <liferay-ui:icon-help message="synchronizing-accounts-with-a-large-number-of-messages-may-take-minutes-to-complete" />
+</div>
 
 <aui:script use="aui-io">
 	var form = A.one('#<portlet:namespace />dialogFm');
@@ -107,6 +110,30 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 
 								A.DialogManager.closeByChild(form);
 							}
+						}
+					}
+				}
+			);
+		}
+	);
+
+	A.one('.mail-dialog .synchronize-account').on(
+		'click',
+		function(event) {
+			A.io.request(
+				themeDisplay.getLayoutURL() + '/-/mail/synchronize_account',
+				{
+					data: {accountId: <%= accountId %>},
+					dataType: 'json',
+					method: 'POST',
+					on: {
+						failure: function(event, id, obj) {
+							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
+						},
+						success: function(event, id, obj) {
+							var responseData = this.get('responseData');
+
+							Liferay.Mail.setStatus('success', Liferay.Language.get('synchronizing-messages-in-the-background'));
 						}
 					}
 				}

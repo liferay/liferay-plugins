@@ -396,7 +396,7 @@ public class IMAPMailbox extends BaseMailbox {
 				account.getAccountId());
 
 			for (Folder folder : folders) {
-				synchronizeFolder(folder.getFolderId());
+				_imapAccessor.storeEnvelopes(folder.getFolderId(), true);
 			}
 		}
 	}
@@ -408,7 +408,7 @@ public class IMAPMailbox extends BaseMailbox {
 			_log.debug("Synchronizing folder " + folderId);
 		}
 
-		_imapAccessor.storeEnvelopes(folderId);
+		_imapAccessor.storeEnvelopes(folderId, false);
 	}
 
 	public void synchronizeMessage(long messageId)

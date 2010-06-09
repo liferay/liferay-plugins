@@ -20,8 +20,8 @@
 long accountId = ParamUtil.getLong(request, "accountId");
 
 MailManager mailManager = MailManager.getInstance(request);
-%>
 
-<c:if test="<%= mailManager != null %>">
-	<%= mailManager.synchronizeAccount(accountId) %>
-</c:if>
+if (mailManager != null) {
+	mailManager.synchronizeAccount(accountId);
+}
+%>
