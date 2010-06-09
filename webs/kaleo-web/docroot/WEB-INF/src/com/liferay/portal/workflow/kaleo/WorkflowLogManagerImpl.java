@@ -73,9 +73,20 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 	}
 
 	public List<WorkflowLog> getWorkflowLogsByWorkflowInstance(
-		long companyId, long workflowInstanceId, int start, int end,
-		OrderByComparator orderByComparator) throws WorkflowException {
-		throw new UnsupportedOperationException();
+			long companyId, long workflowInstanceId, int start, int end,
+			OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		try {
+			List<KaleoLog> kaleoLogs =
+				KaleoLogLocalServiceUtil.getKaleoLogsByKaleoInstanceId(
+					workflowInstanceId, start, end, orderByComparator);
+
+			return toWorkflowLogs(kaleoLogs);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
 
 	}
 
