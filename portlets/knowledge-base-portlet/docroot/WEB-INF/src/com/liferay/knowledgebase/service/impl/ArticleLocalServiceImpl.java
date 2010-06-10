@@ -23,6 +23,7 @@ import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.base.ArticleLocalServiceBaseImpl;
+import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
 import com.liferay.portal.kernel.dao.orm.Conjunction;
@@ -35,7 +36,6 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
@@ -44,7 +44,6 @@ import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.DiffHtmlUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -755,84 +754,20 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			Article article, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		long resourcePrimKey = article.getResourcePrimKey();
+		int version = article.getVersion();
+
 		String articleContentDiffs = StringPool.BLANK;
 
-		String source = StringPool.BLANK;
-		String target = article.getContent();
-
-		if (article.getVersion() > ArticleConstants.DEFAULT_VERSION) {
-			Article previousArticle = articlePersistence.findByR_V(
-				article.getResourcePrimKey(), article.getVersion() - 1);
-
-			source = previousArticle.getContent();
-		}
-
 		try {
-			articleContentDiffs = DiffHtmlUtil.diff(
-				new UnsyncStringReader(source), new UnsyncStringReader(target));
+			articleContentDiffs = KnowledgeBaseUtil.getArticleDiffs(
+				resourcePrimKey, version, "content",
+				serviceContext.getPortalURL());
 		}
 		catch (Exception e) {
-			long resourcePrimKey = article.getResourcePrimKey();
-			int version = article.getVersion();
-
 			_log.error(
 				"Unable to process diff for {resourcePrimKey=" +
 					resourcePrimKey + ", version=" + version + "}");
-		}
-
-		articleContentDiffs = StringUtil.replace(
-			articleContentDiffs,
-			new String[] {
-				"changeType=\"diff-added-image\"",
-				"changeType=\"diff-changed-image\"",
-				"changeType=\"diff-removed-image\"",
-				"class=\"diff-html-added\"",
-				"class=\"diff-html-changed\"",
-				"class=\"diff-html-removed\"",
-				"href=\"/",
-				"src=\"/"
-			},
-			new String[] {
-				"style=\"border: 10px solid #CFC;\"",
-				"style=\"border: 10px solid #C6C6FD;\"",
-				"style=\"border: 10px solid #FDC6C6;\"",
-				"style=\"background-color: #CFC;\"",
-				"style=\"background-color: #C6C6FD\"",
-				"style=\"background-color: #FDC6C6; " +
-					"text-decoration: line-through;\"",
-				"href=\"" + serviceContext.getPortalURL() + "/",
-				"src=\"" + serviceContext.getPortalURL() + "/"
-			});
-
-		int i = articleContentDiffs.indexOf("<img ");
-
-		while (i != -1) {
-			String oldImg = articleContentDiffs.substring(
-				i, articleContentDiffs.indexOf("/>", i) + 2);
-
-			int x = oldImg.indexOf("style=\"");
-			int y = oldImg.indexOf("style=\"", x + 7);
-			int z = oldImg.indexOf(StringPool.QUOTE, y + 7);
-
-			if (y != -1) {
-				String style = oldImg.substring(y, z + 1);
-
-				String newImg = StringUtil.replace(
-					oldImg,
-					new String[] {
-						style,
-						"style=\""
-					},
-					new String[] {
-						StringPool.BLANK,
-						style.substring(0, style.length() - 1)
-					});
-
-				articleContentDiffs = StringUtil.replace(
-					articleContentDiffs, oldImg, newImg);
-			}
-
-			i = articleContentDiffs.indexOf("<img ", i + 4);
 		}
 
 		return articleContentDiffs;

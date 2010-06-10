@@ -8,6 +8,14 @@
 	border-width: 0;
 }
 
+.knowledge-base-portlet-admin .taglib-page-iterator .delta-selector {
+	display: none;
+}
+
+.knowledge-base-portlet-admin .taglib-page-iterator .page-selector {
+	display: none;
+}
+
 .knowledge-base-portlet-admin .top-links-container {
 	margin: 0 0 15px 0;
 }
@@ -62,14 +70,6 @@
 
 .knowledge-base-portlet-admin .kb-results-footer {
 	margin: 6px 5px 0;
-}
-
-.knowledge-base-portlet-admin .kb-results-footer .delta-selector {
-	display: none;
-}
-
-.knowledge-base-portlet-admin .kb-results-footer .page-selector {
-	display: none;
 }
 
 .knowledge-base-portlet-admin .kb-results-header {
