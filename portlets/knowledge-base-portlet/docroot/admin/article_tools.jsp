@@ -24,6 +24,19 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 	<table class="lfr-table">
 	<tr>
 		<td>
+			<portlet:renderURL var="historyURL">
+				<portlet:param name="jspPage" value="/admin/history.jsp" />
+				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+			</portlet:renderURL>
+
+			<liferay-ui:icon
+				image="recent_changes"
+				label="<%= true %>"
+				message="history"
+				url="<%= historyURL %>"
+			/>
+		</td>
+		<td>
 			<portlet:renderURL var="printURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 				<portlet:param name="jspPage" value="/admin/print_article.jsp" />
 				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />

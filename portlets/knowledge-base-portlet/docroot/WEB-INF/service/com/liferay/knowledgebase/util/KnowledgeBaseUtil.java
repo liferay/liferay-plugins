@@ -33,16 +33,9 @@ import com.liferay.portal.kernel.util.Validator;
 public class KnowledgeBaseUtil {
 
 	public static String getArticleDiffs(
-			long resourcePrimKey, int version, String parameter,
-			String portalURL)
+			long resourcePrimKey, int sourceVersion, int targetVersion,
+			String parameter, String portalURL)
 		throws Exception {
-
-		int sourceVersion = version;
-		int targetVersion = version;
-
-		if (sourceVersion != ArticleConstants.DEFAULT_VERSION) {
-			sourceVersion = sourceVersion - 1;
-		}
 
 		if (sourceVersion == targetVersion) {
 			Article article = ArticleLocalServiceUtil.getArticle(
@@ -67,6 +60,23 @@ public class KnowledgeBaseUtil {
 		String targetHtml = String.valueOf(targetObject);
 
 		return getDiffs(sourceHtml, targetHtml, portalURL);
+	}
+
+	public static String getArticleDiffs(
+			long resourcePrimKey, int version, String parameter,
+			String portalURL)
+		throws Exception {
+
+		int sourceVersion = version;
+		int targetVersion = version;
+
+		if (sourceVersion != ArticleConstants.DEFAULT_VERSION) {
+			sourceVersion = sourceVersion - 1;
+		}
+
+		return getArticleDiffs(
+			resourcePrimKey, sourceVersion, targetVersion, parameter,
+			portalURL);
 	}
 
 	protected static String getDiffs(

@@ -33,12 +33,16 @@
 <%@ page import="com.liferay.knowledgebase.service.ArticleServiceUtil" %>
 <%@ page import="com.liferay.knowledgebase.service.permission.AdminPermission" %>
 <%@ page import="com.liferay.knowledgebase.service.permission.ArticlePermission" %>
+<%@ page import="com.liferay.knowledgebase.util.KnowledgeBaseUtil" %>
 <%@ page import="com.liferay.knowledgebase.util.WebKeys" %>
 <%@ page import="com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator" %>
+<%@ page import="com.liferay.knowledgebase.util.comparator.ArticleVersionComparator" %>
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.dao.search.RowChecker" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
+<%@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
@@ -55,6 +59,8 @@
 <%@ page import="com.liferay.portlet.messageboards.NoSuchMessageException" %>
 <%@ page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %>
 
+<%@ page import="java.text.Format" %>
+
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
@@ -67,4 +73,6 @@
 
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
+
+Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>

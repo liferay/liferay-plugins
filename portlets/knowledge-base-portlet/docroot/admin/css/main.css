@@ -38,6 +38,10 @@
 	margin: 6px 7px 0;
 }
 
+.knowledge-base-portlet-admin .kb-entity-footer {
+	margin: 10px 0 0;
+}
+
 .knowledge-base-portlet-admin .kb-entity-header {
 	border-bottom: 1px solid #CCC;
 	margin-bottom: 6px;
