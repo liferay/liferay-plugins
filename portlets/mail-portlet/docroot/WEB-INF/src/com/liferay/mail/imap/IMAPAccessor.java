@@ -611,11 +611,12 @@ public class IMAPAccessor {
 				String subject = jxMessage.getSubject();
 				long remoteMessageId = imapFolder.getUID(jxMessage);
 
-				com.liferay.mail.model.Message message =
-					MessageLocalServiceUtil.getMessage(
-						folderId, remoteMessageId);
-
-				if (message == null) {
+				try {
+					com.liferay.mail.model.Message message =
+						MessageLocalServiceUtil.getMessage(
+							folderId, remoteMessageId);
+				}
+				catch (NoSuchMessageException nsme) {
 					MessageLocalServiceUtil.addMessage(
 						_user.getUserId(), folderId, sender, to, cc, bcc,
 						sentDate, subject, StringPool.BLANK, StringPool.BLANK,
