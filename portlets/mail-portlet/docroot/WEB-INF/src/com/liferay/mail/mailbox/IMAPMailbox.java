@@ -346,12 +346,6 @@ public class IMAPMailbox extends BaseMailbox {
 		long sentFolderId = account.getSentFolderId();
 		long trashFolderId = account.getTrashFolderId();
 
-		boolean initialSynchronization = false;
-
-		if (inboxFolderId == 0) {
-			initialSynchronization = true;
-		}
-
 		for (javax.mail.Folder jxFolder : jxFolders) {
 			Folder folder = null;
 
@@ -385,19 +379,17 @@ public class IMAPMailbox extends BaseMailbox {
 			account.getAccountId(), inboxFolderId, draftFolderId, sentFolderId,
 			trashFolderId);
 
-		if (!initialSynchronization) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"Synchronizing all folders for accountId " +
-						account.getAccountId());
-			}
+		if (_log.isDebugEnabled()) {
+			_log.debug(
+				"Synchronizing all folders for accountId " +
+					account.getAccountId());
+		}
 
-			List<Folder> folders = FolderLocalServiceUtil.getFolders(
-				account.getAccountId());
+		List<Folder> folders = FolderLocalServiceUtil.getFolders(
+			account.getAccountId());
 
-			for (Folder folder : folders) {
-				_imapAccessor.storeEnvelopes(folder.getFolderId(), true);
-			}
+		for (Folder folder : folders) {
+			_imapAccessor.storeEnvelopes(folder.getFolderId(), true);
 		}
 	}
 
