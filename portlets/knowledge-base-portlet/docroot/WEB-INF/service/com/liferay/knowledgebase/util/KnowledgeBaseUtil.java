@@ -58,14 +58,6 @@ public class KnowledgeBaseUtil {
 		Article targetArticle = ArticleLocalServiceUtil.getArticle(
 			resourcePrimKey, targetVersion);
 
-		return getDiffs(sourceArticle, targetArticle, parameter, portalURL);
-	}
-
-	protected static String getDiffs(
-			Article sourceArticle, Article targetArticle, String parameter,
-			String portalURL)
-		throws Exception {
-
 		Object sourceObject = BeanPropertiesUtil.getObject(
 			sourceArticle, parameter);
 		Object targetObject = BeanPropertiesUtil.getObject(
