@@ -466,13 +466,6 @@ public class MailManager {
 				_user.getUserId(), folder.getAccountId(),
 				_passwordRetriever.getPassword(folder.getAccountId()));
 
-			if ((pageNumber == 1) &&
-				orderByField.equals(MailConstants.ORDER_BY_SENT_DATE) &&
-				orderByType.equals("desc") && Validator.isNull(keywords)) {
-
-				synchronizePage(folderId, pageNumber, messagesPerPage);
-			}
-
 			return mailbox.getMessagesDisplay(
 				folderId, keywords, pageNumber, messagesPerPage, orderByField,
 				orderByType);

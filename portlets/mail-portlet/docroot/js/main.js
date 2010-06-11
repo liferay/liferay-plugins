@@ -246,7 +246,9 @@ AUI().add(
 				else {
 					instance._displayContainer(instance.messagesContainer);
 
-					instance.checkMessages(folderId);
+					if (pageNumber == 1) {
+						instance.checkMessages(folderId);
+					}
 				}
 
 				instance.messagesContainer.io.set(
