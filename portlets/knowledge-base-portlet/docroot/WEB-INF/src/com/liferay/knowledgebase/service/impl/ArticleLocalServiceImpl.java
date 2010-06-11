@@ -750,29 +750,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			});
 	}
 
-	protected String getEmailArticleContentDiffs(
-			Article article, ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		long resourcePrimKey = article.getResourcePrimKey();
-		int version = article.getVersion();
-
-		String articleContentDiffs = StringPool.BLANK;
-
-		try {
-			articleContentDiffs = KnowledgeBaseUtil.getArticleDiffs(
-				resourcePrimKey, version, "content",
-				serviceContext.getPortalURL());
-		}
-		catch (Exception e) {
-			_log.error(
-				"Unable to process diff for {resourcePrimKey=" +
-					resourcePrimKey + ", version=" + version + "}");
-		}
-
-		return articleContentDiffs;
-	}
-
 	protected String getEmailArticleURL(
 			Article article, ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -947,10 +924,30 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				portletName
 			});
 
+		Map<String, String> articleDiffs = new HashMap<String, String>();
+
+		String[] parameters = new String[] {"content"};
+
+		for (String parameter : parameters) {
+			String articleDiff = StringPool.BLANK;
+
+			try {
+				articleDiff = KnowledgeBaseUtil.getArticleDiff(
+					article.getResourcePrimKey(), article.getVersion(),
+					parameter, serviceContext.getPortalURL());
+			}
+			catch (Exception e) {
+				_log.error(
+					"Unable to process diff for {resourcePrimKey=" +
+						article.getResourcePrimKey() + ", version=" +
+							article.getVersion() + "}");
+			}
+
+			articleDiffs.put(parameter, articleDiff);
+		}
+
 		String articleAttachments = getEmailArticleAttachments(article);
 		String articleContent = getEmailArticleContent(article, serviceContext);
-		String articleContentDiffs = getEmailArticleContentDiffs(
-			article, serviceContext);
 		String articleURL = getEmailArticleURL(article, serviceContext);
 
 		String subject = null;
@@ -1023,7 +1020,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			new String[] {
 				"[$ARTICLE_ATTACHMENTS$]",
 				"[$ARTICLE_CONTENT$]",
-				"[$ARTICLE_CONTENT_DIFFS$]",
+				"[$ARTICLE_CONTENT_DIFF$]",
 				"[$ARTICLE_TITLE$]",
 				"[$ARTICLE_URL$]",
 				"[$ARTICLE_USER_ADDRESS$]",
@@ -1040,7 +1037,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			new String[] {
 				articleAttachments,
 				articleContent,
-				articleContentDiffs,
+				articleDiffs.get("content"),
 				article.getTitle(),
 				articleURL,
 				emailAddress,
@@ -1060,7 +1057,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			new String[] {
 				"[$ARTICLE_ATTACHMENTS$]",
 				"[$ARTICLE_CONTENT$]",
-				"[$ARTICLE_CONTENT_DIFFS$]",
+				"[$ARTICLE_CONTENT_DIFF$]",
 				"[$ARTICLE_TITLE$]",
 				"[$ARTICLE_URL$]",
 				"[$ARTICLE_USER_ADDRESS$]",
@@ -1077,7 +1074,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			new String[] {
 				articleAttachments,
 				articleContent,
-				articleContentDiffs,
+				articleDiffs.get("content"),
 				article.getTitle(),
 				articleURL,
 				emailAddress,

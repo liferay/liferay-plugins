@@ -125,7 +125,7 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 
 		<div class="float-container kb-entity-header">
 			<div class="kb-title">
-				<%= KnowledgeBaseUtil.getArticleDiffs(article.getResourcePrimKey(), sourceVersion, targetVersion, "title", null) %>
+				<%= KnowledgeBaseUtil.getArticleDiff(article.getResourcePrimKey(), sourceVersion, targetVersion, "title", null) %>
 			</div>
 
 			<div class="kb-tools">
@@ -144,7 +144,7 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 		</div>
 
 		<div class="kb-entity-body">
-			<%= KnowledgeBaseUtil.getArticleDiffs(article.getResourcePrimKey(), sourceVersion, targetVersion, "content", null) %>
+			<%= KnowledgeBaseUtil.getArticleDiff(article.getResourcePrimKey(), sourceVersion, targetVersion, "content", null) %>
 		</div>
 
 		<div class="kb-entity-footer">

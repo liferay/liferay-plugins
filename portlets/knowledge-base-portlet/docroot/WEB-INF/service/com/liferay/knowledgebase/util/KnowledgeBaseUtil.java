@@ -32,7 +32,7 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class KnowledgeBaseUtil {
 
-	public static String getArticleDiffs(
+	public static String getArticleDiff(
 			long resourcePrimKey, int sourceVersion, int targetVersion,
 			String parameter, String portalURL)
 		throws Exception {
@@ -59,10 +59,10 @@ public class KnowledgeBaseUtil {
 		String sourceHtml = String.valueOf(sourceObject);
 		String targetHtml = String.valueOf(targetObject);
 
-		return getDiffs(sourceHtml, targetHtml, portalURL);
+		return getDiff(sourceHtml, targetHtml, portalURL);
 	}
 
-	public static String getArticleDiffs(
+	public static String getArticleDiff(
 			long resourcePrimKey, int version, String parameter,
 			String portalURL)
 		throws Exception {
@@ -74,12 +74,12 @@ public class KnowledgeBaseUtil {
 			sourceVersion = sourceVersion - 1;
 		}
 
-		return getArticleDiffs(
+		return getArticleDiff(
 			resourcePrimKey, sourceVersion, targetVersion, parameter,
 			portalURL);
 	}
 
-	protected static String getDiffs(
+	protected static String getDiff(
 			String sourceHtml, String targetHtml, String portalURL)
 		throws Exception {
 
@@ -146,7 +146,7 @@ public class KnowledgeBaseUtil {
 				diff = StringUtil.replace(diff, oldImg, newImg);
 			}
 
-			i = diff.indexOf("<img ", i + 4);
+			i = diff.indexOf("<img ", i + 5);
 		}
 
 		return diff;
