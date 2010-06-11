@@ -1,8 +1,0 @@
-#
-# Rename this file to webserviceclient.properties and either leave it in its 
-# current location or move it to a shared classpath.
-# 
-# Set the following property to reference the Alfresco server that you would 
-# like web service client to communicate with
-#
-repository.location=http://localhost:8080/alfresco/api
