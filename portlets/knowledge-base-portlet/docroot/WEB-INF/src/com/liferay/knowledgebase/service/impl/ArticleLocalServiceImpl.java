@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
@@ -946,6 +947,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			articleDiffs.put(parameter, articleDiff);
 		}
 
+		String articleVersion = LanguageUtil.format(
+			LocaleUtil.getDefault(), "version-x",
+			String.valueOf(article.getVersion()), false);
+
 		String articleAttachments = getEmailArticleAttachments(article);
 		String articleContent = getEmailArticleContent(article, serviceContext);
 		String articleURL = getEmailArticleURL(article, serviceContext);
@@ -1026,6 +1031,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"[$ARTICLE_URL$]",
 				"[$ARTICLE_USER_ADDRESS$]",
 				"[$ARTICLE_USER_NAME$]",
+				"[$ARTICLE_VERSION$]",
 				"[$COMPANY_ID$]",
 				"[$COMPANY_MX$]",
 				"[$COMPANY_NAME$]",
@@ -1044,6 +1050,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				articleURL,
 				emailAddress,
 				fullName,
+				articleVersion,
 				String.valueOf(company.getCompanyId()),
 				company.getMx(),
 				company.getName(),
@@ -1065,6 +1072,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"[$ARTICLE_URL$]",
 				"[$ARTICLE_USER_ADDRESS$]",
 				"[$ARTICLE_USER_NAME$]",
+				"[$ARTICLE_VERSION$]",
 				"[$COMPANY_ID$]",
 				"[$COMPANY_MX$]",
 				"[$COMPANY_NAME$]",
@@ -1083,6 +1091,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				articleURL,
 				emailAddress,
 				fullName,
+				articleVersion,
 				String.valueOf(company.getCompanyId()),
 				company.getMx(),
 				company.getName(),
