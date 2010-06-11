@@ -14,17 +14,23 @@
 
 package com.liferay.knowledgebase.admin.messaging;
 
+import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.NoSuchUserException;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
+import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalThreadLocal;
@@ -34,6 +40,9 @@ import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.PortletKeys;
+import com.liferay.util.TextFormatter;
 
 import java.util.HashSet;
 import java.util.List;
@@ -119,12 +128,40 @@ public class AdminMessageListener implements MessageListener {
 		}
 	}
 
+	protected String getEmailArticleAttachments(User user, Article article)
+		throws Exception {
+
+		String[] fileNames = article.getAttachmentsFileNames();
+
+		if (fileNames.length <= 0) {
+			return StringPool.BLANK;
+		}
+
+		StringBundler sb = new StringBundler(fileNames.length * 5);
+
+		for (String fileName : fileNames) {
+			long kb = DLServiceUtil.getFileSize(
+				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+
+			sb.append(FileUtil.getShortFileName(fileName));
+			sb.append(" (");
+			sb.append(TextFormatter.formatKB(kb, user.getLocale()));
+			sb.append("k)");
+			sb.append("<br />");
+		}
+
+		return sb.toString();
+	}
+
 	protected void sendEmail(
 			long userId, long resourcePrimKey, String fromName,
 			String fromAddress, String subject, String body,
 			List<Subscription> subscriptions, Set<Long> sent,
 			String replyToAddress, String mailId, boolean htmlFormat)
 		throws Exception {
+
+		Article article = ArticleLocalServiceUtil.getLatestArticle(
+			resourcePrimKey);
 
 		for (Subscription subscription : subscriptions) {
 			long subscribedUserId = subscription.getUserId();
@@ -195,37 +232,86 @@ public class AdminMessageListener implements MessageListener {
 				PermissionThreadLocal.setPermissionChecker(null);
 			}
 
+			String categoryTitle = LanguageUtil.get(
+				user.getLocale(), "category.kb");
+			String portletName = PortalUtil.getPortletTitle(
+				PortletKeys.KNOWLEDGE_BASE_ADMIN, user.getLocale());
+
+			String curFromName = StringUtil.replace(
+				fromName,
+				new String[] {
+					"[$CATEGORY_TITLE$]",
+					"[$PORTLET_NAME$]"
+				},
+				new String[] {
+					categoryTitle,
+					portletName
+				});
+
+			String curFromAddress = StringUtil.replace(
+				fromAddress,
+				new String[] {
+					"[$CATEGORY_TITLE$]",
+					"[$PORTLET_NAME$]"
+				},
+				new String[] {
+					categoryTitle,
+					portletName
+				});
+
+			String articleAttachments = getEmailArticleAttachments(
+				user, article);
+			String articleVersion = LanguageUtil.format(
+				user.getLocale(), "version-x",
+				String.valueOf(article.getVersion()), false);
+
+			String curSubject = StringUtil.replace(
+				subject,
+				new String[] {
+					"[$ARTICLE_ATTACHMENTS$]",
+					"[$ARTICLE_VERSION$]",
+					"[$CATEGORY_TITLE$]",
+					"[$PORTLET_NAME$]",
+					"[$TO_ADDRESS$]",
+					"[$TO_NAME$]"
+				},
+				new String[] {
+					articleAttachments,
+					articleVersion,
+					categoryTitle,
+					portletName,
+					user.getEmailAddress(),
+					user.getFullName()
+				});
+
+			String curBody = StringUtil.replace(
+				body,
+				new String[] {
+					"[$ARTICLE_ATTACHMENTS$]",
+					"[$ARTICLE_VERSION$]",
+					"[$CATEGORY_TITLE$]",
+					"[$PORTLET_NAME$]",
+					"[$TO_ADDRESS$]",
+					"[$TO_NAME$]"
+				},
+				new String[] {
+					articleAttachments,
+					articleVersion,
+					categoryTitle,
+					portletName,
+					user.getEmailAddress(),
+					user.getFullName()
+				});
+
 			try {
 				InternetAddress from = new InternetAddress(
-					fromAddress, fromName);
+					curFromAddress, curFromName);
 
 				InternetAddress to = new InternetAddress(
 					user.getEmailAddress(), user.getFullName());
 
 				InternetAddress replyTo = new InternetAddress(
 					replyToAddress, replyToAddress);
-
-				String curSubject = StringUtil.replace(
-					subject,
-					new String[] {
-						"[$TO_ADDRESS$]",
-						"[$TO_NAME$]"
-					},
-					new String[] {
-						user.getEmailAddress(),
-						user.getFullName()
-					});
-
-				String curBody = StringUtil.replace(
-					body,
-					new String[] {
-						"[$TO_ADDRESS$]",
-						"[$TO_NAME$]"
-					},
-					new String[] {
-						user.getEmailAddress(),
-						user.getFullName()
-					});
 
 				MailMessage message = new MailMessage(
 					from, to, curSubject, curBody, htmlFormat);

@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
@@ -49,10 +48,8 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -69,7 +66,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
-import com.liferay.util.TextFormatter;
 import com.liferay.util.portlet.PortletProps;
 
 import java.io.IOException;
@@ -711,31 +707,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		return dynamicQuery;
 	}
 
-	protected String getEmailArticleAttachments(Article article)
-		throws PortalException, SystemException {
-
-		String[] fileNames = article.getAttachmentsFileNames();
-
-		if (fileNames.length <= 0) {
-			return StringPool.BLANK;
-		}
-
-		StringBundler sb = new StringBundler(fileNames.length * 5);
-
-		for (String fileName : fileNames) {
-			long kb = dlService.getFileSize(
-				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
-
-			sb.append(FileUtil.getShortFileName(fileName));
-			sb.append(" (");
-			sb.append(TextFormatter.formatKB(kb, LocaleUtil.getDefault()));
-			sb.append("k)");
-			sb.append("<br />");
-		}
-
-		return sb.toString();
-	}
-
 	protected String getEmailArticleContent(
 		Article article, ServiceContext serviceContext) {
 
@@ -875,11 +846,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			emailAddress = user.getEmailAddress();
 		}
 
-		String categoryTitle = LanguageUtil.get(
-			LocaleUtil.getDefault(), "category.kb");
-		String portletName = PortalUtil.getPortletTitle(
-			PortletKeys.KNOWLEDGE_BASE_ADMIN, LocaleUtil.getDefault());
-
 		String fromName = preferences.getValue(
 			"email-from-name", PortletProps.get("admin.email.from.name"));
 		String fromAddress = preferences.getValue(
@@ -890,22 +856,18 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			new String[] {
 				"[$ARTICLE_USER_ADDRESS$]",
 				"[$ARTICLE_USER_NAME$]",
-				"[$CATEGORY_TITLE$]",
 				"[$COMPANY_ID$]",
 				"[$COMPANY_MX$]",
 				"[$COMPANY_NAME$]",
-				"[$COMMUNITY_NAME$]",
-				"[$PORTLET_NAME$]"
+				"[$COMMUNITY_NAME$]"
 			},
 			new String[] {
 				emailAddress,
 				fullName,
-				categoryTitle,
 				String.valueOf(company.getCompanyId()),
 				company.getMx(),
 				company.getName(),
-				group.getName(),
-				portletName
+				group.getName()
 			});
 
 		fromAddress = StringUtil.replace(
@@ -913,22 +875,18 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			new String[] {
 				"[$ARTICLE_USER_ADDRESS$]",
 				"[$ARTICLE_USER_NAME$]",
-				"[$CATEGORY_TITLE$]",
 				"[$COMPANY_ID$]",
 				"[$COMPANY_MX$]",
 				"[$COMPANY_NAME$]",
-				"[$COMMUNITY_NAME$]",
-				"[$PORTLET_NAME$]"
+				"[$COMMUNITY_NAME$]"
 			},
 			new String[] {
 				emailAddress,
 				fullName,
-				categoryTitle,
 				String.valueOf(company.getCompanyId()),
 				company.getMx(),
 				company.getName(),
-				group.getName(),
-				portletName
+				group.getName()
 			});
 
 		Map<String, String> articleDiffs = new HashMap<String, String>();
@@ -953,11 +911,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			articleDiffs.put(parameter, articleDiff);
 		}
 
-		String articleVersion = LanguageUtil.format(
-			LocaleUtil.getDefault(), "version-x",
-			String.valueOf(article.getVersion()), false);
-
-		String articleAttachments = getEmailArticleAttachments(article);
 		String articleContent = getEmailArticleContent(article, serviceContext);
 		String articleURL = getEmailArticleURL(article, serviceContext);
 
@@ -1029,7 +982,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		subject = StringUtil.replace(
 			subject,
 			new String[] {
-				"[$ARTICLE_ATTACHMENTS$]",
 				"[$ARTICLE_CONTENT$]",
 				"[$ARTICLE_CONTENT_DIFF$]",
 				"[$ARTICLE_TITLE$]",
@@ -1037,19 +989,15 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"[$ARTICLE_URL$]",
 				"[$ARTICLE_USER_ADDRESS$]",
 				"[$ARTICLE_USER_NAME$]",
-				"[$ARTICLE_VERSION$]",
-				"[$CATEGORY_TITLE$]",
 				"[$COMPANY_ID$]",
 				"[$COMPANY_MX$]",
 				"[$COMPANY_NAME$]",
 				"[$COMMUNITY_NAME$]",
 				"[$FROM_ADDRESS$]",
 				"[$FROM_NAME$]",
-				"[$PORTAL_URL$]",
-				"[$PORTLET_NAME$]"
+				"[$PORTAL_URL$]"
 			},
 			new String[] {
-				articleAttachments,
 				articleContent,
 				articleDiffs.get("content"),
 				article.getTitle(),
@@ -1057,22 +1005,18 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				articleURL,
 				emailAddress,
 				fullName,
-				articleVersion,
-				categoryTitle,
 				String.valueOf(company.getCompanyId()),
 				company.getMx(),
 				company.getName(),
 				group.getName(),
 				fromAddress,
 				fromName,
-				serviceContext.getPortalURL(),
-				portletName
+				serviceContext.getPortalURL()
 			});
 
 		body = StringUtil.replace(
 			body,
 			new String[] {
-				"[$ARTICLE_ATTACHMENTS$]",
 				"[$ARTICLE_CONTENT$]",
 				"[$ARTICLE_CONTENT_DIFF$]",
 				"[$ARTICLE_TITLE$]",
@@ -1080,19 +1024,15 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"[$ARTICLE_URL$]",
 				"[$ARTICLE_USER_ADDRESS$]",
 				"[$ARTICLE_USER_NAME$]",
-				"[$ARTICLE_VERSION$]",
-				"[$CATEGORY_TITLE$]",
 				"[$COMPANY_ID$]",
 				"[$COMPANY_MX$]",
 				"[$COMPANY_NAME$]",
 				"[$COMMUNITY_NAME$]",
 				"[$FROM_ADDRESS$]",
 				"[$FROM_NAME$]",
-				"[$PORTAL_URL$]",
-				"[$PORTLET_NAME$]"
+				"[$PORTAL_URL$]"
 			},
 			new String[] {
-				articleAttachments,
 				articleContent,
 				articleDiffs.get("content"),
 				article.getTitle(),
@@ -1100,16 +1040,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				articleURL,
 				emailAddress,
 				fullName,
-				articleVersion,
-				categoryTitle,
 				String.valueOf(company.getCompanyId()),
 				company.getMx(),
 				company.getName(),
 				group.getName(),
 				fromAddress,
 				fromName,
-				serviceContext.getPortalURL(),
-				portletName
+				serviceContext.getPortalURL()
 			});
 
 		String mailId =
