@@ -1,15 +1,6 @@
 
 package com.vaadin.liferay.mail;
 
-import java.util.Locale;
-import java.util.Map;
-import java.util.WeakHashMap;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.PortletPreferences;
-import javax.portlet.PortletRequest;
-import javax.servlet.http.HttpServletRequest;
-
 import com.liferay.mail.mailbox.PasswordRetriever;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.util.MailManager;
@@ -19,10 +10,20 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
+
 import com.vaadin.Application;
 import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.service.ApplicationContext.TransactionListener;
 import com.vaadin.ui.Window.Notification;
+
+import java.util.Locale;
+import java.util.Map;
+import java.util.WeakHashMap;
+
+import javax.portlet.PortletPreferences;
+import javax.portlet.PortletRequest;
+
+import javax.servlet.http.HttpServletRequest;
 
 @SuppressWarnings("serial")
 public class Controller {
@@ -84,7 +85,7 @@ public class Controller {
 	/**
 	 * Sets the current user based on the request and initializes any other
 	 * request-specific classes such as MailManager.
-	 * 
+	 *
 	 * @param request
 	 */
 	public void setRequest(PortletRequest request) {
@@ -96,11 +97,11 @@ public class Controller {
 		} catch (SystemException e) {
 			_log.debug(e);
 		}
-		
+
 		// get HTTP request from the portlet request
 		HttpServletRequest httpRequest = PortalUtil
 				.getHttpServletRequest(request);
-		
+
 		// create MailManager
 		passwordRetriever = new PasswordRetriever(httpRequest);
 		mailMgr = new MailManager(user, passwordRetriever);
@@ -149,7 +150,7 @@ public class Controller {
 
 	/**
 	 * Returns the mail manager for the request or null if not initialized.
-	 * 
+	 *
 	 * @return MailManager for current request, null if none
 	 */
 	public MailManager getMailManager() {

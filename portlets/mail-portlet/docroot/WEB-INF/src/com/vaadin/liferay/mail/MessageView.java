@@ -1,11 +1,6 @@
 
 package com.vaadin.liferay.mail;
 
-import java.io.InputStream;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.List;
-
 import com.liferay.mail.model.Attachment;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.AttachmentLocalServiceUtil;
@@ -13,16 +8,24 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import com.vaadin.liferay.mail.util.Lang;
-import com.vaadin.terminal.StreamResource;
 import com.vaadin.terminal.StreamResource.StreamSource;
+import com.vaadin.terminal.StreamResource;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.themes.BaseTheme;
+
+import java.io.InputStream;
+
+import java.text.DateFormat;
+
+import java.util.Date;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class MessageView extends VerticalLayout implements ClickListener {

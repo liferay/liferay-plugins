@@ -16,7 +16,7 @@
 
 <!-- Adapted from view_accounts_summary.jsp -->
 
-<%@page import="javax.portlet.WindowState"%>
+<%@ page import="javax.portlet.WindowState" %>
 
 <%@ include file="/init.jsp" %>
 
@@ -36,7 +36,7 @@ MailManager mailManager = MailManager.getInstance(request);
 					<liferay-ui:message key="compose-message" />
 				</a>
 			</div>
-		
+
 			<!-- Unread messages URL -->
 			<div class="v-unread-link">
 				<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="viewUnreadURL">
@@ -47,33 +47,33 @@ MailManager mailManager = MailManager.getInstance(request);
 					<!-- TODO Total unread messages count -->
 				</a>
 			</div>
-		
+
 			<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="viewAccountInitialURL">
 				<portlet:param name="mail_mode" value="account" />
 				<portlet:param name="initialAccountEntryId" value="" />
 			</portlet:renderURL>
-		
+
 			<div class="v-message-summary">
 				<c:if test="<%= mailManager != null %>">
 					<%
 					List<Account> accounts = mailManager.getAccounts();
 					%>
-			
+
 					<a href="<%= portletDisplay.getURLEdit() %>"><liferay-ui:message key="configure-email-accounts" /></a>
-					
+
 					<c:if test="<%= !accounts.isEmpty() %>">
 						<liferay-ui:message key="mail-messages" />
-		
+
 						<%
 						for (Account messageAccount : accounts) {
 						%>
-		
+
 							<div class="v-message-summary-listing">
 								<a href="<%= viewAccountInitialURL %><%= messageAccount.getAccountId() %>">
 									<%= messageAccount.getAddress() %> (<%= mailManager.getAccountUnreadMessagesCount(messageAccount.getAccountId()) %> <liferay-ui:message key="new-messages" />)
 								</a>
 							</div>
-							
+
 							<!-- TODO explicit synchronization: mailManager.synchronizeAccount(messageAccount.getAccountId()); -->
 						<%
 						}

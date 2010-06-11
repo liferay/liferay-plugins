@@ -1,6 +1,25 @@
 
 package com.vaadin.liferay.mail;
 
+import com.liferay.mail.model.Account;
+import com.liferay.mail.model.Message;
+import com.liferay.mail.service.AccountLocalServiceUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.util.PortalUtil;
+
+import com.vaadin.Application;
+import com.vaadin.liferay.mail.Composer.ComposerListener;
+import com.vaadin.liferay.mail.util.Lang;
+import com.vaadin.terminal.ExternalResource;
+import com.vaadin.terminal.gwt.server.PortletApplicationContext2.PortletListener;
+import com.vaadin.terminal.gwt.server.PortletApplicationContext2;
+import com.vaadin.ui.ComponentContainer;
+import com.vaadin.ui.Window.Notification;
+import com.vaadin.ui.Window;
+
 import java.io.IOException;
 
 import javax.portlet.ActionRequest;
@@ -11,7 +30,6 @@ import javax.portlet.PortletContext;
 import javax.portlet.PortletException;
 import javax.portlet.PortletMode;
 import javax.portlet.PortletModeException;
-import javax.portlet.PortletRequest;
 import javax.portlet.PortletRequestDispatcher;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
@@ -20,25 +38,6 @@ import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 import javax.portlet.WindowState;
 import javax.portlet.WindowStateException;
-
-import com.liferay.mail.model.Account;
-import com.liferay.mail.model.Message;
-import com.liferay.mail.service.AccountLocalServiceUtil;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.model.User;
-import com.liferay.portal.util.PortalUtil;
-import com.vaadin.Application;
-import com.vaadin.liferay.mail.Composer.ComposerListener;
-import com.vaadin.liferay.mail.util.Lang;
-import com.vaadin.terminal.ExternalResource;
-import com.vaadin.terminal.gwt.server.PortletApplicationContext2;
-import com.vaadin.terminal.gwt.server.PortletApplicationContext2.PortletListener;
-import com.vaadin.ui.ComponentContainer;
-import com.vaadin.ui.Window;
-import com.vaadin.ui.Window.Notification;
 
 @SuppressWarnings("serial")
 public class MailApplication extends Application {
@@ -113,15 +112,15 @@ public class MailApplication extends Application {
 					_log.debug(e);
 				}
 			}
-			
+
 			if (!PortletMode.VIEW.equals(request.getPortletMode()) && !PortletMode.EDIT.equals(request.getPortletMode())) {
 				return;
 			}
-			
+
 			portletTitle = PortalUtil.getPortletTitle(PortalUtil
 					.getPortletId(request), controller.getUser());
 			controller.setPreferences(request.getPreferences());
-			
+
 			// check mode in request and act accordingly
 			if (PortletMode.VIEW.equals(request.getPortletMode())
 					&& WindowState.MAXIMIZED.equals(request.getWindowState())) {
@@ -132,7 +131,7 @@ public class MailApplication extends Application {
 					String accountParam = request.getParameter(PARAM_ACCOUNT);
 					Account account = null;
 					try {
-						long id = Long.parseLong(accountParam); 
+						long id = Long.parseLong(accountParam);
 						account = AccountLocalServiceUtil.getAccount(id);
 						// TODO check permissions?
 					} catch (NumberFormatException e) {
@@ -163,7 +162,7 @@ public class MailApplication extends Application {
 			else if (PortletMode.EDIT.equals(request.getPortletMode())) {
 				window.setContent(new PreferencesView(controller));
 			}
-			
+
 		}
 
 		public void handleEventRequest(EventRequest request,
@@ -176,11 +175,11 @@ public class MailApplication extends Application {
 			// nothing to do
 		}
 	}
-	
+
 	/**
 	 * Switch to the compose mode, and return from it to the previous view when
 	 * finished. If returnUrl is not null, go to that URL instead when finished.
-	 * 
+	 *
 	 * @param composer
 	 * @param returnUrl
 	 */
@@ -225,10 +224,10 @@ public class MailApplication extends Application {
 			}
 		});
 	}
-	
+
 	/**
 	 * Show the summary page JSP for non-maximized view mode: mail accounts, compose, etc.
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param window

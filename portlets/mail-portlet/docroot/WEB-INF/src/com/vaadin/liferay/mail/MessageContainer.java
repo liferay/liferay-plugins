@@ -1,13 +1,6 @@
 
 package com.vaadin.liferay.mail;
 
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.liferay.mail.mailbox.Mailbox;
 import com.liferay.mail.model.Attachment;
 import com.liferay.mail.model.Folder;
@@ -20,9 +13,10 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import com.vaadin.data.Container.PropertySetChangeNotifier;
 import com.vaadin.data.Container;
 import com.vaadin.data.Property;
-import com.vaadin.data.Container.PropertySetChangeNotifier;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.data.util.ObjectProperty;
@@ -30,10 +24,18 @@ import com.vaadin.terminal.Resource;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Label;
 
+import java.text.DateFormat;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Container for holding messages in a folder. Messages are fetched in pages
  * when needed.
- * 
+ *
  * @author IT Mill
  */
 @SuppressWarnings("serial")

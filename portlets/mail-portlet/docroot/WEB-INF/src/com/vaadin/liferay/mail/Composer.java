@@ -1,18 +1,6 @@
 
 package com.vaadin.liferay.mail;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-
 import com.liferay.mail.MailException;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.MailFile;
@@ -22,9 +10,12 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.terminal.StreamResource;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.CustomComponent;
@@ -34,18 +25,30 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.ProgressIndicator;
 import com.vaadin.ui.RichTextArea;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.Upload;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Upload.FailedEvent;
 import com.vaadin.ui.Upload.FinishedEvent;
 import com.vaadin.ui.Upload.StartedEvent;
+import com.vaadin.ui.Upload;
+import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window.Notification;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import java.text.DecimalFormat;
+
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
 
 /**
  * Mail message composer view.
- * 
+ *
  * Supports {@link ComposerListener}.
  */
 @SuppressWarnings("serial")
@@ -136,7 +139,7 @@ public class Composer extends CustomComponent {
 				confirm.addConfirmButtonListener(new ClickListener() {
 
 					public void buttonClick(ClickEvent event) {
-						
+
 						confirm.closeDialog();
 						fireDiscard();
 					}
@@ -374,27 +377,27 @@ public class Composer extends CustomComponent {
 	public String getTo() {
 		return (String) toField.getValue();
 	}
-	
+
 	public String getCc() {
 		return (String) ccField.getValue();
 	}
-	
+
 	public String getBcc() {
 		return (String) bccField.getValue();
 	}
-	
+
 	public void setTo(String value) {
 		toField.setValue(value);
 	}
-	
+
 	public void setCc(String value) {
 		ccField.setValue(value);
 	}
-	
+
 	public void setBcc(String value) {
 		bccField.setValue(value);
 	}
-	
+
 	public List<MailFile> getAttachments() {
 
 		List<MailFile> a = new ArrayList<MailFile>();
@@ -531,7 +534,7 @@ public class Composer extends CustomComponent {
 			msg = MessageUtil.saveOrSendMessage(getFrom(), getTo(), getCc(),
 					getBcc(), getSubject(), getMessage(), getAttachments(),
 					true, draftMessageId);
-			
+
 			for (ComposerListener listener : listeners) {
 				listener.messageSent(this, msg);
 			}

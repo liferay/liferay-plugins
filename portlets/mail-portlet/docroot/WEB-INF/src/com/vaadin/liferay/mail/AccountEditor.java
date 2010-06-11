@@ -3,20 +3,21 @@ package com.vaadin.liferay.mail;
 
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.impl.AccountImpl;
+
 import com.vaadin.liferay.mail.util.Lang;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 
 /**
  * Editor for an account and its settings. Note that the original AccountEntry
  * and AccountSettings object instances are modified at save time.
- * 
+ *
  * @author Henri Sara
  */
 @SuppressWarnings("serial")
@@ -75,7 +76,7 @@ public class AccountEditor extends FormLayout implements ClickListener {
 		if (account != null) {
 			setAccount(account);
 		}
-		
+
 		personalNameField.setReadOnly(true);
 	}
 
@@ -158,7 +159,7 @@ public class AccountEditor extends FormLayout implements ClickListener {
 
 	/**
 	 * Get the created/modified Account object based on the contents of the window.
-	 * 
+	 *
 	 * @return Account
 	 */
 	private Account getAccount() {
@@ -168,7 +169,7 @@ public class AccountEditor extends FormLayout implements ClickListener {
 			account.setNew(true);
 
 			account.setProtocol("imap");
-			
+
 			account.setSignature("");
 			account.setUseSignature(false);
 			account.setFolderPrefix("");

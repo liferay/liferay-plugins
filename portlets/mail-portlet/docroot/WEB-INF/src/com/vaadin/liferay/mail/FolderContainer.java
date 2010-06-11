@@ -1,13 +1,6 @@
 
 package com.vaadin.liferay.mail;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.service.AccountLocalServiceUtil;
@@ -17,14 +10,22 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import com.vaadin.data.Container.Hierarchical;
+import com.vaadin.data.Container.ItemSetChangeNotifier;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
-import com.vaadin.data.Container.Hierarchical;
-import com.vaadin.data.Container.ItemSetChangeNotifier;
 import com.vaadin.data.util.MethodProperty;
 import com.vaadin.data.util.ObjectProperty;
 import com.vaadin.terminal.Resource;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings("serial")
 public class FolderContainer implements Hierarchical, ItemSetChangeNotifier {
@@ -60,7 +61,7 @@ public class FolderContainer implements Hierarchical, ItemSetChangeNotifier {
 		new HashMap<Long, Account>();
 
 	private static List<String> propertyIds;
-	
+
     private List<ItemSetChangeListener> itemSetChangeListeners;
 
 	static {
@@ -406,7 +407,7 @@ public class FolderContainer implements Hierarchical, ItemSetChangeNotifier {
 		accountFolders = new HashMap<Long, List<ItemId>>();
 		Collection<Account> oldAccounts = accountIdToAccount.values();
 		accountIdToAccount = new HashMap<Long, Account>();
-		
+
 		for (Account account : oldAccounts) {
 			try {
 				account = AccountLocalServiceUtil.getAccount(account.getAccountId());

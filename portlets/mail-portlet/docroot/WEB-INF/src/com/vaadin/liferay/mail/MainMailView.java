@@ -1,15 +1,16 @@
 package com.vaadin.liferay.mail;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.AccountLocalServiceUtil;
 import com.liferay.mail.service.MessageLocalServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
+
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.SplitPanel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class MainMailView extends CustomComponent {
@@ -100,7 +101,7 @@ public class MainMailView extends CustomComponent {
 
 		return messageList.getSelectedMessages();
 	}
-	
+
 	public void update() {
 		messageList.refresh();
 		folders.refresh();

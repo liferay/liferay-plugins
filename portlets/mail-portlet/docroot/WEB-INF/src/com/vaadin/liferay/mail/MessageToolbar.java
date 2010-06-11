@@ -1,9 +1,6 @@
 
 package com.vaadin.liferay.mail;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.liferay.mail.MailException;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Folder;
@@ -13,20 +10,24 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import com.vaadin.liferay.mail.Composer.ComposerListener;
 import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.terminal.Resource;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.PopupView;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.PopupView.PopupVisibilityEvent;
 import com.vaadin.ui.PopupView.PopupVisibilityListener;
+import com.vaadin.ui.PopupView;
+import com.vaadin.ui.VerticalLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class MessageToolbar extends HorizontalLayout {
@@ -57,7 +58,7 @@ public class MessageToolbar extends HorizontalLayout {
 	private Button delete;
 	private Button moveTo;
 	private Button refresh;
-	
+
 	// ID of the account currently shown in the view
 	private Long currentAccountId;
 
@@ -123,7 +124,7 @@ public class MessageToolbar extends HorizontalLayout {
 		});
 		moveTo.setIcon(ICON_MOVE_TO);
 		moveTo.setStyleName(TOOLBAR_BUTTON_STYLE);
-		
+
 		refresh = new NativeButton(Lang.get("refresh"), new ClickListener() {
 
 			public void buttonClick(ClickEvent event) {
@@ -142,7 +143,7 @@ public class MessageToolbar extends HorizontalLayout {
 	public void updateToolbar(Long accountId, Folder folder) {
 
 		currentAccountId = accountId;
-		
+
 		boolean drafts = isDraftFolder(accountId, folder);
 
 		removeAllComponents();
@@ -360,12 +361,12 @@ public class MessageToolbar extends HorizontalLayout {
 		Controller.get().openDraftInComposer(message);
 
 	}
-	
+
 	protected void refresh() {
 		if (currentAccountId == null) {
 			return;
 		}
-		
+
 		try {
 			Controller.get().getMailManager().synchronizeAccount(currentAccountId);
 			mainMailView.update();

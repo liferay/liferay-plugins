@@ -1,16 +1,16 @@
 
 package com.vaadin.liferay.mail;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.util.portlet.PortletProps;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Manager for configuration information such as port lists. This is based on
  * ConfigurationActionImpl.
- * 
+ *
  * @author Henri Sara
  */
 public class ConfigurationManager {

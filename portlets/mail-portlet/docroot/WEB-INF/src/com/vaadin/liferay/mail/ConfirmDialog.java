@@ -1,8 +1,8 @@
 package com.vaadin.liferay.mail;
 
+import com.vaadin.event.Action.Handler;
 import com.vaadin.event.Action;
 import com.vaadin.event.ShortcutAction;
-import com.vaadin.event.Action.Handler;
 import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
@@ -48,7 +48,7 @@ public class ConfirmDialog extends Window implements Handler {
 		});
 
 		vl.addComponent(message);
-		
+
 		vl.addComponent(extraLayout);
 
 		HorizontalLayout buttons = new HorizontalLayout();
@@ -83,7 +83,7 @@ public class ConfirmDialog extends Window implements Handler {
 		this(caption, confirmationText);
 		confirmButton.setCaption(confirmButtonCaption);
 	}
-	
+
 	public void addExtraComponent(Component component) {
 		extraLayout.addComponent(component);
 	}
@@ -99,7 +99,7 @@ public class ConfirmDialog extends Window implements Handler {
 	/**
 	 * Adds a listener that will be called when the confirm button is clicked.
 	 * There may be several listeners that all will be called.
-	 * 
+	 *
 	 * @param listener
 	 *            a Button.ClickListener that will be called when confirm button
 	 *            is clicked.

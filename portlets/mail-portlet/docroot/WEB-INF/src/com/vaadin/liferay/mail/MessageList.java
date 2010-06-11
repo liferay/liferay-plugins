@@ -1,8 +1,6 @@
 
 package com.vaadin.liferay.mail;
 
-import java.util.List;
-
 import com.liferay.mail.mailbox.Mailbox;
 import com.liferay.mail.mailbox.MailboxFactoryUtil;
 import com.liferay.mail.model.Folder;
@@ -13,9 +11,12 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
+
 import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.VerticalLayout;
+
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class MessageList extends CustomComponent {
@@ -62,7 +63,7 @@ public class MessageList extends CustomComponent {
 							.get().getPasswordRetriever().getPassword(
 									msg.getAccountId()));
 				mailbox.synchronizeMessage(msg.getMessageId());
-	
+
 				msg = MessageLocalServiceUtil.getMessage(msg.getMessageId());
 			} catch (PortalException e) {
 				_log.debug(e, e);
@@ -136,7 +137,7 @@ public class MessageList extends CustomComponent {
 
 		this.accountId = accountId;
 		this.folder = folder;
-		
+
 		table.showMessages(accountId, folder);
 		top.updateToolbar(accountId, folder);
 
@@ -145,7 +146,7 @@ public class MessageList extends CustomComponent {
 	public MessageListTable getTable(){
 		return table;
 	}
-	
+
 	public void refresh() {
 		showMessages(accountId, folder);
 	}

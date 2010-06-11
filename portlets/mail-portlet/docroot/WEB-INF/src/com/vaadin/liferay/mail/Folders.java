@@ -1,20 +1,21 @@
 
 package com.vaadin.liferay.mail;
 
-import java.util.List;
-
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Folder;
+
 import com.vaadin.liferay.mail.Controller.MessageModifiedListener;
 import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.ui.Accordion;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.themes.BaseTheme;
+
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class Folders extends CustomComponent
@@ -148,7 +149,7 @@ public class Folders extends CustomComponent
 
 		// Not interested in these events
 	}
-	
+
 	public void refresh() {
 		tree.refresh();
 	}

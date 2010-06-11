@@ -1,10 +1,6 @@
 
 package com.vaadin.liferay.mail;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import com.liferay.mail.MailException;
 import com.liferay.mail.mailbox.Mailbox;
 import com.liferay.mail.mailbox.MailboxFactoryUtil;
@@ -12,11 +8,11 @@ import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.FolderLocalServiceUtil;
-import com.liferay.mail.util.MailManager;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import com.vaadin.data.Container;
 import com.vaadin.data.Property;
 import com.vaadin.event.Action;
@@ -28,10 +24,14 @@ import com.vaadin.event.dd.acceptcriteria.And;
 import com.vaadin.event.dd.acceptcriteria.SourceIs;
 import com.vaadin.event.dd.acceptcriteria.TargetDetailIs;
 import com.vaadin.liferay.mail.util.Lang;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.Tree;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.TextField;
+import com.vaadin.ui.Tree;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class FolderTree extends Tree implements DropHandler, Action.Handler {
@@ -50,7 +50,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 		}
 
 	}
-	    
+
 	private static class FolderAction extends Action {
 
 		private final Folder folder;
@@ -65,7 +65,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 		}
 
 	}
-	    
+
 	private FolderChangeListener folderChangedListener;
 
 	private MessageList messageList;
@@ -98,7 +98,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 			}
 
 		});
-		
+
 		addActionHandler(this);
 	}
 
@@ -135,7 +135,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 		}
 		select(getFolderContainer().getFolderItemId(accountId, folderId));
 	}
-	
+
 	public void drop(DragAndDropEvent dropEvent) {
 
 		DataBoundTransferable tr = (DataBoundTransferable) dropEvent
@@ -205,7 +205,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 		Folder folder = getFolderContainer().getFolder(target);
 		Account account = getFolderContainer().getAccount(target);
 		ArrayList<Action> actions = new ArrayList<Action>();
-		
+
 		if (account != null) {
 			actions.add(new AccountAction("create-folder", account.getAccountId()));
 		}
@@ -248,7 +248,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
     				String newName = (String) newNameField.getValue();
     				if (newName != null && !"".equals(newName)) {
 						confirm.closeDialog();
-	
+
 						addFolder(accountId, newName);
 
 						synchronizeAccount(accountId, Controller.get());
@@ -258,7 +258,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
     				}
     			}
     		});
-    		
+
     		Controller.get().getApplication().getMainWindow().addWindow(confirm);
         }
 	}
@@ -285,9 +285,9 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
     				String newName = (String) newNameField.getValue();
     				if (newName != null && !"".equals(newName)) {
 						confirm.closeDialog();
-	
+
 						renameFolder(folder.getFolderId(), newName);
-			
+
 						synchronizeAccount(folder.getAccountId(), Controller.get());
 						refresh();
     				} else {
@@ -295,7 +295,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
     				}
     			}
     		});
-    		
+
     		Controller.get().getApplication().getMainWindow().addWindow(confirm);
         } else if ("remove-folder".equals(action.getCaption())) {
     		final ConfirmDialog confirm =
@@ -309,20 +309,20 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 					confirm.closeDialog();
 
 					deleteFolder(folder.getFolderId());
-		
+
 					synchronizeAccount(folder.getAccountId(), Controller.get());
 					refresh();
     			}
     		});
-    		
+
     		Controller.get().getApplication().getMainWindow().addWindow(confirm);
-        }		
+        }
 	}
 
 	/**
 	 * Refresh the tree contents after a synchronization with the server. No
 	 * synchronization is performed in this method.
-	 * 
+	 *
 	 * The current tree root expansion state and selected folder (if any) are
 	 * preserved.
 	 */
@@ -339,7 +339,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 		Folder selectedFolder = getFolderContainer().getFolder(getValue());
 
 		getFolderContainer().refresh();
-		
+
 		for (Long accountId : expanded) {
 			expandItem(getFolderContainer().getAccountItemId(
 					accountId));
@@ -351,11 +351,11 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 			select(id);
 		}
 	}
-	
+
 	/**
 	 * Similar to {@link MailManager#addFolder(long, String)}: create a new folder.
 	 * Success or error message display is handled inside this method.
-	 * 
+	 *
 	 * @param accountId
 	 * @param displayName
 	 */
@@ -382,11 +382,11 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 			controller.showError(Lang.get("unable-to-create-folder"));
 		} catch (PortalException e) {
 			_log.error(e, e);
-			
+
 			controller.showError(Lang.get("unable-to-create-folder"));
 		} catch (SystemException e) {
 			_log.error(e, e);
-			
+
 			controller.showError(Lang.get("unable-to-create-folder"));
 		}
 
@@ -395,7 +395,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 	/**
 	 * Similar to {@link MailManager#renameFolder(long, String)}: rename a folder.
 	 * Success or error message display is handled inside this method.
-	 * 
+	 *
 	 * @param folderId
 	 * @param displayName
 	 */
@@ -425,11 +425,11 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 			controller.showError(Lang.get("unable-to-rename-folder"));
 		} catch (PortalException e) {
 			_log.error(e, e);
-			
+
 			controller.showError(Lang.get("unable-to-rename-folder"));
 		} catch (SystemException e) {
 			_log.error(e, e);
-			
+
 			controller.showError(Lang.get("unable-to-rename-folder"));
 		}
 
@@ -438,7 +438,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 	/**
 	 * Similar to {@link MailManager#deleteFolder(long, String)}: delete a folder.
 	 * Success or error message display is handled inside this method.
-	 * 
+	 *
 	 * @param folderId
 	 */
 	private void deleteFolder(long folderId) {
@@ -472,16 +472,16 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 			controller.showError(Lang.get("unable-to-delete-folder"));
 		} catch (PortalException e) {
 			_log.error(e, e);
-			
+
 			controller.showError(Lang.get("unable-to-delete-folder"));
 		} catch (SystemException e) {
 			_log.error(e, e);
-			
+
 			controller.showError(Lang.get("unable-to-delete-folder"));
 		}
 
 	}
-	
+
 	private void synchronizeAccount(final long accountId, Controller controller) {
 		try {
 			controller.getMailManager().synchronizeAccount(accountId);

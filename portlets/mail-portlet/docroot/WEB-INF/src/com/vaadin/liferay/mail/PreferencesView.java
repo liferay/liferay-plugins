@@ -1,15 +1,16 @@
 
 package com.vaadin.liferay.mail;
 
-import java.util.List;
-
 import com.liferay.mail.model.Account;
 import com.liferay.mail.service.AccountLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+
 import com.vaadin.liferay.mail.AccountEditor.AccountEditorListener;
 import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.terminal.ExternalResource;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
@@ -17,8 +18,8 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
+
+import java.util.List;
 
 /**
  * User e-mail preferences: account management (creation, modification,
@@ -164,7 +165,7 @@ public class PreferencesView extends VerticalLayout {
 
 				try {
 					confirm.closeDialog();
-					
+
 					AccountLocalServiceUtil.deleteAccount(account);
 				}
 				catch (SystemException e) {

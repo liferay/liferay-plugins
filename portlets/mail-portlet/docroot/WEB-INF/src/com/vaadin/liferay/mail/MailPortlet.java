@@ -1,8 +1,13 @@
 package com.vaadin.liferay.mail;
 
+import com.vaadin.Application;
+import com.vaadin.terminal.gwt.server.AbstractApplicationPortlet;
+import com.vaadin.ui.Window;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+
 import java.net.MalformedURLException;
 
 import javax.portlet.PortletException;
@@ -10,10 +15,6 @@ import javax.portlet.PortletMode;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.WindowState;
-
-import com.vaadin.Application;
-import com.vaadin.terminal.gwt.server.AbstractApplicationPortlet;
-import com.vaadin.ui.Window;
 
 /**
  * E-mail portlet class that does not start the Vaadin application before user
@@ -33,10 +34,10 @@ public class MailPortlet extends AbstractApplicationPortlet {
                 response.getPortletOutputStream(), "UTF-8"));
 
         page.write("<div class=\"portlet-msg-error\">Please login to use the mail portlet.</div>");
-		
+
         page.close();
 	}
-	
+
 	@Override
 	protected void writeAjaxPage(RenderRequest request,
 			RenderResponse response, Window window, Application application)
@@ -55,7 +56,7 @@ public class MailPortlet extends AbstractApplicationPortlet {
 			super.writeAjaxPage(request, response, window, application);
 		}
 	}
-	
+
 	@Override
 	protected Class<? extends Application> getApplicationClass()
 			throws ClassNotFoundException {

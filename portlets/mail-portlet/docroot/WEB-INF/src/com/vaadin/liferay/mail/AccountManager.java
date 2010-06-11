@@ -1,29 +1,26 @@
 
 package com.vaadin.liferay.mail;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.liferay.mail.MailException;
 import com.liferay.mail.mailbox.Mailbox;
 import com.liferay.mail.mailbox.MailboxFactoryUtil;
 import com.liferay.mail.mailbox.PasswordRetriever;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.service.AccountLocalServiceUtil;
-import com.liferay.mail.util.MailManager;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 
+import java.util.List;
+
 /**
  * Manager for e-mail accounts. This is based on code from MailPortlet and
  * MailManager, but uses objects such as Account instead of parameters for
  * individual fields in requests.
- * 
+ *
  * @author Henri Sara
  */
 public class AccountManager {
@@ -38,7 +35,7 @@ public class AccountManager {
 	/**
 	 * Returns the (decrypted) password for a user, either from the account or
 	 * from the session.
-	 * 
+	 *
 	 * @param account
 	 * @param controller
 	 * @return
@@ -50,7 +47,7 @@ public class AccountManager {
 
 		return controller.getPasswordRetriever().getPassword(account.getAccountId());
 	}
-	
+
 	/**
 	 * Creates a new account and returns failure message key or null if successful.
 	 */

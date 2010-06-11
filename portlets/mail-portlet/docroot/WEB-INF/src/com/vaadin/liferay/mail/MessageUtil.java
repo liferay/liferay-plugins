@@ -1,14 +1,6 @@
 
 package com.vaadin.liferay.mail;
 
-import java.text.DateFormat;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
 import com.liferay.mail.MailException;
 import com.liferay.mail.mailbox.Mailbox;
 import com.liferay.mail.mailbox.MailboxFactoryUtil;
@@ -26,7 +18,17 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
+
 import com.vaadin.liferay.mail.util.Lang;
+
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 public class MessageUtil {
 
@@ -57,7 +59,7 @@ public class MessageUtil {
 		Mailbox mailbox = getMailbox(message.getAccountId());
 
 		mailbox.moveMessages(folder.getFolderId(), messageIds);
-		
+
 		Controller.get().notifyMessagesAddedOrRemovedListeners();
 	}
 
@@ -83,11 +85,11 @@ public class MessageUtil {
 			// nothing to delete
 			return;
 		}
-		
+
 		try {
 			Message message = messages.get(0);
 			Mailbox mailbox = getMailbox(message.getAccountId());
-			
+
 			long[] messageIds = new long[messages.size()];
 			for (int i=0; i<messages.size(); ++i) {
 				messageIds[i] = messages.get(i).getMessageId();
@@ -222,7 +224,7 @@ public class MessageUtil {
 		if (sendMessage) {
 			mailbox.sendMessage(accountId, message.getMessageId());
 		}
-		
+
 		return message;
 	}
 
@@ -247,7 +249,7 @@ public class MessageUtil {
 				accountId, getPassword(accountId));
 		return mailbox;
 	}
-	
+
 	private static String getPassword(long accountId) throws PortalException,
 			SystemException {
 		PasswordRetriever passwordRetriever = Controller.get().getPasswordRetriever();
@@ -260,7 +262,7 @@ public class MessageUtil {
 	}
 
 	// formatting from old FormatUtil, may be available elsewhere as well
-	
+
 	public static String formatSize(double size, Locale locale) {
 		NumberFormat numberFormat = NumberFormat.getInstance(locale);
 

@@ -1,23 +1,24 @@
 
 package com.vaadin.liferay.mail;
 
+import com.liferay.mail.model.Folder;
+import com.liferay.mail.model.Message;
+import com.liferay.mail.service.AccountLocalServiceUtil;
+
+import com.vaadin.data.Container;
+import com.vaadin.data.Property;
+import com.vaadin.event.Action.Handler;
+import com.vaadin.event.Action;
+import com.vaadin.event.ItemClickEvent.ItemClickListener;
+import com.vaadin.event.ItemClickEvent;
+import com.vaadin.liferay.mail.Controller.MessageModifiedListener;
+import com.vaadin.liferay.mail.util.Lang;
+import com.vaadin.ui.Table;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import com.liferay.mail.model.Folder;
-import com.liferay.mail.model.Message;
-import com.liferay.mail.service.AccountLocalServiceUtil;
-import com.vaadin.data.Container;
-import com.vaadin.data.Property;
-import com.vaadin.event.Action;
-import com.vaadin.event.ItemClickEvent;
-import com.vaadin.event.Action.Handler;
-import com.vaadin.event.ItemClickEvent.ItemClickListener;
-import com.vaadin.liferay.mail.Controller.MessageModifiedListener;
-import com.vaadin.liferay.mail.util.Lang;
-import com.vaadin.ui.Table;
 
 @SuppressWarnings("serial")
 public class MessageListTable extends Table
@@ -53,7 +54,7 @@ public class MessageListTable extends Table
 
 		// Add D&D support
 		setDragMode(TableDragMode.MULTIROW);
-									
+
 		setImmediate(true);
 		setMultiSelect(true);
 		setSelectable(false);

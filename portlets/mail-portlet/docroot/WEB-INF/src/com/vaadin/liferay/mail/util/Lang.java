@@ -2,6 +2,7 @@
 package com.vaadin.liferay.mail.util;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
+
 import com.vaadin.liferay.mail.Controller;
 
 public class Lang {
