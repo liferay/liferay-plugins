@@ -926,7 +926,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		Map<String, String> articleDiffs = new HashMap<String, String>();
 
-		String[] parameters = new String[] {"content"};
+		String[] parameters = new String[] {"content", "title"};
 
 		for (String parameter : parameters) {
 			String articleDiff = StringPool.BLANK;
@@ -1022,6 +1022,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"[$ARTICLE_CONTENT$]",
 				"[$ARTICLE_CONTENT_DIFF$]",
 				"[$ARTICLE_TITLE$]",
+				"[$ARTICLE_TITLE_DIFF$]",
 				"[$ARTICLE_URL$]",
 				"[$ARTICLE_USER_ADDRESS$]",
 				"[$ARTICLE_USER_NAME$]",
@@ -1039,6 +1040,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				articleContent,
 				articleDiffs.get("content"),
 				article.getTitle(),
+				articleDiffs.get("title"),
 				articleURL,
 				emailAddress,
 				fullName,
@@ -1059,6 +1061,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"[$ARTICLE_CONTENT$]",
 				"[$ARTICLE_CONTENT_DIFF$]",
 				"[$ARTICLE_TITLE$]",
+				"[$ARTICLE_TITLE_DIFF$]",
 				"[$ARTICLE_URL$]",
 				"[$ARTICLE_USER_ADDRESS$]",
 				"[$ARTICLE_USER_NAME$]",
@@ -1076,6 +1079,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				articleContent,
 				articleDiffs.get("content"),
 				article.getTitle(),
+				articleDiffs.get("title"),
 				articleURL,
 				emailAddress,
 				fullName,
