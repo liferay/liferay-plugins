@@ -298,6 +298,8 @@ AUI().add(
 				instance.messageContainer.html('');
 				instance.messagesContainer.html('');
 
+				instance.controlContainer.hide();
+
 				instance.loadAccounts();
 			},
 
