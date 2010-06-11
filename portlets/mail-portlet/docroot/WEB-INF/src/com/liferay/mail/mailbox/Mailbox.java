@@ -77,6 +77,9 @@ public interface Mailbox {
 
 	public User getUser();
 
+	public boolean hasNewMessages(long folderId)
+		throws PortalException, SystemException;
+
 	public void moveMessages(long folderId, long[] messageIds)
 		throws PortalException, SystemException;
 

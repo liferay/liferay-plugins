@@ -161,6 +161,27 @@ public class MailManager {
 		}
 	}
 
+	public JSONObject checkMessages(long accountId, long folderId)
+		throws PortalException, SystemException {
+
+		try {
+			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
+				_user.getUserId(), accountId,
+				_passwordRetriever.getPassword(accountId));
+
+			if (mailbox.hasNewMessages(folderId)) {
+				mailbox.synchronizeFolder(folderId);
+
+				return createJSONResult("success", StringPool.BLANK, "true");
+			}
+
+			return createJSONResult("success", StringPool.BLANK, "false");
+		}
+		catch (MailException me) {
+			return createJSONResult("failure", StringPool.BLANK);
+		}
+	}
+
 	public JSONObject deleteAccount(long accountId)
 		throws PortalException, SystemException {
 

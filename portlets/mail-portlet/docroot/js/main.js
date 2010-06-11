@@ -47,6 +47,34 @@ AUI().add(
 				).render();
 			},
 
+			checkMessages: function(folderId) {
+				var instance = this;
+
+				A.io.request(
+					themeDisplay.getLayoutURL() + '/-/mail/check_messages',
+					{
+						data: {
+							accountId: instance.accountId,
+							folderId: folderId
+						},
+						dataType: 'json',
+						method: 'POST',
+						on: {
+							success: function(event, id, obj) {
+								var responseData = this.get('responseData');
+
+								if ((responseData.status != 'success') || (responseData.value == 'false')) {
+									return;
+								}
+
+								instance.loadFolders(instance.accountId);
+								instance.loadMessages(folderId, instance.pageNumber, instance.orderByField, instance.orderByType, instance.keywords, true);
+							}
+						}
+					}
+				);
+			},
+
 			deleteMessages: function(messageIds) {
 				var instance = this;
 
@@ -109,6 +137,7 @@ AUI().add(
 				var instance = this;
 
 				instance.accountId = accountId;
+				instance.inboxFolderId = inboxFolderId;
 
 				instance._displayContainer(instance.messagesContainer);
 
@@ -202,7 +231,7 @@ AUI().add(
 				instance.messageContainer.io.start();
 			},
 
-			loadMessages: function(folderId, pageNumber, orderByField, orderByType, keywords) {
+			loadMessages: function(folderId, pageNumber, orderByField, orderByType, keywords, autoLoad) {
 				var instance = this;
 
 				instance.folderId = folderId;
@@ -211,7 +240,14 @@ AUI().add(
 				instance.orderByType = orderByType;
 				instance.keywords = keywords;
 
-				instance._displayContainer(instance.messagesContainer);
+				if (autoLoad) {
+					instance.messagesContainer.io.set('showLoading', false);
+				}
+				else {
+					instance._displayContainer(instance.messagesContainer);
+
+					instance.checkMessages(folderId);
+				}
 
 				instance.messagesContainer.io.set(
 					'data',
@@ -225,6 +261,8 @@ AUI().add(
 				);
 
 				instance.messagesContainer.io.start();
+
+				instance.messagesContainer.io.set('showLoading', true);
 			},
 
 			passwordPrompt: function(accountId, inboxFolderId) {
@@ -324,6 +362,7 @@ AUI().add(
 					{
 						autoLoad: false,
 						method: 'POST',
+						showLoading: false,
 						uri: themeDisplay.getLayoutURL() + '/-/mail/view_folders'
 					}
 				);
@@ -528,6 +567,8 @@ AUI().add(
 					},
 					'.select-none'
 				);
+
+				setTimeout('Liferay.Mail.checkMessages(Liferay.Mail.inboxFolderId)', 60000);
 			},
 
 			_displayContainer: function(container) {
@@ -561,6 +602,7 @@ AUI().add(
 
 			accountId: null,
 			folderId: null,
+			inboxFolderId: null,
 			keywords: '',
 			orderByField: 'sentDate',
 			orderByType: 'desc',

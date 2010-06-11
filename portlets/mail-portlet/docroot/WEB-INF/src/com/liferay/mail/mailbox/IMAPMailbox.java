@@ -186,6 +186,12 @@ public class IMAPMailbox extends BaseMailbox {
 			messages, pageNumber, messagesPerPage, messageCount);
 	}
 
+	public boolean hasNewMessages(long folderId)
+		throws PortalException, SystemException {
+
+		return _imapAccessor.hasNewMessages(folderId);
+	}
+
 	public void moveMessages(long folderId, long[] messageIds)
 		throws PortalException, SystemException {
 

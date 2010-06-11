@@ -287,6 +287,32 @@ public class IMAPAccessor {
 		}
 	}
 
+	public boolean hasNewMessages(long folderId)
+		throws PortalException, SystemException {
+
+		IMAPFolder imapFolder = null;
+
+		try {
+			imapFolder = openFolder(folderId);
+
+			int messageCount = imapFolder.getMessageCount();
+
+			Message jxMessage = getMessage(folderId, imapFolder, false);
+
+			if (messageCount == jxMessage.getMessageNumber()) {
+				return false;
+			}
+
+			return true;
+		}
+		catch (MessagingException me) {
+			throw new MailException(me);
+		}
+		finally {
+			closeFolder(imapFolder, false);
+		}
+	}
+
 	public void moveMessages(
 			long sourceFolderId, long destinationFolderId, long[] messageIds,
 			boolean deleteMissingMessages)
