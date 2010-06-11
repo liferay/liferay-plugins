@@ -875,6 +875,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			emailAddress = user.getEmailAddress();
 		}
 
+		String categoryTitle = LanguageUtil.get(
+			LocaleUtil.getDefault(), "category.kb");
 		String portletName = PortalUtil.getPortletTitle(
 			PortletKeys.KNOWLEDGE_BASE_ADMIN, LocaleUtil.getDefault());
 
@@ -888,6 +890,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			new String[] {
 				"[$ARTICLE_USER_ADDRESS$]",
 				"[$ARTICLE_USER_NAME$]",
+				"[$CATEGORY_TITLE$]",
 				"[$COMPANY_ID$]",
 				"[$COMPANY_MX$]",
 				"[$COMPANY_NAME$]",
@@ -897,6 +900,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			new String[] {
 				emailAddress,
 				fullName,
+				categoryTitle,
 				String.valueOf(company.getCompanyId()),
 				company.getMx(),
 				company.getName(),
@@ -909,6 +913,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			new String[] {
 				"[$ARTICLE_USER_ADDRESS$]",
 				"[$ARTICLE_USER_NAME$]",
+				"[$CATEGORY_TITLE$]",
 				"[$COMPANY_ID$]",
 				"[$COMPANY_MX$]",
 				"[$COMPANY_NAME$]",
@@ -918,6 +923,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			new String[] {
 				emailAddress,
 				fullName,
+				categoryTitle,
 				String.valueOf(company.getCompanyId()),
 				company.getMx(),
 				company.getName(),
@@ -1032,6 +1038,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"[$ARTICLE_USER_ADDRESS$]",
 				"[$ARTICLE_USER_NAME$]",
 				"[$ARTICLE_VERSION$]",
+				"[$CATEGORY_TITLE$]",
 				"[$COMPANY_ID$]",
 				"[$COMPANY_MX$]",
 				"[$COMPANY_NAME$]",
@@ -1051,6 +1058,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				emailAddress,
 				fullName,
 				articleVersion,
+				categoryTitle,
 				String.valueOf(company.getCompanyId()),
 				company.getMx(),
 				company.getName(),
@@ -1073,6 +1081,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"[$ARTICLE_USER_ADDRESS$]",
 				"[$ARTICLE_USER_NAME$]",
 				"[$ARTICLE_VERSION$]",
+				"[$CATEGORY_TITLE$]",
 				"[$COMPANY_ID$]",
 				"[$COMPANY_MX$]",
 				"[$COMPANY_NAME$]",
@@ -1092,6 +1101,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				emailAddress,
 				fullName,
 				articleVersion,
+				categoryTitle,
 				String.valueOf(company.getCompanyId()),
 				company.getMx(),
 				company.getName(),
