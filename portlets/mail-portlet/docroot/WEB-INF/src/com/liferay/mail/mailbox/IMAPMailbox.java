@@ -336,54 +336,12 @@ public class IMAPMailbox extends BaseMailbox {
 
 	public void synchronize() throws PortalException, SystemException {
 		if (_log.isDebugEnabled()) {
-			_log.debug("Synchronizing account");
-		}
-
-		List<javax.mail.Folder> jxFolders = _imapAccessor.getFolders();
-
-		long draftFolderId = account.getDraftFolderId();
-		long inboxFolderId = account.getInboxFolderId();
-		long sentFolderId = account.getSentFolderId();
-		long trashFolderId = account.getTrashFolderId();
-
-		for (javax.mail.Folder jxFolder : jxFolders) {
-			Folder folder = null;
-
-			try {
-				folder = FolderLocalServiceUtil.getFolder(
-					account.getAccountId(), jxFolder.getFullName());
-			}
-			catch (NoSuchFolderException nsfe) {
-				folder = FolderLocalServiceUtil.addFolder(
-					user.getUserId(), account.getAccountId(),
-					jxFolder.getFullName(), jxFolder.getName(), 0);
-			}
-
-			String folderName = jxFolder.getName().toLowerCase();
-
-			if ((draftFolderId == 0) && folderName.contains("draft")) {
-				draftFolderId = folder.getFolderId();
-			}
-			else if ((inboxFolderId == 0) && folderName.contains("inbox")) {
-				inboxFolderId = folder.getFolderId();
-			}
-			else if ((sentFolderId == 0) && folderName.contains("sent")) {
-				sentFolderId = folder.getFolderId();
-			}
-			else if ((trashFolderId == 0) && folderName.contains("trash")) {
-				trashFolderId = folder.getFolderId();
-			}
-		}
-
-		AccountLocalServiceUtil.updateFolders(
-			account.getAccountId(), inboxFolderId, draftFolderId, sentFolderId,
-			trashFolderId);
-
-		if (_log.isDebugEnabled()) {
 			_log.debug(
 				"Synchronizing all folders for accountId " +
 					account.getAccountId());
 		}
+
+		updateFolders();
 
 		List<Folder> folders = FolderLocalServiceUtil.getFolders(
 			account.getAccountId());
@@ -468,6 +426,52 @@ public class IMAPMailbox extends BaseMailbox {
 		else {
 			_imapAccessor.updateFlags(folderId, messageIds, flag, value, true);
 		}
+	}
+
+	public void updateFolders() throws PortalException, SystemException {
+		if (_log.isDebugEnabled()) {
+			_log.debug("Updating folders");
+		}
+
+		List<javax.mail.Folder> jxFolders = _imapAccessor.getFolders();
+
+		long draftFolderId = account.getDraftFolderId();
+		long inboxFolderId = account.getInboxFolderId();
+		long sentFolderId = account.getSentFolderId();
+		long trashFolderId = account.getTrashFolderId();
+
+		for (javax.mail.Folder jxFolder : jxFolders) {
+			Folder folder = null;
+
+			try {
+				folder = FolderLocalServiceUtil.getFolder(
+					account.getAccountId(), jxFolder.getFullName());
+			}
+			catch (NoSuchFolderException nsfe) {
+				folder = FolderLocalServiceUtil.addFolder(
+					user.getUserId(), account.getAccountId(),
+					jxFolder.getFullName(), jxFolder.getName(), 0);
+			}
+
+			String folderName = jxFolder.getName().toLowerCase();
+
+			if ((draftFolderId == 0) && folderName.contains("draft")) {
+				draftFolderId = folder.getFolderId();
+			}
+			else if ((inboxFolderId == 0) && folderName.contains("inbox")) {
+				inboxFolderId = folder.getFolderId();
+			}
+			else if ((sentFolderId == 0) && folderName.contains("sent")) {
+				sentFolderId = folder.getFolderId();
+			}
+			else if ((trashFolderId == 0) && folderName.contains("trash")) {
+				trashFolderId = folder.getFolderId();
+			}
+		}
+
+		AccountLocalServiceUtil.updateFolders(
+			account.getAccountId(), inboxFolderId, draftFolderId, sentFolderId,
+			trashFolderId);
 	}
 
 	public void validateAccount(

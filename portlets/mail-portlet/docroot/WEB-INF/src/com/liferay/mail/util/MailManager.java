@@ -104,7 +104,9 @@ public class MailManager {
 				_user.getUserId(), account.getAccountId(),
 				_passwordRetriever.getPassword(account.getAccountId()));
 
-			mailbox.synchronize();
+			mailbox.updateFolders();
+
+			synchronizeAccount(account.getAccountId());
 
 			return createJSONResult("success", "account-has-been-created");
 		}
