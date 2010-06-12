@@ -1471,7 +1471,7 @@ public class StartupAction extends SimpleAction {
 		removePortletBorder(layout, portletId);
 
 		WikiNode wikiNode = WikiNodeLocalServiceUtil.addNode(
-			defaultUserId, "Main", StringPool.BLANK, serviceContext);
+			null, defaultUserId, "Main", StringPool.BLANK, serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"new", "features"});
 		serviceContext.setAssetCategoryIds(
