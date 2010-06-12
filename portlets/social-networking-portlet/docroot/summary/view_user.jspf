@@ -18,7 +18,7 @@
 	<c:when test="<%= windowState.equals(WindowState.NORMAL) || !UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
 		<div class="summary-container">
 			<h2>
-				<%= user2.getFullName() %>
+				<%= HtmlUtil.escape(user2.getFullName()) %>
 			</h2>
 
 			<img alt="<liferay-ui:message key="user-portrait" />" class="user-profile-image" src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" />
@@ -72,7 +72,7 @@
 			<p>
 				<span class="user-job-title"><liferay-ui:message key="job-title" /></span>
 
-				<%= user2.getContact().getJobTitle() %>
+				<%= HtmlUtil.escape(user2.getContact().getJobTitle()) %>
 			</p>
 
 			<%
@@ -83,7 +83,7 @@
 				<p>
 					<span class="user-twitter-sn"><liferay-ui:message key="twitter" /></span>
 
-					<a class="user-twitter-link" href="http://twitter.com/<%= twitterSn %>"><%= twitterSn %></a>
+					<a class="user-twitter-link" href="http://twitter.com/<%= HtmlUtil.escapeAttribute(twitterSn) %>"><%= HtmlUtil.escape(twitterSn) %></a>
 				</p>
 			</c:if>
 

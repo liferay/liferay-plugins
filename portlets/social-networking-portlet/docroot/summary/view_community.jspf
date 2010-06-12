@@ -16,7 +16,7 @@
 
 <div class="summary-container">
 	<h2>
-		<%= group.getName() %>
+		<%= HtmlUtil.escape(group.getName()) %>
 	</h2>
 
 	<c:if test="<%= themeDisplay.isSignedIn() %>">

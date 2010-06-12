@@ -64,7 +64,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 					<div class="user" data-userId="<%= curUser.getUserId() %>">
 						<span class="name">
-							<%= curUser.getFullName() %>
+							<%= HtmlUtil.escape(curUser.getFullName()) %>
 						</span>
 
 						<span class="email">
@@ -138,7 +138,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 				for (Role role : roles) {
 				%>
 
-					<option value="<%= role.getRoleId() %>"><%= role.getName() %></option>
+					<option value="<%= role.getRoleId() %>"><%= HtmlUtil.escape(role.getName()) %></option>
 
 				<%
 				}
