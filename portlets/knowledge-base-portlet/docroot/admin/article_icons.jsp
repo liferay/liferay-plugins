@@ -22,10 +22,27 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 %>
 
-<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) || ArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS) || ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
+<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || ArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) || ArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS) || ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 	<div class="kb-article-icons">
 		<table class="lfr-table">
 		<tr>
+			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
+				<td>
+					<portlet:renderURL var="addArticleURL">
+						<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
+						<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+					</portlet:renderURL>
+
+					<liferay-ui:icon
+						image="add_article"
+						label="<%= true %>"
+						message="add-child-article"
+						url="<%= addArticleURL %>"
+					/>
+				</td>
+			</c:if>
+
 			<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 				<td>
 					<portlet:renderURL var="editURL">

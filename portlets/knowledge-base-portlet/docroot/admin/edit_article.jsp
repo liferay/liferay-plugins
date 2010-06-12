@@ -23,6 +23,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey");
 
+long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 String content = BeanParamUtil.getString(article, request, "content");
 %>
 
@@ -33,6 +34,7 @@ String content = BeanParamUtil.getString(article, request, "content");
 
 <aui:form action="<%= updateArticleURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateArticle();" %>'>
 	<aui:input name="resourcePrimKey" type="hidden" value="<%= resourcePrimKey %>" />
+	<aui:input name="parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
 
 	<liferay-ui:tabs
 		backURL="<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>"
