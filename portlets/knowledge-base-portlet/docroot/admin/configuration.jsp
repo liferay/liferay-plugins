@@ -64,7 +64,7 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 							for (int i = 0; i < deltaValues.length; i++) {
 							%>
 
-								<aui:option label="<%= deltaValues[i] %>" selected="<%= articlesDelta == deltaValues[i] %>" />
+								<aui:option label="<%= deltaValues[i] %>" selected="<%= deltaValues[i] == articlesDelta %>" />
 
 							<%
 							}
@@ -103,7 +103,7 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 							for (int i = 0; i < deltaValues.length; i++) {
 							%>
 
-								<aui:option label="<%= deltaValues[i] %>" selected="<%= templatesDelta == deltaValues[i] %>" />
+								<aui:option label="<%= deltaValues[i] %>" selected="<%= deltaValues[i] == templatesDelta %>" />
 
 							<%
 							}
