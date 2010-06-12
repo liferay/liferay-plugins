@@ -8,40 +8,18 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
 >
 	<bean class="com.liferay.portal.spring.context.PortletBeanFactoryPostProcessor" />
-	<bean id="solrServer" class="com.liferay.portal.search.solr.server.BasicAuthSolrServer">
+	<bean id="com.liferay.portal.search.solr.server.BasicAuthSolrServer" class="com.liferay.portal.search.solr.server.BasicAuthSolrServer">
 		<constructor-arg type="java.lang.String" value="http://localhost:8080/solr" />
 	</bean>
-	<bean id="indexSearcher.solr" class="com.liferay.portal.search.solr.SolrIndexSearcherImpl">
-		<property name="solrServer" ref="solrServer" />
+	<bean id="com.liferay.portal.kernel.search.IndexSearcher" class="com.liferay.portal.search.solr.SolrIndexSearcherImpl">
+		<property name="com.liferay.portal.search.solr.server.BasicAuthSolrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 	</bean>
-	<bean id="indexWriter.solr" class="com.liferay.portal.search.solr.SolrIndexWriterImpl">
+	<bean id="com.liferay.portal.kernel.search.IndexWriter" class="com.liferay.portal.search.solr.SolrIndexWriterImpl">
 		<property name="commit" value="true" />
-		<property name="solrServer" ref="solrServer" />
+		<property name="com.liferay.portal.search.solr.server.BasicAuthSolrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 	</bean>
-	<bean id="searchEngine.solr" class="com.liferay.portal.search.solr.SolrSearchEngineImpl">
-		<property name="searcher" ref="indexSearcher.solr" />
-		<property name="writer" ref="indexWriter.solr" />
-	</bean>
-	<bean id="messageListener.solr_reader" class="com.liferay.portal.kernel.search.messaging.SearchReaderMessageListener">
-		<property name="searchEngine" ref="searchEngine.solr" />
-	</bean>
-	<bean id="messageListener.solr_writer" class="com.liferay.portal.kernel.search.messaging.SearchWriterMessageListener">
-		<property name="searchEngine" ref="searchEngine.solr" />
-	</bean>
-	<bean id="messagingConfigurator.solr" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator" depends-on="searchEngine.solr">
-		<property name="messageListeners">
-			<map key-type="java.lang.String" value-type="java.util.List">
-				<entry key="liferay/search_reader">
-					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
-						<ref bean="messageListener.solr_reader" />
-					</list>
-				</entry>
-				<entry key="liferay/search_writer">
-					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
-						<ref bean="messageListener.solr_writer" />
-					</list>
-				</entry>
-			</map>
-		</property>
+	<bean id="com.liferay.portal.kernel.search.SearchEngine" class="com.liferay.portal.search.solr.SolrSearchEngineImpl">
+		<property name="searcher" ref="com.liferay.portal.kernel.search.IndexSearcher" />
+		<property name="writer" ref="com.liferay.portal.kernel.search.IndexWriter" />
 	</bean>
 </beans>
