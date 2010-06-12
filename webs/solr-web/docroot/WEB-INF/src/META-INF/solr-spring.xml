@@ -12,11 +12,11 @@
 		<constructor-arg type="java.lang.String" value="http://localhost:8080/solr" />
 	</bean>
 	<bean id="com.liferay.portal.kernel.search.IndexSearcher" class="com.liferay.portal.search.solr.SolrIndexSearcherImpl">
-		<property name="com.liferay.portal.search.solr.server.BasicAuthSolrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
+		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 	</bean>
 	<bean id="com.liferay.portal.kernel.search.IndexWriter" class="com.liferay.portal.search.solr.SolrIndexWriterImpl">
 		<property name="commit" value="true" />
-		<property name="com.liferay.portal.search.solr.server.BasicAuthSolrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
+		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 	</bean>
 	<bean id="com.liferay.portal.kernel.search.SearchEngine" class="com.liferay.portal.search.solr.SolrSearchEngineImpl">
 		<property name="searcher" ref="com.liferay.portal.kernel.search.IndexSearcher" />
