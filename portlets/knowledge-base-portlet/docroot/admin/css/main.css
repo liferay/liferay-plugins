@@ -22,6 +22,11 @@
 
 /* ---------- Portlet ---------- */
 
+.knowledge-base-portlet-admin .kb-article-priority .aui-field-content {
+	display: inline;
+	margin: 0;
+}
+
 .knowledge-base-portlet-admin .kb-entity-body {
 	padding: 0 7px;
 }

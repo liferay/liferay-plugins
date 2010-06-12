@@ -25,6 +25,7 @@ long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey"
 
 long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 String content = BeanParamUtil.getString(article, request, "content");
+int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleConstants.DEFAULT_PRIORITY);
 %>
 
 <portlet:actionURL name="updateArticle" var="updateArticleURL">
@@ -58,6 +59,16 @@ String content = BeanParamUtil.getString(article, request, "content");
 		<c:if test="<%= enableArticleDescription %>">
 			<aui:input name="description" />
 		</c:if>
+
+		<aui:field-wrapper label="display-order">
+			<div id="<portlet:namespace />priority">
+				<liferay-util:include page="/admin/article_priority.jsp" servletContext="<%= application %>">
+					<liferay-util:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
+					<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
+					<liferay-util:param name="priority" value="<%= String.valueOf(priority) %>" />
+				</liferay-util:include>
+			</div>
+		</aui:field-wrapper>
 
 		<c:if test="<%= article == null %>">
 			<aui:field-wrapper label="permissions">
