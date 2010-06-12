@@ -68,6 +68,22 @@ int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleCon
 					<liferay-util:param name="priority" value="<%= String.valueOf(priority) %>" />
 				</liferay-util:include>
 			</div>
+
+			<c:if test="<%= (article == null) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && ArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE)) %>">
+				<portlet:renderURL var="selectArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+					<portlet:param name="jspPage" value="/admin/select_article.jsp" />
+					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
+					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
+				</portlet:renderURL>
+
+				<%
+				String selectArticleOnClick = "var selectArticleWindow = window.open('" + selectArticleURL + "&" + renderResponse.getNamespace() + "oldParentResourcePrimKey=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "parentResourcePrimKey.value,'selectArticle','directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectArticleWindow.focus();";
+				%>
+
+				<div class="kb-edit-link">
+					<aui:a href="javascript:;" onClick="<%= selectArticleOnClick %>"><liferay-ui:message key="select-parent-article" /> &raquo;</aui:a>
+				</div>
+			</c:if>
 		</aui:field-wrapper>
 
 		<c:if test="<%= article == null %>">
@@ -89,6 +105,11 @@ int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleCon
 <aui:script>
 	function <portlet:namespace />initEditor() {
 		return "<%= UnicodeFormatter.toString(content) %>";
+	}
+
+	function <portlet:namespace />selectArticle(parentResourcePrimKey, html) {
+		document.<portlet:namespace />fm.<portlet:namespace />parentResourcePrimKey.value = parentResourcePrimKey;
+		document.getElementById("<portlet:namespace />priority").innerHTML = html;
 	}
 
 	function <portlet:namespace />updateArticle() {

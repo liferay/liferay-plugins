@@ -27,6 +27,10 @@
 	margin: 0;
 }
 
+.knowledge-base-portlet-admin .kb-edit-link {
+	margin: 5px 0 0;
+}
+
 .knowledge-base-portlet-admin .kb-entity-body {
 	padding: 0 7px;
 }
@@ -61,6 +65,14 @@
 
 .knowledge-base-portlet-admin .kb-entity-header .kb-tools {
 	float: right;
+}
+
+.knowledge-base-portlet-admin .kb-popup-footer {
+	margin: 6px 0 0;
+}
+
+.knowledge-base-portlet-admin .kb-popup-header {
+	margin: 0 0 6px;
 }
 
 .knowledge-base-portlet-admin .kb-results-body {
