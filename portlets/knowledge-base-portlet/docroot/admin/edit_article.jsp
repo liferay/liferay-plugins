@@ -77,11 +77,11 @@ int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleCon
 				</portlet:renderURL>
 
 				<%
-				String selectArticleOnClick = "var selectArticleWindow = window.open('" + selectArticleURL + "&" + renderResponse.getNamespace() + "oldParentResourcePrimKey=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "parentResourcePrimKey.value,'selectArticle','directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectArticleWindow.focus();";
+				String taglibOnClick = "var selectArticleWindow = window.open('" + selectArticleURL + "&" + renderResponse.getNamespace() + "oldParentResourcePrimKey=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "parentResourcePrimKey.value,'selectArticle','directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectArticleWindow.focus();";
 				%>
 
 				<div class="kb-edit-link">
-					<aui:a href="javascript:;" onClick="<%= selectArticleOnClick %>"><liferay-ui:message key="select-parent-article" /> &raquo;</aui:a>
+					<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-parent-article" /> &raquo;</aui:a>
 				</div>
 			</c:if>
 		</aui:field-wrapper>

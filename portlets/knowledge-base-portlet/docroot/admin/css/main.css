@@ -67,14 +67,6 @@
 	float: right;
 }
 
-.knowledge-base-portlet-admin .kb-popup-footer {
-	margin: 6px 0 0;
-}
-
-.knowledge-base-portlet-admin .kb-popup-header {
-	margin: 0 0 6px;
-}
-
 .knowledge-base-portlet-admin .kb-results-body {
 	padding: 0 5px 0 25px;
 }
@@ -99,4 +91,8 @@
 
 .knowledge-base-portlet-admin .kb-results-header .kb-buttons {
 	float: left;
+}
+
+.knowledge-base-portlet-admin .kb-select-article-breadcrumbs {
+	margin: 0 0 10px;
 }

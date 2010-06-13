@@ -35,130 +35,132 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 	<aui:input name="sourceVersion" type="hidden" value="<%= sourceVersion %>" />
 	<aui:input name="targetVersion" type="hidden" value="<%= targetVersion %>" />
 
-	<liferay-ui:search-container
-		delta="<%= 100 %>"
-		headerNames="version,date,author,title"
-		rowChecker="<%= new RowChecker(renderResponse, RowChecker.ALIGN, RowChecker.VALIGN, RowChecker.FORM_NAME, null, RowChecker.ROW_IDS) %>"
-	>
-		<liferay-ui:search-container-results
-			results="<%= ArticleServiceUtil.getArticles(article.getResourcePrimKey(), searchContainer.getStart(), searchContainer.getEnd(), new ArticleVersionComparator()) %>"
-			total="<%= ArticleServiceUtil.getArticlesCount(article.getResourcePrimKey()) %>"
-		/>
-
-		<liferay-ui:search-container-row
-			className="com.liferay.knowledgebase.model.Article"
-			keyProperty="version"
-			modelVar="curArticle"
+	<aui:fieldset>
+		<liferay-ui:search-container
+			delta="<%= 100 %>"
+			headerNames="version,date,author,title"
+			rowChecker="<%= new RowChecker(renderResponse, RowChecker.ALIGN, RowChecker.VALIGN, RowChecker.FORM_NAME, null, RowChecker.ROW_IDS) %>"
 		>
-			<portlet:renderURL var="rowURL">
-				<portlet:param name="jspPage" value="/admin/history.jsp" />
-				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(curArticle.getResourcePrimKey()) %>" />
-				<portlet:param name="sourceVersion" value="<%= String.valueOf(curArticle.getVersion()) %>" />
-				<portlet:param name="targetVersion" value="<%= String.valueOf(curArticle.getVersion()) %>" />
-			</portlet:renderURL>
+			<liferay-ui:search-container-results
+				results="<%= ArticleServiceUtil.getArticles(article.getResourcePrimKey(), searchContainer.getStart(), searchContainer.getEnd(), new ArticleVersionComparator()) %>"
+				total="<%= ArticleServiceUtil.getArticlesCount(article.getResourcePrimKey()) %>"
+			/>
 
-			<liferay-ui:search-container-column-text
-				href="<%= rowURL %>"
-				name="version"
+			<liferay-ui:search-container-row
+				className="com.liferay.knowledgebase.model.Article"
+				keyProperty="version"
+				modelVar="curArticle"
 			>
-				<%= curArticle.getVersion() %>
+				<portlet:renderURL var="rowURL">
+					<portlet:param name="jspPage" value="/admin/history.jsp" />
+					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(curArticle.getResourcePrimKey()) %>" />
+					<portlet:param name="sourceVersion" value="<%= String.valueOf(curArticle.getVersion()) %>" />
+					<portlet:param name="targetVersion" value="<%= String.valueOf(curArticle.getVersion()) %>" />
+				</portlet:renderURL>
 
-				<c:choose>
-					<c:when test="<%= (curArticle.getVersion() == sourceVersion) && (curArticle.getVersion() == targetVersion) %>">
-						(<liferay-ui:message key="selected" />)
-					</c:when>
-					<c:when test="<%= curArticle.getVersion() == sourceVersion %>">
-						(<liferay-ui:message key="source" />)
-					</c:when>
-					<c:when test="<%= curArticle.getVersion() == targetVersion %>">
-						(<liferay-ui:message key="target" />)
-					</c:when>
-				</c:choose>
-			</liferay-ui:search-container-column-text>
-
-			<liferay-ui:search-container-column-text
-				href="<%= rowURL %>"
-				name="date"
-				value="<%= dateFormatDateTime.format(curArticle.getModifiedDate()) %>"
-			/>
-
-			<liferay-ui:search-container-column-text
-				href="<%= rowURL %>"
-				name="author"
-				property="userName"
-			/>
-
-			<liferay-ui:search-container-column-text
-				href="<%= rowURL %>"
-				property="title"
-			/>
-
-			<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 				<liferay-ui:search-container-column-text
-					align="right"
+					href="<%= rowURL %>"
+					name="version"
 				>
-					<portlet:renderURL var="historyURL">
-						<portlet:param name="jspPage" value="/admin/history.jsp" />
+					<%= curArticle.getVersion() %>
+
+					<c:choose>
+						<c:when test="<%= (curArticle.getVersion() == sourceVersion) && (curArticle.getVersion() == targetVersion) %>">
+							(<liferay-ui:message key="selected" />)
+						</c:when>
+						<c:when test="<%= curArticle.getVersion() == sourceVersion %>">
+							(<liferay-ui:message key="source" />)
+						</c:when>
+						<c:when test="<%= curArticle.getVersion() == targetVersion %>">
+							(<liferay-ui:message key="target" />)
+						</c:when>
+					</c:choose>
+				</liferay-ui:search-container-column-text>
+
+				<liferay-ui:search-container-column-text
+					href="<%= rowURL %>"
+					name="date"
+					value="<%= dateFormatDateTime.format(curArticle.getModifiedDate()) %>"
+				/>
+
+				<liferay-ui:search-container-column-text
+					href="<%= rowURL %>"
+					name="author"
+					property="userName"
+				/>
+
+				<liferay-ui:search-container-column-text
+					href="<%= rowURL %>"
+					property="title"
+				/>
+
+				<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
+					<liferay-ui:search-container-column-text
+						align="right"
+					>
+						<portlet:renderURL var="historyURL">
+							<portlet:param name="jspPage" value="/admin/history.jsp" />
+							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+						</portlet:renderURL>
+
+						<portlet:actionURL name="updateArticle" var="revertURL">
+							<portlet:param name="jspPage" value="/admin/history.jsp" />
+							<portlet:param name="redirect" value="<%= historyURL %>" />
+							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+							<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getParentResourcePrimKey()) %>" />
+							<portlet:param name="title" value="<%= curArticle.getTitle() %>" />
+							<portlet:param name="content" value="<%= curArticle.getContent() %>" />
+							<portlet:param name="description" value="<%= curArticle.getDescription() %>" />
+							<portlet:param name="priority" value="<%= String.valueOf(article.getPriority()) %>" />
+						</portlet:actionURL>
+
+						<liferay-ui:icon
+							image="undo"
+							label="<%= true %>"
+							message="revert"
+							url="<%= revertURL %>"
+						/>
+					</liferay-ui:search-container-column-text>
+				</c:if>
+			</liferay-ui:search-container-row>
+
+			<div class="float-container kb-entity-header">
+				<div class="kb-title">
+					<%= KnowledgeBaseUtil.getArticleDiff(article.getResourcePrimKey(), sourceVersion, targetVersion, "title", null) %>
+				</div>
+
+				<div class="kb-tools">
+					<portlet:renderURL var="viewArticleURL">
+						<portlet:param name="jspPage" value="/admin/view_article.jsp" />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 					</portlet:renderURL>
 
-					<portlet:actionURL name="updateArticle" var="revertURL">
-						<portlet:param name="jspPage" value="/admin/history.jsp" />
-						<portlet:param name="redirect" value="<%= historyURL %>" />
-						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-						<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getParentResourcePrimKey()) %>" />
-						<portlet:param name="title" value="<%= curArticle.getTitle() %>" />
-						<portlet:param name="content" value="<%= curArticle.getContent() %>" />
-						<portlet:param name="description" value="<%= curArticle.getDescription() %>" />
-						<portlet:param name="priority" value="<%= String.valueOf(article.getPriority()) %>" />
-					</portlet:actionURL>
-
 					<liferay-ui:icon
-						image="undo"
+						image="../common/page"
 						label="<%= true %>"
-						message="revert"
-						url="<%= revertURL %>"
+						message="latest-version"
+						url="<%= viewArticleURL %>"
 					/>
-				</liferay-ui:search-container-column-text>
-			</c:if>
-		</liferay-ui:search-container-row>
-
-		<div class="float-container kb-entity-header">
-			<div class="kb-title">
-				<%= KnowledgeBaseUtil.getArticleDiff(article.getResourcePrimKey(), sourceVersion, targetVersion, "title", null) %>
+				</div>
 			</div>
 
-			<div class="kb-tools">
-				<portlet:renderURL var="viewArticleURL">
-					<portlet:param name="jspPage" value="/admin/view_article.jsp" />
-					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-				</portlet:renderURL>
-
-				<liferay-ui:icon
-					image="../common/page"
-					label="<%= true %>"
-					message="latest-version"
-					url="<%= viewArticleURL %>"
-				/>
+			<div class="kb-entity-body">
+				<%= KnowledgeBaseUtil.getArticleDiff(article.getResourcePrimKey(), sourceVersion, targetVersion, "content", null) %>
 			</div>
-		</div>
 
-		<div class="kb-entity-body">
-			<%= KnowledgeBaseUtil.getArticleDiff(article.getResourcePrimKey(), sourceVersion, targetVersion, "content", null) %>
-		</div>
+			<div class="kb-entity-footer">
+				<liferay-ui:panel-container extended="<%= false %>" id='<%= "knowledgeBaseArticle" + article.getResourcePrimKey() + "VersionHistoryPanelContainer" %>' persistState="<%= true %>">
+					<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= "knowledgeBaseArticle" + article.getResourcePrimKey() + "VersionHistoryPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "version-history") %>'>
+						<aui:button-row>
+							<aui:button type="submit" value="compare-versions" />
+						</aui:button-row>
 
-		<div class="kb-entity-footer">
-			<liferay-ui:panel-container extended="<%= false %>" id='<%= "knowledgeBaseArticle" + article.getResourcePrimKey() + "VersionHistoryPanelContainer" %>' persistState="<%= true %>">
-				<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= "knowledgeBaseArticle" + article.getResourcePrimKey() + "VersionHistoryPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "version-history") %>'>
-					<aui:button-row>
-						<aui:button type="submit" value="compare-versions" />
-					</aui:button-row>
-
-					<liferay-ui:search-iterator />
-				</liferay-ui:panel>
-			</liferay-ui:panel-container>
-		</div>
-	</liferay-ui:search-container>
+						<liferay-ui:search-iterator />
+					</liferay-ui:panel>
+				</liferay-ui:panel-container>
+			</div>
+		</liferay-ui:search-container>
+	</aui:fieldset>
 </aui:form>
 
 <aui:script>
