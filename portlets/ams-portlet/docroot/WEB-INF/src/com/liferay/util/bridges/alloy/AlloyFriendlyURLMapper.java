@@ -17,7 +17,6 @@ package com.liferay.util.bridges.alloy;
 import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.HttpMethods;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.HashMap;
