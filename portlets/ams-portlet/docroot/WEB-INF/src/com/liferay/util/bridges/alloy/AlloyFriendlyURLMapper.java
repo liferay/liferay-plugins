@@ -116,9 +116,8 @@ public class AlloyFriendlyURLMapper extends BaseFriendlyURLMapper {
 		addParameter(parameterMap, "p_p_lifecycle", getLifecycle(method));
 		addParameter(parameterMap, "p_p_mode", PortletMode.VIEW);
 
-		String url = method + friendlyURLPath.substring(_MAPPING.length() + 1);
-
-		Map<String, String> routeParameters = router.urlToParameters(url);
+		Map<String, String> routeParameters = router.urlToParameters(
+			method + friendlyURLPath.substring(_MAPPING.length() + 1));
 
 		for (Map.Entry<String, String> entry : routeParameters.entrySet()) {
 			String name = entry.getKey();
