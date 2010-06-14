@@ -164,12 +164,17 @@ public class MailManager {
 	public JSONObject checkMessages(long accountId, long folderId)
 		throws PortalException, SystemException {
 
+		String key = AccountLock.getKey(
+			_user.getUserId(), accountId, folderId, 0);
+
 		try {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
 				_user.getUserId(), accountId,
 				_passwordRetriever.getPassword(accountId));
 
-			if (mailbox.hasNewMessages(folderId)) {
+			if (AccountLock.acquireLock(key) &&
+				mailbox.hasNewMessages(folderId)) {
+
 				mailbox.synchronizeFolder(folderId);
 
 				return createJSONResult("success", StringPool.BLANK, "true");
@@ -179,6 +184,9 @@ public class MailManager {
 		}
 		catch (MailException me) {
 			return createJSONResult("failure", StringPool.BLANK);
+		}
+		finally {
+			AccountLock.releaseLock(key);
 		}
 	}
 

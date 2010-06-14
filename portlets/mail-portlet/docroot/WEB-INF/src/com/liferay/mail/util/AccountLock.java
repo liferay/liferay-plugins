@@ -75,7 +75,7 @@ public class AccountLock {
 		}
 	}
 
-	private static final long _EXPIRY_TIME = Time.MINUTE * 5;
+	private static final long _EXPIRY_TIME = Time.MINUTE * 15;
 
 	private static Log _log = LogFactoryUtil.getLog(AccountLock.class);
 
