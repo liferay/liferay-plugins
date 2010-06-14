@@ -73,11 +73,8 @@ public class AlloyFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 		// Remove mapped parameters from URL
 
-		Map<String, String[]> extraParameters = HttpUtil.parameterMapFromString(
-			HttpUtil.getQueryString(url));
-
 		for (String name : portletURLParameters.keySet()) {
-			if (!extraParameters.containsKey(name)) {
+			if (!parameters.containsKey(name)) {
 				portletURL.addParameterIncludedInPath(name);
 			}
 		}
@@ -94,14 +91,6 @@ public class AlloyFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 		friendlyURLPath = StringPool.SLASH.concat(_MAPPING).concat(
 			friendlyURLPath);
-
-		// Remove query string
-
-		pos = friendlyURLPath.indexOf(StringPool.QUESTION);
-
-		if (pos != -1) {
-			friendlyURLPath = friendlyURLPath.substring(0, pos);
-		}
 
 		return friendlyURLPath;
 	}
@@ -127,8 +116,9 @@ public class AlloyFriendlyURLMapper extends BaseFriendlyURLMapper {
 		addParameter(parameterMap, "p_p_lifecycle", getLifecycle(method));
 		addParameter(parameterMap, "p_p_mode", PortletMode.VIEW);
 
-		Map<String, String> routeParameters = router.urlToParameters(
-			method + friendlyURLPath.substring(_MAPPING.length() + 1));
+		String url = method + friendlyURLPath.substring(_MAPPING.length() + 1);
+
+		Map<String, String> routeParameters = router.urlToParameters(url);
 
 		for (Map.Entry<String, String> entry : routeParameters.entrySet()) {
 			String name = entry.getKey();
