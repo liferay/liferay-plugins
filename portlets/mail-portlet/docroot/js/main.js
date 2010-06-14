@@ -125,6 +125,37 @@ AUI().add(
 				).render();
 			},
 
+			flagMessages: function(flag, value, messageIds) {
+				var instance = this;
+
+				instance.setStatus('info', Liferay.Language.get('flagging-messages'));
+
+				A.io.request(
+					themeDisplay.getLayoutURL() + '/-/mail/flag_messages',
+					{
+						data: {
+							flag: flag,
+							messageIds: messageIds,
+							value: value
+						},
+						dataType: 'json',
+						method: 'POST',
+						on: {
+							failure: function (event, id, obj) {
+								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
+							},
+							success: function (event, id, obj) {
+								var responseData = this.get('responseData');
+
+								instance.setStatus(responseData.status, responseData.message);
+
+								instance.loadMessages(instance.folderId, instance.pageNumber, instance.orderByField, instance.orderByType, instance.keywords);
+							}
+						}
+					}
+				);
+			},
+
 			loadAccounts: function(accountId) {
 				var instance = this;
 
@@ -265,6 +296,37 @@ AUI().add(
 				instance.messagesContainer.io.start();
 
 				instance.messagesContainer.io.set('showLoading', true);
+			},
+
+			moveMessages: function(folderId, messageIds) {
+				var instance = this;
+
+				instance.setStatus('info', Liferay.Language.get('moving-messages'));
+
+				A.io.request(
+					themeDisplay.getLayoutURL() + '/-/mail/move_messages',
+					{
+						data: {
+							folderId: folderId,
+							messageIds: messageIds
+						},
+						dataType: 'json',
+						method: 'POST',
+						on: {
+							failure: function (event, id, obj) {
+								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
+							},
+							success: function (event, id, obj) {
+								var responseData = this.get('responseData');
+
+								instance.setStatus(responseData.status, responseData.message);
+
+								instance.loadFolders(instance.accountId);
+								instance.loadMessages(instance.folderId, instance.pageNumber, instance.orderByField, instance.orderByType, instance.keywords);
+							}
+						}
+					}
+				);
 			},
 
 			passwordPrompt: function(accountId, inboxFolderId) {
@@ -522,6 +584,28 @@ AUI().add(
 						instance.deleteMessages(messageIds);
 					},
 					'.delete-messages'
+				);
+
+				instance.messagesContainer.delegate(
+					'change',
+					function(event) {
+						var messageIds = instance._getSelectedMessageIds();
+						var values = event.currentTarget.one('select').get('value').split(',');
+
+						instance.flagMessages(values[0], values[1], messageIds);
+					},
+					'.flag-messages'
+				);
+
+				instance.messagesContainer.delegate(
+					'change',
+					function(event) {
+						var folderId = event.currentTarget.one('select').get('value');
+						var messageIds = instance._getSelectedMessageIds();
+
+						instance.moveMessages(folderId, messageIds);
+					},
+					'.move-messages'
 				);
 
 				instance.messagesContainer.delegate(
