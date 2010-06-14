@@ -119,9 +119,9 @@ portletURL.setParameter("name", name);
 		</c:choose>
 	</div>
 
-	<c:if test="<%= isLocked.booleanValue() %>">
+	<c:if test="<%= isLocked %>">
 		<c:choose>
-			<c:when test="<%= hasLock.booleanValue() %>">
+			<c:when test="<%= hasLock %>">
 
 				<%
 				String lockExpirationTime = LanguageUtil.getTimeDescription(pageContext, DLFileEntryImpl.LOCK_EXPIRATION_TIME).toLowerCase();
@@ -266,7 +266,7 @@ portletURL.setParameter("name", name);
 					<aui:button onClick="Liferay.SO.DocumentLibrary.closePopup();" type="cancel" />
 				</c:when>
 				<c:otherwise>
-					<aui:button disabled="<%= isLocked.booleanValue() && !hasLock.booleanValue() %>" type="submit" value="save" />
+					<aui:button disabled="<%= isLocked && !hasLock %>" type="submit" value="save" />
 
 					<aui:button onClick="<%= redirect %>" type="cancel" />
 				</c:otherwise>

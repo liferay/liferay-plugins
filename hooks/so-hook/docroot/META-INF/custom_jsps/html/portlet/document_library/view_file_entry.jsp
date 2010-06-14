@@ -126,9 +126,9 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 	<h6 class="file-entry-title"><%= fileEntry.getTitle() + " <span>" + versionText + "</span>" %></h6>
 </div>
 
-<c:if test="<%= isLocked.booleanValue() %>">
+<c:if test="<%= isLocked %>">
 	<c:choose>
-		<c:when test="<%= hasLock.booleanValue() %>">
+		<c:when test="<%= hasLock %>">
 
 			<%
 			String lockExpirationTime = LanguageUtil.getTimeDescription(pageContext, DLFileEntryImpl.LOCK_EXPIRATION_TIME).toLowerCase();
@@ -415,7 +415,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 		<c:if test="<%= DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE) %>">
 			<ul class="document-action-list">
 				<c:choose>
-					<c:when test="<%= (isLocked.booleanValue() && hasLock.booleanValue()) %>">
+					<c:when test="<%= (isLocked && hasLock) %>">
 						<li class="action-unlock"><a href="javascript:;" onClick="<portlet:namespace />unlock();"><liferay-ui:message key="unlock-document" /></a></li>
 
 						<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="editURL">
@@ -432,7 +432,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 						<li class="action-unlock"><a href="javascript:;" onClick="<portlet:namespace />unlock();"><liferay-ui:message key="unlock-document" /></a></li>
 						<li class="action-upload"><liferay-ui:message key="upload-new-revision" /></li>
 					</c:when>
-					<c:when test="<%= isLocked.booleanValue() %>">
+					<c:when test="<%= isLocked %>">
 						<li class="action-unlock"><liferay-ui:message key="unlock-document" /></li>
 						<li class="action-upload"><liferay-ui:message key="upload-new-revision" /></li>
 					</c:when>
@@ -474,7 +474,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 						if (officeDoc) {
 							officeDoc.EditDocument(webDavUrl);
 
-							<c:if test="<%= !isLocked.booleanValue() %>">
+							<c:if test="<%= !isLocked %>">
 								<portlet:namespace />lock();
 							</c:if>
 						}
@@ -486,7 +486,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 
 				<ul class="document-action-list">
 					<c:choose>
-						<c:when test="<%= (isLocked.booleanValue() && hasLock.booleanValue()) %>">
+						<c:when test="<%= (isLocked && hasLock) %>">
 							<li class="action-edit-office"><a href="javascript:;" onClick="<portlet:namespace />openDocument();"><liferay-ui:message key="edit-document-online" /></a></li>
 
 							<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="onlineEditURL">
@@ -499,7 +499,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 
 							<li class="action-save-office"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= onlineEditURL %>', '<liferay-ui:message key="finish-editing-online" />');"><liferay-ui:message key="finish-editing-online" /></a></li>
 						</c:when>
-						<c:when test="<%= isLocked.booleanValue() %>">
+						<c:when test="<%= isLocked %>">
 							<li class="action-edit-office"><liferay-ui:message key="edit-document-online" /></li>
 							<li class="action-save-office"><liferay-ui:message key="finish-editing-online" /></li>
 						</c:when>
@@ -514,7 +514,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 
 		<ul class="document-action-list">
 			<c:choose>
-				<c:when test="<%= !isLocked.booleanValue() || (isLocked.booleanValue() && hasLock.booleanValue()) %>">
+				<c:when test="<%= !isLocked || (isLocked && hasLock) %>">
 					<c:if test="<%= DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE) %>">
 						<li class="action-move"><a href="javascript:;" onClick="var folderWindow = window.open('<portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="struts_action" value="/document_library/select_folder" /><portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" /></portlet:renderURL>', 'folder', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); folderWindow.focus();"><liferay-ui:message key="move-to" /></a></li>
 
