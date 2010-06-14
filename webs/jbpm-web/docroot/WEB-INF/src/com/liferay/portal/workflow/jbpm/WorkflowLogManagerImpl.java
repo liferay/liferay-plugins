@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.workflow.WorkflowLog;
 import com.liferay.portal.kernel.workflow.WorkflowLogManager;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -38,12 +37,65 @@ import org.jbpm.JbpmContext;
  *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
+ * @author Marcellus Tavares
  */
 public class WorkflowLogManagerImpl implements WorkflowLogManager {
 
 	public List<WorkflowLog> getWorkflowLogs(
 			long companyId, long workflowTaskId, int start,	int end,
 			OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		return getWorkflowLogs(
+			companyId, -1, workflowTaskId, start, end, orderByComparator);
+	}
+
+	public List<WorkflowLog> getWorkflowLogsByWorkflowInstance(
+			long companyId, long workflowInstanceId, int start, int end,
+			OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		return getWorkflowLogs(
+			companyId, workflowInstanceId, -1, start, end, orderByComparator);
+	}
+
+	public int getWorkflowLogCount(long companyId, long workflowTaskId)
+		throws WorkflowException {
+
+		return getWorkflowLogsCount(companyId, -1, workflowTaskId);
+	}
+
+	public int getWorkflowLogCountByWorkflowInstance(
+			long companyId, long workflowInstanceId)
+		throws WorkflowException {
+
+		return getWorkflowLogsCount(companyId, workflowInstanceId, -1);
+	}
+
+	public void setJbpmConfiguration(JbpmConfiguration jbpmConfiguration) {
+		_jbpmConfiguration = jbpmConfiguration;
+	}
+
+	protected void addJoin(
+		Criteria criteria, long workflowInstanceId, long workflowTaskId) {
+
+		if (workflowInstanceId > 0) {
+			criteria.createAlias("taskInstance", "tskInst");
+			criteria.createAlias(
+				"tskInst.processInstance", "processInst");
+
+			criteria.add(
+				Restrictions.eq("processInst.id", workflowInstanceId));
+		}
+		else {
+			criteria.add(
+				Restrictions.eq("taskInstance.id", workflowTaskId));
+		}
+	}
+
+	protected List<WorkflowLog> getWorkflowLogs(
+			long companyId, long workflowInstanceId, long workflowTaskId,
+			int start, int end, OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -53,8 +105,7 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 
 			Criteria criteria = session.createCriteria(WorkflowLogImpl.class);
 
-			criteria.add(
-				Restrictions.eq("taskInstance.id", workflowTaskId));
+			addJoin(criteria, workflowInstanceId, workflowTaskId);
 
 			List<WorkflowLog> workflowLogs = criteria.list();
 
@@ -74,7 +125,8 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 		}
 	}
 
-	public int getWorkflowLogCount(long companyId, long workflowTaskId)
+	protected int getWorkflowLogsCount(
+			long companyId, long workflowInstanceId, long workflowTaskId)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -84,20 +136,18 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 
 			Criteria criteria = session.createCriteria(WorkflowLogImpl.class);
 
-			criteria.add(
-				Restrictions.eq("taskInstance.id", workflowTaskId));
+			addJoin(criteria, workflowInstanceId, workflowTaskId);
 
 			criteria.setProjection(Projections.rowCount());
 
-			Iterator<Integer> itr = criteria.list().iterator();
+			List<Long> results = criteria.list();
 
-			int count = 0;
-
-			if (itr.hasNext()) {
-				count = itr.next();
+			if (results.isEmpty()) {
+				return 0;
 			}
-
-			return count;
+			else {
+				return (results.get(0)).intValue();
+			}
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -105,10 +155,6 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 		finally {
 			jbpmContext.close();
 		}
-	}
-
-	public void setJbpmConfiguration(JbpmConfiguration jbpmConfiguration) {
-		_jbpmConfiguration = jbpmConfiguration;
 	}
 
 	private JbpmConfiguration _jbpmConfiguration;
