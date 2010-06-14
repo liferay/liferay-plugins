@@ -31,6 +31,32 @@
 	margin: 0;
 }
 
+.knowledge-base-portlet-admin .kb-article-tree {
+	border: 1px solid #CCC;
+	margin: 10px -7px 0;
+}
+
+.knowledge-base-portlet-admin .kb-article-tree .kb-element-body {
+	margin: 0 0 0 20px;
+}
+
+.knowledge-base-portlet-admin .kb-article-tree .kb-element-body .kb-article-icons {
+	padding: 4px 0;
+}
+
+.knowledge-base-portlet-admin .kb-article-tree .kb-element-header {
+	margin: 8px 0 0;
+}
+
+.knowledge-base-portlet-admin .kb-article-tree .kb-element-header a {
+	display: block;
+	font-weight: bold;
+}
+
+.knowledge-base-portlet-admin .kb-article-tree .kb-elements {
+	margin: 8px;
+}
+
 .knowledge-base-portlet-admin .kb-edit-link {
 	margin: 5px 0 0;
 }

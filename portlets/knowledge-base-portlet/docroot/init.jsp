@@ -38,6 +38,7 @@
 <%@ page import="com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator" %>
 <%@ page import="com.liferay.knowledgebase.util.comparator.ArticleVersionComparator" %>
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.RowChecker" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
