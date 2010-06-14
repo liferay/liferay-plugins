@@ -22,6 +22,10 @@
 
 /* ---------- Portlet ---------- */
 
+.knowledge-base-portlet-admin .kb-article-breadcrumbs {
+	margin: 0 5px 10px;
+}
+
 .knowledge-base-portlet-admin .kb-article-priority .aui-field-content {
 	display: inline;
 	margin: 0;
@@ -94,5 +98,5 @@
 }
 
 .knowledge-base-portlet-admin .kb-select-article-breadcrumbs {
-	margin: 0 0 10px;
+	margin: 0 0 6px;
 }
