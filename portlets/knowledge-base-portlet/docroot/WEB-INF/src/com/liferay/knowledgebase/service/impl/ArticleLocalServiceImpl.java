@@ -326,7 +326,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = getDynamicQuery(params, allVersions);
+		DynamicQuery dynamicQuery = buildDynamicQuery(params, allVersions);
 
 		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -338,7 +338,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public int getArticlesCount(Map<String, Object> params, boolean allVersions)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = getDynamicQuery(params, allVersions);
+		DynamicQuery dynamicQuery = buildDynamicQuery(params, allVersions);
 
 		return (int)dynamicQueryCount(dynamicQuery);
 	}
@@ -617,45 +617,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 	}
 
-	protected void checkAttachments(long companyId)
-		throws PortalException, SystemException {
-
-		String dirName =
-			"knowledgebase/temp/attachments/" + counterLocalService.increment();
-
-		dlService.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
-
-		String[] fileNames = dlService.getFileNames(
-			companyId, CompanyConstants.SYSTEM,
-			"knowledgebase/temp/attachments");
-
-		Arrays.sort(fileNames);
-
-		for (int i = 0; i < fileNames.length - 50; i++) {
-			dlService.deleteDirectory(
-				companyId, CompanyConstants.SYSTEM_STRING,
-				CompanyConstants.SYSTEM, fileNames[i]);
-		}
-
-		dlService.deleteDirectory(
-			companyId, CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
-			dirName);
-	}
-
-	protected void deleteAttachments(Article article)
-		throws PortalException, SystemException {
-
-		try {
-			dlService.deleteDirectory(
-				article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
-				CompanyConstants.SYSTEM, article.getAttachmentsDirName());
-		}
-		catch (NoSuchDirectoryException nsde) {
-			_log.error("No directory found for " + nsde.getMessage());
-		}
-	}
-
-	protected DynamicQuery getDynamicQuery(
+	protected DynamicQuery buildDynamicQuery(
 			Map<String, Object> params, boolean allVersions)
 		throws SystemException {
 
@@ -705,6 +667,44 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		dynamicQuery.add(versionProperty.in(subselectDynamicQuery));
 
 		return dynamicQuery;
+	}
+
+	protected void checkAttachments(long companyId)
+		throws PortalException, SystemException {
+
+		String dirName =
+			"knowledgebase/temp/attachments/" + counterLocalService.increment();
+
+		dlService.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
+
+		String[] fileNames = dlService.getFileNames(
+			companyId, CompanyConstants.SYSTEM,
+			"knowledgebase/temp/attachments");
+
+		Arrays.sort(fileNames);
+
+		for (int i = 0; i < fileNames.length - 50; i++) {
+			dlService.deleteDirectory(
+				companyId, CompanyConstants.SYSTEM_STRING,
+				CompanyConstants.SYSTEM, fileNames[i]);
+		}
+
+		dlService.deleteDirectory(
+			companyId, CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
+			dirName);
+	}
+
+	protected void deleteAttachments(Article article)
+		throws PortalException, SystemException {
+
+		try {
+			dlService.deleteDirectory(
+				article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+				CompanyConstants.SYSTEM, article.getAttachmentsDirName());
+		}
+		catch (NoSuchDirectoryException nsde) {
+			_log.error("No directory found for " + nsde.getMessage());
+		}
 	}
 
 	protected String getEmailArticleContent(

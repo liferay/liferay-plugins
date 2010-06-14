@@ -76,6 +76,4 @@
 
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
-
-Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>

@@ -37,4 +37,6 @@ String templatesDisplayStyle = preferences.getValue("templates-display-style", "
 boolean enableTemplateDescription = GetterUtil.getBoolean(preferences.getValue("enable-template-description", null));
 boolean enableTemplateComments = GetterUtil.getBoolean(preferences.getValue("enable-template-comments", null), true);
 boolean enableTemplateCommentRatings = GetterUtil.getBoolean(preferences.getValue("enable-template-comment-ratings", null));
+
+Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>

@@ -43,7 +43,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 			</portlet:renderURL>
 
 			<%
-			printURL = "javascript:var printArticleWindow = window.open('" + printURL + "','printArticle','directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); printArticleWindow.focus();";
+			String taglibURL = "javascript:var printArticleWindow = window.open('" + printURL + "', 'printArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); printArticleWindow.focus();";
 			%>
 
 			<liferay-ui:icon
