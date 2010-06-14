@@ -299,6 +299,14 @@ public class IMAPAccessor {
 
 			Message jxMessage = getMessage(folderId, imapFolder, false);
 
+			if (jxMessage == null) {
+				if (messageCount <= 0) {
+					return false;
+				}
+
+				return true;
+			}
+
 			if (messageCount == jxMessage.getMessageNumber()) {
 				return false;
 			}
