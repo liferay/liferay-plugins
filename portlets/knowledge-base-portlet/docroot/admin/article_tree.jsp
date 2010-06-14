@@ -60,7 +60,7 @@ long lastArticleId = GetterUtil.getLong((String)request.getAttribute("article_tr
 		for(Article curArticle : articles) {
 		%>
 
-			<div class="kb-element-header">
+			<div class='kb-element-header <%= childArticlesDisplayStyle.equals("title") ? "kb-title-only" : StringPool.BLANK %>'>
 				<portlet:renderURL var="viewArticleURL">
 					<portlet:param name="jspPage" value="/admin/view_article.jsp" />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(curArticle.getResourcePrimKey()) %>" />
@@ -82,12 +82,15 @@ long lastArticleId = GetterUtil.getLong((String)request.getAttribute("article_tr
 				<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
 
 				<c:choose>
-					<c:when test="<%= Validator.isNotNull(curArticle.getDescription()) %>">
+					<c:when test='<%= childArticlesDisplayStyle.equals("full-content") %>'>
+						<%= curArticle.getContent() %>
+					</c:when>
+					<c:when test='<%= (childArticlesDisplayStyle.equals("abstract") && Validator.isNotNull(curArticle.getDescription())) %>'>
 						<%= curArticle.getDescription() %>
 					</c:when>
-					<c:otherwise>
+					<c:when test='<%= childArticlesDisplayStyle.equals("abstract") %>'>
 						<%= StringUtil.shorten(HtmlUtil.extractText(curArticle.getContent()), 500) %>
-					</c:otherwise>
+					</c:when>
 				</c:choose>
 
 				<%

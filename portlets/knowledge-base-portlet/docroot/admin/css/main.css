@@ -57,6 +57,10 @@
 	margin: 8px;
 }
 
+.knowledge-base-portlet-admin .kb-article-tree .kb-title-only {
+	margin: 4px 0 0;
+}
+
 .knowledge-base-portlet-admin .kb-edit-link {
 	margin: 5px 0 0;
 }

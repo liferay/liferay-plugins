@@ -111,6 +111,8 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			actionRequest, "articlesDelta");
 		String articlesDisplayStyle = ParamUtil.getString(
 			actionRequest, "articlesDisplayStyle");
+		String childArticlesDisplayStyle = ParamUtil.getString(
+			actionRequest, "childArticlesDisplayStyle");
 		boolean enableArticleDescription = ParamUtil.getBoolean(
 			actionRequest, "enableArticleDescription");
 		boolean enableArticleComments = ParamUtil.getBoolean(
@@ -120,6 +122,8 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		preferences.setValue("articles-delta", String.valueOf(articlesDelta));
 		preferences.setValue("articles-display-style", articlesDisplayStyle);
+		preferences.setValue(
+			"child-articles-display-style", childArticlesDisplayStyle);
 		preferences.setValue(
 			"enable-article-description",
 			String.valueOf(enableArticleDescription));

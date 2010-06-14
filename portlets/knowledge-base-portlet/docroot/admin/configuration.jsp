@@ -88,6 +88,22 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 
 						</aui:select>
 
+						<aui:select name="childArticlesDisplayStyle">
+
+							<%
+							String[] displayStyleValues = new String[] {"full-content", "abstract", "title"};
+
+							for (int i = 0; i < displayStyleValues.length; i++) {
+							%>
+
+								<aui:option label="<%= displayStyleValues[i] %>" selected="<%= childArticlesDisplayStyle.equals(displayStyleValues[i]) %>" />
+
+							<%
+							}
+							%>
+
+						</aui:select>
+
 						<aui:input inlineLabel="left" label="enable-description" name="enableArticleDescription" type="checkbox" value="<%= enableArticleDescription %>" />
 
 						<aui:input inlineLabel="left" label="enable-comments" name="enableArticleComments" type="checkbox" value="<%= enableArticleComments %>" />
