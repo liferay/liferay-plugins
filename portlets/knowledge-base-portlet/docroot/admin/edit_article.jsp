@@ -26,6 +26,8 @@ long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey"
 long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 String content = BeanParamUtil.getString(article, request, "content");
 int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleConstants.DEFAULT_PRIORITY);
+
+String dirName = ParamUtil.getString(request, "dirName");
 %>
 
 <portlet:actionURL name="updateArticle" var="updateArticleURL">
@@ -36,6 +38,7 @@ int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleCon
 <aui:form action="<%= updateArticleURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateArticle();" %>'>
 	<aui:input name="resourcePrimKey" type="hidden" value="<%= resourcePrimKey %>" />
 	<aui:input name="parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
+	<aui:input name="dirName" type="hidden" value="<%= dirName %>" />
 
 	<liferay-ui:tabs
 		backURL="<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>"
@@ -62,11 +65,7 @@ int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleCon
 
 		<aui:field-wrapper label="display-order">
 			<div id="<portlet:namespace />priority">
-				<liferay-util:include page="/admin/article_priority.jsp" servletContext="<%= application %>">
-					<liferay-util:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-					<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
-					<liferay-util:param name="priority" value="<%= String.valueOf(priority) %>" />
-				</liferay-util:include>
+				<liferay-util:include page="/admin/article_priority.jsp" servletContext="<%= application %>" />
 			</div>
 
 			<c:if test="<%= (article == null) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && ArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE)) %>">
@@ -84,6 +83,30 @@ int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleCon
 					<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-parent-article" /> &raquo;</aui:a>
 				</div>
 			</c:if>
+		</aui:field-wrapper>
+
+		<aui:field-wrapper label="attachments">
+			<div id="<portlet:namespace />attachments">
+				<liferay-util:include page="/admin/article_attachments.jsp" servletContext="<%= application %>" />
+			</div>
+
+			<portlet:renderURL var="attachmentsURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+				<portlet:param name="jspPage" value="/admin/attachments.jsp" />
+				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
+			</portlet:renderURL>
+
+			<portlet:actionURL name="updateAttachments" var="updateAttachmentsURL">
+				<portlet:param name="redirect" value="<%= attachmentsURL %>" />
+				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
+			</portlet:actionURL>
+
+			<%
+			String taglibOnClick = "var editAttachmentsWindow = window.open('" + updateAttachmentsURL + "&" + renderResponse.getNamespace() + "dirName=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "dirName.value, 'editAttachments', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); editAttachmentsWindow.focus();";
+			%>
+
+			<div class="kb-edit-link">
+				<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="edit-attachments" /> &raquo;</aui:a>
+			</div>
 		</aui:field-wrapper>
 
 		<c:if test="<%= article == null %>">

@@ -39,6 +39,8 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 	<%= article.getContent() %>
 
+	<liferay-util:include page="/admin/article_attachments.jsp" servletContext="<%= application %>" />
+
 	<liferay-util:include page="/admin/article_tree.jsp" servletContext="<%= application %>" />
 
 	<liferay-util:include page="/admin/article_discussion.jsp" servletContext="<%= application %>" />
