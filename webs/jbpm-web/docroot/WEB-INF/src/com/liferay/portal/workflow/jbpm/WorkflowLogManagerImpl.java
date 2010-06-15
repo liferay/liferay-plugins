@@ -41,13 +41,18 @@ import org.jbpm.JbpmContext;
  */
 public class WorkflowLogManagerImpl implements WorkflowLogManager {
 
-	public List<WorkflowLog> getWorkflowLogs(
-			long companyId, long workflowTaskId, int start,	int end,
-			OrderByComparator orderByComparator)
+	public int getWorkflowLogCountByWorkflowInstance(
+			long companyId, long workflowInstanceId)
 		throws WorkflowException {
 
-		return getWorkflowLogs(
-			companyId, -1, workflowTaskId, start, end, orderByComparator);
+		return getWorkflowLogsCount(companyId, -1, workflowInstanceId);
+	}
+
+	public int getWorkflowLogCountByWorkflowTask(
+			long companyId, long workflowTaskId)
+		throws WorkflowException {
+
+		return getWorkflowLogsCount(companyId, workflowTaskId, -1);
 	}
 
 	public List<WorkflowLog> getWorkflowLogsByWorkflowInstance(
@@ -56,20 +61,16 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 		throws WorkflowException {
 
 		return getWorkflowLogs(
-			companyId, workflowInstanceId, -1, start, end, orderByComparator);
+			companyId, -1, workflowInstanceId, start, end, orderByComparator);
 	}
 
-	public int getWorkflowLogCount(long companyId, long workflowTaskId)
+	public List<WorkflowLog> getWorkflowLogsByWorkflowTask(
+			long companyId, long workflowTaskId, int start,	int end,
+			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
-		return getWorkflowLogsCount(companyId, -1, workflowTaskId);
-	}
-
-	public int getWorkflowLogCountByWorkflowInstance(
-			long companyId, long workflowInstanceId)
-		throws WorkflowException {
-
-		return getWorkflowLogsCount(companyId, workflowInstanceId, -1);
+		return getWorkflowLogs(
+			companyId, workflowTaskId, -1, start, end, orderByComparator);
 	}
 
 	public void setJbpmConfiguration(JbpmConfiguration jbpmConfiguration) {
@@ -77,24 +78,21 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 	}
 
 	protected void addJoin(
-		Criteria criteria, long workflowInstanceId, long workflowTaskId) {
+		Criteria criteria, long workflowTaskId, long workflowInstanceId) {
 
 		if (workflowInstanceId > 0) {
 			criteria.createAlias("taskInstance", "tskInst");
-			criteria.createAlias(
-				"tskInst.processInstance", "processInst");
+			criteria.createAlias("tskInst.processInstance", "processInst");
 
-			criteria.add(
-				Restrictions.eq("processInst.id", workflowInstanceId));
+			criteria.add(Restrictions.eq("processInst.id", workflowInstanceId));
 		}
 		else {
-			criteria.add(
-				Restrictions.eq("taskInstance.id", workflowTaskId));
+			criteria.add(Restrictions.eq("taskInstance.id", workflowTaskId));
 		}
 	}
 
 	protected List<WorkflowLog> getWorkflowLogs(
-			long companyId, long workflowInstanceId, long workflowTaskId,
+			long companyId, long workflowTaskId, long workflowInstanceId,
 			int start, int end, OrderByComparator orderByComparator)
 		throws WorkflowException {
 
@@ -105,7 +103,7 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 
 			Criteria criteria = session.createCriteria(WorkflowLogImpl.class);
 
-			addJoin(criteria, workflowInstanceId, workflowTaskId);
+			addJoin(criteria, workflowTaskId, workflowInstanceId);
 
 			List<WorkflowLog> workflowLogs = criteria.list();
 
@@ -126,7 +124,7 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 	}
 
 	protected int getWorkflowLogsCount(
-			long companyId, long workflowInstanceId, long workflowTaskId)
+			long companyId, long workflowTaskId, long workflowInstanceId)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -136,7 +134,7 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 
 			Criteria criteria = session.createCriteria(WorkflowLogImpl.class);
 
-			addJoin(criteria, workflowInstanceId, workflowTaskId);
+			addJoin(criteria, workflowTaskId, workflowInstanceId);
 
 			criteria.setProjection(Projections.rowCount());
 
