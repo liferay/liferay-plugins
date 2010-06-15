@@ -27,7 +27,11 @@
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</portlet:renderURL>
 
-				<input type="button" value="<liferay-ui:message key="add-article" />" onClick="location.href = '<%= addArticleURL %>';" />
+				<%
+				String taglibOnClick = "location.href = '" + addArticleURL + "';";
+				%>
+
+				<aui:button onClick="<%= taglibOnClick %>" value="add-article" />
 			</c:if>
 
 			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
@@ -38,7 +42,11 @@
 					var="permissionsURL"
 				/>
 
-				<input type="button" value="<liferay-ui:message key="permissions" />" onClick="location.href = '<%= permissionsURL %>';" />
+				<%
+				String taglibOnClick = "location.href = '" + permissionsURL + "';";
+				%>
+
+				<aui:button onClick="<%= taglibOnClick %>" value="permissions" />
 			</c:if>
 		</div>
 	</div>
