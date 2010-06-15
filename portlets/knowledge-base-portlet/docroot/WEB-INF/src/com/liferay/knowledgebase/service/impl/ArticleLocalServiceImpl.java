@@ -69,6 +69,7 @@ import com.liferay.portal.util.PortletKeys;
 import com.liferay.util.portlet.PortletProps;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -194,16 +195,18 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	public void addAttachment(
-			long companyId, String dirName, String shortFileName, byte[] bytes)
+			long companyId, String dirName, String shortFileName,
+			InputStream inputStream)
 		throws PortalException, SystemException {
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		dlService.addFile(
+		dlLocalService.addFile(
 			companyId, CompanyConstants.SYSTEM_STRING,
 			GroupConstants.DEFAULT_PARENT_GROUP_ID, CompanyConstants.SYSTEM,
-			dirName + StringPool.SLASH + shortFileName, 0, StringPool.BLANK,
-			serviceContext.getCreateDate(null), serviceContext, bytes);
+			dirName + StringPool.SLASH + shortFileName, true, 0,
+			StringPool.BLANK, serviceContext.getCreateDate(null),
+			serviceContext, inputStream);
 	}
 
 	public void checkAttachments() throws PortalException, SystemException {
@@ -525,10 +528,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		for (String fileName : article.getAttachmentsFileNames()) {
 			String shortFileName = FileUtil.getShortFileName(fileName);
 
-			byte[] bytes = dlService.getFile(
+			InputStream inputStream = dlLocalService.getFileAsStream(
 				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
-			addAttachment(companyId, dirName, shortFileName, bytes);
+			addAttachment(companyId, dirName, shortFileName, inputStream);
 		}
 
 		return dirName;
@@ -603,13 +606,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			article.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
 		for (String fileName : fileNames) {
-			byte[] bytes = dlService.getFile(
+			InputStream inputStream = dlLocalService.getFileAsStream(
 				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
 			try {
 				addAttachment(
 					article.getCompanyId(), articleDirName,
-					FileUtil.getShortFileName(fileName), bytes);
+					FileUtil.getShortFileName(fileName), inputStream);
 			}
 			catch (DuplicateFileException dfe) {
 				_log.error("File already exists for " + dfe.getMessage());

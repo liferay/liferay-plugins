@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.admin.lar;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
@@ -44,6 +45,8 @@ import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
+
+import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -189,7 +192,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			String shortFileName = FileUtil.getShortFileName(fileName);
 
 			String path = rootPath + StringPool.SLASH + shortFileName;
-			byte[] bytes = DLServiceUtil.getFile(
+			InputStream inputStream = DLLocalServiceUtil.getFileAsStream(
 				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
 			Element fileEl = articleAttachmentsEl.addElement("file");
@@ -197,7 +200,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			fileEl.addAttribute("path", path);
 			fileEl.addAttribute("short-file-name", shortFileName);
 
-			context.addZipEntry(path, bytes);
+			context.addZipEntry(path, inputStream);
 		}
 	}
 
@@ -433,16 +436,17 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				String shortFileName = fileEl.attributeValue("short-file-name");
 
 				String fileName = dirName + StringPool.SLASH + shortFileName;
-				byte[] bytes = context.getZipEntryAsByteArray(
+				InputStream inputStream = context.getZipEntryAsInputStream(
 					fileEl.attributeValue("path"));
 
 				ServiceContext serviceContext = new ServiceContext();
 
-				DLServiceUtil.addFile(
+				DLLocalServiceUtil.addFile(
 					context.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 					GroupConstants.DEFAULT_PARENT_GROUP_ID,
-					CompanyConstants.SYSTEM, fileName, 0, StringPool.BLANK,
-					serviceContext.getCreateDate(null), serviceContext, bytes);
+					CompanyConstants.SYSTEM, fileName, true, 0,
+					StringPool.BLANK, serviceContext.getCreateDate(null),
+					serviceContext, inputStream);
 			}
 
 			dirNames.put(resourcePrimKey, dirName);
