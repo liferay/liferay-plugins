@@ -183,22 +183,6 @@ public class KaleoNotificationRecipientPersistenceImpl
 		}
 	}
 
-	public KaleoNotificationRecipient remove(
-		KaleoNotificationRecipient kaleoNotificationRecipient)
-		throws SystemException {
-		for (ModelListener<KaleoNotificationRecipient> listener : listeners) {
-			listener.onBeforeRemove(kaleoNotificationRecipient);
-		}
-
-		kaleoNotificationRecipient = removeImpl(kaleoNotificationRecipient);
-
-		for (ModelListener<KaleoNotificationRecipient> listener : listeners) {
-			listener.onAfterRemove(kaleoNotificationRecipient);
-		}
-
-		return kaleoNotificationRecipient;
-	}
-
 	protected KaleoNotificationRecipient removeImpl(
 		KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws SystemException {

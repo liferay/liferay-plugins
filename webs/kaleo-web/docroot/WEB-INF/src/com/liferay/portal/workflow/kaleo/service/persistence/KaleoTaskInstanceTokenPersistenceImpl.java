@@ -210,22 +210,6 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		}
 	}
 
-	public KaleoTaskInstanceToken remove(
-		KaleoTaskInstanceToken kaleoTaskInstanceToken)
-		throws SystemException {
-		for (ModelListener<KaleoTaskInstanceToken> listener : listeners) {
-			listener.onBeforeRemove(kaleoTaskInstanceToken);
-		}
-
-		kaleoTaskInstanceToken = removeImpl(kaleoTaskInstanceToken);
-
-		for (ModelListener<KaleoTaskInstanceToken> listener : listeners) {
-			listener.onAfterRemove(kaleoTaskInstanceToken);
-		}
-
-		return kaleoTaskInstanceToken;
-	}
-
 	protected KaleoTaskInstanceToken removeImpl(
 		KaleoTaskInstanceToken kaleoTaskInstanceToken)
 		throws SystemException {

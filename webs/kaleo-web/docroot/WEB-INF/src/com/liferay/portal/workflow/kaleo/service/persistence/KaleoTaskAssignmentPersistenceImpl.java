@@ -210,21 +210,6 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		}
 	}
 
-	public KaleoTaskAssignment remove(KaleoTaskAssignment kaleoTaskAssignment)
-		throws SystemException {
-		for (ModelListener<KaleoTaskAssignment> listener : listeners) {
-			listener.onBeforeRemove(kaleoTaskAssignment);
-		}
-
-		kaleoTaskAssignment = removeImpl(kaleoTaskAssignment);
-
-		for (ModelListener<KaleoTaskAssignment> listener : listeners) {
-			listener.onAfterRemove(kaleoTaskAssignment);
-		}
-
-		return kaleoTaskAssignment;
-	}
-
 	protected KaleoTaskAssignment removeImpl(
 		KaleoTaskAssignment kaleoTaskAssignment) throws SystemException {
 		kaleoTaskAssignment = toUnwrappedModel(kaleoTaskAssignment);

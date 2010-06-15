@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
-import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -49,8 +48,6 @@ import com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskImpl;
 import com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskModelImpl;
 
 import java.io.Serializable;
-
-import java.sql.Types;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -176,20 +173,6 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public KaleoTask remove(KaleoTask kaleoTask) throws SystemException {
-		for (ModelListener<KaleoTask> listener : listeners) {
-			listener.onBeforeRemove(kaleoTask);
-		}
-
-		kaleoTask = removeImpl(kaleoTask);
-
-		for (ModelListener<KaleoTask> listener : listeners) {
-			listener.onAfterRemove(kaleoTask);
-		}
-
-		return kaleoTask;
 	}
 
 	protected KaleoTask removeImpl(KaleoTask kaleoTask)
@@ -1057,7 +1040,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 				SQLQuery q = session.createSQLQuery(_SQL_GETKALEOTASKASSIGNMENTSSIZE);
 
-				q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+				q.addScalar(COUNT_COLUMN_NAME,
+					com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1192,7 +1176,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 			_mappingSqlQuery = MappingSqlQueryFactoryUtil.getMappingSqlQuery(getDataSource(),
 					_SQL_CONTAINSKALEOTASKASSIGNMENT,
-					new int[] { Types.BIGINT, Types.BIGINT }, RowMapper.COUNT);
+					new int[] { java.sql.Types.BIGINT, java.sql.Types.BIGINT },
+					RowMapper.COUNT);
 		}
 
 		protected boolean contains(long kaleoTaskId, long kaleoTaskAssignmentId) {

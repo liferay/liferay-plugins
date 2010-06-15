@@ -219,21 +219,6 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 	}
 
-	public KaleoTransition remove(KaleoTransition kaleoTransition)
-		throws SystemException {
-		for (ModelListener<KaleoTransition> listener : listeners) {
-			listener.onBeforeRemove(kaleoTransition);
-		}
-
-		kaleoTransition = removeImpl(kaleoTransition);
-
-		for (ModelListener<KaleoTransition> listener : listeners) {
-			listener.onAfterRemove(kaleoTransition);
-		}
-
-		return kaleoTransition;
-	}
-
 	protected KaleoTransition removeImpl(KaleoTransition kaleoTransition)
 		throws SystemException {
 		kaleoTransition = toUnwrappedModel(kaleoTransition);

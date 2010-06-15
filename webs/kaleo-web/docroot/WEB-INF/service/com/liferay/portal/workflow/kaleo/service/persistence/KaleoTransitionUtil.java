@@ -17,6 +17,8 @@ package com.liferay.portal.workflow.kaleo.service.persistence;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 
 import java.util.List;
@@ -75,6 +77,17 @@ public class KaleoTransitionUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
+	 */
+	public static List<KaleoTransition> findWithDynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		return getPersistence()
+				   .findWithDynamicQuery(dynamicQuery, start, end,
+			orderByComparator);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
 	 */
 	public static KaleoTransition remove(KaleoTransition kaleoTransition)
@@ -88,6 +101,14 @@ public class KaleoTransitionUtil {
 	public static KaleoTransition update(KaleoTransition kaleoTransition,
 		boolean merge) throws SystemException {
 		return getPersistence().update(kaleoTransition, merge);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 */
+	public static KaleoTransition update(KaleoTransition kaleoTransition,
+		boolean merge, ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(kaleoTransition, merge, serviceContext);
 	}
 
 	public static void cacheResult(

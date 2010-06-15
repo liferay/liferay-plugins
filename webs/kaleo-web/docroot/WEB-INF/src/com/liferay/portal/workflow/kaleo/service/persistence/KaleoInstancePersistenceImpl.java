@@ -195,21 +195,6 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 		}
 	}
 
-	public KaleoInstance remove(KaleoInstance kaleoInstance)
-		throws SystemException {
-		for (ModelListener<KaleoInstance> listener : listeners) {
-			listener.onBeforeRemove(kaleoInstance);
-		}
-
-		kaleoInstance = removeImpl(kaleoInstance);
-
-		for (ModelListener<KaleoInstance> listener : listeners) {
-			listener.onAfterRemove(kaleoInstance);
-		}
-
-		return kaleoInstance;
-	}
-
 	protected KaleoInstance removeImpl(KaleoInstance kaleoInstance)
 		throws SystemException {
 		kaleoInstance = toUnwrappedModel(kaleoInstance);

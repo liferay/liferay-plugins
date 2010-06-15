@@ -215,20 +215,6 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		}
 	}
 
-	public KaleoLog remove(KaleoLog kaleoLog) throws SystemException {
-		for (ModelListener<KaleoLog> listener : listeners) {
-			listener.onBeforeRemove(kaleoLog);
-		}
-
-		kaleoLog = removeImpl(kaleoLog);
-
-		for (ModelListener<KaleoLog> listener : listeners) {
-			listener.onAfterRemove(kaleoLog);
-		}
-
-		return kaleoLog;
-	}
-
 	protected KaleoLog removeImpl(KaleoLog kaleoLog) throws SystemException {
 		kaleoLog = toUnwrappedModel(kaleoLog);
 

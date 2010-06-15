@@ -206,21 +206,6 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		}
 	}
 
-	public KaleoInstanceToken remove(KaleoInstanceToken kaleoInstanceToken)
-		throws SystemException {
-		for (ModelListener<KaleoInstanceToken> listener : listeners) {
-			listener.onBeforeRemove(kaleoInstanceToken);
-		}
-
-		kaleoInstanceToken = removeImpl(kaleoInstanceToken);
-
-		for (ModelListener<KaleoInstanceToken> listener : listeners) {
-			listener.onAfterRemove(kaleoInstanceToken);
-		}
-
-		return kaleoInstanceToken;
-	}
-
 	protected KaleoInstanceToken removeImpl(
 		KaleoInstanceToken kaleoInstanceToken) throws SystemException {
 		kaleoInstanceToken = toUnwrappedModel(kaleoInstanceToken);

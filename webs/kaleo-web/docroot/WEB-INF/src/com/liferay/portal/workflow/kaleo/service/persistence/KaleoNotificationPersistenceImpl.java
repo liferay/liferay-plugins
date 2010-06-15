@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
-import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -49,8 +48,6 @@ import com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationImpl;
 import com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationModelImpl;
 
 import java.io.Serializable;
-
-import java.sql.Types;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -181,21 +178,6 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public KaleoNotification remove(KaleoNotification kaleoNotification)
-		throws SystemException {
-		for (ModelListener<KaleoNotification> listener : listeners) {
-			listener.onBeforeRemove(kaleoNotification);
-		}
-
-		kaleoNotification = removeImpl(kaleoNotification);
-
-		for (ModelListener<KaleoNotification> listener : listeners) {
-			listener.onAfterRemove(kaleoNotification);
-		}
-
-		return kaleoNotification;
 	}
 
 	protected KaleoNotification removeImpl(KaleoNotification kaleoNotification)
@@ -1276,7 +1258,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 				SQLQuery q = session.createSQLQuery(_SQL_GETKALEONOTIFICATIONRECIPIENTSSIZE);
 
-				q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+				q.addScalar(COUNT_COLUMN_NAME,
+					com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1412,7 +1395,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 			_mappingSqlQuery = MappingSqlQueryFactoryUtil.getMappingSqlQuery(getDataSource(),
 					_SQL_CONTAINSKALEONOTIFICATIONRECIPIENT,
-					new int[] { Types.BIGINT, Types.BIGINT }, RowMapper.COUNT);
+					new int[] { java.sql.Types.BIGINT, java.sql.Types.BIGINT },
+					RowMapper.COUNT);
 		}
 
 		protected boolean contains(long kaleoNotificationId,

@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
-import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -50,8 +49,6 @@ import com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionImpl;
 import com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionModelImpl;
 
 import java.io.Serializable;
-
-import java.sql.Types;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -240,21 +237,6 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public KaleoDefinition remove(KaleoDefinition kaleoDefinition)
-		throws SystemException {
-		for (ModelListener<KaleoDefinition> listener : listeners) {
-			listener.onBeforeRemove(kaleoDefinition);
-		}
-
-		kaleoDefinition = removeImpl(kaleoDefinition);
-
-		for (ModelListener<KaleoDefinition> listener : listeners) {
-			listener.onAfterRemove(kaleoDefinition);
-		}
-
-		return kaleoDefinition;
 	}
 
 	protected KaleoDefinition removeImpl(KaleoDefinition kaleoDefinition)
@@ -2315,7 +2297,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 				SQLQuery q = session.createSQLQuery(_SQL_GETKALEONODESSIZE);
 
-				q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+				q.addScalar(COUNT_COLUMN_NAME,
+					com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2445,7 +2428,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 			_mappingSqlQuery = MappingSqlQueryFactoryUtil.getMappingSqlQuery(getDataSource(),
 					_SQL_CONTAINSKALEONODE,
-					new int[] { Types.BIGINT, Types.BIGINT }, RowMapper.COUNT);
+					new int[] { java.sql.Types.BIGINT, java.sql.Types.BIGINT },
+					RowMapper.COUNT);
 		}
 
 		protected boolean contains(long kaleoDefinitionId, long kaleoNodeId) {

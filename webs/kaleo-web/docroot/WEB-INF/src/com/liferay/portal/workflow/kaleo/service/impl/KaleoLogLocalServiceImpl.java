@@ -259,16 +259,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		kaleoLogPersistence.removeByKaleoInstanceId(kaleoInstanceId);
 	}
 
-	public List<KaleoLog> getKaleoLogs(
-			long kaleoTaskInstanceTokenId, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
-
-		return kaleoLogPersistence.findByKaleoTaskInstanceTokenId(
-			kaleoTaskInstanceTokenId, start, end, orderByComparator);
-	}
-
-	public List<KaleoLog> getKaleoLogsByKaleoInstanceId(
+	public List<KaleoLog> getKaleoInstanceKaleoLogs(
 			long kaleoInstanceId, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -277,18 +268,26 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 			kaleoInstanceId, start, end, orderByComparator);
 	}
 
-	public int getKaleoLogsCountByKaleoInstanceId(long kaleoInstanceId)
+	public int getKaleoInstanceKaleoLogsCount(long kaleoInstanceId)
 		throws SystemException {
 
 		return kaleoLogPersistence.countByKaleoInstanceId(
 			kaleoInstanceId);
 	}
 
-	public int getKaleoLogsCount(long kaleoTaskInstanceTokenId)
+	public List<KaleoLog> getKaleoTaskKaleoLogs(
+			long kaleoTaskId, int start, int end,
+			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		return kaleoLogPersistence.countByKaleoTaskInstanceTokenId(
-			kaleoTaskInstanceTokenId);
+		return kaleoLogPersistence.findByKaleoTaskInstanceTokenId(
+			kaleoTaskId, start, end, orderByComparator);
+	}
+
+	public int getKaleoTaskKaleoLogsCount(long kaleoTaskId)
+		throws SystemException {
+
+		return kaleoLogPersistence.countByKaleoTaskInstanceTokenId(kaleoTaskId);
 	}
 
 	protected KaleoLog createKaleoLog(

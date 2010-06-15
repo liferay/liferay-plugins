@@ -211,32 +211,32 @@ public class KaleoLogLocalServiceUtil {
 		getService().deleteKaleoLogsByInstance(kaleoInstanceId);
 	}
 
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoLogs(
-		long kaleoTaskInstanceTokenId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getKaleoLogs(kaleoTaskInstanceTokenId, start, end,
-			orderByComparator);
-	}
-
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoLogsByKaleoInstanceId(
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoInstanceKaleoLogs(
 		long kaleoInstanceId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getKaleoLogsByKaleoInstanceId(kaleoInstanceId, start, end,
+				   .getKaleoInstanceKaleoLogs(kaleoInstanceId, start, end,
 			orderByComparator);
 	}
 
-	public static int getKaleoLogsCountByKaleoInstanceId(long kaleoInstanceId)
+	public static int getKaleoInstanceKaleoLogsCount(long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getKaleoLogsCountByKaleoInstanceId(kaleoInstanceId);
+		return getService().getKaleoInstanceKaleoLogsCount(kaleoInstanceId);
 	}
 
-	public static int getKaleoLogsCount(long kaleoTaskInstanceTokenId)
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoTaskKaleoLogs(
+		long kaleoTaskId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getKaleoLogsCount(kaleoTaskInstanceTokenId);
+		return getService()
+				   .getKaleoTaskKaleoLogs(kaleoTaskId, start, end,
+			orderByComparator);
+	}
+
+	public static int getKaleoTaskKaleoLogsCount(long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getKaleoTaskKaleoLogsCount(kaleoTaskId);
 	}
 
 	public static void clearService() {
