@@ -47,6 +47,7 @@ if (Validator.isNotNull(dirName)) {
 					image="clip"
 					label="<%= true %>"
 					message='<%= FileUtil.getShortFileName(fileName) + " (" + TextFormatter.formatKB(DLServiceUtil.getFileSize(companyId, CompanyConstants.SYSTEM, fileName), locale) + "k)" %>'
+					method="get"
 					url="<%= clipURL %>"
 				/>
 			</div>

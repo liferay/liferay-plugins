@@ -33,6 +33,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 				image="recent_changes"
 				label="<%= true %>"
 				message="history"
+				method="get"
 				url="<%= historyURL %>"
 			/>
 		</td>
@@ -49,6 +50,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 			<liferay-ui:icon
 				image="print"
 				label="<%= true %>"
+				method="get"
 				url="<%= taglibURL %>"
 			/>
 		</td>

@@ -139,6 +139,7 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 						image="../common/page"
 						label="<%= true %>"
 						message="latest-version"
+						method="get"
 						url="<%= viewArticleURL %>"
 					/>
 				</div>

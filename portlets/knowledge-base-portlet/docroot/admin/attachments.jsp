@@ -80,6 +80,7 @@ String[] fileNames = DLServiceUtil.getFileNames(company.getCompanyId(), CompanyC
 						image="clip"
 						label="<%= true %>"
 						message='<%= FileUtil.getShortFileName(fileName) + " (" + TextFormatter.formatKB(DLServiceUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, fileName), locale) + "k)" %>'
+						method="get"
 						url="<%= rowURL %>"
 					/>
 				</liferay-ui:search-container-column-text>

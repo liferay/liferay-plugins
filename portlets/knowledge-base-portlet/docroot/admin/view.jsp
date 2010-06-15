@@ -93,6 +93,7 @@
 						image="../trees/page"
 						label="<%= true %>"
 						message="<%= article.getTitle() %>"
+						method="get"
 						url="<%= viewArticleURL %>"
 					/>
 

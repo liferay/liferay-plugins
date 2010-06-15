@@ -39,6 +39,7 @@ String path = GetterUtil.getString(request.getPathInfo());
 				image="../aui/home"
 				label="<%= true %>"
 				message="home"
+				method="get"
 				url="<%= taglibURL %>"
 			/>
 		</div>

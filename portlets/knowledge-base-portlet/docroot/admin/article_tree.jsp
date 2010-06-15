@@ -70,6 +70,7 @@ long lastArticleId = GetterUtil.getLong((String)request.getAttribute("article_tr
 					image="../trees/page"
 					label="<%= true %>"
 					message="<%= curArticle.getTitle() %>"
+					method="get"
 					url="<%= viewArticleURL %>"
 				/>
 			</div>
