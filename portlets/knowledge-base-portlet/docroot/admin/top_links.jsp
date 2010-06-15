@@ -31,9 +31,7 @@ String path = GetterUtil.getString(request.getPathInfo());
 			</portlet:renderURL>
 
 			<%
-			if (path.endsWith("/admin/view.jsp") && topLink.equals("home")) {
-				homeURL = StringPool.BLANK;
-			}
+			String taglibURL = (path.endsWith("/admin/view.jsp") && topLink.equals("home")) ? StringPool.BLANK : homeURL;
 			%>
 
 			<liferay-ui:icon
@@ -41,7 +39,7 @@ String path = GetterUtil.getString(request.getPathInfo());
 				image="../aui/home"
 				label="<%= true %>"
 				message="home"
-				url="<%= homeURL %>"
+				url="<%= taglibURL %>"
 			/>
 		</div>
 	</div>

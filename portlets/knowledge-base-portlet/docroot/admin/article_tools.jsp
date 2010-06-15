@@ -49,7 +49,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 			<liferay-ui:icon
 				image="print"
 				label="<%= true %>"
-				url="<%= printURL %>"
+				url="<%= taglibURL %>"
 			/>
 		</td>
 	</tr>
