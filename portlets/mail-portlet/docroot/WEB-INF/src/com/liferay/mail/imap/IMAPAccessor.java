@@ -569,8 +569,8 @@ public class IMAPAccessor {
 					startingMessageNumber, messageCount);
 			}
 			else {
-				int newestMessageNumber = newestJxMessage.getMessageNumber();
 				int oldestMessageNumber = oldestJxMessage.getMessageNumber();
+				int newestMessageNumber = newestJxMessage.getMessageNumber();
 
 				if (newestMessageNumber != messageCount) {
 					if (_log.isDebugEnabled()) {

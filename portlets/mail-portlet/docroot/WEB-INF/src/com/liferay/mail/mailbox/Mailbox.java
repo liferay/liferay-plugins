@@ -119,11 +119,11 @@ public interface Mailbox {
 			String folderPrefix, boolean defaultSender)
 		throws PortalException, SystemException;
 
-	public void updateFolders() throws PortalException, SystemException;
-
 	public void updateFlags(
 			long folderId, long[] messageIds, int flag, boolean value)
 		throws PortalException, SystemException;
+
+	public void updateFolders() throws PortalException, SystemException;
 
 	public void validateAccount(
 			String incomingHostName, int incomingPort, boolean incomingSecure,

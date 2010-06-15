@@ -45,7 +45,8 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 </aui:form>
 
 <div>
-	<a class="delete-account" href="javascript:;"><liferay-ui:message key="delete-account" /></a> <br />
+	<a class="delete-account" href="javascript:;"><liferay-ui:message key="delete-account" /></a><br />
+
 	<a class="synchronize-account" href="javascript:;"><liferay-ui:message key="synchronize-account" /></a> <liferay-ui:icon-help message="synchronizing-accounts-with-a-large-number-of-messages-may-take-minutes-to-complete" />
 </div>
 
