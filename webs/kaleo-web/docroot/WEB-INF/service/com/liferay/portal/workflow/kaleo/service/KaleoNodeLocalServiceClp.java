@@ -501,12 +501,12 @@ public class KaleoNodeLocalServiceClp implements KaleoNodeLocalService {
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNode)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteKaleoNodesByDefinition(long kaleoDefinitionId)
+	public void deleteKaleoNodes(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(kaleoDefinitionId);
 
 		try {
-			_classLoaderProxy.invoke("deleteKaleoNodesByDefinition",
+			_classLoaderProxy.invoke("deleteKaleoNodes",
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {

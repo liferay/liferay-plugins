@@ -133,9 +133,9 @@ public class KaleoTaskLocalServiceUtil {
 			serviceContext);
 	}
 
-	public static void deleteKaleoTasksByDefinition(long kaleoDefinitionId)
+	public static void deleteKaleoTasks(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTasksByDefinition(kaleoDefinitionId);
+		getService().deleteKaleoTasks(kaleoDefinitionId);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTask getKaleoNodeKaleoTask(

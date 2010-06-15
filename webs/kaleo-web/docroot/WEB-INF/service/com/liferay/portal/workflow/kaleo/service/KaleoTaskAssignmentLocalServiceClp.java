@@ -509,12 +509,12 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteKaleoTaskAssignmentsByDefinition(long kaleoDefinitionId)
+	public void deleteKaleoTaskAssignments(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(kaleoDefinitionId);
 
 		try {
-			_classLoaderProxy.invoke("deleteKaleoTaskAssignmentsByDefinition",
+			_classLoaderProxy.invoke("deleteKaleoTaskAssignments",
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {

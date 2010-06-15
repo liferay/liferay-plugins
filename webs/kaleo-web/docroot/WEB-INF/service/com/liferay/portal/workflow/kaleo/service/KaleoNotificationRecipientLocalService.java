@@ -115,8 +115,7 @@ public interface KaleoNotificationRecipientLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void deleteKaleoNotificationRecipientsByDefinition(
-		long kaleoDefinitionId)
+	public void deleteKaleoNotificationRecipients(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

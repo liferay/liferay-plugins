@@ -70,7 +70,7 @@ public class KaleoTaskAssignmentLocalServiceImpl
 		return kaleoTaskAssignment;
 	}
 
-	public void deleteKaleoTaskAssignmentsByDefinition(long kaleoDefinitionId)
+	public void deleteKaleoTaskAssignments(long kaleoDefinitionId)
 		throws SystemException {
 
 		kaleoTaskAssignmentPersistence.removeByKaleoDefinitionId(

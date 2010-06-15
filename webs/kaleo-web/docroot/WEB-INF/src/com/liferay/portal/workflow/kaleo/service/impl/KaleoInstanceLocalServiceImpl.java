@@ -99,20 +99,20 @@ public class KaleoInstanceLocalServiceImpl
 
 		// Instance tokens
 
-		kaleoInstanceTokenLocalService.deleteKaleoInstanceTokensByInstance(
+		kaleoInstanceTokenLocalService.deleteKaleoInstanceKaleoInstanceTokens(
 			kaleoInstanceId);
 
 		// Logs
 
-		kaleoLogLocalService.deleteKaleoLogsByInstance(kaleoInstanceId);
+		kaleoLogLocalService.deleteKaleoInstanceKaleoLogs(kaleoInstanceId);
 
 		// Task instance tokens
 
 		kaleoTaskInstanceTokenLocalService.
-			deleteKaleoTaskInstanceTokensByInstance(kaleoInstanceId);
+			deleteKaleoInstanceKaleoTaskInstanceTokens(kaleoInstanceId);
 	}
 
-	public void deleteKaleoInstancesByDefinition(long kaleoDefinitionId)
+	public void deleteKaleoInstances(long kaleoDefinitionId)
 		throws SystemException {
 
 		// Instances
@@ -122,16 +122,16 @@ public class KaleoInstanceLocalServiceImpl
 		// Instance tokens
 
 		kaleoInstanceTokenLocalService.
-			deleteKaleoInstanceTokensByDefinition(kaleoDefinitionId);
+			deleteKaleoDefinitionKaleoInstanceTokens(kaleoDefinitionId);
 
 		// Logs
 
-		kaleoLogLocalService.deleteKaleoLogsByDefinition(kaleoDefinitionId);
+		kaleoLogLocalService.deleteKaleoDefinitionKaleoLogs(kaleoDefinitionId);
 
 		// Task instance tokens
 
 		kaleoTaskInstanceTokenLocalService.
-			deleteKaleoTaskInstanceTokensByDefinition(kaleoDefinitionId);
+			deleteKaleoDefinitionKaleoTaskInstanceTokens(kaleoDefinitionId);
 	}
 
 	public List<KaleoInstance> getKaleoInstances(

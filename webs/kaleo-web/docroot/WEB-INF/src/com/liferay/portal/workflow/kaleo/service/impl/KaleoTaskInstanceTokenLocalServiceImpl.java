@@ -166,7 +166,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		return kaleoTaskInstanceToken;
 	}
 
-	public void deleteKaleoTaskInstanceTokensByDefinition(
+	public void deleteKaleoDefinitionKaleoTaskInstanceTokens(
 			long kaleoDefinitionId)
 		throws SystemException {
 
@@ -174,7 +174,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			kaleoDefinitionId);
 	}
 
-	public void deleteKaleoTaskInstanceTokensByInstance(long kaleoInstanceId)
+	public void deleteKaleoInstanceKaleoTaskInstanceTokens(long kaleoInstanceId)
 		throws SystemException {
 
 		kaleoTaskInstanceTokenPersistence.removeByKaleoInstanceId(

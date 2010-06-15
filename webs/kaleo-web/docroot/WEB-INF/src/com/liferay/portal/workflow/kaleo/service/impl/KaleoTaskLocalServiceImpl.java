@@ -81,7 +81,7 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 		return kaleoTask;
 	}
 
-	public void deleteKaleoTasksByDefinition(long kaleoDefinitionId)
+	public void deleteKaleoTasks(long kaleoDefinitionId)
 		throws SystemException {
 
 		// Tasks
@@ -90,7 +90,7 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 
 		// Task assignments
 
-		kaleoTaskAssignmentLocalService.deleteKaleoTaskAssignmentsByDefinition(
+		kaleoTaskAssignmentLocalService.deleteKaleoTaskAssignments(
 			kaleoDefinitionId);
 	}
 

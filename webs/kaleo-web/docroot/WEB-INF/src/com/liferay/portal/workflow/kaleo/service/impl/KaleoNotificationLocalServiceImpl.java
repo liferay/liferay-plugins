@@ -110,7 +110,7 @@ public class KaleoNotificationLocalServiceImpl
 		return kaleoNotification;
 	}
 
-	public void deleteKaleoNotificationsByDefinition(long kaleoDefinitionId)
+	public void deleteKaleoNotifications(long kaleoDefinitionId)
 		throws SystemException {
 
 		// Notifications
@@ -121,7 +121,7 @@ public class KaleoNotificationLocalServiceImpl
 		// Notification recipients
 
 		kaleoNotificationRecipientLocalService.
-			deleteKaleoNotificationRecipientsByDefinition(kaleoDefinitionId);
+			deleteKaleoNotificationRecipients(kaleoDefinitionId);
 	}
 
 	public List<KaleoNotification> getKaleoNotifications(

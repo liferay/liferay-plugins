@@ -159,22 +159,22 @@ public class KaleoDefinitionLocalServiceImpl
 
 		// Instances
 
-		kaleoInstanceLocalService.deleteKaleoInstancesByDefinition(
+		kaleoInstanceLocalService.deleteKaleoInstances(
 			kaleoDefinition.getKaleoDefinitionId());
 
 		// Nodes
 
-		kaleoNodeLocalService.deleteKaleoNodesByDefinition(
+		kaleoNodeLocalService.deleteKaleoNodes(
 			kaleoDefinition.getKaleoDefinitionId());
 
 		// Tasks
 
-		kaleoTaskLocalService.deleteKaleoTasksByDefinition(
+		kaleoTaskLocalService.deleteKaleoTasks(
 			kaleoDefinition.getKaleoDefinitionId());
 
 		// Transitions
 
-		kaleoTransitionLocalService.deleteKaleoTransitionsByDefinition(
+		kaleoTransitionLocalService.deleteKaleoTransitions(
 			kaleoDefinition.getKaleoDefinitionId());
 	}
 

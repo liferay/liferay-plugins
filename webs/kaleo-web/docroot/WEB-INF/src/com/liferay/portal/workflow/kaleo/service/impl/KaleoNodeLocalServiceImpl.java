@@ -100,7 +100,7 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 		return kaleoNode;
 	}
 
-	public void deleteKaleoNodesByDefinition(long kaleoDefinitionId)
+	public void deleteKaleoNodes(long kaleoDefinitionId)
 		throws SystemException {
 
 		// Nodes
@@ -109,12 +109,11 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 
 		// Actions
 
-		kaleoActionLocalService.deleteKaleoActionsByDefinition(
-			kaleoDefinitionId);
+		kaleoActionLocalService.deleteKaleoActions(kaleoDefinitionId);
 
 		// Notifications
 
-		kaleoNotificationLocalService.deleteKaleoNotificationsByDefinition(
+		kaleoNotificationLocalService.deleteKaleoNotifications(
 			kaleoDefinitionId);
 	}
 

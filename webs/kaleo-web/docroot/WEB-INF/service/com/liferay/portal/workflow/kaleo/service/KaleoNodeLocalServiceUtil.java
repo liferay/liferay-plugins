@@ -131,9 +131,9 @@ public class KaleoNodeLocalServiceUtil {
 		return getService().addKaleoNode(kaleoDefinitionId, node, serviceContext);
 	}
 
-	public static void deleteKaleoNodesByDefinition(long kaleoDefinitionId)
+	public static void deleteKaleoNodes(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoNodesByDefinition(kaleoDefinitionId);
+		getService().deleteKaleoNodes(kaleoDefinitionId);
 	}
 
 	public static void clearService() {

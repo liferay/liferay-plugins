@@ -159,15 +159,15 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 			serviceContext);
 	}
 
-	public void deleteKaleoTaskInstanceTokensByDefinition(
+	public void deleteKaleoDefinitionKaleoTaskInstanceTokens(
 		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoTaskInstanceTokenLocalService.deleteKaleoTaskInstanceTokensByDefinition(kaleoDefinitionId);
+		_kaleoTaskInstanceTokenLocalService.deleteKaleoDefinitionKaleoTaskInstanceTokens(kaleoDefinitionId);
 	}
 
-	public void deleteKaleoTaskInstanceTokensByInstance(long kaleoInstanceId)
+	public void deleteKaleoInstanceKaleoTaskInstanceTokens(long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoTaskInstanceTokenLocalService.deleteKaleoTaskInstanceTokensByInstance(kaleoInstanceId);
+		_kaleoTaskInstanceTokenLocalService.deleteKaleoInstanceKaleoTaskInstanceTokens(kaleoInstanceId);
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> getCompanyKaleoTaskInstanceTokens(

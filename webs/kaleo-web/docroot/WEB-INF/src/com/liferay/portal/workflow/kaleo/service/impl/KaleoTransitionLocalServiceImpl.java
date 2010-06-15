@@ -69,7 +69,7 @@ public class KaleoTransitionLocalServiceImpl
 		return kaleoTransition;
 	}
 
-	public void deleteKaleoTransitionsByDefinition(long kaleoDefinitionId)
+	public void deleteKaleoTransitions(long kaleoDefinitionId)
 		throws SystemException {
 
 		kaleoTransitionPersistence.removeByKaleoDefinitionId(kaleoDefinitionId);

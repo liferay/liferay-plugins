@@ -247,13 +247,13 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		return kaleoLog;
 	}
 
-	public void deleteKaleoLogsByDefinition(long kaleoDefinitionId)
+	public void deleteKaleoDefinitionKaleoLogs(long kaleoDefinitionId)
 		throws SystemException {
 
 		kaleoLogPersistence.removeByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
-	public void deleteKaleoLogsByInstance(long kaleoInstanceId)
+	public void deleteKaleoInstanceKaleoLogs(long kaleoInstanceId)
 		throws SystemException {
 
 		kaleoLogPersistence.removeByKaleoInstanceId(kaleoInstanceId);

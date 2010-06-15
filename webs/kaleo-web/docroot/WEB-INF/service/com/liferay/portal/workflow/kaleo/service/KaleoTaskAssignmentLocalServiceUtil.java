@@ -133,10 +133,9 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 			kaleoTaskId, assignment, serviceContext);
 	}
 
-	public static void deleteKaleoTaskAssignmentsByDefinition(
-		long kaleoDefinitionId)
+	public static void deleteKaleoTaskAssignments(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTaskAssignmentsByDefinition(kaleoDefinitionId);
+		getService().deleteKaleoTaskAssignments(kaleoDefinitionId);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment getDefaultKaleoTaskAssignment(

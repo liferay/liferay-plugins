@@ -131,9 +131,9 @@ public class KaleoNodeLocalServiceWrapper implements KaleoNodeLocalService {
 			serviceContext);
 	}
 
-	public void deleteKaleoNodesByDefinition(long kaleoDefinitionId)
+	public void deleteKaleoNodes(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoNodeLocalService.deleteKaleoNodesByDefinition(kaleoDefinitionId);
+		_kaleoNodeLocalService.deleteKaleoNodes(kaleoDefinitionId);
 	}
 
 	public KaleoNodeLocalService getWrappedKaleoNodeLocalService() {

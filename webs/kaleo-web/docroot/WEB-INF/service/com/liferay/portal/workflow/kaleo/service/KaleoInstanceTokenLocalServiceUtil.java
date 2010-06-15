@@ -140,15 +140,16 @@ public class KaleoInstanceTokenLocalServiceUtil {
 		return getService().completeKaleoInstanceToken(kaleoInstanceTokenId);
 	}
 
-	public static void deleteKaleoInstanceTokensByDefinition(
+	public static void deleteKaleoDefinitionKaleoInstanceTokens(
 		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoInstanceTokensByDefinition(kaleoDefinitionId);
+		getService().deleteKaleoDefinitionKaleoInstanceTokens(kaleoDefinitionId);
 	}
 
-	public static void deleteKaleoInstanceTokensByInstance(long kaleoInstanceId)
+	public static void deleteKaleoInstanceKaleoInstanceTokens(
+		long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoInstanceTokensByInstance(kaleoInstanceId);
+		getService().deleteKaleoInstanceKaleoInstanceTokens(kaleoInstanceId);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getKaleoInstanceTokens(
