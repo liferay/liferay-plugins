@@ -82,7 +82,7 @@
 }
 
 .knowledge-base-portlet-admin .kb-entity-body .taglib-discussion {
-	margin: 6px 7px 0;
+	margin: 6px 2px 0;
 }
 
 .knowledge-base-portlet-admin .kb-entity-footer {
@@ -92,7 +92,7 @@
 .knowledge-base-portlet-admin .kb-entity-header {
 	border-bottom: 1px solid #CCC;
 	margin-bottom: 6px;
-	padding: 0 5px 3px;
+	padding: 0 7px 3px;
 }
 
 .knowledge-base-portlet-admin .kb-entity-header .kb-title {
@@ -106,7 +106,7 @@
 }
 
 .knowledge-base-portlet-admin .kb-results-body {
-	padding: 0 5px 0 25px;
+	padding: 0 0 0 20px;
 }
 
 .knowledge-base-portlet-admin .kb-results-body .kb-article-icons {
@@ -120,7 +120,7 @@
 }
 
 .knowledge-base-portlet-admin .kb-results-footer {
-	margin: 6px 5px 0;
+	margin: 6px 2px 0;
 }
 
 .knowledge-base-portlet-admin .kb-results-header {

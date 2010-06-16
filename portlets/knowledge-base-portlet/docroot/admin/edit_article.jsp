@@ -41,7 +41,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 	<aui:input name="dirName" type="hidden" value="<%= dirName %>" />
 
 	<liferay-ui:tabs
-		backURL="<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>"
+		backURL="<%= PortalUtil.escapeRedirect(redirect) %>"
 		names="article"
 	/>
 
