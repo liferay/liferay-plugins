@@ -77,7 +77,7 @@
 				<name>Approve Asset</name>
 				<target>approved</target>
 				<default>true</default>
-			</transition>			
+			</transition>
 			<transition>
 				<name>Review Failed</name>
 				<target>update-content</target>
@@ -99,5 +99,5 @@
 				<script-language>javascript</script-language>
 			</action>
 		</actions>
-	</state>	
+	</state>
 </workflow-definition>
