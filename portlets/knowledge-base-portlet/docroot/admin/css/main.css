@@ -73,11 +73,13 @@
 	margin: 10px 0 0;
 }
 
-.knowledge-base-portlet-admin .kb-entity-body .kb-article-discussion {
+.knowledge-base-portlet-admin .kb-entity-body .kb-article-discussion,
+.knowledge-base-portlet-admin .kb-entity-body .kb-template-discussion {
 	margin: 10px -7px 0;
 }
 
-.knowledge-base-portlet-admin .kb-entity-body .kb-article-icons {
+.knowledge-base-portlet-admin .kb-entity-body .kb-article-icons,
+.knowledge-base-portlet-admin .kb-entity-body .kb-template-icons {
 	padding: 0 0 6px;
 }
 
@@ -109,7 +111,8 @@
 	padding: 0 0 0 20px;
 }
 
-.knowledge-base-portlet-admin .kb-results-body .kb-article-icons {
+.knowledge-base-portlet-admin .kb-results-body .kb-article-icons,
+.knowledge-base-portlet-admin .kb-results-body .kb-template-icons {
 	padding: 6px 0;
 }
 

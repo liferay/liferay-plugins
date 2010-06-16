@@ -42,6 +42,26 @@ String path = GetterUtil.getString(request.getPathInfo());
 				method="get"
 				url="<%= taglibURL %>"
 			/>
+
+			<c:if test='<%= AdminPermission.contains(permissionChecker, scopeGroupId, "VIEW_TEMPLATES") %>'>
+				<portlet:renderURL var="templatesURL">
+					<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
+					<portlet:param name="topLink" value="templates" />
+				</portlet:renderURL>
+
+				<%
+				taglibURL = topLink.equals("templates") ? StringPool.BLANK : templatesURL;
+				%>
+
+				<liferay-ui:icon
+					cssClass="top-link"
+					image="../aui/bookmark"
+					label="<%= true %>"
+					message="templates"
+					method="get"
+					url="<%= taglibURL %>"
+				/>
+			</c:if>
 		</div>
 	</div>
 </div>

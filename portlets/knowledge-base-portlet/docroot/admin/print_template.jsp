@@ -16,12 +16,25 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-<liferay-ui:tabs
-	backURL="javascript:history.go(-1);"
-	names="error"
-/>
+<%
+Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLATE);
+%>
 
-<liferay-ui:error exception="<%= NoSuchArticleException.class %>" message="the-article-could-not-be-found" />
-<liferay-ui:error exception="<%= NoSuchMessageException.class %>" message="the-comments-could-not-be-found" />
-<liferay-ui:error exception="<%= NoSuchTemplateException.class %>" message="the-template-could-not-be-found" />
-<liferay-ui:error exception="<%= PrincipalException.class %>" message="you-do-not-have-the-required-permissions" />
+<div class="float-container kb-entity-header">
+	<div class="kb-title">
+		<%= template.getTitle() %>
+	</div>
+
+	<div class="kb-tools">
+		<liferay-ui:icon
+			image="print"
+			label="<%= true %>"
+			method="get"
+			url="javascript:print();"
+		/>
+	</div>
+</div>
+
+<div class="kb-entity-body">
+	<%= template.getContent() %>
+</div>

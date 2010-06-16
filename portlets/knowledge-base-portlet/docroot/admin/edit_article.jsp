@@ -21,10 +21,12 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
+Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLATE);
+
 long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey");
 
 long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
-String content = BeanParamUtil.getString(article, request, "content");
+String content = BeanParamUtil.getString(article, request, "content", BeanPropertiesUtil.getString(template, "content"));
 int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleConstants.DEFAULT_PRIORITY);
 
 String dirName = ParamUtil.getString(request, "dirName");
