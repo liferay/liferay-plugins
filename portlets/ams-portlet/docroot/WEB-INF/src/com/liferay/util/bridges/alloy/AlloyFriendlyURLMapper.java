@@ -14,6 +14,7 @@
 
 package com.liferay.util.bridges.alloy;
 
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.HttpMethods;
@@ -61,13 +62,10 @@ public class AlloyFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 		// Map URL with router
 
-		String url = null;
+		String url = router.parametersToUrl(parameters);
 
-		try {
-			url = router.parametersToUrl(parameters);
-		}
-		catch (Exception e) {
-			return StringPool.SLASH.concat(_MAPPING);
+		if (url == null) {
+			return null;
 		}
 
 		// Remove mapped parameters from URL
@@ -117,6 +115,14 @@ public class AlloyFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 		Map<String, String> routeParameters = router.urlToParameters(
 			method + friendlyURLPath.substring(_MAPPING.length() + 1));
+		
+		if (routeParameters == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"No route could be found to match URL " + url);
+			}
+			return;
+		}
 
 		for (Map.Entry<String, String> entry : routeParameters.entrySet()) {
 			String name = entry.getKey();
@@ -138,5 +144,8 @@ public class AlloyFriendlyURLMapper extends BaseFriendlyURLMapper {
 	private static final String _MAPPING = "ams";
 
 	private static final String _PORTLET_ID = "1_WAR_amsportlet";
+	
+	private static Log _log = LogFactoryUtil.getLog(
+		AlloyFriendlyURLMapper.class);
 
 }
