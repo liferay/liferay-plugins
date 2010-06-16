@@ -14,6 +14,7 @@
 
 package com.liferay.util.bridges.alloy;
 
+import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
@@ -113,8 +114,9 @@ public class AlloyFriendlyURLMapper extends BaseFriendlyURLMapper {
 		addParameter(parameterMap, "p_p_lifecycle", getLifecycle(method));
 		addParameter(parameterMap, "p_p_mode", PortletMode.VIEW);
 
-		Map<String, String> routeParameters = router.urlToParameters(
-			method + friendlyURLPath.substring(_MAPPING.length() + 1));
+		String url = method + friendlyURLPath.substring(_MAPPING.length() + 1);
+
+		Map<String, String> routeParameters = router.urlToParameters(url);
 		
 		if (routeParameters == null) {
 			if (_log.isWarnEnabled()) {
