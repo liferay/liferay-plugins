@@ -196,20 +196,6 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 		}
 	}
 
-	public Template remove(Template template) throws SystemException {
-		for (ModelListener<Template> listener : listeners) {
-			listener.onBeforeRemove(template);
-		}
-
-		template = removeImpl(template);
-
-		for (ModelListener<Template> listener : listeners) {
-			listener.onAfterRemove(template);
-		}
-
-		return template;
-	}
-
 	protected Template removeImpl(Template template) throws SystemException {
 		template = toUnwrappedModel(template);
 

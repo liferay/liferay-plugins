@@ -52,12 +52,12 @@ public class ArticleServiceUtil {
 
 	public static void addAttachment(long companyId, long groupId,
 		long resourcePrimKey, java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes)
+		java.lang.String shortFileName, java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
 			.addAttachment(companyId, groupId, resourcePrimKey, dirName,
-			shortFileName, bytes);
+			shortFileName, inputStream);
 	}
 
 	public static void deleteArticle(long resourcePrimKey)

@@ -162,10 +162,11 @@ public class ArticleLocalServiceUtil {
 	}
 
 	public static void addAttachment(long companyId, java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes)
+		java.lang.String shortFileName, java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().addAttachment(companyId, dirName, shortFileName, bytes);
+		getService()
+			.addAttachment(companyId, dirName, shortFileName, inputStream);
 	}
 
 	public static void checkAttachments()

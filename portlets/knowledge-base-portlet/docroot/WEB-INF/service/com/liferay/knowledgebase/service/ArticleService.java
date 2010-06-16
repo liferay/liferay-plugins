@@ -57,7 +57,7 @@ public interface ArticleService {
 
 	public void addAttachment(long companyId, long groupId,
 		long resourcePrimKey, java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes)
+		java.lang.String shortFileName, java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

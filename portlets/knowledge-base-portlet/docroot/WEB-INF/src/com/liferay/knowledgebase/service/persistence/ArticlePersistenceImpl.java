@@ -221,20 +221,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
-	public Article remove(Article article) throws SystemException {
-		for (ModelListener<Article> listener : listeners) {
-			listener.onBeforeRemove(article);
-		}
-
-		article = removeImpl(article);
-
-		for (ModelListener<Article> listener : listeners) {
-			listener.onAfterRemove(article);
-		}
-
-		return article;
-	}
-
 	protected Article removeImpl(Article article) throws SystemException {
 		article = toUnwrappedModel(article);
 

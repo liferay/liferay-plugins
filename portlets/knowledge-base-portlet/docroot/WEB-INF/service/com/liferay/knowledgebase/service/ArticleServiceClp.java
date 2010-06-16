@@ -105,7 +105,7 @@ public class ArticleServiceClp implements ArticleService {
 
 	public void addAttachment(long companyId, long groupId,
 		long resourcePrimKey, java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes)
+		java.lang.String shortFileName, java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);
@@ -126,10 +126,10 @@ public class ArticleServiceClp implements ArticleService {
 			paramObj4 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj5 = ClpSerializer.translateInput(bytes);
+		Object paramObj5 = ClpSerializer.translateInput(inputStream);
 
-		if (bytes == null) {
-			paramObj5 = new NullWrapper("[B");
+		if (inputStream == null) {
+			paramObj5 = new NullWrapper("java.io.InputStream");
 		}
 
 		try {
