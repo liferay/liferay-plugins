@@ -73,10 +73,10 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					AdminPortletDataHandlerImpl.class, "deleteData")) {
 
 				ArticleLocalServiceUtil.deleteGroupArticles(
-					context.getGroupId());
+					context.getScopeGroupId());
 
 				TemplateLocalServiceUtil.deleteGroupTemplates(
-					context.getGroupId());
+					context.getScopeGroupId());
 			}
 
 			return null;
@@ -93,13 +93,14 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		try {
 			context.addPermissions(
-				"com.liferay.knowledgebase.admin", context.getGroupId());
+				"com.liferay.knowledgebase.admin", context.getScopeGroupId());
 
 			Document doc = SAXReaderUtil.createDocument();
 
 			Element root = doc.addElement("knowledge-base-admin-data");
 
-			root.addAttribute("group-id", String.valueOf(context.getGroupId()));
+			root.addAttribute(
+				"group-id", String.valueOf(context.getScopeGroupId()));
 
 			exportArticles(context, root);
 
@@ -130,7 +131,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		try {
 			context.importPermissions(
 				"com.liferay.knowledgebase.admin", context.getSourceGroupId(),
-				context.getGroupId());
+				context.getScopeGroupId());
 
 			Document doc = SAXReaderUtil.read(data);
 
@@ -270,7 +271,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		throws PortalException, SystemException {
 
 		List<Template> templates = TemplateUtil.findByGroupId(
-			context.getGroupId());
+			context.getScopeGroupId());
 
 		for (Template template : templates) {
 			if (!context.isWithinDateRange(template.getModifiedDate())) {
@@ -300,7 +301,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put("groupId", context.getGroupId());
+		params.put("groupId", context.getScopeGroupId());
 		params.put(
 			"parentResourcePrimKey",
 			ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
@@ -354,7 +355,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put("groupId", context.getGroupId());
+		params.put("groupId", context.getScopeGroupId());
 		params.put("parentResourcePrimKey", parentResourcePrimKey);
 
 		int maxPriority = ArticleLocalServiceUtil.getArticlesCount(
@@ -370,7 +371,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setCreateDate(article.getCreateDate());
 		serviceContext.setModifiedDate(article.getModifiedDate());
-		serviceContext.setScopeGroupId(context.getGroupId());
+		serviceContext.setScopeGroupId(context.getScopeGroupId());
 
 		Article importedArticle = null;
 
@@ -378,7 +379,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				PortletDataHandlerKeys.DATA_STRATEGY_MIRROR)) {
 
 			Article existingArticle = ArticleUtil.fetchByUUID_G(
-				article.getUuid(), context.getGroupId());
+				article.getUuid(), context.getScopeGroupId());
 
 			if (existingArticle == null) {
 				importedArticle = importArticleVersions(
@@ -409,7 +410,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "comments")) {
 			context.importComments(
 				Article.class, article.getResourcePrimKey(),
-				importedArticle.getResourcePrimKey(), context.getGroupId());
+				importedArticle.getResourcePrimKey(),
+				context.getScopeGroupId());
 		}
 	}
 
@@ -482,7 +484,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			serviceContext.setAddGuestPermissions(true);
 			serviceContext.setCreateDate(curArticle.getCreateDate());
 			serviceContext.setModifiedDate(curArticle.getModifiedDate());
-			serviceContext.setScopeGroupId(context.getGroupId());
+			serviceContext.setScopeGroupId(context.getScopeGroupId());
 
 			if (importedArticle == null) {
 				importedArticle = ArticleLocalServiceUtil.addArticle(
@@ -557,7 +559,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setCreateDate(template.getCreateDate());
 		serviceContext.setModifiedDate(template.getModifiedDate());
-		serviceContext.setScopeGroupId(context.getGroupId());
+		serviceContext.setScopeGroupId(context.getScopeGroupId());
 
 		Template importedTemplate = null;
 
@@ -565,7 +567,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				PortletDataHandlerKeys.DATA_STRATEGY_MIRROR)) {
 
 			Template existingTemplate = TemplateUtil.fetchByUUID_G(
-				template.getUuid(), context.getGroupId());
+				template.getUuid(), context.getScopeGroupId());
 
 			if (existingTemplate == null) {
 				importedTemplate = TemplateLocalServiceUtil.addTemplate(
@@ -593,7 +595,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		if (context.getBooleanParameter(_NAMESPACE_TEMPLATE, "comments")) {
 			context.importComments(
 				Template.class, template.getTemplateId(),
-				importedTemplate.getTemplateId(), context.getGroupId());
+				importedTemplate.getTemplateId(), context.getScopeGroupId());
 		}
 	}
 
