@@ -27,7 +27,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 %>
 
 <aui:form method="post" name="fm">
-	<liferay-ui:tabs
+	<liferay-ui:header
 		names="parent-article"
 	/>
 

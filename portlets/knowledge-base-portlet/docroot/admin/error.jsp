@@ -16,7 +16,7 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-<liferay-ui:tabs
+<liferay-ui:header
 	backURL="javascript:history.go(-1);"
 	names="error"
 />
