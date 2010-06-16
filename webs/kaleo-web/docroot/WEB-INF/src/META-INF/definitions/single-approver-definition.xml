@@ -9,18 +9,18 @@
 	<description>A single approver can approve a workflow asset.</description>
 	<version>1</version>
 	<state>
-		<name>CREATED</name>
+		<name>created</name>
 		<initial>true</initial>
 		<transitions>
 			<transition>
 				<name>Review Content</name>
-				<target>REVIEW_CONTENT</target>
+				<target>review-content</target>
 				<default>true</default>
 			</transition>
 		</transitions>
 	</state>
 	<task>
-		<name>CREATOR_MODIFY</name>
+		<name>update-content</name>
 		<actions>
 			<notification>
 				<name>Creator Modification Notification</name>
@@ -31,20 +31,18 @@
 			</notification>
 		</actions>
 		<assignments>
-			<user>
-				<default>true</default>
-			</user>
+			<user />
 		</assignments>
 		<transitions>
 			<transition>
 				<name>Resubmit</name>
-				<target>REVIEW_CONTENT</target>
+				<target>review-content</target>
 				<default>true</default>
 			</transition>
 		</transitions>
 	</task>
 	<task>
-		<name>REVIEW_CONTENT</name>
+		<name>review-content</name>
 		<actions>
 			<notification>
 				<name>Review Content Notification</name>
@@ -55,32 +53,40 @@
 			</notification>
 		</actions>
 		<assignments>
-			<role>
-				<role-type>community</role-type>
-				<name>Community Content Reviewer</name>
-				<default>true</default>
-			</role>
-			<role>
-				<role-type>organization</role-type>
-				<name>Organization Content Reviewer</name>
-				<default>false</default>
-			</role>
+			<roles>
+				<role>
+					<role-type>community</role-type>
+					<name>Community Content Reviewer</name>
+				</role>
+				<role>
+					<role-type>organization</role-type>
+					<name>Organization Content Reviewer</name>
+				</role>
+				<role>
+					<role-type>regular</role-type>
+					<name>Portal Content Reviewer</name>
+				</role>
+				<role>
+					<role-type>regular</role-type>
+					<name>Administrator</name>
+				</role>
+			</roles>
 		</assignments>
 		<transitions>
 			<transition>
 				<name>Approve Asset</name>
-				<target>APPROVED</target>
+				<target>approved</target>
 				<default>true</default>
 			</transition>			
 			<transition>
 				<name>Review Failed</name>
-				<target>CREATOR_MODIFY</target>
+				<target>update-content</target>
 				<default>false</default>
 			</transition>
 		</transitions>
 	</task>
 	<state>
-		<name>APPROVED</name>
+		<name>approved</name>
 		<actions>
 			<action>
 				<name>Approve Asset</name>
