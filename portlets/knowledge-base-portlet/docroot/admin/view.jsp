@@ -27,11 +27,7 @@
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</portlet:renderURL>
 
-				<%
-				String taglibOnClick = "location.href = '" + addArticleURL + "';";
-				%>
-
-				<aui:button onClick="<%= taglibOnClick %>" value="add-article" />
+				<aui:button onClick="<%= addArticleURL %>" value="add-article" />
 			</c:if>
 
 			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
@@ -42,11 +38,7 @@
 					var="permissionsURL"
 				/>
 
-				<%
-				String taglibOnClick = "location.href = '" + permissionsURL + "';";
-				%>
-
-				<aui:button onClick="<%= taglibOnClick %>" value="permissions" />
+				<aui:button onClick="<%= permissionsURL %>" value="permissions" />
 			</c:if>
 		</div>
 	</div>
