@@ -75,7 +75,7 @@
 			</path>
 			<sequential>
 				<java
-					classname="com.liferay.util.xml.XMLFormatter"
+					classname="com.liferay.portal.tools.XMLFormatter"
 					classpathref="portal.classpath"
 					fork="true"
 					newenvironment="true"
