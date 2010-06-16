@@ -24,7 +24,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setParameter("tabs1", tabs1);
 %>
 
-<liferay-ui:header
+<liferay-ui:tabs
 	names="consumers,producers"
 	url="<%= portletURL.toString() %>"
 />
