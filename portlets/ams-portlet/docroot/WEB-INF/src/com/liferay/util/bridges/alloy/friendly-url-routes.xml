@@ -32,33 +32,33 @@
 		<default-parameter name="method">POST</default-parameter>
 	</route>
 	<route>
-		<pattern>GET/{controller}/{\d+:id}</pattern>
+		<pattern>GET/{controller}/{id:\d+}</pattern>
 		<default-parameter name="action">view</default-parameter>
 		<default-parameter name="format">html</default-parameter>
 		<default-parameter name="method">GET</default-parameter>
 	</route>
 	<route>
-		<pattern>GET/{controller}/{\d+:id}.{format}</pattern>
+		<pattern>GET/{controller}/{id:\d+}.{format}</pattern>
 		<default-parameter name="action">view</default-parameter>
 		<default-parameter name="method">GET</default-parameter>
 	</route>
 	<route>
-		<pattern>POST/{controller}/{\d+:id}</pattern>
+		<pattern>POST/{controller}/{id:\d+}</pattern>
 		<default-parameter name="action">update</default-parameter>
 		<default-parameter name="format">html</default-parameter>
 		<default-parameter name="method">POST</default-parameter>
 	</route>
 	<route>
-		<pattern>POST/{controller}/{\d+:id}.{format}</pattern>
+		<pattern>POST/{controller}/{id:\d+}.{format}</pattern>
 		<default-parameter name="action">update</default-parameter>
 		<default-parameter name="method">POST</default-parameter>
 	</route>
 	<route>
-		<pattern>{method}/{controller}/{\d+:id}/{action}</pattern>
+		<pattern>{method}/{controller}/{id:\d+}/{action}</pattern>
 		<default-parameter name="format">html</default-parameter>
 	</route>
 	<route>
-		<pattern>{method}/{controller}/{\d+:id}/{action}.{format}</pattern>
+		<pattern>{method}/{controller}/{id:\d+}/{action}.{format}</pattern>
 	</route>
 	<route>
 		<pattern>{method}/{controller}/{action}</pattern>
