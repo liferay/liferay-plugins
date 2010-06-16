@@ -21,12 +21,14 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 String dirName = ParamUtil.getString(request, "dirName");
 
-long companyId = (article != null) ? article.getCompanyId() : company.getCompanyId();
-String[] fileNames = (article != null) ? article.getAttachmentsFileNames() : new String[0];
+String[] fileNames = new String[0];
+
+if (article != null) {
+	fileNames = article.getAttachmentsFileNames();
+}
 
 if (Validator.isNotNull(dirName)) {
-	companyId = company.getCompanyId();
-	fileNames = DLServiceUtil.getFileNames(companyId, CompanyConstants.SYSTEM, dirName);
+	fileNames = DLServiceUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 }
 %>
 
@@ -39,7 +41,7 @@ if (Validator.isNotNull(dirName)) {
 
 			<div>
 				<portlet:resourceURL id="attachment" var="clipURL">
-					<portlet:param name="companyId" value="<%= String.valueOf(companyId) %>" />
+					<portlet:param name="companyId" value="<%= String.valueOf(company.getCompanyId()) %>" />
 					<portlet:param name="fileName" value="<%= fileName %>" />
 				</portlet:resourceURL>
 
