@@ -117,12 +117,12 @@ public class AlloyFriendlyURLMapper extends BaseFriendlyURLMapper {
 		String url = method + friendlyURLPath.substring(_MAPPING.length() + 1);
 
 		Map<String, String> routeParameters = router.urlToParameters(url);
-		
+
 		if (routeParameters == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"No route could be found to match URL " + url);
+				_log.warn("No route could be found to match URL " + url);
 			}
+
 			return;
 		}
 
@@ -146,7 +146,7 @@ public class AlloyFriendlyURLMapper extends BaseFriendlyURLMapper {
 	private static final String _MAPPING = "ams";
 
 	private static final String _PORTLET_ID = "1_WAR_amsportlet";
-	
+
 	private static Log _log = LogFactoryUtil.getLog(
 		AlloyFriendlyURLMapper.class);
 
