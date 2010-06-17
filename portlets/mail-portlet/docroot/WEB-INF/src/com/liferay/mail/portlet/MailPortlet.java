@@ -128,7 +128,7 @@ public class MailPortlet extends MVCPortlet {
 				}
 			}
 			catch (Exception e) {
-				_log.error(e.getMessage());
+				_log.error(e, e);
 			}
 		}
 		else {
