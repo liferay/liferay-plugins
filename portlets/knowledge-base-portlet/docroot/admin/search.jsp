@@ -67,7 +67,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 				}
 
 				pageContext.setAttribute("results", objects);
-				pageContext.setAttribute("total", objects.size());
+				pageContext.setAttribute("total", hits.getLength());
 				%>
 
 			</liferay-ui:search-container-results>
