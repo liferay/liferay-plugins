@@ -20,6 +20,10 @@
 	margin: 0 0 15px 0;
 }
 
+.knowledge-base-portlet-admin .top-links-container .article-search {
+	float: right;
+}
+
 /* ---------- Portlet ---------- */
 
 .knowledge-base-portlet-admin .kb-article-breadcrumbs {

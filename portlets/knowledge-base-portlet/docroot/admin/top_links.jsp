@@ -81,5 +81,21 @@ String path = GetterUtil.getString(request.getPathInfo());
 				url="<%= taglibURL %>"
 			/>
 		</div>
+
+		<div class="article-search">
+			<liferay-portlet:renderURL varImpl="searchURL">
+				<portlet:param name="jspPage" value="/admin/search.jsp" />
+			</liferay-portlet:renderURL>
+
+			<aui:form action="<%= searchURL %>" method="get" name="searchFm">
+				<liferay-portlet:renderURLParams varImpl="searchURL" />
+
+				<span class="aui-search-bar">
+					<aui:input inlineField="<%= true %>" label="" name="keywords" size="30" title="search-articles" type="text" />
+
+					<aui:button type="submit" value="search" />
+				</span>
+			</aui:form>
+		</div>
 	</div>
 </div>
