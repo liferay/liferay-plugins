@@ -22,8 +22,8 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 <c:if test="<%= enableArticleComments && (ArticlePermission.contains(permissionChecker, article, ActionKeys.ADD_DISCUSSION) || (MBMessageLocalServiceUtil.getDiscussionMessagesCount(Article.class.getName(), article.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED) > 0)) %>">
 	<div class="kb-article-discussion">
-		<liferay-ui:panel-container extended="<%= false %>" id='<%= "knowledgeBaseArticle" + article.getResourcePrimKey() + "CommentsPanelContainer" %>' persistState="<%= true %>">
-			<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= "knowledgeBaseArticle" + article.getResourcePrimKey() + "CommentsPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "comments") %>'>
+		<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "Article" + article.getResourcePrimKey() + "CommentsPanelContainer" %>' persistState="<%= true %>">
+			<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "Article" + article.getResourcePrimKey() + "CommentsPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "comments") %>'>
 				<portlet:actionURL name="invokeTaglibDiscussion" var="discussionURL" />
 
 				<liferay-ui:discussion

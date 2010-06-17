@@ -22,8 +22,8 @@ Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLA
 
 <c:if test="<%= enableTemplateComments && (TemplatePermission.contains(permissionChecker, template, ActionKeys.ADD_DISCUSSION) || (MBMessageLocalServiceUtil.getDiscussionMessagesCount(Template.class.getName(), template.getTemplateId(), WorkflowConstants.STATUS_APPROVED) > 0)) %>">
 	<div class="kb-template-discussion">
-		<liferay-ui:panel-container extended="<%= false %>" id='<%= "knowledgeBaseTemplate" + template.getTemplateId() + "CommentsPanelContainer" %>' persistState="<%= true %>">
-			<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= "knowledgeBaseTemplate" + template.getTemplateId() + "CommentsPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "comments") %>'>
+		<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "Template" + template.getTemplateId() + "CommentsPanelContainer" %>' persistState="<%= true %>">
+			<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "Template" + template.getTemplateId() + "CommentsPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "comments") %>'>
 				<portlet:actionURL name="invokeTaglibDiscussion" var="discussionURL" />
 
 				<liferay-ui:discussion

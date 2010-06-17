@@ -150,8 +150,8 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 			</div>
 
 			<div class="kb-entity-footer">
-				<liferay-ui:panel-container extended="<%= false %>" id='<%= "knowledgeBaseArticle" + article.getResourcePrimKey() + "VersionHistoryPanelContainer" %>' persistState="<%= true %>">
-					<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= "knowledgeBaseArticle" + article.getResourcePrimKey() + "VersionHistoryPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "version-history") %>'>
+				<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "Article" + article.getResourcePrimKey() + "VersionHistoryPanelContainer" %>' persistState="<%= true %>">
+					<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "Article" + article.getResourcePrimKey() + "VersionHistoryPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "version-history") %>'>
 						<aui:button-row>
 							<aui:button type="submit" value="compare-versions" />
 						</aui:button-row>
