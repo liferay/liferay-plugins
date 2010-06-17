@@ -74,6 +74,8 @@ long accountId = ParamUtil.getLong(request, "accountId");
 	A.one('#<portlet:namespace />addFolder').on(
 		'click',
 		function(event) {
+			Liferay.Mail.setStatus('info', Liferay.Language.get('adding-folder'), true);
+
 			var displayName = A.one('#<portlet:namespace />displayName').get('value');
 
 			A.io.request(

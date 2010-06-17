@@ -161,6 +161,8 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 		function(event) {
 			event.preventDefault();
 
+			Liferay.Mail.setStatus('info', Liferay.Language.get('adding-account'), true);
+
 			var form =  event.currentTarget;
 
 			A.io.request(

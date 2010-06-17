@@ -374,7 +374,7 @@ AUI().add(
 				instance.loadAccounts();
 			},
 
-			setStatus: function(type, message) {
+			setStatus: function(type, message, indefinite) {
 				var messageType = 'portlet-msg-error';
 
 				if (type == 'success') {
@@ -388,12 +388,14 @@ AUI().add(
 
 				var status = statusContainers.all('table');
 
-				setTimeout(
-					function() {
-						status.remove();
-					},
-					10000
-				);
+				if (!indefinite) {
+					setTimeout(
+						function() {
+							status.remove();
+						},
+						5000
+					);
+				}
 			},
 
 			_assignEvents: function() {

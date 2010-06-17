@@ -58,6 +58,8 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 		function(event) {
 			event.preventDefault();
 
+			Liferay.Mail.setStatus('info', Liferay.Language.get('updating-account'), true);
+
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/update_account',
 				{

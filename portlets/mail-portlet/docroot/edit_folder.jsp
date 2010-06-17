@@ -44,6 +44,8 @@ Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 		function(event) {
 			event.preventDefault();
 
+			Liferay.Mail.setStatus('info', Liferay.Language.get('updating-folder'), true);
+
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/rename_folder',
 				{
