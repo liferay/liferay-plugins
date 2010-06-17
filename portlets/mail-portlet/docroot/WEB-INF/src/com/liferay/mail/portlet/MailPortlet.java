@@ -54,46 +54,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class MailPortlet extends MVCPortlet {
 
-	public void serveResource(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws IOException, PortletException {
-
-		String jspPage = resourceRequest.getParameter("jspPage");
-
-		if (jspPage.equals("/attachment.jsp")) {
-			HttpServletRequest request = PortalUtil.getHttpServletRequest(
-				resourceRequest);
-
-			long attachmentId = ParamUtil.getLong(
-				resourceRequest, "attachmentId");
-
-			try {
-				MailManager mailManager = MailManager.getInstance(request);
-
-				Attachment attachment =
-					AttachmentLocalServiceUtil.getAttachment(attachmentId);
-
-				InputStream is = mailManager.getAttachment(
-					attachmentId);
-
-				if (Validator.isNotNull(is)) {
-					String contentType = MimeTypesUtil.getContentType(
-						attachment.getFileName());
-
-					PortletResponseUtil.sendFile(
-						resourceRequest, resourceResponse,
-						attachment.getFileName(), is, contentType);
-				}
-			}
-			catch (Exception e) {
-				_log.error(e.getMessage());
-			}
-		}
-		else {
-			super.serveResource(resourceRequest, resourceResponse);
-		}
-	}
-
 	public void sendMessage(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -134,6 +94,46 @@ public class MailPortlet extends MVCPortlet {
 		actionResponse.sendRedirect(
 			PortalUtil.getLayoutURL(themeDisplay) +
 				"/-/mail/send_message?responseData=" + responseData);
+	}
+
+	public void serveResource(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws IOException, PortletException {
+
+		String jspPage = resourceRequest.getParameter("jspPage");
+
+		if (jspPage.equals("/attachment.jsp")) {
+			HttpServletRequest request = PortalUtil.getHttpServletRequest(
+				resourceRequest);
+
+			long attachmentId = ParamUtil.getLong(
+				resourceRequest, "attachmentId");
+
+			try {
+				MailManager mailManager = MailManager.getInstance(request);
+
+				Attachment attachment =
+					AttachmentLocalServiceUtil.getAttachment(attachmentId);
+
+				InputStream is = mailManager.getAttachment(
+					attachmentId);
+
+				if (Validator.isNotNull(is)) {
+					String contentType = MimeTypesUtil.getContentType(
+						attachment.getFileName());
+
+					PortletResponseUtil.sendFile(
+						resourceRequest, resourceResponse,
+						attachment.getFileName(), is, contentType);
+				}
+			}
+			catch (Exception e) {
+				_log.error(e.getMessage());
+			}
+		}
+		else {
+			super.serveResource(resourceRequest, resourceResponse);
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(MailPortlet.class);
