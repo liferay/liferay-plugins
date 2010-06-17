@@ -95,20 +95,21 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			context.addPermissions(
 				"com.liferay.knowledgebase.admin", context.getScopeGroupId());
 
-			Document doc = SAXReaderUtil.createDocument();
+			Document document = SAXReaderUtil.createDocument();
 
-			Element root = doc.addElement("knowledge-base-admin-data");
+			Element rootElement = document.addElement(
+				"knowledge-base-admin-data");
 
-			root.addAttribute(
+			rootElement.addAttribute(
 				"group-id", String.valueOf(context.getScopeGroupId()));
 
-			exportArticles(context, root);
+			exportArticles(context, rootElement);
 
 			if (context.getBooleanParameter(_NAMESPACE, "templates")) {
-				exportTemplates(context, root);
+				exportTemplates(context, rootElement);
 			}
 
-			return doc.formattedString();
+			return document.formattedString();
 		}
 		catch (Exception e) {
 			throw new PortletDataException(e);
@@ -133,14 +134,14 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				"com.liferay.knowledgebase.admin", context.getSourceGroupId(),
 				context.getScopeGroupId());
 
-			Document doc = SAXReaderUtil.read(data);
+			Document document = SAXReaderUtil.read(data);
 
-			Element root = doc.getRootElement();
+			Element rootElement = document.getRootElement();
 
-			importArticles(context, root);
+			importArticles(context, rootElement);
 
 			if (context.getBooleanParameter(_NAMESPACE, "templates")) {
-				importTemplates(context, root);
+				importTemplates(context, rootElement);
 			}
 
 			return null;
@@ -151,13 +152,13 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	protected void exportArticle(
-			PortletDataContext context, Element root, String path,
+			PortletDataContext context, Element rootElement, String path,
 			Article article)
 		throws PortalException, SystemException {
 
-		Element articleEl = root.addElement("article");
+		Element articleElement = rootElement.addElement("article");
 
-		articleEl.addAttribute("path", path);
+		articleElement.addAttribute("path", path);
 
 		article.setUserUuid(article.getUserUuid());
 
@@ -165,10 +166,11 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		context.addPermissions(Article.class, article.getResourcePrimKey());
 
-		exportArticleVersions(context, articleEl, article.getResourcePrimKey());
+		exportArticleVersions(
+			context, articleElement, article.getResourcePrimKey());
 
 		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "attachments")) {
-			exportArticleAttachments(context, root, article);
+			exportArticleAttachments(context, rootElement, article);
 		}
 
 		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "comments")) {
@@ -177,12 +179,13 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	protected void exportArticleAttachments(
-			PortletDataContext context, Element root, Article article)
+			PortletDataContext context, Element rootElement, Article article)
 		throws PortalException, SystemException {
 
-		Element articleAttachmentsEl = root.addElement("article-attachments");
+		Element articleAttachmentsElement = rootElement.addElement(
+			"article-attachments");
 
-		articleAttachmentsEl.addAttribute(
+		articleAttachmentsElement.addAttribute(
 			"resource-prim-key", String.valueOf(article.getResourcePrimKey()));
 
 		String rootPath =
@@ -196,20 +199,21 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			InputStream inputStream = DLLocalServiceUtil.getFileAsStream(
 				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
-			Element fileEl = articleAttachmentsEl.addElement("file");
+			Element fileElement = articleAttachmentsElement.addElement("file");
 
-			fileEl.addAttribute("path", path);
-			fileEl.addAttribute("short-file-name", shortFileName);
+			fileElement.addAttribute("path", path);
+			fileElement.addAttribute("short-file-name", shortFileName);
 
 			context.addZipEntry(path, inputStream);
 		}
 	}
 
 	protected void exportArticleVersions(
-			PortletDataContext context, Element articleEl, long resourcePrimKey)
+			PortletDataContext context, Element articleElement,
+			long resourcePrimKey)
 		throws SystemException {
 
-		Element versionsEl = articleEl.addElement("versions");
+		Element versionsElement = articleElement.addElement("versions");
 
 		String rootPath =
 			context.getPortletPath(PortletKeys.KNOWLEDGE_BASE_ADMIN) +
@@ -223,15 +227,16 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			String path =
 				rootPath + StringPool.SLASH + article.getArticleId() + ".xml";
 
-			Element curArticleEl = versionsEl.addElement("article");
+			Element curArticleElement = versionsElement.addElement("article");
 
-			curArticleEl.addAttribute("path", path);
+			curArticleElement.addAttribute("path", path);
 
 			context.addZipEntry(path, article);
 		}
 	}
 
-	protected void exportArticles(PortletDataContext context, Element root)
+	protected void exportArticles(
+			PortletDataContext context, Element rootElement)
 		throws PortalException, SystemException {
 
 		for (Article article : filterArticles(context)) {
@@ -243,18 +248,18 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				continue;
 			}
 
-			exportArticle(context, root, path, article);
+			exportArticle(context, rootElement, path, article);
 		}
 	}
 
 	protected void exportTemplate(
-			PortletDataContext context, Element root, String path,
+			PortletDataContext context, Element rootElement, String path,
 			Template template)
 		throws PortalException, SystemException {
 
-		Element templateEl = root.addElement("template");
+		Element templateElement = rootElement.addElement("template");
 
-		templateEl.addAttribute("path", path);
+		templateElement.addAttribute("path", path);
 
 		template.setUserUuid(template.getUserUuid());
 
@@ -267,7 +272,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
-	protected void exportTemplates(PortletDataContext context, Element root)
+	protected void exportTemplates(
+			PortletDataContext context, Element rootElement)
 		throws PortalException, SystemException {
 
 		List<Template> templates = TemplateUtil.findByGroupId(
@@ -286,7 +292,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				continue;
 			}
 
-			exportTemplate(context, root, path, template);
+			exportTemplate(context, rootElement, path, template);
 		}
 	}
 
@@ -343,7 +349,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	protected void importArticle(
 			PortletDataContext context, Map<Long, Long> resourcePrimKeys,
-			Map<String, String> dirNames, Element articleEl, Article article)
+			Map<String, String> dirNames, Element articleElement,
+			Article article)
 		throws Exception {
 
 		long userId = context.getUserId(article.getUserUuid());
@@ -384,7 +391,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			if (existingArticle == null) {
 				importedArticle = importArticleVersions(
 					context, article.getUuid(), parentResourcePrimKey, priority,
-					dirName, articleEl);
+					dirName, articleElement);
 			}
 			else {
 				importedArticle = ArticleLocalServiceUtil.updateArticle(
@@ -397,7 +404,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		else {
 			importedArticle = importArticleVersions(
 				context, null, parentResourcePrimKey, priority, dirName,
-				articleEl);
+				articleElement);
 		}
 
 		resourcePrimKeys.put(
@@ -417,14 +424,14 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	protected void importArticleAttachments(
 			PortletDataContext context, long importId,
-			Map<String, String> dirNames, Element root)
+			Map<String, String> dirNames, Element rootElement)
 		throws Exception {
 
-		List<Element> articlesAttachmentsEl = root.elements(
+		List<Element> articleAttachmentsElements = rootElement.elements(
 			"article-attachments");
 
-		for (Element articleAttachmentsEl : articlesAttachmentsEl) {
-			String resourcePrimKey = articleAttachmentsEl.attributeValue(
+		for (Element articleAttachmentsElement : articleAttachmentsElements) {
+			String resourcePrimKey = articleAttachmentsElement.attributeValue(
 				"resource-prim-key");
 
 			String dirName =
@@ -434,12 +441,16 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			DLServiceUtil.addDirectory(
 				context.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
-			for (Element fileEl : articleAttachmentsEl.elements("file")) {
-				String shortFileName = fileEl.attributeValue("short-file-name");
+			List<Element> fileElements = articleAttachmentsElement.elements(
+				"file");
+
+			for (Element fileElement : fileElements) {
+				String shortFileName = fileElement.attributeValue(
+					"short-file-name");
 
 				String fileName = dirName + StringPool.SLASH + shortFileName;
 				InputStream inputStream = context.getZipEntryAsInputStream(
-					fileEl.attributeValue("path"));
+					fileElement.attributeValue("path"));
 
 				ServiceContext serviceContext = new ServiceContext();
 
@@ -457,24 +468,26 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	protected Article importArticleVersions(
 			PortletDataContext context, String uuid, long parentResourcePrimKey,
-			int priority, String dirName, Element articleEl)
+			int priority, String dirName, Element articleElement)
 		throws Exception {
 
-		Element versionsEl = articleEl.element("versions");
+		Element versionsElement = articleElement.element("versions");
 
-		List<Element> articlesEl = versionsEl.elements("article");
+		List<Element> articleElements = versionsElement.elements("article");
 
 		Article importedArticle = null;
 
-		for (Element curArticleEl : articlesEl) {
+		for (Element curArticleElement : articleElements) {
 			Article curArticle = (Article)context.getZipEntryAsObject(
-				curArticleEl.attributeValue("path"));
+				curArticleElement.attributeValue("path"));
 
 			long userId = context.getUserId(curArticle.getUserUuid());
 
 			String curDirName = StringPool.BLANK;
 
-			if (articlesEl.indexOf(curArticleEl) == (articlesEl.size() - 1)) {
+			int index = articleElements.indexOf(curArticleElement);
+
+			if (index == (articleElements.size() - 1)) {
 				curDirName = dirName;
 			}
 
@@ -504,7 +517,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		return importedArticle;
 	}
 
-	protected void importArticles(PortletDataContext context, Element root)
+	protected void importArticles(
+			PortletDataContext context, Element rootElement)
 		throws Exception {
 
 		long importId = CounterLocalServiceUtil.increment();
@@ -520,11 +534,12 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					context.getCompanyId(), CompanyConstants.SYSTEM,
 					"knowledgebase/temp/import/" + importId);
 
-				importArticleAttachments(context, importId, dirNames, root);
+				importArticleAttachments(
+					context, importId, dirNames, rootElement);
 			}
 
-			for (Element articleEl : root.elements("article")) {
-				String path = articleEl.attributeValue("path");
+			for (Element articleElement : rootElement.elements("article")) {
+				String path = articleElement.attributeValue("path");
 
 				if (!context.isPathNotProcessed(path)) {
 					continue;
@@ -533,7 +548,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				Article article = (Article)context.getZipEntryAsObject(path);
 
 				importArticle(
-					context, resourcePrimKeys, dirNames, articleEl, article);
+					context, resourcePrimKeys, dirNames, articleElement,
+					article);
 			}
 		}
 		finally {
@@ -599,11 +615,12 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
-	protected void importTemplates(PortletDataContext context, Element root)
+	protected void importTemplates(
+			PortletDataContext context, Element rootElement)
 		throws Exception {
 
-		for (Element templateEl : root.elements("template")) {
-			String path = templateEl.attributeValue("path");
+		for (Element templateElement : rootElement.elements("template")) {
+			String path = templateElement.attributeValue("path");
 
 			if (!context.isPathNotProcessed(path)) {
 				continue;
