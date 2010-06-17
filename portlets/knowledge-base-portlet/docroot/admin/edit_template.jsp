@@ -34,7 +34,7 @@ String content = BeanParamUtil.getString(template, request, "content");
 <aui:form action="<%= updateTemplateURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateTemplate();" %>'>
 	<aui:input name="templateId" type="hidden" value="<%= templateId %>" />
 
-	<liferay-ui:header
+	<liferay-ui:tabs
 		backURL="<%= PortalUtil.escapeRedirect(redirect) %>"
 		names="template"
 	/>

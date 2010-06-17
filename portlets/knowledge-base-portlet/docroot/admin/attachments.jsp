@@ -31,7 +31,7 @@ String[] fileNames = DLServiceUtil.getFileNames(company.getCompanyId(), CompanyC
 <aui:form method="post" name="fm">
 	<aui:input name="fileName" type="hidden" />
 
-	<liferay-ui:header
+	<liferay-ui:tabs
 		names="attachments"
 	/>
 

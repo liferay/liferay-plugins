@@ -42,7 +42,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 	<aui:input name="parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
 	<aui:input name="dirName" type="hidden" value="<%= dirName %>" />
 
-	<liferay-ui:header
+	<liferay-ui:tabs
 		backURL="<%= PortalUtil.escapeRedirect(redirect) %>"
 		names="article"
 	/>

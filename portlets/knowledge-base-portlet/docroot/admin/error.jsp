@@ -18,7 +18,7 @@
 
 <liferay-ui:header
 	backURL="javascript:history.go(-1);"
-	names="error"
+	title="error"
 />
 
 <liferay-ui:error exception="<%= NoSuchArticleException.class %>" message="the-article-could-not-be-found" />
