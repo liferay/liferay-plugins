@@ -212,31 +212,36 @@ public class KaleoLogLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoInstanceKaleoLogs(
-		long kaleoInstanceId, int start, int end,
+		long kaleoInstanceId, java.util.List<java.lang.Integer> logTypes,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getKaleoInstanceKaleoLogs(kaleoInstanceId, start, end,
-			orderByComparator);
+				   .getKaleoInstanceKaleoLogs(kaleoInstanceId, logTypes, start,
+			end, orderByComparator);
 	}
 
-	public static int getKaleoInstanceKaleoLogsCount(long kaleoInstanceId)
+	public static int getKaleoInstanceKaleoLogsCount(long kaleoInstanceId,
+		java.util.List<java.lang.Integer> logTypes)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getKaleoInstanceKaleoLogsCount(kaleoInstanceId);
+		return getService()
+				   .getKaleoInstanceKaleoLogsCount(kaleoInstanceId, logTypes);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoTaskKaleoLogs(
-		long kaleoTaskId, int start, int end,
+		long kaleoTaskId, java.util.List<java.lang.Integer> logTypes,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getKaleoTaskKaleoLogs(kaleoTaskId, start, end,
+				   .getKaleoTaskKaleoLogs(kaleoTaskId, logTypes, start, end,
 			orderByComparator);
 	}
 
-	public static int getKaleoTaskKaleoLogsCount(long kaleoTaskId)
+	public static int getKaleoTaskKaleoLogsCount(long kaleoTaskId,
+		java.util.List<java.lang.Integer> logTypes)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getKaleoTaskKaleoLogsCount(kaleoTaskId);
+		return getService().getKaleoTaskKaleoLogsCount(kaleoTaskId, logTypes);
 	}
 
 	public static void clearService() {

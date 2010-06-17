@@ -904,19 +904,26 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoInstanceKaleoLogs(
-		long kaleoInstanceId, int start, int end,
+		long kaleoInstanceId, java.util.List<java.lang.Integer> logTypes,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(kaleoInstanceId);
 
-		Object paramObj1 = new IntegerWrapper(start);
+		Object paramObj1 = ClpSerializer.translateInput(logTypes);
 
-		Object paramObj2 = new IntegerWrapper(end);
+		if (logTypes == null) {
+			paramObj1 = new NullWrapper("java.util.List");
+		}
 
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
+		Object paramObj2 = new IntegerWrapper(start);
+
+		Object paramObj3 = new IntegerWrapper(end);
+
+		Object paramObj4 = ClpSerializer.translateInput(orderByComparator);
 
 		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
+			paramObj4 = new NullWrapper(
 					"com.liferay.portal.kernel.util.OrderByComparator");
 		}
 
@@ -924,7 +931,9 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 
 		try {
 			returnObj = _classLoaderProxy.invoke("getKaleoInstanceKaleoLogs",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+					});
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -943,15 +952,22 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getKaleoInstanceKaleoLogsCount(long kaleoInstanceId)
+	public int getKaleoInstanceKaleoLogsCount(long kaleoInstanceId,
+		java.util.List<java.lang.Integer> logTypes)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(kaleoInstanceId);
+
+		Object paramObj1 = ClpSerializer.translateInput(logTypes);
+
+		if (logTypes == null) {
+			paramObj1 = new NullWrapper("java.util.List");
+		}
 
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("getKaleoInstanceKaleoLogsCount",
-					new Object[] { paramObj0 });
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -971,19 +987,26 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoTaskKaleoLogs(
-		long kaleoTaskId, int start, int end,
+		long kaleoTaskId, java.util.List<java.lang.Integer> logTypes,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(kaleoTaskId);
 
-		Object paramObj1 = new IntegerWrapper(start);
+		Object paramObj1 = ClpSerializer.translateInput(logTypes);
 
-		Object paramObj2 = new IntegerWrapper(end);
+		if (logTypes == null) {
+			paramObj1 = new NullWrapper("java.util.List");
+		}
 
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
+		Object paramObj2 = new IntegerWrapper(start);
+
+		Object paramObj3 = new IntegerWrapper(end);
+
+		Object paramObj4 = ClpSerializer.translateInput(orderByComparator);
 
 		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
+			paramObj4 = new NullWrapper(
 					"com.liferay.portal.kernel.util.OrderByComparator");
 		}
 
@@ -991,7 +1014,9 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 
 		try {
 			returnObj = _classLoaderProxy.invoke("getKaleoTaskKaleoLogs",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+					});
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -1010,15 +1035,22 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getKaleoTaskKaleoLogsCount(long kaleoTaskId)
+	public int getKaleoTaskKaleoLogsCount(long kaleoTaskId,
+		java.util.List<java.lang.Integer> logTypes)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(kaleoTaskId);
+
+		Object paramObj1 = ClpSerializer.translateInput(logTypes);
+
+		if (logTypes == null) {
+			paramObj1 = new NullWrapper("java.util.List");
+		}
 
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("getKaleoTaskKaleoLogsCount",
-					new Object[] { paramObj0 });
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {

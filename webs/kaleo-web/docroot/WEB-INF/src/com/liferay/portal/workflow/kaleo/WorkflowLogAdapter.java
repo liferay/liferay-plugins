@@ -16,8 +16,8 @@ package com.liferay.portal.workflow.kaleo;
 
 import com.liferay.portal.kernel.workflow.DefaultWorkflowLog;
 import com.liferay.portal.model.Role;
-import com.liferay.portal.workflow.kaleo.definition.LogType;
 import com.liferay.portal.workflow.kaleo.model.KaleoLog;
+import com.liferay.portal.workflow.kaleo.util.KaleoLogUtil;
 
 /**
  * <a href="WorkflowLogAdapter.java.html"><b><i>View Source</i></b></a>
@@ -61,23 +61,9 @@ public class WorkflowLogAdapter extends DefaultWorkflowLog {
 		}
 
 		setState(kaleoLogEntry.getKaleoNodeName());
-		setType(convertType(kaleoLogEntry.getType()));
+		setType(KaleoLogUtil.convert(kaleoLogEntry.getType()));
 		setWorkflowLogId(kaleoLogEntry.getKaleoLogId());
 		setWorkflowTaskId(kaleoLogEntry.getKaleoTaskInstanceTokenId());
-	}
-
-	protected int convertType(String type) {
-		LogType logType = LogType.valueOf(type);
-
-		if (logType.equals(LogType.NODE_EXIT)) {
-			return TRANSITION;
-		}
-
-		if (logType.equals(LogType.TASK_ASSIGNMENT)) {
-			return TASK_ASSIGN;
-		}
-
-		return -1;
 	}
 
 }

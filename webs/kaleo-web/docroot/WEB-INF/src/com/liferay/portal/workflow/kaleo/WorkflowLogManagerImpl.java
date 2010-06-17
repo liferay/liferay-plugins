@@ -32,12 +32,12 @@ import java.util.List;
 public class WorkflowLogManagerImpl implements WorkflowLogManager {
 
 	public int getWorkflowLogCountByWorkflowInstance(
-			long companyId, long workflowInstanceId)
+			long companyId, long workflowInstanceId, List<Integer> logTypes)
 		throws WorkflowException {
 
 		try {
 			return KaleoLogLocalServiceUtil.getKaleoInstanceKaleoLogsCount(
-				workflowInstanceId);
+				workflowInstanceId, logTypes);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -45,12 +45,12 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 	}
 
 	public int getWorkflowLogCountByWorkflowTask(
-			long companyId, long workflowTaskId)
+			long companyId, long workflowTaskId, List<Integer> logTypes)
 		throws WorkflowException {
 
 		try {
 			return KaleoLogLocalServiceUtil.getKaleoTaskKaleoLogsCount(
-				workflowTaskId);
+				workflowTaskId, logTypes);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -58,14 +58,15 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 	}
 
 	public List<WorkflowLog> getWorkflowLogsByWorkflowInstance(
-			long companyId, long workflowInstanceId, int start, int end,
-			OrderByComparator orderByComparator)
+			long companyId, long workflowInstanceId, List<Integer> logTypes,
+			int start, int end, OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		try {
 			List<KaleoLog> kaleoLogs =
 				KaleoLogLocalServiceUtil.getKaleoInstanceKaleoLogs(
-					workflowInstanceId, start, end, orderByComparator);
+					workflowInstanceId, logTypes,
+					start, end, orderByComparator);
 
 			return toWorkflowLogs(kaleoLogs);
 		}
@@ -75,14 +76,14 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 	}
 
 	public List<WorkflowLog> getWorkflowLogsByWorkflowTask(
-			long companyId, long workflowTaskId, int start, int end,
-			OrderByComparator orderByComparator)
+			long companyId, long workflowTaskId, List<Integer> logTypes,
+			int start, int end, OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		try {
 			List<KaleoLog> kaleoLogs =
 				KaleoLogLocalServiceUtil.getKaleoTaskKaleoLogs(
-					workflowTaskId, start, end, orderByComparator);
+					workflowTaskId, logTypes, start, end, orderByComparator);
 
 			return toWorkflowLogs(kaleoLogs);
 		}

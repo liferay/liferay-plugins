@@ -204,29 +204,35 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService {
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoInstanceKaleoLogs(
-		long kaleoInstanceId, int start, int end,
+		long kaleoInstanceId, java.util.List<java.lang.Integer> logTypes,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoLogLocalService.getKaleoInstanceKaleoLogs(kaleoInstanceId,
-			start, end, orderByComparator);
+			logTypes, start, end, orderByComparator);
 	}
 
-	public int getKaleoInstanceKaleoLogsCount(long kaleoInstanceId)
+	public int getKaleoInstanceKaleoLogsCount(long kaleoInstanceId,
+		java.util.List<java.lang.Integer> logTypes)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoLogLocalService.getKaleoInstanceKaleoLogsCount(kaleoInstanceId);
+		return _kaleoLogLocalService.getKaleoInstanceKaleoLogsCount(kaleoInstanceId,
+			logTypes);
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoTaskKaleoLogs(
-		long kaleoTaskId, int start, int end,
+		long kaleoTaskId, java.util.List<java.lang.Integer> logTypes,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoLogLocalService.getKaleoTaskKaleoLogs(kaleoTaskId, start,
-			end, orderByComparator);
+		return _kaleoLogLocalService.getKaleoTaskKaleoLogs(kaleoTaskId,
+			logTypes, start, end, orderByComparator);
 	}
 
-	public int getKaleoTaskKaleoLogsCount(long kaleoTaskId)
+	public int getKaleoTaskKaleoLogsCount(long kaleoTaskId,
+		java.util.List<java.lang.Integer> logTypes)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoLogLocalService.getKaleoTaskKaleoLogsCount(kaleoTaskId);
+		return _kaleoLogLocalService.getKaleoTaskKaleoLogsCount(kaleoTaskId,
+			logTypes);
 	}
 
 	public KaleoLogLocalService getWrappedKaleoLogLocalService() {

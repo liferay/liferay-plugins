@@ -14,9 +14,16 @@
 
 package com.liferay.portal.workflow.kaleo.service.impl;
 
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Junction;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.NoSuchLogException;
@@ -29,6 +36,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoLogLocalServiceBaseImpl;
+import com.liferay.portal.workflow.kaleo.util.KaleoLogUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
@@ -292,34 +300,116 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 	}
 
 	public List<KaleoLog> getKaleoInstanceKaleoLogs(
-			long kaleoInstanceId, int start, int end,
+			long kaleoInstanceId, List<Integer> logTypes, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
+		if ((logTypes == null) || logTypes.isEmpty()) {
+			return kaleoLogPersistence.findByKaleoInstanceId(
+				kaleoInstanceId, start, end, orderByComparator);
+		}
+		else {
+			DynamicQuery dynamicQuery = buildKaleoInstanceDynamicQuery(
+				kaleoInstanceId, logTypes);
 
-		return kaleoLogPersistence.findByKaleoInstanceId(
-			kaleoInstanceId, start, end, orderByComparator);
+			return dynamicQuery(dynamicQuery, start, end, orderByComparator);
+		}
 	}
 
-	public int getKaleoInstanceKaleoLogsCount(long kaleoInstanceId)
+	public int getKaleoInstanceKaleoLogsCount(
+			long kaleoInstanceId, List<Integer> logTypes)
 		throws SystemException {
 
-		return kaleoLogPersistence.countByKaleoInstanceId(
-			kaleoInstanceId);
+		if ((logTypes == null) || logTypes.isEmpty()) {
+			return kaleoLogPersistence.countByKaleoInstanceId(
+				kaleoInstanceId);
+		}
+		else {
+			DynamicQuery dynamicQuery = buildKaleoInstanceDynamicQuery(
+				kaleoInstanceId, logTypes);
+
+			return (int)dynamicQueryCount(dynamicQuery);
+		}
+
 	}
 
 	public List<KaleoLog> getKaleoTaskKaleoLogs(
-			long kaleoTaskId, int start, int end,
+			long kaleoTaskId, List<Integer> logTypes, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		return kaleoLogPersistence.findByKaleoTaskInstanceTokenId(
-			kaleoTaskId, start, end, orderByComparator);
+		if ((logTypes == null) || logTypes.isEmpty()) {
+			return kaleoLogPersistence.findByKaleoTaskInstanceTokenId(
+				kaleoTaskId, start, end, orderByComparator);
+		}
+		else {
+			DynamicQuery dynamicQuery = buildDynamicQuery(
+				kaleoTaskId, logTypes);
+
+			return dynamicQuery(dynamicQuery, start, end, orderByComparator);
+		}
 	}
 
-	public int getKaleoTaskKaleoLogsCount(long kaleoTaskId)
+	public int getKaleoTaskKaleoLogsCount(
+			long kaleoTaskId, List<Integer> logTypes)
 		throws SystemException {
 
-		return kaleoLogPersistence.countByKaleoTaskInstanceTokenId(kaleoTaskId);
+		if ((logTypes == null) || logTypes.isEmpty()) {
+			return kaleoLogPersistence.countByKaleoTaskInstanceTokenId(
+				kaleoTaskId);
+		}
+		else {
+			DynamicQuery dynamicQuery = buildDynamicQuery(
+				kaleoTaskId, logTypes);
+
+			return (int)dynamicQueryCount(dynamicQuery);
+		}
+	}
+
+	private void addLogTypesJunction(
+		DynamicQuery dynamicQuery, List<Integer> logTypes) {
+
+		Junction junction = RestrictionsFactoryUtil.disjunction();
+
+		for (Integer logTypeIntValue : logTypes) {
+			String logType = KaleoLogUtil.convert(logTypeIntValue);
+
+			if (Validator.isNotNull(logType)) {
+				junction.add(
+					PropertyFactoryUtil.forName("type").eq(logType));
+			}
+		}
+
+		dynamicQuery.add(junction);
+	}
+
+	protected DynamicQuery buildDynamicQuery(
+		long kaleoTaskId, List<Integer> logTypes) {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			KaleoLog.class, PortletClassLoaderUtil.getClassLoader());
+
+		dynamicQuery.add(
+			PropertyFactoryUtil.forName("kaleoTaskInstanceTokenId").eq(
+				kaleoTaskId));
+
+		addLogTypesJunction(dynamicQuery, logTypes);
+
+		return dynamicQuery;
+	}
+
+	protected DynamicQuery buildKaleoInstanceDynamicQuery(
+		long kaleoInstanceId, List<Integer> logTypes) {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			KaleoLog.class, PortletClassLoaderUtil.getClassLoader());
+
+		dynamicQuery.add(
+			PropertyFactoryUtil.forName("kaleoInstanceId").eq(
+				kaleoInstanceId));
+
+		addLogTypesJunction(dynamicQuery, logTypes);
+
+		return dynamicQuery;
 	}
 
 	protected KaleoLog createKaleoLog(

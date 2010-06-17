@@ -42,22 +42,22 @@ import org.jbpm.JbpmContext;
 public class WorkflowLogManagerImpl implements WorkflowLogManager {
 
 	public int getWorkflowLogCountByWorkflowInstance(
-			long companyId, long workflowInstanceId)
+			long companyId, long workflowInstanceId, List<Integer> logTypes)
 		throws WorkflowException {
 
 		return getWorkflowLogsCount(companyId, -1, workflowInstanceId);
 	}
 
 	public int getWorkflowLogCountByWorkflowTask(
-			long companyId, long workflowTaskId)
+			long companyId, long workflowTaskId, List<Integer> logTypes)
 		throws WorkflowException {
 
 		return getWorkflowLogsCount(companyId, workflowTaskId, -1);
 	}
 
 	public List<WorkflowLog> getWorkflowLogsByWorkflowInstance(
-			long companyId, long workflowInstanceId, int start, int end,
-			OrderByComparator orderByComparator)
+			long companyId, long workflowInstanceId, List<Integer> logTypes,
+			int start, int end, OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		return getWorkflowLogs(
@@ -65,8 +65,8 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 	}
 
 	public List<WorkflowLog> getWorkflowLogsByWorkflowTask(
-			long companyId, long workflowTaskId, int start,	int end,
-			OrderByComparator orderByComparator)
+			long companyId, long workflowTaskId, List<Integer> logTypes,
+			int start,	int end, OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		return getWorkflowLogs(

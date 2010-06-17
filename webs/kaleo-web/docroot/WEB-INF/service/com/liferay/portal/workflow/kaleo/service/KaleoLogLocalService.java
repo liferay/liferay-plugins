@@ -166,21 +166,25 @@ public interface KaleoLogLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoInstanceKaleoLogs(
-		long kaleoInstanceId, int start, int end,
+		long kaleoInstanceId, java.util.List<java.lang.Integer> logTypes,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoInstanceKaleoLogsCount(long kaleoInstanceId)
+	public int getKaleoInstanceKaleoLogsCount(long kaleoInstanceId,
+		java.util.List<java.lang.Integer> logTypes)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoTaskKaleoLogs(
-		long kaleoTaskId, int start, int end,
+		long kaleoTaskId, java.util.List<java.lang.Integer> logTypes,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoTaskKaleoLogsCount(long kaleoTaskId)
+	public int getKaleoTaskKaleoLogsCount(long kaleoTaskId,
+		java.util.List<java.lang.Integer> logTypes)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }
