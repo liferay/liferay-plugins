@@ -72,15 +72,15 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			{ "kaleoInstanceTokenId", new Integer(Types.BIGINT) },
 			{ "kaleoTaskId", new Integer(Types.BIGINT) },
 			{ "kaleoTaskName", new Integer(Types.VARCHAR) },
-			{ "assigneeClassName", new Integer(Types.VARCHAR) },
-			{ "assigneeClassPK", new Integer(Types.BIGINT) },
+			{ "className", new Integer(Types.VARCHAR) },
+			{ "classPK", new Integer(Types.BIGINT) },
 			{ "completionUserId", new Integer(Types.BIGINT) },
 			{ "completed", new Integer(Types.BOOLEAN) },
 			{ "completionDate", new Integer(Types.TIMESTAMP) },
 			{ "dueDate", new Integer(Types.TIMESTAMP) },
 			{ "workflowContext", new Integer(Types.CLOB) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTaskInstanceToken (kaleoTaskInstanceTokenId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskId LONG,kaleoTaskName VARCHAR(200) null,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG,completionUserId LONG,completed BOOLEAN,completionDate DATE null,dueDate DATE null,workflowContext TEXT null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTaskInstanceToken (kaleoTaskInstanceTokenId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskId LONG,kaleoTaskName VARCHAR(200) null,className VARCHAR(75) null,classPK LONG,completionUserId LONG,completed BOOLEAN,completionDate DATE null,dueDate DATE null,workflowContext TEXT null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoTaskInstanceToken";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTaskInstanceToken.kaleoTaskInstanceTokenId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoTaskInstanceToken.kaleoTaskInstanceTokenId ASC";
@@ -110,8 +110,8 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		model.setKaleoInstanceTokenId(soapModel.getKaleoInstanceTokenId());
 		model.setKaleoTaskId(soapModel.getKaleoTaskId());
 		model.setKaleoTaskName(soapModel.getKaleoTaskName());
-		model.setAssigneeClassName(soapModel.getAssigneeClassName());
-		model.setAssigneeClassPK(soapModel.getAssigneeClassPK());
+		model.setClassName(soapModel.getClassName());
+		model.setClassPK(soapModel.getClassPK());
 		model.setCompletionUserId(soapModel.getCompletionUserId());
 		model.setCompleted(soapModel.getCompleted());
 		model.setCompletionDate(soapModel.getCompletionDate());
@@ -264,25 +264,25 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		_kaleoTaskName = kaleoTaskName;
 	}
 
-	public String getAssigneeClassName() {
-		if (_assigneeClassName == null) {
+	public String getClassName() {
+		if (_className == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _assigneeClassName;
+			return _className;
 		}
 	}
 
-	public void setAssigneeClassName(String assigneeClassName) {
-		_assigneeClassName = assigneeClassName;
+	public void setClassName(String className) {
+		_className = className;
 	}
 
-	public long getAssigneeClassPK() {
-		return _assigneeClassPK;
+	public long getClassPK() {
+		return _classPK;
 	}
 
-	public void setAssigneeClassPK(long assigneeClassPK) {
-		_assigneeClassPK = assigneeClassPK;
+	public void setClassPK(long classPK) {
+		_classPK = classPK;
 	}
 
 	public long getCompletionUserId() {
@@ -382,8 +382,8 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		clone.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
 		clone.setKaleoTaskId(getKaleoTaskId());
 		clone.setKaleoTaskName(getKaleoTaskName());
-		clone.setAssigneeClassName(getAssigneeClassName());
-		clone.setAssigneeClassPK(getAssigneeClassPK());
+		clone.setClassName(getClassName());
+		clone.setClassPK(getClassPK());
 		clone.setCompletionUserId(getCompletionUserId());
 		clone.setCompleted(getCompleted());
 		clone.setCompletionDate(getCompletionDate());
@@ -468,10 +468,10 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		sb.append(getKaleoTaskId());
 		sb.append(", kaleoTaskName=");
 		sb.append(getKaleoTaskName());
-		sb.append(", assigneeClassName=");
-		sb.append(getAssigneeClassName());
-		sb.append(", assigneeClassPK=");
-		sb.append(getAssigneeClassPK());
+		sb.append(", className=");
+		sb.append(getClassName());
+		sb.append(", classPK=");
+		sb.append(getClassPK());
 		sb.append(", completionUserId=");
 		sb.append(getCompletionUserId());
 		sb.append(", completed=");
@@ -544,12 +544,12 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		sb.append(getKaleoTaskName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>assigneeClassName</column-name><column-value><![CDATA[");
-		sb.append(getAssigneeClassName());
+			"<column><column-name>className</column-name><column-value><![CDATA[");
+		sb.append(getClassName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>assigneeClassPK</column-name><column-value><![CDATA[");
-		sb.append(getAssigneeClassPK());
+			"<column><column-name>classPK</column-name><column-value><![CDATA[");
+		sb.append(getClassPK());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>completionUserId</column-name><column-value><![CDATA[");
@@ -590,8 +590,8 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	private long _kaleoInstanceTokenId;
 	private long _kaleoTaskId;
 	private String _kaleoTaskName;
-	private String _assigneeClassName;
-	private long _assigneeClassPK;
+	private String _className;
+	private long _classPK;
 	private long _completionUserId;
 	private String _completionUserUuid;
 	private boolean _completed;

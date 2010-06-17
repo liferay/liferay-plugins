@@ -26,6 +26,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoLog;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
+import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoLogLocalServiceBaseImpl;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
@@ -145,16 +146,37 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		kaleoLog.setKaleoNodeName(currentKaleoNode.getName());
 
 		if (previousKaleoTaskInstanceToken != null) {
-			kaleoLog.setPreviousAssigneeClassName(
-				previousKaleoTaskInstanceToken.getAssigneeClassName());
-			kaleoLog.setPreviousAssigneeClassPK(
-				previousKaleoTaskInstanceToken.getAssigneeClassPK());
+			List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
+				previousKaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();
+
+			//for task completions, only 1 assignment instance is possible
+			if (kaleoTaskAssignmentInstances.size() == 1) {
+
+				KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance =
+					kaleoTaskAssignmentInstances.get(0);
+
+				kaleoLog.setPreviousAssigneeClassName(
+					kaleoTaskAssignmentInstance.getAssigneeClassName());
+
+				kaleoLog.setPreviousAssigneeClassPK(
+					kaleoTaskAssignmentInstance.getAssigneeClassPK());
+			}
 		}
 
-		kaleoLog.setCurrentAssigneeClassName(
-			newKaleoTaskInstanceToken.getAssigneeClassName());
-		kaleoLog.setCurrentAssigneeClassPK(
-			newKaleoTaskInstanceToken.getAssigneeClassPK());
+		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
+			newKaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();
+
+		if (!kaleoTaskAssignmentInstances.isEmpty()) {
+			//for task completions, only 1 assignment instance is possible
+			KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance =
+				kaleoTaskAssignmentInstances.get(0);
+
+			kaleoLog.setCurrentAssigneeClassPK(
+				kaleoTaskAssignmentInstance.getAssigneeClassPK());
+
+			kaleoLog.setCurrentAssigneeClassName(
+				kaleoTaskAssignmentInstance.getAssigneeClassName());
+		}
 
 		kaleoLog.setComment(comment);
 		kaleoLog.setWorkflowContext(
@@ -186,10 +208,20 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		kaleoLog.setKaleoNodeId(currentKaleoNode.getKaleoNodeId());
 		kaleoLog.setKaleoNodeName(currentKaleoNode.getName());
 
-		kaleoLog.setCurrentAssigneeClassPK(
-			kaleoTaskInstanceToken.getAssigneeClassPK());
-		kaleoLog.setCurrentAssigneeClassName(
-			kaleoTaskInstanceToken.getAssigneeClassName());
+		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
+			kaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();
+
+		if (!kaleoTaskAssignmentInstances.isEmpty()) {
+			//for task completions, only 1 assignment instance is possible
+			KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance =
+				kaleoTaskAssignmentInstances.get(0);
+
+			kaleoLog.setCurrentAssigneeClassPK(
+				kaleoTaskAssignmentInstance.getAssigneeClassPK());
+			kaleoLog.setCurrentAssigneeClassName(
+				kaleoTaskAssignmentInstance.getAssigneeClassName());
+		}
+
 		kaleoLog.setComment(comment);
 		kaleoLog.setWorkflowContext(
 			WorkflowContextUtil.convert(workflowContext));

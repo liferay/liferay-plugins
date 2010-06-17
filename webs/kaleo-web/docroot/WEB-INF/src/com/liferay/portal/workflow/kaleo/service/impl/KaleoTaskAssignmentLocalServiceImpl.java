@@ -62,7 +62,6 @@ public class KaleoTaskAssignmentLocalServiceImpl
 		kaleoTaskAssignment.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoTaskAssignment.setKaleoNodeId(kaleoNodeId);
 		kaleoTaskAssignment.setKaleoTaskId(kaleoTaskId);
-		kaleoTaskAssignment.setDefaultAssignment(assignment.isDefault());
 		setAssignee(kaleoTaskAssignment, assignment, serviceContext);
 
 		kaleoTaskAssignmentPersistence.update(kaleoTaskAssignment, false);
@@ -75,12 +74,6 @@ public class KaleoTaskAssignmentLocalServiceImpl
 
 		kaleoTaskAssignmentPersistence.removeByKaleoDefinitionId(
 			kaleoDefinitionId);
-	}
-
-	public KaleoTaskAssignment getDefaultKaleoTaskAssignment(long kaleoTaskId)
-		throws PortalException, SystemException {
-
-		return kaleoTaskAssignmentPersistence.findByKTI_DA(kaleoTaskId, true);
 	}
 
 	public List<KaleoTaskAssignment> getKaleoTaskAssignments(long kaleoTaskId)

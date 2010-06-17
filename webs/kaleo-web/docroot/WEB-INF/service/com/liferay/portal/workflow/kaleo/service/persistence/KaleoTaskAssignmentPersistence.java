@@ -121,19 +121,6 @@ public interface KaleoTaskAssignmentPersistence extends BasePersistence<KaleoTas
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException;
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment findByKTI_DA(
-		long kaleoTaskId, boolean defaultAssignment)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException;
-
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment fetchByKTI_DA(
-		long kaleoTaskId, boolean defaultAssignment)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment fetchByKTI_DA(
-		long kaleoTaskId, boolean defaultAssignment, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> findByACN_KTI(
 		java.lang.String assigneeClassName, long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -185,10 +172,6 @@ public interface KaleoTaskAssignmentPersistence extends BasePersistence<KaleoTas
 	public void removeByKaleoTaskId(long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void removeByKTI_DA(long kaleoTaskId, boolean defaultAssignment)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException;
-
 	public void removeByACN_KTI(java.lang.String assigneeClassName,
 		long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -200,9 +183,6 @@ public interface KaleoTaskAssignmentPersistence extends BasePersistence<KaleoTas
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByKaleoTaskId(long kaleoTaskId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public int countByKTI_DA(long kaleoTaskId, boolean defaultAssignment)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByACN_KTI(java.lang.String assigneeClassName,

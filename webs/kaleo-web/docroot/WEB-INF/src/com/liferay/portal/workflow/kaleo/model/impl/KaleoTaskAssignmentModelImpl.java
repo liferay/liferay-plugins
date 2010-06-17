@@ -71,10 +71,9 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 			{ "kaleoNodeId", new Integer(Types.BIGINT) },
 			{ "kaleoTaskId", new Integer(Types.BIGINT) },
 			{ "assigneeClassName", new Integer(Types.VARCHAR) },
-			{ "assigneeClassPK", new Integer(Types.BIGINT) },
-			{ "defaultAssignment", new Integer(Types.BOOLEAN) }
+			{ "assigneeClassPK", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTaskAssignment (kaleoTaskAssignmentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoTaskId LONG,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG,defaultAssignment BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTaskAssignment (kaleoTaskAssignmentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoTaskId LONG,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoTaskAssignment";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTaskAssignment.kaleoTaskAssignmentId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoTaskAssignment.kaleoTaskAssignmentId ASC";
@@ -103,7 +102,6 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		model.setKaleoTaskId(soapModel.getKaleoTaskId());
 		model.setAssigneeClassName(soapModel.getAssigneeClassName());
 		model.setAssigneeClassPK(soapModel.getAssigneeClassPK());
-		model.setDefaultAssignment(soapModel.getDefaultAssignment());
 
 		return model;
 	}
@@ -228,16 +226,6 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 
 	public void setKaleoTaskId(long kaleoTaskId) {
 		_kaleoTaskId = kaleoTaskId;
-
-		if (!_setOriginalKaleoTaskId) {
-			_setOriginalKaleoTaskId = true;
-
-			_originalKaleoTaskId = kaleoTaskId;
-		}
-	}
-
-	public long getOriginalKaleoTaskId() {
-		return _originalKaleoTaskId;
 	}
 
 	public String getAssigneeClassName() {
@@ -259,28 +247,6 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 
 	public void setAssigneeClassPK(long assigneeClassPK) {
 		_assigneeClassPK = assigneeClassPK;
-	}
-
-	public boolean getDefaultAssignment() {
-		return _defaultAssignment;
-	}
-
-	public boolean isDefaultAssignment() {
-		return _defaultAssignment;
-	}
-
-	public void setDefaultAssignment(boolean defaultAssignment) {
-		_defaultAssignment = defaultAssignment;
-
-		if (!_setOriginalDefaultAssignment) {
-			_setOriginalDefaultAssignment = true;
-
-			_originalDefaultAssignment = defaultAssignment;
-		}
-	}
-
-	public boolean getOriginalDefaultAssignment() {
-		return _originalDefaultAssignment;
 	}
 
 	public KaleoTaskAssignment toEscapedModel() {
@@ -322,7 +288,6 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		clone.setKaleoTaskId(getKaleoTaskId());
 		clone.setAssigneeClassName(getAssigneeClassName());
 		clone.setAssigneeClassPK(getAssigneeClassPK());
-		clone.setDefaultAssignment(getDefaultAssignment());
 
 		return clone;
 	}
@@ -376,7 +341,7 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{kaleoTaskAssignmentId=");
 		sb.append(getKaleoTaskAssignmentId());
@@ -402,15 +367,13 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		sb.append(getAssigneeClassName());
 		sb.append(", assigneeClassPK=");
 		sb.append(getAssigneeClassPK());
-		sb.append(", defaultAssignment=");
-		sb.append(getDefaultAssignment());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment");
@@ -464,10 +427,6 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 			"<column><column-name>assigneeClassPK</column-name><column-value><![CDATA[");
 		sb.append(getAssigneeClassPK());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>defaultAssignment</column-name><column-value><![CDATA[");
-		sb.append(getDefaultAssignment());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -485,12 +444,7 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	private long _kaleoDefinitionId;
 	private long _kaleoNodeId;
 	private long _kaleoTaskId;
-	private long _originalKaleoTaskId;
-	private boolean _setOriginalKaleoTaskId;
 	private String _assigneeClassName;
 	private long _assigneeClassPK;
-	private boolean _defaultAssignment;
-	private boolean _originalDefaultAssignment;
-	private boolean _setOriginalDefaultAssignment;
 	private transient ExpandoBridge _expandoBridge;
 }

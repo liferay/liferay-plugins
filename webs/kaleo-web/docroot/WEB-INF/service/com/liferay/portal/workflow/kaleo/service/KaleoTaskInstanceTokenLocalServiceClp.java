@@ -458,7 +458,7 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken addKaleoTaskInstanceToken(
 		long kaleoInstanceTokenId, long kaleoTaskId,
 		java.lang.String kaleoTaskName,
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment kaleoTaskAssignment,
+		java.util.Collection<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> kaleoTaskAssignments,
 		java.util.Date dueDate,
 		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -474,11 +474,10 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 			paramObj2 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj3 = ClpSerializer.translateInput(kaleoTaskAssignment);
+		Object paramObj3 = ClpSerializer.translateInput(kaleoTaskAssignments);
 
-		if (kaleoTaskAssignment == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment");
+		if (kaleoTaskAssignments == null) {
+			paramObj3 = new NullWrapper("java.util.Collection");
 		}
 
 		Object paramObj4 = ClpSerializer.translateInput(dueDate);

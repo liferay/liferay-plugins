@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workflow-definition
+	xmlns="urn:liferay.com:liferay-workflow_6.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:liferay.com:liferay-workflow_6.0.0 http://www.liferay.com/dtd/liferay-workflow-definition_6_0_0.xsd"
+>
+	<name>Legal and Marketing Approval</name>
+	<description>Workflow assets must be approved first by Marketing and then by Legal.</description>
+	<version>1</version>
+	<state>
+		<name>CREATED</name>
+		<initial>true</initial>
+		<transitions>
+			<transition>
+				<name>Market Review</name>
+				<target>MARKETING_REVIEW</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>CREATOR_MODIFY</name>
+		<actions>
+			<notification>
+				<name>Creator Modification Notification</name>
+				<execution-type>onAssignment</execution-type>
+				<template>Your asset was rejected by a reviewer, please modify and resubmit.</template>
+				<template-language>text</template-language>
+				<notification-type>email</notification-type>
+			</notification>
+		</actions>
+		<assignments>
+			<user>
+				<default>true</default>
+			</user>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Resubmit</name>
+				<target>MARKETING_REVIEW</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>MARKETING_REVIEW</name>
+		<actions>
+			<notification>
+				<name>Market Content Review Notification</name>
+				<execution-type>onAssignment</execution-type>
+				<template>You have a new asset waiting for your review in the workflow.</template>
+				<template-language>text</template-language>
+				<notification-type>email</notification-type>
+			</notification>
+		</actions>
+		<assignments>
+			<role>
+				<role-type>community</role-type>
+				<name>Community Owner</name>
+				<default>true</default>
+			</role>
+			<role>
+				<role-type>organization</role-type>
+				<name>Organization Marketing Content Reviewer</name>
+				<default>false</default>
+			</role>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Marketing Approved</name>
+				<target>LEGAL_REVIEW</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<name>Marketing Denied</name>
+				<target>CREATOR_MODIFY</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>LEGAL_REVIEW</name>
+		<actions>
+			<notification>
+				<name>Legal Content Review Notification</name>
+				<execution-type>onAssignment</execution-type>
+				<template>You have a new asset waiting for your review in the workflow.</template>
+				<template-language>text</template-language>
+				<notification-type>email</notification-type>
+			</notification>
+		</actions>
+		<assignments>
+			<role>
+				<role-type>community</role-type>
+				<name>Community Legal Content Reviewer</name>
+				<default>true</default>
+			</role>
+			<role>
+				<role-type>organization</role-type>
+				<name>Organization Legal Content Reviewer</name>
+				<default>false</default>
+			</role>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Legal Approval</name>
+				<target>APPROVED</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<name>Legal Denied</name>
+				<target>CREATOR_MODIFY</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>APPROVED</name>
+		<actions>
+			<action>
+				<name>Approve Asset</name>
+				<execution-type>onEntry</execution-type>
+				<script>
+					<![CDATA[
+						Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(Packages.com.liferay.portal.kernel.workflow.WorkflowConstants.toStatus("approved"), workflowContext);
+					]]>
+				</script>
+				<script-language>javascript</script-language>
+			</action>
+		</actions>
+	</state>
+</workflow-definition>

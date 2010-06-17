@@ -34,13 +34,6 @@ public class KaleoTaskImpl extends KaleoTaskModelImpl implements KaleoTask {
 	public KaleoTaskImpl() {
 	}
 
-	public KaleoTaskAssignment getDefaultKaleoTaskAssignment()
-		throws PortalException, SystemException {
-
-		return KaleoTaskAssignmentLocalServiceUtil.
-			getDefaultKaleoTaskAssignment(getKaleoTaskId());
-	}
-
 	public KaleoNode getKaleoNode() throws PortalException, SystemException {
 		return KaleoNodeLocalServiceUtil.getKaleoNode(
 			getKaleoNodeId());

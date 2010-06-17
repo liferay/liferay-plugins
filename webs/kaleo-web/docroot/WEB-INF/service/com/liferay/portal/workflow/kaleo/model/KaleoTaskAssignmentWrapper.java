@@ -149,18 +149,6 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		_kaleoTaskAssignment.setAssigneeClassPK(assigneeClassPK);
 	}
 
-	public boolean getDefaultAssignment() {
-		return _kaleoTaskAssignment.getDefaultAssignment();
-	}
-
-	public boolean isDefaultAssignment() {
-		return _kaleoTaskAssignment.isDefaultAssignment();
-	}
-
-	public void setDefaultAssignment(boolean defaultAssignment) {
-		_kaleoTaskAssignment.setDefaultAssignment(defaultAssignment);
-	}
-
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment toEscapedModel() {
 		return _kaleoTaskAssignment.toEscapedModel();
 	}

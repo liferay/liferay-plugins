@@ -40,10 +40,6 @@ package com.liferay.portal.workflow.kaleo.model;
  * @generated
  */
 public interface KaleoTask extends KaleoTaskModel {
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment getDefaultKaleoTaskAssignment()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoNode()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

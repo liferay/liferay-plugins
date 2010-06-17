@@ -187,6 +187,8 @@
 		<column name="parentKaleoInstanceTokenId" type="long" />
 		<column name="currentKaleoNodeId" type="long" />
 		<column name="currentKaleoNodeName" type="String" />
+		<column name="className" type="String" />
+		<column name="classPK" type="long" />
 		<column name="completed" type="boolean" />
 		<column name="completionDate" type="Date" />
 
@@ -456,7 +458,7 @@
 
 		<!-- Relationships -->
 
-		<column name="kaleoAssignments" type="Collection" entity="KaleoTaskAssignment" mapping-key="workflowTaskId" />
+		<column name="kaleoAssignments" type="Collection" entity="KaleoTaskAssignment" mapping-key="kaleoTaskId" />
 
 		<!-- Order -->
 
@@ -498,8 +500,6 @@
 		<column name="kaleoTaskId" type="long" />
 		<column name="assigneeClassName" type="String" />
 		<column name="assigneeClassPK" type="long" />
-		<column name="defaultAssignment" type="boolean" />
-
 		<!-- Order -->
 
 		<order by="asc">
@@ -514,10 +514,6 @@
 		<finder name="KaleoTaskId" return-type="Collection">
 			<finder-column name="kaleoTaskId" />
 		</finder>
-		<finder name="KTI_DA" return-type="KaleoTaskAssignment">
-			<finder-column name="kaleoTaskId" />
-			<finder-column name="defaultAssignment" />
-		</finder>
 		<finder name="ACN_KTI" return-type="Collection">
 			<finder-column name="assigneeClassName" />
 			<finder-column name="kaleoTaskId" />
@@ -526,6 +522,58 @@
 		<!-- References -->
 
 		<reference package-path="com.liferay.portal" entity="Role" />
+	</entity>
+	<entity name="KaleoTaskAssignmentInstance" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kaleoTaskAssignmentInstanceId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="kaleoDefinitionId" type="long" />
+		<column name="kaleoInstanceId" type="long" />
+		<column name="kaleoInstanceTokenId" type="long" />
+		<column name="kaleoTaskInstanceTokenId" type="long" />
+		<column name="kaleoTaskId" type="long" />
+		<column name="kaleoTaskName" type="String" />
+		<column name="assigneeClassName" type="String" />
+		<column name="assigneeClassPK" type="long" />
+		<column name="completed" type="boolean" />
+		<column name="completionDate" type="Date" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="kaleoTaskAssignmentInstanceId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
+		<finder name="KaleoInstanceId" return-type="Collection">
+			<finder-column name="kaleoInstanceId" />
+		</finder>
+		<finder name="kaleoTaskInstanceTokenId" return-type="Collection">
+			<finder-column name="kaleoTaskInstanceTokenId" />
+		</finder>
 	</entity>
 	<entity name="KaleoTaskInstanceToken" local-service="true" remote-service="false">
 
@@ -552,16 +600,20 @@
 		<column name="kaleoInstanceTokenId" type="long" />
 		<column name="kaleoTaskId" type="long" />
 		<column name="kaleoTaskName" type="String" />
-		<column name="assigneeClassName" type="String" />
-		<column name="assigneeClassPK" type="long" />
-		<column name="completionUserId" type="long" />
+		<column name="className" type="String" />
+		<column name="classPK" type="long" />
+			<column name="completionUserId" type="long" />
 		<column name="completed" type="boolean" />
 		<column name="completionDate" type="Date" />
 		<column name="dueDate" type="Date" />
 		<column name="workflowContext" type="String" />
 
-		<!-- Order -->
+		<!-- Relationships -->
 
+		<column name="kaleoTaskAssignmentInstances" type="Collection" entity="KaleoTaskAssignmentInstance" mapping-key="kaleoTaskInstanceTokenId" />
+
+		<!-- Order -->
+		                                                                                    	
 		<order by="asc">
 			<order-column name="kaleoTaskInstanceTokenId" />
 		</order>
@@ -576,13 +628,6 @@
 		</finder>
 		<finder name="KaleoInstanceId" return-type="Collection">
 			<finder-column name="kaleoInstanceId" />
-		</finder>
-		<finder name="G_C_ACN_ACP_C" return-type="Collection">
-			<finder-column name="groupId" />
-			<finder-column name="companyId" />
-			<finder-column name="assigneeClassName" />
-			<finder-column name="assigneeClassPK" />
-			<finder-column name="completed" />
 		</finder>
 	</entity>
 	<entity name="KaleoTransition" local-service="true" remote-service="false">

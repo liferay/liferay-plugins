@@ -152,20 +152,20 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		_kaleoTaskName = kaleoTaskName;
 	}
 
-	public String getAssigneeClassName() {
-		return _assigneeClassName;
+	public String getClassName() {
+		return _className;
 	}
 
-	public void setAssigneeClassName(String assigneeClassName) {
-		_assigneeClassName = assigneeClassName;
+	public void setClassName(String className) {
+		_className = className;
 	}
 
-	public long getAssigneeClassPK() {
-		return _assigneeClassPK;
+	public long getClassPK() {
+		return _classPK;
 	}
 
-	public void setAssigneeClassPK(long assigneeClassPK) {
-		_assigneeClassPK = assigneeClassPK;
+	public void setClassPK(long classPK) {
+		_classPK = classPK;
 	}
 
 	public long getCompletionUserId() {
@@ -229,6 +229,10 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		throw new UnsupportedOperationException();
 	}
 
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances() {
+		throw new UnsupportedOperationException();
+	}
+
 	public KaleoTaskInstanceToken toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -255,8 +259,8 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		clone.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
 		clone.setKaleoTaskId(getKaleoTaskId());
 		clone.setKaleoTaskName(getKaleoTaskName());
-		clone.setAssigneeClassName(getAssigneeClassName());
-		clone.setAssigneeClassPK(getAssigneeClassPK());
+		clone.setClassName(getClassName());
+		clone.setClassPK(getClassPK());
 		clone.setCompletionUserId(getCompletionUserId());
 		clone.setCompleted(getCompleted());
 		clone.setCompletionDate(getCompletionDate());
@@ -341,10 +345,10 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		sb.append(getKaleoTaskId());
 		sb.append(", kaleoTaskName=");
 		sb.append(getKaleoTaskName());
-		sb.append(", assigneeClassName=");
-		sb.append(getAssigneeClassName());
-		sb.append(", assigneeClassPK=");
-		sb.append(getAssigneeClassPK());
+		sb.append(", className=");
+		sb.append(getClassName());
+		sb.append(", classPK=");
+		sb.append(getClassPK());
 		sb.append(", completionUserId=");
 		sb.append(getCompletionUserId());
 		sb.append(", completed=");
@@ -417,12 +421,12 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		sb.append(getKaleoTaskName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>assigneeClassName</column-name><column-value><![CDATA[");
-		sb.append(getAssigneeClassName());
+			"<column><column-name>className</column-name><column-value><![CDATA[");
+		sb.append(getClassName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>assigneeClassPK</column-name><column-value><![CDATA[");
-		sb.append(getAssigneeClassPK());
+			"<column><column-name>classPK</column-name><column-value><![CDATA[");
+		sb.append(getClassPK());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>completionUserId</column-name><column-value><![CDATA[");
@@ -463,8 +467,8 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 	private long _kaleoInstanceTokenId;
 	private long _kaleoTaskId;
 	private String _kaleoTaskName;
-	private String _assigneeClassName;
-	private long _assigneeClassPK;
+	private String _className;
+	private long _classPK;
 	private long _completionUserId;
 	private String _completionUserUuid;
 	private boolean _completed;

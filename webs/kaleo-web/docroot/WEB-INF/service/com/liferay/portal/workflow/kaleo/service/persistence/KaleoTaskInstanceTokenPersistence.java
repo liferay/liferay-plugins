@@ -152,44 +152,6 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> findByG_C_ACN_ACP_C(
-		long groupId, long companyId, java.lang.String assigneeClassName,
-		long assigneeClassPK, boolean completed)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> findByG_C_ACN_ACP_C(
-		long groupId, long companyId, java.lang.String assigneeClassName,
-		long assigneeClassPK, boolean completed, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> findByG_C_ACN_ACP_C(
-		long groupId, long companyId, java.lang.String assigneeClassName,
-		long assigneeClassPK, boolean completed, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken findByG_C_ACN_ACP_C_First(
-		long groupId, long companyId, java.lang.String assigneeClassName,
-		long assigneeClassPK, boolean completed,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
-
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken findByG_C_ACN_ACP_C_Last(
-		long groupId, long companyId, java.lang.String assigneeClassName,
-		long assigneeClassPK, boolean completed,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
-
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken[] findByG_C_ACN_ACP_C_PrevAndNext(
-		long kaleoTaskInstanceTokenId, long groupId, long companyId,
-		java.lang.String assigneeClassName, long assigneeClassPK,
-		boolean completed,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
-
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -211,11 +173,6 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	public void removeByKaleoInstanceId(long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void removeByG_C_ACN_ACP_C(long groupId, long companyId,
-		java.lang.String assigneeClassName, long assigneeClassPK,
-		boolean completed)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
 	public void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -228,11 +185,28 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	public int countByKaleoInstanceId(long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countByG_C_ACN_ACP_C(long groupId, long companyId,
-		java.lang.String assigneeClassName, long assigneeClassPK,
-		boolean completed)
+	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countAll()
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances(
+		long pk) throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances(
+		long pk, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances(
+		long pk, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int getKaleoTaskAssignmentInstancesSize(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public boolean containsKaleoTaskAssignmentInstance(long pk,
+		long kaleoTaskAssignmentInstancePK)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public boolean containsKaleoTaskAssignmentInstances(long pk)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

@@ -54,8 +54,8 @@ public class KaleoTaskInstanceTokenSoap implements Serializable {
 		soapModel.setKaleoInstanceTokenId(model.getKaleoInstanceTokenId());
 		soapModel.setKaleoTaskId(model.getKaleoTaskId());
 		soapModel.setKaleoTaskName(model.getKaleoTaskName());
-		soapModel.setAssigneeClassName(model.getAssigneeClassName());
-		soapModel.setAssigneeClassPK(model.getAssigneeClassPK());
+		soapModel.setClassName(model.getClassName());
+		soapModel.setClassPK(model.getClassPK());
 		soapModel.setCompletionUserId(model.getCompletionUserId());
 		soapModel.setCompleted(model.getCompleted());
 		soapModel.setCompletionDate(model.getCompletionDate());
@@ -212,20 +212,20 @@ public class KaleoTaskInstanceTokenSoap implements Serializable {
 		_kaleoTaskName = kaleoTaskName;
 	}
 
-	public String getAssigneeClassName() {
-		return _assigneeClassName;
+	public String getClassName() {
+		return _className;
 	}
 
-	public void setAssigneeClassName(String assigneeClassName) {
-		_assigneeClassName = assigneeClassName;
+	public void setClassName(String className) {
+		_className = className;
 	}
 
-	public long getAssigneeClassPK() {
-		return _assigneeClassPK;
+	public long getClassPK() {
+		return _classPK;
 	}
 
-	public void setAssigneeClassPK(long assigneeClassPK) {
-		_assigneeClassPK = assigneeClassPK;
+	public void setClassPK(long classPK) {
+		_classPK = classPK;
 	}
 
 	public long getCompletionUserId() {
@@ -284,8 +284,8 @@ public class KaleoTaskInstanceTokenSoap implements Serializable {
 	private long _kaleoInstanceTokenId;
 	private long _kaleoTaskId;
 	private String _kaleoTaskName;
-	private String _assigneeClassName;
-	private long _assigneeClassPK;
+	private String _className;
+	private long _classPK;
 	private long _completionUserId;
 	private boolean _completed;
 	private Date _completionDate;

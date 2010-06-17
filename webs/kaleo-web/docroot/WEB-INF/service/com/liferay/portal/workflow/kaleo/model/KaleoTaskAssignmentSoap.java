@@ -53,7 +53,6 @@ public class KaleoTaskAssignmentSoap implements Serializable {
 		soapModel.setKaleoTaskId(model.getKaleoTaskId());
 		soapModel.setAssigneeClassName(model.getAssigneeClassName());
 		soapModel.setAssigneeClassPK(model.getAssigneeClassPK());
-		soapModel.setDefaultAssignment(model.getDefaultAssignment());
 
 		return soapModel;
 	}
@@ -205,18 +204,6 @@ public class KaleoTaskAssignmentSoap implements Serializable {
 		_assigneeClassPK = assigneeClassPK;
 	}
 
-	public boolean getDefaultAssignment() {
-		return _defaultAssignment;
-	}
-
-	public boolean isDefaultAssignment() {
-		return _defaultAssignment;
-	}
-
-	public void setDefaultAssignment(boolean defaultAssignment) {
-		_defaultAssignment = defaultAssignment;
-	}
-
 	private long _kaleoTaskAssignmentId;
 	private long _groupId;
 	private long _companyId;
@@ -229,5 +216,4 @@ public class KaleoTaskAssignmentSoap implements Serializable {
 	private long _kaleoTaskId;
 	private String _assigneeClassName;
 	private long _assigneeClassPK;
-	private boolean _defaultAssignment;
 }

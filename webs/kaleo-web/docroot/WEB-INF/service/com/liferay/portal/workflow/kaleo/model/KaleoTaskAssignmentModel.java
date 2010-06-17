@@ -103,12 +103,6 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 
 	public void setAssigneeClassPK(long assigneeClassPK);
 
-	public boolean getDefaultAssignment();
-
-	public boolean isDefaultAssignment();
-
-	public void setDefaultAssignment(boolean defaultAssignment);
-
 	public KaleoTaskAssignment toEscapedModel();
 
 	public boolean isNew();

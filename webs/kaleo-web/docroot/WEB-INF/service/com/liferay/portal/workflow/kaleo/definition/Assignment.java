@@ -21,20 +21,14 @@ package com.liferay.portal.workflow.kaleo.definition;
  */
 public class Assignment {
 
-	public Assignment(AssignmentType assignmentType, boolean defaultValue) {
+	public Assignment(AssignmentType assignmentType) {
 		_assignmentType = assignmentType;
-		_default = defaultValue;
 	}
 
 	public AssignmentType getAssignmentType() {
 		return _assignmentType;
 	}
 
-	public boolean isDefault() {
-		return _default;
-	}
-
 	private AssignmentType _assignmentType;
-	private boolean _default;
 
 }

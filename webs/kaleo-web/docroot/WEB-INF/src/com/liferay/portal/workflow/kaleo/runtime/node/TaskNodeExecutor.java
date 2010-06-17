@@ -36,6 +36,7 @@ import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationUtil;
 
 import java.io.Serializable;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -82,15 +83,15 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 				new Date(), dueDateDuration);
 		}
 
-		KaleoTaskAssignment kaleoTaskAssignment =
-			_taskAssignmentSelector.getTaskAssignment(
-				kaleoTask, executionContext);
+		Collection<KaleoTaskAssignment> kaleoTaskAssignments =
+			_taskAssignmentSelector.calculateTaskAssignments(
+				kaleoTask.getKaleoTaskAssignments(), executionContext);
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
 			kaleoTaskInstanceTokenLocalService.addKaleoTaskInstanceToken(
 				kaleoInstanceToken.getKaleoInstanceTokenId(),
 				kaleoTask.getKaleoTaskId(), kaleoTask.getName(),
-				kaleoTaskAssignment, dueDate, workflowContext, serviceContext);
+				kaleoTaskAssignments, dueDate, workflowContext, serviceContext);
 
 		executionContext.setKaleoTaskInstanceToken(kaleoTaskInstanceToken);
 

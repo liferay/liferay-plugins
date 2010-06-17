@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder.countByACN_ACP_C_CI">
+		<![CDATA[
+			SELECT DISTINCT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				Kaleo_KaleoTaskInstanceToken
+			INNER JOIN
+				Kaleo_KaleoTaskAssignmentInstance ON
+					(Kaleo_KaleoTaskAssignmentInstance.kaleoTaskInstanceTokenId = Kaleo_KaleoTaskInstanceToken.kaleoTaskInstanceTokenId)
+			WHERE
+				[$COMPLETION$]
+				(Kaleo_KaleoTaskAssignmentInstance.assigneeClassName = ?) AND
+				(Kaleo_KaleoTaskAssignmentInstance.assigneeClassPK = ?) AND
+				(Kaleo_KaleoTaskInstanceToken.companyId = ?)
+		]]>
+	</sql>
+	<sql id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder.countByC_DD_K_UR">
+		<![CDATA[
+			SELECT DISTINCT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				Kaleo_KaleoTaskInstanceToken
+			INNER JOIN
+				Kaleo_KaleoTaskAssignmentInstance ON
+					(Kaleo_KaleoTaskAssignmentInstance.kaleoTaskInstanceTokenId = Kaleo_KaleoTaskInstanceToken.kaleoTaskInstanceTokenId)
+			WHERE
+				[$COMPLETION$]
+				[$SEARCH_CRITERIA$]
+			    [$USER_ROLES$]
+				(Kaleo_KaleoTaskInstanceToken.companyId = ?)
+		]]>
+	</sql>
+	
+	<sql id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder.countByRoles_C_CI">
+		<![CDATA[
+			SELECT DISTINCT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				Kaleo_KaleoTaskInstanceToken
+			INNER JOIN
+				Kaleo_KaleoTaskAssignmentInstance ON
+					(Kaleo_KaleoTaskAssignmentInstance.kaleoTaskInstanceTokenId = Kaleo_KaleoTaskInstanceToken.kaleoTaskInstanceTokenId)
+			WHERE
+				[$COMPLETION$]
+				[$ROLE_IDS$] AND
+				(Kaleo_KaleoTaskAssignmentInstance.assigneeClassName = ?) AND
+				(Kaleo_KaleoTaskInstanceToken.companyId = ?)
+		]]>
+	</sql>
+	<sql id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder.findByACN_ACP_C_CI">
+		<![CDATA[
+			SELECT
+				{Kaleo_KaleoTaskInstanceToken.*}
+			FROM
+				Kaleo_KaleoTaskInstanceToken
+			INNER JOIN
+				Kaleo_KaleoTaskAssignmentInstance ON
+					(Kaleo_KaleoTaskAssignmentInstance.kaleoTaskInstanceTokenId = Kaleo_KaleoTaskInstanceToken.kaleoTaskInstanceTokenId)
+			WHERE
+				[$COMPLETION$]
+				(Kaleo_KaleoTaskAssignmentInstance.assigneeClassName = ?) AND
+				(Kaleo_KaleoTaskAssignmentInstance.assigneeClassPK = ?) AND
+				(Kaleo_KaleoTaskInstanceToken.companyId = ?)
+		]]>
+	</sql>
+	<sql id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder.findByRoles_C_CI">
+		<![CDATA[
+			SELECT
+				{Kaleo_KaleoTaskInstanceToken.*}
+			FROM
+				Kaleo_KaleoTaskInstanceToken
+			INNER JOIN
+				Kaleo_KaleoTaskAssignmentInstance ON
+					(Kaleo_KaleoTaskAssignmentInstance.kaleoTaskInstanceTokenId = Kaleo_KaleoTaskInstanceToken.kaleoTaskInstanceTokenId)
+			WHERE
+				[$COMPLETION$]
+				[$ROLE_IDS$] AND
+				(Kaleo_KaleoTaskAssignmentInstance.assigneeClassName = ?) AND
+				(Kaleo_KaleoTaskInstanceToken.companyId = ?)
+		]]>
+	</sql>
+	<sql id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder.findByC_DD_K_UR">
+		<![CDATA[
+			SELECT
+				{Kaleo_KaleoTaskInstanceToken.*}
+			FROM
+				Kaleo_KaleoTaskInstanceToken
+			INNER JOIN
+				Kaleo_KaleoTaskAssignmentInstance ON
+					(Kaleo_KaleoTaskAssignmentInstance.kaleoTaskInstanceTokenId = Kaleo_KaleoTaskInstanceToken.kaleoTaskInstanceTokenId)
+			WHERE
+				[$COMPLETION$]
+				[$SEARCH_CRITERIA$]
+			    [$USER_ROLES$]
+				(Kaleo_KaleoTaskInstanceToken.companyId = ?)
+		]]>
+	</sql>
+</custom-sql>

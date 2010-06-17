@@ -103,6 +103,15 @@ public interface KaleoInstanceTokenModel extends BaseModel<KaleoInstanceToken> {
 
 	public void setCurrentKaleoNodeName(String currentKaleoNodeName);
 
+	@AutoEscape
+	public String getClassName();
+
+	public void setClassName(String className);
+
+	public long getClassPK();
+
+	public void setClassPK(long classPK);
+
 	public boolean getCompleted();
 
 	public boolean isCompleted();

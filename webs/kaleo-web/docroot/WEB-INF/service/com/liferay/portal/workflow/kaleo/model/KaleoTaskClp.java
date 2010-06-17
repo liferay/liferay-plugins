@@ -159,10 +159,6 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		_dueDateScale = dueDateScale;
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment getDefaultKaleoTaskAssignment() {
-		throw new UnsupportedOperationException();
-	}
-
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoNode() {
 		throw new UnsupportedOperationException();
 	}

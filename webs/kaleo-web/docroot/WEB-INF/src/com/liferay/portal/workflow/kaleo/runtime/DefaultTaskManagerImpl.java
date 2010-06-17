@@ -16,6 +16,8 @@ package com.liferay.portal.workflow.kaleo.runtime;
 
 import com.liferay.portal.kernel.annotation.Isolation;
 import com.liferay.portal.kernel.annotation.Transactional;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.model.Role;
@@ -24,6 +26,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.WorkflowTaskAdapter;
 import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
+import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
@@ -145,6 +148,9 @@ public class DefaultTaskManagerImpl
 			kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceToken(
 				workflowTaskInstanceId);
 
+		workflowContext = updateWorkflowContext(
+			workflowContext, kaleoTaskInstanceToken);
+
 		if (kaleoTaskInstanceToken.isCompleted()) {
 			throw new WorkflowException(
 				"Cannot reassign a completed task " + workflowTaskInstanceId);
@@ -193,6 +199,9 @@ public class DefaultTaskManagerImpl
 			kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceToken(
 				workflowTaskInstanceId);
 
+		workflowContext = updateWorkflowContext(
+			workflowContext, kaleoTaskInstanceToken);
+
 		if (kaleoTaskInstanceToken.isCompleted()) {
 			throw new WorkflowException(
 				"Cannot complete an already completed task " +
@@ -218,12 +227,37 @@ public class DefaultTaskManagerImpl
 		kaleoLogLocalService.addTaskCompletionKaleoLog(
 			kaleoTaskInstanceToken, comment, workflowContext, serviceContext);
 
+		if (workflowContext == null) {
+			workflowContext = WorkflowContextUtil.convert(
+				kaleoInstanceToken.getKaleoInstance().getWorkflowContext());
+		}
+
 		ExecutionContext executionContext = new ExecutionContext(
 			parentKaleoInstanceToken, workflowContext, serviceContext);
 
 		_kaleoSignaler.signalExit(transitionName, executionContext);
 
 		return new WorkflowTaskAdapter(kaleoTaskInstanceToken, workflowContext);
+	}
+
+	protected Map<String, Serializable> updateWorkflowContext(
+			Map<String, Serializable> workflowContext,
+			KaleoTaskInstanceToken kaleoTaskInstanceToken)
+		throws PortalException, SystemException {
+
+		KaleoInstance kaleoInstance =
+			kaleoInstanceLocalService.getKaleoInstance(
+				kaleoTaskInstanceToken.getKaleoInstanceId());
+		if (workflowContext == null) {
+			workflowContext = WorkflowContextUtil.convert(
+				kaleoInstance.getWorkflowContext());
+		}
+		else {
+			workflowContext.putAll(
+				WorkflowContextUtil.convert(
+					kaleoInstance.getWorkflowContext()));
+		}
+		return workflowContext;
 	}
 
 	private KaleoSignaler _kaleoSignaler;

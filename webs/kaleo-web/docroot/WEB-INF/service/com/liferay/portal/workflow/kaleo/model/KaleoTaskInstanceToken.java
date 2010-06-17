@@ -47,4 +47,7 @@ public interface KaleoTaskInstanceToken extends KaleoTaskInstanceTokenModel {
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask getKaleoTask()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances()
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

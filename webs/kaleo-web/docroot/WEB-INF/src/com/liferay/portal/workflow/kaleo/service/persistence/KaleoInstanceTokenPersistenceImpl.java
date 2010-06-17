@@ -297,6 +297,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		kaleoInstanceTokenImpl.setParentKaleoInstanceTokenId(kaleoInstanceToken.getParentKaleoInstanceTokenId());
 		kaleoInstanceTokenImpl.setCurrentKaleoNodeId(kaleoInstanceToken.getCurrentKaleoNodeId());
 		kaleoInstanceTokenImpl.setCurrentKaleoNodeName(kaleoInstanceToken.getCurrentKaleoNodeName());
+		kaleoInstanceTokenImpl.setClassName(kaleoInstanceToken.getClassName());
+		kaleoInstanceTokenImpl.setClassPK(kaleoInstanceToken.getClassPK());
 		kaleoInstanceTokenImpl.setCompleted(kaleoInstanceToken.isCompleted());
 		kaleoInstanceTokenImpl.setCompletionDate(kaleoInstanceToken.getCompletionDate());
 
@@ -1912,6 +1914,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	protected KaleoTaskPersistence kaleoTaskPersistence;
 	@BeanReference(type = KaleoTaskAssignmentPersistence.class)
 	protected KaleoTaskAssignmentPersistence kaleoTaskAssignmentPersistence;
+	@BeanReference(type = KaleoTaskAssignmentInstancePersistence.class)
+	protected KaleoTaskAssignmentInstancePersistence kaleoTaskAssignmentInstancePersistence;
 	@BeanReference(type = KaleoTaskInstanceTokenPersistence.class)
 	protected KaleoTaskInstanceTokenPersistence kaleoTaskInstanceTokenPersistence;
 	@BeanReference(type = KaleoTransitionPersistence.class)

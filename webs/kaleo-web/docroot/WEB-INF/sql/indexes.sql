@@ -37,10 +37,13 @@ create index IX_61E22421 on Kaleo_KaleoTask (kaleoNodeId);
 create index IX_BCE28DE5 on Kaleo_KaleoTaskAssignment (assigneeClassName, kaleoTaskId);
 create index IX_572B5825 on Kaleo_KaleoTaskAssignment (kaleoDefinitionId);
 create index IX_5EDD8F17 on Kaleo_KaleoTaskAssignment (kaleoTaskId);
-create index IX_787D75A7 on Kaleo_KaleoTaskAssignment (kaleoTaskId, defaultAssignment);
+
+create index IX_6E0C2E9A on Kaleo_KaleoTaskAssignmentInstance (companyId);
+create index IX_CFB37590 on Kaleo_KaleoTaskAssignmentInstance (kaleoDefinitionId);
+create index IX_D9E1A7D2 on Kaleo_KaleoTaskAssignmentInstance (kaleoInstanceId);
+create index IX_213D60FC on Kaleo_KaleoTaskAssignmentInstance (kaleoTaskInstanceTokenId);
 
 create index IX_A9FF7F44 on Kaleo_KaleoTaskInstanceToken (companyId);
-create index IX_672441C9 on Kaleo_KaleoTaskInstanceToken (groupId, companyId, assigneeClassName, assigneeClassPK, completed);
 create index IX_40C87C3A on Kaleo_KaleoTaskInstanceToken (kaleoDefinitionId);
 create index IX_26FC50FC on Kaleo_KaleoTaskInstanceToken (kaleoInstanceId);
 

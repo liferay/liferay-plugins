@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroupRole;
@@ -43,6 +44,7 @@ import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 import java.io.Serializable;
 
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -58,7 +60,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 	public KaleoTaskInstanceToken addKaleoTaskInstanceToken(
 			long kaleoInstanceTokenId, long kaleoTaskId, String kaleoTaskName,
-			KaleoTaskAssignment kaleoTaskAssignment, Date dueDate,
+			Collection<KaleoTaskAssignment> kaleoTaskAssignments, Date dueDate,
 			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -87,6 +89,18 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		kaleoTaskInstanceToken.setKaleoInstanceId(
 			kaleoInstanceToken.getKaleoInstanceId());
 
+		if (workflowContext != null) {
+			kaleoTaskInstanceToken.setClassName(
+				(String)workflowContext.get(
+					WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME));
+			if (workflowContext.containsKey(
+					WorkflowConstants.CONTEXT_ENTRY_CLASS_PK)) {
+				kaleoTaskInstanceToken.setClassPK(
+					Long.parseLong((String)workflowContext.get(
+						WorkflowConstants.CONTEXT_ENTRY_CLASS_PK)));
+			}
+		}
+
 		KaleoInstanceToken childKaleoInstanceToken =
 			kaleoInstanceTokenLocalService.addKaleoInstanceToken(
 				kaleoInstanceToken.getKaleoInstanceTokenId(), workflowContext,
@@ -97,20 +111,9 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		kaleoTaskInstanceToken.setKaleoTaskId(kaleoTaskId);
 		kaleoTaskInstanceToken.setKaleoTaskName(kaleoTaskName);
-		kaleoTaskInstanceToken.setAssigneeClassName(
-			kaleoTaskAssignment.getAssigneeClassName());
 
-		if ((kaleoTaskAssignment.getAssigneeClassPK() == 0) &&
-			User.class.getName().equals(
-				kaleoTaskAssignment.getAssigneeClassName())) {
-
-			kaleoTaskInstanceToken.setAssigneeClassPK(
-				kaleoInstanceToken.getUserId());
-		}
-		else {
-			kaleoTaskInstanceToken.setAssigneeClassPK(
-				kaleoTaskAssignment.getAssigneeClassPK());
-		}
+		kaleoTaskAssignmentInstanceLocalService.addTaskAssignmentInstances(
+			kaleoTaskInstanceToken, kaleoTaskAssignments, serviceContext);
 
 		kaleoTaskInstanceToken.setCompleted(false);
 		kaleoTaskInstanceToken.setWorkflowContext(
@@ -132,12 +135,16 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 				kaleoTaskInstanceTokenId);
 
 		kaleoTaskInstanceToken.setModifiedDate(new Date());
-		kaleoTaskInstanceToken.setAssigneeClassName(assigneeClassName);
-		kaleoTaskInstanceToken.setAssigneeClassPK(assigneeClassPK);
+
 		kaleoTaskInstanceToken.setWorkflowContext(
 			WorkflowContextUtil.convert(workflowContext));
 
 		kaleoTaskInstanceTokenPersistence.update(kaleoTaskInstanceToken, false);
+
+		kaleoTaskAssignmentInstanceLocalService.
+			assignKaleoTaskAssignmentInstance(
+				kaleoTaskInstanceToken, assigneeClassName,
+				assigneeClassPK, serviceContext);
 
 		return kaleoTaskInstanceToken;
 	}
@@ -146,7 +153,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			long kaleoTaskInstanceTokenId, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		// Kaleo instance token
+		// Kaleo task instance token
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
 			kaleoTaskInstanceTokenPersistence.findByPrimaryKey(
@@ -158,8 +165,12 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		kaleoTaskInstanceTokenPersistence.update(kaleoTaskInstanceToken, false);
 
-		// Kaleo instance
+		//Kaleo task assignment instance
+		kaleoTaskAssignmentInstanceLocalService.
+			completeKaleoTaskInstanceToken(
+				kaleoTaskInstanceTokenId, serviceContext);
 
+		// Kaleo instance
 		kaleoInstanceTokenLocalService.completeKaleoInstanceToken(
 			kaleoTaskInstanceToken.getKaleoInstanceTokenId());
 
@@ -172,6 +183,9 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		kaleoTaskInstanceTokenPersistence.removeByKaleoDefinitionId(
 			kaleoDefinitionId);
+
+		kaleoTaskAssignmentInstanceLocalService.
+			deleteKaleoTaskAssignmentInstances(kaleoDefinitionId);
 	}
 
 	public void deleteKaleoInstanceKaleoTaskInstanceTokens(long kaleoInstanceId)
@@ -179,6 +193,10 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		kaleoTaskInstanceTokenPersistence.removeByKaleoInstanceId(
 			kaleoInstanceId);
+
+		kaleoTaskAssignmentInstanceLocalService.
+			deleteKaleoTaskAssignmentInstancesByKaleoInstanceId(
+				kaleoInstanceId);
 	}
 
 	public List<KaleoTaskInstanceToken> getCompanyKaleoTaskInstanceTokens(
@@ -211,10 +229,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			OrderByComparator orderByComparator, ServiceContext serviceContext)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = buildDynamicQuery(
-			roleIds, completed, serviceContext);
-
-		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
+		return kaleoTaskInstanceTokenFinder.findByRoles_C_CI(
+			roleIds, completed, start, end, orderByComparator, serviceContext);
 	}
 
 	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
@@ -234,10 +250,9 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			ServiceContext serviceContext)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = buildDynamicQuery(
-			assigneeClassName, assigneeClassPK, completed, serviceContext);
-
-		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
+		return kaleoTaskInstanceTokenFinder.findByACN_ACP_C_CI(
+			assigneeClassName, assigneeClassPK, completed,
+			start, end, orderByComparator, serviceContext);
 	}
 
 	public int getKaleoTaskInstanceTokensCount(
@@ -255,10 +270,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			ServiceContext serviceContext)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = buildDynamicQuery(
+		return kaleoTaskInstanceTokenFinder.countByRoles_C_CI(
 			roleIds, completed, serviceContext);
-
-		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
 	public int getKaleoTaskInstanceTokensCount(
@@ -277,10 +290,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			Boolean completed, ServiceContext serviceContext)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = buildDynamicQuery(
+		return kaleoTaskInstanceTokenFinder.countByACN_ACP_C_CI(
 			assigneeClassName, assigneeClassPK, completed, serviceContext);
-
-		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
 	public List<KaleoTaskInstanceToken>
@@ -344,11 +355,10 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			OrderByComparator orderByComparator, ServiceContext serviceContext)
 		throws SystemException {
 
-		DynamicQuery query = buildDynamicQuery(
+		return kaleoTaskInstanceTokenFinder.findByC_DD_K_UR(
 			taskName, assetType, dueDateGT, dueDateLT, completed,
-			searchByUserRoles, andOperator, serviceContext);
-
-		return dynamicQuery(query);
+			searchByUserRoles, andOperator, start, end, orderByComparator,
+			serviceContext);
 	}
 
 	public int searchCount(
@@ -367,11 +377,9 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			boolean andOperator, ServiceContext serviceContext)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = buildDynamicQuery(
+		return kaleoTaskInstanceTokenFinder.countByC_DD_K_UR(
 			taskName, assetType, dueDateGT, dueDateLT, completed,
 			searchByUserRoles, andOperator, serviceContext);
-
-		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
 	public KaleoTaskInstanceToken updateDueDate(
@@ -487,28 +495,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	}
 
 	protected DynamicQuery buildDynamicQuery(
-		List<Long> roleIds, Boolean completed, ServiceContext serviceContext) {
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoTaskInstanceToken.class,
-			PortletClassLoaderUtil.getClassLoader());
-
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("companyId").eq(
-				serviceContext.getCompanyId()));
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("assigneeClassName").eq(
-				Role.class.getName()));
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("assigneeClassPK").in(
-				roleIds.toArray(new Long[roleIds.size()])));
-
-		addCompletedCriterion(dynamicQuery, completed);
-
-		return dynamicQuery;
-	}
-
-	protected DynamicQuery buildDynamicQuery(
 		long kaleoInstanceId, Boolean completed,
 		ServiceContext serviceContext) {
 
@@ -522,28 +508,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("kaleoInstanceId").eq(
 				kaleoInstanceId));
-
-		addCompletedCriterion(dynamicQuery, completed);
-
-		return dynamicQuery;
-	}
-
-	protected DynamicQuery buildDynamicQuery(
-		String assigneeClassName, long assigneeClassPK, Boolean completed,
-		ServiceContext serviceContext) {
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoTaskInstanceToken.class,
-			PortletClassLoaderUtil.getClassLoader());
-
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("companyId").eq(
-				serviceContext.getCompanyId()));
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("assigneeClassName").eq(
-				assigneeClassName));
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("assigneeClassPK").eq(assigneeClassPK));
 
 		addCompletedCriterion(dynamicQuery, completed);
 

@@ -23,17 +23,16 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class RoleAssignment extends Assignment {
 
-	public RoleAssignment(long roleId, String roleType, boolean defaultValue) {
-		super(AssignmentType.ROLE, defaultValue);
+	public RoleAssignment(long roleId, String roleType) {
+		super(AssignmentType.ROLE);
 
 		_roleId = roleId;
 		_roleType = roleType;
 	}
 
-	public RoleAssignment(
-		String roleName, String roleType, boolean defaultValue) {
+	public RoleAssignment(String roleName, String roleType) {
 
-		super(AssignmentType.ROLE, defaultValue);
+		super(AssignmentType.ROLE);
 
 		_roleName = roleName;
 		_roleType = roleType;

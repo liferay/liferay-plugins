@@ -97,6 +97,8 @@
 		<field name="currentKaleoNodeName" type="String">
 			<hint name="max-length">200</hint>
 		</field>
+		<field name="className" type="String" />
+		<field name="classPK" type="long" />
 		<field name="completed" type="boolean" />
 		<field name="completionDate" type="Date" />
 	</model>
@@ -255,7 +257,25 @@
 			<hint name="max-length">200</hint>
 		</field>
 		<field name="assigneeClassPK" type="long" />
-		<field name="defaultAssignment" type="boolean" />
+	</model>
+	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance">
+		<field name="kaleoTaskAssignmentInstanceId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="kaleoDefinitionId" type="long" />
+		<field name="kaleoInstanceId" type="long" />
+		<field name="kaleoInstanceTokenId" type="long" />
+		<field name="kaleoTaskInstanceTokenId" type="long" />
+		<field name="kaleoTaskId" type="long" />
+		<field name="kaleoTaskName" type="String" />
+		<field name="assigneeClassName" type="String" />
+		<field name="assigneeClassPK" type="long" />
+		<field name="completed" type="boolean" />
+		<field name="completionDate" type="Date" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken">
 		<field name="kaleoTaskInstanceTokenId" type="long" />
@@ -274,10 +294,8 @@
 		<field name="kaleoTaskName" type="String">
 			<hint name="max-length">200</hint>
 		</field>
-		<field name="assigneeClassName" type="String">
-			<hint name="max-length">200</hint>
-		</field>
-		<field name="assigneeClassPK" type="long" />
+		<field name="className" type="String" />
+		<field name="classPK" type="long" />
 		<field name="completionUserId" type="long" />
 		<field name="completed" type="boolean" />
 		<field name="completionDate" type="Date" />

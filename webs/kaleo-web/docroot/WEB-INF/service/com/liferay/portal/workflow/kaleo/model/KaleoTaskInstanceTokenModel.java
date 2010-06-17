@@ -104,13 +104,13 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	public void setKaleoTaskName(String kaleoTaskName);
 
 	@AutoEscape
-	public String getAssigneeClassName();
+	public String getClassName();
 
-	public void setAssigneeClassName(String assigneeClassName);
+	public void setClassName(String className);
 
-	public long getAssigneeClassPK();
+	public long getClassPK();
 
-	public void setAssigneeClassPK(long assigneeClassPK);
+	public void setClassPK(long classPK);
 
 	public long getCompletionUserId();
 

@@ -72,10 +72,12 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 			{ "parentKaleoInstanceTokenId", new Integer(Types.BIGINT) },
 			{ "currentKaleoNodeId", new Integer(Types.BIGINT) },
 			{ "currentKaleoNodeName", new Integer(Types.VARCHAR) },
+			{ "className", new Integer(Types.VARCHAR) },
+			{ "classPK", new Integer(Types.BIGINT) },
 			{ "completed", new Integer(Types.BOOLEAN) },
 			{ "completionDate", new Integer(Types.TIMESTAMP) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoInstanceToken (kaleoInstanceTokenId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoInstanceId LONG,parentKaleoInstanceTokenId LONG,currentKaleoNodeId LONG,currentKaleoNodeName VARCHAR(200) null,completed BOOLEAN,completionDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoInstanceToken (kaleoInstanceTokenId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoInstanceId LONG,parentKaleoInstanceTokenId LONG,currentKaleoNodeId LONG,currentKaleoNodeName VARCHAR(200) null,className VARCHAR(75) null,classPK LONG,completed BOOLEAN,completionDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoInstanceToken";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoInstanceToken.kaleoInstanceTokenId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoInstanceToken.kaleoInstanceTokenId ASC";
@@ -104,6 +106,8 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 		model.setParentKaleoInstanceTokenId(soapModel.getParentKaleoInstanceTokenId());
 		model.setCurrentKaleoNodeId(soapModel.getCurrentKaleoNodeId());
 		model.setCurrentKaleoNodeName(soapModel.getCurrentKaleoNodeName());
+		model.setClassName(soapModel.getClassName());
+		model.setClassPK(soapModel.getClassPK());
 		model.setCompleted(soapModel.getCompleted());
 		model.setCompletionDate(soapModel.getCompletionDate());
 
@@ -253,6 +257,27 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 		_currentKaleoNodeName = currentKaleoNodeName;
 	}
 
+	public String getClassName() {
+		if (_className == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _className;
+		}
+	}
+
+	public void setClassName(String className) {
+		_className = className;
+	}
+
+	public long getClassPK() {
+		return _classPK;
+	}
+
+	public void setClassPK(long classPK) {
+		_classPK = classPK;
+	}
+
 	public boolean getCompleted() {
 		return _completed;
 	}
@@ -312,6 +337,8 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 		clone.setParentKaleoInstanceTokenId(getParentKaleoInstanceTokenId());
 		clone.setCurrentKaleoNodeId(getCurrentKaleoNodeId());
 		clone.setCurrentKaleoNodeName(getCurrentKaleoNodeName());
+		clone.setClassName(getClassName());
+		clone.setClassPK(getClassPK());
 		clone.setCompleted(getCompleted());
 		clone.setCompletionDate(getCompletionDate());
 
@@ -367,7 +394,7 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{kaleoInstanceTokenId=");
 		sb.append(getKaleoInstanceTokenId());
@@ -393,6 +420,10 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 		sb.append(getCurrentKaleoNodeId());
 		sb.append(", currentKaleoNodeName=");
 		sb.append(getCurrentKaleoNodeName());
+		sb.append(", className=");
+		sb.append(getClassName());
+		sb.append(", classPK=");
+		sb.append(getClassPK());
 		sb.append(", completed=");
 		sb.append(getCompleted());
 		sb.append(", completionDate=");
@@ -403,7 +434,7 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler(52);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken");
@@ -458,6 +489,14 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 		sb.append(getCurrentKaleoNodeName());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>className</column-name><column-value><![CDATA[");
+		sb.append(getClassName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>classPK</column-name><column-value><![CDATA[");
+		sb.append(getClassPK());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>completed</column-name><column-value><![CDATA[");
 		sb.append(getCompleted());
 		sb.append("]]></column-value></column>");
@@ -484,6 +523,8 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	private long _parentKaleoInstanceTokenId;
 	private long _currentKaleoNodeId;
 	private String _currentKaleoNodeName;
+	private String _className;
+	private long _classPK;
 	private boolean _completed;
 	private Date _completionDate;
 	private transient ExpandoBridge _expandoBridge;

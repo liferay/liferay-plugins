@@ -16,9 +16,10 @@ package com.liferay.portal.workflow.kaleo.runtime.assignment;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
+
+import java.util.Collection;
 
 /**
  * <a href="TaskAssignmentSelector.java.html"><b><i>View Source</i></b></a>
@@ -27,8 +28,9 @@ import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
  */
 public interface TaskAssignmentSelector {
 
-	public KaleoTaskAssignment getTaskAssignment(
-			KaleoTask kaleoTask, ExecutionContext executionContext)
+	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
+			Collection<KaleoTaskAssignment> kaleoTaskAssignments,
+			ExecutionContext executionContext)
 		throws PortalException, SystemException;
 
 }

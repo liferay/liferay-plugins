@@ -17,16 +17,16 @@ package com.liferay.portal.workflow.kaleo;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.DefaultWorkflowTask;
-import com.liferay.portal.model.Role;
-import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.kernel.workflow.WorkflowTaskAssignee;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
+import com.liferay.portal.workflow.kaleo.util.KaleoTaskAssignmentInstanceUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -41,20 +41,11 @@ public class WorkflowTaskAdapter extends DefaultWorkflowTask {
 			Map<String, Serializable> workflowContext)
 		throws PortalException, SystemException {
 
-		String assigneeClassName =
-			kaleoTaskInstanceToken.getAssigneeClassName();
-		long assigneeClassPK = kaleoTaskInstanceToken.getAssigneeClassPK();
+		List<WorkflowTaskAssignee> workflowTaskAssignees =
+			KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
+				kaleoTaskInstanceToken);
 
-		if (assigneeClassName.equals(Role.class.getName())) {
-			setAssigneeRoleId(assigneeClassPK);
-		}
-		else {
-			setAssigneeUserId(assigneeClassPK);
-
-			User user = UserLocalServiceUtil.getUser(assigneeClassPK);
-
-			setAssigneeEmailAddress(user.getEmailAddress());
-		}
+		setWorkflowTaskAssignees(workflowTaskAssignees);
 
 		setCreateDate(kaleoTaskInstanceToken.getCreateDate());
 		setCompletionDate(kaleoTaskInstanceToken.getCompletionDate());

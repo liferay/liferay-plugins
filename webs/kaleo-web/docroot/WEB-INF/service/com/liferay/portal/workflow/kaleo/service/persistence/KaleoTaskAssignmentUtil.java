@@ -256,27 +256,6 @@ public class KaleoTaskAssignmentUtil {
 			kaleoTaskId, orderByComparator);
 	}
 
-	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment findByKTI_DA(
-		long kaleoTaskId, boolean defaultAssignment)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException {
-		return getPersistence().findByKTI_DA(kaleoTaskId, defaultAssignment);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment fetchByKTI_DA(
-		long kaleoTaskId, boolean defaultAssignment)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByKTI_DA(kaleoTaskId, defaultAssignment);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment fetchByKTI_DA(
-		long kaleoTaskId, boolean defaultAssignment, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .fetchByKTI_DA(kaleoTaskId, defaultAssignment,
-			retrieveFromCache);
-	}
-
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> findByACN_KTI(
 		java.lang.String assigneeClassName, long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -359,13 +338,6 @@ public class KaleoTaskAssignmentUtil {
 		getPersistence().removeByKaleoTaskId(kaleoTaskId);
 	}
 
-	public static void removeByKTI_DA(long kaleoTaskId,
-		boolean defaultAssignment)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException {
-		getPersistence().removeByKTI_DA(kaleoTaskId, defaultAssignment);
-	}
-
 	public static void removeByACN_KTI(java.lang.String assigneeClassName,
 		long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -385,11 +357,6 @@ public class KaleoTaskAssignmentUtil {
 	public static int countByKaleoTaskId(long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByKaleoTaskId(kaleoTaskId);
-	}
-
-	public static int countByKTI_DA(long kaleoTaskId, boolean defaultAssignment)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByKTI_DA(kaleoTaskId, defaultAssignment);
 	}
 
 	public static int countByACN_KTI(java.lang.String assigneeClassName,

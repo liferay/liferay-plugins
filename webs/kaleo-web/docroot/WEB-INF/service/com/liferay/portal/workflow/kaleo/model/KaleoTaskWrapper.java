@@ -219,12 +219,6 @@ public class KaleoTaskWrapper implements KaleoTask {
 		return _kaleoTask.toXmlString();
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment getDefaultKaleoTaskAssignment()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoTask.getDefaultKaleoTaskAssignment();
-	}
-
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoNode()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

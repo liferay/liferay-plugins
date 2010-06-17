@@ -152,18 +152,6 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		_assigneeClassPK = assigneeClassPK;
 	}
 
-	public boolean getDefaultAssignment() {
-		return _defaultAssignment;
-	}
-
-	public boolean isDefaultAssignment() {
-		return _defaultAssignment;
-	}
-
-	public void setDefaultAssignment(boolean defaultAssignment) {
-		_defaultAssignment = defaultAssignment;
-	}
-
 	public KaleoTaskAssignment toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -190,7 +178,6 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		clone.setKaleoTaskId(getKaleoTaskId());
 		clone.setAssigneeClassName(getAssigneeClassName());
 		clone.setAssigneeClassPK(getAssigneeClassPK());
-		clone.setDefaultAssignment(getDefaultAssignment());
 
 		return clone;
 	}
@@ -244,7 +231,7 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{kaleoTaskAssignmentId=");
 		sb.append(getKaleoTaskAssignmentId());
@@ -270,15 +257,13 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		sb.append(getAssigneeClassName());
 		sb.append(", assigneeClassPK=");
 		sb.append(getAssigneeClassPK());
-		sb.append(", defaultAssignment=");
-		sb.append(getDefaultAssignment());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment");
@@ -332,10 +317,6 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 			"<column><column-name>assigneeClassPK</column-name><column-value><![CDATA[");
 		sb.append(getAssigneeClassPK());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>defaultAssignment</column-name><column-value><![CDATA[");
-		sb.append(getDefaultAssignment());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -355,5 +336,4 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 	private long _kaleoTaskId;
 	private String _assigneeClassName;
 	private long _assigneeClassPK;
-	private boolean _defaultAssignment;
 }

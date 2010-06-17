@@ -150,20 +150,20 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 		_kaleoTaskInstanceToken.setKaleoTaskName(kaleoTaskName);
 	}
 
-	public java.lang.String getAssigneeClassName() {
-		return _kaleoTaskInstanceToken.getAssigneeClassName();
+	public java.lang.String getClassName() {
+		return _kaleoTaskInstanceToken.getClassName();
 	}
 
-	public void setAssigneeClassName(java.lang.String assigneeClassName) {
-		_kaleoTaskInstanceToken.setAssigneeClassName(assigneeClassName);
+	public void setClassName(java.lang.String className) {
+		_kaleoTaskInstanceToken.setClassName(className);
 	}
 
-	public long getAssigneeClassPK() {
-		return _kaleoTaskInstanceToken.getAssigneeClassPK();
+	public long getClassPK() {
+		return _kaleoTaskInstanceToken.getClassPK();
 	}
 
-	public void setAssigneeClassPK(long assigneeClassPK) {
-		_kaleoTaskInstanceToken.setAssigneeClassPK(assigneeClassPK);
+	public void setClassPK(long classPK) {
+		_kaleoTaskInstanceToken.setClassPK(classPK);
 	}
 
 	public long getCompletionUserId() {
@@ -291,6 +291,11 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskInstanceToken.getKaleoTask();
+	}
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();
 	}
 
 	public KaleoTaskInstanceToken getWrappedKaleoTaskInstanceToken() {

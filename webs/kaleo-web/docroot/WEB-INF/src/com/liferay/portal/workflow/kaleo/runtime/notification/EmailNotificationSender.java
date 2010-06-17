@@ -25,6 +25,7 @@ import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
+import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
@@ -90,20 +91,29 @@ public class EmailNotificationSender implements NotificationSender {
 			return;
 		}
 
-		String assigneeClassName =
-			kaleoTaskInstanceToken.getAssigneeClassName();
+		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
+			kaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();
 
-		if (assigneeClassName.equals(User.class.getName())) {
-			getUserEmailAddress(
-				kaleoTaskInstanceToken.getAssigneeClassPK(), internetAddresses);
-		}
-		else {
-			long roleId = kaleoTaskInstanceToken.getAssigneeClassPK();
+		for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance :
+				kaleoTaskAssignmentInstances) {
 
-			Role role = RoleLocalServiceUtil.getRole(roleId);
+			String assigneeClassName =
+				kaleoTaskAssignmentInstance.getAssigneeClassName();
 
-			getRoleRecipientAddresses(
-				roleId, role.getType(), internetAddresses, executionContext);
+			if (assigneeClassName.equals(User.class.getName())) {
+				getUserEmailAddress(
+					kaleoTaskAssignmentInstance.getAssigneeClassPK(),
+					internetAddresses);
+			}
+			else {
+				long roleId = kaleoTaskAssignmentInstance.getAssigneeClassPK();
+
+				Role role = RoleLocalServiceUtil.getRole(roleId);
+
+				getRoleRecipientAddresses(
+					roleId, role.getType(), internetAddresses,
+					executionContext);
+			}
 		}
 	}
 

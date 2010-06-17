@@ -149,6 +149,22 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		_kaleoInstanceToken.setCurrentKaleoNodeName(currentKaleoNodeName);
 	}
 
+	public java.lang.String getClassName() {
+		return _kaleoInstanceToken.getClassName();
+	}
+
+	public void setClassName(java.lang.String className) {
+		_kaleoInstanceToken.setClassName(className);
+	}
+
+	public long getClassPK() {
+		return _kaleoInstanceToken.getClassPK();
+	}
+
+	public void setClassPK(long classPK) {
+		_kaleoInstanceToken.setClassPK(classPK);
+	}
+
 	public boolean getCompleted() {
 		return _kaleoInstanceToken.getCompleted();
 	}

@@ -15,17 +15,20 @@
 package com.liferay.portal.workflow.kaleo.runtime.action;
 
 import com.liferay.portal.kernel.scripting.ScriptingUtil;
+import com.liferay.portal.kernel.workflow.WorkflowTaskAssignee;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
+import com.liferay.portal.workflow.kaleo.util.KaleoTaskAssignmentInstanceUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -73,12 +76,12 @@ public class ScriptActionExecutor implements ActionExecutor {
 			executionContext.getKaleoTaskInstanceToken();
 
 		if (kaleoTaskInstanceToken != null) {
+			List<WorkflowTaskAssignee> workflowTaskAssignees =
+				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
+					kaleoTaskInstanceToken);
+
 			inputObjects.put(
-				"assigneeClassName",
-				kaleoTaskInstanceToken.getAssigneeClassName());
-			inputObjects.put(
-				"assigneeClassPK",
-				kaleoTaskInstanceToken.getAssigneeClassPK());
+				"workflowTaskAssignees", workflowTaskAssignees);
 
 			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 

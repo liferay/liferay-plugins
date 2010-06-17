@@ -16,7 +16,6 @@ package com.liferay.portal.workflow.kaleo.runtime.assignment;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
@@ -24,10 +23,11 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
-import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -39,8 +39,9 @@ import java.util.List;
 public class GroupAwareTaskAssignmentSelector
 	implements TaskAssignmentSelector {
 
-	public KaleoTaskAssignment getTaskAssignment(
-			KaleoTask kaleoTask, ExecutionContext executionContext)
+	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
+			Collection<KaleoTaskAssignment> kaleoTaskAssignments,
+			ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
 		KaleoInstanceToken kaleoInstanceToken =
@@ -54,28 +55,16 @@ public class GroupAwareTaskAssignmentSelector
 			group = GroupLocalServiceUtil.getGroup(group.getParentGroupId());
 		}
 
-		KaleoTaskAssignment defaultKaleoTaskAssignment =
-			kaleoTask.getDefaultKaleoTaskAssignment();
+		List<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
+			new ArrayList<KaleoTaskAssignment>();
 
-		if (isValidAssignment(defaultKaleoTaskAssignment, group)) {
-			return defaultKaleoTaskAssignment;
-		}
-		else {
-			List<KaleoTaskAssignment> kaleoTaskAssignments =
-				kaleoTask.getKaleoTaskAssignments();
-
-			for (KaleoTaskAssignment kaleoTaskAssignment :
-					kaleoTaskAssignments) {
-
-				if (isValidAssignment(kaleoTaskAssignment, group)) {
-					return kaleoTaskAssignment;
-				}
+		for (KaleoTaskAssignment kaleoTaskAssignment : kaleoTaskAssignments) {
+			if (isValidAssignment(kaleoTaskAssignment, group)) {
+				calculatedKaleoTaskAssignments.add(kaleoTaskAssignment);
 			}
 		}
 
-		throw new WorkflowException(
-			"Unable to select a valid assignment for task " +
-				kaleoTask.getKaleoTaskId());
+		return calculatedKaleoTaskAssignments;
 	}
 
 	protected boolean isValidAssignment(

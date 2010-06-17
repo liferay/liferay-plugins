@@ -184,34 +184,35 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		Set<Assignment> assignments = new HashSet<Assignment>();
 
-		List<Element> roleAssignmentElements = assignmentsElement.elements(
-			"role");
+		Element rolesElement = assignmentsElement.element("roles");
 
-		for (Element roleAssignmentElement : roleAssignmentElements) {
-			long roleId = GetterUtil.getLong(
-				roleAssignmentElement.elementText("role-id"));
-			String roleType = roleAssignmentElement.elementText("role-type");
-			String name = roleAssignmentElement.elementText("name");
-			boolean defaultValue = GetterUtil.getBoolean(
-				roleAssignmentElement.elementText("default"));
+		if (rolesElement != null) {
 
-			RoleAssignment roleAssignment = null;
+			List<Element> roleAssignmentElements = rolesElement.elements(
+				"role");
 
-			if (Validator.isNotNull(name)) {
-				roleAssignment = new RoleAssignment(
-					name, roleType, defaultValue);
+			for (Element roleAssignmentElement : roleAssignmentElements) {
+				long roleId = GetterUtil.getLong(
+					roleAssignmentElement.elementText("role-id"));
+				String roleType = roleAssignmentElement.elementText("role-type");
+				String name = roleAssignmentElement.elementText("name");
 
-				boolean autoCreate = GetterUtil.getBoolean(
-					roleAssignmentElement.elementText("auto-create"), true);
+				RoleAssignment roleAssignment = null;
 
-				roleAssignment.setAutoCreate(autoCreate);
+				if (Validator.isNotNull(name)) {
+					roleAssignment = new RoleAssignment(name, roleType);
+
+					boolean autoCreate = GetterUtil.getBoolean(
+						roleAssignmentElement.elementText("auto-create"), true);
+
+					roleAssignment.setAutoCreate(autoCreate);
+				}
+				else {
+					roleAssignment = new RoleAssignment(roleId, roleType);
+				}
+
+				assignments.add(roleAssignment);
 			}
-			else {
-				roleAssignment = new RoleAssignment(
-					roleId, roleType, defaultValue);
-			}
-
-			assignments.add(roleAssignment);
 		}
 
 		List<Element> userAssignmentElements = assignmentsElement.elements(
@@ -224,11 +225,9 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 				"screen-name");
 			String emailAddress = userAssignmentElement.elementText(
 				"email-address");
-			boolean defaultValue = GetterUtil.getBoolean(
-				userAssignmentElement.elementText("default"));
 
 			UserAssignment userAssignment = new UserAssignment(
-				userId, screenName, emailAddress, defaultValue);
+				userId, screenName, emailAddress);
 
 			assignments.add(userAssignment);
 		}
