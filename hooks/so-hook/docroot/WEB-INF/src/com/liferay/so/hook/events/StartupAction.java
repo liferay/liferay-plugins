@@ -385,6 +385,7 @@ public class StartupAction extends SimpleAction {
 		boolean autoScreenName = false;
 		String screenName = "admin";
 		String emailAddress = "admin@admin.com";
+		long facebookId = 0;
 		String openId = StringPool.BLANK;
 		Locale locale = Locale.US;
 		String firstName = "Admin";
@@ -416,10 +417,10 @@ public class StartupAction extends SimpleAction {
 
 		UserLocalServiceUtil.addUser(
 			creatorUserId, companyId, autoPassword, password1, password2,
-			autoScreenName, screenName, emailAddress, openId, locale, firstName,
-			middleName, lastName, prefixId, suffixId, male, birthdayMonth,
-			birthdayDay, birthdayYear, jobTitle, groupIds, organizationIds,
-			roleIds, userGroupIds, sendEmail, serviceContext);
+			autoScreenName, screenName, emailAddress, facebookId, openId,
+			locale, firstName, middleName, lastName, prefixId, suffixId, male,
+			birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds,
+			organizationIds, roleIds, userGroupIds, sendEmail, serviceContext);
 	}
 
 }

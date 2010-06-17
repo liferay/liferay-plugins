@@ -218,6 +218,7 @@ public class ProfilesPortlet extends MVCPortlet {
 		String screenName = user.getScreenName();
 		String emailAddress = ParamUtil.getString(
 			actionRequest, "emailAddress");
+		long facebookId = user.getFacebookId();
 		String openId = user.getOpenId();
 		String languageId = user.getLanguageId();
 		String timeZoneId = user.getTimeZoneId();
@@ -267,8 +268,8 @@ public class ProfilesPortlet extends MVCPortlet {
 		UserServiceUtil.updateUser(
 			userId, oldPassword, newPassword1, newPassword2, passwordReset,
 			reminderQueryQuestion, reminderQueryAnswer, screenName,
-			emailAddress, openId, languageId, timeZoneId, greeting, comments,
-			firstName, middleName, lastName, prefixId, suffixId, male,
+			emailAddress, facebookId, openId, languageId, timeZoneId, greeting,
+			comments, firstName, middleName, lastName, prefixId, suffixId, male,
 			birthdayMonth, birthdayDay, birthdayYear, smsSn, aimSn, facebookSn,
 			icqSn, jabberSn, msnSn, mySpaceSn, skypeSn, twitterSn, ymSn,
 			jobTitle, groupIds, organizationIds, roleIds, userGroupRoles,
@@ -294,6 +295,7 @@ public class ProfilesPortlet extends MVCPortlet {
 		String reminderQueryAnswer = user.getReminderQueryAnswer();
 		String screenName = user.getScreenName();
 		String emailAddress = user.getEmailAddress();
+		long facebookId = user.getFacebookId();
 		String openId = user.getOpenId();
 		String languageId = ParamUtil.getString(actionRequest, "languageId");
 		String timeZoneId = ParamUtil.getString(actionRequest, "timeZoneId");
@@ -326,8 +328,8 @@ public class ProfilesPortlet extends MVCPortlet {
 		UserServiceUtil.updateUser(
 			userId, oldPassword, newPassword1, newPassword2, passwordReset,
 			reminderQueryQuestion, reminderQueryAnswer, screenName,
-			emailAddress, openId, languageId, timeZoneId, greeting, comments,
-			firstName, middleName, lastName, prefixId, suffixId, male,
+			emailAddress, facebookId, openId, languageId, timeZoneId, greeting,
+			comments, firstName, middleName, lastName, prefixId, suffixId, male,
 			birthdayMonth, birthdayDay, birthdayYear, smsSn, aimSn, facebookSn,
 			icqSn, jabberSn, msnSn, mySpaceSn, skypeSn, twitterSn, ymSn,
 			jobTitle, null, null, null, null, null, serviceContext);
