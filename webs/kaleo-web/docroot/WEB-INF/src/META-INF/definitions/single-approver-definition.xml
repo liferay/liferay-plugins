@@ -6,7 +6,7 @@
 	xsi:schemaLocation="urn:liferay.com:liferay-workflow_6.0.0 http://www.liferay.com/dtd/liferay-workflow-definition_6_0_0.xsd"
 >
 	<name>Single Approver</name>
-	<description>A single approver can approve a workflow asset.</description>
+	<description>A single approver can approve a workflow content.</description>
 	<version>1</version>
 	<state>
 		<name>created</name>
@@ -25,7 +25,7 @@
 			<notification>
 				<name>Creator Modification Notification</name>
 				<execution-type>onAssignment</execution-type>
-				<template>Your asset was rejected by a reviewer, please modify and resubmit.</template>
+				<template>Your content was rejected by a reviewer, please modify and resubmit.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
 			</notification>
@@ -35,7 +35,7 @@
 		</assignments>
 		<transitions>
 			<transition>
-				<name>Resubmit</name>
+				<name>resubmit</name>
 				<target>review-content</target>
 				<default>true</default>
 			</transition>
@@ -47,20 +47,36 @@
 			<notification>
 				<name>Review Content Notification</name>
 				<execution-type>onAssignment</execution-type>
-				<template>You have a new asset waiting for your review in the workflow.</template>
+				<template>You have a new content waiting for your review in the workflow.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
 			</notification>
 		</actions>
 		<assignments>
 			<roles>
+                <role>
+                    <role-type>community</role-type>
+                    <name>Community Administrator</name>
+                </role>
 				<role>
 					<role-type>community</role-type>
 					<name>Community Content Reviewer</name>
 				</role>
 				<role>
+					<role-type>community</role-type>
+					<name>Community Owner</name>
+				</role>
+				<role>
+                    <role-type>organization</role-type>
+                    <name>Organization Administrator</name>
+                </role>
+                <role>
 					<role-type>organization</role-type>
 					<name>Organization Content Reviewer</name>
+				</role>
+				<role>
+					<role-type>organization</role-type>
+					<name>Organization Owner</name>
 				</role>
 				<role>
 					<role-type>regular</role-type>
@@ -74,12 +90,12 @@
 		</assignments>
 		<transitions>
 			<transition>
-				<name>Approve Asset</name>
+				<name>approve-content</name>
 				<target>approved</target>
 				<default>true</default>
 			</transition>
 			<transition>
-				<name>Review Failed</name>
+				<name>review-failed</name>
 				<target>update-content</target>
 				<default>false</default>
 			</transition>
@@ -89,7 +105,7 @@
 		<name>approved</name>
 		<actions>
 			<action>
-				<name>Approve Asset</name>
+				<name>approve-content</name>
 				<execution-type>onEntry</execution-type>
 				<script>
 					<![CDATA[
