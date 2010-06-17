@@ -175,7 +175,7 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 					method: 'POST',
 					on: {
 						failure: function(event, id, obj) {
-							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
+							Liferay.Mail.setStatus('error', 'unable-to-connect-with-mail-server');
 						},
 
 						success: function(event, id, obj) {

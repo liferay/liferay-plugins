@@ -30,13 +30,15 @@ AUI().add(
 			},
 
 			addAccount: function() {
+				var instance = this;
+
 				new A.Dialog(
 					{
 						centered: true,
 						cssClass: 'mail-dialog',
 						destroyOnClose: true,
 						modal: true,
-						title: Liferay.Language.get('add-account'),
+						title: instance.translate('add-account'),
 						width: 600
 					}
 				).plug(
@@ -85,7 +87,7 @@ AUI().add(
 			deleteMessages: function(messageIds) {
 				var instance = this;
 
-				instance.setStatus('info', Liferay.Language.get('deleting-messages'));
+				instance.setStatus('info', 'deleting-messages');
 
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/delete_messages',
@@ -95,7 +97,7 @@ AUI().add(
 						method: 'POST',
 						on: {
 							failure: function(event, id, obj) {
-								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
+								instance.setStatus('error', 'unable-to-connect-with-mail-server');
 							},
 							success: function(event, id, obj) {
 								var responseData = this.get('responseData');
@@ -120,7 +122,7 @@ AUI().add(
 						cssClass: 'mail-dialog',
 						destroyOnClose: true,
 						modal: true,
-						title: Liferay.Language.get('edit-account'),
+						title: instance.translate('edit-account'),
 						width: 600
 					}
 				).plug(
@@ -135,7 +137,7 @@ AUI().add(
 			flagMessages: function(flag, value, messageIds) {
 				var instance = this;
 
-				instance.setStatus('info', Liferay.Language.get('flagging-messages'));
+				instance.setStatus('info', 'flagging-messages');
 
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/flag_messages',
@@ -149,7 +151,7 @@ AUI().add(
 						method: 'POST',
 						on: {
 							failure: function (event, id, obj) {
-								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
+								instance.setStatus('error', 'unable-to-connect-with-mail-server');
 							},
 							success: function (event, id, obj) {
 								var responseData = this.get('responseData');
@@ -186,7 +188,7 @@ AUI().add(
 						method: 'POST',
 						on: {
 							failure: function(event, id, obj) {
-								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
+								instance.setStatus('error', 'unable-to-connect-with-mail-server');
 							},
 							success: function(event, id, obj) {
 								var responseData = this.get('responseData');
@@ -308,7 +310,7 @@ AUI().add(
 			moveMessages: function(folderId, messageIds) {
 				var instance = this;
 
-				instance.setStatus('info', Liferay.Language.get('moving-messages'));
+				instance.setStatus('info', 'moving-messages');
 
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/move_messages',
@@ -321,7 +323,7 @@ AUI().add(
 						method: 'POST',
 						on: {
 							failure: function (event, id, obj) {
-								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
+								instance.setStatus('error', 'unable-to-connect-with-mail-server');
 							},
 							success: function (event, id, obj) {
 								var responseData = this.get('responseData');
@@ -345,7 +347,7 @@ AUI().add(
 						cssClass: 'mail-dialog',
 						destroyOnClose: true,
 						modal: true,
-						title: Liferay.Language.get('password'),
+						title: instance.translate('password'),
 						width: 600
 					}
 				).plug(
@@ -375,6 +377,8 @@ AUI().add(
 			},
 
 			setStatus: function(type, message, indefinite) {
+				var instance = this;
+
 				var messageType = 'portlet-msg-error';
 
 				if (type == 'success') {
@@ -384,7 +388,7 @@ AUI().add(
 					messageType = 'portlet-msg-info';
 				}
 
-				var statusContainers = A.all('.mail-status').html('<table style="margin: 0 auto;"><tr><td>&nbsp;</td><td><span class="message ' + messageType + '">' + message + '</span></td><td>&nbsp;</td></tr></table>');
+				var statusContainers = A.all('.mail-status').html('<table style="margin: 0 auto;"><tr><td>&nbsp;</td><td><span class="message ' + messageType + '">' + instance.translate(message) + '</span></td><td>&nbsp;</td></tr></table>');
 
 				var status = statusContainers.all('table');
 
@@ -396,6 +400,34 @@ AUI().add(
 						5000
 					);
 				}
+			},
+
+			translate: function(key) {
+				var instance = this;
+
+				var value = instance._languageKeys[key];
+
+				if (value) {
+					return value;
+				}
+
+				A.io.request(
+					themeDisplay.getLayoutURL() + '/-/mail/translate',
+					{
+						data: {key: key},
+						on: {
+							complete: function(event, id, obj) {
+								value = A.Lang.trim(obj.responseText);
+							}
+						},
+						sync: true,
+						type: 'GET'
+					}
+				);
+
+				instance._languageKeys[key] = value;
+
+				return value;
 			},
 
 			_assignEvents: function() {
@@ -703,7 +735,8 @@ AUI().add(
 			keywords: '',
 			orderByField: 'sentDate',
 			orderByType: 'desc',
-			pageNumber: 1
+			pageNumber: 1,
+			_languageKeys: {}
 		};
 	},
 	'',

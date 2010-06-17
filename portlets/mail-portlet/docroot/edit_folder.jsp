@@ -44,7 +44,7 @@ Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 		function(event) {
 			event.preventDefault();
 
-			Liferay.Mail.setStatus('info', Liferay.Language.get('updating-folder'), true);
+			Liferay.Mail.setStatus('info', 'updating-folder', true);
 
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/rename_folder',
@@ -55,7 +55,7 @@ Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 					},
 					on: {
 						failure: function(event, id, obj) {
-							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
+							Liferay.Mail.setStatus('error', 'unable-to-connect-with-mail-server');
 						},
 						success: function(event, id, obj) {
 							var responseData = this.get('responseData');
