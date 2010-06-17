@@ -50,7 +50,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 	}
 	%>
 
-	<aui:select label="" name="priority">
+	<aui:select inlineField="<%= true %>" label="" name="priority">
 
 		<%
 		for (int i = 0; i < total; i++) {
