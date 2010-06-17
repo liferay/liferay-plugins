@@ -194,7 +194,7 @@ AUI().add(
 							success: function(event, id, obj) {
 								var responseData = this.get('responseData');
 
-								if (responseData == 'true') {
+								if (A.DataType.Boolean.parse(responseData)) {
 									instance.loadFolders(accountId);
 									instance.loadMessages(inboxFolderId, 1, 'sentDate', 'desc', '');
 								}
@@ -706,6 +706,6 @@ AUI().add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-dialog', 'aui-io']
+		requires: ['aui-base', 'aui-dialog', 'aui-io', 'aui-datatype']
 	}
 );
