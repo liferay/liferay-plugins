@@ -28,13 +28,8 @@ if (layout.getGroup().isUser()) {
 }
 
 String gadgetUrl = gadget.getUrl();
-
-String portletId = PortalUtil.getPortletId(renderRequest);
-
-Portlet portlet = PortletLocalServiceUtil.getPortletById(
-	themeDisplay.getCompanyId(), portletId);
-
-long moduleId = portlet.hashCode();
+String namespace = renderResponse.getNamespace();
+long moduleId = namespace.hashCode();
 
 String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUserId(), gadgetUrl, PortalUtil.getPortalURL(themeDisplay), gadgetUrl, moduleId, PortalUtil.getCurrentURL(renderRequest));
 %>
@@ -49,7 +44,7 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 			secureToken: '<%= secureToken %>',
 			serverBase: '<%= renderRequest.getContextPath() %>/gadgets/',
 			specUrl: '<%= gadgetUrl %>',
-			userPrefsKey: '<%= ShindigUtil.USER_PREFS + renderResponse.getNamespace() %>'
+			userPrefsKey: '<%= ShindigUtil.USER_PREFS + namespace %>'
 		}
 	).render('#<portlet:namespace />gadget');
 </aui:script>
