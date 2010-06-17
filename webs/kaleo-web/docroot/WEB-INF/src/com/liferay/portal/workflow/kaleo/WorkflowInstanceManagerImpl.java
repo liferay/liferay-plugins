@@ -88,6 +88,20 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			serviceContext);
 	}
 
+	public int getWorkflowInstanceCount(
+			long companyId, Long userId, String assetClassName,
+			Long assetClassPK, Boolean completed)
+		throws WorkflowException {
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setCompanyId(companyId);
+
+		return _workflowEngine.getWorkflowInstanceCount(
+			userId, assetClassName, assetClassPK, completed,
+			serviceContext);
+	}
+
 	public List<WorkflowInstance> getWorkflowInstances(
 			long companyId, String workflowDefinitionName,
 			Integer workflowDefinitionVersion, Boolean completed, int start,
@@ -100,6 +114,21 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 		return _workflowEngine.getWorkflowInstances(
 			workflowDefinitionName, workflowDefinitionVersion, completed, start,
+			end, orderByComparator, serviceContext);
+	}
+
+	public List<WorkflowInstance> getWorkflowInstances(
+			long companyId, Long userId, String assetClassName,
+			Long assetClassPK, Boolean completed, int start, int end,
+			OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setCompanyId(companyId);
+
+		return _workflowEngine.getWorkflowInstances(
+			userId, assetClassName, assetClassPK, completed, start,
 			end, orderByComparator, serviceContext);
 	}
 

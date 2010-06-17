@@ -59,9 +59,20 @@ public interface WorkflowEngine {
 			boolean completed, ServiceContext serviceContext)
 		throws WorkflowException;
 
+	public int getWorkflowInstanceCount(
+			Long userId, String assetClassName, Long assetClassPK,
+			Boolean completed, ServiceContext serviceContext)
+		throws WorkflowException;
+
 	public List<WorkflowInstance> getWorkflowInstances(
 			String workflowDefinitionName, int workflowDefinitionVersion,
 			boolean completed, int start, int end,
+			OrderByComparator orderByComparator, ServiceContext serviceContext)
+		throws WorkflowException;
+
+	public List<WorkflowInstance> getWorkflowInstances(
+			Long userId, String assetClassName, Long assetClassPK,
+			Boolean completed, int start, int end,
 			OrderByComparator orderByComparator, ServiceContext serviceContext)
 		throws WorkflowException;
 

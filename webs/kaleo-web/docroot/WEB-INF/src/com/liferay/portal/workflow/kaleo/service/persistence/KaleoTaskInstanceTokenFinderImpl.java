@@ -561,7 +561,6 @@ public class KaleoTaskInstanceTokenFinderImpl
 		return sb.toString();
 	}
 
-
 	protected void setCompleted(QueryPos qPos, Boolean completed) {
 		if (completed != null) {
 			qPos.add(completed);

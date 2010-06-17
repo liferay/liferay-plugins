@@ -602,7 +602,7 @@
 		<column name="kaleoTaskName" type="String" />
 		<column name="className" type="String" />
 		<column name="classPK" type="long" />
-			<column name="completionUserId" type="long" />
+		<column name="completionUserId" type="long" />
 		<column name="completed" type="boolean" />
 		<column name="completionDate" type="Date" />
 		<column name="dueDate" type="Date" />
