@@ -62,6 +62,24 @@ String path = GetterUtil.getString(request.getPathInfo());
 					url="<%= taglibURL %>"
 				/>
 			</c:if>
+
+			<portlet:renderURL var="allArticlesURL">
+				<portlet:param name="jspPage" value="/admin/view_all_articles.jsp" />
+				<portlet:param name="topLink" value="all-articles" />
+			</portlet:renderURL>
+
+			<%
+			taglibURL = topLink.equals("all-articles") ? StringPool.BLANK : allArticlesURL;
+			%>
+
+			<liferay-ui:icon
+				cssClass="top-link last"
+				image="view"
+				label="<%= true %>"
+				message="all-articles"
+				method="get"
+				url="<%= taglibURL %>"
+			/>
 		</div>
 	</div>
 </div>
