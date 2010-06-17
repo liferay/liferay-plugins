@@ -15,20 +15,32 @@
 package com.liferay.mail.portlet;
 
 import com.liferay.mail.model.Attachment;
+import com.liferay.mail.model.MailFile;
 import com.liferay.mail.service.AttachmentLocalServiceUtil;
 import com.liferay.mail.util.MailManager;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
@@ -80,6 +92,48 @@ public class MailPortlet extends MVCPortlet {
 		else {
 			super.serveResource(resourceRequest, resourceResponse);
 		}
+	}
+
+	public void sendMessage(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
+			actionRequest);
+
+		long accountId = ParamUtil.getLong(uploadRequest, "accountId");
+		long messageId = ParamUtil.getLong(uploadRequest, "messageId");
+		String to = ParamUtil.getString(uploadRequest, "to");
+		String cc = ParamUtil.getString(uploadRequest, "cc");
+		String bcc = ParamUtil.getString(uploadRequest, "bcc");
+		String subject = ParamUtil.getString(uploadRequest, "subject");
+		String body = ParamUtil.getString(uploadRequest, "body");
+
+		int attachmentCount = ParamUtil.getInteger(
+			uploadRequest, "attachmentCount");
+
+		List<MailFile> mailFiles = new ArrayList<MailFile>();
+
+		for (int i = 1; i <= attachmentCount; i++) {
+			File file = uploadRequest.getFile("attachment" + i);
+			String filename = uploadRequest.getFileName("attachment" + i);
+
+			if (FileUtil.getBytes(file) != null) {
+				mailFiles.add(new MailFile(file, filename, file.length()));
+			}
+		}
+
+		MailManager mailManager = MailManager.getInstance(uploadRequest);
+
+		JSONObject responseData = mailManager.sendMessage(
+			accountId, messageId, to, cc, bcc, subject, body, mailFiles);
+
+		actionResponse.sendRedirect(
+			PortalUtil.getLayoutURL(themeDisplay) +
+				"/-/mail/send_message?responseData=" + responseData);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(MailPortlet.class);

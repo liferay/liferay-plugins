@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
@@ -625,7 +626,7 @@ public class MailManager {
 					"failure",
 					"please-make-sure-the-following-address-is-properly" +
 						"-formatted",
-					me.getValue());
+					HtmlUtil.escape(me.getValue()));
 			}
 
 			_log.error(me, me);

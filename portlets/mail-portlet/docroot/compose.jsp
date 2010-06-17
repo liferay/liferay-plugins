@@ -75,9 +75,10 @@ else {
 }
 %>
 
-<form id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
-	<aui:input type="hidden" name="accountId" value="<%= accountId %>" />
-	<aui:input type="hidden" name="messageId" value="<%= messageId %>" />
+<form action="<liferay-portlet:actionURL name="sendMessage" />" enctype="multipart/form-data" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
+	<aui:input name="accountId" type="hidden" value="<%= accountId %>" />
+	<aui:input name="messageId" type="hidden" value="<%= messageId %>" />
+	<aui:input name="attachmentCount" type="hidden" value="0" />
 
 	<aui:input name="to" value="<%= to %>" />
 
@@ -91,6 +92,14 @@ else {
 		<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" toolbarSet="email" width="100%" />
 
 		<aui:input name="body" type="hidden" />
+	</aui:field-wrapper>
+
+	<aui:field-wrapper label="attachments">
+		<div class="attachments"></div>
+
+		<div>
+			<a class="add-attachment" href="javascript:;"><liferay-ui:message key="add-attachment" /></a>
+		</div>
 	</aui:field-wrapper>
 
 	<aui:button-row>
@@ -119,23 +128,26 @@ else {
 			document.<portlet:namespace />fm.<portlet:namespace />body.value = window.<portlet:namespace />editor.getHTML();
 
 			A.io.request(
-				themeDisplay.getLayoutURL() + '/-/mail/send_message',
+				form.getAttribute('action'),
 				{
 					dataType: 'json',
 					form: {
-						id: form.getDOM()
+						id: form.getDOM(),
+						upload: true
 					},
 					on: {
-						failure: function(event, id, obj) {
-							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
-						},
-						success: function(event, id, obj) {
-							var results = this.get('responseData');
+						complete: function(event, id, obj) {
+							try {
+								var responseData = A.JSON.parse(obj.responseText);
 
-							Liferay.Mail.setStatus(results.status, results.message);
+								Liferay.Mail.setStatus(responseData.status, responseData.message);
 
-							if (results.status == 'success') {
-								Liferay.Mail.loadMessages(Liferay.Mail.folderId, Liferay.Mail.pageNumber, Liferay.Mail.orderByField, Liferay.Mail.orderByType, Liferay.Mail.keywords);
+								if (responseData.status == 'success') {
+									Liferay.Mail.loadMessages(Liferay.Mail.folderId, Liferay.Mail.pageNumber, Liferay.Mail.orderByField, Liferay.Mail.orderByType, Liferay.Mail.keywords);
+								}
+							}
+							catch (e) {
+								Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 							}
 						}
 					}
@@ -161,13 +173,26 @@ else {
 							Liferay.Mail.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 						},
 						success: function(event, id, obj) {
-							var results = this.get('responseData');
+							var responseData = this.get('responseData');
 
-							Liferay.Mail.setStatus(results.status, results.message);
+							Liferay.Mail.setStatus(responseData.status, responseData.message);
 						}
 					}
 				}
 			);
+		}
+	);
+
+	form.one('.add-attachment').on(
+		'click',
+		function(event) {
+			var countNode = form.one('input[name=<portlet:namespace />attachmentCount]');
+
+			var count = parseInt(countNode.val()) + 1;
+
+			form.one('.attachments').append('<div><input name="<portlet:namespace/>attachment' + count + '" size="50" type="file" /></div>');
+
+			countNode.setAttribute('value', count);
 		}
 	);
 </aui:script>
