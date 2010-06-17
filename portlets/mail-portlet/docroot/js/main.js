@@ -174,9 +174,6 @@ AUI().add(
 			loadAccount: function(accountId, inboxFolderId) {
 				var instance = this;
 
-				instance.accountId = accountId;
-				instance.inboxFolderId = inboxFolderId;
-
 				instance._displayContainer(instance.messagesContainer);
 
 				A.io.request(
@@ -195,6 +192,9 @@ AUI().add(
 								var responseData = this.get('responseData');
 
 								if (A.DataType.Boolean.parse(responseData)) {
+									instance.accountId = accountId;
+									instance.inboxFolderId = inboxFolderId;
+
 									instance.loadFolders(accountId);
 									instance.loadMessages(inboxFolderId, 1, 'sentDate', 'desc', '');
 								}
