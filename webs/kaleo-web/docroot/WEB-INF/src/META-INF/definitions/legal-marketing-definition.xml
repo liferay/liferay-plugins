@@ -31,9 +31,7 @@
 			</notification>
 		</actions>
 		<assignments>
-			<user>
-				<default>true</default>
-			</user>
+			<user />
 		</assignments>
 		<transitions>
 			<transition>
@@ -55,16 +53,16 @@
 			</notification>
 		</actions>
 		<assignments>
-			<role>
-				<role-type>community</role-type>
-				<name>Community Owner</name>
-				<default>true</default>
-			</role>
-			<role>
-				<role-type>organization</role-type>
-				<name>Organization Marketing Content Reviewer</name>
-				<default>false</default>
-			</role>
+			<roles>
+				<role>
+					<role-type>community</role-type>
+					<name>Community Owner</name>
+				</role>
+				<role>
+					<role-type>organization</role-type>
+					<name>Organization Marketing Content Reviewer</name>
+				</role>
+			</roles>
 		</assignments>
 		<transitions>
 			<transition>
@@ -91,16 +89,16 @@
 			</notification>
 		</actions>
 		<assignments>
-			<role>
-				<role-type>community</role-type>
-				<name>Community Legal Content Reviewer</name>
-				<default>true</default>
-			</role>
-			<role>
-				<role-type>organization</role-type>
-				<name>Organization Legal Content Reviewer</name>
-				<default>false</default>
-			</role>
+			<roles>
+				<role>
+					<role-type>community</role-type>
+					<name>Community Legal Content Reviewer</name>
+				</role>
+				<role>
+					<role-type>organization</role-type>
+					<name>Organization Legal Content Reviewer</name>
+				</role>
+			</roles>
 		</assignments>
 		<transitions>
 			<transition>
