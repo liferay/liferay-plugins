@@ -50,6 +50,10 @@ AUI().add(
 			checkMessages: function(folderId) {
 				var instance = this;
 
+				if (instance.accountId <= 0) {
+					return;
+				}
+
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/check_messages',
 					{
@@ -68,7 +72,10 @@ AUI().add(
 								}
 
 								instance.loadFolders(instance.accountId);
-								instance.loadMessages(folderId, instance.pageNumber, instance.orderByField, instance.orderByType, instance.keywords, true);
+
+								if (instance.folderId == folderId) {
+									instance.loadMessages(folderId, instance.pageNumber, instance.orderByField, instance.orderByType, instance.keywords, true);
+								}
 							}
 						}
 					}
