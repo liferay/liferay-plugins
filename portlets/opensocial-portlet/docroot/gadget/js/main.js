@@ -23,16 +23,12 @@ AUI().add(
 			additionalParams: {
 				value: ''
 			},
+			appId: {},
 			country: {
 				value: 'ALL'
 			},
 			debug: {},
 			height: {},
-			id: {
-				valueFn: function() {
-					return Gadget._id++;
-				}
-			},
 			iframeId: {
 				getter: '_getIframeId'
 			},
@@ -42,6 +38,7 @@ AUI().add(
 			language: {
 				value: 'ALL'
 			},
+			moduleId: {},
 			nocache: {
 				value: 1
 			},
@@ -60,12 +57,13 @@ AUI().add(
 			specUrl: {},
 			store: {
 				valueFn: function() {
-					return new CookieStore();
+					return new ExpandoStore();
 				}
 			},
 			userPrefs: {
 				value: {}
 			},
+			userPrefsKey: {},
 			view: {
 				value: 'default'
 			},
@@ -192,7 +190,7 @@ AUI().add(
 				_getIframeId: function(value) {
 					var instance = this;
 
-					return GADGET_IFRAME_PREFIX + instance.get('id');
+					return GADGET_IFRAME_PREFIX + instance.get('moduleId');
 				},
 
 				_getIframeUrl: function(value) {
@@ -201,8 +199,9 @@ AUI().add(
 					var url = '';
 
 					var urlData = {
+						appId: instance.get('appId'),
 						container: instance._CONTAINER,
-						mid: instance.get('id'),
+						mid: instance.get('moduleId'),
 						nocache: instance.get('nocache'),
 						country: instance.get('country'),
 						lang: instance.get('language'),
@@ -299,30 +298,81 @@ AUI().add(
 			CookieStore,
 			DefaultStore,
 			{
-				USER_PREFS_PREFIX: 'lfr-gadget-prefs-',
 				getPrefs: function(gadget, callback) {
 					var instance = this;
 
-					var cookieName = instance.USER_PREFS_PREFIX + gadget.get('id');
-
 					if (Lang.isFunction(callback)) {
-						callback(A.Cookie.getSubs(cookieName) || {});
+						callback(A.Cookie.getSubs(gadget.get('userPrefsKey')) || {});
 					}
 				},
 
 				savePrefs: function(gadget) {
 					var instance = this;
 
-					var cookieName = instance.USER_PREFS_PREFIX + gadget.get('id');
-
-					return A.Cookie.setSubs(cookieName, gadget.get('userPrefs'));
+					return A.Cookie.setSubs(gadget.get('userPrefsKey'), gadget.get('userPrefs'));
 				}
 			}
 		);
 
+		var ExpandoStore = function() {
+			ExpandoStore.superclass.constructor.apply(this, arguments);
+		};
+		
+		A.extend(
+			ExpandoStore,
+			DefaultStore,
+			{
+				_CLASS_NAME: 'com.liferay.portal.model.User',
+				_TABLE_NAME: 'OPEN_SOCIAL_DATA_',
+				
+				getPrefs: function(gadget, callback) {
+					var instance = this;
+
+					Liferay.Service.Expando.ExpandoValue.getJSONData(
+						{
+							companyId: themeDisplay.getCompanyId(),
+							className: instance._CLASS_NAME,
+							tableName: instance._TABLE_NAME,
+							columnName: gadget.get('userPrefsKey'),
+							classPK: themeDisplay.getUserId(),
+						},  
+						function(userPrefs) {
+							if (Lang.isFunction(callback)) {
+								callback(userPrefs || {});
+							}
+						}
+					);
+				},
+
+				savePrefs: function(gadget) {
+					var instance = this;
+
+					var serviceParameterTypes = [
+					    'long',
+                        'java.lang.String',
+                        'java.lang.String',	
+                        'java.lang.String',
+                        'long',	
+                        'java.lang.String'	
+                    ];
+					
+					return Liferay.Service.Expando.ExpandoValue.addValue({
+						companyId: themeDisplay.getCompanyId(),
+						className: instance._CLASS_NAME,
+						tableName: instance._TABLE_NAME,
+						columnName: gadget.get('userPrefsKey'),
+						classPK: themeDisplay.getUserId(),
+						data: A.JSON.stringify(gadget.get('userPrefs')),
+						serviceParameterTypes: A.JSON.stringify(serviceParameterTypes)
+					});
+				}
+			}
+		);
+		
 		Gadget.Store = {
 			Cookie: CookieStore,
-			Default: DefaultStore
+			Default: DefaultStore,
+			Expando: ExpandoStore
 		};
 
 		// Static Gadget Methods
@@ -331,7 +381,7 @@ AUI().add(
 
 		Gadget.register = function(gadget) {
 			if (gadget) {
-				var id = gadget.get('id');
+				var id = gadget.get('moduleId');
 
 				_instances[id] = gadget;
 			}
@@ -389,7 +439,7 @@ AUI().add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'cookie', 'json', 'substitute'],
+		requires: ['aui-base', 'cookie', 'json', 'liferay-service', 'substitute'],
 		use: []
 	}
 );

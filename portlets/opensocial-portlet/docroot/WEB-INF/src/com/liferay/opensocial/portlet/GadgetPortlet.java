@@ -16,9 +16,19 @@ package com.liferay.opensocial.portlet;
 
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
+import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.WebKeys;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.User;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.expando.NoSuchColumnException;
+import com.liferay.portlet.expando.model.ExpandoColumnConstants;
+import com.liferay.portlet.expando.model.ExpandoTable;
+import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
+import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
@@ -40,7 +50,29 @@ public class GadgetPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
 		try {
+			ExpandoTable expandoTable = null;
+
+			expandoTable = ExpandoTableLocalServiceUtil.getTable(
+				themeDisplay.getCompanyId(), User.class.getName(),
+				ShindigUtil.OPEN_SOCIAL_DATA);
+
+			String columnName =
+				ShindigUtil.USER_PREFS.concat(renderResponse.getNamespace());
+
+			try {
+				ExpandoColumnLocalServiceUtil.getColumn(
+					expandoTable.getTableId(), columnName);
+			}
+			catch (NoSuchColumnException nsce) {
+				ExpandoColumnLocalServiceUtil.addColumn(
+					expandoTable.getTableId(), columnName,
+					ExpandoColumnConstants.STRING);
+			}
+
 			Gadget gadget = getGadget();
 
 			renderRequest.setAttribute(WebKeys.GADGET, gadget);
@@ -70,5 +102,7 @@ public class GadgetPortlet extends MVCPortlet {
 
 		return gadget;
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(GadgetPortlet.class);
 
 }

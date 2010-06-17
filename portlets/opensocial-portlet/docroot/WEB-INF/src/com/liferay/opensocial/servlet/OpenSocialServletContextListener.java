@@ -15,10 +15,18 @@
 package com.liferay.opensocial.servlet;
 
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
+import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PortalInitable;
 import com.liferay.portal.kernel.util.PortalInitableUtil;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portlet.expando.NoSuchTableException;
+import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
+
+import java.util.List;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -48,6 +56,21 @@ public class OpenSocialServletContextListener
 	public void portalInit() {
 		try {
 			GadgetLocalServiceUtil.initGadgets();
+
+			List<Company> companies = CompanyLocalServiceUtil.getCompanies();
+
+			for (Company company : companies) {
+				try {
+					ExpandoTableLocalServiceUtil.getTable(
+						company.getCompanyId(), User.class.getName(),
+						ShindigUtil.OPEN_SOCIAL_DATA);
+				}
+				catch (NoSuchTableException nste) {
+					ExpandoTableLocalServiceUtil.addTable(
+						company.getCompanyId(), User.class.getName(),
+						ShindigUtil.OPEN_SOCIAL_DATA);
+				}
+			}
 		}
 		catch (Exception e) {
 			_log.error(e, e);

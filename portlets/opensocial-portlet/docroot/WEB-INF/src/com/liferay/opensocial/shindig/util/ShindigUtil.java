@@ -35,9 +35,13 @@ import org.apache.shindig.config.ContainerConfig;
  */
 public class ShindigUtil {
 
+	public static final String OPEN_SOCIAL_DATA = "OPEN_SOCIAL_DATA_";
+
+	public static final String USER_PREFS = "USER_PREFS_";
+
 	public static String createSecurityToken(
 			String ownerId, long viewerId, String appId, String domain,
-			String appUrl, String activeUrl)
+			String appUrl, long moduleId, String activeUrl)
 		throws Exception {
 
 		String securityToken = StringPool.BLANK;
@@ -60,7 +64,7 @@ public class ShindigUtil {
 					blobCrypter, ContainerConfig.DEFAULT_CONTAINER, domain);
 
 			blobCrypterSecurityToken.setAppUrl(appUrl);
-			blobCrypterSecurityToken.setModuleId(0);
+			blobCrypterSecurityToken.setModuleId(moduleId);
 			blobCrypterSecurityToken.setOwnerId(ownerId);
 			blobCrypterSecurityToken.setViewerId(String.valueOf(viewerId));
 
@@ -68,8 +72,9 @@ public class ShindigUtil {
 		}
 		else if (securityTokenType.equals("insecure")) {
 			BasicSecurityToken basicSecurityToken = new BasicSecurityToken(
-				ownerId, String.valueOf(viewerId), appId, domain, appUrl, "0",
-				ContainerConfig.DEFAULT_CONTAINER, activeUrl);
+				ownerId, String.valueOf(viewerId), appId, domain, appUrl,
+				String.valueOf(moduleId), ContainerConfig.DEFAULT_CONTAINER,
+				activeUrl);
 
 			securityToken = _basicSecurityTokenDecoder.encodeToken(
 				basicSecurityToken);

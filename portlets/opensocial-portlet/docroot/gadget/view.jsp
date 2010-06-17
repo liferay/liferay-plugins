@@ -27,7 +27,16 @@ if (layout.getGroup().isUser()) {
 	ownerId = String.valueOf(classPK);
 }
 
-String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUserId(), renderResponse.getNamespace(), PortalUtil.getPortalURL(themeDisplay), gadget.getUrl(), PortalUtil.getCurrentURL(renderRequest));
+String gadgetUrl = gadget.getUrl();
+
+String portletId = PortalUtil.getPortletId(renderRequest);
+
+Portlet portlet = PortletLocalServiceUtil.getPortletById(
+	themeDisplay.getCompanyId(), portletId);
+
+long moduleId = portlet.hashCode();
+
+String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUserId(), gadgetUrl, PortalUtil.getPortalURL(themeDisplay), gadgetUrl, moduleId, PortalUtil.getCurrentURL(renderRequest));
 %>
 
 <div class="gadgets-gadget-chrome" id="<portlet:namespace />gadget"></div>
@@ -35,9 +44,12 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 <aui:script use="liferay-open-social-gadget">
 	new Liferay.OpenSocial.Gadget(
 		{
+			appId: '<%= gadgetUrl %>',
+			moduleId: '<%= moduleId %>',
 			secureToken: '<%= secureToken %>',
 			serverBase: '<%= renderRequest.getContextPath() %>/gadgets/',
-			specUrl: '<%= gadget.getUrl() %>'
+			specUrl: '<%= gadgetUrl %>',
+			userPrefsKey: '<%= ShindigUtil.USER_PREFS + renderResponse.getNamespace() %>'
 		}
 	).render('#<portlet:namespace />gadget');
 </aui:script>
