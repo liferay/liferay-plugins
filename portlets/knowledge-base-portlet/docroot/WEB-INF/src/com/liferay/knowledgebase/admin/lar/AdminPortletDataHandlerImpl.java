@@ -31,10 +31,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.PortletDataContext;
-import com.liferay.portal.kernel.lar.PortletDataException;
 import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
-import com.liferay.portal.kernel.lar.PortletDataHandlerKeys;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -63,59 +61,6 @@ import javax.portlet.PortletPreferences;
  */
 public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
-	public PortletPreferences deleteData(
-			PortletDataContext context, String portletId,
-			PortletPreferences preferences)
-		throws PortletDataException {
-
-		try {
-			if (!context.addPrimaryKey(
-					AdminPortletDataHandlerImpl.class, "deleteData")) {
-
-				ArticleLocalServiceUtil.deleteGroupArticles(
-					context.getScopeGroupId());
-
-				TemplateLocalServiceUtil.deleteGroupTemplates(
-					context.getScopeGroupId());
-			}
-
-			return null;
-		}
-		catch (Exception e) {
-			throw new PortletDataException(e);
-		}
-	}
-
-	public String exportData(
-			PortletDataContext context, String portletId,
-			PortletPreferences preferences)
-		throws PortletDataException {
-
-		try {
-			context.addPermissions(
-				"com.liferay.knowledgebase.admin", context.getScopeGroupId());
-
-			Document document = SAXReaderUtil.createDocument();
-
-			Element rootElement = document.addElement(
-				"knowledge-base-admin-data");
-
-			rootElement.addAttribute(
-				"group-id", String.valueOf(context.getScopeGroupId()));
-
-			exportArticles(context, rootElement);
-
-			if (context.getBooleanParameter(_NAMESPACE, "templates")) {
-				exportTemplates(context, rootElement);
-			}
-
-			return document.formattedString();
-		}
-		catch (Exception e) {
-			throw new PortletDataException(e);
-		}
-	}
-
 	public PortletDataHandlerControl[] getExportControls() {
 		return new PortletDataHandlerControl[] {_articles, _templates};
 	}
@@ -124,31 +69,68 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		return new PortletDataHandlerControl[] {_articles, _templates};
 	}
 
-	public PortletPreferences importData(
+	protected PortletPreferences doDeleteData(
 			PortletDataContext context, String portletId,
-			PortletPreferences preferences, String data)
-		throws PortletDataException {
+			PortletPreferences preferences)
+		throws Exception {
 
-		try {
-			context.importPermissions(
-				"com.liferay.knowledgebase.admin", context.getSourceGroupId(),
+		if (!context.addPrimaryKey(
+				AdminPortletDataHandlerImpl.class, "deleteData")) {
+
+			ArticleLocalServiceUtil.deleteGroupArticles(
 				context.getScopeGroupId());
 
-			Document document = SAXReaderUtil.read(data);
-
-			Element rootElement = document.getRootElement();
-
-			importArticles(context, rootElement);
-
-			if (context.getBooleanParameter(_NAMESPACE, "templates")) {
-				importTemplates(context, rootElement);
-			}
-
-			return null;
+			TemplateLocalServiceUtil.deleteGroupTemplates(
+				context.getScopeGroupId());
 		}
-		catch (Exception e) {
-			throw new PortletDataException(e);
+
+		return null;
+	}
+
+	protected String doExportData(
+			PortletDataContext context, String portletId,
+			PortletPreferences preferences)
+		throws Exception {
+
+		context.addPermissions(
+			"com.liferay.knowledgebase.admin", context.getScopeGroupId());
+
+		Document document = SAXReaderUtil.createDocument();
+
+		Element rootElement = document.addElement("knowledge-base-admin-data");
+
+		rootElement.addAttribute(
+			"group-id", String.valueOf(context.getScopeGroupId()));
+
+		exportArticles(context, rootElement);
+
+		if (context.getBooleanParameter(_NAMESPACE, "templates")) {
+			exportTemplates(context, rootElement);
 		}
+
+		return document.formattedString();
+	}
+
+	protected PortletPreferences doImportData(
+			PortletDataContext context, String portletId,
+			PortletPreferences preferences, String data)
+		throws Exception {
+
+		context.importPermissions(
+			"com.liferay.knowledgebase.admin", context.getSourceGroupId(),
+			context.getScopeGroupId());
+
+		Document document = SAXReaderUtil.read(data);
+
+		Element rootElement = document.getRootElement();
+
+		importArticles(context, rootElement);
+
+		if (context.getBooleanParameter(_NAMESPACE, "templates")) {
+			importTemplates(context, rootElement);
+		}
+
+		return null;
 	}
 
 	protected void exportArticle(
@@ -382,9 +364,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Article importedArticle = null;
 
-		if (context.getDataStrategy().equals(
-				PortletDataHandlerKeys.DATA_STRATEGY_MIRROR)) {
-
+		if (context.isDataStrategyMirror()) {
 			Article existingArticle = ArticleUtil.fetchByUUID_G(
 				article.getUuid(), context.getScopeGroupId());
 
@@ -579,9 +559,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Template importedTemplate = null;
 
-		if (context.getDataStrategy().equals(
-				PortletDataHandlerKeys.DATA_STRATEGY_MIRROR)) {
-
+		if (context.isDataStrategyMirror()) {
 			Template existingTemplate = TemplateUtil.fetchByUUID_G(
 				template.getUuid(), context.getScopeGroupId());
 
