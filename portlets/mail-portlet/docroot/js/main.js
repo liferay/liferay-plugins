@@ -365,6 +365,14 @@ AUI().add(
 			reset: function() {
 				var instance = this;
 
+				instance.accountId = null;
+				instance.folderId = null;
+				instance.inboxFolderId = null;
+				instance.keywords = '';
+				instance.orderByField = 'sentDate';
+				instance.orderByType = 'desc';
+				instance.pageNumber = 1;
+
 				instance.composeContainer.html('');
 				instance.foldersContainer.html('');
 				instance.manageFoldersContainer.html('');
