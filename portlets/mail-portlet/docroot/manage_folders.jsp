@@ -101,6 +101,8 @@ long accountId = ParamUtil.getLong(request, "accountId");
 		A.all('.mail-portlet .delete-folder').on(
 			'click',
 			function(event) {
+				Liferay.Mail.setStatus('info', 'deleting-folder', true);
+
 				var folderId = event.currentTarget.getAttribute('data-folderId');
 
 				A.io.request(
