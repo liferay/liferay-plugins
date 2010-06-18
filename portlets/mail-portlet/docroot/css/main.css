@@ -35,6 +35,14 @@
 	float: right;
 }
 
+.mail-portlet .folder-list {
+	min-width: 40%
+}
+
+.mail-portlet .folder-list .action {
+	text-align: right;
+}
+
 .mail-portlet .message-list {
 	width: 100%;
 }
@@ -92,6 +100,7 @@
 	text-decoration: underline;
 }
 
+.mail-portlet .add-folder-container .aui-field-content,
 .mail-portlet .search .aui-field-content {
 	display: inline-block;
 }
