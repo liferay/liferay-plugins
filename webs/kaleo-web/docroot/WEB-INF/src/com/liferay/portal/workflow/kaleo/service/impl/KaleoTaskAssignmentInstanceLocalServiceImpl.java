@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
@@ -95,8 +96,12 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 				User.class.getName().equals(
 					kaleoTaskAssignment.getAssigneeClassName())) {
 
+				KaleoInstance kaleoInstance =
+					kaleoInstanceLocalService.getKaleoInstance(
+						kaleoTaskInstanceToken.getKaleoInstanceId());
+
 				kaleoTaskAssignmentInstance.setAssigneeClassPK(
-					kaleoTaskInstanceToken.getUserId());
+					kaleoInstance.getUserId());
 			}
 			else {
 				kaleoTaskAssignmentInstance.setAssigneeClassPK(
