@@ -219,7 +219,9 @@ MailManager mailManager = MailManager.getInstance(request);
 						</aui:column>
 						<aui:column cssClass="attachment" columnWidth="5">
 							<c:if test="<%= !AttachmentLocalServiceUtil.getAttachments(message.getMessageId()).isEmpty() %>">
-								<liferay-ui:icon image="../mail/clip" />
+								<liferay-ui:icon
+									image="../mail/clip"
+								/>
 							</c:if>
 						</aui:column>
 					</aui:column>

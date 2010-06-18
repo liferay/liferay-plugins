@@ -37,7 +37,10 @@ Group group = (Group)row.getObject();
 		String taglibEditURL = "javascript:Liferay.SO.Sites.displayPopup('" + editURL + "','" + LanguageUtil.get(pageContext, "edit-site") + "');";
 		%>
 
-		<liferay-ui:icon image="edit" url="<%= taglibEditURL %>" />
+		<liferay-ui:icon
+			image="edit"
+			url="<%= taglibEditURL %>"
+		/>
 	</c:if>
 
 	<c:if test="<%= permissionChecker.isCommunityAdmin(group.getGroupId()) %>">
@@ -51,7 +54,11 @@ Group group = (Group)row.getObject();
 			<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 		</liferay-portlet:renderURL>
 
-		<liferay-ui:icon image="assign" message="manage-members" url="<%= manageMembersURL %>" />
+		<liferay-ui:icon
+			image="assign"
+			message="manage-members"
+			url="<%= manageMembersURL %>"
+		/>
 	</c:if>
 
 	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_TEAMS) %>">
@@ -61,7 +68,11 @@ Group group = (Group)row.getObject();
 			<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 		</liferay-portlet:renderURL>
 
-		<liferay-ui:icon image="group" message="manage-teams" url="<%= manageTeamsURL %>" />
+		<liferay-ui:icon
+			image="group"
+			message="manage-teams"
+			url="<%= manageTeamsURL %>"
+		/>
 	</c:if>
 
 	<c:choose>
@@ -75,7 +86,10 @@ Group group = (Group)row.getObject();
 					<liferay-portlet:param name="addUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
 				</liferay-portlet:actionURL>
 
-				<liferay-ui:icon image="join" url="<%= joinURL %>" />
+				<liferay-ui:icon
+					image="join"
+					url="<%= joinURL %>"
+				/>
 			</c:if>
 		</c:when>
 		<c:when test="<%= !GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.DELETE) %>">
@@ -87,7 +101,10 @@ Group group = (Group)row.getObject();
 				<liferay-portlet:param name="removeUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
 			</liferay-portlet:actionURL>
 
-			<liferay-ui:icon image="leave" url="<%= leaveURL %>" />
+			<liferay-ui:icon
+				image="leave"
+				url="<%= leaveURL %>"
+			/>
 		</c:when>
 	</c:choose>
 

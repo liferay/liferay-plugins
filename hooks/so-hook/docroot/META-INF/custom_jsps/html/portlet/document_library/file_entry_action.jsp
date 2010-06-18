@@ -96,7 +96,10 @@ viewFolderURL.setParameter("folderId", String.valueOf(folderId));
 					var="permissionsURL"
 				/>
 
-				<liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
+				<liferay-ui:icon
+					image="permissions"
+					url="<%= permissionsURL %>"
+				/>
 			</c:if>
 
 			<c:if test="<%= !view && DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.DELETE) %>">
@@ -133,7 +136,11 @@ viewFolderURL.setParameter("folderId", String.valueOf(folderId));
 					<portlet:param name="name" value="<%= HtmlUtil.unescape(fileShortcut.getToName()) %>" />
 				</portlet:renderURL>
 
-				<liferay-ui:icon image="view" message="view-original-file" url="<%= viewOriginalFileURL %>" />
+				<liferay-ui:icon
+					image="view"
+					message="view-original-file"
+					url="<%= viewOriginalFileURL %>"
+				/>
 			</c:if>
 
 			<c:if test="<%= !view %>">
@@ -148,7 +155,10 @@ viewFolderURL.setParameter("folderId", String.valueOf(folderId));
 					var="shortcutPermissionsURL"
 				/>
 
-				<liferay-ui:icon image="permissions" url="<%= shortcutPermissionsURL %>" />
+				<liferay-ui:icon
+					image="permissions"
+					url="<%= shortcutPermissionsURL %>"
+				/>
 			</c:if>
 
 			<c:if test="<%= !view && DLFileShortcutPermission.contains(permissionChecker, fileShortcut, ActionKeys.DELETE) %>">

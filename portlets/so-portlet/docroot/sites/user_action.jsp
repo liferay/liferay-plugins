@@ -38,7 +38,11 @@ long groupId = ParamUtil.getLong(request, "groupId");
 				<liferay-portlet:param name="removeUserIds" value="<%= String.valueOf(curUser.getUserId()) %>" />
 			</liferay-portlet:actionURL>
 
-			<liferay-ui:icon image="leave" message="remove-member" url="<%= removeMemberURL %>" />
+			<liferay-ui:icon
+				image="leave"
+				message="remove-member"
+				url="<%= removeMemberURL %>"
+			/>
 		</c:if>
 
 		<c:if test="<%= permissionChecker.isCommunityAdmin(groupId) %>">
@@ -52,7 +56,11 @@ long groupId = ParamUtil.getLong(request, "groupId");
 			String taglibChangeRoleURL = "javascript:" + renderResponse.getNamespace() + "openRoleSelector('" + changeRoleURL + "');";
 			%>
 
-			<liferay-ui:icon image="assign_user_roles" message="change-role" url="<%= taglibChangeRoleURL %>" />
+			<liferay-ui:icon
+				image="assign_user_roles"
+				message="change-role"
+				url="<%= taglibChangeRoleURL %>"
+			/>
 		</c:if>
 	</liferay-ui:icon-menu>
 </c:if>

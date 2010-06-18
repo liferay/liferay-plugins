@@ -29,7 +29,10 @@ Gadget gadget = (Gadget)row.getObject();
 		<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />
 	</portlet:renderURL>
 
-	<liferay-ui:icon image="edit" url="<%= editURL %>" />
+	<liferay-ui:icon
+		image="edit"
+		url="<%= editURL %>"
+	/>
 
 	<portlet:actionURL name="deleteGadget" var="deleteURL">
 		<portlet:param name="redirect" value="<%= currentURL %>" />

@@ -23,7 +23,9 @@ MailManager mailManager = MailManager.getInstance(request);
 %>
 
 <c:if test="<%= mailManager != null %>">
-	<liferay-ui:icon image="../mail/compose" />
+	<liferay-ui:icon
+		image="../mail/compose"
+	/>
 
 	<aui:a cssClass="compose-message" href="javascript:;" data-messageId="0" data-messageType="new" data-replyMessageId="0"><liferay-ui:message key="compose-email" /></aui:a>
 
@@ -52,7 +54,9 @@ MailManager mailManager = MailManager.getInstance(request);
 	%>
 
 		<aui:layout>
-			<liferay-ui:icon image="<%= folderImage %>" />
+			<liferay-ui:icon
+				image="<%= folderImage %>"
+			/>
 
 			<aui:a cssClass="messages-link" data-accountId="<%= accountId %>" data-folderId="<%= folder.getFolderId() %>" data-keywords="" data-orderByField="<%= MailConstants.ORDER_BY_SENT_DATE %>" data-orderByType="desc" data-pageNumber="1" href="javascript:;" label='<%= folder.getDisplayName() + " (" + MessageLocalServiceUtil.getFolderUnreadMessagesCount(folder.getFolderId()) + ")" %>' />
 		</aui:layout>
@@ -63,13 +67,17 @@ MailManager mailManager = MailManager.getInstance(request);
 
 	<br />
 
-	<liferay-ui:icon image="../mail/edit_folder" />
+	<liferay-ui:icon
+		image="../mail/edit_folder"
+	/>
 
 	<aui:a cssClass="manage-folders" href="javascript:;"><liferay-ui:message key="manage-folders" /></aui:a>
 
 	<br />
 
-	<liferay-ui:icon image="../mail/edit_folder" />
+	<liferay-ui:icon
+		image="../mail/edit_folder"
+	/>
 
 	<aui:a cssClass="edit-account" href="javascript:;"><liferay-ui:message key="edit-account" /></aui:a>
 </c:if>

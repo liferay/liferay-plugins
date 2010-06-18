@@ -51,7 +51,10 @@ catch (Exception e) {
 				<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
 			</portlet:renderURL>
 
-			<liferay-ui:icon image="edit" url="<%= editURL %>" />
+			<liferay-ui:icon
+				image="edit"
+				url="<%= editURL %>"
+			/>
 
 			<c:if test="<%= serviceDescription.isRequiresRegistration() %>">
 				<portlet:renderURL var="editRegistrationURL">
@@ -60,7 +63,11 @@ catch (Exception e) {
 					<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
 				</portlet:renderURL>
 
-				<liferay-ui:icon image="edit" message="edit-registration" url="<%= editRegistrationURL %>" />
+				<liferay-ui:icon
+					image="edit"
+					message="edit-registration"
+					url="<%= editRegistrationURL %>"
+				/>
 			</c:if>
 
 			<c:if test="<%= !serviceDescription.isRequiresRegistration() || (wsrpConsumer.getRegistrationContext() != null) %>">
@@ -69,7 +76,11 @@ catch (Exception e) {
 					<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
 				</portlet:renderURL>
 
-				<liferay-ui:icon image="portlet" message="manage-portlets" url="<%= managePortletsURL %>" />
+				<liferay-ui:icon
+					image="portlet"
+					message="manage-portlets"
+					url="<%= managePortletsURL %>"
+				/>
 			</c:if>
 
 			<portlet:actionURL name="updateServiceDescription" var="updateServiceDescriptionURL">
@@ -77,7 +88,11 @@ catch (Exception e) {
 				<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
 			</portlet:actionURL>
 
-			<liferay-ui:icon image="portlet" message="update-service-description" url="<%= updateServiceDescriptionURL %>" />
+			<liferay-ui:icon
+				image="portlet"
+				message="update-service-description"
+				url="<%= updateServiceDescriptionURL %>"
+			/>
 
 			<portlet:actionURL name="deleteWSRPConsumer" var="deleteURL">
 				<portlet:param name="redirect" value="<%= currentURL %>" />

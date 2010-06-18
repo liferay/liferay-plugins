@@ -166,7 +166,12 @@
 							%>
 
 							<c:if test="<%= Validator.isNotNull(wallToWallHREF) && wallToWallUser == null %>">
-								<liferay-ui:icon image="all_pages" message="wall-to-wall" url="<%= wallToWallHREF %>" label="<%= true %>" />
+								<liferay-ui:icon
+									image="all_pages"
+									message="wall-to-wall"
+									url="<%= wallToWallHREF %>"
+									label="<%= true %>"
+								/>
 							</c:if>
 
 							<%
@@ -189,7 +194,12 @@
 							String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallLayoutFriendlyURL + "/-/wall";
 							%>
 
-							<liferay-ui:icon image="post" message="<%= postMessage %>" url="<%= postHREF %>" label="<%= true %>" />
+							<liferay-ui:icon
+								image="post"
+								message="<%= postMessage %>"
+								url="<%= postHREF %>"
+								label="<%= true %>"
+							/>
 
 							<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
 
@@ -197,7 +207,10 @@
 								String deleteHREF = "javascript:" + renderResponse.getNamespace() + "deleteWallEntry(" + wallEntry.getWallEntryId() + ");";
 								%>
 
-								<liferay-ui:icon-delete url="<%= deleteHREF %>" label="<%= true %>" />
+								<liferay-ui:icon-delete
+									url="<%= deleteHREF %>"
+									label="<%= true %>"
+								/>
 							</c:if>
 						</liferay-ui:icon-list>
 					</c:if>

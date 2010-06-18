@@ -58,7 +58,11 @@ PortletURL portletURL = renderResponse.createRenderURL();
 				<portlet:param name="title" value="<%= HtmlUtil.unescape(wikiPage.getTitle()) %>" />
 			</liferay-portlet:renderURL>
 
-			<liferay-ui:icon image="edit" label="true" url="<%= editURL %>" />
+			<liferay-ui:icon
+				image="edit"
+				label="true"
+				url="<%= editURL %>"
+			/>
 		</c:if>
 	</c:when>
 	<c:otherwise>

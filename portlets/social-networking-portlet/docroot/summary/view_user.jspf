@@ -155,7 +155,11 @@
 
 			<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL" />
 
-			<liferay-ui:icon image="edit" url="<%= editURL %>" label="<%= true %>" />
+			<liferay-ui:icon
+				image="edit"
+				url="<%= editURL %>"
+				label="<%= true %>"
+			/>
 		</c:if>
 	</c:when>
 	<c:otherwise>

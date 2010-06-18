@@ -29,7 +29,10 @@ WSRPProducer wsrpProducer = (WSRPProducer)row.getObject();
 		<portlet:param name="wsrpProducerId" value="<%= String.valueOf(wsrpProducer.getWsrpProducerId()) %>" />
 	</portlet:renderURL>
 
-	<liferay-ui:icon image="edit" url="<%= editURL %>" />
+	<liferay-ui:icon
+		image="edit"
+		url="<%= editURL %>"
+	/>
 
 	<portlet:actionURL name="deleteWSRPProducer" var="deleteURL">
 		<portlet:param name="redirect" value="<%= currentURL %>" />
