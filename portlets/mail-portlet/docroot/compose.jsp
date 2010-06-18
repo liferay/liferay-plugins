@@ -80,26 +80,31 @@ else {
 	<aui:input name="messageId" type="hidden" value="<%= messageId %>" />
 	<aui:input name="attachmentCount" type="hidden" value="0" />
 
-	<aui:input name="to" value="<%= to %>" />
+	<aui:layout>
+		<aui:column columnWidth="60" cssClass="recipient-fields">
+			<aui:input name="to" value="<%= to %>" />
 
-	<aui:input name="cc" value="<%= cc %>" />
+			<aui:input name="cc" value="<%= cc %>" />
 
-	<aui:input name="bcc" />
+			<aui:input name="bcc" />
 
-	<aui:input name="subject" value="<%= subject %>" />
+			<aui:input name="subject" value="<%= subject %>" />
+		</aui:column>
+		<aui:column columnWidth="40">
+			<aui:field-wrapper label="attachments">
+				<div class="attachments"></div>
+
+				<div>
+					<a class="add-attachment" href="javascript:;"><liferay-ui:message key="add-attachment" /></a>
+				</div>
+			</aui:field-wrapper>
+		</aui:column>
+	</aui:layout>
 
 	<aui:field-wrapper label="body">
 		<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" toolbarSet="email" width="100%" />
 
 		<aui:input name="body" type="hidden" />
-	</aui:field-wrapper>
-
-	<aui:field-wrapper label="attachments">
-		<div class="attachments"></div>
-
-		<div>
-			<a class="add-attachment" href="javascript:;"><liferay-ui:message key="add-attachment" /></a>
-		</div>
 	</aui:field-wrapper>
 
 	<aui:button-row>
@@ -194,7 +199,7 @@ else {
 
 			var count = parseInt(countNode.val()) + 1;
 
-			form.one('.attachments').append('<div><input name="<portlet:namespace/>attachment' + count + '" size="50" type="file" /></div>');
+			form.one('.attachments').append('<div><input name="<portlet:namespace/>attachment' + count + '" size="30" type="file" /></div>');
 
 			countNode.setAttribute('value', count);
 		}

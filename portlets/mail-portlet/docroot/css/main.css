@@ -82,6 +82,10 @@
 	cursor: hand;
 }
 
+.mail-portlet .recipient-fields .aui-field-input {
+	width: 95%;
+}
+
 .mail-portlet .email-container .folder-container .column-sorter:hover {
 	cursor: pointer;
 	cursor: hand;
