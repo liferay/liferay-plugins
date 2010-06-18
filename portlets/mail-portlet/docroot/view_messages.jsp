@@ -201,7 +201,7 @@ MailManager mailManager = MailManager.getInstance(request);
 						}
 					%>
 
-						<tr class="results-row<%= ((messageNumber % 2) == 0) ? " alt" : "" %>">
+						<tr class="results-row no-hover<%= ((messageNumber % 2) == 0) ? " alt" : "" %>">
 							<td>
 								<aui:input id="message<%= message.getMessageId() %>" label="" messageId="<%= message.getMessageId() %>" name="message" type="checkbox" value="<%= message.getMessageId() %>" />
 							</td>

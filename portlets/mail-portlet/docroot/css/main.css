@@ -35,6 +35,10 @@
 	float: right;
 }
 
+.mail-portlet .message-list {
+	width: 100%;
+}
+
 .mail-portlet .message-list thead tr {
 	background-color: #D1D6DC;
 }
@@ -63,7 +67,7 @@
 	width: 5%;
 }
 
-.mail-portlet .message-list td {
+.mail-portlet .message-list tr.results-row.no-hover td {
 	padding: 1px 0;
 }
 
