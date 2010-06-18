@@ -22,8 +22,8 @@ import javax.portlet.WindowState;
  */
 public class MailPortlet extends AbstractApplicationPortlet {
 
-	public static final String SERVLET_CONTEXT_NAME = "mail-portlet";
-
+	public static final String SERVLET_CONTEXT_NAME = "vaadin-mail-portlet";
+	
 	/**
 	 * Notify user that not logged in.
 	 */
@@ -61,6 +61,11 @@ public class MailPortlet extends AbstractApplicationPortlet {
 	protected Class<? extends Application> getApplicationClass()
 			throws ClassNotFoundException {
 		return MailApplication.class;
+	}
+			
+	@Override
+	protected String getTitle(RenderRequest request) {
+		return "Vaadin Mail";
 	}
 
 }

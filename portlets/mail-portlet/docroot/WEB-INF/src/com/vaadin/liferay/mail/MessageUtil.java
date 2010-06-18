@@ -73,9 +73,13 @@ public class MessageUtil {
 		return isFlagged(m, MailConstants.FLAG_FLAGGED);
 	}
 
-	private static boolean isFlagged(Message m, int flag) {
-
-		return (m.getFlags().contains("," + flag + ","));
+	private static boolean isFlagged(Message m, int flag) {				
+		for(String flagStr : m.getFlags().split(",")){
+			if(flagStr.equals(String.valueOf(flag))){
+				return true;
+			}
+		}		
+		return false;
 	}
 
 	public static void deleteMessages(List<Message> messages)

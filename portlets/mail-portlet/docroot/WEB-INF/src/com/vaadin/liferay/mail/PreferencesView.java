@@ -13,6 +13,7 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.GridLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
@@ -90,6 +91,10 @@ public class PreferencesView extends VerticalLayout {
 		accountPanel = new Panel(Lang.get("your-email-accounts"));
 		updateAccountList();
 		addComponent(accountPanel);
+		
+		HorizontalLayout buttons = new HorizontalLayout();
+		buttons.setSpacing(true);
+		addComponent(buttons);
 
 		Button createAccountButton = new Button(Lang.get("create-account"));
 		createAccountButton.addListener(new ClickListener() {
@@ -97,7 +102,16 @@ public class PreferencesView extends VerticalLayout {
 				editAccount(null);
 			}
 		});
-		addComponent(createAccountButton);
+		buttons.addComponent(createAccountButton);
+		
+		Button createGmailButton = new Button("Create GMail account");
+		createGmailButton.addListener(new ClickListener() {					
+			public void buttonClick(ClickEvent event) {
+				editGmailAccount(null);
+				
+			}
+		});
+		buttons.addComponent(createGmailButton);
 
 		Link poweredByVaadin =
 			new Link("", new ExternalResource("http://vaadin.com"));
@@ -114,7 +128,7 @@ public class PreferencesView extends VerticalLayout {
 			List<Account> accounts = controller.getAccountManager()
 					.getAccounts(controller.getUser());
 			if (accounts.size() > 0) {
-				GridLayout grid = new GridLayout(4, accounts.size());
+				GridLayout grid = new GridLayout(3, accounts.size());
 				grid.setSpacing(true);
 				for (final Account account : accounts) {
 					grid.addComponent(new Label(account.getAddress()));
@@ -185,7 +199,9 @@ public class PreferencesView extends VerticalLayout {
 
 	private void synchronizeAccount(final Account account) {
 		try {
-			controller.getMailManager().synchronizeAccount(account.getAccountId());
+			if(account.isSavePassword()){
+				controller.getMailManager().synchronizeAccount(account.getAccountId());
+			}
 		}
 		catch (SystemException e) {
 			controller.showError(
@@ -205,12 +221,31 @@ public class PreferencesView extends VerticalLayout {
 		editorWindow.setSizeUndefined();
 		editorWindow.center();
 		editorWindow.setModal(true);
+		editorWindow.setResizable(false);
 
 		AccountEditor.AccountEditorListener listener = new SaveAccountListener(
 				editorWindow);
 
 		// show a pre-filled edit dialog
 		AccountEditor editor = new AccountEditor(account, controller, listener);
+		editorWindow.setContent(editor);
+		controller.getApplication().getMainWindow().addWindow(editorWindow);
+	}
+	
+	private void editGmailAccount(Account account) {
+		String windowTitle = Lang.get(account == null ? "Add GMail Account"
+				: "Edit GMail Account");
+		final Window editorWindow = new Window(windowTitle);
+		editorWindow.setSizeUndefined();
+		editorWindow.center();
+		editorWindow.setModal(true);
+		editorWindow.setResizable(false);
+
+		AccountEditor.AccountEditorListener listener = new SaveAccountListener(
+				editorWindow);
+
+		// show a pre-filled edit dialog
+		AccountEditor editor = new GMailAccountEditor(account, controller, listener);
 		editorWindow.setContent(editor);
 		controller.getApplication().getMainWindow().addWindow(editorWindow);
 	}

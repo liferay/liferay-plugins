@@ -7,6 +7,7 @@ import com.liferay.mail.mailbox.MailboxFactoryUtil;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
+import com.liferay.mail.service.AccountLocalServiceUtil;
 import com.liferay.mail.service.FolderLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -21,6 +22,8 @@ import com.vaadin.event.dd.DragAndDropEvent;
 import com.vaadin.event.dd.DropHandler;
 import com.vaadin.event.dd.acceptcriteria.AcceptCriterion;
 import com.vaadin.event.dd.acceptcriteria.And;
+import com.vaadin.event.dd.acceptcriteria.Not;
+import com.vaadin.event.dd.acceptcriteria.Or;
 import com.vaadin.event.dd.acceptcriteria.SourceIs;
 import com.vaadin.event.dd.acceptcriteria.TargetDetailIs;
 import com.vaadin.liferay.mail.util.Lang;
@@ -193,12 +196,16 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 
 	public AcceptCriterion getAcceptCriterion() {
 		TargetDetailIs isMiddle = new TargetDetailIs("detail", "MIDDLE");
-		SourceIs isFromMessageList = new SourceIs(messageList.getTable());
-		// TODO disallow drop on roots
-		// DropTargetItemId isRoot = new DropTargetItemId(this, rootItemIds()
-		// .iterator().next());
-		// return new And(isFromMessageList, new Not(isRoot), isMiddle);
-		return new And(isFromMessageList, isMiddle);
+		SourceIs isFromMessageList = new SourceIs(messageList.getTable());		
+		
+		List<TargetItemIs> rootItemCriterias = new ArrayList<TargetItemIs>();	
+		for(Object root : rootItemIds()){
+			rootItemCriterias.add(new TargetItemIs(this, root));			
+		}
+		Or or = new Or(rootItemCriterias.toArray(new TargetItemIs[rootItemCriterias.size()]));
+		Not notRootItem = new Not(or); 
+		
+		return new And(isMiddle, isFromMessageList, notRootItem);	
 	}
 
 	public Action[] getActions(Object target, Object sender) {
@@ -484,7 +491,12 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 
 	private void synchronizeAccount(final long accountId, Controller controller) {
 		try {
-			controller.getMailManager().synchronizeAccount(accountId);
+			Account acc = AccountLocalServiceUtil.getAccount(accountId);				
+			if(acc.isSavePassword()){
+				controller.getMailManager().synchronizeAccount(accountId);
+			} else if(controller.getPasswordRetriever().getPassword(accountId) != null){
+				
+			}
 		}
 		catch (SystemException e) {
 			controller.showError(

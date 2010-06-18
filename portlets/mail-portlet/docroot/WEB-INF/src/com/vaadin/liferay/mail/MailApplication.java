@@ -8,19 +8,25 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 
 import com.vaadin.Application;
 import com.vaadin.liferay.mail.Composer.ComposerListener;
+import com.vaadin.liferay.mail.PasswordPrompt.Status;
 import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.terminal.ExternalResource;
 import com.vaadin.terminal.gwt.server.PortletApplicationContext2.PortletListener;
 import com.vaadin.terminal.gwt.server.PortletApplicationContext2;
 import com.vaadin.ui.ComponentContainer;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window.CloseEvent;
 import com.vaadin.ui.Window.Notification;
 import com.vaadin.ui.Window;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -94,7 +100,7 @@ public class MailApplication extends Application {
 		}
 
 		public void handleRenderRequest(RenderRequest request,
-				RenderResponse response, Window window) {
+				RenderResponse response, final Window window) {
 			// set the user and initialize any required managers
 			controller.setRequest(request);
 
@@ -117,8 +123,9 @@ public class MailApplication extends Application {
 				return;
 			}
 
-			portletTitle = PortalUtil.getPortletTitle(PortalUtil
-					.getPortletId(request), controller.getUser());
+			String pid = PortalUtil.getPortletId(request);	
+			portletTitle = PortalUtil.getPortletTitle(pid, PortalUtil.getLocale(request));						
+			
 			controller.setPreferences(request.getPreferences());
 
 			// check mode in request and act accordingly
@@ -130,10 +137,35 @@ public class MailApplication extends Application {
 				} else if (MODE_ACCOUNT.equals(request.getParameter(PARAM_RENDER_MODE))) {
 					String accountParam = request.getParameter(PARAM_ACCOUNT);
 					Account account = null;
+					boolean promptOpen = false;
+					
+					VerticalLayout loading = new VerticalLayout();
+					loading.setHeight("550px");					
+					window.setContent(loading);
+					
 					try {
 						long id = Long.parseLong(accountParam);
 						account = AccountLocalServiceUtil.getAccount(id);
-						// TODO check permissions?
+												
+						if(!account.isSavePassword()){
+							String password = Controller.get().getPasswordRetriever().getPassword(account.getAccountId());
+							if(password != null){
+								try {
+									Controller.get().getMailManager().storePassword(account.getAccountId(), password);
+									Controller.get().getAccountManager().updateAccount(account, controller);
+									Controller.get().getMailManager().synchronizeAccount(account.getAccountId());
+								} catch (PortalException e1) {
+									Controller.get().showError(
+											Lang.get("unable-to-synchronize-account"), e1);
+								} catch (SystemException e1) {
+									Controller.get().showError(
+											Lang.get("unable-to-synchronize-account"), e1);
+								}
+							} else {
+								promptOpen = true;							
+								showPasswordPrompt(account, window);
+							}							
+						}
 					} catch (NumberFormatException e) {
 						// ignore, accountEntry stays null
 					} catch (PortalException e) {
@@ -143,26 +175,63 @@ public class MailApplication extends Application {
 						_log.warn("Could not get account", e);
 						// account entry stays null
 					}
-					if (account != null) {
+					if (account != null && !promptOpen) {
 						mainMailView = new MainMailView();
 						mainMailView.setHeight("550px");
 						window.setContent(mainMailView);
 						mainMailView.show(account);
-					} else {
+					} else if(!promptOpen){
 						window.open(new ExternalResource(summaryViewURL));
 					}
 				} else {
 					// unread mode by default
-					mainMailView = new MainMailView();
-					window.setContent(mainMailView);
-					mainMailView.showFirstAccountWithUnreadMessages();
-					window.getContent().setHeight("550px");
+					try {
+						Account account = AccountLocalServiceUtil.getAccounts(Controller.get()
+								.getUser().getUserId()).get(0);							
+						boolean promptOpen = false;
+						
+						VerticalLayout loading = new VerticalLayout();
+						loading.setHeight("550px");						
+						window.setContent(loading);
+						
+						if(!account.isSavePassword()){
+							String password = Controller.get().getPasswordRetriever().getPassword(account.getAccountId());
+							if(password != null){
+								try {
+									Controller.get().getMailManager().storePassword(account.getAccountId(), password);
+									Controller.get().getAccountManager().updateAccount(account, controller);
+									Controller.get().getMailManager().synchronizeAccount(account.getAccountId());
+								} catch (PortalException e1) {
+									Controller.get().showError(
+											Lang.get("unable-to-synchronize-account"), e1);
+								} catch (SystemException e1) {
+									Controller.get().showError(
+											Lang.get("unable-to-synchronize-account"), e1);
+								}
+							} else {
+								promptOpen = true;							
+								showPasswordPrompt(account, window);
+							}							
+						} 
+						
+						if(!promptOpen){
+							mainMailView = new MainMailView();
+							mainMailView.setHeight("550px");
+							window.setContent(mainMailView);
+							mainMailView.show(account);
+						}
+					} catch (SystemException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (PortalException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 			else if (PortletMode.EDIT.equals(request.getPortletMode())) {
 				window.setContent(new PreferencesView(controller));
 			}
-
 		}
 
 		public void handleEventRequest(EventRequest request,
@@ -171,8 +240,45 @@ public class MailApplication extends Application {
 		}
 
 		public void handleResourceRequest(ResourceRequest request,
-				ResourceResponse response, Window window) {
+				ResourceResponse response, Window window) {				
 			// nothing to do
+		}
+		
+		public void showPasswordPrompt(Account account, final Window window){
+			PasswordPrompt prompt = new PasswordPrompt(account);	
+			account = null;
+			prompt.addListener(new Window.CloseListener() {									
+				@Override
+				public void windowClose(CloseEvent e) {
+					PasswordPrompt prompt = (PasswordPrompt)e.getWindow();
+														
+					mainMailView = new MainMailView();
+					mainMailView.setHeight("550px");
+																									
+					if(prompt.getStatus() == Status.VALIDATED){
+						mainMailView.setEnabled(true);	
+						
+						try {									
+							controller.getMailManager().synchronizeAccount(prompt.getAccount().getAccountId());
+						} catch (PortalException e1) {
+							Controller.get().showError(
+									Lang.get("unable-to-synchronize-account"), e1);
+						} catch (SystemException e1) {
+							Controller.get().showError(
+									Lang.get("unable-to-synchronize-account"), e1);
+						}
+						
+						window.setContent(mainMailView);
+						mainMailView.show(prompt.getAccount());		
+						mainMailView.update();
+						
+					} else if(prompt.getStatus() == Status.CANCELED){
+						window.open(new ExternalResource(summaryViewURL));											
+					}
+				}
+			});																
+			window.addWindow(prompt);
+			prompt.center();
 		}
 	}
 

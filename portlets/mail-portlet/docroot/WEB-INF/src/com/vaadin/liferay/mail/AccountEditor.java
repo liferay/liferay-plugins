@@ -38,17 +38,17 @@ public class AccountEditor extends FormLayout implements ClickListener {
 	private final Controller controller;
 	private final AccountEditorListener listener;
 
-	private TextField addressField;
-	private TextField loginField;
-	private TextField personalNameField;
-	private TextField passwordField;
-	private CheckBox passwordSavedCheckBox;
-	private TextField mailInHostNameField;
-	private ComboBox mailInPortCombo;
-	private CheckBox mailInSecureCheckBox;
-	private TextField mailOutHostNameField;
-	private ComboBox mailOutPortCombo;
-	private CheckBox mailOutSecureCheckBox;
+	protected TextField addressField;
+	protected TextField loginField;
+	protected TextField personalNameField;
+	protected TextField passwordField;
+	protected CheckBox passwordSavedCheckBox;
+	protected TextField mailInHostNameField;
+	protected ComboBox mailInPortCombo;
+	protected CheckBox mailInSecureCheckBox;
+	protected TextField mailOutHostNameField;
+	protected ComboBox mailOutPortCombo;
+	protected CheckBox mailOutSecureCheckBox;
 
 	private Button cancelButton;
 	private Button okButton;

@@ -19,17 +19,21 @@ import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.CustomComponent;
+import com.vaadin.ui.Form;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.ProgressIndicator;
 import com.vaadin.ui.RichTextArea;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.Window;
 import com.vaadin.ui.Upload.FailedEvent;
 import com.vaadin.ui.Upload.FinishedEvent;
 import com.vaadin.ui.Upload.StartedEvent;
 import com.vaadin.ui.Upload;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window.CloseEvent;
 import com.vaadin.ui.Window.Notification;
 
 import java.io.File;
@@ -79,7 +83,7 @@ public class Composer extends CustomComponent {
 	private TextField toField;
 	private TextField ccField;
 	private TextField bccField;
-	private VerticalLayout recipientsLayout;
+	private FormLayout recipientsLayout;
 	private HorizontalLayout fromLayout;
 	private ComboBox from;
 	private long draftMessageId = 0;
@@ -152,14 +156,14 @@ public class Composer extends CustomComponent {
 
 			public void buttonClick(ClickEvent event) {
 
-				fireSave();
+				fireSave(false);
 			}
 		});
 		send.addListener(new Button.ClickListener() {
 
 			public void buttonClick(ClickEvent event) {
 
-				fireSend();
+				fireSend(false);
 			}
 		});
 	}
@@ -269,43 +273,33 @@ public class Composer extends CustomComponent {
 		return fromLayout;
 	}
 
-	private VerticalLayout buildRecipientsLayout() {
+	private FormLayout buildRecipientsLayout() {
 
 		// common part: create layout
-		recipientsLayout = new VerticalLayout();
+		recipientsLayout = new FormLayout();
 		recipientsLayout.setSpacing(true);
-
-		// to
-		Label toLabel = new Label(Lang.get("to"));
-		toLabel.setSizeUndefined();
-		recipientsLayout.addComponent(toLabel);
-
+		
 		toField = new TextField();
 		toField.setImmediate(false);
 		toField.setHeight("-1px");
 		toField.setWidth("100.0%");
+		toField.setCaption(Lang.get("to"));
 		recipientsLayout.addComponent(toField);
-
-		Label ccLabel = new Label(Lang.get("cc"));
-		ccLabel.setSizeUndefined();
-		recipientsLayout.addComponent(ccLabel);
-
+		
 		ccField = new TextField();
 		ccField.setImmediate(false);
 		ccField.setHeight("-1px");
 		ccField.setWidth("100.0%");
+		ccField.setCaption(Lang.get("cc"));
 		recipientsLayout.addComponent(ccField);
-
-		Label bccLabel = new Label(Lang.get("bcc"));
-		bccLabel.setSizeUndefined();
-		recipientsLayout.addComponent(bccLabel);
-
+		
 		bccField = new TextField();
 		bccField.setImmediate(false);
 		bccField.setHeight("-1px");
 		bccField.setWidth("100.0%");
+		bccField.setCaption(Lang.get("bcc"));
 		recipientsLayout.addComponent(bccField);
-
+				
 		return recipientsLayout;
 	}
 
@@ -315,7 +309,7 @@ public class Composer extends CustomComponent {
 		subjectLayout = new HorizontalLayout();
 
 		// subject
-		subject = new TextField(Lang.get("subject"));
+		subject = new TextField();
 		subject.setImmediate(false);
 		subject.setHeight("-1px");
 		subject.setWidth("100.0%");
@@ -498,8 +492,45 @@ public class Composer extends CustomComponent {
 		}
 	}
 
-	private void fireSave() {
-
+	private void fireSave(boolean skipPasswordCheck) {
+		if(!getFrom().isSavePassword() && !skipPasswordCheck){
+			Account account = getFrom();
+			String password = null;
+			try {
+				password = Controller.get().getPasswordRetriever().getPassword(account.getAccountId());
+			} catch (PortalException e2) {				
+			} catch (SystemException e2) {				
+			}
+			
+			if(password != null){
+				try {
+					Controller.get().getMailManager().storePassword(account.getAccountId(), password);
+					Controller.get().getAccountManager().updateAccount(account, Controller.get());
+					Controller.get().getMailManager().synchronizeAccount(account.getAccountId());
+				} catch (PortalException e1) {
+					Controller.get().showError(
+							Lang.get("unable-to-synchronize-account"), e1);
+				} catch (SystemException e1) {
+					Controller.get().showError(
+							Lang.get("unable-to-synchronize-account"), e1);
+				}
+			} else {
+				PasswordPrompt prompt = new PasswordPrompt(account);
+				prompt.addListener(new Window.CloseListener() {					
+					@Override
+					public void windowClose(CloseEvent e) {
+						PasswordPrompt prompt = (PasswordPrompt)e.getWindow();
+						if(prompt.getStatus() == PasswordPrompt.Status.VALIDATED){
+							fireSave(true);
+						}						
+					}
+				});
+				getWindow().addWindow(prompt);
+				prompt.center();
+				return;
+			}							
+		}				
+		
 		Message msg = null;
 		try {
 			msg = MessageUtil.saveOrSendMessage(getFrom(), getTo(), getCc(),
@@ -509,10 +540,17 @@ public class Composer extends CustomComponent {
 			for (ComposerListener listener : listeners) {
 				listener.messageSaved(this, msg);
 			}
-		} catch (MailException me) {
-			getApplication().getMainWindow().showNotification(
-					Lang.get("unable-to-save-draft"), me.getMessage(),
-					Notification.TYPE_ERROR_MESSAGE);
+		} catch (MailException me) {			
+			if(me.getType() == MailException.MESSAGE_HAS_NO_RECIPIENTS){
+				getApplication().getMainWindow().showNotification(
+						Lang.get("please-specify-at-least-one-recipient"), 
+						me.getMessage(),Notification.TYPE_ERROR_MESSAGE );
+			} else {
+				getApplication().getMainWindow().showNotification(
+						Lang.get("unable-to-save-draft"), me.getMessage(),
+						Notification.TYPE_ERROR_MESSAGE);
+			}			
+			
 			return;
 		} catch (PortalException e) {
 			_log.error(e);
@@ -527,8 +565,45 @@ public class Composer extends CustomComponent {
 		}
 	}
 
-	private void fireSend() {
-
+	private void fireSend(boolean skipPasswordCheck) {
+		if(!getFrom().isSavePassword() && !skipPasswordCheck){
+			Account account = getFrom();
+			String password = null;
+			try {
+				password = Controller.get().getPasswordRetriever().getPassword(account.getAccountId());
+			} catch (PortalException e2) {				
+			} catch (SystemException e2) {				
+			}
+			
+			if(password != null){
+				try {
+					Controller.get().getMailManager().storePassword(account.getAccountId(), password);
+					Controller.get().getAccountManager().updateAccount(account, Controller.get());
+					Controller.get().getMailManager().synchronizeAccount(account.getAccountId());
+				} catch (PortalException e1) {
+					Controller.get().showError(
+							Lang.get("unable-to-synchronize-account"), e1);
+				} catch (SystemException e1) {
+					Controller.get().showError(
+							Lang.get("unable-to-synchronize-account"), e1);
+				}
+			} else {
+				PasswordPrompt prompt = new PasswordPrompt(account);
+				prompt.addListener(new Window.CloseListener() {					
+					@Override
+					public void windowClose(CloseEvent e) {
+						PasswordPrompt prompt = (PasswordPrompt)e.getWindow();
+						if(prompt.getStatus() == PasswordPrompt.Status.VALIDATED){
+							fireSend(true);
+						}						
+					}
+				});
+				getWindow().addWindow(prompt);
+				prompt.center();
+				return;
+			}							
+		}		
+		
 		Message msg = null;
 		try {
 			msg = MessageUtil.saveOrSendMessage(getFrom(), getTo(), getCc(),
@@ -840,4 +915,23 @@ public class Composer extends CustomComponent {
 		public void messageSent(Composer composer, Message message);
 	}
 
+	public void focusToField(){
+		toField.focus();
+	}
+	
+	public void focusCCField(){
+		ccField.focus();
+	}
+	
+	public void focusBCCField(){
+		bccField.focus();
+	}
+	
+	public void focusSubject(){
+		subject.focus();
+	}
+	
+	public void focusBody(){
+		message.focus();
+	}
 }

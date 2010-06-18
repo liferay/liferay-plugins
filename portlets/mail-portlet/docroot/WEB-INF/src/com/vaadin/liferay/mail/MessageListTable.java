@@ -4,6 +4,7 @@ package com.vaadin.liferay.mail;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.AccountLocalServiceUtil;
+import com.liferay.mail.service.MessageLocalServiceUtil;
 
 import com.vaadin.data.Container;
 import com.vaadin.data.Property;
@@ -39,7 +40,7 @@ public class MessageListTable extends Table
 	private MessageAction markAsUnread = new MessageAction("mark-as-unread");
 	private MessageAction markImportant =
 		new MessageAction("flag-as-important");
-	private MessageAction clearImportant = new MessageAction("clear-flag");
+	private MessageAction clearImportant = new MessageAction("remove-flag");
 
 	public MessageListTable(MessageList msgList) {
 
@@ -204,7 +205,7 @@ public class MessageListTable extends Table
 			else if (actionId.equals("flag-as-important")) {
 				MessageUtil.flagMessageAsImportant((Message) target, true);
 			}
-			else if (actionId.equals("clear-flag")) {
+			else if (actionId.equals("remove-flag")) {
 				MessageUtil.flagMessageAsImportant((Message) target, false);
 			}
 		}
@@ -229,7 +230,7 @@ public class MessageListTable extends Table
 			setEnabled(true);
 
 			MessageContainer messageContainer = new MessageContainer(accountId, folder);
-
+			
 			setContainerDataSource(messageContainer);
 			boolean sentFolder = AccountLocalServiceUtil.getAccount(accountId)
 					.getSentFolderId() == folder.getFolderId();

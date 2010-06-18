@@ -252,9 +252,10 @@ public class Controller {
 		String newMessageSubject = "Re: " + originalMessage.getSubject();
 		String newMessageBody = MessageUtil.createReplyMessage(originalMessage);
 
-		return compose(
-			newMessageTo, newMessageCc, newMessageSubject, newMessageBody);
-
+		Composer c = compose(
+				newMessageTo, newMessageCc, newMessageSubject, newMessageBody);
+		c.focusBody();
+		return c;
 	}
 
 	public Composer forwardInComposer(Message originalMessage) {
@@ -262,7 +263,10 @@ public class Controller {
 		String newMessageSubject = "Fwd: " + originalMessage.getSubject();
 		String newMessageBody =
 			MessageUtil.createForwardMessage(originalMessage);
-		return compose(null, null, newMessageSubject, newMessageBody);
+		
+		Composer c = compose(null, null, newMessageSubject, newMessageBody);
+		c.focusToField();
+		return c;
 	}
 
 	public Composer openDraftInComposer(Message originalMessage) {
@@ -286,7 +290,6 @@ public class Controller {
 	}
 
 	private Composer compose(String to, String cc, String subject, String body) {
-
 		return compose(to, cc, "", subject, body);
 	}
 
@@ -294,12 +297,12 @@ public class Controller {
 		String to, String cc, String bcc, String subject, String body) {
 
 		Composer composer = new Composer();
-
-		composer.setSubject(subject);
-		composer.setMessage(body);
-		composer.setTo(to);
-		composer.setCc(to);
-		composer.setBcc(to);
+				
+		composer.setSubject(subject==null?"":subject);
+		composer.setMessage(body==null?"":body);
+		composer.setTo(to==null?"":to);
+		composer.setCc(cc==null?"":cc);
+		composer.setBcc(bcc==null?"":bcc);
 
 		getApplication().switchToCompose(composer, null);
 

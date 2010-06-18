@@ -94,10 +94,14 @@ public class MessageContainer extends BeanItemContainer<Message> implements Prop
 		if (folder != null) {
 			Mailbox mailbox = MessageUtil.getMailbox(accountId);
 
+			try{
 			MessagesDisplay messagesDisplay = mailbox.getMessagesDisplay(folder
 					.getFolderId(), keywords, pageNumber, PAGE_SIZE,
 					orderByField, orderByType);
 			messages = messagesDisplay.getMessages();
+			} catch(Exception e){
+				_log.error("Failed loading messages from Mailbox");
+			}
 		}
 
 		int count = messages.size();
@@ -150,8 +154,8 @@ public class MessageContainer extends BeanItemContainer<Message> implements Prop
 			catch (SystemException e) {
 				_log.warn("Could not fetch messages", e);
 			}
-
 		}
+												
 		return super.getIdByIndex(index);
 	}
 
