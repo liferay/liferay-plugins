@@ -47,8 +47,10 @@ public class KaleoDeploymentEventMessageListener implements MessageListener {
 
 	protected void doReceive(Message message) throws Exception {
 		String servletContextName = (String)message.get("servletContextName");
-
-		if (!_servletContextName.equals(servletContextName)) {
+		String command = message.getString("command");
+		
+		if (!_servletContextName.equals(servletContextName) ||
+			!command.equals("deploy")) {
 			return;
 		}
 
