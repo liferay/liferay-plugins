@@ -3,6 +3,7 @@
 
 <hibernate-configuration>
 	<session-factory>
+		<mapping resource="META-INF/ProcessInstanceExtension.hbm.xml" />
 		<mapping resource="META-INF/TaskInstanceExtension.hbm.xml" />
 		<mapping resource="META-INF/WorkflowDefinitionExtension.hbm.xml" />
 		<mapping resource="META-INF/WorkflowLog.hbm.xml" />

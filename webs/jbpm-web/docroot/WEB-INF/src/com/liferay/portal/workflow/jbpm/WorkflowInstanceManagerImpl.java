@@ -14,11 +14,15 @@
 
 package com.liferay.portal.workflow.jbpm;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManager;
@@ -176,7 +180,20 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			Long assetClassPK, Boolean completed)
 		throws WorkflowException {
 
-		return 0;
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			CustomSession customSession = new CustomSession(jbpmContext);
+
+			return customSession.countProcessInstances(
+				companyId, userId, assetClassName, assetClassPK, completed);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+		finally {
+			jbpmContext.close();
+		}
 	}
 
 	public List<WorkflowInstance> getWorkflowInstances(
@@ -198,18 +215,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 					processDefinition.getId(), completed, start, end,
 					orderByComparator);
 
-			List<WorkflowInstance> workflowInstances =
-				new ArrayList<WorkflowInstance>(processInstances.size());
-
-			for (ProcessInstance processInstance : processInstances) {
-				Token token = processInstance.getRootToken();
-
-				WorkflowInstance workflowInstance = getWorkflowInstance(token);
-
-				workflowInstances.add(workflowInstance);
-			}
-
-			return workflowInstances;
+			return toWorkflowInstaces(processInstances);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -225,7 +231,24 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
-		return null;
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			CustomSession customSession = new CustomSession(jbpmContext);
+
+			List<ProcessInstance> processInstances =
+				customSession.findProcessInstances(
+					companyId, userId, assetClassName, assetClassPK, completed,
+					start, end, orderByComparator);
+
+			return toWorkflowInstaces(processInstances);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+		finally {
+			jbpmContext.close();
+		}
 	}
 
 	public void setJbpmConfiguration(JbpmConfiguration jbpmConfiguration) {
@@ -311,30 +334,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 			jbpmContext.save(processInstance);
 
-			TaskMgmtInstance taskMgmtInstance =
-				processInstance.getTaskMgmtInstance();
-
-			Collection<TaskInstance> taskInstances =
-				taskMgmtInstance.getTaskInstances();
-
-			if (taskInstances != null) {
-				for (TaskInstance taskInstance : taskInstances) {
-					List<Assignee> assignees =
-						AssigneeRetrievalUtil.getAssignees(
-							companyId, taskInstance.getActorId(),
-							taskInstance.getPooledActors());
-
-					String context = WorkflowContextUtil.convertToJSON(
-						workflowContext);
-
-					TaskInstanceExtensionImpl taskInstanceExtensionImpl =
-						new TaskInstanceExtensionImpl(
-							companyId, groupId, userId, assignees, context,
-							taskInstance);
-
-					jbpmContext.getSession().save(taskInstanceExtensionImpl);
-				}
-			}
+			saveProcessInstanceExtension(
+				companyId, groupId, userId, processInstance, workflowContext);
 
 			Token token = processInstance.getRootToken();
 
@@ -464,6 +465,70 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		Collections.sort(
 			workflowInstanceImpl.getChildrenWorkflowInstances(),
 			new WorkflowInstanceStateComparator(true));
+	}
+
+	protected void saveProcessInstanceExtension(
+			long companyId, long groupId, long userId,
+			ProcessInstance processInstance,
+			Map<String, Serializable> workflowContext)
+		throws PortalException, SystemException {
+
+		JbpmContext jbpmContext =  _jbpmConfiguration.getCurrentJbpmContext();
+
+		String className = (String)workflowContext.get(
+			WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
+		long classPK = GetterUtil.getLong(
+			(String)workflowContext.get(
+				WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+
+		ProcessInstanceExtensionImpl processInstanceExtensionImpl =
+			new ProcessInstanceExtensionImpl(
+				companyId, groupId, userId, className, classPK,
+				processInstance);
+
+		jbpmContext.getSession().save(processInstanceExtensionImpl);
+
+		TaskMgmtInstance taskMgmtInstance =
+			processInstance.getTaskMgmtInstance();
+
+		Collection<TaskInstance> taskInstances =
+			taskMgmtInstance.getTaskInstances();
+
+		if (taskInstances != null) {
+			for (TaskInstance taskInstance : taskInstances) {
+				List<Assignee> assignees =
+					AssigneeRetrievalUtil.getAssignees(
+						companyId, taskInstance.getActorId(),
+						taskInstance.getPooledActors());
+
+				String context = WorkflowContextUtil.convertToJSON(
+					workflowContext);
+
+				TaskInstanceExtensionImpl taskInstanceExtensionImpl =
+					new TaskInstanceExtensionImpl(
+						companyId, groupId, userId, assignees, context,
+						taskInstance);
+
+				jbpmContext.getSession().save(taskInstanceExtensionImpl);
+			}
+		}
+	}
+
+	protected List<WorkflowInstance> toWorkflowInstaces(
+		List<ProcessInstance> processInstances) {
+
+		List<WorkflowInstance> workflowInstances =
+			new ArrayList<WorkflowInstance>(processInstances.size());
+
+		for (ProcessInstance processInstance : processInstances) {
+			Token token = processInstance.getRootToken();
+
+			WorkflowInstance workflowInstance = getWorkflowInstance(token);
+
+			workflowInstances.add(workflowInstance);
+		}
+
+		return workflowInstances;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

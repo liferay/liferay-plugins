@@ -28,6 +28,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
+import com.liferay.portal.workflow.jbpm.ProcessInstanceExtensionImpl;
 import com.liferay.portal.workflow.jbpm.TaskInstanceExtensionImpl;
 import com.liferay.portal.workflow.jbpm.WorkflowDefinitionExtensionImpl;
 import com.liferay.portal.workflow.jbpm.WorkflowLogImpl;
@@ -130,6 +131,21 @@ public class CustomSession {
 			Number count = (Number)criteria.uniqueResult();
 
 			return count.intValue();
+		}
+		catch (Exception e) {
+			throw new JbpmException(e);
+		}
+	}
+
+	public int countProcessInstances(
+		long companyId, Long userId, String assetClassName,
+		Long assetClassPK, Boolean completed) {
+
+		try {
+			Criteria criteria = buildProcessInstanceExtensionSearchCriteria(
+				companyId, userId, assetClassName, assetClassPK, completed);
+
+			return (int)criteriaCount(criteria);
 		}
 		catch (Exception e) {
 			throw new JbpmException(e);
@@ -296,6 +312,25 @@ public class CustomSession {
 			addOrder(criteria, orderByComparator);
 
 			return criteria.list();
+		}
+		catch (Exception e) {
+			throw new JbpmException(e);
+		}
+	}
+
+	public List<ProcessInstance> findProcessInstances(
+		long companyId, Long userId, String assetClassName,
+		Long assetClassPK, Boolean completed, int start, int end,
+		OrderByComparator orderByComparator) {
+
+		try {
+			Criteria criteria = buildProcessInstanceExtensionSearchCriteria(
+				companyId, userId, assetClassName, assetClassPK, completed);
+
+			addPagination(criteria, start, end);
+			addOrder(criteria, orderByComparator);
+
+			return toProcessIntances(criteria.list());
 		}
 		catch (Exception e) {
 			throw new JbpmException(e);
@@ -610,6 +645,42 @@ public class CustomSession {
 		return criteria;
 	}
 
+	protected Criteria buildProcessInstanceExtensionSearchCriteria(
+		long companyId, Long userId, String assetClassName, Long assetClassPK,
+		Boolean completed) {
+
+		Criteria criteria = _session.createCriteria(
+			ProcessInstanceExtensionImpl.class);
+
+		criteria.add(Restrictions.eq("companyId", companyId));
+
+		if (userId != null) {
+			criteria.add(Restrictions.eq("userId", userId));
+		}
+
+		if (Validator.isNotNull(assetClassName)) {
+			criteria.add(Restrictions.like("className", assetClassName));
+		}
+
+		if (Validator.isNotNull(assetClassPK)) {
+			criteria.add(Restrictions.eq("classPK", assetClassPK));
+		}
+
+		if (completed != null) {
+			Criteria completionCriteria =
+				criteria.createCriteria("processInstance");
+
+			if (completed) {
+				completionCriteria.add(Restrictions.isNotNull("end"));
+			}
+			else {
+				completionCriteria.add(Restrictions.isNull("end"));
+			}
+		}
+
+		return criteria;
+	}
+
 	protected long criteriaCount(Criteria criteria){
 		criteria.setProjection(Projections.rowCount());
 
@@ -713,6 +784,22 @@ public class CustomSession {
 		}
 
 		return taskInstances;
+	}
+
+	protected List<ProcessInstance> toProcessIntances(
+		List<ProcessInstanceExtensionImpl> processInstanceExtensionImpls) {
+
+		List<ProcessInstance> processInstances = new ArrayList<ProcessInstance>(
+			processInstanceExtensionImpls.size());
+
+		for (ProcessInstanceExtensionImpl workflowInstanceExtensionImpl :
+				processInstanceExtensionImpls) {
+
+			processInstances.add(
+				workflowInstanceExtensionImpl.getProcessInstance());
+		}
+
+		return processInstances;
 	}
 
 	protected List<TaskInstance> toTaskIntances(
