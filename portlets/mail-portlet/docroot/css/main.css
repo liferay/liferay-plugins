@@ -35,9 +35,39 @@
 	float: right;
 }
 
-.mail-portlet .address,
-.mail-portlet .subject,
-.mail-portlet .date {
+.mail-portlet .message-list thead tr {
+	background-color: #D1D6DC;
+}
+
+.mail-portlet .message-list th {
+	padding: 5px 0;
+}
+
+.mail-portlet .message-list .check {
+	width: 5%;
+}
+
+.mail-portlet .message-list .address {
+	width: 20%;
+}
+
+.mail-portlet .message-list .subject {
+	width: 55%;
+}
+
+.mail-portlet .message-list .date {
+	width: 15%;
+}
+
+.mail-portlet .message-list .attachments {
+	width: 5%;
+}
+
+.mail-portlet .message-list td {
+	padding: 1px 0;
+}
+
+.mail-portlet .message-list td div {
 	height: 18px;
 	overflow: hidden;
 }
