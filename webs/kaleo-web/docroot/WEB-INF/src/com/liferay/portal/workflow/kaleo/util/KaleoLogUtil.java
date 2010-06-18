@@ -26,12 +26,16 @@ public class KaleoLogUtil {
 	public static int convert(String type) {
 		LogType logType = LogType.valueOf(type);
 
-		if (logType.equals(LogType.NODE_EXIT)) {
-			return WorkflowLog.TRANSITION;
-		}
-
 		if (logType.equals(LogType.TASK_ASSIGNMENT)) {
 			return WorkflowLog.TASK_ASSIGN;
+		}
+
+		if (logType.equals(LogType.TASK_COMPLETION)) {
+			return WorkflowLog.TASK_COMPLETION;
+		}
+
+		if (logType.equals(LogType.NODE_EXIT)) {
+			return WorkflowLog.TRANSITION;
 		}
 
 		return -1;
@@ -44,6 +48,10 @@ public class KaleoLogUtil {
 
 		if (type == WorkflowLog.TASK_UPDATE) {
 			return LogType.TASK_ASSIGNMENT.name();
+		}
+
+		if (type == WorkflowLog.TASK_COMPLETION) {
+			return LogType.TASK_COMPLETION.name();
 		}
 
 		if (type == WorkflowLog.TRANSITION) {
