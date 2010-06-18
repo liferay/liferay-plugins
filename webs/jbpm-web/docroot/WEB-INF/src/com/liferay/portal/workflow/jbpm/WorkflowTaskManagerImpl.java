@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.jbpm;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -175,8 +177,10 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			TaskInstanceExtensionImpl taskInstanceExtension =
 				customSession.findTaskInstanceExtension(taskInstance.getId());
 
-			taskInstanceExtension.setAssigneeClassName(User.class.getName());
-			taskInstanceExtension.setAssigneeClassPK(assigneeUserId);
+			List<Assignee> assignees = taskInstanceExtension.getAssignees();
+
+			assignees.clear();
+			assignees.add(new Assignee(User.class.getName(), assigneeUserId));
 
 			session.update(taskInstanceExtension);
 
@@ -865,7 +869,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	protected List<WorkflowTask> toWorkflowTasks(
-		List<TaskInstance> taskInstances) {
+			List<TaskInstance> taskInstances)
+		throws PortalException, SystemException {
 
 		List<WorkflowTask> taskInstanceInfos =
 			new ArrayList<WorkflowTask>(taskInstances.size());

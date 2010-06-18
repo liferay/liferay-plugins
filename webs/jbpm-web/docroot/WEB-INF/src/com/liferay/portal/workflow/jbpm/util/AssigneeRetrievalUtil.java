@@ -22,7 +22,11 @@ import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.workflow.jbpm.Assignee;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.jbpm.taskmgmt.exe.PooledActor;
@@ -34,33 +38,34 @@ import org.jbpm.taskmgmt.exe.PooledActor;
  */
 public class AssigneeRetrievalUtil {
 
-	public static Assignee getAssignee(
+	public static List<Assignee> getAssignees(
 			long companyId, String actorId, Set<PooledActor> pooledActors)
 		throws PortalException, SystemException {
 
-		Assignee assignee = new Assignee();
+		List<Assignee> assignees = new ArrayList<Assignee>();
 
 		if ((pooledActors != null) && !pooledActors.isEmpty()) {
-			assignee.setAssigneeClassName(Role.class.getName());
+			Iterator<PooledActor> it = pooledActors.iterator();
 
-			PooledActor pooledActor = pooledActors.iterator().next();
+			while (it.hasNext()) {
+				PooledActor pooledActor = it.next();
 
-			Role role = null;
+				Role role = null;
 
-			if (Validator.isNumber(pooledActor.getActorId())) {
-				role = RoleLocalServiceUtil.getRole(
-					GetterUtil.getLong(pooledActor.getActorId()));
+				if (Validator.isNumber(pooledActor.getActorId())) {
+					role = RoleLocalServiceUtil.getRole(
+						GetterUtil.getLong(pooledActor.getActorId()));
+				}
+				else {
+					role = RoleLocalServiceUtil.getRole(
+						companyId, pooledActor.getActorId());
+				}
+
+				assignees.add(
+					new Assignee(Role.class.getName(), role.getRoleId()));
 			}
-			else {
-				role = RoleLocalServiceUtil.getRole(
-					companyId, pooledActor.getActorId());
-			}
-
-			assignee.setAssigneeClassPK(role.getClassPK());
 		}
 		else {
-			assignee.setAssigneeClassName(User.class.getName());
-
 			User user = null;
 
 			if (Validator.isEmailAddress(actorId)) {
@@ -72,10 +77,11 @@ public class AssigneeRetrievalUtil {
 					GetterUtil.getLong(actorId));
 			}
 
-			assignee.setAssigneeClassPK(user.getUserId());
+			assignees.add(
+				new Assignee(User.class.getName(), user.getUserId()));
 		}
 
-		return assignee;
+		return assignees;
 	}
 
 }

@@ -485,10 +485,12 @@ public class CustomSession {
 			return;
 		}
 
+		Criteria assigneesCriteria = criteria.createCriteria("assignees");
+
 		if (!searchByUserRoles) {
-			criteria.add(
+			assigneesCriteria.add(
 				Restrictions.eq("assigneeClassName", User.class.getName()));
-			criteria.add(
+			assigneesCriteria.add(
 				Restrictions.eq("assigneeClassPK", serviceContext.getUserId()));
 
 			return;
@@ -501,9 +503,9 @@ public class CustomSession {
 				serviceContext.getUserId());
 
 		if (userGroupRoles.isEmpty()) {
-			criteria.add(
+			assigneesCriteria.add(
 				Restrictions.eq("assigneeClassName", Role.class.getName()));
-			criteria.add(
+			assigneesCriteria.add(
 				Restrictions.in("assigneeClassPK",
 					roleIds.toArray(new Long[roleIds.size()])));
 		}
@@ -527,7 +529,7 @@ public class CustomSession {
 								userGroupRole.getRoleId()))));
 			}
 
-			criteria.add(junction);
+			assigneesCriteria.add(junction);
 		}
 	}
 

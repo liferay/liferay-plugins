@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManager;
 import com.liferay.portal.workflow.jbpm.comparator.WorkflowInstanceStateComparator;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
-import com.liferay.portal.workflow.jbpm.util.Assignee;
 import com.liferay.portal.workflow.jbpm.util.AssigneeRetrievalUtil;
 import com.liferay.portal.workflow.jbpm.util.WorkflowContextUtil;
 
@@ -55,6 +54,7 @@ import org.jbpm.taskmgmt.exe.TaskMgmtInstance;
  *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
+ * @author Marcellus Tavares
  */
 public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
@@ -171,6 +171,14 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		}
 	}
 
+	public int getWorkflowInstanceCount(
+			long companyId, Long userId, String assetClassName,
+			Long assetClassPK, Boolean completed)
+		throws WorkflowException {
+
+		return 0;
+	}
+
 	public List<WorkflowInstance> getWorkflowInstances(
 			long companyId, String workflowDefinitionName,
 			Integer workflowDefinitionVersion, Boolean completed, int start,
@@ -209,6 +217,15 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		finally {
 			jbpmContext.close();
 		}
+	}
+
+	public List<WorkflowInstance> getWorkflowInstances(
+			long companyId, Long userId, String assetClassName,
+			Long assetClassPK, Boolean completed, int start, int end,
+			OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		return null;
 	}
 
 	public void setJbpmConfiguration(JbpmConfiguration jbpmConfiguration) {
@@ -302,18 +319,17 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 			if (taskInstances != null) {
 				for (TaskInstance taskInstance : taskInstances) {
-					Assignee assignee = AssigneeRetrievalUtil.getAssignee(
-						companyId, taskInstance.getActorId(),
-						taskInstance.getPooledActors());
+					List<Assignee> assignees =
+						AssigneeRetrievalUtil.getAssignees(
+							companyId, taskInstance.getActorId(),
+							taskInstance.getPooledActors());
 
 					String context = WorkflowContextUtil.convertToJSON(
 						workflowContext);
 
 					TaskInstanceExtensionImpl taskInstanceExtensionImpl =
 						new TaskInstanceExtensionImpl(
-							companyId, groupId, userId,
-							assignee.getAssigneeClassName(),
-							assignee.getAssigneeClassPK(), context,
+							companyId, groupId, userId, assignees, context,
 							taskInstance);
 
 					jbpmContext.getSession().save(taskInstanceExtensionImpl);

@@ -14,17 +14,21 @@
 
 package com.liferay.portal.workflow.jbpm;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.DefaultWorkflowTask;
+import com.liferay.portal.kernel.workflow.WorkflowTaskAssignee;
+import com.liferay.portal.workflow.jbpm.util.AssigneeRetrievalUtil;
 import com.liferay.portal.workflow.jbpm.util.WorkflowContextUtil;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.jbpm.context.exe.ContextInstance;
 import org.jbpm.graph.def.ProcessDefinition;
 import org.jbpm.graph.exe.ProcessInstance;
 import org.jbpm.graph.exe.Token;
-import org.jbpm.taskmgmt.exe.PooledActor;
 import org.jbpm.taskmgmt.exe.TaskInstance;
 
 /**
@@ -35,26 +39,13 @@ import org.jbpm.taskmgmt.exe.TaskInstance;
  */
 public class WorkflowTaskImpl extends DefaultWorkflowTask {
 
-	public WorkflowTaskImpl(TaskInstance taskInstance) {
+	public WorkflowTaskImpl(TaskInstance taskInstance)
+		throws PortalException, SystemException {
+
 		ProcessInstance processInstance = taskInstance.getProcessInstance();
 		ProcessDefinition processDefinition =
 			processInstance.getProcessDefinition();
 		Token token = taskInstance.getToken();
-
-		Set<PooledActor> pooledActors = taskInstance.getPooledActors();
-
-		if ((pooledActors != null) && !pooledActors.isEmpty()) {
-			PooledActor pooledActor = pooledActors.iterator().next();
-
-			setAssigneeRoleId(GetterUtil.getLong(pooledActor.getActorId()));
-		}
-
-		if (Validator.isEmailAddress(taskInstance.getActorId())) {
-			setAssigneeEmailAddress(taskInstance.getActorId());
-		}
-		else {
-			setAssigneeUserId(GetterUtil.getLong(taskInstance.getActorId()));
-		}
 
 		setAsynchronous(!taskInstance.isBlocking());
 		setCompletionDate(taskInstance.getEnd());
@@ -68,7 +59,35 @@ public class WorkflowTaskImpl extends DefaultWorkflowTask {
 		setWorkflowDefinitionName(processDefinition.getName());
 		setWorkflowDefinitionVersion(processDefinition.getVersion());
 		setWorkflowInstanceId(token.getId());
+
+		ContextInstance contextInstance = processInstance.getContextInstance();
+
+		long companyId = GetterUtil.getLong(
+			(String)contextInstance.getVariable("companyId"));
+
+		List<Assignee> assignees =
+			AssigneeRetrievalUtil.getAssignees(
+				companyId, taskInstance.getActorId(),
+				taskInstance.getPooledActors());
+
+		setWorkflowTaskAssignees(toWorkflowTaskAssignees(assignees));
 		setWorkflowTaskId(taskInstance.getId());
+	}
+
+	protected List<WorkflowTaskAssignee> toWorkflowTaskAssignees(
+		List<Assignee> assignees) {
+
+		List<WorkflowTaskAssignee> workflowTaskAssignees =
+			new ArrayList<WorkflowTaskAssignee>(assignees.size());
+
+		for (Assignee assignee : assignees) {
+			workflowTaskAssignees.add(
+				new WorkflowTaskAssignee(
+					assignee.getAssigneeClassName(),
+					assignee.getAssigneeClassPK()));
+		}
+
+		return workflowTaskAssignees;
 	}
 
 }

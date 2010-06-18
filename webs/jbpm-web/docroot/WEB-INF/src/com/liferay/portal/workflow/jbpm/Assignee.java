@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.workflow.jbpm.util;
+package com.liferay.portal.workflow.jbpm;
 
 /**
  * <a href="Assignee.java.html"><b><i>View Source</i></b></a>
@@ -21,12 +21,28 @@ package com.liferay.portal.workflow.jbpm.util;
  */
 public class Assignee {
 
+	public Assignee(){
+	}
+
+	public Assignee(String assigneeClassName, long assigneeClassPK) {
+		_assigneeClassName = assigneeClassName;
+		_assigneeClassPK = assigneeClassPK;
+	}
+
 	public String getAssigneeClassName() {
 		return _assigneeClassName;
 	}
 
 	public long getAssigneeClassPK() {
 		return _assigneeClassPK;
+	}
+
+	public long getAssigneeId() {
+		return _assigneeId;
+	}
+
+	public long getTaskInstanceExtensionId(){
+		return _taskInstanceExtensionId;
 	}
 
 	public void setAssigneeClassName(String assigneeClassName) {
@@ -37,7 +53,17 @@ public class Assignee {
 		_assigneeClassPK = assigneeClassPK;
 	}
 
+	public void setAssigneeId(long assigneeId) {
+		_assigneeId = assigneeId;
+	}
+
+	public void setTaskInstanceExtensionId(long taskInstanceExtensionId){
+		_taskInstanceExtensionId = taskInstanceExtensionId;
+	}
+
+	private long _assigneeId;
 	private String _assigneeClassName;
 	private long _assigneeClassPK;
+	private long _taskInstanceExtensionId;
 
 }
