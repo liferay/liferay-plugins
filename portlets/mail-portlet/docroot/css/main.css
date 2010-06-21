@@ -23,6 +23,7 @@
 	border: 1px solid #C8C9CA;
 	margin: 1em 0;
 	min-height: 2em;
+	overflow: auto;
 	padding: 1em;
 }
 
