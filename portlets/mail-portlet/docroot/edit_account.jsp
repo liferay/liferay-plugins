@@ -58,7 +58,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 		function(event) {
 			event.preventDefault();
 
-			Liferay.Mail.setStatus('info', 'updating-account', true);
+			Liferay.Mail.setStatus('info', '<liferay-ui:message key="updating-account" />', true);
 
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/update_account',
@@ -69,7 +69,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 					},
 					on: {
 						failure: function(event, id, obj) {
-							Liferay.Mail.setStatus('error', 'unable-to-connect-with-mail-server');
+							Liferay.Mail.setStatus('error', '<liferay-ui:message key="unable-to-connect-with-mail-server" />');
 						},
 						success: function(event, id, obj) {
 							var responseData = this.get('responseData');
@@ -91,7 +91,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 				return;
 			}
 
-			Liferay.Mail.setStatus('info', 'deleting-account');
+			Liferay.Mail.setStatus('info', '<liferay-ui:message key="deleting-account" />');
 
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/delete_account',
@@ -101,7 +101,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 					method: 'POST',
 					on: {
 						failure: function(event, id, obj) {
-							Liferay.Mail.setStatus('error', 'unable-to-connect-with-mail-server');
+							Liferay.Mail.setStatus('error', '<liferay-ui:message key="unable-to-connect-with-mail-server" />');
 						},
 						success: function(event, id, obj) {
 							var responseData = this.get('responseData');
@@ -131,12 +131,12 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 					method: 'POST',
 					on: {
 						failure: function(event, id, obj) {
-							Liferay.Mail.setStatus('error', 'unable-to-connect-with-mail-server');
+							Liferay.Mail.setStatus('error', '<liferay-ui:message key="unable-to-connect-with-mail-server" />');
 						},
 						success: function(event, id, obj) {
 							var responseData = this.get('responseData');
 
-							Liferay.Mail.setStatus('success', 'synchronizing-messages-in-the-background');
+							Liferay.Mail.setStatus('success', '<liferay-ui:message key="synchronizing-messages-in-the-background" />');
 						}
 					}
 				}

@@ -38,7 +38,7 @@ AUI().add(
 						cssClass: 'mail-dialog',
 						destroyOnClose: true,
 						modal: true,
-						title: instance.translate('add-account'),
+						title: Liferay.Language.get('add-account'),
 						width: 600
 					}
 				).plug(
@@ -122,7 +122,7 @@ AUI().add(
 						cssClass: 'mail-dialog',
 						destroyOnClose: true,
 						modal: true,
-						title: instance.translate('edit-account'),
+						title: Liferay.Language.get('edit-account'),
 						width: 600
 					}
 				).plug(
@@ -347,7 +347,7 @@ AUI().add(
 						cssClass: 'mail-dialog',
 						destroyOnClose: true,
 						modal: true,
-						title: instance.translate('password'),
+						title: Liferay.Language.get('password'),
 						width: 600
 					}
 				).plug(
@@ -396,7 +396,7 @@ AUI().add(
 					messageType = 'portlet-msg-info';
 				}
 
-				var statusContainers = A.all('.mail-status').html('<table style="margin: 0 auto;"><tr><td>&nbsp;</td><td><span class="message ' + messageType + '">' + instance.translate(message) + '</span></td><td>&nbsp;</td></tr></table>');
+				var statusContainers = A.all('.mail-status').html('<table style="margin: 0 auto;"><tr><td>&nbsp;</td><td><span class="message ' + messageType + '">' + message + '</span></td><td>&nbsp;</td></tr></table>');
 
 				var status = statusContainers.all('table');
 
@@ -408,34 +408,6 @@ AUI().add(
 						5000
 					);
 				}
-			},
-
-			translate: function(key) {
-				var instance = this;
-
-				var value = instance._languageKeys[key];
-
-				if (value) {
-					return value;
-				}
-
-				A.io.request(
-					themeDisplay.getLayoutURL() + '/-/mail/translate',
-					{
-						data: {key: key},
-						on: {
-							complete: function(event, id, obj) {
-								value = A.Lang.trim(obj.responseText);
-							}
-						},
-						sync: true,
-						type: 'GET'
-					}
-				);
-
-				instance._languageKeys[key] = value;
-
-				return value;
 			},
 
 			_assignEvents: function() {
@@ -743,8 +715,7 @@ AUI().add(
 			keywords: '',
 			orderByField: 'sentDate',
 			orderByType: 'desc',
-			pageNumber: 1,
-			_languageKeys: {}
+			pageNumber: 1
 		};
 	},
 	'',

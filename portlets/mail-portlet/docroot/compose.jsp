@@ -130,7 +130,7 @@ else {
 		function(event) {
 			event.preventDefault();
 
-			Liferay.Mail.setStatus('info', 'sending-message', true);
+			Liferay.Mail.setStatus('info', '<liferay-ui:message key="sending-message" />', true);
 
 			document.<portlet:namespace />fm.<portlet:namespace />body.value = window.<portlet:namespace />editor.getHTML();
 
@@ -154,7 +154,7 @@ else {
 								}
 							}
 							catch (e) {
-								Liferay.Mail.setStatus('error', 'unable-to-connect-with-mail-server');
+								Liferay.Mail.setStatus('error', '<liferay-ui:message key="unable-to-connect-with-mail-server" />');
 							}
 						}
 					}
@@ -168,7 +168,7 @@ else {
 		function(event) {
 			document.<portlet:namespace />fm.<portlet:namespace />body.value = window.<portlet:namespace />editor.getHTML();
 
-			Liferay.Mail.setStatus('info', 'saving-draft', true);
+			Liferay.Mail.setStatus('info', '<liferay-ui:message key="saving-draft" />', true);
 
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/save_draft',
@@ -179,7 +179,7 @@ else {
 					},
 					on: {
 						failure: function(event, id, obj) {
-							Liferay.Mail.setStatus('error', 'unable-to-connect-with-mail-server');
+							Liferay.Mail.setStatus('error', '<liferay-ui:message key="unable-to-connect-with-mail-server" />');
 						},
 						success: function(event, id, obj) {
 							var responseData = this.get('responseData');

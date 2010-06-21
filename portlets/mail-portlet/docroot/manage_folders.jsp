@@ -59,7 +59,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 
 	<aui:script use="aui-io">
 		var <portlet:namespace />onIOFailure = function(event, id, obj) {
-			Liferay.Mail.setStatus('error', 'unable-to-connect-with-mail-server');
+			Liferay.Mail.setStatus('error', '<liferay-ui:message key="unable-to-connect-with-mail-server" />');
 		}
 
 		var <portlet:namespace />onIOSuccess = function(event, id, obj) {
@@ -76,7 +76,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 		A.one('#<portlet:namespace />addFolder').on(
 			'click',
 			function(event) {
-				Liferay.Mail.setStatus('info', 'adding-folder', true);
+				Liferay.Mail.setStatus('info', '<liferay-ui:message key="adding-folder" />', true);
 
 				var displayName = A.one('#<portlet:namespace />displayName').get('value');
 
@@ -101,7 +101,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 		A.all('.mail-portlet .delete-folder').on(
 			'click',
 			function(event) {
-				Liferay.Mail.setStatus('info', 'deleting-folder', true);
+				Liferay.Mail.setStatus('info', '<liferay-ui:message key="deleting-folder" />', true);
 
 				var folderId = event.currentTarget.getAttribute('data-folderId');
 
@@ -131,7 +131,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 						cssClass: 'mail-dialog',
 						destroyOnClose: true,
 						modal: true,
-						title: Liferay.Mail.translate('rename-folder'),
+						title: '<liferay-ui:message key="rename-folder" />',
 						width: 600
 					}
 				).plug(
