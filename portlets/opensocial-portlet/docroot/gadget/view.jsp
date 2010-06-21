@@ -37,7 +37,11 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 			secureToken: '<%= secureToken %>',
 			serverBase: '<%= renderRequest.getContextPath() %>/gadgets/',
 			specUrl: '<%= gadgetUrl %>',
-			userPrefsKey: '<%= ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace()) %>'
+			store: new Liferay.OpenSocial.Store.Expando(
+				{
+					userPrefsKey: '<%= ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace()) %>'
+				}
+			)
 		}
 	).render('#<portlet:namespace />gadget');
 </aui:script>
