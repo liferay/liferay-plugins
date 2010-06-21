@@ -66,7 +66,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 		</c:if>
 
 		<aui:field-wrapper label="display-order">
-			<div id="<portlet:namespace />priority">
+			<div id="<portlet:namespace />Priority">
 				<liferay-util:include page="/admin/article_priority.jsp" servletContext="<%= application %>" />
 			</div>
 
@@ -88,7 +88,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 		</aui:field-wrapper>
 
 		<aui:field-wrapper label="attachments">
-			<div id="<portlet:namespace />attachments">
+			<div id="<portlet:namespace />Attachments">
 				<liferay-util:include page="/admin/article_attachments.jsp" servletContext="<%= application %>" />
 			</div>
 
@@ -134,11 +134,16 @@ String dirName = ParamUtil.getString(request, "dirName");
 
 	function <portlet:namespace />selectArticle(parentResourcePrimKey, html) {
 		document.<portlet:namespace />fm.<portlet:namespace />parentResourcePrimKey.value = parentResourcePrimKey;
-		document.getElementById("<portlet:namespace />priority").innerHTML = html;
+		document.getElementById("<portlet:namespace />Priority").innerHTML = html;
 	}
 
 	function <portlet:namespace />updateArticle() {
 		document.<portlet:namespace />fm.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();
 		submitForm(document.<portlet:namespace />fm);
+	}
+
+	function <portlet:namespace />updateAttachments(dirName, html) {
+		document.<portlet:namespace />fm.<portlet:namespace />dirName.value = dirName;
+		document.getElementById("<portlet:namespace />Attachments").innerHTML = html;
 	}
 </aui:script>

@@ -126,6 +126,5 @@ String[] fileNames = DLServiceUtil.getFileNames(company.getCompanyId(), CompanyC
 		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="deleteAttachment"><portlet:param name="jspPage" value="/admin/attachments.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /><portlet:param name="dirName" value="<%= dirName %>" /></portlet:actionURL>');
 	}
 
-	opener.document.<portlet:namespace />fm.<portlet:namespace />dirName.value = "<%= UnicodeFormatter.toString(dirName) %>";
-	opener.document.getElementById("<portlet:namespace />attachments").innerHTML = "<%= UnicodeFormatter.toString(html) %>";
+	opener.<portlet:namespace />updateAttachments("<%= UnicodeFormatter.toString(dirName) %>", "<%= UnicodeFormatter.toString(html) %>");
 </aui:script>

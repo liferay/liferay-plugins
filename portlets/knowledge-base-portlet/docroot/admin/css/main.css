@@ -79,11 +79,11 @@
 
 .knowledge-base-portlet-admin .kb-entity-body .kb-article-icons,
 .knowledge-base-portlet-admin .kb-entity-body .kb-template-icons {
-	padding: 0 0 6px;
+	padding: 0 0 5px;
 }
 
 .knowledge-base-portlet-admin .kb-entity-body .taglib-discussion {
-	margin: 6px 2px 0;
+	margin: 5px 2px 0;
 }
 
 .knowledge-base-portlet-admin .kb-entity-footer {
@@ -92,8 +92,8 @@
 
 .knowledge-base-portlet-admin .kb-entity-header {
 	border-bottom: 1px solid #CCC;
-	margin-bottom: 6px;
-	padding: 0 7px 3px;
+	margin-bottom: 5px;
+	padding: 0 5px 3px;
 }
 
 .knowledge-base-portlet-admin .kb-entity-header .kb-title {
@@ -112,17 +112,17 @@
 
 .knowledge-base-portlet-admin .kb-results-body .kb-article-icons,
 .knowledge-base-portlet-admin .kb-results-body .kb-template-icons {
-	padding: 6px 0;
+	padding: 5px 0;
 }
 
 .knowledge-base-portlet-admin .kb-results-body .kb-title a {
 	display: block;
 	font-weight: bold;
-	margin: 6px 0 0 -20px;
+	margin: 5px 0 0 -20px;
 }
 
 .knowledge-base-portlet-admin .kb-results-footer {
-	margin: 6px 2px 0;
+	margin: 5px 2px 0;
 }
 
 .knowledge-base-portlet-admin .kb-results-header {
@@ -134,5 +134,5 @@
 }
 
 .knowledge-base-portlet-admin .kb-select-article-breadcrumbs {
-	margin: 0 0 6px;
+	margin: 0 0 5px;
 }

@@ -103,7 +103,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 					</liferay-util:buffer>
 
 					<%
-					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectArticle('" + curArticle.getResourcePrimKey() + "','" + UnicodeFormatter.toString(html) + "'); window.close();";
+					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectArticle('" + curArticle.getResourcePrimKey() + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
 					%>
 
 					<aui:button disabled="<%= (curArticle.getResourcePrimKey() == resourcePrimKey) || (curArticle.getResourcePrimKey() == oldParentResourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
@@ -129,7 +129,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 					</liferay-util:buffer>
 
 					<%
-					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectArticle('" + ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY + "','" + UnicodeFormatter.toString(html) + "'); window.close();";
+					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectArticle('" + ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
 					%>
 
 					<aui:button onClick="<%= taglibOnClick %>" value="remove" />
