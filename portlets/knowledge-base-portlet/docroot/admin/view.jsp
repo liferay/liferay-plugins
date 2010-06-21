@@ -113,9 +113,11 @@
 
 			</div>
 
-			<div class="kb-results-footer">
-				<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
-			</div>
+			<c:if test="<%= results.isEmpty() || (searchContainer.getDelta() < total) %>">
+				<div class="kb-results-footer">
+					<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
+				</div>
+			</c:if>
 		</liferay-ui:search-container>
 	</liferay-ui:panel>
 </liferay-ui:panel-container>
