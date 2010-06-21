@@ -168,9 +168,9 @@
 							<c:if test="<%= Validator.isNotNull(wallToWallHREF) && wallToWallUser == null %>">
 								<liferay-ui:icon
 									image="all_pages"
+									label="<%= true %>"
 									message="wall-to-wall"
 									url="<%= wallToWallHREF %>"
-									label="<%= true %>"
 								/>
 							</c:if>
 
@@ -196,9 +196,9 @@
 
 							<liferay-ui:icon
 								image="post"
+								label="<%= true %>"
 								message="<%= postMessage %>"
 								url="<%= postHREF %>"
-								label="<%= true %>"
 							/>
 
 							<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
@@ -208,8 +208,8 @@
 								%>
 
 								<liferay-ui:icon-delete
-									url="<%= deleteHREF %>"
 									label="<%= true %>"
+									url="<%= deleteHREF %>"
 								/>
 							</c:if>
 						</liferay-ui:icon-list>

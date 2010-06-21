@@ -38,9 +38,9 @@
 					<p class="remove-friend">
 						<liferay-ui:icon
 							image="join"
+							label="<%= true %>"
 							message="remove-friend"
 							url="<%= removeFriendHREF %>"
-							label="<%= true %>"
 						/>
 					</p>
 				</c:when>
@@ -61,9 +61,9 @@
 					<p class="add-as-friend">
 						<liferay-ui:icon
 							image="join"
+							label="<%= true %>"
 							message="add-as-friend"
 							url="<%= addAsFriendURL.toString() %>"
-							label="<%= true %>"
 						/>
 					</p>
 				</c:when>
@@ -111,9 +111,9 @@
 
 					<liferay-ui:icon
 						image="view"
+						label="<%= true %>"
 						message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>'
 						url='<%= themeDisplay.getPathContext() + "/web/guest/community/forums/-/message_boards/recent_posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
-						label="<%= true %>"
 					/>
 				</td>
 				<td>
@@ -133,9 +133,9 @@
 					<td>
 						<liferay-ui:icon
 							image="view"
+							label="<%= true %>"
 							message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>'
 							url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog" %>'
-							label="<%= true %>"
 						/>
 					</td>
 					<td>
@@ -157,8 +157,8 @@
 
 			<liferay-ui:icon
 				image="edit"
-				url="<%= editURL %>"
 				label="<%= true %>"
+				url="<%= editURL %>"
 			/>
 		</c:if>
 	</c:when>

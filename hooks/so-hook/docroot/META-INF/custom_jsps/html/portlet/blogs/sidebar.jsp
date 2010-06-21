@@ -93,10 +93,10 @@
 	<div class="subscribe">
 		<liferay-ui:icon
 			image="rss"
+			label="<%= true %>"
 			message="subscribe-to-this-blog"
 			url="<%= rssURL %>"
 			target="_blank"
-			label="<%= true %>"
 		/>
 	</div>
 </div>

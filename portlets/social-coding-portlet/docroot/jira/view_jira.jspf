@@ -54,8 +54,8 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(company.getCompanyId(),
 
 					<liferay-ui:icon
 						image="edit"
-						url="<%= editURL %>"
 						label="<%= true %>"
+						url="<%= editURL %>"
 					/>
 				</c:if>
 			</c:when>
