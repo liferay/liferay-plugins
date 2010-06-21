@@ -127,7 +127,6 @@ String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, req
 		%>
 
 		<liferay-ui:input-move-boxes
-			formName="fm"
 			leftTitle="current"
 			rightTitle="available"
 			leftBoxName="currentPortletIds"
