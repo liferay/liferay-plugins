@@ -749,6 +749,6 @@ AUI().add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-dialog', 'aui-io', 'aui-datatype']
+		requires: ['aui-base', 'aui-datatype', 'aui-dialog', 'aui-io']
 	}
 );
