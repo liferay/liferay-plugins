@@ -18,12 +18,12 @@ import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.WebKeys;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
-import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.NoSuchColumnException;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.portlet.expando.model.ExpandoTable;
@@ -33,6 +33,7 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
+import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -46,33 +47,27 @@ public class GadgetPortlet extends MVCPortlet {
 
 	public static final String PORTLET_NAME_PREFIX = "OPENSOCIAL_";
 
+	public void init(PortletConfig portletConfig) throws PortletException {
+		super.init(portletConfig);
+
+		LiferayPortletConfig liferayPortletConfig =
+			(LiferayPortletConfig)portletConfig;
+
+		Portlet portlet = liferayPortletConfig.getPortlet();
+
+		try {
+			checkExpando(portlet);
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
+	}
+
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
 		try {
-			ExpandoTable expandoTable = null;
-
-			expandoTable = ExpandoTableLocalServiceUtil.getTable(
-				themeDisplay.getCompanyId(), User.class.getName(),
-				ShindigUtil.OPEN_SOCIAL_DATA);
-
-			String columnName =
-				ShindigUtil.USER_PREFS.concat(renderResponse.getNamespace());
-
-			try {
-				ExpandoColumnLocalServiceUtil.getColumn(
-					expandoTable.getTableId(), columnName);
-			}
-			catch (NoSuchColumnException nsce) {
-				ExpandoColumnLocalServiceUtil.addColumn(
-					expandoTable.getTableId(), columnName,
-					ExpandoColumnConstants.STRING);
-			}
-
 			Gadget gadget = getGadget();
 
 			renderRequest.setAttribute(WebKeys.GADGET, gadget);
@@ -90,6 +85,27 @@ public class GadgetPortlet extends MVCPortlet {
 		}
 	}
 
+	protected void checkExpando(Portlet portlet) throws Exception {
+		ExpandoTable expandoTable = ExpandoTableLocalServiceUtil.getTable(
+			portlet.getCompanyId(), User.class.getName(),
+			ShindigUtil.getTableOpenSocial());
+
+		String namespace = PortalUtil.getPortletNamespace(
+			portlet.getPortletId());
+
+		String columnName = ShindigUtil.getColumnUserPrefs(namespace);
+
+		try {
+			ExpandoColumnLocalServiceUtil.getColumn(
+				expandoTable.getTableId(), columnName);
+		}
+		catch (NoSuchColumnException nsce) {
+			ExpandoColumnLocalServiceUtil.addColumn(
+				expandoTable.getTableId(), columnName,
+				ExpandoColumnConstants.STRING);
+		}
+	}
+
 	protected Gadget getGadget() throws Exception {
 		String portletName = getPortletConfig().getPortletName();
 
@@ -102,7 +118,5 @@ public class GadgetPortlet extends MVCPortlet {
 
 		return gadget;
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(GadgetPortlet.class);
 
 }

@@ -135,8 +135,9 @@ public class LiferayAppDataService implements AppDataService {
 				companyId, getColumnName(appId, field));
 
 			ExpandoValueLocalServiceUtil.deleteValue(
-				companyId, User.class.getName(), ShindigUtil.OPEN_SOCIAL_DATA,
-				expandoColumn.getName(), userIdLong);
+				companyId, User.class.getName(),
+				ShindigUtil.getTableOpenSocial(), expandoColumn.getName(),
+				userIdLong);
 		}
 
 		return;
@@ -196,22 +197,27 @@ public class LiferayAppDataService implements AppDataService {
 
 		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
 
-		for (Entry entry : values.entrySet()) {
+		for (Entry<String, String> entry : values.entrySet()) {
 
 			// Workaround for a Shindig bug
 
-			String key = (String)entry.getKey();
-			String value = entry.getValue().toString();
+			String key = entry.getKey();
+			String value = entry.getValue();
 
 			ExpandoColumn expandoColumn =
 				getExpandoColumn(companyId, getColumnName(appId, key));
 
 			ExpandoValueLocalServiceUtil.addValue(
-				companyId, User.class.getName(), ShindigUtil.OPEN_SOCIAL_DATA,
-				expandoColumn.getName(), userIdLong, value);
+				companyId, User.class.getName(),
+				ShindigUtil.getTableOpenSocial(), expandoColumn.getName(),
+				userIdLong, value);
 		}
 
 		return;
+	}
+
+	protected String getColumnName(String appId, String field) {
+		return appId.concat(field);
 	}
 
 	protected long getCompanyId(SecurityToken securityToken) throws Exception {
@@ -231,7 +237,7 @@ public class LiferayAppDataService implements AppDataService {
 		try {
 			expandoTable = ExpandoTableLocalServiceUtil.getTable(
 				companyId, User.class.getName(),
-				ShindigUtil.OPEN_SOCIAL_DATA);
+				ShindigUtil.getTableOpenSocial());
 		}
 		catch (NoSuchTableException nste) {
 			_log.error(nste, nste);
@@ -259,7 +265,7 @@ public class LiferayAppDataService implements AppDataService {
 			List<ExpandoColumn> expandoColumns =
 				ExpandoColumnLocalServiceUtil.getColumns(
 					companyId, User.class.getName(),
-					ShindigUtil.OPEN_SOCIAL_DATA);
+					ShindigUtil.getTableOpenSocial());
 
 			return expandoColumns;
 		}
@@ -275,18 +281,14 @@ public class LiferayAppDataService implements AppDataService {
 			getExpandoColumn(companyId, columnName);
 
 			ExpandoValue expandoValue = ExpandoValueLocalServiceUtil.getValue(
-				companyId, User.class.getName(), ShindigUtil.OPEN_SOCIAL_DATA,
-				columnName, userId);
+				companyId, User.class.getName(),
+				ShindigUtil.getTableOpenSocial(), columnName, userId);
 
 			return expandoValue.getData();
 		}
 		catch (Exception e) {
 			return StringPool.BLANK;
 		}
-	}
-
-	protected String getColumnName(String appId, String field) {
-		return appId.concat(field);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

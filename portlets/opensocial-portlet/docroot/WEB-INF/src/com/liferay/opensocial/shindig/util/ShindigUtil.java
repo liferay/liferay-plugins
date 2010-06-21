@@ -16,8 +16,12 @@ package com.liferay.opensocial.shindig.util;
 
 import com.google.inject.Inject;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Layout;
 
 import java.io.File;
 
@@ -34,10 +38,6 @@ import org.apache.shindig.config.ContainerConfig;
  * @author Michael Young
  */
 public class ShindigUtil {
-
-	public static final String OPEN_SOCIAL_DATA = "OPEN_SOCIAL_DATA_";
-
-	public static final String USER_PREFS = "USER_PREFS_";
 
 	public static String createSecurityToken(
 			String ownerId, long viewerId, String appId, String domain,
@@ -84,6 +84,38 @@ public class ShindigUtil {
 
 		return securityToken;
 	}
+
+	public static String getColumnUserPrefs(String namespace) {
+		return _COLUMN_USER_PREFS.concat(namespace);
+	}
+
+	public static long getModuleId(String namespace) {
+		return namespace.hashCode();
+	}
+
+	public static String getOwnerId(Layout layout)
+		throws PortalException, SystemException {
+
+		Group group = layout.getGroup();
+
+		long classPK = group.getClassPK();
+
+		String ownerId = "G-" + classPK;
+
+		if (group.isUser()) {
+			ownerId = String.valueOf(classPK);
+		}
+
+		return ownerId;
+	}
+
+	public static String getTableOpenSocial() {
+		return _TABLE_OPEN_SOCIAL;
+	}
+
+	private static final String _COLUMN_USER_PREFS = "USER_PREFS_";
+
+	private static final String _TABLE_OPEN_SOCIAL = "OPEN_SOCIAL_DATA_";
 
 	@Inject
 	private static BasicSecurityTokenDecoder _basicSecurityTokenDecoder;

@@ -356,15 +356,17 @@ AUI().add(
                         'java.lang.String'	
                     ];
 					
-					return Liferay.Service.Expando.ExpandoValue.addValue({
-						companyId: themeDisplay.getCompanyId(),
-						className: instance._CLASS_NAME,
-						tableName: instance._TABLE_NAME,
-						columnName: gadget.get('userPrefsKey'),
-						classPK: themeDisplay.getUserId(),
-						data: A.JSON.stringify(gadget.get('userPrefs')),
-						serviceParameterTypes: A.JSON.stringify(serviceParameterTypes)
-					});
+					return Liferay.Service.Expando.ExpandoValue.addValue(
+						{
+							companyId: themeDisplay.getCompanyId(),
+							className: instance._CLASS_NAME,
+							tableName: instance._TABLE_NAME,
+							columnName: gadget.get('userPrefsKey'),
+							classPK: themeDisplay.getUserId(),
+							data: A.JSON.stringify(gadget.get('userPrefs')),
+							serviceParameterTypes: A.JSON.stringify(serviceParameterTypes)
+						}
+					);
 				}
 			}
 		);

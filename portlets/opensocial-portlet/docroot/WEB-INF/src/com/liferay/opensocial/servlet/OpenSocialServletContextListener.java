@@ -57,23 +57,27 @@ public class OpenSocialServletContextListener
 		try {
 			GadgetLocalServiceUtil.initGadgets();
 
-			List<Company> companies = CompanyLocalServiceUtil.getCompanies();
-
-			for (Company company : companies) {
-				try {
-					ExpandoTableLocalServiceUtil.getTable(
-						company.getCompanyId(), User.class.getName(),
-						ShindigUtil.OPEN_SOCIAL_DATA);
-				}
-				catch (NoSuchTableException nste) {
-					ExpandoTableLocalServiceUtil.addTable(
-						company.getCompanyId(), User.class.getName(),
-						ShindigUtil.OPEN_SOCIAL_DATA);
-				}
-			}
+			checkExpando();
 		}
 		catch (Exception e) {
 			_log.error(e, e);
+		}
+	}
+
+	protected void checkExpando() throws Exception {
+		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
+
+		for (Company company : companies) {
+			try {
+				ExpandoTableLocalServiceUtil.getTable(
+					company.getCompanyId(), User.class.getName(),
+					ShindigUtil.getTableOpenSocial());
+			}
+			catch (NoSuchTableException nste) {
+				ExpandoTableLocalServiceUtil.addTable(
+					company.getCompanyId(), User.class.getName(),
+					ShindigUtil.getTableOpenSocial());
+			}
 		}
 	}
 

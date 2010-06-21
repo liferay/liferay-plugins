@@ -37,7 +37,6 @@
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.model.Portlet" %>
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.theme.PortletDisplay" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 
 <%@ page import="javax.portlet.PortletURL" %>

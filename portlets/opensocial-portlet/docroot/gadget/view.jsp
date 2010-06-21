@@ -19,19 +19,12 @@
 <%
 Gadget gadget = (Gadget)renderRequest.getAttribute(WebKeys.GADGET);
 
-long classPK = layout.getGroup().getClassPK();
-
-String ownerId = "G-" + classPK;
-
-if (layout.getGroup().isUser()) {
-	ownerId = String.valueOf(classPK);
-}
-
+String ownerId = ShindigUtil.getOwnerId(layout);
+String appId = gadget.getUrl();
 String gadgetUrl = gadget.getUrl();
-String namespace = renderResponse.getNamespace();
-long moduleId = namespace.hashCode();
+long moduleId = ShindigUtil.getModuleId(renderResponse.getNamespace());
 
-String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUserId(), gadgetUrl, PortalUtil.getPortalURL(themeDisplay), gadgetUrl, moduleId, PortalUtil.getCurrentURL(renderRequest));
+String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUserId(), appId, PortalUtil.getPortalURL(themeDisplay), gadgetUrl, moduleId, currentURL);
 %>
 
 <div class="gadgets-gadget-chrome" id="<portlet:namespace />gadget"></div>
@@ -44,7 +37,7 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 			secureToken: '<%= secureToken %>',
 			serverBase: '<%= renderRequest.getContextPath() %>/gadgets/',
 			specUrl: '<%= gadgetUrl %>',
-			userPrefsKey: '<%= ShindigUtil.USER_PREFS + namespace %>'
+			userPrefsKey: '<%= ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace()) %>'
 		}
 	).render('#<portlet:namespace />gadget');
 </aui:script>
