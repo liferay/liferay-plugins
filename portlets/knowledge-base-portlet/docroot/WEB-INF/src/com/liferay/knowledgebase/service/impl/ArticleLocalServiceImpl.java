@@ -52,6 +52,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Company;
@@ -71,6 +72,7 @@ import com.liferay.util.portlet.PortletProps;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -331,6 +333,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(params, allVersions);
 
+		if (dynamicQuery == null) {
+			return new UnmodifiableList<Article>(new ArrayList<Article>());
+		}
+
 		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
@@ -342,6 +348,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(params, allVersions);
+
+		if (dynamicQuery == null) {
+			return 0;
+		}
 
 		return (int)dynamicQueryCount(dynamicQuery);
 	}
@@ -623,6 +633,16 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	protected DynamicQuery buildDynamicQuery(
 			Map<String, Object> params, boolean allVersions)
 		throws SystemException {
+
+		for (Object value : params.values()) {
+			if (value instanceof Object[]) {
+				Object[] valueArray = (Object[])value;
+
+				if (valueArray.length == 0) {
+					return null;
+				}
+			}
+		}
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			Article.class, "article1", PortletClassLoaderUtil.getClassLoader());
