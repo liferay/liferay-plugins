@@ -20,4 +20,5 @@
 String key = ParamUtil.getString(request, "key");
 %>
 
-<liferay-ui:message key="<%= key %>" />
+<%--<liferay-ui:message key="<%= key %>" />--%>
+<%= key %>
