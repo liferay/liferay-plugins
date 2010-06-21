@@ -84,6 +84,7 @@
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 <%@ page import="com.liferay.portlet.messageboards.NoSuchMessageException" %>
 <%@ page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %>
+<%@ page import="com.liferay.util.RSSUtil" %>
 <%@ page import="com.liferay.util.TextFormatter" %>
 
 <%@ page import="java.text.Format" %>
