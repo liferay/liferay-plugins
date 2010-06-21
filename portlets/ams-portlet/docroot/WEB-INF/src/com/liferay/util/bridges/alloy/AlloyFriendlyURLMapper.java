@@ -13,13 +13,13 @@
  */
 
 package com.liferay.util.bridges.alloy;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
+import com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.util.PortalUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,51 +33,37 @@ import javax.servlet.http.HttpServletRequest;
  * <a href="AlloyFriendlyURLMapper.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
+ * @author Connor McKay
  */
-public class AlloyFriendlyURLMapper extends BaseFriendlyURLMapper {
+public class AlloyFriendlyURLMapper extends DefaultFriendlyURLMapper {
 
 	public String buildPath(LiferayPortletURL portletURL) {
-		portletURL.addParameterIncludedInPath("p_p_id");
-		portletURL.addParameterIncludedInPath("p_p_lifecycle");
+		Map<String, String> routeParameters = new HashMap<String, String>();
 
-		// Prepare router parameters
+		buildRouteParameters(portletURL, routeParameters);
 
-		Map<String, String[]> portletURLParameters =
-			portletURL.getParameterMap();
-
-		if (portletURLParameters.isEmpty()) {
-			return StringPool.SLASH.concat(_MAPPING);
-		}
-
-		Map<String, String[]> parameters = new HashMap<String, String[]>(
-			portletURL.getParameterMap());
+		// Populate method parameter based on the portlet lifecycle
 
 		String lifecycle = portletURL.getLifecycle();
 
 		if (lifecycle.equals(PortletRequest.ACTION_PHASE)) {
-			parameters.put("method", new String[] {HttpMethods.POST});
+			routeParameters.put("method", HttpMethods.POST);
 		}
 		else {
-			parameters.put("method", new String[] {HttpMethods.GET});
+			routeParameters.put("method", HttpMethods.GET);
 		}
 
 		// Map URL with router
 
-		String url = router.parametersToUrl(parameters);
+		String friendlyURLPath = router.parametersToUrl(routeParameters);
 
-		if (url == null) {
+		if (friendlyURLPath == null) {
 			return null;
 		}
 
 		// Remove mapped parameters from URL
 
-		for (String name : portletURLParameters.keySet()) {
-			if (!parameters.containsKey(name)) {
-				portletURL.addParameterIncludedInPath(name);
-			}
-		}
-
-		String friendlyURLPath = url;
+		addParametersIncludedInPath(portletURL, routeParameters);
 
 		// Remove method
 
@@ -87,51 +73,50 @@ public class AlloyFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 		// Add mapping
 
-		friendlyURLPath = StringPool.SLASH.concat(_MAPPING).concat(
+		friendlyURLPath = StringPool.SLASH.concat(getMapping()).concat(
 			friendlyURLPath);
 
 		return friendlyURLPath;
-	}
-
-	public String getMapping() {
-		return _MAPPING;
-	}
-
-	public String getPortletId() {
-		return _PORTLET_ID;
 	}
 
 	public void populateParams(
 		String friendlyURLPath, Map<String, String[]> parameterMap,
 		Map<String, Object> requestContext) {
 
+		// Determine lifecycle from request method
+
 		HttpServletRequest request = (HttpServletRequest)requestContext.get(
 			"request");
 
 		String method = request.getMethod();
 
-		addParameter(parameterMap, "p_p_id", _PORTLET_ID);
-		addParameter(parameterMap, "p_p_lifecycle", getLifecycle(method));
-		addParameter(parameterMap, "p_p_mode", PortletMode.VIEW);
+		friendlyURLPath = method +
+			friendlyURLPath.substring(getMapping().length() + 1);
 
-		String url = method + friendlyURLPath.substring(_MAPPING.length() + 1);
-
-		Map<String, String> routeParameters = router.urlToParameters(url);
+		Map<String, String> routeParameters = router.urlToParameters(
+			friendlyURLPath);
 
 		if (routeParameters == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No route could be found to match URL " + url);
+				_log.warn(
+					"No route could be found to match URL " + friendlyURLPath);
 			}
 
 			return;
 		}
 
-		for (Map.Entry<String, String> entry : routeParameters.entrySet()) {
-			String name = entry.getKey();
-			String value = entry.getValue();
+		String portletId = getPortletId(routeParameters);
 
-			addParameter(parameterMap, name, value);
+		if (portletId == null) {
+			return;
 		}
+
+		String namespace = PortalUtil.getPortletNamespace(portletId);
+
+		addParameter(namespace, parameterMap, "p_p_id", portletId);
+		addParameter(parameterMap, "p_p_lifecycle", getLifecycle(method));
+
+		populateParams(parameterMap, namespace, routeParameters);
 	}
 
 	protected String getLifecycle(String method) {
@@ -142,10 +127,6 @@ public class AlloyFriendlyURLMapper extends BaseFriendlyURLMapper {
 			return "0";
 		}
 	}
-
-	private static final String _MAPPING = "ams";
-
-	private static final String _PORTLET_ID = "1_WAR_amsportlet";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		AlloyFriendlyURLMapper.class);
