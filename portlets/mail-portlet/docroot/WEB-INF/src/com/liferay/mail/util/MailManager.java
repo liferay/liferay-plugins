@@ -803,7 +803,7 @@ public class MailManager {
 	private static Log _log = LogFactoryUtil.getLog(MailManager.class);
 
 	private PasswordRetriever _passwordRetriever;
-	private User _user;
 	private PortletConfig _portletConfig;
+	private User _user;
 
 }
