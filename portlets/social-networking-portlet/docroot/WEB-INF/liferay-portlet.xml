@@ -24,7 +24,9 @@
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
-		<friendly-url-mapper-class>com.liferay.socialnetworking.friendsactivities.portlet.FriendsActivitiesFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapping>friends_activities</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/portal/kernel/portlet/rss-friendly-url-routes.xml</friendly-url-routes>
 		<css-class-wrapper>social-networking-portlet-friends-activities</css-class-wrapper>
 	</portlet>
 	<portlet>
@@ -49,7 +51,9 @@
 	</portlet>
 	<portlet>
 		<portlet-name>8</portlet-name>
-		<friendly-url-mapper-class>com.liferay.socialnetworking.groupusersactivities.portlet.GroupUsersActivitiesFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapping>group_users_activities</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/portal/kernel/portlet/rss-friendly-url-routes.xml</friendly-url-routes>
 		<css-class-wrapper>social-networking-portlet-group-users-activities</css-class-wrapper>
 	</portlet>
 	<role-mapper>
