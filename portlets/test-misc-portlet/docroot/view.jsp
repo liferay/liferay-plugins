@@ -37,7 +37,3 @@ This is the <strong>Sample Test Portlet</strong>. This was made to test some por
 <br /><br />
 
 <strong>Upload:</strong> <a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm1" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 1</a> | <a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm2" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 2</a> | <a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm3" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 3</a>
-
-<br /><br />
-
-<strong>Configuration:</strong> <a class="aui-focus" href="<%= portletDisplay.getURLConfiguration() %>" role="menuitem" >Go to configuration page.</a>
