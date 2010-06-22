@@ -181,6 +181,18 @@ public class KaleoLogLocalServiceUtil {
 			workflowContext, serviceContext);
 	}
 
+	public static com.liferay.portal.workflow.kaleo.model.KaleoLog addTaskUpdateKaleoLog(
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
+		java.lang.String comment,
+		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addTaskUpdateKaleoLog(kaleoTaskInstanceToken, comment,
+			workflowContext, serviceContext);
+	}
+
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog addWorkflowInstanceEndKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken,
 		com.liferay.portal.service.ServiceContext serviceContext)

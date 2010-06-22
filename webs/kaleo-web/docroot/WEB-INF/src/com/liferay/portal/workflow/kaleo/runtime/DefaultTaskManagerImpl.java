@@ -125,9 +125,9 @@ public class DefaultTaskManagerImpl
 				WorkflowContextUtil.convert(
 					kaleoTaskInstanceToken.getWorkflowContext());
 
-			kaleoLogLocalService.addTaskAssignmentKaleoLog(
-				kaleoTaskInstanceToken, kaleoTaskInstanceToken,
-				comment, workflowContext, serviceContext);
+			kaleoLogLocalService.addTaskUpdateKaleoLog(
+				kaleoTaskInstanceToken, comment, workflowContext,
+				serviceContext);
 
 			return new WorkflowTaskAdapter(
 				kaleoTaskInstanceToken, workflowContext);

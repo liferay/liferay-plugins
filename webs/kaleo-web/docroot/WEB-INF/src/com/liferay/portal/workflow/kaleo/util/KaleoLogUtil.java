@@ -34,6 +34,10 @@ public class KaleoLogUtil {
 			return WorkflowLog.TASK_COMPLETION;
 		}
 
+		if (logType.equals(LogType.TASK_UPDATE)) {
+			return WorkflowLog.TASK_UPDATE;
+		}
+
 		if (logType.equals(LogType.NODE_EXIT)) {
 			return WorkflowLog.TRANSITION;
 		}
@@ -47,7 +51,7 @@ public class KaleoLogUtil {
 		}
 
 		if (type == WorkflowLog.TASK_UPDATE) {
-			return LogType.TASK_ASSIGNMENT.name();
+			return LogType.TASK_UPDATE.name();
 		}
 
 		if (type == WorkflowLog.TASK_COMPLETION) {

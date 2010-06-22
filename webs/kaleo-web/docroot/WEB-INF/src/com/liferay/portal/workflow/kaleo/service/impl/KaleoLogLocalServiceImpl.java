@@ -239,6 +239,40 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		return kaleoLog;
 	}
 
+	public KaleoLog addTaskUpdateKaleoLog(
+			KaleoTaskInstanceToken kaleoTaskInstanceToken, String comment,
+			Map<String, Serializable> workflowContext,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		KaleoInstanceToken kaleoInstanceToken =
+			kaleoTaskInstanceToken.getKaleoInstanceToken();
+
+		KaleoLog kaleoLog = createKaleoLog(
+			kaleoInstanceToken, LogType.TASK_UPDATE, serviceContext);
+
+		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
+			kaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();
+
+		if (!kaleoTaskAssignmentInstances.isEmpty()) {
+			KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance =
+				kaleoTaskAssignmentInstances.get(0);
+
+			kaleoLog.setCurrentAssigneeClassPK(
+				kaleoTaskAssignmentInstance.getAssigneeClassPK());
+			kaleoLog.setCurrentAssigneeClassName(
+				kaleoTaskAssignmentInstance.getAssigneeClassName());
+		}
+
+		kaleoLog.setComment(comment);
+		kaleoLog.setWorkflowContext(
+			WorkflowContextUtil.convert(workflowContext));
+
+		kaleoLogPersistence.update(kaleoLog, false);
+
+		return kaleoLog;
+	}
+
 	public KaleoLog addWorkflowInstanceEndKaleoLog(
 			KaleoInstanceToken kaleoInstanceToken,
 			ServiceContext serviceContext)
