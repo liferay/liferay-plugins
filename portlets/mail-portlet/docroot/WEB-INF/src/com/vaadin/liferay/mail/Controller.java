@@ -8,6 +8,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 
@@ -20,6 +21,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 
@@ -102,9 +104,13 @@ public class Controller {
 		HttpServletRequest httpRequest = PortalUtil
 				.getHttpServletRequest(request);
 
+		// get PortletConfig
+		PortletConfig portletConfig = (PortletConfig)request.getAttribute(
+			JavaConstants.JAVAX_PORTLET_CONFIG);
+
 		// create MailManager
 		passwordRetriever = new PasswordRetriever(httpRequest);
-		mailMgr = new MailManager(user, passwordRetriever);
+		mailMgr = new MailManager(user, passwordRetriever, portletConfig);
 	}
 
 	public static Controller get() {
@@ -263,7 +269,7 @@ public class Controller {
 		String newMessageSubject = "Fwd: " + originalMessage.getSubject();
 		String newMessageBody =
 			MessageUtil.createForwardMessage(originalMessage);
-		
+
 		Composer c = compose(null, null, newMessageSubject, newMessageBody);
 		c.focusToField();
 		return c;
@@ -297,7 +303,7 @@ public class Controller {
 		String to, String cc, String bcc, String subject, String body) {
 
 		Composer composer = new Composer();
-				
+
 		composer.setSubject(subject==null?"":subject);
 		composer.setMessage(body==null?"":body);
 		composer.setTo(to==null?"":to);

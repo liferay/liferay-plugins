@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
@@ -50,6 +51,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.portlet.PortletConfig;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -69,12 +72,20 @@ public class MailManager {
 			return null;
 		}
 
-		return new MailManager(user, new PasswordRetriever(request));
+		PortletConfig portletConfig = (PortletConfig)request.getAttribute(
+			JavaConstants.JAVAX_PORTLET_CONFIG);
+
+		return new MailManager(
+			user, new PasswordRetriever(request), portletConfig);
 	}
 
-	public MailManager(User user, PasswordRetriever passwordRetriever) {
+	public MailManager(
+		User user, PasswordRetriever passwordRetriever,
+		PortletConfig portletConfig) {
+
 		_user = user;
 		_passwordRetriever = passwordRetriever;
+		_portletConfig = portletConfig;
 	}
 
 	public JSONObject addAccount(
@@ -759,7 +770,9 @@ public class MailManager {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("status", status);
-		jsonObject.put("message", LanguageUtil.get(_user.getLocale(), message));
+		jsonObject.put(
+			"message",
+			LanguageUtil.get(_portletConfig, _user.getLocale(), message));
 
 		if (Validator.isNotNull(value)) {
 			jsonObject.put("value", value);
@@ -791,5 +804,6 @@ public class MailManager {
 
 	private PasswordRetriever _passwordRetriever;
 	private User _user;
+	private PortletConfig _portletConfig;
 
 }
