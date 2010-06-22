@@ -24,7 +24,6 @@ import com.liferay.portal.util.PortalUtil;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.portlet.PortletMode;
 import javax.portlet.PortletRequest;
 
 import javax.servlet.http.HttpServletRequest;
