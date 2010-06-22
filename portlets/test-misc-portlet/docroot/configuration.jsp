@@ -14,16 +14,11 @@
  */
 %>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ include file="/init.jsp" %>
 
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+Pressing the button below will invoke serveResource method in the configuration
+ action, which will show a message in the standard output and download a file.
 
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-
-<%@ page import="javax.portlet.ActionRequest" %>
-<%@ page import="javax.portlet.PortletSession" %>
-
-<portlet:defineObjects />
-
-<liferay-theme:defineObjects />
+<form action="<portlet:resourceURL/>" method="post" >
+	<input type="submit" value="Invoke serveResource and donwload file" />
+</form>

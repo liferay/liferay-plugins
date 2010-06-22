@@ -5,6 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
+		<configuration-action-class>com.liferay.testmisc.portlet.TestServeResourceFromPortletConfigurationAction</configuration-action-class>
 		<scheduler-entry>
 			<scheduler-event-listener-class>com.liferay.testmisc.messaging.TestSchedulerMessageListener</scheduler-event-listener-class>
 			<trigger>
