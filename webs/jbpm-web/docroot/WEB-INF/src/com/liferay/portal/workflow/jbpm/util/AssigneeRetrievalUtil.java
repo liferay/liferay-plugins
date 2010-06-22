@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.Assignee;
 
@@ -57,8 +58,12 @@ public class AssigneeRetrievalUtil {
 						GetterUtil.getLong(pooledActor.getActorId()));
 				}
 				else {
-					role = RoleLocalServiceUtil.getRole(
-						companyId, pooledActor.getActorId());
+					ServiceContext serviceContext = new ServiceContext();
+
+					serviceContext.setCompanyId(companyId);
+
+					role = RoleRetrievalUtil.getRole(
+						pooledActor.getActorId(), true, serviceContext);
 				}
 
 				assignees.add(
