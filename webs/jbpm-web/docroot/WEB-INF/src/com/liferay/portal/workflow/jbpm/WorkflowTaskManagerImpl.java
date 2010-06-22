@@ -180,6 +180,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			List<Assignee> assignees = taskInstanceExtension.getAssignees();
 
 			assignees.clear();
+
 			assignees.add(new Assignee(User.class.getName(), assigneeUserId));
 
 			session.update(taskInstanceExtension);

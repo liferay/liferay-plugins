@@ -26,7 +26,6 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.Assignee;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -46,11 +45,7 @@ public class AssigneeRetrievalUtil {
 		List<Assignee> assignees = new ArrayList<Assignee>();
 
 		if ((pooledActors != null) && !pooledActors.isEmpty()) {
-			Iterator<PooledActor> it = pooledActors.iterator();
-
-			while (it.hasNext()) {
-				PooledActor pooledActor = it.next();
-
+			for (PooledActor pooledActor : pooledActors) {
 				Role role = null;
 
 				if (Validator.isNumber(pooledActor.getActorId())) {

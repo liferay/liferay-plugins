@@ -42,6 +42,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
+import org.hibernate.Session;
+
 import org.jbpm.JbpmConfiguration;
 import org.jbpm.JbpmContext;
 import org.jbpm.context.exe.ContextInstance;
@@ -152,6 +154,27 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public int getWorkflowInstanceCount(
+			long companyId, Long userId, String assetClassName,
+			Long assetClassPK, Boolean completed)
+		throws WorkflowException {
+
+		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
+
+		try {
+			CustomSession customSession = new CustomSession(jbpmContext);
+
+			return customSession.countProcessInstances(
+				companyId, userId, assetClassName, assetClassPK, completed);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+		finally {
+			jbpmContext.close();
+		}
+	}
+
+	public int getWorkflowInstanceCount(
 			long companyId, String workflowDefinitionName,
 			Integer workflowDefinitionVersion, Boolean completed)
 		throws WorkflowException {
@@ -175,9 +198,10 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		}
 	}
 
-	public int getWorkflowInstanceCount(
+	public List<WorkflowInstance> getWorkflowInstances(
 			long companyId, Long userId, String assetClassName,
-			Long assetClassPK, Boolean completed)
+			Long assetClassPK, Boolean completed, int start, int end,
+			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -185,8 +209,12 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		try {
 			CustomSession customSession = new CustomSession(jbpmContext);
 
-			return customSession.countProcessInstances(
-				companyId, userId, assetClassName, assetClassPK, completed);
+			List<ProcessInstance> processInstances =
+				customSession.findProcessInstances(
+					companyId, userId, assetClassName, assetClassPK, completed,
+					start, end, orderByComparator);
+
+			return toWorkflowInstaces(processInstances);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -214,32 +242,6 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				customSession.findProcessInstances(
 					processDefinition.getId(), completed, start, end,
 					orderByComparator);
-
-			return toWorkflowInstaces(processInstances);
-		}
-		catch (Exception e) {
-			throw new WorkflowException(e);
-		}
-		finally {
-			jbpmContext.close();
-		}
-	}
-
-	public List<WorkflowInstance> getWorkflowInstances(
-			long companyId, Long userId, String assetClassName,
-			Long assetClassPK, Boolean completed, int start, int end,
-			OrderByComparator orderByComparator)
-		throws WorkflowException {
-
-		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
-
-		try {
-			CustomSession customSession = new CustomSession(jbpmContext);
-
-			List<ProcessInstance> processInstances =
-				customSession.findProcessInstances(
-					companyId, userId, assetClassName, assetClassPK, completed,
-					start, end, orderByComparator);
 
 			return toWorkflowInstaces(processInstances);
 		}
@@ -486,7 +488,9 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				companyId, groupId, userId, className, classPK,
 				processInstance);
 
-		jbpmContext.getSession().save(processInstanceExtensionImpl);
+		Session session = jbpmContext.getSession();
+
+		session.save(processInstanceExtensionImpl);
 
 		TaskMgmtInstance taskMgmtInstance =
 			processInstance.getTaskMgmtInstance();
@@ -496,10 +500,9 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 		if (taskInstances != null) {
 			for (TaskInstance taskInstance : taskInstances) {
-				List<Assignee> assignees =
-					AssigneeRetrievalUtil.getAssignees(
-						companyId, taskInstance.getActorId(),
-						taskInstance.getPooledActors());
+				List<Assignee> assignees = AssigneeRetrievalUtil.getAssignees(
+					companyId, taskInstance.getActorId(),
+					taskInstance.getPooledActors());
 
 				String context = WorkflowContextUtil.convertToJSON(
 					workflowContext);
@@ -509,7 +512,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 						companyId, groupId, userId, assignees, context,
 						taskInstance);
 
-				jbpmContext.getSession().save(taskInstanceExtensionImpl);
+				session.save(taskInstanceExtensionImpl);
 			}
 		}
 	}

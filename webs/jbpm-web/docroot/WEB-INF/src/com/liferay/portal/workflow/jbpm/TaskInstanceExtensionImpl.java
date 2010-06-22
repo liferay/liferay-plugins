@@ -33,10 +33,10 @@ public class TaskInstanceExtensionImpl {
 		long companyId, long groupId, long userId, List<Assignee> assignees,
 		String workflowContext, TaskInstance taskInstance) {
 
-		_assignees = assignees;
 		_companyId = companyId;
 		_groupId = groupId;
 		_userId = userId;
+		_assignees = assignees;
 		_workflowContext = workflowContext;
 		_taskInstance = taskInstance;
 	}

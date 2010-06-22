@@ -31,11 +31,11 @@ public class ProcessInstanceExtensionImpl {
 		long companyId, long groupId, long userId, String className,
 		long classPK, ProcessInstance processInstance) {
 
-		_className = className;
-		_classPK = classPK;
 		_companyId = companyId;
 		_groupId = groupId;
 		_userId = userId;
+		_className = className;
+		_classPK = classPK;
 		_processInstance = processInstance;
 	}
 
