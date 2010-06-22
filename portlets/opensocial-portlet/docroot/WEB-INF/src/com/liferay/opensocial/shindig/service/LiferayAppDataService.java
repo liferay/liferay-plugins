@@ -35,7 +35,6 @@ import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Future;
@@ -198,13 +197,12 @@ public class LiferayAppDataService implements AppDataService {
 
 		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
 
-		for (Entry entry : values.entrySet()) {
+		for (String key : values.keySet()) {
 
 			// Workaround for a Shindig bug that stores a Long in value instead
 			// of the expected String so we cannot use generics here
 
-			String key = (String)entry.getKey();
-			String value = entry.getValue().toString();
+			String value = String.valueOf(values.get(key));
 
 			ExpandoColumn expandoColumn =
 				getExpandoColumn(companyId, getColumnName(appId, key));

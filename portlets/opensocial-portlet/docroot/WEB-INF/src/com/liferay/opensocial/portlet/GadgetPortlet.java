@@ -21,6 +21,7 @@ import com.liferay.opensocial.util.WebKeys;
 import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
@@ -88,7 +89,7 @@ public class GadgetPortlet extends MVCPortlet {
 	protected void checkExpando(Portlet portlet) throws Exception {
 		long companyId = portlet.getCompanyId();
 
-		if (companyId == 0) {
+		if (companyId == CompanyConstants.SYSTEM) {
 			return;
 		}
 
