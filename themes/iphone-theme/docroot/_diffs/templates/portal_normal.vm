@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html class="#language ("lang.dir")" dir="#language ("lang.dir")">
 
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />

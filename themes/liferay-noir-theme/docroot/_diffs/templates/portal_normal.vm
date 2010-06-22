@@ -2,9 +2,9 @@
 
 #parse ($init)
 
-#set ($company_url = $company_url + "/web/guest/home")
+<html class="#language ("lang.dir")" dir="#language ("lang.dir")">
 
-<html dir="#language ("lang.dir")">
+#set ($company_url = $company_url + "/web/guest/home")
 
 <head>
 	<title>$the_title - $company_name</title>
