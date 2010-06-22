@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE routes PUBLIC "-//Liferay//DTD Friendly URL Routes 6.0.0//EN" "http://www.liferay.com/dtd/liferay-friendly-url-routes_6_0_0.dtd">
+
+<routes>
+	<route>
+		<pattern>/entry/{meetupsEntryId:\d+}</pattern>
+		<default-parameter name="jspPage">/meetups/view_entry.jsp</default-parameter>
+		<default-parameter name="p_p_state">maximized</default-parameter>
+	</route>
+</routes>

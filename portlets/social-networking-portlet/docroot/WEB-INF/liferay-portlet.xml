@@ -18,7 +18,9 @@
 	<portlet>
 		<portlet-name>3</portlet-name>
 		<icon>/icons/wall.png</icon>
-		<friendly-url-mapper-class>com.liferay.socialnetworking.wall.portlet.WallFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapping>wall</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/socialnetworking/wall/portlet/wall-friendly-url-routes.xml</friendly-url-routes>
 		<social-activity-interpreter-class>com.liferay.socialnetworking.wall.social.WallActivityInterpreter</social-activity-interpreter-class>
 		<css-class-wrapper>social-networking-portlet-wall</css-class-wrapper>
 	</portlet>
@@ -39,12 +41,16 @@
 	</portlet>
 	<portlet>
 		<portlet-name>6</portlet-name>
-		<friendly-url-mapper-class>com.liferay.socialnetworking.map.portlet.MapFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapping>map</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/socialnetworking/map/portlet/map-friendly-url-routes.xml</friendly-url-routes>
 		<css-class-wrapper>social-networking-portlet-map</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>7</portlet-name>
-		<friendly-url-mapper-class>com.liferay.socialnetworking.meetups.portlet.MeetupsFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapping>meetups</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/socialnetworking/meetups/portlet/meetups-friendly-url-routes.xml</friendly-url-routes>
 		<header-portlet-css>/meetups/css/main.css</header-portlet-css>
 		<css-class-wrapper>social-networking-portlet-meetups</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
