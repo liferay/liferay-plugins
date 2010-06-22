@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroupRole;
@@ -128,8 +129,16 @@ public class KaleoTaskInstanceTokenFinderImpl
 			boolean andOperator, ServiceContext serviceContext)
 		throws SystemException {
 
-		String[] taskNames = CustomSQLUtil.keywords(taskName, false);
-		String[] assetTypes = CustomSQLUtil.keywords(assetType, false);
+		String[] taskNames = null;
+		if (Validator.isNotNull(taskName)) {
+			taskNames = CustomSQLUtil.keywords(taskName, false);
+		}
+
+		String[] assetTypes = null;
+		if (Validator.isNotNull(assetType)) {
+			assetTypes = CustomSQLUtil.keywords(assetType, false);
+		}
+
 		Timestamp dueDateGT_TS = CalendarUtil.getTimestamp(dueDateGT);
 		Timestamp dueDateLT_TS = CalendarUtil.getTimestamp(dueDateLT);
 
@@ -148,13 +157,24 @@ public class KaleoTaskInstanceTokenFinderImpl
 				getSearchCriteria(
 					taskNames, assetTypes, dueDateGT_TS, dueDateLT_TS));
 
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "KaleoTaskInstanceToken.kaleoTaskName", StringPool.LIKE,
-				false, taskNames);
+			if (taskNames != null) {
+				boolean last = (
+					(assetType == null) && (dueDateGT_TS == null) &&
+					(dueDateLT_TS == null));
 
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "KaleoTaskInstanceToken.className", StringPool.LIKE,
-				false, assetTypes);
+				sql = CustomSQLUtil.replaceKeywords(
+					sql, "Kaleo_KaleoTaskInstanceToken.kaleoTaskName",
+					StringPool.LIKE, last, taskNames);
+			}
+
+			if (assetTypes != null) {
+				boolean last = (
+					(dueDateGT_TS == null) &&(dueDateLT_TS == null));
+
+				sql = CustomSQLUtil.replaceKeywords(
+					sql, "Kaleo_KaleoTaskInstanceToken.className",
+					StringPool.LIKE, last, assetTypes);
+			}
 
 			List<Long> roleIds = null;
 			List<UserGroupRole> userGroupRoles = null;
@@ -308,8 +328,16 @@ public class KaleoTaskInstanceTokenFinderImpl
 			OrderByComparator orderByComparator, ServiceContext serviceContext)
 		throws SystemException {
 
-		String[] taskNames = CustomSQLUtil.keywords(taskName, false);
-		String[] assetTypes = CustomSQLUtil.keywords(assetType, false);
+		String[] taskNames = null;
+		if (Validator.isNotNull(taskName)) {
+			taskNames = CustomSQLUtil.keywords(taskName, false);
+		}
+
+		String[] assetTypes = null;
+		if (Validator.isNotNull(assetType)) {
+			assetTypes = CustomSQLUtil.keywords(assetType, false);
+		}
+
 		Timestamp dueDateGT_TS = CalendarUtil.getTimestamp(dueDateGT);
 		Timestamp dueDateLT_TS = CalendarUtil.getTimestamp(dueDateLT);
 
@@ -328,13 +356,24 @@ public class KaleoTaskInstanceTokenFinderImpl
 				getSearchCriteria(
 					taskNames, assetTypes, dueDateGT_TS, dueDateLT_TS));
 
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "Kaleo_KaleoTaskInstanceToken.kaleoTaskName", StringPool.LIKE,
-				false, taskNames);
+			if (taskNames != null) {
+				boolean last = (
+					(assetType == null) && (dueDateGT_TS == null) &&
+					(dueDateLT_TS == null));
+				
+				sql = CustomSQLUtil.replaceKeywords(
+					sql, "Kaleo_KaleoTaskInstanceToken.kaleoTaskName",
+					StringPool.LIKE, last, taskNames);
+			}
 
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "Kaleo_KaleoTaskInstanceToken.className", StringPool.LIKE,
-				false, assetTypes);
+			if (assetTypes != null) {
+				boolean last = (
+					(dueDateGT_TS == null) &&(dueDateLT_TS == null));
+				
+				sql = CustomSQLUtil.replaceKeywords(
+					sql, "Kaleo_KaleoTaskInstanceToken.className",
+					StringPool.LIKE, last, assetTypes);
+			}
 
 			List<Long> roleIds = null;
 			List<UserGroupRole> userGroupRoles = null;
@@ -485,7 +524,8 @@ public class KaleoTaskInstanceTokenFinderImpl
 			if (addAndOrOperator) {
 				sb.append(" [$AND_OR_CONNECTOR$] ");
 			}
-			sb.append("(Kaleo_KaleoTaskInstanceToken.kaleoTaskName LIKE ? [$AND_OR_NULL_CHECK$])");
+			sb.append("(Kaleo_KaleoTaskInstanceToken.className LIKE ? [$AND_OR_NULL_CHECK$])");
+			addAndOrOperator = true;
 		}
 		if (dueDateGT != null) {
 			if (addAndOrOperator) {
@@ -493,6 +533,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 			}
 			sb.append(
 				"(Kaleo_KaleoTaskInstanceToken.dueDate >= ? [$AND_OR_NULL_CHECK$])");
+			addAndOrOperator = true;
 		}
 
 		if (dueDateLT != null) {
@@ -600,8 +641,14 @@ public class KaleoTaskInstanceTokenFinderImpl
 			return;
 		}
 
-		qPos.add(taskNames, 2);
-		qPos.add(assetTypes, 2);
+		if (taskNames != null) {
+			qPos.add(taskNames, 2);
+		}
+
+		if (assetTypes != null) {
+			qPos.add(assetTypes, 2);
+		}
+		
 		setDueDate(qPos, dueDateGT_TS, dueDateLT_TS);
 	}
 
