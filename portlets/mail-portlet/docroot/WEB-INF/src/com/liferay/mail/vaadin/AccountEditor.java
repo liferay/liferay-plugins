@@ -1,10 +1,22 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 
-package com.vaadin.liferay.mail;
+package com.liferay.mail.vaadin;
 
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.impl.AccountImpl;
 
-import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Button;
@@ -15,12 +27,10 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
 
 /**
- * Editor for an account and its settings. Note that the original AccountEntry
- * and AccountSettings object instances are modified at save time.
+ * <a href="AccountEditor.java.html"><b><i>View Source</i></b></a>
  *
  * @author Henri Sara
  */
-@SuppressWarnings("serial")
 public class AccountEditor extends FormLayout implements ClickListener {
 
 	public static interface AccountEditorListener {
@@ -219,4 +229,5 @@ public class AccountEditor extends FormLayout implements ClickListener {
 			}
 		}
 	}
+
 }

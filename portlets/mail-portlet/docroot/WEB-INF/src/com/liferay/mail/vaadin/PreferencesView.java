@@ -1,13 +1,25 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 
-package com.vaadin.liferay.mail;
+package com.liferay.mail.vaadin;
 
 import com.liferay.mail.model.Account;
 import com.liferay.mail.service.AccountLocalServiceUtil;
+import com.liferay.mail.vaadin.AccountEditor.AccountEditorListener;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
-import com.vaadin.liferay.mail.AccountEditor.AccountEditorListener;
-import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.terminal.ExternalResource;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -23,12 +35,10 @@ import com.vaadin.ui.Window;
 import java.util.List;
 
 /**
- * User e-mail preferences: account management (creation, modification,
- * deletion).
+ * <a href="PreferencesView.java.html"><b><i>View Source</i></b></a>
  *
  * @author Henri Sara
  */
-@SuppressWarnings("serial")
 public class PreferencesView extends VerticalLayout {
 
 	private final class SaveAccountListener implements AccountEditorListener {
@@ -91,7 +101,7 @@ public class PreferencesView extends VerticalLayout {
 		accountPanel = new Panel(Lang.get("your-email-accounts"));
 		updateAccountList();
 		addComponent(accountPanel);
-		
+
 		HorizontalLayout buttons = new HorizontalLayout();
 		buttons.setSpacing(true);
 		addComponent(buttons);
@@ -103,12 +113,12 @@ public class PreferencesView extends VerticalLayout {
 			}
 		});
 		buttons.addComponent(createAccountButton);
-		
+
 		Button createGmailButton = new Button("Create GMail account");
-		createGmailButton.addListener(new ClickListener() {					
+		createGmailButton.addListener(new ClickListener() {
 			public void buttonClick(ClickEvent event) {
 				editGmailAccount(null);
-				
+
 			}
 		});
 		buttons.addComponent(createGmailButton);
@@ -199,7 +209,7 @@ public class PreferencesView extends VerticalLayout {
 
 	private void synchronizeAccount(final Account account) {
 		try {
-			if(account.isSavePassword()){
+			if (account.isSavePassword()){
 				controller.getMailManager().synchronizeAccount(account.getAccountId());
 			}
 		}
@@ -231,7 +241,7 @@ public class PreferencesView extends VerticalLayout {
 		editorWindow.setContent(editor);
 		controller.getApplication().getMainWindow().addWindow(editorWindow);
 	}
-	
+
 	private void editGmailAccount(Account account) {
 		String windowTitle = Lang.get(account == null ? "Add GMail Account"
 				: "Edit GMail Account");

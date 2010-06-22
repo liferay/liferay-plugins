@@ -1,5 +1,18 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 
-package com.vaadin.liferay.mail;
+package com.liferay.mail.vaadin;
 
 import com.liferay.mail.mailbox.PasswordRetriever;
 import com.liferay.mail.model.Message;
@@ -13,7 +26,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 
 import com.vaadin.Application;
-import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.service.ApplicationContext.TransactionListener;
 import com.vaadin.ui.Window.Notification;
 
@@ -27,7 +39,11 @@ import javax.portlet.PortletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 
-@SuppressWarnings("serial")
+/**
+ * <a href="Controller.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Henri Sara
+ */
 public class Controller {
 
 	private static Log _log = LogFactoryUtil.getLog(Controller.class);
@@ -320,4 +336,5 @@ public class Controller {
 		showError(Lang.get("an-unexpected-error-occurred"), e);
 		_log.error("Unexpected error", e);
 	}
+
 }

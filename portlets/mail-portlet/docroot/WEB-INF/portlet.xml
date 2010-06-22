@@ -40,7 +40,7 @@
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<display-name>Mail - Vaadin</display-name>
-		<portlet-class>com.vaadin.liferay.mail.MailPortlet</portlet-class>
+		<portlet-class>com.liferay.mail.vaadin.MailPortlet</portlet-class>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
@@ -51,10 +51,13 @@
 		<portlet-info>
 			<title>Mail - Vaadin</title>
 			<short-title>Mail - Vaadin</short-title>
-			<keywords>Mail</keywords>
+			<keywords>Mail - Vaadin</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
 		</security-role-ref>
 		<security-role-ref>
 			<role-name>power-user</role-name>

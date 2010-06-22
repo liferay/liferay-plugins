@@ -1,4 +1,18 @@
-package com.vaadin.liferay.mail;
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.mail.vaadin;
 
 import com.vaadin.Application;
 import com.vaadin.terminal.gwt.server.AbstractApplicationPortlet;
@@ -17,25 +31,26 @@ import javax.portlet.RenderResponse;
 import javax.portlet.WindowState;
 
 /**
- * E-mail portlet class that does not start the Vaadin application before user
- * action (javascript).
+ * <a href="MailPortlet.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Henri Sara
  */
 public class MailPortlet extends AbstractApplicationPortlet {
 
 	public static final String SERVLET_CONTEXT_NAME = "vaadin-mail-portlet";
-	
+
 	/**
 	 * Notify user that not logged in.
 	 */
 	public void writeNotLoggedInPageHtml(RenderRequest request,
 			RenderResponse response, Window window) throws IOException {
-        response.setContentType("text/html");
-        final BufferedWriter page = new BufferedWriter(new OutputStreamWriter(
-                response.getPortletOutputStream(), "UTF-8"));
+		response.setContentType("text/html");
+		final BufferedWriter page = new BufferedWriter(new OutputStreamWriter(
+				response.getPortletOutputStream(), "UTF-8"));
 
-        page.write("<div class=\"portlet-msg-error\">Please login to use the mail portlet.</div>");
+		page.write("<div class=\"portlet-msg-error\">Please login to use the mail portlet.</div>");
 
-        page.close();
+		page.close();
 	}
 
 	@Override
@@ -62,7 +77,7 @@ public class MailPortlet extends AbstractApplicationPortlet {
 			throws ClassNotFoundException {
 		return MailApplication.class;
 	}
-			
+
 	@Override
 	protected String getTitle(RenderRequest request) {
 		return "Vaadin Mail";

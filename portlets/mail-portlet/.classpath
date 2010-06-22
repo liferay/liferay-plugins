@@ -16,6 +16,7 @@
 	<classpathentry kind="lib" path="/portal/lib/portal/jstl-api.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/jstl-impl.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/log4j.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/vaadin.jar" />
 	<classpathentry kind="lib" path="/portal/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />

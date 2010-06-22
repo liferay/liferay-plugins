@@ -1,5 +1,18 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 
-package com.vaadin.liferay.mail;
+package com.liferay.mail.vaadin;
 
 import com.liferay.mail.MailException;
 import com.liferay.mail.model.Account;
@@ -12,14 +25,12 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.terminal.StreamResource;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.CustomComponent;
-import com.vaadin.ui.Form;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -27,7 +38,6 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.ProgressIndicator;
 import com.vaadin.ui.RichTextArea;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.Window;
 import com.vaadin.ui.Upload.FailedEvent;
 import com.vaadin.ui.Upload.FinishedEvent;
 import com.vaadin.ui.Upload.StartedEvent;
@@ -35,6 +45,7 @@ import com.vaadin.ui.Upload;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window.CloseEvent;
 import com.vaadin.ui.Window.Notification;
+import com.vaadin.ui.Window;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -51,11 +62,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 /**
- * Mail message composer view.
+ * <a href="Composer.java.html"><b><i>View Source</i></b></a>
  *
- * Supports {@link ComposerListener}.
+ * @author Henri Sara
  */
-@SuppressWarnings("serial")
 public class Composer extends CustomComponent {
 
 	private static Log _log = LogFactoryUtil.getLog(Composer.class);
@@ -278,28 +288,28 @@ public class Composer extends CustomComponent {
 		// common part: create layout
 		recipientsLayout = new FormLayout();
 		recipientsLayout.setSpacing(true);
-		
+
 		toField = new TextField();
 		toField.setImmediate(false);
 		toField.setHeight("-1px");
 		toField.setWidth("100.0%");
 		toField.setCaption(Lang.get("to"));
 		recipientsLayout.addComponent(toField);
-		
+
 		ccField = new TextField();
 		ccField.setImmediate(false);
 		ccField.setHeight("-1px");
 		ccField.setWidth("100.0%");
 		ccField.setCaption(Lang.get("cc"));
 		recipientsLayout.addComponent(ccField);
-		
+
 		bccField = new TextField();
 		bccField.setImmediate(false);
 		bccField.setHeight("-1px");
 		bccField.setWidth("100.0%");
 		bccField.setCaption(Lang.get("bcc"));
 		recipientsLayout.addComponent(bccField);
-				
+
 		return recipientsLayout;
 	}
 
@@ -493,16 +503,16 @@ public class Composer extends CustomComponent {
 	}
 
 	private void fireSave(boolean skipPasswordCheck) {
-		if(!getFrom().isSavePassword() && !skipPasswordCheck){
+		if (!getFrom().isSavePassword() && !skipPasswordCheck){
 			Account account = getFrom();
 			String password = null;
 			try {
 				password = Controller.get().getPasswordRetriever().getPassword(account.getAccountId());
-			} catch (PortalException e2) {				
-			} catch (SystemException e2) {				
+			} catch (PortalException e2) {
+			} catch (SystemException e2) {
 			}
-			
-			if(password != null){
+
+			if (password != null){
 				try {
 					Controller.get().getMailManager().storePassword(account.getAccountId(), password);
 					Controller.get().getAccountManager().updateAccount(account, Controller.get());
@@ -516,21 +526,21 @@ public class Composer extends CustomComponent {
 				}
 			} else {
 				PasswordPrompt prompt = new PasswordPrompt(account);
-				prompt.addListener(new Window.CloseListener() {					
-					@Override
+				prompt.addListener(new Window.CloseListener() {
+					//@Override
 					public void windowClose(CloseEvent e) {
 						PasswordPrompt prompt = (PasswordPrompt)e.getWindow();
-						if(prompt.getStatus() == PasswordPrompt.Status.VALIDATED){
+						if (prompt.getStatus() == PasswordPrompt.Status.VALIDATED){
 							fireSave(true);
-						}						
+						}
 					}
 				});
 				getWindow().addWindow(prompt);
 				prompt.center();
 				return;
-			}							
-		}				
-		
+			}
+		}
+
 		Message msg = null;
 		try {
 			msg = MessageUtil.saveOrSendMessage(getFrom(), getTo(), getCc(),
@@ -540,17 +550,17 @@ public class Composer extends CustomComponent {
 			for (ComposerListener listener : listeners) {
 				listener.messageSaved(this, msg);
 			}
-		} catch (MailException me) {			
-			if(me.getType() == MailException.MESSAGE_HAS_NO_RECIPIENTS){
+		} catch (MailException me) {
+			if (me.getType() == MailException.MESSAGE_HAS_NO_RECIPIENTS){
 				getApplication().getMainWindow().showNotification(
-						Lang.get("please-specify-at-least-one-recipient"), 
+						Lang.get("please-specify-at-least-one-recipient"),
 						me.getMessage(),Notification.TYPE_ERROR_MESSAGE );
 			} else {
 				getApplication().getMainWindow().showNotification(
 						Lang.get("unable-to-save-draft"), me.getMessage(),
 						Notification.TYPE_ERROR_MESSAGE);
-			}			
-			
+			}
+
 			return;
 		} catch (PortalException e) {
 			_log.error(e);
@@ -566,16 +576,16 @@ public class Composer extends CustomComponent {
 	}
 
 	private void fireSend(boolean skipPasswordCheck) {
-		if(!getFrom().isSavePassword() && !skipPasswordCheck){
+		if (!getFrom().isSavePassword() && !skipPasswordCheck){
 			Account account = getFrom();
 			String password = null;
 			try {
 				password = Controller.get().getPasswordRetriever().getPassword(account.getAccountId());
-			} catch (PortalException e2) {				
-			} catch (SystemException e2) {				
+			} catch (PortalException e2) {
+			} catch (SystemException e2) {
 			}
-			
-			if(password != null){
+
+			if (password != null){
 				try {
 					Controller.get().getMailManager().storePassword(account.getAccountId(), password);
 					Controller.get().getAccountManager().updateAccount(account, Controller.get());
@@ -589,21 +599,21 @@ public class Composer extends CustomComponent {
 				}
 			} else {
 				PasswordPrompt prompt = new PasswordPrompt(account);
-				prompt.addListener(new Window.CloseListener() {					
-					@Override
+				prompt.addListener(new Window.CloseListener() {
+					//@Override
 					public void windowClose(CloseEvent e) {
 						PasswordPrompt prompt = (PasswordPrompt)e.getWindow();
-						if(prompt.getStatus() == PasswordPrompt.Status.VALIDATED){
+						if (prompt.getStatus() == PasswordPrompt.Status.VALIDATED){
 							fireSend(true);
-						}						
+						}
 					}
 				});
 				getWindow().addWindow(prompt);
 				prompt.center();
 				return;
-			}							
-		}		
-		
+			}
+		}
+
 		Message msg = null;
 		try {
 			msg = MessageUtil.saveOrSendMessage(getFrom(), getTo(), getCc(),
@@ -918,20 +928,21 @@ public class Composer extends CustomComponent {
 	public void focusToField(){
 		toField.focus();
 	}
-	
+
 	public void focusCCField(){
 		ccField.focus();
 	}
-	
+
 	public void focusBCCField(){
 		bccField.focus();
 	}
-	
+
 	public void focusSubject(){
 		subject.focus();
 	}
-	
+
 	public void focusBody(){
 		message.focus();
 	}
+
 }

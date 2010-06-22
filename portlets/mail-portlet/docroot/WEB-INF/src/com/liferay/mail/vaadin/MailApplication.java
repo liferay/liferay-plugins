@@ -1,32 +1,41 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 
-package com.vaadin.liferay.mail;
+package com.liferay.mail.vaadin;
 
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.AccountLocalServiceUtil;
+import com.liferay.mail.vaadin.Composer.ComposerListener;
+import com.liferay.mail.vaadin.PasswordPrompt.Status;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 
 import com.vaadin.Application;
-import com.vaadin.liferay.mail.Composer.ComposerListener;
-import com.vaadin.liferay.mail.PasswordPrompt.Status;
-import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.terminal.ExternalResource;
 import com.vaadin.terminal.gwt.server.PortletApplicationContext2.PortletListener;
 import com.vaadin.terminal.gwt.server.PortletApplicationContext2;
 import com.vaadin.ui.ComponentContainer;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window.CloseEvent;
 import com.vaadin.ui.Window.Notification;
 import com.vaadin.ui.Window;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -45,7 +54,11 @@ import javax.portlet.ResourceResponse;
 import javax.portlet.WindowState;
 import javax.portlet.WindowStateException;
 
-@SuppressWarnings("serial")
+/**
+ * <a href="MailApplication.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Henri Sara
+ */
 public class MailApplication extends Application {
 
 	private static Log _log = LogFactoryUtil.getLog(MailApplication.class);
@@ -123,9 +136,9 @@ public class MailApplication extends Application {
 				return;
 			}
 
-			String pid = PortalUtil.getPortletId(request);	
-			portletTitle = PortalUtil.getPortletTitle(pid, PortalUtil.getLocale(request));						
-			
+			String pid = PortalUtil.getPortletId(request);
+			portletTitle = PortalUtil.getPortletTitle(pid, PortalUtil.getLocale(request));
+
 			controller.setPreferences(request.getPreferences());
 
 			// check mode in request and act accordingly
@@ -138,18 +151,18 @@ public class MailApplication extends Application {
 					String accountParam = request.getParameter(PARAM_ACCOUNT);
 					Account account = null;
 					boolean promptOpen = false;
-					
+
 					VerticalLayout loading = new VerticalLayout();
-					loading.setHeight("550px");					
+					loading.setHeight("550px");
 					window.setContent(loading);
-					
+
 					try {
 						long id = Long.parseLong(accountParam);
 						account = AccountLocalServiceUtil.getAccount(id);
-												
-						if(!account.isSavePassword()){
+
+						if (!account.isSavePassword()){
 							String password = Controller.get().getPasswordRetriever().getPassword(account.getAccountId());
-							if(password != null){
+							if (password != null){
 								try {
 									Controller.get().getMailManager().storePassword(account.getAccountId(), password);
 									Controller.get().getAccountManager().updateAccount(account, controller);
@@ -162,9 +175,9 @@ public class MailApplication extends Application {
 											Lang.get("unable-to-synchronize-account"), e1);
 								}
 							} else {
-								promptOpen = true;							
+								promptOpen = true;
 								showPasswordPrompt(account, window);
-							}							
+							}
 						}
 					} catch (NumberFormatException e) {
 						// ignore, accountEntry stays null
@@ -180,23 +193,23 @@ public class MailApplication extends Application {
 						mainMailView.setHeight("550px");
 						window.setContent(mainMailView);
 						mainMailView.show(account);
-					} else if(!promptOpen){
+					} else if (!promptOpen){
 						window.open(new ExternalResource(summaryViewURL));
 					}
 				} else {
 					// unread mode by default
 					try {
 						Account account = AccountLocalServiceUtil.getAccounts(Controller.get()
-								.getUser().getUserId()).get(0);							
+								.getUser().getUserId()).get(0);
 						boolean promptOpen = false;
-						
+
 						VerticalLayout loading = new VerticalLayout();
-						loading.setHeight("550px");						
+						loading.setHeight("550px");
 						window.setContent(loading);
-						
-						if(!account.isSavePassword()){
+
+						if (!account.isSavePassword()){
 							String password = Controller.get().getPasswordRetriever().getPassword(account.getAccountId());
-							if(password != null){
+							if (password != null){
 								try {
 									Controller.get().getMailManager().storePassword(account.getAccountId(), password);
 									Controller.get().getAccountManager().updateAccount(account, controller);
@@ -209,12 +222,12 @@ public class MailApplication extends Application {
 											Lang.get("unable-to-synchronize-account"), e1);
 								}
 							} else {
-								promptOpen = true;							
+								promptOpen = true;
 								showPasswordPrompt(account, window);
-							}							
-						} 
-						
-						if(!promptOpen){
+							}
+						}
+
+						if (!promptOpen){
 							mainMailView = new MainMailView();
 							mainMailView.setHeight("550px");
 							window.setContent(mainMailView);
@@ -240,25 +253,25 @@ public class MailApplication extends Application {
 		}
 
 		public void handleResourceRequest(ResourceRequest request,
-				ResourceResponse response, Window window) {				
+				ResourceResponse response, Window window) {
 			// nothing to do
 		}
-		
+
 		public void showPasswordPrompt(Account account, final Window window){
-			PasswordPrompt prompt = new PasswordPrompt(account);	
+			PasswordPrompt prompt = new PasswordPrompt(account);
 			account = null;
-			prompt.addListener(new Window.CloseListener() {									
-				@Override
+			prompt.addListener(new Window.CloseListener() {
+				//@Override
 				public void windowClose(CloseEvent e) {
 					PasswordPrompt prompt = (PasswordPrompt)e.getWindow();
-														
+
 					mainMailView = new MainMailView();
 					mainMailView.setHeight("550px");
-																									
-					if(prompt.getStatus() == Status.VALIDATED){
-						mainMailView.setEnabled(true);	
-						
-						try {									
+
+					if (prompt.getStatus() == Status.VALIDATED){
+						mainMailView.setEnabled(true);
+
+						try {
 							controller.getMailManager().synchronizeAccount(prompt.getAccount().getAccountId());
 						} catch (PortalException e1) {
 							Controller.get().showError(
@@ -267,16 +280,16 @@ public class MailApplication extends Application {
 							Controller.get().showError(
 									Lang.get("unable-to-synchronize-account"), e1);
 						}
-						
+
 						window.setContent(mainMailView);
-						mainMailView.show(prompt.getAccount());		
+						mainMailView.show(prompt.getAccount());
 						mainMailView.update();
-						
-					} else if(prompt.getStatus() == Status.CANCELED){
-						window.open(new ExternalResource(summaryViewURL));											
+
+					} else if (prompt.getStatus() == Status.CANCELED){
+						window.open(new ExternalResource(summaryViewURL));
 					}
 				}
-			});																
+			});
 			window.addWindow(prompt);
 			prompt.center();
 		}
@@ -346,18 +359,19 @@ public class MailApplication extends Application {
 
 		PortletContext context = null;
 		// portlet 2.0 only
-        if (getContext() instanceof PortletApplicationContext2) {
-            PortletApplicationContext2 ctx = (PortletApplicationContext2) getContext();
-            context = ctx.getPortletSession().getPortletContext();
-        }
-        if (context != null) {
-    		PortletRequestDispatcher portletRequestDispatcher = context
-    				.getRequestDispatcher("/vaadin_summary_view.jsp");
-    		if (portletRequestDispatcher != null) {
-    			portletRequestDispatcher.include(request, response);
-    		}
-    		// for now, do not clear the parameters
+		if (getContext() instanceof PortletApplicationContext2) {
+			PortletApplicationContext2 ctx = (PortletApplicationContext2) getContext();
+			context = ctx.getPortletSession().getPortletContext();
+		}
+		if (context != null) {
+			PortletRequestDispatcher portletRequestDispatcher = context
+					.getRequestDispatcher("/vaadin_summary_view.jsp");
+			if (portletRequestDispatcher != null) {
+				portletRequestDispatcher.include(request, response);
+			}
+			// for now, do not clear the parameters
    			// response.setProperty("clear-request-parameters", "true");
-        }
+		}
 	}
+
 }

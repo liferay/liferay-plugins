@@ -1,5 +1,18 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 
-package com.vaadin.liferay.mail;
+package com.liferay.mail.vaadin;
 
 import com.liferay.mail.mailbox.Mailbox;
 import com.liferay.mail.model.Attachment;
@@ -33,17 +46,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Container for holding messages in a folder. Messages are fetched in pages
- * when needed.
+ * <a href="MessageContainer.java.html"><b><i>View Source</i></b></a>
  *
- * @author IT Mill
+ * @author Henri Sara
  */
-@SuppressWarnings("serial")
 public class MessageContainer extends BeanItemContainer<Message> implements PropertySetChangeNotifier {
 
 	private static Log _log = LogFactoryUtil.getLog(MessageContainer.class);
 
-    private List<PropertySetChangeListener> propertySetChangeListeners = new ArrayList<PropertySetChangeListener>();
+	private List<PropertySetChangeListener> propertySetChangeListeners = new ArrayList<PropertySetChangeListener>();
 
 	private static final int PAGE_SIZE = 20;
 
@@ -155,7 +166,7 @@ public class MessageContainer extends BeanItemContainer<Message> implements Prop
 				_log.warn("Could not fetch messages", e);
 			}
 		}
-												
+
 		return super.getIdByIndex(index);
 	}
 
@@ -267,23 +278,24 @@ public class MessageContainer extends BeanItemContainer<Message> implements Prop
 		super.removeAllItems();
 	}
 
-    public void addListener(PropertySetChangeListener listener) {
-        this.propertySetChangeListeners.add(listener);
+	public void addListener(PropertySetChangeListener listener) {
+		this.propertySetChangeListeners.add(listener);
 
-    }
+	}
 
-    public void removeListener(PropertySetChangeListener listener) {
-        this.propertySetChangeListeners.remove(listener);
+	public void removeListener(PropertySetChangeListener listener) {
+		this.propertySetChangeListeners.remove(listener);
 
-    }
+	}
 
-    protected void notifyPropertySetChangeListeners() {
-        for (PropertySetChangeListener listener : propertySetChangeListeners) {
-            listener.containerPropertySetChange(new PropertySetChangeEvent() {
-                public Container getContainer() {
-                    return MessageContainer.this;
-                }
-            });
-        }
-    }
+	protected void notifyPropertySetChangeListeners() {
+		for (PropertySetChangeListener listener : propertySetChangeListeners) {
+			listener.containerPropertySetChange(new PropertySetChangeEvent() {
+				public Container getContainer() {
+					return MessageContainer.this;
+				}
+			});
+		}
+	}
+
 }

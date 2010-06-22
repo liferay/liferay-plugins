@@ -1,5 +1,18 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 
-package com.vaadin.liferay.mail;
+package com.liferay.mail.vaadin;
 
 import com.liferay.mail.MailException;
 import com.liferay.mail.mailbox.Mailbox;
@@ -26,7 +39,6 @@ import com.vaadin.event.dd.acceptcriteria.Not;
 import com.vaadin.event.dd.acceptcriteria.Or;
 import com.vaadin.event.dd.acceptcriteria.SourceIs;
 import com.vaadin.event.dd.acceptcriteria.TargetDetailIs;
-import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.TextField;
@@ -36,7 +48,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@SuppressWarnings("serial")
+/**
+ * <a href="FolderTree.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Henri Sara
+ */
 public class FolderTree extends Tree implements DropHandler, Action.Handler {
 
 	private static class AccountAction extends Action {
@@ -196,16 +212,16 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 
 	public AcceptCriterion getAcceptCriterion() {
 		TargetDetailIs isMiddle = new TargetDetailIs("detail", "MIDDLE");
-		SourceIs isFromMessageList = new SourceIs(messageList.getTable());		
-		
-		List<TargetItemIs> rootItemCriterias = new ArrayList<TargetItemIs>();	
+		SourceIs isFromMessageList = new SourceIs(messageList.getTable());
+
+		List<TargetItemIs> rootItemCriterias = new ArrayList<TargetItemIs>();
 		for(Object root : rootItemIds()){
-			rootItemCriterias.add(new TargetItemIs(this, root));			
+			rootItemCriterias.add(new TargetItemIs(this, root));
 		}
 		Or or = new Or(rootItemCriterias.toArray(new TargetItemIs[rootItemCriterias.size()]));
-		Not notRootItem = new Not(or); 
-		
-		return new And(isMiddle, isFromMessageList, notRootItem);	
+		Not notRootItem = new Not(or);
+
+		return new And(isMiddle, isFromMessageList, notRootItem);
 	}
 
 	public Action[] getActions(Object target, Object sender) {
@@ -239,35 +255,35 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 			return;
 		}
 
-        if ("create-folder".equals(action.getCaption())) {
-        	String title = Lang.get("create-folder");
-        	String message = Lang.get("please-enter-new-folder-name");
+		if ("create-folder".equals(action.getCaption())) {
+			String title = Lang.get("create-folder");
+			String message = Lang.get("please-enter-new-folder-name");
 			final ConfirmDialog confirm = new ConfirmDialog(
 					Lang.get("confirm"), title, message);
-    		final TextField newNameField = new TextField();
-    		newNameField.setNullRepresentation("");
-    		newNameField.setValue("new folder");
-    		confirm.addExtraComponent(newNameField);
+			final TextField newNameField = new TextField();
+			newNameField.setNullRepresentation("");
+			newNameField.setValue("new folder");
+			confirm.addExtraComponent(newNameField);
 
-    		confirm.addConfirmButtonListener(new ClickListener() {
+			confirm.addConfirmButtonListener(new ClickListener() {
 
-    			public void buttonClick(ClickEvent event) {
-    				String newName = (String) newNameField.getValue();
-    				if (newName != null && !"".equals(newName)) {
+				public void buttonClick(ClickEvent event) {
+					String newName = (String) newNameField.getValue();
+					if (newName != null && !"".equals(newName)) {
 						confirm.closeDialog();
 
 						addFolder(accountId, newName);
 
 						synchronizeAccount(accountId, Controller.get());
 						refresh();
-    				} else {
-    					Controller.get().showError(Lang.get("please-enter-new-folder-name"));
-    				}
-    			}
-    		});
+					} else {
+						Controller.get().showError(Lang.get("please-enter-new-folder-name"));
+					}
+				}
+			});
 
-    		Controller.get().getApplication().getMainWindow().addWindow(confirm);
-        }
+			Controller.get().getApplication().getMainWindow().addWindow(confirm);
+		}
 	}
 
 	public void handleFolderAction(FolderAction action) {
@@ -276,54 +292,54 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 			return;
 		}
 
-        if ("rename-folder".equals(action.getCaption())) {
-        	String title = Lang.get("rename-folder");
-        	String message = Lang.get("please-enter-new-folder-name");
+		if ("rename-folder".equals(action.getCaption())) {
+			String title = Lang.get("rename-folder");
+			String message = Lang.get("please-enter-new-folder-name");
 			final ConfirmDialog confirm = new ConfirmDialog(
 					Lang.get("confirm"), title, message);
-    		final TextField newNameField = new TextField();
-    		newNameField.setNullRepresentation("");
-    		newNameField.setValue(folder.getDisplayName());
-    		confirm.addExtraComponent(newNameField);
+			final TextField newNameField = new TextField();
+			newNameField.setNullRepresentation("");
+			newNameField.setValue(folder.getDisplayName());
+			confirm.addExtraComponent(newNameField);
 
-    		confirm.addConfirmButtonListener(new ClickListener() {
+			confirm.addConfirmButtonListener(new ClickListener() {
 
-    			public void buttonClick(ClickEvent event) {
-    				String newName = (String) newNameField.getValue();
-    				if (newName != null && !"".equals(newName)) {
+				public void buttonClick(ClickEvent event) {
+					String newName = (String) newNameField.getValue();
+					if (newName != null && !"".equals(newName)) {
 						confirm.closeDialog();
 
 						renameFolder(folder.getFolderId(), newName);
 
 						synchronizeAccount(folder.getAccountId(), Controller.get());
 						refresh();
-    				} else {
-    					Controller.get().showError(Lang.get("please-enter-new-folder-name"));
-    				}
-    			}
-    		});
+					} else {
+						Controller.get().showError(Lang.get("please-enter-new-folder-name"));
+					}
+				}
+			});
 
-    		Controller.get().getApplication().getMainWindow().addWindow(confirm);
-        } else if ("remove-folder".equals(action.getCaption())) {
-    		final ConfirmDialog confirm =
-    			new ConfirmDialog(
-    				Lang.get("confirm"), Lang.get("delete"),
-    				Lang.get("are-you-sure-you-want-to-delete-this-folder"));
+			Controller.get().getApplication().getMainWindow().addWindow(confirm);
+		} else if ("remove-folder".equals(action.getCaption())) {
+			final ConfirmDialog confirm =
+				new ConfirmDialog(
+					Lang.get("confirm"), Lang.get("delete"),
+					Lang.get("are-you-sure-you-want-to-delete-this-folder"));
 
-    		confirm.addConfirmButtonListener(new ClickListener() {
+			confirm.addConfirmButtonListener(new ClickListener() {
 
-    			public void buttonClick(ClickEvent event) {
+				public void buttonClick(ClickEvent event) {
 					confirm.closeDialog();
 
 					deleteFolder(folder.getFolderId());
 
 					synchronizeAccount(folder.getAccountId(), Controller.get());
 					refresh();
-    			}
-    		});
+				}
+			});
 
-    		Controller.get().getApplication().getMainWindow().addWindow(confirm);
-        }
+			Controller.get().getApplication().getMainWindow().addWindow(confirm);
+		}
 	}
 
 	/**
@@ -491,11 +507,11 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 
 	private void synchronizeAccount(final long accountId, Controller controller) {
 		try {
-			Account acc = AccountLocalServiceUtil.getAccount(accountId);				
-			if(acc.isSavePassword()){
+			Account acc = AccountLocalServiceUtil.getAccount(accountId);
+			if (acc.isSavePassword()){
 				controller.getMailManager().synchronizeAccount(accountId);
-			} else if(controller.getPasswordRetriever().getPassword(accountId) != null){
-				
+			} else if (controller.getPasswordRetriever().getPassword(accountId) != null){
+
 			}
 		}
 		catch (SystemException e) {

@@ -1,9 +1,22 @@
-package com.vaadin.liferay.mail;
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.mail.vaadin;
 
 import com.vaadin.event.Action.Handler;
 import com.vaadin.event.Action;
 import com.vaadin.event.ShortcutAction;
-import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
@@ -12,11 +25,10 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 /**
- * General purpose confirmation dialog with confirmation and cancel buttons.
- * Cancel button just closes the dialog and confirm button executes all
- * listeners added with {@link #addConfirmButtonListener(Button.ClickListener)}.
+ * <a href="ConfirmDialog.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Henri Sara
  */
-@SuppressWarnings("serial")
 public class ConfirmDialog extends Window implements Handler {
 
 	private String confirmWindowCaption = "Confirm";
@@ -101,8 +113,8 @@ public class ConfirmDialog extends Window implements Handler {
 	 * There may be several listeners that all will be called.
 	 *
 	 * @param listener
-	 *            a Button.ClickListener that will be called when confirm button
-	 *            is clicked.
+	 *			a Button.ClickListener that will be called when confirm button
+	 *			is clicked.
 	 */
 	public void addConfirmButtonListener(Button.ClickListener listener) {
 

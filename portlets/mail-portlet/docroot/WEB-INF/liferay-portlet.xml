@@ -16,7 +16,7 @@
 		<icon>/icon.png</icon>
 		<ajaxable>false</ajaxable>
 		<header-portlet-css>/css/vaadin.css</header-portlet-css>
-		<css-class-wrapper>vaadin-mail-portlet</css-class-wrapper>
+		<css-class-wrapper>mail-portlet-vaadin</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

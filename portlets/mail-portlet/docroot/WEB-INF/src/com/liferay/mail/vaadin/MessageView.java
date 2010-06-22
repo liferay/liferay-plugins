@@ -1,7 +1,19 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 
-package com.vaadin.liferay.mail;
+package com.liferay.mail.vaadin;
 
-import com.liferay.mail.mailbox.MailboxFactoryUtil;
 import com.liferay.mail.model.Attachment;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.AttachmentLocalServiceUtil;
@@ -9,10 +21,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.MimeTypes;
-import com.liferay.portal.kernel.util.MimeTypesUtil;
 
-import com.vaadin.liferay.mail.util.Lang;
 import com.vaadin.terminal.StreamResource.StreamSource;
 import com.vaadin.terminal.StreamResource;
 import com.vaadin.ui.Button.ClickEvent;
@@ -31,7 +40,11 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
-@SuppressWarnings("serial")
+/**
+ * <a href="MessageView.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Henri Sara
+ */
 public class MessageView extends VerticalLayout implements ClickListener {
 
 	private static Log _log = LogFactoryUtil.getLog(MessageView.class);
@@ -162,35 +175,35 @@ public class MessageView extends VerticalLayout implements ClickListener {
 		Button b = event.getButton();
 		Object data = b.getData();
 		if (data != null && data instanceof Attachment) {
-			final Attachment attachment = (Attachment) data;			
+			final Attachment attachment = (Attachment) data;
 			StreamResource r = new StreamResource(new StreamSource() {
 				public InputStream getStream() {
-					try {			
+					try {
 						InputStream is = Controller.get().getMailManager().getAttachment(attachment.getAttachmentId());
-						if(is.available() > 0){
+						if (is.available() > 0){
 							return is;
-						} 
-					} catch (PortalException e) {					
-						Controller.get().showError(Lang.get("unable-to-fetch-attachment"), e);	
+						}
+					} catch (PortalException e) {
+						Controller.get().showError(Lang.get("unable-to-fetch-attachment"), e);
 					} catch (SystemException e) {
-						Controller.get().showError(Lang.get("unable-to-fetch-attachment"), e);	
+						Controller.get().showError(Lang.get("unable-to-fetch-attachment"), e);
 					} catch (IOException e) {
-						Controller.get().showError(Lang.get("unable-to-fetch-attachment"), e);						
-					} 
-					
+						Controller.get().showError(Lang.get("unable-to-fetch-attachment"), e);
+					}
+
 					return null;
 				}
 
 			}, attachment.getFileName(), Controller.get().getApplication());
 
 			r.setMIMEType("application/octet-stream");
-						
-			if(r.getStream().getStream() != null){
+
+			if (r.getStream().getStream() != null){
 				Controller.get().getApplication().getMainWindow().open(r);
 			} else {
-				Controller.get().showError(Lang.get("unable-to-fetch-attachment"));	
+				Controller.get().showError(Lang.get("unable-to-fetch-attachment"));
 			}
 		}
-
 	}
+
 }
