@@ -91,6 +91,29 @@
 	cursor: hand;
 }
 
+.mail-portlet .compose-message-container {
+	margin-right: 1em;
+}
+
+.mail-portlet .message-count {
+	float: right;
+}
+
+.mail-portlet .message-header {
+	margin: 1em 0;
+	border: 1px solid #C8C9CA;
+}
+
+.mail-portlet .message-header td {
+	padding: 2px 1em;
+}
+
+.mail-portlet .message-header .message-hearder-label {
+	background-color: #D1D6DC;
+	padding-left: 3em;
+	text-align: right;
+}
+
 .mail-portlet .recipient-fields .aui-field-input {
 	width: 95%;
 }

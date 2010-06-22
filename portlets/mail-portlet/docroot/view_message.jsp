@@ -53,6 +53,13 @@ MailManager mailManager = MailManager.getInstance(request);
 
 			<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" href="javascript:;" label='<%= LanguageUtil.format(pageContext, "back-to-x", folderName) %>' />
 		</aui:column>
+		<aui:column cssClass="compose-message-container">
+			<aui:button cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="reply" />
+
+			<aui:button cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="reply-all" />
+
+			<aui:button cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="forward" />
+		</aui:column>
 		<aui:column>
 			<aui:button cssClass="delete-message" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" value="delete" />
 		</aui:column>
@@ -69,50 +76,54 @@ MailManager mailManager = MailManager.getInstance(request);
 		</aui:column>
 	</aui:layout>
 
-	<aui:layout>
-		<aui:column columnWidth="10">
-			<liferay-ui:message key="from" />:
-		</aui:column>
-		<aui:column columnWidth="90">
-			<%= message.getSender() %>
-		</aui:column>
-	</aui:layout>
+	<div class="message-header">
+		<table>
+		<tr>
+			<td class="message-hearder-label">
+				<liferay-ui:message key="from" />
+			</td>
+			<td>
+				<%= message.getSender() %>
+			</td>
+		</tr>
+		<tr>
+			<td class="message-hearder-label">
+				<liferay-ui:message key="to" />
+			</td>
+			<td>
+				<%= message.getTo() %>
+			</td>
+		</tr>
 
-	<aui:layout>
-		<aui:column columnWidth="10">
-			<liferay-ui:message key="to" />:
-		</aui:column>
-		<aui:column columnWidth="90">
-			<%= message.getTo() %>
-		</aui:column>
-	</aui:layout>
+		<c:if test="<%= Validator.isNotNull(message.getCc()) %>">
+			<tr>
+				<td class="message-hearder-label">
+					<liferay-ui:message key="cc" />
+				</td>
+				<td>
+					<%= message.getCc() %>
+				</td>
+			</tr>
+		</c:if>
 
-	<aui:layout>
-		<aui:column columnWidth="10">
-			<liferay-ui:message key="cc" />:
-		</aui:column>
-		<aui:column columnWidth="90">
-			<%= message.getCc() %>
-		</aui:column>
-	</aui:layout>
-
-	<aui:layout>
-		<aui:column columnWidth="10">
-			<liferay-ui:message key="date" />:
-		</aui:column>
-		<aui:column columnWidth="90">
-			<%= dateFormatDateTime.format(message.getSentDate()) %>
-		</aui:column>
-	</aui:layout>
-
-	<aui:layout>
-		<aui:column columnWidth="10">
-			<liferay-ui:message key="subject" />:
-		</aui:column>
-		<aui:column columnWidth="90">
-			<%= message.getSubject() %>
-		</aui:column>
-	</aui:layout>
+		<tr>
+			<td class="message-hearder-label">
+				<liferay-ui:message key="date" />
+			</td>
+			<td>
+				<%= dateFormatDateTime.format(message.getSentDate()) %>
+			</td>
+		</tr>
+		<tr>
+			<td class="message-hearder-label">
+				<liferay-ui:message key="subject" />
+			</td>
+			<td>
+				<%= message.getSubject() %>
+			</td>
+		</tr>
+		</table>
+	</div>
 
 	<div id="messageContentContainer">
 		<c:if test="<%= Validator.isNotNull(message.getBody()) %>">
