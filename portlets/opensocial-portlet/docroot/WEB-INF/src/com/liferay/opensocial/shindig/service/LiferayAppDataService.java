@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.expando.NoSuchColumnException;
@@ -197,12 +198,13 @@ public class LiferayAppDataService implements AppDataService {
 
 		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
 
-		for (Entry<String, String> entry : values.entrySet()) {
+		for (Entry entry : values.entrySet()) {
 
-			// Workaround for a Shindig bug
+			// Workaround for a Shindig bug that stores a Long in value instead
+			// of the expected String so we cannot use generics here
 
-			String key = entry.getKey();
-			String value = entry.getValue();
+			String key = (String)entry.getKey();
+			String value = entry.getValue().toString();
 
 			ExpandoColumn expandoColumn =
 				getExpandoColumn(companyId, getColumnName(appId, key));
@@ -217,7 +219,12 @@ public class LiferayAppDataService implements AppDataService {
 	}
 
 	protected String getColumnName(String appId, String field) {
-		return appId.concat(field);
+		if (Validator.isNotNull(appId)) {
+			return appId.concat(field);
+		}
+		else {
+			return field;
+		}
 	}
 
 	protected long getCompanyId(SecurityToken securityToken) throws Exception {

@@ -86,9 +86,14 @@ public class GadgetPortlet extends MVCPortlet {
 	}
 
 	protected void checkExpando(Portlet portlet) throws Exception {
+		long companyId = portlet.getCompanyId();
+
+		if (companyId == 0) {
+			return;
+		}
+
 		ExpandoTable expandoTable = ExpandoTableLocalServiceUtil.getTable(
-			portlet.getCompanyId(), User.class.getName(),
-			ShindigUtil.getTableOpenSocial());
+			companyId, User.class.getName(), ShindigUtil.getTableOpenSocial());
 
 		String namespace = PortalUtil.getPortletNamespace(
 			portlet.getPortletId());
