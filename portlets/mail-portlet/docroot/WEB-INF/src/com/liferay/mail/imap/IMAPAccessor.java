@@ -461,6 +461,7 @@ public class IMAPAccessor {
 
 			fetchProfile.add(UIDFolder.FetchProfileItem.UID);
 			fetchProfile.add(UIDFolder.FetchProfileItem.CONTENT_INFO);
+			fetchProfile.add(UIDFolder.FetchProfileItem.FLAGS);
 
 			imapFolder.fetch(jxMessages, fetchProfile);
 
@@ -629,6 +630,7 @@ public class IMAPAccessor {
 
 			fetchProfile.add(UIDFolder.FetchProfileItem.UID);
 			fetchProfile.add(UIDFolder.FetchProfileItem.ENVELOPE);
+			fetchProfile.add(UIDFolder.FetchProfileItem.FLAGS);
 
 			imapFolder.fetch(jxMessages, fetchProfile);
 
@@ -643,6 +645,7 @@ public class IMAPAccessor {
 					jxMessage.getRecipients(RecipientType.BCC));
 				Date sentDate = jxMessage.getSentDate();
 				String subject = jxMessage.getSubject();
+				String flags = getFlags(jxMessage);
 				long remoteMessageId = imapFolder.getUID(jxMessage);
 
 				try {
@@ -653,7 +656,7 @@ public class IMAPAccessor {
 				catch (NoSuchMessageException nsme) {
 					MessageLocalServiceUtil.addMessage(
 						_user.getUserId(), folderId, sender, to, cc, bcc,
-						sentDate, subject, StringPool.BLANK, StringPool.BLANK,
+						sentDate, subject, StringPool.BLANK, flags,
 						remoteMessageId);
 				}
 			}
