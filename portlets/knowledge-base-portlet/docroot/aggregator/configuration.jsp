@@ -18,6 +18,8 @@
 
 <%
 String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
+
+List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
@@ -29,6 +31,7 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 <aui:form action="<%= configurationURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
+	<aui:input name="resourcePrimKeys" type="hidden" value='<%= ListUtil.toString(articles, "resourcePrimKey") %>' />
 
 	<liferay-ui:tabs
 		names="display-settings,selection-method,rss"
@@ -83,9 +86,45 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 				<aui:input inlineLabel="left" label="enable-comment-ratings" name="enableArticleCommentRatings" type="checkbox" value="<%= enableArticleCommentRatings %>" />
 			</c:when>
 			<c:when test='<%= tabs2.equals("selection-method") %>'>
-				<aui:select name="selectionMethod">
+
+				<%
+				String taglibOnChange = renderResponse.getNamespace() + "updateSelectionMethod(this.value);";
+				%>
+
+				<aui:select name="selectionMethod" onChange="<%= taglibOnChange %>">
+					<aui:option label="articles" selected='<%= selectionMethod.equals("articles") %>' />
 					<aui:option label='<%= "this-" + (themeDisplay.getScopeGroup().isOrganization() ? "organization" : "community") %>' selected='<%= selectionMethod.equals("parent-group") %>' value="parent-group" />
 				</aui:select>
+
+				<div class="kb-field-wrapper" id="<portlet:namespace />articlesSelectionOptions">
+					<aui:field-wrapper label="articles">
+						<div class="kb-selected-entries" id="<portlet:namespace />articles">
+
+							<%
+							for (Article article : articles) {
+							%>
+
+								<span id="<portlet:namespace />article<%= article.getResourcePrimKey() %>"><%= article.getTitle() %></span>
+
+							<%
+							}
+							%>
+
+						</div>
+
+						<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectArticlesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+							<portlet:param name="jspPage" value="/aggregator/select_articles.jsp" />
+						</liferay-portlet:renderURL>
+
+						<%
+						String taglibOnClick = "var selectArticlesWindow = window.open('" + selectArticlesURL + "', 'selectArticles', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectArticlesWindow.focus();";
+						%>
+
+						<div class="kb-edit-link">
+							<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-articles" /> &raquo;</aui:a>
+						</div>
+					</aui:field-wrapper>
+				</div>
 
 				<div class="kb-field-wrapper" id="<portlet:namespace />sortOptions">
 					<aui:field-wrapper label="options">
@@ -118,3 +157,36 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>
+
+<c:if test='<%= tabs2.equals("selection-method") %>'>
+	<aui:script>
+		function <portlet:namespace />selectArticles(resourcePrimKeys, titles) {
+			document.<portlet:namespace />fm.<portlet:namespace />resourcePrimKeys.value = resourcePrimKeys.join();
+			document.getElementById("<portlet:namespace />articles").innerHTML = "";
+
+			var articlesElement = document.getElementById("<portlet:namespace />articles");
+
+			for (var i = 0; i < titles.length; i++) {
+				var articleElement = document.createElement("span");
+
+				articleElement.id = "<portlet:namespace />article" + resourcePrimKeys[i];
+				articleElement.innerHTML = titles[i];
+
+				articlesElement.appendChild(articleElement);
+			}
+		}
+
+		function <portlet:namespace />updateSelectionMethod(value) {
+			if (value == "articles") {
+				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "";
+				document.getElementById("<portlet:namespace />sortOptions").style.display = "none";
+			}
+			else if (value == "parent-group") {
+				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "none";
+				document.getElementById("<portlet:namespace />sortOptions").style.display = "";
+			}
+		}
+
+		<portlet:namespace />updateSelectionMethod("<%= selectionMethod %>");
+	</aui:script>
+</c:if>

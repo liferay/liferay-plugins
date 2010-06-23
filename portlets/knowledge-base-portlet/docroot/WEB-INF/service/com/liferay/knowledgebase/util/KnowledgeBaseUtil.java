@@ -17,12 +17,20 @@ package com.liferay.knowledgebase.util;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.ArticleServiceUtil;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.DiffHtmlUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <a href="KnowledgeBaseUtil.java.html"><b><i>View Source</i></b></a>
@@ -77,6 +85,61 @@ public class KnowledgeBaseUtil {
 		return getArticleDiff(
 			resourcePrimKey, sourceVersion, targetVersion, parameter,
 			portalURL);
+	}
+
+	public static List<Article> getArticles(
+			long[] resourcePrimKeys, int start, int end,
+			boolean checkPermission)
+		throws Exception {
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
+			start = 0;
+			end = resourcePrimKeys.length;
+		}
+
+		if ((resourcePrimKeys.length == 0) || ((end - start) <= 0)) {
+			return new ArrayList<Article>();
+		}
+
+		Long[] selResourcePrimKeys = new Long[end - start];
+
+		for (int i = start; (i < end) && (i < resourcePrimKeys.length); i++) {
+			selResourcePrimKeys[i - start] = resourcePrimKeys[i];
+		}
+
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		params.put("resourcePrimKey", selResourcePrimKeys);
+
+		List<Article> unsortedArticles = null;
+
+		if (checkPermission) {
+			unsortedArticles = ArticleServiceUtil.getArticles(
+				params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		}
+		else {
+			unsortedArticles = ArticleLocalServiceUtil.getArticles(
+				params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		}
+
+		unsortedArticles = ListUtil.copy(unsortedArticles);
+
+		List<Article> articles = new ArrayList<Article>();
+
+		for (Long resourcePrimKey : selResourcePrimKeys) {
+			for (int i = 0; i < unsortedArticles.size(); i++) {
+				Article article = unsortedArticles.get(i);
+
+				if (article.getResourcePrimKey() == resourcePrimKey) {
+					articles.add(article);
+					unsortedArticles.remove(article);
+
+					break;
+				}
+			}
+		}
+
+		return articles;
 	}
 
 	protected static String getDiff(
