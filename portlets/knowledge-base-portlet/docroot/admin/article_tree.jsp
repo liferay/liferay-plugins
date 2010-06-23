@@ -22,6 +22,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 List<Article> articles = (List<Article>)request.getAttribute("article_tree.jsp-articles");
 long firstArticleId = GetterUtil.getLong((String)request.getAttribute("article_tree.jsp-firstArticleId"));
 long lastArticleId = GetterUtil.getLong((String)request.getAttribute("article_tree.jsp-lastArticleId"));
+Article selArticle = (Article)request.getAttribute("article_tree.jsp-selArticle");
 %>
 
 <c:choose>
@@ -45,6 +46,7 @@ long lastArticleId = GetterUtil.getLong((String)request.getAttribute("article_tr
 			request.setAttribute("article_tree.jsp-articles", childArticles);
 			request.setAttribute("article_tree.jsp-firstArticleId", String.valueOf(firstArticle.getArticleId()));
 			request.setAttribute("article_tree.jsp-lastArticleId", String.valueOf(lastArticle.getArticleId()));
+			request.setAttribute("article_tree.jsp-selArticle", article);
 			%>
 
 			<liferay-util:include page="/admin/article_tree.jsp" servletContext="<%= application %>" />
@@ -118,6 +120,11 @@ long lastArticleId = GetterUtil.getLong((String)request.getAttribute("article_tr
 		%>
 
 		<c:if test="<%= articles.get(articles.size() - 1).getArticleId() == lastArticleId %>">
+
+				<%
+				request.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, selArticle);
+				%>
+
 				</div>
 			</div>
 		</c:if>
