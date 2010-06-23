@@ -1,26 +1,26 @@
 /* Portlet view styles (minimized view) */
 
-.vaadin-mail-portlet {
+.mail-portlet-vaadin {
 	background: #fff;
 	padding-bottom: 4px;
 }
 
-.vaadin-mail-portlet .v-main {
+.mail-portlet-vaadin .v-main {
 	background: transparent url(../images/vaadin/top-bg.png) repeat-x;
 }
 
-.vaadin-mail-portlet .v-main .v-top {
+.mail-portlet-vaadin .v-main .v-top {
 	background: transparent url(../images/vaadin/top-left.png) no-repeat;
 	height: 30px;
 }
 
-.vaadin-mail-portlet .v-main .v-top .v-unread {
+.mail-portlet-vaadin .v-main .v-top .v-unread {
 	background: transparent url(../images/vaadin/top-left-unread.png) no-repeat;
 	float:left;
 	width: 50%;
 }
 
-.vaadin-mail-portlet .v-main .v-top .v-unread .v-unread-button{
+.mail-portlet-vaadin .v-main .v-top .v-unread .v-unread-button{
 	height: 30px;	
 	line-height: 30px;	
 	padding: 0 0 0 12px;
@@ -35,11 +35,11 @@
 	outline: none;
 }
 
-.vaadin-mail-portlet .v-main .v-top .v-unread .v-unread-button .v-unread-button-caption,
-.vaadin-mail-portlet .v-main .v-top .v-unread .v-unread-button .v-unread-button-caption:link,
-.vaadin-mail-portlet .v-main .v-top .v-unread .v-unread-button .v-unread-button-caption:visited,
-.vaadin-mail-portlet .v-main .v-top .v-unread .v-unread-button .v-unread-button-caption:active,
-.vaadin-mail-portlet .v-main .v-top .v-unread .v-unread-button .v-unread-button-caption:hover{
+.mail-portlet-vaadin .v-main .v-top .v-unread .v-unread-button .v-unread-button-caption,
+.mail-portlet-vaadin .v-main .v-top .v-unread .v-unread-button .v-unread-button-caption:link,
+.mail-portlet-vaadin .v-main .v-top .v-unread .v-unread-button .v-unread-button-caption:visited,
+.mail-portlet-vaadin .v-main .v-top .v-unread .v-unread-button .v-unread-button-caption:active,
+.mail-portlet-vaadin .v-main .v-top .v-unread .v-unread-button .v-unread-button-caption:hover{
 	display: block;
 	width: 100%;
 	text-overflow: ellipsis;
@@ -50,7 +50,7 @@
 	text-shadow: rgba(0,0,0,.7) 0 -1px 0;
 }
 
-.vaadin-mail-portlet .v-main .v-top .v-compose-button {
+.mail-portlet-vaadin .v-main .v-top .v-compose-button {
 	height: 30px;
 	line-height: 30px;
 	background: transparent url(../images/vaadin/compose-button.png) no-repeat right top;
@@ -66,11 +66,11 @@
 	text-decoration: none;
 }
 
-.vaadin-mail-portlet .v-main .v-top .v-compose-button .v-compose-button-caption,
-.vaadin-mail-portlet .v-main .v-top .v-compose-button .v-compose-button-caption:link,
-.vaadin-mail-portlet .v-main .v-top .v-compose-button .v-compose-button-caption:visited,
-.vaadin-mail-portlet .v-main .v-top .v-compose-button .v-compose-button-caption:active,
-.vaadin-mail-portlet .v-main .v-top .v-compose-button .v-compose-button-caption:hover {
+.mail-portlet-vaadin .v-main .v-top .v-compose-button .v-compose-button-caption,
+.mail-portlet-vaadin .v-main .v-top .v-compose-button .v-compose-button-caption:link,
+.mail-portlet-vaadin .v-main .v-top .v-compose-button .v-compose-button-caption:visited,
+.mail-portlet-vaadin .v-main .v-top .v-compose-button .v-compose-button-caption:active,
+.mail-portlet-vaadin .v-main .v-top .v-compose-button .v-compose-button-caption:hover {
 	padding-left: 20px;	
 	text-decoration: none;
 	color: #fff;
@@ -78,12 +78,12 @@
 	outline: none;
 }
 
-.vaadin-mail-portlet .v-main .v-top .v-compose-button:active,
-.vaadin-mail-portlet .v-main .v-top .v-compose-button.v-pressed {
+.mail-portlet-vaadin .v-main .v-top .v-compose-button:active,
+.mail-portlet-vaadin .v-main .v-top .v-compose-button.v-pressed {
 	background-position: right bottom;
 }
 
-.vaadin-mail-portlet .v-main .v-top .v-icon {
+.mail-portlet-vaadin .v-main .v-top .v-icon {
 	width: 14px;
 	height: 14px;
 	overflow: hidden;
@@ -96,25 +96,25 @@
 	outline: none;
 }
 
-.vaadin-mail-portlet .v-main .v-top .v-icon.v-icon-reload {
+.mail-portlet-vaadin .v-main .v-top .v-icon.v-icon-reload {
 	background-position: 0 top;
 }
 	
-.vaadin-mail-portlet .v-main .v-top .v-icon * {
+.mail-portlet-vaadin .v-main .v-top .v-icon * {
 	display: none;
 }
 
-.vaadin-mail-portlet .v-main .v-top .v-icon:hover,
-.vaadin-mail-portlet .v-main .v-top .v-icon:focus {
+.mail-portlet-vaadin .v-main .v-top .v-icon:hover,
+.mail-portlet-vaadin .v-main .v-top .v-icon:focus {
 	opacity: 1;
 	outline: none;
 }
 	
-.vaadin-mail-portlet .v-main .v-top .v-icon:active {
+.mail-portlet-vaadin .v-main .v-top .v-icon:active {
 	opacity: .5;
 }
 
-.vaadin-mail-portlet .v-main .v-account {
+.mail-portlet-vaadin .v-main .v-account {
 	height: 23px;
 	padding: 0 4px;
 	border: none;
@@ -122,11 +122,11 @@
 	margin: 0;
 }
 
-.vaadin-mail-portlet .v-main .v-account .v-account-caption,
-.vaadin-mail-portlet .v-main .v-account .v-account-caption:link,
-.vaadin-mail-portlet .v-main .v-account .v-account-caption:visited,
-.vaadin-mail-portlet .v-main .v-account .v-account-caption:active,
-.vaadin-mail-portlet .v-main .v-account .v-account-caption:hover {
+.mail-portlet-vaadin .v-main .v-account .v-account-caption,
+.mail-portlet-vaadin .v-main .v-account .v-account-caption:link,
+.mail-portlet-vaadin .v-main .v-account .v-account-caption:visited,
+.mail-portlet-vaadin .v-main .v-account .v-account-caption:active,
+.mail-portlet-vaadin .v-main .v-account .v-account-caption:hover {
 	display: block;
 	text-align: left;
 	white-space: nowrap;
