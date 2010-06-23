@@ -192,20 +192,6 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		}
 	}
 
-	public Message remove(Message message) throws SystemException {
-		for (ModelListener<Message> listener : listeners) {
-			listener.onBeforeRemove(message);
-		}
-
-		message = removeImpl(message);
-
-		for (ModelListener<Message> listener : listeners) {
-			listener.onAfterRemove(message);
-		}
-
-		return message;
-	}
-
 	protected Message removeImpl(Message message) throws SystemException {
 		message = toUnwrappedModel(message);
 
@@ -1070,7 +1056,6 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_MESSAGE.concat(MessageModelImpl.ORDER_BY_JPQL);
 				}

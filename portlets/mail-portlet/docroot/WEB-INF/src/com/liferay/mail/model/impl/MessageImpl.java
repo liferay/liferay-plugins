@@ -17,6 +17,8 @@ package com.liferay.mail.model.impl;
 import com.liferay.mail.model.Message;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -37,6 +39,12 @@ public class MessageImpl extends MessageModelImpl implements Message {
 		Group group = user.getGroup();
 
 		return group.getGroupId();
+	}
+
+	public boolean hasFlag(int flag) throws PortalException, SystemException {
+		int[] flags = StringUtil.split(getFlags(), (int)0);
+
+		return ArrayUtil.contains(flags, flag);
 	}
 
 }

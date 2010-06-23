@@ -272,6 +272,12 @@ public class MessageWrapper implements Message {
 		return _message.getGroupId();
 	}
 
+	public boolean hasFlag(int flag)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _message.hasFlag(flag);
+	}
+
 	public Message getWrappedMessage() {
 		return _message;
 	}

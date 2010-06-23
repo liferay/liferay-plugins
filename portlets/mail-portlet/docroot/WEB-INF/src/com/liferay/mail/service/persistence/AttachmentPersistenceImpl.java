@@ -160,20 +160,6 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		}
 	}
 
-	public Attachment remove(Attachment attachment) throws SystemException {
-		for (ModelListener<Attachment> listener : listeners) {
-			listener.onBeforeRemove(attachment);
-		}
-
-		attachment = removeImpl(attachment);
-
-		for (ModelListener<Attachment> listener : listeners) {
-			listener.onAfterRemove(attachment);
-		}
-
-		return attachment;
-	}
-
 	protected Attachment removeImpl(Attachment attachment)
 		throws SystemException {
 		attachment = toUnwrappedModel(attachment);
@@ -613,8 +599,9 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 
 					sql = query.toString();
 				}
-
-				sql = _SQL_SELECT_ATTACHMENT;
+				else {
+					sql = _SQL_SELECT_ATTACHMENT;
+				}
 
 				Query q = session.createQuery(sql);
 

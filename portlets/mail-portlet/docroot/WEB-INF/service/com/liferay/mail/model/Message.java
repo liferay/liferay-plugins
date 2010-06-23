@@ -43,4 +43,8 @@ public interface Message extends MessageModel {
 	public long getGroupId()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	public boolean hasFlag(int flag)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

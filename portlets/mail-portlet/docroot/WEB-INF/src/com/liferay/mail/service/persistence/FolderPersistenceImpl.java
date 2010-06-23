@@ -176,20 +176,6 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		}
 	}
 
-	public Folder remove(Folder folder) throws SystemException {
-		for (ModelListener<Folder> listener : listeners) {
-			listener.onBeforeRemove(folder);
-		}
-
-		folder = removeImpl(folder);
-
-		for (ModelListener<Folder> listener : listeners) {
-			listener.onAfterRemove(folder);
-		}
-
-		return folder;
-	}
-
 	protected Folder removeImpl(Folder folder) throws SystemException {
 		folder = toUnwrappedModel(folder);
 
@@ -797,7 +783,6 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_FOLDER.concat(FolderModelImpl.ORDER_BY_JPQL);
 				}
