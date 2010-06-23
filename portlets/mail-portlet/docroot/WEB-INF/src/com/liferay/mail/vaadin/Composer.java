@@ -267,7 +267,7 @@ public class Composer extends CustomComponent {
 		fromLayout = new HorizontalLayout();
 		fromLayout.setSpacing(true);
 
-		Label fromLabel = new Label(Lang.get("from-account"));
+		Label fromLabel = new Label(Lang.get("from"));
 		fromLabel.setSizeUndefined();
 		fromLayout.addComponent(fromLabel);
 
@@ -706,7 +706,7 @@ public class Composer extends CustomComponent {
 
 					progress.setVisible(false);
 					getWindow().showNotification(
-						Lang.get("unable-to-attach-files"),
+						Lang.get("unable-to-add-attachment"),
 						event.getFilename(), Notification.TYPE_ERROR_MESSAGE);
 				}
 
@@ -718,7 +718,7 @@ public class Composer extends CustomComponent {
 
 					if (event.getLength() <= 0) {
 						getWindow().showNotification(
-							Lang.get("unable-to-attach-files"),
+							Lang.get("unable-to-add-attachment"),
 							event.getFilename(),
 							Notification.TYPE_ERROR_MESSAGE);
 						removeAttachment(AttachmentLayout.this);
@@ -830,7 +830,7 @@ public class Composer extends CustomComponent {
 			}
 			catch (final FileNotFoundException e) {
 				getWindow().showNotification(
-					Lang.get("unable-to-attach-files"),
+					Lang.get("unable-to-add-attachment"),
 					Notification.TYPE_ERROR_MESSAGE);
 				_log.warn("Unable to attach files", e);
 			}
@@ -854,7 +854,7 @@ public class Composer extends CustomComponent {
 			}
 			catch (final IOException e) {
 				getWindow().showNotification(
-					Lang.get("unable-to-attach-files"), filename,
+					Lang.get("unable-to-add-attachment"), filename,
 					Notification.TYPE_ERROR_MESSAGE);
 				_log.warn("Unable to attach files", e);
 			}
@@ -864,7 +864,7 @@ public class Composer extends CustomComponent {
 			}
 			catch (final FileNotFoundException e) {
 				getWindow().showNotification(
-					Lang.get("unable-to-attach-files"), filename,
+					Lang.get("unable-to-add-attachment"), filename,
 					Notification.TYPE_ERROR_MESSAGE);
 				_log.warn("Unable to attach files", e);
 			}

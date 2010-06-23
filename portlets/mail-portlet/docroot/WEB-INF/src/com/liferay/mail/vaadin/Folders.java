@@ -62,7 +62,7 @@ public class Folders extends CustomComponent
 		mainPanel.setStyleName("borderless");
 
 		accountLayout = new VerticalLayout();
-		accountLayout.setCaption(Lang.get("accounts"));
+		// accountLayout.setCaption(Lang.get("accounts"));
 
 		mainLayout.addComponent(createComposeButton());
 		mainLayout.addComponent(mainPanel);

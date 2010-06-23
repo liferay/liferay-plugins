@@ -143,7 +143,7 @@ public class PreferencesView extends VerticalLayout {
 				for (final Account account : accounts) {
 					grid.addComponent(new Label(account.getAddress()));
 
-					Button editButton = new Button(Lang.get("edit"));
+					Button editButton = new Button(Lang.get("edit-account"));
 					editButton.setStyleName("small");
 					editButton.addListener(new ClickListener() {
 
@@ -154,7 +154,7 @@ public class PreferencesView extends VerticalLayout {
 					});
 					grid.addComponent(editButton);
 
-					Button deleteButton = new Button(Lang.get("delete"));
+					Button deleteButton = new Button(Lang.get("delete-account"));
 					deleteButton.setStyleName("small");
 					deleteButton.addListener(new ClickListener() {
 
@@ -180,7 +180,7 @@ public class PreferencesView extends VerticalLayout {
 		// ask user to confirm first
 		final ConfirmDialog confirm =
 			new ConfirmDialog(
-				Lang.get("confirm"), Lang.get("delete"),
+				Lang.get("confirm"), Lang.get("delete-account"),
 				Lang.get("are-you-sure-you-want-to-delete-this-account"));
 
 		confirm.addConfirmButtonListener(new ClickListener() {
@@ -243,8 +243,8 @@ public class PreferencesView extends VerticalLayout {
 	}
 
 	private void editGmailAccount(Account account) {
-		String windowTitle = Lang.get(account == null ? "Add GMail Account"
-				: "Edit GMail Account");
+		String windowTitle = Lang.get(account == null ? "add-gmail-account"
+				: "edit-gmail-account");
 		final Window editorWindow = new Window(windowTitle);
 		editorWindow.setSizeUndefined();
 		editorWindow.center();

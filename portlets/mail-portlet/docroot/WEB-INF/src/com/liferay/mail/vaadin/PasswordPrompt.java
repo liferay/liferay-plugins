@@ -18,6 +18,8 @@ import com.liferay.mail.model.Account;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button.ClickEvent;
@@ -34,6 +36,8 @@ import com.vaadin.ui.Window;
  * @author Henri Sara
  */
 public class PasswordPrompt extends Window implements Button.ClickListener {
+
+	private static Log _log = LogFactoryUtil.getLog(PasswordPrompt.class);
 
 	private final Account account;
 
@@ -116,11 +120,9 @@ public class PasswordPrompt extends Window implements Button.ClickListener {
 				}
 
 			} catch (PortalException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				_log.warn("Failed to save password", e);
 			} catch (SystemException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				_log.warn("Failed to save password", e);
 			}
 		} else if (event.getButton() == cancelBtn){
 			status = Status.CANCELED;

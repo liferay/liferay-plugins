@@ -234,7 +234,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 		}
 		if (folder != null) {
 			actions.add(new FolderAction("rename-folder", folder));
-			actions.add(new FolderAction("remove-folder", folder));
+			actions.add(new FolderAction("delete-folder", folder));
 		}
 
 		return actions.toArray(new Action[0]);
@@ -294,7 +294,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 
 		if ("rename-folder".equals(action.getCaption())) {
 			String title = Lang.get("rename-folder");
-			String message = Lang.get("please-enter-new-folder-name");
+			String message = Lang.get("please-enter-renamed-folder-name");
 			final ConfirmDialog confirm = new ConfirmDialog(
 					Lang.get("confirm"), title, message);
 			final TextField newNameField = new TextField();
@@ -314,16 +314,16 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 						synchronizeAccount(folder.getAccountId(), Controller.get());
 						refresh();
 					} else {
-						Controller.get().showError(Lang.get("please-enter-new-folder-name"));
+						Controller.get().showError(Lang.get("please-enter-renamed-folder-name"));
 					}
 				}
 			});
 
 			Controller.get().getApplication().getMainWindow().addWindow(confirm);
-		} else if ("remove-folder".equals(action.getCaption())) {
+		} else if ("delete-folder".equals(action.getCaption())) {
 			final ConfirmDialog confirm =
 				new ConfirmDialog(
-					Lang.get("confirm"), Lang.get("delete"),
+					Lang.get("confirm"), Lang.get("delete-folder"),
 					Lang.get("are-you-sure-you-want-to-delete-this-folder"));
 
 			confirm.addConfirmButtonListener(new ClickListener() {
@@ -511,7 +511,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 			if (acc.isSavePassword()){
 				controller.getMailManager().synchronizeAccount(accountId);
 			} else if (controller.getPasswordRetriever().getPassword(accountId) != null){
-
+				controller.getMailManager().synchronizeAccount(accountId);
 			}
 		}
 		catch (SystemException e) {
