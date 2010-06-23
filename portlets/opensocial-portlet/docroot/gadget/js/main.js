@@ -72,11 +72,9 @@ AUI().add(
 					width: {}
 				},
 
-				UI_ATTRS: ['height', 'iframeUrl', 'width'],
+				UI_ATTRS: ['iframeUrl'],
 
 				prototype: {
-					_CONTAINER: 'default',
-
 					initializer: function() {
 						var instance = this;
 
@@ -113,6 +111,9 @@ AUI().add(
 						var instance = this;
 
 						instance.after('userPrefsChange', instance._afterUserPrefsChange);
+
+						instance.after('heightChange', instance._afterIframeHeightChange);
+						instance.after('widthChange', instance._afterIframeWidthChange);
 
 						var refreshIframe = instance.refresh;
 
@@ -156,6 +157,18 @@ AUI().add(
 						var instance = this;
 
 						instance._uiSetIframeUrl(instance.get('iframeUrl'));
+					},
+
+					_afterIframeHeightChange: function(event) {
+						var instance = this;
+
+						instance._uiSetIframeHeight(event.newVal);
+					},
+
+					_afterIframeWidthChange: function(event) {
+						var instance = this;
+
+						instance._uiSetIframeWidth(event.newVal);
 					},
 
 					_afterUserPrefsChange: function(event) {
@@ -261,7 +274,9 @@ AUI().add(
 						var instance = this;
 
 						instance._iframe.setAttribute('width', value);
-					}
+					},
+
+					_CONTAINER: 'default'
 				}
 			}
 		);
@@ -309,9 +324,6 @@ AUI().add(
 				EXTENDS: DefaultStore,
 				NAME: 'gadgetstoreexpando',
 				prototype: {
-					_CLASS_NAME: 'com.liferay.portal.model.User',
-					_TABLE_NAME: 'OPEN_SOCIAL_DATA_',
-
 					getPrefs: function(gadget, callback) {
 						var instance = this;
 
@@ -354,7 +366,10 @@ AUI().add(
 								serviceParameterTypes: A.JSON.stringify(serviceParameterTypes)
 							}
 						);
-					}
+					},
+
+					_CLASS_NAME: 'com.liferay.portal.model.User',
+					_TABLE_NAME: 'OPEN_SOCIAL_DATA_'
 				}
 			}
 		);
