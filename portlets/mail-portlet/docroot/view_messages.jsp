@@ -168,10 +168,10 @@ MailManager mailManager = MailManager.getInstance(request);
 
 					List<Message> messages = messagesDisplay.getMessages();
 
-					String cssClass = "message-link";
+					String messageCssClass = "message-link";
 
 					if (mailAccount.getDraftFolderId() == folderId) {
-						cssClass = "draft-link";
+						messageCssClass = "draft-link";
 					}
 
 					for (Message message : messages) {
@@ -200,42 +200,42 @@ MailManager mailManager = MailManager.getInstance(request);
 							date = dateFormatDateTime.format(message.getSentDate());
 						}
 
-						String cssClass2 = "results-row no-hover";
+						String rowCssClass = "results-row no-hover";
 
 						if (!message.hasFlag(MailConstants.FLAG_SEEN)) {
-							cssClass2 += " unread";
+							rowCssClass += " unread";
 						}
 
 						if (message.hasFlag(MailConstants.FLAG_FLAGGED)) {
-							cssClass2 += " important";
+							rowCssClass += " important";
 						}
 
 						if ((messageNumber % 2) == 0) {
-							cssClass2 += " alt";
+							rowCssClass += " alt";
 						}
 					%>
 
-						<tr class="<%=  cssClass2 %>">
+						<tr class="<%=  rowCssClass %>">
 							<td>
 								<aui:input id="message<%= message.getMessageId() %>" label="" messageId="<%= message.getMessageId() %>" name="message" type="checkbox" value="<%= message.getMessageId() %>" />
 							</td>
 							<td>
-								<div class="<%= cssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
+								<div class="<%= messageCssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
 									<%= HtmlUtil.escape(address) %>
 								</div>
 							</td>
 							<td>
-								<div class="<%= cssClass + (Validator.isNull(message.getSubject()) ? " no-subject" : StringPool.BLANK) %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
+								<div class="<%= messageCssClass + (Validator.isNull(message.getSubject()) ? " no-subject" : StringPool.BLANK) %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
 									<%= Validator.isNull(message.getSubject()) ? LanguageUtil.get(pageContext, "no-subject") : HtmlUtil.escape(message.getSubject()) %>
 								</div>
 							</td>
 							<td>
-								<div class="<%= cssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
+								<div class="<%= messageCssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
 									<%= HtmlUtil.escape(date) %>
 								</div>
 							</td>
 							<td>
-								<div class="<%= cssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
+								<div class="<%= messageCssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
 									<c:if test="<%= !AttachmentLocalServiceUtil.getAttachments(message.getMessageId()).isEmpty() %>">
 										<liferay-ui:icon
 											image="../mail/clip"
