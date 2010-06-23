@@ -19,8 +19,6 @@
 <%
 String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 
-List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
-
 List<Group> scopeGroups = new ArrayList<Group>();
 
 for (long curScopeGroupId : scopeGroupIds) {
@@ -31,6 +29,8 @@ for (long curScopeGroupId : scopeGroupIds) {
 		continue;
 	}
 }
+
+List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
