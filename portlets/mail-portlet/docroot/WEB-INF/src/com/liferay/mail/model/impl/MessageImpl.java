@@ -41,8 +41,8 @@ public class MessageImpl extends MessageModelImpl implements Message {
 		return group.getGroupId();
 	}
 
-	public boolean hasFlag(int flag) throws PortalException, SystemException {
-		int[] flags = StringUtil.split(getFlags(), (int)0);
+	public boolean hasFlag(int flag) {
+		int[] flags = StringUtil.split(getFlags(), 0);
 
 		return ArrayUtil.contains(flags, flag);
 	}
