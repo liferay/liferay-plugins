@@ -215,7 +215,7 @@ MailManager mailManager = MailManager.getInstance(request);
 						}
 					%>
 
-						<tr class="<%=  rowCssClass %>">
+						<tr class="<%= rowCssClass %>">
 							<td>
 								<aui:input id="message<%= message.getMessageId() %>" label="" messageId="<%= message.getMessageId() %>" name="message" type="checkbox" value="<%= message.getMessageId() %>" />
 							</td>
