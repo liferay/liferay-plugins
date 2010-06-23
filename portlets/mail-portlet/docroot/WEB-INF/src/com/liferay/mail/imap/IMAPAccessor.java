@@ -459,9 +459,9 @@ public class IMAPAccessor {
 
 			FetchProfile fetchProfile = new FetchProfile();
 
-			fetchProfile.add(UIDFolder.FetchProfileItem.UID);
 			fetchProfile.add(UIDFolder.FetchProfileItem.CONTENT_INFO);
 			fetchProfile.add(UIDFolder.FetchProfileItem.FLAGS);
+			fetchProfile.add(UIDFolder.FetchProfileItem.UID);
 
 			imapFolder.fetch(jxMessages, fetchProfile);
 
@@ -628,9 +628,9 @@ public class IMAPAccessor {
 		try {
 			FetchProfile fetchProfile = new FetchProfile();
 
-			fetchProfile.add(UIDFolder.FetchProfileItem.UID);
 			fetchProfile.add(UIDFolder.FetchProfileItem.ENVELOPE);
 			fetchProfile.add(UIDFolder.FetchProfileItem.FLAGS);
+			fetchProfile.add(UIDFolder.FetchProfileItem.UID);
 
 			imapFolder.fetch(jxMessages, fetchProfile);
 
