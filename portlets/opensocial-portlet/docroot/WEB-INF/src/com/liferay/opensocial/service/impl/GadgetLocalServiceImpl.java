@@ -112,6 +112,26 @@ public class GadgetLocalServiceImpl
 		return gadgetPersistence.countByCompanyId(companyId);
 	}
 
+	public void initGadget(Gadget gadget)
+		throws PortalException, SystemException {
+
+		try {
+			Portlet portlet = getPortlet(gadget);
+
+			PortletLocalServiceUtil.deployRemotePortlet(
+				portlet, _OPENSOCIAL_CATEGORY);
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (SystemException se) {
+			throw se;
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+	}
+
 	public void initGadgets()
 		throws PortalException, SystemException {
 
@@ -234,26 +254,6 @@ public class GadgetLocalServiceImpl
 		PortletBagPool.put(portletId, portletBag);
 
 		return portlet;
-	}
-
-	protected void initGadget(Gadget gadget)
-		throws PortalException, SystemException {
-
-		try {
-			Portlet portlet = getPortlet(gadget);
-
-			PortletLocalServiceUtil.deployRemotePortlet(
-				portlet, _OPENSOCIAL_CATEGORY);
-		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (SystemException se) {
-			throw se;
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
 	}
 
 	protected void validate(String name) throws PortalException {

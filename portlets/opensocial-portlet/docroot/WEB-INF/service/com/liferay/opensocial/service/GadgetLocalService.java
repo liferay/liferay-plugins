@@ -122,6 +122,10 @@ public interface GadgetLocalService {
 	public int getGadgetsCount(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public void initGadget(com.liferay.opensocial.model.Gadget gadget)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public void initGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

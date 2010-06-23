@@ -144,6 +144,12 @@ public class GadgetLocalServiceUtil {
 		return getService().getGadgetsCount(companyId);
 	}
 
+	public static void initGadget(com.liferay.opensocial.model.Gadget gadget)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().initGadget(gadget);
+	}
+
 	public static void initGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
