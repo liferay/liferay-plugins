@@ -19,8 +19,13 @@
 <%@ page import="com.liferay.knowledgebase.service.ArticleLocalServiceUtil" %>
 <%@ page import="com.liferay.knowledgebase.util.comparator.ArticleCreateDateComparator" %>
 <%@ page import="com.liferay.knowledgebase.util.comparator.ArticleTitleComparator" %>
+<%@ page import="com.liferay.portal.NoSuchGroupException" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.util.OrderByComparator" %>
+<%@ page import="com.liferay.portal.model.Group" %>
+<%@ page import="com.liferay.portal.model.Layout" %>
+<%@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.service.LayoutLocalServiceUtil" %>
 
 <%
 PortletPreferences preferences = renderRequest.getPreferences();
