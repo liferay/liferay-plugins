@@ -87,7 +87,7 @@ AUI().add(
 			deleteMessages: function(messageIds) {
 				var instance = this;
 
-				instance.setStatus('info', 'deleting-messages');
+				instance.setStatus('info', Liferay.Language.get('deleting-messages'));
 
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/delete_messages',
@@ -97,7 +97,7 @@ AUI().add(
 						method: 'POST',
 						on: {
 							failure: function(event, id, obj) {
-								instance.setStatus('error', 'unable-to-connect-with-mail-server');
+								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 							},
 							success: function(event, id, obj) {
 								var responseData = this.get('responseData');
@@ -137,7 +137,7 @@ AUI().add(
 			flagMessages: function(flag, value, messageIds) {
 				var instance = this;
 
-				instance.setStatus('info', 'flagging-messages');
+				instance.setStatus('info', Liferay.Language.get('flagging-messages'));
 
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/flag_messages',
@@ -151,7 +151,7 @@ AUI().add(
 						method: 'POST',
 						on: {
 							failure: function (event, id, obj) {
-								instance.setStatus('error', 'unable-to-connect-with-mail-server');
+								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 							},
 							success: function (event, id, obj) {
 								var responseData = this.get('responseData');
@@ -188,7 +188,7 @@ AUI().add(
 						method: 'POST',
 						on: {
 							failure: function(event, id, obj) {
-								instance.setStatus('error', 'unable-to-connect-with-mail-server');
+								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 							},
 							success: function(event, id, obj) {
 								var responseData = this.get('responseData');
@@ -310,7 +310,7 @@ AUI().add(
 			moveMessages: function(folderId, messageIds) {
 				var instance = this;
 
-				instance.setStatus('info', 'moving-messages');
+				instance.setStatus('info', Liferay.Language.get('moving-messages'));
 
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/move_messages',
@@ -323,7 +323,7 @@ AUI().add(
 						method: 'POST',
 						on: {
 							failure: function (event, id, obj) {
-								instance.setStatus('error', 'unable-to-connect-with-mail-server');
+								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 							},
 							success: function (event, id, obj) {
 								var responseData = this.get('responseData');
