@@ -21,6 +21,7 @@
 <%@ page import="com.liferay.knowledgebase.util.comparator.ArticleTitleComparator" %>
 <%@ page import="com.liferay.portal.NoSuchGroupException" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
+<%@ page import="com.liferay.portal.kernel.util.ArrayUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.OrderByComparator" %>
 <%@ page import="com.liferay.portal.model.Group" %>
 <%@ page import="com.liferay.portal.model.Layout" %>
