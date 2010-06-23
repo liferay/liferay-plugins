@@ -58,7 +58,8 @@ public interface GadgetLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteGadget(com.liferay.opensocial.model.Gadget gadget)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(

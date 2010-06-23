@@ -59,7 +59,8 @@ public abstract class GadgetLocalServiceBaseImpl implements GadgetLocalService {
 		gadgetPersistence.remove(gadgetId);
 	}
 
-	public void deleteGadget(Gadget gadget) throws SystemException {
+	public void deleteGadget(Gadget gadget)
+		throws PortalException, SystemException {
 		gadgetPersistence.remove(gadget);
 	}
 

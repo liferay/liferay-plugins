@@ -53,7 +53,8 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 	}
 
 	public void deleteGadget(com.liferay.opensocial.model.Gadget gadget)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_gadgetLocalService.deleteGadget(gadget);
 	}
 

@@ -78,7 +78,11 @@ public class GadgetLocalServiceImpl
 		return gadget;
 	}
 
-	public void deleteGadget(Gadget gadget) throws SystemException {
+	public void deleteGadget(Gadget gadget)
+		throws PortalException, SystemException {
+
+		destroyGadget(gadget);
+
 		gadgetPersistence.remove(gadget);
 	}
 

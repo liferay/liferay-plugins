@@ -56,7 +56,8 @@ public class GadgetLocalServiceUtil {
 	}
 
 	public static void deleteGadget(com.liferay.opensocial.model.Gadget gadget)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteGadget(gadget);
 	}
 

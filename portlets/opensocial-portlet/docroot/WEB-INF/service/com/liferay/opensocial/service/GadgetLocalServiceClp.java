@@ -112,7 +112,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	public void deleteGadget(com.liferay.opensocial.model.Gadget gadget)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(gadget);
 
 		if (gadget == null) {
@@ -123,6 +124,10 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 			_classLoaderProxy.invoke("deleteGadget", new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
