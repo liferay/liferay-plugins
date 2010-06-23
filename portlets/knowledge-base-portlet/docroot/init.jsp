@@ -95,11 +95,14 @@
 <%@ page import="java.util.Map" %>
 
 <%@ page import="javax.portlet.PortletPreferences" %>
+<%@ page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
 
 <%
+WindowState windowState = renderRequest.getWindowState();
+
 String currentURL = PortalUtil.getCurrentURL(request);
 %>

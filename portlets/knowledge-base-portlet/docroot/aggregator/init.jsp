@@ -66,6 +66,15 @@ else if (orderByColumn.equals("priority")) {
 else if (orderByColumn.equals("title")) {
 	orderByComparator = new ArticleTitleComparator(orderByAscending);
 }
+
+if (articleWindowState.equals(WindowState.MAXIMIZED.toString()) && windowState.equals(WindowState.MAXIMIZED)) {
+	String backURL = currentURL;
+
+	backURL = HttpUtil.setParameter(backURL, "p_p_state", WindowState.NORMAL.toString());
+	backURL = HttpUtil.removeParameter(backURL, renderResponse.getNamespace() + "jspPage");
+
+	portletDisplay.setURLBack(backURL);
+}
 %>
 
 <%!
