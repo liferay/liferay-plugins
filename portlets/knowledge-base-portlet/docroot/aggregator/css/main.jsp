@@ -21,3 +21,13 @@
 </liferay-util:buffer>
 
 <%= StringUtil.replace(html, "knowledge-base-portlet-admin", "knowledge-base-portlet-aggregator") %>
+
+/* ---------- Configuration ---------- */
+
+.portlet-configuration .kb-field-wrapper {
+	margin: 10px 0;
+}
+
+.portlet-configuration .kb-field-wrapper .aui-field-wrapper-content {
+	margin: 0;
+}

@@ -83,7 +83,30 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 				<aui:input inlineLabel="left" label="enable-comment-ratings" name="enableArticleCommentRatings" type="checkbox" value="<%= enableArticleCommentRatings %>" />
 			</c:when>
 			<c:when test='<%= tabs2.equals("selection-method") %>'>
-				Placeholder
+				<aui:select name="selectionMethod">
+					<aui:option label='<%= "this-" + (themeDisplay.getScopeGroup().isOrganization() ? "organization" : "community") %>' selected='<%= selectionMethod.equals("parent-group") %>' value="parent-group" />
+				</aui:select>
+
+				<div class="kb-field-wrapper" id="<portlet:namespace />sortOptions">
+					<aui:field-wrapper label="options">
+						<aui:select inlineField="<%= true %>" label="" name="allArticles">
+							<aui:option label="all-articles" selected="<%= allArticles %>" value="<%= true %>" />
+							<aui:option label="root-articles" selected="<%= !allArticles %>" value="<%= false %>" />
+						</aui:select>
+
+						<aui:select inlineField="<%= true %>" inlineLabel="left" label="order-by" name="orderByColumn">
+							<aui:option label="create-date" selected='<%= orderByColumn.equals("create-date") %>' />
+							<aui:option label="modified-date" selected='<%= orderByColumn.equals("modified-date") %>' />
+							<aui:option label="priority" selected='<%= orderByColumn.equals("priority") %>' />
+							<aui:option label="title" selected='<%= orderByColumn.equals("title") %>' />
+						</aui:select>
+
+						<aui:select inlineField="<%= true %>" label="" name="orderByAscending">
+							<aui:option label="ascending" selected="<%= orderByAscending %>" value="<%= true %>" />
+							<aui:option label="descending" selected="<%= !orderByAscending %>" value="<%= false %>" />
+						</aui:select>
+					</aui:field-wrapper>
+				</div>
 			</c:when>
 			<c:when test='<%= tabs2.equals("rss") %>'>
 				Placeholder

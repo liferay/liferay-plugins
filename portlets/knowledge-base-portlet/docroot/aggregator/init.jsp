@@ -16,7 +16,10 @@
 
 <%@ include file="/init.jsp" %>
 
+<%@ page import="com.liferay.knowledgebase.util.comparator.ArticleCreateDateComparator" %>
+<%@ page import="com.liferay.knowledgebase.util.comparator.ArticleTitleComparator" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
+<%@ page import="com.liferay.portal.kernel.util.OrderByComparator" %>
 
 <%
 PortletPreferences preferences = renderRequest.getPreferences();
@@ -34,4 +37,27 @@ String articleWindowState = preferences.getValue("article-window-state", WindowS
 String childArticlesDisplayStyle = preferences.getValue("child-articles-display-style", "abstract");
 boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enable-article-comments", null), true);
 boolean enableArticleCommentRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-comment-ratings", null));
+
+String selectionMethod = preferences.getValue("selection-method", "parent-group");
+long[] scopeGroupIds = GetterUtil.getLongValues(preferences.getValues("scope-group-ids", new String[0]));
+long[] resourcePrimKeys = GetterUtil.getLongValues(preferences.getValues("resource-prim-keys", new String[0]));
+
+boolean allArticles = GetterUtil.getBoolean(preferences.getValue("all-articles", null), true);
+String orderByColumn = preferences.getValue("order-by-column", "modified-date");
+boolean orderByAscending = GetterUtil.getBoolean(preferences.getValue("order-by-ascending", null));
+
+OrderByComparator orderByComparator = null;
+
+if (orderByColumn.equals("create-date")) {
+	orderByComparator = new ArticleCreateDateComparator(orderByAscending);
+}
+else if (orderByColumn.equals("modified-date")) {
+	orderByComparator = new ArticleModifiedDateComparator(orderByAscending);
+}
+else if (orderByColumn.equals("priority")) {
+	orderByComparator = new ArticlePriorityComparator(orderByAscending);
+}
+else if (orderByColumn.equals("title")) {
+	orderByComparator = new ArticleTitleComparator(orderByAscending);
+}
 %>
