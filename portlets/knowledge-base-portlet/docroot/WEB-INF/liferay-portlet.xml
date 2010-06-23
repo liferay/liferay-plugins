@@ -24,7 +24,7 @@
 		<control-panel-entry-weight>7.5</control-panel-entry-weight>
 		<show-portlet-access-denied>false</show-portlet-access-denied>
 		<scopeable>true</scopeable>
-		<header-portlet-css>/admin/css/main.css</header-portlet-css>
+		<header-portlet-css>/admin/css/main.jsp</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet-admin</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>
