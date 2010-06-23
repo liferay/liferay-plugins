@@ -17,8 +17,10 @@ package com.liferay.knowledgebase.aggregator.action;
 import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import javax.portlet.ActionRequest;
@@ -58,6 +60,9 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		if (tabs2.equals("display-settings")) {
 			updateDisplaySettings(actionRequest, preferences);
+		}
+		else if (tabs2.equals("selection-method")) {
+			updateSelectionMethod(actionRequest, preferences);
 		}
 
 		if (SessionErrors.isEmpty(actionRequest)) {
@@ -106,6 +111,34 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		preferences.setValue(
 			"enable-article-comment-ratings",
 			String.valueOf(enableArticleCommentRatings));
+	}
+
+	protected void updateSelectionMethod(
+			ActionRequest actionRequest, PortletPreferences preferences)
+		throws Exception {
+
+		String selectionMethod = ParamUtil.getString(
+			actionRequest, "selectionMethod");
+		long[] scopeGroupIds = StringUtil.split(
+			ParamUtil.getString(actionRequest, "scopeGroupIds"), 0L);
+		long[] resourcePrimKeys = StringUtil.split(
+			ParamUtil.getString(actionRequest, "resourcePrimKeys"), 0L);
+		boolean allArticles = ParamUtil.getBoolean(
+			actionRequest, "allArticles");
+		String orderByColumn = ParamUtil.getString(
+			actionRequest, "orderByColumn");
+		boolean orderByAscending = ParamUtil.getBoolean(
+			actionRequest, "orderByAscending");
+
+		preferences.setValue("selection-method", selectionMethod);
+		preferences.setValues(
+			"scope-group-ids", ArrayUtil.toStringArray(scopeGroupIds));
+		preferences.setValues(
+			"resource-prim-keys", ArrayUtil.toStringArray(resourcePrimKeys));
+		preferences.setValue("all-articles", String.valueOf(allArticles));
+		preferences.setValue("order-by-column", orderByColumn);
+		preferences.setValue(
+			"order-by-ascending", String.valueOf(orderByAscending));
 	}
 
 }
