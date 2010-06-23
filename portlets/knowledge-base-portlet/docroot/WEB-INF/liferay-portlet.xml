@@ -30,6 +30,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
+		<configuration-action-class>com.liferay.knowledgebase.aggregator.action.ConfigurationActionImpl</configuration-action-class>
 		<css-class-wrapper>knowledge-base-portlet-aggregator</css-class-wrapper>
 	</portlet>
 	<portlet>
