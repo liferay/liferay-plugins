@@ -257,7 +257,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 
 		if ("create-folder".equals(action.getCaption())) {
 			String title = Lang.get("create-folder");
-			String message = Lang.get("please-enter-new-folder-name");
+			String message = Lang.get("please-enter-a-folder-name");
 			final ConfirmDialog confirm = new ConfirmDialog(
 					Lang.get("confirm"), title, message);
 			final TextField newNameField = new TextField();
@@ -277,7 +277,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 						synchronizeAccount(accountId, Controller.get());
 						refresh();
 					} else {
-						Controller.get().showError(Lang.get("please-enter-new-folder-name"));
+						Controller.get().showError(Lang.get("please-enter-a-folder-name"));
 					}
 				}
 			});
@@ -294,7 +294,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 
 		if ("rename-folder".equals(action.getCaption())) {
 			String title = Lang.get("rename-folder");
-			String message = Lang.get("please-enter-renamed-folder-name");
+			String message = Lang.get("please-enter-a-new-folder-name");
 			final ConfirmDialog confirm = new ConfirmDialog(
 					Lang.get("confirm"), title, message);
 			final TextField newNameField = new TextField();
@@ -314,7 +314,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 						synchronizeAccount(folder.getAccountId(), Controller.get());
 						refresh();
 					} else {
-						Controller.get().showError(Lang.get("please-enter-renamed-folder-name"));
+						Controller.get().showError(Lang.get("please-enter-a-new-folder-name"));
 					}
 				}
 			});

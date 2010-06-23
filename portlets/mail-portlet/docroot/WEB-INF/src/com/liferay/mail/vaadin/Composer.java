@@ -273,7 +273,7 @@ public class Composer extends CustomComponent {
 
 		// from
 		from = new ComboBox();
-		from.setDescription(Lang.get("message-will-be-sent-from-account"));
+		from.setDescription(Lang.get("the-account-to-send-the-message-from"));
 		from.setImmediate(true);
 		from.setHeight("-1px");
 		from.setWidth("100.0%");
