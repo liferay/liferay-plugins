@@ -17,16 +17,12 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Portlet portlet = (Portlet)request.getAttribute(WebKeys.RENDER_PORTLET);
-
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
-
-String pluginId = portlet.getPluginId();
 %>
 
-<c:if test="<%= pluginId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
+<c:if test="<%= portletName.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
 	<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || ArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) || ArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS) || ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 		<div class="kb-article-icons">
 			<table class="lfr-table">

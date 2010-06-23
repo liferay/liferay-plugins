@@ -17,16 +17,12 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Portlet portlet = (Portlet)request.getAttribute(WebKeys.RENDER_PORTLET);
-
 String topLink = ParamUtil.getString(request, "topLink", "home");
 
 String path = GetterUtil.getString(request.getPathInfo());
-
-String pluginId = portlet.getPluginId();
 %>
 
-<c:if test="<%= pluginId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
+<c:if test="<%= portletName.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
 	<div class="top-links-container">
 		<div class="top-links">
 			<div class="top-links-navigation">

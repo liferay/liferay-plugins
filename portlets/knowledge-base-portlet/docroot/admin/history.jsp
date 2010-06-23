@@ -17,14 +17,10 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Portlet portlet = (Portlet)request.getAttribute(WebKeys.RENDER_PORTLET);
-
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 int sourceVersion = ParamUtil.getInteger(request, "sourceVersion", (article.getVersion() != ArticleConstants.DEFAULT_VERSION) ? (article.getVersion() - 1) : article.getVersion());
 int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVersion());
-
-String pluginId = portlet.getPluginId();
 %>
 
 <liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
@@ -98,7 +94,7 @@ String pluginId = portlet.getPluginId();
 					property="title"
 				/>
 
-				<c:if test="<%= pluginId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
+				<c:if test="<%= portletName.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
 					<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 						<liferay-ui:search-container-column-text
 							align="right"
