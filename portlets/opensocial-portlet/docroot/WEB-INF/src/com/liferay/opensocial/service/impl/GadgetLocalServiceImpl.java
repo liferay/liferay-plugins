@@ -21,6 +21,9 @@ import com.liferay.opensocial.service.ClpSerializer;
 import com.liferay.opensocial.service.base.GadgetLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.messaging.DestinationNames;
+import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -73,12 +76,30 @@ public class GadgetLocalServiceImpl
 
 		gadgetPersistence.update(gadget, false);
 
-		initGadget(gadget);
+		Message message = new Message();
+
+		message.put("command", "add");
+		message.put("companyId", companyId);
+		message.put("name", name);
+		message.put("url", url);
+		message.put("gadgetId", gadgetId);
+
+		MessageBusUtil.sendMessage(DestinationNames.OPENSOCIAL, message);
 
 		return gadget;
 	}
 
 	public void deleteGadget(Gadget gadget) throws SystemException {
+		Message message = new Message();
+
+		message.put("command", "delete");
+		message.put("companyId", gadget.getCompanyId());
+		message.put("name", gadget.getName());
+		message.put("url", gadget.getUrl());
+		message.put("gadgetId", gadget.getGadgetId());
+
+		MessageBusUtil.sendMessage(DestinationNames.OPENSOCIAL, message);
+
 		gadgetPersistence.remove(gadget);
 	}
 
@@ -90,11 +111,35 @@ public class GadgetLocalServiceImpl
 		deleteGadget(gadget);
 	}
 
+	public void destroyGadget(
+			long companyId, long gadgetId, String name, String url)
+		throws PortalException, SystemException {
+
+		try {
+			Portlet portlet = getPortlet(companyId, gadgetId, name, url);
+
+			PortletLocalServiceUtil.destroyRemotePortlet(portlet);
+
+			PortletInstanceFactoryUtil.destroy(portlet);
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (SystemException se) {
+			throw se;
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+	}
+
 	public void destroyGadgets() throws PortalException, SystemException {
 		List<Gadget> gadgets = gadgetPersistence.findAll();
 
 		for (Gadget gadget : gadgets) {
-			destroyGadget(gadget);
+			destroyGadget(
+				gadget.getCompanyId(), gadget.getGadgetId(), gadget.getName(),
+				gadget.getUrl());
 		}
 	}
 
@@ -108,13 +153,36 @@ public class GadgetLocalServiceImpl
 		return gadgetPersistence.countByCompanyId(companyId);
 	}
 
+	public void initGadget(
+			long companyId, long gadgetId, String name, String url)
+		throws PortalException, SystemException {
+
+		try {
+			Portlet portlet = getPortlet(companyId, gadgetId, name, url);
+
+			PortletLocalServiceUtil.deployRemotePortlet(
+				portlet, _OPENSOCIAL_CATEGORY);
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (SystemException se) {
+			throw se;
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+	}
+
 	public void initGadgets()
 		throws PortalException, SystemException {
 
 		List<Gadget> gadgets = gadgetPersistence.findAll();
 
 		for (Gadget gadget : gadgets) {
-			initGadget(gadget);
+			initGadget(
+				gadget.getCompanyId(), gadget.getGadgetId(), gadget.getName(),
+				gadget.getUrl());
 		}
 	}
 
@@ -159,29 +227,11 @@ public class GadgetLocalServiceImpl
 		portlet.setPortletInfo(portletInfo);
 	}
 
-	protected void destroyGadget(Gadget gadget)
-		throws PortalException, SystemException {
+	protected Portlet getPortlet(
+			long companyId, long gadgetId, String name, String url)
+		throws Exception {
 
-		try {
-			Portlet portlet = getPortlet(gadget);
-
-			PortletLocalServiceUtil.destroyRemotePortlet(portlet);
-
-			PortletInstanceFactoryUtil.destroy(portlet);
-		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (SystemException se) {
-			throw se;
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-	}
-
-	protected Portlet getPortlet(Gadget gadget) throws Exception {
-		Portlet portlet = _portletsPool.get(gadget.getGadgetId());
+		Portlet portlet = _portletsPool.get(gadgetId);
 
 		if (portlet != null) {
 			return portlet;
@@ -190,14 +240,14 @@ public class GadgetLocalServiceImpl
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(GadgetPortlet.PORTLET_NAME_PREFIX);
-		sb.append(gadget.getCompanyId());
+		sb.append(companyId);
 		sb.append(StringPool.UNDERLINE);
-		sb.append(gadget.getGadgetId());
+		sb.append(gadgetId);
 
 		String portletId = PortalUtil.getJsSafePortletId(sb.toString());
 
 		portlet = PortletLocalServiceUtil.clonePortlet(
-			gadget.getCompanyId(), _GADGET_PORTLET_ID);
+			companyId, _GADGET_PORTLET_ID);
 
 		portlet.setPortletId(portletId);
 		portlet.setTimestamp(System.currentTimeMillis());
@@ -216,9 +266,9 @@ public class GadgetLocalServiceImpl
 		initParams.put(
 			InvokerPortlet.INIT_INVOKER_PORTLET_NAME, _GADGET_PORTLET_NAME);
 
-		addPortletExtraInfo(portlet, portletApp, gadget.getName());
+		addPortletExtraInfo(portlet, portletApp, name);
 
-		_portletsPool.put(gadget.getGadgetId(), portlet);
+		_portletsPool.put(gadgetId, portlet);
 
 		PortletBag portletBag = PortletBagPool.get(_GADGET_PORTLET_ID);
 
@@ -230,26 +280,6 @@ public class GadgetLocalServiceImpl
 		PortletBagPool.put(portletId, portletBag);
 
 		return portlet;
-	}
-
-	protected void initGadget(Gadget gadget)
-		throws PortalException, SystemException {
-
-		try {
-			Portlet portlet = getPortlet(gadget);
-
-			PortletLocalServiceUtil.deployRemotePortlet(
-				portlet, _OPENSOCIAL_CATEGORY);
-		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (SystemException se) {
-			throw se;
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
 	}
 
 	protected void validate(String name) throws PortalException {

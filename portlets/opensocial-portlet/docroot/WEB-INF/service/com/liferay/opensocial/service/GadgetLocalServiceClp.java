@@ -487,6 +487,49 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public void destroyGadget(long companyId, long gadgetId,
+		java.lang.String name, java.lang.String url)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object paramObj1 = new LongWrapper(gadgetId);
+
+		Object paramObj2 = ClpSerializer.translateInput(name);
+
+		if (name == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj3 = ClpSerializer.translateInput(url);
+
+		if (url == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
+		}
+
+		try {
+			_classLoaderProxy.invoke("destroyGadget",
+				new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public void destroyGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -569,6 +612,49 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		}
 
 		return ((Integer)returnObj).intValue();
+	}
+
+	public void initGadget(long companyId, long gadgetId,
+		java.lang.String name, java.lang.String url)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object paramObj1 = new LongWrapper(gadgetId);
+
+		Object paramObj2 = ClpSerializer.translateInput(name);
+
+		if (name == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj3 = ClpSerializer.translateInput(url);
+
+		if (url == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
+		}
+
+		try {
+			_classLoaderProxy.invoke("initGadget",
+				new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
 	}
 
 	public void initGadgets()
