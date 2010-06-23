@@ -160,6 +160,20 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		}
 	}
 
+	public Gadget remove(Gadget gadget) throws SystemException {
+		for (ModelListener<Gadget> listener : listeners) {
+			listener.onBeforeRemove(gadget);
+		}
+
+		gadget = removeImpl(gadget);
+
+		for (ModelListener<Gadget> listener : listeners) {
+			listener.onAfterRemove(gadget);
+		}
+
+		return gadget;
+	}
+
 	protected Gadget removeImpl(Gadget gadget) throws SystemException {
 		gadget = toUnwrappedModel(gadget);
 
@@ -598,6 +612,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 					sql = query.toString();
 				}
+
 				else {
 					sql = _SQL_SELECT_GADGET.concat(GadgetModelImpl.ORDER_BY_JPQL);
 				}

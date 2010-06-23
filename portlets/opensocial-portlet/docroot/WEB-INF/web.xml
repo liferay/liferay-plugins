@@ -2,10 +2,6 @@
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
-	<context-param>
-		<param-name>portalContextConfigLocation</param-name>
-		<param-value>/WEB-INF/classes/META-INF/messaging-spring.xml</param-value>
-	</context-param>
 	<listener>
 		<listener-class>com.liferay.portal.kernel.servlet.PortletContextListener</listener-class>
 	</listener>

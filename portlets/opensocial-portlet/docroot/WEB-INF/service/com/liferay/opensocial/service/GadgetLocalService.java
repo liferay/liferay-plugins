@@ -108,11 +108,6 @@ public interface GadgetLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void destroyGadget(long companyId, long gadgetId,
-		java.lang.String name, java.lang.String url)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
 	public void destroyGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -125,11 +120,6 @@ public interface GadgetLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getGadgetsCount(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public void initGadget(long companyId, long gadgetId,
-		java.lang.String name, java.lang.String url)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
 
 	public void initGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException,
