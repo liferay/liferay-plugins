@@ -33,10 +33,15 @@ String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, req
 %>
 
 <script type="text/javascript">
-	function <portlet:namespace />saveProducer() {
-		document.<portlet:namespace />fm.<portlet:namespace />portletIds.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentPortletIds);
-		submitForm(document.<portlet:namespace />fm);
-	}
+	Liferay.provide(
+		window,
+		'<portlet:namespace />saveProducer',
+		function() {
+			document.<portlet:namespace />fm.<portlet:namespace />portletIds.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentPortletIds);
+			submitForm(document.<portlet:namespace />fm);
+		},
+		['liferay-util-list-fields']
+	);
 </script>
 
 <form action="<portlet:actionURL name="updateWSRPProducer"><portlet:param name="jspPage" value="/admin/edit_producer.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveProducer(); return false;">
