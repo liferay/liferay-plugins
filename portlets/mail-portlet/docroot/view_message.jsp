@@ -76,6 +76,15 @@ MailManager mailManager = MailManager.getInstance(request);
 		</aui:column>
 	</aui:layout>
 
+	<c:choose>
+		<c:when test="<%= Validator.isNotNull(message.getSubject()) %>">
+			<h3 class="subject"><%= HtmlUtil.escape(message.getSubject()) %></h3>
+		</c:when>
+		<c:otherwise>
+			<h3 class="no-subject"><liferay-ui:message key="no-subject" /></h3>
+		</c:otherwise>
+	</c:choose>
+
 	<div class="message-header">
 		<table>
 		<tr>
@@ -112,14 +121,6 @@ MailManager mailManager = MailManager.getInstance(request);
 			</td>
 			<td>
 				<%= dateFormatDateTime.format(message.getSentDate()) %>
-			</td>
-		</tr>
-		<tr>
-			<td class="message-hearder-label">
-				<liferay-ui:message key="subject" />
-			</td>
-			<td>
-				<%= message.getSubject() %>
 			</td>
 		</tr>
 		</table>

@@ -95,6 +95,11 @@
 	margin-right: 1em;
 }
 
+.mail-portlet .no-subject {
+	color: #777;
+	font-style: italic;
+}
+
 .mail-portlet .message-count {
 	float: right;
 }
