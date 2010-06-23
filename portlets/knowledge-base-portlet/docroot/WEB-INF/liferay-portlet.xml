@@ -33,6 +33,7 @@
 		<icon>/icons/aggregator.png</icon>
 		<configuration-action-class>com.liferay.knowledgebase.aggregator.action.ConfigurationActionImpl</configuration-action-class>
 		<instanceable>true</instanceable>
+		<header-portlet-css>/aggregator/css/main.jsp</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet-aggregator</css-class-wrapper>
 	</portlet>
 	<portlet>
