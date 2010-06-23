@@ -281,8 +281,6 @@ AUI().add(
 			}
 		);
 
-		// Data Store
-
 		var DefaultStore = A.Component.create(
 			{
 				ATTRS: {
@@ -380,8 +378,6 @@ AUI().add(
 			Expando: ExpandoStore
 		};
 
-		// Static Gadget Methods
-
 		var _instances = {};
 
 		Gadget.register = function(gadget) {
@@ -403,8 +399,6 @@ AUI().add(
 
 			return _instances[id];
 		};
-
-		// Gadget RPC Registration
 
 		gadgets.rpc.register(
 			'resize_iframe',
