@@ -80,6 +80,15 @@
 	padding: 1px 0;
 }
 
+.mail-portlet .message-list tr.unread {
+	font-weight: bold;
+}
+
+.mail-portlet .message-list tr.important {
+	color: #A00;
+	font-weight: normal;
+}
+
 .mail-portlet .message-list td div {
 	height: 18px;
 	overflow: hidden;

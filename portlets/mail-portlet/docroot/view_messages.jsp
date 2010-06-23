@@ -199,9 +199,23 @@ MailManager mailManager = MailManager.getInstance(request);
 						else {
 							date = dateFormatDateTime.format(message.getSentDate());
 						}
+
+						String cssClass2 = "results-row no-hover";
+
+						if (!message.hasFlag(MailConstants.FLAG_SEEN)) {
+							cssClass2 += " unread";
+						}
+
+						if (message.hasFlag(MailConstants.FLAG_FLAGGED)) {
+							cssClass2 += " important";
+						}
+
+						if ((messageNumber % 2) == 0) {
+							cssClass2 += " alt";
+						}
 					%>
 
-						<tr class="results-row no-hover<%= ((messageNumber % 2) == 0) ? " alt" : "" %>">
+						<tr class="<%=  cssClass2 %>">
 							<td>
 								<aui:input id="message<%= message.getMessageId() %>" label="" messageId="<%= message.getMessageId() %>" name="message" type="checkbox" value="<%= message.getMessageId() %>" />
 							</td>
