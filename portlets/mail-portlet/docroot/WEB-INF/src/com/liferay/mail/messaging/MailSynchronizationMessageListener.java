@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
+import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.StringPool;
 
 /**
@@ -29,19 +30,50 @@ import com.liferay.portal.kernel.util.StringPool;
  * </b></a>
  *
  * @author Scott Lee
+ * @author Ryan Park
  */
 public class MailSynchronizationMessageListener implements MessageListener {
 
 	public void receive(Message message) {
+		String cmd = message.getString(Constants.CMD);
+
 		try {
-			doReceive(message);
+			if (cmd.equals("synchronize")) {
+				synchronize(message);
+			}
+			else if (cmd.equals("flag")) {
+				flagMessage(message);
+			}
 		}
 		catch (Exception e) {
 			_log.error("Unable to process message " + message, e);
 		}
 	}
 
-	protected void doReceive(Message message) throws Exception {
+	protected void flagMessage(Message message) throws Exception {
+		long userId = message.getLong("userId");
+		long accountId = message.getLong("accountId");
+		long folderId = message.getLong("folderId");
+		long messageId = message.getLong("messageId");
+		String password = message.getString("password");
+		int flag = message.getInteger("flag");
+		boolean flagValue = message.getBoolean("flagValue");
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Flagging message for messageId " + messageId);
+		}
+
+		if (password.equals(StringPool.BLANK)) {
+			return;
+		}
+
+		Mailbox mailbox = MailboxFactoryUtil.getMailbox(
+			userId, accountId, password);
+
+		mailbox.updateFlags(folderId, new long[] {messageId}, flag, flagValue);
+	}
+
+	protected void synchronize(Message message) throws Exception {
 		long userId = message.getLong("userId");
 		long accountId = message.getLong("accountId");
 		long folderId = message.getLong("folderId");

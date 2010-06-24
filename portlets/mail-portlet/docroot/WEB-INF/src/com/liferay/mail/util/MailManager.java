@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
+import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.StringPool;
@@ -60,6 +61,7 @@ import javax.servlet.http.HttpServletRequest;
  * <a href="MailManager.java.html"><b><i>View Source</i></b></a>
  *
  * @author Scott Lee
+ * @author Ryan Park
  */
 public class MailManager {
 
@@ -501,6 +503,26 @@ public class MailManager {
 		return _passwordRetriever.getPassword(accountId);
 	}
 
+	public void markAsRead(long accountId, long folderId, long messageId)
+		throws PortalException, SystemException {
+
+		com.liferay.portal.kernel.messaging.Message message =
+			new com.liferay.portal.kernel.messaging.Message();
+
+		message.put(Constants.CMD, "flag");
+
+		message.put("userId", _user.getUserId());
+		message.put("accountId", accountId);
+		message.put("folderId", folderId);
+		message.put("messageId", messageId);
+		message.put("password", _passwordRetriever.getPassword(accountId));
+		message.put("flag", MailConstants.FLAG_SEEN);
+		message.put("flagValue", true);
+
+		MessageBusUtil.sendMessage(
+			DestinationNames.MAIL_SYNCHRONIZER, message);
+	}
+
 	public JSONObject moveMessages(long folderId, long[] messageIds)
 		throws PortalException, SystemException {
 
@@ -788,6 +810,8 @@ public class MailManager {
 
 		com.liferay.portal.kernel.messaging.Message message =
 			new com.liferay.portal.kernel.messaging.Message();
+
+		message.put(Constants.CMD, "synchronize");
 
 		message.put("userId", _user.getUserId());
 		message.put("accountId", accountId);

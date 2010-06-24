@@ -35,6 +35,10 @@ MailManager mailManager = MailManager.getInstance(request);
 	Message message = messageDisplay.getMessage();
 	int messageCount = messageDisplay.getMessageCount();
 
+	if (!message.hasFlag(MailConstants.FLAG_SEEN)) {
+		mailManager.markAsRead(message.getAccountId(), folderId, message.getMessageId());
+	}
+
 	int pageNumber = (int)(Math.ceil(messageNumber / (double)messagesPerPage));
 	%>
 

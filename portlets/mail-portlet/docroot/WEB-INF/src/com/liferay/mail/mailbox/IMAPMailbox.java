@@ -426,6 +426,10 @@ public class IMAPMailbox extends BaseMailbox {
 		Account account = AccountLocalServiceUtil.getAccount(
 			folder.getAccountId());
 
+		for (long messageId : messageIds) {
+			MessageLocalServiceUtil.updateFlag(messageId, flag, value);
+		}
+
 		if (account.getDraftFolderId() == folderId) {
 			_imapAccessor.updateFlags(folderId, messageIds, flag, value, false);
 		}
