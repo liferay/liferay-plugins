@@ -57,7 +57,9 @@ public class AlloyPortlet extends GenericPortlet {
 
 		Router router = friendlyURLMapper.getRouter();
 
-		_defaultRouteParameters = router.urlToParameters("GET/");
+		_defaultRouteParameters = new HashMap<String, String>();
+		
+		router.urlToParameters("GET/", _defaultRouteParameters);
 		
 		super.init(portletConfig);
 	}

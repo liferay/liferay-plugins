@@ -92,10 +92,9 @@ public class AlloyFriendlyURLMapper extends DefaultFriendlyURLMapper {
 		friendlyURLPath = method +
 			friendlyURLPath.substring(getMapping().length() + 1);
 
-		Map<String, String> routeParameters = router.urlToParameters(
-			friendlyURLPath);
+		Map<String, String> routeParameters = new HashMap<String, String>();
 
-		if (routeParameters == null) {
+		if (!router.urlToParameters(friendlyURLPath, routeParameters)) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"No route could be found to match URL " + friendlyURLPath);
