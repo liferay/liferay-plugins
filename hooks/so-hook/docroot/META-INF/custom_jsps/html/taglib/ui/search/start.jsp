@@ -26,8 +26,8 @@ Group group = layout.getGroup();
 <liferay-util:include page="/html/taglib/ui/search/start.portal.jsp" />
 
 <c:if test="<%= group.isUser() %>">
-	<aui:script>
-		var searchOptions = AUI().all('select[name=<%= namespace %>groupId] option');
+	<aui:script use="aui-base">
+		var searchOptions = A.all('select[name=<%= namespace %>groupId] option');
 
 		searchOptions.each(
 			function(searchOption, index, collection) {

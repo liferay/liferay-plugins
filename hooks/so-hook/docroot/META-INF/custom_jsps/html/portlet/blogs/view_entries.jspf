@@ -21,8 +21,8 @@
 
 <%@ include file="/html/portlet/blogs/view_entries.portal.jspf" %>
 
-<aui:script>
-	var addEntryButton = AUI().one('#<portlet:namespace />addEntryButton');
+<aui:script use="aui-base">
+	var addEntryButton = A.one('#<portlet:namespace />addEntryButton');
 
 	addEntryButton.setAttribute('onclick', '');
 

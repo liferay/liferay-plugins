@@ -39,8 +39,8 @@ if (x != -1) {
 <%= html %>
 
 <c:if test="<%= group.isUser() %>">
-	<aui:script>
-		var searchOptions = AUI().all('select[name=<portlet:namespace />groupId] option');
+	<aui:script use="aui-base">
+		var searchOptions = A.all('select[name=<portlet:namespace />groupId] option');
 
 		searchOptions.each(
 			function(searchOption, index, collection) {
