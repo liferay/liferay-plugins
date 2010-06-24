@@ -4,7 +4,9 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<friendly-url-mapper-class>com.liferay.chat.portlet.ChatFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapping>chat</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/chat/portlet/chat-friendly-url-routes.xml</friendly-url-routes>
 		<poller-processor-class>com.liferay.chat.poller.ChatPollerProcessor</poller-processor-class>
 		<use-default-template>false</use-default-template>
 		<css-class-wrapper>chat-portlet</css-class-wrapper>
