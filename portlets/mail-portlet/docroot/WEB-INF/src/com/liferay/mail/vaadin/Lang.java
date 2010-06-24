@@ -16,32 +16,18 @@ package com.liferay.mail.vaadin;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
 
-import java.util.ResourceBundle;
-
 /**
  * <a href="Lang.java.html"><b><i>View Source</i></b></a>
  *
  * @author Henri Sara
  */
 public class Lang {
-
-	public static String get(String key) {
-		String value = resourceBundle.getString(key);
-
-		if (value != null) {
-			return value;
-		}
-		else {
-			return LanguageUtil.get(Controller.get().getUserLocale(), key);
-		}
+	public static String get(String key) {	
+		return LanguageUtil.get(Controller.get().getPortletConfig(),Controller.get().getUserLocale(), key);
 	}
 
 	public static String get(String key, String... arguments) {
 		return LanguageUtil.format(
 			Controller.get().getUserLocale(), Lang.get(key), arguments);
 	}
-
-	private static ResourceBundle resourceBundle = ResourceBundle.getBundle(
-		"content.Language", Controller.get().getUserLocale());
-
 }

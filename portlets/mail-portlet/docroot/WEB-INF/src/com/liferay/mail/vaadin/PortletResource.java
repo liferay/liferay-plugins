@@ -24,7 +24,7 @@ import com.vaadin.terminal.ExternalResource;
 public class PortletResource extends ExternalResource {
 
 	public PortletResource(String sourceURL) {
-		super("/"+MailPortlet.SERVLET_CONTEXT_NAME+"/" + sourceURL);
+		super("/"+MailPortlet.CONTEXT_NAME+"/" + sourceURL);
 	}
 
 }

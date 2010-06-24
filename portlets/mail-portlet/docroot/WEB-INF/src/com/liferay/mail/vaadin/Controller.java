@@ -59,7 +59,8 @@ public class Controller {
 		new WeakHashMap<MessageModifiedListener, Object>();
 	// a value for the listener map entries
 	private Object present = new Object();
-
+	private PortletConfig config;
+	
 	private static TransactionListener tl;
 	private static ThreadLocal<Controller> controller =
 		new ThreadLocal<Controller>();
@@ -121,12 +122,12 @@ public class Controller {
 				.getHttpServletRequest(request);
 
 		// get PortletConfig
-		PortletConfig portletConfig = (PortletConfig)request.getAttribute(
+		config = (PortletConfig)request.getAttribute(
 			JavaConstants.JAVAX_PORTLET_CONFIG);
-
+	
 		// create MailManager
 		passwordRetriever = new PasswordRetriever(httpRequest);
-		mailMgr = new MailManager(user, passwordRetriever, portletConfig);
+		mailMgr = new MailManager(user, passwordRetriever, config);
 	}
 
 	public static Controller get() {
@@ -137,6 +138,10 @@ public class Controller {
 	public User getUser() {
 
 		return user;
+	}
+	
+	public PortletConfig getPortletConfig(){
+		return config;
 	}
 
 	public MailApplication getApplication() {
@@ -281,7 +286,6 @@ public class Controller {
 	}
 
 	public Composer forwardInComposer(Message originalMessage) {
-
 		String newMessageSubject = "Fwd: " + originalMessage.getSubject();
 		String newMessageBody =
 			MessageUtil.createForwardMessage(originalMessage);
@@ -335,6 +339,5 @@ public class Controller {
 
 		showError(Lang.get("an-unexpected-error-occurred"), e);
 		_log.error("Unexpected error", e);
-	}
-
+	}	
 }

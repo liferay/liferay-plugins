@@ -275,6 +275,31 @@ public class FolderContainer implements Hierarchical, ItemSetChangeNotifier {
 		}
 
 	}
+	
+	public boolean isModifiable(Object itemId){
+		ItemId id = (ItemId) itemId;
+		if(id.isAccount()){
+			return false;
+		} else {
+			Folder f = id.getFolder();
+			Account account =
+				accountIdToAccount.get(f.getAccountId());
+			if (account.getInboxFolderId() == f.getFolderId()) {
+				return false;
+			}
+			else if (account.getTrashFolderId() == f.getFolderId()) {
+				return false;
+			}
+			else if (account.getDraftFolderId() == f.getFolderId()) {
+				return false;
+			}
+			else if (account.getSentFolderId() == f.getFolderId()) {
+				return false;
+			}
+			
+			return true;			
+		}		
+	}
 
 	public static Object getCaptionPropertyId() {
 

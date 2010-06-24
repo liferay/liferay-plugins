@@ -575,14 +575,19 @@ public class Composer extends CustomComponent {
 		}
 	}
 
-	private void fireSend(boolean skipPasswordCheck) {
+	private void fireSend(boolean skipPasswordCheck) {		
 		if (!getFrom().isSavePassword() && !skipPasswordCheck){
+			/*
+			 *	Password not saved, try to get it from the password retriever or from the user 
+			 */			
 			Account account = getFrom();
 			String password = null;
 			try {
 				password = Controller.get().getPasswordRetriever().getPassword(account.getAccountId());
 			} catch (PortalException e2) {
+				// Don't do anything, the password prompt will be displayed later
 			} catch (SystemException e2) {
+				// Don't do anything, the password prompt will be displayed later
 			}
 
 			if (password != null){
@@ -599,8 +604,7 @@ public class Composer extends CustomComponent {
 				}
 			} else {
 				PasswordPrompt prompt = new PasswordPrompt(account);
-				prompt.addListener(new Window.CloseListener() {
-					//@Override
+				prompt.addListener(new Window.CloseListener() {					
 					public void windowClose(CloseEvent e) {
 						PasswordPrompt prompt = (PasswordPrompt)e.getWindow();
 						if (prompt.getStatus() == PasswordPrompt.Status.VALIDATED){

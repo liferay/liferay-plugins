@@ -37,7 +37,10 @@ import javax.portlet.WindowState;
  */
 public class MailPortlet extends AbstractApplicationPortlet {
 
-	public static final String SERVLET_CONTEXT_NAME = "vaadin-mail-portlet";
+	/*
+	 * The context name from which the PortletResources are retrieved.
+	 */
+	public static final String CONTEXT_NAME = "mail-portlet";
 
 	/**
 	 * Notify user that not logged in.

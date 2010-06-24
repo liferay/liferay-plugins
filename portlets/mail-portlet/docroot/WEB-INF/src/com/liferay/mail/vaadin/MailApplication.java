@@ -312,33 +312,54 @@ public class MailApplication extends Application {
 				if (returnUrl == null) {
 					mainWindow.setContent(previousView);
 				} else {
-					composer.getWindow().open(new ExternalResource(returnUrl));
+					mainWindow.open(new ExternalResource(returnUrl));
 				}
 			}
 			public void messageSaved(Composer composer, Message message) {
 				if (returnUrl == null) {
 					mainWindow.setContent(previousView);
 				}
-				composer.getWindow().showNotification(
-						Lang.get("your-message-was-saved"),
+				mainWindow.showNotification(
+						Lang.get("saved-successfully"),
 						Notification.TYPE_TRAY_NOTIFICATION);
 				if (returnUrl != null) {
-					composer.getWindow().open(new ExternalResource(returnUrl));
+					mainWindow.open(new ExternalResource(returnUrl));
 				}
 			}
 			public void messageSent(Composer composer, Message message) {
 				if (returnUrl == null) {
 					mainWindow.setContent(previousView);
 				}
-				composer.getWindow().showNotification(
-					Lang.get("your-message-has-been-sent"), Lang.get("to") +
-						":</br>" + message.getTo() + "<br/>" + Lang.get("subject") + ": " +
-						composer.getSubject() + "<br/>" +
-						composer.getAttachments().size() + " " +
-						Lang.get("attachments"),
-					Notification.TYPE_TRAY_NOTIFICATION);
+				
+				String caption  = Lang.get("sent-successfully");
+				String description =  Lang.get("to") 
+					+":</br>" + message.getTo() 
+					+ "<br/>" + Lang.get("subject") + ": " 
+					+ composer.getSubject() + "<br/>" 
+					+ composer.getAttachments().size() + " " 
+					+ Lang.get("attachments");				
+				
+				mainWindow.showNotification(caption,description,
+						Notification.TYPE_TRAY_NOTIFICATION);
+				
+				// Refresh messages
+				try {
+					// Update account
+					Controller.get().getMailManager().synchronizeAccount(composer.getFrom().getAccountId());					
+					
+					// Refresh main mail view if necessary
+					if(previousView instanceof MainMailView){
+						((MainMailView)previousView).update();
+					}
+					
+				} catch (PortalException e) {
+					Controller.get().showError(Lang.get("unable-to-synchronize-account"), e);
+				} catch (SystemException e) {
+					Controller.get().showError(Lang.get("unable-to-synchronize-account"), e);
+				}
+				
 				if (returnUrl != null) {
-					composer.getWindow().open(new ExternalResource(returnUrl));
+					mainWindow.open(new ExternalResource(returnUrl));
 				}
 			}
 		});

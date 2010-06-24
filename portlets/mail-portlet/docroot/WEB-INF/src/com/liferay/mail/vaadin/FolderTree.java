@@ -228,11 +228,12 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 		Folder folder = getFolderContainer().getFolder(target);
 		Account account = getFolderContainer().getAccount(target);
 		ArrayList<Action> actions = new ArrayList<Action>();
-
-		if (account != null) {
+		boolean modifiable = getFolderContainer().isModifiable(target);
+		
+		if (account != null && folder == null) {
 			actions.add(new AccountAction("create-folder", account.getAccountId()));
 		}
-		if (folder != null) {
+		if (folder != null && modifiable) {
 			actions.add(new FolderAction("rename-folder", folder));
 			actions.add(new FolderAction("delete-folder", folder));
 		}
@@ -254,8 +255,8 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 		if (accountId == null) {
 			return;
 		}
-
-		if ("create-folder".equals(action.getCaption())) {
+	
+		if (Lang.get("create-folder").equals(action.getCaption())) {
 			String title = Lang.get("create-folder");
 			String message = Lang.get("please-enter-a-folder-name");
 			final ConfirmDialog confirm = new ConfirmDialog(
@@ -292,7 +293,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 			return;
 		}
 
-		if ("rename-folder".equals(action.getCaption())) {
+		if (Lang.get("rename-folder").equals(action.getCaption())) {
 			String title = Lang.get("rename-folder");
 			String message = Lang.get("please-enter-a-new-folder-name");
 			final ConfirmDialog confirm = new ConfirmDialog(
@@ -320,7 +321,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 			});
 
 			Controller.get().getApplication().getMainWindow().addWindow(confirm);
-		} else if ("delete-folder".equals(action.getCaption())) {
+		} else if (Lang.get("delete-folder").equals(action.getCaption())) {
 			final ConfirmDialog confirm =
 				new ConfirmDialog(
 					Lang.get("confirm"), Lang.get("delete-folder"),
