@@ -97,19 +97,17 @@ public class KnowledgeBaseUtil {
 			end = resourcePrimKeys.length;
 		}
 
-		if ((resourcePrimKeys.length == 0) || ((end - start) <= 0)) {
-			return new ArrayList<Article>();
-		}
-
-		Long[] selResourcePrimKeys = new Long[end - start];
+		List<Long> selResourcePrimKeys = new ArrayList<Long>();
 
 		for (int i = start; (i < end) && (i < resourcePrimKeys.length); i++) {
-			selResourcePrimKeys[i - start] = resourcePrimKeys[i];
+			selResourcePrimKeys.add(resourcePrimKeys[i]);
 		}
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put("resourcePrimKey", selResourcePrimKeys);
+		params.put(
+			"resourcePrimKey",
+			selResourcePrimKeys.toArray(new Long[selResourcePrimKeys.size()]));
 
 		List<Article> unsortedArticles = null;
 
