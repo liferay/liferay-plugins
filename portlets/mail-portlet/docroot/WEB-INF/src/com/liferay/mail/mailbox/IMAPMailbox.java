@@ -301,6 +301,10 @@ public class IMAPMailbox extends BaseMailbox {
 				String.valueOf(MailConstants.FLAG_DRAFT), 0);
 		}
 
+		if (mailFiles == null) {
+			return message;
+		}
+
 		for (MailFile mailFile : mailFiles) {
 			AttachmentLocalServiceUtil.addAttachment(
 				user.getUserId(), message.getMessageId(), null,
