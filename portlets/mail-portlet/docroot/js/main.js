@@ -677,7 +677,7 @@ AUI().add(
 					'.select-none'
 				);
 
-				setTimeout('Liferay.Mail.checkMessages(Liferay.Mail.inboxFolderId)', 60000);
+				setTimeout('Liferay.Mail._pollCheckMessages()', instance._pollInterval);
 			},
 
 			_displayContainer: function(container) {
@@ -709,13 +709,22 @@ AUI().add(
 				return messageIds;
 			},
 
+			_pollCheckMessages: function() {
+				var instance = this;
+
+				instance.checkMessages(instance.inboxFolderId);
+
+				setTimeout('Liferay.Mail._pollCheckMessages()', instance._pollInterval);
+			},
+
 			accountId: null,
 			folderId: null,
 			inboxFolderId: null,
 			keywords: '',
 			orderByField: 'sentDate',
 			orderByType: 'desc',
-			pageNumber: 1
+			pageNumber: 1,
+			_pollInterval: 60000
 		};
 	},
 	'',
