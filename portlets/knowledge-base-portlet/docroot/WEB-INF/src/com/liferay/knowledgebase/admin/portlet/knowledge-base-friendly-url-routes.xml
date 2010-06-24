@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE routes PUBLIC "-//Liferay//DTD Friendly URL Routes 6.0.0//EN" "http://www.liferay.com/dtd/liferay-friendly-url-routes_6_0_0.dtd">
+
+<routes>
+	<route>
+		<pattern>/rss</pattern>
+		<default-parameter name="p_p_cacheability">cacheLevelPage</default-parameter>
+		<default-parameter name="p_p_lifecycle">2</default-parameter>
+		<default-parameter name="p_p_resource_id">rss</default-parameter>
+	</route>
+	<route>
+		<pattern>/article/{resourcePrimKey}</pattern>
+		<default-parameter name="jspPage">/admin/view_article.jsp</default-parameter>
+		<default-parameter name="p_p_state">normal</default-parameter>
+	</route>
+	<route>
+		<pattern>/article/{resourcePrimKey}/{p_p_state}</pattern>
+		<default-parameter name="jspPage">/admin/view_article.jsp</default-parameter>
+	</route>
+	<route>
+		<pattern>/home</pattern>
+		<default-parameter name="jspPage">/admin/view.jsp</default-parameter>
+		<default-parameter name="topLink">home</default-parameter>
+	</route>
+	<route>
+		<pattern>/templates</pattern>
+		<default-parameter name="jspPage">/admin/view_templates.jsp</default-parameter>
+		<default-parameter name="topLink">templates</default-parameter>
+	</route>
+	<route>
+		<pattern>/all-articles</pattern>
+		<default-parameter name="jspPage">/admin/view_all_articles.jsp</default-parameter>
+		<default-parameter name="topLink">all-articles</default-parameter>
+	</route>
+	<route>
+		<pattern>/{jspPageName}/{resourcePrimKey}</pattern>
+		<generated-parameter name="jspPage">/admin/{jspPageName}.jsp</generated-parameter>
+	</route>
+	<route>
+		<pattern>/{jspPageName}</pattern>
+		<generated-parameter name="jspPage">/admin/{jspPageName}.jsp</generated-parameter>
+	</route>
+</routes>
