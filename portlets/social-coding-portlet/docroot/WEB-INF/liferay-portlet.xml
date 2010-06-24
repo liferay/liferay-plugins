@@ -14,7 +14,9 @@
 				</simple>
 			</trigger>
 		</scheduler-entry>
-		<friendly-url-mapper-class>com.liferay.socialcoding.svn.portlet.SVNFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapping>svn</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/socialcoding/svn/portlet/svn-friendly-url-routes.xml</friendly-url-routes>
 		<social-activity-interpreter-class>com.liferay.socialcoding.svn.social.SVNActivityInterpreter</social-activity-interpreter-class>
 		<header-portlet-css>/svn/css/main.css</header-portlet-css>
 		<css-class-wrapper>social-coding-portlet-svn</css-class-wrapper>
