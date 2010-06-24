@@ -30,11 +30,11 @@ catch (NoSuchConsumerException nsce) {
 }
 %>
 
-<script type="text/javascript">
+<aui:script>
 	function <portlet:namespace />saveConsumer() {
 		submitForm(document.<portlet:namespace />fm);
 	}
-</script>
+</aui:script>
 
 <form action="<portlet:actionURL name="updateWSRPConsumer"><portlet:param name="jspPage" value="/admin/edit_consumer.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumer(); return false;">
 <input name="<portlet:namespace />wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
@@ -84,6 +84,6 @@ catch (NoSuchConsumerException nsce) {
 
 </form>
 
-<script type="text/javascript">
+<aui:script>
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
-</script>
+</aui:script>

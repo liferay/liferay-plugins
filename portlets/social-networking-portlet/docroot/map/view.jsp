@@ -65,7 +65,7 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 	<c:otherwise>
 		<script src="http://www.google.com/jsapi?key=<%= PortletProps.get("map.google.maps.api.key") %>" type="text/javascript"></script>
 
-		<script type="text/javascript">
+		<aui:script>
 			google.load("maps", "2.x", {"language" : "ja_JP"});
 
 			function <portlet:namespace />initMap() {
@@ -163,7 +163,7 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 			}
 
 			google.setOnLoadCallback(<portlet:namespace />initMap);
-		</script>
+		</aui:script>
 
 		<c:choose>
 			<c:when test="<%= windowState.equals(WindowState.MAXIMIZED) %>">

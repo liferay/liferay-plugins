@@ -29,21 +29,6 @@ String htmlAttributes =
 	"width=" + width + "\n";
 %>
 
-<script type="text/javascript">
-	function <portlet:namespace />search() {
-		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:renderURL portletConfiguration="true" />');
-	}
-
-	function <portlet:namespace />updateWidget(link, title, description, thumbnail) {
-		document.<portlet:namespace />fm.<portlet:namespace />link.value = link;
-		document.<portlet:namespace />fm.<portlet:namespace />title.value = title;
-		document.<portlet:namespace />fm.<portlet:namespace />description.value = description;
-		document.<portlet:namespace />fm.<portlet:namespace />thumbnail.value = thumbnail;
-
-		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL portletConfiguration="true" />');
-	}
-</script>
-
 <form method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace />link" type="hidden" value="" />
 <input name="<portlet:namespace />title" type="hidden" value="" />
@@ -141,3 +126,18 @@ String htmlAttributes =
 </liferay-ui:search-container>
 
 </form>
+
+<aui:script>
+	function <portlet:namespace />search() {
+		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:renderURL portletConfiguration="true" />');
+	}
+
+	function <portlet:namespace />updateWidget(link, title, description, thumbnail) {
+		document.<portlet:namespace />fm.<portlet:namespace />link.value = link;
+		document.<portlet:namespace />fm.<portlet:namespace />title.value = title;
+		document.<portlet:namespace />fm.<portlet:namespace />description.value = description;
+		document.<portlet:namespace />fm.<portlet:namespace />thumbnail.value = thumbnail;
+
+		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL portletConfiguration="true" />');
+	}
+</aui:script>

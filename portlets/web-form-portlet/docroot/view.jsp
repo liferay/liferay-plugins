@@ -152,130 +152,123 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 	</aui:fieldset>
 </aui:form>
 
-<script type="text/javascript">
-	AUI().use(
-		'event',
-		'node',
-		'selector-css3',
-		function(A) {
-			var form = A.one('#<portlet:namespace />fm');
+<aui:script use="aui-base,selector-css3">
+	var form = A.one('#<portlet:namespace />fm');
 
-			if (form) {
-				form.on(
-					'submit',
-					function(event) {
-						var keys = [];
-						var fieldLabels = {};
-						var fieldOptional = {};
-						var fieldValidationErrorMessages = {};
-						var fieldValidationFunctions = {};
-						var fieldsMap = {};
+	if (form) {
+		form.on(
+			'submit',
+			function(event) {
+				var keys = [];
+				var fieldLabels = {};
+				var fieldOptional = {};
+				var fieldValidationErrorMessages = {};
+				var fieldValidationFunctions = {};
+				var fieldsMap = {};
 
-						<%
-						int fieldIndex = 1;
-						String fieldLabel = preferences.getValue("fieldLabel" + fieldIndex, StringPool.BLANK);
+				<%
+				int fieldIndex = 1;
+				String fieldLabel = preferences.getValue("fieldLabel" + fieldIndex, StringPool.BLANK);
 
-						while ((fieldIndex == 1) || Validator.isNotNull(fieldLabel)) {
-							boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + fieldIndex, false);
-							String fieldType = preferences.getValue("fieldType" + fieldIndex, "text");
-							String fieldValidationScript = preferences.getValue("fieldValidationScript" + fieldIndex, StringPool.BLANK);
-							String fieldValidationErrorMessage = preferences.getValue("fieldValidationErrorMessage" + fieldIndex, StringPool.BLANK);
-						%>
+				while ((fieldIndex == 1) || Validator.isNotNull(fieldLabel)) {
+					boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + fieldIndex, false);
+					String fieldType = preferences.getValue("fieldType" + fieldIndex, "text");
+					String fieldValidationScript = preferences.getValue("fieldValidationScript" + fieldIndex, StringPool.BLANK);
+					String fieldValidationErrorMessage = preferences.getValue("fieldValidationErrorMessage" + fieldIndex, StringPool.BLANK);
+				%>
 
-							var key = "<%= HtmlUtil.escape(fieldLabel) %>";
+					var key = "<%= HtmlUtil.escape(fieldLabel) %>";
 
-							keys[<%= fieldIndex %>] = key;
+					keys[<%= fieldIndex %>] = key;
 
-							fieldLabels[key] = "<%= HtmlUtil.escape(fieldLabel) %>";
-							fieldValidationErrorMessages[key] = "<%= fieldValidationErrorMessage %>";
+					fieldLabels[key] = "<%= HtmlUtil.escape(fieldLabel) %>";
+					fieldValidationErrorMessages[key] = "<%= fieldValidationErrorMessage %>";
 
-							function fieldValidationFunction<%= fieldIndex %>(currentFieldValue, fieldsMap) {
-								<c:choose>
-									<c:when test='<%= Validator.isNotNull(fieldValidationScript) %>'>
-										<%= fieldValidationScript %>
-									</c:when>
-									<c:otherwise>
-										return true;
-									</c:otherwise>
-								</c:choose>
-							};
+					function fieldValidationFunction<%= fieldIndex %>(currentFieldValue, fieldsMap) {
+						<c:choose>
+							<c:when test='<%= Validator.isNotNull(fieldValidationScript) %>'>
+								<%= fieldValidationScript %>
+							</c:when>
+							<c:otherwise>
+								return true;
+							</c:otherwise>
+						</c:choose>
+					};
 
-							fieldOptional[key] = <%= fieldOptional %>;
-							fieldValidationFunctions[key] = fieldValidationFunction<%= fieldIndex %>;
+					fieldOptional[key] = <%= fieldOptional %>;
+					fieldValidationFunctions[key] = fieldValidationFunction<%= fieldIndex %>;
 
-							<c:choose>
-								<c:when test='<%= fieldType.equals("radio") %>'>
-									var radioButton = A.one('input[name=<portlet:namespace />field<%= fieldIndex %>]:checked');
+					<c:choose>
+						<c:when test='<%= fieldType.equals("radio") %>'>
+							var radioButton = A.one('input[name=<portlet:namespace />field<%= fieldIndex %>]:checked');
 
-									fieldsMap[key] = '';
+							fieldsMap[key] = '';
 
-									if (radioButton) {
-										fieldsMap[key] = radioButton.val();
-									}
-								</c:when>
-								<c:otherwise>
-									var inputField = A.one('#<portlet:namespace />field<%= fieldIndex %>');
-
-									fieldsMap[key] = (inputField && inputField.val()) || '';
-								</c:otherwise>
-							</c:choose>
-
-						<%
-							fieldIndex++;
-							fieldLabel = preferences.getValue("fieldLabel" + fieldIndex, "");
-						}
-						%>
-
-						var validationErrors = false;
-
-						for (var i = 1; i < keys.length; i++) {
-							var key = keys [i];
-
-							var currentFieldValue = fieldsMap[key];
-
-							var optionalFieldError = A.one('#<portlet:namespace />fieldOptionalError' + fieldLabels[key]);
-							var validationError = A.one('#<portlet:namespace />validationError' + fieldLabels[key]);
-
-							if (!fieldOptional[key] && currentFieldValue.match(/^\s*$/)) {
-								validationErrors = true;
-
-								A.all('.portlet-msg-success').hide();
-
-								if (optionalFieldError) {
-									optionalFieldError.show();
-								}
+							if (radioButton) {
+								fieldsMap[key] = radioButton.val();
 							}
-							else if (!fieldValidationFunctions[key](currentFieldValue, fieldsMap)) {
-								validationErrors = true;
+						</c:when>
+						<c:otherwise>
+							var inputField = A.one('#<portlet:namespace />field<%= fieldIndex %>');
 
-								A.all('.portlet-msg-success').hide();
+							fieldsMap[key] = (inputField && inputField.val()) || '';
+						</c:otherwise>
+					</c:choose>
 
-								if (optionalFieldError) {
-									optionalFieldError.hide();
-								}
+				<%
+					fieldIndex++;
+					fieldLabel = preferences.getValue("fieldLabel" + fieldIndex, "");
+				}
+				%>
 
-								if (validationError) {
-									validationError.show();
-								}
-							}
-							else {
-								if (optionalFieldError) {
-									optionalFieldError.hide();
-								}
+				var validationErrors = false;
 
-								if (validationError) {
-									validationError.hide();
-								}
-							}
-						}
+				for (var i = 1; i < keys.length; i++) {
+					var key = keys [i];
 
-						if (validationErrors) {
-							event.halt();
-							event.stopImmediatePropagation();
+					var currentFieldValue = fieldsMap[key];
+
+					var optionalFieldError = A.one('#<portlet:namespace />fieldOptionalError' + fieldLabels[key]);
+					var validationError = A.one('#<portlet:namespace />validationError' + fieldLabels[key]);
+
+					if (!fieldOptional[key] && currentFieldValue.match(/^\s*$/)) {
+						validationErrors = true;
+
+						A.all('.portlet-msg-success').hide();
+
+						if (optionalFieldError) {
+							optionalFieldError.show();
 						}
 					}
-				);
+					else if (!fieldValidationFunctions[key](currentFieldValue, fieldsMap)) {
+						validationErrors = true;
+
+						A.all('.portlet-msg-success').hide();
+
+						if (optionalFieldError) {
+							optionalFieldError.hide();
+						}
+
+						if (validationError) {
+							validationError.show();
+						}
+					}
+					else {
+						if (optionalFieldError) {
+							optionalFieldError.hide();
+						}
+
+						if (validationError) {
+							validationError.hide();
+						}
+					}
+				}
+
+				if (validationErrors) {
+					event.halt();
+					event.stopImmediatePropagation();
+				}
 			}
-		}
-	);
-</script>
+		);
+	}
+</aui:script>

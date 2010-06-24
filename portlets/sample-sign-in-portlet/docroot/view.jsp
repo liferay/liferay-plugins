@@ -18,6 +18,7 @@
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
+<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
@@ -140,20 +141,19 @@
 
 		</form>
 
-		<script type="text/javascript">
-			AUI().ready(
-				function() {
-					jQuery('#<portlet:namespace />password').keypress(
-						function(event) {
-							Liferay.Util.showCapsLock(event, '<portlet:namespace />passwordCapsLockSpan');
-						}
-					);
-				}
-			);
-
+		<aui:script>
 			<c:if test="<%= renderRequest.getWindowState().equals(WindowState.MAXIMIZED) %>">
 				Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />login);
 			</c:if>
-		</script>
+		</aui:script>
+
+		<aui:script use="aui-base">
+			A.one('#<portlet:namespace />password').on(
+				'keypress',
+				function(event) {
+					Liferay.Util.showCapsLock(event, '<portlet:namespace />passwordCapsLockSpan');
+				}
+			);
+		</aui:script>
 	</c:otherwise>
 </c:choose>

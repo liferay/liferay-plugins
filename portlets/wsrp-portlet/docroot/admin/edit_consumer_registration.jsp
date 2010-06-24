@@ -42,11 +42,11 @@ if (supportsInbandRegistration) {
 }
 %>
 
-<script type="text/javascript">
+<aui:script>
 	function <portlet:namespace />saveConsumerRegsitration() {
 		submitForm(document.<portlet:namespace />fm);
 	}
-</script>
+</aui:script>
 
 <form action="<portlet:actionURL name="updateWSRPConsumerRegistration"><portlet:param name="jspPage" value="/admin/edit_consumer_registration.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumerRegistration(); return false;">
 <input name="<portlet:namespace />wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />

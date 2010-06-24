@@ -41,9 +41,9 @@ catch (Exception e) {
 }
 %>
 
-<script type="text/javascript">
+<aui:script position="inline">
 	<%= html %>
-</script>
+</aui:script>
 
 <%--<script src="http://gmodules.com/ig/ifr?url=<%= gadgetId %>&synd=open&title=&border=none&output=js"></script>--%>
 <%--<iframe frameborder="0" height="100%" src="http://www.gmodules.com/ig/ifr?nocache=1&url=<%= gadgetId %>" width="100%"></iframe>--%>

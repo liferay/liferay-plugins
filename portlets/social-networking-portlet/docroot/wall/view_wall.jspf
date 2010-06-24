@@ -35,7 +35,7 @@
 		}
 		%>
 
-		<script type="text/javascript">
+		<aui:script>
 			function <portlet:namespace />addWallEntry() {
 				submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="addWallEntry" />');
 			}
@@ -44,7 +44,7 @@
 				document.<portlet:namespace />fm.<portlet:namespace />wallEntryId.value = wallEntryId;
 				submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="deleteWallEntry" />');
 			}
-		</script>
+		</aui:script>
 
 		<form method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />addWallEntry(); return false;">
 		<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />

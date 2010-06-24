@@ -16,8 +16,23 @@
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
+<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
+
 <portlet:defineObjects />
 
 <div id="<portlet:namespace />json"></div>
 
-<script src="<%= request.getContextPath() %>/servlet/do?id=<portlet:namespace />json&callback=printJSON" type="text/javascript"></script>
+<aui:script position="inline">
+	Liferay.provide(
+		window,
+		'<portlet:namespace />printJSON',
+		function(obj) {
+			var A = AUI();
+
+			A.one('#<portlet:namespace />json').html(obj.toString());
+		},
+		['aui-base']
+	);
+</aui:script>
+
+<script src="<%= request.getContextPath() %>/servlet/do?id=<portlet:namespace />json&callback=<portlet:namespace />printJSON" type="text/javascript"></script>

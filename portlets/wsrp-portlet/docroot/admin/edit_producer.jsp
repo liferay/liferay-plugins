@@ -32,7 +32,7 @@ catch (NoSuchProducerException nsce) {
 String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, request, "portletIds"));
 %>
 
-<script type="text/javascript">
+<aui:script>
 	Liferay.provide(
 		window,
 		'<portlet:namespace />saveProducer',
@@ -42,7 +42,7 @@ String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, req
 		},
 		['liferay-util-list-fields']
 	);
-</script>
+</aui:script>
 
 <form action="<portlet:actionURL name="updateWSRPProducer"><portlet:param name="jspPage" value="/admin/edit_producer.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveProducer(); return false;">
 <input name="<portlet:namespace />wsrpProducerId" type="hidden" value="<%= wsrpProducerId %>" />
@@ -151,6 +151,6 @@ String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, req
 
 </form>
 
-<script type="text/javascript">
+<aui:script>
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
-</script>
+</aui:script>

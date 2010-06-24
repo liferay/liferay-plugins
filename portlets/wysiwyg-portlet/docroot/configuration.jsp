@@ -16,7 +16,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<script>
+<aui:script>
 	function <portlet:namespace />initEditor() {
 		return "<%= UnicodeFormatter.toString(message) %>";
 	}
@@ -28,7 +28,7 @@
 
 		submitForm(document.<portlet:namespace />fm);
 	}
-</script>
+</aui:script>
 
 <form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />

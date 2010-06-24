@@ -16,6 +16,8 @@
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
+<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
+
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
@@ -97,9 +99,9 @@ if (cmd.equals(Constants.ADD) || cmd.equals(Constants.EDIT)) {
 	if (renderRequest.getWindowState().equals(WindowState.MAXIMIZED)) {
 	%>
 
-		<script type="text/javascript">
+		<aui:script>
 			document.<portlet:namespace />fm.name.focus();
-		</script>
+		</aui:script>
 	<%
 	}
 	%>

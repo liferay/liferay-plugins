@@ -67,34 +67,29 @@ for (int i = 0; i < results.size(); i++) {
 	</div>
 </c:if>
 
-<script type="text/javascript">
-	AUI().use(
-		'io-plugin',
-		function(A) {
-			var searchFriends = A.one('#<portlet:namespace />searchFriends');
+<aui:script use="aui-io-plugin">
+	var searchFriends = A.one('#<portlet:namespace />searchFriends');
 
-			if (searchFriends) {
-				var parent = searchFriends.get('parentNode');
+	if (searchFriends) {
+		var parent = searchFriends.get('parentNode');
 
-				parent.plug(
-					A.Plugin.IO,
-					{
-						autoLoad: false
-					}
-				);
-
-				searchFriends.all('a').on(
-					'click',
-					function(event) {
-						var uri = event.currentTarget.get('href').replace(/p_p_state=normal/i, 'p_p_state=exclusive');
-
-						parent.io.set('uri', uri);
-						parent.io.start();
-
-						event.preventDefault();
-					}
-				);
+		parent.plug(
+			A.Plugin.IO,
+			{
+				autoLoad: false
 			}
-		}
-	);
-</script>
+		);
+
+		searchFriends.all('a').on(
+			'click',
+			function(event) {
+				var uri = event.currentTarget.get('href').replace(/p_p_state=normal/i, 'p_p_state=exclusive');
+
+				parent.io.set('uri', uri);
+				parent.io.start();
+
+				event.preventDefault();
+			}
+		);
+	}
+</aui:script>

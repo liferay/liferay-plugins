@@ -69,7 +69,7 @@
 </form>
 
 <c:if test="<%= renderRequest.getWindowState().equals(WindowState.MAXIMIZED) %>">
-	<script type="text/javascript">
+	<aui:script>
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />url);
-	</script>
+	</aui:script>
 </c:if>

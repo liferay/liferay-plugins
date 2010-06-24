@@ -16,7 +16,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<script type="text/javascript">
+<aui:script position="inline">
 	google_ad_client = "<%= adClient %>";
 	google_ad_channel = "<%= adChannel %>";
 	google_ad_type = "<%= adTypeValue %>";
@@ -29,6 +29,6 @@
 	google_color_link = "<%= colorLink %>";
 	google_color_text = "<%= colorText %>";
 	google_color_url = "<%= colorUrl %>";
-</script>
+</aui:script>
 
 <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>

@@ -37,7 +37,7 @@ GGData data = GGUtil.getData(url);
 
 <c:choose>
 	<c:when test="<%= data != null %>">
-		<script type="text/javascript">
+		<aui:script>
 			function <portlet:namespace />addGadgetByURL() {
 				var gadgetId = document.<portlet:namespace />fm.<portlet:namespace />q.value;
 
@@ -59,7 +59,7 @@ GGData data = GGUtil.getData(url);
 				var query = document.<portlet:namespace />fm.<portlet:namespace />q.value;
 				submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"></liferay-portlet:actionURL>&q=' + query + '&start=0');
 			}
-		</script>
+		</aui:script>
 
 		<form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />addGadgetByURL(); return false;">
 		<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />

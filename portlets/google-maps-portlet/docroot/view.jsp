@@ -32,7 +32,7 @@
 
 		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= license %>&amp;sensor=false" type="text/javascript"></script>
 
-		<script type="text/javascript">
+		<aui:script>
 			var <portlet:namespace />map;
 			var <portlet:namespace />geocoder;
 
@@ -49,8 +49,7 @@
 				}
 			}
 
-			jQuery(document).ready(<portlet:namespace />load);
-			jQuery(window).unload(GUnload);
+			<portlet:namespace />load();
 
 			function <portlet:namespace />getAddress(address) {
 				<portlet:namespace />geocoder.getLatLng(
@@ -100,28 +99,46 @@
 				return mapAddress;
 			}
 
-			function <portlet:namespace />saveDirectionsAddress(address) {
-				jQuery.ajax(
-					{
-						url: '<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveDirectionsAddress" /></portlet:actionURL>',
-						data: {
-							directionsAddress: address
-						}
-					}
-				);
-			}
+			Liferay.provide(
+				window,
+				'<portlet:namespace />saveDirectionsAddress',
+				function(address) {
+					var A = AUI();
 
-			function <portlet:namespace />saveMapAddress(address) {
-				jQuery.ajax(
-					{
-						url: '<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveMapAddress" /></portlet:actionURL>',
-						data: {
-							mapAddress: address
+					A.io.request(
+						'<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveDirectionsAddress" /></portlet:actionURL>',
+						{
+							data: {
+								directionsAddress: address
+							}
 						}
-					}
-				);
-			}
-		</script>
+					);
+				},
+				['aui-io-request']
+			);
+
+			Liferay.provide(
+				window,
+				'<portlet:namespace />saveMapAddress',
+				function(address) {
+					var A = AUI();
+
+					A.io.request(
+						'<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveMapAddress" /></portlet:actionURL>',
+						{
+							data: {
+								mapAddress: address
+							}
+						}
+					);
+				},
+				['aui-io-request']
+			);
+		</aui:script>
+
+		<aui:script use="aui-base">
+			A.getWin().on('unload', GUnload);
+		</aui:script>
 
 		<form name="<portlet:namespace />fm">
 

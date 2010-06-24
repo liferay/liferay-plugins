@@ -20,7 +20,7 @@
 	<c:when test="<%= Validator.isNotNull(link) %>">
 		<script src="http://www.netvibes.com/js/UWA/Utils/IFrameMessaging.js" type="text/javascript"></script>
 
-		<script type="text/javascript">
+		<aui:script position="inline">
 			UWA.MessageHandler = new UWA.iFrameMessaging;
 
 			UWA.MessageHandler.init(
@@ -28,7 +28,7 @@
 					'trustedOrigin': 'nvmodules.netvibes.com'
 				}
 			);
-		</script>
+		</aui:script>
 
 		<%
 		String iframeURL = "http://nvmodules.netvibes.com/widget/frame?uwaUrl=" + HttpUtil.encodeURL(link) + "&id=" + HttpUtil.encodeURL(PortalUtil.getPortletId(renderRequest)) + "&ifproxyUrl=" + HttpUtil.encodeURL(request.getContextPath() + "/proxy.jsp");

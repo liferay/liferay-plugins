@@ -174,32 +174,27 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 		}
 		%>
 
-		<script type="text/javascript">
-			AUI().use(
-				'aui-base'
-				function(A) {
-					var meetups = A.one('.social-networking-portlet-meetups');
+		<aui:script use="aui-base">
+			var meetups = A.one('.social-networking-portlet-meetups');
 
-					if (meetups) {
-						meetups.delegate(
-							'mouseenter',
-							function(event) {
-								event.currentTarget.addClass('hovering');
-							},
-							'.response'
-						);
+			if (meetups) {
+				meetups.delegate(
+					'mouseenter',
+					function(event) {
+						event.currentTarget.addClass('hovering');
+					},
+					'.response'
+				);
 
-						meetups.delegate(
-							'mouseleave',
-							function(event) {
-								event.currentTarget.removeClass('hovering');
-							},
-							'.response'
-						);
-					}
-				}
-			);
-		</script>
+				meetups.delegate(
+					'mouseleave',
+					function(event) {
+						event.currentTarget.removeClass('hovering');
+					},
+					'.response'
+				);
+			}
+		</aui:script>
 
 		<div class="taglib-search-iterator-page-iterator-bottom">
 			<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />

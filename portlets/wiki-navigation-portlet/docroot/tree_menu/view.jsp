@@ -26,21 +26,13 @@ List<MenuItem> menuItems = MenuItem.fromWikiNode(selNodeId, depth, portletURL);
 
 <c:choose>
 	<c:when test="<%= !menuItems.isEmpty() %>">
-		<script type="text/javascript">
-			jQuery(
-				function() {
-					var treeMenu = jQuery('.wiki-navigation-portlet-tree-menu .tree-menu');
-
-					treeMenu.treeview(
-						{
-							animated: 'fast',
-							cookieId: 'tree-menu',
-							persist: 'cookie'
-						}
-					);
+		<aui:script use="aui-tree-view">
+			new A.TreeView(
+				{
+					contentBox: '.wiki-navigation-portlet-tree-menu .tree-menu'
 				}
-			);
-		</script>
+			).render();
+		</aui:script>
 
 		<%= _buildTreeMenuHTML(menuItems , title, true) %>
 	</c:when>

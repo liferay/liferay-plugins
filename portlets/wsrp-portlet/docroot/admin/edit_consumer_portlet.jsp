@@ -41,11 +41,11 @@ ServiceDescription serviceDescription = wsrpConsumerManager.getServiceDescriptio
 PortletDescription[] portletDescriptions = serviceDescription.getOfferedPortlets();
 %>
 
-<script type="text/javascript">
+<aui:script>
 	function <portlet:namespace />saveConsumerPortlet() {
 		submitForm(document.<portlet:namespace />fm);
 	}
-</script>
+</aui:script>
 
 <form action="<portlet:actionURL name="updateWSRPConsumerPortlet"><portlet:param name="jspPage" value="/admin/edit_consumer_portlet.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumerPortlet(); return false;">
 <input name="<portlet:namespace />wsrpConsumerPortletId" type="hidden" value="<%= wsrpConsumerPortletId %>" />
@@ -112,6 +112,6 @@ PortletDescription[] portletDescriptions = serviceDescription.getOfferedPortlets
 
 </form>
 
-<script type="text/javascript">
+<aui:script>
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
-</script>
+</aui:script>
