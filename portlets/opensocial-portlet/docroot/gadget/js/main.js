@@ -191,7 +191,7 @@ AUI().add(
 						var url = '';
 
 						var urlData = {
-							appId: instance.get('appId'),
+							aid: instance.get('appId'),
 							container: instance._CONTAINER,
 							mid: instance.get('moduleId'),
 							nocache: instance.get('nocache'),

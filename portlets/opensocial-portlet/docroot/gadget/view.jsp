@@ -33,6 +33,7 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 	new Liferay.OpenSocial.Gadget(
 		{
 			appId: '<%= gadgetUrl %>',
+			debug: '<%= PortletPropsValues.SHINDIG_JS_DEBUG %>',
 			moduleId: '<%= moduleId %>',
 			secureToken: '<%= secureToken %>',
 			serverBase: '<%= renderRequest.getContextPath() %>/gadgets/',
