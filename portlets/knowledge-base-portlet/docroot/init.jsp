@@ -86,6 +86,7 @@
 <%@ page import="com.liferay.portal.model.Group" %>
 <%@ page import="com.liferay.portal.model.Layout" %>
 <%@ page import="com.liferay.portal.model.Portlet" %>
+<%@ page import="com.liferay.portal.model.PortletConstants" %>
 <%@ page import="com.liferay.portal.security.auth.PrincipalException" %>
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
 <%@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %>
