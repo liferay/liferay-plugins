@@ -284,8 +284,10 @@ public class IMAPMailbox extends BaseMailbox {
 			throw new MailException(MailException.MESSAGE_HAS_NO_RECIPIENTS);
 		}
 
+		Message message = null;
+
 		if (messageId != 0) {
-			return MessageLocalServiceUtil.updateMessage(
+			message = MessageLocalServiceUtil.updateMessage(
 				messageId, account.getDraftFolderId(), sender,
 				InternetAddressUtil.toString(toAddresses),
 				InternetAddressUtil.toString(ccAddresses),
@@ -293,11 +295,19 @@ public class IMAPMailbox extends BaseMailbox {
 				String.valueOf(MailConstants.FLAG_DRAFT), 0);
 		}
 		else {
-			return MessageLocalServiceUtil.addMessage(
+			message = MessageLocalServiceUtil.addMessage(
 				user.getUserId(), account.getDraftFolderId(), sender, to, cc,
 				bcc, null, subject, body,
 				String.valueOf(MailConstants.FLAG_DRAFT), 0);
 		}
+
+		for (MailFile mailFile : mailFiles) {
+			AttachmentLocalServiceUtil.addAttachment(
+				user.getUserId(), message.getMessageId(), null,
+				mailFile.getFileName(), mailFile.getSize(), mailFile.getFile());
+		}
+
+		return message;
 	}
 
 	public void sendMessage(long accountId, long messageId)
