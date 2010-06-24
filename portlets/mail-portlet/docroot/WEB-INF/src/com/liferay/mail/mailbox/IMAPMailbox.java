@@ -29,6 +29,7 @@ import com.liferay.mail.service.AccountLocalServiceUtil;
 import com.liferay.mail.service.AttachmentLocalServiceUtil;
 import com.liferay.mail.service.FolderLocalServiceUtil;
 import com.liferay.mail.service.MessageLocalServiceUtil;
+import com.liferay.mail.util.AccountLock;
 import com.liferay.mail.util.MailConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -366,8 +367,18 @@ public class IMAPMailbox extends BaseMailbox {
 		List<Folder> folders = FolderLocalServiceUtil.getFolders(
 			account.getAccountId());
 
-		for (Folder folder : folders) {
-			_imapAccessor.storeEnvelopes(folder.getFolderId(), true);
+		String key = AccountLock.getKey(
+			user.getUserId(), account.getAccountId());
+
+		if (AccountLock.acquireLock(key)) {
+			try {
+				for (Folder folder : folders) {
+					_imapAccessor.storeEnvelopes(folder.getFolderId(), true);
+				}
+			}
+			finally {
+				AccountLock.releaseLock(key);
+			}
 		}
 	}
 
@@ -378,7 +389,17 @@ public class IMAPMailbox extends BaseMailbox {
 			_log.debug("Synchronizing folder " + folderId);
 		}
 
-		_imapAccessor.storeEnvelopes(folderId, false);
+		String key = AccountLock.getKey(
+			user.getUserId(), account.getAccountId());
+
+		if (AccountLock.acquireLock(key)) {
+			try {
+				_imapAccessor.storeEnvelopes(folderId, false);
+			}
+			finally {
+				AccountLock.releaseLock(key);
+			}
+		}
 	}
 
 	public void synchronizeMessage(long messageId)

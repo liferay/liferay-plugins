@@ -53,18 +53,12 @@ public class AccountLock {
 		return true;
 	}
 
-	public static String getKey(
-		long userId, long accountEntryId, long folderId, long messageId) {
-
+	public static String getKey(long userId, long accountEntryId) {
 		StringBundler sb = new StringBundler(7);
 
 		sb.append(userId);
 		sb.append(StringPool.UNDERLINE);
 		sb.append(accountEntryId);
-		sb.append(StringPool.UNDERLINE);
-		sb.append(folderId);
-		sb.append(StringPool.UNDERLINE);
-		sb.append(messageId);
 
 		return sb.toString();
 	}

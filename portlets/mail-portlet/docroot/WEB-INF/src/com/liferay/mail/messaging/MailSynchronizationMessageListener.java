@@ -17,7 +17,6 @@ package com.liferay.mail.messaging;
 import com.liferay.mail.NoSuchAccountException;
 import com.liferay.mail.mailbox.Mailbox;
 import com.liferay.mail.mailbox.MailboxFactoryUtil;
-import com.liferay.mail.util.AccountLock;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
@@ -88,12 +87,8 @@ public class MailSynchronizationMessageListener implements MessageListener {
 					folderId + " and messageId " + messageId);
 		}
 
-		String key = AccountLock.getKey(userId, accountId, folderId, messageId);
-
 		try {
-			if (!password.equals(StringPool.BLANK) &&
-					AccountLock.acquireLock(key)) {
-
+			if (!password.equals(StringPool.BLANK)) {
 				Mailbox mailbox = MailboxFactoryUtil.getMailbox(
 					userId, accountId, password);
 
@@ -127,15 +122,6 @@ public class MailSynchronizationMessageListener implements MessageListener {
 				_log.debug(
 					"Skipping syncronization of accountId " + accountId);
 			}
-		}
-		finally {
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"Ending synch for accountId " + accountId + " folderId " +
-						folderId + " and messageId " + messageId);
-			}
-
-			AccountLock.releaseLock(key);
 		}
 	}
 
