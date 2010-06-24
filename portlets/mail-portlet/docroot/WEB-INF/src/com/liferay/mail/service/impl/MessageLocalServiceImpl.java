@@ -21,7 +21,7 @@ import com.liferay.mail.model.Message;
 import com.liferay.mail.service.base.MessageLocalServiceBaseImpl;
 import com.liferay.mail.util.HtmlContentUtil;
 import com.liferay.mail.util.MailConstants;
-import com.liferay.portal.kernel.dao.orm.Conjunction;
+import com.liferay.portal.kernel.dao.orm.Disjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
@@ -232,12 +232,12 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		if (Validator.isNotNull(keywords)) {
 			String value = "%" + keywords + "%";
 
-			Conjunction conjunction = RestrictionsFactoryUtil.conjunction();
+			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
 
-			conjunction.add(RestrictionsFactoryUtil.ilike("subject", value));
-			conjunction.add(RestrictionsFactoryUtil.ilike("body", value));
+			disjunction.add(RestrictionsFactoryUtil.ilike("subject", value));
+			disjunction.add(RestrictionsFactoryUtil.ilike("body", value));
 
-			dynamicQuery.add(conjunction);
+			dynamicQuery.add(disjunction);
 		}
 
 		int start = messagesPerPage * (pageNumber - 1);
