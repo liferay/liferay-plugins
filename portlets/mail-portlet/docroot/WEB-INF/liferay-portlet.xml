@@ -6,7 +6,9 @@
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<indexer-class>com.liferay.mail.util.MessageIndexer</indexer-class>
-		<friendly-url-mapper-class>com.liferay.mail.portlet.MailFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapping>mail</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/mail/portlet/mail-friendly-url-routes.xml</friendly-url-routes>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>mail-portlet</css-class-wrapper>
