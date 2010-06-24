@@ -121,6 +121,10 @@ String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, req
 				continue;
 			}
 
+			if (!portlet.isRemoteable()) {
+				continue;
+			}
+
 			String portletId = portlet.getPortletId();
 
 			if (Arrays.binarySearch(portletIds, portletId) < 0) {
