@@ -31,7 +31,7 @@ import javax.portlet.WindowState;
  */
 public class ChatFriendlyURLMapper extends BaseFriendlyURLMapper {
 
-	public String buildPath(LiferayPortletURL portletURL) {
+	public String buildPath(LiferayPortletURL liferayPortletURL) {
 		return null;
 	}
 

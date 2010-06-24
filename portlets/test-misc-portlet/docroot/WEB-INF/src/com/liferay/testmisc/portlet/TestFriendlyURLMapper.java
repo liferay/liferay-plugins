@@ -34,18 +34,20 @@ import javax.portlet.WindowState;
  */
 public class TestFriendlyURLMapper extends BaseFriendlyURLMapper {
 
-	public String buildPath(LiferayPortletURL portletURL) {
-		if (portletURL.getLifecycle().equals(PortletRequest.ACTION_PHASE)) {
+	public String buildPath(LiferayPortletURL liferayPortletURL) {
+		if (liferayPortletURL.getLifecycle().equals(
+				PortletRequest.ACTION_PHASE)) {
+
 			return null;
 		}
 
-		String resourceID = portletURL.getResourceID();
+		String resourceID = liferayPortletURL.getResourceID();
 
 		if (Validator.isNotNull(resourceID)) {
-			portletURL.addParameterIncludedInPath("p_p_id");
-			portletURL.addParameterIncludedInPath("p_p_lifecycle");
-			portletURL.addParameterIncludedInPath("p_p_resource_id");
-			portletURL.addParameterIncludedInPath("p_p_cacheability");
+			liferayPortletURL.addParameterIncludedInPath("p_p_id");
+			liferayPortletURL.addParameterIncludedInPath("p_p_lifecycle");
+			liferayPortletURL.addParameterIncludedInPath("p_p_resource_id");
+			liferayPortletURL.addParameterIncludedInPath("p_p_cacheability");
 
 			StringBuilder sb = new StringBuilder();
 
@@ -57,17 +59,17 @@ public class TestFriendlyURLMapper extends BaseFriendlyURLMapper {
 			return sb.toString();
 		}
 
-		WindowState windowState = portletURL.getWindowState();
+		WindowState windowState = liferayPortletURL.getWindowState();
 
 		String jspPage = GetterUtil.getString(
-			portletURL.getParameter("jspPage"));
+			liferayPortletURL.getParameter("jspPage"));
 
 		if ((windowState == null) || (windowState.equals(WindowState.NORMAL)) ||
 			(Validator.isNotNull(jspPage))) {
 
-			portletURL.addParameterIncludedInPath("p_p_id");
+			liferayPortletURL.addParameterIncludedInPath("p_p_id");
 
-			portletURL.addParameterIncludedInPath("jspPage");
+			liferayPortletURL.addParameterIncludedInPath("jspPage");
 
 			StringBuilder sb = new StringBuilder();
 

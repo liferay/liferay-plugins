@@ -36,14 +36,14 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class AlloyFriendlyURLMapper extends DefaultFriendlyURLMapper {
 
-	public String buildPath(LiferayPortletURL portletURL) {
+	public String buildPath(LiferayPortletURL liferayPortletURL) {
 		Map<String, String> routeParameters = new HashMap<String, String>();
 
-		buildRouteParameters(portletURL, routeParameters);
+		buildRouteParameters(liferayPortletURL, routeParameters);
 
 		// Populate method parameter based on the portlet lifecycle
 
-		String lifecycle = portletURL.getLifecycle();
+		String lifecycle = liferayPortletURL.getLifecycle();
 
 		if (lifecycle.equals(PortletRequest.ACTION_PHASE)) {
 			routeParameters.put("method", HttpMethods.POST);
@@ -62,7 +62,7 @@ public class AlloyFriendlyURLMapper extends DefaultFriendlyURLMapper {
 
 		// Remove mapped parameters from URL
 
-		addParametersIncludedInPath(portletURL, routeParameters);
+		addParametersIncludedInPath(liferayPortletURL, routeParameters);
 
 		// Remove method
 

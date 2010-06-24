@@ -36,16 +36,16 @@ import javax.portlet.WindowState;
  */
 public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 
-	public String buildPath(LiferayPortletURL portletURL) {
+	public String buildPath(LiferayPortletURL liferayPortletURL) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("/consumer");
 
-		addPathElement(sb, portletURL.getPortletId());
+		addPathElement(sb, liferayPortletURL.getPortletId());
 
-		portletURL.addParameterIncludedInPath("p_p_id");
+		liferayPortletURL.addParameterIncludedInPath("p_p_id");
 
-		WindowState windowState = portletURL.getWindowState();
+		WindowState windowState = liferayPortletURL.getWindowState();
 
 		if (windowState != null) {
 			addPathElement(sb, windowState.toString());
@@ -54,9 +54,9 @@ public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 			addPathElement(sb, null);
 		}
 
-		portletURL.addParameterIncludedInPath("p_p_state");
+		liferayPortletURL.addParameterIncludedInPath("p_p_state");
 
-		PortletMode portletMode = portletURL.getPortletMode();
+		PortletMode portletMode = liferayPortletURL.getPortletMode();
 
 		if (portletMode != null) {
 			addPathElement(sb, portletMode.toString());
@@ -65,13 +65,14 @@ public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 			addPathElement(sb, null);
 		}
 
-		portletURL.addParameterIncludedInPath("p_p_mode");
+		liferayPortletURL.addParameterIncludedInPath("p_p_mode");
 
-		addPathElement(sb, portletURL.getCacheability());
+		addPathElement(sb, liferayPortletURL.getCacheability());
 
-		portletURL.addParameterIncludedInPath("p_p_cacheability");
+		liferayPortletURL.addParameterIncludedInPath("p_p_cacheability");
 
-		Map<String, String[]> parameterMap = portletURL.getParameterMap();
+		Map<String, String[]> parameterMap =
+			liferayPortletURL.getParameterMap();
 
 		String[] navigationalState = parameterMap.get("wsrp-navigationalState");
 
@@ -81,7 +82,8 @@ public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 		addPathElement(sb, navigationalState[0]);
 
-		portletURL.addParameterIncludedInPath("wsrp-navigationalState");
+		liferayPortletURL.addParameterIncludedInPath(
+			"wsrp-navigationalState");
 
 		return sb.toString();
 	}

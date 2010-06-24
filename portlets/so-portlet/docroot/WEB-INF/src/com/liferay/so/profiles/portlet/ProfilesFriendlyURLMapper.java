@@ -33,7 +33,7 @@ import javax.portlet.PortletMode;
  */
 public class ProfilesFriendlyURLMapper extends BaseFriendlyURLMapper {
 
-	public String buildPath(LiferayPortletURL portletURL) {
+	public String buildPath(LiferayPortletURL liferayPortletURL) {
 		return null;
 	}
 

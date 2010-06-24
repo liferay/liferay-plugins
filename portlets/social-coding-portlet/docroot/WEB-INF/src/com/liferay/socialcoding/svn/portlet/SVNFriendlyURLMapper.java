@@ -29,7 +29,7 @@ import javax.portlet.PortletMode;
  */
 public class SVNFriendlyURLMapper extends BaseFriendlyURLMapper {
 
-	public String buildPath(LiferayPortletURL portletURL) {
+	public String buildPath(LiferayPortletURL liferayPortletURL) {
 		return null;
 	}
 

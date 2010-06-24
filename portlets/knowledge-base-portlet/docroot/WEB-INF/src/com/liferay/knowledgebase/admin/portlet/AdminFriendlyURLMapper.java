@@ -36,39 +36,40 @@ import javax.portlet.WindowState;
  */
 public class AdminFriendlyURLMapper extends BaseFriendlyURLMapper {
 
-	public String buildPath(LiferayPortletURL portletURL) {
+	public String buildPath(LiferayPortletURL liferayPortletURL) {
 		String friendlyURLPath = null;
 
-		String resourceID = GetterUtil.getString(portletURL.getResourceID());
+		String resourceID = GetterUtil.getString(
+			liferayPortletURL.getResourceID());
 
 		String jspPage = GetterUtil.getString(
-			portletURL.getParameter("jspPage"));
+			liferayPortletURL.getParameter("jspPage"));
 
 		if (resourceID.equals("rss")) {
 			friendlyURLPath = "/knowledge_base/rss";
 
-			portletURL.addParameterIncludedInPath("p_p_cacheability");
-			portletURL.addParameterIncludedInPath("p_p_lifecycle");
-			portletURL.addParameterIncludedInPath("p_p_resource_id");
+			liferayPortletURL.addParameterIncludedInPath("p_p_cacheability");
+			liferayPortletURL.addParameterIncludedInPath("p_p_lifecycle");
+			liferayPortletURL.addParameterIncludedInPath("p_p_resource_id");
 		}
 		else if (jspPage.equals("/admin/view_article.jsp")) {
 			String resourcePrimKey = GetterUtil.getString(
-				portletURL.getParameter("resourcePrimKey"));
+				liferayPortletURL.getParameter("resourcePrimKey"));
 
 			friendlyURLPath = "/knowledge_base/article/" + resourcePrimKey;
 
-			WindowState windowState = portletURL.getWindowState();
+			WindowState windowState = liferayPortletURL.getWindowState();
 
 			if (!Validator.equals(windowState, WindowState.NORMAL)) {
 				friendlyURLPath += StringPool.SLASH + windowState;
 			}
 
-			portletURL.addParameterIncludedInPath("jspPage");
-			portletURL.addParameterIncludedInPath("resourcePrimKey");
+			liferayPortletURL.addParameterIncludedInPath("jspPage");
+			liferayPortletURL.addParameterIncludedInPath("resourcePrimKey");
 		}
 
 		if (friendlyURLPath != null) {
-			portletURL.addParameterIncludedInPath("p_p_id");
+			liferayPortletURL.addParameterIncludedInPath("p_p_id");
 		}
 
 		return friendlyURLPath;
