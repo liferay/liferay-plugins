@@ -52,7 +52,7 @@
 	</sql>
 	<sql id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder.findByACN_ACP_C_CI">
 		<![CDATA[
-			SELECT
+			SELECT DISTINCT
 				{Kaleo_KaleoTaskInstanceToken.*}
 			FROM
 				Kaleo_KaleoTaskInstanceToken
@@ -68,7 +68,7 @@
 	</sql>
 	<sql id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder.findByRoles_C_CI">
 		<![CDATA[
-			SELECT
+			SELECT DISTINCT
 				{Kaleo_KaleoTaskInstanceToken.*}
 			FROM
 				Kaleo_KaleoTaskInstanceToken
@@ -84,7 +84,7 @@
 	</sql>
 	<sql id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder.findByC_DD_K_UR">
 		<![CDATA[
-			SELECT
+			SELECT DISTINCT
 				{Kaleo_KaleoTaskInstanceToken.*}
 			FROM
 				Kaleo_KaleoTaskInstanceToken
