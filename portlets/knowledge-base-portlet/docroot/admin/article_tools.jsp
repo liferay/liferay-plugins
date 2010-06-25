@@ -23,6 +23,24 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 <div class="kb-article-tools">
 	<table class="lfr-table">
 	<tr>
+		<td>
+			<portlet:resourceURL id="rss" var="rssURL">
+				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+				<portlet:param name="max" value="<%= String.valueOf(rssDelta) %>" />
+				<portlet:param name="type" value="<%= rssFormatType %>" />
+				<portlet:param name="version" value="<%= String.valueOf(rssFormatVersion) %>" />
+				<portlet:param name="displayStyle" value="<%= rssDisplayStyle %>" />
+			</portlet:resourceURL>
+
+			<liferay-ui:icon
+				image="rss"
+				label="<%= true %>"
+				method="get"
+				target="_blank"
+				url="<%= rssURL %>"
+			/>
+		</td>
+
 		<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
 			<td>
 				<c:choose>

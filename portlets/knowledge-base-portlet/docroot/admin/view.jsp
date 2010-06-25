@@ -18,68 +18,83 @@
 
 <liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
 
-<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) || AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">
-	<div class="float-container kb-results-header">
-		<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
-			<div class="kb-buttons">
-				<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
-					<portlet:renderURL var="addArticleURL">
-						<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
-						<portlet:param name="redirect" value="<%= currentURL %>" />
-					</portlet:renderURL>
+<div class="float-container kb-results-header">
+	<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
+		<div class="kb-buttons">
+			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
+				<portlet:renderURL var="addArticleURL">
+					<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+				</portlet:renderURL>
 
-					<aui:button onClick="<%= addArticleURL %>" value="add-article" />
-				</c:if>
+				<aui:button onClick="<%= addArticleURL %>" value="add-article" />
+			</c:if>
 
-				<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
-					<liferay-security:permissionsURL
-						modelResource="com.liferay.knowledgebase.admin"
-						modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
-						resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
-						var="permissionsURL"
-					/>
+			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
+				<liferay-security:permissionsURL
+					modelResource="com.liferay.knowledgebase.admin"
+					modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
+					resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
+					var="permissionsURL"
+				/>
 
-					<aui:button onClick="<%= permissionsURL %>" value="permissions" />
-				</c:if>
-			</div>
-		</c:if>
+				<aui:button onClick="<%= permissionsURL %>" value="permissions" />
+			</c:if>
+		</div>
+	</c:if>
 
-		<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">
-			<div class="kb-tools">
-				<table class="lfr-table">
-				<tr>
-					<td>
-						<c:choose>
-							<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), scopeGroupId) %>">
-								<portlet:actionURL name="unsubscribe" var="unsubscribeURL">
-									<portlet:param name="redirect" value="<%= currentURL %>" />
-								</portlet:actionURL>
+	<div class="kb-tools">
+		<table class="lfr-table">
+		<tr>
+			<td>
+				<portlet:resourceURL id="rss" var="rssURL">
+					<portlet:param name="max" value="<%= String.valueOf(rssDelta) %>" />
+					<portlet:param name="type" value="<%= rssFormatType %>" />
+					<portlet:param name="version" value="<%= String.valueOf(rssFormatVersion) %>" />
+					<portlet:param name="displayStyle" value="<%= rssDisplayStyle %>" />
+				</portlet:resourceURL>
 
-								<liferay-ui:icon
-									image="unsubscribe"
-									label="<%= true %>"
-									url="<%= unsubscribeURL %>"
-								/>
-							</c:when>
-							<c:otherwise>
-								<portlet:actionURL name="subscribe" var="subscribeURL">
-									<portlet:param name="redirect" value="<%= currentURL %>" />
-								</portlet:actionURL>
+				<liferay-ui:icon
+					image="rss"
+					label="<%= true %>"
+					method="get"
+					target="_blank"
+					url="<%= rssURL %>"
+				/>
+			</td>
 
-								<liferay-ui:icon
-									image="subscribe"
-									label="<%= true %>"
-									url="<%= subscribeURL %>"
-								/>
-							</c:otherwise>
-						</c:choose>
-					</td>
-				</tr>
-				</table>
-			</div>
-		</c:if>
+			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">
+				<td>
+					<c:choose>
+						<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), scopeGroupId) %>">
+							<portlet:actionURL name="unsubscribe" var="unsubscribeURL">
+								<portlet:param name="redirect" value="<%= currentURL %>" />
+							</portlet:actionURL>
+
+							<liferay-ui:icon
+								image="unsubscribe"
+								label="<%= true %>"
+								url="<%= unsubscribeURL %>"
+							/>
+						</c:when>
+						<c:otherwise>
+							<portlet:actionURL name="subscribe" var="subscribeURL">
+								<portlet:param name="redirect" value="<%= currentURL %>" />
+							</portlet:actionURL>
+
+							<liferay-ui:icon
+								image="subscribe"
+								label="<%= true %>"
+								url="<%= subscribeURL %>"
+							/>
+						</c:otherwise>
+					</c:choose>
+				</td>
+			</c:if>
+		</tr>
+		</table>
 	</div>
-</c:if>
+</div>
 
 <liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "ArticlesPanelContainer" %>' persistState="<%= true %>">
 	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "ArticlesPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "articles") %>'>
