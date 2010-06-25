@@ -258,11 +258,13 @@ public class AdminPortlet extends MVCPortlet {
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
 		if (resourcePrimKey <= 0) {
 			ArticleServiceUtil.subscribe(themeDisplay.getScopeGroupId());
 		}
 		else {
-			ArticleServiceUtil.subscribeArticle(resourcePrimKey);
+			ArticleServiceUtil.subscribeArticle(resourcePrimKey, portletId);
 		}
 	}
 
@@ -280,7 +282,8 @@ public class AdminPortlet extends MVCPortlet {
 			ArticleServiceUtil.unsubscribe(themeDisplay.getScopeGroupId());
 		}
 		else {
-			ArticleServiceUtil.unsubscribeArticle(resourcePrimKey);
+			ArticleServiceUtil.unsubscribeArticle(
+				themeDisplay.getCompanyId(), resourcePrimKey);
 		}
 	}
 

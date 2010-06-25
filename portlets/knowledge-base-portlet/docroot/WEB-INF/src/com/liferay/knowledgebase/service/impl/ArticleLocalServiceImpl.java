@@ -61,6 +61,7 @@ import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextUtil;
@@ -252,9 +253,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Subscriptions
 
-		subscriptionLocalService.deleteSubscriptions(
-			article.getCompanyId(), Article.class.getName(),
-			article.getResourcePrimKey());
+		deleteSubscriptions(article);
 	}
 
 	public void deleteArticle(long resourcePrimKey)
@@ -413,11 +412,20 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			userId, Article.class.getName(), groupId);
 	}
 
-	public void subscribeArticle(long userId, long resourcePrimKey)
+	public void subscribeArticle(
+			long userId, long resourcePrimKey, String portletId)
 		throws PortalException, SystemException {
 
-		subscriptionLocalService.addSubscription(
+		// Subscription
+
+		Subscription subscription = subscriptionLocalService.addSubscription(
 			userId, Article.class.getName(), resourcePrimKey);
+
+		// Expando
+
+		expandoValueLocalService.addValue(
+			subscription.getCompanyId(), Subscription.class.getName(), "KB",
+			"portletId", subscription.getSubscriptionId(), portletId);
 	}
 
 	public void unsubscribe(long groupId, long userId)
@@ -427,11 +435,28 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			userId, Article.class.getName(), groupId);
 	}
 
-	public void unsubscribeArticle(long userId, long resourcePrimKey)
+	public void unsubscribeArticle(
+			long companyId, long userId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		subscriptionLocalService.deleteSubscription(
-			userId, Article.class.getName(), resourcePrimKey);
+		Subscription subscription = subscriptionLocalService.getSubscription(
+			companyId, userId, Article.class.getName(), resourcePrimKey);
+
+		unsubscribeArticle(subscription);
+	}
+
+	public void unsubscribeArticle(Subscription subscription)
+		throws PortalException, SystemException {
+
+		// Subscription
+
+		subscriptionLocalService.deleteSubscription(subscription);
+
+		// Expando
+
+		expandoValueLocalService.deleteValue(
+			subscription.getCompanyId(), Subscription.class.getName(), "KB",
+			"portletId", subscription.getSubscriptionId());
 	}
 
 	public Article updateArticle(
@@ -728,6 +753,19 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 		catch (NoSuchDirectoryException nsde) {
 			_log.error("No directory found for " + nsde.getMessage());
+		}
+	}
+
+	protected void deleteSubscriptions(Article article)
+		throws PortalException, SystemException {
+
+		List<Subscription> subscriptions =
+			subscriptionLocalService.getSubscriptions(
+				article.getCompanyId(), Article.class.getName(),
+				article.getResourcePrimKey());
+
+		for (Subscription subscription : subscriptions) {
+			unsubscribeArticle(subscription);
 		}
 	}
 
