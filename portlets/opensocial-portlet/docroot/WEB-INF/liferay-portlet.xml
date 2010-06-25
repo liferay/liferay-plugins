@@ -4,6 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
+		<icon>/icon.png</icon>
 		<control-panel-entry-category>portal</control-panel-entry-category>
 		<css-class-wrapper>opensocial-portlet-admin</css-class-wrapper>
 	</portlet>
