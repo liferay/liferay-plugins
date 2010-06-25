@@ -19,15 +19,19 @@ import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
 import com.liferay.knowledgebase.util.WebKeys;
+import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.messageboards.NoSuchMessageException;
+import com.liferay.util.RSSUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
 
@@ -37,10 +41,12 @@ import java.io.InputStream;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
+import javax.portlet.WindowState;
 
 /**
  * <a href="AggregatorPortlet.java.html"><b><i>View Source</i></b></a>
@@ -96,6 +102,43 @@ public class AggregatorPortlet extends MVCPortlet {
 			resourceRequest, resourceResponse, shortFileName, is, contentType);
 	}
 
+	public void serveRSS(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		PortletPreferences preferences = resourceRequest.getPreferences();
+
+		String articleWindowState = preferences.getValue(
+			"article-window-state", WindowState.MAXIMIZED.toString());
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			resourceRequest, "resourcePrimKey");
+
+		int max = ParamUtil.getInteger(
+			resourceRequest, "max", SearchContainer.DEFAULT_DELTA);
+		String type = ParamUtil.getString(
+			resourceRequest, "type", RSSUtil.DEFAULT_TYPE);
+		double version = ParamUtil.getDouble(
+			resourceRequest, "version", RSSUtil.DEFAULT_VERSION);
+		String displayStyle = ParamUtil.getString(
+			resourceRequest, "displayStyle",
+			RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
+
+		String portletId = PortalUtil.getPortletId(resourceRequest);
+
+		String rss = ArticleServiceUtil.getArticlesRSS(
+			portletId, resourcePrimKey, max, type, version, displayStyle,
+			articleWindowState.equals(WindowState.MAXIMIZED.toString()),
+			themeDisplay);
+
+		PortletResponseUtil.sendFile(
+			resourceRequest, resourceResponse, null,
+			rss.getBytes(StringPool.UTF8), ContentTypes.TEXT_XML_UTF8);
+	}
+
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
@@ -105,6 +148,9 @@ public class AggregatorPortlet extends MVCPortlet {
 
 			if (resourceID.equals("attachment")) {
 				serveAttachment(resourceRequest, resourceResponse);
+			}
+			else if (resourceID.equals("rss")) {
+				serveRSS(resourceRequest, resourceResponse);
 			}
 		}
 		catch (IOException ioe) {

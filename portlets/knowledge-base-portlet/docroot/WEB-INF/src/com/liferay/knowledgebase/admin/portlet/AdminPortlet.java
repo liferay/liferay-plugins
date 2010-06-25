@@ -28,6 +28,7 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.Template;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
 import com.liferay.knowledgebase.service.TemplateServiceUtil;
+import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -210,12 +211,13 @@ public class AdminPortlet extends MVCPortlet {
 
 		if (resourcePrimKey <= 0) {
 			rss = ArticleServiceUtil.getGroupArticlesRSS(
-				max, type, version, displayStyle, themeDisplay);
+				PortletKeys.KNOWLEDGE_BASE_ADMIN, max, type, version,
+				displayStyle, false, themeDisplay);
 		}
 		else {
 			rss = ArticleServiceUtil.getArticlesRSS(
-				resourcePrimKey, max, type, version, displayStyle,
-				themeDisplay);
+				PortletKeys.KNOWLEDGE_BASE_ADMIN, resourcePrimKey, max, type,
+				version, displayStyle, false, themeDisplay);
 		}
 
 		PortletResponseUtil.sendFile(
