@@ -101,11 +101,7 @@ else {
 		</aui:column>
 	</aui:layout>
 
-	<aui:field-wrapper label="body">
-		<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" toolbarSet="email" width="100%" />
-
-		<aui:input name="body" type="hidden" />
-	</aui:field-wrapper>
+	<div class="body-editor"></div>
 
 	<aui:button-row>
 		<aui:button type="submit" value="send" />
@@ -122,8 +118,18 @@ else {
 	}
 </aui:script>
 
-<aui:script use="aui-io">
+<aui:script use="aui-base,aui-io">
 	var form = A.one('#<portlet:namespace />fm');
+
+	<liferay-util:buffer var="editorHTML">
+		<aui:field-wrapper label="body">
+			<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" toolbarSet="email" width="100%" />
+
+			<aui:input name="body" type="hidden" />
+		</aui:field-wrapper>
+	</liferay-util:buffer>
+
+	form.one('.body-editor').setContent('<%= UnicodeFormatter.toString(editorHTML) %>');
 
 	form.on(
 		'submit',
@@ -132,7 +138,9 @@ else {
 
 			Liferay.Mail.setStatus('info', '<liferay-ui:message key="sending-message" />', true);
 
-			document.<portlet:namespace />fm.<portlet:namespace />body.value = window.<portlet:namespace />editor.getHTML();
+			var editor = A.one('#_1_WAR_mailportlet_editor').getDOM().contentWindow;
+
+			document.<portlet:namespace />fm.<portlet:namespace />body.value = editor.getHTML();
 
 			A.io.request(
 				form.getAttribute('action'),
