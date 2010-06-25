@@ -38,6 +38,7 @@
 <%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.UnicodeProperties" %>
 <%@ page import="com.liferay.portal.model.Portlet" %>
+<%@ page import="com.liferay.portal.model.PortletConstants" %>
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.wsrp.NoSuchConsumerException" %>

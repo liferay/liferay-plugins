@@ -98,6 +98,16 @@ String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, req
 
 		List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
 
+		for (int i = 0; i < portletIds.length; i++) {
+			String portletId = portletIds[i];
+
+			int index = portletId.indexOf(PortletConstants.INSTANCE_SEPARATOR);
+
+			if (index != -1) {
+				portletIds[i] = portletId.substring(0, index);
+			}
+		}
+
 		Arrays.sort(portletIds);
 
 		Iterator<Portlet> itr = PortletLocalServiceUtil.getPortlets(company.getCompanyId(), false, false).iterator();
