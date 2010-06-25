@@ -63,7 +63,22 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 		</div>
 	</c:when>
 	<c:otherwise>
-		<script src="http://www.google.com/jsapi?key=<%= PortletProps.get("map.google.maps.api.key") %>" type="text/javascript"></script>
+		<c:choose>
+			<c:when test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+				<div id="<portlet:namespace />map" style="height: 600px; width: 900px;"></div>
+			</c:when>
+			<c:otherwise>
+				<div id="<portlet:namespace />map" style="height: 190px; width: 190px;"></div>
+
+				<div style="padding-top: 5px;">
+					<a href="<%= PortalUtil.getLayoutURL(layout, themeDisplay) %>/-/map"><liferay-ui:message key="view-larger-map" /> &raquo;</a>
+				</div>
+			</c:otherwise>
+		</c:choose>
+
+		<liferay-util:html-bottom>
+			<script src="http://www.google.com/jsapi?key=<%= PortletProps.get("map.google.maps.api.key") %>" type="text/javascript"></script>
+		</liferay-util:html-bottom>
 
 		<aui:script>
 			google.load("maps", "2.x", {"language" : "ja_JP"});
@@ -164,18 +179,5 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 
 			google.setOnLoadCallback(<portlet:namespace />initMap);
 		</aui:script>
-
-		<c:choose>
-			<c:when test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
-				<div id="<portlet:namespace />map" style="height: 600px; width: 900px;"></div>
-			</c:when>
-			<c:otherwise>
-				<div id="<portlet:namespace />map" style="height: 190px; width: 190px;"></div>
-
-				<div style="padding-top: 5px;">
-					<a href="<%= PortalUtil.getLayoutURL(layout, themeDisplay) %>/-/map"><liferay-ui:message key="view-larger-map" /> &raquo;</a>
-				</div>
-			</c:otherwise>
-		</c:choose>
 	</c:otherwise>
 </c:choose>

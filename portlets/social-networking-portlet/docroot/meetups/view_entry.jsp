@@ -174,6 +174,10 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 		}
 		%>
 
+		<div class="taglib-search-iterator-page-iterator-bottom">
+			<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
+		</div>
+
 		<aui:script use="aui-base">
 			var meetups = A.one('.social-networking-portlet-meetups');
 
@@ -195,10 +199,6 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 				);
 			}
 		</aui:script>
-
-		<div class="taglib-search-iterator-page-iterator-bottom">
-			<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
-		</div>
 	</c:when>
 	<c:otherwise>
 		<div>

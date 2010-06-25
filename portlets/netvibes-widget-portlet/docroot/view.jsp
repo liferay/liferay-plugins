@@ -18,7 +18,16 @@
 
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(link) %>">
-		<script src="http://www.netvibes.com/js/UWA/Utils/IFrameMessaging.js" type="text/javascript"></script>
+
+		<%
+		String iframeURL = "http://nvmodules.netvibes.com/widget/frame?uwaUrl=" + HttpUtil.encodeURL(link) + "&id=" + HttpUtil.encodeURL(PortalUtil.getPortletId(renderRequest)) + "&ifproxyUrl=" + HttpUtil.encodeURL(request.getContextPath() + "/proxy.jsp");
+		%>
+
+		<iframe alt="<%= alt %>" height="<%= windowState.equals(WindowState.MAXIMIZED) ? heightMaximized : heightNormal %>" id="<portlet:namespace />iframe" name="<portlet:namespace />iframe" src="<%= iframeURL %>" width="<%= width %>"></iframe>
+
+		<liferay-util:html-bottom>
+			<script src="http://www.netvibes.com/js/UWA/Utils/IFrameMessaging.js" type="text/javascript"></script>
+		</liferay-util:html-bottom>
 
 		<aui:script position="inline">
 			UWA.MessageHandler = new UWA.iFrameMessaging;
@@ -29,12 +38,6 @@
 				}
 			);
 		</aui:script>
-
-		<%
-		String iframeURL = "http://nvmodules.netvibes.com/widget/frame?uwaUrl=" + HttpUtil.encodeURL(link) + "&id=" + HttpUtil.encodeURL(PortalUtil.getPortletId(renderRequest)) + "&ifproxyUrl=" + HttpUtil.encodeURL(request.getContextPath() + "/proxy.jsp");
-		%>
-
-		<iframe alt="<%= alt %>" height="<%= windowState.equals(WindowState.MAXIMIZED) ? heightMaximized : heightNormal %>" id="<portlet:namespace />iframe" name="<portlet:namespace />iframe" src="<%= iframeURL %>" width="<%= width %>"></iframe>
 	</c:when>
 	<c:otherwise>
 

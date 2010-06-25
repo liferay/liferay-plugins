@@ -102,6 +102,7 @@ if (cmd.equals(Constants.ADD) || cmd.equals(Constants.EDIT)) {
 		<aui:script>
 			document.<portlet:namespace />fm.name.focus();
 		</aui:script>
+
 	<%
 	}
 	%>

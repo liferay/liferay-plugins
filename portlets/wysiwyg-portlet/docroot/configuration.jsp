@@ -16,6 +16,19 @@
 
 <%@ include file="/init.jsp" %>
 
+<form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
+<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+
+<liferay-ui:input-editor />
+
+<input name="<portlet:namespace />message" type="hidden" value="" />
+
+<br /><br />
+
+<input type="button" value="<liferay-ui:message key="save" />" onClick="<portlet:namespace />saveMessage();" />
+
+</form>
+
 <aui:script>
 	function <portlet:namespace />initEditor() {
 		return "<%= UnicodeFormatter.toString(message) %>";
@@ -29,16 +42,3 @@
 		submitForm(document.<portlet:namespace />fm);
 	}
 </aui:script>
-
-<form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-
-<liferay-ui:input-editor />
-
-<input name="<portlet:namespace />message" type="hidden" value="" />
-
-<br /><br />
-
-<input type="button" value="<liferay-ui:message key="save" />" onClick="<portlet:namespace />saveMessage();" />
-
-</form>

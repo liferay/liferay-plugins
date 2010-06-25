@@ -16,6 +16,10 @@
 
 <%@ include file="/init.jsp" %>
 
+<liferay-util:html-bottom>
+	<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</liferay-util:html-bottom>
+
 <aui:script position="inline">
 	google_ad_client = "<%= adClient %>";
 	google_ad_channel = "<%= adChannel %>";
@@ -30,5 +34,3 @@
 	google_color_text = "<%= colorText %>";
 	google_color_url = "<%= colorUrl %>";
 </aui:script>
-
-<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>

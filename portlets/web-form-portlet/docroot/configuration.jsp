@@ -302,11 +302,11 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 </aui:form>
 
 <%
-	String modules = "aui-base";
+String modules = "aui-base";
 
-	if (!fieldsEditingDisabled) {
-		modules += ",liferay-auto-fields";
-	}
+if (!fieldsEditingDisabled) {
+	modules += ",liferay-auto-fields";
+}
 %>
 
 <aui:script use="<%= modules %>">

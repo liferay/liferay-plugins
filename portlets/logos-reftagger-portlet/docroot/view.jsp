@@ -19,11 +19,12 @@
 
 <liferay-util:html-bottom>
 	<script src="http://bible.logos.com/jsapi/referencetagging.js" type="text/javascript"></script>
-	<aui:script position="inline">
-		Logos.ReferenceTagging.lbsBibleVersion = "ESV";
-		Logos.ReferenceTagging.lbsLinksOpenNewWindow = true;
-		Logos.ReferenceTagging.lbsLibronixLinkIcon = "dark";
-		Logos.ReferenceTagging.lbsNoSearchTagNames = [ "h1", "h2", "h3" ];
-		Logos.ReferenceTagging.tag();
-	</aui:script>
 </liferay-util:html-bottom>
+
+<aui:script position="inline">
+	Logos.ReferenceTagging.lbsBibleVersion = "ESV";
+	Logos.ReferenceTagging.lbsLinksOpenNewWindow = true;
+	Logos.ReferenceTagging.lbsLibronixLinkIcon = "dark";
+	Logos.ReferenceTagging.lbsNoSearchTagNames = [ "h1", "h2", "h3" ];
+	Logos.ReferenceTagging.tag();
+</aui:script>

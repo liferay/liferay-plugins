@@ -51,12 +51,6 @@ if (meetupsEntry != null) {
 }
 %>
 
-<aui:script>
-	function <portlet:namespace />updateMeetupsEntry() {
-		submitForm(document.<portlet:namespace />fm);
-	}
-</aui:script>
-
 <form action="<portlet:actionURL name="updateMeetupsEntry"><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />updateMeetupsEntry(); return false;">
 <input name="<portlet:namespace />meetupsEntryId" type="hidden" value="<%= meetupsEntryId %>" />
 
@@ -141,3 +135,9 @@ if (meetupsEntry != null) {
 <input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>';" />
 
 </form>
+
+<aui:script>
+	function <portlet:namespace />updateMeetupsEntry() {
+		submitForm(document.<portlet:namespace />fm);
+	}
+</aui:script>

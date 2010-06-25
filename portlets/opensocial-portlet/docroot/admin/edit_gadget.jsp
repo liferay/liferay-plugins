@@ -30,12 +30,6 @@ catch (NoSuchGadgetException nsge) {
 }
 %>
 
-<aui:script>
-	function <portlet:namespace />saveGadget() {
-		submitForm(document.<portlet:namespace />fm);
-	}
-</aui:script>
-
 <form action="<portlet:actionURL name="updateGadget"><portlet:param name="jspPage" value="/admin/edit_gadget.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveGadget(); return false;">
 <input name="<portlet:namespace />gadgetId" type="hidden" value="<%= gadgetId %>" />
 
@@ -85,5 +79,9 @@ catch (NoSuchGadgetException nsge) {
 </form>
 
 <aui:script>
+	function <portlet:namespace />saveGadget() {
+		submitForm(document.<portlet:namespace />fm);
+	}
+
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 </aui:script>

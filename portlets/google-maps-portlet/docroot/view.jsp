@@ -32,6 +32,28 @@
 
 		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= license %>&amp;sensor=false" type="text/javascript"></script>
 
+		<form name="<portlet:namespace />fm">
+
+		<c:if test="<%= mapInputEnabled %>">
+			<input class="lfr-input-text" name="<portlet:namespace />mapAddress" type="text" onKeyPress="if (event.keyCode == 13) { <portlet:namespace />getMap(); return false; }" value="<%= mapAddress %>" />
+
+			<input type="button" value="<liferay-ui:message key="get-map" />" onClick="<portlet:namespace />getMap();" />
+		</c:if>
+
+		<c:if test="<%= directionsInputEnabled %>">
+			<input class="lfr-input-text" name="<portlet:namespace />directionsAddress" type="text" onKeyPress="if (event.keyCode == 13) { <portlet:namespace />getDirections(); return false; }" value="<%= directionsAddress %>" />
+
+			<input type="button" value="<liferay-ui:message key="get-directions" />" onClick="<portlet:namespace />getDirections();" />
+		</c:if>
+
+		<c:if test="<%= mapInputEnabled || directionsInputEnabled %>">
+			<div style="padding-top: 5px;"></div>
+		</c:if>
+
+		<div class="maps-content" id="<portlet:namespace />map" style="height: <%= height %>px; width: 100%;"></div>
+
+		</form>
+
 		<aui:script>
 			var <portlet:namespace />map;
 			var <portlet:namespace />geocoder;
@@ -139,28 +161,6 @@
 		<aui:script use="aui-base">
 			A.getWin().on('unload', GUnload);
 		</aui:script>
-
-		<form name="<portlet:namespace />fm">
-
-		<c:if test="<%= mapInputEnabled %>">
-			<input class="lfr-input-text" name="<portlet:namespace />mapAddress" type="text" onKeyPress="if (event.keyCode == 13) { <portlet:namespace />getMap(); return false; }" value="<%= mapAddress %>" />
-
-			<input type="button" value="<liferay-ui:message key="get-map" />" onClick="<portlet:namespace />getMap();" />
-		</c:if>
-
-		<c:if test="<%= directionsInputEnabled %>">
-			<input class="lfr-input-text" name="<portlet:namespace />directionsAddress" type="text" onKeyPress="if (event.keyCode == 13) { <portlet:namespace />getDirections(); return false; }" value="<%= directionsAddress %>" />
-
-			<input type="button" value="<liferay-ui:message key="get-directions" />" onClick="<portlet:namespace />getDirections();" />
-		</c:if>
-
-		<c:if test="<%= mapInputEnabled || directionsInputEnabled %>">
-			<div style="padding-top: 5px;"></div>
-		</c:if>
-
-		<div class="maps-content" id="<portlet:namespace />map" style="height: <%= height %>px; width: 100%;"></div>
-
-		</form>
 	</c:when>
 	<c:otherwise>
 		<liferay-ui:message key="please-contact-the-administrator-to-setup-this-portlet" />

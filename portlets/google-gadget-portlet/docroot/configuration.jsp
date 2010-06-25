@@ -37,30 +37,6 @@ GGData data = GGUtil.getData(url);
 
 <c:choose>
 	<c:when test="<%= data != null %>">
-		<aui:script>
-			function <portlet:namespace />addGadgetByURL() {
-				var gadgetId = document.<portlet:namespace />fm.<portlet:namespace />q.value;
-
-				if (gadgetId.indexOf("http") == 0) {
-					<portlet:namespace />chooseGadget(gadgetId);
-				}
-				else {
-					<portlet:namespace />searchGadgets();
-				}
-			}
-
-			function <portlet:namespace />chooseGadget(gadgetId) {
-				document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.UPDATE %>";
-				document.<portlet:namespace />fm.<portlet:namespace />gadgetId.value = gadgetId;
-				submitForm(document.<portlet:namespace />fm);
-			}
-
-			function <portlet:namespace />searchGadgets() {
-				var query = document.<portlet:namespace />fm.<portlet:namespace />q.value;
-				submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"></liferay-portlet:actionURL>&q=' + query + '&start=0');
-			}
-		</aui:script>
-
 		<form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />addGadgetByURL(); return false;">
 		<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 		<input name="<portlet:namespace />gadgetId" type="hidden" value="" />
@@ -164,6 +140,30 @@ GGData data = GGUtil.getData(url);
 		</table>
 
 		</form>
+
+		<aui:script>
+			function <portlet:namespace />addGadgetByURL() {
+				var gadgetId = document.<portlet:namespace />fm.<portlet:namespace />q.value;
+
+				if (gadgetId.indexOf("http") == 0) {
+					<portlet:namespace />chooseGadget(gadgetId);
+				}
+				else {
+					<portlet:namespace />searchGadgets();
+				}
+			}
+
+			function <portlet:namespace />chooseGadget(gadgetId) {
+				document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.UPDATE %>";
+				document.<portlet:namespace />fm.<portlet:namespace />gadgetId.value = gadgetId;
+				submitForm(document.<portlet:namespace />fm);
+			}
+
+			function <portlet:namespace />searchGadgets() {
+				var query = document.<portlet:namespace />fm.<portlet:namespace />q.value;
+				submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"></liferay-portlet:actionURL>&q=' + query + '&start=0');
+			}
+		</aui:script>
 	</c:when>
 	<c:otherwise>
 		<span class="portlet-msg-error">

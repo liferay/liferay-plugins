@@ -26,6 +26,8 @@ List<MenuItem> menuItems = MenuItem.fromWikiNode(selNodeId, depth, portletURL);
 
 <c:choose>
 	<c:when test="<%= !menuItems.isEmpty() %>">
+		<%= _buildTreeMenuHTML(menuItems , title, true) %>
+
 		<aui:script use="aui-tree-view">
 			new A.TreeView(
 				{
@@ -33,8 +35,6 @@ List<MenuItem> menuItems = MenuItem.fromWikiNode(selNodeId, depth, portletURL);
 				}
 			).render();
 		</aui:script>
-
-		<%= _buildTreeMenuHTML(menuItems , title, true) %>
 	</c:when>
 	<c:otherwise>
 		<liferay-ui:message key="no-wiki-pages-were-found" />

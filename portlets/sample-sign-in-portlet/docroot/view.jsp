@@ -141,11 +141,11 @@
 
 		</form>
 
-		<aui:script>
-			<c:if test="<%= renderRequest.getWindowState().equals(WindowState.MAXIMIZED) %>">
+		<c:if test="<%= renderRequest.getWindowState().equals(WindowState.MAXIMIZED) %>">
+			<aui:script>
 				Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />login);
-			</c:if>
-		</aui:script>
+			</aui:script>
+		</c:if>
 
 		<aui:script use="aui-base">
 			A.one('#<portlet:namespace />password').on(

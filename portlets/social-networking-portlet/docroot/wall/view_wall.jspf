@@ -35,17 +35,6 @@
 		}
 		%>
 
-		<aui:script>
-			function <portlet:namespace />addWallEntry() {
-				submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="addWallEntry" />');
-			}
-
-			function <portlet:namespace />deleteWallEntry(wallEntryId) {
-				document.<portlet:namespace />fm.<portlet:namespace />wallEntryId.value = wallEntryId;
-				submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="deleteWallEntry" />');
-			}
-		</aui:script>
-
 		<form method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />addWallEntry(); return false;">
 		<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
 		<input name="<portlet:namespace />wallEntryId" type="hidden" value="" />
@@ -230,6 +219,17 @@
 				<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
 			</div>
 		</c:if>
+
+		<aui:script>
+			function <portlet:namespace />addWallEntry() {
+				submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="addWallEntry" />');
+			}
+
+			function <portlet:namespace />deleteWallEntry(wallEntryId) {
+				document.<portlet:namespace />fm.<portlet:namespace />wallEntryId.value = wallEntryId;
+				submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="deleteWallEntry" />');
+			}
+		</aui:script>
 	</c:when>
 	<c:when test="<%= user.getUserId() != user2.getUserId() %>">
 		<div class="portlet-msg-info">

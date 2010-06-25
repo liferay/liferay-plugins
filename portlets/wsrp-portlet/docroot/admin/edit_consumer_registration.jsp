@@ -42,12 +42,6 @@ if (supportsInbandRegistration) {
 }
 %>
 
-<aui:script>
-	function <portlet:namespace />saveConsumerRegsitration() {
-		submitForm(document.<portlet:namespace />fm);
-	}
-</aui:script>
-
 <form action="<portlet:actionURL name="updateWSRPConsumerRegistration"><portlet:param name="jspPage" value="/admin/edit_consumer_registration.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumerRegistration(); return false;">
 <input name="<portlet:namespace />wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
 
@@ -188,6 +182,12 @@ if (supportsInbandRegistration) {
 <input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>';" />
 
 </form>
+
+<aui:script>
+	function <portlet:namespace />saveConsumerRegsitration() {
+		submitForm(document.<portlet:namespace />fm);
+	}
+</aui:script>
 
 <aui:script use="aui-base">
 	A.one('#<portlet:namespace />inbandRegistration').on(
