@@ -38,5 +38,12 @@ boolean enableTemplateDescription = GetterUtil.getBoolean(preferences.getValue("
 boolean enableTemplateComments = GetterUtil.getBoolean(preferences.getValue("enable-template-comments", null), true);
 boolean enableTemplateCommentRatings = GetterUtil.getBoolean(preferences.getValue("enable-template-comment-ratings", null));
 
+int rssDelta = GetterUtil.getInteger(preferences.getValue("rss-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
+String rssDisplayStyle = preferences.getValue("rss-display-style", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
+String rssFormat = preferences.getValue("rss-format", "atom10");
+
+String rssFormatType = RSSUtil.getFormatType(rssFormat);
+double rssFormatVersion = RSSUtil.getFormatVersion(rssFormat);
+
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>

@@ -41,6 +41,13 @@ boolean allArticles = GetterUtil.getBoolean(preferences.getValue("all-articles",
 String orderByColumn = preferences.getValue("order-by-column", "modified-date");
 boolean orderByAscending = GetterUtil.getBoolean(preferences.getValue("order-by-ascending", null));
 
+int rssDelta = GetterUtil.getInteger(preferences.getValue("rss-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
+String rssDisplayStyle = preferences.getValue("rss-display-style", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
+String rssFormat = preferences.getValue("rss-format", "atom10");
+
+String rssFormatType = RSSUtil.getFormatType(rssFormat);
+double rssFormatVersion = RSSUtil.getFormatVersion(rssFormat);
+
 OrderByComparator orderByComparator = null;
 
 if (orderByColumn.equals("create-date")) {

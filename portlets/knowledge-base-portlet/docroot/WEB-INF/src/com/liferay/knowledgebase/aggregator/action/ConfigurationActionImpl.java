@@ -61,6 +61,9 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		if (tabs2.equals("display-settings")) {
 			updateDisplaySettings(actionRequest, preferences);
 		}
+		else if (tabs2.equals("rss")) {
+			updateRSS(actionRequest, preferences);
+		}
 		else if (tabs2.equals("selection-method")) {
 			updateSelectionMethod(actionRequest, preferences);
 		}
@@ -111,6 +114,20 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		preferences.setValue(
 			"enable-article-comment-ratings",
 			String.valueOf(enableArticleCommentRatings));
+	}
+
+	protected void updateRSS(
+			ActionRequest actionRequest, PortletPreferences preferences)
+		throws Exception {
+
+		int rssDelta = ParamUtil.getInteger(actionRequest, "rssDelta");
+		String rssDisplayStyle = ParamUtil.getString(
+			actionRequest, "rssDisplayStyle");
+		String rssFormat = ParamUtil.getString(actionRequest, "rssFormat");
+
+		preferences.setValue("rss-delta", String.valueOf(rssDelta));
+		preferences.setValue("rss-display-style", rssDisplayStyle);
+		preferences.setValue("rss-format", rssFormat);
 	}
 
 	protected void updateSelectionMethod(
