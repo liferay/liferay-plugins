@@ -18,19 +18,32 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
+import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DiffHtmlUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.LayoutConstants;
+import com.liferay.portal.model.PortletConstants;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.portlet.PortletPreferences;
+import javax.portlet.WindowState;
 
 /**
  * <a href="KnowledgeBaseUtil.java.html"><b><i>View Source</i></b></a>
@@ -140,6 +153,138 @@ public class KnowledgeBaseUtil {
 		return articles;
 	}
 
+	public static String getArticleURL(
+			long resourcePrimKey, String portletId, String portalURL)
+		throws Exception {
+
+		Object[] plidAndWindowState = getPlidAndWindowState(
+			resourcePrimKey, portletId, portalURL);
+
+		long plid = (Long)plidAndWindowState[0];
+		WindowState windowState = (WindowState)plidAndWindowState[1];
+
+		if (plid == LayoutConstants.DEFAULT_PLID) {
+			return StringPool.BLANK;
+		}
+
+		boolean isMaximized = windowState.equals(WindowState.MAXIMIZED);
+
+		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
+
+		String layoutActualURL = PortalUtil.getLayoutActualURL(layout);
+		String layoutFullURL = portalURL + layoutActualURL;
+
+		return getArticleURL(
+			resourcePrimKey, portletId, layoutFullURL, isMaximized);
+	}
+
+	public static String getArticleURL(
+			long resourcePrimKey, String portletId, String layoutFullURL,
+			boolean isMaximized)
+		throws Exception {
+
+		String pluginId = PortletConstants.getRootPortletId(portletId);
+		String namespace = PortalUtil.getPortletNamespace(portletId);
+
+		String jspPage = null;
+
+		if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+			jspPage = "/admin/view_article.jsp";
+		}
+		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
+			jspPage = "/aggregator/view_article.jsp";
+		}
+
+		String articleURL = layoutFullURL;
+
+		if (isMaximized) {
+			articleURL = HttpUtil.setParameter(
+				articleURL, "p_p_state", WindowState.MAXIMIZED.toString());
+		}
+
+		articleURL = HttpUtil.setParameter(articleURL, "p_p_id", portletId);
+		articleURL = HttpUtil.setParameter(
+			articleURL, namespace + "jspPage", jspPage);
+		articleURL = HttpUtil.setParameter(
+			articleURL, namespace + "resourcePrimKey", resourcePrimKey);
+
+		return articleURL;
+	}
+
+	protected static Object[] getAdminPlidAndWindowState(
+			long resourcePrimKey, String portletId)
+		throws Exception {
+
+		Article article = ArticleLocalServiceUtil.getLatestArticle(
+			resourcePrimKey);
+
+		long plid = PortalUtil.getPlidFromPortletId(
+			article.getGroupId(), portletId);
+
+		return new Object[] {plid, WindowState.NORMAL};
+	}
+
+	protected static Object[] getAggregatorPlidAndWindowState(
+			long resourcePrimKey, String portletId)
+		throws Exception {
+
+		Article article = ArticleLocalServiceUtil.getLatestArticle(
+			resourcePrimKey);
+
+		long parentGroupId = PortalUtil.getParentGroupId(article.getGroupId());
+
+		long plid = PortalUtil.getPlidFromPortletId(parentGroupId, portletId);
+		WindowState windowState = WindowState.NORMAL;
+
+		if (plid == LayoutConstants.DEFAULT_PLID) {
+			return new Object[] {plid, windowState};
+		}
+
+		Object[] arguments = new Object[] {
+			LayoutLocalServiceUtil.getLayout(plid), portletId, StringPool.BLANK
+		};
+
+		PortletPreferences jxPreferences =
+			(PortletPreferences)PortalClassInvoker.invoke(
+				"com.liferay.portlet.PortletPreferencesFactoryUtil",
+				"getPortletSetup", arguments);
+
+		String articleWindowState = jxPreferences.getValue(
+			"article-window-state", WindowState.MAXIMIZED.toString());
+		String selectionMethod = jxPreferences.getValue(
+			"selection-method", "parent-group");
+		long[] resourcePrimKeys = GetterUtil.getLongValues(
+			jxPreferences.getValues("resource-prim-keys", new String[0]));
+		long[] scopeGroupIds = GetterUtil.getLongValues(
+			jxPreferences.getValues("scope-group-ids", new String[0]));
+
+		boolean hasResourcePrimKey = ArrayUtil.contains(
+			resourcePrimKeys, resourcePrimKey);
+		boolean hasScopeGroup = ArrayUtil.contains(
+			scopeGroupIds, article.getGroupId());
+
+		if (articleWindowState.equals(WindowState.MAXIMIZED.toString())) {
+			windowState = WindowState.MAXIMIZED;
+		}
+
+		if ((selectionMethod.equals("parent-group")) ||
+			(selectionMethod.equals("articles") && hasResourcePrimKey) ||
+			(selectionMethod.equals("scope-groups") && hasScopeGroup)) {
+
+			return new Object[] {plid, windowState};
+		}
+
+		if (selectionMethod.equals("articles")) {
+
+			// Retrieving all parent and children articles for each selected
+			// article can be expensive. Skip this check for better performance.
+
+			return new Object[] {plid, windowState};
+		}
+
+		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
+	}
+
 	protected static String getDiff(
 			String sourceHtml, String targetHtml, String portalURL)
 		throws Exception {
@@ -211,6 +356,22 @@ public class KnowledgeBaseUtil {
 		}
 
 		return diff;
+	}
+
+	protected static Object[] getPlidAndWindowState(
+			long resourcePrimKey, String portletId, String portalURL)
+		throws Exception {
+
+		String pluginId = PortletConstants.getRootPortletId(portletId);
+
+		if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+			return getAdminPlidAndWindowState(resourcePrimKey, portletId);
+		}
+		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
+			return getAggregatorPlidAndWindowState(resourcePrimKey, portletId);
+		}
+
+		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
 	}
 
 }

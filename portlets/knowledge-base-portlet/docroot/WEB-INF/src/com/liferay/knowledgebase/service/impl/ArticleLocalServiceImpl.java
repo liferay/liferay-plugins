@@ -46,7 +46,6 @@ import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
@@ -59,7 +58,6 @@ import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
-import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
@@ -769,54 +767,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 	}
 
-	protected String getEmailArticleContent(
-		Article article, ServiceContext serviceContext) {
-
-		return StringUtil.replace(
-			article.getContent(),
-			new String[] {
-				"href=\"/",
-				"src=\"/"
-			},
-			new String[] {
-				"href=\"" + serviceContext.getPortalURL() + "/",
-				"src=\"" + serviceContext.getPortalURL() + "/"
-			});
-	}
-
-	protected String getEmailArticleURL(
-			Article article, ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		String articleURL = null;
-
-		Layout layout = layoutLocalService.getLayout(serviceContext.getPlid());
-		LayoutTypePortlet layoutTypePortlet =
-			(LayoutTypePortlet)layout.getLayoutType();
-
-		if (layoutTypePortlet.hasDefaultScopePortletId(
-				article.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-
-			String namespace = PortalUtil.getPortletNamespace(
-				PortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-			articleURL = HttpUtil.setParameter(
-				serviceContext.getLayoutFullURL(), "p_p_id",
-				PortletKeys.KNOWLEDGE_BASE_ADMIN);
-			articleURL = HttpUtil.setParameter(
-				articleURL, namespace + "jspPage", "/admin/view_article.jsp");
-			articleURL = HttpUtil.setParameter(
-				articleURL, namespace + "resourcePrimKey",
-				article.getResourcePrimKey());
-		}
-
-		if (articleURL == null) {
-			articleURL = serviceContext.getLayoutFullURL();
-		}
-
-		return articleURL;
-	}
-
 	protected Long[] getGroupIds(long parentGroupId) throws SystemException {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			Group.class, "group", PortalClassLoaderUtil.getClassLoader());
@@ -951,6 +901,17 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				group.getName()
 			});
 
+		String articleContent = StringUtil.replace(
+			article.getContent(),
+			new String[] {
+				"href=\"/",
+				"src=\"/"
+			},
+			new String[] {
+				"href=\"" + serviceContext.getPortalURL() + "/",
+				"src=\"" + serviceContext.getPortalURL() + "/"
+			});
+
 		Map<String, String> articleDiffs = new HashMap<String, String>();
 
 		String[] parameters = new String[] {"content", "title"};
@@ -972,9 +933,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 			articleDiffs.put(parameter, articleDiff);
 		}
-
-		String articleContent = getEmailArticleContent(article, serviceContext);
-		String articleURL = getEmailArticleURL(article, serviceContext);
 
 		String subject = null;
 		String body = null;
@@ -1048,7 +1006,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"[$ARTICLE_CONTENT_DIFF$]",
 				"[$ARTICLE_TITLE$]",
 				"[$ARTICLE_TITLE_DIFF$]",
-				"[$ARTICLE_URL$]",
 				"[$ARTICLE_USER_ADDRESS$]",
 				"[$ARTICLE_USER_NAME$]",
 				"[$COMPANY_ID$]",
@@ -1064,7 +1021,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				articleDiffs.get("content"),
 				article.getTitle(),
 				articleDiffs.get("title"),
-				articleURL,
 				emailAddress,
 				fullName,
 				String.valueOf(company.getCompanyId()),
@@ -1083,7 +1039,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"[$ARTICLE_CONTENT_DIFF$]",
 				"[$ARTICLE_TITLE$]",
 				"[$ARTICLE_TITLE_DIFF$]",
-				"[$ARTICLE_URL$]",
 				"[$ARTICLE_USER_ADDRESS$]",
 				"[$ARTICLE_USER_NAME$]",
 				"[$COMPANY_ID$]",
@@ -1099,7 +1054,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				articleDiffs.get("content"),
 				article.getTitle(),
 				articleDiffs.get("title"),
-				articleURL,
 				emailAddress,
 				fullName,
 				String.valueOf(company.getCompanyId()),
@@ -1122,6 +1076,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		message.put("groupId", article.getGroupId());
 		message.put("userId", article.getUserId());
 		message.put("resourcePrimKey", article.getResourcePrimKey());
+		message.put("portalURL", serviceContext.getPortalURL());
 		message.put("fromName", fromName);
 		message.put("fromAddress", fromAddress);
 		message.put("subject", subject);

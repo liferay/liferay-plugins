@@ -18,6 +18,7 @@ import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
+import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -30,6 +31,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
@@ -42,6 +44,7 @@ import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
+import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.util.TextFormatter;
 
 import java.util.HashSet;
@@ -72,6 +75,7 @@ public class AdminMessageListener implements MessageListener {
 		long groupId = message.getLong("groupId");
 		long userId = message.getLong("userId");
 		long resourcePrimKey = message.getLong("resourcePrimKey");
+		String portalURL = message.getString("portalURL");
 		String fromName = message.getString("fromName");
 		String fromAddress = message.getString("fromAddress");
 		String subject = message.getString("subject");
@@ -95,8 +99,8 @@ public class AdminMessageListener implements MessageListener {
 				companyId, Article.class.getName(), resourcePrimKey);
 
 		sendEmail(
-			userId, resourcePrimKey, fromName, fromAddress, subject, body,
-			subscriptions, sent, replyToAddress, mailId, htmlFormat);
+			userId, resourcePrimKey, portalURL, fromName, fromAddress, subject,
+			body, subscriptions, sent, replyToAddress, mailId, htmlFormat);
 
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
 			resourcePrimKey);
@@ -110,8 +114,9 @@ public class AdminMessageListener implements MessageListener {
 				article.getResourcePrimKey());
 
 			sendEmail(
-				userId, resourcePrimKey, fromName, fromAddress, subject, body,
-				subscriptions, sent, replyToAddress, mailId, htmlFormat);
+				userId, resourcePrimKey, portalURL, fromName, fromAddress,
+				subject, body, subscriptions, sent, replyToAddress, mailId,
+				htmlFormat);
 		}
 
 		// Articles
@@ -120,8 +125,8 @@ public class AdminMessageListener implements MessageListener {
 			companyId, Article.class.getName(), groupId);
 
 		sendEmail(
-			userId, resourcePrimKey, fromName, fromAddress, subject, body,
-			subscriptions, sent, replyToAddress, mailId, htmlFormat);
+			userId, resourcePrimKey, portalURL, fromName, fromAddress, subject,
+			body, subscriptions, sent, replyToAddress, mailId, htmlFormat);
 
 		if (_log.isInfoEnabled()) {
 			_log.info("Finished sending notifications");
@@ -154,8 +159,8 @@ public class AdminMessageListener implements MessageListener {
 	}
 
 	protected void sendEmail(
-			long userId, long resourcePrimKey, String fromName,
-			String fromAddress, String subject, String body,
+			long userId, long resourcePrimKey, String portalURL,
+			String fromName, String fromAddress, String subject, String body,
 			List<Subscription> subscriptions, Set<Long> sent,
 			String replyToAddress, String mailId, boolean htmlFormat)
 		throws Exception {
@@ -232,6 +237,24 @@ public class AdminMessageListener implements MessageListener {
 				PermissionThreadLocal.setPermissionChecker(null);
 			}
 
+			String portletId = ExpandoValueLocalServiceUtil.getData(
+				user.getCompanyId(), Subscription.class.getName(), "KB",
+				"portletId", subscription.getSubscriptionId(),
+				PortletKeys.KNOWLEDGE_BASE_ADMIN);
+
+			String articleURL = KnowledgeBaseUtil.getArticleURL(
+				resourcePrimKey, portletId, portalURL);
+
+			if (Validator.isNull(articleURL)) {
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						"Portlet " + portletId + " does not exist or does " +
+							"not contain article " + resourcePrimKey);
+				}
+
+				continue;
+			}
+
 			String categoryTitle = LanguageUtil.get(
 				user.getLocale(), "category.kb");
 			String portletName = PortalUtil.getPortletTitle(
@@ -269,6 +292,7 @@ public class AdminMessageListener implements MessageListener {
 				subject,
 				new String[] {
 					"[$ARTICLE_ATTACHMENTS$]",
+					"[$ARTICLE_URL$]",
 					"[$ARTICLE_VERSION$]",
 					"[$CATEGORY_TITLE$]",
 					"[$PORTLET_NAME$]",
@@ -277,6 +301,7 @@ public class AdminMessageListener implements MessageListener {
 				},
 				new String[] {
 					articleAttachments,
+					articleURL,
 					articleVersion,
 					categoryTitle,
 					portletName,
@@ -288,6 +313,7 @@ public class AdminMessageListener implements MessageListener {
 				body,
 				new String[] {
 					"[$ARTICLE_ATTACHMENTS$]",
+					"[$ARTICLE_URL$]",
 					"[$ARTICLE_VERSION$]",
 					"[$CATEGORY_TITLE$]",
 					"[$PORTLET_NAME$]",
@@ -296,6 +322,7 @@ public class AdminMessageListener implements MessageListener {
 				},
 				new String[] {
 					articleAttachments,
+					articleURL,
 					articleVersion,
 					categoryTitle,
 					portletName,
