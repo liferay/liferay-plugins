@@ -90,6 +90,7 @@ import oasis.names.tc.wsrp.v2.types.HandleEvents;
 import oasis.names.tc.wsrp.v2.types.HandleEventsResponse;
 import oasis.names.tc.wsrp.v2.types.InitCookie;
 import oasis.names.tc.wsrp.v2.types.InteractionParams;
+import oasis.names.tc.wsrp.v2.types.InvalidCookieFault;
 import oasis.names.tc.wsrp.v2.types.MarkupContext;
 import oasis.names.tc.wsrp.v2.types.MarkupParams;
 import oasis.names.tc.wsrp.v2.types.MarkupResponse;
@@ -429,7 +430,17 @@ public class ConsumerPortlet extends GenericPortlet {
 		WSRP_v2_Markup_PortType markupService = getMarkupService(
 			portletRequest, wsrpConsumerManager, wsrpConsumer);
 
-		MarkupResponse markupResponse = markupService.getMarkup(getMarkup);
+		MarkupResponse markupResponse = null;
+
+		try {
+			markupResponse = markupService.getMarkup(getMarkup);
+		}
+		catch (InvalidCookieFault icf) {
+			InitCookie initCookie = new InitCookie();
+
+			markupService.initCookie(initCookie);
+			markupResponse = markupService.getMarkup(getMarkup);
+		}
 
 		processMarkupResponse(portletRequest, portletResponse, markupResponse);
 
