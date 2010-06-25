@@ -26,11 +26,11 @@ long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentReso
 long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePrimKey", parentResourcePrimKey);
 %>
 
-<aui:form method="post" name="fm">
-	<liferay-ui:tabs
-		names="parent-article"
-	/>
+<liferay-ui:tabs
+	names="parent-article"
+/>
 
+<aui:form method="post" name="fm">
 	<aui:fieldset>
 		<liferay-portlet:renderURL varImpl="iteratorURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 			<portlet:param name="jspPage" value="/admin/select_article.jsp" />

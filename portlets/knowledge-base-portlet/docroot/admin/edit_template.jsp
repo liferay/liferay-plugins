@@ -26,6 +26,11 @@ long templateId = BeanParamUtil.getLong(template, request, "templateId");
 String content = BeanParamUtil.getString(template, request, "content");
 %>
 
+<liferay-ui:tabs
+	backURL="<%= PortalUtil.escapeRedirect(redirect) %>"
+	names="template"
+/>
+
 <portlet:actionURL name="updateTemplate" var="updateTemplateURL">
 	<portlet:param name="jspPage" value="/admin/edit_template.jsp" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
@@ -33,11 +38,6 @@ String content = BeanParamUtil.getString(template, request, "content");
 
 <aui:form action="<%= updateTemplateURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateTemplate();" %>'>
 	<aui:input name="templateId" type="hidden" value="<%= templateId %>" />
-
-	<liferay-ui:tabs
-		backURL="<%= PortalUtil.escapeRedirect(redirect) %>"
-		names="template"
-	/>
 
 	<liferay-ui:error exception="<%= TemplateContentException.class %>" message="please-enter-valid-content" />
 	<liferay-ui:error exception="<%= TemplateTitleException.class %>" message="please-enter-a-valid-title" />

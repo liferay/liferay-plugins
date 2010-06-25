@@ -16,11 +16,11 @@
 
 <%@ include file="/aggregator/init.jsp" %>
 
-<aui:form name="fm">
-	<liferay-ui:tabs
-		names="scopes"
-	/>
+<liferay-ui:tabs
+	names="scopes"
+/>
 
+<aui:form name="fm">
 	<aui:fieldset>
 		<liferay-portlet:renderURL varImpl="iteratorURL">
 			<portlet:param name="jspPage" value="/aggregator/select_scope_groups.jsp" />

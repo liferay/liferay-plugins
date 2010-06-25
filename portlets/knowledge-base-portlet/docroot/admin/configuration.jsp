@@ -49,18 +49,18 @@ else if (tabs2.equals("article-updated-email")) {
 	<portlet:param name="tabs3" value="<%= tabs3 %>" />
 </liferay-portlet:renderURL>
 
+<liferay-ui:tabs
+	names="email-from,article-added-email,article-updated-email,display-settings,rss"
+	param="tabs2"
+	url="<%= portletURL %>"
+/>
+
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
 
 <aui:form action="<%= configurationURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
 	<aui:input name="tabs3" type="hidden" value="<%= tabs3 %>" />
-
-	<liferay-ui:tabs
-		names="email-from,article-added-email,article-updated-email,display-settings,rss"
-		param="tabs2"
-		url="<%= portletURL %>"
-	/>
 
 	<!--
 	SessionErrors are not propagated for plugins. See portlet_configuration\edit_configuration.jsp.

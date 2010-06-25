@@ -37,6 +37,12 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 	<portlet:param name="tabs2" value="<%= tabs2 %>" />
 </liferay-portlet:renderURL>
 
+<liferay-ui:tabs
+	names="display-settings,selection-method,rss"
+	param="tabs2"
+	url="<%= portletURL %>"
+/>
+
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
 
 <aui:form action="<%= configurationURL %>" method="post" name="fm">
@@ -44,12 +50,6 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
 	<aui:input name="scopeGroupIds" type="hidden" value='<%= ListUtil.toString(scopeGroups, "groupId") %>' />
 	<aui:input name="resourcePrimKeys" type="hidden" value='<%= ListUtil.toString(articles, "resourcePrimKey") %>' />
-
-	<liferay-ui:tabs
-		names="display-settings,selection-method,rss"
-		param="tabs2"
-		url="<%= portletURL %>"
-	/>
 
 	<aui:fieldset>
 		<c:choose>

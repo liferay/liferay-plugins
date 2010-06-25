@@ -28,12 +28,12 @@ String dirName = ParamUtil.getString(request, "dirName");
 String[] fileNames = DLServiceUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 %>
 
+<liferay-ui:tabs
+	names="attachments"
+/>
+
 <aui:form method="post" name="fm">
 	<aui:input name="fileName" type="hidden" />
-
-	<liferay-ui:tabs
-		names="attachments"
-	/>
 
 	<liferay-ui:error exception="<%= DuplicateFileException.class %>" message="please-enter-a-unique-document-name" />
 	<liferay-ui:error exception="<%= FileSizeException.class %>" message="please-enter-a-file-with-a-valid-file-size" />

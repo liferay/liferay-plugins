@@ -32,6 +32,11 @@ int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleCon
 String dirName = ParamUtil.getString(request, "dirName");
 %>
 
+<liferay-ui:tabs
+	backURL="<%= PortalUtil.escapeRedirect(redirect) %>"
+	names="article"
+/>
+
 <portlet:actionURL name="updateArticle" var="updateArticleURL">
 	<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
@@ -41,11 +46,6 @@ String dirName = ParamUtil.getString(request, "dirName");
 	<aui:input name="resourcePrimKey" type="hidden" value="<%= resourcePrimKey %>" />
 	<aui:input name="parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
 	<aui:input name="dirName" type="hidden" value="<%= dirName %>" />
-
-	<liferay-ui:tabs
-		backURL="<%= PortalUtil.escapeRedirect(redirect) %>"
-		names="article"
-	/>
 
 	<liferay-ui:error exception="<%= ArticleContentException.class %>" message="please-enter-valid-content" />
 	<liferay-ui:error exception="<%= ArticleTitleException.class %>" message="please-enter-a-valid-title" />
