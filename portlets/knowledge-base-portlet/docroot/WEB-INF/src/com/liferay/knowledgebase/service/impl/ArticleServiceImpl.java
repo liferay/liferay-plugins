@@ -18,20 +18,18 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.base.ArticleServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.AdminPermission;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
-import com.liferay.knowledgebase.util.PortletKeys;
+import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -163,8 +161,9 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	public String getArticlesRSS(
-			long resourcePrimKey, int max, String type, double version,
-			String displayStyle, ThemeDisplay themeDisplay)
+			String portletId, long resourcePrimKey, int max, String type,
+			double version, String displayStyle, boolean isMaximized,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		Article article = articleLocalService.getLatestArticle(resourcePrimKey);
@@ -175,34 +174,14 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		String description = title;
 
 		String layoutFullURL = PortalUtil.getLayoutFullURL(themeDisplay);
+		String feedURL = KnowledgeBaseUtil.getArticleURL(
+			portletId, resourcePrimKey, layoutFullURL, isMaximized);
 
-		String feedURL = layoutFullURL;
-		String entryURL = layoutFullURL;
-
-		String namespace = PortalUtil.getPortletNamespace(
-			PortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-		feedURL = HttpUtil.setParameter(
-			feedURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ADMIN);
-		feedURL = HttpUtil.setParameter(
-			feedURL, namespace + "jspPage", "/admin/view_article.jsp");
-		feedURL = HttpUtil.setParameter(
-			feedURL, namespace + "resourcePrimKey",
-			article.getResourcePrimKey());
-
-		LayoutTypePortlet layoutTypePortlet =
-			themeDisplay.getLayoutTypePortlet();
-
-		if (!layoutTypePortlet.hasDefaultScopePortletId(
-				article.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-
-			feedURL = null;
-			entryURL = null;
-		}
+		List<Article> articles = filterArticles(article, max);
 
 		return exportToRSS(
-			name, description, type, version, displayStyle, feedURL, entryURL,
-			filterArticles(article, max), themeDisplay);
+			portletId, name, description, type, version, displayStyle,
+			isMaximized, layoutFullURL, feedURL, articles, themeDisplay);
 	}
 
 	public List<Article> getCompanyArticles(
@@ -241,8 +220,8 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	public String getGroupArticlesRSS(
-			int max, String type, double version, String displayStyle,
-			ThemeDisplay themeDisplay)
+			String portletId, int max, String type, double version,
+			String displayStyle, boolean isMaximized, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		Group group = themeDisplay.getScopeGroup();
@@ -253,23 +232,13 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		String description = descriptiveName;
 
 		String layoutFullURL = PortalUtil.getLayoutFullURL(themeDisplay);
-
 		String feedURL = layoutFullURL;
-		String entryURL = layoutFullURL;
 
-		LayoutTypePortlet layoutTypePortlet =
-			themeDisplay.getLayoutTypePortlet();
-
-		if (!layoutTypePortlet.hasDefaultScopePortletId(
-				group.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-
-			feedURL = null;
-			entryURL = null;
-		}
+		List<Article> articles = filterGroupArticles(group, max);
 
 		return exportToRSS(
-			name, description, type, version, displayStyle, feedURL, entryURL,
-			filterGroupArticles(group, max), themeDisplay);
+			portletId, name, description, type, version, displayStyle,
+			isMaximized, layoutFullURL, feedURL, articles, themeDisplay);
 	}
 
 	public Article getLatestArticle(long resourcePrimKey)
@@ -351,10 +320,11 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	protected String exportToRSS(
-			String name, String description, String type, double version,
-			String displayStyle, String feedURL, String entryURL,
-			List<Article> articles, ThemeDisplay themeDisplay)
-		throws SystemException {
+			String portletId, String name, String description, String type,
+			double version, String displayStyle, boolean isMaximized,
+			String layoutFullURL, String feedURL, List<Article> articles,
+			ThemeDisplay themeDisplay)
+		throws PortalException, SystemException {
 
 		List<SyndEntry> syndEntries = new ArrayList<SyndEntry>();
 
@@ -392,20 +362,9 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 			author = HtmlUtil.escape(userName);
 
-			String link = entryURL;
-
-			if (link != null) {
-				String namespace = PortalUtil.getPortletNamespace(
-					PortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-				link = HttpUtil.setParameter(
-					link, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ADMIN);
-				link = HttpUtil.setParameter(
-					link, namespace + "jspPage", "/kb/view_article.jsp");
-				link = HttpUtil.setParameter(
-					link, namespace + "resourcePrimKey",
-					article.getResourcePrimKey());
-			}
+			String link = KnowledgeBaseUtil.getArticleURL(
+				portletId, article.getResourcePrimKey(), layoutFullURL,
+				isMaximized);
 
 			SyndContent syndContent = new SyndContentImpl();
 
