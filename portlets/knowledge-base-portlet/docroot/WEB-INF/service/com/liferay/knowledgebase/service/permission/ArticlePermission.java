@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.service.permission;
 
 import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -88,7 +89,9 @@ public class ArticlePermission {
 			return false;
 		}
 
-		if (article.getParentResourcePrimKey() > 0) {
+		if (article.getParentResourcePrimKey() !=
+				ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
+
 			article = ArticleLocalServiceUtil.getLatestArticle(
 				article.getParentResourcePrimKey());
 
@@ -113,7 +116,9 @@ public class ArticlePermission {
 			return true;
 		}
 
-		if (article.getParentResourcePrimKey() > 0) {
+		if (article.getParentResourcePrimKey() !=
+				ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
+
 			article = ArticleLocalServiceUtil.getLatestArticle(
 				article.getParentResourcePrimKey());
 

@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.admin.messaging;
 
 import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
@@ -105,7 +106,9 @@ public class AdminMessageListener implements MessageListener {
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
 			resourcePrimKey);
 
-		while (article.getParentResourcePrimKey() > 0) {
+		while (article.getParentResourcePrimKey() !=
+					ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
+
 			article = ArticleLocalServiceUtil.getLatestArticle(
 				article.getParentResourcePrimKey());
 
