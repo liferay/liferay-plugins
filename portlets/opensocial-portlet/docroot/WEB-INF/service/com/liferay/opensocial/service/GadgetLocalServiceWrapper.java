@@ -124,6 +124,12 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 		return _gadgetLocalService.addGadget(companyId, name, url);
 	}
 
+	public void destroyGadget(com.liferay.opensocial.model.Gadget gadget)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_gadgetLocalService.destroyGadget(gadget);
+	}
+
 	public void destroyGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

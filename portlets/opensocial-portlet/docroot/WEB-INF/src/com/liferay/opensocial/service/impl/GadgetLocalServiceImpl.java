@@ -45,14 +45,12 @@ import javax.portlet.PortletMode;
 import javax.portlet.WindowState;
 
 /**
- * <a href="GadgetLocalServiceImpl.java.html"><b><i>View Source</i></b>
- * </a>
+ * <a href="GadgetLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael Young
  * @author Brian Wing Shun Chan
  */
-public class GadgetLocalServiceImpl
-	extends GadgetLocalServiceBaseImpl {
+public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 	public Gadget addGadget(long companyId, String name, String url)
 		throws PortalException, SystemException {
@@ -92,6 +90,27 @@ public class GadgetLocalServiceImpl
 		Gadget gadget = gadgetPersistence.findByPrimaryKey(gadgetId);
 
 		deleteGadget(gadget);
+	}
+
+	public void destroyGadget(Gadget gadget)
+		throws PortalException, SystemException {
+
+		try {
+			Portlet portlet = getPortlet(gadget);
+
+			PortletLocalServiceUtil.destroyRemotePortlet(portlet);
+
+			PortletInstanceFactoryUtil.destroy(portlet);
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (SystemException se) {
+			throw se;
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
 	}
 
 	public void destroyGadgets() throws PortalException, SystemException {
@@ -181,27 +200,6 @@ public class GadgetLocalServiceImpl
 		PortletInfo portletInfo = new PortletInfo(title, title, title, title);
 
 		portlet.setPortletInfo(portletInfo);
-	}
-
-	protected void destroyGadget(Gadget gadget)
-		throws PortalException, SystemException {
-
-		try {
-			Portlet portlet = getPortlet(gadget);
-
-			PortletLocalServiceUtil.destroyRemotePortlet(portlet);
-
-			PortletInstanceFactoryUtil.destroy(portlet);
-		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (SystemException se) {
-			throw se;
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
 	}
 
 	protected Portlet getPortlet(Gadget gadget) throws Exception {

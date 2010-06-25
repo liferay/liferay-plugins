@@ -127,6 +127,12 @@ public class GadgetLocalServiceUtil {
 		return getService().addGadget(companyId, name, url);
 	}
 
+	public static void destroyGadget(com.liferay.opensocial.model.Gadget gadget)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().destroyGadget(gadget);
+	}
+
 	public static void destroyGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
