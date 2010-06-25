@@ -78,6 +78,18 @@ public class AdminPortlet extends MVCPortlet {
 		WSRPProducerLocalServiceUtil.deleteWSRPProducer(wsrpProducerId);
 	}
 
+	public void restartConsumer(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long wsrpConsumerId = ParamUtil.getLong(
+			actionRequest, "wsrpConsumerId");
+
+		String userToken = WSRPConsumerManager.getUserToken(actionRequest);
+
+		WSRPConsumerLocalServiceUtil.restartConsumer(wsrpConsumerId, userToken);
+	}
+
 	public void updateServiceDescription(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {

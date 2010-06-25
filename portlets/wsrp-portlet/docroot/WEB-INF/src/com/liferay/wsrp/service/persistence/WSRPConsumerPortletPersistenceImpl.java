@@ -187,21 +187,6 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		}
 	}
 
-	public WSRPConsumerPortlet remove(WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws SystemException {
-		for (ModelListener<WSRPConsumerPortlet> listener : listeners) {
-			listener.onBeforeRemove(wsrpConsumerPortlet);
-		}
-
-		wsrpConsumerPortlet = removeImpl(wsrpConsumerPortlet);
-
-		for (ModelListener<WSRPConsumerPortlet> listener : listeners) {
-			listener.onAfterRemove(wsrpConsumerPortlet);
-		}
-
-		return wsrpConsumerPortlet;
-	}
-
 	protected WSRPConsumerPortlet removeImpl(
 		WSRPConsumerPortlet wsrpConsumerPortlet) throws SystemException {
 		wsrpConsumerPortlet = toUnwrappedModel(wsrpConsumerPortlet);
@@ -829,7 +814,6 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_WSRPCONSUMERPORTLET.concat(WSRPConsumerPortletModelImpl.ORDER_BY_JPQL);
 				}

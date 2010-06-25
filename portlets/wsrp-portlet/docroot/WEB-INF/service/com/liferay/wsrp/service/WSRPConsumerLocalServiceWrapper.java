@@ -152,6 +152,12 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 			userToken);
 	}
 
+	public void restartConsumer(long wsrpConsumerId, java.lang.String userToken)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_wsrpConsumerLocalService.restartConsumer(wsrpConsumerId, userToken);
+	}
+
 	public void updateServiceDescription(long wsrpConsumerId,
 		java.lang.String userToken)
 		throws com.liferay.portal.kernel.exception.PortalException,

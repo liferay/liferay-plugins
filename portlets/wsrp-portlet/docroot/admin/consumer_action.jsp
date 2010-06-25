@@ -41,6 +41,13 @@ catch (Exception e) {
 			</portlet:actionURL>
 
 			<liferay-ui:icon-delete url="<%= deleteURL %>" />
+
+			<portlet:actionURL name="restartConsumer" var="restartConsumerURL">
+                <portlet:param name="redirect" value="<%= currentURL %>" />
+                <portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
+            </portlet:actionURL>
+
+            <liferay-ui:icon image="portlet" message="restart-consumer" url="<%= restartConsumerURL %>" />
 		</liferay-ui:icon-menu>
 	</c:when>
 	<c:otherwise>
@@ -92,6 +99,17 @@ catch (Exception e) {
 				image="portlet"
 				message="update-service-description"
 				url="<%= updateServiceDescriptionURL %>"
+			/>
+
+			<portlet:actionURL name="restartConsumer" var="restartConsumerURL">
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
+			</portlet:actionURL>
+
+			<liferay-ui:icon
+				image="portlet"
+				message="restart-consumer"
+				url="<%= restartConsumerURL %>"
 			/>
 
 			<portlet:actionURL name="deleteWSRPConsumer" var="deleteURL">

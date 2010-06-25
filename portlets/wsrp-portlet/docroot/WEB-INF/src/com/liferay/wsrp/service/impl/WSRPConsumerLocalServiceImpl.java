@@ -26,6 +26,7 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.wsrp.WSRPConsumerNameException;
 import com.liferay.wsrp.WSRPConsumerWSDLException;
 import com.liferay.wsrp.model.WSRPConsumer;
+import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.service.base.WSRPConsumerLocalServiceBaseImpl;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
@@ -153,6 +154,48 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumerPersistence.update(wsrpConsumer, false);
 
 		return wsrpConsumer;
+	}
+
+	public void restartConsumer(long wsrpConsumerId, String userToken)
+		throws PortalException, SystemException {
+
+		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
+			wsrpConsumerId);
+
+		try {
+			WSRPConsumerManager wsrpConsumerManager =
+				WSRPConsumerManagerFactory.getWSRPConsumerManager(
+					wsrpConsumer, userToken);
+
+			RegistrationContext registrationContext =
+				wsrpConsumer.getRegistrationContext();
+
+			wsrpConsumerManager.updateServiceDescription(registrationContext);
+
+			List<WSRPConsumerPortlet> portlets =
+				wsrpConsumerPortletLocalService.getWSRPConsumerPortlets(
+					wsrpConsumerId);
+
+			for (WSRPConsumerPortlet portlet : portlets) {
+				long companyId = portlet.getCompanyId();
+				long wsrpConsumerPortletId = portlet.getWsrpConsumerPortletId();
+				String name = portlet.getName();
+				String portletHandle = portlet.getPortletHandle();
+
+				wsrpConsumerPortletLocalService.initWSRPConsumerPortlet(
+					companyId, wsrpConsumerId, wsrpConsumerPortletId, name,
+					portletHandle, userToken);
+			}
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (SystemException se) {
+			throw se;
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
+		}
 	}
 
 	public void updateServiceDescription(long wsrpConsumerId, String userToken)

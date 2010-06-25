@@ -129,6 +129,10 @@ public interface WSRPConsumerLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public void restartConsumer(long wsrpConsumerId, java.lang.String userToken)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public void updateServiceDescription(long wsrpConsumerId,
 		java.lang.String userToken)
 		throws com.liferay.portal.kernel.exception.PortalException,

@@ -158,6 +158,12 @@ public class WSRPConsumerPortletLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> getWSRPConsumerPortlets(
+		long wsrpConsumerId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getWSRPConsumerPortlets(wsrpConsumerId);
+	}
+
+	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> getWSRPConsumerPortlets(
 		long wsrpConsumerId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getWSRPConsumerPortlets(wsrpConsumerId, start, end);

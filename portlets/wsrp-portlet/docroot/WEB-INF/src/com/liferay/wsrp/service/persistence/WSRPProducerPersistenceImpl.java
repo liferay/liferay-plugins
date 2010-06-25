@@ -164,21 +164,6 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		}
 	}
 
-	public WSRPProducer remove(WSRPProducer wsrpProducer)
-		throws SystemException {
-		for (ModelListener<WSRPProducer> listener : listeners) {
-			listener.onBeforeRemove(wsrpProducer);
-		}
-
-		wsrpProducer = removeImpl(wsrpProducer);
-
-		for (ModelListener<WSRPProducer> listener : listeners) {
-			listener.onAfterRemove(wsrpProducer);
-		}
-
-		return wsrpProducer;
-	}
-
 	protected WSRPProducer removeImpl(WSRPProducer wsrpProducer)
 		throws SystemException {
 		wsrpProducer = toUnwrappedModel(wsrpProducer);
@@ -625,7 +610,6 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_WSRPPRODUCER.concat(WSRPProducerModelImpl.ORDER_BY_JPQL);
 				}

@@ -162,21 +162,6 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		}
 	}
 
-	public WSRPConsumer remove(WSRPConsumer wsrpConsumer)
-		throws SystemException {
-		for (ModelListener<WSRPConsumer> listener : listeners) {
-			listener.onBeforeRemove(wsrpConsumer);
-		}
-
-		wsrpConsumer = removeImpl(wsrpConsumer);
-
-		for (ModelListener<WSRPConsumer> listener : listeners) {
-			listener.onAfterRemove(wsrpConsumer);
-		}
-
-		return wsrpConsumer;
-	}
-
 	protected WSRPConsumer removeImpl(WSRPConsumer wsrpConsumer)
 		throws SystemException {
 		wsrpConsumer = toUnwrappedModel(wsrpConsumer);
@@ -625,7 +610,6 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_WSRPCONSUMER.concat(WSRPConsumerModelImpl.ORDER_BY_JPQL);
 				}

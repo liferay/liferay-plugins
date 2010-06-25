@@ -15,6 +15,7 @@
 package com.liferay.wsrp.service.impl;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.DestinationNames;
@@ -196,6 +197,14 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		return wsrpConsumerPortletPersistence.findByW_P(
 			wsrpConsumerId, portletHandle);
+	}
+
+	public List<WSRPConsumerPortlet> getWSRPConsumerPortlets(
+			long wsrpConsumerId)
+		throws SystemException {
+
+		return getWSRPConsumerPortlets(
+			wsrpConsumerId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
 
 	public List<WSRPConsumerPortlet> getWSRPConsumerPortlets(

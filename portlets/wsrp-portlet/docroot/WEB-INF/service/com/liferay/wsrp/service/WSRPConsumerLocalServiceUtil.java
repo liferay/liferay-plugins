@@ -154,6 +154,13 @@ public class WSRPConsumerLocalServiceUtil {
 			registrationProperties, registrationHandle, userToken);
 	}
 
+	public static void restartConsumer(long wsrpConsumerId,
+		java.lang.String userToken)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().restartConsumer(wsrpConsumerId, userToken);
+	}
+
 	public static void updateServiceDescription(long wsrpConsumerId,
 		java.lang.String userToken)
 		throws com.liferay.portal.kernel.exception.PortalException,
