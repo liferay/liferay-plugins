@@ -179,9 +179,8 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static String getArticleURL(
-			String portletId, long resourcePrimKey, String layoutFullURL,
-			boolean isMaximized)
-		throws Exception {
+		String portletId, long resourcePrimKey, String layoutFullURL,
+		boolean isMaximized) {
 
 		String pluginId = PortletConstants.getRootPortletId(portletId);
 		String namespace = PortalUtil.getPortletNamespace(portletId);
