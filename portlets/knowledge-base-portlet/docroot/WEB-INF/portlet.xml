@@ -78,6 +78,7 @@
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
+	<!--
 	<portlet>
 		<portlet-name>3</portlet-name>
 		<display-name>Knowledge Base Display</display-name>
@@ -112,4 +113,5 @@
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
+	-->
 </portlet-app>
