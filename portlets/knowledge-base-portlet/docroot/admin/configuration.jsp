@@ -19,6 +19,29 @@
 <%
 String tabs2 = ParamUtil.getString(request, "tabs2", "email-from");
 String tabs3 = ParamUtil.getString(request, "tabs3", "article");
+
+String emailFromName = ParamUtil.getString(request, "emailFromName", preferences.getValue("email-from-name", PortletProps.get("admin.email.from.name")));
+String emailFromAddress = ParamUtil.getString(request, "emailFromAddress", preferences.getValue("email-from-address", PortletProps.get("admin.email.from.address")));
+
+boolean emailArticleAddedEnabled = ParamUtil.getBoolean(request, "emailArticleAddedEnabled", GetterUtil.getBoolean(preferences.getValue("email-article-added-enabled", PortletProps.get("admin.email.article.added.enabled"))));
+String emailArticleAddedSubject = ParamUtil.getString(request, "emailArticleAddedSubject", preferences.getValue("email-article-added-subject", StringUtil.read(getClass().getClassLoader(), PortletProps.get("admin.email.article.added.subject"))));
+String emailArticleAddedBody = ParamUtil.getString(request, "emailArticleAddedBody", preferences.getValue("email-article-added-body", StringUtil.read(getClass().getClassLoader(), PortletProps.get("admin.email.article.added.body"))));
+
+boolean emailArticleUpdatedEnabled = ParamUtil.getBoolean(request, "emailArticleUpdatedEnabled", GetterUtil.getBoolean(preferences.getValue("email-article-updated-enabled", PortletProps.get("admin.email.article.updated.enabled"))));
+String emailArticleUpdatedSubject = ParamUtil.getString(request, "emailArticleUpdatedSubject", preferences.getValue("email-article-updated-subject", StringUtil.read(getClass().getClassLoader(), PortletProps.get("admin.email.article.updated.subject"))));
+String emailArticleUpdatedBody = ParamUtil.getString(request, "emailArticleUpdatedBody", preferences.getValue("email-article-updated-body", StringUtil.read(getClass().getClassLoader(), PortletProps.get("admin.email.article.updated.body"))));
+
+String editorParam = StringPool.BLANK;
+String editorBody = StringPool.BLANK;
+
+if (tabs2.equals("article-added-email")) {
+	editorParam = "emailArticleAddedBody";
+	editorBody = emailArticleAddedBody;
+}
+else if (tabs2.equals("article-updated-email")) {
+	editorParam = "emailArticleUpdatedBody";
+	editorBody = emailArticleUpdatedBody;
+}
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
@@ -39,13 +62,226 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 		url="<%= portletURL %>"
 	/>
 
+	<!--
+	SessionErrors are not propagated for plugins. See portlet_configuration\edit_configuration.jsp.
+	-->
+
+	<liferay-ui:error key="emailArticleAddedBody" message="please-enter-a-valid-body" />
+	<liferay-ui:error key="emailArticleAddedSubject" message="please-enter-a-valid-subject" />
+	<liferay-ui:error key="emailArticleUpdatedBody" message="please-enter-a-valid-body" />
+	<liferay-ui:error key="emailArticleUpdatedSubject" message="please-enter-a-valid-subject" />
+	<liferay-ui:error key="emailFromAddress" message="please-enter-a-valid-email-address" />
+	<liferay-ui:error key="emailFromName" message="please-enter-a-valid-name" />
+
 	<aui:fieldset>
 		<c:choose>
 			<c:when test='<%= tabs2.equals("email-from") %>'>
-				Placeholder
+				<aui:input cssClass="lfr-input-text-container" label="name" name="emailFromName" value="<%= emailFromName %>" />
+
+				<aui:input cssClass="lfr-input-text-container" label="address" name="emailFromAddress" value="<%= emailFromAddress %>" />
+
+				<div class="definition-of-terms">
+					<h4><liferay-ui:message key="definition-of-terms" /></h4>
+
+					<dl>
+						<dt>
+							[$ARTICLE_USER_ADDRESS$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-email-address-of-the-user-who-added-the-article" />
+						</dd>
+						<dt>
+							[$ARTICLE_USER_NAME$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-user-who-added-the-article" />
+						</dd>
+						<dt>
+							[$CATEGORY_TITLE$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="category.kb" />
+						</dd>
+						<dt>
+							[$COMMUNITY_NAME$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-community-name-associated-with-the-article" />
+						</dd>
+						<dt>
+							[$COMPANY_ID$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-company-id-associated-with-the-article" />
+						</dd>
+						<dt>
+							[$COMPANY_MX$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-company-mx-associated-with-the-article" />
+						</dd>
+						<dt>
+							[$COMPANY_NAME$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-company-name-associated-with-the-article" />
+						</dd>
+						<dt>
+							[$PORTLET_NAME$]
+						</dt>
+						<dd>
+							<%= PortalUtil.getPortletTitle(renderResponse) %>
+						</dd>
+					</dl>
+				</div>
 			</c:when>
 			<c:when test='<%= tabs2.startsWith("article-") %>'>
-				Placeholder
+				<c:choose>
+					<c:when test='<%= tabs2.equals("article-added-email") %>'>
+						<aui:input inlineLabel="left" label="enabled" name="emailArticleAddedEnabled" type="checkbox" value="<%= emailArticleAddedEnabled %>" />
+					</c:when>
+					<c:when test='<%= tabs2.equals("article-updated-email") %>'>
+						<aui:input inlineLabel="left" label="enabled" name="emailArticleUpdatedEnabled" type="checkbox" value="<%= emailArticleUpdatedEnabled %>" />
+					</c:when>
+				</c:choose>
+
+				<c:choose>
+					<c:when test='<%= tabs2.equals("article-added-email") %>'>
+						<aui:input cssClass="lfr-input-text-container" label="subject" name="emailArticleAddedSubject" value="<%= emailArticleAddedSubject %>" />
+					</c:when>
+					<c:when test='<%= tabs2.equals("article-updated-email") %>'>
+						<aui:input cssClass="lfr-input-text-container" label="subject" name="emailArticleUpdatedSubject" value="<%= emailArticleUpdatedSubject %>" />
+					</c:when>
+				</c:choose>
+
+				<aui:input cssClass="lfr-textarea-container" label="body" name="<%= editorParam %>" type="textarea" value="<%= editorBody %>" />
+
+				<div class="definition-of-terms">
+					<h4><liferay-ui:message key="definition-of-terms" /></h4>
+
+					<dl>
+						<dt>
+							[$ARTICLE_ATTACHMENTS$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-article-attachments-file-names" />
+						</dd>
+						<dt>
+							[$ARTICLE_CONTENT$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-article-content" />
+						</dd>
+						<dt>
+							[$ARTICLE_CONTENT_DIFF$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-article-content-diff" />
+						</dd>
+						<dt>
+							[$ARTICLE_TITLE$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-article-title" />
+						</dd>
+						<dt>
+							[$ARTICLE_TITLE_DIFF$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-article-title-diff" />
+						</dd>
+						<dt>
+							[$ARTICLE_URL$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-article-url" />
+						</dd>
+						<dt>
+							[$ARTICLE_USER_ADDRESS$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-email-address-of-the-user-who-added-the-article" />
+						</dd>
+						<dt>
+							[$ARTICLE_USER_NAME$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-user-who-added-the-article" />
+						</dd>
+						<dt>
+							[$ARTICLE_VERSION$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-article-version" />
+						</dd>
+						<dt>
+							[$CATEGORY_TITLE$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="category.kb" />
+						</dd>
+						<dt>
+							[$COMMUNITY_NAME$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-community-name-associated-with-the-article" />
+						</dd>
+						<dt>
+							[$COMPANY_ID$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-company-id-associated-with-the-article" />
+						</dd>
+						<dt>
+							[$COMPANY_MX$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-company-mx-associated-with-the-article" />
+						</dd>
+						<dt>
+							[$COMPANY_NAME$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-company-name-associated-with-the-article" />
+						</dd>
+						<dt>
+							[$FROM_ADDRESS$]
+						</dt>
+						<dd>
+							<%= HtmlUtil.escape(emailFromAddress) %>
+						</dd>
+						<dt>
+							[$FROM_NAME$]
+						</dt>
+						<dd>
+							<%= HtmlUtil.escape(emailFromName) %>
+						</dd>
+						<dt>
+							[$PORTAL_URL$]
+						</dt>
+						<dd>
+							<%= PortalUtil.getPortalURL(themeDisplay) %>
+						</dd>
+						<dt>
+							[$PORTLET_NAME$]
+						</dt>
+						<dd>
+							<%= PortalUtil.getPortletTitle(renderResponse) %>
+						</dd>
+						<dt>
+							[$TO_ADDRESS$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-address-of-the-email-recipient" />
+						</dd>
+						<dt>
+							[$TO_NAME$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-name-of-the-email-recipient" />
+						</dd>
+					</dl>
+				</div>
 			</c:when>
 			<c:when test='<%= tabs2.equals("display-settings") %>'>
 				<liferay-ui:tabs
