@@ -25,6 +25,8 @@ import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.messageboards.NoSuchMessageException;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
@@ -32,6 +34,8 @@ import com.liferay.util.servlet.PortletResponseUtil;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -111,6 +115,45 @@ public class AggregatorPortlet extends MVCPortlet {
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
+		}
+	}
+
+	public void subscribe(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
+		if (resourcePrimKey <= 0) {
+			ArticleServiceUtil.subscribe(themeDisplay.getScopeGroupId());
+		}
+		else {
+			ArticleServiceUtil.subscribeArticle(resourcePrimKey, portletId);
+		}
+	}
+
+	public void unsubscribe(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		if (resourcePrimKey <= 0) {
+			ArticleServiceUtil.unsubscribe(themeDisplay.getScopeGroupId());
+		}
+		else {
+			ArticleServiceUtil.unsubscribeArticle(
+				themeDisplay.getCompanyId(), resourcePrimKey);
 		}
 	}
 
