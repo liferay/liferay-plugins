@@ -441,7 +441,7 @@ AUI().add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'cookie', 'json', 'liferay-service', 'substitute'],
+		requires: ['aui-base', 'aui-io', 'cookie', 'json', 'liferay-service', 'querystring', 'substitute'],
 		use: []
 	}
 );
