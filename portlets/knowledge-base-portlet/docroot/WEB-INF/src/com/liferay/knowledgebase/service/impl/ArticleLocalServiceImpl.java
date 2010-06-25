@@ -406,30 +406,32 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			resourcePrimKey, new ArticleVersionComparator());
 	}
 
-	public void subscribe(long groupId, long userId, long resourcePrimKey)
+	public void subscribe(long groupId, long userId)
 		throws PortalException, SystemException {
 
-		if (resourcePrimKey <= 0) {
-			subscriptionLocalService.addSubscription(
-				userId, Article.class.getName(), groupId);
-		}
-		else {
-			subscriptionLocalService.addSubscription(
-				userId, Article.class.getName(), resourcePrimKey);
-		}
+		subscriptionLocalService.addSubscription(
+			userId, Article.class.getName(), groupId);
 	}
 
-	public void unsubscribe(long groupId, long userId, long resourcePrimKey)
+	public void subscribeArticle(long userId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		if (resourcePrimKey <= 0) {
-			subscriptionLocalService.deleteSubscription(
-				userId, Article.class.getName(), groupId);
-		}
-		else {
-			subscriptionLocalService.deleteSubscription(
-				userId, Article.class.getName(), resourcePrimKey);
-		}
+		subscriptionLocalService.addSubscription(
+			userId, Article.class.getName(), resourcePrimKey);
+	}
+
+	public void unsubscribe(long groupId, long userId)
+		throws PortalException, SystemException {
+
+		subscriptionLocalService.deleteSubscription(
+			userId, Article.class.getName(), groupId);
+	}
+
+	public void unsubscribeArticle(long userId, long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		subscriptionLocalService.deleteSubscription(
+			userId, Article.class.getName(), resourcePrimKey);
 	}
 
 	public Article updateArticle(
