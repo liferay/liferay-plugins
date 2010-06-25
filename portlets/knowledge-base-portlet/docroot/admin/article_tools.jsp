@@ -23,6 +23,37 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 <div class="kb-article-tools">
 	<table class="lfr-table">
 	<tr>
+		<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
+			<td>
+				<c:choose>
+					<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), article.getResourcePrimKey()) %>">
+						<portlet:actionURL name="unsubscribe" var="unsubscribeURL">
+							<portlet:param name="redirect" value="<%= currentURL %>" />
+							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+						</portlet:actionURL>
+
+						<liferay-ui:icon
+							image="unsubscribe"
+							label="<%= true %>"
+							url="<%= unsubscribeURL %>"
+						/>
+					</c:when>
+					<c:otherwise>
+						<portlet:actionURL name="subscribe" var="subscribeURL">
+							<portlet:param name="redirect" value="<%= currentURL %>" />
+							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+						</portlet:actionURL>
+
+						<liferay-ui:icon
+							image="subscribe"
+							label="<%= true %>"
+							url="<%= subscribeURL %>"
+						/>
+					</c:otherwise>
+				</c:choose>
+			</td>
+		</c:if>
+
 		<td>
 			<portlet:renderURL var="historyURL">
 				<portlet:param name="jspPage" value="/admin/history.jsp" />

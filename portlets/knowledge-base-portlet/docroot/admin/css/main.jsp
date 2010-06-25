@@ -151,6 +151,11 @@
 	float: left;
 }
 
+.knowledge-base-portlet-admin .kb-results-header .kb-tools {
+	float: right;
+	padding: 4px 2px 0 0;
+}
+
 .knowledge-base-portlet-admin .kb-select-article-breadcrumbs {
 	margin: 0 0 5px;
 }
