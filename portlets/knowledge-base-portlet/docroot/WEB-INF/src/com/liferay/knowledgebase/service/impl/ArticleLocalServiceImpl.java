@@ -41,7 +41,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -669,7 +668,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Article.class, "article1", PortletClassLoaderUtil.getClassLoader());
+			Article.class, "article1", getClass().getClassLoader());
 
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			String key = entry.getKey();
@@ -697,7 +696,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 
 		DynamicQuery subselectDynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Article.class, "article2", PortletClassLoaderUtil.getClassLoader());
+			Article.class, "article2", getClass().getClassLoader());
 
 		Property versionProperty = PropertyFactoryUtil.forName("version");
 
