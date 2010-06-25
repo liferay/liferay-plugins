@@ -122,20 +122,12 @@ public class AggregatorPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 
 		String portletId = PortalUtil.getPortletId(actionRequest);
 
-		if (resourcePrimKey <= 0) {
-			ArticleServiceUtil.subscribe(themeDisplay.getScopeGroupId());
-		}
-		else {
-			ArticleServiceUtil.subscribeArticle(resourcePrimKey, portletId);
-		}
+		ArticleServiceUtil.subscribeArticle(resourcePrimKey, portletId);
 	}
 
 	public void unsubscribe(
@@ -148,13 +140,8 @@ public class AggregatorPortlet extends MVCPortlet {
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 
-		if (resourcePrimKey <= 0) {
-			ArticleServiceUtil.unsubscribe(themeDisplay.getScopeGroupId());
-		}
-		else {
-			ArticleServiceUtil.unsubscribeArticle(
-				themeDisplay.getCompanyId(), resourcePrimKey);
-		}
+		ArticleServiceUtil.unsubscribeArticle(
+			themeDisplay.getCompanyId(), resourcePrimKey);
 	}
 
 	protected void doDispatch(
