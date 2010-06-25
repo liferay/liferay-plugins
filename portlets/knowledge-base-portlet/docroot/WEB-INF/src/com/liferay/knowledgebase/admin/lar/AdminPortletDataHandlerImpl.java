@@ -24,6 +24,7 @@ import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.TemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.persistence.ArticleUtil;
 import com.liferay.knowledgebase.service.persistence.TemplateUtil;
+import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -42,7 +43,6 @@ import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.util.PortletKeys;
 
 import java.io.InputStream;
 
