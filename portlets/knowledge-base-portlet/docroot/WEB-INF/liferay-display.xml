@@ -5,16 +5,13 @@
 	<category name="category.cms">
 		<portlet id="1" />
 		<portlet id="2" />
-		<portlet id="3" />
 	</category>
 	<category name="category.collaboration">
 		<portlet id="1" />
 		<portlet id="2" />
-		<portlet id="3" />
 	</category>
 	<category name="category.kb">
 		<portlet id="1" />
 		<portlet id="2" />
-		<portlet id="3" />
 	</category>
 </display>
