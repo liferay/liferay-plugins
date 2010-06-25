@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.RSSUtil;
@@ -325,6 +326,13 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			String layoutFullURL, String feedURL, List<Article> articles,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
+
+		if (!PortletPermissionUtil.contains(
+				themeDisplay.getPermissionChecker(), themeDisplay.getPlid(),
+				portletId, ActionKeys.VIEW)) {
+
+			articles = new ArrayList<Article>();
+		}
 
 		List<SyndEntry> syndEntries = new ArrayList<SyndEntry>();
 
