@@ -439,6 +439,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			InitCookie initCookie = new InitCookie();
 
 			markupService.initCookie(initCookie);
+
 			markupResponse = markupService.getMarkup(getMarkup);
 		}
 
