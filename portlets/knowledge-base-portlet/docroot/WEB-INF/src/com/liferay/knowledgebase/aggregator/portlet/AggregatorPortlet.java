@@ -127,7 +127,7 @@ public class AggregatorPortlet extends MVCPortlet {
 
 		String portletId = PortalUtil.getPortletId(actionRequest);
 
-		ArticleServiceUtil.subscribeArticle(resourcePrimKey, portletId);
+		ArticleServiceUtil.subscribeArticle(portletId, resourcePrimKey);
 	}
 
 	public void unsubscribe(

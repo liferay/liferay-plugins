@@ -246,7 +246,7 @@ public class AdminMessageListener implements MessageListener {
 				PortletKeys.KNOWLEDGE_BASE_ADMIN);
 
 			String articleURL = KnowledgeBaseUtil.getArticleURL(
-				resourcePrimKey, portletId, portalURL);
+				portletId, resourcePrimKey, portalURL);
 
 			if (Validator.isNull(articleURL)) {
 				if (_log.isInfoEnabled()) {

@@ -290,14 +290,14 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		articleLocalService.subscribe(groupId, getUserId());
 	}
 
-	public void subscribeArticle(long resourcePrimKey, String portletId)
+	public void subscribeArticle(String portletId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
 		ArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
 
 		articleLocalService.subscribeArticle(
-			getUserId(), resourcePrimKey, portletId);
+			portletId, getUserId(), resourcePrimKey);
 	}
 
 	public void unsubscribe(long groupId)

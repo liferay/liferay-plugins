@@ -154,11 +154,11 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static String getArticleURL(
-			long resourcePrimKey, String portletId, String portalURL)
+			String portletId, long resourcePrimKey, String portalURL)
 		throws Exception {
 
 		Object[] plidAndWindowState = getPlidAndWindowState(
-			resourcePrimKey, portletId, portalURL);
+			portletId, resourcePrimKey, portalURL);
 
 		long plid = (Long)plidAndWindowState[0];
 		WindowState windowState = (WindowState)plidAndWindowState[1];
@@ -175,11 +175,11 @@ public class KnowledgeBaseUtil {
 		String layoutFullURL = portalURL + layoutActualURL;
 
 		return getArticleURL(
-			resourcePrimKey, portletId, layoutFullURL, isMaximized);
+			portletId, resourcePrimKey, layoutFullURL, isMaximized);
 	}
 
 	public static String getArticleURL(
-			long resourcePrimKey, String portletId, String layoutFullURL,
+			String portletId, long resourcePrimKey, String layoutFullURL,
 			boolean isMaximized)
 		throws Exception {
 
@@ -212,7 +212,7 @@ public class KnowledgeBaseUtil {
 	}
 
 	protected static Object[] getAdminPlidAndWindowState(
-			long resourcePrimKey, String portletId)
+			String portletId, long resourcePrimKey)
 		throws Exception {
 
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
@@ -225,7 +225,7 @@ public class KnowledgeBaseUtil {
 	}
 
 	protected static Object[] getAggregatorPlidAndWindowState(
-			long resourcePrimKey, String portletId)
+			String portletId, long resourcePrimKey)
 		throws Exception {
 
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
@@ -359,16 +359,16 @@ public class KnowledgeBaseUtil {
 	}
 
 	protected static Object[] getPlidAndWindowState(
-			long resourcePrimKey, String portletId, String portalURL)
+			String portletId, long resourcePrimKey, String portalURL)
 		throws Exception {
 
 		String pluginId = PortletConstants.getRootPortletId(portletId);
 
 		if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-			return getAdminPlidAndWindowState(resourcePrimKey, portletId);
+			return getAdminPlidAndWindowState(portletId, resourcePrimKey);
 		}
 		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
-			return getAggregatorPlidAndWindowState(resourcePrimKey, portletId);
+			return getAggregatorPlidAndWindowState(portletId, resourcePrimKey);
 		}
 
 		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
