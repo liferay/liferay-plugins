@@ -14,7 +14,9 @@
 				</simple>
 			</trigger>
 		</scheduler-entry>
-		<friendly-url-mapper-class>com.liferay.testmisc.portlet.TestFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapping>test_misc</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/testmisc/portlet/test-friendly-url-routes.xml</friendly-url-routes>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
