@@ -22,7 +22,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 %>
 
-<c:if test="<%= Validator.equals(PortletConstants.getRootPortletId(portletDisplay.getId()), PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
+<c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
 	<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || ArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) || ArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS) || ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 		<div class="kb-article-icons">
 			<table class="lfr-table">

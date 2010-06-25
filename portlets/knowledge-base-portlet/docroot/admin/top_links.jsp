@@ -22,7 +22,7 @@ String topLink = ParamUtil.getString(request, "topLink", "home");
 String path = GetterUtil.getString(request.getPathInfo());
 %>
 
-<c:if test="<%= Validator.equals(PortletConstants.getRootPortletId(portletDisplay.getId()), PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
+<c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
 	<div class="top-links-container">
 		<div class="top-links">
 			<div class="top-links-navigation">

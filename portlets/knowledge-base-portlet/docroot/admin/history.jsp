@@ -94,7 +94,7 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 					property="title"
 				/>
 
-				<c:if test="<%= Validator.equals(PortletConstants.getRootPortletId(portletDisplay.getId()), PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
+				<c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
 					<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 						<liferay-ui:search-container-column-text
 							align="right"
