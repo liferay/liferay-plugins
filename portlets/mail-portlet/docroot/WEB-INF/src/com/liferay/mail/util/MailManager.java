@@ -501,18 +501,17 @@ public class MailManager {
 		com.liferay.portal.kernel.messaging.Message message =
 			new com.liferay.portal.kernel.messaging.Message();
 
-		message.put(Constants.CMD, "flag");
+		message.put("command", "flag");
 
 		message.put("userId", _user.getUserId());
 		message.put("accountId", accountId);
+		message.put("password", _passwordRetriever.getPassword(accountId));
 		message.put("folderId", folderId);
 		message.put("messageId", messageId);
-		message.put("password", _passwordRetriever.getPassword(accountId));
 		message.put("flag", MailConstants.FLAG_SEEN);
 		message.put("flagValue", true);
 
-		MessageBusUtil.sendMessage(
-			DestinationNames.MAIL_SYNCHRONIZER, message);
+		MessageBusUtil.sendMessage(DestinationNames.MAIL_SYNCHRONIZER, message);
 	}
 
 	public JSONObject moveMessages(long folderId, long[] messageIds)
@@ -803,15 +802,15 @@ public class MailManager {
 		com.liferay.portal.kernel.messaging.Message message =
 			new com.liferay.portal.kernel.messaging.Message();
 
-		message.put(Constants.CMD, "synchronize");
+		message.put("command", "synchronize");
 
 		message.put("userId", _user.getUserId());
 		message.put("accountId", accountId);
+		message.put("password", _passwordRetriever.getPassword(accountId));
 		message.put("folderId", folderId);
 		message.put("messageId", messageId);
 		message.put("pageNumber", pageNumber);
 		message.put("messagesPerPage", messagesPerPage);
-		message.put("password", _passwordRetriever.getPassword(accountId));
 
 		MessageBusUtil.sendMessage(DestinationNames.MAIL_SYNCHRONIZER, message);
 	}

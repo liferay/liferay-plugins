@@ -34,27 +34,31 @@ import com.liferay.portal.kernel.util.StringPool;
 public class MailSynchronizationMessageListener implements MessageListener {
 
 	public void receive(Message message) {
-		String cmd = message.getString(Constants.CMD);
-
 		try {
-			if (cmd.equals("synchronize")) {
-				synchronize(message);
-			}
-			else if (cmd.equals("flag")) {
-				flagMessage(message);
-			}
+			doReceive(message);
 		}
 		catch (Exception e) {
 			_log.error("Unable to process message " + message, e);
 		}
 	}
 
+	protected void doReceive(Message message) throws Exception {
+		String command = message.getString("command");
+
+		if (command.equals("synchronize")) {
+			synchronize(message);
+		}
+		else if (command.equals("flag")) {
+			flagMessage(message);
+		}
+	}
+
 	protected void flagMessage(Message message) throws Exception {
 		long userId = message.getLong("userId");
 		long accountId = message.getLong("accountId");
+		String password = message.getString("password");
 		long folderId = message.getLong("folderId");
 		long messageId = message.getLong("messageId");
-		String password = message.getString("password");
 		int flag = message.getInteger("flag");
 		boolean flagValue = message.getBoolean("flagValue");
 
@@ -62,7 +66,7 @@ public class MailSynchronizationMessageListener implements MessageListener {
 			_log.debug("Flagging message for messageId " + messageId);
 		}
 
-		if (password.equals(StringPool.BLANK)) {
+		if (Validator.isNull(password)) {
 			return;
 		}
 
@@ -75,11 +79,11 @@ public class MailSynchronizationMessageListener implements MessageListener {
 	protected void synchronize(Message message) throws Exception {
 		long userId = message.getLong("userId");
 		long accountId = message.getLong("accountId");
+		String password = message.getString("password");
 		long folderId = message.getLong("folderId");
 		long messageId = message.getLong("messageId");
 		int pageNumber = message.getInteger("pageNumber");
 		int messagesPerPage = message.getInteger("messagesPerPage");
-		String password = message.getString("password");
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
