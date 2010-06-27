@@ -25,7 +25,6 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 	<tr>
 		<td>
 			<portlet:resourceURL id="rss" var="rssURL">
-				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 				<portlet:param name="max" value="<%= String.valueOf(rssDelta) %>" />
 				<portlet:param name="type" value="<%= rssFormatType %>" />
 				<portlet:param name="version" value="<%= String.valueOf(rssFormatVersion) %>" />
