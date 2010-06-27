@@ -4,6 +4,7 @@
 <routes>
 	<route>
 		<pattern>/{instanceId}/article/{resourcePrimKey:\d+}</pattern>
+		<default-parameter name="p_p_state">normal</default-parameter>
 		<default-parameter name="jspPage">/aggregator/view_article.jsp</default-parameter>
 	</route>
 	<route>
@@ -12,6 +13,7 @@
 	</route>
 	<route>
 		<pattern>/{instanceId}/article/{resourcePrimKey:\d+}/history</pattern>
+		<default-parameter name="p_p_state">normal</default-parameter>
 		<default-parameter name="jspPage">/aggregator/history.jsp</default-parameter>
 	</route>
 	<route>
