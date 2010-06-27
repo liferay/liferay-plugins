@@ -19,7 +19,7 @@
 		</scheduler-entry>
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>knowledge_base</friendly-url-mapping>
-		<friendly-url-routes>com/liferay/knowledgebase/admin/portlet/knowledge-base-friendly-url-routes.xml</friendly-url-routes>
+		<friendly-url-routes>com/liferay/knowledgebase/admin/portlet/admin-friendly-url-routes.xml</friendly-url-routes>
 		<portlet-data-handler-class>com.liferay.knowledgebase.admin.lar.AdminPortletDataHandlerImpl</portlet-data-handler-class>
 		<social-activity-interpreter-class>com.liferay.knowledgebase.admin.social.AdminActivityInterpreter</social-activity-interpreter-class>
 		<control-panel-entry-category>content</control-panel-entry-category>

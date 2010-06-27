@@ -8,9 +8,12 @@
 		<default-parameter name="topLink">all-articles</default-parameter>
 	</route>
 	<route>
-		<pattern>/article/{resourcePrimKey:\d+}/maximized</pattern>
+		<pattern>/article/{resourcePrimKey:\d+}</pattern>
 		<default-parameter name="jspPage">/admin/view_article.jsp</default-parameter>
-		<default-parameter name="p_p_state">maximized</default-parameter>
+	</route>
+	<route>
+		<pattern>/article/{resourcePrimKey:\d+}/history</pattern>
+		<default-parameter name="jspPage">/admin/history.jsp</default-parameter>
 	</route>
 	<route>
 		<pattern>/home</pattern>
@@ -24,29 +27,12 @@
 		<default-parameter name="p_p_resource_id">rss</default-parameter>
 	</route>
 	<route>
+		<pattern>/template/{templateId:\d+}</pattern>
+		<default-parameter name="jspPage">/admin/view_template.jsp</default-parameter>
+	</route>
+	<route>
 		<pattern>/templates</pattern>
 		<default-parameter name="jspPage">/admin/view_templates.jsp</default-parameter>
 		<default-parameter name="topLink">templates</default-parameter>
-	</route>
-	<route>
-		<pattern>/{jspResource:[^/\._]+}/{resourcePrimKey:\d+}</pattern>
-		<default-parameter name="jspAction">view</default-parameter>
-		<generated-parameter name="jspPage">/admin/{jspAction:[^/\._]+}_{jspResource:[^/\._]+}.jsp</generated-parameter>
-	</route>
-	<route>
-		<pattern>/{jspResource:[^/\._]+}/{resourcePrimKey:\d+}/{jspAction:[^/\._]+}</pattern>
-		<generated-parameter name="jspPage">/admin/{jspAction:[^/\._]+}_{jspResource:[^/\._]+}.jsp</generated-parameter>
-	</route>
-	<route>
-		<pattern>/{jspResource:[^/\._]+}/{jspAction:[^/\._]+}</pattern>
-		<generated-parameter name="jspPage">/admin/{jspAction:[^/\._]+}_{jspResource:[^/\._]+}.jsp</generated-parameter>
-	</route>
-	<route>
-		<pattern>/{jspPageName}/{resourcePrimKey:\d+}</pattern>
-		<generated-parameter name="jspPage">/admin/{jspPageName}.jsp</generated-parameter>
-	</route>
-	<route>
-		<pattern>/{jspPageName}</pattern>
-		<generated-parameter name="jspPage">/admin/{jspPageName}.jsp</generated-parameter>
 	</route>
 </routes>
