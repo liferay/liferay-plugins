@@ -23,7 +23,7 @@
 		<div class="kb-buttons">
 			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_TEMPLATE) %>">
 				<portlet:renderURL var="addTemplateURL">
-					<portlet:param name="jspPage" value="/admin/edit_template.jsp" />
+					<portlet:param name="jspPage" value='<%= jspPageParams.get("edit_template.jsp") %>' />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</portlet:renderURL>
 
@@ -47,7 +47,7 @@
 <liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "TemplatesPanelContainer" %>' persistState="<%= true %>">
 	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "TemplatesPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "templates") %>'>
 		<liferay-portlet:renderURL varImpl="iteratorURL">
-			<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
+			<portlet:param name="jspPage" value='<%= jspPageParams.get("view_templates.jsp") %>' />
 			<portlet:param name="topLink" value="templates" />
 		</liferay-portlet:renderURL>
 
@@ -67,7 +67,7 @@
 				%>
 
 					<portlet:renderURL var="viewTemplateURL">
-						<portlet:param name="jspPage" value="/admin/view_template.jsp" />
+						<portlet:param name="jspPage" value='<%= jspPageParams.get("view_template.jsp") %>' />
 						<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
 					</portlet:renderURL>
 

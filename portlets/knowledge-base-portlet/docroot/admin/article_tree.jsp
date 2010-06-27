@@ -64,7 +64,7 @@ Article selArticle = (Article)request.getAttribute("article_tree.jsp-selArticle"
 
 			<div class='kb-element-header <%= childArticlesDisplayStyle.equals("title") ? "kb-title-only" : StringPool.BLANK %>'>
 				<portlet:renderURL var="viewArticleURL">
-					<portlet:param name="jspPage" value="/admin/view_article.jsp" />
+					<portlet:param name="jspPage" value='<%= jspPageParams.get("view_article.jsp") %>' />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(curArticle.getResourcePrimKey()) %>" />
 				</portlet:renderURL>
 

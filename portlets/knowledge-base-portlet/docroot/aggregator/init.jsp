@@ -64,32 +64,10 @@ else if (orderByColumn.equals("title")) {
 }
 
 if (articleWindowState.equals(WindowState.MAXIMIZED.toString()) && windowState.equals(WindowState.MAXIMIZED)) {
-	String backURL = currentURL;
+	PortletURL portletURL = renderResponse.createRenderURL();
 
-	backURL = HttpUtil.setParameter(backURL, "p_p_state", WindowState.NORMAL.toString());
-	backURL = HttpUtil.removeParameter(backURL, renderResponse.getNamespace() + "jspPage");
+	portletURL.setWindowState(WindowState.NORMAL);
 
-	portletDisplay.setURLBack(backURL);
-}
-%>
-
-<%!
-private String _replaceHTML(String html, String[] oldSubs, String[] newSubs) {
-	for (int i = 0; i < oldSubs.length; i++) {
-		html = StringUtil.replace(
-			html,
-			new String[] {
-				HttpUtil.encodeURL(oldSubs[i], true),
-				HtmlUtil.escapeAttribute(oldSubs[i]),
-				HtmlUtil.escapeAttribute(HtmlUtil.escapeURL(oldSubs[i]))
-			},
-			new String[] {
-				HttpUtil.encodeURL(newSubs[i], true),
-				HtmlUtil.escapeAttribute(newSubs[i]),
-				HtmlUtil.escapeAttribute(HtmlUtil.escapeURL(newSubs[i]))
-			});
-	}
-
-	return html;
+	portletDisplay.setURLBack(HttpUtil.removeParameter(portletURL.toString(), renderResponse.getNamespace() + "jspPage"));
 }
 %>

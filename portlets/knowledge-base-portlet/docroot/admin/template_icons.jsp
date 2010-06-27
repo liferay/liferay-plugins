@@ -29,7 +29,7 @@ long templateId = ParamUtil.getLong(request, "templateId");
 			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
 				<td>
 					<portlet:renderURL var="checkURL">
-						<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
+						<portlet:param name="jspPage" value='<%= jspPageParams.get("edit_article.jsp") %>' />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
 					</portlet:renderURL>
@@ -46,7 +46,7 @@ long templateId = ParamUtil.getLong(request, "templateId");
 			<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.UPDATE) %>">
 				<td>
 					<portlet:renderURL var="editURL">
-						<portlet:param name="jspPage" value="/admin/edit_template.jsp" />
+						<portlet:param name="jspPage" value='<%= jspPageParams.get("edit_template.jsp") %>' />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
 					</portlet:renderURL>
@@ -79,7 +79,7 @@ long templateId = ParamUtil.getLong(request, "templateId");
 			<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.DELETE) %>">
 				<td>
 					<portlet:renderURL var="templatesURL">
-						<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
+						<portlet:param name="jspPage" value='<%= jspPageParams.get("view_templates.jsp") %>' />
 						<portlet:param name="topLink" value="templates" />
 					</portlet:renderURL>
 

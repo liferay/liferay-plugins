@@ -16,20 +16,4 @@
 
 <%@ include file="/aggregator/init.jsp" %>
 
-<liferay-util:buffer var="html">
-	<liferay-util:include page="/admin/history.jsp" servletContext="<%= application %>" />
-</liferay-util:buffer>
-
-<%
-String[] oldSubs = new String[] {
-	"/admin/history.jsp",
-	"/admin/view_article.jsp"
-};
-
-String[] newSubs = new String[] {
-	"/aggregator/history.jsp",
-	"/aggregator/view_article.jsp"
-};
-%>
-
-<%= _replaceHTML(html, oldSubs, newSubs) %>
+<liferay-util:include page="/admin/history.jsp" servletContext="<%= application %>" />

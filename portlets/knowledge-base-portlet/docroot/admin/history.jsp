@@ -26,7 +26,7 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 <liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
 
 <liferay-portlet:renderURL varImpl="compareVersionsURL">
-	<portlet:param name="jspPage" value="/admin/history.jsp" />
+	<portlet:param name="jspPage" value='<%= jspPageParams.get("history.jsp") %>' />
 </liferay-portlet:renderURL>
 
 <aui:form action="<%= compareVersionsURL %>" method="get" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "compare();" %>'>
@@ -52,7 +52,7 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 				modelVar="curArticle"
 			>
 				<portlet:renderURL var="rowURL">
-					<portlet:param name="jspPage" value="/admin/history.jsp" />
+					<portlet:param name="jspPage" value='<%= jspPageParams.get("history.jsp") %>' />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(curArticle.getResourcePrimKey()) %>" />
 					<portlet:param name="sourceVersion" value="<%= String.valueOf(curArticle.getVersion()) %>" />
 					<portlet:param name="targetVersion" value="<%= String.valueOf(curArticle.getVersion()) %>" />
@@ -100,12 +100,12 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 							align="right"
 						>
 							<portlet:renderURL var="historyURL">
-								<portlet:param name="jspPage" value="/admin/history.jsp" />
+								<portlet:param name="jspPage" value='<%= jspPageParams.get("history.jsp") %>' />
 								<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 							</portlet:renderURL>
 
 							<portlet:actionURL name="updateArticle" var="revertURL">
-								<portlet:param name="jspPage" value="/admin/history.jsp" />
+								<portlet:param name="jspPage" value='<%= jspPageParams.get("history.jsp") %>' />
 								<portlet:param name="redirect" value="<%= historyURL %>" />
 								<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 								<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getParentResourcePrimKey()) %>" />
@@ -133,7 +133,7 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 
 				<div class="kb-tools">
 					<portlet:renderURL var="viewArticleURL">
-						<portlet:param name="jspPage" value="/admin/view_article.jsp" />
+						<portlet:param name="jspPage" value='<%= jspPageParams.get("view_article.jsp") %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 					</portlet:renderURL>
 

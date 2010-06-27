@@ -21,7 +21,7 @@
 <liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "AllArticlesPanelContainer" %>' persistState="<%= true %>">
 	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "AllArticlesPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "all-articles") %>'>
 		<liferay-portlet:renderURL varImpl="iteratorURL">
-			<portlet:param name="jspPage" value="/admin/view_all_articles.jsp" />
+			<portlet:param name="jspPage" value='<%= jspPageParams.get("view_all_articles.jsp") %>' />
 			<portlet:param name="topLink" value="all-articles" />
 		</liferay-portlet:renderURL>
 
@@ -40,7 +40,7 @@
 				%>
 
 					<portlet:renderURL var="viewArticleURL">
-						<portlet:param name="jspPage" value="/admin/view_article.jsp" />
+						<portlet:param name="jspPage" value='<%= jspPageParams.get("view_article.jsp") %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 					</portlet:renderURL>
 

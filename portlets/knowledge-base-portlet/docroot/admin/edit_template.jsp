@@ -32,7 +32,7 @@ String content = BeanParamUtil.getString(template, request, "content");
 />
 
 <portlet:actionURL name="updateTemplate" var="updateTemplateURL">
-	<portlet:param name="jspPage" value="/admin/edit_template.jsp" />
+	<portlet:param name="jspPage" value='<%= jspPageParams.get("edit_template.jsp") %>' />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 </portlet:actionURL>
 

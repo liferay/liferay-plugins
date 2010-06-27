@@ -30,7 +30,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
 					<td>
 						<portlet:renderURL var="addArticleURL">
-							<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
+							<portlet:param name="jspPage" value='<%= jspPageParams.get("edit_article.jsp") %>' />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 							<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 						</portlet:renderURL>
@@ -47,7 +47,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 					<td>
 						<portlet:renderURL var="editURL">
-							<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
+							<portlet:param name="jspPage" value='<%= jspPageParams.get("edit_article.jsp") %>' />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 						</portlet:renderURL>
@@ -80,7 +80,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
 					<td>
 						<portlet:renderURL var="homeURL">
-							<portlet:param name="jspPage" value="/admin/view.jsp" />
+							<portlet:param name="jspPage" value='<%= jspPageParams.get("view.jsp") %>' />
 							<portlet:param name="topLink" value="home" />
 						</portlet:renderURL>
 

@@ -118,12 +118,12 @@ String[] fileNames = DLServiceUtil.getFileNames(company.getCompanyId(), CompanyC
 <aui:script>
 	function <portlet:namespace />addAttachment() {
 		document.<portlet:namespace />fm.enctype = "<%= ContentTypes.MULTIPART_FORM_DATA %>";
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="addAttachment"><portlet:param name="jspPage" value="/admin/attachments.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /><portlet:param name="dirName" value="<%= dirName %>" /></portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="addAttachment"><portlet:param name="jspPage" value='<%= jspPageParams.get("attachments.jsp") %>' /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /><portlet:param name="dirName" value="<%= dirName %>" /></portlet:actionURL>');
 	}
 
 	function <portlet:namespace />deleteAttachment(fileName) {
 		document.<portlet:namespace />fm.<portlet:namespace />fileName.value = fileName;
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="deleteAttachment"><portlet:param name="jspPage" value="/admin/attachments.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /><portlet:param name="dirName" value="<%= dirName %>" /></portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="deleteAttachment"><portlet:param name="jspPage" value='<%= jspPageParams.get("attachments.jsp") %>' /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /><portlet:param name="dirName" value="<%= dirName %>" /></portlet:actionURL>');
 	}
 
 	opener.<portlet:namespace />updateAttachments("<%= UnicodeFormatter.toString(dirName) %>", "<%= UnicodeFormatter.toString(html) %>");
