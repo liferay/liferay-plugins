@@ -63,7 +63,8 @@
 	<div class="kb-results-body">
 
 		<%
-		for (Article article : (List<Article>)results) {
+		for (int i = 0; i < results.size(); i++) {
+			Article article = (Article)results.get(i);
 		%>
 
 			<portlet:renderURL var="viewArticleURL" windowState="<%= articleWindowState %>">
@@ -72,7 +73,7 @@
 			</portlet:renderURL>
 
 			<liferay-ui:icon
-				cssClass="kb-title"
+				cssClass='<%= "kb-title" + ((Validator.isNull(articlesTitle) && (i == 0)) ? " kb-first" : StringPool.BLANK) %>'
 				image="../trees/page"
 				label="<%= true %>"
 				message="<%= article.getTitle() %>"

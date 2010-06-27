@@ -42,6 +42,10 @@
 
 /* ---------- Portlet ---------- */
 
+.knowledge-base-portlet-aggregator .kb-results-body .kb-first a {
+	margin-top: 0;
+}
+
 .knowledge-base-portlet-aggregator .kb-select-box select {
 	min-width: 150px;
 }
