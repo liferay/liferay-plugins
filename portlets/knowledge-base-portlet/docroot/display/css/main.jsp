@@ -42,6 +42,10 @@
 
 /* ---------- Portlet ---------- */
 
+.knowledge-base-portlet-display .kb-portlet-configurator-msg {
+	margin: 0;
+}
+
 .knowledge-base-portlet-display .kb-select-box select {
 	min-width: 150px;
 }
