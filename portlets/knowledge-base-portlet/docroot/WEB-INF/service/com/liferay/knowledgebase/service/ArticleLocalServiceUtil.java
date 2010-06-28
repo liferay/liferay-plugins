@@ -261,17 +261,37 @@ public class ArticleLocalServiceUtil {
 		return getService().getLatestArticle(resourcePrimKey);
 	}
 
-	public static void subscribe(long groupId, long userId, long resourcePrimKey)
+	public static void subscribe(long groupId, long userId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().subscribe(groupId, userId, resourcePrimKey);
+		getService().subscribe(groupId, userId);
 	}
 
-	public static void unsubscribe(long groupId, long userId,
+	public static void subscribeArticle(java.lang.String portletId,
+		long userId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().subscribeArticle(portletId, userId, resourcePrimKey);
+	}
+
+	public static void unsubscribe(long groupId, long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().unsubscribe(groupId, userId);
+	}
+
+	public static void unsubscribeArticle(long companyId, long userId,
 		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().unsubscribe(groupId, userId, resourcePrimKey);
+		getService().unsubscribeArticle(companyId, userId, resourcePrimKey);
+	}
+
+	public static void unsubscribeArticle(
+		com.liferay.portal.model.Subscription subscription)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().unsubscribeArticle(subscription);
 	}
 
 	public static com.liferay.knowledgebase.model.Article updateArticle(

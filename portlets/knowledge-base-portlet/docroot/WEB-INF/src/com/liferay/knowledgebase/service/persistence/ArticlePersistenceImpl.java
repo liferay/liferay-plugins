@@ -51,6 +51,7 @@ import com.liferay.portal.service.persistence.SubscriptionPersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
+import com.liferay.portlet.expando.service.persistence.ExpandoValuePersistence;
 import com.liferay.portlet.messageboards.service.persistence.MBMessagePersistence;
 import com.liferay.portlet.social.service.persistence.SocialActivityPersistence;
 
@@ -750,7 +751,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 	public Article fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { uuid, new Long(groupId) };
+		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
 
@@ -858,7 +859,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	public List<Article> findByResourcePrimKey(long resourcePrimKey, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(resourcePrimKey),
+				resourcePrimKey,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1142,9 +1143,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 	public Article fetchByR_V(long resourcePrimKey, int version,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(resourcePrimKey), new Integer(version)
-			};
+		Object[] finderArgs = new Object[] { resourcePrimKey, version };
 
 		Object result = null;
 
@@ -1263,7 +1262,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_ARTICLE.concat(ArticleModelImpl.ORDER_BY_JPQL);
 				}
@@ -1393,7 +1391,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 	public int countByUUID_G(String uuid, long groupId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { uuid, new Long(groupId) };
+		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID_G,
 				finderArgs, this);
@@ -1456,7 +1454,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 	public int countByResourcePrimKey(long resourcePrimKey)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(resourcePrimKey) };
+		Object[] finderArgs = new Object[] { resourcePrimKey };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_RESOURCEPRIMKEY,
 				finderArgs, this);
@@ -1503,9 +1501,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 	public int countByR_V(long resourcePrimKey, int version)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(resourcePrimKey), new Integer(version)
-			};
+		Object[] finderArgs = new Object[] { resourcePrimKey, version };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_V,
 				finderArgs, this);
@@ -1628,6 +1624,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	protected SubscriptionPersistence subscriptionPersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	@BeanReference(type = ExpandoValuePersistence.class)
+	protected ExpandoValuePersistence expandoValuePersistence;
 	@BeanReference(type = MBMessagePersistence.class)
 	protected MBMessagePersistence mbMessagePersistence;
 	@BeanReference(type = SocialActivityPersistence.class)

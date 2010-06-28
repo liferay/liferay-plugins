@@ -699,7 +699,7 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 
 	public Template fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { uuid, new Long(groupId) };
+		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
 
@@ -805,7 +805,7 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 	public List<Template> findByGroupId(long groupId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(groupId),
+				groupId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1093,7 +1093,6 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_TEMPLATE.concat(TemplateModelImpl.ORDER_BY_JPQL);
 				}
@@ -1215,7 +1214,7 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 
 	public int countByUUID_G(String uuid, long groupId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { uuid, new Long(groupId) };
+		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID_G,
 				finderArgs, this);
@@ -1277,7 +1276,7 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 	}
 
 	public int countByGroupId(long groupId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId) };
+		Object[] finderArgs = new Object[] { groupId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_GROUPID,
 				finderArgs, this);

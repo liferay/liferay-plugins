@@ -242,10 +242,9 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static void subscribe(long groupId, long resourcePrimKey)
-		throws RemoteException {
+	public static void subscribe(long groupId) throws RemoteException {
 		try {
-			ArticleServiceUtil.subscribe(groupId, resourcePrimKey);
+			ArticleServiceUtil.subscribe(groupId);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -254,10 +253,33 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static void unsubscribe(long groupId, long resourcePrimKey)
+	public static void subscribeArticle(java.lang.String portletId,
+		long resourcePrimKey) throws RemoteException {
+		try {
+			ArticleServiceUtil.subscribeArticle(portletId, resourcePrimKey);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void unsubscribe(long groupId) throws RemoteException {
+		try {
+			ArticleServiceUtil.unsubscribe(groupId);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void unsubscribeArticle(long companyId, long resourcePrimKey)
 		throws RemoteException {
 		try {
-			ArticleServiceUtil.unsubscribe(groupId, resourcePrimKey);
+			ArticleServiceUtil.unsubscribeArticle(companyId, resourcePrimKey);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

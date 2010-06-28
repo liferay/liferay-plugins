@@ -1156,17 +1156,52 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void subscribe(long groupId, long userId, long resourcePrimKey)
+	public void subscribe(long groupId, long userId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
 
 		Object paramObj1 = new LongWrapper(userId);
 
+		try {
+			_classLoaderProxy.invoke("subscribe",
+				new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	public void subscribeArticle(java.lang.String portletId, long userId,
+		long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(portletId);
+
+		if (portletId == null) {
+			paramObj0 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj1 = new LongWrapper(userId);
+
 		Object paramObj2 = new LongWrapper(resourcePrimKey);
 
 		try {
-			_classLoaderProxy.invoke("subscribe",
+			_classLoaderProxy.invoke("subscribeArticle",
 				new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
@@ -1188,18 +1223,82 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		}
 	}
 
-	public void unsubscribe(long groupId, long userId, long resourcePrimKey)
+	public void unsubscribe(long groupId, long userId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
 
 		Object paramObj1 = new LongWrapper(userId);
 
+		try {
+			_classLoaderProxy.invoke("unsubscribe",
+				new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	public void unsubscribeArticle(long companyId, long userId,
+		long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object paramObj1 = new LongWrapper(userId);
+
 		Object paramObj2 = new LongWrapper(resourcePrimKey);
 
 		try {
-			_classLoaderProxy.invoke("unsubscribe",
+			_classLoaderProxy.invoke("unsubscribeArticle",
 				new Object[] { paramObj0, paramObj1, paramObj2 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	public void unsubscribeArticle(
+		com.liferay.portal.model.Subscription subscription)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(subscription);
+
+		if (subscription == null) {
+			paramObj0 = new NullWrapper("com.liferay.portal.model.Subscription");
+		}
+
+		try {
+			_classLoaderProxy.invoke("unsubscribeArticle",
+				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
