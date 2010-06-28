@@ -163,7 +163,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 	public String getArticlesRSS(
 			String portletId, long resourcePrimKey, int max, String type,
-			double version, String displayStyle, boolean isMaximized,
+			double version, String displayStyle, boolean maximized,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
@@ -176,13 +176,13 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 		String layoutFullURL = PortalUtil.getLayoutFullURL(themeDisplay);
 		String feedURL = KnowledgeBaseUtil.getArticleURL(
-			portletId, resourcePrimKey, layoutFullURL, isMaximized);
+			portletId, resourcePrimKey, layoutFullURL, maximized);
 
 		List<Article> articles = filterArticles(article, max);
 
 		return exportToRSS(
 			portletId, name, description, type, version, displayStyle,
-			isMaximized, layoutFullURL, feedURL, articles, themeDisplay);
+			maximized, layoutFullURL, feedURL, articles, themeDisplay);
 	}
 
 	public List<Article> getCompanyArticles(
@@ -222,7 +222,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 	public String getGroupArticlesRSS(
 			String portletId, int max, String type, double version,
-			String displayStyle, boolean isMaximized, ThemeDisplay themeDisplay)
+			String displayStyle, boolean maximized, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		Group group = themeDisplay.getScopeGroup();
@@ -239,7 +239,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 		return exportToRSS(
 			portletId, name, description, type, version, displayStyle,
-			isMaximized, layoutFullURL, feedURL, articles, themeDisplay);
+			maximized, layoutFullURL, feedURL, articles, themeDisplay);
 	}
 
 	public Article getLatestArticle(long resourcePrimKey)
@@ -322,7 +322,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 	protected String exportToRSS(
 			String portletId, String name, String description, String type,
-			double version, String displayStyle, boolean isMaximized,
+			double version, String displayStyle, boolean maximized,
 			String layoutFullURL, String feedURL, List<Article> articles,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
@@ -372,7 +372,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 			String link = KnowledgeBaseUtil.getArticleURL(
 				portletId, article.getResourcePrimKey(), layoutFullURL,
-				isMaximized);
+				maximized);
 
 			SyndContent syndContent = new SyndContentImpl();
 
