@@ -44,6 +44,7 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -235,12 +236,9 @@ public class KnowledgeBaseUtil {
 		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 		Group group = layout.getGroup();
 
-		Object[] arguments = new Object[] {layout, portletId, StringPool.BLANK};
-
 		PortletPreferences jxPreferences =
-			(PortletPreferences)PortalClassInvoker.invoke(
-				"com.liferay.portlet.PortletPreferencesFactoryUtil",
-				"getPortletSetup", arguments);
+			PortletPreferencesFactoryUtil.getPortletSetup(
+				layout, portletId, StringPool.BLANK);
 
 		String selectionMethod = jxPreferences.getValue(
 			"selection-method", "parent-group");
