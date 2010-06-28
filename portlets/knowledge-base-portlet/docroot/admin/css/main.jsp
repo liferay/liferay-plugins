@@ -34,6 +34,11 @@
 	display: none;
 }
 
+.knowledge-base-portlet-admin .taglib-search-iterator-page-iterator-bottom {
+	margin: 5px 2px 0;
+	padding: 0;
+}
+
 .knowledge-base-portlet-admin .top-links-container {
 	margin: 0 0 15px 0;
 }
@@ -137,10 +142,6 @@
 	display: block;
 	font-weight: bold;
 	margin: 5px 0 0 -20px;
-}
-
-.knowledge-base-portlet-admin .kb-results-footer {
-	margin: 5px 2px 0;
 }
 
 .knowledge-base-portlet-admin .kb-results-header {

@@ -74,11 +74,9 @@
 
 			</div>
 
-			<c:if test="<%= results.isEmpty() || (searchContainer.getDelta() < total) %>">
-				<div class="kb-results-footer">
-					<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
-				</div>
-			</c:if>
+			<div class="taglib-search-iterator-page-iterator-bottom">
+				<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
+			</div>
 		</liferay-ui:search-container>
 	</liferay-ui:panel>
 </liferay-ui:panel-container>
