@@ -15,7 +15,7 @@
 		<default-parameter name="p_p_cacheability">cacheLevelPage</default-parameter>
 		<default-parameter name="p_p_lifecycle">2</default-parameter>
 		<default-parameter name="p_p_resource_id">rss</default-parameter>
-		<ignored-parameter name="p_p_state" />
 		<ignored-parameter name="jspPage" />
+		<ignored-parameter name="p_p_state" />
 	</route>
 </routes>

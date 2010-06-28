@@ -4,8 +4,8 @@
 <routes>
 	<route>
 		<pattern>/{instanceId}/article/{resourcePrimKey:\d+}</pattern>
-		<default-parameter name="p_p_state">normal</default-parameter>
 		<default-parameter name="jspPage">/aggregator/view_article.jsp</default-parameter>
+		<default-parameter name="p_p_state">normal</default-parameter>
 	</route>
 	<route>
 		<pattern>/{instanceId}/article/{resourcePrimKey:\d+}/{p_p_state}</pattern>
@@ -13,8 +13,8 @@
 	</route>
 	<route>
 		<pattern>/{instanceId}/article/{resourcePrimKey:\d+}/history</pattern>
-		<default-parameter name="p_p_state">normal</default-parameter>
 		<default-parameter name="jspPage">/aggregator/history.jsp</default-parameter>
+		<default-parameter name="p_p_state">normal</default-parameter>
 	</route>
 	<route>
 		<pattern>/{instanceId}/article/{resourcePrimKey:\d+}/history/{p_p_state}</pattern>
@@ -25,7 +25,7 @@
 		<default-parameter name="p_p_cacheability">cacheLevelPage</default-parameter>
 		<default-parameter name="p_p_lifecycle">2</default-parameter>
 		<default-parameter name="p_p_resource_id">rss</default-parameter>
-		<ignored-parameter name="p_p_state" />
 		<ignored-parameter name="jspPage" />
+		<ignored-parameter name="p_p_state" />
 	</route>
 </routes>
