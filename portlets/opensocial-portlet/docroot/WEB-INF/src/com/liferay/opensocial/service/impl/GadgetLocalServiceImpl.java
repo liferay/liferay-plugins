@@ -32,6 +32,7 @@ import com.liferay.portal.model.PortletInfo;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.InvokerPortlet;
+import com.liferay.portlet.PortletConfigFactoryUtil;
 import com.liferay.portlet.PortletInstanceFactoryUtil;
 
 import java.util.Date;
@@ -180,13 +181,19 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 			portlet.setPortletInfo(new PortletInfo(name, name, name, name));
 
-			PortletInstanceFactoryUtil.updatePortletConfig(portlet);
-
-			return gadget;
+			PortletConfigFactoryUtil.update(portlet);
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (SystemException se) {
+			throw se;
 		}
 		catch (Exception e) {
-			throw new PortalException(e);
+			throw new SystemException(e);
 		}
+
+		return gadget;
 	}
 
 	protected void addPortletExtraInfo(
