@@ -241,7 +241,8 @@ public class ServiceDescriptionServiceImpl
 			}
 
 			ExtensionUtil.addMessageElement(
-				messageElements, "footer-portal-javascript", footerPortalJavaScript);
+				messageElements, "footer-portal-javascript",
+				footerPortalJavaScript);
 		}
 
 		for (String footerPortletCss : portlet.getHeaderPortletCss()) {
@@ -263,7 +264,8 @@ public class ServiceDescriptionServiceImpl
 			}
 
 			ExtensionUtil.addMessageElement(
-				messageElements, "footer-portlet-javascript", footerPortletJavaScript);
+				messageElements, "footer-portlet-javascript",
+				footerPortletJavaScript);
 		}
 
 		for (String headerPortalCss : portlet.getHeaderPortalCss()) {
@@ -285,7 +287,8 @@ public class ServiceDescriptionServiceImpl
 			}
 
 			ExtensionUtil.addMessageElement(
-				messageElements, "header-portal-javascript", headerPortalJavaScript);
+				messageElements, "header-portal-javascript",
+				headerPortalJavaScript);
 		}
 
 		for (String headerPortletCss : portlet.getHeaderPortletCss()) {
@@ -307,7 +310,8 @@ public class ServiceDescriptionServiceImpl
 			}
 
 			ExtensionUtil.addMessageElement(
-				messageElements, "header-portlet-javascript", headerPortletJavaScript);
+				messageElements, "header-portlet-javascript",
+				headerPortletJavaScript);
 		}
 
 		portletDescription.setExtensions(
