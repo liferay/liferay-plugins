@@ -347,6 +347,7 @@
 
 		<path id="service.classpath">
 			<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
+			<fileset dir="${project.dir}/lib" includes="activation.jar,jsp-api.jar,mail.jar,servlet-api.jar" />
 			<fileset dir="docroot/WEB-INF/lib" excludes="${plugin.name}-service.jar" includes="*.jar" />
 		</path>
 
