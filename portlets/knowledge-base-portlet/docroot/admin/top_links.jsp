@@ -27,12 +27,12 @@ String path = GetterUtil.getString(request.getPathInfo());
 		<div class="top-links">
 			<div class="top-links-navigation">
 				<portlet:renderURL var="homeURL">
-					<portlet:param name="jspPage" value='<%= jspPageParams.get("view.jsp") %>' />
+					<portlet:param name="jspPage" value="/admin/view.jsp" />
 					<portlet:param name="topLink" value="home" />
 				</portlet:renderURL>
 
 				<%
-				String taglibURL = (path.endsWith(jspPageParams.get("view.jsp")) && topLink.equals("home")) ? StringPool.BLANK : homeURL;
+				String taglibURL = (path.endsWith("/admin/view.jsp") && topLink.equals("home")) ? StringPool.BLANK : homeURL;
 				%>
 
 				<liferay-ui:icon
@@ -46,7 +46,7 @@ String path = GetterUtil.getString(request.getPathInfo());
 
 				<c:if test='<%= AdminPermission.contains(permissionChecker, scopeGroupId, "VIEW_TEMPLATES") %>'>
 					<portlet:renderURL var="templatesURL">
-						<portlet:param name="jspPage" value='<%= jspPageParams.get("view_templates.jsp") %>' />
+						<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
 						<portlet:param name="topLink" value="templates" />
 					</portlet:renderURL>
 
@@ -65,7 +65,7 @@ String path = GetterUtil.getString(request.getPathInfo());
 				</c:if>
 
 				<portlet:renderURL var="allArticlesURL">
-					<portlet:param name="jspPage" value='<%= jspPageParams.get("view_all_articles.jsp") %>' />
+					<portlet:param name="jspPage" value="/admin/view_all_articles.jsp" />
 					<portlet:param name="topLink" value="all-articles" />
 				</portlet:renderURL>
 
@@ -85,7 +85,7 @@ String path = GetterUtil.getString(request.getPathInfo());
 
 			<div class="article-search">
 				<liferay-portlet:renderURL varImpl="searchURL">
-					<portlet:param name="jspPage" value='<%= jspPageParams.get("search.jsp") %>' />
+					<portlet:param name="jspPage" value="/admin/search.jsp" />
 				</liferay-portlet:renderURL>
 
 				<aui:form action="<%= searchURL %>" method="get" name="searchFm">

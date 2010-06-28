@@ -38,7 +38,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 />
 
 <portlet:actionURL name="updateArticle" var="updateArticleURL">
-	<portlet:param name="jspPage" value='<%= jspPageParams.get("edit_article.jsp") %>' />
+	<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 </portlet:actionURL>
 
@@ -72,7 +72,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 
 			<c:if test="<%= (article == null) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && ArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE)) %>">
 				<portlet:renderURL var="selectArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-					<portlet:param name="jspPage" value='<%= jspPageParams.get("select_article.jsp") %>' />
+					<portlet:param name="jspPage" value="/admin/select_article.jsp" />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
 				</portlet:renderURL>
@@ -93,7 +93,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 			</div>
 
 			<portlet:renderURL var="attachmentsURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="jspPage" value='<%= jspPageParams.get("attachments.jsp") %>' />
+				<portlet:param name="jspPage" value="/admin/attachments.jsp" />
 				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 			</portlet:renderURL>
 

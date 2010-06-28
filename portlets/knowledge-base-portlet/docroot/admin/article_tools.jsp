@@ -74,7 +74,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 		<td>
 			<portlet:renderURL var="historyURL">
-				<portlet:param name="jspPage" value='<%= jspPageParams.get("history.jsp") %>' />
+				<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
 				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 			</portlet:renderURL>
 
@@ -88,7 +88,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 		</td>
 		<td>
 			<portlet:renderURL var="printURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="jspPage" value='<%= jspPageParams.get("print_article.jsp") %>' />
+				<portlet:param name="jspPage" value='<%= jspPath + "print_article.jsp" %>' />
 				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 			</portlet:renderURL>
 

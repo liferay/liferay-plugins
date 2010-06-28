@@ -33,7 +33,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 <aui:form method="post" name="fm">
 	<aui:fieldset>
 		<liferay-portlet:renderURL varImpl="iteratorURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-			<portlet:param name="jspPage" value='<%= jspPageParams.get("select_article.jsp") %>' />
+			<portlet:param name="jspPage" value="/admin/select_article.jsp" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 			<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 			<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
@@ -64,7 +64,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 				modelVar="curArticle"
 			>
 				<portlet:renderURL var="rowURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-					<portlet:param name="jspPage" value='<%= jspPageParams.get("select_article.jsp") %>' />
+					<portlet:param name="jspPage" value="/admin/select_article.jsp" />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(curArticle.getResourcePrimKey()) %>" />
 					<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
@@ -138,7 +138,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 
 			<div class="kb-select-article-breadcrumbs">
 				<portlet:renderURL var="breadcrumbURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-					<portlet:param name="jspPage" value='<%= jspPageParams.get("select_article.jsp") %>' />
+					<portlet:param name="jspPage" value="/admin/select_article.jsp" />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
 					<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />

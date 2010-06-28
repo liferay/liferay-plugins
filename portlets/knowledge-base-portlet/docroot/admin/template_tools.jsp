@@ -25,7 +25,7 @@ Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLA
 	<tr>
 		<td>
 			<portlet:renderURL var="printURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="jspPage" value='<%= jspPageParams.get("print_template.jsp") %>' />
+				<portlet:param name="jspPage" value="/admin/print_template.jsp" />
 				<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
 			</portlet:renderURL>
 

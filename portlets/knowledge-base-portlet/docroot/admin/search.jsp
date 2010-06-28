@@ -27,7 +27,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 <liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "SearchArticlesPanelContainer" %>' persistState="<%= true %>">
 	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "SearchArticlesPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "search-articles") %>'>
 		<liferay-portlet:renderURL varImpl="iteratorURL">
-			<portlet:param name="jspPage" value='<%= jspPageParams.get("search.jsp") %>' />
+			<portlet:param name="jspPage" value="/admin/search.jsp" />
 			<portlet:param name="keywords" value="<%= keywords %>" />
 		</liferay-portlet:renderURL>
 
@@ -83,7 +83,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 				%>
 
 					<portlet:renderURL var="viewArticleURL">
-						<portlet:param name="jspPage" value='<%= jspPageParams.get("view_article.jsp") %>' />
+						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 					</portlet:renderURL>
 

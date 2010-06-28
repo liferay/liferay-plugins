@@ -23,7 +23,7 @@
 		<div class="kb-buttons">
 			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
 				<portlet:renderURL var="addArticleURL">
-					<portlet:param name="jspPage" value='<%= jspPageParams.get("edit_article.jsp") %>' />
+					<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</portlet:renderURL>
 
@@ -99,7 +99,7 @@
 <liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "ArticlesPanelContainer" %>' persistState="<%= true %>">
 	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "ArticlesPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "articles") %>'>
 		<liferay-portlet:renderURL varImpl="iteratorURL">
-			<portlet:param name="jspPage" value='<%= jspPageParams.get("view.jsp") %>' />
+			<portlet:param name="jspPage" value="/admin/view.jsp" />
 			<portlet:param name="topLink" value="home" />
 		</liferay-portlet:renderURL>
 
@@ -128,7 +128,7 @@
 				%>
 
 					<portlet:renderURL var="viewArticleURL">
-						<portlet:param name="jspPage" value='<%= jspPageParams.get("view_article.jsp") %>' />
+						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 					</portlet:renderURL>
 

@@ -47,21 +47,5 @@ double rssFormatVersion = RSSUtil.getFormatVersion(rssFormat);
 
 String jspPath = portletConfig.getInitParameter("jsp-path");
 
-Map<String, String> jspPageParams = new HashMap<String, String>();
-
-jspPageParams.put("attachments.jsp", "/admin/attachments.jsp");
-jspPageParams.put("edit_article.jsp", "/admin/edit_article.jsp");
-jspPageParams.put("edit_template.jsp", "/admin/edit_template.jsp");
-jspPageParams.put("history.jsp", jspPath + "history.jsp");
-jspPageParams.put("print_article.jsp", jspPath + "print_article.jsp");
-jspPageParams.put("print_template.jsp", "/admin/print_template.jsp");
-jspPageParams.put("search.jsp", "/admin/search.jsp");
-jspPageParams.put("select_article.jsp", "/admin/select_article.jsp");
-jspPageParams.put("view.jsp", "/admin/view.jsp");
-jspPageParams.put("view_all_articles.jsp", "/admin/view_all_articles.jsp");
-jspPageParams.put("view_article.jsp", jspPath + "view_article.jsp");
-jspPageParams.put("view_template.jsp", "/admin/view_template.jsp");
-jspPageParams.put("view_templates.jsp", "/admin/view_templates.jsp");
-
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>
