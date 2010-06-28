@@ -45,6 +45,9 @@
 		<portlet-name>3</portlet-name>
 		<icon>/icons/display.png</icon>
 		<configuration-action-class>com.liferay.knowledgebase.display.action.ConfigurationActionImpl</configuration-action-class>
+		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapping>knowledge_base_display</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/knowledgebase/display/portlet/display-friendly-url-routes.xml</friendly-url-routes>
 		<instanceable>true</instanceable>
 		<header-portlet-css>/display/css/main.jsp</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet-display</css-class-wrapper>
