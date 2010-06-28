@@ -385,7 +385,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(wsrpConsumerId),
+				wsrpConsumerId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -676,11 +676,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	public WSRPConsumerPortlet fetchByW_P(long wsrpConsumerId,
 		String portletHandle, boolean retrieveFromCache)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(wsrpConsumerId),
-				
-				portletHandle
-			};
+		Object[] finderArgs = new Object[] { wsrpConsumerId, portletHandle };
 
 		Object result = null;
 
@@ -874,7 +870,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 	public int countByWsrpConsumerId(long wsrpConsumerId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(wsrpConsumerId) };
+		Object[] finderArgs = new Object[] { wsrpConsumerId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_WSRPCONSUMERID,
 				finderArgs, this);
@@ -921,11 +917,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 	public int countByW_P(long wsrpConsumerId, String portletHandle)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(wsrpConsumerId),
-				
-				portletHandle
-			};
+		Object[] finderArgs = new Object[] { wsrpConsumerId, portletHandle };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_W_P,
 				finderArgs, this);

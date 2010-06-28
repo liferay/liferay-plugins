@@ -15,6 +15,7 @@
 package com.liferay.wsrp.service.impl;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -172,15 +173,18 @@ public class WSRPConsumerLocalServiceImpl
 
 			wsrpConsumerManager.updateServiceDescription(registrationContext);
 
-			List<WSRPConsumerPortlet> portlets =
+			List<WSRPConsumerPortlet> wsrpConsumerPortlets =
 				wsrpConsumerPortletLocalService.getWSRPConsumerPortlets(
-					wsrpConsumerId);
+					wsrpConsumerId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-			for (WSRPConsumerPortlet portlet : portlets) {
-				long companyId = portlet.getCompanyId();
-				long wsrpConsumerPortletId = portlet.getWsrpConsumerPortletId();
-				String name = portlet.getName();
-				String portletHandle = portlet.getPortletHandle();
+			for (WSRPConsumerPortlet wsrpConsumerPortlet :
+				wsrpConsumerPortlets) {
+
+				long companyId = wsrpConsumerPortlet.getCompanyId();
+				long wsrpConsumerPortletId =
+					wsrpConsumerPortlet.getWsrpConsumerPortletId();
+				String name = wsrpConsumerPortlet.getName();
+				String portletHandle = wsrpConsumerPortlet.getPortletHandle();
 
 				wsrpConsumerPortletLocalService.initWSRPConsumerPortlet(
 					companyId, wsrpConsumerId, wsrpConsumerPortletId, name,

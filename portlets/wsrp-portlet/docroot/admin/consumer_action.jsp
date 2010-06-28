@@ -43,11 +43,11 @@ catch (Exception e) {
 			<liferay-ui:icon-delete url="<%= deleteURL %>" />
 
 			<portlet:actionURL name="restartConsumer" var="restartConsumerURL">
-                <portlet:param name="redirect" value="<%= currentURL %>" />
-                <portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
-            </portlet:actionURL>
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
+			</portlet:actionURL>
 
-            <liferay-ui:icon image="portlet" message="restart-consumer" url="<%= restartConsumerURL %>" />
+			<liferay-ui:icon image="portlet" message="restart-consumer" url="<%= restartConsumerURL %>" />
 		</liferay-ui:icon-menu>
 	</c:when>
 	<c:otherwise>
