@@ -251,8 +251,7 @@ public class AdminMessageListener implements MessageListener {
 				if (_log.isInfoEnabled()) {
 					_log.info(
 						"Portlet " + portletId + " does not exist or does " +
-							"not contain article " + resourcePrimKey + " - " +
-								"this subscription will be deleted");
+							"not contain article " + resourcePrimKey);
 
 					ArticleLocalServiceUtil.unsubscribeArticle(subscription);
 				}
