@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -356,14 +355,11 @@ public class KnowledgeBaseUtil {
 			return new Object[] {plid, windowState};
 		}
 
-		Object[] arguments = new Object[] {
-			LayoutLocalServiceUtil.getLayout(plid), portletId, StringPool.BLANK
-		};
+		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 
 		PortletPreferences jxPreferences =
-			(PortletPreferences)PortalClassInvoker.invoke(
-				"com.liferay.portlet.PortletPreferencesFactoryUtil",
-				"getPortletSetup", arguments);
+			PortletPreferencesFactoryUtil.getPortletSetup(
+				layout, portletId, StringPool.BLANK);
 
 		String articleWindowState = jxPreferences.getValue(
 			"article-window-state", WindowState.MAXIMIZED.toString());
@@ -394,14 +390,11 @@ public class KnowledgeBaseUtil {
 			return new Object[] {plid, WindowState.NORMAL};
 		}
 
-		Object[] arguments = new Object[] {
-			LayoutLocalServiceUtil.getLayout(plid), portletId, StringPool.BLANK
-		};
+		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 
 		PortletPreferences jxPreferences =
-			(PortletPreferences)PortalClassInvoker.invoke(
-				"com.liferay.portlet.PortletPreferencesFactoryUtil",
-				"getPortletSetup", arguments);
+			PortletPreferencesFactoryUtil.getPortletSetup(
+				layout, portletId, StringPool.BLANK);
 
 		if (hasArticle(article, jxPreferences)) {
 			return new Object[] {plid, WindowState.NORMAL};
