@@ -177,20 +177,20 @@ public class KnowledgeBaseUtil {
 			return StringPool.BLANK;
 		}
 
-		boolean isMaximized = windowState.equals(WindowState.MAXIMIZED);
-
 		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 
 		String layoutActualURL = PortalUtil.getLayoutActualURL(layout);
 		String layoutFullURL = portalURL + layoutActualURL;
 
+		boolean maximized = windowState.equals(WindowState.MAXIMIZED);
+
 		return getArticleURL(
-			portletId, resourcePrimKey, layoutFullURL, isMaximized);
+			portletId, resourcePrimKey, layoutFullURL, maximized);
 	}
 
 	public static String getArticleURL(
 		String portletId, long resourcePrimKey, String layoutFullURL,
-		boolean isMaximized) {
+		boolean maximized) {
 
 		String pluginId = PortletConstants.getRootPortletId(portletId);
 		String namespace = PortalUtil.getPortletNamespace(portletId);
@@ -209,7 +209,7 @@ public class KnowledgeBaseUtil {
 
 		String articleURL = layoutFullURL;
 
-		if (isMaximized) {
+		if (maximized) {
 			articleURL = HttpUtil.setParameter(
 				articleURL, "p_p_state", WindowState.MAXIMIZED.toString());
 		}
