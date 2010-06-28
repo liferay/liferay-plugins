@@ -125,4 +125,13 @@ public class GadgetPortlet extends MVCPortlet {
 		return gadget;
 	}
 
+	protected String getTitle(RenderRequest request) {
+		try {
+			return getGadget().getName();
+		}
+		catch (Exception e) {
+			return super.getTitle(request);
+		}
+	}
+
 }

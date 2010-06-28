@@ -175,7 +175,18 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 		gadgetPersistence.update(gadget, false);
 
-		return gadget;
+		try {
+			Portlet portlet = getPortlet(gadget);
+
+			portlet.setPortletInfo(new PortletInfo(name, name, name, name));
+
+			PortletInstanceFactoryUtil.updatePortletConfig(portlet);
+
+			return gadget;
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
+		}
 	}
 
 	protected void addPortletExtraInfo(
