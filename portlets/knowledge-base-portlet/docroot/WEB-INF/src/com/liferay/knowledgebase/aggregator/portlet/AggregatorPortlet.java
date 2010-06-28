@@ -106,11 +106,6 @@ public class AggregatorPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		PortletPreferences preferences = resourceRequest.getPreferences();
-
-		String articleWindowState = preferences.getValue(
-			"article-window-state", WindowState.MAXIMIZED.toString());
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -131,12 +126,25 @@ public class AggregatorPortlet extends MVCPortlet {
 
 		String rss = ArticleServiceUtil.getArticlesRSS(
 			portletId, resourcePrimKey, max, type, version, displayStyle,
-			articleWindowState.equals(WindowState.MAXIMIZED.toString()),
-			themeDisplay);
+			isServeRSSMaximized(resourceRequest), themeDisplay);
 
 		PortletResponseUtil.sendFile(
 			resourceRequest, resourceResponse, null,
 			rss.getBytes(StringPool.UTF8), ContentTypes.TEXT_XML_UTF8);
+	}
+
+	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
+		PortletPreferences preferences = resourceRequest.getPreferences();
+
+		String articleWindowState = preferences.getValue(
+			"article-window-state", WindowState.MAXIMIZED.toString());
+
+		if (articleWindowState.equals(WindowState.MAXIMIZED.toString())) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	public void serveResource(
