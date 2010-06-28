@@ -43,7 +43,9 @@
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
+		<icon>/icons/display.png</icon>
 		<configuration-action-class>com.liferay.knowledgebase.display.action.ConfigurationActionImpl</configuration-action-class>
+		<instanceable>true</instanceable>
 		<header-portlet-css>/display/css/main.jsp</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet-display</css-class-wrapper>
 	</portlet>

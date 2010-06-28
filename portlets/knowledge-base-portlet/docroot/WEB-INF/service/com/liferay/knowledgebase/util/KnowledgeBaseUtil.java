@@ -18,27 +18,36 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
+import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.PortletKeys;
+import com.liferay.knowledgebase.util.comparator.ArticleCreateDateComparator;
+import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DiffHtmlUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.PortletConstants;
+import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -193,6 +202,9 @@ public class KnowledgeBaseUtil {
 		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
 			jspPage = "/aggregator/view_article.jsp";
 		}
+		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
+			jspPage = "/display/view_article.jsp";
+		}
 
 		String articleURL = layoutFullURL;
 
@@ -208,6 +220,113 @@ public class KnowledgeBaseUtil {
 			articleURL, namespace + "resourcePrimKey", resourcePrimKey);
 
 		return articleURL;
+	}
+
+	public static Article getDisplayArticle(
+			long plid, String portletId, PermissionChecker permissionChecker)
+		throws Exception {
+
+		String pluginId = PortletConstants.getRootPortletId(portletId);
+
+		if (!pluginId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
+			return null;
+		}
+
+		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
+		Group group = layout.getGroup();
+
+		Object[] arguments = new Object[] {layout, portletId, StringPool.BLANK};
+
+		PortletPreferences jxPreferences =
+			(PortletPreferences)PortalClassInvoker.invoke(
+				"com.liferay.portlet.PortletPreferencesFactoryUtil",
+				"getPortletSetup", arguments);
+
+		String selectionMethod = jxPreferences.getValue(
+			"selection-method", "parent-group");
+		long[] resourcePrimKeys = GetterUtil.getLongValues(
+			jxPreferences.getValues("resource-prim-keys", new String[0]));
+		long[] scopeGroupIds = GetterUtil.getLongValues(
+			jxPreferences.getValues("scope-group-ids", new String[0]));
+
+		boolean allArticles = GetterUtil.getBoolean(
+			jxPreferences.getValue("all-articles", null), true);
+		String orderByColumn = jxPreferences.getValue(
+			"order-by-column", "modified-date");
+		boolean orderByAscending = GetterUtil.getBoolean(
+			jxPreferences.getValue("order-by-ascending", null));
+
+		OrderByComparator orderByComparator = null;
+
+		if (orderByColumn.equals("create-date")) {
+			orderByComparator = new ArticleCreateDateComparator(
+				orderByAscending);
+		}
+		else if (orderByColumn.equals("modified-date")) {
+			orderByComparator = new ArticleModifiedDateComparator(
+				orderByAscending);
+		}
+
+		int delta = SearchContainer.DEFAULT_DELTA;
+		int lastIntervalStart = 0;
+		boolean listNotExhausted = true;
+
+		while (listNotExhausted) {
+			List<Article> articles = new ArrayList<Article>();
+
+			if (selectionMethod.equals("articles")) {
+				articles = getArticles(
+					resourcePrimKeys, lastIntervalStart,
+					lastIntervalStart + delta, false);
+			}
+			else if (selectionMethod.equals("parent-group")) {
+				Map<String, Object> params = new HashMap<String, Object>();
+
+				params.put("parentGroupId", group.getGroupId());
+
+				if (!allArticles) {
+					params.put(
+						"parentResourcePrimKey",
+						ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
+				}
+
+				articles = ArticleLocalServiceUtil.getArticles(
+					params, false, lastIntervalStart, lastIntervalStart + delta,
+					orderByComparator);
+			}
+			else if (selectionMethod.equals("scope-groups")) {
+				Map<String, Object> params = new HashMap<String, Object>();
+
+				params.put("groupId", ArrayUtil.toArray(scopeGroupIds));
+
+				if (!allArticles) {
+					params.put(
+						"parentResourcePrimKey",
+						ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
+				}
+
+				articles = ArticleLocalServiceUtil.getArticles(
+					params, false, lastIntervalStart, lastIntervalStart + delta,
+					orderByComparator);
+			}
+
+			Iterator<Article> itr = articles.iterator();
+
+			lastIntervalStart += delta;
+			listNotExhausted = (articles.size() == delta);
+
+			while (itr.hasNext()) {
+				Article article = itr.next();
+
+				if (ArticlePermission.contains(
+						permissionChecker, article, ActionKeys.VIEW)) {
+
+					return article;
+				}
+			}
+		}
+
+		return null;
 	}
 
 	protected static Object[] getAdminPlidAndWindowState(
@@ -250,35 +369,44 @@ public class KnowledgeBaseUtil {
 
 		String articleWindowState = jxPreferences.getValue(
 			"article-window-state", WindowState.MAXIMIZED.toString());
-		String selectionMethod = jxPreferences.getValue(
-			"selection-method", "parent-group");
-		long[] resourcePrimKeys = GetterUtil.getLongValues(
-			jxPreferences.getValues("resource-prim-keys", new String[0]));
-		long[] scopeGroupIds = GetterUtil.getLongValues(
-			jxPreferences.getValues("scope-group-ids", new String[0]));
-
-		boolean hasResourcePrimKey = ArrayUtil.contains(
-			resourcePrimKeys, resourcePrimKey);
-		boolean hasScopeGroup = ArrayUtil.contains(
-			scopeGroupIds, article.getGroupId());
 
 		if (articleWindowState.equals(WindowState.MAXIMIZED.toString())) {
 			windowState = WindowState.MAXIMIZED;
 		}
 
-		if ((selectionMethod.equals("parent-group")) ||
-			(selectionMethod.equals("articles") && hasResourcePrimKey) ||
-			(selectionMethod.equals("scope-groups") && hasScopeGroup)) {
-
+		if (hasArticle(article, jxPreferences)) {
 			return new Object[] {plid, windowState};
 		}
 
-		if (selectionMethod.equals("articles")) {
+		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
+	}
 
-			// Retrieving all parent and children articles for each selected
-			// article can be expensive. Skip this check for better performance.
+	protected static Object[] getDisplayPlidAndWindowState(
+			String portletId, long resourcePrimKey)
+		throws Exception {
 
-			return new Object[] {plid, windowState};
+		Article article = ArticleLocalServiceUtil.getLatestArticle(
+			resourcePrimKey);
+
+		long parentGroupId = PortalUtil.getParentGroupId(article.getGroupId());
+
+		long plid = PortalUtil.getPlidFromPortletId(parentGroupId, portletId);
+
+		if (plid == LayoutConstants.DEFAULT_PLID) {
+			return new Object[] {plid, WindowState.NORMAL};
+		}
+
+		Object[] arguments = new Object[] {
+			LayoutLocalServiceUtil.getLayout(plid), portletId, StringPool.BLANK
+		};
+
+		PortletPreferences jxPreferences =
+			(PortletPreferences)PortalClassInvoker.invoke(
+				"com.liferay.portlet.PortletPreferencesFactoryUtil",
+				"getPortletSetup", arguments);
+
+		if (hasArticle(article, jxPreferences)) {
+			return new Object[] {plid, WindowState.NORMAL};
 		}
 
 		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
@@ -369,8 +497,45 @@ public class KnowledgeBaseUtil {
 		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
 			return getAggregatorPlidAndWindowState(portletId, resourcePrimKey);
 		}
+		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
+			return getDisplayPlidAndWindowState(portletId, resourcePrimKey);
+		}
 
 		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
+	}
+
+	protected static boolean hasArticle(
+			Article article, PortletPreferences jxPreferences)
+		throws Exception {
+
+		String selectionMethod = jxPreferences.getValue(
+			"selection-method", "parent-group");
+		long[] resourcePrimKeys = GetterUtil.getLongValues(
+			jxPreferences.getValues("resource-prim-keys", new String[0]));
+		long[] scopeGroupIds = GetterUtil.getLongValues(
+			jxPreferences.getValues("scope-group-ids", new String[0]));
+
+		boolean hasResourcePrimKey = ArrayUtil.contains(
+			resourcePrimKeys, article.getResourcePrimKey());
+		boolean hasScopeGroup = ArrayUtil.contains(
+			scopeGroupIds, article.getGroupId());
+
+		if ((selectionMethod.equals("parent-group")) ||
+			(selectionMethod.equals("articles") && hasResourcePrimKey) ||
+			(selectionMethod.equals("scope-groups") && hasScopeGroup)) {
+
+			return true;
+		}
+
+		if (selectionMethod.equals("articles")) {
+
+			// Retrieving all parent and children articles for each selected
+			// article can be expensive. Skip this check for better performance.
+
+			return true;
+		}
+
+		return false;
 	}
 
 }
