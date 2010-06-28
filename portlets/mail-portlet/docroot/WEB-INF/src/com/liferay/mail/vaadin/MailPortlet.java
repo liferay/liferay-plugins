@@ -37,7 +37,7 @@ import javax.portlet.WindowState;
  */
 public class MailPortlet extends AbstractApplicationPortlet {
 
-	/*
+	/**
 	 * The context name from which the PortletResources are retrieved.
 	 */
 	public static final String CONTEXT_NAME = "mail-portlet";

@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
  * @author Henri Sara
  */
 public class Lang {
-	public static String get(String key) {	
+	public static String get(String key) {
 		return LanguageUtil.get(Controller.get().getPortletConfig(),Controller.get().getUserLocale(), key);
 	}
 

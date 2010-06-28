@@ -60,7 +60,7 @@ public class Controller {
 	// a value for the listener map entries
 	private Object present = new Object();
 	private PortletConfig config;
-	
+
 	private static TransactionListener tl;
 	private static ThreadLocal<Controller> controller =
 		new ThreadLocal<Controller>();
@@ -124,7 +124,7 @@ public class Controller {
 		// get PortletConfig
 		config = (PortletConfig)request.getAttribute(
 			JavaConstants.JAVAX_PORTLET_CONFIG);
-	
+
 		// create MailManager
 		passwordRetriever = new PasswordRetriever(httpRequest);
 		mailMgr = new MailManager(user, passwordRetriever, config);
@@ -139,7 +139,7 @@ public class Controller {
 
 		return user;
 	}
-	
+
 	public PortletConfig getPortletConfig(){
 		return config;
 	}
@@ -339,5 +339,5 @@ public class Controller {
 
 		showError(Lang.get("an-unexpected-error-occurred"), e);
 		_log.error("Unexpected error", e);
-	}	
+	}
 }

@@ -67,7 +67,7 @@ public class PreferencesView extends VerticalLayout {
 					} else {
 						controller.showError(Lang.get(resultKey));
 					}
-				}			
+				}
 			}
 			catch (SystemException e) {
 				controller.showError(Lang.get("unable-to-save-account"), e);

@@ -275,10 +275,10 @@ public class FolderContainer implements Hierarchical, ItemSetChangeNotifier {
 		}
 
 	}
-	
+
 	public boolean isModifiable(Object itemId){
 		ItemId id = (ItemId) itemId;
-		if(id.isAccount()){
+		if (id.isAccount()){
 			return false;
 		} else {
 			Folder f = id.getFolder();
@@ -296,9 +296,9 @@ public class FolderContainer implements Hierarchical, ItemSetChangeNotifier {
 			else if (account.getSentFolderId() == f.getFolderId()) {
 				return false;
 			}
-			
-			return true;			
-		}		
+
+			return true;
+		}
 	}
 
 	public static Object getCaptionPropertyId() {

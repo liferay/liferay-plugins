@@ -338,7 +338,7 @@ public class MessageListTable extends Table
 
 	public void messageModified(long messageId) {
 
-		try {						
+		try {
 			getMessageContainer().refreshMessageFlags(messageId);
 		}
 		catch (Exception e) {
@@ -348,9 +348,9 @@ public class MessageListTable extends Table
 
 	private MessageContainer getMessageContainer() {
 		Container c = getContainerDataSource();
-		if(c instanceof MessageContainer){
+		if (c instanceof MessageContainer){
 			return (MessageContainer) getContainerDataSource();
-		}		
+		}
 		return null;
 	}
 

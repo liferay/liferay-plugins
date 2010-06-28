@@ -229,7 +229,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 		Account account = getFolderContainer().getAccount(target);
 		ArrayList<Action> actions = new ArrayList<Action>();
 		boolean modifiable = getFolderContainer().isModifiable(target);
-		
+
 		if (account != null && folder == null) {
 			actions.add(new AccountAction("create-folder", account.getAccountId()));
 		}
@@ -255,7 +255,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 		if (accountId == null) {
 			return;
 		}
-	
+
 		if (Lang.get("create-folder").equals(action.getCaption())) {
 			String title = Lang.get("create-folder");
 			String message = Lang.get("please-enter-a-folder-name");

@@ -330,34 +330,34 @@ public class MailApplication extends Application {
 				if (returnUrl == null) {
 					mainWindow.setContent(previousView);
 				}
-				
+
 				String caption  = Lang.get("sent-successfully");
-				String description =  Lang.get("to") 
-					+":</br>" + message.getTo() 
-					+ "<br/>" + Lang.get("subject") + ": " 
-					+ composer.getSubject() + "<br/>" 
-					+ composer.getAttachments().size() + " " 
-					+ Lang.get("attachments");				
-				
+				String description =  Lang.get("to")
+					+":</br>" + message.getTo()
+					+ "<br/>" + Lang.get("subject") + ": "
+					+ composer.getSubject() + "<br/>"
+					+ composer.getAttachments().size() + " "
+					+ Lang.get("attachments");
+
 				mainWindow.showNotification(caption,description,
 						Notification.TYPE_TRAY_NOTIFICATION);
-				
+
 				// Refresh messages
 				try {
 					// Update account
-					Controller.get().getMailManager().synchronizeAccount(composer.getFrom().getAccountId());					
-					
+					Controller.get().getMailManager().synchronizeAccount(composer.getFrom().getAccountId());
+
 					// Refresh main mail view if necessary
-					if(previousView instanceof MainMailView){
+					if (previousView instanceof MainMailView){
 						((MainMailView)previousView).update();
 					}
-					
+
 				} catch (PortalException e) {
 					Controller.get().showError(Lang.get("unable-to-synchronize-account"), e);
 				} catch (SystemException e) {
 					Controller.get().showError(Lang.get("unable-to-synchronize-account"), e);
 				}
-				
+
 				if (returnUrl != null) {
 					mainWindow.open(new ExternalResource(returnUrl));
 				}

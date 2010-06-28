@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -132,7 +131,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Message.class, PortletClassLoaderUtil.getClassLoader());
+			Message.class, getClass().getClassLoader());
 
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("accountId", accountId));
 		dynamicQuery.add(
@@ -167,7 +166,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Message.class, PortletClassLoaderUtil.getClassLoader());
+			Message.class, getClass().getClassLoader());
 
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
 		dynamicQuery.add(
@@ -188,7 +187,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Message.class, PortletClassLoaderUtil.getClassLoader());
+			Message.class, getClass().getClassLoader());
 
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
 		dynamicQuery.add(
@@ -218,7 +217,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Message.class, PortletClassLoaderUtil.getClassLoader());
+			Message.class, getClass().getClassLoader());
 
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
 
