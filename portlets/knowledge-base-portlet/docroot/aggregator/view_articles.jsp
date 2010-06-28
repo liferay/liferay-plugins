@@ -60,6 +60,14 @@
 
 	</liferay-ui:search-container-results>
 
+	<c:if test="<%= total == 0 %>">
+
+		<%
+		renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
+		%>
+
+	</c:if>
+
 	<div class="kb-results-body">
 
 		<%
