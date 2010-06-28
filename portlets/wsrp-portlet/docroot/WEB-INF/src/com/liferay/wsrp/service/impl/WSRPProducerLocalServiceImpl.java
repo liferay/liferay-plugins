@@ -27,6 +27,7 @@ import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.PortletLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.util.PwdGenerator;
 import com.liferay.wsrp.WSRPProducerNameException;
 import com.liferay.wsrp.model.WSRPProducer;
@@ -167,7 +168,8 @@ public class WSRPProducerLocalServiceImpl
 		layoutLocalService.addLayout(
 			user.getUserId(), group.getGroupId(), false,
 			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Portlets", null, null,
-			LayoutConstants.TYPE_PORTLET, false, "/portlets", null);
+			LayoutConstants.TYPE_PORTLET, false, "/portlets",
+			new ServiceContext());
 
 		return group;
 	}
