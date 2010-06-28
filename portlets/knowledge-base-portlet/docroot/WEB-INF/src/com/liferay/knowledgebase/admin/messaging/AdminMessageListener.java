@@ -205,8 +205,7 @@ public class AdminMessageListener implements MessageListener {
 							" is stale and will be deleted");
 				}
 
-				SubscriptionLocalServiceUtil.deleteSubscription(
-					subscription.getSubscriptionId());
+				ArticleLocalServiceUtil.unsubscribeArticle(subscription);
 
 				continue;
 			}
@@ -252,7 +251,10 @@ public class AdminMessageListener implements MessageListener {
 				if (_log.isInfoEnabled()) {
 					_log.info(
 						"Portlet " + portletId + " does not exist or does " +
-							"not contain article " + resourcePrimKey);
+							"not contain article " + resourcePrimKey + " - " +
+								"this subscription will be deleted");
+
+					ArticleLocalServiceUtil.unsubscribeArticle(subscription);
 				}
 
 				continue;
