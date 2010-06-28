@@ -209,6 +209,10 @@
 		<antcall target="build-lang-native2ascii">
 			<param name="lang.code" value="hi_IN" />
 		</antcall>
+		
+		<antcall target="build-lang-native2ascii">
+			<param name="lang.code" value="in_ID" />
+		</antcall>
 
 		<antcall target="build-lang-native2ascii">
 			<param name="lang.code" value="hu" />
