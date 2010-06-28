@@ -331,7 +331,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 				themeDisplay.getPermissionChecker(), themeDisplay.getPlid(),
 				portletId, ActionKeys.VIEW)) {
 
-			articles = new ArrayList<Article>();
+			articles = Collections.EMPTY_LIST;
 		}
 
 		List<SyndEntry> syndEntries = new ArrayList<SyndEntry>();
