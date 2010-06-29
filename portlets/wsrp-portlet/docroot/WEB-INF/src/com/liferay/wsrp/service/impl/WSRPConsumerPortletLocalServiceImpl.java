@@ -127,6 +127,15 @@ public class WSRPConsumerPortletLocalServiceImpl
 			WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws PortalException, SystemException {
 
+		Portlet portlet = _portletsPool.get(
+			wsrpConsumerPortlet.getWsrpConsumerPortletId());
+
+		if (portlet != null) {
+			PortletLocalServiceUtil.destroyRemotePortlet(portlet);
+
+			PortletInstanceFactoryUtil.destroy(portlet);
+		}
+
 		wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
 
 		Message message = new Message();
