@@ -48,6 +48,8 @@ import org.jbpm.JbpmConfiguration;
 import org.jbpm.JbpmContext;
 import org.jbpm.context.exe.ContextInstance;
 import org.jbpm.db.GraphSession;
+import org.jbpm.graph.def.Node.NodeType;
+import org.jbpm.graph.def.Node;
 import org.jbpm.graph.def.ProcessDefinition;
 import org.jbpm.graph.def.Transition;
 import org.jbpm.graph.exe.ProcessInstance;
@@ -119,7 +121,13 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		try {
 			Token token = jbpmContext.loadToken(workflowInstanceId);
 
-			Set<Transition> transitions = token.getAvailableTransitions();
+			Node node  = token.getNode();
+
+			Set<Transition> transitions = Collections.EMPTY_SET;
+
+			if (node.getNodeType() != NodeType.Task) {
+				transitions = token.getAvailableTransitions();
+			}
 
 			List<String> transitionNames = new ArrayList<String>(
 				transitions.size());
