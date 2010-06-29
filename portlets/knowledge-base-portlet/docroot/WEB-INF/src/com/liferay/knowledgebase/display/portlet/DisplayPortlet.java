@@ -26,9 +26,15 @@ import javax.portlet.ResourceRequest;
  */
 public class DisplayPortlet extends AggregatorPortlet {
 
+	protected String getJspPath() {
+		return _JSP_PATH;
+	}
+
 	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
 		return _SERVE_RSS_MAXIMIZED;
 	}
+
+	private static final String _JSP_PATH = "/display/";
 
 	private static final boolean _SERVE_RSS_MAXIMIZED = false;
 

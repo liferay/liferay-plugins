@@ -133,20 +133,6 @@ public class AggregatorPortlet extends MVCPortlet {
 			rss.getBytes(StringPool.UTF8), ContentTypes.TEXT_XML_UTF8);
 	}
 
-	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
-		PortletPreferences preferences = resourceRequest.getPreferences();
-
-		String articleWindowState = preferences.getValue(
-			"article-window-state", WindowState.MAXIMIZED.toString());
-
-		if (articleWindowState.equals(WindowState.MAXIMIZED.toString())) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
@@ -209,10 +195,28 @@ public class AggregatorPortlet extends MVCPortlet {
 			SessionErrors.contains(
 				renderRequest, PrincipalException.class.getName())) {
 
-			include("/aggregator/error.jsp", renderRequest, renderResponse);
+			include(getJspPath() + "error.jsp", renderRequest, renderResponse);
 		}
 		else {
 			super.doDispatch(renderRequest, renderResponse);
+		}
+	}
+
+	protected String getJspPath() {
+		return _JSP_PATH;
+	}
+
+	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
+		PortletPreferences preferences = resourceRequest.getPreferences();
+
+		String articleWindowState = preferences.getValue(
+			"article-window-state", WindowState.MAXIMIZED.toString());
+
+		if (articleWindowState.equals(WindowState.MAXIMIZED.toString())) {
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 
@@ -225,5 +229,7 @@ public class AggregatorPortlet extends MVCPortlet {
 
 		return false;
 	}
+
+	private static final String _JSP_PATH = "/aggregator/";
 
 }
