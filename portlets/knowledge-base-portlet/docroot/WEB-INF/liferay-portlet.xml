@@ -54,6 +54,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
+		<icon>/icons/search.png</icon>
 		<configuration-action-class>com.liferay.knowledgebase.search.action.ConfigurationActionImpl</configuration-action-class>
 		<header-portlet-css>/search/css/main.jsp</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet-search</css-class-wrapper>
