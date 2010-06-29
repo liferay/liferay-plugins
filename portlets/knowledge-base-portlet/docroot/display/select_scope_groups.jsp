@@ -16,6 +16,6 @@
 
 <%@ include file="/display/init.jsp" %>
 
-<liferay-util:include page="/aggregator/select_scope_groups.jsp" servletContext="<%= application %>">
+<liferay-util:include page="/base/select_scope_groups.jsp" servletContext="<%= application %>">
 	<liferay-util:param name="jspPage" value="/display/select_scope_groups.jsp" />
 </liferay-util:include>
