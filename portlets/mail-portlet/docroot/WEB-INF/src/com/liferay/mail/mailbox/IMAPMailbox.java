@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -44,7 +45,6 @@ import com.liferay.util.mail.InternetAddressUtil;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +117,7 @@ public class IMAPMailbox extends BaseMailbox {
 		}
 	}
 
-	public InputStream getAttachment(long attachmentId)
+	public byte[] getAttachment(long attachmentId)
 		throws IOException, PortalException, SystemException {
 
 		Attachment attachment = AttachmentLocalServiceUtil.getAttachment(
@@ -127,8 +127,8 @@ public class IMAPMailbox extends BaseMailbox {
 			attachment.getMessageId());
 
 		if (account.getDraftFolderId() == attachment.getFolderId()) {
-			return AttachmentLocalServiceUtil.getInputStream(
-				attachmentId);
+			return FileUtil.getBytes(AttachmentLocalServiceUtil.getInputStream(
+				attachmentId));
 		}
 		else {
 			return _imapAccessor.getAttachment(

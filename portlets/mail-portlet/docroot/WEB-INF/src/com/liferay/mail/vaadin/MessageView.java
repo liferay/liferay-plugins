@@ -172,7 +172,7 @@ public class MessageView extends VerticalLayout implements ClickListener {
 
 	public void buttonClick(ClickEvent event) {
 
-		Button b = event.getButton();
+		/*Button b = event.getButton();
 		Object data = b.getData();
 		if (data != null && data instanceof Attachment) {
 			final Attachment attachment = (Attachment) data;
@@ -203,7 +203,7 @@ public class MessageView extends VerticalLayout implements ClickListener {
 			} else {
 				Controller.get().showError(Lang.get("unable-to-fetch-attachment"));
 			}
-		}
+		}*/
 	}
 
 }

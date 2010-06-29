@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -34,7 +33,6 @@ import com.liferay.util.servlet.PortletResponseUtil;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,16 +113,16 @@ public class MailPortlet extends MVCPortlet {
 				Attachment attachment =
 					AttachmentLocalServiceUtil.getAttachment(attachmentId);
 
-				InputStream is = mailManager.getAttachment(
+				byte[] bytes = mailManager.getAttachment(
 					attachmentId);
 
-				if (Validator.isNotNull(is)) {
+				if (bytes != null) {
 					String contentType = MimeTypesUtil.getContentType(
 						attachment.getFileName());
 
 					PortletResponseUtil.sendFile(
 						resourceRequest, resourceResponse,
-						attachment.getFileName(), is, contentType);
+						attachment.getFileName(), bytes, contentType);
 				}
 			}
 			catch (Exception e) {
