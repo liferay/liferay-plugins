@@ -4,8 +4,8 @@
 <routes>
 	<route>
 		<pattern>/user_profile/{userId:\d+}</pattern>
-		<default-parameter name="p_p_state">exclusive</default-parameter>
 		<default-parameter name="jspPage">/profiles/user_profile.jsp</default-parameter>
+		<default-parameter name="p_p_state">exclusive</default-parameter>
 	</route>
 	<route>
 		<pattern>/{jspPageName}</pattern>
