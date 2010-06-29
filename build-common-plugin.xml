@@ -215,7 +215,7 @@
 		</antcall>
 
 		<antcall target="build-lang-native2ascii">
-			<param name="lang.code" value="in_ID" />
+			<param name="lang.code" value="in" />
 		</antcall>
 
 		<antcall target="build-lang-native2ascii">
