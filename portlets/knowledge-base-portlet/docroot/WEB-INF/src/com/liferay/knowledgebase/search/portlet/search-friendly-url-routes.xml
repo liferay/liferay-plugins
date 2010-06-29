@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE routes PUBLIC "-//Liferay//DTD Friendly URL Routes 6.0.0//EN" "http://www.liferay.com/dtd/liferay-friendly-url-routes_6_0_0.dtd">
+
+<routes>
+	<route>
+		<pattern>/article/{resourcePrimKey:\d+}/{p_p_state}</pattern>
+		<default-parameter name="jspPage">/search/view_article.jsp</default-parameter>
+	</route>
+	<route>
+		<pattern>/article/{resourcePrimKey:\d+}/history/{p_p_state}</pattern>
+		<default-parameter name="jspPage">/search/history.jsp</default-parameter>
+	</route>
+	<route>
+		<pattern>/rss</pattern>
+		<default-parameter name="p_p_cacheability">cacheLevelPage</default-parameter>
+		<default-parameter name="p_p_lifecycle">2</default-parameter>
+		<default-parameter name="p_p_resource_id">rss</default-parameter>
+		<ignored-parameter name="jspPage" />
+		<ignored-parameter name="p_p_state" />
+	</route>
+</routes>

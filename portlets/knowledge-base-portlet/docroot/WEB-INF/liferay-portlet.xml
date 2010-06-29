@@ -56,6 +56,9 @@
 		<portlet-name>4</portlet-name>
 		<icon>/icons/search.png</icon>
 		<configuration-action-class>com.liferay.knowledgebase.search.action.ConfigurationActionImpl</configuration-action-class>
+		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapping>knowledge_base_search</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/knowledgebase/search/portlet/search-friendly-url-routes.xml</friendly-url-routes>
 		<header-portlet-css>/search/css/main.jsp</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet-search</css-class-wrapper>
 	</portlet>
