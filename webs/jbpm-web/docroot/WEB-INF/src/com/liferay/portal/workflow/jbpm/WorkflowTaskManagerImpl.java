@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.PrimitiveLongList;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -29,7 +30,9 @@ import com.liferay.portal.kernel.workflow.WorkflowLog;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManager;
 import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
@@ -312,22 +315,52 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {
+			CustomSession customSession = new CustomSession(jbpmContext);
+
 			TaskMgmtSession taskMgmtSession = jbpmContext.getTaskMgmtSession();
 
 			TaskInstance taskInstance = taskMgmtSession.loadTaskInstance(
 				workflowTaskId);
 
-			Set<PooledActor> pooledActors =	taskInstance.getPooledActors();
+			TaskInstanceExtensionImpl taskInstanceExtensionImpl =
+				customSession.findTaskInstanceExtension(taskInstance.getId());
 
-			if ((pooledActors == null) || pooledActors.isEmpty()) {
-				return null;
+			List<Assignee> assignees = taskInstanceExtensionImpl.getAssignees();
+
+			PrimitiveLongList pooledActors = new PrimitiveLongList();
+
+			for (Assignee assignee : assignees) {
+				 String assigneeClassName = assignee.getAssigneeClassName();
+
+				 if (Role.class.getName().equals(assigneeClassName)) {
+
+					long roleId = assignee.getAssigneeClassPK();
+
+					Role role = RoleLocalServiceUtil.getRole(roleId);
+
+					if ((role.getType() == RoleConstants.TYPE_COMMUNITY) ||
+						(role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
+
+						List<UserGroupRole> userGroupRoles =
+							UserGroupRoleLocalServiceUtil.
+								getUserGroupRolesByGroupAndRole(
+									taskInstanceExtensionImpl.getGroupId(),
+									roleId);
+
+						for (UserGroupRole userGroupRole : userGroupRoles) {
+							pooledActors.add(userGroupRole.getUserId());
+						}
+					}
+					else {
+						long[] userIds = UserLocalServiceUtil.getRoleUserIds(
+							roleId);
+
+						pooledActors.addAll(userIds);
+					}
+				 }
 			}
 
-			PooledActor pooledActor = pooledActors.iterator().next();
-
-			long roleId = GetterUtil.getLong(pooledActor.getActorId());
-
-			return UserLocalServiceUtil.getRoleUserIds(roleId);
+			return pooledActors.getArray();
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
