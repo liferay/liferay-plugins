@@ -26,6 +26,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Junction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -45,14 +46,15 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 			long companyId, long workflowInstanceId, List<Integer> logTypes)
 		throws WorkflowException {
 
-		return getWorkflowLogsCount(companyId, -1, workflowInstanceId);
+		return getWorkflowLogsCount(
+			companyId, -1, workflowInstanceId, logTypes);
 	}
 
 	public int getWorkflowLogCountByWorkflowTask(
 			long companyId, long workflowTaskId, List<Integer> logTypes)
 		throws WorkflowException {
 
-		return getWorkflowLogsCount(companyId, workflowTaskId, -1);
+		return getWorkflowLogsCount(companyId, workflowTaskId, -1, logTypes);
 	}
 
 	public List<WorkflowLog> getWorkflowLogsByWorkflowInstance(
@@ -61,7 +63,8 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 		throws WorkflowException {
 
 		return getWorkflowLogs(
-			companyId, -1, workflowInstanceId, start, end, orderByComparator);
+			companyId, -1, workflowInstanceId, logTypes, start, end,
+			orderByComparator);
 	}
 
 	public List<WorkflowLog> getWorkflowLogsByWorkflowTask(
@@ -70,7 +73,8 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 		throws WorkflowException {
 
 		return getWorkflowLogs(
-			companyId, workflowTaskId, -1, start, end, orderByComparator);
+			companyId, workflowTaskId, -1, logTypes, start, end,
+			orderByComparator);
 	}
 
 	public void setJbpmConfiguration(JbpmConfiguration jbpmConfiguration) {
@@ -91,9 +95,26 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 		}
 	}
 
+	protected void addLogTypesJunction(
+		Criteria criteria, List<Integer> logTypes) {
+
+		if (logTypes == null) {
+			return;
+		}
+
+		Junction junction = Restrictions.disjunction();
+
+		for (Integer logTypeIntValue : logTypes) {
+			junction.add(Restrictions.eq("type", logTypeIntValue));
+		}
+
+		criteria.add(junction);
+	}
+
 	protected List<WorkflowLog> getWorkflowLogs(
 			long companyId, long workflowTaskId, long workflowInstanceId,
-			int start, int end, OrderByComparator orderByComparator)
+			List<Integer> logTypes, int start, int end,
+			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -104,6 +125,8 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 			Criteria criteria = session.createCriteria(WorkflowLogImpl.class);
 
 			addJoin(criteria, workflowTaskId, workflowInstanceId);
+
+			addLogTypesJunction(criteria, logTypes);
 
 			List<WorkflowLog> workflowLogs = criteria.list();
 
@@ -124,7 +147,8 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 	}
 
 	protected int getWorkflowLogsCount(
-			long companyId, long workflowTaskId, long workflowInstanceId)
+			long companyId, long workflowTaskId, long workflowInstanceId,
+			List<Integer> logTypes)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -135,6 +159,8 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 			Criteria criteria = session.createCriteria(WorkflowLogImpl.class);
 
 			addJoin(criteria, workflowTaskId, workflowInstanceId);
+
+			addLogTypesJunction(criteria, logTypes);
 
 			criteria.setProjection(Projections.rowCount());
 
