@@ -211,6 +211,26 @@ public class CustomSession {
 		return tasksInstances.size();
 	}
 
+	public void deleteProcessInstanceExtension(long processInstanceId) {
+		ProcessInstanceExtensionImpl processInstanceExtensionImpl =
+			findProcessInstanceExtension(processInstanceId);
+
+		_session.delete(processInstanceExtensionImpl);
+	}
+
+	public void deleteTaskInstanceExtensions(long processInstanceId) {
+		List<TaskInstance> taskInstances = findTaskInstances(
+			processInstanceId, 1, null, false, null, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+
+		for (TaskInstance taskInstance : taskInstances) {
+			TaskInstanceExtensionImpl taskInstanceExtensionImpl =
+				findTaskInstanceExtension(taskInstance.getId());
+
+			_session.delete(taskInstanceExtensionImpl);
+		}
+	}
+
 	public void deleteWorkflowDefinitionExtension(long processDefinitionId) {
 		WorkflowDefinitionExtensionImpl workflowDefinitionExtension =
 			findWorkflowDefinitonExtension(processDefinitionId);
@@ -312,6 +332,23 @@ public class CustomSession {
 			addOrder(criteria, orderByComparator);
 
 			return criteria.list();
+		}
+		catch (Exception e) {
+			throw new JbpmException(e);
+		}
+	}
+
+	public ProcessInstanceExtensionImpl findProcessInstanceExtension(
+		long processInstanceId) {
+
+		try {
+			Criteria criteria = _session.createCriteria(
+				ProcessInstanceExtensionImpl.class);
+
+			criteria.add(
+				Restrictions.eq("processInstance.id", processInstanceId));
+
+			return (ProcessInstanceExtensionImpl)criteria.uniqueResult();
 		}
 		catch (Exception e) {
 			throw new JbpmException(e);

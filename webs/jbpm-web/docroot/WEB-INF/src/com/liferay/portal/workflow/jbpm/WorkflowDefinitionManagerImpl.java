@@ -257,6 +257,10 @@ public class WorkflowDefinitionManagerImpl
 					processDefinition.getId());
 
 				for (ProcessInstance processInstance : processInstances) {
+					customSession.deleteProcessInstanceExtension(
+						processInstance.getId());
+					customSession.deleteTaskInstanceExtensions(
+						processInstance.getId());
 					customSession.deleteWorkflowLogs(processInstance.getId());
 				}
 

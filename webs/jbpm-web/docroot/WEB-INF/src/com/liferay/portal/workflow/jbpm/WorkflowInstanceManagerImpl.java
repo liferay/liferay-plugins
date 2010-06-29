@@ -82,6 +82,10 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 					ProcessInstance processInstance =
 						token.getProcessInstance();
 
+					customSession.deleteProcessInstanceExtension(
+						processInstance.getId());
+					customSession.deleteTaskInstanceExtensions(
+						processInstance.getId());
 					customSession.deleteWorkflowLogs(processInstance.getId());
 
 					graphSession.deleteProcessInstance(processInstance);
