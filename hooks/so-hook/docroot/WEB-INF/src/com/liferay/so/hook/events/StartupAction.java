@@ -305,7 +305,7 @@ public class StartupAction extends SimpleAction {
 
 		roleId = role.getRoleId();
 		name = PortletKeys.PORTAL;
-		scope =	ResourceConstants.SCOPE_COMPANY;
+		scope = ResourceConstants.SCOPE_COMPANY;
 		primKey = String.valueOf(companyId);
 		actionIds = new String[] {ActionKeys.ADD_COMMUNITY};
 
@@ -316,6 +316,13 @@ public class StartupAction extends SimpleAction {
 
 		name = PortletKeys.DIRECTORY;
 		actionIds = new String[] {ActionKeys.VIEW};
+
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
+
+		// Power User - Document Library
+
+		name = "com.liferay.portlet.documentlibrary";
 
 		ResourcePermissionLocalServiceUtil.setResourcePermissions(
 			companyId, name, scope, primKey, roleId, actionIds);
