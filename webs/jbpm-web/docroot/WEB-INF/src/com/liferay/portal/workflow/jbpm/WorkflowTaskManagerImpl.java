@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -129,8 +130,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 						" has not been assigned to a role");
 			}
 
-			PooledActor pooledActor = pooledActors.iterator().next();
-
 			ProcessInstance processInstance = taskInstance.getProcessInstance();
 
 			ContextInstance contextInstance =
@@ -139,15 +138,15 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			long groupId = GetterUtil.getLong(
 				(String)contextInstance.getVariable("groupId"));
 
-			String actorId = pooledActor.getActorId();
-
-			if (!hasRole(companyId, groupId, actorId, assigneeUserId)) {
+			if (!hasRole(companyId, groupId, pooledActors, assigneeUserId)) {
 				throw new WorkflowException(
 					"Workflow task " + workflowTaskId +
 						" cannot be assigned to user " + assigneeUserId);
 			}
 
 			taskInstance.setActorId(String.valueOf(assigneeUserId));
+
+			taskInstance.setPooledActors(new HashSet<PooledActor>());
 
 			taskInstance.addComment(comment);
 
@@ -800,38 +799,41 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	protected boolean hasRole(
-			long companyId, long groupId, String actorId, long assigneeUserId)
+			long companyId, long groupId, Set<PooledActor> pooledActors,
+			long assigneeUserId)
 		throws WorkflowException {
 
 		try {
-			if (Validator.isNumber(actorId)) {
-				long roleId = GetterUtil.getLong(actorId);
+			for (PooledActor pooledActor : pooledActors) {
+				String actorId = pooledActor.getActorId();
 
-				if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
-						assigneeUserId, groupId, roleId)) {
+				if (Validator.isNumber(actorId)) {
+					long roleId = GetterUtil.getLong(actorId);
 
-					return true;
+					if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
+							assigneeUserId, groupId, roleId) ||
+								RoleLocalServiceUtil.hasUserRole(
+									assigneeUserId, roleId)) {
+
+						return true;
+					}
 				}
 				else {
-					return RoleLocalServiceUtil.hasUserRole(
-						assigneeUserId, roleId);
-				}
-			}
-			else {
-				if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
-						assigneeUserId, groupId, actorId)) {
+					if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
+							assigneeUserId, groupId, actorId) ||
+								RoleLocalServiceUtil.hasUserRole(
+									assigneeUserId, companyId, actorId, true)) {
 
-					return true;
-				}
-				else {
-					return RoleLocalServiceUtil.hasUserRole(
-						assigneeUserId, companyId, actorId, true);
+						return true;
+					}
 				}
 			}
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
 		}
+
+		return false;
 	}
 
 	protected boolean isWorkflowTaskAssignedToUser(String actorId, long userId)
