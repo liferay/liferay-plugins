@@ -14,7 +14,11 @@
 
 package com.liferay.knowledgebase.search.action;
 
-import com.liferay.knowledgebase.util.PortletKeys;
+import com.liferay.knowledgebase.base.action.BaseAction;
+import com.liferay.portal.kernel.util.ParamUtil;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.PortletPreferences;
 
 /**
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
@@ -22,20 +26,22 @@ import com.liferay.knowledgebase.util.PortletKeys;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class ConfigurationActionImpl
-	extends com.liferay.knowledgebase.aggregator.action.ConfigurationActionImpl {
+public class ConfigurationActionImpl extends BaseAction {
 
 	protected String getJspPath() {
 		return _JSP_PATH;
 	}
 
-	protected String getRootPortletId() {
-		return _ROOT_PORTLET_ID;
+	protected void postProcessDisplaySettings(
+			ActionRequest actionRequest, PortletPreferences preferences)
+		throws Exception {
+
+		int articlesDelta = ParamUtil.getInteger(
+			actionRequest, "articlesDelta");
+
+		preferences.setValue("articles-delta", String.valueOf(articlesDelta));
 	}
 
 	private static final String _JSP_PATH = "/search/";
-
-	private static final String _ROOT_PORTLET_ID =
-		PortletKeys.KNOWLEDGE_BASE_SEARCH;
 
 }

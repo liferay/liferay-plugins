@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.search.portlet;
 
-import com.liferay.knowledgebase.aggregator.portlet.AggregatorPortlet;
+import com.liferay.knowledgebase.base.portlet.BasePortlet;
 
 import javax.portlet.ResourceRequest;
 
@@ -24,17 +24,11 @@ import javax.portlet.ResourceRequest;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class SearchPortlet extends AggregatorPortlet {
-
-	protected String getJspPath() {
-		return _JSP_PATH;
-	}
+public class SearchPortlet extends BasePortlet {
 
 	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
 		return _SERVE_RSS_MAXIMIZED;
 	}
-
-	private static final String _JSP_PATH = "/search/";
 
 	private static final boolean _SERVE_RSS_MAXIMIZED = true;
 

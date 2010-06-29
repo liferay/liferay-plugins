@@ -14,7 +14,11 @@
 
 package com.liferay.knowledgebase.display.action;
 
-import com.liferay.knowledgebase.util.PortletKeys;
+import com.liferay.knowledgebase.base.action.BaseAction;
+import com.liferay.portal.kernel.util.ParamUtil;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.PortletPreferences;
 
 /**
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
@@ -22,20 +26,29 @@ import com.liferay.knowledgebase.util.PortletKeys;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class ConfigurationActionImpl
-	extends com.liferay.knowledgebase.aggregator.action.ConfigurationActionImpl {
+public class ConfigurationActionImpl extends BaseAction {
 
 	protected String getJspPath() {
 		return _JSP_PATH;
 	}
 
-	protected String getRootPortletId() {
-		return _ROOT_PORTLET_ID;
+	protected void postProcessSelectionMethod(
+			ActionRequest actionRequest, PortletPreferences preferences)
+		throws Exception {
+
+		boolean allArticles = ParamUtil.getBoolean(
+			actionRequest, "allArticles");
+		String orderByColumn = ParamUtil.getString(
+			actionRequest, "orderByColumn");
+		boolean orderByAscending = ParamUtil.getBoolean(
+			actionRequest, "orderByAscending");
+
+		preferences.setValue("all-articles", String.valueOf(allArticles));
+		preferences.setValue("order-by-column", orderByColumn);
+		preferences.setValue(
+			"order-by-ascending", String.valueOf(orderByAscending));
 	}
 
 	private static final String _JSP_PATH = "/display/";
-
-	private static final String _ROOT_PORTLET_ID =
-		PortletKeys.KNOWLEDGE_BASE_DISPLAY;
 
 }
