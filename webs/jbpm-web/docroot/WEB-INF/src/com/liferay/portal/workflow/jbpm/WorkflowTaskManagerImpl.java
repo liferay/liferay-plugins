@@ -145,7 +145,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			}
 
 			taskInstance.setActorId(String.valueOf(assigneeUserId));
-
 			taskInstance.setPooledActors(new HashSet<PooledActor>());
 
 			taskInstance.addComment(comment);
@@ -812,8 +811,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 					if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
 							assigneeUserId, groupId, roleId) ||
-								RoleLocalServiceUtil.hasUserRole(
-									assigneeUserId, roleId)) {
+						RoleLocalServiceUtil.hasUserRole(
+							assigneeUserId, roleId)) {
 
 						return true;
 					}
@@ -821,8 +820,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				else {
 					if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
 							assigneeUserId, groupId, actorId) ||
-								RoleLocalServiceUtil.hasUserRole(
-									assigneeUserId, companyId, actorId, true)) {
+						RoleLocalServiceUtil.hasUserRole(
+							assigneeUserId, companyId, actorId, true)) {
 
 						return true;
 					}
