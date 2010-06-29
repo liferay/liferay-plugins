@@ -12,23 +12,30 @@
  * details.
  */
 
-package com.liferay.knowledgebase.util;
+package com.liferay.knowledgebase.search.action;
+
+import com.liferay.knowledgebase.util.PortletKeys;
 
 /**
- * <a href="PortletKeys.java.html"><b><i>View Source</i></b></a>
+ * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
  *
- * @author Brian Wing Shun Chan
  * @author Peter Shin
+ * @author Brian Wing Shun Chan
  */
-public class PortletKeys extends com.liferay.portal.util.PortletKeys {
+public class ConfigurationActionImpl
+	extends com.liferay.knowledgebase.aggregator.action.ConfigurationActionImpl {
 
-	public static final String KNOWLEDGE_BASE_AGGREGATOR =
-		"2_WAR_knowledgebaseportlet";
+	protected String getJspPath() {
+		return _JSP_PATH;
+	}
 
-	public static final String KNOWLEDGE_BASE_DISPLAY =
-		"3_WAR_knowledgebaseportlet";
+	protected String getRootPortletId() {
+		return _ROOT_PORTLET_ID;
+	}
 
-	public static final String KNOWLEDGE_BASE_SEARCH =
-		"4_WAR_knowledgebaseportlet";
+	private static final String _JSP_PATH = "/search/";
+
+	private static final String _ROOT_PORTLET_ID =
+		PortletKeys.KNOWLEDGE_BASE_SEARCH;
 
 }

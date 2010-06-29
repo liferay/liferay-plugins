@@ -60,7 +60,9 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 			<c:when test='<%= tabs2.equals("display-settings") %>'>
 				<c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR) %>">
 					<aui:input cssClass="lfr-input-text-container" label="title" name="articlesTitle" value="<%= articlesTitle %>" />
+				</c:if>
 
+				<c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR) || rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SEARCH) %>">
 					<aui:select label="maximum-items-to-display" name="articlesDelta">
 						<aui:option label="1" selected="<%= articlesDelta == 1 %>" />
 						<aui:option label="2" selected="<%= articlesDelta == 2 %>" />
@@ -80,7 +82,9 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 						<aui:option label="90" selected="<%= articlesDelta == 90 %>" />
 						<aui:option label="100" selected="<%= articlesDelta == 100 %>" />
 					</aui:select>
+				</c:if>
 
+				<c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR) %>">
 					<aui:select name="articlesDisplayStyle">
 						<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= articlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
 						<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= articlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
@@ -180,29 +184,31 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 					</aui:field-wrapper>
 				</div>
 
-				<div class="kb-field-wrapper" id="<portlet:namespace />sortOptions">
-					<aui:field-wrapper label="options">
-						<aui:select inlineField="<%= true %>" label="" name="allArticles">
-							<aui:option label="all-articles" selected="<%= allArticles %>" value="<%= true %>" />
-							<aui:option label="root-articles" selected="<%= !allArticles %>" value="<%= false %>" />
-						</aui:select>
+				<c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR) || rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY) %>">
+					<div class="kb-field-wrapper" id="<portlet:namespace />sortOptions">
+						<aui:field-wrapper label="options">
+							<aui:select inlineField="<%= true %>" label="" name="allArticles">
+								<aui:option label="all-articles" selected="<%= allArticles %>" value="<%= true %>" />
+								<aui:option label="root-articles" selected="<%= !allArticles %>" value="<%= false %>" />
+							</aui:select>
 
-						<aui:select inlineField="<%= true %>" inlineLabel="left" label="order-by" name="orderByColumn">
-							<aui:option label="create-date" selected='<%= orderByColumn.equals("create-date") %>' />
-							<aui:option label="modified-date" selected='<%= orderByColumn.equals("modified-date") %>' />
+							<aui:select inlineField="<%= true %>" inlineLabel="left" label="order-by" name="orderByColumn">
+								<aui:option label="create-date" selected='<%= orderByColumn.equals("create-date") %>' />
+								<aui:option label="modified-date" selected='<%= orderByColumn.equals("modified-date") %>' />
 
-							<c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR) %>">
-								<aui:option label="priority" selected='<%= orderByColumn.equals("priority") %>' />
-								<aui:option label="title" selected='<%= orderByColumn.equals("title") %>' />
-							</c:if>
-						</aui:select>
+								<c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR) %>">
+									<aui:option label="priority" selected='<%= orderByColumn.equals("priority") %>' />
+									<aui:option label="title" selected='<%= orderByColumn.equals("title") %>' />
+								</c:if>
+							</aui:select>
 
-						<aui:select inlineField="<%= true %>" label="" name="orderByAscending">
-							<aui:option label="ascending" selected="<%= orderByAscending %>" value="<%= true %>" />
-							<aui:option label="descending" selected="<%= !orderByAscending %>" value="<%= false %>" />
-						</aui:select>
-					</aui:field-wrapper>
-				</div>
+							<aui:select inlineField="<%= true %>" label="" name="orderByAscending">
+								<aui:option label="ascending" selected="<%= orderByAscending %>" value="<%= true %>" />
+								<aui:option label="descending" selected="<%= !orderByAscending %>" value="<%= false %>" />
+							</aui:select>
+						</aui:field-wrapper>
+					</div>
+				</c:if>
 			</c:when>
 			<c:when test='<%= tabs2.equals("rss") %>'>
 				<aui:select label="maximum-items-to-display" name="rssDelta">
@@ -280,20 +286,31 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 		}
 
 		function <portlet:namespace />updateSelectionMethod(value) {
+			var sortOptions = document.getElementById("<portlet:namespace />sortOptions")
+
+			if (sortOptions) {
+				if (value == "articles") {
+					sortOptions.style.display = "none";
+				}
+				else if (value == "parent-group") {
+					sortOptions.style.display = "";
+				}
+				else if (value == "scope-groups") {
+					sortOptions.style.display = "";
+				}
+			}
+
 			if (value == "articles") {
 				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "";
 				document.getElementById("<portlet:namespace />scopeGroupsSelectionOptions").style.display = "none";
-				document.getElementById("<portlet:namespace />sortOptions").style.display = "none";
 			}
 			else if (value == "parent-group") {
 				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "none";
 				document.getElementById("<portlet:namespace />scopeGroupsSelectionOptions").style.display = "none";
-				document.getElementById("<portlet:namespace />sortOptions").style.display = "";
 			}
 			else if (value == "scope-groups") {
 				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "none";
 				document.getElementById("<portlet:namespace />scopeGroupsSelectionOptions").style.display = "";
-				document.getElementById("<portlet:namespace />sortOptions").style.display = "";
 			}
 		}
 

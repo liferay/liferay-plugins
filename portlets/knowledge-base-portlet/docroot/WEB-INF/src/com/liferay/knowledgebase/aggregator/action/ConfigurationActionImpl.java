@@ -97,24 +97,6 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
-		if (getRootPortletId().equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
-			String articlesTitle = ParamUtil.getString(
-				actionRequest, "articlesTitle");
-			int articlesDelta = ParamUtil.getInteger(
-				actionRequest, "articlesDelta");
-			String articlesDisplayStyle = ParamUtil.getString(
-				actionRequest, "articlesDisplayStyle");
-			String articleWindowState = ParamUtil.getString(
-				actionRequest, "articleWindowState");
-
-			preferences.setValue("articles-title", articlesTitle);
-			preferences.setValue(
-				"articles-delta", String.valueOf(articlesDelta));
-			preferences.setValue(
-				"articles-display-style", articlesDisplayStyle);
-			preferences.setValue("article-window-state", articleWindowState);
-		}
-
 		String childArticlesDisplayStyle = ParamUtil.getString(
 			actionRequest, "childArticlesDisplayStyle");
 		boolean enableArticleComments = ParamUtil.getBoolean(
@@ -129,6 +111,30 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		preferences.setValue(
 			"enable-article-comment-ratings",
 			String.valueOf(enableArticleCommentRatings));
+
+		if (getRootPortletId().equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
+			String articlesTitle = ParamUtil.getString(
+				actionRequest, "articlesTitle");
+			String articlesDisplayStyle = ParamUtil.getString(
+				actionRequest, "articlesDisplayStyle");
+			String articleWindowState = ParamUtil.getString(
+				actionRequest, "articleWindowState");
+
+			preferences.setValue("articles-title", articlesTitle);
+			preferences.setValue(
+				"articles-display-style", articlesDisplayStyle);
+			preferences.setValue("article-window-state", articleWindowState);
+		}
+
+		if (getRootPortletId().equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR) ||
+			getRootPortletId().equals(PortletKeys.KNOWLEDGE_BASE_SEARCH)) {
+
+			int articlesDelta = ParamUtil.getInteger(
+				actionRequest, "articlesDelta");
+
+			preferences.setValue(
+				"articles-delta", String.valueOf(articlesDelta));
+		}
 	}
 
 	protected void updateRSS(
@@ -155,22 +161,28 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			ParamUtil.getString(actionRequest, "scopeGroupIds"), 0L);
 		long[] resourcePrimKeys = StringUtil.split(
 			ParamUtil.getString(actionRequest, "resourcePrimKeys"), 0L);
-		boolean allArticles = ParamUtil.getBoolean(
-			actionRequest, "allArticles");
-		String orderByColumn = ParamUtil.getString(
-			actionRequest, "orderByColumn");
-		boolean orderByAscending = ParamUtil.getBoolean(
-			actionRequest, "orderByAscending");
 
 		preferences.setValue("selection-method", selectionMethod);
 		preferences.setValues(
 			"scope-group-ids", ArrayUtil.toStringArray(scopeGroupIds));
 		preferences.setValues(
 			"resource-prim-keys", ArrayUtil.toStringArray(resourcePrimKeys));
-		preferences.setValue("all-articles", String.valueOf(allArticles));
-		preferences.setValue("order-by-column", orderByColumn);
-		preferences.setValue(
-			"order-by-ascending", String.valueOf(orderByAscending));
+
+		if (getRootPortletId().equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR) ||
+			getRootPortletId().equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
+
+			boolean allArticles = ParamUtil.getBoolean(
+				actionRequest, "allArticles");
+			String orderByColumn = ParamUtil.getString(
+				actionRequest, "orderByColumn");
+			boolean orderByAscending = ParamUtil.getBoolean(
+				actionRequest, "orderByAscending");
+
+			preferences.setValue("all-articles", String.valueOf(allArticles));
+			preferences.setValue("order-by-column", orderByColumn);
+			preferences.setValue(
+				"order-by-ascending", String.valueOf(orderByAscending));
+		}
 	}
 
 	private static final String _JSP_PATH = "/aggregator/";
