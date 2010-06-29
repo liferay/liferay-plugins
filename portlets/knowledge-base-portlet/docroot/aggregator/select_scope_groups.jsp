@@ -16,6 +16,10 @@
 
 <%@ include file="/aggregator/init.jsp" %>
 
+<%
+String jspPage = ParamUtil.getString(request, "jspPage", "/aggregator/select_scope_groups.jsp");
+%>
+
 <liferay-ui:tabs
 	names="scopes"
 />
@@ -23,7 +27,7 @@
 <aui:form name="fm">
 	<aui:fieldset>
 		<liferay-portlet:renderURL varImpl="iteratorURL">
-			<portlet:param name="jspPage" value="/aggregator/select_scope_groups.jsp" />
+			<portlet:param name="jspPage" value="<%= jspPage %>" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:search-container

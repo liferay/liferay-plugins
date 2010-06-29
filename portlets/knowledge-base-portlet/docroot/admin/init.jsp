@@ -45,6 +45,8 @@ String rssFormat = preferences.getValue("rss-format", "atom10");
 String rssFormatType = RSSUtil.getFormatType(rssFormat);
 double rssFormatVersion = RSSUtil.getFormatVersion(rssFormat);
 
+String rootPortletId = portletDisplay.getRootPortletId();
+
 String jspPath = portletConfig.getInitParameter("jsp-path");
 
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);

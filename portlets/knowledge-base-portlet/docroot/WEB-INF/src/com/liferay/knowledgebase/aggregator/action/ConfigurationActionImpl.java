@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.aggregator.action;
 
+import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
@@ -81,21 +82,39 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			RenderResponse renderResponse)
 		throws Exception {
 
-		return "/aggregator/configuration.jsp";
+		return getJspPath() + "configuration.jsp";
+	}
+
+	protected String getJspPath() {
+		return _JSP_PATH;
+	}
+
+	protected String getRootPortletId() {
+		return _ROOT_PORTLET_ID;
 	}
 
 	protected void updateDisplaySettings(
 			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
-		String articlesTitle = ParamUtil.getString(
-			actionRequest, "articlesTitle");
-		int articlesDelta = ParamUtil.getInteger(
-			actionRequest, "articlesDelta");
-		String articlesDisplayStyle = ParamUtil.getString(
-			actionRequest, "articlesDisplayStyle");
-		String articleWindowState = ParamUtil.getString(
-			actionRequest, "articleWindowState");
+		if (getRootPortletId().equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
+			String articlesTitle = ParamUtil.getString(
+				actionRequest, "articlesTitle");
+			int articlesDelta = ParamUtil.getInteger(
+				actionRequest, "articlesDelta");
+			String articlesDisplayStyle = ParamUtil.getString(
+				actionRequest, "articlesDisplayStyle");
+			String articleWindowState = ParamUtil.getString(
+				actionRequest, "articleWindowState");
+
+			preferences.setValue("articles-title", articlesTitle);
+			preferences.setValue(
+				"articles-delta", String.valueOf(articlesDelta));
+			preferences.setValue(
+				"articles-display-style", articlesDisplayStyle);
+			preferences.setValue("article-window-state", articleWindowState);
+		}
+
 		String childArticlesDisplayStyle = ParamUtil.getString(
 			actionRequest, "childArticlesDisplayStyle");
 		boolean enableArticleComments = ParamUtil.getBoolean(
@@ -103,10 +122,6 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		boolean enableArticleCommentRatings = ParamUtil.getBoolean(
 			actionRequest, "enableArticleCommentRatings");
 
-		preferences.setValue("articles-title", articlesTitle);
-		preferences.setValue("articles-delta", String.valueOf(articlesDelta));
-		preferences.setValue("articles-display-style", articlesDisplayStyle);
-		preferences.setValue("article-window-state", articleWindowState);
 		preferences.setValue(
 			"child-articles-display-style", childArticlesDisplayStyle);
 		preferences.setValue(
@@ -157,5 +172,10 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		preferences.setValue(
 			"order-by-ascending", String.valueOf(orderByAscending));
 	}
+
+	private static final String _JSP_PATH = "/aggregator/";
+
+	private static final String _ROOT_PORTLET_ID =
+		PortletKeys.KNOWLEDGE_BASE_AGGREGATOR;
 
 }

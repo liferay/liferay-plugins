@@ -119,7 +119,5 @@
 <%
 WindowState windowState = renderRequest.getWindowState();
 
-String rootPortletId = portletDisplay.getRootPortletId();
-
 String currentURL = PortalUtil.getCurrentURL(request);
 %>
