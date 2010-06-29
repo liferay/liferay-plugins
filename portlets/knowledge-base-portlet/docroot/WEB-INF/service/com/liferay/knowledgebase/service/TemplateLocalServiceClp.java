@@ -494,42 +494,36 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		return (com.liferay.knowledgebase.model.Template)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.knowledgebase.model.Template addTemplate(
-		java.lang.String uuid, long userId, java.lang.String title,
-		java.lang.String content, java.lang.String description,
+	public com.liferay.knowledgebase.model.Template addTemplate(long userId,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(uuid);
+		Object paramObj0 = new LongWrapper(userId);
 
-		if (uuid == null) {
-			paramObj0 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj1 = new LongWrapper(userId);
-
-		Object paramObj2 = ClpSerializer.translateInput(title);
+		Object paramObj1 = ClpSerializer.translateInput(title);
 
 		if (title == null) {
+			paramObj1 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj2 = ClpSerializer.translateInput(content);
+
+		if (content == null) {
 			paramObj2 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj3 = ClpSerializer.translateInput(content);
+		Object paramObj3 = ClpSerializer.translateInput(description);
 
-		if (content == null) {
+		if (description == null) {
 			paramObj3 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj4 = ClpSerializer.translateInput(description);
-
-		if (description == null) {
-			paramObj4 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj5 = ClpSerializer.translateInput(serviceContext);
+		Object paramObj4 = ClpSerializer.translateInput(serviceContext);
 
 		if (serviceContext == null) {
-			paramObj5 = new NullWrapper(
+			paramObj4 = new NullWrapper(
 					"com.liferay.portal.service.ServiceContext");
 		}
 
@@ -538,8 +532,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		try {
 			returnObj = _classLoaderProxy.invoke("addTemplate",
 					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
 					});
 		}
 		catch (Throwable t) {

@@ -46,7 +46,7 @@ public class TemplateServiceImpl extends TemplateServiceBaseImpl {
 			ActionKeys.ADD_TEMPLATE);
 
 		return templateLocalService.addTemplate(
-			null, getUserId(), title, content, description, serviceContext);
+			getUserId(), title, content, description, serviceContext);
 	}
 
 	public void deleteTemplate(long templateId)

@@ -490,53 +490,47 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.knowledgebase.model.Article addArticle(
-		java.lang.String uuid, long userId, long parentResourcePrimKey,
-		java.lang.String title, java.lang.String content,
-		java.lang.String description, int priority, java.lang.String dirName,
+	public com.liferay.knowledgebase.model.Article addArticle(long userId,
+		long parentResourcePrimKey, java.lang.String title,
+		java.lang.String content, java.lang.String description, int priority,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(uuid);
+		Object paramObj0 = new LongWrapper(userId);
 
-		if (uuid == null) {
-			paramObj0 = new NullWrapper("java.lang.String");
-		}
+		Object paramObj1 = new LongWrapper(parentResourcePrimKey);
 
-		Object paramObj1 = new LongWrapper(userId);
-
-		Object paramObj2 = new LongWrapper(parentResourcePrimKey);
-
-		Object paramObj3 = ClpSerializer.translateInput(title);
+		Object paramObj2 = ClpSerializer.translateInput(title);
 
 		if (title == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj3 = ClpSerializer.translateInput(content);
+
+		if (content == null) {
 			paramObj3 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj4 = ClpSerializer.translateInput(content);
+		Object paramObj4 = ClpSerializer.translateInput(description);
 
-		if (content == null) {
+		if (description == null) {
 			paramObj4 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj5 = ClpSerializer.translateInput(description);
+		Object paramObj5 = new IntegerWrapper(priority);
 
-		if (description == null) {
-			paramObj5 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj6 = new IntegerWrapper(priority);
-
-		Object paramObj7 = ClpSerializer.translateInput(dirName);
+		Object paramObj6 = ClpSerializer.translateInput(dirName);
 
 		if (dirName == null) {
-			paramObj7 = new NullWrapper("java.lang.String");
+			paramObj6 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj8 = ClpSerializer.translateInput(serviceContext);
+		Object paramObj7 = ClpSerializer.translateInput(serviceContext);
 
 		if (serviceContext == null) {
-			paramObj8 = new NullWrapper(
+			paramObj7 = new NullWrapper(
 					"com.liferay.portal.service.ServiceContext");
 		}
 
@@ -546,7 +540,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 			returnObj = _classLoaderProxy.invoke("addArticle",
 					new Object[] {
 						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7, paramObj8
+						paramObj5, paramObj6, paramObj7
 					});
 		}
 		catch (Throwable t) {

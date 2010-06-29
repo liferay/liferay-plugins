@@ -127,13 +127,13 @@ public class TemplateLocalServiceWrapper implements TemplateLocalService {
 		return _templateLocalService.updateTemplate(template, merge);
 	}
 
-	public com.liferay.knowledgebase.model.Template addTemplate(
-		java.lang.String uuid, long userId, java.lang.String title,
-		java.lang.String content, java.lang.String description,
+	public com.liferay.knowledgebase.model.Template addTemplate(long userId,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _templateLocalService.addTemplate(uuid, userId, title, content,
+		return _templateLocalService.addTemplate(userId, title, content,
 			description, serviceContext);
 	}
 

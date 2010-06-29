@@ -87,7 +87,7 @@ import javax.portlet.PortletPreferences;
 public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 	public Article addArticle(
-			String uuid, long userId, long parentResourcePrimKey, String title,
+			long userId, long parentResourcePrimKey, String title,
 			String content, String description, int priority, String dirName,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -106,7 +106,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		Article article = articlePersistence.create(articleId);
 
-		article.setUuid(uuid);
+		article.setUuid(serviceContext.getUuid());
 		article.setResourcePrimKey(resourcePrimKey);
 		article.setGroupId(groupId);
 		article.setCompanyId(user.getCompanyId());

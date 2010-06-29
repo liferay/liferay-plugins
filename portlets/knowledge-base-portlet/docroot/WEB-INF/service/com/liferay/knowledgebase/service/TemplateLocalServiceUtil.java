@@ -130,13 +130,13 @@ public class TemplateLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.Template addTemplate(
-		java.lang.String uuid, long userId, java.lang.String title,
-		java.lang.String content, java.lang.String description,
+		long userId, java.lang.String title, java.lang.String content,
+		java.lang.String description,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addTemplate(uuid, userId, title, content, description,
+				   .addTemplate(userId, title, content, description,
 			serviceContext);
 	}
 

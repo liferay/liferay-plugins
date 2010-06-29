@@ -124,16 +124,15 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.updateArticle(article, merge);
 	}
 
-	public com.liferay.knowledgebase.model.Article addArticle(
-		java.lang.String uuid, long userId, long parentResourcePrimKey,
-		java.lang.String title, java.lang.String content,
-		java.lang.String description, int priority, java.lang.String dirName,
+	public com.liferay.knowledgebase.model.Article addArticle(long userId,
+		long parentResourcePrimKey, java.lang.String title,
+		java.lang.String content, java.lang.String description, int priority,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _articleLocalService.addArticle(uuid, userId,
-			parentResourcePrimKey, title, content, description, priority,
-			dirName, serviceContext);
+		return _articleLocalService.addArticle(userId, parentResourcePrimKey,
+			title, content, description, priority, dirName, serviceContext);
 	}
 
 	public void addArticleResources(

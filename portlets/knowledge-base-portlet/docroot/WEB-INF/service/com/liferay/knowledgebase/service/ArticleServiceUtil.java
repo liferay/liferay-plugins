@@ -115,13 +115,13 @@ public class ArticleServiceUtil {
 
 	public static java.lang.String getArticlesRSS(java.lang.String portletId,
 		long resourcePrimKey, int max, java.lang.String type, double version,
-		java.lang.String displayStyle, boolean isMaximized,
+		java.lang.String displayStyle, boolean maximized,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getArticlesRSS(portletId, resourcePrimKey, max, type,
-			version, displayStyle, isMaximized, themeDisplay);
+			version, displayStyle, maximized, themeDisplay);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.Article> getCompanyArticles(
@@ -157,13 +157,13 @@ public class ArticleServiceUtil {
 
 	public static java.lang.String getGroupArticlesRSS(
 		java.lang.String portletId, int max, java.lang.String type,
-		double version, java.lang.String displayStyle, boolean isMaximized,
+		double version, java.lang.String displayStyle, boolean maximized,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getGroupArticlesRSS(portletId, max, type, version,
-			displayStyle, isMaximized, themeDisplay);
+			displayStyle, maximized, themeDisplay);
 	}
 
 	public static com.liferay.knowledgebase.model.Article getLatestArticle(

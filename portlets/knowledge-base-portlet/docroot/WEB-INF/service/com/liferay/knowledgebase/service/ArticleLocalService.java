@@ -110,10 +110,10 @@ public interface ArticleLocalService {
 		com.liferay.knowledgebase.model.Article article, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public com.liferay.knowledgebase.model.Article addArticle(
-		java.lang.String uuid, long userId, long parentResourcePrimKey,
-		java.lang.String title, java.lang.String content,
-		java.lang.String description, int priority, java.lang.String dirName,
+	public com.liferay.knowledgebase.model.Article addArticle(long userId,
+		long parentResourcePrimKey, java.lang.String title,
+		java.lang.String content, java.lang.String description, int priority,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

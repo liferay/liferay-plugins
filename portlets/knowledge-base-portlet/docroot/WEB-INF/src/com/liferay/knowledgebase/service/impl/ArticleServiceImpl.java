@@ -73,8 +73,8 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			ActionKeys.ADD_ARTICLE);
 
 		return articleLocalService.addArticle(
-			null, getUserId(), parentResourcePrimKey, title, content,
-			description, priority, dirName, serviceContext);
+			getUserId(), parentResourcePrimKey, title, content, description,
+			priority, dirName, serviceContext);
 	}
 
 	public void addAttachment(

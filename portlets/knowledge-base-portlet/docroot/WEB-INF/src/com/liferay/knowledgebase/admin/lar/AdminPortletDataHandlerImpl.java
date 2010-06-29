@@ -480,8 +480,10 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			serviceContext.setScopeGroupId(context.getScopeGroupId());
 
 			if (importedArticle == null) {
+				serviceContext.setUuid(uuid);
+
 				importedArticle = ArticleLocalServiceUtil.addArticle(
-					uuid, userId, parentResourcePrimKey, curArticle.getTitle(),
+					userId, parentResourcePrimKey, curArticle.getTitle(),
 					curArticle.getContent(), curArticle.getDescription(),
 					priority, curDirName, serviceContext);
 			}
@@ -564,10 +566,11 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				template.getUuid(), context.getScopeGroupId());
 
 			if (existingTemplate == null) {
+				serviceContext.setUuid(template.getUuid());
+
 				importedTemplate = TemplateLocalServiceUtil.addTemplate(
-					template.getUuid(), userId, template.getTitle(),
-					template.getContent(), template.getDescription(),
-					serviceContext);
+					userId, template.getTitle(), template.getContent(),
+					template.getDescription(), serviceContext);
 			}
 			else {
 				importedTemplate = TemplateLocalServiceUtil.updateTemplate(
@@ -578,7 +581,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 		else {
 			importedTemplate = TemplateLocalServiceUtil.addTemplate(
-				null, userId, template.getTitle(), template.getContent(),
+				userId, template.getTitle(), template.getContent(),
 				template.getDescription(), serviceContext);
 		}
 

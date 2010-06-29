@@ -104,7 +104,7 @@ public interface ArticleService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getArticlesRSS(java.lang.String portletId,
 		long resourcePrimKey, int max, java.lang.String type, double version,
-		java.lang.String displayStyle, boolean isMaximized,
+		java.lang.String displayStyle, boolean maximized,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -134,7 +134,7 @@ public interface ArticleService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getGroupArticlesRSS(java.lang.String portletId,
 		int max, java.lang.String type, double version,
-		java.lang.String displayStyle, boolean isMaximized,
+		java.lang.String displayStyle, boolean maximized,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

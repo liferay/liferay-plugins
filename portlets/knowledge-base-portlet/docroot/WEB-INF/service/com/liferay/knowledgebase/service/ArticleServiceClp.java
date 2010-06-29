@@ -422,7 +422,7 @@ public class ArticleServiceClp implements ArticleService {
 
 	public java.lang.String getArticlesRSS(java.lang.String portletId,
 		long resourcePrimKey, int max, java.lang.String type, double version,
-		java.lang.String displayStyle, boolean isMaximized,
+		java.lang.String displayStyle, boolean maximized,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -450,7 +450,7 @@ public class ArticleServiceClp implements ArticleService {
 			paramObj5 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj6 = new BooleanWrapper(isMaximized);
+		Object paramObj6 = new BooleanWrapper(maximized);
 
 		Object paramObj7 = ClpSerializer.translateInput(themeDisplay);
 
@@ -646,7 +646,7 @@ public class ArticleServiceClp implements ArticleService {
 
 	public java.lang.String getGroupArticlesRSS(java.lang.String portletId,
 		int max, java.lang.String type, double version,
-		java.lang.String displayStyle, boolean isMaximized,
+		java.lang.String displayStyle, boolean maximized,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -672,7 +672,7 @@ public class ArticleServiceClp implements ArticleService {
 			paramObj4 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj5 = new BooleanWrapper(isMaximized);
+		Object paramObj5 = new BooleanWrapper(maximized);
 
 		Object paramObj6 = ClpSerializer.translateInput(themeDisplay);
 

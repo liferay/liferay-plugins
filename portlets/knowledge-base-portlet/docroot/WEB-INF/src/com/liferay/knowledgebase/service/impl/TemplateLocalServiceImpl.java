@@ -41,8 +41,8 @@ import java.util.List;
 public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 
 	public Template addTemplate(
-			String uuid, long userId, String title, String content,
-			String description, ServiceContext serviceContext)
+			long userId, String title, String content, String description,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Template
@@ -57,7 +57,7 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 
 		Template template = templatePersistence.create(templateId);
 
-		template.setUuid(uuid);
+		template.setUuid(serviceContext.getUuid());
 		template.setGroupId(groupId);
 		template.setCompanyId(user.getCompanyId());
 		template.setUserId(user.getUserId());
