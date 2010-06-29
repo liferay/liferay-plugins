@@ -115,7 +115,7 @@
 	<portlet>
 		<portlet-name>4</portlet-name>
 		<display-name>Knowledge Base Search</display-name>
-		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
+		<portlet-class>com.liferay.knowledgebase.search.portlet.SearchPortlet</portlet-class>
 		<init-param>
 			<name>jsp-path</name>
 			<value>/search/</value>
