@@ -205,6 +205,9 @@ public class KnowledgeBaseUtil {
 		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
 			jspPage = "/display/view_article.jsp";
 		}
+		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_SEARCH)) {
+			jspPage = "/search/view_article.jsp";
+		}
 
 		String articleURL = layoutFullURL;
 
@@ -403,6 +406,34 @@ public class KnowledgeBaseUtil {
 		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
 	}
 
+	protected static Object[] getSearchPlidAndWindowState(
+			String portletId, long resourcePrimKey)
+		throws Exception {
+
+		Article article = ArticleLocalServiceUtil.getLatestArticle(
+			resourcePrimKey);
+
+		long parentGroupId = PortalUtil.getParentGroupId(article.getGroupId());
+
+		long plid = PortalUtil.getPlidFromPortletId(parentGroupId, portletId);
+
+		if (plid == LayoutConstants.DEFAULT_PLID) {
+			return new Object[] {plid, WindowState.NORMAL};
+		}
+
+		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
+
+		PortletPreferences jxPreferences =
+			PortletPreferencesFactoryUtil.getPortletSetup(
+				layout, portletId, StringPool.BLANK);
+
+		if (hasArticle(article, jxPreferences)) {
+			return new Object[] {plid, WindowState.MAXIMIZED};
+		}
+
+		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
+	}
+
 	protected static String getDiff(
 			String sourceHtml, String targetHtml, String portalURL)
 		throws Exception {
@@ -490,6 +521,9 @@ public class KnowledgeBaseUtil {
 		}
 		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
 			return getDisplayPlidAndWindowState(portletId, resourcePrimKey);
+		}
+		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_SEARCH)) {
+			return getSearchPlidAndWindowState(portletId, resourcePrimKey);
 		}
 
 		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
