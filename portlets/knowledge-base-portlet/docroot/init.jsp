@@ -122,11 +122,11 @@
 <%
 WindowState windowState = renderRequest.getWindowState();
 
+String currentURL = PortalUtil.getCurrentURL(request);
+
 String rootPortletId = portletDisplay.getRootPortletId();
 
 String jspPath = portletConfig.getInitParameter("jsp-path");
-
-String currentURL = PortalUtil.getCurrentURL(request);
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
