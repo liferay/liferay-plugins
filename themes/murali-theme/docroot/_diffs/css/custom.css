@@ -9,7 +9,7 @@ html {
 
 body {
 	background: url(../images/custom/body_bg.jpg) repeat-x scroll center top;
-	padding:0;
+	padding: 0;
 }
 
 #skip-to-content,
@@ -86,8 +86,8 @@ body {
 
 .js .delete-tab {
 	position: absolute;
-	top: 7px;
 	right: 3px;
+	top: 7px;
 }
 
 #navigation .selected a {
@@ -112,11 +112,9 @@ body {
 	display: none;
 }
 
-
 #navigation ul li ul.child-menu {
 	display: none;
 }
-
 
 /* ---------- Content Wrapper ---------- */
 
@@ -263,10 +261,7 @@ input[type="reset"]:hover {
 	color: #000;
 }
 
-.portlet-calendar .ui-tabs a {
-	color: #FFF;
-}
-
+.portlet-calendar .ui-tabs a,
 .aui-tab-active span a {
 	color: #FFF;
 }

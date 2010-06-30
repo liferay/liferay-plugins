@@ -18,7 +18,6 @@ html {
 	width: 1%;
 }
 
-
 body {
 	background: url(../images/custom/footer_bg.jpg) no-repeat center bottom;
 }
@@ -59,17 +58,17 @@ a:hover {
 }
 
 #sign-in {
+	color: #CCC;
 	position: absolute;
 	right: 5px;
 	top: 108px;
-	color: #CCC;
 }
 
 /* ---------- Logo ---------- */
 
 h1.company-title {
-	padding: 30px 0 0 15px;
 	margin: 0;
+	padding: 30px 0 0 15px;
 }
 
 #banner .logo a {

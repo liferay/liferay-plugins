@@ -47,10 +47,10 @@ a:hover {
 }
 
 #sign-in {
-	position: absolute;
-	left: 10px;
 	bottom: 5px;
 	color: #FFF;
+	left: 10px;
+	position: absolute;
 }
 
 /* ---------- Main navigation ---------- */

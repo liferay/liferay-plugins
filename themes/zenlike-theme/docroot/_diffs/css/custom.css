@@ -62,11 +62,6 @@ a:hover {
 
 /* ---------- Dock ---------- */
 
-.js .interactive-mode {
-	right: 16px;
-	top: 16px;
-}
-
 #sign-in {
 	color: #333;
 	float: right;

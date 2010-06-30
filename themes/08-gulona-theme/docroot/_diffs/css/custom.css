@@ -1,10 +1,48 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
+#skip-to-content,
+#banner h2,
+#banner h3,
+#navigation h1,
+.site-breadcrumbs h1 {
+	clip: rect(0 0 0 0);
+	position: absolute;
+}
+
+.site-breadcrumbs ul,
+.site-breadcrumbs ul li {
+	margin: 0;
+	padding: 0;
+}
+
+.site-breadcrumbs ul li {
+	display: block;
+	float: left;
+}
+
+.site-breadcrumbs ul li a {
+	background: url(../images/common/breadcrumbs.png) no-repeat 100% 50%;
+	color: #CCC;
+	padding: 0 10px;
+	text-decoration: none;
+}
+
+.site-breadcrumbs li.last a {
+	background: none;
+}
+
+#sign-in {
+	position: absolute;
+	right: 30px;
+	top: 30px;
+}
+
 /* ---------- Base ---------- */
 
 body {
 	background: #5F7110;
 	color: #565655;
+	font: 12px/1.4 Arial,Helvetica,sans-serif;
 }
 
 /* ---------- Wrapper ---------- */
@@ -19,7 +57,7 @@ body {
 
 #banner {
 	background: url(../images/custom/banner_bg.png) no-repeat;
-	padding: 36px 36px 16px;
+	padding: 36px 18px 0;
 	position: relative;
 }
 
@@ -35,7 +73,6 @@ body {
 	background: url(../images/custom/navigation_bg.png);
 	font: bold 12px Arial, Helvetica, sans-serif;
 	height: 40px;
-	padding: 0 18px;
 }
 
 #navigation ul {
@@ -43,8 +80,8 @@ body {
 	margin: 0;
 }
 
-#navigation li,
-#navigation a {
+#navigation li {
+	position: relative;
 	float: left;
 }
 
@@ -65,7 +102,7 @@ body {
 
 /* ---------- Content Wrapper ---------- */
 
-#content-wrapper {
+#content {
 	background: url(../images/custom/content_wrapper_bg.png) no-repeat;
 	padding: 32px 36px;
 }
@@ -84,8 +121,6 @@ body {
 }
 
 .portlet-content {
-	color: #565655;
-	font: 12px/1.4 Arial, Helvetica, sans-serif;
 	letter-spacing: 0;
 	padding: 0 0 10px;
 }

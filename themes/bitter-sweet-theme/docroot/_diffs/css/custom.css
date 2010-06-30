@@ -1,11 +1,48 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
+#skip-to-content,
+#banner h2,
+#banner h3,
+#navigation h1,
+.site-breadcrumbs h1 {
+	clip: rect(0 0 0 0);
+	position: absolute;
+}
+
+.site-breadcrumbs ul,
+.site-breadcrumbs ul li {
+	margin: 0;
+	padding: 0;
+}
+
+.site-breadcrumbs ul li {
+	display: block;
+	float: left;
+}
+
+.site-breadcrumbs ul li a {
+	background: url(../images/common/breadcrumbs.png) no-repeat 100% 50%;
+	color: #567300;
+	padding: 0 10px;
+	text-decoration: none;
+}
+
+.site-breadcrumbs li.last a {
+	background: none;
+}
+
+#sign-in {
+	position: absolute;
+	right: 30px;
+	top: 30px;
+}
+
 /* ---------- Base ---------- */
 
 body {
 	background: #698E00 url(../images/custom/body_bg.png) center top;
 	color: #333;
-	font: 12px Lucida Sans Unicode, sans-serif;
+	font: 12px "Lucida Sans Unicode", sans-serif;
 }
 
 #wrapper {

@@ -1,6 +1,7 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 /* ---------- Wrapper ---------- */
+
 #skip-to-content,
 #banner h2,
 #banner h3,
@@ -91,7 +92,6 @@ a:hover {
 	border-color: #1C4980 #1D4A81 #1F477A #0D376E;
 	padding: 0 11px;
 }
-
 
 #navigation ul li ul.child-menu {
 	display: none;
