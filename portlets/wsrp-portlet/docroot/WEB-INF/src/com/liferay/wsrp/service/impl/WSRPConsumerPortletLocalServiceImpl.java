@@ -15,11 +15,9 @@
 package com.liferay.wsrp.service.impl;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.cluster.Clusterable;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.messaging.DestinationNames;
-import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -98,17 +96,9 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		wsrpConsumerPortletPersistence.update(wsrpConsumerPortlet, false);
 
-		Message message = new Message();
-
-		message.put("command", "add");
-		message.put("companyId", wsrpConsumer.getCompanyId());
-		message.put("name", name);
-		message.put("portletHandle", portletHandle);
-		message.put("wsrpConsumerId", wsrpConsumerId);
-		message.put("wsrpConsumerPortletId", wsrpConsumerPortletId);
-		message.put("userToken", userToken);
-
-		MessageBusUtil.sendMessage(DestinationNames.WSRP, message);
+		wsrpConsumerPortletLocalService.initWSRPConsumerPortlet(
+			wsrpConsumer.getCompanyId(), wsrpConsumerId, wsrpConsumerPortletId,
+			name, portletHandle, userToken);
 
 		return wsrpConsumerPortlet;
 	}
@@ -129,21 +119,13 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
 
-		Message message = new Message();
-
-		message.put("command", "delete");
-
 		WSRPConsumer wsrpConsumer =
 			wsrpConsumerPersistence.findByPrimaryKey(
 				wsrpConsumerPortlet.getWsrpConsumerId());
 
-		message.put("url", wsrpConsumer.getUrl());
-
-		message.put(
-			"wsrpConsumerPortletId",
-			wsrpConsumerPortlet.getWsrpConsumerPortletId());
-
-		MessageBusUtil.sendMessage(DestinationNames.WSRP, message);
+		wsrpConsumerPortletLocalService.destroyWSRPConsumerPortlet(
+			wsrpConsumerPortlet.getWsrpConsumerPortletId(),
+			wsrpConsumer.getUrl());
 	}
 
 	public void deleteWSRPConsumerPortlets(long wsrpConsumerId)
@@ -157,6 +139,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 		}
 	}
 
+	@Clusterable
 	public void destroyWSRPConsumerPortlet(
 		long wsrpConsumerPortletId, String url) {
 
@@ -213,6 +196,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 			wsrpConsumerId);
 	}
 
+	@Clusterable
 	public void initWSRPConsumerPortlet(
 			long companyId, long wsrpConsumerId, long wsrpConsumerPortletId,
 			String name, String portletHandle, String userToken)
