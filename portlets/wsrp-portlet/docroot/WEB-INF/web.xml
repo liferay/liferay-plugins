@@ -6,10 +6,6 @@
 		<param-name>axis.servicesPath</param-name>
 		<param-value>/services/</param-value>
 	</context-param>
-	<context-param>
-		<param-name>portalContextConfigLocation</param-name>
-		<param-value>/WEB-INF/classes/META-INF/messaging-spring.xml</param-value>
-	</context-param>
 	<listener>
 		<listener-class>com.liferay.portal.kernel.servlet.PortletContextListener</listener-class>
 	</listener>
