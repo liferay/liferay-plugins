@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
-import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -42,6 +41,7 @@ import com.sun.mail.imap.IMAPFolder;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
 import java.util.ArrayList;
@@ -188,7 +188,7 @@ public class IMAPAccessor {
 		}
 	}
 
-	public byte[] getAttachment(
+	public InputStream getAttachment(
 			long folderId, long messageId, String contentPath)
 		throws IOException, PortalException, SystemException {
 
@@ -206,7 +206,7 @@ public class IMAPAccessor {
 
 			Part part = getPart(jxMessage, contentPath);
 
-			return FileUtil.getBytes(part.getInputStream());
+			return part.getInputStream();
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);

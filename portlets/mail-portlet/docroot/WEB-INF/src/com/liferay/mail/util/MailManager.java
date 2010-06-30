@@ -46,6 +46,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -351,7 +352,7 @@ public class MailManager {
 		return MessageLocalServiceUtil.getAccountUnreadMessagesCount(accountId);
 	}
 
-	public byte[] getAttachment(long attachmentId)
+	public InputStream getAttachment(long attachmentId)
 		throws IOException, PortalException, SystemException {
 
 		Attachment attachment = AttachmentLocalServiceUtil.getAttachment(

@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import java.util.List;
 
@@ -61,7 +62,7 @@ public interface Mailbox {
 
 	public Account getAccount();
 
-	public byte[] getAttachment(long attachmentId)
+	public InputStream getAttachment(long attachmentId)
 		throws IOException, PortalException, SystemException;
 
 	public Message getMessage(
