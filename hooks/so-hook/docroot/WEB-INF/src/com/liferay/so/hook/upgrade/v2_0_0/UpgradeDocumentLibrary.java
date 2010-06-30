@@ -97,13 +97,11 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 			ServiceContext serviceContext = new ServiceContext();
 
 			try {
-				DLFileEntryLocalServiceUtil.updateFileEntry(
+				DLFileEntryLocalServiceUtil.moveFileEntry(
 					fileEntry.getUserId(), fileEntry.getGroupId(),
 					fileEntry.getFolderId(),
 					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-					fileEntry.getName(), StringPool.BLANK, fileEntry.getTitle(),
-					fileEntry.getDescription(), StringPool.BLANK, false,
-					fileEntry.getExtraSettings(), (File)null, serviceContext);
+					fileEntry.getName(), serviceContext);
 			}
 			catch (Exception e) {
 				deleteFolder = false;
