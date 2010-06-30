@@ -91,7 +91,6 @@
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
 <%@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.LayoutLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.SubscriptionLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.permission.GroupPermissionUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
@@ -119,6 +118,8 @@
 
 <%
 WindowState windowState = renderRequest.getWindowState();
+
+String rootPortletId = portletDisplay.getRootPortletId();
 
 String currentURL = PortalUtil.getCurrentURL(request);
 %>

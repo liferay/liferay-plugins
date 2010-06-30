@@ -19,9 +19,7 @@ import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.portal.kernel.search.BaseIndexer;
-import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
-import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
@@ -97,54 +95,6 @@ public class AdminIndexer extends BaseIndexer {
 		return hits;
 	}
 
-	protected void addSearchResourcePrimKeys(
-			BooleanQuery contextQuery, SearchContext searchContext)
-		throws Exception {
-
-		long[] resourcePrimKeys = (long[])searchContext.getAttribute(
-			"KNOWLEDGE_BASE_RESOURCE_PRIM_KEYS");
-
-		if (resourcePrimKeys == null) {
-			return;
-		}
-
-		BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
-
-		for (long resourcePrimKey : resourcePrimKeys) {
-			booleanQuery.addExactTerm(Field.ENTRY_CLASS_PK, resourcePrimKey);
-		}
-
-		if (resourcePrimKeys.length == 0) {
-			booleanQuery.addExactTerm(Field.ENTRY_CLASS_PK, new Long(0));
-		}
-
-		contextQuery.add(booleanQuery, BooleanClauseOccur.MUST);
-	}
-
-	protected void addSearchScopeGroupIds(
-			BooleanQuery contextQuery, SearchContext searchContext)
-		throws Exception {
-
-		long[] scopeGroupIds = (long[])searchContext.getAttribute(
-			"KNOWLEDGE_BASE_SCOPE_GROUP_IDS");
-
-		if (scopeGroupIds == null) {
-			return;
-		}
-
-		BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
-
-		for (long scopeGroupId : scopeGroupIds) {
-			booleanQuery.addExactTerm(Field.SCOPE_GROUP_ID, scopeGroupId);
-		}
-
-		if (scopeGroupIds.length == 0) {
-			booleanQuery.addExactTerm(Field.SCOPE_GROUP_ID, new Long(0));
-		}
-
-		contextQuery.add(booleanQuery, BooleanClauseOccur.MUST);
-	}
-
 	protected void doDelete(Object obj) throws Exception {
 		Article article = (Article)obj;
 
@@ -214,14 +164,6 @@ public class AdminIndexer extends BaseIndexer {
 
 	protected String getPortletId(SearchContext searchContext) {
 		return PORTLET_ID;
-	}
-
-	protected void postProcessContextQuery(
-			BooleanQuery contextQuery, SearchContext searchContext)
-		throws Exception {
-
-		addSearchScopeGroupIds(contextQuery, searchContext);
-		addSearchResourcePrimKeys(contextQuery, searchContext);
 	}
 
 	protected void postProcessSearchQuery(

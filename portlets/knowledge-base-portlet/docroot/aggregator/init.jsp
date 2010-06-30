@@ -68,6 +68,6 @@ if (articleWindowState.equals(WindowState.MAXIMIZED.toString()) && windowState.e
 
 	portletURL.setWindowState(WindowState.NORMAL);
 
-	portletDisplay.setURLBack(portletURL.toString());
+	portletDisplay.setURLBack(HttpUtil.removeParameter(portletURL.toString(), renderResponse.getNamespace() + "jspPage"));
 }
 %>
