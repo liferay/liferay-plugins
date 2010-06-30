@@ -21,7 +21,7 @@ import com.liferay.knowledgebase.model.impl.ArticleModelImpl;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -152,7 +152,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(ArticleImpl.class.getName());
+		CacheRegistryUtil.clear(ArticleImpl.class.getName());
 		EntityCacheUtil.clearCache(ArticleImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
