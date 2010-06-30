@@ -8,7 +8,28 @@ html {
 
 body {
 	background: transparent url(../images/custom/body_bg.jpg) repeat-x;
-	padding: 35px 0;
+}
+
+#skip-to-content,
+#banner h2,
+#banner h3,
+#navigation h1,
+#breadcrumbs,
+.site-breadcrumbs h1 {
+	left: -99999px;
+	overflow: hidden;
+	position: absolute;
+	width: 1%;
+}
+
+a,
+a:visited {
+	color: #333;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 /* ---------- Wrapper ---------- */
@@ -19,6 +40,7 @@ body {
 	border-left-width: 14px;
 	border-right-width: 14px;
 	margin: 0 auto;
+	padding: 0;
 	width: 960px;
 }
 
@@ -27,7 +49,7 @@ body {
 #banner {
 	background: url(../images/custom/banner_bg.jpg) no-repeat left bottom;
 	margin: 0 0 4px;
-	padding: 0 0 113px;
+	padding: 0;
 	position: relative;
 }
 
@@ -43,6 +65,15 @@ body {
 .js .interactive-mode {
 	right: 16px;
 	top: 16px;
+}
+
+#sign-in {
+	color: #333;
+	float: right;
+	position: absolute;
+	right: 5px;
+	text-decoration: none;
+	top: 135px;
 }
 
 /* ---------- Navigation ---------- */
@@ -73,7 +104,17 @@ body {
 	background: url(../images/custom/navigation_item_hover.png);
 }
 
-#navigation .selected a {
+#navigation ul {
+	margin: 0;
+}
+
+#navigation ul li {
+	float: left;
+	list-style: none;
+}
+
+#navigation ul li ul.child-menu {
+	display: none;
 }
 
 #navigation .save-page,
@@ -161,6 +202,10 @@ body {
 
 .ui-tabs li.current:hover {
 	background: transparent;
+}
+
+.aui-tab-active span a {
+	color: #FFF;
 }
 
 /* ---------- Footer ---------- */

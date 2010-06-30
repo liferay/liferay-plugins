@@ -6,6 +6,28 @@ body {
 	background: #CCC;
 }
 
+#skip-to-content,
+#banner h2,
+#banner h3,
+#navigation h1,
+#breadcrumbs,
+.site-breadcrumbs h1 {
+	left: -99999px;
+	overflow: hidden;
+	position: absolute;
+	width: 1%;
+}
+
+a,
+a:visited {
+	color: #456;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
 /* ---------- Wrapper ---------- */
 
 #wrapper {
@@ -18,15 +40,19 @@ body {
 
 #banner {
 	background: url(../images/custom/banner_bg.png) no-repeat;
-	padding: 35px;
+	padding: 35px 25px;
 	position: relative;
 }
 
-#banner .sign-in {
+#sign-in {
 	color: #FFF;
 	position: absolute;
 	right: 45px;
 	top: 35px;
+}
+
+h1.company-title {
+	margin-left: 15px;
 }
 
 /* ---------- Navigation ---------- */
@@ -34,7 +60,7 @@ body {
 #navigation {
 	background: url(../images/custom/navigation_bg.png);
 	height: 37px;
-	margin: 0 25px;
+	margin: 0;
 	position: relative;
 }
 
@@ -64,9 +90,23 @@ body {
 	color: #FFF;
 }
 
+#navigation ul li {
+	position: relative;
+}
+
+.js .delete-tab {
+	position: absolute;
+	right: 3px;
+	top: 19px;
+}
+
+#navigation ul li ul.child-menu {
+	display: none;
+}
+
 /* ---------- Content Wrapper ---------- */
 
-#content-wrapper {
+#content {
 	padding: 10px 40px;
 }
 
@@ -82,6 +122,10 @@ body {
 
 .portlet-content {
 	padding: 0;
+}
+
+.aui-tab-active span a {
+	color: #FFF;
 }
 
 /* ---------- Footer ---------- */

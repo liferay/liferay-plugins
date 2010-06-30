@@ -1,5 +1,27 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
+#skip-to-content,
+ #banner h2,
+ #banner h3,
+ #navigation h1,
+ #breadcrumbs,
+ .site-breadcrumbs h1 {
+	left: -99999px;
+	overflow: hidden;
+	position: absolute;
+	width: 1%;
+}
+
+a,
+a:visited {
+	color: #685B45;
+	text-decoration: none;
+}
+
+#navigation ul li ul.child-menu {
+	display: none;
+}
+
 /* ---------- Base ---------- */
 
 body {
@@ -17,14 +39,20 @@ body {
 
 #banner {
 	background: #685B45 url(../images/custom/banner_bg.gif) repeat-x;
-	padding: 32px;
+	padding: 15px 0 0 0;
 	position: relative;
 }
 
-#banner .sign-in {
+h1.company-title {
+	padding-left: 15px;
+}
+
+#sign-in {
 	position: absolute;
-	right: 32px;
-	top: 32px;
+	right: 5px;
+	top: 110px;
+	color: #FFF3E0;
+	text-decoration: none;
 }
 
 /* ---------- Navigation ---------- */
@@ -44,6 +72,10 @@ body {
 	float: left;
 }
 
+#navigation li {
+	position: relative;
+}
+
 #navigation a {
 	color: #420;
 	display: block;
@@ -58,9 +90,13 @@ body {
 	color: #000;
 }
 
+.js .delete-tab {
+	position: absolute;
+}
+
 /* ---------- Content Wrapper ---------- */
 
-#content-wrapper {
+#content {
 	padding: 12px;
 }
 
@@ -79,6 +115,10 @@ body {
 .portlet-content {
 	font: 12px Lucida Sans Unicode, Lucida Grande, sans-serif;
 	padding: 12px 0;
+}
+
+li.aui-tab-active span a 
+	color: #FFF;
 }
 
 /* ---------- Portlet ---------- */

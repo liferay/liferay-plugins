@@ -11,6 +11,18 @@ body {
 	font-size: 0.9em;
 }
 
+#skip-to-content,
+#banner h2,
+#banner h3,
+#navigation h1,
+#breadcrumbs,
+.site-breadcrumbs h1 {
+	left: -99999px;
+	overflow: hidden;
+	position: absolute;
+	width: 1%;
+}
+
 /* ---------- Links ---------- */
 
 a {
@@ -23,8 +35,8 @@ a {
 	background: transparent url(../images/common/body_bg.png) repeat-x 0 0;
 }
 
-#content-wrapper {
-	margin: 0 auto;
+#content {
+	margin: 30px auto;
 	width: 90%;
 }
 
@@ -36,6 +48,10 @@ a {
 	top: -1px;
 }
 
+h1.company-title {
+	margin: 0;
+	padding: 15px 0 0 60px;
+}
 #banner h1.logo {
 	display: block;
 	font-size: 2em;
@@ -55,10 +71,19 @@ a {
 
 /* ---------- Main navigation ---------- */
 
+#sign-in {
+	color: #FFF;
+	float: right;
+	position: absolute;
+	right: 5px;
+	text-decoration: none;
+	top: 2px;
+}
+
 #navigation {
 	background: #020509;
 	border-top: 1px solid #304049;
-	margin: 0 auto 20px;
+	margin: 0 auto 40px;
 	min-height: 2.2em;
 	width: 100%;
 }
@@ -66,19 +91,32 @@ a {
 #navigation ul {
 	min-height: 2em;
 	width: 90%;
+	margin: 0 0 0 32px;
 }
 
 #navigation li {
 	border: none;
 	display: inline;
+	float: left;
 	margin: -1px 0 0 -1px;
 	padding: 0;
+	position: relative;
+}
+
+.js .delete-tab {
+	position: absolute;
+	top: 7px;
+	right: 3px;
+}
+
+#navigation ul li ul.child-menu{
+	display: none;
 }
 
 #navigation a {
 	color: #FFF;
 	font-weight: bold;
-	padding: 5px 20px;
+	padding: 6px 20px 7px;
 }
 
 #navigation li a {
@@ -143,28 +181,6 @@ a {
 
 .js #navigation {
 	position: relative;
-}
-
-.js #add-page {
-	background: #020509;
-	border: 1px solid #304049;
-	border-bottom: none;
-	bottom: 100%;
-	font-weight: bold;
-	position: absolute;
-	right: 5%;
-}
-
-.js #add-page a {
-	display: block;
-	text-decoration: none;
-}
-
-.js #add-page a span {
-	background: url(../images/common/add.png) no-repeat 0 50%;
-	display: block;
-	margin-left: 15px;
-	padding: 5px 20px 2px;
 }
 
 /* ---------- Portlet wrapper and icons ---------- */

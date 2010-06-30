@@ -1,6 +1,27 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 /* ---------- Wrapper ---------- */
+#skip-to-content,
+#banner h2,
+#banner h3,
+#navigation h1,
+#breadcrumbs,
+.site-breadcrumbs h1 {
+	left: -99999px;
+	overflow: hidden;
+	position: absolute;
+	width: 1%;
+}
+
+a,
+a:visited {
+	color: #456;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
 
 #wrapper {
 	margin: 0 auto;
@@ -71,11 +92,20 @@
 	padding: 0 11px;
 }
 
+
+#navigation ul li ul.child-menu {
+	display: none;
+}
+
 /* ---------- Content Wrapper ---------- */
 
-#content-wrapper {
+#content {
 	background: url(../images/custom/content_wrapper_bg.png) repeat-y center top;
 	padding: 10px;
+}
+
+#main-content{
+	padding: 0 5px;
 }
 
 /* ---------- Portlet ---------- */
@@ -98,6 +128,10 @@
 
 .portlet-content {
 	padding: 10px;
+}
+
+.aui-tab-active span a {
+	color: #FFF;
 }
 
 /* ---------- Footer ---------- */

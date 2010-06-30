@@ -8,8 +8,29 @@ html {
 }
 
 body {
-	background: url(../images/custom/body_bg.gif) repeat-x;
-	padding: 50px 0;
+	background: transparent;
+}
+
+#skip-to-content,
+#banner h2,
+#banner h3,
+#navigation h1,
+#breadcrumbs,
+.site-breadcrumbs h1 {
+	left: -99999px;
+	overflow: hidden;
+	position: absolute;
+	width: 1%;
+}
+
+a,
+a:visited {
+	color: #456;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 /* ---------- Wrapper ---------- */
@@ -19,29 +40,42 @@ body {
 	border: 10px solid #FFF;
 	font: 1.2em Lucida Sans Unicode, Lucida Grande, sans-serif;
 	margin: 0 auto;
+	margin: 50px auto;
 	width: 960px;
 }
 
 /* ---------- Banner ---------- */
 
 #banner {
-	background: #C3D0D6 url(../images/custom/banner_bg.png) no-repeat left bottom;
+	background: #C3D0D6;
+	height: 120px;
 	margin: 0 0 5px;
-	min-height: 80px;
-	padding: 35px 150px;
+	padding: 35px 0 0 0;
 	position: relative;
 }
 
 #banner .sign-in {
 	position: absolute;
-	top: 17px;
 	right: 35px;
+	top: 17px;
 }
 
-#banner .logo {
-	margin: 0;
+h1.company-title {
+	padding-left: 10px;
 }
 
+#sign-in {
+	color: #FFF;
+	float: right;
+	position: absolute;
+	right: 5px;
+	text-decoration: none;
+	top: 135px;
+}
+
+.ie7 #sign-in {
+	top: 115px;
+}
 /* ---------- Navigation ---------- */
 
 #navigation {
@@ -62,6 +96,16 @@ body {
 	float: left;
 }
 
+#navigation li {
+	position: relative;
+}
+
+.js .delete-tab {
+	position: absolute;
+	top: 7px;
+	right: 3px;
+}
+
 #navigation a {
 	border-right: 1px solid #AFBEC7;
 	color: #456;
@@ -77,10 +121,15 @@ body {
 	background: url(../images/custom/navigation_bg.gif) left bottom;
 }
 
+#navigation ul li ul.child-menu {
+	display: none;
+}
+
 /* ---------- Content Wrapper ---------- */
 
-#content-wrapper {
-	padding: 16px 0;
+#content {
+	margin-top: 15px;
+	padding: 10px;
 }
 
 /* ---------- Portlet ---------- */
@@ -102,11 +151,15 @@ body {
 	padding: 0;
 }
 
+.aui-tab-active span a {
+	color: #FFF;
+}
+
 /* ---------- Footer ---------- */
 
 #footer {
 	background: #ADBFCB url(../images/custom/footer_bg.gif) repeat-x;
 	min-height: 39px;
 	padding: 12px;
-	text-align: right;
+	text-align: left;
 }

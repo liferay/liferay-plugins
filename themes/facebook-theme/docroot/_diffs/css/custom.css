@@ -6,6 +6,29 @@ body {
 	padding: 0 0 29px;
 }
 
+#skip-to-content,
+#banner h2,
+#banner h3,
+#navigation h1,
+#breadcrumbs,
+.site-breadcrumbs h1 {
+	left: -99999px;
+	overflow: hidden;
+	position: absolute;
+	width: 1%;
+}
+
+a,
+a:visited {
+	color: #5C75AA;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+
 /* ---------- Main content body ---------- */
 
 #wrapper {
@@ -23,10 +46,11 @@ body {
 	z-index: 1;
 }
 
-#banner .sign-in {
+#sign-in {
 	position: absolute;
-	right: 10px;
-	bottom: 1px;
+	left: 10px;
+	bottom: 5px;
+	color: #FFF;
 }
 
 /* ---------- Main navigation ---------- */
@@ -34,19 +58,33 @@ body {
 #navigation {
 	height: 27px;
 	position: relative;
-	margin: 0 60px 0 0;
+	margin: 0;
 	z-index: 2;
 }
 
 #navigation ul {
 	float: right;
 	list-style: none;
-	margin: 0;
+	margin: 5px 0 0 0;
 }
 
 #navigation li,
 #navigation a {
 	float: left;
+}
+
+#navigation li {
+	position: relative;
+}
+
+.js .delete-tab {
+	position: absolute;
+	top: 7px;
+	right: 3px;
+}
+
+#navigation ul li ul.child-menu {
+	display: none;
 }
 
 #navigation a,
@@ -62,6 +100,15 @@ body {
 #navigation a:hover,
 #banner .sign-in:hover {
 	background: #5C75AA;
+}
+
+#main-content {
+	margin-top: 20px;
+}
+
+h1.company-title {
+	margin: 0;
+	padding-top: 20px;
 }
 
 /* ---------- Portlet ---------- */
@@ -92,13 +139,17 @@ body {
 .portlet-content {
 	border-bottom: 1px solid #D8DFEA;
 	color: #333;
-	margin: 0 0 0 20px;
-	padding: 9px 0 10px;
+	margin: 0;
+	padding: 9px 0;
 }
 
 /* ---------- Content Wrapper ---------- */
 
-#content-wrapper {
+.aui-tab-active span a {
+	color: #FFF;
+}
+
+#content {
 	padding: 22px 0 18px;
 }
 
