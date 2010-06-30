@@ -86,8 +86,10 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 					customSession.deleteProcessInstanceExtension(
 						processInstance.getId());
+
 					customSession.deleteTaskInstanceExtensions(
 						processInstance.getId());
+
 					customSession.deleteWorkflowLogs(processInstance.getId());
 
 					graphSession.deleteProcessInstance(processInstance);
@@ -121,11 +123,13 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		try {
 			Token token = jbpmContext.loadToken(workflowInstanceId);
 
-			Node node  = token.getNode();
+			Node node = token.getNode();
+
+			NodeType nodeType = node.getNodeType();
 
 			Set<Transition> transitions = Collections.EMPTY_SET;
 
-			if (node.getNodeType() != NodeType.Task) {
+			if (nodeType.equals(NodeType.Task)) {
 				transitions = token.getAvailableTransitions();
 			}
 

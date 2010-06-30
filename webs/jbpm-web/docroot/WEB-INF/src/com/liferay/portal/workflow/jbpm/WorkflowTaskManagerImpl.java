@@ -315,12 +315,12 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
 
 		try {
-			CustomSession customSession = new CustomSession(jbpmContext);
-
 			TaskMgmtSession taskMgmtSession = jbpmContext.getTaskMgmtSession();
 
 			TaskInstance taskInstance = taskMgmtSession.loadTaskInstance(
 				workflowTaskId);
+
+			CustomSession customSession = new CustomSession(jbpmContext);
 
 			TaskInstanceExtensionImpl taskInstanceExtensionImpl =
 				customSession.findTaskInstanceExtension(taskInstance.getId());
@@ -332,8 +332,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			for (Assignee assignee : assignees) {
 				 String assigneeClassName = assignee.getAssigneeClassName();
 
-				 if (Role.class.getName().equals(assigneeClassName)) {
-
+				 if (assigneeClassName.equals(Role.class.getName())) {
 					long roleId = assignee.getAssigneeClassPK();
 
 					Role role = RoleLocalServiceUtil.getRole(roleId);

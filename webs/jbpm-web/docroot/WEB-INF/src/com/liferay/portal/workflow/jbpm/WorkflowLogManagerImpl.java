@@ -98,14 +98,14 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 	protected void addLogTypesJunction(
 		Criteria criteria, List<Integer> logTypes) {
 
-		if (logTypes == null) {
+		if ((logTypes == null) || logTypes.isEmpty()) {
 			return;
 		}
 
 		Junction junction = Restrictions.disjunction();
 
-		for (Integer logTypeIntValue : logTypes) {
-			junction.add(Restrictions.eq("type", logTypeIntValue));
+		for (Integer logType : logTypes) {
+			junction.add(Restrictions.eq("type", logType));
 		}
 
 		criteria.add(junction);
@@ -125,7 +125,6 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 			Criteria criteria = session.createCriteria(WorkflowLogImpl.class);
 
 			addJoin(criteria, workflowTaskId, workflowInstanceId);
-
 			addLogTypesJunction(criteria, logTypes);
 
 			List<WorkflowLog> workflowLogs = criteria.list();
@@ -159,7 +158,6 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 			Criteria criteria = session.createCriteria(WorkflowLogImpl.class);
 
 			addJoin(criteria, workflowTaskId, workflowInstanceId);
-
 			addLogTypesJunction(criteria, logTypes);
 
 			criteria.setProjection(Projections.rowCount());
