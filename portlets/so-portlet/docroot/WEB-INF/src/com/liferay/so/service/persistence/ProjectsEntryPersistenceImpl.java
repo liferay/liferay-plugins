@@ -16,7 +16,7 @@ package com.liferay.so.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -106,7 +106,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(ProjectsEntryImpl.class.getName());
+		CacheRegistryUtil.clear(ProjectsEntryImpl.class.getName());
 		EntityCacheUtil.clearCache(ProjectsEntryImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -162,21 +162,6 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public ProjectsEntry remove(ProjectsEntry projectsEntry)
-		throws SystemException {
-		for (ModelListener<ProjectsEntry> listener : listeners) {
-			listener.onBeforeRemove(projectsEntry);
-		}
-
-		projectsEntry = removeImpl(projectsEntry);
-
-		for (ModelListener<ProjectsEntry> listener : listeners) {
-			listener.onAfterRemove(projectsEntry);
-		}
-
-		return projectsEntry;
 	}
 
 	protected ProjectsEntry removeImpl(ProjectsEntry projectsEntry)
@@ -339,7 +324,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	public List<ProjectsEntry> findByUserId(long userId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(userId),
+				userId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -628,7 +613,6 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_PROJECTSENTRY.concat(ProjectsEntryModelImpl.ORDER_BY_JPQL);
 				}
@@ -678,7 +662,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	public int countByUserId(long userId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(userId) };
+		Object[] finderArgs = new Object[] { userId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_USERID,
 				finderArgs, this);

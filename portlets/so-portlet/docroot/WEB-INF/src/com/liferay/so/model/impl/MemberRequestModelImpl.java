@@ -28,7 +28,6 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.so.model.MemberRequest;
-import com.liferay.so.model.MemberRequestSoap;
 
 import java.io.Serializable;
 
@@ -36,9 +35,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="MemberRequestModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -88,36 +85,6 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.so.model.MemberRequest"),
 			true);
-
-	public static MemberRequest toModel(MemberRequestSoap soapModel) {
-		MemberRequest model = new MemberRequestImpl();
-
-		model.setMemberRequestId(soapModel.getMemberRequestId());
-		model.setGroupId(soapModel.getGroupId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setKey(soapModel.getKey());
-		model.setReceiverUserId(soapModel.getReceiverUserId());
-		model.setInvitedRoleId(soapModel.getInvitedRoleId());
-		model.setInvitedTeamId(soapModel.getInvitedTeamId());
-		model.setStatus(soapModel.getStatus());
-
-		return model;
-	}
-
-	public static List<MemberRequest> toModels(MemberRequestSoap[] soapModels) {
-		List<MemberRequest> models = new ArrayList<MemberRequest>(soapModels.length);
-
-		for (MemberRequestSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.so.model.MemberRequest"));
 

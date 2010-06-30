@@ -16,7 +16,7 @@ package com.liferay.so.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -155,7 +155,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(MemberRequestImpl.class.getName());
+		CacheRegistryUtil.clear(MemberRequestImpl.class.getName());
 		EntityCacheUtil.clearCache(MemberRequestImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -221,21 +221,6 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public MemberRequest remove(MemberRequest memberRequest)
-		throws SystemException {
-		for (ModelListener<MemberRequest> listener : listeners) {
-			listener.onBeforeRemove(memberRequest);
-		}
-
-		memberRequest = removeImpl(memberRequest);
-
-		for (ModelListener<MemberRequest> listener : listeners) {
-			listener.onAfterRemove(memberRequest);
-		}
-
-		return memberRequest;
 	}
 
 	protected MemberRequest removeImpl(MemberRequest memberRequest)
@@ -574,7 +559,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(receiverUserId),
+				receiverUserId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -841,7 +826,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(receiverUserId), new Integer(status),
+				receiverUserId, status,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1144,9 +1129,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 	public MemberRequest fetchByG_R_S(long groupId, long receiverUserId,
 		int status, boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(groupId), new Long(receiverUserId), new Integer(status)
-			};
+		Object[] finderArgs = new Object[] { groupId, receiverUserId, status };
 
 		Object result = null;
 
@@ -1271,7 +1254,6 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_MEMBERREQUEST.concat(MemberRequestModelImpl.ORDER_BY_JPQL);
 				}
@@ -1403,7 +1385,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 	public int countByReceiverUserId(long receiverUserId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(receiverUserId) };
+		Object[] finderArgs = new Object[] { receiverUserId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_RECEIVERUSERID,
 				finderArgs, this);
@@ -1450,9 +1432,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 	public int countByR_S(long receiverUserId, int status)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(receiverUserId), new Integer(status)
-			};
+		Object[] finderArgs = new Object[] { receiverUserId, status };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_S,
 				finderArgs, this);
@@ -1503,9 +1483,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 	public int countByG_R_S(long groupId, long receiverUserId, int status)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(groupId), new Long(receiverUserId), new Integer(status)
-			};
+		Object[] finderArgs = new Object[] { groupId, receiverUserId, status };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_R_S,
 				finderArgs, this);
