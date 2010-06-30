@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.aggregator.portlet;
 
 import com.liferay.knowledgebase.admin.portlet.AdminPortlet;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 
 import javax.portlet.ActionRequest;
@@ -35,7 +34,14 @@ public class AggregatorPortlet extends AdminPortlet {
 		String actionName = ParamUtil.getString(
 			actionRequest, ActionRequest.ACTION_NAME);
 
-		return ArrayUtil.contains(_ACTION_NAMES, actionName);
+		if (actionName.equals("subscribe") ||
+			actionName.equals("unsubscribe")) {
+
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
@@ -51,9 +57,5 @@ public class AggregatorPortlet extends AdminPortlet {
 			return false;
 		}
 	}
-
-	private static final String[] _ACTION_NAMES = new String[] {
-		"subscribe", "unsubscribe"
-	};
 
 }

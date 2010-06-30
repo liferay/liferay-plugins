@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.display.portlet;
 
 import com.liferay.knowledgebase.admin.portlet.AdminPortlet;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 
 import javax.portlet.ActionRequest;
@@ -33,16 +32,19 @@ public class DisplayPortlet extends AdminPortlet {
 		String actionName = ParamUtil.getString(
 			actionRequest, ActionRequest.ACTION_NAME);
 
-		return ArrayUtil.contains(_ACTION_NAMES, actionName);
+		if (actionName.equals("subscribe") ||
+			actionName.equals("unsubscribe")) {
+
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
 		return _SERVE_RSS_MAXIMIZED;
 	}
-
-	private static final String[] _ACTION_NAMES = new String[] {
-		"subscribe", "unsubscribe"
-	};
 
 	private static final boolean _SERVE_RSS_MAXIMIZED = false;
 
