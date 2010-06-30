@@ -33,6 +33,7 @@ import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -207,17 +208,19 @@ public class AdminPortlet extends MVCPortlet {
 			resourceRequest, "displayStyle",
 			RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
 
+		String portletId = PortalUtil.getPortletId(resourceRequest);
+
 		String rss = StringPool.BLANK;
 
 		if (resourcePrimKey <= 0) {
 			rss = ArticleServiceUtil.getGroupArticlesRSS(
-				PortletKeys.KNOWLEDGE_BASE_ADMIN, max, type, version,
-				displayStyle, false, themeDisplay);
+				portletId, max, type, version, displayStyle,
+				isServeRSSMaximized(resourceRequest), themeDisplay);
 		}
 		else {
 			rss = ArticleServiceUtil.getArticlesRSS(
-				PortletKeys.KNOWLEDGE_BASE_ADMIN, resourcePrimKey, max, type,
-				version, displayStyle, false, themeDisplay);
+				portletId, resourcePrimKey, max, type, version, displayStyle,
+				isServeRSSMaximized(resourceRequest), themeDisplay);
 		}
 
 		PortletResponseUtil.sendFile(
@@ -379,6 +382,24 @@ public class AdminPortlet extends MVCPortlet {
 		super.addSuccessMessage(actionRequest, actionResponse);
 	}
 
+	protected boolean callActionMethod(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws PortletException {
+
+		String actionName = ParamUtil.getString(
+			actionRequest, ActionRequest.ACTION_NAME);
+
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
+		if (!portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) &&
+			!ArrayUtil.contains(_PUBLIC_ACTION_NAMES, actionName)) {
+
+			return false;
+		}
+
+		return super.callActionMethod(actionRequest, actionResponse);
+	}
+
 	protected void doDispatch(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -392,11 +413,15 @@ public class AdminPortlet extends MVCPortlet {
 			SessionErrors.contains(
 				renderRequest, PrincipalException.class.getName())) {
 
-			include("/admin/error.jsp", renderRequest, renderResponse);
+			include(jspPath + "error.jsp", renderRequest, renderResponse);
 		}
 		else {
 			super.doDispatch(renderRequest, renderResponse);
 		}
+	}
+
+	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
+		return _SERVE_RSS_MAXIMIZED;
 	}
 
 	protected boolean isSessionErrorException(Throwable cause) {
@@ -416,5 +441,11 @@ public class AdminPortlet extends MVCPortlet {
 
 		return false;
 	}
+
+	private static final String[] _PUBLIC_ACTION_NAMES = new String[] {
+		"subscribe", "unsubscribe"
+	};
+
+	private static final boolean _SERVE_RSS_MAXIMIZED = false;
 
 }

@@ -14,21 +14,12 @@
 
 package com.liferay.knowledgebase.display.action;
 
-import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
-import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
 
 /**
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
@@ -36,52 +27,18 @@ import javax.portlet.RenderResponse;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class ConfigurationActionImpl extends BaseConfigurationAction {
+public class ConfigurationActionImpl
+	extends com.liferay.knowledgebase.admin.action.ConfigurationActionImpl {
 
-	public void processAction(
-			PortletConfig portletConfig, ActionRequest actionRequest,
-			ActionResponse actionResponse)
+	protected void postProcessPreferences(
+			PortletPreferences preferences, ActionRequest actionRequest)
 		throws Exception {
-
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		if (!cmd.equals(Constants.UPDATE)) {
-			return;
-		}
-
-		String portletResource = ParamUtil.getString(
-			actionRequest, "portletResource");
-
-		PortletPreferences preferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				actionRequest, portletResource);
 
 		String tabs2 = ParamUtil.getString(actionRequest, "tabs2");
 
-		if (tabs2.equals("display-settings")) {
-			updateDisplaySettings(actionRequest, preferences);
-		}
-		else if (tabs2.equals("rss")) {
-			updateRSS(actionRequest, preferences);
-		}
-		else if (tabs2.equals("selection-method")) {
+		if (tabs2.equals("selection-method")) {
 			updateSelectionMethod(actionRequest, preferences);
 		}
-
-		if (SessionErrors.isEmpty(actionRequest)) {
-			preferences.store();
-
-			SessionMessages.add(
-				actionRequest, portletConfig.getPortletName() + ".doConfigure");
-		}
-	}
-
-	public String render(
-			PortletConfig portletConfig, RenderRequest renderRequest,
-			RenderResponse renderResponse)
-		throws Exception {
-
-		return "/display/configuration.jsp";
 	}
 
 	protected void updateDisplaySettings(
@@ -102,20 +59,6 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		preferences.setValue(
 			"enable-article-comment-ratings",
 			String.valueOf(enableArticleCommentRatings));
-	}
-
-	protected void updateRSS(
-			ActionRequest actionRequest, PortletPreferences preferences)
-		throws Exception {
-
-		int rssDelta = ParamUtil.getInteger(actionRequest, "rssDelta");
-		String rssDisplayStyle = ParamUtil.getString(
-			actionRequest, "rssDisplayStyle");
-		String rssFormat = ParamUtil.getString(actionRequest, "rssFormat");
-
-		preferences.setValue("rss-delta", String.valueOf(rssDelta));
-		preferences.setValue("rss-display-style", rssDisplayStyle);
-		preferences.setValue("rss-format", rssFormat);
 	}
 
 	protected void updateSelectionMethod(

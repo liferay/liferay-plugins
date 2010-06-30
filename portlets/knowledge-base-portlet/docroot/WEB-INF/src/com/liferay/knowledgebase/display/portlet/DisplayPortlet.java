@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.display.portlet;
 
-import com.liferay.knowledgebase.aggregator.portlet.AggregatorPortlet;
+import com.liferay.knowledgebase.admin.portlet.AdminPortlet;
 
 import javax.portlet.ResourceRequest;
 
@@ -24,7 +24,7 @@ import javax.portlet.ResourceRequest;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class DisplayPortlet extends AggregatorPortlet {
+public class DisplayPortlet extends AdminPortlet {
 
 	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
 		return _SERVE_RSS_MAXIMIZED;

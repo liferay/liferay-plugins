@@ -91,9 +91,11 @@
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
 <%@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.LayoutLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.SubscriptionLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.permission.GroupPermissionUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
+<%@ page import="com.liferay.portlet.PortletConfigFactoryUtil" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 <%@ page import="com.liferay.portlet.messageboards.NoSuchMessageException" %>
 <%@ page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %>
@@ -108,6 +110,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 
+<%@ page import="javax.portlet.PortletConfig" %>
 <%@ page import="javax.portlet.PortletPreferences" %>
 <%@ page import="javax.portlet.PortletURL" %>
 <%@ page import="javax.portlet.WindowState" %>
@@ -121,5 +124,19 @@ WindowState windowState = renderRequest.getWindowState();
 
 String rootPortletId = portletDisplay.getRootPortletId();
 
+String jspPath = portletConfig.getInitParameter("jsp-path");
+
 String currentURL = PortalUtil.getCurrentURL(request);
+
+String portletResource = ParamUtil.getString(request, "portletResource");
+
+if (Validator.isNotNull(portletResource)) {
+	Portlet selPortlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletResource);
+
+	PortletConfig selPortletConfig = PortletConfigFactoryUtil.create(selPortlet, application);
+
+	rootPortletId = selPortlet.getPluginId();
+
+	jspPath = selPortletConfig.getInitParameter("jsp-path");
+}
 %>
