@@ -14,17 +14,12 @@
 
 package com.liferay.knowledgebase.admin.action;
 
-import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.Portlet;
-import com.liferay.portal.service.PortletLocalServiceUtil;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.PortletConfigFactoryUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import javax.portlet.ActionRequest;
@@ -33,8 +28,6 @@ import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-
-import javax.servlet.ServletContext;
 
 /**
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
@@ -95,20 +88,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			RenderResponse renderResponse)
 		throws Exception {
 
-		ServletContext servletContext =
-			(ServletContext)renderRequest.getAttribute(WebKeys.CTX);
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		String portletResource = ParamUtil.getString(
-			renderRequest, "portletResource");
-
-		Portlet selPortlet = PortletLocalServiceUtil.getPortletById(
-			themeDisplay.getCompanyId(), portletResource);
-
-		PortletConfig selPortletConfig = PortletConfigFactoryUtil.create(
-			selPortlet, servletContext);
+		PortletConfig selPortletConfig = getSelPortletConfig(renderRequest);
 
 		String jspPath = selPortletConfig.getInitParameter("jsp-path");
 
