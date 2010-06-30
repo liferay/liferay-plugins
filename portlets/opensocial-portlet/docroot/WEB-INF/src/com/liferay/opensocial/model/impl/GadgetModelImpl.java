@@ -15,7 +15,6 @@
 package com.liferay.opensocial.model.impl;
 
 import com.liferay.opensocial.model.Gadget;
-import com.liferay.opensocial.model.GadgetSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -33,9 +32,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="GadgetModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -79,30 +76,6 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.opensocial.model.Gadget"),
 			true);
-
-	public static Gadget toModel(GadgetSoap soapModel) {
-		Gadget model = new GadgetImpl();
-
-		model.setGadgetId(soapModel.getGadgetId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setName(soapModel.getName());
-		model.setUrl(soapModel.getUrl());
-
-		return model;
-	}
-
-	public static List<Gadget> toModels(GadgetSoap[] soapModels) {
-		List<Gadget> models = new ArrayList<Gadget>(soapModels.length);
-
-		for (GadgetSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.opensocial.model.Gadget"));
 
