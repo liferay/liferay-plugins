@@ -25,7 +25,6 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.wsrp.model.WSRPProducer;
-import com.liferay.wsrp.model.WSRPProducerSoap;
 
 import java.io.Serializable;
 
@@ -33,9 +32,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="WSRPProducerModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -80,31 +77,6 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wsrp.model.WSRPProducer"),
 			true);
-
-	public static WSRPProducer toModel(WSRPProducerSoap soapModel) {
-		WSRPProducer model = new WSRPProducerImpl();
-
-		model.setWsrpProducerId(soapModel.getWsrpProducerId());
-		model.setGroupId(soapModel.getGroupId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setName(soapModel.getName());
-		model.setPortletIds(soapModel.getPortletIds());
-
-		return model;
-	}
-
-	public static List<WSRPProducer> toModels(WSRPProducerSoap[] soapModels) {
-		List<WSRPProducer> models = new ArrayList<WSRPProducer>(soapModels.length);
-
-		for (WSRPProducerSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.wsrp.model.WSRPProducer"));
 

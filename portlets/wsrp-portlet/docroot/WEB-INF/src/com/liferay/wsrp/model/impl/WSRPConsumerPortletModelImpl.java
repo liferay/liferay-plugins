@@ -25,7 +25,6 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
-import com.liferay.wsrp.model.WSRPConsumerPortletSoap;
 
 import java.io.Serializable;
 
@@ -33,9 +32,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="WSRPConsumerPortletModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -80,32 +77,6 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wsrp.model.WSRPConsumerPortlet"),
 			true);
-
-	public static WSRPConsumerPortlet toModel(WSRPConsumerPortletSoap soapModel) {
-		WSRPConsumerPortlet model = new WSRPConsumerPortletImpl();
-
-		model.setWsrpConsumerPortletId(soapModel.getWsrpConsumerPortletId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setWsrpConsumerId(soapModel.getWsrpConsumerId());
-		model.setName(soapModel.getName());
-		model.setPortletHandle(soapModel.getPortletHandle());
-
-		return model;
-	}
-
-	public static List<WSRPConsumerPortlet> toModels(
-		WSRPConsumerPortletSoap[] soapModels) {
-		List<WSRPConsumerPortlet> models = new ArrayList<WSRPConsumerPortlet>(soapModels.length);
-
-		for (WSRPConsumerPortletSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.wsrp.model.WSRPConsumerPortlet"));
 
