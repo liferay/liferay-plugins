@@ -327,6 +327,12 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		kaleoLogPersistence.removeByKaleoInstanceId(kaleoInstanceId);
 	}
 
+	public void deleteKaleoLogsByCompanyId(long companyId)
+		throws SystemException {
+
+		kaleoLogPersistence.removeByCompanyId(companyId);
+	}
+
 	public List<KaleoLog> getKaleoInstanceKaleoLogs(
 			long kaleoInstanceId, List<Integer> logTypes, int start, int end,
 			OrderByComparator orderByComparator)

@@ -149,6 +149,29 @@ public class KaleoInstanceLocalServiceImpl
 			deleteKaleoDefinitionKaleoTaskInstanceTokens(kaleoDefinitionId);
 	}
 
+	public void deleteKaleoInstancesByCompanyId(long companyId)
+		throws SystemException {
+
+		// Instances
+
+		kaleoInstancePersistence.removeByCompanyId(companyId);
+
+		// Instance tokens
+
+		kaleoInstanceTokenLocalService.
+			deleteKaleoDefinitionKaleoInstanceTokens(companyId);
+
+		// Logs
+
+		kaleoLogLocalService.deleteKaleoDefinitionKaleoLogs(companyId);
+
+		// Task instance tokens
+
+		kaleoTaskInstanceTokenLocalService.
+			deleteKaleoDefinitionKaleoTaskInstanceTokens(companyId);
+
+	}
+
 	public List<KaleoInstance> getKaleoInstances(
 			Long userId, String assetClassName, Long assetClassPK,
 			Boolean completed, int start, int end,

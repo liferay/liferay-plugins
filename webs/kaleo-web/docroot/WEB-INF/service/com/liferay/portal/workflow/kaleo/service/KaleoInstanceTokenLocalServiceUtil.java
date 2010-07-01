@@ -152,6 +152,11 @@ public class KaleoInstanceTokenLocalServiceUtil {
 		getService().deleteKaleoInstanceKaleoInstanceTokens(kaleoInstanceId);
 	}
 
+	public static void deleteKaleoInstanceTokensByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteKaleoInstanceTokensByCompanyId(companyId);
+	}
+
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getKaleoInstanceTokens(
 		long parentKaleoInstanceTokenId, java.util.Date completionDate,
 		com.liferay.portal.service.ServiceContext serviceContext)

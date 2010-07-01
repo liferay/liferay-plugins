@@ -178,6 +178,32 @@ public class KaleoDefinitionLocalServiceImpl
 			kaleoDefinition.getKaleoDefinitionId());
 	}
 
+	public void deleteKaleoDefinitionsByCompanyId(long companyId)
+		throws PortalException, SystemException {
+
+		// Definition
+
+		kaleoDefinitionPersistence.removeByCompanyId(companyId);
+
+		// Instances
+
+		kaleoInstanceLocalService.deleteKaleoInstancesByCompanyId(
+			companyId);
+
+		// Nodes
+
+		kaleoNodeLocalService.deleteKaleoNodesByCompanyId(companyId);
+
+		// Tasks
+
+		kaleoTaskLocalService.deleteKaleoTasksByCompanyId(companyId);
+
+		// Transitions
+
+		kaleoTransitionLocalService.deleteKaleoTransitionsByCompanyId(
+			companyId);
+	}
+
 	public KaleoDefinition getKaleoDefinition(
 			String name, int version, ServiceContext serviceContext)
 		throws PortalException, SystemException {

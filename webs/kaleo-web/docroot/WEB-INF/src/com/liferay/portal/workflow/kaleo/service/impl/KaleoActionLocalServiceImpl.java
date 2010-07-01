@@ -72,6 +72,12 @@ public class KaleoActionLocalServiceImpl
 		kaleoActionPersistence.removeByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
+	public void deleteKaleoActionsByCompanyId(long companyId)
+		throws SystemException {
+
+		kaleoActionPersistence.removeByCompanyId(companyId);
+	}
+
 	public List<KaleoAction> getKaleoActions(
 			long kaleoNodeId, String executionType)
 		throws SystemException {

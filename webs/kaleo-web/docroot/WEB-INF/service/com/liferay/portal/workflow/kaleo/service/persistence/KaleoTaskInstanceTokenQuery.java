@@ -162,7 +162,7 @@ public class KaleoTaskInstanceTokenQuery {
 		_userId = userId;
 	}
 
-	private boolean _andOperator;
+	private boolean _andOperator = true;
 	private String _assetType;
 	private String _assigneeClassName;
 	private Long _assigneeClassPK;

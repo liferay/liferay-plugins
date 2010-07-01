@@ -211,6 +211,15 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			deleteKaleoInstanceKaleoTaskAssignmentInstances(kaleoInstanceId);
 	}
 
+	public void deleteKaleoTaskInstanceTokensByCompanyId(long companyId)
+		throws SystemException {
+
+		kaleoTaskInstanceTokenPersistence.removeByCompanyId(companyId);
+
+		kaleoTaskAssignmentInstanceLocalService.
+			deleteKaleoTaskAssignmentInstancesByCompanyId(companyId);
+	}
+
 	public List<KaleoTaskInstanceToken> getCompanyKaleoTaskInstanceTokens(
 			long companyId, int start, int end)
 		throws SystemException {
@@ -304,6 +313,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			new KaleoTaskInstanceTokenQuery(serviceContext);
 
 		kaleoTaskInstanceTokenQuery.setCompleted(completed);
+		kaleoTaskInstanceTokenQuery.setAssigneeClassName(Role.class.getName());
+
 		kaleoTaskInstanceTokenQuery.setRoleIds(roleIds);
 
 		return kaleoTaskInstanceTokenFinder.countKaleoTaskInstanceTokens(
@@ -408,6 +419,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		kaleoTaskInstanceTokenQuery.setSearchByUserRoles(searchByUserRoles);
 		kaleoTaskInstanceTokenQuery.setStart(start);
 		kaleoTaskInstanceTokenQuery.setTaskName(taskName);
+		kaleoTaskInstanceTokenQuery.setAndOperator(andOperator);
 
 		return kaleoTaskInstanceTokenFinder.findKaleoTaskInstanceTokens(
 			kaleoTaskInstanceTokenQuery);

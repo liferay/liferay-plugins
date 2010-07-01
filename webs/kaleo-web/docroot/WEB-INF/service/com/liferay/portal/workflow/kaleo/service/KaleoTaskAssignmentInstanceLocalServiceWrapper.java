@@ -183,6 +183,11 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 		_kaleoTaskAssignmentInstanceLocalService.deleteKaleoTaskAssignmentInstances(kaleoTaskInstanceToken);
 	}
 
+	public void deleteKaleoTaskAssignmentInstancesByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoTaskAssignmentInstanceLocalService.deleteKaleoTaskAssignmentInstancesByCompanyId(companyId);
+	}
+
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances(
 		long kaleoTaskInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.SystemException {

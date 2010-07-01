@@ -136,6 +136,11 @@ public class KaleoNodeLocalServiceUtil {
 		getService().deleteKaleoNodes(kaleoDefinitionId);
 	}
 
+	public static void deleteKaleoNodesByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteKaleoNodesByCompanyId(companyId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

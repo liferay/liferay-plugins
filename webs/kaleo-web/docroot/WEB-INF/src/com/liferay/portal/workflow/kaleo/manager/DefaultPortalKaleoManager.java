@@ -50,6 +50,12 @@ public class DefaultPortalKaleoManager
 	extends BaseKaleoBean implements PortalKaleoManager {
 
 	public void deleteKaleoData(Company company) throws Exception {
+		long companyId = company.getCompanyId();
+
+		kaleoDefinitionLocalService.deleteKaleoDefinitionsByCompanyId(
+			companyId);
+
+		kaleoLogLocalService.deleteKaleoLogsByCompanyId(companyId);
 	}
 
 	public void deployDefaultDefinitionLink(String assetClassName)

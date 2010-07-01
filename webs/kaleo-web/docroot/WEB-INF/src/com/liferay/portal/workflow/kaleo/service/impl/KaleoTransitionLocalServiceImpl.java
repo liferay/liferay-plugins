@@ -75,6 +75,12 @@ public class KaleoTransitionLocalServiceImpl
 		kaleoTransitionPersistence.removeByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
+	public void deleteKaleoTransitionsByCompanyId(long companyId)
+		throws SystemException {
+
+		kaleoTransitionPersistence.removeByCompanyId(companyId);
+	}
+
 	public KaleoTransition getDefaultKaleoTransition(long kaleoNodeId)
 		throws PortalException, SystemException {
 

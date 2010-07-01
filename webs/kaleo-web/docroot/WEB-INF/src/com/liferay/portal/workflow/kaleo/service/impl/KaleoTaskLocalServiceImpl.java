@@ -94,6 +94,19 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 			kaleoDefinitionId);
 	}
 
+	public void deleteKaleoTasksByCompanyId(long companyId)
+		throws SystemException {
+
+		// Tasks
+
+		kaleoTaskPersistence.removeByCompanyId(companyId);
+
+		// Task assignments
+
+		kaleoTaskAssignmentLocalService.deleteKaleoTaskAssignmentsByCompanyId(
+			companyId);
+	}
+
 	public KaleoTask getKaleoNodeKaleoTask(long kaleoNodeId)
 		throws PortalException, SystemException {
 

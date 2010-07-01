@@ -76,6 +76,12 @@ public class KaleoTaskAssignmentLocalServiceImpl
 			kaleoDefinitionId);
 	}
 
+	public void deleteKaleoTaskAssignmentsByCompanyId(long companyId)
+		throws SystemException {
+
+		kaleoTaskAssignmentPersistence.removeByCompanyId(companyId);
+	}
+
 	public List<KaleoTaskAssignment> getKaleoTaskAssignments(long kaleoTaskId)
 		throws SystemException {
 

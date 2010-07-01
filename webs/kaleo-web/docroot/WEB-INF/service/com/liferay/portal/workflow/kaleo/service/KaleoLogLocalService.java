@@ -172,6 +172,9 @@ public interface KaleoLogLocalService {
 	public void deleteKaleoInstanceKaleoLogs(long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public void deleteKaleoLogsByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoInstanceKaleoLogs(
 		long kaleoInstanceId, java.util.List<java.lang.Integer> logTypes,

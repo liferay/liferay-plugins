@@ -118,6 +118,9 @@ public interface KaleoNotificationLocalService {
 	public void deleteKaleoNotifications(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public void deleteKaleoNotificationsByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> getKaleoNotifications(
 		long kaleoNodeId, java.lang.String executionType)

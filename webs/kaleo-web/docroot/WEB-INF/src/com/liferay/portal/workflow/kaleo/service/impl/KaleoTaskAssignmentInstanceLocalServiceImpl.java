@@ -226,6 +226,14 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 		}
 	}
 
+	public void deleteKaleoTaskAssignmentInstancesByCompanyId(
+			long companyId)
+		throws SystemException {
+
+		kaleoTaskAssignmentInstancePersistence.removeByCompanyId(
+			companyId);
+	}
+
 	public List<KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances(
 			long kaleoTaskInstanceTokenId)
 		throws SystemException {

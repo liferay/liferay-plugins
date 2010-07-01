@@ -147,6 +147,11 @@ public class KaleoInstanceLocalServiceWrapper
 		_kaleoInstanceLocalService.deleteKaleoInstances(kaleoDefinitionId);
 	}
 
+	public void deleteKaleoInstancesByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoInstanceLocalService.deleteKaleoInstancesByCompanyId(companyId);
+	}
+
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
 		java.lang.Long userId, java.lang.String assetClassName,
 		java.lang.Long assetClassPK, java.lang.Boolean completed, int start,

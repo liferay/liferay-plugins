@@ -140,6 +140,11 @@ public class KaleoNotificationLocalServiceWrapper
 		_kaleoNotificationLocalService.deleteKaleoNotifications(kaleoDefinitionId);
 	}
 
+	public void deleteKaleoNotificationsByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoNotificationLocalService.deleteKaleoNotificationsByCompanyId(companyId);
+	}
+
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> getKaleoNotifications(
 		long kaleoNodeId, java.lang.String executionType)
 		throws com.liferay.portal.kernel.exception.SystemException {

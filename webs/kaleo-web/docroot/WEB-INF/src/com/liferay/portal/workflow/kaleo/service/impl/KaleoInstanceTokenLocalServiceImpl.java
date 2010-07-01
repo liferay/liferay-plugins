@@ -125,6 +125,12 @@ public class KaleoInstanceTokenLocalServiceImpl
 		kaleoInstanceTokenPersistence.removeByKaleoInstanceId(kaleoInstanceId);
 	}
 
+	public void deleteKaleoInstanceTokensByCompanyId(long companyId)
+		throws SystemException {
+
+		kaleoInstanceTokenPersistence.removeByCompanyId(companyId);
+	}
+
 	public List<KaleoInstanceToken> getKaleoInstanceTokens(
 			long parentKaleoInstanceTokenId, Date completionDate,
 			ServiceContext serviceContext)
