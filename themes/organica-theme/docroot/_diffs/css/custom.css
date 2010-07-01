@@ -18,6 +18,10 @@ body {
 	width: 1%;
 }
 
+#breadcrumbs {
+	display: none;
+}
+
 a {
 	color: #57391B;
 	font-weight: bold;
@@ -42,9 +46,7 @@ table {
 /* ---------- Banner ---------- */
 
 #banner {
-	height: 96px;
 	position: relative;
-	z-index: 2000;
 }
 
 #sign-in {
@@ -67,13 +69,8 @@ table {
 	background: url(../images/custom/navigation_bg.png) repeat-x;
 	font-family: Times New Roman;
 	font-size: 18px;
-	height: 32px;
 	position: relative;
-	z-index: 1000;
-}
-
-.ie7 #navigation {
-	margin-top: -20px;
+	margin: 0;
 }
 
 #navigation a {
@@ -83,7 +80,8 @@ table {
 }
 
 #navigation ul {
-	margin: 0;
+	margin: 0 0 -5px 0;
+	height: 32px;
 }
 
 #navigation ul li {
@@ -102,6 +100,7 @@ table {
 #navigation a:hover {
 	background: #FCFAE4;
 	color: #D21034;
+	padding-bottom: 6px;
 }
 
 #navigation ul li ul.child-menu {
@@ -119,7 +118,8 @@ h1.company-title {
 	color: #57391B;
 	font-size: 12px;
 	z-index: 1;
-	padding-top: 30px;
+	margin: 0;
+	padding: 0;
 }
 
 .lfr-grid .lfr-column {
@@ -143,26 +143,6 @@ h1.company-title {
 
 .portlet-title img {
 	display: none;
-}
-
-.portlet-content {
-	padding: 5px 16px 15px;
-}
-
-#column-2 .portlet {
-	background: none;
-}
-
-#column-2 .portlet-content-container {
-	padding-bottom: 20px;
-}
-
-#column-2 .portlet-topper {
-	background: url(../images/custom/portlet_topper_bg_column_2.png) repeat-x;
-}
-
-#column-2 .portlet-title {
-	padding-top: 5px;
 }
 
 .taglib-calendar tr th,
@@ -337,6 +317,10 @@ input[type="reset"] {
 	text-decoration: none;
 }
 
+.portlet-column-content.empty {
+	padding: 0;
+}
+
 .ui-tabs li.current {
 	padding-top: 0;
 }
@@ -355,4 +339,12 @@ input[type="reset"] {
 	background: url(../images/custom/footer_bg.png) no-repeat;
 	height: 84px;
 	margin-bottom: 30px;
+	padding-left: 18px;
+}
+
+.aui-menu-content {
+	z-index: 5000;
+}
+.ie6 .chat-bar {
+	display: none;
 }
