@@ -32,6 +32,7 @@
 }
 
 #sign-in {
+	color: #FFF;
 	position: absolute;
 	right: 30px;
 	top: 30px;
@@ -56,12 +57,12 @@ a:hover {
 
 /* ---------- Banner ---------- */
 
-#banner {
+#heading {
 	background: url(../images/custom/banner_bg.png) repeat-x;
 	position: relative;
 }
 
-#banner .sign-in {
+#heading #sign-in {
 	color: #FFF;
 	position: absolute;
 	right: 20px;
@@ -140,6 +141,10 @@ a:hover {
 	background: url(../images/custom/navigation_item_selected.png) no-repeat 50% 100%;
 }
 
+.child-menu {
+	display: none;
+}
+
 /* ---------- Content Wrapper ---------- */
 
 #content {
@@ -170,4 +175,14 @@ a:hover {
 .portlet-content {
 	border: 1px solid #CCC;
 	border-top: none;
+}
+
+#footer {
+	margin: 0 auto;
+	position: relative;
+	width: 1024px;
+}
+
+#footer .powered-by {
+	margin-left: 10px;
 }
