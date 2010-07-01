@@ -160,8 +160,15 @@ public class KaleoTaskInstanceTokenFinderImpl
 				sql, kaleoTaskInstanceTokenQuery.isAndOperator());
 		}
 
-		sql = CustomSQLUtil.replaceOrderBy(
-			sql, kaleoTaskInstanceTokenQuery.getOrderByComparator());
+		if (kaleoTaskInstanceTokenQuery.getOrderByComparator() != null) {
+			StringBundler stringBundler = new StringBundler(sql);
+
+			appendOrderByComparator(
+				stringBundler, _ORDER_BY_ENTITY_ALIAS,
+				kaleoTaskInstanceTokenQuery.getOrderByComparator());
+
+			sql = stringBundler.toString();
+		}
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -641,4 +648,6 @@ public class KaleoTaskInstanceTokenFinderImpl
 		qPos.add(taskNames);
 	}
 
+	private static final String _ORDER_BY_ENTITY_ALIAS =
+		"Kaleo_KaleoTaskInstanceToken.";
 }
