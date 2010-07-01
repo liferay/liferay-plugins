@@ -138,7 +138,7 @@ public class KaleoDefinitionLocalServiceImpl
 			String name, int version, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		// Definition
+		// Kaleo definition
 
 		KaleoDefinition kaleoDefinition = getKaleoDefinition(
 			name, version, serviceContext);
@@ -157,22 +157,22 @@ public class KaleoDefinitionLocalServiceImpl
 
 		kaleoDefinitionPersistence.remove(kaleoDefinition);
 
-		// Instances
+		// Kaleo instances
 
 		kaleoInstanceLocalService.deleteKaleoInstances(
 			kaleoDefinition.getKaleoDefinitionId());
 
-		// Nodes
+		// Kaleo nodes
 
 		kaleoNodeLocalService.deleteKaleoNodes(
 			kaleoDefinition.getKaleoDefinitionId());
 
-		// Tasks
+		// Kaleo tasks
 
 		kaleoTaskLocalService.deleteKaleoTasks(
 			kaleoDefinition.getKaleoDefinitionId());
 
-		// Transitions
+		// Kaleo transitions
 
 		kaleoTransitionLocalService.deleteKaleoTransitions(
 			kaleoDefinition.getKaleoDefinitionId());

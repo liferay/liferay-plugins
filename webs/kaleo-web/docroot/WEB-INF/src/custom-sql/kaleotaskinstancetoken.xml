@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder.countByC_KTAI">
+		<![CDATA[
+			SELECT
+				DISTINCT COUNT(*) AS COUNT_VALUE
+			FROM
+				Kaleo_KaleoTaskInstanceToken
+			INNER JOIN
+				Kaleo_KaleoTaskAssignmentInstance ON
+					(Kaleo_KaleoTaskAssignmentInstance.kaleoTaskInstanceTokenId = Kaleo_KaleoTaskInstanceToken.kaleoTaskInstanceTokenId)
+			WHERE
+				(Kaleo_KaleoTaskInstanceToken.companyId = ?)
+		]]>
+	</sql>
+	<sql id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder.findByC_KTAI">
+		<![CDATA[
+			SELECT
+				DISTINCT {Kaleo_KaleoTaskInstanceToken.*}
+			FROM
+				Kaleo_KaleoTaskInstanceToken
+			INNER JOIN
+				Kaleo_KaleoTaskAssignmentInstance ON
+					(Kaleo_KaleoTaskAssignmentInstance.kaleoTaskInstanceTokenId = Kaleo_KaleoTaskInstanceToken.kaleoTaskInstanceTokenId)
+			WHERE
+				(Kaleo_KaleoTaskInstanceToken.companyId = ?)
+		]]>
+	</sql>
+</custom-sql>

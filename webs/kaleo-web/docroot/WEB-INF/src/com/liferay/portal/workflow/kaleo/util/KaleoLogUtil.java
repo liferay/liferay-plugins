@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -23,23 +23,21 @@ import com.liferay.portal.workflow.kaleo.definition.LogType;
  * @author Michael C. Han
  */
 public class KaleoLogUtil {
+
 	public static int convert(String type) {
 		LogType logType = LogType.valueOf(type);
 
-		if (logType.equals(LogType.TASK_ASSIGNMENT)) {
-			return WorkflowLog.TASK_ASSIGN;
-		}
-
-		if (logType.equals(LogType.TASK_COMPLETION)) {
-			return WorkflowLog.TASK_COMPLETION;
-		}
-
-		if (logType.equals(LogType.TASK_UPDATE)) {
-			return WorkflowLog.TASK_UPDATE;
-		}
-
 		if (logType.equals(LogType.NODE_EXIT)) {
 			return WorkflowLog.TRANSITION;
+		}
+		else if (logType.equals(LogType.TASK_ASSIGNMENT)) {
+			return WorkflowLog.TASK_ASSIGN;
+		}
+		else if (logType.equals(LogType.TASK_COMPLETION)) {
+			return WorkflowLog.TASK_COMPLETION;
+		}
+		else if (logType.equals(LogType.TASK_UPDATE)) {
+			return WorkflowLog.TASK_UPDATE;
 		}
 
 		return -1;
@@ -49,19 +47,17 @@ public class KaleoLogUtil {
 		if (type == WorkflowLog.TASK_ASSIGN) {
 			return LogType.TASK_ASSIGNMENT.name();
 		}
-
-		if (type == WorkflowLog.TASK_UPDATE) {
-			return LogType.TASK_UPDATE.name();
-		}
-
-		if (type == WorkflowLog.TASK_COMPLETION) {
+		else if (type == WorkflowLog.TASK_COMPLETION) {
 			return LogType.TASK_COMPLETION.name();
 		}
-
-		if (type == WorkflowLog.TRANSITION) {
+		else if (type == WorkflowLog.TASK_UPDATE) {
+			return LogType.TASK_UPDATE.name();
+		}
+		else if (type == WorkflowLog.TRANSITION) {
 			return LogType.NODE_EXIT.name();
 		}
 
 		return null;
 	}
+
 }

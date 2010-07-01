@@ -25,6 +25,8 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
 public class KaleoTaskAssignmentInstanceImpl
 	extends KaleoTaskAssignmentInstanceModelImpl
 	implements KaleoTaskAssignmentInstance {
+
 	public KaleoTaskAssignmentInstanceImpl() {
 	}
+
 }

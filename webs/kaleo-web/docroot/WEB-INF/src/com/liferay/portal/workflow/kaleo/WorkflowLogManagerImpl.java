@@ -49,8 +49,9 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 		throws WorkflowException {
 
 		try {
-			return KaleoLogLocalServiceUtil.getKaleoTaskKaleoLogsCount(
-				workflowTaskId, logTypes);
+			return KaleoLogLocalServiceUtil.
+				getKaleoTaskInstanceTokenKaleoLogsCount(
+					workflowTaskId, logTypes);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -82,7 +83,7 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 
 		try {
 			List<KaleoLog> kaleoLogs =
-				KaleoLogLocalServiceUtil.getKaleoTaskKaleoLogs(
+				KaleoLogLocalServiceUtil.getKaleoTaskInstanceTokenKaleoLogs(
 					workflowTaskId, logTypes, start, end, orderByComparator);
 
 			return toWorkflowLogs(kaleoLogs);

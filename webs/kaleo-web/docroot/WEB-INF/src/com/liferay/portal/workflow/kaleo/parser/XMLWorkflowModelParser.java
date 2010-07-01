@@ -187,14 +187,14 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		Element rolesElement = assignmentsElement.element("roles");
 
 		if (rolesElement != null) {
-
 			List<Element> roleAssignmentElements = rolesElement.elements(
 				"role");
 
 			for (Element roleAssignmentElement : roleAssignmentElements) {
 				long roleId = GetterUtil.getLong(
 					roleAssignmentElement.elementText("role-id"));
-				String roleType = roleAssignmentElement.elementText("role-type");
+				String roleType = roleAssignmentElement.elementText(
+					"role-type");
 				String name = roleAssignmentElement.elementText("name");
 
 				RoleAssignment roleAssignment = null;

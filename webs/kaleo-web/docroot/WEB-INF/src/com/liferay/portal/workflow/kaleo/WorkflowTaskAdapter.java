@@ -41,17 +41,11 @@ public class WorkflowTaskAdapter extends DefaultWorkflowTask {
 			Map<String, Serializable> workflowContext)
 		throws PortalException, SystemException {
 
-		List<WorkflowTaskAssignee> workflowTaskAssignees =
-			KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
-				kaleoTaskInstanceToken);
-
-		setWorkflowTaskAssignees(workflowTaskAssignees);
-
 		setCreateDate(kaleoTaskInstanceToken.getCreateDate());
 		setCompletionDate(kaleoTaskInstanceToken.getCompletionDate());
+		setDescription(kaleoTaskInstanceToken.getKaleoTask().getDescription());
 		setDueDate(kaleoTaskInstanceToken.getDueDate());
 		setName(kaleoTaskInstanceToken.getKaleoTask().getName());
-		setDescription(kaleoTaskInstanceToken.getKaleoTask().getDescription());
 
 		if (workflowContext != null) {
 			setOptionalAttributes(workflowContext);
@@ -70,6 +64,13 @@ public class WorkflowTaskAdapter extends DefaultWorkflowTask {
 		setWorkflowDefinitionName(kaleoInstance.getKaleoDefinitionName());
 		setWorkflowDefinitionVersion(kaleoInstance.getKaleoDefinitionVersion());
 		setWorkflowInstanceId(kaleoInstance.getKaleoInstanceId());
+
+		List<WorkflowTaskAssignee> workflowTaskAssignees =
+			KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
+				kaleoTaskInstanceToken);
+
+		setWorkflowTaskAssignees(workflowTaskAssignees);
+
 		setWorkflowTaskId(kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
 	}
 

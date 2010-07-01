@@ -146,32 +146,6 @@ public class KaleoInstanceLocalServiceUtil {
 		getService().deleteKaleoInstances(kaleoDefinitionId);
 	}
 
-	public static int getKaleoInstancesCount(long kaleoDefinitionId,
-		boolean completed)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getKaleoInstancesCount(kaleoDefinitionId, completed);
-	}
-
-	public static int getKaleoInstancesCount(
-		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
-		boolean completed,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getKaleoInstancesCount(kaleoDefinitionName,
-			kaleoDefinitionVersion, completed, serviceContext);
-	}
-
-	public static int getKaleoInstancesCount(java.lang.Long userId,
-		java.lang.String assetClassName, java.lang.Long assetClassPK,
-		java.lang.Boolean completed,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getKaleoInstancesCount(userId, assetClassName,
-			assetClassPK, completed, serviceContext);
-	}
-
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
 		java.lang.Long userId, java.lang.String assetClassName,
 		java.lang.Long assetClassPK, java.lang.Boolean completed, int start,
@@ -194,6 +168,32 @@ public class KaleoInstanceLocalServiceUtil {
 				   .getKaleoInstances(kaleoDefinitionName,
 			kaleoDefinitionVersion, completed, start, end, orderByComparator,
 			serviceContext);
+	}
+
+	public static int getKaleoInstancesCount(long kaleoDefinitionId,
+		boolean completed)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getKaleoInstancesCount(kaleoDefinitionId, completed);
+	}
+
+	public static int getKaleoInstancesCount(java.lang.Long userId,
+		java.lang.String assetClassName, java.lang.Long assetClassPK,
+		java.lang.Boolean completed,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getKaleoInstancesCount(userId, assetClassName,
+			assetClassPK, completed, serviceContext);
+	}
+
+	public static int getKaleoInstancesCount(
+		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
+		boolean completed,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getKaleoInstancesCount(kaleoDefinitionName,
+			kaleoDefinitionVersion, completed, serviceContext);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance updateKaleoInstance(

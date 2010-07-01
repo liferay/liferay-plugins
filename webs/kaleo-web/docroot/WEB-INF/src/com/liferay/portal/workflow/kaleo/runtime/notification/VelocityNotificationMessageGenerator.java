@@ -95,19 +95,18 @@ public class VelocityNotificationMessageGenerator
 			executionContext.getKaleoTaskInstanceToken();
 
 		if (kaleoTaskInstanceToken != null) {
-			List<WorkflowTaskAssignee> workflowTaskAssignees =
-				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
-					kaleoTaskInstanceToken);
-
-			velocityContext.put(
-				"workflowTaskAssignees", workflowTaskAssignees);
-
 			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
 			velocityContext.put("taskName", kaleoTask.getName());
 
 			velocityContext.put(
 				"userId", kaleoTaskInstanceToken.getUserId());
+
+			List<WorkflowTaskAssignee> workflowTaskAssignees =
+				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
+					kaleoTaskInstanceToken);
+
+			velocityContext.put("workflowTaskAssignees", workflowTaskAssignees);
 		}
 		else {
 			KaleoInstanceToken kaleoInstanceToken =

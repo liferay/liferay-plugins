@@ -240,20 +240,23 @@ public class KaleoLogLocalServiceUtil {
 				   .getKaleoInstanceKaleoLogsCount(kaleoInstanceId, logTypes);
 	}
 
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoTaskKaleoLogs(
-		long kaleoTaskId, java.util.List<java.lang.Integer> logTypes,
-		int start, int end,
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoTaskInstanceTokenKaleoLogs(
+		long kaleoTaskInstanceTokenId,
+		java.util.List<java.lang.Integer> logTypes, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getKaleoTaskKaleoLogs(kaleoTaskId, logTypes, start, end,
-			orderByComparator);
+				   .getKaleoTaskInstanceTokenKaleoLogs(kaleoTaskInstanceTokenId,
+			logTypes, start, end, orderByComparator);
 	}
 
-	public static int getKaleoTaskKaleoLogsCount(long kaleoTaskId,
+	public static int getKaleoTaskInstanceTokenKaleoLogsCount(
+		long kaleoTaskInstanceTokenId,
 		java.util.List<java.lang.Integer> logTypes)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getKaleoTaskKaleoLogsCount(kaleoTaskId, logTypes);
+		return getService()
+				   .getKaleoTaskInstanceTokenKaleoLogsCount(kaleoTaskInstanceTokenId,
+			logTypes);
 	}
 
 	public static void clearService() {

@@ -21,43 +21,11 @@ package com.liferay.portal.workflow.kaleo.service.persistence;
  * @author Brian Wing Shun Chan
  */
 public interface KaleoTaskInstanceTokenFinder {
-	public int countByACN_ACP_C_CI(java.lang.String assigneeClassName,
-		long assigneeClassPK, java.lang.Boolean completed,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public int countKaleoTaskInstanceTokens(
+		com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countByC_DD_K_UR(java.lang.String taskName,
-		java.lang.String assetType, java.util.Date dueDateGT,
-		java.util.Date dueDateLT, java.lang.Boolean completed,
-		java.lang.Boolean searchByUserRoles, boolean andOperator,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public int countByRoles_C_CI(java.util.List<java.lang.Long> roleIds,
-		java.lang.Boolean completed,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> findByACN_ACP_C_CI(
-		java.lang.String assigneeClassName, long assigneeClassPK,
-		java.lang.Boolean completed, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> findByC_DD_K_UR(
-		java.lang.String taskName, java.lang.String assetType,
-		java.util.Date dueDateGT, java.util.Date dueDateLT,
-		java.lang.Boolean completed, java.lang.Boolean searchByUserRoles,
-		boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> findByRoles_C_CI(
-		java.util.List<java.lang.Long> roleIds, java.lang.Boolean completed,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> findKaleoTaskInstanceTokens(
+		com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

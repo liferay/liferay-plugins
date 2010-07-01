@@ -31,7 +31,6 @@ public class RoleAssignment extends Assignment {
 	}
 
 	public RoleAssignment(String roleName, String roleType) {
-
 		super(AssignmentType.ROLE);
 
 		_roleName = roleName;

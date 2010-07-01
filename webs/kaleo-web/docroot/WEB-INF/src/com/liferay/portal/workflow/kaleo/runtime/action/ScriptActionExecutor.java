@@ -76,18 +76,17 @@ public class ScriptActionExecutor implements ActionExecutor {
 			executionContext.getKaleoTaskInstanceToken();
 
 		if (kaleoTaskInstanceToken != null) {
-			List<WorkflowTaskAssignee> workflowTaskAssignees =
-				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
-					kaleoTaskInstanceToken);
-
-			inputObjects.put(
-				"workflowTaskAssignees", workflowTaskAssignees);
-
 			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
 			inputObjects.put("taskName", kaleoTask.getName());
 
 			inputObjects.put("userId", kaleoTaskInstanceToken.getUserId());
+
+			List<WorkflowTaskAssignee> workflowTaskAssignees =
+				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
+					kaleoTaskInstanceToken);
+
+			inputObjects.put("workflowTaskAssignees", workflowTaskAssignees);
 		}
 		else {
 			KaleoInstanceToken kaleoInstanceToken =

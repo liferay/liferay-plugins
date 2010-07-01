@@ -97,19 +97,19 @@ public class FreeMarkerNotificationMessageGenerator
 			executionContext.getKaleoTaskInstanceToken();
 
 		if (kaleoTaskInstanceToken != null) {
-			List<WorkflowTaskAssignee> workflowTaskAssignees =
-				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
-					kaleoTaskInstanceToken);
-
-			freeMarkerContext.put(
-				"workflowTaskAssignees", workflowTaskAssignees);
-
 			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
 			freeMarkerContext.put("taskName", kaleoTask.getName());
 
 			freeMarkerContext.put(
 				"userId", kaleoTaskInstanceToken.getUserId());
+
+			List<WorkflowTaskAssignee> workflowTaskAssignees =
+				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
+					kaleoTaskInstanceToken);
+
+			freeMarkerContext.put(
+				"workflowTaskAssignees", workflowTaskAssignees);
 		}
 		else {
 			KaleoInstanceToken kaleoInstanceToken =

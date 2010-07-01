@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -23,11 +23,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <a href="KaleoTaskAssignmentInstanceUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="KaleoTaskAssignmentInstanceUtil.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Michael C. Han
  */
 public class KaleoTaskAssignmentInstanceUtil {
+
 	public static List<WorkflowTaskAssignee> getWorkflowTaskAssignees(
 			KaleoTaskInstanceToken kaleoTaskInstanceToken)
 		throws SystemException {
@@ -42,13 +44,15 @@ public class KaleoTaskAssignmentInstanceUtil {
 		for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance :
 				kaleoTaskAssignmentInstances) {
 
-			workflowTaskAssignees.add(
+			WorkflowTaskAssignee workflowTaskAssignee =
 				new WorkflowTaskAssignee(
 					kaleoTaskAssignmentInstance.getAssigneeClassName(),
-					kaleoTaskAssignmentInstance.getAssigneeClassPK()));
+					kaleoTaskAssignmentInstance.getAssigneeClassPK());
 
+			workflowTaskAssignees.add(workflowTaskAssignee);
 		}
 
 		return workflowTaskAssignees;
 	}
+
 }

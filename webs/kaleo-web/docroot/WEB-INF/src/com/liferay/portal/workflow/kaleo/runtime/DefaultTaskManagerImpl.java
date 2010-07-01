@@ -248,6 +248,7 @@ public class DefaultTaskManagerImpl
 		KaleoInstance kaleoInstance =
 			kaleoInstanceLocalService.getKaleoInstance(
 				kaleoTaskInstanceToken.getKaleoInstanceId());
+
 		if (workflowContext == null) {
 			workflowContext = WorkflowContextUtil.convert(
 				kaleoInstance.getWorkflowContext());
@@ -257,6 +258,7 @@ public class DefaultTaskManagerImpl
 				WorkflowContextUtil.convert(
 					kaleoInstance.getWorkflowContext()));
 		}
+
 		return workflowContext;
 	}
 

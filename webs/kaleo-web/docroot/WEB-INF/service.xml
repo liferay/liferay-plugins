@@ -500,6 +500,7 @@
 		<column name="kaleoTaskId" type="long" />
 		<column name="assigneeClassName" type="String" />
 		<column name="assigneeClassPK" type="long" />
+
 		<!-- Order -->
 
 		<order by="asc">

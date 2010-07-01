@@ -46,7 +46,8 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 		throws PortalException, SystemException {
 
 		User user = userPersistence.findByPrimaryKey(
-						serviceContext.getUserId());
+			serviceContext.getUserId());
+		Date now = new Date();
 
 		long kaleoTaskAssignmentInstanceId = counterLocalService.increment();
 
@@ -54,11 +55,26 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 			kaleoTaskAssignmentInstancePersistence.create(
 				kaleoTaskAssignmentInstanceId);
 
-		populateKaleoTaskAssignmentInstance(
-			kaleoTaskAssignmentInstance, kaleoTaskInstanceToken, user);
-
+		kaleoTaskAssignmentInstance.setGroupId(
+			kaleoTaskInstanceToken.getGroupId());
+		kaleoTaskAssignmentInstance.setCompanyId(user.getCompanyId());
+		kaleoTaskAssignmentInstance.setUserId(user.getUserId());
+		kaleoTaskAssignmentInstance.setUserName(user.getFullName());
+		kaleoTaskAssignmentInstance.setCreateDate(now);
+		kaleoTaskAssignmentInstance.setModifiedDate(now);
+		kaleoTaskAssignmentInstance.setKaleoDefinitionId(
+			kaleoTaskInstanceToken.getKaleoDefinitionId());
+		kaleoTaskAssignmentInstance.setKaleoInstanceId(
+			kaleoTaskInstanceToken.getKaleoInstanceId());
+		kaleoTaskAssignmentInstance.setKaleoTaskInstanceTokenId(
+			kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
+		kaleoTaskAssignmentInstance.setKaleoTaskId(
+			kaleoTaskInstanceToken.getKaleoTaskId());
+		kaleoTaskAssignmentInstance.setKaleoTaskName(
+			kaleoTaskInstanceToken.getKaleoTaskName());
 		kaleoTaskAssignmentInstance.setAssigneeClassName(assigneeClassName);
 		kaleoTaskAssignmentInstance.setAssigneeClassPK(assigneeClassPK);
+		kaleoTaskAssignmentInstance.setCompleted(false);
 
 		kaleoTaskAssignmentInstancePersistence.update(
 			kaleoTaskAssignmentInstance, false);
@@ -78,23 +94,41 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 
 		for (KaleoTaskAssignment kaleoTaskAssignment : kaleoTaskAssignments) {
 			User user = userPersistence.findByPrimaryKey(
-						serviceContext.getUserId());
+				serviceContext.getUserId());
+			Date now = new Date();
 
-			long kaleoTaskAssignmentInstanceId = counterLocalService.increment();
+			long kaleoTaskAssignmentInstanceId =
+				counterLocalService.increment();
 
 			KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance =
 				kaleoTaskAssignmentInstancePersistence.create(
 					kaleoTaskAssignmentInstanceId);
 
-			populateKaleoTaskAssignmentInstance(
-				kaleoTaskAssignmentInstance, kaleoTaskInstanceToken, user);
+			kaleoTaskAssignmentInstance.setGroupId(
+				kaleoTaskInstanceToken.getGroupId());
+			kaleoTaskAssignmentInstance.setCompanyId(user.getCompanyId());
+			kaleoTaskAssignmentInstance.setUserId(user.getUserId());
+			kaleoTaskAssignmentInstance.setUserName(user.getFullName());
+			kaleoTaskAssignmentInstance.setCreateDate(now);
+			kaleoTaskAssignmentInstance.setModifiedDate(now);
+			kaleoTaskAssignmentInstance.setKaleoDefinitionId(
+				kaleoTaskInstanceToken.getKaleoDefinitionId());
+			kaleoTaskAssignmentInstance.setKaleoInstanceId(
+				kaleoTaskInstanceToken.getKaleoInstanceId());
+			kaleoTaskAssignmentInstance.setKaleoTaskInstanceTokenId(
+				kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
+			kaleoTaskAssignmentInstance.setKaleoTaskId(
+				kaleoTaskInstanceToken.getKaleoTaskId());
+			kaleoTaskAssignmentInstance.setKaleoTaskName(
+				kaleoTaskInstanceToken.getKaleoTaskName());
 
-			kaleoTaskAssignmentInstance.setAssigneeClassName(
-				kaleoTaskAssignment.getAssigneeClassName());
+			String assigneeClassName =
+				kaleoTaskAssignment.getAssigneeClassName();
+
+			kaleoTaskAssignmentInstance.setAssigneeClassName(assigneeClassName);
 
 			if ((kaleoTaskAssignment.getAssigneeClassPK() == 0) &&
-				User.class.getName().equals(
-					kaleoTaskAssignment.getAssigneeClassName())) {
+				assigneeClassName.equals(User.class.getName())) {
 
 				KaleoInstance kaleoInstance =
 					kaleoInstanceLocalService.getKaleoInstance(
@@ -121,7 +155,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 			KaleoTaskInstanceToken kaleoTaskInstanceToken,
 			String assigneeClassName, long assigneeClassPK,
 			ServiceContext serviceContext)
-	throws PortalException, SystemException {
+		throws PortalException, SystemException {
 
 		deleteKaleoTaskAssignmentInstances(kaleoTaskInstanceToken);
 
@@ -139,13 +173,12 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 
 		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
 			kaleoTaskAssignmentInstancePersistence.
-				findBykaleoTaskInstanceTokenId(
-					kaleoTaskInstanceTokenId);
+				findBykaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
 
 		if (kaleoTaskAssignmentInstances.size() > 1) {
 			throw new WorkflowException(
-				"Cannot complete a task that is not " +
-				"assigned to an individual user.");
+				"Cannot complete a task that is not assigned to an " +
+					"individual user");
 		}
 
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance =
@@ -160,9 +193,25 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 		return kaleoTaskAssignmentInstance;
 	}
 
+	public void deleteKaleoDefinitionKaleoTaskAssignmentInstances(
+			long kaleoDefintionId)
+		throws SystemException {
+
+		kaleoTaskAssignmentInstancePersistence.removeByKaleoDefinitionId(
+			kaleoDefintionId);
+	}
+
+	public void deleteKaleoInstanceKaleoTaskAssignmentInstances(
+			long kaleoInstanceId)
+		throws SystemException {
+
+		kaleoTaskAssignmentInstancePersistence.removeByKaleoInstanceId(
+			kaleoInstanceId);
+	}
+
 	public void deleteKaleoTaskAssignmentInstances(
 			KaleoTaskInstanceToken kaleoTaskInstanceToken)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
 			kaleoTaskAssignmentInstancePersistence.
@@ -177,21 +226,6 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 		}
 	}
 
-	public void deleteKaleoTaskAssignmentInstances(long kaleoDefintionId)
-		throws SystemException {
-
-		kaleoTaskAssignmentInstancePersistence.removeByKaleoDefinitionId(
-			kaleoDefintionId);
-	}
-
-	public void deleteKaleoTaskAssignmentInstancesByKaleoInstanceId(
-			long kaleoInstanceId)
-		throws SystemException {
-
-		kaleoTaskAssignmentInstancePersistence.removeByKaleoInstanceId(
-			kaleoInstanceId);
-	}
-
 	public List<KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances(
 			long kaleoTaskInstanceTokenId)
 		throws SystemException {
@@ -200,28 +234,4 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 			findBykaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
 	}
 
-	protected void populateKaleoTaskAssignmentInstance(
-		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-		KaleoTaskInstanceToken kaleoTaskInstanceToken, User user) {
-
-		Date now = new Date();
-
-		kaleoTaskAssignmentInstance.setCompanyId(user.getCompanyId());
-		kaleoTaskAssignmentInstance.setUserId(user.getUserId());
-		kaleoTaskAssignmentInstance.setUserName(user.getFullName());
-		kaleoTaskAssignmentInstance.setCreateDate(now);
-		kaleoTaskAssignmentInstance.setModifiedDate(now);
-		kaleoTaskAssignmentInstance.setCompleted(false);
-
-		kaleoTaskAssignmentInstance.setGroupId(
-			kaleoTaskInstanceToken.getGroupId());
-		kaleoTaskAssignmentInstance.setKaleoDefinitionId(
-			kaleoTaskInstanceToken.getKaleoDefinitionId());
-		kaleoTaskAssignmentInstance.setKaleoInstanceId(
-			kaleoTaskInstanceToken.getKaleoInstanceId());
-		kaleoTaskAssignmentInstance.setKaleoTaskInstanceTokenId(
-			kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
-		kaleoTaskAssignmentInstance.setKaleoTaskName(
-			kaleoTaskInstanceToken.getKaleoTaskName());
-	}
 }
