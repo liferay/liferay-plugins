@@ -13,19 +13,19 @@
 		<initial>true</initial>
 		<transitions>
 			<transition>
-				<name>Review Content</name>
-				<target>review-content</target>
+				<name>review</name>
+				<target>review</target>
 				<default>true</default>
 			</transition>
 		</transitions>
 	</state>
 	<task>
-		<name>update-content</name>
+		<name>update</name>
 		<actions>
 			<notification>
 				<name>Creator Modification Notification</name>
 				<execution-type>onAssignment</execution-type>
-				<template>Your content was rejected by a reviewer, please modify and resubmit.</template>
+				<template>Your submission was rejected by a reviewer, please modify and resubmit.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
 			</notification>
@@ -36,18 +36,18 @@
 		<transitions>
 			<transition>
 				<name>resubmit</name>
-				<target>review-content</target>
+				<target>review</target>
 				<default>true</default>
 			</transition>
 		</transitions>
 	</task>
 	<task>
-		<name>review-content</name>
+		<name>review</name>
 		<actions>
 			<notification>
-				<name>Review Content Notification</name>
+				<name>Review Notification</name>
 				<execution-type>onAssignment</execution-type>
-				<template>You have a new content waiting for your review in the workflow.</template>
+				<template>You have a new submission waiting for your review in the workflow.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
 			</notification>
@@ -90,13 +90,13 @@
 		</assignments>
 		<transitions>
 			<transition>
-				<name>approve-content</name>
+				<name>approve</name>
 				<target>approved</target>
 				<default>true</default>
 			</transition>
 			<transition>
-				<name>review-failed</name>
-				<target>update-content</target>
+				<name>reject</name>
+				<target>update</target>
 				<default>false</default>
 			</transition>
 		</transitions>
@@ -105,7 +105,7 @@
 		<name>approved</name>
 		<actions>
 			<action>
-				<name>approve-content</name>
+				<name>approve</name>
 				<execution-type>onEntry</execution-type>
 				<script>
 					<![CDATA[
