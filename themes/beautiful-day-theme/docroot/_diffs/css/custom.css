@@ -39,6 +39,7 @@ a:hover {
 	background: #FFF;
 	border: 10px solid #FFF;
 	font: 1.2em Lucida Sans Unicode, Lucida Grande, sans-serif;
+	margin: 0 auto;
 	margin: 50px auto;
 	width: 960px;
 }
@@ -49,14 +50,12 @@ a:hover {
 	background: #C3D0D6;
 	height: 120px;
 	margin: 0 0 5px;
-	padding: 35px 0 0 0;
+	padding: 15px 0 0 0;
 	position: relative;
 }
 
-#banner .sign-in {
-	position: absolute;
-	right: 35px;
-	top: 17px;
+.ie7 #banner {
+	padding: 35px 0 5px 0;
 }
 
 h1.company-title {
@@ -69,12 +68,13 @@ h1.company-title {
 	position: absolute;
 	right: 5px;
 	text-decoration: none;
-	top: 135px;
-}
-
-.ie7 #sign-in {
 	top: 115px;
 }
+
+.ie6 #sign-in {
+	top: 100px;
+}
+
 /* ---------- Navigation ---------- */
 
 #navigation {
@@ -105,6 +105,11 @@ h1.company-title {
 	right: 3px;
 }
 
+#navigation ul li ul.child-menu {
+	display: none;
+}
+
+
 #navigation a {
 	border-right: 1px solid #AFBEC7;
 	color: #456;
@@ -120,15 +125,17 @@ h1.company-title {
 	background: url(../images/custom/navigation_bg.gif) left bottom;
 }
 
-#navigation ul li ul.child-menu {
-	display: none;
-}
+
 
 /* ---------- Content Wrapper ---------- */
 
 #content {
 	margin-top: 15px;
 	padding: 10px;
+}
+
+.ie7 #content {
+	margin-top: 5px;
 }
 
 /* ---------- Portlet ---------- */
