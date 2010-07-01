@@ -125,7 +125,6 @@
 			start: startTimeNode.val()
 		};
 		var width = parseInt(widthNode.val(), 10) || 0;
-		var x;
 
 		var playerOptionsCompiled = [swfURL + id];
 		var ratio = Math.min(maxWidth / width, 1);
@@ -133,9 +132,9 @@
 		height = Math.floor(height * ratio);
 		width = Math.floor(width * ratio);
 
-		for (x in playerOptions) {
-			if (playerOptions[x]) {
-				playerOptionsCompiled.push(x + '=' + playerOptions[x].replace(/^true$/, '1').replace(/^false$/, '0'));
+		for (var i in playerOptions) {
+			if (playerOptions[i]) {
+				playerOptionsCompiled.push(i + '=' + playerOptions[i].replace(/^true$/, '1').replace(/^false$/, '0'));
 			}
 		}
 
