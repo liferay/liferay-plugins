@@ -474,7 +474,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public int getWorkflowTaskCountByWorkflowInstance(
-			long companyId, long workflowInstanceId, Boolean completed)
+			long companyId, long userId, long workflowInstanceId,
+			Boolean completed)
 		throws WorkflowException {
 
 		JbpmContext jbpmContext = _jbpmConfiguration.createJbpmContext();
@@ -482,8 +483,14 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		try {
 			CustomSession customSession = new CustomSession(jbpmContext);
 
+			String[] actorIds = null;
+
+			if (userId > 0) {
+				actorIds = new String[] {String.valueOf(userId)};
+			}
+
 			return customSession.countTaskInstances(
-				-1, workflowInstanceId, null, false, completed);
+				-1, workflowInstanceId, actorIds, false, completed);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -593,12 +600,19 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public List<WorkflowTask> getWorkflowTasksByWorkflowInstance(
-			long companyId, long workflowInstanceId, Boolean completed,
-			int start, int end, OrderByComparator orderByComparator)
+			long companyId, long userId, long workflowInstanceId,
+			Boolean completed, int start, int end,
+			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
+		String[] actorIds = null;
+
+		if (userId > 0) {
+			actorIds = new String[] {String.valueOf(userId)};
+		}
+
 		return getWorkflowTasks(
-			workflowInstanceId, null, false, completed, start, end,
+			workflowInstanceId, actorIds, false, completed, start, end,
 			orderByComparator);
 	}
 
