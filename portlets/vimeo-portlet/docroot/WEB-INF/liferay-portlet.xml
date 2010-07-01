@@ -7,6 +7,7 @@
 		<icon>/icon.png</icon>
 		<configuration-action-class>com.liferay.vimeo.action.ConfigurationActionImpl</configuration-action-class>
 		<instanceable>true</instanceable>
+		<header-portlet-css>/css/main.css</header-portlet-css>
 		<css-class-wrapper>vimeo-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
