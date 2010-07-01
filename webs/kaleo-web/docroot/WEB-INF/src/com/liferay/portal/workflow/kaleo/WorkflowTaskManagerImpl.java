@@ -17,7 +17,7 @@ package com.liferay.portal.workflow.kaleo;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.PrimitiveLongList;
+import com.liferay.portal.kernel.util.PrimitiveLongSet;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManager;
@@ -144,8 +144,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
 					Role.class.getName(), kaleoTask.getKaleoTaskId());
 
-			PrimitiveLongList pooledActors = new PrimitiveLongList();
-
+			PrimitiveLongSet pooledActors = new PrimitiveLongSet();
+			
 			for (KaleoTaskAssignment kaleoTaskAssignment :
 					kaleoTaskAssignments) {
 
@@ -290,7 +290,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public int getWorkflowTaskCountByWorkflowInstance(
-			long companyId, long workflowInstanceId, Boolean completed)
+			long companyId, Long userId, long workflowInstanceId,
+			Boolean completed)
 		throws WorkflowException {
 
 		try {
@@ -423,8 +424,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public List<WorkflowTask> getWorkflowTasksByWorkflowInstance(
-			long companyId, long workflowInstanceId, Boolean completed,
-			int start, int end, OrderByComparator orderByComparator)
+			long companyId, Long userId, long workflowInstanceId,
+			Boolean completed, int start, int end,
+			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		try {
