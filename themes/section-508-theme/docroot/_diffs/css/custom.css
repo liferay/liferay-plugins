@@ -52,7 +52,6 @@ h1.company-title {
 	margin: 0;
 	padding: 15px 0 0 60px;
 }
-
 #banner h1.logo {
 	display: block;
 	font-size: 2em;
@@ -73,7 +72,7 @@ h1.company-title {
 /* ---------- Main navigation ---------- */
 
 #sign-in {
-	color: #FFF;
+	color: #000;
 	float: right;
 	position: absolute;
 	right: 5px;
@@ -195,7 +194,8 @@ h1.company-title {
 .portlet-topper {
 	background: #020509;
 	border-bottom: none;
-	padding-right: 40px;
+	margin-top: -5px;
+	padding: 0;
 }
 
 .portlet-title {
