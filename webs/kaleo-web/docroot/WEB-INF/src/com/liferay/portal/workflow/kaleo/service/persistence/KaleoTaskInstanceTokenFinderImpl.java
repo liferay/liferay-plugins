@@ -142,15 +142,20 @@ public class KaleoTaskInstanceTokenFinderImpl
 			sql = CustomSQLUtil.appendCriteria(
 				sql, getAssetType(kaleoTaskInstanceTokenQuery));
 			sql = CustomSQLUtil.appendCriteria(
-				sql, getDueDateGT(
+				sql,
+				getDueDateGT(
 					kaleoTaskInstanceTokenQuery,
 					(kaleoTaskInstanceTokenQuery.getAssetType() == null)));
 			sql = CustomSQLUtil.appendCriteria(
-				sql, getDueDateLT(kaleoTaskInstanceTokenQuery,
+				sql,
+				getDueDateLT(
+					kaleoTaskInstanceTokenQuery,
 					((kaleoTaskInstanceTokenQuery.getAssetType() == null) &&
 					 (kaleoTaskInstanceTokenQuery.getDueDateGT() == null))));
 			sql = CustomSQLUtil.appendCriteria(
-				sql, getTaskName(kaleoTaskInstanceTokenQuery,
+				sql,
+				getTaskName(
+					kaleoTaskInstanceTokenQuery,
 					((kaleoTaskInstanceTokenQuery.getAssetType() == null) &&
 					 (kaleoTaskInstanceTokenQuery.getDueDateGT() == null) &&
 					 (kaleoTaskInstanceTokenQuery.getDueDateLT() == null))));
@@ -161,13 +166,13 @@ public class KaleoTaskInstanceTokenFinderImpl
 		}
 
 		if (kaleoTaskInstanceTokenQuery.getOrderByComparator() != null) {
-			StringBundler stringBundler = new StringBundler(sql);
+			StringBundler sb = new StringBundler(sql);
 
 			appendOrderByComparator(
-				stringBundler, _ORDER_BY_ENTITY_ALIAS,
+				sb, _ORDER_BY_ENTITY_ALIAS,
 				kaleoTaskInstanceTokenQuery.getOrderByComparator());
 
-			sql = stringBundler.toString();
+			sql = sb.toString();
 		}
 
 		SQLQuery q = session.createSQLQuery(sql);
@@ -264,8 +269,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 			return StringPool.BLANK;
 		}
 
-		return "AND (" +
-			"Kaleo_KaleoTaskAssignmentInstance.assigneeClassName = ?)";
+		return "AND (Kaleo_KaleoTaskAssignmentInstance.assigneeClassName = ?)";
 	}
 
 	protected String getAssigneeClassPK(
@@ -277,8 +281,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 			return StringPool.BLANK;
 		}
 
-		return "AND (" +
-			"Kaleo_KaleoTaskAssignmentInstance.assigneeClassPK = ?)";
+		return "AND (Kaleo_KaleoTaskAssignmentInstance.assigneeClassPK = ?)";
 	}
 
 	protected String getCompleted(
@@ -650,4 +653,5 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 	private static final String _ORDER_BY_ENTITY_ALIAS =
 		"Kaleo_KaleoTaskInstanceToken.";
+
 }
