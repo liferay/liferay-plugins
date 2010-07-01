@@ -52,14 +52,14 @@ a:hover {
 	left: 10px;
 	position: relative;
 	top: 8px;
-	z-index: 3;
 	width: 40px;
+	z-index: 3;
 }
 
 ie6. #sign-in {
-	position: relative;
 	bottom: 0px;
-	left: 0px;	
+	left: 0px;
+	position: relative;
 }
 
 /* ---------- Main navigation ---------- */
