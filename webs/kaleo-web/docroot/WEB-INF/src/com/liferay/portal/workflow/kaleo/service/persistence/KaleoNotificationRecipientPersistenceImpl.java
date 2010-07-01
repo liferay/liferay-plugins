@@ -16,7 +16,7 @@ package com.liferay.portal.workflow.kaleo.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -123,7 +123,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(KaleoNotificationRecipientImpl.class.getName());
+		CacheRegistryUtil.clear(KaleoNotificationRecipientImpl.class.getName());
 		EntityCacheUtil.clearCache(KaleoNotificationRecipientImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -355,7 +355,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 		long kaleoDefinitionId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoDefinitionId),
+				kaleoDefinitionId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -625,7 +625,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 		long kaleoNotificationId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoNotificationId),
+				kaleoNotificationId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -919,7 +919,6 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_KALEONOTIFICATIONRECIPIENT.concat(KaleoNotificationRecipientModelImpl.ORDER_BY_JPQL);
 				}
@@ -980,7 +979,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 	public int countByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoDefinitionId) };
+		Object[] finderArgs = new Object[] { kaleoDefinitionId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
 				finderArgs, this);
@@ -1027,7 +1026,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 	public int countByKaleoNotificationId(long kaleoNotificationId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoNotificationId) };
+		Object[] finderArgs = new Object[] { kaleoNotificationId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEONOTIFICATIONID,
 				finderArgs, this);

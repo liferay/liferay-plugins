@@ -23,7 +23,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
-import com.liferay.portal.workflow.kaleo.model.KaleoTransitionSoap;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -34,9 +33,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="KaleoTransitionModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -90,41 +87,6 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTransition"),
 			true);
-
-	public static KaleoTransition toModel(KaleoTransitionSoap soapModel) {
-		KaleoTransition model = new KaleoTransitionImpl();
-
-		model.setKaleoTransitionId(soapModel.getKaleoTransitionId());
-		model.setGroupId(soapModel.getGroupId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setKaleoDefinitionId(soapModel.getKaleoDefinitionId());
-		model.setKaleoNodeId(soapModel.getKaleoNodeId());
-		model.setName(soapModel.getName());
-		model.setDescription(soapModel.getDescription());
-		model.setSourceKaleoNodeId(soapModel.getSourceKaleoNodeId());
-		model.setSourceKaleoNodeName(soapModel.getSourceKaleoNodeName());
-		model.setTargetKaleoNodeId(soapModel.getTargetKaleoNodeId());
-		model.setTargetKaleoNodeName(soapModel.getTargetKaleoNodeName());
-		model.setDefaultTransition(soapModel.getDefaultTransition());
-
-		return model;
-	}
-
-	public static List<KaleoTransition> toModels(
-		KaleoTransitionSoap[] soapModels) {
-		List<KaleoTransition> models = new ArrayList<KaleoTransition>(soapModels.length);
-
-		for (KaleoTransitionSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTransition"));
 

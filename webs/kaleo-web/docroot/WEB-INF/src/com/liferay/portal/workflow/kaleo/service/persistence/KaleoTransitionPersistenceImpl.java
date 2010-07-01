@@ -16,7 +16,7 @@ package com.liferay.portal.workflow.kaleo.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -148,7 +148,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(KaleoTransitionImpl.class.getName());
+		CacheRegistryUtil.clear(KaleoTransitionImpl.class.getName());
 		EntityCacheUtil.clearCache(KaleoTransitionImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -452,7 +452,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		long kaleoDefinitionId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoDefinitionId),
+				kaleoDefinitionId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -719,7 +719,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	public List<KaleoTransition> findByKaleoNodeId(long kaleoNodeId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoNodeId),
+				kaleoNodeId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1005,7 +1005,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 	public KaleoTransition fetchByKNI_N(long kaleoNodeId, String name,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoNodeId), name };
+		Object[] finderArgs = new Object[] { kaleoNodeId, name };
 
 		Object result = null;
 
@@ -1136,9 +1136,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	public KaleoTransition fetchByKNI_DT(long kaleoNodeId,
 		boolean defaultTransition, boolean retrieveFromCache)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(kaleoNodeId), Boolean.valueOf(defaultTransition)
-			};
+		Object[] finderArgs = new Object[] { kaleoNodeId, defaultTransition };
 
 		Object result = null;
 
@@ -1258,7 +1256,6 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_KALEOTRANSITION.concat(KaleoTransitionModelImpl.ORDER_BY_JPQL);
 				}
@@ -1332,7 +1329,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 	public int countByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoDefinitionId) };
+		Object[] finderArgs = new Object[] { kaleoDefinitionId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
 				finderArgs, this);
@@ -1378,7 +1375,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	}
 
 	public int countByKaleoNodeId(long kaleoNodeId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoNodeId) };
+		Object[] finderArgs = new Object[] { kaleoNodeId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEONODEID,
 				finderArgs, this);
@@ -1425,7 +1422,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 	public int countByKNI_N(long kaleoNodeId, String name)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoNodeId), name };
+		Object[] finderArgs = new Object[] { kaleoNodeId, name };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KNI_N,
 				finderArgs, this);
@@ -1488,9 +1485,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 	public int countByKNI_DT(long kaleoNodeId, boolean defaultTransition)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(kaleoNodeId), Boolean.valueOf(defaultTransition)
-			};
+		Object[] finderArgs = new Object[] { kaleoNodeId, defaultTransition };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KNI_DT,
 				finderArgs, this);

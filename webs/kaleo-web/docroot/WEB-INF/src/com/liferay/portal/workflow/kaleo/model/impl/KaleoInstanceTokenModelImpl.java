@@ -23,7 +23,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
-import com.liferay.portal.workflow.kaleo.model.KaleoInstanceTokenSoap;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -34,9 +33,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="KaleoInstanceTokenModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -90,41 +87,6 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken"),
 			true);
-
-	public static KaleoInstanceToken toModel(KaleoInstanceTokenSoap soapModel) {
-		KaleoInstanceToken model = new KaleoInstanceTokenImpl();
-
-		model.setKaleoInstanceTokenId(soapModel.getKaleoInstanceTokenId());
-		model.setGroupId(soapModel.getGroupId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setKaleoDefinitionId(soapModel.getKaleoDefinitionId());
-		model.setKaleoInstanceId(soapModel.getKaleoInstanceId());
-		model.setParentKaleoInstanceTokenId(soapModel.getParentKaleoInstanceTokenId());
-		model.setCurrentKaleoNodeId(soapModel.getCurrentKaleoNodeId());
-		model.setCurrentKaleoNodeName(soapModel.getCurrentKaleoNodeName());
-		model.setClassName(soapModel.getClassName());
-		model.setClassPK(soapModel.getClassPK());
-		model.setCompleted(soapModel.getCompleted());
-		model.setCompletionDate(soapModel.getCompletionDate());
-
-		return model;
-	}
-
-	public static List<KaleoInstanceToken> toModels(
-		KaleoInstanceTokenSoap[] soapModels) {
-		List<KaleoInstanceToken> models = new ArrayList<KaleoInstanceToken>(soapModels.length);
-
-		for (KaleoInstanceTokenSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken"));
 

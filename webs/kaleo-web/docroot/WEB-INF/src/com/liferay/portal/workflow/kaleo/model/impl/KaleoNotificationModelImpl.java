@@ -23,7 +23,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
-import com.liferay.portal.workflow.kaleo.model.KaleoNotificationSoap;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -34,9 +33,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="KaleoNotificationModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -90,41 +87,6 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoNotification"),
 			true);
-
-	public static KaleoNotification toModel(KaleoNotificationSoap soapModel) {
-		KaleoNotification model = new KaleoNotificationImpl();
-
-		model.setKaleoNotificationId(soapModel.getKaleoNotificationId());
-		model.setGroupId(soapModel.getGroupId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setKaleoDefinitionId(soapModel.getKaleoDefinitionId());
-		model.setKaleoNodeId(soapModel.getKaleoNodeId());
-		model.setKaleoNodeName(soapModel.getKaleoNodeName());
-		model.setName(soapModel.getName());
-		model.setDescription(soapModel.getDescription());
-		model.setExecutionType(soapModel.getExecutionType());
-		model.setTemplate(soapModel.getTemplate());
-		model.setTemplateLanguage(soapModel.getTemplateLanguage());
-		model.setNotificationTypes(soapModel.getNotificationTypes());
-
-		return model;
-	}
-
-	public static List<KaleoNotification> toModels(
-		KaleoNotificationSoap[] soapModels) {
-		List<KaleoNotification> models = new ArrayList<KaleoNotification>(soapModels.length);
-
-		for (KaleoNotificationSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoNotification"));
 

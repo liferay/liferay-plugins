@@ -45,7 +45,7 @@ public class KaleoTransitionUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(KaleoTransition)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(KaleoTransition kaleoTransition) {
 		getPersistence().clearCache(kaleoTransition);

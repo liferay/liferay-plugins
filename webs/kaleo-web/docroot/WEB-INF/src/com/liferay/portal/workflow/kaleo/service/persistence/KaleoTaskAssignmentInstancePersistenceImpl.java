@@ -16,7 +16,7 @@ package com.liferay.portal.workflow.kaleo.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -149,7 +149,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(KaleoTaskAssignmentInstanceImpl.class.getName());
+		CacheRegistryUtil.clear(KaleoTaskAssignmentInstanceImpl.class.getName());
 		EntityCacheUtil.clearCache(KaleoTaskAssignmentInstanceImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -387,7 +387,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(companyId),
+				companyId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -657,7 +657,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		long kaleoDefinitionId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoDefinitionId),
+				kaleoDefinitionId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -928,7 +928,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		long kaleoInstanceId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoInstanceId),
+				kaleoInstanceId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1201,7 +1201,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		long kaleoTaskInstanceTokenId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoTaskInstanceTokenId),
+				kaleoTaskInstanceTokenId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1497,7 +1497,6 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_KALEOTASKASSIGNMENTINSTANCE.concat(KaleoTaskAssignmentInstanceModelImpl.ORDER_BY_JPQL);
 				}
@@ -1572,7 +1571,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	}
 
 	public int countByCompanyId(long companyId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(companyId) };
+		Object[] finderArgs = new Object[] { companyId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_COMPANYID,
 				finderArgs, this);
@@ -1619,7 +1618,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 
 	public int countByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoDefinitionId) };
+		Object[] finderArgs = new Object[] { kaleoDefinitionId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
 				finderArgs, this);
@@ -1666,7 +1665,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 
 	public int countByKaleoInstanceId(long kaleoInstanceId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoInstanceId) };
+		Object[] finderArgs = new Object[] { kaleoInstanceId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEOINSTANCEID,
 				finderArgs, this);
@@ -1713,7 +1712,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 
 	public int countBykaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoTaskInstanceTokenId) };
+		Object[] finderArgs = new Object[] { kaleoTaskInstanceTokenId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEOTASKINSTANCETOKENID,
 				finderArgs, this);

@@ -45,7 +45,7 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(KaleoInstanceToken)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(KaleoInstanceToken kaleoInstanceToken) {
 		getPersistence().clearCache(kaleoInstanceToken);

@@ -16,7 +16,7 @@ package com.liferay.portal.workflow.kaleo.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.jdbc.MappingSqlQuery;
 import com.liferay.portal.kernel.dao.jdbc.MappingSqlQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.RowMapper;
@@ -122,7 +122,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(KaleoNotificationImpl.class.getName());
+		CacheRegistryUtil.clear(KaleoNotificationImpl.class.getName());
 		EntityCacheUtil.clearCache(KaleoNotificationImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -350,7 +350,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		long kaleoDefinitionId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoDefinitionId),
+				kaleoDefinitionId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -620,9 +620,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		String executionType, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoNodeId),
-				
-				executionType,
+				kaleoNodeId, executionType,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -952,7 +950,6 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_KALEONOTIFICATION.concat(KaleoNotificationModelImpl.ORDER_BY_JPQL);
 				}
@@ -1013,7 +1010,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 	public int countByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoDefinitionId) };
+		Object[] finderArgs = new Object[] { kaleoDefinitionId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
 				finderArgs, this);
@@ -1060,7 +1057,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 	public int countByKNI_ET(long kaleoNodeId, String executionType)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoNodeId), executionType };
+		Object[] finderArgs = new Object[] { kaleoNodeId, executionType };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KNI_ET,
 				finderArgs, this);
@@ -1179,7 +1176,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		long pk, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(pk), String.valueOf(start), String.valueOf(end),
+				pk, String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
 			};
 
@@ -1199,7 +1196,6 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 					sql = _SQL_GETKALEONOTIFICATIONRECIPIENTS.concat(ORDER_BY_CLAUSE)
 															 .concat(orderByComparator.getOrderBy());
 				}
-
 				else {
 					sql = _SQL_GETKALEONOTIFICATIONRECIPIENTS.concat(com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientModelImpl.ORDER_BY_SQL);
 				}
@@ -1245,7 +1241,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 	public int getKaleoNotificationRecipientsSize(long pk)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(pk) };
+		Object[] finderArgs = new Object[] { pk };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_GET_KALEONOTIFICATIONRECIPIENTS_SIZE,
 				finderArgs, this);
@@ -1294,11 +1290,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 	public boolean containsKaleoNotificationRecipient(long pk,
 		long kaleoNotificationRecipientPK) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(pk),
-				
-				new Long(kaleoNotificationRecipientPK)
-			};
+		Object[] finderArgs = new Object[] { pk, kaleoNotificationRecipientPK };
 
 		Boolean value = (Boolean)FinderCacheUtil.getResult(FINDER_PATH_CONTAINS_KALEONOTIFICATIONRECIPIENT,
 				finderArgs, this);

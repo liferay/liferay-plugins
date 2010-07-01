@@ -16,7 +16,7 @@ package com.liferay.portal.workflow.kaleo.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.jdbc.MappingSqlQuery;
 import com.liferay.portal.kernel.dao.jdbc.MappingSqlQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.RowMapper;
@@ -115,7 +115,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(KaleoTaskImpl.class.getName());
+		CacheRegistryUtil.clear(KaleoTaskImpl.class.getName());
 		EntityCacheUtil.clearCache(KaleoTaskImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -361,7 +361,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoDefinitionId),
+				kaleoDefinitionId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -643,7 +643,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 	public KaleoTask fetchByKaleoNodeId(long kaleoNodeId,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoNodeId) };
+		Object[] finderArgs = new Object[] { kaleoNodeId };
 
 		Object result = null;
 
@@ -758,7 +758,6 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_KALEOTASK.concat(KaleoTaskModelImpl.ORDER_BY_JPQL);
 				}
@@ -817,7 +816,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 	public int countByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoDefinitionId) };
+		Object[] finderArgs = new Object[] { kaleoDefinitionId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
 				finderArgs, this);
@@ -863,7 +862,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	public int countByKaleoNodeId(long kaleoNodeId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoNodeId) };
+		Object[] finderArgs = new Object[] { kaleoNodeId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEONODEID,
 				finderArgs, this);
@@ -965,7 +964,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		long pk, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(pk), String.valueOf(start), String.valueOf(end),
+				pk, String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
 			};
 
@@ -984,7 +983,6 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 					sql = _SQL_GETKALEOTASKASSIGNMENTS.concat(ORDER_BY_CLAUSE)
 													  .concat(orderByComparator.getOrderBy());
 				}
-
 				else {
 					sql = _SQL_GETKALEOTASKASSIGNMENTS.concat(com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentModelImpl.ORDER_BY_SQL);
 				}
@@ -1027,7 +1025,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 			"getKaleoTaskAssignmentsSize", new String[] { Long.class.getName() });
 
 	public int getKaleoTaskAssignmentsSize(long pk) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(pk) };
+		Object[] finderArgs = new Object[] { pk };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_GET_KALEOTASKASSIGNMENTS_SIZE,
 				finderArgs, this);
@@ -1075,11 +1073,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 	public boolean containsKaleoTaskAssignment(long pk,
 		long kaleoTaskAssignmentPK) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(pk),
-				
-				new Long(kaleoTaskAssignmentPK)
-			};
+		Object[] finderArgs = new Object[] { pk, kaleoTaskAssignmentPK };
 
 		Boolean value = (Boolean)FinderCacheUtil.getResult(FINDER_PATH_CONTAINS_KALEOTASKASSIGNMENT,
 				finderArgs, this);

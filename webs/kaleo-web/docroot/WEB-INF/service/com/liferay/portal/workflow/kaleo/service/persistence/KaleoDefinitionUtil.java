@@ -45,7 +45,7 @@ public class KaleoDefinitionUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(KaleoDefinition)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(KaleoDefinition kaleoDefinition) {
 		getPersistence().clearCache(kaleoDefinition);

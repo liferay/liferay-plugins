@@ -45,7 +45,7 @@ public class KaleoLogUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(KaleoLog)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(KaleoLog kaleoLog) {
 		getPersistence().clearCache(kaleoLog);

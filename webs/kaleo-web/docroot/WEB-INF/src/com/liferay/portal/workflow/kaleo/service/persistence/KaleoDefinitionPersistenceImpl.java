@@ -16,7 +16,7 @@ package com.liferay.portal.workflow.kaleo.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.jdbc.MappingSqlQuery;
 import com.liferay.portal.kernel.dao.jdbc.MappingSqlQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.RowMapper;
@@ -174,7 +174,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(KaleoDefinitionImpl.class.getName());
+		CacheRegistryUtil.clear(KaleoDefinitionImpl.class.getName());
 		EntityCacheUtil.clearCache(KaleoDefinitionImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -445,7 +445,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	public List<KaleoDefinition> findByCompanyId(long companyId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(companyId),
+				companyId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -712,9 +712,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(companyId),
-				
-				name,
+				companyId, name,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1018,7 +1016,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(companyId), Boolean.valueOf(active),
+				companyId, active,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1320,11 +1318,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 	public KaleoDefinition fetchByC_N_V(long companyId, String name,
 		int version, boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(companyId),
-				
-				name, new Integer(version)
-			};
+		Object[] finderArgs = new Object[] { companyId, name, version };
 
 		Object result = null;
 
@@ -1438,9 +1432,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		boolean active, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(companyId),
-				
-				name, Boolean.valueOf(active),
+				companyId, name, active,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1783,7 +1775,6 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_KALEODEFINITION.concat(KaleoDefinitionModelImpl.ORDER_BY_JPQL);
 				}
@@ -1862,7 +1853,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	public int countByCompanyId(long companyId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(companyId) };
+		Object[] finderArgs = new Object[] { companyId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_COMPANYID,
 				finderArgs, this);
@@ -1909,7 +1900,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 	public int countByC_N(long companyId, String name)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(companyId), name };
+		Object[] finderArgs = new Object[] { companyId, name };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_N,
 				finderArgs, this);
@@ -1972,9 +1963,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 	public int countByC_A(long companyId, boolean active)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(companyId), Boolean.valueOf(active)
-			};
+		Object[] finderArgs = new Object[] { companyId, active };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_A,
 				finderArgs, this);
@@ -2025,11 +2014,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 	public int countByC_N_V(long companyId, String name, int version)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(companyId),
-				
-				name, new Integer(version)
-			};
+		Object[] finderArgs = new Object[] { companyId, name, version };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_N_V,
 				finderArgs, this);
@@ -2096,11 +2081,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 	public int countByC_N_A(long companyId, String name, boolean active)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(companyId),
-				
-				name, Boolean.valueOf(active)
-			};
+		Object[] finderArgs = new Object[] { companyId, name, active };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_N_A,
 				finderArgs, this);
@@ -2222,7 +2203,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		long pk, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(pk), String.valueOf(start), String.valueOf(end),
+				pk, String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
 			};
 
@@ -2241,7 +2222,6 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 					sql = _SQL_GETKALEONODES.concat(ORDER_BY_CLAUSE)
 											.concat(orderByComparator.getOrderBy());
 				}
-
 				else {
 					sql = _SQL_GETKALEONODES.concat(com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl.ORDER_BY_SQL);
 				}
@@ -2284,7 +2264,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			"getKaleoNodesSize", new String[] { Long.class.getName() });
 
 	public int getKaleoNodesSize(long pk) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(pk) };
+		Object[] finderArgs = new Object[] { pk };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_GET_KALEONODES_SIZE,
 				finderArgs, this);
@@ -2332,7 +2312,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 	public boolean containsKaleoNode(long pk, long kaleoNodePK)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(pk), new Long(kaleoNodePK) };
+		Object[] finderArgs = new Object[] { pk, kaleoNodePK };
 
 		Boolean value = (Boolean)FinderCacheUtil.getResult(FINDER_PATH_CONTAINS_KALEONODE,
 				finderArgs, this);

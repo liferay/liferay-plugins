@@ -185,14 +185,15 @@ public interface KaleoLogLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoTaskKaleoLogs(
-		long kaleoTaskId, java.util.List<java.lang.Integer> logTypes,
-		int start, int end,
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoTaskInstanceTokenKaleoLogs(
+		long kaleoTaskInstanceTokenId,
+		java.util.List<java.lang.Integer> logTypes, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoTaskKaleoLogsCount(long kaleoTaskId,
+	public int getKaleoTaskInstanceTokenKaleoLogsCount(
+		long kaleoTaskInstanceTokenId,
 		java.util.List<java.lang.Integer> logTypes)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

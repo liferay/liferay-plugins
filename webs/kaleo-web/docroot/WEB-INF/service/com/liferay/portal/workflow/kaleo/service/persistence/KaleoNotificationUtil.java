@@ -45,7 +45,7 @@ public class KaleoNotificationUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(KaleoNotification)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(KaleoNotification kaleoNotification) {
 		getPersistence().clearCache(kaleoNotification);

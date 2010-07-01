@@ -16,7 +16,7 @@ package com.liferay.portal.workflow.kaleo.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -158,7 +158,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(KaleoLogImpl.class.getName());
+		CacheRegistryUtil.clear(KaleoLogImpl.class.getName());
 		EntityCacheUtil.clearCache(KaleoLogImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -393,7 +393,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoDefinitionId),
+				kaleoDefinitionId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -659,7 +659,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoInstanceId),
+				kaleoInstanceId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -927,7 +927,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		long kaleoTaskInstanceTokenId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoTaskInstanceTokenId),
+				kaleoTaskInstanceTokenId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1194,9 +1194,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoInstanceTokenId),
-				
-				type,
+				kaleoInstanceTokenId, type,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1503,9 +1501,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		long kaleoNodeId, String type, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoInstanceTokenId), new Long(kaleoNodeId),
-				
-				type,
+				kaleoInstanceTokenId, kaleoNodeId, type,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1849,7 +1845,6 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_KALEOLOG.concat(KaleoLogModelImpl.ORDER_BY_JPQL);
 				}
@@ -1931,7 +1926,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 	public int countByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoDefinitionId) };
+		Object[] finderArgs = new Object[] { kaleoDefinitionId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
 				finderArgs, this);
@@ -1978,7 +1973,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 	public int countByKaleoInstanceId(long kaleoInstanceId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoInstanceId) };
+		Object[] finderArgs = new Object[] { kaleoInstanceId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEOINSTANCEID,
 				finderArgs, this);
@@ -2025,7 +2020,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 	public int countByKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoTaskInstanceTokenId) };
+		Object[] finderArgs = new Object[] { kaleoTaskInstanceTokenId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEOTASKINSTANCETOKENID,
 				finderArgs, this);
@@ -2072,7 +2067,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 	public int countByKITI_T(long kaleoInstanceTokenId, String type)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(kaleoInstanceTokenId), type };
+		Object[] finderArgs = new Object[] { kaleoInstanceTokenId, type };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KITI_T,
 				finderArgs, this);
@@ -2136,9 +2131,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public int countByKITI_KNI_T(long kaleoInstanceTokenId, long kaleoNodeId,
 		String type) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(kaleoInstanceTokenId), new Long(kaleoNodeId),
-				
-				type
+				kaleoInstanceTokenId, kaleoNodeId, type
 			};
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KITI_KNI_T,

@@ -45,7 +45,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(KaleoTaskAssignmentInstance)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance) {

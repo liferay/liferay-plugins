@@ -174,23 +174,24 @@ public class KaleoTaskAssignmentInstanceLocalServiceUtil {
 			serviceContext);
 	}
 
-	public static void deleteKaleoTaskAssignmentInstances(
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTaskAssignmentInstances(kaleoTaskInstanceToken);
-	}
-
-	public static void deleteKaleoTaskAssignmentInstances(long kaleoDefintionId)
+	public static void deleteKaleoDefinitionKaleoTaskAssignmentInstances(
+		long kaleoDefintionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTaskAssignmentInstances(kaleoDefintionId);
+		getService()
+			.deleteKaleoDefinitionKaleoTaskAssignmentInstances(kaleoDefintionId);
 	}
 
-	public static void deleteKaleoTaskAssignmentInstancesByKaleoInstanceId(
+	public static void deleteKaleoInstanceKaleoTaskAssignmentInstances(
 		long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.deleteKaleoTaskAssignmentInstancesByKaleoInstanceId(kaleoInstanceId);
+			.deleteKaleoInstanceKaleoTaskAssignmentInstances(kaleoInstanceId);
+	}
+
+	public static void deleteKaleoTaskAssignmentInstances(
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteKaleoTaskAssignmentInstances(kaleoTaskInstanceToken);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances(

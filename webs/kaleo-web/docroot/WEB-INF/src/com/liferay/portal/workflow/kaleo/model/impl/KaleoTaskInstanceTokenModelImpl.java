@@ -23,7 +23,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceTokenSoap;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -34,9 +33,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="KaleoTaskInstanceTokenModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -93,45 +90,6 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken"),
 			true);
-
-	public static KaleoTaskInstanceToken toModel(
-		KaleoTaskInstanceTokenSoap soapModel) {
-		KaleoTaskInstanceToken model = new KaleoTaskInstanceTokenImpl();
-
-		model.setKaleoTaskInstanceTokenId(soapModel.getKaleoTaskInstanceTokenId());
-		model.setGroupId(soapModel.getGroupId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setKaleoDefinitionId(soapModel.getKaleoDefinitionId());
-		model.setKaleoInstanceId(soapModel.getKaleoInstanceId());
-		model.setKaleoInstanceTokenId(soapModel.getKaleoInstanceTokenId());
-		model.setKaleoTaskId(soapModel.getKaleoTaskId());
-		model.setKaleoTaskName(soapModel.getKaleoTaskName());
-		model.setClassName(soapModel.getClassName());
-		model.setClassPK(soapModel.getClassPK());
-		model.setCompletionUserId(soapModel.getCompletionUserId());
-		model.setCompleted(soapModel.getCompleted());
-		model.setCompletionDate(soapModel.getCompletionDate());
-		model.setDueDate(soapModel.getDueDate());
-		model.setWorkflowContext(soapModel.getWorkflowContext());
-
-		return model;
-	}
-
-	public static List<KaleoTaskInstanceToken> toModels(
-		KaleoTaskInstanceTokenSoap[] soapModels) {
-		List<KaleoTaskInstanceToken> models = new ArrayList<KaleoTaskInstanceToken>(soapModels.length);
-
-		for (KaleoTaskInstanceTokenSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken"));
 

@@ -135,16 +135,16 @@ public interface KaleoTaskAssignmentInstanceLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void deleteKaleoTaskAssignmentInstances(
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public void deleteKaleoTaskAssignmentInstances(long kaleoDefintionId)
+	public void deleteKaleoDefinitionKaleoTaskAssignmentInstances(
+		long kaleoDefintionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void deleteKaleoTaskAssignmentInstancesByKaleoInstanceId(
+	public void deleteKaleoInstanceKaleoTaskAssignmentInstances(
 		long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void deleteKaleoTaskAssignmentInstances(
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

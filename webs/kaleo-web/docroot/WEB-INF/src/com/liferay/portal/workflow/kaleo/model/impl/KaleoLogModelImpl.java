@@ -23,7 +23,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoLog;
-import com.liferay.portal.workflow.kaleo.model.KaleoLogSoap;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -34,9 +33,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="KaleoLogModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -103,53 +100,6 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoLog"),
 			true);
-
-	public static KaleoLog toModel(KaleoLogSoap soapModel) {
-		KaleoLog model = new KaleoLogImpl();
-
-		model.setKaleoLogId(soapModel.getKaleoLogId());
-		model.setGroupId(soapModel.getGroupId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setKaleoDefinitionId(soapModel.getKaleoDefinitionId());
-		model.setKaleoInstanceId(soapModel.getKaleoInstanceId());
-		model.setKaleoInstanceTokenId(soapModel.getKaleoInstanceTokenId());
-		model.setKaleoTaskInstanceTokenId(soapModel.getKaleoTaskInstanceTokenId());
-		model.setKaleoNodeId(soapModel.getKaleoNodeId());
-		model.setKaleoNodeName(soapModel.getKaleoNodeName());
-		model.setTerminalKaleoNode(soapModel.getTerminalKaleoNode());
-		model.setKaleoActionId(soapModel.getKaleoActionId());
-		model.setKaleoActionName(soapModel.getKaleoActionName());
-		model.setKaleoActionDescription(soapModel.getKaleoActionDescription());
-		model.setPreviousKaleoNodeId(soapModel.getPreviousKaleoNodeId());
-		model.setPreviousKaleoNodeName(soapModel.getPreviousKaleoNodeName());
-		model.setPreviousAssigneeClassName(soapModel.getPreviousAssigneeClassName());
-		model.setPreviousAssigneeClassPK(soapModel.getPreviousAssigneeClassPK());
-		model.setCurrentAssigneeClassName(soapModel.getCurrentAssigneeClassName());
-		model.setCurrentAssigneeClassPK(soapModel.getCurrentAssigneeClassPK());
-		model.setType(soapModel.getType());
-		model.setComment(soapModel.getComment());
-		model.setStartDate(soapModel.getStartDate());
-		model.setEndDate(soapModel.getEndDate());
-		model.setDuration(soapModel.getDuration());
-		model.setWorkflowContext(soapModel.getWorkflowContext());
-
-		return model;
-	}
-
-	public static List<KaleoLog> toModels(KaleoLogSoap[] soapModels) {
-		List<KaleoLog> models = new ArrayList<KaleoLog>(soapModels.length);
-
-		for (KaleoLogSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoLog"));
 

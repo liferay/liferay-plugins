@@ -1046,12 +1046,12 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoTaskKaleoLogs(
-		long kaleoTaskId, java.util.List<java.lang.Integer> logTypes,
-		int start, int end,
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoTaskInstanceTokenKaleoLogs(
+		long kaleoTaskInstanceTokenId,
+		java.util.List<java.lang.Integer> logTypes, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(kaleoTaskId);
+		Object paramObj0 = new LongWrapper(kaleoTaskInstanceTokenId);
 
 		Object paramObj1 = ClpSerializer.translateInput(logTypes);
 
@@ -1073,7 +1073,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getKaleoTaskKaleoLogs",
+			returnObj = _classLoaderProxy.invoke("getKaleoTaskInstanceTokenKaleoLogs",
 					new Object[] {
 						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
 					});
@@ -1095,10 +1095,11 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getKaleoTaskKaleoLogsCount(long kaleoTaskId,
+	public int getKaleoTaskInstanceTokenKaleoLogsCount(
+		long kaleoTaskInstanceTokenId,
 		java.util.List<java.lang.Integer> logTypes)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(kaleoTaskId);
+		Object paramObj0 = new LongWrapper(kaleoTaskInstanceTokenId);
 
 		Object paramObj1 = ClpSerializer.translateInput(logTypes);
 
@@ -1109,7 +1110,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getKaleoTaskKaleoLogsCount",
+			returnObj = _classLoaderProxy.invoke("getKaleoTaskInstanceTokenKaleoLogsCount",
 					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {

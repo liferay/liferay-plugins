@@ -28,7 +28,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
-import com.liferay.portal.workflow.kaleo.model.KaleoDefinitionSoap;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -39,9 +38,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -94,38 +91,6 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoDefinition"),
 			true);
-
-	public static KaleoDefinition toModel(KaleoDefinitionSoap soapModel) {
-		KaleoDefinition model = new KaleoDefinitionImpl();
-
-		model.setKaleoDefinitionId(soapModel.getKaleoDefinitionId());
-		model.setGroupId(soapModel.getGroupId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setName(soapModel.getName());
-		model.setTitle(soapModel.getTitle());
-		model.setDescription(soapModel.getDescription());
-		model.setVersion(soapModel.getVersion());
-		model.setActive(soapModel.getActive());
-		model.setStartKaleoNodeId(soapModel.getStartKaleoNodeId());
-
-		return model;
-	}
-
-	public static List<KaleoDefinition> toModels(
-		KaleoDefinitionSoap[] soapModels) {
-		List<KaleoDefinition> models = new ArrayList<KaleoDefinition>(soapModels.length);
-
-		for (KaleoDefinitionSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoDefinition"));
 

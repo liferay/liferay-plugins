@@ -23,7 +23,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskSoap;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -34,9 +33,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="KaleoTaskModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -87,37 +84,6 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTask"),
 			true);
-
-	public static KaleoTask toModel(KaleoTaskSoap soapModel) {
-		KaleoTask model = new KaleoTaskImpl();
-
-		model.setKaleoTaskId(soapModel.getKaleoTaskId());
-		model.setGroupId(soapModel.getGroupId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setKaleoDefinitionId(soapModel.getKaleoDefinitionId());
-		model.setKaleoNodeId(soapModel.getKaleoNodeId());
-		model.setName(soapModel.getName());
-		model.setDescription(soapModel.getDescription());
-		model.setDueDateDuration(soapModel.getDueDateDuration());
-		model.setDueDateScale(soapModel.getDueDateScale());
-
-		return model;
-	}
-
-	public static List<KaleoTask> toModels(KaleoTaskSoap[] soapModels) {
-		List<KaleoTask> models = new ArrayList<KaleoTask>(soapModels.length);
-
-		for (KaleoTaskSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTask"));
 

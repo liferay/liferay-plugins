@@ -568,140 +568,6 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		}
 	}
 
-	public int getKaleoInstancesCount(long kaleoDefinitionId, boolean completed)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(kaleoDefinitionId);
-
-		Object paramObj1 = new BooleanWrapper(completed);
-
-		Object returnObj = null;
-
-		try {
-			returnObj = _classLoaderProxy.invoke("getKaleoInstancesCount",
-					new Object[] { paramObj0, paramObj1 });
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
-	public int getKaleoInstancesCount(java.lang.String kaleoDefinitionName,
-		int kaleoDefinitionVersion, boolean completed,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(kaleoDefinitionName);
-
-		if (kaleoDefinitionName == null) {
-			paramObj0 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj1 = new IntegerWrapper(kaleoDefinitionVersion);
-
-		Object paramObj2 = new BooleanWrapper(completed);
-
-		Object paramObj3 = ClpSerializer.translateInput(serviceContext);
-
-		if (serviceContext == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.service.ServiceContext");
-		}
-
-		Object returnObj = null;
-
-		try {
-			returnObj = _classLoaderProxy.invoke("getKaleoInstancesCount",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
-	public int getKaleoInstancesCount(java.lang.Long userId,
-		java.lang.String assetClassName, java.lang.Long assetClassPK,
-		java.lang.Boolean completed,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(userId);
-
-		if (userId == null) {
-			paramObj0 = new NullWrapper("java.lang.Long");
-		}
-
-		Object paramObj1 = ClpSerializer.translateInput(assetClassName);
-
-		if (assetClassName == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(assetClassPK);
-
-		if (assetClassPK == null) {
-			paramObj2 = new NullWrapper("java.lang.Long");
-		}
-
-		Object paramObj3 = ClpSerializer.translateInput(completed);
-
-		if (completed == null) {
-			paramObj3 = new NullWrapper("java.lang.Boolean");
-		}
-
-		Object paramObj4 = ClpSerializer.translateInput(serviceContext);
-
-		if (serviceContext == null) {
-			paramObj4 = new NullWrapper(
-					"com.liferay.portal.service.ServiceContext");
-		}
-
-		Object returnObj = null;
-
-		try {
-			returnObj = _classLoaderProxy.invoke("getKaleoInstancesCount",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
-					});
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
 		java.lang.Long userId, java.lang.String assetClassName,
 		java.lang.Long assetClassPK, java.lang.Boolean completed, int start,
@@ -835,6 +701,140 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		}
 
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int getKaleoInstancesCount(long kaleoDefinitionId, boolean completed)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(kaleoDefinitionId);
+
+		Object paramObj1 = new BooleanWrapper(completed);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getKaleoInstancesCount",
+					new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	public int getKaleoInstancesCount(java.lang.Long userId,
+		java.lang.String assetClassName, java.lang.Long assetClassPK,
+		java.lang.Boolean completed,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(userId);
+
+		if (userId == null) {
+			paramObj0 = new NullWrapper("java.lang.Long");
+		}
+
+		Object paramObj1 = ClpSerializer.translateInput(assetClassName);
+
+		if (assetClassName == null) {
+			paramObj1 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj2 = ClpSerializer.translateInput(assetClassPK);
+
+		if (assetClassPK == null) {
+			paramObj2 = new NullWrapper("java.lang.Long");
+		}
+
+		Object paramObj3 = ClpSerializer.translateInput(completed);
+
+		if (completed == null) {
+			paramObj3 = new NullWrapper("java.lang.Boolean");
+		}
+
+		Object paramObj4 = ClpSerializer.translateInput(serviceContext);
+
+		if (serviceContext == null) {
+			paramObj4 = new NullWrapper(
+					"com.liferay.portal.service.ServiceContext");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getKaleoInstancesCount",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+					});
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	public int getKaleoInstancesCount(java.lang.String kaleoDefinitionName,
+		int kaleoDefinitionVersion, boolean completed,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(kaleoDefinitionName);
+
+		if (kaleoDefinitionName == null) {
+			paramObj0 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj1 = new IntegerWrapper(kaleoDefinitionVersion);
+
+		Object paramObj2 = new BooleanWrapper(completed);
+
+		Object paramObj3 = ClpSerializer.translateInput(serviceContext);
+
+		if (serviceContext == null) {
+			paramObj3 = new NullWrapper(
+					"com.liferay.portal.service.ServiceContext");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getKaleoInstancesCount",
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance updateKaleoInstance(

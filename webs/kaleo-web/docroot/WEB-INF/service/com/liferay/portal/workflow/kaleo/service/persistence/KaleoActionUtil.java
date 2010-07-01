@@ -45,7 +45,7 @@ public class KaleoActionUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(KaleoAction)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(KaleoAction kaleoAction) {
 		getPersistence().clearCache(kaleoAction);
