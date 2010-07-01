@@ -18,6 +18,7 @@ import com.liferay.mail.MailException;
 import com.liferay.mail.NoSuchFolderException;
 import com.liferay.mail.NoSuchMessageException;
 import com.liferay.mail.imap.IMAPAccessor;
+import com.liferay.mail.imap.IMAPAttachmentHandler;
 import com.liferay.mail.imap.IMAPConnection;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Attachment;
@@ -30,6 +31,7 @@ import com.liferay.mail.service.AttachmentLocalServiceUtil;
 import com.liferay.mail.service.FolderLocalServiceUtil;
 import com.liferay.mail.service.MessageLocalServiceUtil;
 import com.liferay.mail.util.AccountLock;
+import com.liferay.mail.util.AttachmentHandler;
 import com.liferay.mail.util.MailConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -44,7 +46,6 @@ import com.liferay.util.mail.InternetAddressUtil;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +118,7 @@ public class IMAPMailbox extends BaseMailbox {
 		}
 	}
 
-	public InputStream getAttachment(long attachmentId)
+	public AttachmentHandler getAttachment(long attachmentId)
 		throws IOException, PortalException, SystemException {
 
 		Attachment attachment = AttachmentLocalServiceUtil.getAttachment(
@@ -127,8 +128,8 @@ public class IMAPMailbox extends BaseMailbox {
 			attachment.getMessageId());
 
 		if (account.getDraftFolderId() == attachment.getFolderId()) {
-			return AttachmentLocalServiceUtil.getInputStream(
-				attachmentId);
+			return new IMAPAttachmentHandler(
+				AttachmentLocalServiceUtil.getInputStream(attachmentId), null);
 		}
 		else {
 			return _imapAccessor.getAttachment(

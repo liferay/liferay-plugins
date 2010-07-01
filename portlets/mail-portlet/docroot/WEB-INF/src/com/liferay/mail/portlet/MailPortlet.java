@@ -17,6 +17,7 @@ package com.liferay.mail.portlet;
 import com.liferay.mail.model.Attachment;
 import com.liferay.mail.model.MailFile;
 import com.liferay.mail.service.AttachmentLocalServiceUtil;
+import com.liferay.mail.util.AttachmentHandler;
 import com.liferay.mail.util.MailManager;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
@@ -25,7 +26,6 @@ import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -34,7 +34,6 @@ import com.liferay.util.servlet.PortletResponseUtil;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,26 +108,31 @@ public class MailPortlet extends MVCPortlet {
 			long attachmentId = ParamUtil.getLong(
 				resourceRequest, "attachmentId");
 
+			AttachmentHandler attachmentHandler = null;
+
 			try {
 				MailManager mailManager = MailManager.getInstance(request);
 
 				Attachment attachment =
 					AttachmentLocalServiceUtil.getAttachment(attachmentId);
 
-				InputStream is = mailManager.getAttachment(
-					attachmentId);
+				attachmentHandler = mailManager.getAttachment(attachmentId);
 
-				if (Validator.isNotNull(is)) {
+				if (attachmentHandler != null) {
 					String contentType = MimeTypesUtil.getContentType(
 						attachment.getFileName());
 
 					PortletResponseUtil.sendFile(
 						resourceRequest, resourceResponse,
-						attachment.getFileName(), is, contentType);
+						attachment.getFileName(),
+						attachmentHandler.getInputStream(), contentType);
 				}
 			}
 			catch (Exception e) {
 				_log.error(e, e);
+			}
+			finally {
+				attachmentHandler.finish();
 			}
 		}
 		else {

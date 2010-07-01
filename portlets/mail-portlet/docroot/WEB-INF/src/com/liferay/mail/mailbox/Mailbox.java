@@ -19,12 +19,12 @@ import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.MailFile;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.model.MessagesDisplay;
+import com.liferay.mail.util.AttachmentHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import java.util.List;
 
@@ -62,7 +62,7 @@ public interface Mailbox {
 
 	public Account getAccount();
 
-	public InputStream getAttachment(long attachmentId)
+	public AttachmentHandler getAttachment(long attachmentId)
 		throws IOException, PortalException, SystemException;
 
 	public Message getMessage(

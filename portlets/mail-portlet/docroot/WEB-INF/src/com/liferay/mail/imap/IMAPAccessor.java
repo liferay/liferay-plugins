@@ -21,6 +21,7 @@ import com.liferay.mail.model.MailFile;
 import com.liferay.mail.service.AttachmentLocalServiceUtil;
 import com.liferay.mail.service.FolderLocalServiceUtil;
 import com.liferay.mail.service.MessageLocalServiceUtil;
+import com.liferay.mail.util.AttachmentHandler;
 import com.liferay.mail.util.HtmlContentUtil;
 import com.liferay.mail.util.MailConstants;
 import com.liferay.mail.util.PortletPropsValues;
@@ -41,7 +42,6 @@ import com.sun.mail.imap.IMAPFolder;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
 import java.util.ArrayList;
@@ -188,7 +188,7 @@ public class IMAPAccessor {
 		}
 	}
 
-	public InputStream getAttachment(
+	public AttachmentHandler getAttachment(
 			long folderId, long messageId, String contentPath)
 		throws IOException, PortalException, SystemException {
 
@@ -206,13 +206,13 @@ public class IMAPAccessor {
 
 			Part part = getPart(jxMessage, contentPath);
 
-			return part.getInputStream();
+			AttachmentHandler attachmentHandler = new IMAPAttachmentHandler(
+				part.getInputStream(), imapFolder);
+
+			return attachmentHandler;
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
-		}
-		finally {
-			closeFolder(imapFolder, false);
 		}
 	}
 
