@@ -43,7 +43,9 @@ String keywords = ParamUtil.getString(request, "keywords");
 				searchContext.setKeywords(keywords);
 				searchContext.setStart(searchContainer.getStart());
 
-				Hits hits = portlet.getIndexerInstance().search(searchContext);
+				Indexer indexer = portlet.getIndexerInstance();
+
+				Hits hits = indexer.search(searchContext);
 
 				List<Object[]> objects = new ArrayList<Object[]>();
 

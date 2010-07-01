@@ -54,7 +54,9 @@ String keywords = ParamUtil.getString(request, "keywords");
 					searchContext.setAttribute("KNOWLEDGE_BASE_SCOPE_GROUP_IDS", scopeGroupIds);
 				}
 
-				Hits hits = portlet.getIndexerInstance().search(searchContext);
+				Indexer indexer = portlet.getIndexerInstance();
+
+				Hits hits = indexer.search(searchContext);
 
 				List<Object[]> objects = new ArrayList<Object[]>();
 
