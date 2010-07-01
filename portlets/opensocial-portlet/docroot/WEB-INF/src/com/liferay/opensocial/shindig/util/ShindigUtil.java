@@ -16,14 +16,24 @@ package com.liferay.opensocial.shindig.util;
 
 import com.google.inject.Inject;
 
+import com.liferay.opensocial.portlet.GadgetPortlet;
+import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.Portlet;
+import com.liferay.portal.service.PortletLocalServiceUtil;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 
 import java.io.File;
+
+import javax.portlet.PortletRequest;
 
 import org.apache.shindig.auth.BasicSecurityToken;
 import org.apache.shindig.auth.BasicSecurityTokenDecoder;
@@ -31,6 +41,12 @@ import org.apache.shindig.auth.BlobCrypterSecurityToken;
 import org.apache.shindig.common.crypto.BasicBlobCrypter;
 import org.apache.shindig.common.crypto.BlobCrypter;
 import org.apache.shindig.config.ContainerConfig;
+import org.apache.shindig.gadgets.Gadget;
+import org.apache.shindig.gadgets.process.Processor;
+import org.apache.shindig.gadgets.servlet.JsonRpcGadgetContext;
+import org.apache.shindig.gadgets.spec.GadgetSpec;
+
+import org.json.JSONObject;
 
 /**
  * <a href="ShindigUtil.java.html"><b><i>View Source</i></b></a>
@@ -89,6 +105,38 @@ public class ShindigUtil {
 		return _COLUMN_USER_PREFS.concat(namespace);
 	}
 
+	public static com.liferay.opensocial.model.Gadget getGadget(
+			String portletName)
+		throws Exception {
+
+		int pos = portletName.indexOf(
+			StringPool.UNDERLINE, GadgetPortlet.PORTLET_NAME_PREFIX.length());
+
+		long gadgetId = GetterUtil.getLong(portletName.substring(pos + 1));
+
+		com.liferay.opensocial.model.Gadget gadget =
+			GadgetLocalServiceUtil.getGadget(gadgetId);
+
+		return gadget;
+	}
+
+	public static GadgetSpec getGadgetSpec(
+			com.liferay.opensocial.model.Gadget liferayGadget)
+		throws Exception {
+
+		JSONObject gadgetContext = new JSONObject();
+		JSONObject gadgetRequest = new JSONObject();
+
+		gadgetRequest.put("url", liferayGadget.getUrl());
+
+		JsonRpcGadgetContext context =
+			new JsonRpcGadgetContext(gadgetContext, gadgetRequest);
+
+		Gadget gadget = _processor.process(context);
+
+		return gadget.getSpec();
+	}
+
 	public static long getModuleId(String namespace) {
 		return namespace.hashCode();
 	}
@@ -109,6 +157,19 @@ public class ShindigUtil {
 		return ownerId;
 	}
 
+	public static String getPortletResourceNamespace(
+			PortletRequest portletRequest, ThemeDisplay themeDisplay)
+		throws Exception {
+
+		String portletId =
+			ParamUtil.getString(portletRequest, "portletResource");
+
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(
+			themeDisplay.getCompanyId(), portletId);
+
+		return PortalUtil.getPortletNamespace(portlet.getPortletName());
+	}
+
 	public static String getTableOpenSocial() {
 		return _TABLE_OPEN_SOCIAL;
 	}
@@ -122,5 +183,8 @@ public class ShindigUtil {
 
 	@Inject
 	private static ContainerConfig _containerConfig;
+
+	@Inject
+	private static Processor _processor;
 
 }

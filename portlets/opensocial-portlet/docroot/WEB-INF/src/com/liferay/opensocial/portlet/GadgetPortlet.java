@@ -15,12 +15,9 @@
 package com.liferay.opensocial.portlet;
 
 import com.liferay.opensocial.model.Gadget;
-import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.WebKeys;
 import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
@@ -69,9 +66,7 @@ public class GadgetPortlet extends MVCPortlet {
 		throws IOException, PortletException {
 
 		try {
-			Gadget gadget = getGadget();
-
-			renderRequest.setAttribute(WebKeys.GADGET, gadget);
+			doRender(renderRequest, renderResponse);
 
 			super.render(renderRequest, renderResponse);
 		}
@@ -112,17 +107,17 @@ public class GadgetPortlet extends MVCPortlet {
 		}
 	}
 
+	protected void doRender(
+			RenderRequest renderRequest, RenderResponse renderResponse)
+		throws Exception {
+
+		Gadget gadget = getGadget();
+
+		renderRequest.setAttribute(WebKeys.GADGET, gadget);
+	}
+
 	protected Gadget getGadget() throws Exception {
-		String portletName = getPortletConfig().getPortletName();
-
-		int pos = portletName.indexOf(
-			StringPool.UNDERLINE, PORTLET_NAME_PREFIX.length());
-
-		long gadgetId = GetterUtil.getLong(portletName.substring(pos + 1));
-
-		Gadget gadget = GadgetLocalServiceUtil.getGadget(gadgetId);
-
-		return gadget;
+		return ShindigUtil.getGadget(getPortletConfig().getPortletName());
 	}
 
 	protected String getTitle(RenderRequest renderRequest) {

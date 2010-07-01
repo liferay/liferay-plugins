@@ -23,4 +23,6 @@ public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 
 	public static final String GADGET = "GADGET";
 
+	public static final String USER_PREFS = "USER_PREFS";
+
 }

@@ -10,6 +10,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
+		<configuration-action-class>com.liferay.opensocial.portlet.ConfigurationActionImpl</configuration-action-class>
 		<header-portlet-css>/gadget/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/gadgets/js/rpc.js?c=1&amp;debug=1</footer-portlet-javascript>
 		<footer-portlet-javascript>/gadget/js/main.js</footer-portlet-javascript>
