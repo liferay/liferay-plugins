@@ -46,7 +46,7 @@ public class GadgetUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(Gadget)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(Gadget gadget) {
 		getPersistence().clearCache(gadget);

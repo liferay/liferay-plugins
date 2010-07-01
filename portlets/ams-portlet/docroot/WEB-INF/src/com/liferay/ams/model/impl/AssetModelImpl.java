@@ -15,7 +15,6 @@
 package com.liferay.ams.model.impl;
 
 import com.liferay.ams.model.Asset;
-import com.liferay.ams.model.AssetSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -35,9 +34,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="AssetModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -83,34 +80,6 @@ public class AssetModelImpl extends BaseModelImpl<Asset> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.ams.model.Asset"),
 			true);
-
-	public static Asset toModel(AssetSoap soapModel) {
-		Asset model = new AssetImpl();
-
-		model.setAssetId(soapModel.getAssetId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setDefinitionId(soapModel.getDefinitionId());
-		model.setSerialNumber(soapModel.getSerialNumber());
-		model.setInactiveDate(soapModel.getInactiveDate());
-		model.setActive(soapModel.getActive());
-
-		return model;
-	}
-
-	public static List<Asset> toModels(AssetSoap[] soapModels) {
-		List<Asset> models = new ArrayList<Asset>(soapModels.length);
-
-		for (AssetSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.ams.model.Asset"));
 

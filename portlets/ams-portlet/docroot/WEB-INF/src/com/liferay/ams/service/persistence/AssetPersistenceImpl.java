@@ -21,7 +21,7 @@ import com.liferay.ams.model.impl.AssetModelImpl;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -88,7 +88,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(AssetImpl.class.getName());
+		CacheRegistryUtil.clear(AssetImpl.class.getName());
 		EntityCacheUtil.clearCache(AssetImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -142,20 +142,6 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public Asset remove(Asset asset) throws SystemException {
-		for (ModelListener<Asset> listener : listeners) {
-			listener.onBeforeRemove(asset);
-		}
-
-		asset = removeImpl(asset);
-
-		for (ModelListener<Asset> listener : listeners) {
-			listener.onAfterRemove(asset);
-		}
-
-		return asset;
 	}
 
 	protected Asset removeImpl(Asset asset) throws SystemException {
@@ -337,8 +323,9 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 
 					sql = query.toString();
 				}
-
-				sql = _SQL_SELECT_ASSET;
+				else {
+					sql = _SQL_SELECT_ASSET;
+				}
 
 				Query q = session.createQuery(sql);
 

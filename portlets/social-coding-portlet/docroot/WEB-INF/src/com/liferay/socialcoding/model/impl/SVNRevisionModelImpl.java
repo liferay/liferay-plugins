@@ -25,7 +25,6 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialcoding.model.SVNRevision;
-import com.liferay.socialcoding.model.SVNRevisionSoap;
 
 import java.io.Serializable;
 
@@ -33,9 +32,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="SVNRevisionModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -79,30 +76,6 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.socialcoding.model.SVNRevision"),
 			true);
-
-	public static SVNRevision toModel(SVNRevisionSoap soapModel) {
-		SVNRevision model = new SVNRevisionImpl();
-
-		model.setSvnRevisionId(soapModel.getSvnRevisionId());
-		model.setSvnUserId(soapModel.getSvnUserId());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setSvnRepositoryId(soapModel.getSvnRepositoryId());
-		model.setRevisionNumber(soapModel.getRevisionNumber());
-		model.setComments(soapModel.getComments());
-
-		return model;
-	}
-
-	public static List<SVNRevision> toModels(SVNRevisionSoap[] soapModels) {
-		List<SVNRevision> models = new ArrayList<SVNRevision>(soapModels.length);
-
-		for (SVNRevisionSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.SVNRevision"));
 

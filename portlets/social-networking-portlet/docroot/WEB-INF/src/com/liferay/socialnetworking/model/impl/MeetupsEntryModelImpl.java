@@ -28,7 +28,6 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialnetworking.model.MeetupsEntry;
-import com.liferay.socialnetworking.model.MeetupsEntrySoap;
 
 import java.io.Serializable;
 
@@ -36,9 +35,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="MeetupsEntryModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -90,38 +87,6 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.socialnetworking.model.MeetupsEntry"),
 			true);
-
-	public static MeetupsEntry toModel(MeetupsEntrySoap soapModel) {
-		MeetupsEntry model = new MeetupsEntryImpl();
-
-		model.setMeetupsEntryId(soapModel.getMeetupsEntryId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setTitle(soapModel.getTitle());
-		model.setDescription(soapModel.getDescription());
-		model.setStartDate(soapModel.getStartDate());
-		model.setEndDate(soapModel.getEndDate());
-		model.setTotalAttendees(soapModel.getTotalAttendees());
-		model.setMaxAttendees(soapModel.getMaxAttendees());
-		model.setPrice(soapModel.getPrice());
-		model.setThumbnailId(soapModel.getThumbnailId());
-
-		return model;
-	}
-
-	public static List<MeetupsEntry> toModels(MeetupsEntrySoap[] soapModels) {
-		List<MeetupsEntry> models = new ArrayList<MeetupsEntry>(soapModels.length);
-
-		for (MeetupsEntrySoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialnetworking.model.MeetupsEntry"));
 

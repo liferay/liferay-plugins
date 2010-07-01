@@ -21,7 +21,7 @@ import com.liferay.mail.model.impl.MessageModelImpl;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -129,7 +129,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(MessageImpl.class.getName());
+		CacheRegistryUtil.clear(MessageImpl.class.getName());
 		EntityCacheUtil.clearCache(MessageImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -389,7 +389,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	public List<Message> findByCompanyId(long companyId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(companyId),
+				companyId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -652,7 +652,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	public List<Message> findByFolderId(long folderId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(folderId),
+				folderId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -935,9 +935,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 
 	public Message fetchByF_R(long folderId, long remoteMessageId,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(folderId), new Long(remoteMessageId)
-			};
+		Object[] finderArgs = new Object[] { folderId, remoteMessageId };
 
 		Object result = null;
 
@@ -1118,7 +1116,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	}
 
 	public int countByCompanyId(long companyId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(companyId) };
+		Object[] finderArgs = new Object[] { companyId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_COMPANYID,
 				finderArgs, this);
@@ -1164,7 +1162,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	}
 
 	public int countByFolderId(long folderId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(folderId) };
+		Object[] finderArgs = new Object[] { folderId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_FOLDERID,
 				finderArgs, this);
@@ -1211,9 +1209,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 
 	public int countByF_R(long folderId, long remoteMessageId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(folderId), new Long(remoteMessageId)
-			};
+		Object[] finderArgs = new Object[] { folderId, remoteMessageId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_F_R,
 				finderArgs, this);

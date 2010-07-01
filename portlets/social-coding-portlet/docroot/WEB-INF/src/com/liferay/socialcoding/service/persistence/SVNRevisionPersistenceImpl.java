@@ -16,7 +16,7 @@ package com.liferay.socialcoding.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -128,7 +128,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(SVNRevisionImpl.class.getName());
+		CacheRegistryUtil.clear(SVNRevisionImpl.class.getName());
 		EntityCacheUtil.clearCache(SVNRevisionImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -183,21 +183,6 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public SVNRevision remove(SVNRevision svnRevision)
-		throws SystemException {
-		for (ModelListener<SVNRevision> listener : listeners) {
-			listener.onBeforeRemove(svnRevision);
-		}
-
-		svnRevision = removeImpl(svnRevision);
-
-		for (ModelListener<SVNRevision> listener : listeners) {
-			listener.onAfterRemove(svnRevision);
-		}
-
-		return svnRevision;
 	}
 
 	protected SVNRevision removeImpl(SVNRevision svnRevision)
@@ -645,7 +630,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(svnRepositoryId),
+				svnRepositoryId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -911,7 +896,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		long svnRepositoryId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				svnUserId, new Long(svnRepositoryId),
+				svnUserId, svnRepositoryId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1240,7 +1225,6 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_SVNREVISION.concat(SVNRevisionModelImpl.ORDER_BY_JPQL);
 				}
@@ -1364,7 +1348,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 	public int countBySVNRepositoryId(long svnRepositoryId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(svnRepositoryId) };
+		Object[] finderArgs = new Object[] { svnRepositoryId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_SVNREPOSITORYID,
 				finderArgs, this);
@@ -1411,7 +1395,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 	public int countBySVNU_SVNR(String svnUserId, long svnRepositoryId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { svnUserId, new Long(svnRepositoryId) };
+		Object[] finderArgs = new Object[] { svnUserId, svnRepositoryId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_SVNU_SVNR,
 				finderArgs, this);

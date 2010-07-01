@@ -28,7 +28,6 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialnetworking.model.WallEntry;
-import com.liferay.socialnetworking.model.WallEntrySoap;
 
 import java.io.Serializable;
 
@@ -36,9 +35,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="WallEntryModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -84,32 +81,6 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.socialnetworking.model.WallEntry"),
 			true);
-
-	public static WallEntry toModel(WallEntrySoap soapModel) {
-		WallEntry model = new WallEntryImpl();
-
-		model.setWallEntryId(soapModel.getWallEntryId());
-		model.setGroupId(soapModel.getGroupId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setComments(soapModel.getComments());
-
-		return model;
-	}
-
-	public static List<WallEntry> toModels(WallEntrySoap[] soapModels) {
-		List<WallEntry> models = new ArrayList<WallEntry>(soapModels.length);
-
-		for (WallEntrySoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialnetworking.model.WallEntry"));
 

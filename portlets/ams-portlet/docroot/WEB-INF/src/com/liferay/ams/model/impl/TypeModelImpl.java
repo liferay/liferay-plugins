@@ -15,7 +15,6 @@
 package com.liferay.ams.model.impl;
 
 import com.liferay.ams.model.Type;
-import com.liferay.ams.model.TypeSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -32,9 +31,6 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.sql.Types;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <a href="TypeModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -75,27 +71,6 @@ public class TypeModelImpl extends BaseModelImpl<Type> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.ams.model.Type"),
 			true);
-
-	public static Type toModel(TypeSoap soapModel) {
-		Type model = new TypeImpl();
-
-		model.setTypeId(soapModel.getTypeId());
-		model.setGroupId(soapModel.getGroupId());
-		model.setName(soapModel.getName());
-
-		return model;
-	}
-
-	public static List<Type> toModels(TypeSoap[] soapModels) {
-		List<Type> models = new ArrayList<Type>(soapModels.length);
-
-		for (TypeSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.ams.model.Type"));
 

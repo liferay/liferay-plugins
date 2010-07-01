@@ -15,7 +15,6 @@
 package com.liferay.chat.model.impl;
 
 import com.liferay.chat.model.Entry;
-import com.liferay.chat.model.EntrySoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -34,9 +33,6 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.sql.Types;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <a href="EntryModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -79,29 +75,6 @@ public class EntryModelImpl extends BaseModelImpl<Entry> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.chat.model.Entry"),
 			true);
-
-	public static Entry toModel(EntrySoap soapModel) {
-		Entry model = new EntryImpl();
-
-		model.setEntryId(soapModel.getEntryId());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setFromUserId(soapModel.getFromUserId());
-		model.setToUserId(soapModel.getToUserId());
-		model.setContent(soapModel.getContent());
-
-		return model;
-	}
-
-	public static List<Entry> toModels(EntrySoap[] soapModels) {
-		List<Entry> models = new ArrayList<Entry>(soapModels.length);
-
-		for (EntrySoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.chat.model.Entry"));
 

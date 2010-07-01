@@ -15,7 +15,6 @@
 package com.liferay.mail.model.impl;
 
 import com.liferay.mail.model.Account;
-import com.liferay.mail.model.AccountSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -35,9 +34,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="AccountModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -101,50 +98,6 @@ public class AccountModelImpl extends BaseModelImpl<Account> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.mail.model.Account"),
 			true);
-
-	public static Account toModel(AccountSoap soapModel) {
-		Account model = new AccountImpl();
-
-		model.setAccountId(soapModel.getAccountId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setAddress(soapModel.getAddress());
-		model.setPersonalName(soapModel.getPersonalName());
-		model.setProtocol(soapModel.getProtocol());
-		model.setIncomingHostName(soapModel.getIncomingHostName());
-		model.setIncomingPort(soapModel.getIncomingPort());
-		model.setIncomingSecure(soapModel.getIncomingSecure());
-		model.setOutgoingHostName(soapModel.getOutgoingHostName());
-		model.setOutgoingPort(soapModel.getOutgoingPort());
-		model.setOutgoingSecure(soapModel.getOutgoingSecure());
-		model.setLogin(soapModel.getLogin());
-		model.setPassword(soapModel.getPassword());
-		model.setSavePassword(soapModel.getSavePassword());
-		model.setSignature(soapModel.getSignature());
-		model.setUseSignature(soapModel.getUseSignature());
-		model.setFolderPrefix(soapModel.getFolderPrefix());
-		model.setInboxFolderId(soapModel.getInboxFolderId());
-		model.setDraftFolderId(soapModel.getDraftFolderId());
-		model.setSentFolderId(soapModel.getSentFolderId());
-		model.setTrashFolderId(soapModel.getTrashFolderId());
-		model.setDefaultSender(soapModel.getDefaultSender());
-
-		return model;
-	}
-
-	public static List<Account> toModels(AccountSoap[] soapModels) {
-		List<Account> models = new ArrayList<Account>(soapModels.length);
-
-		for (AccountSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.mail.model.Account"));
 

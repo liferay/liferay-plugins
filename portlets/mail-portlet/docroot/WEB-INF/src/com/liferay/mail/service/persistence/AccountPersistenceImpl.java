@@ -21,7 +21,7 @@ import com.liferay.mail.model.impl.AccountModelImpl;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -116,7 +116,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(AccountImpl.class.getName());
+		CacheRegistryUtil.clear(AccountImpl.class.getName());
 		EntityCacheUtil.clearCache(AccountImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -380,7 +380,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	public List<Account> findByUserId(long userId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(userId),
+				userId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -662,7 +662,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 
 	public Account fetchByU_A(long userId, String address,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(userId), address };
+		Object[] finderArgs = new Object[] { userId, address };
 
 		Object result = null;
 
@@ -850,7 +850,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	public int countByUserId(long userId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(userId) };
+		Object[] finderArgs = new Object[] { userId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_USERID,
 				finderArgs, this);
@@ -897,7 +897,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 
 	public int countByU_A(long userId, String address)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(userId), address };
+		Object[] finderArgs = new Object[] { userId, address };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_U_A,
 				finderArgs, this);

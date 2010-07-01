@@ -15,7 +15,6 @@
 package com.liferay.mail.model.impl;
 
 import com.liferay.mail.model.Folder;
-import com.liferay.mail.model.FolderSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -35,9 +34,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="FolderModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -85,34 +82,6 @@ public class FolderModelImpl extends BaseModelImpl<Folder> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.mail.model.Folder"),
 			true);
-
-	public static Folder toModel(FolderSoap soapModel) {
-		Folder model = new FolderImpl();
-
-		model.setFolderId(soapModel.getFolderId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setAccountId(soapModel.getAccountId());
-		model.setFullName(soapModel.getFullName());
-		model.setDisplayName(soapModel.getDisplayName());
-		model.setRemoteMessageCount(soapModel.getRemoteMessageCount());
-
-		return model;
-	}
-
-	public static List<Folder> toModels(FolderSoap[] soapModels) {
-		List<Folder> models = new ArrayList<Folder>(soapModels.length);
-
-		for (FolderSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.mail.model.Folder"));
 

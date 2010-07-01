@@ -27,7 +27,6 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.twitter.model.Feed;
-import com.liferay.twitter.model.FeedSoap;
 
 import java.io.Serializable;
 
@@ -35,9 +34,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="FeedModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -79,30 +76,6 @@ public class FeedModelImpl extends BaseModelImpl<Feed> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.twitter.model.Feed"),
 			true);
-
-	public static Feed toModel(FeedSoap soapModel) {
-		Feed model = new FeedImpl();
-
-		model.setFeedId(soapModel.getFeedId());
-		model.setTwitterUserId(soapModel.getTwitterUserId());
-		model.setTwitterScreenName(soapModel.getTwitterScreenName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setLastStatusId(soapModel.getLastStatusId());
-
-		return model;
-	}
-
-	public static List<Feed> toModels(FeedSoap[] soapModels) {
-		List<Feed> models = new ArrayList<Feed>(soapModels.length);
-
-		for (FeedSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.twitter.model.Feed"));
 

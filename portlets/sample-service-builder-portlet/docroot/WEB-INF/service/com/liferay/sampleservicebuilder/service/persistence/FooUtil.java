@@ -17,6 +17,8 @@ package com.liferay.sampleservicebuilder.service.persistence;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.sampleservicebuilder.model.Foo;
 
@@ -44,7 +46,7 @@ public class FooUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(Foo)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(Foo foo) {
 		getPersistence().clearCache(foo);
@@ -75,6 +77,17 @@ public class FooUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
+	 */
+	public static List<Foo> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		return getPersistence()
+				   .findWithDynamicQuery(dynamicQuery, start, end,
+			orderByComparator);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
 	 */
 	public static Foo remove(Foo foo) throws SystemException {
@@ -86,6 +99,14 @@ public class FooUtil {
 	 */
 	public static Foo update(Foo foo, boolean merge) throws SystemException {
 		return getPersistence().update(foo, merge);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 */
+	public static Foo update(Foo foo, boolean merge,
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(foo, merge, serviceContext);
 	}
 
 	public static void cacheResult(

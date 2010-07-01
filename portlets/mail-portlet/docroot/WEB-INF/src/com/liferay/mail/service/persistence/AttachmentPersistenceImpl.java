@@ -21,7 +21,7 @@ import com.liferay.mail.model.impl.AttachmentModelImpl;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -103,7 +103,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(AttachmentImpl.class.getName());
+		CacheRegistryUtil.clear(AttachmentImpl.class.getName());
 		EntityCacheUtil.clearCache(AttachmentImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -317,7 +317,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	public List<Attachment> findByMessageId(long messageId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(messageId),
+				messageId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -648,7 +648,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	}
 
 	public int countByMessageId(long messageId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(messageId) };
+		Object[] finderArgs = new Object[] { messageId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MESSAGEID,
 				finderArgs, this);

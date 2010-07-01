@@ -46,7 +46,7 @@ public class ProjectsEntryUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(ProjectsEntry)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(ProjectsEntry projectsEntry) {
 		getPersistence().clearCache(projectsEntry);

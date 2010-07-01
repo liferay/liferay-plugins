@@ -26,7 +26,6 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialcoding.model.JIRAIssue;
-import com.liferay.socialcoding.model.JIRAIssueSoap;
 
 import java.io.Serializable;
 
@@ -34,9 +33,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="JIRAIssueModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -85,35 +82,6 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.socialcoding.model.JIRAIssue"),
 			false);
-
-	public static JIRAIssue toModel(JIRAIssueSoap soapModel) {
-		JIRAIssue model = new JIRAIssueImpl();
-
-		model.setJiraIssueId(soapModel.getJiraIssueId());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setProjectId(soapModel.getProjectId());
-		model.setKey(soapModel.getKey());
-		model.setSummary(soapModel.getSummary());
-		model.setDescription(soapModel.getDescription());
-		model.setReporterJiraUserId(soapModel.getReporterJiraUserId());
-		model.setAssigneeJiraUserId(soapModel.getAssigneeJiraUserId());
-		model.setResolution(soapModel.getResolution());
-		model.setStatus(soapModel.getStatus());
-
-		return model;
-	}
-
-	public static List<JIRAIssue> toModels(JIRAIssueSoap[] soapModels) {
-		List<JIRAIssue> models = new ArrayList<JIRAIssue>(soapModels.length);
-
-		for (JIRAIssueSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.JIRAIssue"));
 

@@ -16,7 +16,7 @@ package com.liferay.socialnetworking.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -133,7 +133,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(MeetupsRegistrationImpl.class.getName());
+		CacheRegistryUtil.clear(MeetupsRegistrationImpl.class.getName());
 		EntityCacheUtil.clearCache(MeetupsRegistrationImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -195,21 +195,6 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public MeetupsRegistration remove(MeetupsRegistration meetupsRegistration)
-		throws SystemException {
-		for (ModelListener<MeetupsRegistration> listener : listeners) {
-			listener.onBeforeRemove(meetupsRegistration);
-		}
-
-		meetupsRegistration = removeImpl(meetupsRegistration);
-
-		for (ModelListener<MeetupsRegistration> listener : listeners) {
-			listener.onAfterRemove(meetupsRegistration);
-		}
-
-		return meetupsRegistration;
 	}
 
 	protected MeetupsRegistration removeImpl(
@@ -407,7 +392,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(meetupsEntryId),
+				meetupsEntryId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -696,9 +681,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 	public MeetupsRegistration fetchByU_ME(long userId, long meetupsEntryId,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(userId), new Long(meetupsEntryId)
-			};
+		Object[] finderArgs = new Object[] { userId, meetupsEntryId };
 
 		Object result = null;
 
@@ -794,7 +777,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		int status, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(meetupsEntryId), new Integer(status),
+				meetupsEntryId, status,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1099,7 +1082,6 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_MEETUPSREGISTRATION.concat(MeetupsRegistrationModelImpl.ORDER_BY_JPQL);
 				}
@@ -1168,7 +1150,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 	public int countByMeetupsEntryId(long meetupsEntryId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(meetupsEntryId) };
+		Object[] finderArgs = new Object[] { meetupsEntryId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MEETUPSENTRYID,
 				finderArgs, this);
@@ -1215,9 +1197,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 	public int countByU_ME(long userId, long meetupsEntryId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(userId), new Long(meetupsEntryId)
-			};
+		Object[] finderArgs = new Object[] { userId, meetupsEntryId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_U_ME,
 				finderArgs, this);
@@ -1268,9 +1248,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 	public int countByME_S(long meetupsEntryId, int status)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(meetupsEntryId), new Integer(status)
-			};
+		Object[] finderArgs = new Object[] { meetupsEntryId, status };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ME_S,
 				finderArgs, this);

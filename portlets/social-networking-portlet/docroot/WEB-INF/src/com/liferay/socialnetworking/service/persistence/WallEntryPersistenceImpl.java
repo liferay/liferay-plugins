@@ -16,7 +16,7 @@ package com.liferay.socialnetworking.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -128,7 +128,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(WallEntryImpl.class.getName());
+		CacheRegistryUtil.clear(WallEntryImpl.class.getName());
 		EntityCacheUtil.clearCache(WallEntryImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -183,20 +183,6 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public WallEntry remove(WallEntry wallEntry) throws SystemException {
-		for (ModelListener<WallEntry> listener : listeners) {
-			listener.onBeforeRemove(wallEntry);
-		}
-
-		wallEntry = removeImpl(wallEntry);
-
-		for (ModelListener<WallEntry> listener : listeners) {
-			listener.onAfterRemove(wallEntry);
-		}
-
-		return wallEntry;
 	}
 
 	protected WallEntry removeImpl(WallEntry wallEntry)
@@ -355,7 +341,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	public List<WallEntry> findByGroupId(long groupId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(groupId),
+				groupId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -617,7 +603,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	public List<WallEntry> findByUserId(long userId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(userId),
+				userId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -881,7 +867,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	public List<WallEntry> findByG_U(long groupId, long userId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(groupId), new Long(userId),
+				groupId, userId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1185,7 +1171,6 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_WALLENTRY.concat(WallEntryModelImpl.ORDER_BY_JPQL);
 				}
@@ -1248,7 +1233,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	}
 
 	public int countByGroupId(long groupId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId) };
+		Object[] finderArgs = new Object[] { groupId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_GROUPID,
 				finderArgs, this);
@@ -1294,7 +1279,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	}
 
 	public int countByUserId(long userId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(userId) };
+		Object[] finderArgs = new Object[] { userId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_USERID,
 				finderArgs, this);
@@ -1340,7 +1325,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	}
 
 	public int countByG_U(long groupId, long userId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId), new Long(userId) };
+		Object[] finderArgs = new Object[] { groupId, userId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_U,
 				finderArgs, this);

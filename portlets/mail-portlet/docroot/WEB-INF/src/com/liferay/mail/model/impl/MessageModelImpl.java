@@ -15,7 +15,6 @@
 package com.liferay.mail.model.impl;
 
 import com.liferay.mail.model.Message;
-import com.liferay.mail.model.MessageSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -36,9 +35,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="MessageModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -95,43 +92,6 @@ public class MessageModelImpl extends BaseModelImpl<Message> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.mail.model.Message"),
 			true);
-
-	public static Message toModel(MessageSoap soapModel) {
-		Message model = new MessageImpl();
-
-		model.setMessageId(soapModel.getMessageId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setAccountId(soapModel.getAccountId());
-		model.setFolderId(soapModel.getFolderId());
-		model.setSender(soapModel.getSender());
-		model.setTo(soapModel.getTo());
-		model.setCc(soapModel.getCc());
-		model.setBcc(soapModel.getBcc());
-		model.setSentDate(soapModel.getSentDate());
-		model.setSubject(soapModel.getSubject());
-		model.setPreview(soapModel.getPreview());
-		model.setBody(soapModel.getBody());
-		model.setFlags(soapModel.getFlags());
-		model.setSize(soapModel.getSize());
-		model.setRemoteMessageId(soapModel.getRemoteMessageId());
-
-		return model;
-	}
-
-	public static List<Message> toModels(MessageSoap[] soapModels) {
-		List<Message> models = new ArrayList<Message>(soapModels.length);
-
-		for (MessageSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.mail.model.Message"));
 

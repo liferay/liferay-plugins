@@ -46,7 +46,7 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(WSRPConsumer)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(WSRPConsumer wsrpConsumer) {
 		getPersistence().clearCache(wsrpConsumer);

@@ -16,7 +16,7 @@ package com.liferay.sampleservicebuilder.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -102,7 +102,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(FooImpl.class.getName());
+		CacheRegistryUtil.clear(FooImpl.class.getName());
 		EntityCacheUtil.clearCache(FooImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -155,20 +155,6 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public Foo remove(Foo foo) throws SystemException {
-		for (ModelListener<Foo> listener : listeners) {
-			listener.onBeforeRemove(foo);
-		}
-
-		foo = removeImpl(foo);
-
-		for (ModelListener<Foo> listener : listeners) {
-			listener.onAfterRemove(foo);
-		}
-
-		return foo;
 	}
 
 	protected Foo removeImpl(Foo foo) throws SystemException {
@@ -325,7 +311,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	public List<Foo> findByField2(boolean field2, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				Boolean.valueOf(field2),
+				field2,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -611,7 +597,6 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_FOO.concat(FooModelImpl.ORDER_BY_JPQL);
 				}
@@ -660,7 +645,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	}
 
 	public int countByField2(boolean field2) throws SystemException {
-		Object[] finderArgs = new Object[] { Boolean.valueOf(field2) };
+		Object[] finderArgs = new Object[] { field2 };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_FIELD2,
 				finderArgs, this);

@@ -15,7 +15,6 @@
 package com.liferay.ams.model.impl;
 
 import com.liferay.ams.model.Checkout;
-import com.liferay.ams.model.CheckoutSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -35,9 +34,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="CheckoutModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -83,34 +80,6 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.ams.model.Checkout"),
 			true);
-
-	public static Checkout toModel(CheckoutSoap soapModel) {
-		Checkout model = new CheckoutImpl();
-
-		model.setCheckoutId(soapModel.getCheckoutId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setAssetId(soapModel.getAssetId());
-		model.setCheckOutDate(soapModel.getCheckOutDate());
-		model.setExpectedCheckInDate(soapModel.getExpectedCheckInDate());
-		model.setActualCheckInDate(soapModel.getActualCheckInDate());
-
-		return model;
-	}
-
-	public static List<Checkout> toModels(CheckoutSoap[] soapModels) {
-		List<Checkout> models = new ArrayList<Checkout>(soapModels.length);
-
-		for (CheckoutSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.ams.model.Checkout"));
 

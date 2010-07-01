@@ -17,6 +17,8 @@ package com.liferay.socialnetworking.service.persistence;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.socialnetworking.model.MeetupsRegistration;
 
@@ -44,7 +46,7 @@ public class MeetupsRegistrationUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(MeetupsRegistration)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(MeetupsRegistration meetupsRegistration) {
 		getPersistence().clearCache(meetupsRegistration);
@@ -76,6 +78,17 @@ public class MeetupsRegistrationUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
+	 */
+	public static List<MeetupsRegistration> findWithDynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		return getPersistence()
+				   .findWithDynamicQuery(dynamicQuery, start, end,
+			orderByComparator);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
 	 */
 	public static MeetupsRegistration remove(
@@ -90,6 +103,16 @@ public class MeetupsRegistrationUtil {
 		MeetupsRegistration meetupsRegistration, boolean merge)
 		throws SystemException {
 		return getPersistence().update(meetupsRegistration, merge);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 */
+	public static MeetupsRegistration update(
+		MeetupsRegistration meetupsRegistration, boolean merge,
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence()
+				   .update(meetupsRegistration, merge, serviceContext);
 	}
 
 	public static void cacheResult(

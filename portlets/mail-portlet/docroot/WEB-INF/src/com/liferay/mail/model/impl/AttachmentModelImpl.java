@@ -15,7 +15,6 @@
 package com.liferay.mail.model.impl;
 
 import com.liferay.mail.model.Attachment;
-import com.liferay.mail.model.AttachmentSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -34,9 +33,6 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.sql.Types;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <a href="AttachmentModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -81,33 +77,6 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.mail.model.Attachment"),
 			true);
-
-	public static Attachment toModel(AttachmentSoap soapModel) {
-		Attachment model = new AttachmentImpl();
-
-		model.setAttachmentId(soapModel.getAttachmentId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setAccountId(soapModel.getAccountId());
-		model.setFolderId(soapModel.getFolderId());
-		model.setMessageId(soapModel.getMessageId());
-		model.setContentPath(soapModel.getContentPath());
-		model.setFileName(soapModel.getFileName());
-		model.setSize(soapModel.getSize());
-
-		return model;
-	}
-
-	public static List<Attachment> toModels(AttachmentSoap[] soapModels) {
-		List<Attachment> models = new ArrayList<Attachment>(soapModels.length);
-
-		for (AttachmentSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.mail.model.Attachment"));
 

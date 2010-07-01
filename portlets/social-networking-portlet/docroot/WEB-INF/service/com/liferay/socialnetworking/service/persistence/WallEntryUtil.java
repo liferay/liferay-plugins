@@ -17,6 +17,8 @@ package com.liferay.socialnetworking.service.persistence;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.socialnetworking.model.WallEntry;
 
@@ -44,7 +46,7 @@ public class WallEntryUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(WallEntry)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(WallEntry wallEntry) {
 		getPersistence().clearCache(wallEntry);
@@ -76,6 +78,17 @@ public class WallEntryUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
+	 */
+	public static List<WallEntry> findWithDynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		return getPersistence()
+				   .findWithDynamicQuery(dynamicQuery, start, end,
+			orderByComparator);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
 	 */
 	public static WallEntry remove(WallEntry wallEntry)
@@ -89,6 +102,14 @@ public class WallEntryUtil {
 	public static WallEntry update(WallEntry wallEntry, boolean merge)
 		throws SystemException {
 		return getPersistence().update(wallEntry, merge);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 */
+	public static WallEntry update(WallEntry wallEntry, boolean merge,
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(wallEntry, merge, serviceContext);
 	}
 
 	public static void cacheResult(

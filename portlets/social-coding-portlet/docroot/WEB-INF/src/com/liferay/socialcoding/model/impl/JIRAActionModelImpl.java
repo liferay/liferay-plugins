@@ -26,7 +26,6 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialcoding.model.JIRAAction;
-import com.liferay.socialcoding.model.JIRAActionSoap;
 
 import java.io.Serializable;
 
@@ -34,9 +33,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="JIRAActionModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -82,32 +79,6 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.socialcoding.model.JIRAAction"),
 			true);
-
-	public static JIRAAction toModel(JIRAActionSoap soapModel) {
-		JIRAAction model = new JIRAActionImpl();
-
-		model.setJiraActionId(soapModel.getJiraActionId());
-		model.setJiraUserId(soapModel.getJiraUserId());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setJiraIssueId(soapModel.getJiraIssueId());
-		model.setType(soapModel.getType());
-		model.setBody(soapModel.getBody());
-		model.setJiraGroupName(soapModel.getJiraGroupName());
-
-		return model;
-	}
-
-	public static List<JIRAAction> toModels(JIRAActionSoap[] soapModels) {
-		List<JIRAAction> models = new ArrayList<JIRAAction>(soapModels.length);
-
-		for (JIRAActionSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.JIRAAction"));
 

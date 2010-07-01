@@ -19,6 +19,8 @@ import com.liferay.ams.model.Definition;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
 
@@ -44,7 +46,7 @@ public class DefinitionUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(Definition)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(Definition definition) {
 		getPersistence().clearCache(definition);
@@ -76,6 +78,17 @@ public class DefinitionUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
+	 */
+	public static List<Definition> findWithDynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		return getPersistence()
+				   .findWithDynamicQuery(dynamicQuery, start, end,
+			orderByComparator);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
 	 */
 	public static Definition remove(Definition definition)
@@ -89,6 +102,14 @@ public class DefinitionUtil {
 	public static Definition update(Definition definition, boolean merge)
 		throws SystemException {
 		return getPersistence().update(definition, merge);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 */
+	public static Definition update(Definition definition, boolean merge,
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(definition, merge, serviceContext);
 	}
 
 	public static void cacheResult(com.liferay.ams.model.Definition definition) {

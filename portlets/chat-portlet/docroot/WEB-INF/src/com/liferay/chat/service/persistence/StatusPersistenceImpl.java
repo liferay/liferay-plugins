@@ -21,7 +21,7 @@ import com.liferay.chat.model.impl.StatusModelImpl;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -137,7 +137,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(StatusImpl.class.getName());
+		CacheRegistryUtil.clear(StatusImpl.class.getName());
 		EntityCacheUtil.clearCache(StatusImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -195,20 +195,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public Status remove(Status status) throws SystemException {
-		for (ModelListener<Status> listener : listeners) {
-			listener.onBeforeRemove(status);
-		}
-
-		status = removeImpl(status);
-
-		for (ModelListener<Status> listener : listeners) {
-			listener.onAfterRemove(status);
-		}
-
-		return status;
 	}
 
 	protected Status removeImpl(Status status) throws SystemException {
@@ -402,7 +388,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 	public Status fetchByUserId(long userId, boolean retrieveFromCache)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(userId) };
+		Object[] finderArgs = new Object[] { userId };
 
 		Object result = null;
 
@@ -490,7 +476,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	public List<Status> findByModifiedDate(long modifiedDate, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(modifiedDate),
+				modifiedDate,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -744,7 +730,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	public List<Status> findByOnline(boolean online, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				Boolean.valueOf(online),
+				online,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -998,7 +984,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	public List<Status> findByM_O(long modifiedDate, boolean online, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(modifiedDate), Boolean.valueOf(online),
+				modifiedDate, online,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1292,8 +1278,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 					sql = query.toString();
 				}
-
-				sql = _SQL_SELECT_STATUS;
+				else {
+					sql = _SQL_SELECT_STATUS;
+				}
 
 				Query q = session.createQuery(sql);
 
@@ -1361,7 +1348,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public int countByUserId(long userId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(userId) };
+		Object[] finderArgs = new Object[] { userId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_USERID,
 				finderArgs, this);
@@ -1407,7 +1394,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public int countByModifiedDate(long modifiedDate) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(modifiedDate) };
+		Object[] finderArgs = new Object[] { modifiedDate };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MODIFIEDDATE,
 				finderArgs, this);
@@ -1453,7 +1440,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public int countByOnline(boolean online) throws SystemException {
-		Object[] finderArgs = new Object[] { Boolean.valueOf(online) };
+		Object[] finderArgs = new Object[] { online };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ONLINE,
 				finderArgs, this);
@@ -1500,9 +1487,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 	public int countByM_O(long modifiedDate, boolean online)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(modifiedDate), Boolean.valueOf(online)
-			};
+		Object[] finderArgs = new Object[] { modifiedDate, online };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_M_O,
 				finderArgs, this);

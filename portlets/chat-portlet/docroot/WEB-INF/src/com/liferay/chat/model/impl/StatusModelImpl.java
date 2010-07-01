@@ -15,7 +15,6 @@
 package com.liferay.chat.model.impl;
 
 import com.liferay.chat.model.Status;
-import com.liferay.chat.model.StatusSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -34,9 +33,6 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.sql.Types;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <a href="StatusModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -80,32 +76,6 @@ public class StatusModelImpl extends BaseModelImpl<Status> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.chat.model.Status"),
 			true);
-
-	public static Status toModel(StatusSoap soapModel) {
-		Status model = new StatusImpl();
-
-		model.setStatusId(soapModel.getStatusId());
-		model.setUserId(soapModel.getUserId());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setOnline(soapModel.getOnline());
-		model.setAwake(soapModel.getAwake());
-		model.setActivePanelId(soapModel.getActivePanelId());
-		model.setMessage(soapModel.getMessage());
-		model.setPlaySound(soapModel.getPlaySound());
-
-		return model;
-	}
-
-	public static List<Status> toModels(StatusSoap[] soapModels) {
-		List<Status> models = new ArrayList<Status>(soapModels.length);
-
-		for (StatusSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.chat.model.Status"));
 

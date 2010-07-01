@@ -16,7 +16,7 @@ package com.liferay.socialcoding.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -106,7 +106,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(JIRAChangeItemImpl.class.getName());
+		CacheRegistryUtil.clear(JIRAChangeItemImpl.class.getName());
 		EntityCacheUtil.clearCache(JIRAChangeItemImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -162,21 +162,6 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public JIRAChangeItem remove(JIRAChangeItem jiraChangeItem)
-		throws SystemException {
-		for (ModelListener<JIRAChangeItem> listener : listeners) {
-			listener.onBeforeRemove(jiraChangeItem);
-		}
-
-		jiraChangeItem = removeImpl(jiraChangeItem);
-
-		for (ModelListener<JIRAChangeItem> listener : listeners) {
-			listener.onAfterRemove(jiraChangeItem);
-		}
-
-		return jiraChangeItem;
 	}
 
 	protected JIRAChangeItem removeImpl(JIRAChangeItem jiraChangeItem)
@@ -337,7 +322,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		long jiraChangeGroupId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(jiraChangeGroupId),
+				jiraChangeGroupId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -620,8 +605,9 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 
 					sql = query.toString();
 				}
-
-				sql = _SQL_SELECT_JIRACHANGEITEM;
+				else {
+					sql = _SQL_SELECT_JIRACHANGEITEM;
+				}
 
 				Query q = session.createQuery(sql);
 
@@ -671,7 +657,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 
 	public int countByJiraChangeGroupId(long jiraChangeGroupId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(jiraChangeGroupId) };
+		Object[] finderArgs = new Object[] { jiraChangeGroupId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_JIRACHANGEGROUPID,
 				finderArgs, this);

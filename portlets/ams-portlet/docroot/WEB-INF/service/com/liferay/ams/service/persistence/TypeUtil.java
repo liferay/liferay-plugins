@@ -19,6 +19,8 @@ import com.liferay.ams.model.Type;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
 
@@ -44,7 +46,7 @@ public class TypeUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(Type)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(Type type) {
 		getPersistence().clearCache(type);
@@ -75,6 +77,17 @@ public class TypeUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
+	 */
+	public static List<Type> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		return getPersistence()
+				   .findWithDynamicQuery(dynamicQuery, start, end,
+			orderByComparator);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
 	 */
 	public static Type remove(Type type) throws SystemException {
@@ -87,6 +100,14 @@ public class TypeUtil {
 	public static Type update(Type type, boolean merge)
 		throws SystemException {
 		return getPersistence().update(type, merge);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 */
+	public static Type update(Type type, boolean merge,
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(type, merge, serviceContext);
 	}
 
 	public static void cacheResult(com.liferay.ams.model.Type type) {

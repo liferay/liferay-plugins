@@ -32,12 +32,7 @@ import java.util.List;
  * overwritten the next time is generated.
  * </p>
  *
- * <p>
- * This class is used by {@link ArticleServiceJSON} to translate objects.
- * </p>
- *
  * @author    Brian Wing Shun Chan
- * @see       com.liferay.knowledgebase.service.http.ArticleServiceJSON
  * @generated
  */
 public class ArticleJSONSerializer {

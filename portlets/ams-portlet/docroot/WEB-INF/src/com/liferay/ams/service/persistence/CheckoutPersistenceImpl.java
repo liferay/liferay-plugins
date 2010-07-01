@@ -21,7 +21,7 @@ import com.liferay.ams.model.impl.CheckoutModelImpl;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -89,7 +89,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(CheckoutImpl.class.getName());
+		CacheRegistryUtil.clear(CheckoutImpl.class.getName());
 		EntityCacheUtil.clearCache(CheckoutImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -144,20 +144,6 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public Checkout remove(Checkout checkout) throws SystemException {
-		for (ModelListener<Checkout> listener : listeners) {
-			listener.onBeforeRemove(checkout);
-		}
-
-		checkout = removeImpl(checkout);
-
-		for (ModelListener<Checkout> listener : listeners) {
-			listener.onAfterRemove(checkout);
-		}
-
-		return checkout;
 	}
 
 	protected Checkout removeImpl(Checkout checkout) throws SystemException {
@@ -341,8 +327,9 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 
 					sql = query.toString();
 				}
-
-				sql = _SQL_SELECT_CHECKOUT;
+				else {
+					sql = _SQL_SELECT_CHECKOUT;
+				}
 
 				Query q = session.createQuery(sql);
 

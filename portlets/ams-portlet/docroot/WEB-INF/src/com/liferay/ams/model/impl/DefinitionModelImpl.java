@@ -15,7 +15,6 @@
 package com.liferay.ams.model.impl;
 
 import com.liferay.ams.model.Definition;
-import com.liferay.ams.model.DefinitionSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -35,9 +34,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="DefinitionModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -86,37 +83,6 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.ams.model.Definition"),
 			true);
-
-	public static Definition toModel(DefinitionSoap soapModel) {
-		Definition model = new DefinitionImpl();
-
-		model.setDefinitionId(soapModel.getDefinitionId());
-		model.setGroupId(soapModel.getGroupId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setTypeId(soapModel.getTypeId());
-		model.setManufacturer(soapModel.getManufacturer());
-		model.setModel(soapModel.getModel());
-		model.setOrderDate(soapModel.getOrderDate());
-		model.setQuantity(soapModel.getQuantity());
-		model.setPrice(soapModel.getPrice());
-
-		return model;
-	}
-
-	public static List<Definition> toModels(DefinitionSoap[] soapModels) {
-		List<Definition> models = new ArrayList<Definition>(soapModels.length);
-
-		for (DefinitionSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.ams.model.Definition"));
 

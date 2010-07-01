@@ -16,7 +16,7 @@ package com.liferay.socialcoding.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -246,7 +246,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(JIRAIssueImpl.class.getName());
+		CacheRegistryUtil.clear(JIRAIssueImpl.class.getName());
 		EntityCacheUtil.clearCache(JIRAIssueImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -304,20 +304,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public JIRAIssue remove(JIRAIssue jiraIssue) throws SystemException {
-		for (ModelListener<JIRAIssue> listener : listeners) {
-			listener.onBeforeRemove(jiraIssue);
-		}
-
-		jiraIssue = removeImpl(jiraIssue);
-
-		for (ModelListener<JIRAIssue> listener : listeners) {
-			listener.onAfterRemove(jiraIssue);
-		}
-
-		return jiraIssue;
 	}
 
 	protected JIRAIssue removeImpl(JIRAIssue jiraIssue)
@@ -503,7 +489,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public List<JIRAIssue> findByProjectId(long projectId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(projectId),
+				projectId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1468,7 +1454,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				modifiedDate, new Long(projectId),
+				modifiedDate, projectId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1763,9 +1749,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String reporterJiraUserId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(projectId),
-				
-				reporterJiraUserId,
+				projectId, reporterJiraUserId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -2071,9 +2055,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String assigneeJiraUserId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(projectId),
-				
-				assigneeJiraUserId,
+				projectId, assigneeJiraUserId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -2380,9 +2362,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String reporterJiraUserId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				modifiedDate, new Long(projectId),
-				
-				reporterJiraUserId,
+				modifiedDate, projectId, reporterJiraUserId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -2720,9 +2700,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String assigneeJiraUserId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				modifiedDate, new Long(projectId),
-				
-				assigneeJiraUserId,
+				modifiedDate, projectId, assigneeJiraUserId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -3060,11 +3038,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String reporterJiraUserId, String status, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(projectId),
-				
-				reporterJiraUserId,
-				
-				status,
+				projectId, reporterJiraUserId, status,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -3411,11 +3385,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String assigneeJiraUserId, String status, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(projectId),
-				
-				assigneeJiraUserId,
-				
-				status,
+				projectId, assigneeJiraUserId, status,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -3784,7 +3754,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_JIRAISSUE.concat(JIRAIssueModelImpl.ORDER_BY_JPQL);
 				}
@@ -3908,7 +3877,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	public int countByProjectId(long projectId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(projectId) };
+		Object[] finderArgs = new Object[] { projectId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_PROJECTID,
 				finderArgs, this);
@@ -4131,7 +4100,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	public int countByMD_P(Date modifiedDate, long projectId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { modifiedDate, new Long(projectId) };
+		Object[] finderArgs = new Object[] { modifiedDate, projectId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MD_P,
 				finderArgs, this);
@@ -4189,11 +4158,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	public int countByP_RJUI(long projectId, String reporterJiraUserId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(projectId),
-				
-				reporterJiraUserId
-			};
+		Object[] finderArgs = new Object[] { projectId, reporterJiraUserId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_RJUI,
 				finderArgs, this);
@@ -4256,11 +4221,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	public int countByP_AJUI(long projectId, String assigneeJiraUserId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(projectId),
-				
-				assigneeJiraUserId
-			};
+		Object[] finderArgs = new Object[] { projectId, assigneeJiraUserId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_AJUI,
 				finderArgs, this);
@@ -4324,9 +4285,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public int countByMD_P_RJUI(Date modifiedDate, long projectId,
 		String reporterJiraUserId) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				modifiedDate, new Long(projectId),
-				
-				reporterJiraUserId
+				modifiedDate, projectId, reporterJiraUserId
 			};
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MD_P_RJUI,
@@ -4402,9 +4361,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public int countByMD_P_AJUI(Date modifiedDate, long projectId,
 		String assigneeJiraUserId) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				modifiedDate, new Long(projectId),
-				
-				assigneeJiraUserId
+				modifiedDate, projectId, assigneeJiraUserId
 			};
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MD_P_AJUI,
@@ -4479,13 +4436,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	public int countByP_RJUI_S(long projectId, String reporterJiraUserId,
 		String status) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(projectId),
-				
-				reporterJiraUserId,
-				
-				status
-			};
+		Object[] finderArgs = new Object[] { projectId, reporterJiraUserId, status };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_RJUI_S,
 				finderArgs, this);
@@ -4564,13 +4515,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	public int countByP_AJUI_S(long projectId, String assigneeJiraUserId,
 		String status) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(projectId),
-				
-				assigneeJiraUserId,
-				
-				status
-			};
+		Object[] finderArgs = new Object[] { projectId, assigneeJiraUserId, status };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_AJUI_S,
 				finderArgs, this);

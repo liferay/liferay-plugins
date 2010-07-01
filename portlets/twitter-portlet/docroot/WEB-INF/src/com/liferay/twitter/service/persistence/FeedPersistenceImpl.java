@@ -16,7 +16,7 @@ package com.liferay.twitter.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -109,7 +109,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(FeedImpl.class.getName());
+		CacheRegistryUtil.clear(FeedImpl.class.getName());
 		EntityCacheUtil.clearCache(FeedImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -168,20 +168,6 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public Feed remove(Feed feed) throws SystemException {
-		for (ModelListener<Feed> listener : listeners) {
-			listener.onBeforeRemove(feed);
-		}
-
-		feed = removeImpl(feed);
-
-		for (ModelListener<Feed> listener : listeners) {
-			listener.onAfterRemove(feed);
-		}
-
-		return feed;
 	}
 
 	protected Feed removeImpl(Feed feed) throws SystemException {
@@ -390,7 +376,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 	public Feed fetchByTwitterUserId(long twitterUserId,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(twitterUserId) };
+		Object[] finderArgs = new Object[] { twitterUserId };
 
 		Object result = null;
 
@@ -621,8 +607,9 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 					sql = query.toString();
 				}
-
-				sql = _SQL_SELECT_FEED;
+				else {
+					sql = _SQL_SELECT_FEED;
+				}
 
 				Query q = session.createQuery(sql);
 
@@ -678,7 +665,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 	public int countByTwitterUserId(long twitterUserId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(twitterUserId) };
+		Object[] finderArgs = new Object[] { twitterUserId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_TWITTERUSERID,
 				finderArgs, this);

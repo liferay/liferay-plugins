@@ -15,7 +15,11 @@
 		<property name="dataSource" ref="liferayDataSource" />
 		<property name="sessionFactory" ref="liferaySessionFactory" />
 	</bean>
-	<bean id="serviceAdvice" class="com.liferay.portal.messaging.async.AsyncAdvice">
+	<bean id="serviceAdvice" class="com.liferay.portal.monitoring.statistics.service.ServiceMonitorAdvice" factory-method="getInstance">
+		<property name="monitoringDestinationName" value="liferay/monitoring" />
+		<property name="nextMethodInterceptor" ref="asyncAdvice" />
+	</bean>
+	<bean id="asyncAdvice" class="com.liferay.portal.messaging.async.AsyncAdvice">
 		<property name="defaultDestinationName" value="liferay/async_service" />
 		<property name="nextMethodInterceptor" ref="threadLocalCacheAdvice" />
 	</bean>
@@ -30,6 +34,6 @@
 	</bean>
 	<aop:config proxy-target-class="false">
 		<aop:pointcut id="serviceOperation" expression="bean(*Service)" />
-		<aop:advisor advice-ref="serviceAdvice" pointcut-ref="serviceOperation"/>
+		<aop:advisor advice-ref="serviceAdvice" pointcut-ref="serviceOperation" />
 	</aop:config>
 </beans>

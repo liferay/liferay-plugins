@@ -17,6 +17,8 @@ package com.liferay.socialcoding.service.persistence;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.socialcoding.model.JIRAChangeItem;
 
@@ -44,7 +46,7 @@ public class JIRAChangeItemUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(JIRAChangeItem)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(JIRAChangeItem jiraChangeItem) {
 		getPersistence().clearCache(jiraChangeItem);
@@ -76,6 +78,17 @@ public class JIRAChangeItemUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
+	 */
+	public static List<JIRAChangeItem> findWithDynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		return getPersistence()
+				   .findWithDynamicQuery(dynamicQuery, start, end,
+			orderByComparator);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
 	 */
 	public static JIRAChangeItem remove(JIRAChangeItem jiraChangeItem)
@@ -89,6 +102,14 @@ public class JIRAChangeItemUtil {
 	public static JIRAChangeItem update(JIRAChangeItem jiraChangeItem,
 		boolean merge) throws SystemException {
 		return getPersistence().update(jiraChangeItem, merge);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 */
+	public static JIRAChangeItem update(JIRAChangeItem jiraChangeItem,
+		boolean merge, ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(jiraChangeItem, merge, serviceContext);
 	}
 
 	public static void cacheResult(

@@ -19,6 +19,8 @@ import com.liferay.ams.model.Asset;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
 
@@ -44,7 +46,7 @@ public class AssetUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(Asset)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(Asset asset) {
 		getPersistence().clearCache(asset);
@@ -75,6 +77,17 @@ public class AssetUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
+	 */
+	public static List<Asset> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		return getPersistence()
+				   .findWithDynamicQuery(dynamicQuery, start, end,
+			orderByComparator);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
 	 */
 	public static Asset remove(Asset asset) throws SystemException {
@@ -87,6 +100,14 @@ public class AssetUtil {
 	public static Asset update(Asset asset, boolean merge)
 		throws SystemException {
 		return getPersistence().update(asset, merge);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 */
+	public static Asset update(Asset asset, boolean merge,
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(asset, merge, serviceContext);
 	}
 
 	public static void cacheResult(com.liferay.ams.model.Asset asset) {

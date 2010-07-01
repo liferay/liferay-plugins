@@ -17,6 +17,8 @@ package com.liferay.twitter.service.persistence;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.twitter.model.Feed;
 
@@ -44,7 +46,7 @@ public class FeedUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(Feed)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
 	public static void clearCache(Feed feed) {
 		getPersistence().clearCache(feed);
@@ -75,6 +77,17 @@ public class FeedUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
+	 */
+	public static List<Feed> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		return getPersistence()
+				   .findWithDynamicQuery(dynamicQuery, start, end,
+			orderByComparator);
+	}
+
+	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
 	 */
 	public static Feed remove(Feed feed) throws SystemException {
@@ -87,6 +100,14 @@ public class FeedUtil {
 	public static Feed update(Feed feed, boolean merge)
 		throws SystemException {
 		return getPersistence().update(feed, merge);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 */
+	public static Feed update(Feed feed, boolean merge,
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(feed, merge, serviceContext);
 	}
 
 	public static void cacheResult(com.liferay.twitter.model.Feed feed) {

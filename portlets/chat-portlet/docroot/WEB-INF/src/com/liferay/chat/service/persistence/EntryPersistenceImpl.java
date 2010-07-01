@@ -21,7 +21,7 @@ import com.liferay.chat.model.impl.EntryModelImpl;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -184,7 +184,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(EntryImpl.class.getName());
+		CacheRegistryUtil.clear(EntryImpl.class.getName());
 		EntityCacheUtil.clearCache(EntryImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -238,20 +238,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public Entry remove(Entry entry) throws SystemException {
-		for (ModelListener<Entry> listener : listeners) {
-			listener.onBeforeRemove(entry);
-		}
-
-		entry = removeImpl(entry);
-
-		for (ModelListener<Entry> listener : listeners) {
-			listener.onAfterRemove(entry);
-		}
-
-		return entry;
 	}
 
 	protected Entry removeImpl(Entry entry) throws SystemException {
@@ -404,7 +390,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public List<Entry> findByCreateDate(long createDate, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(createDate),
+				createDate,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -666,7 +652,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public List<Entry> findByFromUserId(long fromUserId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(fromUserId),
+				fromUserId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -927,7 +913,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public List<Entry> findByToUserId(long toUserId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(toUserId),
+				toUserId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1189,7 +1175,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public List<Entry> findByC_F(long createDate, long fromUserId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(createDate), new Long(fromUserId),
+				createDate, fromUserId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1467,7 +1453,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public List<Entry> findByC_T(long createDate, long toUserId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(createDate), new Long(toUserId),
+				createDate, toUserId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1746,7 +1732,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		long toUserId, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(createDate), new Long(fromUserId), new Long(toUserId),
+				createDate, fromUserId, toUserId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -2039,9 +2025,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		String content, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(fromUserId), new Long(toUserId),
-				
-				content,
+				fromUserId, toUserId, content,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -2381,7 +2365,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_ENTRY.concat(EntryModelImpl.ORDER_BY_JPQL);
 				}
@@ -2471,7 +2454,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public int countByCreateDate(long createDate) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(createDate) };
+		Object[] finderArgs = new Object[] { createDate };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_CREATEDATE,
 				finderArgs, this);
@@ -2517,7 +2500,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public int countByFromUserId(long fromUserId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(fromUserId) };
+		Object[] finderArgs = new Object[] { fromUserId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_FROMUSERID,
 				finderArgs, this);
@@ -2563,7 +2546,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	public int countByToUserId(long toUserId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(toUserId) };
+		Object[] finderArgs = new Object[] { toUserId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_TOUSERID,
 				finderArgs, this);
@@ -2610,9 +2593,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 	public int countByC_F(long createDate, long fromUserId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(createDate), new Long(fromUserId)
-			};
+		Object[] finderArgs = new Object[] { createDate, fromUserId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_F,
 				finderArgs, this);
@@ -2663,9 +2644,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 	public int countByC_T(long createDate, long toUserId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(createDate), new Long(toUserId)
-			};
+		Object[] finderArgs = new Object[] { createDate, toUserId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_T,
 				finderArgs, this);
@@ -2716,9 +2695,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 	public int countByC_F_T(long createDate, long fromUserId, long toUserId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(createDate), new Long(fromUserId), new Long(toUserId)
-			};
+		Object[] finderArgs = new Object[] { createDate, fromUserId, toUserId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_F_T,
 				finderArgs, this);
@@ -2773,11 +2750,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 	public int countByF_T_C(long fromUserId, long toUserId, String content)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(fromUserId), new Long(toUserId),
-				
-				content
-			};
+		Object[] finderArgs = new Object[] { fromUserId, toUserId, content };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_F_T_C,
 				finderArgs, this);

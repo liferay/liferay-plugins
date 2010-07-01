@@ -21,7 +21,7 @@ import com.liferay.ams.model.impl.TypeModelImpl;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -88,7 +88,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(TypeImpl.class.getName());
+		CacheRegistryUtil.clear(TypeImpl.class.getName());
 		EntityCacheUtil.clearCache(TypeImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -141,20 +141,6 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public Type remove(Type type) throws SystemException {
-		for (ModelListener<Type> listener : listeners) {
-			listener.onBeforeRemove(type);
-		}
-
-		type = removeImpl(type);
-
-		for (ModelListener<Type> listener : listeners) {
-			listener.onAfterRemove(type);
-		}
-
-		return type;
 	}
 
 	protected Type removeImpl(Type type) throws SystemException {
@@ -329,7 +315,6 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_TYPE.concat(TypeModelImpl.ORDER_BY_JPQL);
 				}

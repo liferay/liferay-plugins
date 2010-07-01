@@ -16,7 +16,7 @@ package com.liferay.socialcoding.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -127,7 +127,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(JIRAActionImpl.class.getName());
+		CacheRegistryUtil.clear(JIRAActionImpl.class.getName());
 		EntityCacheUtil.clearCache(JIRAActionImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -182,20 +182,6 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	public JIRAAction remove(JIRAAction jiraAction) throws SystemException {
-		for (ModelListener<JIRAAction> listener : listeners) {
-			listener.onBeforeRemove(jiraAction);
-		}
-
-		jiraAction = removeImpl(jiraAction);
-
-		for (ModelListener<JIRAAction> listener : listeners) {
-			listener.onAfterRemove(jiraAction);
-		}
-
-		return jiraAction;
 	}
 
 	protected JIRAAction removeImpl(JIRAAction jiraAction)
@@ -644,7 +630,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	public List<JIRAAction> findByJiraIssueId(long jiraIssueId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(jiraIssueId),
+				jiraIssueId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -1220,7 +1206,6 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 					sql = query.toString();
 				}
-
 				else {
 					sql = _SQL_SELECT_JIRAACTION.concat(JIRAActionModelImpl.ORDER_BY_JPQL);
 				}
@@ -1340,7 +1325,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	}
 
 	public int countByJiraIssueId(long jiraIssueId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(jiraIssueId) };
+		Object[] finderArgs = new Object[] { jiraIssueId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_JIRAISSUEID,
 				finderArgs, this);

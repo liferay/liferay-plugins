@@ -26,7 +26,6 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialcoding.model.JIRAChangeGroup;
-import com.liferay.socialcoding.model.JIRAChangeGroupSoap;
 
 import java.io.Serializable;
 
@@ -34,9 +33,7 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="JIRAChangeGroupModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -78,29 +75,6 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.socialcoding.model.JIRAChangeGroup"),
 			true);
-
-	public static JIRAChangeGroup toModel(JIRAChangeGroupSoap soapModel) {
-		JIRAChangeGroup model = new JIRAChangeGroupImpl();
-
-		model.setJiraChangeGroupId(soapModel.getJiraChangeGroupId());
-		model.setJiraUserId(soapModel.getJiraUserId());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setJiraIssueId(soapModel.getJiraIssueId());
-
-		return model;
-	}
-
-	public static List<JIRAChangeGroup> toModels(
-		JIRAChangeGroupSoap[] soapModels) {
-		List<JIRAChangeGroup> models = new ArrayList<JIRAChangeGroup>(soapModels.length);
-
-		for (JIRAChangeGroupSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.JIRAChangeGroup"));
 

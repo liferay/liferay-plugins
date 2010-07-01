@@ -25,16 +25,12 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialcoding.model.SVNRepository;
-import com.liferay.socialcoding.model.SVNRepositorySoap;
 
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
 
 import java.sql.Types;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <a href="SVNRepositoryModelImpl.java.html"><b><i>View Source</i></b></a>
@@ -75,27 +71,6 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.socialcoding.model.SVNRepository"),
 			true);
-
-	public static SVNRepository toModel(SVNRepositorySoap soapModel) {
-		SVNRepository model = new SVNRepositoryImpl();
-
-		model.setSvnRepositoryId(soapModel.getSvnRepositoryId());
-		model.setUrl(soapModel.getUrl());
-		model.setRevisionNumber(soapModel.getRevisionNumber());
-
-		return model;
-	}
-
-	public static List<SVNRepository> toModels(SVNRepositorySoap[] soapModels) {
-		List<SVNRepository> models = new ArrayList<SVNRepository>(soapModels.length);
-
-		for (SVNRepositorySoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.SVNRepository"));
 

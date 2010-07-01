@@ -21,7 +21,7 @@ import com.liferay.mail.model.impl.FolderModelImpl;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.annotation.BeanReference;
-import com.liferay.portal.kernel.cache.CacheRegistry;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -116,7 +116,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	}
 
 	public void clearCache() {
-		CacheRegistry.clear(FolderImpl.class.getName());
+		CacheRegistryUtil.clear(FolderImpl.class.getName());
 		EntityCacheUtil.clearCache(FolderImpl.class.getName());
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
@@ -369,7 +369,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	public List<Folder> findByAccountId(long accountId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				new Long(accountId),
+				accountId,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -651,7 +651,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 	public Folder fetchByA_F(long accountId, String fullName,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(accountId), fullName };
+		Object[] finderArgs = new Object[] { accountId, fullName };
 
 		Object result = null;
 
@@ -839,7 +839,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	}
 
 	public int countByAccountId(long accountId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(accountId) };
+		Object[] finderArgs = new Object[] { accountId };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ACCOUNTID,
 				finderArgs, this);
@@ -886,7 +886,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 	public int countByA_F(long accountId, String fullName)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(accountId), fullName };
+		Object[] finderArgs = new Object[] { accountId, fullName };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_A_F,
 				finderArgs, this);
