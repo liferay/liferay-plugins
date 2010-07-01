@@ -7,6 +7,28 @@ body {
 	padding: 16px;
 }
 
+/* DO NOT DISPLAY THE FOLLOWING */ 
+
+#skip-to-content,
+#banner h2,
+#banner h3,
+#navigation h1,
+#breadcrumbs,
+.site-breadcrumbs h1 {
+    left: -99999px;
+    overflow: hidden;
+    position: absolute;
+    width: 1%;
+}
+
+#skip-to-content,
+#breadcrumbs, 
+.community-title, 
+.page-title, 
+#navigation h1 {  
+	display: none;
+}
+
 /* ---------- Wrapper ---------- */
 
 #wrapper {
@@ -17,18 +39,27 @@ body {
 
 /* ---------- Banner ---------- */
 
-#banner {
-	background: url(../images/custom/banner_bg.png);
+#heading {
+	background: url(../images/custom/banner_bg.png) no-repeat;
 	height: 54px;
 	padding: 70px 0;
 	position: relative;
 }
 
-#banner .logo {
-	margin: 0;
+.ie6 #heading {
+	margin: 0;	
 }
 
-#banner .logo a {
+#heading .company-title {
+	margin: 0px;		
+}
+
+#heading .logo {
+	margin-left: 70px;
+	margin-top: 0px;
+}
+
+#heading.logo a {
 	margin: 0 auto;
 }
 
@@ -50,28 +81,44 @@ body {
 
 #navigation li {
 	float: none;
+	text-decoration: none;
 }
 
 #navigation a,
 #navigation .enter-page {
 	color: #27A;
-	font: 10px/1.5 Verdana, Arial, Sans-Serif;
+	font: 14px/1.5 Verdana, Arial, Sans-Serif;
 	text-decoration: none;
+}
+
+#navigation ul li {
+	list-style-type: none;
 }
 
 #navigation a:hover {
 	text-decoration: underline;
 }
 
+#sign-in {
+	color: #FFF;
+	margin: 0 auto;
+	position: absolute;
+	right: 20px;
+    text-align: right;
+    text-decoration: none;
+    top: 15px;
+	width: 974px;
+}
+
 /* ---------- Content Wrapper ---------- */
 
-#content-wrapper {
+#content {
 	background: url(../images/custom/content_wrapper_bg.png);
 	padding: 20px 202px 0 22px;
 }
 
-.ie #content-wrapper {
-	zoom: 1;
+.ie #content {
+	margin-top: -22px;
 }
 
 /* ---------- Portlet ---------- */
@@ -85,7 +132,7 @@ body {
 }
 
 .portlet-title {
-	font: 24px Trebuchet MS, Verdana, sans-serif;
+	font: 18px Trebuchet MS, Verdana, sans-serif;
 	letter-spacing: -1px;
 }
 
@@ -104,4 +151,8 @@ body {
 #footer {
 	background: url(../images/custom/footer_bg.png);
 	height: 54px;
+}
+
+#footer .powered-by {
+	margin-left: 20px;
 }
