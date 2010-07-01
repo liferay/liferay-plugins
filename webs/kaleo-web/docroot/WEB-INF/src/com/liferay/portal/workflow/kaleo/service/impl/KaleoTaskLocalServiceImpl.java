@@ -81,7 +81,19 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 		return kaleoTask;
 	}
 
-	public void deleteKaleoTasks(long kaleoDefinitionId)
+	public void deleteCompanyKaleoTasks(long companyId) throws SystemException {
+
+		// Kaleo tasks
+
+		kaleoTaskPersistence.removeByCompanyId(companyId);
+
+		// Kaleo task assignments
+
+		kaleoTaskAssignmentLocalService.deleteCompanyKaleoTaskAssignments(
+			companyId);
+	}
+
+	public void deleteKaleoDefinitionKaleoTasks(long kaleoDefinitionId)
 		throws SystemException {
 
 		// Kaleo tasks
@@ -90,21 +102,8 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 
 		// Kaleo task assignments
 
-		kaleoTaskAssignmentLocalService.deleteKaleoTaskAssignments(
-			kaleoDefinitionId);
-	}
-
-	public void deleteKaleoTasksByCompanyId(long companyId)
-		throws SystemException {
-
-		// Tasks
-
-		kaleoTaskPersistence.removeByCompanyId(companyId);
-
-		// Task assignments
-
-		kaleoTaskAssignmentLocalService.deleteKaleoTaskAssignmentsByCompanyId(
-			companyId);
+		kaleoTaskAssignmentLocalService.
+			deleteKaleoDefinitionKaleoTaskAssignments(kaleoDefinitionId);
 	}
 
 	public KaleoTask getKaleoNodeKaleoTask(long kaleoNodeId)

@@ -131,14 +131,14 @@ public class KaleoNodeLocalServiceWrapper implements KaleoNodeLocalService {
 			serviceContext);
 	}
 
-	public void deleteKaleoNodes(long kaleoDefinitionId)
+	public void deleteCompanyKaleoNodes(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoNodeLocalService.deleteKaleoNodes(kaleoDefinitionId);
+		_kaleoNodeLocalService.deleteCompanyKaleoNodes(companyId);
 	}
 
-	public void deleteKaleoNodesByCompanyId(long companyId)
+	public void deleteKaleoDefinitionKaleoNodes(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoNodeLocalService.deleteKaleoNodesByCompanyId(companyId);
+		_kaleoNodeLocalService.deleteKaleoDefinitionKaleoNodes(kaleoDefinitionId);
 	}
 
 	public KaleoNodeLocalService getWrappedKaleoNodeLocalService() {

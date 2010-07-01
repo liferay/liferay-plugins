@@ -134,6 +134,30 @@ public class KaleoDefinitionLocalServiceImpl
 		kaleoDefinitionPersistence.update(kaleoDefinition, false);
 	}
 
+	public void deleteCompanyKaleoDefinitions(long companyId)
+		throws SystemException {
+
+		// Kaleo definitions
+
+		kaleoDefinitionPersistence.removeByCompanyId(companyId);
+
+		// Kaleo instances
+
+		kaleoInstanceLocalService.deleteCompanyKaleoInstances(companyId);
+
+		// Kaleo nodes
+
+		kaleoNodeLocalService.deleteCompanyKaleoNodes(companyId);
+
+		// Kaleo tasks
+
+		kaleoTaskLocalService.deleteCompanyKaleoTasks(companyId);
+
+		// Kaleo transitions
+
+		kaleoTransitionLocalService.deleteCompanyKaleoTransitions(companyId);
+	}
+
 	public void deleteKaleoDefinition(
 			String name, int version, ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -159,49 +183,23 @@ public class KaleoDefinitionLocalServiceImpl
 
 		// Kaleo instances
 
-		kaleoInstanceLocalService.deleteKaleoInstances(
+		kaleoInstanceLocalService.deleteKaleoDefinitionKaleoInstances(
 			kaleoDefinition.getKaleoDefinitionId());
 
 		// Kaleo nodes
 
-		kaleoNodeLocalService.deleteKaleoNodes(
+		kaleoNodeLocalService.deleteKaleoDefinitionKaleoNodes(
 			kaleoDefinition.getKaleoDefinitionId());
 
 		// Kaleo tasks
 
-		kaleoTaskLocalService.deleteKaleoTasks(
+		kaleoTaskLocalService.deleteKaleoDefinitionKaleoTasks(
 			kaleoDefinition.getKaleoDefinitionId());
 
 		// Kaleo transitions
 
-		kaleoTransitionLocalService.deleteKaleoTransitions(
+		kaleoTransitionLocalService.deleteKaleoDefinitionKaleoTransitions(
 			kaleoDefinition.getKaleoDefinitionId());
-	}
-
-	public void deleteKaleoDefinitionsByCompanyId(long companyId)
-		throws PortalException, SystemException {
-
-		// Definition
-
-		kaleoDefinitionPersistence.removeByCompanyId(companyId);
-
-		// Instances
-
-		kaleoInstanceLocalService.deleteKaleoInstancesByCompanyId(
-			companyId);
-
-		// Nodes
-
-		kaleoNodeLocalService.deleteKaleoNodesByCompanyId(companyId);
-
-		// Tasks
-
-		kaleoTaskLocalService.deleteKaleoTasksByCompanyId(companyId);
-
-		// Transitions
-
-		kaleoTransitionLocalService.deleteKaleoTransitionsByCompanyId(
-			companyId);
 	}
 
 	public KaleoDefinition getKaleoDefinition(

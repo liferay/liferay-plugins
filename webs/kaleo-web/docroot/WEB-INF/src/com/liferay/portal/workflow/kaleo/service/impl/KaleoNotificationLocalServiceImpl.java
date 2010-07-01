@@ -110,7 +110,21 @@ public class KaleoNotificationLocalServiceImpl
 		return kaleoNotification;
 	}
 
-	public void deleteKaleoNotifications(long kaleoDefinitionId)
+	public void deleteCompanyKaleoNotifications(long companyId)
+		throws SystemException {
+
+		// Kaleo notifications
+
+		kaleoNotificationPersistence.removeByCompanyId(
+			companyId);
+
+		// Kaleo notification recipients
+
+		kaleoNotificationRecipientLocalService.
+			deleteCompanyKaleoNotificationRecipients(companyId);
+	}
+
+	public void deleteKaleoDefinitionKaleoNotifications(long kaleoDefinitionId)
 		throws SystemException {
 
 		// Kaleo notifications
@@ -121,21 +135,7 @@ public class KaleoNotificationLocalServiceImpl
 		// Kaleo notification recipients
 
 		kaleoNotificationRecipientLocalService.
-			deleteKaleoNotificationRecipients(kaleoDefinitionId);
-	}
-
-	public void deleteKaleoNotificationsByCompanyId(long companyId)
-		throws SystemException {
-
-		// Notifications
-
-		kaleoNotificationPersistence.removeByCompanyId(
-			companyId);
-
-		// Notification recipients
-
-		kaleoNotificationRecipientLocalService.
-			deleteKaleoNotificationRecipientsByCompanyId(companyId);
+			deleteKaleoDefinitionKaleoNotificationRecipients(kaleoDefinitionId);
 	}
 
 	public List<KaleoNotification> getKaleoNotifications(

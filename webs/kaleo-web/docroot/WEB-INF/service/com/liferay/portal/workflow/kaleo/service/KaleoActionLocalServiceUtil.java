@@ -134,14 +134,14 @@ public class KaleoActionLocalServiceUtil {
 			kaleoNodeName, action, serviceContext);
 	}
 
-	public static void deleteKaleoActions(long kaleoDefinitionId)
+	public static void deleteCompanyKaleoActions(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoActions(kaleoDefinitionId);
+		getService().deleteCompanyKaleoActions(companyId);
 	}
 
-	public static void deleteKaleoActionsByCompanyId(long companyId)
+	public static void deleteKaleoDefinitionKaleoActions(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoActionsByCompanyId(companyId);
+		getService().deleteKaleoDefinitionKaleoActions(kaleoDefinitionId);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(

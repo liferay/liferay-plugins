@@ -204,6 +204,11 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService {
 			serviceContext);
 	}
 
+	public void deleteCompanyKaleoLogs(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoLogLocalService.deleteCompanyKaleoLogs(companyId);
+	}
+
 	public void deleteKaleoDefinitionKaleoLogs(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoLogLocalService.deleteKaleoDefinitionKaleoLogs(kaleoDefinitionId);
@@ -212,11 +217,6 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService {
 	public void deleteKaleoInstanceKaleoLogs(long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoLogLocalService.deleteKaleoInstanceKaleoLogs(kaleoInstanceId);
-	}
-
-	public void deleteKaleoLogsByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoLogLocalService.deleteKaleoLogsByCompanyId(companyId);
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoInstanceKaleoLogs(

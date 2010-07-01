@@ -167,18 +167,17 @@ public class KaleoDefinitionLocalServiceWrapper
 			serviceContext);
 	}
 
+	public void deleteCompanyKaleoDefinitions(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoDefinitionLocalService.deleteCompanyKaleoDefinitions(companyId);
+	}
+
 	public void deleteKaleoDefinition(java.lang.String name, int version,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_kaleoDefinitionLocalService.deleteKaleoDefinition(name, version,
 			serviceContext);
-	}
-
-	public void deleteKaleoDefinitionsByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoDefinitionLocalService.deleteKaleoDefinitionsByCompanyId(companyId);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition getKaleoDefinition(

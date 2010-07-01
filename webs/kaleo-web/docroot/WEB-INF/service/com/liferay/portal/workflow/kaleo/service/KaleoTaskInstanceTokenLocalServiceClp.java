@@ -629,6 +629,29 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public void deleteCompanyKaleoTaskInstanceTokens(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
+		try {
+			_classLoaderProxy.invoke("deleteCompanyKaleoTaskInstanceTokens",
+				new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public void deleteKaleoDefinitionKaleoTaskInstanceTokens(
 		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -659,29 +682,6 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 
 		try {
 			_classLoaderProxy.invoke("deleteKaleoInstanceKaleoTaskInstanceTokens",
-				new Object[] { paramObj0 });
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	public void deleteKaleoTaskInstanceTokensByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
-
-		try {
-			_classLoaderProxy.invoke("deleteKaleoTaskInstanceTokensByCompanyId",
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {

@@ -119,13 +119,13 @@ public interface KaleoInstanceTokenLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public void deleteCompanyKaleoInstanceTokens(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public void deleteKaleoDefinitionKaleoInstanceTokens(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteKaleoInstanceKaleoInstanceTokens(long kaleoInstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public void deleteKaleoInstanceTokensByCompanyId(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

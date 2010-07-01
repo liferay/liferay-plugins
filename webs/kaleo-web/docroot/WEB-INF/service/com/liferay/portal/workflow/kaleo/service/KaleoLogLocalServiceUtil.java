@@ -213,6 +213,11 @@ public class KaleoLogLocalServiceUtil {
 			serviceContext);
 	}
 
+	public static void deleteCompanyKaleoLogs(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteCompanyKaleoLogs(companyId);
+	}
+
 	public static void deleteKaleoDefinitionKaleoLogs(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteKaleoDefinitionKaleoLogs(kaleoDefinitionId);
@@ -221,11 +226,6 @@ public class KaleoLogLocalServiceUtil {
 	public static void deleteKaleoInstanceKaleoLogs(long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteKaleoInstanceKaleoLogs(kaleoInstanceId);
-	}
-
-	public static void deleteKaleoLogsByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoLogsByCompanyId(companyId);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoInstanceKaleoLogs(

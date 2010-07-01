@@ -72,18 +72,19 @@ public class KaleoNotificationRecipientLocalServiceImpl
 		return kaleoNotificationRecipient;
 	}
 
-	public void deleteKaleoNotificationRecipients(long kaleoDefinitionId)
-		throws SystemException {
-
-		kaleoNotificationRecipientPersistence.removeByKaleoDefinitionId(
-			kaleoDefinitionId);
-	}
-
-	public void deleteKaleoNotificationRecipientsByCompanyId(long companyId)
+	public void deleteCompanyKaleoNotificationRecipients(long companyId)
 		throws SystemException {
 
 		kaleoNotificationRecipientPersistence.removeByCompanyId(
 			companyId);
+	}
+
+	public void deleteKaleoDefinitionKaleoNotificationRecipients(
+			long kaleoDefinitionId)
+		throws SystemException {
+
+		kaleoNotificationRecipientPersistence.removeByKaleoDefinitionId(
+			kaleoDefinitionId);
 	}
 
 	public List<KaleoNotificationRecipient> getKaleoNotificationRecipients(

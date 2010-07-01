@@ -114,9 +114,9 @@ public interface KaleoNodeLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void deleteKaleoNodes(long kaleoDefinitionId)
+	public void deleteCompanyKaleoNodes(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void deleteKaleoNodesByCompanyId(long companyId)
+	public void deleteKaleoDefinitionKaleoNodes(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

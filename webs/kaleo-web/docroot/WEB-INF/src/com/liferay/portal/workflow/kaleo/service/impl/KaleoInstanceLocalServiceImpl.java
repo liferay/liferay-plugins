@@ -105,29 +105,30 @@ public class KaleoInstanceLocalServiceImpl
 		return kaleoInstance;
 	}
 
-	public void deleteKaleoInstance(long kaleoInstanceId)
-		throws PortalException, SystemException {
+	public void deleteCompanyKaleoInstances(long companyId)
+		throws SystemException {
 
-		// Kaleo instance
+		// Kaleo instances
 
-		kaleoInstancePersistence.remove(kaleoInstanceId);
+		kaleoInstancePersistence.removeByCompanyId(companyId);
 
 		// Kaleo instance tokens
 
-		kaleoInstanceTokenLocalService.deleteKaleoInstanceKaleoInstanceTokens(
-			kaleoInstanceId);
+		kaleoInstanceTokenLocalService.
+			deleteKaleoDefinitionKaleoInstanceTokens(companyId);
 
 		// Kaleo logs
 
-		kaleoLogLocalService.deleteKaleoInstanceKaleoLogs(kaleoInstanceId);
+		kaleoLogLocalService.deleteKaleoDefinitionKaleoLogs(companyId);
 
 		// Kaleo task instance tokens
 
 		kaleoTaskInstanceTokenLocalService.
-			deleteKaleoInstanceKaleoTaskInstanceTokens(kaleoInstanceId);
+			deleteKaleoDefinitionKaleoTaskInstanceTokens(companyId);
+
 	}
 
-	public void deleteKaleoInstances(long kaleoDefinitionId)
+	public void deleteKaleoDefinitionKaleoInstances(long kaleoDefinitionId)
 		throws SystemException {
 
 		// Kaleo instances
@@ -149,27 +150,26 @@ public class KaleoInstanceLocalServiceImpl
 			deleteKaleoDefinitionKaleoTaskInstanceTokens(kaleoDefinitionId);
 	}
 
-	public void deleteKaleoInstancesByCompanyId(long companyId)
-		throws SystemException {
+	public void deleteKaleoInstance(long kaleoInstanceId)
+		throws PortalException, SystemException {
 
-		// Instances
+		// Kaleo instance
 
-		kaleoInstancePersistence.removeByCompanyId(companyId);
+		kaleoInstancePersistence.remove(kaleoInstanceId);
 
-		// Instance tokens
+		// Kaleo instance tokens
 
-		kaleoInstanceTokenLocalService.
-			deleteKaleoDefinitionKaleoInstanceTokens(companyId);
+		kaleoInstanceTokenLocalService.deleteKaleoInstanceKaleoInstanceTokens(
+			kaleoInstanceId);
 
-		// Logs
+		// Kaleo logs
 
-		kaleoLogLocalService.deleteKaleoDefinitionKaleoLogs(companyId);
+		kaleoLogLocalService.deleteKaleoInstanceKaleoLogs(kaleoInstanceId);
 
-		// Task instance tokens
+		// Kaleo task instance tokens
 
 		kaleoTaskInstanceTokenLocalService.
-			deleteKaleoDefinitionKaleoTaskInstanceTokens(companyId);
-
+			deleteKaleoInstanceKaleoTaskInstanceTokens(kaleoInstanceId);
 	}
 
 	public List<KaleoInstance> getKaleoInstances(

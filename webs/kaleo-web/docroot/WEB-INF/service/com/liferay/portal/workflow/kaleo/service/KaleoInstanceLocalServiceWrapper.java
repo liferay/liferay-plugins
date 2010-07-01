@@ -142,14 +142,14 @@ public class KaleoInstanceLocalServiceWrapper
 		return _kaleoInstanceLocalService.completeKaleoInstance(kaleoInstanceId);
 	}
 
-	public void deleteKaleoInstances(long kaleoDefinitionId)
+	public void deleteCompanyKaleoInstances(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoInstanceLocalService.deleteKaleoInstances(kaleoDefinitionId);
+		_kaleoInstanceLocalService.deleteCompanyKaleoInstances(companyId);
 	}
 
-	public void deleteKaleoInstancesByCompanyId(long companyId)
+	public void deleteKaleoDefinitionKaleoInstances(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoInstanceLocalService.deleteKaleoInstancesByCompanyId(companyId);
+		_kaleoInstanceLocalService.deleteKaleoDefinitionKaleoInstances(kaleoDefinitionId);
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(

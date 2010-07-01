@@ -131,14 +131,14 @@ public class KaleoNodeLocalServiceUtil {
 		return getService().addKaleoNode(kaleoDefinitionId, node, serviceContext);
 	}
 
-	public static void deleteKaleoNodes(long kaleoDefinitionId)
+	public static void deleteCompanyKaleoNodes(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoNodes(kaleoDefinitionId);
+		getService().deleteCompanyKaleoNodes(companyId);
 	}
 
-	public static void deleteKaleoNodesByCompanyId(long companyId)
+	public static void deleteKaleoDefinitionKaleoNodes(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoNodesByCompanyId(companyId);
+		getService().deleteKaleoDefinitionKaleoNodes(kaleoDefinitionId);
 	}
 
 	public static void clearService() {

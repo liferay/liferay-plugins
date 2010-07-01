@@ -193,6 +193,13 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 		return kaleoTaskAssignmentInstance;
 	}
 
+	public void deleteCompanyKaleoTaskAssignmentInstances(long companyId)
+		throws SystemException {
+
+		kaleoTaskAssignmentInstancePersistence.removeByCompanyId(
+			companyId);
+	}
+
 	public void deleteKaleoDefinitionKaleoTaskAssignmentInstances(
 			long kaleoDefintionId)
 		throws SystemException {
@@ -224,14 +231,6 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 			kaleoTaskAssignmentInstancePersistence.remove(
 				kaleoTaskAssignmentInstance);
 		}
-	}
-
-	public void deleteKaleoTaskAssignmentInstancesByCompanyId(
-			long companyId)
-		throws SystemException {
-
-		kaleoTaskAssignmentInstancePersistence.removeByCompanyId(
-			companyId);
 	}
 
 	public List<KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances(

@@ -166,13 +166,13 @@ public interface KaleoLogLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public void deleteCompanyKaleoLogs(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public void deleteKaleoDefinitionKaleoLogs(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteKaleoInstanceKaleoLogs(long kaleoInstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public void deleteKaleoLogsByCompanyId(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

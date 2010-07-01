@@ -52,10 +52,9 @@ public class DefaultPortalKaleoManager
 	public void deleteKaleoData(Company company) throws Exception {
 		long companyId = company.getCompanyId();
 
-		kaleoDefinitionLocalService.deleteKaleoDefinitionsByCompanyId(
-			companyId);
+		kaleoDefinitionLocalService.deleteCompanyKaleoDefinitions(companyId);
 
-		kaleoLogLocalService.deleteKaleoLogsByCompanyId(companyId);
+		kaleoLogLocalService.deleteCompanyKaleoLogs(companyId);
 	}
 
 	public void deployDefaultDefinitionLink(String assetClassName)

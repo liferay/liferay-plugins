@@ -69,17 +69,18 @@ public class KaleoTaskAssignmentLocalServiceImpl
 		return kaleoTaskAssignment;
 	}
 
-	public void deleteKaleoTaskAssignments(long kaleoDefinitionId)
+	public void deleteCompanyKaleoTaskAssignments(long companyId)
+		throws SystemException {
+
+		kaleoTaskAssignmentPersistence.removeByCompanyId(companyId);
+	}
+
+	public void deleteKaleoDefinitionKaleoTaskAssignments(
+			long kaleoDefinitionId)
 		throws SystemException {
 
 		kaleoTaskAssignmentPersistence.removeByKaleoDefinitionId(
 			kaleoDefinitionId);
-	}
-
-	public void deleteKaleoTaskAssignmentsByCompanyId(long companyId)
-		throws SystemException {
-
-		kaleoTaskAssignmentPersistence.removeByCompanyId(companyId);
 	}
 
 	public List<KaleoTaskAssignment> getKaleoTaskAssignments(long kaleoTaskId)

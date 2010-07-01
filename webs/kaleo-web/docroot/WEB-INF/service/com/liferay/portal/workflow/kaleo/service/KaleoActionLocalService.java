@@ -115,10 +115,10 @@ public interface KaleoActionLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void deleteKaleoActions(long kaleoDefinitionId)
+	public void deleteCompanyKaleoActions(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void deleteKaleoActionsByCompanyId(long companyId)
+	public void deleteKaleoDefinitionKaleoActions(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

@@ -135,14 +135,15 @@ public class KaleoTaskAssignmentLocalServiceWrapper
 			kaleoNodeId, kaleoTaskId, assignment, serviceContext);
 	}
 
-	public void deleteKaleoTaskAssignments(long kaleoDefinitionId)
+	public void deleteCompanyKaleoTaskAssignments(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoTaskAssignmentLocalService.deleteKaleoTaskAssignments(kaleoDefinitionId);
+		_kaleoTaskAssignmentLocalService.deleteCompanyKaleoTaskAssignments(companyId);
 	}
 
-	public void deleteKaleoTaskAssignmentsByCompanyId(long companyId)
+	public void deleteKaleoDefinitionKaleoTaskAssignments(
+		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoTaskAssignmentLocalService.deleteKaleoTaskAssignmentsByCompanyId(companyId);
+		_kaleoTaskAssignmentLocalService.deleteKaleoDefinitionKaleoTaskAssignments(kaleoDefinitionId);
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(

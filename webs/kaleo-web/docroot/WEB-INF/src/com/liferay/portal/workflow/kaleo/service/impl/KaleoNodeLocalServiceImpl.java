@@ -100,7 +100,24 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 		return kaleoNode;
 	}
 
-	public void deleteKaleoNodes(long kaleoDefinitionId)
+	public void deleteCompanyKaleoNodes(long companyId)
+		throws SystemException {
+
+		// Kaleo nodes
+
+		kaleoNodePersistence.removeByCompanyId(companyId);
+
+		// Kaleo actions
+
+		kaleoActionLocalService.deleteCompanyKaleoActions(companyId);
+
+		// Kaleo notifications
+
+		kaleoNotificationLocalService.deleteCompanyKaleoNotifications(
+			companyId);
+	}
+
+	public void deleteKaleoDefinitionKaleoNodes(long kaleoDefinitionId)
 		throws SystemException {
 
 		// Kaleo nodes
@@ -109,27 +126,13 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 
 		// Kaleo actions
 
-		kaleoActionLocalService.deleteKaleoActions(kaleoDefinitionId);
+		kaleoActionLocalService.deleteKaleoDefinitionKaleoActions(
+			kaleoDefinitionId);
 
 		// Kaleo notifications
 
-		kaleoNotificationLocalService.deleteKaleoNotifications(
+		kaleoNotificationLocalService.deleteKaleoDefinitionKaleoNotifications(
 			kaleoDefinitionId);
-	}
-
-	public void deleteKaleoNodesByCompanyId(long companyId)
-		throws SystemException {
-
-		kaleoNodePersistence.removeByCompanyId(companyId);
-
-		// Actions
-
-		kaleoActionLocalService.deleteKaleoActionsByCompanyId(companyId);
-
-		// Notifications
-
-		kaleoNotificationLocalService.deleteKaleoNotificationsByCompanyId(
-			companyId);
 	}
 
 }

@@ -514,12 +514,12 @@ public class KaleoNotificationLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNotification)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteKaleoNotifications(long kaleoDefinitionId)
+	public void deleteCompanyKaleoNotifications(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(kaleoDefinitionId);
+		Object paramObj0 = new LongWrapper(companyId);
 
 		try {
-			_classLoaderProxy.invoke("deleteKaleoNotifications",
+			_classLoaderProxy.invoke("deleteCompanyKaleoNotifications",
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
@@ -537,12 +537,12 @@ public class KaleoNotificationLocalServiceClp
 		}
 	}
 
-	public void deleteKaleoNotificationsByCompanyId(long companyId)
+	public void deleteKaleoDefinitionKaleoNotifications(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
+		Object paramObj0 = new LongWrapper(kaleoDefinitionId);
 
 		try {
-			_classLoaderProxy.invoke("deleteKaleoNotificationsByCompanyId",
+			_classLoaderProxy.invoke("deleteKaleoDefinitionKaleoNotifications",
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {

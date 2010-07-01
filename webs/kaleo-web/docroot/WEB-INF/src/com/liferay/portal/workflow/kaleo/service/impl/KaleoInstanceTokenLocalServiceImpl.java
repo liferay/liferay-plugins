@@ -112,6 +112,12 @@ public class KaleoInstanceTokenLocalServiceImpl
 		return kaleoInstanceToken;
 	}
 
+	public void deleteCompanyKaleoInstanceTokens(long companyId)
+		throws SystemException {
+
+		kaleoInstanceTokenPersistence.removeByCompanyId(companyId);
+	}
+
 	public void deleteKaleoDefinitionKaleoInstanceTokens(long kaleoDefinitionId)
 		throws SystemException {
 
@@ -123,12 +129,6 @@ public class KaleoInstanceTokenLocalServiceImpl
 		throws SystemException {
 
 		kaleoInstanceTokenPersistence.removeByKaleoInstanceId(kaleoInstanceId);
-	}
-
-	public void deleteKaleoInstanceTokensByCompanyId(long companyId)
-		throws SystemException {
-
-		kaleoInstanceTokenPersistence.removeByCompanyId(companyId);
 	}
 
 	public List<KaleoInstanceToken> getKaleoInstanceTokens(

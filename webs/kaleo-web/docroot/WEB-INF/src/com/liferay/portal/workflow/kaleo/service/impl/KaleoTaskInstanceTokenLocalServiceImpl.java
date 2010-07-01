@@ -181,6 +181,19 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		return kaleoTaskInstanceToken;
 	}
 
+	public void deleteCompanyKaleoTaskInstanceTokens(long companyId)
+		throws SystemException {
+
+		// Kaleo task instance tokens
+
+		kaleoTaskInstanceTokenPersistence.removeByCompanyId(companyId);
+
+		// Kaleo task assignment instances
+
+		kaleoTaskAssignmentInstanceLocalService.
+			deleteCompanyKaleoTaskAssignmentInstances(companyId);
+	}
+
 	public void deleteKaleoDefinitionKaleoTaskInstanceTokens(
 			long kaleoDefinitionId)
 		throws SystemException {
@@ -209,15 +222,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		kaleoTaskAssignmentInstanceLocalService.
 			deleteKaleoInstanceKaleoTaskAssignmentInstances(kaleoInstanceId);
-	}
-
-	public void deleteKaleoTaskInstanceTokensByCompanyId(long companyId)
-		throws SystemException {
-
-		kaleoTaskInstanceTokenPersistence.removeByCompanyId(companyId);
-
-		kaleoTaskAssignmentInstanceLocalService.
-			deleteKaleoTaskAssignmentInstancesByCompanyId(companyId);
 	}
 
 	public List<KaleoTaskInstanceToken> getCompanyKaleoTaskInstanceTokens(
@@ -269,7 +273,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		throws SystemException {
 
 		long userId = serviceContext.getUserId();
-		
+
 		if (userId == 0) {
 			DynamicQuery dynamicQuery = buildDynamicQuery(
 				kaleoInstanceId, completed, serviceContext);

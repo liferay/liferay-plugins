@@ -137,14 +137,14 @@ public class KaleoTransitionLocalServiceWrapper
 			serviceContext);
 	}
 
-	public void deleteKaleoTransitions(long kaleoDefinitionId)
+	public void deleteCompanyKaleoTransitions(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoTransitionLocalService.deleteKaleoTransitions(kaleoDefinitionId);
+		_kaleoTransitionLocalService.deleteCompanyKaleoTransitions(companyId);
 	}
 
-	public void deleteKaleoTransitionsByCompanyId(long companyId)
+	public void deleteKaleoDefinitionKaleoTransitions(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoTransitionLocalService.deleteKaleoTransitionsByCompanyId(companyId);
+		_kaleoTransitionLocalService.deleteKaleoDefinitionKaleoTransitions(kaleoDefinitionId);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition getDefaultKaleoTransition(

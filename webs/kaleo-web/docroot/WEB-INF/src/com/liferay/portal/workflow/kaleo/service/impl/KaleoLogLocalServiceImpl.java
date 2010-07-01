@@ -315,6 +315,10 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		return kaleoLog;
 	}
 
+	public void deleteCompanyKaleoLogs(long companyId) throws SystemException {
+		kaleoLogPersistence.removeByCompanyId(companyId);
+	}
+
 	public void deleteKaleoDefinitionKaleoLogs(long kaleoDefinitionId)
 		throws SystemException {
 
@@ -325,12 +329,6 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		throws SystemException {
 
 		kaleoLogPersistence.removeByKaleoInstanceId(kaleoInstanceId);
-	}
-
-	public void deleteKaleoLogsByCompanyId(long companyId)
-		throws SystemException {
-
-		kaleoLogPersistence.removeByCompanyId(companyId);
 	}
 
 	public List<KaleoLog> getKaleoInstanceKaleoLogs(
