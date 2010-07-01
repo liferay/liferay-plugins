@@ -290,6 +290,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 				serviceContext.getUserId());
 			kaleoTaskInstanceTokenQuery.setCompleted(completed);
 			kaleoTaskInstanceTokenQuery.setEnd(start);
+			kaleoTaskInstanceTokenQuery.setKaleoInstanceId(kaleoInstanceId);
 			kaleoTaskInstanceTokenQuery.setOrderByComparator(orderByComparator);
 			kaleoTaskInstanceTokenQuery.setStart(start);
 

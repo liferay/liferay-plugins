@@ -133,6 +133,8 @@ public class KaleoTaskInstanceTokenFinderImpl
 		sql = CustomSQLUtil.appendCriteria(
 			sql, getCompleted(kaleoTaskInstanceTokenQuery));
 		sql = CustomSQLUtil.appendCriteria(
+			sql, getKaleoInstanceId(kaleoTaskInstanceTokenQuery));
+		sql = CustomSQLUtil.appendCriteria(
 			sql, getRoleIds(kaleoTaskInstanceTokenQuery));
 		sql = CustomSQLUtil.appendCriteria(
 			sql, getSearchByUserRoles(kaleoTaskInstanceTokenQuery));
@@ -193,6 +195,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 		setAssigneeClassName(qPos, kaleoTaskInstanceTokenQuery);
 		setAssigneeClassPK(qPos, kaleoTaskInstanceTokenQuery);
 		setCompleted(qPos, kaleoTaskInstanceTokenQuery);
+		setKaleoInstanceId(qPos, kaleoTaskInstanceTokenQuery);
 		setRoleIds(qPos, kaleoTaskInstanceTokenQuery);
 		setSearchByUserRoles(qPos, kaleoTaskInstanceTokenQuery);
 
@@ -344,6 +347,18 @@ public class KaleoTaskInstanceTokenFinderImpl
 			"Kaleo_KaleoTaskInstanceToken.dueDate <= ? [$AND_OR_NULL_CHECK$])");
 
 		return sb.toString();
+	}
+
+	protected String getKaleoInstanceId(
+		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
+
+		Long kaleoInstanceId = kaleoTaskInstanceTokenQuery.getKaleoInstanceId();
+
+		if (kaleoInstanceId == null) {
+			return StringPool.BLANK;
+		}
+
+		return "AND (Kaleo_KaleoTaskInstanceToken.kaleoInstanceId = ?)";
 	}
 
 	protected String getRoleIds(
@@ -571,6 +586,19 @@ public class KaleoTaskInstanceTokenFinderImpl
 		Timestamp dueDateLT_TS = CalendarUtil.getTimestamp(dueDateLT);
 
 		qPos.add(dueDateLT_TS);
+	}
+
+	protected void setKaleoInstanceId(
+		QueryPos qPos,
+		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
+
+		Long kaleoInstanceId = kaleoTaskInstanceTokenQuery.getKaleoInstanceId();
+
+		if (kaleoInstanceId == null) {
+			return;
+		}
+
+		qPos.add(kaleoInstanceId);
 	}
 
 	protected void setRoleIds(

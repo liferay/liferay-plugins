@@ -62,6 +62,10 @@ public class KaleoTaskInstanceTokenQuery {
 		return _end;
 	}
 
+	public Long getKaleoInstanceId() {
+		return _kaleoInstanceId;
+	}
+
 	public OrderByComparator getOrderByComparator() {
 		return _orderByComparator;
 	}
@@ -134,6 +138,10 @@ public class KaleoTaskInstanceTokenQuery {
 		_end = end;
 	}
 
+	public void setKaleoInstanceId(Long kaleoInstanceId) {
+		_kaleoInstanceId = kaleoInstanceId;
+	}
+
 	public void setOrderByComparator(OrderByComparator orderByComparator) {
 		_orderByComparator = orderByComparator;
 	}
@@ -171,6 +179,7 @@ public class KaleoTaskInstanceTokenQuery {
 	private Date _dueDateGT;
 	private Date _dueDateLT;
 	private int _end = QueryUtil.ALL_POS;
+	private Long _kaleoInstanceId;
 	private OrderByComparator _orderByComparator;
 	private List<Long> _roleIds;
 	private Boolean _searchByUserRoles;
