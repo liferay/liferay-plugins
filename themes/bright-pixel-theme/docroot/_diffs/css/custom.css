@@ -39,6 +39,7 @@ a:hover {
 	background: #FFF;
 	border: 10px solid #FFF;
 	font: 1.2em Lucida Sans Unicode, Lucida Grande, sans-serif;
+	margin: 0 auto;
 	margin: 50px auto;
 	width: 960px;
 }
@@ -46,14 +47,18 @@ a:hover {
 /* ---------- Banner ---------- */
 
 #banner {
-	background: #C3D0D6;
+	background: #C3D0D6 url(../images/custom/banner_bg.png) 0 0 no-repeat;
 	height: 120px;
 	margin: 0 0 5px;
 	padding: 35px 0 0 0;
 	position: relative;
 }
 
-#banner .sign-in {
+.ie7 #banner {
+	padding-top: 55px;
+}
+
+#sign-in {
 	position: absolute;
 	right: 35px;
 	top: 17px;
@@ -72,13 +77,10 @@ h1.company-title {
 	top: 135px;
 }
 
-.ie7 #sign-in {
-	top: 115px;
-}
 /* ---------- Navigation ---------- */
 
 #navigation {
-	background: url(../images/custom/navigation_bg.gif);
+	background: #EEE;
 	border: 1px solid #CFDEE7;
 	border-color: #DFEEF7 #CFDEE7;
 	font: bold 12px Arial, Helvetica, sans-serif;
@@ -88,6 +90,7 @@ h1.company-title {
 #navigation ul {
 	list-style: none;
 	margin: 0;
+	display: block;
 }
 
 #navigation li,
@@ -117,7 +120,7 @@ h1.company-title {
 
 #navigation .selected a,
 #navigation a:hover {
-	background: url(../images/custom/navigation_bg.gif) left bottom;
+	background: url(../images/custom/navigation_item_hover.gif) left bottom;
 }
 
 #navigation ul li ul.child-menu {
