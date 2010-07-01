@@ -69,6 +69,7 @@ import com.liferay.portlet.imagegallery.model.IGImage;
 import com.liferay.portlet.imagegallery.service.IGFolderLocalServiceUtil;
 import com.liferay.portlet.imagegallery.service.IGImageLocalServiceUtil;
 import com.liferay.portlet.journal.model.JournalArticle;
+import com.liferay.portlet.journal.model.JournalArticleConstants;
 import com.liferay.portlet.journal.model.JournalStructure;
 import com.liferay.portlet.journal.model.JournalTemplate;
 import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
@@ -125,7 +126,7 @@ public class StartupAction extends SimpleAction {
 		titleMap.put(Locale.US, title);
 
 		return AssetCategoryLocalServiceUtil.addCategory(
-			null, userId, parentCategoryId, titleMap, vocabularyId, null,
+			userId, parentCategoryId, titleMap, vocabularyId, null,
 			serviceContext);
 	}
 
@@ -138,7 +139,7 @@ public class StartupAction extends SimpleAction {
 		titleMap.put(Locale.US, title);
 
 		return AssetVocabularyLocalServiceUtil.addVocabulary(
-			null, userId, titleMap, null, null, serviceContext);
+			userId, titleMap, null, null, serviceContext);
 	}
 
 	protected BlogsEntry addBlogsEntry(
@@ -149,7 +150,7 @@ public class StartupAction extends SimpleAction {
 		String content = getString(fileName);
 
 		return BlogsEntryLocalServiceUtil.addEntry(
-			null, userId, title, content, 1, 1, 2008, 0, 0, false, false,
+			userId, title, content, 1, 1, 2008, 0, 0, false, false,
 			new String[0], serviceContext);
 	}
 
@@ -166,13 +167,13 @@ public class StartupAction extends SimpleAction {
 
 		try {
 			return DLFileEntryLocalServiceUtil.addFileEntry(
-				null, userId, groupId, folderId, name, title, description,
+				userId, groupId, folderId, name, title, description,
 				StringPool.BLANK, StringPool.BLANK, bytes, serviceContext);
 		}
 		catch (DuplicateFileException dfe) {
 			return DLFileEntryLocalServiceUtil.updateFileEntry(
-				userId, groupId, folderId, folderId, name, null, title,
-				description, StringPool.BLANK, true, StringPool.BLANK, bytes,
+				userId, groupId, folderId, name, null, title, description,
+				StringPool.BLANK, true, StringPool.BLANK, bytes,
 				serviceContext);
 		}
 	}
@@ -187,7 +188,7 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setAddGuestPermissions(false);
 
 		return DLFolderLocalServiceUtil.addFolder(
-			null, userId, groupId, 0, name, description, serviceContext);
+			userId, groupId, 0, name, description, serviceContext);
 	}
 
 	protected IGImage addIGImage(
@@ -198,7 +199,7 @@ public class StartupAction extends SimpleAction {
 		InputStream is = getInputStream(fileName);
 
 		return IGImageLocalServiceUtil.addImage(
-			null, userId, serviceContext.getScopeGroupId(), folderId, name,
+			userId, serviceContext.getScopeGroupId(), folderId, name,
 			StringPool.BLANK, name, is, "image/png", serviceContext);
 	}
 
@@ -225,7 +226,8 @@ public class StartupAction extends SimpleAction {
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
-				userId, groupId, StringPool.BLANK, true, title,
+				userId, groupId, StringPool.BLANK, true,
+				JournalArticleConstants.DEFAULT_VERSION, title,
 				StringPool.BLANK, content, "general", structureId, templateId,
 				1, 1, 2008, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, true,
 				true, false, StringPool.BLANK, null, null, StringPool.BLANK,
@@ -378,6 +380,7 @@ public class StartupAction extends SimpleAction {
 		String password2 = password1;
 		boolean autoScreenName = false;
 		String emailAddress = screenName + "@7cogs.com";
+		long facebookId = 0;
 		String openId = StringPool.BLANK;
 		Locale locale = Locale.US;
 		String middleName = StringPool.BLANK;
@@ -409,10 +412,10 @@ public class StartupAction extends SimpleAction {
 
 		User user = UserLocalServiceUtil.addUser(
 			creatorUserId, companyId, autoPassword, password1, password2,
-			autoScreenName, screenName, emailAddress, openId, locale, firstName,
-			middleName, lastName, prefixId, suffixId, male, birthdayMonth,
-			birthdayDay, birthdayYear, jobTitle, groupIds, organizationIds,
-			roleIds, userGroupIds, sendEmail, serviceContext);
+			autoScreenName, screenName, emailAddress, facebookId, openId,
+			locale, firstName, middleName, lastName, prefixId, suffixId, male,
+			birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds,
+			organizationIds, roleIds, userGroupIds, sendEmail, serviceContext);
 
 		byte[] portrait = getBytes(
 			"/users/images/" + screenName + "_portrait.jpg");
@@ -764,7 +767,7 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setScopeGroupId(group.getGroupId());
 
 		IGFolder igFolder = IGFolderLocalServiceUtil.addFolder(
-			null, defaultUserId, 0, "Web Content", "Images used for content",
+			defaultUserId, 0, "Web Content", "Images used for content",
 			serviceContext);
 
 		IGImage cellBgIGImage = addIGImage(
@@ -1046,8 +1049,8 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setScopeGroupId(group.getGroupId());
 
 		IGFolder igFolder = IGFolderLocalServiceUtil.addFolder(
-			null, defaultUserId, 0, "7Cogs Web Content",
-			"Images used for content", serviceContext);
+			defaultUserId, 0, "7Cogs Web Content", "Images used for content",
+			serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"icons"});
 		serviceContext.setAssetCategoryIds(
@@ -1471,7 +1474,7 @@ public class StartupAction extends SimpleAction {
 		removePortletBorder(layout, portletId);
 
 		WikiNode wikiNode = WikiNodeLocalServiceUtil.addNode(
-			null, defaultUserId, "Main", StringPool.BLANK, serviceContext);
+			defaultUserId, "Main", StringPool.BLANK, serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"new", "features"});
 		serviceContext.setAssetCategoryIds(
@@ -1659,7 +1662,7 @@ public class StartupAction extends SimpleAction {
 		serviceContext.setScopeGroupId(group.getGroupId());
 
 		igFolder = IGFolderLocalServiceUtil.addFolder(
-			null, defaultUserId, 0, "7Cogs Mobile Content",
+			defaultUserId, 0, "7Cogs Mobile Content",
 			"Images used for mobile content", serviceContext);
 
 		serviceContext.setAssetTagNames(null);
@@ -1740,7 +1743,7 @@ public class StartupAction extends SimpleAction {
 			new String[] {
 				ActionKeys.ADD_ARTICLE, ActionKeys.ADD_FEED,
 				ActionKeys.ADD_STRUCTURE, ActionKeys.ADD_TEMPLATE,
-				ActionKeys.APPROVE_ARTICLE, ActionKeys.EXPIRE
+				ActionKeys.EXPIRE
 			});
 
 		setRolePermissions(
