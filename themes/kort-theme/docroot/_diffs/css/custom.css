@@ -1,49 +1,91 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+/* -------- Global -------- */
 
-/* -------- Banner -------- */
-
-#banner {
-	background: #000 url(../images/custom/banner_bg.png);
-	height: 98px;
+#skip-to-content,
+#heading .community-title,
+#heading .page-title,
+#navigation h1 {
+	clip: rect(0 0 0 0);
+	position: absolute;
 }
 
-/* -------- Logo -------- */
-
-.logo {
-	font-size: 32px;
-	line-height: 147px;
+#heading,
+#navigation ul,
+#content,
+#footer {
 	margin: 0 auto;
-	padding: 0 2px;
 	width: 940px;
 }
 
-.logo a {
-	color: #EEE;
+body {
+	font: 12px/1.5 Arial,Helvetica,Verdana,sans-serif
+}
+
+a {
+	color: #000;
 	text-decoration: none;
+}
+
+a:hover {
+	color: #08C;
+}
+
+/* -------- Wrapper / Skip / Banner / Footer -------- */
+
+#wrapper {
+	position: relative;
+}
+
+#skip-to-content:active,
+#skip-to-content:focus {
+	clip: auto;
+	color: #FFF;
+	right: 1em;
+	top: 1em;
+}
+
+#banner {
+	background: #5F5F5F url(../images/custom/banner_bg.png) repeat-x bottom;
+	margin: 0 0 22px;
+}
+
+#banner .company-title {
+	margin: 0;
+	overflow: hidden;
+	padding: 10px 0;
+}
+
+#footer {
+	margin: 20px auto;
+	text-align: right;
 }
 
 /* -------- Navigation -------- */
 
 #navigation {
-	background: #F3F3F3 url(../images/custom/banner_bg.png) repeat-x 0 -98px;
 	border-bottom: 1px solid #CCC;
-	font-size: 14px;
-	height: 28px;
-	line-height: 28px;
-	margin-bottom: 22px;
-	padding-top: 22px;
+	padding: 22px 0 0;
+	zoom: 1;
 }
 
 #navigation ul {
-	margin: 0 auto;
-	width: 940px;
+	height: 28px;
+	list-style: none;
+	margin: 0 auto -1px;
+	position: relative;
+}
+
+#navigation li,
+#navigation a {
+	float: left;
+	position: relative;
 }
 
 #navigation a {
 	color: #555;
 	display: block;
 	float: left;
-	padding: 0 30px 0 0;
+	font-size: 14px;
+	padding: 3px 30px 3px 0;
 	text-decoration: none;
 }
 
@@ -56,45 +98,16 @@
 	color: #000;
 }
 
-#add-page {
-	position: relative;
-	top: -29px;
-	margin: 0 auto;
-	width: 940px;
-	text-align: right;
-}
+/* -------- Content -------- */
 
-#add-page a,
-#navigation .cancel-page,
-#navigation .save-page {
-	display: inline;
-	float: none;
-	padding: 3px;
-}
-
-/* -------- Content-Wrapper -------- */
-
-#content-wrapper {
+#content{
 	color: #454545;
-	font: 12px/1.5 Arial, Helvetica, sans-serif;
-	margin: 0 auto;
-	min-height: 100px;
-	width: 940px;
 }
 
-#content-wrapper a {
-	color: #000;
-	text-decoration: none;
+#breadcrumbs {
+	display: none;
 }
 
-#content-wrapper a:hover {
-	color: #08C;
-}
-
-/* -------- Footer -------- */
-
-#footer {
-	height: 30px;
-	padding: 20px;
-	text-align: right;
+.portlet {
+	margin: 0 0 1em;
 }
