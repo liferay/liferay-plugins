@@ -1,237 +1,123 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
-/* ---------- Base ---------- */
-
-html {
-	background: #E7E7E2 url(../images/custom/body_bg.jpg) no-repeat center top;
-}
+/* -------- Global -------- */
 
 #skip-to-content,
-#banner h2,
-#banner h3,
-#navigation h1,
-#breadcrumbs,
-.site-breadcrumbs h1 {
-	left: -99999px;
-	overflow: hidden;
+#heading .community-title,
+#heading .page-title,
+#navigation h1 {
+	clip: rect(0 0 0 0);
 	position: absolute;
-	width: 1%;
 }
 
 body {
-	background: url(../images/custom/footer_bg.jpg) no-repeat center bottom;
+	background: #E7E7E2;
+	color: #444;
 }
 
-a,
-a:visited {
-	color: #333377;
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-/* ---------- Wrapper ---------- */
+/* -------- Wrapper -------- */
 
 #wrapper {
+	background: url(../images/custom/wrapper_bg.jpg) no-repeat center top;
+	font: 13px Tahoma, sans-serif;
+	padding: 64px 0 0;
+}
+
+#inner-wrapper {
+	background: url(../images/custom/inner-wrapper_bg.jpg) no-repeat center bottom;
+	padding: 0 0 64px;
+}
+
+#inner-inner-wrapper {
 	background: #FFF;
 	border: 2px solid #D7D7D2;
 	margin: 0 auto;
 	padding: 10px;
-	margin-top: 64px;
-	width: 900px;
+	width: 780px;
 }
 
-/* ---------- Banner ---------- */
-
-#banner {
-	background: url(../images/custom/banner_bg.jpg);
-	height: 160px;
-	margin: 0 0 2.5px;
-	position: relative;
-	width: 900px;
-}
+/* -------- Heading -------- */
 
 #heading {
-	height: 125px;
+	background: #181d21 url(../images/custom/heading_bg.jpg) no-repeat;
+	margin: 0 0 5px;
 }
 
-#sign-in {
-	color: #CCC;
-	position: absolute;
-	right: 5px;
-	top: 108px;
-}
-
-/* ---------- Logo ---------- */
-
-h1.company-title {
+#heading .company-title {
 	margin: 0;
-	padding: 30px 0 0 15px;
+	padding: 50px 0;
 }
 
-#banner .logo a {
+#heading .company-title a {
 	margin: 0 auto;
 }
 
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	right: 10px;
-	top: 10px;
-}
-
-/* ---------- Navigation ---------- */
+/* -------- Navigation -------- */
 
 #navigation {
-	background: #21262A;
-	height: 35px;
+	background: #949490;
+	padding: 8px 12px;
+	margin: 0 0 12px;
 }
 
 #navigation ul {
-	float: left;
+	list-style: none;
 	margin: 0;
-	padding: 0;
 }
 
-#navigation ul li a {
-	color: #D7D7D2;
+.ie6 #navigation ul,
+.ie7 #navigation ul {
+	zoom: 1;
+}
+
+#navigation ul:after {
+	content: "";
+	clear: both;
 	display: block;
+}
+
+#navigation li,
+#navigation a {
 	float: left;
-	font: 16px Lucida Sans Unicode, Lucida Grande, sans-serif;
-	padding: 5px 14px;
+}
+
+#navigation a {
+	color: #FFF;
+	display: block;
+	margin: 0 16px 0 0;
 	text-decoration: none;
 }
 
-#navigation ul li {
-	list-style: none;
-	float:left;
-	margin: 0;
-	padding: 0;
-	position: relative;
+#navigation a:active,
+#navigation a:focus,
+#navigation a:hover {
+	text-decoration: underline;
 }
 
-.js .delete-tab {
-	position: absolute;
-}
-
-#navigation a:hover,
-#navigation .selected a:hover {
-	color: #D7D700;
-}
-
-#navigation ul li ul.child-menu {
-	display: none;
-}
-
-#navigation .selected a {
-	color: #D6D6A1;
-}
-
-#navigation .enter-page {
-	padding-top: 10px;
-}
-
-#navigation .enter-page a {
-	background: none;
-	display: inline;
-	float: none;
-}
-
-#navigation .enter-page a.cancel-page {
-	display: none;
-}
-
-#navigation .save-page {
-	display: inline;
-	float: none;
-}
-
-.ie7 #navigation .save-page {
-	position: relative;
-	top: -5px;
-}
-
-#navigation .cancel-page {
-	display: none;
-}
-
-/* ---------- Content Wrapper ---------- */
+/* -------- Content -------- */
 
 #content {
-	border: 2px solid #21262A;
-	padding: 10px;
+	margin: 0 0 5px;
 }
 
-/* ---------- Portlet ---------- */
+#breadcrumbs {
+	display: none;
+}
 
 .portlet {
-	border-bottom: 2px solid #D7D7D2;
-	margin: 0 0 20px;
+	margin: 0 0 12px;
 }
 
-.portlet-topper {
-	border-bottom: 1px solid #E9E9E9;
-	padding: 4px;
+/* -------- Footer -------- */
+
+#footer {
+	background: #949490;
+	padding: 10px 12px;
 }
 
-.portlet-title {
-	color: #111;
-	font: bold 14px Arial, Helvetica, sans-serif;
-}
-
-/* ---------- Calendar ---------- */
-
-.portlet-calendar .calendar-day .day-text,
-.portlet-calendar .results-header {
-	background-color: #21262A;
-}
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs {
-	border-bottom: 1px solid #000;
-}
-
-.ui-tabs li a,
-.ui-tabs li.current a,
-.ui-tabs li a:hover,
-.ui-tabs li span,
-.ui-tabs li.current span,
-.ui-tabs li span:hover {
-	background: #21262A;
-	border: 1px solid #000;
-	color: #DDD;
-	margin: 0 0 0 -1px;
-	padding: 8px 12px;
-}
-
-.ui-tabs li a:hover,
-.ui-tabs li span:hover {
-	background: #21262A;
-	color: #FF0;
-	text-decoration: none;
-}
-
-.ui-tabs li.current a,
-.ui-tabs li.current span {
-	background: #343C42;
+#footer,
+#footer a {
 	color: #FFF;
-	font-weight: normal;
 }
 
-.ui-tabs li.current a:hover,
-.ui-tabs li.current span:hover {
-	background: #343C42;
-	color: #FFF;
-	font-weight: normal;
-}
-
-.ui-tabs li.current:hover {
-	background: transparent;
-}
-
-.aui-tab-active span a {
-	color: #FFF;
+#footer p {
+	margin: 0;
 }
