@@ -474,7 +474,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public int getWorkflowTaskCountByWorkflowInstance(
-			long companyId, long userId, long workflowInstanceId,
+			long companyId, Long userId, long workflowInstanceId,
 			Boolean completed)
 		throws WorkflowException {
 
@@ -485,7 +485,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			String[] actorIds = null;
 
-			if (userId > 0) {
+			if ((userId != null) && (userId > 0)) {
 				actorIds = new String[] {String.valueOf(userId)};
 			}
 
@@ -600,14 +600,14 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public List<WorkflowTask> getWorkflowTasksByWorkflowInstance(
-			long companyId, long userId, long workflowInstanceId,
+			long companyId, Long userId, long workflowInstanceId,
 			Boolean completed, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		String[] actorIds = null;
 
-		if (userId > 0) {
+		if ((userId != null) && (userId > 0)) {
 			actorIds = new String[] {String.valueOf(userId)};
 		}
 
