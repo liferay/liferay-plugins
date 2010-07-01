@@ -109,7 +109,6 @@ h1.company-title {
 	display: none;
 }
 
-
 #navigation a {
 	border-right: 1px solid #AFBEC7;
 	color: #456;
@@ -124,8 +123,6 @@ h1.company-title {
 #navigation a:hover {
 	background: url(../images/custom/navigation_bg.gif) left bottom;
 }
-
-
 
 /* ---------- Content Wrapper ---------- */
 
