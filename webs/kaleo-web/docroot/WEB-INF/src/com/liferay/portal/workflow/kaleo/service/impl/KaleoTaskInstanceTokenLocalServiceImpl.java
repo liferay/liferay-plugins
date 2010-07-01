@@ -268,10 +268,30 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			OrderByComparator orderByComparator, ServiceContext serviceContext)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = buildDynamicQuery(
-			kaleoInstanceId, completed, serviceContext);
+		long userId = serviceContext.getUserId();
+		
+		if (userId == 0) {
+			DynamicQuery dynamicQuery = buildDynamicQuery(
+				kaleoInstanceId, completed, serviceContext);
 
-		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
+			return dynamicQuery(dynamicQuery, start, end, orderByComparator);
+		}
+		else {
+			KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery =
+				new KaleoTaskInstanceTokenQuery(serviceContext);
+
+			kaleoTaskInstanceTokenQuery.setAssigneeClassName(
+				User.class.getName());
+			kaleoTaskInstanceTokenQuery.setAssigneeClassPK(
+				serviceContext.getUserId());
+			kaleoTaskInstanceTokenQuery.setCompleted(completed);
+			kaleoTaskInstanceTokenQuery.setEnd(start);
+			kaleoTaskInstanceTokenQuery.setOrderByComparator(orderByComparator);
+			kaleoTaskInstanceTokenQuery.setStart(start);
+
+			return kaleoTaskInstanceTokenFinder.findKaleoTaskInstanceTokens(
+				kaleoTaskInstanceTokenQuery);
+		}
 	}
 
 	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
@@ -326,10 +346,27 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			ServiceContext serviceContext)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = buildDynamicQuery(
-			kaleoInstanceId, completed, serviceContext);
+		long userId = serviceContext.getUserId();
 
-		return (int)dynamicQueryCount(dynamicQuery);
+		if (userId == 0) {
+			DynamicQuery dynamicQuery = buildDynamicQuery(
+				kaleoInstanceId, completed, serviceContext);
+
+			return (int)dynamicQueryCount(dynamicQuery);
+		}
+		else {
+			KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery =
+				new KaleoTaskInstanceTokenQuery(serviceContext);
+
+			kaleoTaskInstanceTokenQuery.setAssigneeClassName(
+				User.class.getName());
+			kaleoTaskInstanceTokenQuery.setAssigneeClassPK(
+				serviceContext.getUserId());
+			kaleoTaskInstanceTokenQuery.setCompleted(completed);
+
+			return kaleoTaskInstanceTokenFinder.countKaleoTaskInstanceTokens(
+				kaleoTaskInstanceTokenQuery);
+		}
 	}
 
 	public int getKaleoTaskInstanceTokensCount(

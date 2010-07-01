@@ -145,7 +145,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					Role.class.getName(), kaleoTask.getKaleoTaskId());
 
 			PrimitiveLongSet pooledActors = new PrimitiveLongSet();
-			
+
 			for (KaleoTaskAssignment kaleoTaskAssignment :
 					kaleoTaskAssignments) {
 
@@ -299,6 +299,10 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			serviceContext.setCompanyId(companyId);
 
+			if (userId != null) {
+				serviceContext.setUserId(userId);
+			}
+
 			return KaleoTaskInstanceTokenLocalServiceUtil.
 				getKaleoTaskInstanceTokensCount(
 					workflowInstanceId, completed, serviceContext);
@@ -433,6 +437,10 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			ServiceContext serviceContext = new ServiceContext();
 
 			serviceContext.setCompanyId(companyId);
+
+			if (userId != null) {
+				serviceContext.setUserId(userId);
+			}
 
 			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
 				KaleoTaskInstanceTokenLocalServiceUtil.
