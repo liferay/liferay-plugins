@@ -1,11 +1,11 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 #skip-to-content,
- #banner h2,
- #banner h3,
- #navigation h1,
- #breadcrumbs,
- .site-breadcrumbs h1 {
+#banner h2,
+#banner h3,
+#navigation h1,
+#breadcrumbs,
+.site-breadcrumbs h1 {
 	left: -99999px;
 	overflow: hidden;
 	position: absolute;
@@ -122,6 +122,7 @@ li.aui-tab-active span a
 }
 
 /* ---------- Portlet ---------- */
+
 #footer {
 	width: 100%;
 }
