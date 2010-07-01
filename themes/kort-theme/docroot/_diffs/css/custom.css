@@ -29,18 +29,30 @@ a:hover {
 	color: #08C;
 }
 
-/* -------- Wrapper / Skip / Banner / Footer -------- */
+/* -------- Wrapper / Skip / Sign-in / Banner / Footer -------- */
 
 #wrapper {
 	position: relative;
 }
 
+#skip-to-content,
+#sign-in {
+	color: #FFF;
+	right: 1em;
+}
+
+#skip-to-content {
+	top: 1em;
+}
+
 #skip-to-content:active,
 #skip-to-content:focus {
 	clip: auto;
-	color: #FFF;
-	right: 1em;
-	top: 1em;
+}
+
+#sign-in {
+	position: absolute;
+	top: 3em;
 }
 
 #banner {
@@ -77,7 +89,6 @@ a:hover {
 #navigation li,
 #navigation a {
 	float: left;
-	position: relative;
 }
 
 #navigation a {
