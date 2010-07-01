@@ -38,7 +38,7 @@ a:hover {
 
 /* ---------- Banner ---------- */
 
-#banner {
+#heading {
 	background: url(../images/custom/banner_bg.png) left bottom;
 	margin-bottom: -28px;
 	padding: 6px 11px;
@@ -50,7 +50,16 @@ a:hover {
 	bottom: 5px;
 	color: #FFF;
 	left: 10px;
-	position: absolute;
+	position: relative;
+	top: 8px;
+	z-index: 3;
+	width: 40px;
+}
+
+ie6. #sign-in {
+	position: relative;
+	bottom: 0px;
+	left: 0px;	
 }
 
 /* ---------- Main navigation ---------- */
@@ -58,7 +67,7 @@ a:hover {
 #navigation {
 	height: 27px;
 	position: relative;
-	margin: 0;
+	margin-top: -20px;
 	z-index: 2;
 }
 
@@ -87,8 +96,7 @@ a:hover {
 	display: none;
 }
 
-#navigation a,
-#banner .sign-in {
+#navigation a {
 	color: #FFF;
 	display: block;
 	font: 11px Lucida Grande, Tahoma, Verdana, Arial, sans-serif;
