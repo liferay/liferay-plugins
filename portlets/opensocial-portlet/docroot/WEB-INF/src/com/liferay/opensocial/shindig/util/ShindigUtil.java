@@ -161,8 +161,8 @@ public class ShindigUtil {
 			PortletRequest portletRequest, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		String portletId =
-			ParamUtil.getString(portletRequest, "portletResource");
+		String portletId = ParamUtil.getString(
+			portletRequest, "portletResource");
 
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
 			themeDisplay.getCompanyId(), portletId);

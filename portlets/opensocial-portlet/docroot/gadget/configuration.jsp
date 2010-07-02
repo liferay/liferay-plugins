@@ -21,25 +21,29 @@ List<UserPref> userPrefs = (List<UserPref>)renderRequest.getAttribute(WebKeys.US
 
 String namespace = ShindigUtil.getPortletResourceNamespace(renderRequest, themeDisplay);
 
-JSONObject json = ExpandoValueServiceUtil.getJSONData(themeDisplay.getCompanyId(), User.class.getName(), ShindigUtil.getTableOpenSocial(), ShindigUtil.getColumnUserPrefs(namespace), themeDisplay.getUserId());
+JSONObject jsonObject = ExpandoValueServiceUtil.getJSONData(themeDisplay.getCompanyId(), User.class.getName(), ShindigUtil.getTableOpenSocial(), ShindigUtil.getColumnUserPrefs(namespace), themeDisplay.getUserId());
 %>
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
 
 <aui:form action="<%= configurationURL %>" method="post" name="fm">
 	<aui:fieldset>
+
 		<%
 		for (UserPref userPref : userPrefs) {
 			String value = userPref.getDefaultValue();
 
-			if (json != null) {
-				value = GetterUtil.getString(json.getString(userPref.getName()), value);
+			if (jsonObject != null) {
+				value = GetterUtil.getString(jsonObject.getString(userPref.getName()), value);
 			}
 		%>
+
 			<aui:input cssClass="lfr-input-text-container" label="<%= userPref.getDisplayName() %>" name="<%= userPref.getName() %>" type="text" value="<%= value %>" />
+
 		<%
 		}
 		%>
+
 	</aui:fieldset>
 
 	<aui:button-row>

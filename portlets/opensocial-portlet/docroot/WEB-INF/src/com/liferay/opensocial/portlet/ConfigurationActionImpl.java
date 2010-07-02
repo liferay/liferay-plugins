@@ -26,7 +26,6 @@ import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.service.ExpandoValueServiceUtil;
 
 import java.util.List;
@@ -53,19 +52,20 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		JSONObject userPrefsJsonObject = JSONFactoryUtil.createJSONObject();
+
 		List<UserPref> userPrefs = getUserPrefs(actionRequest);
-		JSONObject jsonUserPrefs = JSONFactoryUtil.createJSONObject();
 
 		for (UserPref userPref : userPrefs) {
 			String name = userPref.getName();
 
 			String value = ParamUtil.getString(actionRequest, name);
 
-			jsonUserPrefs.put(name, value);
+			userPrefsJsonObject.put(name, value);
 		}
-
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 		String namespace = ShindigUtil.getPortletResourceNamespace(
 			actionRequest, themeDisplay);
@@ -75,7 +75,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		ExpandoValueServiceUtil.addValue(
 			themeDisplay.getCompanyId(), User.class.getName(),
 			ShindigUtil.getTableOpenSocial(), columnName,
-			themeDisplay.getUserId(), jsonUserPrefs.toString());
+			themeDisplay.getUserId(), userPrefsJsonObject.toString());
 
 		SessionMessages.add(
 			actionRequest, portletConfig.getPortletName() + ".doConfigure");
@@ -83,7 +83,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 	public String render(PortletConfig portletConfig,
 			RenderRequest renderRequest, RenderResponse renderResponse)
-			throws Exception {
+		throws Exception {
 
 		List<UserPref> userPrefs = getUserPrefs(renderRequest);
 
@@ -100,19 +100,20 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 	protected List<UserPref> getUserPrefs(PortletRequest portletRequest)
 		throws Exception {
 
-		long companyId = PortalUtil.getCompanyId(portletRequest);
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
-		String portletId =
-			ParamUtil.getString(portletRequest, "portletResource");
+		String portletId = ParamUtil.getString(
+			portletRequest, "portletResource");
 
-		Portlet portlet =
-			PortletLocalServiceUtil.getPortletById(companyId, portletId);
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(
+			themeDisplay.getCompanyId(), portletId);
 
 		Gadget gadget = ShindigUtil.getGadget(portlet.getPortletName());
-		GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadget);
-		List<UserPref> userPrefs = gadgetSpec.getUserPrefs();
 
-		return userPrefs;
+		GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadget);
+
+		return gadgetSpec.getUserPrefs();
 	}
 
 }
