@@ -132,7 +132,7 @@ public class MailPortlet extends MVCPortlet {
 				_log.error(e, e);
 			}
 			finally {
-				attachmentHandler.finish();
+				attachmentHandler.cleanUp();
 			}
 		}
 		else {

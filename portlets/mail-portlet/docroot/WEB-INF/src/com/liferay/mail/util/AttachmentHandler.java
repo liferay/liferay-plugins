@@ -25,6 +25,6 @@ public interface AttachmentHandler {
 
 	public InputStream getInputStream();
 
-	public void finish();
+	public void cleanUp();
 
 }

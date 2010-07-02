@@ -39,7 +39,7 @@ public class IMAPAttachmentHandler implements AttachmentHandler {
 		return _inputStream;
 	}
 
-	public void finish() {
+	public void cleanUp() {
 		try {
 			if ((_folder == null) || !_folder.isOpen()) {
 				return;
