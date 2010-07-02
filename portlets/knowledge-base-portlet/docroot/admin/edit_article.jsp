@@ -33,7 +33,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 %>
 
 <liferay-ui:tabs
-	backURL="<%= PortalUtil.escapeRedirect(redirect) %>"
+	backURL="<%= redirect %>"
 	names="article"
 />
 

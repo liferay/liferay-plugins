@@ -27,7 +27,7 @@ String content = BeanParamUtil.getString(template, request, "content");
 %>
 
 <liferay-ui:tabs
-	backURL="<%= PortalUtil.escapeRedirect(redirect) %>"
+	backURL="<%= redirect %>"
 	names="template"
 />
 
