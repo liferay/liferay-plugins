@@ -18,6 +18,7 @@
 
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(url) %>">
+
 		<%
 		StringBundler sb = new StringBundler();
 
@@ -26,22 +27,22 @@
 		}
 
 		sb.append("clip_id=" + id);
-
 		sb.append("&amp;color=" + playerColorHex);
-
 		sb.append("&amp;fullscreen=" + enableFullscreenBinary);
-
 		sb.append("&amp;server=vimeo.com");
-
 		sb.append("&amp;show_byline=" + showBylineBinary);
-
 		sb.append("&amp;show_portrait=" + showPortraitBinary);
-
 		sb.append("&amp;show_title=" + showTitleBinary);
 		%>
 
-		<liferay-ui:flash allowFullScreen="true" allowScriptAccess="true" height="<%= height %>" movie="<%= _SWF_URL + "?" + sb.toString() %>" width="<%= width %>" wmode="opaque">
-		</liferay-ui:flash>
+		<liferay-ui:flash
+			allowFullScreen="true"
+			allowScriptAccess="true"
+			height="<%= height %>"
+			movie='<%= _SWF_URL + "?" + sb.toString() %>'
+			width="<%= width %>"
+			wmode="opaque"
+		/>
 	</c:when>
 	<c:otherwise>
 		<liferay-util:include page="/html/portal/portlet_not_setup.jsp" />

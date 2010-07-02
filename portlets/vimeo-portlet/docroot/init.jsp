@@ -63,7 +63,6 @@ String presetSize = width + "x" + height;
 String showBylineBinary = showByline ? "1" : "0";
 String showPortraitBinary = showPortrait ? "1" : "0";
 String showTitleBinary = showTitle ? "1" : "0";
-
 %>
 
 <%!

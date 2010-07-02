@@ -79,7 +79,14 @@
 		}
 		%>
 
-		<liferay-ui:flash allowFullScreen="true" allowScriptAccess="true" height="<%= height %>" movie="<%= _SWF_URL + id + sb.toString() %>" width="<%= width %>" wmode="opaque">
+		<liferay-ui:flash
+			allowFullScreen="true"
+			allowScriptAccess="true"
+			height="<%= height %>"
+			movie="<%= _SWF_URL + id + sb.toString() %>"
+			width="<%= width %>"
+			wmode="opaque"
+		>
 			<aui:a href="<%= _WATCH_URL + id %>" rel="external" title='<%= LanguageUtil.get(pageContext, "watch-this-video-at-youtube") %>'>
 				<img alt="<liferay-ui:message key="youtube-video" />" height="<%= height %>" src="<%= imageURL %>" width="<%= width %>" />
 			</aui:a>
