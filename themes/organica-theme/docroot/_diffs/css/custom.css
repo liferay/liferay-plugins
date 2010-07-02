@@ -69,8 +69,8 @@ table {
 	background: url(../images/custom/navigation_bg.png) repeat-x;
 	font-family: Times New Roman;
 	font-size: 18px;
-	position: relative;
 	margin: 0;
+	position: relative;
 }
 
 #navigation a {
@@ -80,8 +80,8 @@ table {
 }
 
 #navigation ul {
-	margin: 0 0 -5px 0;
 	height: 32px;
+	margin: 0 0 -5px 0;
 }
 
 #navigation ul li {
@@ -117,9 +117,9 @@ h1.company-title {
 	background: #FFF;
 	color: #57391B;
 	font-size: 12px;
-	z-index: 1;
 	margin: 0;
 	padding: 0;
+	z-index: 1;
 }
 
 .lfr-grid .lfr-column {
@@ -345,6 +345,7 @@ input[type="reset"] {
 .aui-menu-content {
 	z-index: 5000;
 }
+
 .ie6 .chat-bar {
 	display: none;
 }
