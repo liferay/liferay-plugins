@@ -565,8 +565,6 @@ AUI().use(
 
 				instance._createBuddyListPanel();
 				instance._createSettingsPanel();
-
-				Liferay.fire('chatPortletReady');
 			},
 
 			close: function(panelName) {
