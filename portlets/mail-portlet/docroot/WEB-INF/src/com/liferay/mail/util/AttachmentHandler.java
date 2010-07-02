@@ -23,8 +23,8 @@ import java.io.InputStream;
  */
 public interface AttachmentHandler {
 
-	public InputStream getInputStream();
-
 	public void cleanUp();
+
+	public InputStream getInputStream();
 
 }

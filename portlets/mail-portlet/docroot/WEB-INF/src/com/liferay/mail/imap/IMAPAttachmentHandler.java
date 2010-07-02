@@ -35,10 +35,6 @@ public class IMAPAttachmentHandler implements AttachmentHandler {
 		_folder = folder;
 	}
 
-	public InputStream getInputStream() {
-		return _inputStream;
-	}
-
 	public void cleanUp() {
 		try {
 			if ((_folder == null) || !_folder.isOpen()) {
@@ -50,6 +46,10 @@ public class IMAPAttachmentHandler implements AttachmentHandler {
 		catch (MessagingException me) {
 			_log.error(me, me);
 		}
+	}
+
+	public InputStream getInputStream() {
+		return _inputStream;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
