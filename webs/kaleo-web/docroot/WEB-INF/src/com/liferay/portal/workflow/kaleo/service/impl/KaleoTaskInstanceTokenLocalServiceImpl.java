@@ -289,7 +289,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			kaleoTaskInstanceTokenQuery.setAssigneeClassPK(
 				serviceContext.getUserId());
 			kaleoTaskInstanceTokenQuery.setCompleted(completed);
-			kaleoTaskInstanceTokenQuery.setEnd(start);
+			kaleoTaskInstanceTokenQuery.setEnd(end);
 			kaleoTaskInstanceTokenQuery.setKaleoInstanceId(kaleoInstanceId);
 			kaleoTaskInstanceTokenQuery.setOrderByComparator(orderByComparator);
 			kaleoTaskInstanceTokenQuery.setStart(start);
