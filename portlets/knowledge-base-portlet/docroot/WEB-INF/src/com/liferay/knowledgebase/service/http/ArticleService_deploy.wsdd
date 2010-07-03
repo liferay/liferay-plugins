@@ -18,14 +18,6 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="dirName" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://service.portal.liferay.com" qname="serviceContext" type="tns:ServiceContext"></parameter>
 		</operation>
-		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" name="addAttachment" qname="operNS:addAttachment" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:long"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="resourcePrimKey" type="tns:long"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="dirName" type="tns:string"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="shortFileName" type="tns:string"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="bytes" type="tns:base64Binary"></parameter>
-		</operation>
 		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" name="deleteArticle" qname="operNS:deleteArticle" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="resourcePrimKey" type="tns:long"></parameter>
 		</operation>
@@ -50,42 +42,41 @@
 		</operation>
 		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" xmlns:rtns="urn:http.service.knowledgebase.liferay.com" xmlns:tns2="http://model.knowledgebase.liferay.com" name="getCompanyArticles" qname="operNS:getCompanyArticles" returnQName="getCompanyArticlesReturn" returnType="rtns:ArrayOf_tns4_ArticleSoap" returnItemType="tns2:ArticleSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="allVersions" type="tns:boolean"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://util.kernel.portal.liferay.com" qname="orderByComparator" type="tns:OrderByComparator"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getCompanyArticlesCount" qname="operNS:getCompanyArticlesCount" returnQName="getCompanyArticlesCountReturn" returnType="rtns:int" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="allVersions" type="tns:boolean"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" xmlns:rtns="urn:http.service.knowledgebase.liferay.com" xmlns:tns2="http://model.knowledgebase.liferay.com" name="getGroupArticles" qname="operNS:getGroupArticles" returnQName="getGroupArticlesReturn" returnType="rtns:ArrayOf_tns4_ArticleSoap" returnItemType="tns2:ArticleSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:long"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
-			<parameter xmlns:tns="http://util.kernel.portal.liferay.com" qname="orderByComparator" type="tns:OrderByComparator"></parameter>
-		</operation>
-		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" xmlns:rtns="urn:http.service.knowledgebase.liferay.com" xmlns:tns2="http://model.knowledgebase.liferay.com" name="getGroupArticles" qname="operNS:getGroupArticles" returnQName="getGroupArticlesReturn" returnType="rtns:ArrayOf_tns4_ArticleSoap" returnItemType="tns2:ArticleSoap" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:long"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="parentResourcePrimKey" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="allVersions" type="tns:boolean"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://util.kernel.portal.liferay.com" qname="orderByComparator" type="tns:OrderByComparator"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getGroupArticlesCount" qname="operNS:getGroupArticlesCount" returnQName="getGroupArticlesCountReturn" returnType="rtns:int" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:long"></parameter>
-		</operation>
-		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getGroupArticlesCount" qname="operNS:getGroupArticlesCount" returnQName="getGroupArticlesCountReturn" returnType="rtns:int" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:long"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="parentResourcePrimKey" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="allVersions" type="tns:boolean"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" xmlns:rtns="http://model.knowledgebase.liferay.com" name="getLatestArticle" qname="operNS:getLatestArticle" returnQName="getLatestArticleReturn" returnType="rtns:ArticleSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="resourcePrimKey" type="tns:long"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" name="subscribe" qname="operNS:subscribe" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" name="subscribeArticle" qname="operNS:subscribeArticle" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="portletId" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="resourcePrimKey" type="tns:long"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" name="unsubscribe" qname="operNS:unsubscribe" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" name="unsubscribeArticle" qname="operNS:unsubscribeArticle" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="resourcePrimKey" type="tns:long"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" xmlns:rtns="http://model.knowledgebase.liferay.com" name="updateArticle" qname="operNS:updateArticle" returnQName="updateArticleReturn" returnType="rtns:ArticleSoap" soapAction="">
@@ -104,7 +95,7 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="resourcePrimKey" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="dirName" type="tns:string"></parameter>
 		</operation>
-		<parameter name="allowedMethods" value="addArticle getArticle updateArticle addAttachment unsubscribe getLatestArticle updateAttachments getCompanyArticles getGroupArticlesCount getCompanyArticlesCount deleteAttachment getArticles subscribe deleteArticle getArticlesCount getGroupArticles" />
+		<parameter name="allowedMethods" value="addArticle getArticle updateArticle unsubscribe unsubscribeArticle getLatestArticle updateAttachments getCompanyArticles getGroupArticlesCount getCompanyArticlesCount deleteAttachment getArticles subscribe subscribeArticle deleteArticle getArticlesCount getGroupArticles" />
 		<typeMapping xmlns:ns="http://model.portal.liferay.com" qname="ns:PortletPreferencesIds" type="java:com.liferay.portal.model.PortletPreferencesIds" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
 		<typeMapping xmlns:ns="http://util.kernel.portal.liferay.com" qname="ns:OrderByComparator" type="java:com.liferay.portal.kernel.util.OrderByComparator" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
 		<arrayMapping xmlns:ns="urn:http.service.knowledgebase.liferay.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_long" type="java:long[]" innerType="cmp-ns:long" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
