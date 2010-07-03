@@ -26,8 +26,8 @@ long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentReso
 long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePrimKey", parentResourcePrimKey);
 %>
 
-<liferay-ui:tabs
-	names="parent-article"
+<liferay-ui:header
+	title="parent-article"
 />
 
 <aui:form method="post" name="fm">

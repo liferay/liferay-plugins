@@ -32,9 +32,9 @@ int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleCon
 String dirName = ParamUtil.getString(request, "dirName");
 %>
 
-<liferay-ui:tabs
+<liferay-ui:header
 	backURL="<%= redirect %>"
-	names="article"
+	title='<%= (article != null) ? article.getTitle() : "new-article" %>'
 />
 
 <portlet:actionURL name="updateArticle" var="updateArticleURL">

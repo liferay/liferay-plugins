@@ -16,8 +16,8 @@
 
 <%@ include file="/init.jsp" %>
 
-<liferay-ui:tabs
-	names="articles"
+<liferay-ui:header
+	title="articles"
 />
 
 <aui:form name="fm">

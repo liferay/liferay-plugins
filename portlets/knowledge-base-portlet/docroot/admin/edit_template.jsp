@@ -26,9 +26,9 @@ long templateId = BeanParamUtil.getLong(template, request, "templateId");
 String content = BeanParamUtil.getString(template, request, "content");
 %>
 
-<liferay-ui:tabs
+<liferay-ui:header
 	backURL="<%= redirect %>"
-	names="template"
+	title='<%= (template != null) ? template.getTitle() : "new-template" %>'
 />
 
 <portlet:actionURL name="updateTemplate" var="updateTemplateURL">

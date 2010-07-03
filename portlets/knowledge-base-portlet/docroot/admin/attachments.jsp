@@ -28,8 +28,8 @@ String dirName = ParamUtil.getString(request, "dirName");
 String[] fileNames = DLServiceUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 %>
 
-<liferay-ui:tabs
-	names="attachments"
+<liferay-ui:header
+	title="attachments"
 />
 
 <aui:form method="post" name="fm">
