@@ -565,6 +565,8 @@ AUI().use(
 
 				instance._createBuddyListPanel();
 				instance._createSettingsPanel();
+
+				Liferay.fire('chatPortletReady');
 			},
 
 			close: function(panelName) {
@@ -942,6 +944,8 @@ AUI().use(
 				instance._onlineBuddies.html(buffer.join(''));
 
 				instance._updateBuddyList();
+
+				instance.fire('updateBuddies', buddies);
 			},
 
 			_updateBuddyList: function(buddy) {
@@ -1057,6 +1061,8 @@ AUI().use(
 			_panels: {},
 			_settings: {}
 		};
+
+		A.augment(Liferay.Chat.Manager, A.Attribute, true);
 
 		A.on('domready', Liferay.Chat.Manager.init, Liferay.Chat.Manager);
 	}
