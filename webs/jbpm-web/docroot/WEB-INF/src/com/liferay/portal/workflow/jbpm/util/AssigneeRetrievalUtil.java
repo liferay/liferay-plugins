@@ -64,10 +64,11 @@ public class AssigneeRetrievalUtil {
 						true, serviceContext);
 				}
 
-				assignees.add(
-					new Assignee(
-						companyId, groupId, Role.class.getName(),
-						role.getRoleId()));
+				Assignee assignee = new Assignee(
+					companyId, groupId, Role.class.getName(),
+					role.getRoleId());
+
+				assignees.add(assignee);
 			}
 		}
 		else {
@@ -82,10 +83,10 @@ public class AssigneeRetrievalUtil {
 					GetterUtil.getLong(actorId));
 			}
 
-			assignees.add(
-				new Assignee(
-					companyId, groupId, User.class.getName(),
-					user.getUserId()));
+			Assignee assignee = new Assignee(
+				companyId, groupId, User.class.getName(), user.getUserId());
+
+			assignees.add(assignee);
 		}
 
 		return assignees;

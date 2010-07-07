@@ -42,6 +42,7 @@ import com.liferay.portal.workflow.jbpm.util.AssigneeRetrievalUtil;
 import com.liferay.portal.workflow.jbpm.util.WorkflowContextUtil;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -52,6 +53,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Session;
+
 import org.jbpm.JbpmConfiguration;
 import org.jbpm.JbpmContext;
 import org.jbpm.context.exe.ContextInstance;
@@ -169,9 +171,10 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			long groupId = GetterUtil.getLong(
 				(String)contextInstance.getVariable("groupId"));
 
-			assignees.add(
-				new Assignee(
-					companyId, groupId, User.class.getName(), assigneeUserId));
+			Assignee assignee = new Assignee(
+				companyId, groupId, User.class.getName(), assigneeUserId);
+
+			assignees.add(assignee);
 
 			session.update(taskInstanceExtension);
 
@@ -263,23 +266,23 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			CustomSession customSession = new CustomSession(jbpmContext);
 
-			for (TaskInstance tskInstance : taskInstances) {
+			for (TaskInstance taskInstance : taskInstances) {
 				TaskInstanceExtensionImpl taskInstanceExtensionImpl =
 					customSession.findTaskInstanceExtension(
-						tskInstance.getId());
+						taskInstance.getId());
 
 				if (taskInstanceExtensionImpl == null) {
 					List<Assignee> assignees =
 						AssigneeRetrievalUtil.getAssignees(
-							companyId, groupId, tskInstance.getActorId(),
-							tskInstance.getPooledActors());
+							companyId, groupId, taskInstance.getActorId(),
+							taskInstance.getPooledActors());
 
-					String context = WorkflowContextUtil.convertToJSON(
-						workflowContext);
+					String workflowContextJSON =
+						WorkflowContextUtil.convertToJSON(workflowContext);
 
 					taskInstanceExtensionImpl = new TaskInstanceExtensionImpl(
-						companyId, groupId, userId, assignees, context,
-						tskInstance);
+						companyId, groupId, userId, assignees,
+						workflowContextJSON, taskInstance);
 
 					session.save(taskInstanceExtensionImpl);
 				}

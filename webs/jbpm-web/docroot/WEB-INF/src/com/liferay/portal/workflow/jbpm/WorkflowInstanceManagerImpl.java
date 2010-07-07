@@ -520,13 +520,13 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 					companyId, groupId, taskInstance.getActorId(),
 					taskInstance.getPooledActors());
 
-				String context = WorkflowContextUtil.convertToJSON(
+				String workflowContextJSON = WorkflowContextUtil.convertToJSON(
 					workflowContext);
 
 				TaskInstanceExtensionImpl taskInstanceExtensionImpl =
 					new TaskInstanceExtensionImpl(
-						companyId, groupId, userId, assignees, context,
-						taskInstance);
+						companyId, groupId, userId, assignees,
+						workflowContextJSON, taskInstance);
 
 				session.save(taskInstanceExtensionImpl);
 			}

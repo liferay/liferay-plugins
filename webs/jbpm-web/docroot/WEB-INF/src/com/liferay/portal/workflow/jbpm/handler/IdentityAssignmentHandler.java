@@ -69,6 +69,7 @@ public class IdentityAssignmentHandler implements AssignmentHandler {
 						role.get("auto-create"), true);
 
 					roleAssignment = new RoleAssignment(roleName, roleType);
+
 					roleAssignment.setAutoCreate(autoCreate);
 				}
 				else {
