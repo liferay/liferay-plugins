@@ -1,80 +1,84 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
-/* ---------- Base ---------- */
-
-body {
-	padding: 0 0 29px;
-}
+/* -------- Global -------- */
 
 #skip-to-content,
-#banner h2,
-#banner h3,
-#navigation h1,
-#breadcrumbs,
-.site-breadcrumbs h1 {
-	left: -99999px;
-	overflow: hidden;
+#heading .community-title,
+#heading .page-title,
+#navigation h1 {
+	clip: rect(0 0 0 0);
 	position: absolute;
-	width: 1%;
 }
 
-a,
-a:visited {
-	color: #5C75AA;
-	text-decoration: none;
+body {
 }
 
-a:hover {
-	text-decoration: underline;
-}
-
-
-/* ---------- Main content body ---------- */
+/* -------- Wrapper / Skip / Sign-in -------- */
 
 #wrapper {
-	margin: 0 auto;
+	margin: 0 auto 29px;
+	position: relative;
 	width: 964px;
 }
 
-/* ---------- Banner ---------- */
+#skip-to-content,
+#sign-in {
+	color: #FFF;
+	right: 2em;
+}
 
-#heading {
-	background: url(../images/custom/banner_bg.png) left bottom;
-	margin-bottom: -28px;
-	padding: 6px 11px;
-	position: relative;
-	z-index: 1;
+#skip-to-content {
+	top: 3em;
+}
+
+#skip-to-content:active,
+#skip-to-content:focus {
+	clip: auto;
 }
 
 #sign-in {
-	bottom: 5px;
-	color: #FFF;
-	left: 10px;
-	position: relative;
-	top: 8px;
-	width: 40px;
-	z-index: 3;
+	position: absolute;
+	top: 1.5em;
 }
 
-ie6. #sign-in {
-	bottom: 0px;
-	left: 0px;
-	position: relative;
+/* -------- Banner -------- */
+
+#banner {
+	background: url(../images/custom/banner_bg.png) left bottom;	
 }
 
-/* ---------- Main navigation ---------- */
+#heading {
+	padding: 6px 11px;
+}
+
+#heading .company-title {
+	margin: 0;
+}
+
+#heading .company-title a {
+	margin 0 auto;
+}
+
+/* -------- Navigation -------- */
 
 #navigation {
-	height: 27px;
+	height: 28px;
 	position: relative;
-	margin-top: -20px;
-	z-index: 2;
+	right: 1em;
 }
 
 #navigation ul {
-	float: right;
 	list-style: none;
-	margin: 5px 0 0 0;
+	float: right;
+	margin: 0px;
+}
+
+.ie6 #navigation ul,
+.ie7 #navigation ul {
+	zoom: 1;
+}
+
+#navigation ul:after {
+	clear: both;
+	content: "";
 }
 
 #navigation li,
@@ -82,88 +86,37 @@ ie6. #sign-in {
 	float: left;
 }
 
-#navigation li {
-	position: relative;
-}
-
-.js .delete-tab {
-	position: absolute;
-	top: 7px;
-	right: 3px;
-}
-
-#navigation ul li ul.child-menu {
-	display: none;
-}
-
 #navigation a {
 	color: #FFF;
 	display: block;
-	font: 11px Lucida Grande, Tahoma, Verdana, Arial, sans-serif;
+	font: 11px;
 	padding: 7px 9px;
 	text-decoration: none;
-	z-index: 22;
 }
 
-#navigation a:hover,
-#banner .sign-in:hover {
+#navigation a:active,
+#navigation a:focus,
+#navigation a:hover {
 	background: #5C75AA;
 }
 
-#main-content {
-	margin-top: 20px;
-}
-
-h1.company-title {
-	margin: 0;
-	padding-top: 20px;
-}
-
-/* ---------- Portlet ---------- */
-
-.portlet {
-	margin: 0 0 10px;
-}
-
-.portlet-content,
-.portlet-title {
-	font: 11px Lucida Grande, Tahoma, Verdana, Arial, sans-serif;
-}
-
-.portlet-title {
-	color: #000;
-	font-weight: bold;
-	line-height: 11px;
-}
-
-.portlet-title img {
-	vertical-align: middle;
-}
-
-.portlet-icons {
-	top: 0;
-}
-
-.portlet-content {
-	border-bottom: 1px solid #D8DFEA;
-	color: #333;
-	margin: 0;
-	padding: 9px 0;
-}
-
-/* ---------- Content Wrapper ---------- */
-
-.aui-tab-active span a {
-	color: #FFF;
-}
+/* -------- Content -------- */
 
 #content {
 	padding: 22px 0 18px;
 }
 
-/* ---------- Footer ---------- */
+#breadcrumbs {
+	display: none;
+}
+
+/* -------- Footer -------- */
 
 #footer {
 	border: 1px solid #A6A6A6;
 	padding: 2px 10px 4px;
+}
+
+#footer p {
+	margin: 0;
 }
