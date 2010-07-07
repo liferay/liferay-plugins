@@ -20,6 +20,7 @@ $theme.include($top_messages_include)
 
 <div id="wrapper">
 	<a href="#main-content" id="skip-to-content">#language("skip-to-content")</a>
+
 	<div id="banner">
 		<h1 class="logo">
 			<a class="png" href="$company_url">$company_name</a>
