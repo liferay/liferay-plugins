@@ -1,13 +1,19 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+/* -------- Global -------- */
 
-/* ---------- Base ---------- */
+#skip-to-content,
+#heading .community-title,
+#heading .page-title,
+#navigation h1 {
+	clip: rect(0 0 0 0);
+	position: absolute;
+}
 
 body {
 	background: #E7E7E7;
 	padding: 16px;
 }
 
-/* ---------- Wrapper ---------- */
+/* -------- Wrapper / Skip / Sign-in -------- */
 
 #wrapper {
 	margin: 0 auto;
@@ -15,63 +21,106 @@ body {
 	width: 967px;
 }
 
-/* ---------- Banner ---------- */
-
-#banner {
-	background: url(../images/custom/banner_bg.png);
-	height: 54px;
-	padding: 70px 0;
-	position: relative;
+#skip-to-content,
+#sign-in {
+	color: #FFF;
+	right: 2em;
 }
 
-#banner .logo {
+#skip-to-content {
+	top: 2.75em;
+}
+
+#skip-to-content:active,
+#skip-to-content:focus {
+	clip: auto;
+}
+
+#sign-in {
+	position: absolute;
+	top: 1.5em;
+}
+
+/* -------- Heading -------- */
+
+#heading {
+	background: url(../images/custom/heading_bg.png) no-repeat;
+	height: 194px;
+}
+
+#heading .company-title {
 	margin: 0;
+	padding: 70px 30px;
 }
 
-#banner .logo a {
+#heading .company-title a {
 	margin: 0 auto;
 }
 
-/* ---------- Logo ---------- */
-
-.js .interactive-mode {
-	right: 20px;
-	top: 20px;
-}
-
-/* ---------- Navigation ---------- */
+/* -------- Navigation -------- */
 
 #navigation {
-	padding: 16px 0 0;
+	margin: 28px 0;
 	position: absolute;
 	right: 5px;
 	width: 182px;
 }
 
-#navigation li {
-	float: none;
+.ie6 #navigation {
+	margin: 5px;
 }
 
-#navigation a,
-#navigation .enter-page {
-	color: #27A;
-	font: 10px/1.5 Verdana, Arial, Sans-Serif;
+#navigation ul {
+	list-style: none;
+	margin: 0;
+}
+
+.ie6 #navigation ul,
+.ie7 #navigation ul {
+	zoom: 1;
+}
+
+#navigation ul:after {
+	clear: both;
+	content: "";
+	display: block;
+}
+
+#navigation li,
+#navigation a {
 	text-decoration: none;
 }
 
+#navigation a {
+	color: #27A;
+	font: 14px/1.5 Verdana, Arial, Sans-Serif;
+}
+
+#navigation a:active,
+#navigation a:focus,
 #navigation a:hover {
 	text-decoration: underline;
 }
 
-/* ---------- Content Wrapper ---------- */
+.ie6 #navigation .delete-tab {
+	right: 0px;
+	top: 5px;
+}
 
-#content-wrapper {
+/* -------- Content -------- */
+
+#content {
 	background: url(../images/custom/content_wrapper_bg.png);
+	min-height:220px;
 	padding: 20px 202px 0 22px;
 }
 
-.ie #content-wrapper {
-	zoom: 1;
+.ie6 #content {
+	margin-top: -22px;
+}
+
+#breadcrumbs {
+	display: none;
 }
 
 /* ---------- Portlet ---------- */
@@ -85,7 +134,7 @@ body {
 }
 
 .portlet-title {
-	font: 24px Trebuchet MS, Verdana, sans-serif;
+	font: 18px Trebuchet MS, Verdana, sans-serif;
 	letter-spacing: -1px;
 }
 
@@ -99,9 +148,13 @@ body {
 	padding: 0;
 }
 
-/* ---------- Footer ---------- */
+/* -------- Footer -------- */
 
 #footer {
 	background: url(../images/custom/footer_bg.png);
 	height: 54px;
+}
+
+#footer p {
+	margin-left: 20px;
 }
