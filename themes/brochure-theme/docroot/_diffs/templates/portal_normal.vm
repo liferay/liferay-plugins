@@ -19,11 +19,16 @@
 $theme.include($top_messages_include)
 
 <div id="wrapper">
+	<a href="#main-content" id="skip-to-content">#language("skip-to-content")</a>
 	<div id="banner">
 		<h1 class="logo">
 			<a class="png" href="$company_url">$company_name</a>
 		</h1>
-
+		
+		#if(!$is_signed_in)
+			<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
+		#end
+		
 		<div id="page-search">
 			$theme.journalContentSearch()
 		</div>
@@ -33,6 +38,7 @@ $theme.include($top_messages_include)
 				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
 			</div>
 		#end
+		
 	</div>
 
 	#if ($has_navigation)

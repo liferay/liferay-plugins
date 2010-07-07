@@ -1,36 +1,43 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
-/* ---------- Wrapper ---------- */
+/* -------- Global -------- */
 
 #skip-to-content,
-#banner h2,
-#banner h3,
-#navigation h1,
-#breadcrumbs,
-.site-breadcrumbs h1 {
-	left: -99999px;
-	overflow: hidden;
+#heading .community-title,
+#heading .page-title,
+#navigation h1 {
+	clip: rect(0 0 0 0);
 	position: absolute;
-	width: 1%;
 }
 
-a,
-a:visited {
-	color: #456;
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
+/* -------- Wrapper / Skip / Sign-in -------- */
 
 #wrapper {
 	margin: 0 auto;
-	padding: 0 1px;
+	position: relative;
 	width: 970px;
 }
 
-/* ---------- Banner ---------- */
+#skip-to-content,
+#sign-in {
+	color: #1C4980;
+	right: 1.5em;
+	z-index: 4;
+}
+
+#skip-to-content {
+	top: 2.25em;
+}
+
+#skip-to-content:active,
+#skip-to-content:focus {
+	clip: auto;
+}
+
+#sign-in {
+	position: absolute;
+	top: 1em;
+}
+
+/* -------- Heading -------- */
 
 #banner {
 	background: url(../images/custom/banner_bg.png) left bottom;
@@ -39,31 +46,48 @@ a:hover {
 	position: relative;
 }
 
-#banner .sign-in {
-	position: absolute;
-	right: 24px;
-	top: 6px;
+#heading .company-title {
+	margin: 0;
+}
+
+#heading .company-title a {
+	margin: 0 auto;
 }
 
 /* ---------- Page search ---------- */
 
 #page-search {
-	bottom: 0;
+	float: right;
+	height: 20px;
+	margin: 0 5px 0 0;
 	position: absolute;
-	right: 10px;
+	right: 0px;
+	top: 40px;
 }
 
-/* ---------- Navigation ---------- */
+/* -------- Navigation -------- */
 
 #navigation {
 	background: url(../images/custom/navigation_bg.png) left bottom;
 	height: 31px;
+	margin: 0 0 14px;
 	padding: 9px 24px;
 }
 
 #navigation ul {
 	list-style: none;
 	margin: 0;
+}
+
+.ie6 #navigation ul,
+.ie7 #navigation ul {
+	zoom: 1;
+}
+
+#navigation ul:after {
+	clear: both;
+	content: "";
+	display: block;
 }
 
 #navigation li,
@@ -79,6 +103,8 @@ a:hover {
 	text-decoration: none;
 }
 
+#navigation a:active,
+#navigation a:focus,
 #navigation a:hover {
 	background: #32AFEE url(../images/custom/navigation_item_hover.png);
 	border: 1px solid #1C4980;
@@ -93,19 +119,15 @@ a:hover {
 	padding: 0 11px;
 }
 
-#navigation ul li ul.child-menu {
-	display: none;
-}
-
-/* ---------- Content Wrapper ---------- */
+/* -------- Content -------- */
 
 #content {
-	background: url(../images/custom/content_wrapper_bg.png) repeat-y center top;
+	background: url(../images/custom/content_bg.png) repeat-y center top;
 	padding: 10px;
 }
 
-#main-content{
-	padding: 0 5px;
+#breadcrumbs {
+	display: none;
 }
 
 /* ---------- Portlet ---------- */
@@ -116,7 +138,6 @@ a:hover {
 
 .portlet-topper {
 	border-bottom: 2px solid #12558E;
-	line-height: 24px;
 }
 
 .portlet-title {
@@ -130,23 +151,15 @@ a:hover {
 	padding: 10px;
 }
 
-.aui-tab-active span a {
-	color: #FFF;
-}
-
-/* ---------- Footer ---------- */
+/* -------- Footer -------- */
 
 #footer {
 	background: #002F62 url(../images/custom/footer_bg.png) no-repeat left -50px;
-	padding: 0 0 0 3px;
+	height: 25px;
+	padding: 0 3px 0 3px;
 }
 
-#footer .powered-by {
-	background: url(../images/custom/footer_bg.png) no-repeat right top;
-	padding: 8px 5px;
-	text-align: right;
-}
-
-#footer .powered-by a {
-	margin-right: 5px;
+#footer .language {
+	float: right;
+	margin: 4px;
 }
