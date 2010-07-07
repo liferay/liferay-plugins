@@ -1,92 +1,114 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+/* -------- Global -------- */
 
-/* ---------- Base ---------- */
+#skip-to-content,
+#heading .community-title,
+#heading .page-title,
+#navigation h1 {
+	clip: rect(0 0 0 0);
+	position: absolute;
+}
 
 body {
 	background: #382E22;
 }
 
-a {
-	text-decoration: none;
-}
-
-/* ---------- Wrapper ---------- */
+/* -------- Wrapper / Skip / Sign-in -------- */
 
 #wrapper {
 	margin: 0 auto;
+	position: relative;
 	width: 977px;
 }
 
-/* ---------- Banner ---------- */
-
-#banner {
-	margin: 0 16px;
-	position: relative;
+#skip-to-content,
+#sign-in {
+	color: #FFF;
+	right: 0;
 }
 
-#banner .sign-in {
+#skip-to-content {
+	top: 1.5em;
+}
+
+#skip-to-content:active,
+#skip-to-content:focus {
+	clip: auto;
+}
+
+#sign-in {
 	position: absolute;
-	right: 0;
 	top: 0;
 }
 
-/* ---------- Logo ---------- */
+/* -------- Heading -------- */
 
-#banner .logo {
-	padding: 14px 0;
+#heading {
+	margin: 0 16px;
+	position: relative;	
 }
 
-/* ---------- Navigation ---------- */
+#heading .company-title {
+	margin: 16px;
+}
+
+#heading .company-title a {
+	margin 0 auto;
+}
+
+/* -------- Navigation -------- */
 
 #navigation {
 	background: url(../images/custom/navigation_bg.png) no-repeat;
-	height: 30px;
-	padding: 0 10px 80px;
-	position: relative;
-	z-index: 10;
+	height: 110px;
 }
 
 #navigation ul {
 	list-style: none;
+	margin: 0;
+}
+
+.ie6 #navigation ul,
+.ie7 #navigation ul {
+	zoom: 1;
+}
+
+#navigation ul:after {
+	clear: both;
+	content: "";
+	display: block;
 }
 
 #navigation li,
 #navigation a {
 	float: left;
-}
-
-#navigation li {
 	height: 50px;
 }
 
-#navigation li a {
+#navigation a {
 	color: #FFF;
 	display: block;
 	font-size: 12px;
 	padding: 17px 12px;
-}
-
-#navigation li a:hover {
-	background: #AFC336;
 	text-decoration: none;
 }
 
-#navigation .selected a:hover {
-	color: #FFF;
+#navigation a:active,
+#navigation a:focus,
+#navigation a:hover {
+	text-decoration: underline;
 }
 
-#navigation .selected a {
-	color: #AFC336;
-}
+/* -------- Content -------- */
 
-/* ---------- Content Wrapper ---------- */
-
-#content-wrapper {
-	background: url(../images/custom/content_wrapper_bg.png) repeat-y;
+#content {
+	background: url(../images/custom/content_bg.png) repeat-y;
 	color: #382E22;
 	margin: 0 0 0 9px;
-	width: 962px;
-	z-index: 1;
+	padding: 10px 30px;
+}
+
+#breadcrumbs {
+	display: none;
 }
 
 /* ---------- Portlet ---------- */
@@ -97,7 +119,7 @@ a {
 
 .portlet-topper {
 	background: url(../images/custom/portlet_topper_bg.png) no-repeat 15px 100%;
-	height: 36px;
+	height: 40px;
 }
 
 .portlet-title {
@@ -105,15 +127,19 @@ a {
 	color: #FFF;
 	font-size: 16px;
 	margin-bottom: 8px;
-	padding: 6px 15px;
+	padding: 6px;
 }
 
-/* ---------- Footer ---------- */
+/* -------- Footer -------- */
 
 #footer {
 	background: url(../images/custom/footer_bg.png) no-repeat;
-	height: 20px;
-	margin: 0 0 50px 9px;
-	padding: 0 32px 12px 24px;
+	height: 32px;
+	margin: 0 0 20px 9px;
+	padding: 0 32px 12px;
 	text-align: right;
+}
+
+#footer p {
+	margin: 0;
 }
