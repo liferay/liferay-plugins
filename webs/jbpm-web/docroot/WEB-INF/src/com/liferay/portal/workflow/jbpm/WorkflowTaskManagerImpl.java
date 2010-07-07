@@ -42,7 +42,6 @@ import com.liferay.portal.workflow.jbpm.util.AssigneeRetrievalUtil;
 import com.liferay.portal.workflow.jbpm.util.WorkflowContextUtil;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -51,10 +50,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.hibernate.Session;
-
 import org.jbpm.JbpmConfiguration;
 import org.jbpm.JbpmContext;
 import org.jbpm.context.exe.ContextInstance;
@@ -129,28 +126,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			String oldActorId = taskInstance.getActorId();
 
-			Set<PooledActor> pooledActors = taskInstance.getPooledActors();
-
-			if ((pooledActors == null) || pooledActors.isEmpty()) {
-				throw new WorkflowException(
-					"Workflow task " + workflowTaskId +
-						" has not been assigned to a role");
-			}
-
-			ProcessInstance processInstance = taskInstance.getProcessInstance();
-
-			ContextInstance contextInstance =
-				processInstance.getContextInstance();
-
-			long groupId = GetterUtil.getLong(
-				(String)contextInstance.getVariable("groupId"));
-
-			if (!hasRole(companyId, groupId, pooledActors, assigneeUserId)) {
-				throw new WorkflowException(
-					"Workflow task " + workflowTaskId +
-						" cannot be assigned to user " + assigneeUserId);
-			}
-
 			taskInstance.setActorId(String.valueOf(assigneeUserId));
 			taskInstance.setPooledActors(new HashSet<PooledActor>());
 
@@ -185,6 +160,14 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			List<Assignee> assignees = taskInstanceExtension.getAssignees();
 
 			assignees.clear();
+
+			ProcessInstance processInstance = taskInstance.getProcessInstance();
+
+			ContextInstance contextInstance =
+				processInstance.getContextInstance();
+
+			long groupId = GetterUtil.getLong(
+				(String)contextInstance.getVariable("groupId"));
 
 			assignees.add(
 				new Assignee(
@@ -885,44 +868,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		finally {
 			jbpmContext.close();
 		}
-	}
-
-	protected boolean hasRole(
-			long companyId, long groupId, Set<PooledActor> pooledActors,
-			long assigneeUserId)
-		throws WorkflowException {
-
-		try {
-			for (PooledActor pooledActor : pooledActors) {
-				String actorId = pooledActor.getActorId();
-
-				if (Validator.isNumber(actorId)) {
-					long roleId = GetterUtil.getLong(actorId);
-
-					if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
-							assigneeUserId, groupId, roleId) ||
-						RoleLocalServiceUtil.hasUserRole(
-							assigneeUserId, roleId)) {
-
-						return true;
-					}
-				}
-				else {
-					if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
-							assigneeUserId, groupId, actorId) ||
-						RoleLocalServiceUtil.hasUserRole(
-							assigneeUserId, companyId, actorId, true)) {
-
-						return true;
-					}
-				}
-			}
-		}
-		catch (Exception e) {
-			throw new WorkflowException(e);
-		}
-
-		return false;
 	}
 
 	protected boolean isWorkflowTaskAssignedToUser(String actorId, long userId)
