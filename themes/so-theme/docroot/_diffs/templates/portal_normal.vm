@@ -11,10 +11,6 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=7" />
 	#end
 
-	<script type="text/javascript" src="$javascript_folder/jquery.js"></script>
-	<script type="text/javascript" src="$javascript_folder/form.js"></script>
-	<script type="text/javascript" src="$javascript_folder/hover_intent.js"></script>
-
 	$theme.include($top_head_include)
 </head>
 
