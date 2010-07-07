@@ -3,7 +3,7 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>5.*.*+</version>
+		<version>6.*.*+</version>
 	</compatibility>
 	<theme id="spurt" name="Spurt">
 		<color-scheme id="01" name="Red">
