@@ -517,7 +517,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		if (taskInstances != null) {
 			for (TaskInstance taskInstance : taskInstances) {
 				List<Assignee> assignees = AssigneeRetrievalUtil.getAssignees(
-					companyId, taskInstance.getActorId(),
+					companyId, groupId, taskInstance.getActorId(),
 					taskInstance.getPooledActors());
 
 				String context = WorkflowContextUtil.convertToJSON(

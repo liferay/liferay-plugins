@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
@@ -39,7 +40,8 @@ import org.jbpm.taskmgmt.exe.PooledActor;
 public class AssigneeRetrievalUtil {
 
 	public static List<Assignee> getAssignees(
-			long companyId, String actorId, Set<PooledActor> pooledActors)
+			long companyId, long groupId, String actorId,
+			Set<PooledActor> pooledActors)
 		throws PortalException, SystemException {
 
 		List<Assignee> assignees = new ArrayList<Assignee>();
@@ -58,11 +60,14 @@ public class AssigneeRetrievalUtil {
 					serviceContext.setCompanyId(companyId);
 
 					role = RoleRetrievalUtil.getRole(
-						pooledActor.getActorId(), true, serviceContext);
+						pooledActor.getActorId(), RoleConstants.TYPE_REGULAR,
+						true, serviceContext);
 				}
 
 				assignees.add(
-					new Assignee(Role.class.getName(), role.getRoleId()));
+					new Assignee(
+						companyId, groupId, Role.class.getName(),
+						role.getRoleId()));
 			}
 		}
 		else {
@@ -78,7 +83,9 @@ public class AssigneeRetrievalUtil {
 			}
 
 			assignees.add(
-				new Assignee(User.class.getName(), user.getUserId()));
+				new Assignee(
+					companyId, groupId, User.class.getName(),
+					user.getUserId()));
 		}
 
 		return assignees;

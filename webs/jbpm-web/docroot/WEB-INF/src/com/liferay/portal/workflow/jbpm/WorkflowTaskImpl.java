@@ -64,9 +64,11 @@ public class WorkflowTaskImpl extends DefaultWorkflowTask {
 
 		long companyId = GetterUtil.getLong(
 			(String)contextInstance.getVariable("companyId"));
+		long groupId = GetterUtil.getLong(
+			(String)contextInstance.getVariable("groupId"));
 
 		List<Assignee> assignees = AssigneeRetrievalUtil.getAssignees(
-			companyId, taskInstance.getActorId(),
+			companyId, groupId, taskInstance.getActorId(),
 			taskInstance.getPooledActors());
 
 		setWorkflowTaskAssignees(toWorkflowTaskAssignees(assignees));

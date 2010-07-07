@@ -1,17 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <process-definition xmlns="urn:jbpm.org:jpdl-3.2" name="Single Approver">
-	<description>A single approver can approve a workflow asset.</description>
-	<start-state name="Created">
-		<transition to="Review" />
+	<description>A single approver can approve a workflow content.</description>
+	<start-state name="created">
+		<transition name="review" to="review" />
 	</start-state>
-	<task-node name="Review">
-		<task name="Review Content">
-			<assignment pooled-actors="Content Reviewers" />
+	<task-node name="update">
+		<task name="update">
+			<assignment class="com.liferay.portal.workflow.jbpm.handler.IdentityAssignmentHandler">
+				<user />
+			</assignment>
 		</task>
-		<transition name="Approve Asset" to="Approved" />
+		<transition name="resubmit" to="review" />
 	</task-node>
-	<end-state name="Approved">
+	<task-node name="review">
+		<task name="review">
+			<assignment class="com.liferay.portal.workflow.jbpm.handler.IdentityAssignmentHandler">
+				<roles element-type="java.util.Map">
+					<element>
+						<entry>
+							<key>role-type</key>
+							<value>community</value>
+						</entry>
+						<entry>
+							<key>role-name</key>
+							<value>Community Administrator</value>
+						</entry>
+					</element>
+					<element>
+						<entry>
+							<key>role-type</key>
+							<value>community</value>
+						</entry>
+						<entry>
+							<key>role-name</key>
+							<value>Community Content Reviewer</value>
+						</entry>
+					</element>
+					<element>
+						<entry>
+							<key>role-type</key>
+							<value>community</value>
+						</entry>
+						<entry>
+							<key>role-name</key>
+							<value>Community Owner</value>
+						</entry>
+					</element>
+					<element>
+						<entry>
+							<key>role-type</key>
+							<value>organization</value>
+						</entry>
+						<entry>
+							<key>role-name</key>
+							<value>Organization Administrator</value>
+						</entry>
+					</element>
+					<element>
+						<entry>
+							<key>role-type</key>
+							<value>organization</value>
+						</entry>
+						<entry>
+							<key>role-name</key>
+							<value>Organization Content Reviewer</value>
+						</entry>
+					</element>
+					<element>
+						<entry>
+							<key>role-type</key>
+							<value>organization</value>
+						</entry>
+						<entry>
+							<key>role-name</key>
+							<value>Organization Owner</value>
+						</entry>
+					</element>
+					<element>
+						<entry>
+							<key>role-type</key>
+							<value>regular</value>
+						</entry>
+						<entry>
+							<key>role-name</key>
+							<value>Portal Content Reviewer</value>
+						</entry>
+					</element>
+					<element>
+						<entry>
+							<key>role-type</key>
+							<value>regular</value>
+						</entry>
+						<entry>
+							<key>role-name</key>
+							<value>Administrator</value>
+						</entry>
+					</element>
+				</roles>
+			</assignment>
+		</task>
+		<transition name="approve" to="approved" />
+		<transition name="reject" to="update" />
+	</task-node>
+	<end-state name="approved">
 		<event type="node-enter">
 			<action class="com.liferay.portal.workflow.jbpm.handler.ScriptingWorkflowActionHandler" name="Approve Asset">
 				<language>javascript</language>

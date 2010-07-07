@@ -395,7 +395,8 @@ public class CustomSession {
 			else if (tokenId > 0) {
 				criteria.add(Restrictions.eq("token.id", tokenId));
 			}
-			else if (actorIds != null) {
+
+			if (actorIds != null) {
 				if (pooledActors) {
 					Criteria subcriteria = criteria.createCriteria(
 						"pooledActors");

@@ -24,7 +24,12 @@ public class Assignee {
 	public Assignee(){
 	}
 
-	public Assignee(String assigneeClassName, long assigneeClassPK) {
+	public Assignee(
+		long companyId, long groupId, String assigneeClassName,
+		long assigneeClassPK) {
+
+		_companyId = companyId;
+		_groupId = groupId;
 		_assigneeClassName = assigneeClassName;
 		_assigneeClassPK = assigneeClassPK;
 	}
@@ -39,6 +44,14 @@ public class Assignee {
 
 	public long getAssigneeId() {
 		return _assigneeId;
+	}
+
+	public long getCompanyId(){
+		return _companyId;
+	}
+
+	public long getGroupId(){
+		return _groupId;
 	}
 
 	public long getTaskInstanceExtensionId(){
@@ -57,6 +70,14 @@ public class Assignee {
 		_assigneeId = assigneeId;
 	}
 
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	public void setTaskInstanceExtensionId(long taskInstanceExtensionId){
 		_taskInstanceExtensionId = taskInstanceExtensionId;
 	}
@@ -64,6 +85,8 @@ public class Assignee {
 	private long _assigneeId;
 	private String _assigneeClassName;
 	private long _assigneeClassPK;
+	private long _companyId;
+	private long _groupId;
 	private long _taskInstanceExtensionId;
 
 }

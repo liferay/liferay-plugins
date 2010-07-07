@@ -14,16 +14,31 @@
 
 package com.liferay.portal.workflow.jbpm.handler;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.Group;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.workflow.jbpm.util.Assignment;
+import com.liferay.portal.workflow.jbpm.util.AssignmentType;
+import com.liferay.portal.workflow.jbpm.util.RoleAssignment;
+import com.liferay.portal.workflow.jbpm.util.RoleRetrievalUtil;
+import com.liferay.portal.workflow.jbpm.util.UserAssignment;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.jbpm.context.exe.ContextInstance;
 import org.jbpm.graph.exe.ExecutionContext;
+import org.jbpm.graph.exe.ProcessInstance;
 import org.jbpm.taskmgmt.def.AssignmentHandler;
 import org.jbpm.taskmgmt.exe.Assignable;
 
@@ -32,102 +47,119 @@ import org.jbpm.taskmgmt.exe.Assignable;
  *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
+ * @author Marcellus Tavares
  */
 public class IdentityAssignmentHandler implements AssignmentHandler {
 
 	public void assign(Assignable assignable, ExecutionContext executionContext)
 		throws Exception {
 
-		if (type.equals("user")) {
-			if (Validator.isNull(id)) {
-				User user = UserLocalServiceUtil.getUserByEmailAddress(
-					GetterUtil.getLong(companyId), name);
+		Set<Assignment> assignments = new HashSet<Assignment>();
 
-				assignable.setActorId(String.valueOf(user.getUserId()));
-			}
-			else {
-				assignable.setActorId(type);
+		if (roles != null) {
+			for (Map<String, String> role : roles) {
+				long roleId = GetterUtil.getLong(role.get("role-id"));
+				String roleType = role.get("role-type");
+				String roleName = role.get("role-name");
+
+				RoleAssignment roleAssignment = null;
+
+				if (Validator.isNotNull(roleName)) {
+					boolean autoCreate = GetterUtil.getBoolean(
+						role.get("auto-create"), true);
+
+					roleAssignment = new RoleAssignment(roleName, roleType);
+					roleAssignment.setAutoCreate(autoCreate);
+				}
+				else {
+					roleAssignment = new RoleAssignment(roleId, roleType);
+				}
+
+				assignments.add(roleAssignment);
 			}
 		}
-		else if (type.equals("community")) {
-			if (Validator.isNull(id)) {
-				Group group = GroupLocalServiceUtil.getGroup(
-					GetterUtil.getLong(companyId), name);
 
-				id = String.valueOf(group.getGroupId());
-			}
+		if (user != null) {
+			long userId = GetterUtil.getLong(user.get("user-id"));
+			String screenName = user.get("screen-name");
+			String emailAddress = user.get("email-address");
 
-			long[] userIds = UserLocalServiceUtil.getGroupUserIds(
-				GetterUtil.getLong(id));
+			UserAssignment userAssignment = new UserAssignment(
+				userId, screenName, emailAddress);
 
-			String[] actorIds = new String[userIds.length];
-
-			for (int i = 0; i < userIds.length; i++) {
-				actorIds[i] = String.valueOf(userIds[i]);
-			}
-
-			assignable.setPooledActors(actorIds);
+			assignments.add(userAssignment);
 		}
-		else if (type.equals("role")) {
-			if (Validator.isNull(id)) {
-				Role role = RoleLocalServiceUtil.getRole(
-					GetterUtil.getLong(companyId), name);
 
-				id = String.valueOf(role.getRoleId());
+		setAssignee(assignable, executionContext, assignments);
+	}
+
+	protected void setAssignee(
+			Assignable assignable, ExecutionContext executionContext,
+			Set<Assignment> assignments)
+		throws PortalException, SystemException {
+
+		ProcessInstance processInstance = executionContext.getProcessInstance();
+		ContextInstance contextInstance = processInstance.getContextInstance();
+
+		long companyId = GetterUtil.getLong(
+			(String)contextInstance.getVariable(
+				WorkflowConstants.CONTEXT_COMPANY_ID));
+
+		List<String> roleIds = new ArrayList<String>();
+
+		for (Assignment assignment : assignments) {
+			AssignmentType assignmentType = assignment.getAssignmentType();
+
+			if (assignmentType.equals(AssignmentType.ROLE)) {
+				RoleAssignment roleAssignment = (RoleAssignment)assignment;
+
+				int roleType = RoleRetrievalUtil.getRoleType(
+					roleAssignment.getRoleType());
+
+				ServiceContext serviceContext = new ServiceContext();
+				serviceContext.setCompanyId(companyId);
+
+				Role role = RoleRetrievalUtil.getRole(
+					roleAssignment.getRoleName(), roleType,
+					roleAssignment.isAutoCreate(), serviceContext);
+
+				roleIds.add(Long.toString(role.getRoleId()));
 			}
+			else if (assignmentType.equals(AssignmentType.USER)) {
+				UserAssignment userAssignment = (UserAssignment)assignment;
 
-			long[] userIds = UserLocalServiceUtil.getRoleUserIds(
-				GetterUtil.getLong(id));
+				User user = null;
 
-			String[] actorIds = new String[userIds.length];
+				if (userAssignment.getUserId() > 0) {
+					user = UserLocalServiceUtil.getUser(
+						userAssignment.getUserId());
+				}
+				else if (Validator.isNotNull(
+					userAssignment.getEmailAddress())) {
 
-			for (int i = 0; i < userIds.length; i++) {
-				actorIds[i] = String.valueOf(userIds[i]);
+					user = UserLocalServiceUtil.getUserByEmailAddress(
+						companyId, userAssignment.getEmailAddress());
+				}
+				else if (Validator.isNotNull(userAssignment.getScreenName())) {
+					user = UserLocalServiceUtil.getUserByScreenName(
+						companyId, userAssignment.getScreenName());
+				}
+				else {
+					long userId = GetterUtil.getLong(
+						(String)contextInstance.getVariable(
+							WorkflowConstants.CONTEXT_USER_ID));
+
+					user = UserLocalServiceUtil.getUser(userId);
+				}
+
+				assignable.setActorId(Long.toString(user.getUserId()));
 			}
-
-			assignable.setPooledActors(actorIds);
 		}
-		else {
-			assignable.setActorId(null);
-			assignable.setPooledActors((String[]) null);
-		}
+
+		assignable.setPooledActors(roleIds.toArray(new String[0]));
 	}
 
-	public String getCompanyId() {
-		return companyId;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setCompanyId(String companyId) {
-		this.companyId = companyId;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	protected String companyId;
-	protected String id;
-	protected String name;
-	protected String type;
+	protected Collection<Map<String, String>> roles;
+	protected Map<String, String> user;
 
 }

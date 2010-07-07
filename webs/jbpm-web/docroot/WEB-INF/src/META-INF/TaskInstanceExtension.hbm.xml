@@ -6,6 +6,8 @@
 		<id column="ID_" name="assigneeId">
 			<generator class="native" />
 		</id>
+		<property column="COMPANYID_" name="companyId" type="long" />
+		<property column="GROUPID_" name="groupId" type="long" />
 		<property column="ASSIGNEECLASSNAME_" name="assigneeClassName" type="string" />
 		<property column="ASSIGNEECLASSPK_" name="assigneeClassPK" type="long" />
 	</class>
