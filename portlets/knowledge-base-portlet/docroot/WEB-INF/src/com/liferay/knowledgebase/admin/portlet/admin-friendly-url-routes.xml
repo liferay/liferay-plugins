@@ -4,37 +4,37 @@
 <routes>
 	<route>
 		<pattern>/all-articles</pattern>
-		<default-parameter name="jspPage">/admin/view_all_articles.jsp</default-parameter>
-		<default-parameter name="topLink">all-articles</default-parameter>
+		<implicit-parameter name="jspPage">/admin/view_all_articles.jsp</implicit-parameter>
+		<implicit-parameter name="topLink">all-articles</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/article/{resourcePrimKey:\d+}</pattern>
-		<default-parameter name="jspPage">/admin/view_article.jsp</default-parameter>
+		<implicit-parameter name="jspPage">/admin/view_article.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/article/{resourcePrimKey:\d+}/history</pattern>
-		<default-parameter name="jspPage">/admin/history.jsp</default-parameter>
+		<implicit-parameter name="jspPage">/admin/history.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/home</pattern>
-		<default-parameter name="jspPage">/admin/view.jsp</default-parameter>
-		<default-parameter name="topLink">home</default-parameter>
+		<implicit-parameter name="jspPage">/admin/view.jsp</implicit-parameter>
+		<implicit-parameter name="topLink">home</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/rss</pattern>
-		<default-parameter name="p_p_cacheability">cacheLevelPage</default-parameter>
-		<default-parameter name="p_p_lifecycle">2</default-parameter>
-		<default-parameter name="p_p_resource_id">rss</default-parameter>
 		<ignored-parameter name="jspPage" />
 		<ignored-parameter name="p_p_state" />
+		<implicit-parameter name="p_p_cacheability">cacheLevelPage</implicit-parameter>
+		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
+		<implicit-parameter name="p_p_resource_id">rss</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/template/{templateId:\d+}</pattern>
-		<default-parameter name="jspPage">/admin/view_template.jsp</default-parameter>
+		<implicit-parameter name="jspPage">/admin/view_template.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/templates</pattern>
-		<default-parameter name="jspPage">/admin/view_templates.jsp</default-parameter>
-		<default-parameter name="topLink">templates</default-parameter>
+		<implicit-parameter name="jspPage">/admin/view_templates.jsp</implicit-parameter>
+		<implicit-parameter name="topLink">templates</implicit-parameter>
 	</route>
 </routes>

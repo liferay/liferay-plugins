@@ -4,7 +4,7 @@
 <routes>
 	<route>
 		<pattern>/entry/{meetupsEntryId:\d+}</pattern>
-		<default-parameter name="jspPage">/meetups/view_entry.jsp</default-parameter>
-		<default-parameter name="p_p_state">maximized</default-parameter>
+		<implicit-parameter name="jspPage">/meetups/view_entry.jsp</implicit-parameter>
+		<implicit-parameter name="p_p_state">maximized</implicit-parameter>
 	</route>
 </routes>

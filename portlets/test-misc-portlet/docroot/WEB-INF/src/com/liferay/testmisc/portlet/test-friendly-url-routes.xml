@@ -4,9 +4,9 @@
 <routes>
 	<route>
 		<pattern>/logo.png</pattern>
-		<default-parameter name="p_p_lifecycle">2</default-parameter>
-		<default-parameter name="p_p_resource_id">logo.png</default-parameter>
 		<ignored-parameter name="p_p_cacheability" />
+		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
+		<implicit-parameter name="p_p_resource_id">logo.png</implicit-parameter>
 	</route>
 	<route>
 		<pattern>{jspPage}</pattern>

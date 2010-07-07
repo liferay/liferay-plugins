@@ -4,12 +4,12 @@
 <routes>
 	<route>
 		<pattern>/user_profile/{userId:\d+}</pattern>
-		<default-parameter name="jspPage">/profiles/user_profile.jsp</default-parameter>
-		<default-parameter name="p_p_state">exclusive</default-parameter>
+		<implicit-parameter name="jspPage">/profiles/user_profile.jsp</implicit-parameter>
+		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/{jspPageName}</pattern>
-		<default-parameter name="p_p_state">exclusive</default-parameter>
 		<generated-parameter name="jspPage">/profiles/{jspPageName}.jsp</generated-parameter>
+		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>
 	</route>
 </routes>

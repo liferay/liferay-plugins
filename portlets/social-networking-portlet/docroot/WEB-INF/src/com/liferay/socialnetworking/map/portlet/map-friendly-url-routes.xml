@@ -4,6 +4,6 @@
 <routes>
 	<route>
 		<pattern>/</pattern>
-		<default-parameter name="p_p_state">maximized</default-parameter>
+		<implicit-parameter name="p_p_state">maximized</implicit-parameter>
 	</route>
 </routes>
