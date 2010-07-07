@@ -1,92 +1,85 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+/* -------- Global -------- */
 
-/* ---------- Base ---------- */
-
-html {
-	overflow-y: scroll;
+#skip-to-content,
+#heading .community-title,
+#heading .page-title,
+#navigation h1 {
+	clip: rect(0 0 0 0);
+	position: absolute;
 }
 
-/* ---------- Banner Login ---------- */
+/* -------- Wrapper / Skip / Sign-in -------- */
 
-#banner-login {
-	background: #525252 url(../images/custom/banner-login_bg.png) repeat-x 0 bottom;
-	min-height: 24px;
+#wrapper {
+	margin: 0 auto;
+	position: relative;
 }
 
-/* ---------- Banner ---------- */
-
-#banner-wrapper {
-	background: #111 url(../images/custom/banner_bg.png) repeat-x 0 bottom;
-	min-height: 98px;
+#skip-to-content,
+#sign-in {
+	color: #FFF;
+	top: 1.5em;
 }
+
+#skip-to-content {
+	left: 2em;
+}
+
+#skip-to-content:active,
+#skip-to-content:focus {
+	clip: auto;
+}
+
+#sign-in {
+	position: absolute;
+	right: 2em;
+}
+
+/* -------- Banner-------- */
 
 #banner {
+	background: #000 url(../images/custom/banner_bg.png) repeat-x left bottom;
+	height: 97px;
+}
+
+#heading {
 	margin: 0 auto;
-	padding: 25px 0;
-	width: 938px;
+	width: 960px;
 }
 
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	background-position: 0 -3px;
-	right: 0;
-	top: -24px;
+#heading .company-title {
+	margin: 0;
+	padding: 15px 0 10px 0;
 }
 
-.js .interactive-mode h2 {
-	background-position: 100% -3px;
-	height: 23px;
-}
-
-.js .interactive-mode h2 span {
-	background-position: 0 -3px;
-	height: 23px;
-	line-height: 22px;
-	min-height: 23px;
-	padding: 0 20px;
-}
-
-/* ---------- Navigation ---------- */
+/* -------- Navigation -------- */
 
 #navigation {
-	height: 32px;
-	margin: -19px auto 23px;
-	position: relative;
+	font: bold 11px Arial, Helvetica, sans-serif;
+	margin: -23px auto 0;
 	text-transform: uppercase;
-	width: 939px;
-	z-index: 21;
+	width: 960px;
 }
 
-#navigation ul,
-.ie #navigation ul {
-	background: url(../images/custom/navigation_bg.png);
-	float: left;
-	height: 32px;
+#navigation ul {
+	list-style: none;
+	margin: 0;
 }
 
-#navigation li {
-	height: 32px;
+.ie6 #navigation ul,
+.ie7 #navigation ul {
+	zoom: 1;
 }
 
-#navigation a {
-	color: #B7B7B7;
+#navigation ul:after {
+	clear: both;
+	content: "";
 	display: block;
+}
+
+#navigation li,
+#navigation a {
 	float: left;
-	font: bold 11px/32px Arial, Helvetica, sans-serif;
-	height: 32px;
-	letter-spacing: 0.0115em;
-	outline: 0;
-	padding: 0 7px 0 8px;
-	text-decoration: none;
-}
-
-#navigation a:hover {
-	color: #FFF;
-}
-
-#navigation .selected a {
-	color: #EC9423;
 }
 
 #navigation .first {
@@ -99,27 +92,63 @@ html {
 	padding-right: 7px;
 }
 
-#content-wrapper {
-	background: url(../images/custom/content-wrapper_bg.png) repeat-x 0 bottom;
-	margin: 0 auto 30px;
-	min-height: 100px;
-	width: 939px;
+#navigation a {
+	background: url(../images/custom/navigation_bg.png);
+	color: #B7B7B7;
+	padding: 9px;
+	text-decoration: none;
 }
 
-/* ---------- Portlet ---------- */
+#navigation a:active,
+#navigation a:focus,
+#navigation a:hover {
+	color: #FFF;
+}
+
+/* -------- Content -------- */
+
+#content {
+	margin: 0 auto;
+	min-height: 100px;
+	padding: 25px 0;
+	width: 960px;
+}
+
+#breadcrumbs {
+	display: none;
+}
+
+.portlet {
+	margin: 0 0 15px 0;
+}
+
+.portlet-topper {
+	background: #EEE;
+	padding: 4px;
+}
 
 .portlet-content {
+	border: 1px solid #EEE;
 	color: #303030;
-	font: 12px/1.5 Arial, Helvetica, sans-serif;
-	padding: 18px 0 0;
+	font: 12px Arial, Helvetica, sans-serif;
+	padding: 10px;
 }
 
 .portlet-title {
-	color: #446D77;
-	font-size: 14px;
+	color: #333;
+	font-size: 12px;
 	text-transform: uppercase;
 }
 
-.portlet-title img {
-	vertical-align: bottom;
+/* -------- Footer -------- */
+
+#footer {
+	background: url(../images/custom/navigation_bg.png);
+	padding: 9px 0;
+}
+
+#footer p {
+	color: #EEE;
+	margin: 0 auto;
+	width: 960px;
 }
