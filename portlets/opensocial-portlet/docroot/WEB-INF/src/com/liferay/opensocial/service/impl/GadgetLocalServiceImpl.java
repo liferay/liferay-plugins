@@ -73,7 +73,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 		gadgetPersistence.update(gadget, false);
 
-		initGadget(gadget);
+		gadgetLocalService.initGadget(gadget);
 
 		return gadget;
 	}
@@ -81,7 +81,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	public void deleteGadget(Gadget gadget)
 		throws PortalException, SystemException {
 
-		destroyGadget(gadget);
+		gadgetLocalService.destroyGadget(gadget);
 
 		gadgetPersistence.remove(gadget);
 	}
