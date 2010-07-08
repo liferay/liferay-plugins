@@ -219,6 +219,14 @@ body #banner h1.logo a {
 	margin-bottom: 1em;
 }
 
+.portlet-borderless-container {
+	min-height: 0;
+}
+
+.ie6 .portlet-borderless-container {
+	height: 0;
+}
+
 .portlet-borderless-bar {
 	display: none;
 }
