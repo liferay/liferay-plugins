@@ -61,7 +61,7 @@
 	height: 20px;
 	margin: 0 5px 0 0;
 	position: absolute;
-	right: 0px;
+	right: 0;
 	top: 40px;
 }
 
@@ -156,7 +156,7 @@
 #footer {
 	background: #002F62 url(../images/custom/footer_bg.png) no-repeat left -50px;
 	height: 25px;
-	padding: 0 3px 0 3px;
+	padding: 0 3px;
 }
 
 #footer .language {

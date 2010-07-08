@@ -16,8 +16,8 @@ body {
 
 #wrapper {
 	font: 11px/1.5 "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, sans-serif;
-	width: 960px;
 	margin: 0 auto;
+	width: 960px;
 }
 
 #skip-to-content,
@@ -47,21 +47,20 @@ body {
 }
 
 #heading .company-title a {
-	margin 0 auto;
 }
 
 /* -------- Navigation -------- */
 
 #navigation {
 	-moz-border-radius: 6px;
-	-moz-box-shadow: 0 1px 0 #d2d2d2;
+	-moz-box-shadow: 0 1px 0 #D2D2D2;
 	-webkit-border-radius: 6px;
-	-webkit-box-shadow: 0 1px 0 #d2d2d2;
+	-webkit-box-shadow: 0 1px 0 #D2D2D2;
 	background: #CCC;
 	background-image: -moz-linear-gradient(top, #CCC, #9A9A9A);
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #CCC),color-stop(1, #9A9A9A));
 	border-radius: 6px;
-	box-shadow: 0 1px 0 #d2d2d2;
+	box-shadow: 0 1px 0 #D2D2D2;
 	font: 14px/1.25 Frutiger, "Frutiger Linotype", Univers, Calibri, Gill Sans, Gill Sans MT, Myriad Pro, Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	margin: 0 0 10px;
 	padding: 0 25px;

@@ -44,15 +44,11 @@ body {
 
 #heading {
 	margin: 0 16px;
-	position: relative;	
+	position: relative;
 }
 
 #heading .company-title {
 	margin: 16px;
-}
-
-#heading .company-title a {
-	margin 0 auto;
 }
 
 /* -------- Navigation -------- */
