@@ -19,6 +19,7 @@ import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.portlet.GadgetPortlet;
 import com.liferay.opensocial.service.ClpSerializer;
 import com.liferay.opensocial.service.base.GadgetLocalServiceBaseImpl;
+import com.liferay.portal.kernel.cluster.Clusterable;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.PortletBag;
@@ -93,6 +94,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		deleteGadget(gadget);
 	}
 
+	@Clusterable
 	public void destroyGadget(Gadget gadget)
 		throws PortalException, SystemException {
 
@@ -132,6 +134,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		return gadgetPersistence.countByCompanyId(companyId);
 	}
 
+	@Clusterable
 	public void initGadget(Gadget gadget)
 		throws PortalException, SystemException {
 
