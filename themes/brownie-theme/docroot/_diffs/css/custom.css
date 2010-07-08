@@ -23,11 +23,10 @@ body {
 #skip-to-content,
 #sign-in {
 	color: #FFF;
-	top: 1.5em;
+	right: 2em;
 }
 
 #skip-to-content {
-	right: 2em;
 	top: 3em;
 	z-index: 1;
 }
@@ -39,13 +38,13 @@ body {
 
 #sign-in {
 	position: absolute;
-	right: 2em;
+	top: 1.5em;
 }
 
 /* -------- Heading -------- */
 
 #heading {
-	background: #8F6031 url(../images/custom/banner_bg.png) repeat-x;
+	background: #8F6031 url(../images/custom/heading_bg.png) repeat-x;
 	position: relative;
 }
 
@@ -114,26 +113,8 @@ body {
 	width: 1024px;
 }
 
-#breadcrumbs .site-breadcrumbs ul, 
-#breadcrumbs .site-breadcrumbs ul li {
-	margin: 0;
-	padding: 10px 0;
-} 
-
-.site-breadcrumbs ul li {
-	display: block;
-	float: left;
-}
-
-.site-breadcrumbs ul li a {
-	background: url(../images/common/breadcrumbs.png) no-repeat 100% 50%;
-	color: #CCC;
-	padding: 0 10px;
-	text-decoration: none;
-}
-
-.site-breadcrumbs li.last a {
-		background: none;
+#breadcrumbs {
+	display: none;
 }
 
 /* ---------- Portlet ---------- */
@@ -159,6 +140,12 @@ body {
 .portlet-content {
 	border: 1px solid #CCC;
 	border-top: none;
+}
+
+/* -------- Tabs -------- */
+
+.ie6 .aui-tabview-list {
+	position: relative;
 }
 
 /* -------- Footer -------- */
