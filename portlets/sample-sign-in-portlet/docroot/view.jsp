@@ -63,12 +63,12 @@
 	<c:otherwise>
 
 		<%
-		String login = GetterUtil.getString((String)PortalClassInvoker.invoke("com.liferay.portal.action.LoginAction", "getLogin", request, "login", company, false));
+		String login = GetterUtil.getString((String)PortalClassInvoker.invoke("com.liferay.portlet.login.util.LoginUtil", "getLogin", request, "login", company, false));
 		boolean rememberMe = ParamUtil.getBoolean(request, "rememberMe");
 		%>
 
 		<form action="<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UPDATE %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm">
-		<input name="save_last_path" type="hidden" value="0" />
+		<input name="saveLastPath" type="hidden" value="0" />
 		<input name="<portlet:namespace />rememberMe" type="hidden" value="<%= rememberMe %>" />
 
 		<liferay-ui:error exception="<%= AuthException.class %>" message="authentication-failed" />
@@ -126,18 +126,6 @@
 		<br />
 
 		<input type="submit" value="<liferay-ui:message key="sign-in" />" />
-
-		<c:if test="<%= company.isStrangers() %>">
-			<input type="button" value="<liferay-ui:message key="create-account" />" onClick="self.location = '<%= themeDisplay.getURLCreateAccount() %>';" />
-		</c:if>
-
-		<c:if test="<%= company.isSendPassword() %>">
-			<br /><br />
-
-			<a href="<%= themeDisplay.getPathMain() %>/portal/login?tabs1=forgot-password" style="font-size: xx-small;">
-			<liferay-ui:message key="forgot-password" />?
-			</a>
-		</c:if>
 
 		</form>
 

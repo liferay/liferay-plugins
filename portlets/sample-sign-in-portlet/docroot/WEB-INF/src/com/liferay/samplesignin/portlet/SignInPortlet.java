@@ -20,8 +20,7 @@ import com.liferay.portal.kernel.portlet.NoRedirectActionResponse;
 import com.liferay.portal.kernel.struts.PortletActionInvoker;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
@@ -43,7 +42,7 @@ public class SignInPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-		String className = "com.liferay.portlet.login.action.ViewAction";
+		String className = "com.liferay.portlet.login.action.LoginAction";
 		PortletConfig portletConfig = getPortletConfig();
 		NoRedirectActionResponse noRedirectActionResponse =
 			new NoRedirectActionResponse(actionResponse);
@@ -66,13 +65,9 @@ public class SignInPortlet extends MVCPortlet {
 			actionResponse.setRenderParameter("rememberMe", rememberMe);
 		}
 		else {
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
-
 			String redirect =
-				themeDisplay.getPathMain() +
-					"/portal/login?cmd=already-registered&login=" + login +
-						"&password=" + password;
+				PortalUtil.getPathMain() + "/portal/login?login=" + login +
+					"&password=" + password + "&rememberMe=" + rememberMe;
 
 			actionResponse.sendRedirect(redirect);
 		}
