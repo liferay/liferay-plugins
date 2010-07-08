@@ -32,21 +32,21 @@ if (tabs1.equals("day")) {
 
 	<c:if test="<%= CalendarPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_EVENT) %>">
 		<a href="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/calendar/view" /><portlet:param name="tabs1" value="export-import" /></portlet:renderURL>"><liferay-ui:message key="import" /></a>
+	</c:if>
 
-		<c:if test="<%= CalendarPermission.contains(permissionChecker, scopeGroupId, ActionKeys.EXPORT_ALL_EVENTS) %>">
-			<a class="export-events" href="javascript:;" onClick="document.<portlet:namespace />fm1.action = '<portlet:actionURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="struts_action" value="/calendar/export_events" /></portlet:actionURL>'; document.<portlet:namespace />fm1.submit();"><liferay-ui:message key="export" /></a>
-		</c:if>
+	<c:if test="<%= CalendarPermission.contains(permissionChecker, scopeGroupId, ActionKeys.EXPORT_ALL_EVENTS) %>">
+		<a class="export-events" href="javascript:;" onClick="document.<portlet:namespace />fm1.action = '<portlet:actionURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="struts_action" value="/calendar/export_events" /></portlet:actionURL>'; document.<portlet:namespace />fm1.submit();"><liferay-ui:message key="export" /></a>
+	</c:if>
 
-		<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
-			<liferay-security:permissionsURL
-				modelResource="com.liferay.portlet.calendar"
-				modelResourceDescription="<%= portletDisplay.getTitle() %>"
-				resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
-				var="permissionsURL"
-			/>
+	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
+		<liferay-security:permissionsURL
+			modelResource="com.liferay.portlet.calendar"
+			modelResourceDescription="<%= portletDisplay.getTitle() %>"
+			resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
+			var="permissionsURL"
+		/>
 
-			<a class="permissions" href="<%= permissionsURL %>"><liferay-ui:message key="permissions" /></a>
-		</c:if>
+		<a class="permissions" href="<%= permissionsURL %>"><liferay-ui:message key="permissions" /></a>
 	</c:if>
 </div>
 

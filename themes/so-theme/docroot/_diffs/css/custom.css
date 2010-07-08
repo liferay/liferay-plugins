@@ -970,15 +970,6 @@ body #banner h1.logo a {
 
 .portlet-calendar .export-import-calendar a {
 	margin-right: 3px;
-}
-
-.portlet-calendar .export-import-calendar .export-events {
-	border-left: 1px solid #6F686B;
-	padding-left: 5px;
-}
-
-.portlet-calendar .export-import-calendar .permissions {
-	border-left: 1px solid #6F686B;
 	padding-left: 5px;
 }
 
