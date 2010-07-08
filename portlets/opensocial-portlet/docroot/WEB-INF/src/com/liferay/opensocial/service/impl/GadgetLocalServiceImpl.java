@@ -73,7 +73,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 		gadgetPersistence.update(gadget, false);
 
-		gadgetLocalService.initGadget(gadget);
+		gadgetLocalService.initGadget(companyId, gadgetId, name);
 
 		return gadget;
 	}
@@ -81,7 +81,9 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	public void deleteGadget(Gadget gadget)
 		throws PortalException, SystemException {
 
-		gadgetLocalService.destroyGadget(gadget);
+		gadgetLocalService.destroyGadget(
+			gadget.getCompanyId(), gadget.getGadgetId(),
+			gadget.getName());
 
 		gadgetPersistence.remove(gadget);
 	}
@@ -95,11 +97,11 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	}
 
 	@Clusterable
-	public void destroyGadget(Gadget gadget)
+	public void destroyGadget(long companyId, long gadgetId, String name)
 		throws PortalException, SystemException {
 
 		try {
-			Portlet portlet = getPortlet(gadget);
+			Portlet portlet = getPortlet(companyId, gadgetId, name);
 
 			PortletLocalServiceUtil.destroyRemotePortlet(portlet);
 
@@ -120,7 +122,8 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		List<Gadget> gadgets = gadgetPersistence.findAll();
 
 		for (Gadget gadget : gadgets) {
-			destroyGadget(gadget);
+			destroyGadget(
+				gadget.getCompanyId(), gadget.getGadgetId(), gadget.getName());
 		}
 	}
 
@@ -135,11 +138,12 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	}
 
 	@Clusterable
-	public void initGadget(Gadget gadget)
+	public void initGadget(
+			long companyId, long gadgetId, String name)
 		throws PortalException, SystemException {
 
 		try {
-			Portlet portlet = getPortlet(gadget);
+			Portlet portlet = getPortlet(companyId, gadgetId, name);
 
 			PortletLocalServiceUtil.deployRemotePortlet(
 				portlet, _OPENSOCIAL_CATEGORY);
@@ -161,11 +165,12 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		List<Gadget> gadgets = gadgetPersistence.findAll();
 
 		for (Gadget gadget : gadgets) {
-			initGadget(gadget);
+			initGadget(
+				gadget.getCompanyId(), gadget.getGadgetId(), gadget.getName());
 		}
 	}
 
-	public Gadget updateGadget(long gadgetId, String name)
+	public Gadget updateGadget(long companyId, long gadgetId, String name)
 		throws PortalException, SystemException {
 
 		Date now = new Date();
@@ -180,7 +185,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		gadgetPersistence.update(gadget, false);
 
 		try {
-			Portlet portlet = getPortlet(gadget);
+			Portlet portlet = getPortlet(companyId, gadgetId, name);
 
 			portlet.setPortletInfo(new PortletInfo(name, name, name, name));
 
@@ -223,8 +228,10 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		portlet.setPortletInfo(portletInfo);
 	}
 
-	protected Portlet getPortlet(Gadget gadget) throws Exception {
-		Portlet portlet = _portletsPool.get(gadget.getGadgetId());
+	protected Portlet getPortlet(long companyId, long gadgetId, String name) 
+		throws Exception {
+
+		Portlet portlet = _portletsPool.get(gadgetId);
 
 		if (portlet != null) {
 			return portlet;
@@ -233,14 +240,14 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(GadgetPortlet.PORTLET_NAME_PREFIX);
-		sb.append(gadget.getCompanyId());
+		sb.append(companyId);
 		sb.append(StringPool.UNDERLINE);
-		sb.append(gadget.getGadgetId());
+		sb.append(gadgetId);
 
 		String portletId = PortalUtil.getJsSafePortletId(sb.toString());
 
 		portlet = PortletLocalServiceUtil.clonePortlet(
-			gadget.getCompanyId(), _GADGET_PORTLET_ID);
+			companyId, _GADGET_PORTLET_ID);
 
 		portlet.setPortletId(portletId);
 		portlet.setTimestamp(System.currentTimeMillis());
@@ -259,9 +266,9 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		initParams.put(
 			InvokerPortlet.INIT_INVOKER_PORTLET_NAME, _GADGET_PORTLET_NAME);
 
-		addPortletExtraInfo(portlet, portletApp, gadget.getName());
+		addPortletExtraInfo(portlet, portletApp, name);
 
-		_portletsPool.put(gadget.getGadgetId(), portlet);
+		_portletsPool.put(gadgetId, portlet);
 
 		PortletBag portletBag = PortletBagPool.get(_GADGET_PORTLET_ID);
 

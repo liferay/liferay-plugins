@@ -91,7 +91,8 @@ public class AdminPortlet extends MVCPortlet {
 				themeDisplay.getCompanyId(), name, url);
 		}
 		else {
-			GadgetLocalServiceUtil.updateGadget(gadgetId, name);
+			GadgetLocalServiceUtil.updateGadget(
+				themeDisplay.getCompanyId(), gadgetId, name);
 		}
 	}
 

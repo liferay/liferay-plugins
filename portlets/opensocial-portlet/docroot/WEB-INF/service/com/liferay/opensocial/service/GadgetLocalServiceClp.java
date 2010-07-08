@@ -492,17 +492,23 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void destroyGadget(com.liferay.opensocial.model.Gadget gadget)
+	public void destroyGadget(long companyId, long gadgetId,
+		java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(gadget);
+		Object paramObj0 = new LongWrapper(companyId);
 
-		if (gadget == null) {
-			paramObj0 = new NullWrapper("com.liferay.opensocial.model.Gadget");
+		Object paramObj1 = new LongWrapper(gadgetId);
+
+		Object paramObj2 = ClpSerializer.translateInput(name);
+
+		if (name == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
 		}
 
 		try {
-			_classLoaderProxy.invoke("destroyGadget", new Object[] { paramObj0 });
+			_classLoaderProxy.invoke("destroyGadget",
+				new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -607,17 +613,22 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public void initGadget(com.liferay.opensocial.model.Gadget gadget)
+	public void initGadget(long companyId, long gadgetId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(gadget);
+		Object paramObj0 = new LongWrapper(companyId);
 
-		if (gadget == null) {
-			paramObj0 = new NullWrapper("com.liferay.opensocial.model.Gadget");
+		Object paramObj1 = new LongWrapper(gadgetId);
+
+		Object paramObj2 = ClpSerializer.translateInput(name);
+
+		if (name == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
 		}
 
 		try {
-			_classLoaderProxy.invoke("initGadget", new Object[] { paramObj0 });
+			_classLoaderProxy.invoke("initGadget",
+				new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -663,23 +674,25 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		}
 	}
 
-	public com.liferay.opensocial.model.Gadget updateGadget(long gadgetId,
-		java.lang.String name)
+	public com.liferay.opensocial.model.Gadget updateGadget(long companyId,
+		long gadgetId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(gadgetId);
+		Object paramObj0 = new LongWrapper(companyId);
 
-		Object paramObj1 = ClpSerializer.translateInput(name);
+		Object paramObj1 = new LongWrapper(gadgetId);
+
+		Object paramObj2 = ClpSerializer.translateInput(name);
 
 		if (name == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
+			paramObj2 = new NullWrapper("java.lang.String");
 		}
 
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("updateGadget",
-					new Object[] { paramObj0, paramObj1 });
+					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
