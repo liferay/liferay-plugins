@@ -8,17 +8,33 @@
 	position: absolute;
 }
 
-body {
-	background: #CCD8E0 url(../images/custom/body_bg.jpg) repeat-x left bottom;
+html {
+	background: #CCD8E0 url(../images/custom/html_bg.jpg) repeat-x left bottom;
 	min-height: 100%;
+}
+
+body {
+	background: url(../images/custom/body_bg.gif) repeat-x left top;
+}
+
+#navigation,
+#content {
+	background: #FFF;
+	padding: 10px;
+}
+
+#heading .company-title,
+#footer {
+	padding: 20px 10px;
 }
 
 /* -------- Wrapper / Skip / Sign-in -------- */
 
 #wrapper {
-	font: 1.2em Lucida Sans Unicode, Lucida Grande, sans-serif;
+	font: 12px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	margin: 0 auto;
 	position: relative;
+	width: 780px;
 }
 
 #skip-to-content,
@@ -45,7 +61,6 @@ body {
 /* -------- Heading -------- */
 
 #heading {
-	background: #C3D0D6;
 	height: 120px;
 	margin: 0 0 5px;
 	position: relative;
@@ -53,19 +68,17 @@ body {
 
 #heading .company-title {
 	margin: 0;
-	padding: 20px;
+	padding: 20px 10px;
 }
 
 /* -------- Navigation -------- */
 
-#navigation {
-	background: url(../images/custom/navigation_bg.gif);
-	border: 1px solid #CFDEE7;
-	border-color: #DFEEF7 #CFDEE7;
-	height: 41px;
-}
-
 #navigation ul {
+	background: #D2DDE1;
+	background-image: -moz-linear-gradient(top, #F0F3F5, #D2DDE1);
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #F0F3F5),color-stop(1, #D2DDE1));
+	border: 1px solid #CFDEE7;
+	border-color: #DFEEF7 #CFDEE7 #BFCDD4;
 	list-style: none;
 	margin: 0;
 }
@@ -98,15 +111,13 @@ body {
 #navigation a:active,
 #navigation a:focus,
 #navigation a:hover {
-	background: url(../images/custom/navigation_bg.gif) left bottom;
+	background: #C6D2D9;
+	background-image: -moz-linear-gradient(top, #E3E9EC, #C6D2D9);
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #E3E9EC),color-stop(1, #C6D2D9));
+	color: #234;
 }
 
-/* -------- Content -------- */
-
-#content {
-	margin-top: 15px;
-	padding: 10px;
-}
+/* -------- Breadcrumbs -------- */
 
 #breadcrumbs {
 	display: none;
@@ -122,11 +133,6 @@ body {
 	padding: 6px 0 4px;
 }
 
-.portlet-title {
-	color: #963;
-	font: normal 20px Tahoma, sans-serif;
-}
-
 .portlet-content {
 	padding: 0;
 }
@@ -138,10 +144,8 @@ body {
 /* -------- Footer -------- */
 
 #footer {
-	background: #ADBFCB url(../images/custom/footer_bg.gif) repeat-x;
-	min-height: 39px;
-	padding: 12px;
-	text-align: left;
+	background: #ABBECA;
+	border-top: 5px solid #B7C7D1;
 }
 
 #footer p {
