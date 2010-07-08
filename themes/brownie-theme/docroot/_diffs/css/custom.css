@@ -56,13 +56,12 @@ body {
 }
 
 #heading .company-title a {
-	margin 0 auto;
 }
 
 /* -------- Navigation -------- */
 
 #navigation {
-	background: #4E3318; 
+	background: #4E3318;
 }
 
 #navigation ul {
@@ -92,7 +91,7 @@ body {
 	font-size: 1.1em;
 	padding: 8px 20px;
 	text-decoration: none;
-	text-transform: uppercase;	
+	text-transform: uppercase;
 }
 
 #navigation a:active,
