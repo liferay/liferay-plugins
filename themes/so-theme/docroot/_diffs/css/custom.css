@@ -1,5 +1,3 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
 /* ---------- Base ---------- */
 
 body {
@@ -199,7 +197,8 @@ body #banner h1.logo a {
 	height: 1%;
 }
 
-.ie6 #navigation, .ie6 #navigation ul {
+.ie6 #navigation,
+.ie6 #navigation ul {
 	height: 2em;
 	overflow: visible;
 }
@@ -252,7 +251,7 @@ body #banner h1.logo a {
 	display: block;
 	font-size: 11px;
 	position: absolute;
-	right: 0px;
+	right: 0;
 	top: -32px;
 }
 
@@ -303,8 +302,8 @@ body #banner h1.logo a {
 /* Actions */
 
 .lfr-actions {
-	width: 35px;
 	overflow: hidden;
+	width: 35px;
 }
 
 /* Autocomplete */
@@ -565,11 +564,8 @@ body #banner h1.logo a {
 /* Announcements */
 
 .portlet-announcements .entry-title {
-	padding: 0 10px 0 20px;
-}
-
-.portlet-announcements .entry-title {
 	border-bottom: none;
+	padding: 0 10px 0 20px;
 }
 
 .portlet-announcements .entry-actions {
@@ -620,8 +616,8 @@ body #banner h1.logo a {
 
 .taglib-social-activities .user {
 	color: #3C6696;
-	font-weight: bold;
 	font-size: 11px;
+	font-weight: bold;
 }
 
 .taglib-social-activities a.group {
@@ -663,8 +659,8 @@ body #banner h1.logo a {
 }
 
 .portlet-asset-publisher .document-folder a {
-	font-size: 10px;
 	float: none;
+	font-size: 10px;
 }
 
 .portlet-asset-publisher .title-list .asset-actions {
@@ -1173,7 +1169,7 @@ table.calendar {
 .portlet-document-library .document-action-list {
 	border-bottom: 1px solid #CCC;
 	margin: 1em 0;
-	padding: 0 0 1em 0;
+	padding: 0 0 1em;
 }
 
 .portlet-document-library .document-action-list li {
