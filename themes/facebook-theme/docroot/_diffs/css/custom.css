@@ -8,9 +8,6 @@
 	position: absolute;
 }
 
-body {
-}
-
 /* -------- Wrapper / Skip / Sign-in -------- */
 
 #wrapper {
@@ -42,7 +39,7 @@ body {
 /* -------- Banner -------- */
 
 #banner {
-	background: url(../images/custom/banner_bg.png) left bottom;	
+	background: url(../images/custom/banner_bg.png) left bottom;
 }
 
 #heading {
@@ -51,10 +48,6 @@ body {
 
 #heading .company-title {
 	margin: 0;
-}
-
-#heading .company-title a {
-	margin 0 auto;
 }
 
 /* -------- Navigation -------- */
@@ -66,9 +59,9 @@ body {
 }
 
 #navigation ul {
-	list-style: none;
 	float: right;
-	margin: 0px;
+	list-style: none;
+	margin: 0;
 }
 
 .ie6 #navigation ul,

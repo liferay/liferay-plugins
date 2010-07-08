@@ -17,7 +17,7 @@
 }
 
 body {
-	font: 12px/1.5 Arial,Helvetica,Verdana,sans-serif
+	font: 12px/1.5 Arial, Helvetica, Verdana, sans-serif;
 }
 
 a {
@@ -111,7 +111,7 @@ a:hover {
 
 /* -------- Content -------- */
 
-#content{
+#content {
 	color: #454545;
 }
 

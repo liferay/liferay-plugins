@@ -10,8 +10,8 @@
 
 #heading,
 #footer {
-	width: 960px;
 	margin: 0 auto;
+	width: 960px;
 }
 
 /* -------- Wrapper / Skip / Sign-in -------- */
@@ -70,18 +70,14 @@
 	margin: 0;
 }
 
-#heading .company-title a {
-	margin 0 auto;
-}
-
 /* -------- Navigation -------- */
 
 #navigation {
-	font-size: 14px;
-	position: absolute;
-	left: 50%;
 	bottom: 230px;
+	font-size: 14px;
+	left: 50%;
 	margin: 0 0 0 -480px;
+	position: absolute;
 	width: 960px;
 }
 

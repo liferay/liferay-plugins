@@ -49,7 +49,7 @@
 
 #heading .company-title {
 	margin: 0;
-	padding: 15px 0 10px 0;
+	padding: 15px 0 10px;
 }
 
 /* -------- Navigation -------- */
@@ -119,7 +119,7 @@
 }
 
 .portlet {
-	margin: 0 0 15px 0;
+	margin: 0 0 15px;
 }
 
 .portlet-topper {

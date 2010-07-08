@@ -64,10 +64,6 @@ body {
 	margin: 0;
 }
 
-#heading .company-title a {
-	margin 0 auto;
-}
-
 /* -------- Navigation -------- */
 
 #navigation {
@@ -75,6 +71,7 @@ body {
 }
 
 #navigation ul {
+	border-left: 1px solid #E3E0D5;
 	list-style: none;
 	margin: 0;
 }
@@ -90,12 +87,8 @@ body {
 	display: block;
 }
 
-#navigation ul {
-	border-left: 1px solid #E3E0D5;
-}
-
 #navigation li {
-	border-right: 1px solid #E3E0D5
+	border-right: 1px solid #E3E0D5;
 }
 
 #navigation li,

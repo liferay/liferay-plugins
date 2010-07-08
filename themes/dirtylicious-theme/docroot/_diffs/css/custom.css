@@ -58,7 +58,7 @@ body {
 /* -------- Heading -------- */
 
 #heading {
-	background: #181d21 url(../images/custom/heading_bg.jpg) no-repeat;
+	background: #181D21 url(../images/custom/heading_bg.jpg) no-repeat;
 	margin: 0 0 5px;
 }
 
@@ -75,8 +75,8 @@ body {
 
 #navigation {
 	background: #949490;
-	padding: 8px 12px;
 	margin: 0 0 12px;
+	padding: 8px 12px;
 }
 
 #navigation ul {
@@ -90,8 +90,8 @@ body {
 }
 
 #navigation ul:after {
-	content: "";
 	clear: both;
+	content: "";
 	display: block;
 }
 
