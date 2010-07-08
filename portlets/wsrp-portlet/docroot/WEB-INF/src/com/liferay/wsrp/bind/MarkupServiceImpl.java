@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Layout;
@@ -29,6 +31,7 @@ import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
+import com.liferay.util.Encryptor;
 import com.liferay.util.axis.ServletUtil;
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.util.ExtensionUtil;
@@ -687,6 +690,12 @@ public class MarkupServiceImpl
 		}
 
 		sb.append("&wsrp=1");
+
+		String sharedSecret = Encryptor.digest(
+			PropsUtil.get(PropsKeys.AUTH_TOKEN_SHARED_SECRET));
+
+		sb.append("&p_auth_secret=");
+		sb.append(HttpUtil.encodeURL(sharedSecret));
 
 		if (_log.isInfoEnabled()) {
 			_log.info("URL " + sb.toString());
