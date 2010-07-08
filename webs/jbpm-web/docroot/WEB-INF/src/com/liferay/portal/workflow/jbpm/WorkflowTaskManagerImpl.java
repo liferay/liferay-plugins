@@ -266,23 +266,23 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			CustomSession customSession = new CustomSession(jbpmContext);
 
-			for (TaskInstance taskInstance_ : taskInstances) {
+			for (TaskInstance curTaskInstance : taskInstances) {
 				TaskInstanceExtensionImpl taskInstanceExtensionImpl =
 					customSession.findTaskInstanceExtension(
-						taskInstance_.getId());
+						curTaskInstance.getId());
 
 				if (taskInstanceExtensionImpl == null) {
 					List<Assignee> assignees =
 						AssigneeRetrievalUtil.getAssignees(
-							companyId, groupId, taskInstance_.getActorId(),
-							taskInstance_.getPooledActors());
+							companyId, groupId, curTaskInstance.getActorId(),
+							curTaskInstance.getPooledActors());
 
 					String workflowContextJSON =
 						WorkflowContextUtil.convertToJSON(workflowContext);
 
 					taskInstanceExtensionImpl = new TaskInstanceExtensionImpl(
 						companyId, groupId, userId, assignees,
-						workflowContextJSON, taskInstance_);
+						workflowContextJSON, curTaskInstance);
 
 					session.save(taskInstanceExtensionImpl);
 				}
