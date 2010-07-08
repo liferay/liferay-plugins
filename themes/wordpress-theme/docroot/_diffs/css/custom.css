@@ -10,13 +10,12 @@
 
 body {
 	background: #E7E7E7;
-	padding: 16px;
 }
 
 /* -------- Wrapper / Skip / Sign-in -------- */
 
 #wrapper {
-	margin: 0 auto;
+	margin: 16px auto;
 	position: relative;
 	width: 967px;
 }
@@ -103,15 +102,15 @@ body {
 }
 
 .ie6 #navigation .delete-tab {
-	right: 0px;
+	right: 0;
 	top: 5px;
 }
 
 /* -------- Content -------- */
 
 #content {
-	background: url(../images/custom/content_wrapper_bg.png);
-	min-height:220px;
+	background: url(../images/custom/content_bg.png);
+	min-height: 220px;
 	padding: 20px 202px 0 22px;
 }
 
