@@ -15,6 +15,7 @@ html {
 
 body {
 	background: url(../images/custom/body_bg.gif) repeat-x left top;
+	overflow: hidden;
 }
 
 #navigation,

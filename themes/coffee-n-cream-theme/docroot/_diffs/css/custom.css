@@ -50,6 +50,7 @@ body {
 	background: url(../images/custom/navigation_bg.gif);
 	font: 14px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	height: 44px;
+	margin: 0 0 0 1px;
 }
 
 #navigation ul {

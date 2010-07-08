@@ -74,21 +74,20 @@ a:focus {
 #navigation ul {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	border-radius: 4px;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	float: right;
 	background-color: #10354A;
 	background-image: -moz-linear-gradient(#215172, #10354A);
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #215172), color-stop(1.0, #10354A));
-	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#215172', EndColorStr='#10354A');
 	border: 1px solid;
 	border-color: #597D95 #506E82 #879AA5;
+	border-radius: 4px;
+	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#215172', EndColorStr='#10354A');
+	float: right;
 	font-size: 12px;
-	line-height: 1.25;
 	font-weight: bold;
 	line-height: 1;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 	text-transform: uppercase;
 }
 
@@ -124,17 +123,17 @@ a:focus {
 #navigation a:focus {
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	border-radius: 3px;
 	background-color: #154661;
 	background-image: -moz-linear-gradient(#1D4663, #154661);
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #1D4663), color-stop(1.0, #154661));
+	border-radius: 3px;
 	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#1D4663', EndColorStr='#154661');
 }
 
 #navigation a:active span,
 #navigation a:focus span {
-	top: 2px;
 	position: relative;
+	top: 2px;
 }
 
 /* ---------- Layout ---------- */
@@ -158,16 +157,12 @@ a:focus {
 .portlet .portlet-topper {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
+	background-color: #215172;
 	border-radius: 4px;
+	font-weight: bold;
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	background-color: #215172;
-	font-weight: bold;
-}
-
-.portlet .portlet-title {
-	min-height: 1em;
 }
 
 .portlet .portlet-topper-toolbar {
@@ -178,8 +173,9 @@ a:focus {
 .portlet .portlet-title {
 	color: #FFF;
 	font-weight: normal;
-	padding: 9px 13px;
 	margin: 0;
+	min-height: 1em;
+	padding: 9px 13px;
 }
 
 .portlet-sign-in .portlet-title {
@@ -214,27 +210,27 @@ a:focus {
 .callout {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	border-radius: 4px;
 	background-color: #EEEFEF;
 	background-image: -moz-linear-gradient(#D2D2D3, #EEEFEF);
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #D2D2D3), color-stop(1.0, #EEEFEF));
 	border: 1px solid;
-	border-color: #808080 #777 #404040 #777;
+	border-color: #808080 #777 #404040;
+	border-radius: 4px;
 	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#D2D2D3', EndColorStr='#EEEFEF');
 }
 
 .callout-extraborder {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	border-radius: 4px;
 	border: 1px solid #EEE;
+	border-radius: 4px;
 }
 
 a:hover .callout-extraborder,
 a:focus .callout-extraborder {
-	border-color: #FFF;
 	background-image: -moz-linear-gradient(#DDD, #EEE);
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #DDD), color-stop(1.0, #EEE));
+	border-color: #FFF;
 	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#DDDDDD', EndColorStr='#EEEEEE');
 }
 
@@ -256,9 +252,9 @@ a:focus .callout-extraborder {
 }
 
 .portlet-journal-content .portlet-body h1 {
-	margin: 0 0 12px;
 	font-size: 1.25em;
 	line-height: 1.125;
+	margin: 0 0 12px;
 }
 
 .portlet-journal-content .portlet-body ul {
@@ -269,8 +265,8 @@ a:focus .callout-extraborder {
 
 .portlet-journal-content .portlet-body li {
 	background: url(../images/custom/marker.png) no-repeat 0 0.4em;
-	padding-left: 20px;
 	margin-bottom: 6px;
+	padding-left: 20px;
 }
 
 .article h1 {
@@ -283,9 +279,9 @@ a:focus .callout-extraborder {
 
 .article h2 {
 	color: #484A4C;
-	margin: 0 0 12px;
 	font-size: 1.2em;
 	line-height: 1.125;
+	margin: 0 0 12px;
 }
 
 .article p {
@@ -321,8 +317,8 @@ a:focus .callout-extraborder {
 
 .after-icon-callout p {
 	color: #474A4B;
-	margin: 0;
 	line-height: 1.75;
+	margin: 0;
 }
 
 /* ---------- Breadcrumbs ---------- */
@@ -412,11 +408,11 @@ a:focus .callout-extraborder {
 }
 
 .lfr-hudcrumbs ul {
-	background: #414445;
 	background: rgba(0, 0, 0, 0.8);
 }
 
-.lfr-hudcrumbs .breadcrumbs li a, .lfr-hudcrumbs .breadcrumbs li span {
+.lfr-hudcrumbs .breadcrumbs li a,
+.lfr-hudcrumbs .breadcrumbs li span {
 	color: #FFF;
 }
 
