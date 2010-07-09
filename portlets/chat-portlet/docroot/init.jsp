@@ -24,6 +24,7 @@
 <%@ page import="com.liferay.chat.service.StatusLocalServiceUtil" %>
 <%@ page import="com.liferay.chat.util.ChatUtil" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
+<%@ page import="com.liferay.portal.kernel.servlet.BrowserSnifferUtil" %>
 <%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
