@@ -13,7 +13,9 @@
 			<util:constant static-field="com.liferay.portal.util.PropsValues.CLUSTER_LINK_ENABLED" />
 		</property>
 		<property name="newChainableMethodAdvice">
-			<bean class="com.liferay.portal.cluster.ClusterableAdvice" />
+			<bean class="com.liferay.portal.cluster.ClusterableAdvice">
+				<property name="servletContextName" ref="servletContextName" />
+			</bean>
 		</property>
 		<property name="parentChainableMethodAdvice" ref="serviceAdvice" />
 	</bean>

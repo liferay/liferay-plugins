@@ -29,7 +29,7 @@ import com.liferay.portal.kernel.exception.SystemException;
  * <p>
  * This interface defines the service. The default implementation is
  * {@link
- * com.liferay.socialcoding.service.impl.JIRAChangeItemLocalServiceImpl}}.
+ * com.liferay.socialcoding.service.impl.JIRAChangeItemLocalServiceImpl}.
  * Modify methods in that class and rerun ServiceBuilder to populate this class
  * and all other generated classes.
  * </p>

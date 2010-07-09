@@ -129,6 +129,19 @@ public interface TemplatePersistence extends BasePersistence<Template> {
 		throws com.liferay.knowledgebase.NoSuchTemplateException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public java.util.List<com.liferay.knowledgebase.model.Template> filterFindByGroupId(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.knowledgebase.model.Template> filterFindByGroupId(
+		long groupId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.knowledgebase.model.Template> filterFindByGroupId(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public java.util.List<com.liferay.knowledgebase.model.Template> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -161,6 +174,9 @@ public interface TemplatePersistence extends BasePersistence<Template> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByGroupId(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int filterCountByGroupId(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countAll()

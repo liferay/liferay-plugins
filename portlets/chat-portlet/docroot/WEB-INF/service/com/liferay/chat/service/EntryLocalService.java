@@ -29,7 +29,7 @@ import com.liferay.portal.kernel.exception.SystemException;
  * <p>
  * This interface defines the service. The default implementation is
  * {@link
- * com.liferay.chat.service.impl.EntryLocalServiceImpl}}.
+ * com.liferay.chat.service.impl.EntryLocalServiceImpl}.
  * Modify methods in that class and rerun ServiceBuilder to populate this class
  * and all other generated classes.
  * </p>
