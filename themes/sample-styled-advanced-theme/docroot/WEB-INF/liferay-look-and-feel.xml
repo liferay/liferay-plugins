@@ -3,7 +3,7 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>6.0.0+</version>
+		<version>6.*.*+</version>
 	</compatibility>
 	<theme id="sample-styled-advanced" name="Sample Styled Advanced">
 		<root-path>/</root-path>
@@ -19,83 +19,25 @@
 			<role-name>User</role-name>
 		</roles>
 		<color-scheme id="01" name="Blue">
+			<default-cs>true</default-cs>
 			<css-class>blue</css-class>
-			<color-scheme-images-path>${images-path}/color_schemes/${css-class}</color-scheme-images-path>
 		</color-scheme>
 		<color-scheme id="02" name="Green">
 			<css-class>green</css-class>
 		</color-scheme>
-		<color-scheme id="03" name="Orange">
-			<css-class>orange</css-class>
-		</color-scheme>
 		<layout-templates>
 			<standard>
-				<layout-template id="exclusive">
-					<template-path>/layouttpl/standard/exclusive.tpl</template-path>
-					<wap-template-path>/layouttpl/standard/exclusive.wap.tpl</wap-template-path>
-					<thumbnail-path>/layouttpl/standard/exclusive.png</thumbnail-path>
-				</layout-template>
 				<layout-template id="max">
 					<template-path>/layouttpl/standard/max.tpl</template-path>
 					<wap-template-path>/layouttpl/standard/max.wap.tpl</wap-template-path>
 					<thumbnail-path>/layouttpl/standard/max.png</thumbnail-path>
 				</layout-template>
-				<layout-template id="pop_up">
-					<template-path>/layouttpl/standard/pop_up.tpl</template-path>
-					<wap-template-path>/layouttpl/standard/pop_up.wap.tpl</wap-template-path>
-					<thumbnail-path>/layouttpl/standard/pop_up.png</thumbnail-path>
-				</layout-template>
 			</standard>
 			<custom>
-				<layout-template id="freeform" name="Freeform">
-					<template-path>/layouttpl/custom/freeform.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/freeform.wap.tpl</wap-template-path>
-					<thumbnail-path>/layouttpl/custom/freeform.png</thumbnail-path>
-				</layout-template>
-				<layout-template id="1_column" name="1 Column">
-					<template-path>/layouttpl/custom/1_column.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/1_column.wap.tpl</wap-template-path>
-					<thumbnail-path>/layouttpl/custom/1_column.png</thumbnail-path>
-				</layout-template>
-				<layout-template id="2_columns_i" name="2 Columns (50/50)">
-					<template-path>/layouttpl/custom/2_columns_i.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/2_columns_i.wap.tpl</wap-template-path>
-					<thumbnail-path>/layouttpl/custom/2_columns_i.png</thumbnail-path>
-				</layout-template>
-				<layout-template id="2_columns_ii" name="2 Columns (30/70)">
-					<template-path>/layouttpl/custom/2_columns_ii.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/2_columns_ii.wap.tpl</wap-template-path>
-					<thumbnail-path>/layouttpl/custom/2_columns_ii.png</thumbnail-path>
-				</layout-template>
-				<layout-template id="2_columns_iii" name="2 Columns (70/30)">
-					<template-path>/layouttpl/custom/2_columns_iii.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/2_columns_iii.wap.tpl</wap-template-path>
-					<thumbnail-path>/layouttpl/custom/2_columns_iii.png</thumbnail-path>
-				</layout-template>
-				<layout-template id="3_columns" name="3 Columns">
-					<template-path>/layouttpl/custom/3_columns.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/3_columns.wap.tpl</wap-template-path>
-					<thumbnail-path>/layouttpl/custom/3_columns.png</thumbnail-path>
-				</layout-template>
-				<layout-template id="1_2_columns_i" name="1-2 Columns (30/70)">
-					<template-path>/layouttpl/custom/1_2_columns_i.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/1_2_columns_i.wap.tpl</wap-template-path>
-					<thumbnail-path>/layouttpl/custom/1_2_columns_i.png</thumbnail-path>
-				</layout-template>
-				<layout-template id="1_2_columns_ii" name="1-2 Columns (70/30)">
-					<template-path>/layouttpl/custom/1_2_columns_ii.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/1_2_columns_ii.wap.tpl</wap-template-path>
-					<thumbnail-path>/layouttpl/custom/1_2_columns_ii.png</thumbnail-path>
-				</layout-template>
-				<layout-template id="1_2_1_columns" name="1-2-1 Columns">
-					<template-path>/layouttpl/custom/1_2_1_columns.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/1_2_1_columns.wap.tpl</wap-template-path>
-					<thumbnail-path>/layouttpl/custom/1_2_1_columns.png</thumbnail-path>
-				</layout-template>
-				<layout-template id="2_2_columns" name="2-2 Columns">
-					<template-path>/layouttpl/custom/2_2_columns.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/2_2_columns.wap.tpl</wap-template-path>
-					<thumbnail-path>/layouttpl/custom/2_2_columns.png</thumbnail-path>
+				<layout-template id="custom" name="Custom">
+					<template-path>/layouttpl/custom/custom.tpl</template-path>
+					<wap-template-path>/layouttpl/custom/custom.wap.tpl</wap-template-path>
+					<thumbnail-path>/layouttpl/custom/custom.png</thumbnail-path>
 				</layout-template>
 			</custom>
 		</layout-templates>

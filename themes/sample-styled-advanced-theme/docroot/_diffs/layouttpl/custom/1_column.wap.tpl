@@ -1,1 +1,0 @@
-$processor.processColumn("column-1")
