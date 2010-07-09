@@ -30,7 +30,6 @@ import javax.portlet.WindowState;
 
 /**
  * @author Michael Young
- *
  */
 public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 

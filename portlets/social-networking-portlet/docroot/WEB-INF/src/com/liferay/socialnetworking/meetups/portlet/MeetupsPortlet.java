@@ -34,7 +34,6 @@ import javax.portlet.ActionResponse;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class MeetupsPortlet extends MVCPortlet {
 

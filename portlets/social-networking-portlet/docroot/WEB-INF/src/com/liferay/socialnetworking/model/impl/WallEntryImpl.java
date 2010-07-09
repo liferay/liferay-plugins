@@ -18,7 +18,6 @@ import com.liferay.socialnetworking.model.WallEntry;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class WallEntryImpl extends WallEntryModelImpl implements WallEntry {
 

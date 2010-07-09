@@ -23,7 +23,6 @@ import org.apache.struts.action.ActionMessage;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class SubscribeForm extends ActionForm {
 

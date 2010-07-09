@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.servlet.PortletSessionListenerLoader;
  * @author Brian Wing Shun Chan
  *
  * @see com.liferay.testmisc.servlet.TestPortletSessionListener
- *
  */
 public class TestPortletSessionListenerLoader
 	extends PortletSessionListenerLoader {

@@ -16,7 +16,6 @@ package com.liferay.socialcoding.jira.util;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public interface JIRAConstants {
 

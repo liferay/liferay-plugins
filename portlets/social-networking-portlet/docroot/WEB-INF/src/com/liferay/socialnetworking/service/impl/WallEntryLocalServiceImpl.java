@@ -38,7 +38,6 @@ import javax.mail.internet.InternetAddress;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 

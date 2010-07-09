@@ -35,7 +35,6 @@ import javax.portlet.ResourceResponse;
 
 /**
  * @author Raymond Augé
- *
  */
 public class RubyConsolePortlet extends RubyPortlet {
 

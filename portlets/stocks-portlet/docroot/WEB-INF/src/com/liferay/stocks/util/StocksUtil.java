@@ -21,7 +21,6 @@ import com.liferay.stocks.model.Stocks;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class StocksUtil {
 

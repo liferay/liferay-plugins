@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.resource.ResourceRetriever;
 
 /**
  * @author Shuyang Zhou
- *
  */
 public class BundleEntry {
 

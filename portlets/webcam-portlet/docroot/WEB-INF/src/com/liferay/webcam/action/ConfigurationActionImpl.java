@@ -27,7 +27,6 @@ import javax.portlet.PortletPreferences;
 /**
  * @author Mark Wong
  * @author Shepherd Ching
- *
  */
 public class ConfigurationActionImpl extends BaseConfigurationAction {
 

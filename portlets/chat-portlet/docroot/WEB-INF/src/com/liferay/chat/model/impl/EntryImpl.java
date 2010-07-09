@@ -18,7 +18,6 @@ import com.liferay.chat.model.Entry;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class EntryImpl extends EntryModelImpl implements Entry {
 

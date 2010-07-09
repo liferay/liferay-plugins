@@ -26,7 +26,6 @@ import org.apache.struts.tiles.TilesRequestProcessor;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class SampleRequestProcessor extends TilesRequestProcessor {
 

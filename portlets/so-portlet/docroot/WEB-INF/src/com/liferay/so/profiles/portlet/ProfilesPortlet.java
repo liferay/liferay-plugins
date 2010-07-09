@@ -74,7 +74,6 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Ryan Park
- *
  */
 public class ProfilesPortlet extends MVCPortlet {
 

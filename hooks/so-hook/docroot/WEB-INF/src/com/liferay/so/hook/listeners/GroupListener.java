@@ -42,7 +42,6 @@ import javax.portlet.PortletPreferences;
 
 /**
  * @author Ryan Park
- *
  */
 public class GroupListener extends BaseModelListener<Group> {
 

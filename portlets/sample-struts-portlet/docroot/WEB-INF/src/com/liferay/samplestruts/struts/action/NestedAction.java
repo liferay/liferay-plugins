@@ -31,7 +31,6 @@ import org.apache.struts.action.ActionMapping;
 
 /**
  * @author Scott Lee
- *
  */
 public class NestedAction extends Action {
 

@@ -34,7 +34,6 @@ import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAIssueFinderImpl
 	extends BasePersistenceImpl implements JIRAIssueFinder {

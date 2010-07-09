@@ -23,7 +23,6 @@ import com.liferay.testhook.hook.model.impl.TestUserImpl;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class TestUserLocalServiceImpl extends UserLocalServiceWrapper {
 

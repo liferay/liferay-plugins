@@ -16,7 +16,6 @@ package com.liferay.socialnetworking.meetups.util;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public interface MeetupsConstants {
 

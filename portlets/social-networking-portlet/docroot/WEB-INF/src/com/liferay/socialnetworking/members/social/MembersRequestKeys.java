@@ -16,7 +16,6 @@ package com.liferay.socialnetworking.members.social;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class MembersRequestKeys {
 

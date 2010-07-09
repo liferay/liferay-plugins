@@ -33,7 +33,6 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Charles May
- *
  */
 public class FoodItemComponentImpl {
 

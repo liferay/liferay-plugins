@@ -19,7 +19,6 @@ import com.liferay.util.portlet.PortletProps;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class PortletPropsValues {
 

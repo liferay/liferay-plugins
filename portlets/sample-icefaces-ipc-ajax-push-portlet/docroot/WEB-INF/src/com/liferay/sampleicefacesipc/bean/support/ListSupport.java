@@ -24,7 +24,6 @@ import javax.faces.model.SelectItem;
 
 /**
  * @author Neil Griffin
- *
  */
 public class ListSupport {
 

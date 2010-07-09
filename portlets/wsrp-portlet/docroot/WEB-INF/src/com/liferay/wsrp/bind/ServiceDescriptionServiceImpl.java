@@ -52,7 +52,6 @@ import org.apache.axis.message.MessageElement;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class ServiceDescriptionServiceImpl
 	extends BaseServiceImpl implements WSRP_v2_ServiceDescription_PortType {

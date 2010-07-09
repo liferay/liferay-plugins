@@ -16,7 +16,6 @@ package com.liferay.client.json.ipgeocoder.model;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class IPInfo {
 

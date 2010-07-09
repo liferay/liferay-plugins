@@ -24,7 +24,6 @@ import oasis.names.tc.wsrp.v2.types.RegistrationContext;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class WSRPConsumerManagerFactory {
 

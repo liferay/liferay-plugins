@@ -22,7 +22,6 @@ import com.liferay.util.portlet.PortletProps;
 
 /**
  * @author Ryan Park
- *
  */
  public class PortletPropsValues {
 

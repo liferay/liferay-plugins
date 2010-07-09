@@ -18,7 +18,6 @@ import java.io.Serializable;
 
 /**
  * @author Joseph Shum
- *
  */
 public class Book implements Serializable {
 

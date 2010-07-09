@@ -18,7 +18,6 @@ import com.liferay.socialcoding.model.JIRAIssue;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAIssueImpl extends JIRAIssueModelImpl implements JIRAIssue {
 

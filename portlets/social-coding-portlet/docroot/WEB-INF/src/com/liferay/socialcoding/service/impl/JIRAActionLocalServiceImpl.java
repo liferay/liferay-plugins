@@ -21,7 +21,6 @@ import com.liferay.socialcoding.service.base.JIRAActionLocalServiceBaseImpl;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAActionLocalServiceImpl extends JIRAActionLocalServiceBaseImpl {
 

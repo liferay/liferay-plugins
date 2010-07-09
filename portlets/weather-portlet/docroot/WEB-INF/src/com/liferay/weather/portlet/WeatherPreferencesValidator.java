@@ -26,7 +26,6 @@ import javax.portlet.ValidatorException;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class WeatherPreferencesValidator implements PreferencesValidator {
 

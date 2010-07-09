@@ -26,7 +26,6 @@ import com.liferay.weather.model.Weather;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class WeatherWebCacheItem implements WebCacheItem {
 

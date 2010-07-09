@@ -32,7 +32,6 @@ import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 

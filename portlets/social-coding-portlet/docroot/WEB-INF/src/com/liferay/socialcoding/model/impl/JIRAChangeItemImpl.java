@@ -18,7 +18,6 @@ import com.liferay.socialcoding.model.JIRAChangeItem;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAChangeItemImpl
 	extends JIRAChangeItemModelImpl implements JIRAChangeItem {

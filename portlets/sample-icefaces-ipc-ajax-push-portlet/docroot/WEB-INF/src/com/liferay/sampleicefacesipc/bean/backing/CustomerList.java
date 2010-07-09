@@ -21,7 +21,6 @@ import com.liferay.sampleicefacesipc.transfer.Customer;
 
 /**
  * @author Neil Griffin
- *
  */
 public class CustomerList {
 

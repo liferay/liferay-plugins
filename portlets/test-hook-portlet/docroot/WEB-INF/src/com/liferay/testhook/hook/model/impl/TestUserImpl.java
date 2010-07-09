@@ -19,7 +19,6 @@ import com.liferay.portal.model.UserWrapper;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class TestUserImpl extends UserWrapper {
 

@@ -50,7 +50,6 @@ import oasis.names.tc.wsrp.v2.types.RegistrationState;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class WSRPConsumerLocalServiceImpl
 	extends WSRPConsumerLocalServiceBaseImpl {

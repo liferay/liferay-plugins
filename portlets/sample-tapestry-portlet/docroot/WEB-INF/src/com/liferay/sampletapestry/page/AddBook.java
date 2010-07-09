@@ -26,7 +26,6 @@ import org.apache.tapestry.html.BasePage;
 
 /**
  * @author Joseph Shum
- *
  */
 public abstract class AddBook
 	extends BasePage implements PageBeginRenderListener {

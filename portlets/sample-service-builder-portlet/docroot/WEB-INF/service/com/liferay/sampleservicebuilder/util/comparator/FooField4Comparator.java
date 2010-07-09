@@ -20,7 +20,6 @@ import com.liferay.sampleservicebuilder.model.Foo;
 
 /**
  * @author Alexander Chow
- *
  */
 public class FooField4Comparator extends OrderByComparator {
 

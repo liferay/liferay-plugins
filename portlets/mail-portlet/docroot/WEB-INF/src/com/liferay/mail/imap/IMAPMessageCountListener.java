@@ -31,7 +31,6 @@ import javax.mail.event.MessageCountListener;
 
 /**
  * @author Scott Lee
- *
  */
 public class IMAPMessageCountListener implements MessageCountListener {
 

@@ -35,7 +35,6 @@ import org.tmatesoft.svn.core.wc.SVNWCUtil;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class SVNRepositoryLocalServiceImpl
 	extends SVNRepositoryLocalServiceBaseImpl {

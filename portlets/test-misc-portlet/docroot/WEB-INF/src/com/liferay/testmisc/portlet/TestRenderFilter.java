@@ -28,7 +28,6 @@ import javax.portlet.filter.RenderFilter;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class TestRenderFilter implements RenderFilter {
 

@@ -16,7 +16,6 @@ package com.liferay.samplehibernate.model;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class FoodItem {
 

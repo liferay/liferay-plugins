@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.messaging.MessageListener;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class TestSchedulerMessageListener implements MessageListener {
 

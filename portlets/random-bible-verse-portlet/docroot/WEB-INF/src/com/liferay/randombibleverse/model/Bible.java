@@ -18,7 +18,6 @@ import java.io.Serializable;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class Bible implements Serializable {
 

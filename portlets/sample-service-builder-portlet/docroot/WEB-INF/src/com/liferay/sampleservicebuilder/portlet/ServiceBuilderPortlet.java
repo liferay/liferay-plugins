@@ -37,7 +37,6 @@ import javax.portlet.PortletException;
 
 /**
  * @author Alexander Chow
- *
  */
 public class ServiceBuilderPortlet extends MVCPortlet {
 

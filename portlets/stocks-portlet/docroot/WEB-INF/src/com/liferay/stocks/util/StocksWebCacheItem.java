@@ -26,7 +26,6 @@ import java.util.StringTokenizer;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class StocksWebCacheItem implements WebCacheItem {
 

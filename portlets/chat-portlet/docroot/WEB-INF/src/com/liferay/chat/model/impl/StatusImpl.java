@@ -18,7 +18,6 @@ import com.liferay.chat.model.Status;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class StatusImpl extends StatusModelImpl implements Status {
 

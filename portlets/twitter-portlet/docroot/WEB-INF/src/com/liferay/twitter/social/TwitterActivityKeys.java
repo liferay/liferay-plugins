@@ -16,7 +16,6 @@ package com.liferay.twitter.social;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class TwitterActivityKeys {
 

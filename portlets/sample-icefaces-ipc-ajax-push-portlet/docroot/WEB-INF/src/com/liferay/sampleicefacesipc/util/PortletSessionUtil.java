@@ -28,7 +28,6 @@ import javax.portlet.PortletSession;
  * </p>
  *
  * @author Neil Griffin
- *
  */
 public class PortletSessionUtil {
 

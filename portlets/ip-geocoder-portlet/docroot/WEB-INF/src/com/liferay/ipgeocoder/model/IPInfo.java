@@ -18,7 +18,6 @@ import com.maxmind.geoip.Location;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class IPInfo {
 

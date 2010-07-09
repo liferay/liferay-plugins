@@ -21,7 +21,6 @@ import com.liferay.so.model.ProjectsEntry;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class ProjectsEntryImpl
 	extends ProjectsEntryModelImpl implements ProjectsEntry {

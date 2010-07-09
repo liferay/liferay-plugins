@@ -26,7 +26,6 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class TestSessionServlet extends HttpServlet {
 

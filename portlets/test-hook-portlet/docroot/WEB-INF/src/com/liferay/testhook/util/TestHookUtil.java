@@ -21,7 +21,6 @@ import java.io.File;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class TestHookUtil {
 

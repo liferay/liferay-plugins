@@ -24,7 +24,6 @@ import org.apache.struts.action.ActionMapping;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class UploadAction extends Action {
 

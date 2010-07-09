@@ -19,7 +19,6 @@ import org.apache.struts.upload.FormFile;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class UploadForm extends ActionForm {
 

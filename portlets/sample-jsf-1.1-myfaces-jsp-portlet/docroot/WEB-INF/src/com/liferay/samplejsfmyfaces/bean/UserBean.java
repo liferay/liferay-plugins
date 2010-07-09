@@ -16,7 +16,6 @@ package com.liferay.samplejsfmyfaces.bean;
 
 /**
  * @author Brian Myunghun Kim
- *
  */
 public class UserBean {
 

@@ -17,7 +17,6 @@ package com.liferay.googlegadget.model;
 /**
  * @author Brian Wing Shun Chan
  * @author Alberto Montero
- *
  */
 public class GGPagination {
 

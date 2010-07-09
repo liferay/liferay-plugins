@@ -19,7 +19,6 @@ import java.io.Serializable;
 
 /**
  * @author Scott Lee
- *
  */
 public class Book implements Serializable {
 

@@ -16,7 +16,6 @@ package com.liferay.socialnetworking.friends.social;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class FriendsActivityKeys {
 

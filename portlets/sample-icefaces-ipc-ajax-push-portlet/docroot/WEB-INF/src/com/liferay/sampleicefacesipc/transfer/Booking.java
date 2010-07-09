@@ -20,7 +20,6 @@ import java.util.GregorianCalendar;
 
 /**
  * @author Neil Griffin
- *
  */
 public class Booking {
 

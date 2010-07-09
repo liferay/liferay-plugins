@@ -18,7 +18,6 @@ import com.liferay.portal.NoSuchModelException;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class NoSuchFeedException extends NoSuchModelException {
 

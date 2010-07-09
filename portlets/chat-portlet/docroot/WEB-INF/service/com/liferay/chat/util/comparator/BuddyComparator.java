@@ -20,7 +20,6 @@ import java.util.Comparator;
 
 /**
  * @author Ryan Park
- *
  */
 public class BuddyComparator implements Comparator<Object[]> {
 

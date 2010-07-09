@@ -64,7 +64,6 @@ import java.util.Set;
 /**
  * @author Brian Wing Shun Chan
  * @author Ryan Park
- *
  */
 public class StartupAction extends SimpleAction {
 

@@ -46,7 +46,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Brett Swaim
- *
  */
 public class ServicePreAction extends Action {
 

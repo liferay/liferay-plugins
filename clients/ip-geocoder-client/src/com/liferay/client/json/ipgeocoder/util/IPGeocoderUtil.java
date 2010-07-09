@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class IPGeocoderUtil {
 

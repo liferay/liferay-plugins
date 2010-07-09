@@ -33,7 +33,6 @@ import org.apache.solr.common.util.NamedList;
 
 /**
  * @author Bruno Farache
- *
  */
 public class BasicAuthSolrServer extends SolrServer {
 

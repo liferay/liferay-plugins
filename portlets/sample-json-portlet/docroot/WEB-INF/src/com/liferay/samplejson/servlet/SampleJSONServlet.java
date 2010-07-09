@@ -30,7 +30,6 @@ import org.json.JSONObject;
 
 /**
  * @author Ming-Gih Lam
- *
  */
 public class SampleJSONServlet extends HttpServlet {
 

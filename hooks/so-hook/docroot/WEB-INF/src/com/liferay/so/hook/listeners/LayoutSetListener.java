@@ -58,7 +58,6 @@ import javax.portlet.PortletPreferences;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 

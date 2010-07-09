@@ -16,7 +16,6 @@ package com.liferay.socialcoding.svn.social;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class SVNActivityKeys {
 

@@ -29,7 +29,6 @@ import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class FriendsRequestInterpreter extends BaseSocialRequestInterpreter {
 

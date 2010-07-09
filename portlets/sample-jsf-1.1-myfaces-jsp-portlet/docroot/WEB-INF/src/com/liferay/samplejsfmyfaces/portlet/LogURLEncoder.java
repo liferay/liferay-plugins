@@ -22,7 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class LogURLEncoder implements URLEncoder {
 

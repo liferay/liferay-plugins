@@ -19,7 +19,6 @@ package com.liferay.so.profiles.social;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class ProfilesRequestKeys {
 

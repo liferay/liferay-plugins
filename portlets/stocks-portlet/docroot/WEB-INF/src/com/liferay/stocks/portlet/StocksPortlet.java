@@ -36,7 +36,6 @@ import javax.portlet.ValidatorException;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class StocksPortlet extends MVCPortlet {
 

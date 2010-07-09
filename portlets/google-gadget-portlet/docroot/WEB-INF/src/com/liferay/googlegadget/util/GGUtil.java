@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.webcache.WebCachePoolUtil;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class GGUtil {
 

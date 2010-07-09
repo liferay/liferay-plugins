@@ -19,7 +19,6 @@ package com.liferay.so.invitemembers.util;
 
 /**
  * @author Ryan Park
- *
  */
 public class InviteMembersConstants {
 

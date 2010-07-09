@@ -23,7 +23,6 @@ import org.hibernate.Session;
 
 /**
  * @author Charles May
- *
  */
 public class FoodItemUtil {
 

@@ -19,7 +19,6 @@ package com.liferay.so.util;
 
 /**
  * @author Ryan Park
- *
  */
 public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 

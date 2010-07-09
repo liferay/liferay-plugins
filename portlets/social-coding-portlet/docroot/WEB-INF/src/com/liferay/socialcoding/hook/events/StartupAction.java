@@ -27,7 +27,6 @@ import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class StartupAction extends SimpleAction {
 

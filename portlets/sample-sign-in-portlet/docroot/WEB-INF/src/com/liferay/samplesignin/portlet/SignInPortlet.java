@@ -32,7 +32,6 @@ import javax.portlet.PortletException;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class SignInPortlet extends MVCPortlet {
 

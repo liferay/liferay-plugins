@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.search.SearchEngine;
 
 /**
  * @author Bruno Farache
- *
  */
 public class SolrSearchEngineImpl implements SearchEngine {
 

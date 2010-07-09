@@ -25,7 +25,6 @@ import org.apache.solr.common.util.NamedList;
 
 /**
  * @author Bruno Farache
- *
  */
 public class BroadcastWriterSolrServer extends SolrServer {
 

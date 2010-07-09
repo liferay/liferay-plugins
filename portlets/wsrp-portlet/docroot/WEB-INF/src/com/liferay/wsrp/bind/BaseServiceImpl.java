@@ -25,7 +25,6 @@ import oasis.names.tc.wsrp.v2.types.LocalizedString;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class BaseServiceImpl {
 

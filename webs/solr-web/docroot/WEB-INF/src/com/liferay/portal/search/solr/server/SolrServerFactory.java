@@ -20,7 +20,6 @@ import org.apache.solr.client.solrj.SolrServer;
 
 /**
  * @author Bruno Farache
- *
  */
 public interface SolrServerFactory {
 

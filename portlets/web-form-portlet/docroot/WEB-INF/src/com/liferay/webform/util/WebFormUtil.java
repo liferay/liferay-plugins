@@ -49,7 +49,6 @@ import javax.portlet.PortletPreferences;
  * @author Alberto Montero
  * @author Julio Camarero
  * @author Brian Wing Shun Chan
- *
  */
 public class WebFormUtil {
 

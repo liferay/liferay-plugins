@@ -23,7 +23,6 @@ import org.apache.axis.message.MessageElement;
 
 /**
  * @author Michael Young
- *
  */
 public class ExtensionUtil {
 

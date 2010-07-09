@@ -19,7 +19,6 @@ import java.util.List;
 
 /**
  * @author Joseph Shum
- *
  */
 public class BookList {
 

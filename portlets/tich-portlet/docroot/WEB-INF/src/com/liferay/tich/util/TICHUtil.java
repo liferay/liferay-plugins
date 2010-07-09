@@ -22,7 +22,6 @@ import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class TICHUtil {
 

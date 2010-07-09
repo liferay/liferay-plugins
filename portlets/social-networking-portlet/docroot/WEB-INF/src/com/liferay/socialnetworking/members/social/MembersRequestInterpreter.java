@@ -33,7 +33,6 @@ import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 /**
  * @author Brian Wing Shun Chan
  * @author M Murali Krishna Reddy
- *
  */
 public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 

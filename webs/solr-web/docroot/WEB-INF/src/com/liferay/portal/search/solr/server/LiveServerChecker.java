@@ -24,7 +24,6 @@ import org.apache.solr.client.solrj.response.SolrPingResponse;
 
 /**
  * @author Bruno Farache
- *
  */
 public class LiveServerChecker {
 

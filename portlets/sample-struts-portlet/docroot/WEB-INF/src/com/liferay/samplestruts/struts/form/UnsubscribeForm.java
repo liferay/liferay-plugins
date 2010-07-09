@@ -21,7 +21,6 @@ import org.apache.struts.validator.ValidatorForm;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class UnsubscribeForm extends ValidatorForm {
 

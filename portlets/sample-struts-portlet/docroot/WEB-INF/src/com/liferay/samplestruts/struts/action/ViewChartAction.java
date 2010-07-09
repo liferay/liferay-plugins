@@ -44,7 +44,6 @@ import org.jfree.data.general.PieDataset;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class ViewChartAction extends Action {
 

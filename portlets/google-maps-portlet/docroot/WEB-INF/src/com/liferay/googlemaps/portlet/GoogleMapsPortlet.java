@@ -27,7 +27,6 @@ import javax.portlet.PortletSession;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class GoogleMapsPortlet extends MVCPortlet {
 

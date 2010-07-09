@@ -23,7 +23,6 @@ import java.util.TimeZone;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAUtil {
 

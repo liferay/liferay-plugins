@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class MemberRequestInvalidUserException extends PortalException {
 

@@ -31,7 +31,6 @@ import java.util.List;
 
 /**
  * @author Ryan Park
- *
  */
 public class ProjectsEntryLocalServiceImpl
 	extends ProjectsEntryLocalServiceBaseImpl {

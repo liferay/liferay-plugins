@@ -32,7 +32,6 @@ import org.apache.solr.common.SolrInputDocument;
 
 /**
  * @author Bruno Farache
- *
  */
 public class SolrIndexWriterImpl implements IndexWriter {
 

@@ -34,7 +34,6 @@ import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAChangeGroupFinderImpl
 	extends BasePersistenceImpl implements JIRAChangeGroupFinder {

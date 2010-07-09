@@ -16,7 +16,6 @@ package com.liferay.wsrp.util;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 

@@ -101,7 +101,6 @@ import javax.portlet.PortletPreferences;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class StartupAction extends SimpleAction {
 

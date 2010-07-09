@@ -33,7 +33,6 @@ import javax.portlet.ValidatorException;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class WeatherPortlet extends MVCPortlet {
 

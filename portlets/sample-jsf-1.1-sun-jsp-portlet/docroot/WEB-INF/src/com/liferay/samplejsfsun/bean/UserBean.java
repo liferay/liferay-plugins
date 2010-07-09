@@ -16,7 +16,6 @@ package com.liferay.samplejsfsun.bean;
 
 /**
  * @author Brian Myunghun Kim
- *
  */
 public class UserBean {
 

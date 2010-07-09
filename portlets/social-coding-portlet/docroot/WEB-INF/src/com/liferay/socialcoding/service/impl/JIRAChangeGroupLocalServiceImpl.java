@@ -21,7 +21,6 @@ import com.liferay.socialcoding.service.base.JIRAChangeGroupLocalServiceBaseImpl
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAChangeGroupLocalServiceImpl
 	extends JIRAChangeGroupLocalServiceBaseImpl {

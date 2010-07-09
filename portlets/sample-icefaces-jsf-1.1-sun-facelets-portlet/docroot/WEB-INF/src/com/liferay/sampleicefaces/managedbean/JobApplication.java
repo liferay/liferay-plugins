@@ -51,7 +51,6 @@ import javax.portlet.PortletPreferences;
  * </p>
  *
  * @author Neil Griffin
- *
  */
 public class JobApplication {
 

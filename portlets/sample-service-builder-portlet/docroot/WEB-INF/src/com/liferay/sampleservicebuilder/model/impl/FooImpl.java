@@ -18,7 +18,6 @@ import com.liferay.sampleservicebuilder.model.Foo;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class FooImpl extends FooModelImpl implements Foo {
 

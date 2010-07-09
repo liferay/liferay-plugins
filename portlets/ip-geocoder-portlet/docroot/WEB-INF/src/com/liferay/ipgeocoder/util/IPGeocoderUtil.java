@@ -26,7 +26,6 @@ import java.io.IOException;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class IPGeocoderUtil {
 

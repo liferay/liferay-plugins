@@ -24,7 +24,6 @@ import org.hibernate.cfg.Configuration;
 
 /**
  * @author Charles May
- *
  */
 public class HibernateUtil {
 

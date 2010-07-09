@@ -30,7 +30,6 @@ import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class WallEntryFinderImpl
 	extends BasePersistenceImpl implements WallEntryFinder {

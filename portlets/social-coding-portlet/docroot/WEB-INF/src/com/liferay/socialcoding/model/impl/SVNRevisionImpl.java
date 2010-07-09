@@ -30,7 +30,6 @@ import java.text.MessageFormat;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class SVNRevisionImpl
 	extends SVNRevisionModelImpl implements SVNRevision {

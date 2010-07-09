@@ -28,7 +28,6 @@ import com.liferay.twitter.model.Feed;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 

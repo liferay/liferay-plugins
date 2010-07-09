@@ -22,7 +22,6 @@ import java.util.List;
 
 /**
  * @author Neil Griffin
- *
  */
 public class BookingTypeServiceMockImpl implements BookingTypeService {
 

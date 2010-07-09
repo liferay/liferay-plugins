@@ -22,7 +22,6 @@ import com.liferay.testhook.util.TestHookUtil;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class StartupAction extends SimpleAction {
 

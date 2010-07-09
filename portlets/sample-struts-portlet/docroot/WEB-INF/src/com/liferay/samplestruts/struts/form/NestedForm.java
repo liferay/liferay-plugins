@@ -27,7 +27,6 @@ import org.apache.struts.action.ActionMapping;
 
 /**
  * @author Scott Lee
- *
  */
 public class NestedForm extends ActionForm {
 

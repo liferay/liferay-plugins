@@ -24,7 +24,6 @@ import com.liferay.randombibleverse.model.Verse;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class VerseWebCacheItem implements WebCacheItem {
 

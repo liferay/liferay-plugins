@@ -29,7 +29,6 @@ import javax.portlet.PortletSession;
 
 /**
  * @author Mark Wong
- *
  */
 public class ConfigurationActionImpl extends BaseConfigurationAction {
 

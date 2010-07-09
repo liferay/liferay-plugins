@@ -56,7 +56,6 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @author Ryan Park
- *
  */
 public class InviteMembersPortlet extends MVCPortlet {
 

@@ -18,7 +18,6 @@ import org.apache.commons.lang.exception.NestableException;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class SampleException extends NestableException {
 

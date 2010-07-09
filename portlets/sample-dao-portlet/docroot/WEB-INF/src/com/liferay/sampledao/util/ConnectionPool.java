@@ -29,7 +29,6 @@ import java.util.Properties;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class ConnectionPool {
 

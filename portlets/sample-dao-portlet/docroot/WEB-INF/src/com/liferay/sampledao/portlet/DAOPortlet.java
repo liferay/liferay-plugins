@@ -38,7 +38,6 @@ import javax.portlet.RenderResponse;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class DAOPortlet extends GenericPortlet {
 

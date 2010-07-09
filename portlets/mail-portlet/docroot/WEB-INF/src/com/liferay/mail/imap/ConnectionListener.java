@@ -21,7 +21,6 @@ import javax.mail.event.ConnectionEvent;
 
 /**
  * @author Alexander Chow
- *
  */
 public class ConnectionListener implements javax.mail.event.ConnectionListener {
 

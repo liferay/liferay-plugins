@@ -16,7 +16,6 @@ package com.liferay.socialcoding.jira.social;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAActivityKeys {
 

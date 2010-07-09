@@ -16,7 +16,6 @@ package com.liferay.socialnetworking.wall.social;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class WallActivityKeys {
 

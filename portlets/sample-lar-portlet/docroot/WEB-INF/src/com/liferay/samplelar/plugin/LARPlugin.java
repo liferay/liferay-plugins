@@ -34,7 +34,6 @@ import javax.portlet.PortletPreferences;
 
 /**
  * @author Raymond Augé
- *
  */
 public class LARPlugin extends BasePortletDataHandler {
 

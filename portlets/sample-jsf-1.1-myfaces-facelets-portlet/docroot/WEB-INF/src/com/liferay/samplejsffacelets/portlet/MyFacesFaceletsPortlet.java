@@ -25,7 +25,6 @@ import javax.portlet.UnavailableException;
 
 /**
  * @author Raymond Augé
- *
  */
 public class MyFacesFaceletsPortlet
 	extends org.apache.myfaces.portlet.MyFacesGenericPortlet {

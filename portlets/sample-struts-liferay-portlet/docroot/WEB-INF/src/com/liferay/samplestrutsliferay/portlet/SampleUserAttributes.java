@@ -21,7 +21,6 @@ import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class SampleUserAttributes implements CustomUserAttributes {
 

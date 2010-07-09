@@ -21,7 +21,6 @@ import com.liferay.socialnetworking.service.WallEntryLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class GroupListener extends BaseModelListener<Group> {
 

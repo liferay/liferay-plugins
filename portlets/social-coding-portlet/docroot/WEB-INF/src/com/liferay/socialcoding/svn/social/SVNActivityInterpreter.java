@@ -26,7 +26,6 @@ import com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 

@@ -28,7 +28,6 @@ import javax.servlet.ServletContextListener;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class IPGeocoderServletContextListener
 	implements PortalInitable, ServletContextListener {

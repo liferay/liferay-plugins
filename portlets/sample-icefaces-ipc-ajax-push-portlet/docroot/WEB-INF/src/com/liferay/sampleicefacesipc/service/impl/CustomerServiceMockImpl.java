@@ -23,7 +23,6 @@ import java.util.List;
 
 /**
  * @author Neil Griffin
- *
  */
 public class CustomerServiceMockImpl implements CustomerService {
 

@@ -19,7 +19,6 @@ import java.util.List;
 
 /**
  * @author Neil Griffin
- *
  */
 public class Customer {
 

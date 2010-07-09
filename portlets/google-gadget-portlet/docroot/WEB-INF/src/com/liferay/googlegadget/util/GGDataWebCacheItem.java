@@ -33,7 +33,6 @@ import java.util.regex.Pattern;
 /**
  * @author Brian Wing Shun Chan
  * @author Alberto Montero
- *
  */
 public class GGDataWebCacheItem implements WebCacheItem {
 

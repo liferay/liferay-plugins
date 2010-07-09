@@ -23,7 +23,6 @@ import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class SynchronizeJIRAMessageListener implements MessageListener {
 

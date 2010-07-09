@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.util.StringPool;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class IPGeocoderMessageListener implements MessageListener {
 

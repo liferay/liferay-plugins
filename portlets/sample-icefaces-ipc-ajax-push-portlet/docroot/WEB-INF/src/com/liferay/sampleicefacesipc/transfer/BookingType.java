@@ -16,7 +16,6 @@ package com.liferay.sampleicefacesipc.transfer;
 
 /**
  * @author Neil Griffin
- *
  */
 public class BookingType {
 

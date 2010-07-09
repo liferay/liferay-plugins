@@ -20,7 +20,6 @@ import org.apache.tapestry.html.BasePage;
 
 /**
  * @author Joseph Shum
- *
  */
 public abstract class View extends BasePage {
 

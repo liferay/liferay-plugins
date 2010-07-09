@@ -26,7 +26,6 @@ import javax.servlet.ServletContextListener;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class WSRPServletContextListener
 	implements PortalInitable, ServletContextListener {

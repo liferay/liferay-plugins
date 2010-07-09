@@ -31,7 +31,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Charles May
- *
  */
 public class HibernateServlet extends HttpServlet {
 

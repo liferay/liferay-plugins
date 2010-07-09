@@ -63,7 +63,6 @@ import org.apache.axis.message.MessageElement;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class WSRPConsumerPortletLocalServiceImpl
 	extends WSRPConsumerPortletLocalServiceBaseImpl {

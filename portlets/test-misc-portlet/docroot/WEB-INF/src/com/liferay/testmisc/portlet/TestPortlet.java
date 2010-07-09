@@ -39,7 +39,6 @@ import javax.portlet.ResourceResponse;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class TestPortlet extends LiferayPortlet {
 

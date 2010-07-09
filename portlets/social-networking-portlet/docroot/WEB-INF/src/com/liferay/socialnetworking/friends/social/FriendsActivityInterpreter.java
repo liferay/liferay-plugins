@@ -25,7 +25,6 @@ import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 

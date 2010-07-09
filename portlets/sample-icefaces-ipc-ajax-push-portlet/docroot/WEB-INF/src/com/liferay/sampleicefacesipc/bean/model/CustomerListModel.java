@@ -33,7 +33,6 @@ import javax.faces.event.ValueChangeEvent;
 
 /**
  * @author Neil Griffin
- *
  */
 public class CustomerListModel implements DisposableBean, Renderable {
 

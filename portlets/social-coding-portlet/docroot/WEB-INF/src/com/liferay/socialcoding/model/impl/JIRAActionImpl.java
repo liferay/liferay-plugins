@@ -18,7 +18,6 @@ import com.liferay.socialcoding.model.JIRAAction;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class JIRAActionImpl extends JIRAActionModelImpl implements JIRAAction {
 

@@ -117,7 +117,6 @@ import org.apache.axis.message.MessageElement;
 /**
  * @author Brian Wing Shun Chan
  * @author Michael Young
- *
  */
 public class ConsumerPortlet extends GenericPortlet {
 

@@ -16,7 +16,6 @@ package com.liferay.googlegadget.model;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class GGCategory {
 

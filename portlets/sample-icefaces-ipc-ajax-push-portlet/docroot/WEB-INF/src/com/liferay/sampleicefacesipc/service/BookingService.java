@@ -20,7 +20,6 @@ import java.util.List;
 
 /**
  * @author Neil Griffin
- *
  */
 public interface BookingService {
 

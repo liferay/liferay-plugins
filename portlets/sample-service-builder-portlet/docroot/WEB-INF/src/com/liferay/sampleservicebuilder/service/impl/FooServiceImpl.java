@@ -18,7 +18,6 @@ import com.liferay.sampleservicebuilder.service.base.FooServiceBaseImpl;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class FooServiceImpl extends FooServiceBaseImpl {
 }

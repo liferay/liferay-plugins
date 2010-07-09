@@ -56,7 +56,6 @@ import oasis.names.tc.wsrp.v2.wsdl.WSRP_v2_Service;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class WSRPConsumerManager {
 

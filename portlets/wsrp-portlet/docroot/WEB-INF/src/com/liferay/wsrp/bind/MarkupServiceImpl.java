@@ -75,7 +75,6 @@ import org.apache.axis.message.MessageElement;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class MarkupServiceImpl
 	extends BaseServiceImpl implements WSRP_v2_Markup_PortType {

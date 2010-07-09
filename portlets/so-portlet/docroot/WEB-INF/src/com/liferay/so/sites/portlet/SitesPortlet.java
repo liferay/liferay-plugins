@@ -33,7 +33,6 @@ import javax.portlet.ActionResponse;
 
 /**
  * @author Ryan Park
- *
  */
 public class SitesPortlet extends MVCPortlet {
 

@@ -23,7 +23,6 @@ import org.apache.solr.client.solrj.SolrServer;
 
 /**
  * @author Bruno Farache
- *
  */
 public class SolrServerFactoryImpl implements SolrServerFactory {
 

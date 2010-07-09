@@ -20,7 +20,6 @@ import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class PortalInitThread extends Thread {
 

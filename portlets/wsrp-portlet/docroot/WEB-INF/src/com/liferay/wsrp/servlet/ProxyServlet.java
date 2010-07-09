@@ -33,7 +33,6 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @author Brian Wing Shun Chan
- *
  */
 public class ProxyServlet extends HttpServlet {
 
