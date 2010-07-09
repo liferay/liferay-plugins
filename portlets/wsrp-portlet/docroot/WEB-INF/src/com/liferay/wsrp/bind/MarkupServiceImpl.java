@@ -631,6 +631,12 @@ public class MarkupServiceImpl
 		sb.append(getWidgetPath());
 		sb.append(StringPool.QUESTION);
 
+		String propertiesAuthenticatonTokenSharedSecret = Encryptor.digest(
+			PropsUtil.get(PropsKeys.AUTH_TOKEN_SHARED_SECRET));
+
+		sb.append("&p_auth_secret=");
+		sb.append(HttpUtil.encodeURL(propertiesAuthenticatonTokenSharedSecret));
+
 		Layout layout = getLayout(portletContext, wsrpProducer);
 
 		sb.append("p_l_id=");
@@ -690,12 +696,6 @@ public class MarkupServiceImpl
 		}
 
 		sb.append("&wsrp=1");
-
-		String sharedSecret = Encryptor.digest(
-			PropsUtil.get(PropsKeys.AUTH_TOKEN_SHARED_SECRET));
-
-		sb.append("&p_auth_secret=");
-		sb.append(HttpUtil.encodeURL(sharedSecret));
 
 		if (_log.isInfoEnabled()) {
 			_log.info("URL " + sb.toString());
