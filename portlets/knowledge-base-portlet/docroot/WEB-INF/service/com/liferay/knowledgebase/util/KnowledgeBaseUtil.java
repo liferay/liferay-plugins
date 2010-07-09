@@ -55,8 +55,6 @@ import javax.portlet.PortletPreferences;
 import javax.portlet.WindowState;
 
 /**
- * <a href="KnowledgeBaseUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */

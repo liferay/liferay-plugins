@@ -49,9 +49,6 @@ import oasis.names.tc.wsrp.v2.types.RegistrationData;
 import oasis.names.tc.wsrp.v2.types.RegistrationState;
 
 /**
- * <a href="WSRPConsumerLocalServiceImpl.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Brian Wing Shun Chan
  *
  */

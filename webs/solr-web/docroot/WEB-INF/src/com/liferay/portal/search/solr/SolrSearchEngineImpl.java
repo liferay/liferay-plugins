@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.search.IndexWriter;
 import com.liferay.portal.kernel.search.SearchEngine;
 
 /**
- * <a href="SolrSearchEngineImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Bruno Farache
  *
  */

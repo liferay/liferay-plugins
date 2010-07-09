@@ -31,8 +31,6 @@ import org.apache.shindig.social.opensocial.spi.PersonService;
 import org.apache.shindig.social.sample.oauth.SampleOAuthDataStore;
 
 /**
- * <a href="LiferayGuiceModule.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  */
 public class LiferayGuiceModule extends SocialApiGuiceModule {

@@ -17,8 +17,6 @@ package com.liferay.portal.workflow.kaleo.definition;
 import java.util.Set;
 
 /**
- * <a href="Task.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class Task extends Node {

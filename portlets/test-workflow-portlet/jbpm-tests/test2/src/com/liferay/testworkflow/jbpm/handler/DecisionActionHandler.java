@@ -19,8 +19,6 @@ import org.jbpm.graph.exe.ExecutionContext;
 import org.jbpm.graph.node.DecisionHandler;
 
 /**
- * <a href="DecisionActionHandler.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  */
 public class DecisionActionHandler implements DecisionHandler {

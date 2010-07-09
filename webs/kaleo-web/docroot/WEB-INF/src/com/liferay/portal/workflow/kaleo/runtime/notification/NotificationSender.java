@@ -20,8 +20,6 @@ import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import java.util.List;
 
 /**
- * <a href="NotificationSender.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public interface NotificationSender {

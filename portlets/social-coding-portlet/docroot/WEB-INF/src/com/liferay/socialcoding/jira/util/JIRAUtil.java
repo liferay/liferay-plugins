@@ -22,8 +22,6 @@ import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 /**
- * <a href="JIRAUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

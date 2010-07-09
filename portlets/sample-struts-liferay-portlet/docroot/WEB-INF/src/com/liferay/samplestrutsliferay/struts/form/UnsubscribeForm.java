@@ -20,8 +20,6 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.validator.ValidatorForm;
 
 /**
- * <a href="UnsubscribeForm.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

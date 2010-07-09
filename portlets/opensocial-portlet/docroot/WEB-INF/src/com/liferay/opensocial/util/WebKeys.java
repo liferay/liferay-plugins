@@ -15,8 +15,6 @@
 package com.liferay.opensocial.util;
 
 /**
- * <a href="WebKeys.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  */
 public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {

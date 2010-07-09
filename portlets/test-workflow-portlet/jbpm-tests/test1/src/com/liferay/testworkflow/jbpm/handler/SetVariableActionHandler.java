@@ -19,8 +19,6 @@ import org.jbpm.graph.def.ActionHandler;
 import org.jbpm.graph.exe.ExecutionContext;
 
 /**
- * <a href="SetVariableActionHandler.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  */
 public class SetVariableActionHandler implements ActionHandler {

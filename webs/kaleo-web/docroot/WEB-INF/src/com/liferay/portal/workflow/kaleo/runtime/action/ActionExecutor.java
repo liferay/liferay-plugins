@@ -18,8 +18,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoAction;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 /**
- * <a href="ActionExecutor.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public interface ActionExecutor {

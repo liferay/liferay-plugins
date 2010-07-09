@@ -17,9 +17,6 @@ package com.liferay.portal.workflow.kaleo.comparator;
 import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowTaskDueDateComparator;
 
 /**
- * <a href="WorkflowTaskDueDateComparator.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Shuyang Zhou
  */
 public class WorkflowTaskDueDateComparator

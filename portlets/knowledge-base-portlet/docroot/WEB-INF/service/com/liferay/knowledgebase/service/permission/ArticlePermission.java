@@ -24,8 +24,6 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 
 /**
- * <a href="ArticlePermission.java.html"><b><i>View Source</i></b></a>
- *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */

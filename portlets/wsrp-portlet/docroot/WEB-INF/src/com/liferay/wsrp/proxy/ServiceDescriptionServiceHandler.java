@@ -25,9 +25,6 @@ import oasis.names.tc.wsrp.v1.types.GetServiceDescription;
 import oasis.names.tc.wsrp.v1.types.ServiceDescription;
 
 /**
- * <a href="ServiceDescriptionServiceHandler.java.html"><b><i>View Source</i>
- * </b></a>
- *
  * @author Michael Young
  */
 public class ServiceDescriptionServiceHandler implements InvocationHandler {

@@ -33,8 +33,6 @@ import java.util.Set;
 import org.jbpm.taskmgmt.exe.PooledActor;
 
 /**
- * <a href="AssigneeRetrievalUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Marcellus Tavares
  */
 public class AssigneeRetrievalUtil {

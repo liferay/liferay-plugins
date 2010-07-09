@@ -17,8 +17,6 @@ package com.liferay.mail.util;
 import java.io.InputStream;
 
 /**
- * <a href="AttachmentHandler.java.html"><b><i>View Source</i></b></a>
- *
  * @author Ryan Park
  */
 public interface AttachmentHandler {

@@ -30,8 +30,6 @@ import java.util.regex.Pattern;
 import javax.portlet.PortletURL;
 
 /**
- * <a href="MenuItem.java.html"><b><i>View Source</i></b></a>
- *
  * @author Thiago Moreira
  * @author Peter Shin
  */

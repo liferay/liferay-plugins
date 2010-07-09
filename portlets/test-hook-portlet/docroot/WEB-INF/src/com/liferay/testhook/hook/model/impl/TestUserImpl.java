@@ -18,8 +18,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserWrapper;
 
 /**
- * <a href="TestUserImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

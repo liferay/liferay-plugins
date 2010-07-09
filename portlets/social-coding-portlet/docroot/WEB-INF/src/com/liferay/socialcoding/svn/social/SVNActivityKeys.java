@@ -15,8 +15,6 @@
 package com.liferay.socialcoding.svn.social;
 
 /**
- * <a href="SVNActivityKeys.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

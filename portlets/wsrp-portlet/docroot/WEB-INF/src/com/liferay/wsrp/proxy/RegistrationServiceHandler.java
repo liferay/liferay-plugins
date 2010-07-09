@@ -26,8 +26,6 @@ import oasis.names.tc.wsrp.v1.types.RegistrationData;
 import oasis.names.tc.wsrp.v2.types.Register;
 
 /**
- * <a href="RegistrationServiceHandler.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  */
 public class RegistrationServiceHandler implements InvocationHandler {

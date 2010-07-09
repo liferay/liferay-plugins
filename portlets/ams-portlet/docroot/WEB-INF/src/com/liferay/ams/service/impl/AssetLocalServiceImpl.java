@@ -17,8 +17,6 @@ package com.liferay.ams.service.impl;
 import com.liferay.ams.service.base.AssetLocalServiceBaseImpl;
 
 /**
- * <a href="AssetLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class AssetLocalServiceImpl extends AssetLocalServiceBaseImpl {

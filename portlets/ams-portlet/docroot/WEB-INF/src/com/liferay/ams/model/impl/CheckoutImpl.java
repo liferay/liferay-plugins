@@ -17,8 +17,6 @@ package com.liferay.ams.model.impl;
 import com.liferay.ams.model.Checkout;
 
 /**
- * <a href="CheckoutImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class CheckoutImpl extends CheckoutModelImpl implements Checkout {

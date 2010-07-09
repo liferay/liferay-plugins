@@ -17,8 +17,6 @@ package com.liferay.twitter.model.impl;
 import com.liferay.twitter.model.Feed;
 
 /**
- * <a href="FeedImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

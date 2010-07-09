@@ -45,8 +45,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <a href="DefaultWorkflowEngineImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor = {Exception.class})

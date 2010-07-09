@@ -17,8 +17,6 @@ package com.liferay.portal.workflow.jbpm.bundle;
 import com.liferay.portal.kernel.resource.ResourceRetriever;
 
 /**
- * <a href="BundleEntry.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  *
  */

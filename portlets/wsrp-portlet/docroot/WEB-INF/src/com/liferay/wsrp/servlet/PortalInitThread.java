@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
 /**
- * <a href="PortalInitThread.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

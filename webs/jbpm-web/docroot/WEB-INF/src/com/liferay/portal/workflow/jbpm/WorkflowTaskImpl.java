@@ -32,8 +32,6 @@ import org.jbpm.graph.exe.Token;
 import org.jbpm.taskmgmt.exe.TaskInstance;
 
 /**
- * <a href="WorkflowTaskImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  */

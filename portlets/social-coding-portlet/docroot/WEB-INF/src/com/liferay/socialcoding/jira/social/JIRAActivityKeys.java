@@ -15,8 +15,6 @@
 package com.liferay.socialcoding.jira.social;
 
 /**
- * <a href="JIRAActivityKeys.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

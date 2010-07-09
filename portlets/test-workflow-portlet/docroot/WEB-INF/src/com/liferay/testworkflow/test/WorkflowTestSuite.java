@@ -15,8 +15,6 @@
 package com.liferay.testworkflow.test;
 
 /**
- * <a href="WorkflowTestSuite.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  */

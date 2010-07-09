@@ -18,8 +18,6 @@ import com.liferay.portal.kernel.workflow.WorkflowLog;
 import com.liferay.portal.workflow.kaleo.definition.LogType;
 
 /**
- * <a href="KaleoLogUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class KaleoLogUtil {

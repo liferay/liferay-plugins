@@ -18,8 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <a href="BookList.java.html"><b><i>View Source</i></b></a>
- *
  * @author Joseph Shum
  *
  */

@@ -20,8 +20,6 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
- * <a href="WorkflowEngineManagerImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class WorkflowEngineManagerImpl implements WorkflowEngineManager {

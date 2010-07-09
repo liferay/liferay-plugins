@@ -17,9 +17,6 @@ package com.liferay.portal.workflow.kaleo;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * <a href="NoSuchTaskInstanceTokenException.java.html"><b><i>View Source</i>
- * </b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class NoSuchTaskInstanceTokenException extends NoSuchModelException {

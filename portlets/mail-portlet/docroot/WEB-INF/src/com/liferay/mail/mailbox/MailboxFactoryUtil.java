@@ -24,8 +24,6 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import java.util.Map;
 
 /**
- * <a href="MailboxFactoryUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public class MailboxFactoryUtil {

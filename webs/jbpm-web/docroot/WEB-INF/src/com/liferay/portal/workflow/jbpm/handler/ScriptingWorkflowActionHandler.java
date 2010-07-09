@@ -32,9 +32,6 @@ import org.jbpm.graph.exe.ExecutionContext;
 import org.jbpm.taskmgmt.exe.TaskInstance;
 
 /**
- * <a href="ScriptingWorkflowActionHandler.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Michael C. Han
  */
 public class ScriptingWorkflowActionHandler implements ActionHandler {

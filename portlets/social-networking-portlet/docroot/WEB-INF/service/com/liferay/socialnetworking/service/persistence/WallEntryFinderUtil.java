@@ -17,8 +17,6 @@ package com.liferay.socialnetworking.service.persistence;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 
 /**
- * <a href="WallEntryFinderUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class WallEntryFinderUtil {

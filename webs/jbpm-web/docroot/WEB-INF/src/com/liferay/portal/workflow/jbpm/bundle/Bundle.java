@@ -29,8 +29,6 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
 
 /**
- * <a href="Bundle.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  */

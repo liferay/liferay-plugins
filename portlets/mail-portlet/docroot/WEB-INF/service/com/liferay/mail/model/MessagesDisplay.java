@@ -17,8 +17,6 @@ package com.liferay.mail.model;
 import java.util.List;
 
 /**
- * <a href="MessagesDisplay.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public class MessagesDisplay {

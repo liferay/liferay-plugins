@@ -73,8 +73,6 @@ import javax.portlet.ActionResponse;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * <a href="ProfilesPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Ryan Park
  *
  */

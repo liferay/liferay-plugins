@@ -34,8 +34,6 @@ import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationUtil;
 import java.util.List;
 
 /**
- * <a href="DefaultGraphWalker.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 @Transactional(

@@ -31,8 +31,6 @@ import java.util.List;
 import javax.portlet.PortletPreferences;
 
 /**
- * <a href="UpgradeAssetPublisher.java.html"><b><i>View Source</i></b></a>
- *
  * @author Ryan Park
  */
 public class UpgradeAssetPublisher extends UpgradeProcess {

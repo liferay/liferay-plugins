@@ -25,8 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <a href="WorkflowLogManagerImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class WorkflowLogManagerImpl implements WorkflowLogManager {

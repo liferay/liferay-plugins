@@ -35,8 +35,6 @@ import java.util.List;
 import javax.mail.internet.InternetAddress;
 
 /**
- * <a href="EmailNotificationSender.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class EmailNotificationSender implements NotificationSender {

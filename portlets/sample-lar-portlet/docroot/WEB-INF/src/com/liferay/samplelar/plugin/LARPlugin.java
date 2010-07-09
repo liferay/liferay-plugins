@@ -33,8 +33,6 @@ import java.util.Map;
 import javax.portlet.PortletPreferences;
 
 /**
- * <a href="LARPlugin.java.html"><b><i>View Source</i></b></a>
- *
  * @author Raymond Augé
  *
  */

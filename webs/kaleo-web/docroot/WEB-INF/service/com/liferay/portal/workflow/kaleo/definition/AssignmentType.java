@@ -15,8 +15,6 @@
 package com.liferay.portal.workflow.kaleo.definition;
 
 /**
- * <a href="AssignmentType.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public enum AssignmentType {

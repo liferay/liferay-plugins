@@ -18,8 +18,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 /**
- * <a href="PathElement.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class PathElement {

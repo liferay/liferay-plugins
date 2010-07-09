@@ -58,8 +58,6 @@ import org.jbpm.graph.exe.ProcessInstance;
 import org.jbpm.taskmgmt.exe.TaskInstance;
 
 /**
- * <a href="CustomSession.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  * @author Marcellus Tavares

@@ -41,8 +41,6 @@ import org.apache.shindig.gadgets.spec.GadgetSpec;
 import org.apache.shindig.gadgets.spec.UserPref;
 
 /**
- * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  */
 public class ConfigurationActionImpl extends BaseConfigurationAction {

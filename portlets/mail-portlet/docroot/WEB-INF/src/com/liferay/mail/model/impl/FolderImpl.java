@@ -17,8 +17,6 @@ package com.liferay.mail.model.impl;
 import com.liferay.mail.model.Folder;
 
 /**
- * <a href="FolderImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class FolderImpl extends FolderModelImpl implements Folder {

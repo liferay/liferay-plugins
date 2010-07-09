@@ -21,8 +21,6 @@ import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
 
 /**
- * <a href="WSRPConsumerLocalServiceClp.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {

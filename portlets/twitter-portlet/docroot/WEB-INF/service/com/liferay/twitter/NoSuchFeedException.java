@@ -17,8 +17,6 @@ package com.liferay.twitter;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * <a href="NoSuchFeedException.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

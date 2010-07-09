@@ -28,8 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <a href="PathElementMessageListener.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class PathElementMessageListener implements MessageListener {

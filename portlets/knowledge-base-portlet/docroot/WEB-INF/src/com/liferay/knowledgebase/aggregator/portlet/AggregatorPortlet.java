@@ -23,8 +23,6 @@ import javax.portlet.ResourceRequest;
 import javax.portlet.WindowState;
 
 /**
- * <a href="AggregatorPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */

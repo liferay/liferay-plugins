@@ -33,9 +33,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <a href="FreeMarkerNotificationMessageGenerator.java.html"><b><i>View Source
- * </i></b></a>
- *
  * @author Michael C. Han
  */
 public class FreeMarkerNotificationMessageGenerator

@@ -17,8 +17,6 @@ package com.liferay.portal.workflow.kaleo.model.impl;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
 
 /**
- * <a href="KaleoNotificationImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class KaleoNotificationImpl extends KaleoNotificationModelImpl

@@ -23,8 +23,6 @@ import com.liferay.portal.kernel.util.Validator;
 import java.io.UnsupportedEncodingException;
 
 /**
- * <a href="PasswordUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Deepak Gothe
  */
 public class PasswordUtil {

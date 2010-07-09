@@ -17,8 +17,6 @@ package com.liferay.chat.model.impl;
 import com.liferay.chat.model.Status;
 
 /**
- * <a href="StatusImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

@@ -18,8 +18,6 @@
 package com.liferay.so.util;
 
 /**
- * <a href="PortletPropsKeys.java.html"><b><i>View Source</i></b></a>
- *
  * @author Ryan Park
  */
 public interface PortletPropsKeys {

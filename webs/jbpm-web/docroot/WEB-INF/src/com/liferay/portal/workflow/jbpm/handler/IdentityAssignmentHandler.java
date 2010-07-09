@@ -43,8 +43,6 @@ import org.jbpm.taskmgmt.def.AssignmentHandler;
 import org.jbpm.taskmgmt.exe.Assignable;
 
 /**
- * <a href="IdentityAssignmentHandler.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  * @author Marcellus Tavares

@@ -21,8 +21,6 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ResourceRequest;
 
 /**
- * <a href="SearchPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */

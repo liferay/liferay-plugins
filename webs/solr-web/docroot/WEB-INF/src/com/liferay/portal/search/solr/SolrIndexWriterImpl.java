@@ -31,8 +31,6 @@ import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.common.SolrInputDocument;
 
 /**
- * <a href="SolrIndexWriterImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Bruno Farache
  *
  */

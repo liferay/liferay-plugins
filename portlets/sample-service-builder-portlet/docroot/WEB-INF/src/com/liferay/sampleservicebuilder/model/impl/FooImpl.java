@@ -17,8 +17,6 @@ package com.liferay.sampleservicebuilder.model.impl;
 import com.liferay.sampleservicebuilder.model.Foo;
 
 /**
- * <a href="FooImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

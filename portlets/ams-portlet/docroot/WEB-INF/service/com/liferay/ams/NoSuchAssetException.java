@@ -17,8 +17,6 @@ package com.liferay.ams;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * <a href="NoSuchAssetException.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class NoSuchAssetException extends NoSuchModelException {

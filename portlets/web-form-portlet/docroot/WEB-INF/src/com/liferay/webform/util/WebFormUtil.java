@@ -44,8 +44,6 @@ import java.util.Map;
 import javax.portlet.PortletPreferences;
 
 /**
- * <a href="WebFormUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Daniel Weisser
  * @author Jorge Ferrer
  * @author Alberto Montero

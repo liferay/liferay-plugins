@@ -26,9 +26,6 @@ import java.io.ByteArrayInputStream;
 import java.util.List;
 
 /**
- * <a href="WorkflowDefinitionManagerTestCase.java.html"><b><i>View Source</i>
- * </b></a>
- *
  * @author Shuyang Zhou
  */
 public class WorkflowDefinitionManagerTestCase extends WorkflowTestCase {

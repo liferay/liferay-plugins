@@ -17,9 +17,6 @@ package com.liferay.portal.workflow.kaleo.comparator;
 import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowInstanceStateComparator;
 
 /**
- * <a href="WorkflowInstanceStateComparator.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Brian Wing Shun Chan
  */
 public class WorkflowInstanceStateComparator

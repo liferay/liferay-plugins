@@ -20,8 +20,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <a href="Notification.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class Notification {

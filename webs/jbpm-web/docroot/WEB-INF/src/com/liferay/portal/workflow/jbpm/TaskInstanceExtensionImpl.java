@@ -19,9 +19,6 @@ import java.util.List;
 import org.jbpm.taskmgmt.exe.TaskInstance;
 
 /**
- * <a href="TaskInstanceExtensionImpl.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Marcellus Tavares
  */
 public class TaskInstanceExtensionImpl {

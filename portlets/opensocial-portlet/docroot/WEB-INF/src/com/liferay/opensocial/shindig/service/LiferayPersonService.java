@@ -60,8 +60,6 @@ import org.apache.shindig.social.opensocial.spi.PersonService;
 import org.apache.shindig.social.opensocial.spi.UserId;
 
 /**
- * <a href="LiferayPersonService.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  */
 public class LiferayPersonService implements PersonService {

@@ -24,8 +24,6 @@ import org.apache.solr.client.solrj.request.UpdateRequest;
 import org.apache.solr.common.util.NamedList;
 
 /**
- * <a href="BroadcastWriterSolrServer.java.html"><b><i>View Source</i></b></a>
- *
  * @author Bruno Farache
  *
  */

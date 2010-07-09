@@ -52,9 +52,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 /**
- * <a href="SVNRevisionLocalServiceBaseImpl.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Brian Wing Shun Chan
  */
 public abstract class SVNRevisionLocalServiceBaseImpl

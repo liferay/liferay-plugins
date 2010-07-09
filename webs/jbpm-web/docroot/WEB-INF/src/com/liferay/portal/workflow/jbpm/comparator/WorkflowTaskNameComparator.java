@@ -17,8 +17,6 @@ package com.liferay.portal.workflow.jbpm.comparator;
 import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowTaskNameComparator;
 
 /**
- * <a href="WorkflowTaskNameComparator.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  */
 public class WorkflowTaskNameComparator

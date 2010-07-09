@@ -33,8 +33,6 @@ import javax.net.ssl.SSLSocketFactory;
 import org.apache.commons.lang.time.StopWatch;
 
 /**
- * <a href="IMAPConnection.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public class IMAPConnection {

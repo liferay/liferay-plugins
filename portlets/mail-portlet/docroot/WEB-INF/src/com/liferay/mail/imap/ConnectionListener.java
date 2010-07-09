@@ -20,8 +20,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import javax.mail.event.ConnectionEvent;
 
 /**
- * <a href="ConnectionListener.java.html"><b><i>View Source</i></b></a>
- *
  * @author Alexander Chow
  *
  */

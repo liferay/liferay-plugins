@@ -15,8 +15,6 @@
 package com.liferay.portal.workflow.jbpm.util;
 
 /**
- * <a href="AssignmentType.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public enum AssignmentType {

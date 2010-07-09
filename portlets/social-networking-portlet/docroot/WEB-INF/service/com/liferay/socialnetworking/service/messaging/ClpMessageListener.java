@@ -25,8 +25,6 @@ import com.liferay.socialnetworking.service.MeetupsRegistrationLocalServiceUtil;
 import com.liferay.socialnetworking.service.WallEntryLocalServiceUtil;
 
 /**
- * <a href="ClpMessageListener.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class ClpMessageListener implements MessageListener {

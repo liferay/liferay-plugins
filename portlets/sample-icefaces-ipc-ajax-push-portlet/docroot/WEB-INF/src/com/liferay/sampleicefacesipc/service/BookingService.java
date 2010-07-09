@@ -19,8 +19,6 @@ import com.liferay.sampleicefacesipc.transfer.Booking;
 import java.util.List;
 
 /**
- * <a href="BookingService.java.html"><b><i>View Source</i></b></a>
- *
  * @author Neil Griffin
  *
  */

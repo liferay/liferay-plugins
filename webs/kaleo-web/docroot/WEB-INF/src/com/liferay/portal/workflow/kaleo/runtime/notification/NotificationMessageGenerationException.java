@@ -17,10 +17,6 @@ package com.liferay.portal.workflow.kaleo.runtime.notification;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 
 /**
- * <a href="NotificationMessageGenerationException.java.html"><b><i>View Source
- * </i>
- * </b></a>
- *
  * @author Michael C. Han
  */
 public class NotificationMessageGenerationException extends WorkflowException {

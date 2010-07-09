@@ -25,8 +25,6 @@ import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
 import java.util.List;
 
 /**
- * <a href="BaseNodeExecutor.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public abstract class BaseNodeExecutor

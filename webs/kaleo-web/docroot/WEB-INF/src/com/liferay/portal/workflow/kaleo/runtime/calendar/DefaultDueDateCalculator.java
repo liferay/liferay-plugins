@@ -22,8 +22,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * <a href="DefaultDueDateCalculator.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class DefaultDueDateCalculator implements DueDateCalculator {

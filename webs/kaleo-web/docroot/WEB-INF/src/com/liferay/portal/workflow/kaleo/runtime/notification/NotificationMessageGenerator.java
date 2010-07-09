@@ -17,9 +17,6 @@ package com.liferay.portal.workflow.kaleo.runtime.notification;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 /**
- * <a href="NotificationMessageGenerator.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Michael C. Han
  */
 public interface NotificationMessageGenerator {

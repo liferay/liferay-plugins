@@ -21,9 +21,6 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
 
 /**
- * <a href="CheckAttachmentsMessageListener.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */

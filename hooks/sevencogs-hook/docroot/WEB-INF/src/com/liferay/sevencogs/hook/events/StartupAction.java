@@ -100,8 +100,6 @@ import java.util.Map;
 import javax.portlet.PortletPreferences;
 
 /**
- * <a href="StartupAction.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

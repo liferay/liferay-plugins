@@ -25,8 +25,6 @@ import com.maxmind.geoip.LookupService;
 import java.io.IOException;
 
 /**
- * <a href="IPGeocoderUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

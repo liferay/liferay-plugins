@@ -15,8 +15,6 @@
 package com.liferay.socialnetworking.wall.social;
 
 /**
- * <a href="WallActivityKeys.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

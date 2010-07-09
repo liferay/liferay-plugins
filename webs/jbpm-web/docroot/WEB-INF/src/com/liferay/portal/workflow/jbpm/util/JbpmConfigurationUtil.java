@@ -22,8 +22,6 @@ import org.jbpm.configuration.ObjectFactory;
 import org.jbpm.configuration.ObjectFactoryParser;
 
 /**
- * <a href="JbpmConfigurationUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  */

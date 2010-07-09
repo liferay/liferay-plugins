@@ -47,8 +47,6 @@ import javax.portlet.PortletMode;
 import javax.portlet.WindowState;
 
 /**
- * <a href="GadgetLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  * @author Brian Wing Shun Chan
  */

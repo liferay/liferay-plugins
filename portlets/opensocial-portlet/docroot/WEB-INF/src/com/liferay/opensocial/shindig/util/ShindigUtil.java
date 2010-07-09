@@ -49,8 +49,6 @@ import org.apache.shindig.gadgets.spec.GadgetSpec;
 import org.json.JSONObject;
 
 /**
- * <a href="ShindigUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  */
 public class ShindigUtil {

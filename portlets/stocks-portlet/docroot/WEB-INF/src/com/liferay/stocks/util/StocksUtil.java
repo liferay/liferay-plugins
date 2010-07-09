@@ -20,8 +20,6 @@ import com.liferay.portal.kernel.webcache.WebCachePoolUtil;
 import com.liferay.stocks.model.Stocks;
 
 /**
- * <a href="StocksUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

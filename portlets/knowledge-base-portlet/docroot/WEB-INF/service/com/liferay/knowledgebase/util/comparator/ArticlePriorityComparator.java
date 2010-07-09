@@ -18,8 +18,6 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
 /**
- * <a href="ArticlePriorityComparator.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class ArticlePriorityComparator extends OrderByComparator {

@@ -41,8 +41,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <a href="FolderContainer.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class FolderContainer implements Hierarchical, ItemSetChangeNotifier {

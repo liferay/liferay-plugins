@@ -17,8 +17,6 @@ package com.liferay.ams.service.impl;
 import com.liferay.ams.service.base.CheckoutLocalServiceBaseImpl;
 
 /**
- * <a href="CheckoutLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class CheckoutLocalServiceImpl extends CheckoutLocalServiceBaseImpl {

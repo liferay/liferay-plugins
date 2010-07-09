@@ -24,8 +24,6 @@ import javax.mail.Folder;
 import javax.mail.MessagingException;
 
 /**
- * <a href="IMAPAttachmentHandler.java.html"><b><i>View Source</i></b></a>
- *
  * @author Ryan Park
  */
 public class IMAPAttachmentHandler implements AttachmentHandler {

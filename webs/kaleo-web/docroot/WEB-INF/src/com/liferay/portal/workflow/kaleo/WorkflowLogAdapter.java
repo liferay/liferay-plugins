@@ -20,8 +20,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoLog;
 import com.liferay.portal.workflow.kaleo.util.KaleoLogUtil;
 
 /**
- * <a href="WorkflowLogAdapter.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class WorkflowLogAdapter extends DefaultWorkflowLog {

@@ -17,9 +17,6 @@ package com.liferay.wsrp;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * <a href="NoSuchConsumerPortletException.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Brian Wing Shun Chan
  *
  */

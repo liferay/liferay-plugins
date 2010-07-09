@@ -17,9 +17,6 @@ package com.liferay.portal.workflow.jbpm.comparator;
 import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowInstanceEndDateComparator;
 
 /**
- * <a href="WorkflowInstanceEndDateComparator.java.html"><b><i>View Source</i>
- * </b></a>
- *
  * @author Shuyang Zhou
  */
 public class WorkflowInstanceEndDateComparator

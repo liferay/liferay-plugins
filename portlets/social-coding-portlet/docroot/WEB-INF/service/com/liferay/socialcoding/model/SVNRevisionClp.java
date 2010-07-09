@@ -25,8 +25,6 @@ import java.lang.reflect.Proxy;
 import java.util.Date;
 
 /**
- * <a href="SVNRevisionClp.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class SVNRevisionClp extends BaseModelImpl<SVNRevision>

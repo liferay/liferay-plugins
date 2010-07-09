@@ -27,8 +27,6 @@ import javax.portlet.filter.FilterConfig;
 import javax.portlet.filter.RenderFilter;
 
 /**
- * <a href="TestRenderFilter.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

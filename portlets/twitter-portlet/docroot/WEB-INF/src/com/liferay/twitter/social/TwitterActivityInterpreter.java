@@ -27,8 +27,6 @@ import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.twitter.model.Feed;
 
 /**
- * <a href="TwitterActivityInterpreter.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

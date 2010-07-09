@@ -15,8 +15,6 @@
 package com.liferay.portal.workflow.jbpm.util;
 
 /**
- * <a href="Assignment.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class Assignment {

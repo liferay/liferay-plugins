@@ -17,8 +17,6 @@ package com.liferay.weather.model;
 import java.io.Serializable;
 
 /**
- * <a href="Weather.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

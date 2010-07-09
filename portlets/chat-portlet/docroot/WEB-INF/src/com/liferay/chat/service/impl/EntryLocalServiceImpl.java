@@ -23,8 +23,6 @@ import com.liferay.portal.kernel.util.Validator;
 import java.util.List;
 
 /**
- * <a href="EntryLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

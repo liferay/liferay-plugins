@@ -19,8 +19,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * <a href="Booking.java.html"><b><i>View Source</i></b></a>
- *
  * @author Neil Griffin
  *
  */

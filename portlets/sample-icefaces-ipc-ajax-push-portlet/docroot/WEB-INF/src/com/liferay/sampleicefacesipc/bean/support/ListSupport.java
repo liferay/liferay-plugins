@@ -23,8 +23,6 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 /**
- * <a href="ListSupport.java.html"><b><i>View Source</i></b></a>
- *
  * @author Neil Griffin
  *
  */

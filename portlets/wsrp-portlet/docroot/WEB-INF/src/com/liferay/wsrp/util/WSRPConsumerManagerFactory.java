@@ -23,8 +23,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import oasis.names.tc.wsrp.v2.types.RegistrationContext;
 
 /**
- * <a href="WSRPConsumerManagerFactory.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

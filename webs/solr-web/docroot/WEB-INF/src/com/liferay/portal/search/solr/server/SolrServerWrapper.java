@@ -17,8 +17,6 @@ package com.liferay.portal.search.solr.server;
 import org.apache.solr.client.solrj.SolrServer;
 
 /**
- * <a href="SolrServerWrapper.java.html"><b><i>View Source</i></b></a>
- *
  * @author Bruno Farache
  *
  */

@@ -17,8 +17,6 @@ package com.liferay.mail;
 import com.liferay.portal.kernel.exception.PortalException;
 
 /**
- * <a href="MailException.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public class MailException extends PortalException {

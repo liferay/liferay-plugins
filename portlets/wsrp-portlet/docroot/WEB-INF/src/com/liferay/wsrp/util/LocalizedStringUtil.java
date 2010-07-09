@@ -17,8 +17,6 @@ package com.liferay.wsrp.util;
 import oasis.names.tc.wsrp.v2.types.LocalizedString;
 
 /**
- * <a href="LocalizedStringUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class LocalizedStringUtil {

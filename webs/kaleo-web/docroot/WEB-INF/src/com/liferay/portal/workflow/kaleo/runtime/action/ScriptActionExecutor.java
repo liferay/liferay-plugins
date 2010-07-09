@@ -32,8 +32,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <a href="ScriptActionExecutor.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class ScriptActionExecutor implements ActionExecutor {

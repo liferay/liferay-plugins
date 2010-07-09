@@ -30,9 +30,6 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <a href="ProjectsEntryLocalServiceImpl.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Ryan Park
  *
  */

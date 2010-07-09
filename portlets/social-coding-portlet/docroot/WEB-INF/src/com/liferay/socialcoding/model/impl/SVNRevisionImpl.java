@@ -29,8 +29,6 @@ import com.liferay.socialcoding.svn.util.SVNConstants;
 import java.text.MessageFormat;
 
 /**
- * <a href="SVNRevisionImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

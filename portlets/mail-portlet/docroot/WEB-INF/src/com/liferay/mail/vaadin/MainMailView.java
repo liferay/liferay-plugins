@@ -27,8 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <a href="MainMailView.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class MainMailView extends CustomComponent {

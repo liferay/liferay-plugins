@@ -17,8 +17,6 @@ package com.liferay.ams.model.impl;
 import com.liferay.ams.model.Definition;
 
 /**
- * <a href="DefinitionImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class DefinitionImpl extends DefinitionModelImpl implements Definition {

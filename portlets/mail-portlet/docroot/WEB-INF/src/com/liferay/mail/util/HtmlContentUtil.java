@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import java.util.regex.Pattern;
 
 /**
- * <a href="HtmlContentUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  * @author Minhchau Dang
  * @author Michael C. Han

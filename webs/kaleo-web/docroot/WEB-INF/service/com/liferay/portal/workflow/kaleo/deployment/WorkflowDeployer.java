@@ -21,8 +21,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 
 /**
- * <a href="WorkflowDeployer.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public interface WorkflowDeployer {

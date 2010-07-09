@@ -23,9 +23,6 @@ import java.lang.reflect.Method;
 import oasis.names.tc.wsrp.v1.intf.WSRP_v1_PortletManagement_PortType;
 
 /**
- * <a href="PortletManagementServiceHandler.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Michael Young
  */
 public class PortletManagementServiceHandler implements InvocationHandler {

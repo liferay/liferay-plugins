@@ -15,8 +15,6 @@
 package com.liferay.socialnetworking.util;
 
 /**
- * <a href="PortletPropsKeys.java.html"><b><i>View Source</i></b></a>
- *
  * @author Marco Abamonga
  */
 public interface PortletPropsKeys {

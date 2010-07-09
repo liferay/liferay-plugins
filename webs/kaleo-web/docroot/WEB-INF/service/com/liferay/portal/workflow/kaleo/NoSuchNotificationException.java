@@ -17,8 +17,6 @@ package com.liferay.portal.workflow.kaleo;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * <a href="NoSuchNotificationException.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class NoSuchNotificationException extends NoSuchModelException {

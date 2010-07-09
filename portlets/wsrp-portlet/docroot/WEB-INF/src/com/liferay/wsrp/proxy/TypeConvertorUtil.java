@@ -35,8 +35,6 @@ import oasis.names.tc.wsrp.v2.types.SessionParams;
 import org.apache.commons.beanutils.PropertyUtils;
 
 /**
- * <a href="TypeConvertorUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  */
 public class TypeConvertorUtil {

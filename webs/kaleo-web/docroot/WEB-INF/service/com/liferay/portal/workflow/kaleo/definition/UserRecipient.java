@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 
 /**
- * <a href="UserRecipient.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class UserRecipient extends Recipient {

@@ -15,8 +15,6 @@
 package com.liferay.portal.workflow.kaleo.definition;
 
 /**
- * <a href="Recipient.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public abstract class Recipient {

@@ -28,8 +28,6 @@ import com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil;
 import com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil;
 
 /**
- * <a href="ClpMessageListener.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class ClpMessageListener implements MessageListener {

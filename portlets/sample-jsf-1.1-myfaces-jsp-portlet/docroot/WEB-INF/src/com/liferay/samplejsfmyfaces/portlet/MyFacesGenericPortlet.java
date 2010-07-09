@@ -15,8 +15,6 @@
 package com.liferay.samplejsfmyfaces.portlet;
 
 /**
- * <a href="MyFacesGenericPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

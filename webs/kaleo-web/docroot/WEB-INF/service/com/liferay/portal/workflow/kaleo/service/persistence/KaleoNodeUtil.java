@@ -24,8 +24,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import java.util.List;
 
 /**
- * <a href="KaleoNodeUtil.java.html"><b><i>View Source</i></b></a>
- *
  * <p>
  * ServiceBuilder generated this class. Modifications in this class will be
  * overwritten the next time is generated.

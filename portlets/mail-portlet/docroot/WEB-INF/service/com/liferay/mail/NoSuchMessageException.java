@@ -17,8 +17,6 @@ package com.liferay.mail;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * <a href="NoSuchMessageException.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class NoSuchMessageException extends NoSuchModelException {

@@ -23,8 +23,6 @@ import com.liferay.portal.kernel.util.Time;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * <a href="AccountLock.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  * @author Alexander Chow
  */

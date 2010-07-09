@@ -17,8 +17,6 @@ package com.liferay.ams.service.impl;
 import com.liferay.ams.service.base.DefinitionLocalServiceBaseImpl;
 
 /**
- * <a href="DefinitionLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {

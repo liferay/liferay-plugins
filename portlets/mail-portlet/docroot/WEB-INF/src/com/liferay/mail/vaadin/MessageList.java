@@ -31,8 +31,6 @@ import com.vaadin.ui.VerticalLayout;
 import java.util.List;
 
 /**
- * <a href="MessageList.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class MessageList extends CustomComponent {

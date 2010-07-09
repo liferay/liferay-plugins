@@ -24,8 +24,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
 /**
- * <a href="MessageImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class MessageImpl extends MessageModelImpl implements Message {

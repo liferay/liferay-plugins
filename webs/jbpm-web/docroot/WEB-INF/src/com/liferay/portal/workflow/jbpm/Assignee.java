@@ -15,8 +15,6 @@
 package com.liferay.portal.workflow.jbpm;
 
 /**
- * <a href="Assignee.java.html"><b><i>View Source</i></b></a>
- *
  * @author Marcellus Tavares
  */
 public class Assignee {

@@ -17,8 +17,6 @@ package com.liferay.samplestrutsliferay;
 import org.apache.commons.lang.exception.NestableException;
 
 /**
- * <a href="SampleException.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

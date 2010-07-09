@@ -29,8 +29,6 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import java.util.List;
 
 /**
- * <a href="UpgradeUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Ryan Park
  */
 public class UpgradeUtil {

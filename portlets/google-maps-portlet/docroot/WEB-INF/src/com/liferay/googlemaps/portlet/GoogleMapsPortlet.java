@@ -26,8 +26,6 @@ import javax.portlet.PortletException;
 import javax.portlet.PortletSession;
 
 /**
- * <a href="GoogleMapsPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

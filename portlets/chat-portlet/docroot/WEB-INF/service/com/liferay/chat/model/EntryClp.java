@@ -25,8 +25,6 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 /**
- * <a href="EntryClp.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class EntryClp extends BaseModelImpl<Entry> implements Entry {

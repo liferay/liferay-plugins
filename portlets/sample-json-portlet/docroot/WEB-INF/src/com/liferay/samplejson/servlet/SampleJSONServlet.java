@@ -29,8 +29,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 
 /**
- * <a href="SampleJSONServlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Ming-Gih Lam
  *
  */

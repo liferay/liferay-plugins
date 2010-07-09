@@ -31,8 +31,6 @@ import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 
 /**
- * <a href="ProfilesRequestInterpreter.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

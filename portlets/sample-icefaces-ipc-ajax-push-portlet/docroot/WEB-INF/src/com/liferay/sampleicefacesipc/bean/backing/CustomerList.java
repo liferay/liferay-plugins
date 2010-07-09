@@ -20,8 +20,6 @@ import com.liferay.sampleicefacesipc.bean.model.CustomerListModel;
 import com.liferay.sampleicefacesipc.transfer.Customer;
 
 /**
- * <a href="CustomerList.java.html"><b><i>View Source</i></b></a>
- *
  * @author Neil Griffin
  *
  */

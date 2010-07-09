@@ -31,8 +31,6 @@ import java.util.List;
 import javax.mail.internet.InternetAddress;
 
 /**
- * <a href="Mailbox.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public interface Mailbox {

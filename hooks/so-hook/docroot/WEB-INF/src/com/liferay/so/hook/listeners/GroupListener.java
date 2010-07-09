@@ -41,8 +41,6 @@ import java.util.Set;
 import javax.portlet.PortletPreferences;
 
 /**
- * <a href="GroupListener.java.html"><b><i>View Source</i></b></a>
- *
  * @author Ryan Park
  *
  */

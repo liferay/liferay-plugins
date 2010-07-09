@@ -15,8 +15,6 @@
 package com.liferay.googlegadget.model;
 
 /**
- * <a href="GGEntry.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

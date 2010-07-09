@@ -18,8 +18,6 @@
 package com.liferay.so.invitemembers.util;
 
 /**
- * <a href="InviteMembersConstants.java.html"><b><i>View Source</i></b></a>
- *
  * @author Ryan Park
  *
  */

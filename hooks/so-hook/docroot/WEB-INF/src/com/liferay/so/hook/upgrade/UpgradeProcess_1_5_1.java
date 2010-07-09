@@ -21,8 +21,6 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.so.hook.upgrade.v1_5_1.UpgradeGroup;
 
 /**
- * <a href="UpgradeProcess_1_5_1.java.html"><b><i>View Source</i></b></a>
- *
  * @author Ryan Park
  */
 public class UpgradeProcess_1_5_1 extends UpgradeProcess {

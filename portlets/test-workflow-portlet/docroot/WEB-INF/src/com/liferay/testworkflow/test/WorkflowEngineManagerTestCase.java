@@ -17,9 +17,6 @@ package com.liferay.testworkflow.test;
 import com.liferay.portal.kernel.workflow.WorkflowEngineManagerUtil;
 
 /**
- * <a href="WorkflowEngineManagerTestCase.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Shuyang Zhou
  */
 public class WorkflowEngineManagerTestCase extends WorkflowTestCase {

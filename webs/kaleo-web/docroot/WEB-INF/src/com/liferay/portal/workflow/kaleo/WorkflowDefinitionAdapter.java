@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.workflow.DefaultWorkflowDefinition;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 
 /**
- * <a href="WorkflowDefinitionAdapter.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class WorkflowDefinitionAdapter extends DefaultWorkflowDefinition {

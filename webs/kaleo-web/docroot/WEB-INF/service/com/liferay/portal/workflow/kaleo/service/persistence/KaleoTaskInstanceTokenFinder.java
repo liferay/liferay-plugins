@@ -15,9 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
 /**
- * <a href="KaleoTaskInstanceTokenFinder.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Brian Wing Shun Chan
  */
 public interface KaleoTaskInstanceTokenFinder {

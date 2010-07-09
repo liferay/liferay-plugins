@@ -22,8 +22,6 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 /**
- * <a href="TestPortletSessionListener.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  * @see com.liferay.testmisc.servlet.TestPortletSessionListenerLoader

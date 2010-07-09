@@ -15,8 +15,6 @@
 package com.liferay.knowledgebase.admin.social;
 
 /**
- * <a href="AdminActivityKeys.java.html"><b><i>View Source</i></b></a>
- *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */

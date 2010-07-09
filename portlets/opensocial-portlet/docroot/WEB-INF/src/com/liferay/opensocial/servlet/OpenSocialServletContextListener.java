@@ -32,9 +32,6 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 /**
- * <a href="OpenSocialServletContextListener.java.html"><b><i>View Source</i>
- * </b></a>
- *
  * @author Michael Young
  */
 public class OpenSocialServletContextListener

@@ -17,8 +17,6 @@ package com.liferay.mail.vaadin;
 import com.vaadin.terminal.ExternalResource;
 
 /**
- * <a href="PortletResource.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class PortletResource extends ExternalResource {

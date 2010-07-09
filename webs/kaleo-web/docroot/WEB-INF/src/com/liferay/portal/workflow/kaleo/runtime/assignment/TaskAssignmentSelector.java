@@ -22,8 +22,6 @@ import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import java.util.Collection;
 
 /**
- * <a href="TaskAssignmentSelector.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public interface TaskAssignmentSelector {

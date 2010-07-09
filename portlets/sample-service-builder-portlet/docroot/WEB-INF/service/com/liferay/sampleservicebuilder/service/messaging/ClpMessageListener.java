@@ -24,8 +24,6 @@ import com.liferay.sampleservicebuilder.service.FooLocalServiceUtil;
 import com.liferay.sampleservicebuilder.service.FooServiceUtil;
 
 /**
- * <a href="ClpMessageListener.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class ClpMessageListener implements MessageListener {

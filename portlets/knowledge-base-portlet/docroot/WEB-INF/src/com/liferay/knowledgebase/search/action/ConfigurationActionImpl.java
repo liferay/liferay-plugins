@@ -22,8 +22,6 @@ import javax.portlet.ActionRequest;
 import javax.portlet.PortletPreferences;
 
 /**
- * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */

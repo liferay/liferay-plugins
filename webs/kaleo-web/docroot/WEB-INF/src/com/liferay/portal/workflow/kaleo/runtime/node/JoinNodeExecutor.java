@@ -29,8 +29,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <a href="JoinNodeExecutor.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class JoinNodeExecutor extends BaseNodeExecutor {

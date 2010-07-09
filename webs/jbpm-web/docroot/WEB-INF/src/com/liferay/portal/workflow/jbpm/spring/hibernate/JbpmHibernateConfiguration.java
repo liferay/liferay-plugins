@@ -24,8 +24,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.orm.hibernate3.LocalSessionFactoryBean;
 
 /**
- * <a href="JbpmHibernateConfiguration.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class JbpmHibernateConfiguration extends LocalSessionFactoryBean {

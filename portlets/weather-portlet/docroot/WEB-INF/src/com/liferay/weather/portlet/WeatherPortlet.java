@@ -32,8 +32,6 @@ import javax.portlet.PortletPreferences;
 import javax.portlet.ValidatorException;
 
 /**
- * <a href="WeatherPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

@@ -25,8 +25,6 @@ import org.apache.tapestry.event.PageEvent;
 import org.apache.tapestry.html.BasePage;
 
 /**
- * <a href="AddBook.java.html"><b><i>View Source</i></b></a>
- *
  * @author Joseph Shum
  *
  */

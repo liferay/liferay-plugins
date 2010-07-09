@@ -35,8 +35,6 @@ import org.owasp.validator.html.Policy;
 import org.owasp.validator.html.PolicyException;
 
 /**
- * <a href="AntiSamySanitizerImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Zsolt Balogh
  * @author Brian Wing Shun Chan
  */

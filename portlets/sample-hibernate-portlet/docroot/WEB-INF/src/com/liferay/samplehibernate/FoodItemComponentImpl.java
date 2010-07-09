@@ -32,8 +32,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * <a href="FoodItemComponentImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Charles May
  *
  */

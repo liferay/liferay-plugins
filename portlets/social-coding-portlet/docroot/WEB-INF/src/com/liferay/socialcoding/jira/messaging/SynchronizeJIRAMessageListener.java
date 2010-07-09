@@ -22,9 +22,6 @@ import com.liferay.socialcoding.jira.util.JIRAConstants;
 import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
 
 /**
- * <a href="SynchronizeJIRAMessageListener.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Brian Wing Shun Chan
  *
  */

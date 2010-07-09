@@ -17,8 +17,6 @@ package com.liferay.portal.workflow.kaleo.manager;
 import com.liferay.portal.model.Company;
 
 /**
- * <a href="PortalKaleoManager.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public interface PortalKaleoManager {

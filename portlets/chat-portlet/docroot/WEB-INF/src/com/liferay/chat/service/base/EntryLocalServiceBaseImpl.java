@@ -43,8 +43,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 /**
- * <a href="EntryLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public abstract class EntryLocalServiceBaseImpl implements EntryLocalService {

@@ -23,8 +23,6 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- * <a href="ExecutionContext.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class ExecutionContext {

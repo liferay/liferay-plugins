@@ -17,8 +17,6 @@ package com.liferay.socialcoding;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * <a href="NoSuchSVNRevisionException.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

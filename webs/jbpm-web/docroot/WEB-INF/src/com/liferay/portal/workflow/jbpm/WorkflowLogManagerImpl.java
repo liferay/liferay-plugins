@@ -34,8 +34,6 @@ import org.jbpm.JbpmConfiguration;
 import org.jbpm.JbpmContext;
 
 /**
- * <a href="WorkflowLogManagerImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  * @author Marcellus Tavares

@@ -30,8 +30,6 @@ import javax.mail.event.MessageCountEvent;
 import javax.mail.event.MessageCountListener;
 
 /**
- * <a href="IMAPMessageCountListener.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  *
  */

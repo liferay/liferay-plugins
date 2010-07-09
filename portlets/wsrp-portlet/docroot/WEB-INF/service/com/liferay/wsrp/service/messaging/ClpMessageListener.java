@@ -25,8 +25,6 @@ import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
 
 /**
- * <a href="ClpMessageListener.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class ClpMessageListener implements MessageListener {

@@ -19,8 +19,6 @@ import com.liferay.portal.model.ContactConstants;
 import java.util.Comparator;
 
 /**
- * <a href="BuddyComparator.java.html"><b><i>View Source</i></b></a>
- *
  * @author Ryan Park
  *
  */

@@ -21,8 +21,6 @@ import com.liferay.portal.kernel.servlet.URLEncoder;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * <a href="LogURLEncoder.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

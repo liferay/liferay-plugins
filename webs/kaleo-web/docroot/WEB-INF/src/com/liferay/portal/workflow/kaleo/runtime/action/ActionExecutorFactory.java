@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 import java.util.Map;
 
 /**
- * <a href="ActionExecutorFactory.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class ActionExecutorFactory {

@@ -55,8 +55,6 @@ import org.apache.shindig.social.opensocial.spi.GroupId;
 import org.apache.shindig.social.opensocial.spi.UserId;
 
 /**
- * <a href="LiferayActivityService.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  */
 public class LiferayActivityService implements ActivityService {

@@ -25,8 +25,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalService
 import java.util.List;
 
 /**
- * <a href="KaleoTaskImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class KaleoTaskImpl extends KaleoTaskModelImpl implements KaleoTask {

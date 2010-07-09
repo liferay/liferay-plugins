@@ -20,8 +20,6 @@ import com.liferay.portal.model.Group;
 import com.liferay.socialnetworking.service.WallEntryLocalServiceUtil;
 
 /**
- * <a href="GroupListener.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

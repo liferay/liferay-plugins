@@ -31,8 +31,6 @@ import com.liferay.portlet.social.model.SocialRequestFeedEntry;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 
 /**
- * <a href="MembersRequestInterpreter.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  * @author M Murali Krishna Reddy
  *

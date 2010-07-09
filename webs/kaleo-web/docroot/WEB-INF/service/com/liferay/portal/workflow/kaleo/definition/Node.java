@@ -23,8 +23,6 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * <a href="Node.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public abstract class Node {

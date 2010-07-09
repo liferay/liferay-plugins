@@ -34,8 +34,6 @@ import javax.servlet.ServletContext;
 import org.apache.commons.lang.Validate;
 
 /**
- * <a href="TestCase.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  */
 public class TestCase {

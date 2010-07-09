@@ -25,8 +25,6 @@ import com.liferay.socialnetworking.model.MeetupsRegistration;
 import java.util.List;
 
 /**
- * <a href="MeetupsRegistrationUtil.java.html"><b><i>View Source</i></b></a>
- *
  * <p>
  * ServiceBuilder generated this class. Modifications in this class will be
  * overwritten the next time is generated.

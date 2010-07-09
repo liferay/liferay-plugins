@@ -27,9 +27,6 @@ import java.lang.reflect.Proxy;
 import java.util.Date;
 
 /**
- * <a href="KaleoNotificationRecipientClp.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Brian Wing Shun Chan
  */
 public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificationRecipient>

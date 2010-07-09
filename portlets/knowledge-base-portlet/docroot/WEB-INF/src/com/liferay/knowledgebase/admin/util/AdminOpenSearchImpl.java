@@ -17,8 +17,6 @@ package com.liferay.knowledgebase.admin.util;
 import com.liferay.portal.kernel.search.HitsOpenSearchImpl;
 
 /**
- * <a href="AdminOpenSearchImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */

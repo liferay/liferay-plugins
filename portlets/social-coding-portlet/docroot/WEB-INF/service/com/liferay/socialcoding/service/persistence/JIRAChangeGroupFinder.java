@@ -15,8 +15,6 @@
 package com.liferay.socialcoding.service.persistence;
 
 /**
- * <a href="JIRAChangeGroupFinder.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public interface JIRAChangeGroupFinder {

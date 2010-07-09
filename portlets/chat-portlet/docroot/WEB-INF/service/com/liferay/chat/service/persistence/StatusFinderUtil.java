@@ -17,8 +17,6 @@ package com.liferay.chat.service.persistence;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 
 /**
- * <a href="StatusFinderUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class StatusFinderUtil {

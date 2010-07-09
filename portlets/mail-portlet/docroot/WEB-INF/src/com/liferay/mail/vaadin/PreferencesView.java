@@ -35,8 +35,6 @@ import com.vaadin.ui.Window;
 import java.util.List;
 
 /**
- * <a href="PreferencesView.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class PreferencesView extends VerticalLayout {

@@ -55,8 +55,6 @@ import javax.portlet.WindowState;
 import javax.portlet.WindowStateException;
 
 /**
- * <a href="MailApplication.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class MailApplication extends Application {

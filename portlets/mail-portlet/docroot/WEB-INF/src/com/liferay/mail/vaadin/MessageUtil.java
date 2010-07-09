@@ -42,8 +42,6 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * <a href="MessageUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class MessageUtil {

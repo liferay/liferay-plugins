@@ -17,8 +17,6 @@ package com.liferay.mail.model.impl;
 import com.liferay.mail.model.Attachment;
 
 /**
- * <a href="AttachmentImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class AttachmentImpl extends AttachmentModelImpl implements Attachment {

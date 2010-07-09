@@ -62,8 +62,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 /**
- * <a href="Composer.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class Composer extends CustomComponent {

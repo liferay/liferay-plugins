@@ -46,8 +46,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <a href="MessageContainer.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class MessageContainer extends BeanItemContainer<Message> implements PropertySetChangeNotifier {

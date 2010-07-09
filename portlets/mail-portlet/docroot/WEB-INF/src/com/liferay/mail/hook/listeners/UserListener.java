@@ -27,8 +27,6 @@ import com.liferay.portal.model.User;
 import java.util.List;
 
 /**
- * <a href="UserListener.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public class UserListener extends BaseModelListener<User> {

@@ -17,8 +17,6 @@ package com.liferay.socialcoding;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * <a href="NoSuchJIRAActionException.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

@@ -51,9 +51,6 @@ import oasis.names.tc.wsrp.v2.types.ServiceDescription;
 import org.apache.axis.message.MessageElement;
 
 /**
- * <a href="ServiceDescriptionServiceImpl.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Brian Wing Shun Chan
  *
  */

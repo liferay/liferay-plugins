@@ -30,8 +30,6 @@ import com.vaadin.ui.themes.BaseTheme;
 import java.util.List;
 
 /**
- * <a href="Folders.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class Folders extends CustomComponent

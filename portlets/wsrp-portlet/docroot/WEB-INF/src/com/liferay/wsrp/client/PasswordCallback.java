@@ -18,8 +18,6 @@ import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
 
 /**
- * <a href="PasswordCallback.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  */
 public class PasswordCallback implements CallbackHandler {

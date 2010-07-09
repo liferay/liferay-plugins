@@ -20,8 +20,6 @@ import com.liferay.util.SystemProperties;
 import java.io.File;
 
 /**
- * <a href="TestHookUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

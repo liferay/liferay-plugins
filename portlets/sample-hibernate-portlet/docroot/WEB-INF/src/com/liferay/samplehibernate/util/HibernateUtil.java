@@ -23,8 +23,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 /**
- * <a href="HibernateUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Charles May
  *
  */

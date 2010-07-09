@@ -22,8 +22,6 @@ import com.liferay.portal.service.UserLocalServiceWrapper;
 import com.liferay.testhook.hook.model.impl.TestUserImpl;
 
 /**
- * <a href="TestUserLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

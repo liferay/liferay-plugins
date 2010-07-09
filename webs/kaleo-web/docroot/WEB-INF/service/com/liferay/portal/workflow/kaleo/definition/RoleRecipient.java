@@ -17,8 +17,6 @@ package com.liferay.portal.workflow.kaleo.definition;
 import com.liferay.portal.kernel.util.Validator;
 
 /**
- * <a href="RoleRecipient.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class RoleRecipient extends Recipient {

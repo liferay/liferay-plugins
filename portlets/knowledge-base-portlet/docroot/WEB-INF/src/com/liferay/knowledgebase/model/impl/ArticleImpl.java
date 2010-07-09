@@ -21,8 +21,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.CompanyConstants;
 
 /**
- * <a href="ArticleImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */

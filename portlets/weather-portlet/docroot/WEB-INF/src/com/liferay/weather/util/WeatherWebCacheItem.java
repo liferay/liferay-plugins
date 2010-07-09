@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.weather.model.Weather;
 
 /**
- * <a href="WeatherWebCacheItem.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

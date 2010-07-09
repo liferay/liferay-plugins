@@ -29,8 +29,6 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletRequest;
 
 /**
- * <a href="AdminPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  */
 public class AdminPortlet extends MVCPortlet {

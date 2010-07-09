@@ -25,8 +25,6 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 /**
- * <a href="AttachmentClp.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class AttachmentClp extends BaseModelImpl<Attachment>

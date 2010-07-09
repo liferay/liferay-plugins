@@ -17,9 +17,6 @@ package com.liferay.portal.workflow.kaleo.comparator;
 import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowTaskUserIdComparator;
 
 /**
- * <a href="WorkflowTaskUserIdComparator.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Shuyang Zhou
  */
 public class WorkflowTaskUserIdComparator

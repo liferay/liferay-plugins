@@ -20,9 +20,6 @@ import com.liferay.socialcoding.model.JIRAChangeGroup;
 import com.liferay.socialcoding.service.base.JIRAChangeGroupLocalServiceBaseImpl;
 
 /**
- * <a href="JIRAChangeGroupLocalServiceImpl.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Brian Wing Shun Chan
  *
  */

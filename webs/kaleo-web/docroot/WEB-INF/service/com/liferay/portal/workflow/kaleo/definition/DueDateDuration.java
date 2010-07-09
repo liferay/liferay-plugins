@@ -15,8 +15,6 @@
 package com.liferay.portal.workflow.kaleo.definition;
 
 /**
- * <a href="DueDateDuration.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class DueDateDuration {

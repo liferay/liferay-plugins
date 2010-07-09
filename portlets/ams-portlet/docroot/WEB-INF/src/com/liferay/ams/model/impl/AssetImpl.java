@@ -17,8 +17,6 @@ package com.liferay.ams.model.impl;
 import com.liferay.ams.model.Asset;
 
 /**
- * <a href="AssetImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class AssetImpl extends AssetModelImpl implements Asset {

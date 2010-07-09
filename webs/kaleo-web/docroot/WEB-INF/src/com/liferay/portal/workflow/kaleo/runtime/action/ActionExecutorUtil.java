@@ -25,8 +25,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalServiceUtil;
 import java.util.List;
 
 /**
- * <a href="ActionExecutorUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class ActionExecutorUtil {

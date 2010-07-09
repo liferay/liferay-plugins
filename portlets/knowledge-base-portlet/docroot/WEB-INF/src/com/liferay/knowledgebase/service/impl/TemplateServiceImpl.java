@@ -29,8 +29,6 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * <a href="TemplateServiceImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */

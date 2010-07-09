@@ -17,8 +17,6 @@ package com.liferay.sampleservicebuilder.service;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 
 /**
- * <a href="FooServiceClp.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class FooServiceClp implements FooService {

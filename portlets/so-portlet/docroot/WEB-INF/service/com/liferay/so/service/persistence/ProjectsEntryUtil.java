@@ -25,8 +25,6 @@ import com.liferay.so.model.ProjectsEntry;
 import java.util.List;
 
 /**
- * <a href="ProjectsEntryUtil.java.html"><b><i>View Source</i></b></a>
- *
  * <p>
  * ServiceBuilder generated this class. Modifications in this class will be
  * overwritten the next time is generated.

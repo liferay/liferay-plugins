@@ -27,8 +27,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocal
 import java.util.List;
 
 /**
- * <a href="NotificationUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class NotificationUtil {

@@ -15,8 +15,6 @@
 package com.liferay.sampleicefacesipc.transfer;
 
 /**
- * <a href="BookingType.java.html"><b><i>View Source</i></b></a>
- *
  * @author Neil Griffin
  *
  */

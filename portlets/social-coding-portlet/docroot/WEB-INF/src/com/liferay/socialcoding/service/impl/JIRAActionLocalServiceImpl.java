@@ -20,8 +20,6 @@ import com.liferay.socialcoding.model.JIRAAction;
 import com.liferay.socialcoding.service.base.JIRAActionLocalServiceBaseImpl;
 
 /**
- * <a href="JIRAActionLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

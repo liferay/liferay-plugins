@@ -15,8 +15,6 @@
 package com.liferay.wikinavigation.util;
 
 /**
- * <a href="WikiNavigationConstants.java.html"><b><i>View Source</i></b></a>
- *
  * @author Jorge Ferrer
  */
 public class WikiNavigationConstants {

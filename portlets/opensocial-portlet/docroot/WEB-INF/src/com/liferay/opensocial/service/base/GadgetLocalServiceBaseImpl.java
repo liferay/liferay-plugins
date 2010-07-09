@@ -39,8 +39,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 /**
- * <a href="GadgetLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public abstract class GadgetLocalServiceBaseImpl implements GadgetLocalService {

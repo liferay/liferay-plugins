@@ -57,8 +57,6 @@ import java.util.regex.Pattern;
 import javax.portlet.PortletPreferences;
 
 /**
- * <a href="LayoutSetListener.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

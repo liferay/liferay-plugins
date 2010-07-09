@@ -32,8 +32,6 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 
 /**
- * <a href="SitesPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Ryan Park
  *
  */

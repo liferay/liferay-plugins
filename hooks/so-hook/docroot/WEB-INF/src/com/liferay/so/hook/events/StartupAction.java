@@ -62,8 +62,6 @@ import java.util.Locale;
 import java.util.Set;
 
 /**
- * <a href="StartupAction.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  * @author Ryan Park
  *

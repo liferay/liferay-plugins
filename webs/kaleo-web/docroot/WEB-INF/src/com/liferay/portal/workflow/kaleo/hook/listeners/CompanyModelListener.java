@@ -21,8 +21,6 @@ import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager;
 import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManagerUtil;
 
 /**
- * <a href="CompanyModelListener.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class CompanyModelListener extends BaseModelListener<Company> {

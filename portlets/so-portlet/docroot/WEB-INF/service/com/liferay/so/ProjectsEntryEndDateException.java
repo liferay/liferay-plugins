@@ -20,9 +20,6 @@ package com.liferay.so;
 import com.liferay.portal.kernel.exception.PortalException;
 
 /**
- * <a href="ProjectsEntryEndDateException.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Brian Wing Shun Chan
  *
  */

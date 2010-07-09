@@ -20,8 +20,6 @@ import com.liferay.portal.kernel.workflow.DefaultWorkflowDefinition;
 import org.jbpm.graph.def.ProcessDefinition;
 
 /**
- * <a href="WorkflowDefinitionImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  */

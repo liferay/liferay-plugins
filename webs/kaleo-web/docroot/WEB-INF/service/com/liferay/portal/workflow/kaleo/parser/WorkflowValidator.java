@@ -18,8 +18,6 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 
 /**
- * <a href="WorkflowValidator.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public interface WorkflowValidator {

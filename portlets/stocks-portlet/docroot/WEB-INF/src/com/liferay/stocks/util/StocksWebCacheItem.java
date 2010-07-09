@@ -25,8 +25,6 @@ import com.liferay.stocks.model.Stocks;
 import java.util.StringTokenizer;
 
 /**
- * <a href="StocksWebCacheItem.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

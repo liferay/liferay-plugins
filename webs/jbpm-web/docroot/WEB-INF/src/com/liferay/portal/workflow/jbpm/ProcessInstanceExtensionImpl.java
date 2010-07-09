@@ -17,9 +17,6 @@ package com.liferay.portal.workflow.jbpm;
 import org.jbpm.graph.exe.ProcessInstance;
 
 /**
- * <a href="ProcessInstanceExtensionImpl.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Marcellus Tavares
  */
 public class ProcessInstanceExtensionImpl {

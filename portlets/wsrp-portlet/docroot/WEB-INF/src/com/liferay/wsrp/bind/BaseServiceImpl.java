@@ -24,8 +24,6 @@ import javax.servlet.http.HttpServletRequest;
 import oasis.names.tc.wsrp.v2.types.LocalizedString;
 
 /**
- * <a href="BaseServiceImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

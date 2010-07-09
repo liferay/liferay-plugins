@@ -49,8 +49,6 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * <a href="FolderTree.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class FolderTree extends Tree implements DropHandler, Action.Handler {

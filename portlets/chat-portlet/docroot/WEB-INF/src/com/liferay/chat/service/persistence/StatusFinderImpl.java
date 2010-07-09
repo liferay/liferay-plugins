@@ -26,8 +26,6 @@ import com.liferay.util.dao.orm.CustomSQLUtil;
 import java.util.List;
 
 /**
- * <a href="StatusFinderImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

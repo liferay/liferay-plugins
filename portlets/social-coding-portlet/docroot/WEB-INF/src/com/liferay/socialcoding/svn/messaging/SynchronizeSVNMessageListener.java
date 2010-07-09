@@ -22,9 +22,6 @@ import com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil;
 import com.liferay.socialcoding.svn.util.SVNConstants;
 
 /**
- * <a href="SynchronizeSVNMessageListener.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Brian Wing Shun Chan
  */
 public class SynchronizeSVNMessageListener implements MessageListener {

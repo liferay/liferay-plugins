@@ -37,8 +37,6 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
 /**
- * <a href="GadgetPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  */
 public class GadgetPortlet extends MVCPortlet {

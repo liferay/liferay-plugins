@@ -17,8 +17,6 @@ package com.liferay.westminstercatechism.model;
 import java.io.Serializable;
 
 /**
- * <a href="WCEntry.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

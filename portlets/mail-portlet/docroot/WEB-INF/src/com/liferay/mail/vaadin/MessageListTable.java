@@ -33,8 +33,6 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * <a href="MessageListTable.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class MessageListTable extends Table

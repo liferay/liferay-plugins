@@ -47,8 +47,6 @@ import javax.portlet.ResourceResponse;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * <a href="MailPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public class MailPortlet extends MVCPortlet {

@@ -56,8 +56,6 @@ import javax.portlet.PortletConfig;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * <a href="MailManager.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  * @author Ryan Park
  */

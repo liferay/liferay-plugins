@@ -17,8 +17,6 @@ package com.liferay.socialnetworking.model.impl;
 import com.liferay.socialnetworking.model.MeetupsEntry;
 
 /**
- * <a href="MeetupsEntryImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

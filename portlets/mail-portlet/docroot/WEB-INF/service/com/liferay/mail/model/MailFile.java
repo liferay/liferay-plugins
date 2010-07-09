@@ -17,8 +17,6 @@ package com.liferay.mail.model;
 import java.io.File;
 
 /**
- * <a href="MailFile.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public class MailFile {

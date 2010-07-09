@@ -30,8 +30,6 @@ import com.liferay.portal.model.User;
 import java.util.List;
 
 /**
- * <a href="AccountManager.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class AccountManager {

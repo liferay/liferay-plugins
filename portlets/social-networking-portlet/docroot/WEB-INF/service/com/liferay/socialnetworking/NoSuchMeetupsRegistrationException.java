@@ -17,9 +17,6 @@ package com.liferay.socialnetworking;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * <a href="NoSuchMeetupsRegistrationException.java.html"><b><i>View Source</i>
- * </b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

@@ -21,8 +21,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.testhook.util.TestHookUtil;
 
 /**
- * <a href="StartupAction.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

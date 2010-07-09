@@ -24,8 +24,6 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 /**
- * <a href="TestSuite.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  */

@@ -40,8 +40,6 @@ import javax.portlet.PortletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * <a href="Controller.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class Controller {

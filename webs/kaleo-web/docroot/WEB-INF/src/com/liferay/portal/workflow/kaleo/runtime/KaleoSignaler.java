@@ -18,8 +18,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
 /**
- * <a href="KaleoSignaler.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public interface KaleoSignaler {

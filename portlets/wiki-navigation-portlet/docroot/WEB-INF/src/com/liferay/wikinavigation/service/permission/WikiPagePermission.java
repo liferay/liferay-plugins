@@ -21,8 +21,6 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.wiki.model.WikiPage;
 
 /**
- * <a href="WikiPagePermission.java.html"><b><i>View Source</i></b></a>
- *
  * @author Jorge Ferrer
  * @author Peter Shin
  */

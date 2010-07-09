@@ -21,8 +21,6 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 
 /**
- * <a href="GroupListener.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class GroupListener extends BaseModelListener<Group> {

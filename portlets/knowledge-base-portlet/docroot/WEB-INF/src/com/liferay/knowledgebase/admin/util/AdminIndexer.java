@@ -46,8 +46,6 @@ import java.util.List;
 import javax.portlet.PortletURL;
 
 /**
- * <a href="AdminIndexer.java.html"><b><i>View Source</i></b></a>
- *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */

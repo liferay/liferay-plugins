@@ -55,8 +55,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <a href="ArticleServiceImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */

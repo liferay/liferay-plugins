@@ -19,8 +19,6 @@ import java.util.List;
 import org.apache.tapestry.html.BasePage;
 
 /**
- * <a href="View.java.html"><b><i>View Source</i></b></a>
- *
  * @author Joseph Shum
  *
  */

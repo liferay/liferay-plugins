@@ -28,8 +28,6 @@ import java.lang.reflect.Proxy;
 import java.util.Date;
 
 /**
- * <a href="ArticleClp.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class ArticleClp extends BaseModelImpl<Article> implements Article {

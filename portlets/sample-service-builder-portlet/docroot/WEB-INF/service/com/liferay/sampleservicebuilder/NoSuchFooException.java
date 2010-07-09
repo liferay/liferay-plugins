@@ -17,8 +17,6 @@ package com.liferay.sampleservicebuilder;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * <a href="NoSuchFooException.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

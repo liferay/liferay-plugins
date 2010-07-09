@@ -22,8 +22,6 @@ import java.util.TreeMap;
 import org.apache.solr.client.solrj.SolrServer;
 
 /**
- * <a href="SolrServerFactoryImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Bruno Farache
  *
  */

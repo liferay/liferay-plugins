@@ -22,8 +22,6 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
 /**
- * <a href="FoodItemUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Charles May
  *
  */

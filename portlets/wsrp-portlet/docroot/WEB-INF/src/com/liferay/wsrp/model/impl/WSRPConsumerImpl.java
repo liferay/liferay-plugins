@@ -26,8 +26,6 @@ import java.io.IOException;
 import oasis.names.tc.wsrp.v2.types.RegistrationContext;
 
 /**
- * <a href="WSRPConsumerImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

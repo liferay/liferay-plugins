@@ -17,8 +17,6 @@ package com.liferay.stocks.model;
 import java.io.Serializable;
 
 /**
- * <a href="Stocks.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

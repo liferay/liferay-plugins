@@ -25,8 +25,6 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 /**
- * <a href="ConfirmDialog.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class ConfirmDialog extends Window implements Handler {

@@ -74,8 +74,6 @@ import oasis.names.tc.wsrp.v2.types.UpdateResponse;
 import org.apache.axis.message.MessageElement;
 
 /**
- * <a href="MarkupServiceImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

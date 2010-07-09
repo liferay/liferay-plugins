@@ -15,8 +15,6 @@
 package com.liferay.socialnetworking.meetups.util;
 
 /**
- * <a href="MeetupsConstants.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

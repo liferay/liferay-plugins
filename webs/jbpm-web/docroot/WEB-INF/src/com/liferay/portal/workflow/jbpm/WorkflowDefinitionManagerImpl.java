@@ -40,9 +40,6 @@ import org.jbpm.jpdl.JpdlException;
 import org.jbpm.jpdl.par.ProcessArchive;
 
 /**
- * <a href="WorkflowDefinitionManagerImpl.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  * @author Marcellus Tavares

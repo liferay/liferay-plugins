@@ -23,8 +23,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 
 /**
- * <a href="BaseMailbox.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public abstract class BaseMailbox implements Mailbox {

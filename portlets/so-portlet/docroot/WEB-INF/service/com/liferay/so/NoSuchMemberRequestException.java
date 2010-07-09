@@ -20,9 +20,6 @@ package com.liferay.so;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * <a href="NoSuchMemberRequestException.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Brian Wing Shun Chan
  *
  */

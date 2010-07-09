@@ -46,8 +46,6 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * <a href="XMLWorkflowModelParser.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class XMLWorkflowModelParser implements WorkflowModelParser {

@@ -31,8 +31,6 @@ import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 
 /**
- * <a href="SignInPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

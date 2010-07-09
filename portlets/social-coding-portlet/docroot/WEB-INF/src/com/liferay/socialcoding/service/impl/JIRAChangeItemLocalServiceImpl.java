@@ -22,9 +22,6 @@ import com.liferay.socialcoding.service.base.JIRAChangeItemLocalServiceBaseImpl;
 import java.util.List;
 
 /**
- * <a href="JIRAChangeItemLocalServiceImpl.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Brian Wing Shun Chan
  *
  */

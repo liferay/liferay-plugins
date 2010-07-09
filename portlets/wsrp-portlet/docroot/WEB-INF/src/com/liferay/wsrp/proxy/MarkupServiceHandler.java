@@ -30,8 +30,6 @@ import oasis.names.tc.wsrp.v1.types.PerformBlockingInteraction;
 import oasis.names.tc.wsrp.v1.types.ReleaseSessions;
 
 /**
- * <a href="MarkupServiceHandler.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  */
 public class MarkupServiceHandler implements InvocationHandler {

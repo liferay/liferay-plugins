@@ -59,8 +59,6 @@ import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
 /**
- * <a href="WebFormPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Daniel Weisser
  * @author Jorge Ferrer
  * @author Alberto Montero

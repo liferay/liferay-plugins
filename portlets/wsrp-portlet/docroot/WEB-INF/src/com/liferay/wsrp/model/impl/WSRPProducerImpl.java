@@ -17,8 +17,6 @@ package com.liferay.wsrp.model.impl;
 import com.liferay.wsrp.model.WSRPProducer;
 
 /**
- * <a href="WSRPProducerImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

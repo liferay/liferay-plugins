@@ -51,8 +51,6 @@ import org.apache.ws.security.handler.WSHandlerConstants;
 import org.apache.ws.security.message.token.UsernameToken;
 
 /**
- * <a href="ServiceHandler.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  */
 public class ServiceHandler implements InvocationHandler {

@@ -54,8 +54,6 @@ import java.util.Map;
 import javax.portlet.PortletPreferences;
 
 /**
- * <a href="AdminPortletDataHandlerImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */

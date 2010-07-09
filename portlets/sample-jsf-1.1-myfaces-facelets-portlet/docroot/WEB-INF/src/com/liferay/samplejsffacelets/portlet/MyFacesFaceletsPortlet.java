@@ -24,8 +24,6 @@ import javax.portlet.RenderResponse;
 import javax.portlet.UnavailableException;
 
 /**
- * <a href="MyFacesFaceletsPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Raymond Augé
  *
  */

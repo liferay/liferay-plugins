@@ -28,8 +28,6 @@ import javax.portlet.PortletMode;
 import javax.portlet.PortletPreferences;
 
 /**
- * <a href="RBVPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

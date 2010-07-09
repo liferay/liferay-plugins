@@ -17,9 +17,6 @@ package com.liferay.portal.workflow.kaleo.model.impl;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
 
 /**
- * <a href="KaleoTaskAssignmentInstanceImpl.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Brian Wing Shun Chan
  */
 public class KaleoTaskAssignmentInstanceImpl

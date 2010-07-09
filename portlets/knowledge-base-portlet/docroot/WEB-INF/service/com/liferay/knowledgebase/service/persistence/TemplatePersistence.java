@@ -19,8 +19,6 @@ import com.liferay.knowledgebase.model.Template;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
- * <a href="TemplatePersistence.java.html"><b><i>View Source</i></b></a>
- *
  * <p>
  * ServiceBuilder generated this class. Modifications in this class will be
  * overwritten the next time is generated.

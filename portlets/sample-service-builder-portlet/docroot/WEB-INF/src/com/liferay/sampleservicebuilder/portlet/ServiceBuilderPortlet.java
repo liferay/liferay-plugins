@@ -36,8 +36,6 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 
 /**
- * <a href="ServiceBuilderPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Alexander Chow
  *
  */

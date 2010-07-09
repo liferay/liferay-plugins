@@ -17,9 +17,6 @@ package com.liferay.portal.workflow.jbpm.comparator;
 import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowDefinitionNameComparator;
 
 /**
- * <a href="WorkflowDefinitionNameComparator.java.html"><b><i>View Source</i>
- * </b></a>
- *
  * @author Michael C. Han
  */
 public class WorkflowDefinitionNameComparator

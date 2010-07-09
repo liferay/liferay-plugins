@@ -25,9 +25,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
 /**
- * <a href="MailSynchronizationMessageListener.java.html"><b><i>View Source</i>
- * </b></a>
- *
  * @author Scott Lee
  * @author Ryan Park
  */

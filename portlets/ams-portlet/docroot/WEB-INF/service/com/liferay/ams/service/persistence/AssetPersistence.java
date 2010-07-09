@@ -19,8 +19,6 @@ import com.liferay.ams.model.Asset;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
- * <a href="AssetPersistence.java.html"><b><i>View Source</i></b></a>
- *
  * <p>
  * ServiceBuilder generated this class. Modifications in this class will be
  * overwritten the next time is generated.

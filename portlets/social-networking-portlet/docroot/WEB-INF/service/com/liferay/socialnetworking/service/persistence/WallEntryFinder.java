@@ -15,8 +15,6 @@
 package com.liferay.socialnetworking.service.persistence;
 
 /**
- * <a href="WallEntryFinder.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public interface WallEntryFinder {

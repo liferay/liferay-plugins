@@ -32,8 +32,6 @@ import java.util.List;
 import javax.faces.event.ValueChangeEvent;
 
 /**
- * <a href="CustomerListModel.java.html"><b><i>View Source</i></b></a>
- *
  * @author Neil Griffin
  *
  */

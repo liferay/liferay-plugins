@@ -15,8 +15,6 @@
 package com.liferay.socialnetworking.friends.social;
 
 /**
- * <a href="FriendsActivityKeys.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

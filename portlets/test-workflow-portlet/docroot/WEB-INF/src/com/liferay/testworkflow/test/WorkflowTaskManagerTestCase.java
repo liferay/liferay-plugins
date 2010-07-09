@@ -28,8 +28,6 @@ import java.io.ByteArrayInputStream;
 import java.util.List;
 
 /**
- * <a href="WorkflowTaskManagerTestCase.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  */
 public class WorkflowTaskManagerTestCase extends WorkflowTestCase {

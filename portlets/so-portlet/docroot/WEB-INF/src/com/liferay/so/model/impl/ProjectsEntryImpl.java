@@ -20,8 +20,6 @@ package com.liferay.so.model.impl;
 import com.liferay.so.model.ProjectsEntry;
 
 /**
- * <a href="ProjectsEntryImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

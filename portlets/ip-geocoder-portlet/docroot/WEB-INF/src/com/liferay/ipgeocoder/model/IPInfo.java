@@ -17,8 +17,6 @@ package com.liferay.ipgeocoder.model;
 import com.maxmind.geoip.Location;
 
 /**
- * <a href="IPInfo.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

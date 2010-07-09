@@ -21,9 +21,6 @@ import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager;
 
 /**
- * <a href="KaleoDeploymentEventMessageListener.java.html"><b><i>View Source</i>
- * </b></a>
- *
  * @author Michael C. Han
  */
 public class KaleoDeploymentEventMessageListener implements MessageListener {

@@ -28,8 +28,6 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- * <a href="KaleoInstanceImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class KaleoInstanceImpl

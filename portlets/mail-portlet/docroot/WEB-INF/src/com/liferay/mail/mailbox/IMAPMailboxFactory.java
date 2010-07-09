@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 
 /**
- * <a href="IMAPMailboxFactory.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public class IMAPMailboxFactory implements MailboxFactory {

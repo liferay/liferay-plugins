@@ -23,9 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <a href="KaleoTaskAssignmentInstanceUtil.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Michael C. Han
  */
 public class KaleoTaskAssignmentInstanceUtil {

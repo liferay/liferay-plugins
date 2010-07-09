@@ -41,9 +41,6 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * <a href="KaleoTaskInstanceTokenFinderImpl.java.html"><b><i>View Source</i>
- * </b></a>
- *
  * @author Michael C. Han
  */
 public class KaleoTaskInstanceTokenFinderImpl

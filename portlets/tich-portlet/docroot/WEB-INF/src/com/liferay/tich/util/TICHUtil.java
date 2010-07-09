@@ -21,8 +21,6 @@ import com.liferay.tich.model.Event;
 import java.util.List;
 
 /**
- * <a href="TICHUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

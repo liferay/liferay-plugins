@@ -20,8 +20,6 @@ import com.liferay.portal.kernel.webcache.WebCachePoolUtil;
 import com.liferay.weather.model.Weather;
 
 /**
- * <a href="WeatherUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

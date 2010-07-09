@@ -21,9 +21,6 @@ import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.twitter.service.FeedLocalServiceUtil;
 
 /**
- * <a href="SynchronizeTwitterMessageListener.java.html"><b><i>View Source</i>
- * </b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class SynchronizeTwitterMessageListener implements MessageListener {

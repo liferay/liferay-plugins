@@ -17,8 +17,6 @@ package com.liferay.socialcoding.service.persistence;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 
 /**
- * <a href="JIRAChangeGroupFinderUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class JIRAChangeGroupFinderUtil {

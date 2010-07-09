@@ -47,8 +47,6 @@ import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 
 /**
- * <a href="SolrIndexSearcherImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Bruno Farache
  * @author Zsolt Berentey
  */

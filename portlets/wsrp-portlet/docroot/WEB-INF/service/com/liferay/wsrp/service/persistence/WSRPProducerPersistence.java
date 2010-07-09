@@ -19,8 +19,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.wsrp.model.WSRPProducer;
 
 /**
- * <a href="WSRPProducerPersistence.java.html"><b><i>View Source</i></b></a>
- *
  * <p>
  * ServiceBuilder generated this class. Modifications in this class will be
  * overwritten the next time is generated.

@@ -19,8 +19,6 @@ import java.util.Comparator;
 import org.jbpm.graph.def.ProcessDefinition;
 
 /**
- * <a href="ProcessDefinitionComparator.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  * @author Brian Wing Shun Chan
  */

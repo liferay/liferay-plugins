@@ -35,8 +35,6 @@ import java.lang.reflect.Proxy;
 import java.sql.Types;
 
 /**
- * <a href="EntryModelImpl.java.html"><b><i>View Source</i></b></a>
- *
  * <p>
  * ServiceBuilder generated this class. Modifications in this class will be
  * overwritten the next time is generated.

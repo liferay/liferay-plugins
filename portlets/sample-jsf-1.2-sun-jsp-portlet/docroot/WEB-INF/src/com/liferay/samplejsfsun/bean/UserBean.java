@@ -15,8 +15,6 @@
 package com.liferay.samplejsfsun.bean;
 
 /**
- * <a href="UserBean.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Myunghun Kim
  *
  */

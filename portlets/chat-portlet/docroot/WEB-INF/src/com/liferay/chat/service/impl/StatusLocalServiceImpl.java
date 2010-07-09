@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import java.util.List;
 
 /**
- * <a href="StatusLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

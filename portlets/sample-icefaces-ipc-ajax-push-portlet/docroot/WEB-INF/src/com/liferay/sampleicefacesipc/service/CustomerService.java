@@ -19,8 +19,6 @@ import com.liferay.sampleicefacesipc.transfer.Customer;
 import java.util.List;
 
 /**
- * <a href="CustomerService.java.html"><b><i>View Source</i></b></a>
- *
  * @author Neil Griffin
  *
  */

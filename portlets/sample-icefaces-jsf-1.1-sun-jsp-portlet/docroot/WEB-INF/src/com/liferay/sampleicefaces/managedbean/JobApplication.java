@@ -38,8 +38,6 @@ import javax.mail.internet.InternetAddress;
 import javax.portlet.PortletPreferences;
 
 /**
- * <a href="JobApplication.java.html"><b><i>View Source</i></b></a>
- *
  * <p>
  * This class is the backing bean behind the JobApplication.jspx file. It
  * contains bean properties to store the values of each ICEfaces component

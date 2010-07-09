@@ -19,8 +19,6 @@ import com.liferay.portal.workflow.kaleo.definition.DueDateDuration;
 import java.util.Date;
 
 /**
- * <a href="DueDateCalculator.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public interface DueDateCalculator {

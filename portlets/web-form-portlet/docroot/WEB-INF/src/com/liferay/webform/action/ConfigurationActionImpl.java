@@ -34,8 +34,6 @@ import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
 
 /**
- * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Jorge Ferrer
  * @author Alberto Montero
  * @author Julio Camarero

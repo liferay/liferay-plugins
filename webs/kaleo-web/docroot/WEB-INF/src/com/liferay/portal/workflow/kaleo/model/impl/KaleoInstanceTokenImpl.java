@@ -27,8 +27,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalServiceUtil;
 import java.util.List;
 
 /**
- * <a href="KaleoInstanceTokenImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class KaleoInstanceTokenImpl

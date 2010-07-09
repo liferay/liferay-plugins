@@ -17,8 +17,6 @@ package com.liferay.portal.workflow.kaleo.parser;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 
 /**
- * <a href="DefaultWorkflowValidator.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class DefaultWorkflowValidator implements WorkflowValidator {

@@ -115,8 +115,6 @@ import oasis.names.tc.wsrp.v2.types.UserContext;
 import org.apache.axis.message.MessageElement;
 
 /**
- * <a href="ConsumerPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  * @author Michael Young
  *

@@ -31,8 +31,6 @@ import javax.portlet.RenderResponse;
 import javax.portlet.WindowState;
 
 /**
- * <a href="MailPortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class MailPortlet extends AbstractApplicationPortlet {

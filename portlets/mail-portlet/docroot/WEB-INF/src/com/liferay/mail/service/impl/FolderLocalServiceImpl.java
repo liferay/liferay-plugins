@@ -27,8 +27,6 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <a href="FolderLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {

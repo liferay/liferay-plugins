@@ -25,8 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <a href="NetvibesWidgetUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Julio Camarero
  * @author Peter Shin
  */

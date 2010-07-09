@@ -19,8 +19,6 @@ import com.liferay.mail.model.Account;
 import com.vaadin.ui.Button.ClickEvent;
 
 /**
- * <a href="GMailAccountEditor.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class GMailAccountEditor extends AccountEditor {

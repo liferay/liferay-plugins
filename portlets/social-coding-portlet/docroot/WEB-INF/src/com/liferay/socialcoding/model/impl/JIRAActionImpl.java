@@ -17,8 +17,6 @@ package com.liferay.socialcoding.model.impl;
 import com.liferay.socialcoding.model.JIRAAction;
 
 /**
- * <a href="JIRAActionImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

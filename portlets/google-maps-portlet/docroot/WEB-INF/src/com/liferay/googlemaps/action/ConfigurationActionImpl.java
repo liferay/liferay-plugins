@@ -28,8 +28,6 @@ import javax.portlet.PortletPreferences;
 import javax.portlet.PortletSession;
 
 /**
- * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Mark Wong
  *
  */

@@ -15,8 +15,6 @@
 package com.liferay.socialcoding.jira.util;
 
 /**
- * <a href="JIRAConstants.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

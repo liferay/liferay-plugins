@@ -27,8 +27,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
 
 /**
- * <a href="DefaultKaleoSignaler.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class DefaultKaleoSignaler

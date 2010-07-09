@@ -31,8 +31,6 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 /**
- * <a href="PasswordPrompt.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class PasswordPrompt extends Window implements Button.ClickListener {

@@ -23,8 +23,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 /**
- * <a href="WorkflowTestCase.java.html"><b><i>View Source</i></b></a>
- *
  * @author Shuyang Zhou
  */
 public class WorkflowTestCase extends TestCase {

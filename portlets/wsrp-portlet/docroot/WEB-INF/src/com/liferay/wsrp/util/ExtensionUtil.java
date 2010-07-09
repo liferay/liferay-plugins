@@ -22,8 +22,6 @@ import oasis.names.tc.wsrp.v2.types.Extension;
 import org.apache.axis.message.MessageElement;
 
 /**
- * <a href="ExtensionUtil.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  *
  */

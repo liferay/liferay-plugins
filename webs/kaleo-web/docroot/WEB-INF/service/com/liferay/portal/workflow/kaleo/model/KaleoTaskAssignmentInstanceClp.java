@@ -27,9 +27,6 @@ import java.lang.reflect.Proxy;
 import java.util.Date;
 
 /**
- * <a href="KaleoTaskAssignmentInstanceClp.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Brian Wing Shun Chan
  */
 public class KaleoTaskAssignmentInstanceClp extends BaseModelImpl<KaleoTaskAssignmentInstance>

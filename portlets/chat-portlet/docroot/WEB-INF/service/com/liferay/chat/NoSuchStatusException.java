@@ -17,8 +17,6 @@ package com.liferay.chat;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * <a href="NoSuchStatusException.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

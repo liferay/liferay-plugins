@@ -17,8 +17,6 @@ package com.liferay.ams.model.impl;
 import com.liferay.ams.model.Type;
 
 /**
- * <a href="TypeImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class TypeImpl extends TypeModelImpl implements Type {

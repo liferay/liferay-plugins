@@ -17,8 +17,6 @@ package com.liferay.portal.workflow.kaleo;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * <a href="NoSuchLogException.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class NoSuchLogException extends NoSuchModelException {

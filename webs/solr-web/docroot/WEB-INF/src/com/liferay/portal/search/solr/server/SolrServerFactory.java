@@ -19,8 +19,6 @@ import java.util.List;
 import org.apache.solr.client.solrj.SolrServer;
 
 /**
- * <a href="SolrServerFactory.java.html"><b><i>View Source</i></b></a>
- *
  * @author Bruno Farache
  *
  */

@@ -50,8 +50,6 @@ import org.apache.shindig.social.opensocial.spi.GroupId;
 import org.apache.shindig.social.opensocial.spi.UserId;
 
 /**
- * <a href="LiferayAppDataService.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  */
 public class LiferayAppDataService implements AppDataService {

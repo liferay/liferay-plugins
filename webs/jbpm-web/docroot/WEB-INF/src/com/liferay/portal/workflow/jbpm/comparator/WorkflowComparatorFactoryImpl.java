@@ -18,9 +18,6 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.comparator.WorkflowComparatorFactory;
 
 /**
- * <a href="WorkflowComparatorFactoryImpl.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Michael C. Han
  * @author Brian Wing Shun Chan
  */

@@ -15,8 +15,6 @@
 package com.liferay.socialnetworking.members.social;
 
 /**
- * <a href="MembersRequestKeys.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

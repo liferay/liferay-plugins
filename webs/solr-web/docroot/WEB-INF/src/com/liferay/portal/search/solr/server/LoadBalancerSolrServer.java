@@ -25,8 +25,6 @@ import org.apache.solr.common.SolrException;
 import org.apache.solr.common.util.NamedList;
 
 /**
- * <a href="LoadBalancerSolrServer.java.html"><b><i>View Source</i></b></a>
- *
  * @author Bruno Farache
  *
  */

@@ -17,8 +17,6 @@ package com.liferay.portal.workflow.jbpm.util;
 import com.liferay.portal.kernel.util.Validator;
 
 /**
- * <a href="RoleAssignment.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class RoleAssignment extends Assignment {

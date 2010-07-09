@@ -24,8 +24,6 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * <a href="TaskManager.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public interface TaskManager {

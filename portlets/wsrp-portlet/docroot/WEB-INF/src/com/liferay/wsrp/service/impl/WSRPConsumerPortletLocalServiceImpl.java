@@ -62,9 +62,6 @@ import oasis.names.tc.wsrp.v2.types.PortletDescription;
 import org.apache.axis.message.MessageElement;
 
 /**
- * <a href="WSRPConsumerPortletLocalServiceImpl.java.html"><b><i>View Source</i>
- * </b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

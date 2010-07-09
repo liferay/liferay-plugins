@@ -15,8 +15,6 @@
 package com.liferay.chat.service.persistence;
 
 /**
- * <a href="EntryFinder.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public interface EntryFinder {

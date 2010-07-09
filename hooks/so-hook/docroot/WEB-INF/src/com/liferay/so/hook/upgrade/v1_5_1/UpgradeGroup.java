@@ -42,8 +42,6 @@ import java.util.List;
 import javax.portlet.PortletPreferences;
 
 /**
- * <a href="UpgradeGroup.java.html"><b><i>View Source</i></b></a>
- *
  * @author Ryan Park
  */
 public class UpgradeGroup extends UpgradeProcess {

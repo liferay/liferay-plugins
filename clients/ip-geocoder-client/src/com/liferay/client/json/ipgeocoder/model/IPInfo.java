@@ -15,8 +15,6 @@
 package com.liferay.client.json.ipgeocoder.model;
 
 /**
- * <a href="IPInfo.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

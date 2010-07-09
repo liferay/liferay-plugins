@@ -74,8 +74,6 @@ import javax.mail.internet.MimeMultipart;
 import org.apache.commons.lang.time.StopWatch;
 
 /**
- * <a href="IMAPAccessor.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public class IMAPAccessor {

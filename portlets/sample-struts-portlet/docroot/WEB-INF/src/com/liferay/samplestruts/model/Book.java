@@ -18,8 +18,6 @@ import java.io.File;
 import java.io.Serializable;
 
 /**
- * <a href="Book.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  *
  */

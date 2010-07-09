@@ -15,8 +15,6 @@
 package com.liferay.mail.util;
 
 /**
- * <a href="MailConstants.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public class MailConstants {

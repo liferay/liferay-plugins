@@ -23,8 +23,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalServiceUtil
 import java.util.List;
 
 /**
- * <a href="KaleoNodeImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class KaleoNodeImpl extends KaleoNodeModelImpl implements KaleoNode {

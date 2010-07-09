@@ -25,8 +25,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.tiles.TilesRequestProcessor;
 
 /**
- * <a href="SampleRequestProcessor.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

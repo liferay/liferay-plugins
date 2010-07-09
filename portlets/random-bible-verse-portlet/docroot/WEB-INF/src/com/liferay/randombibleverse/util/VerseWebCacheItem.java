@@ -23,8 +23,6 @@ import com.liferay.portal.kernel.webcache.WebCacheItem;
 import com.liferay.randombibleverse.model.Verse;
 
 /**
- * <a href="VerseWebCacheItem.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

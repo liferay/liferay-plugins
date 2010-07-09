@@ -34,8 +34,6 @@ import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
 /**
- * <a href="RubyConsolePortlet.java.html"><b><i>View Source</i></b></a>
- *
  * @author Raymond Augé
  *
  */

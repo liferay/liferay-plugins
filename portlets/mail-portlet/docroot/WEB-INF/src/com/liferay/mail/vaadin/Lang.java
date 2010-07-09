@@ -17,8 +17,6 @@ package com.liferay.mail.vaadin;
 import com.liferay.portal.kernel.language.LanguageUtil;
 
 /**
- * <a href="Lang.java.html"><b><i>View Source</i></b></a>
- *
  * @author Henri Sara
  */
 public class Lang {

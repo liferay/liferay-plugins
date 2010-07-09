@@ -15,8 +15,6 @@
 package com.liferay.socialcoding.service.persistence;
 
 /**
- * <a href="JIRAActionFinder.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public interface JIRAActionFinder {

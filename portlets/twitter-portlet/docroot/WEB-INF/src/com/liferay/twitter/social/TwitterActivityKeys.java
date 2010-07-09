@@ -15,8 +15,6 @@
 package com.liferay.twitter.social;
 
 /**
- * <a href="TwitterActivityKeys.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

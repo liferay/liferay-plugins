@@ -17,9 +17,6 @@ package com.liferay.testmisc.servlet;
 import com.liferay.portal.kernel.servlet.PortletSessionListenerLoader;
 
 /**
- * <a href="TestPortletSessionListenerLoader.java.html"><b><i>View Source</i>
- * </b></a>
- *
  * <p>
  * This is a <code>javax.servlet.ServletContextListener</code> that loads a
  * <code>javax.servlet.http.HttpSessionListener</code> and ensures the hot

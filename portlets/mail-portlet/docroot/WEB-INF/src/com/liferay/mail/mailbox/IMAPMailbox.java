@@ -55,8 +55,6 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 /**
- * <a href="IMAPMailbox.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public class IMAPMailbox extends BaseMailbox {

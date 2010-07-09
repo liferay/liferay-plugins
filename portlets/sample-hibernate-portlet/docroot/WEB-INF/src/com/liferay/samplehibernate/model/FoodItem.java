@@ -15,8 +15,6 @@
 package com.liferay.samplehibernate.model;
 
 /**
- * <a href="FoodItem.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

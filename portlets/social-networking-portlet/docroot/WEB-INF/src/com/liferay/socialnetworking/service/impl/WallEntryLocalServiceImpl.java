@@ -37,8 +37,6 @@ import java.util.List;
 import javax.mail.internet.InternetAddress;
 
 /**
- * <a href="WallEntryLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

@@ -55,8 +55,6 @@ import oasis.names.tc.wsrp.v2.types.ServiceDescription;
 import oasis.names.tc.wsrp.v2.wsdl.WSRP_v2_Service;
 
 /**
- * <a href="WSRPConsumerManager.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

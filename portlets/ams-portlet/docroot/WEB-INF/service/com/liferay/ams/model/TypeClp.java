@@ -23,8 +23,6 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 /**
- * <a href="TypeClp.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class TypeClp extends BaseModelImpl<Type> implements Type {

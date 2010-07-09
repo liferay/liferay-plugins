@@ -44,8 +44,6 @@ import java.util.List;
 import javax.portlet.PortletURL;
 
 /**
- * <a href="MessageIndexer.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public class MessageIndexer extends BaseIndexer {

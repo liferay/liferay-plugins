@@ -18,8 +18,6 @@ import com.liferay.mail.model.Account;
 import com.liferay.mail.util.PasswordUtil;
 
 /**
- * <a href="AccountImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Scott Lee
  */
 public class AccountImpl extends AccountModelImpl implements Account {

@@ -20,8 +20,6 @@ import com.liferay.portal.workflow.kaleo.definition.Definition;
 import java.io.InputStream;
 
 /**
- * <a href="WorkflowModelParser.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public interface WorkflowModelParser {

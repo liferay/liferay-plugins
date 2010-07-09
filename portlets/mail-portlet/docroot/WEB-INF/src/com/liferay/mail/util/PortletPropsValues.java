@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.util.portlet.PortletProps;
 
 /**
- * <a href="PortletPropsValues.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
  public class PortletPropsValues {

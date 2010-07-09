@@ -40,8 +40,6 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * <a href="DefaultTaskManagerImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor = {Exception.class})

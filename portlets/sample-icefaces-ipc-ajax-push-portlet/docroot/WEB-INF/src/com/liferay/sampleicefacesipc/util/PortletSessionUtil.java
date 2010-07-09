@@ -19,8 +19,6 @@ import javax.faces.context.FacesContext;
 import javax.portlet.PortletSession;
 
 /**
- * <a href="PortletSessionUtil.java.html"><b><i>View Source</i></b></a>
- *
  * <p>
  * This utility class is necessary to simulate JSF "session" scope across
  * multiple portlets. By default, the JSF framework defines session-scoped

@@ -15,8 +15,6 @@
 package com.liferay.knowledgebase.util;
 
 /**
- * <a href="PortletKeys.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  * @author Peter Shin
  */

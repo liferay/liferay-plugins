@@ -17,8 +17,6 @@ package com.liferay.opensocial.model.impl;
 import com.liferay.opensocial.model.Gadget;
 
 /**
- * <a href="GadgetImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class GadgetImpl extends GadgetModelImpl implements Gadget {

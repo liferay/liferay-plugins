@@ -32,8 +32,6 @@ import org.apache.solr.common.params.ModifiableSolrParams;
 import org.apache.solr.common.util.NamedList;
 
 /**
- * <a href="BasicAuthSolrServer.java.html"><b><i>View Source</i></b></a>
- *
  * @author Bruno Farache
  *
  */

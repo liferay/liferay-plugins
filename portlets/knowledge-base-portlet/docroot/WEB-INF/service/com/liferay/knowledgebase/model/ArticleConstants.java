@@ -15,8 +15,6 @@
 package com.liferay.knowledgebase.model;
 
 /**
- * <a href="ArticleConstants.java.html"><b><i>View Source</i></b></a>
- *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */

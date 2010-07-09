@@ -18,8 +18,6 @@ import com.liferay.socialcoding.model.SVNRepository;
 import com.liferay.socialcoding.svn.util.SVNConstants;
 
 /**
- * <a href="SVNRepositoryImpl.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  *
  */

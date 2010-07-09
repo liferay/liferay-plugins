@@ -55,8 +55,6 @@ import java.util.Set;
 import javax.mail.internet.InternetAddress;
 
 /**
- * <a href="AdminMessageListener.java.html"><b><i>View Source</i></b></a>
- *
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */

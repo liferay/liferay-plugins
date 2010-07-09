@@ -29,8 +29,6 @@ import javax.portlet.PortletMode;
 import javax.portlet.WindowState;
 
 /**
- * <a href="ConsumerFriendlyURLMapper.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael Young
  *
  */
