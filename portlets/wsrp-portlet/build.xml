@@ -3,8 +3,6 @@
 <project name="portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
 
-	<taskdef classpathref="portal.classpath" resource="axis-tasks.properties" />
-
 	<!--
 	See http://wiki.oasis-open.org/wsrp/WSRP_Producers for a list of demo
 	producers.
@@ -66,6 +64,8 @@
 	</target>
 
 	<target name="format-xml">
+		<taskdef classpathref="portal.classpath" resource="axis-tasks.properties" />
+
 		<for param="xml.file">
 			<path>
 				<fileset
