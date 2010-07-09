@@ -668,7 +668,7 @@ Please find a solution that does not require portal-impl.jar.
 				<mkdir dir="tmp/WEB-INF/classes" />
 				<mkdir dir="tmp/WEB-INF/lib" />
 
-				<unzip dest="tmp" src="${original.war.file}" />
+				<antcall target="merge-unzip" />
 
 				<copy todir="tmp" overwrite="true">
 					<fileset dir="docroot" />
@@ -679,6 +679,10 @@ Please find a solution that does not require portal-impl.jar.
 		<copy todir="tmp">
 			<fileset dir="docroot" />
 		</copy>
+	</target>
+
+	<target name="merge-unzip">
+		<unzip dest="tmp" src="${original.war.file}" />
 	</target>
 
 	<target name="war" depends="compile">
