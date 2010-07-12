@@ -17,12 +17,14 @@ body {
 	background: url(../images/custom/body_bg.png) repeat-x;
 	color: #444;
 	min-height: 100%;
+	overflow: hidden;
 }
 
 /* -------- Wrapper / Skip / Sign-in -------- */
 
 #outer-wrapper {
 	background: url(../images/custom/outer-wrapper_bg.png) no-repeat center bottom;
+	margin: 0 0 35px;
 }
 
 #wrapper {
