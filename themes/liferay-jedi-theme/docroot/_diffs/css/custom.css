@@ -51,10 +51,10 @@ body {
 #banner {
 	-moz-box-shadow: 0 1px 2px #999;
 	-webkit-box-shadow: 0 1px 2px #999;
-	-box-shadow: 0 1px 2px #999;
 	background: #1E262D;
 	background-image: -moz-linear-gradient(#0E1114, #1E262D);
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #0E1114), color-stop(1.0, #1E262D));
+	box-shadow: 0 1px 2px #999;
 	position: relative;
 }
 
@@ -134,8 +134,8 @@ body {
 	background: #FFF;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
-	padding: 25px;
 	margin: 15px auto 0;
+	padding: 25px;
 	width: 910px;
 }
 
