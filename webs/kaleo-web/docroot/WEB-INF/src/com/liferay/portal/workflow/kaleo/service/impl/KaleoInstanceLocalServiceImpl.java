@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoInstanceLocalServiceBaseImpl;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
@@ -36,6 +37,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * <a href="KaleoInstanceLocalServiceImpl.java.html"><b><i>View Source</i></b>
+ * </a>
+ *
  * @author Brian Wing Shun Chan
  */
 public class KaleoInstanceLocalServiceImpl
@@ -150,9 +154,12 @@ public class KaleoInstanceLocalServiceImpl
 	public void deleteKaleoInstance(long kaleoInstanceId)
 		throws PortalException, SystemException {
 
-		// Kaleo instance
-
-		kaleoInstancePersistence.remove(kaleoInstanceId);
+		try {
+			kaleoInstancePersistence.remove(kaleoInstanceId);
+		}
+		catch (NoSuchInstanceException e) {
+			return;
+		}
 
 		// Kaleo instance tokens
 
