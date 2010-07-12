@@ -67,8 +67,7 @@
 <h3>service</h3>
 
 <p>
-	com.liferay.portal.service.UserLocalService=<%= _assertEquals(TestUserImpl.class.getName(),
-		UserLocalServiceUtil.getUserByEmailAddress(themeDisplay.getCompanyId(),"test@liferay.com").getClass().getName()) %>
+	com.liferay.portal.service.UserLocalService=<%= _assertEquals(TestUserImpl.class.getName(), UserLocalServiceUtil.getUserByEmailAddress(themeDisplay.getCompanyId(),"test@liferay.com").getClass().getName()) %>
 </p>
 
 <%!
