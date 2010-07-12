@@ -120,8 +120,8 @@
 		createPlayer();
 	}
 
-	function encodeBinary(bln) {
-		return (bln) ? 1 : 0;
+	function encodeBinary(value) {
+		return (value) ? 1 : 0;
 	}
 
 	function encodeHex(hex) {
