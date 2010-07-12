@@ -16,6 +16,7 @@
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
+<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
@@ -28,6 +29,8 @@
 <%@ page import="com.liferay.testhook.util.TestHookUtil" %>
 
 <portlet:defineObjects />
+
+<liferay-theme:defineObjects />
 
 <h3>portal-properties</h3>
 
@@ -64,7 +67,8 @@
 <h3>service</h3>
 
 <p>
-	com.liferay.portal.service.UserLocalService=<%= _assertEquals(TestUserImpl.class.getName(), UserLocalServiceUtil.getUserById(2).getClass().getName()) %>
+	com.liferay.portal.service.UserLocalService=<%= _assertEquals(TestUserImpl.class.getName(),
+		UserLocalServiceUtil.getUserByEmailAddress(themeDisplay.getCompanyId(),"test@liferay.com").getClass().getName()) %>
 </p>
 
 <%!
