@@ -6,7 +6,7 @@ namespace = $renderResponse.getNamespace
 
 out = $renderResponse.getPortletOutputStream
 
-out.print <<-EOF
+html = <<-EOF
 <style type="text/css">
 	\##{namespace}consoleOutput {
 		border: 1px solid \#ccc;
@@ -77,3 +77,5 @@ out.println `date`
 
 <script src="#{themeDisplay.getPathContext}/html/js/editor/codepress/codepress.js" type="text/javascript"></script>
 EOF
+
+out.print html
