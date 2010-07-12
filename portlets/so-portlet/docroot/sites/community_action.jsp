@@ -50,7 +50,8 @@ Group group = (Group)row.getObject();
 
 		<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="manageMembersURL">
 			<liferay-portlet:param name="jspPage" value="/sites/edit_members.jsp" />
-			<liferay-portlet:param name="backURL" value="<%= redirectURL %>" />
+			<liferay-portlet:param name="redirect" value="<%= redirectURL %>" />
+			<liferay-portlet:param name="returnToFullPageURL" value="<%= redirectURL %>" />
 			<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 		</liferay-portlet:renderURL>
 

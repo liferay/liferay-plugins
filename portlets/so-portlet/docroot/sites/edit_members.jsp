@@ -20,7 +20,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String backURL = ParamUtil.getString(request, "backURL");
+String redirect = ParamUtil.getString(request, "redirect");
 
 long groupId = ParamUtil.getLong(request, "groupId");
 %>
@@ -93,9 +93,9 @@ long groupId = ParamUtil.getLong(request, "groupId");
 
 <br />
 
-<aui:button onClick="<%= backURL %>" value="back" />
+<aui:button onClick="<%= redirect %>" value="back" />
 
-<form id="<portlet:namespace />fm" action="<portlet:actionURL name="updateRoles"><portlet:param name="backURL" value="<%= backURL %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm">
+<form id="<portlet:namespace />fm" action="<portlet:actionURL name="updateRoles"><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm">
 	<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
 	<input name="<portlet:namespace />userId" type="hidden" />
 	<input name="<portlet:namespace />groupId" type="hidden" />
