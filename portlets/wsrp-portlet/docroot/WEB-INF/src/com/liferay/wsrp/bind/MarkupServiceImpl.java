@@ -631,12 +631,12 @@ public class MarkupServiceImpl
 		String propertiesAuthenticatonTokenSharedSecret = Encryptor.digest(
 			PropsUtil.get(PropsKeys.AUTH_TOKEN_SHARED_SECRET));
 
-		sb.append("&p_auth_secret=");
+		sb.append("p_auth_secret=");
 		sb.append(HttpUtil.encodeURL(propertiesAuthenticatonTokenSharedSecret));
 
 		Layout layout = getLayout(portletContext, wsrpProducer);
 
-		sb.append("p_l_id=");
+		sb.append("&p_l_id=");
 		sb.append(layout.getPlid());
 
 		NavigationalContext navigationalContext =
