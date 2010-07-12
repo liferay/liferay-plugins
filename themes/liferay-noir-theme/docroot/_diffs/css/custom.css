@@ -28,10 +28,13 @@ body {
 #wrapper {
 	-moz-border-radius-bottomleft: 9px;
 	-moz-border-radius-bottomright: 9px;
-	-moz-box-shadow: 0px 0px 4px #000;
+	-moz-box-shadow: 0 0 4px #000;
 	-webkit-border-bottom-left-radius: 9px;
 	-webkit-border-bottom-right-radius: 9px;
 	background: #000;
+	border-bottom-left-radius: 9px;
+	border-bottom-right-radius: 9px;
+	box-shadow: 0 0 4px #000;
 	font: 12px/1.5 Arial, Helvetica, sans-serif;
 	margin: 0 auto;
 	position: relative;
@@ -153,7 +156,7 @@ body {
 }
 
 .portlet-content {
-	background: #141b24;
+	background: #141B24;
 	color: #7E97AE;
 }
 
