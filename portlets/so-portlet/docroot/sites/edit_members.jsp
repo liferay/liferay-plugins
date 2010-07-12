@@ -95,7 +95,7 @@ long groupId = ParamUtil.getLong(request, "groupId");
 
 <aui:button onClick="<%= redirect %>" value="back" />
 
-<form id="<portlet:namespace />fm" action="<portlet:actionURL name="updateRoles"><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm">
+<form id="<portlet:namespace />fm" action="<portlet:actionURL name="updateRoles" />" method="post" name="<portlet:namespace />fm">
 	<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
 	<input name="<portlet:namespace />userId" type="hidden" />
 	<input name="<portlet:namespace />groupId" type="hidden" />
