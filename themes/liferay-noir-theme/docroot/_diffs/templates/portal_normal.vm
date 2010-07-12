@@ -2,39 +2,12 @@
 
 #parse ($init)
 
-<html class="#language ("lang.dir")" dir="#language ("lang.dir")">
-
-#set ($company_url = $company_url + "/web/guest/home")
+<html class="#language("lang.dir")" dir="#language("lang.dir")" lang="$w3c_language_id">
 
 <head>
 	<title>$the_title - $company_name</title>
 
 	$theme.include($top_head_include)
-
-	#if ($group_id > 0)
-		#set ($journalTemplateLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalTemplateLocalService"))
-
-		#set ($journalTemplateId = $theme_settings.getProperty("css-template-id"))
-
-		#if ($journalTemplateLocalService.hasTemplate($group_id, $journalTemplateId))
-
-			## Instead of reference the URL, just insert the content to save an
-			## extra HTTP request.
-
-			## <link rel="stylesheet" type="text/css" href="$theme_display.getPathMain()/journal/get_template?groupId=$group_id&templateId=$journalTemplateId" />-->
-
-			#set ($journalTemplate = $journalTemplateLocalService.getTemplate($group_id, $journalTemplateId))
-
-			<style type="text/css">
-				#set ($cssTemplate = $journalTemplate.getXsl())
-				#set ($cssTemplate = $stringUtil.replace($cssTemplate, "@root_path@", $themeDisplay.getPathContext()))
-				#set ($cssTemplate = $stringUtil.replace($cssTemplate, "@image_path@", $themeDisplay.getPathImage()))
-				#set ($cssTemplate = $stringUtil.stripBetween($cssTemplate, "/*", "*/"))
-
-				$cssTemplate
-			</style>
-		#end
-	#end
 </head>
 
 <body class="$css_class">
@@ -43,61 +16,69 @@
 	#dockbar()
 #end
 
-$theme.include($top_messages_include)
-
-<div id="wrapper">
-	<div id="banner">
-		<h1 class="logo">
-			<a class="png" href="$company_url">$company_name</a>
-		</h1>
-
-		<div class="search">
-			$theme.journalContentSearch()
-		</div>
-
-		#if ($update_available_url)
-			<div class="popup-alert-notice">
-				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
-			</div>
-		#end
-
-		#if ($has_navigation)
-			#parse ("$full_templates_path/navigation.vm")
-		#end
-	</div>
-
-	#if ($selectable)
-		$theme.include($content_include)
-	#else
-		$portletDisplay.recycle()
-
-		$portletDisplay.setTitle($the_title)
-
-		$theme.wrapPortlet("portlet.vm", $content_include)
-	#end
-
-	<div id="footer">
-		<p class="copyright-notice">&copy; 2000-$the_year $company_name</p>
-
-		<div class="footer-award-images">
-			#set ($journalArticleLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService"))
-
-			#set ($journalArticleId = $theme_settings.getProperty("footer-article-id"))
-
-			#if ($journalArticleLocalService.hasArticle($group_id, $journalArticleId))
-				$velocityPortletPreferences.setValue("portlet-setup-show-borders", "false")
-				$velocityPortletPreferences.setValue("group-id", "$group_id")
-				$velocityPortletPreferences.setValue("article-id", $journalArticleId)
-
-				$theme.runtime("56_INSTANCE_a453", "", $velocityPortletPreferences.toString())
-
-				$velocityPortletPreferences.reset()
+<div id="outer-wrapper">
+	<div id="wrapper">
+		<a href="#main-content" id="skip-to-content">#language("skip-to-content")</a>
+	
+		<header id="banner" role="banner">
+			<hgroup id="heading">
+				<h1 class="company-title">
+					<a class="logo" href="$company_url" title="#language("go-to") $company_name">
+						<span>$company_name</span>
+					</a>
+				</h1>
+	
+				<h2 class="community-title">
+					<a href="$community_default_url" title="#language("go-to") $community_name">
+						<span>$community_name</span>
+					</a>
+				</h2>
+	
+				<h3 class="page-title">
+					<span>$the_title</span>
+				</h3>
+			</hgroup>
+	
+			#if(!$is_signed_in)
+				<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
+			#end
+	
+			#if ($update_available_url)
+				<div class="popup-alert-notice">
+					<a class="update-available" href="$update_available_url">#language("updates-are-available-for-liferay")</a>
+				</div>
+			#end
+	
+			#if ($has_navigation)
+				#parse ("$full_templates_path/navigation.vm")
+			#end
+		</header>
+	
+		<div id="content">
+			<nav class="site-breadcrumbs" id="breadcrumbs">
+				<h1>
+					<span>#language("breadcrumbs")</span>
+				</h1>
+	
+				#breadcrumbs()
+			</nav>
+	
+			#if ($selectable)
+				$theme.include($content_include)
+			#else
+				$portletDisplay.recycle()
+	
+				$portletDisplay.setTitle($the_title)
+	
+				$theme.wrapPortlet("portlet.vm", $content_include)
 			#end
 		</div>
-
-		#if ($has_navigation)
-			#parse ("$full_templates_path/bottom_navigation.vm")
-		#end
+	
+		<footer id="footer" role="contentinfo">
+			<p class="powered-by">
+				#language("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
+			</p>
+		</footer>
 	</div>
 </div>
 
