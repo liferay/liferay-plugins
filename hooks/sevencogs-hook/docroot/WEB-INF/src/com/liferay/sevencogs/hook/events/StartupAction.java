@@ -15,6 +15,7 @@
 package com.liferay.sevencogs.hook.events;
 
 import com.liferay.documentlibrary.DuplicateFileException;
+import com.liferay.portal.DuplicateRoleException;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.events.ActionException;
@@ -23,6 +24,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -46,9 +48,11 @@ import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.PermissionLocalServiceUtil;
 import com.liferay.portal.service.ResourceLocalServiceUtil;
+import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.service.WorkflowDefinitionLinkLocalServiceUtil;
 import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -662,6 +666,7 @@ public class StartupAction extends SimpleAction {
 		clearData(companyId);
 		setupCommunities(companyId, defaultUserId);
 		setupOrganizations(companyId, defaultUserId);
+		setupWorkflow(companyId, defaultUserId);
 		setupRoles(companyId, defaultUserId);
 		setupUsers(companyId);
 	}
@@ -734,8 +739,14 @@ public class StartupAction extends SimpleAction {
 		int scope =	ResourceConstants.SCOPE_COMPANY;
 		String primKey = String.valueOf(companyId);
 
-		PermissionLocalServiceUtil.setRolePermissions(
-			roleId, companyId, name, scope, primKey, actionIds);
+		if (_PERMISSIONS_USER_CHECK_ALGORITHM == 6) {
+			ResourcePermissionLocalServiceUtil.setResourcePermissions(
+				companyId, name, scope, primKey, roleId, actionIds);
+		}
+		else {
+			PermissionLocalServiceUtil.setRolePermissions(
+				roleId, companyId, name, scope, primKey, actionIds);
+		}
 	}
 
 	protected void setupCommunities(long companyId, long defaultUserId)
@@ -1726,9 +1737,19 @@ public class StartupAction extends SimpleAction {
 	protected void setupRoles(long companyId, long defaultUserId)
 		throws Exception {
 
+		try {
+			RoleLocalServiceUtil.addRole(
+				defaultUserId, companyId, "Portal Content Reviewer", null,
+				"Portal Content Reviewer are responsible for approving " +
+					"content.",
+				RoleConstants.TYPE_REGULAR);
+		}
+		catch (DuplicateRoleException dre) {
+		}
+
 		Role publisherRole = RoleLocalServiceUtil.addRole(
 			defaultUserId, companyId, "Publisher", null,
-			"Publishers are responsible for approving content.",
+			"Publishers are responsible for publishing content.",
 			RoleConstants.TYPE_REGULAR);
 
 		setRolePermissions(
@@ -1739,8 +1760,7 @@ public class StartupAction extends SimpleAction {
 			publisherRole, "com.liferay.portlet.journal",
 			new String[] {
 				ActionKeys.ADD_ARTICLE, ActionKeys.ADD_FEED,
-				ActionKeys.ADD_STRUCTURE, ActionKeys.ADD_TEMPLATE,
-				ActionKeys.EXPIRE
+				ActionKeys.ADD_STRUCTURE, ActionKeys.ADD_TEMPLATE
 			});
 
 		setRolePermissions(
@@ -1763,8 +1783,7 @@ public class StartupAction extends SimpleAction {
 			writerRole, "com.liferay.portlet.journal",
 			new String[] {
 				ActionKeys.ADD_ARTICLE, ActionKeys.ADD_FEED,
-				ActionKeys.ADD_STRUCTURE, ActionKeys.ADD_TEMPLATE,
-				ActionKeys.MANAGE_STAGING
+				ActionKeys.ADD_STRUCTURE, ActionKeys.ADD_TEMPLATE
 			});
 
 		setRolePermissions(
@@ -1778,6 +1797,9 @@ public class StartupAction extends SimpleAction {
 
 		Role adminRole = RoleLocalServiceUtil.getRole(
 			companyId, RoleConstants.ADMINISTRATOR);
+
+		Role portalContentReviewer = RoleLocalServiceUtil.getRole(
+			companyId, "Portal Content Reviewer");
 
 		Role powerUserRole = RoleLocalServiceUtil.getRole(
 			companyId, RoleConstants.POWER_USER);
@@ -1812,7 +1834,8 @@ public class StartupAction extends SimpleAction {
 			roleIds);
 
 		roleIds = new long[] {
-			powerUserRole.getRoleId(), publisherRole.getRoleId()
+			powerUserRole.getRoleId(), publisherRole.getRoleId(),
+			portalContentReviewer.getRoleId()
 		};
 
 		User richardUser = addUser(
@@ -1996,6 +2019,21 @@ public class StartupAction extends SimpleAction {
 		addSocialRequest(johnUser, richardUser, false);
 	}
 
+	protected void setupWorkflow(long companyId, long defaultUserId)
+		throws Exception {
+
+		Group group = GroupLocalServiceUtil.getGroup(
+			companyId, GroupConstants.GUEST);
+
+		String workflowDefinitionName = "Single Approver";
+		int workflowDefinitionVersion = 1;
+
+		WorkflowDefinitionLinkLocalServiceUtil.updateWorkflowDefinitionLink(
+			defaultUserId, companyId, group.getGroupId(),
+			JournalArticle.class.getName(), workflowDefinitionName,
+			workflowDefinitionVersion);
+	}
+
 	protected void updateLayout(Layout layout) throws Exception {
 		LayoutLocalServiceUtil.updateLayout(
 			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
@@ -2026,6 +2064,10 @@ public class StartupAction extends SimpleAction {
 
 		return portletSetup;
 	}
+
+	private static int _PERMISSIONS_USER_CHECK_ALGORITHM =
+		GetterUtil.getInteger(
+			PropsUtil.get(PropsKeys.PERMISSIONS_USER_CHECK_ALGORITHM));
 
 	private static final int _SN_FRIENDS_REQUEST_KEYS_ADD_FRIEND = 1;
 
