@@ -15,6 +15,7 @@
 package com.liferay.ams.model.impl;
 
 import com.liferay.ams.model.Definition;
+import com.liferay.ams.model.DefinitionModel;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -53,7 +54,8 @@ import java.util.Date;
  * @see       com.liferay.ams.model.DefinitionModel
  * @generated
  */
-public class DefinitionModelImpl extends BaseModelImpl<Definition> {
+public class DefinitionModelImpl extends BaseModelImpl<Definition>
+	implements DefinitionModel {
 	public static final String TABLE_NAME = "AMS_Definition";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "definitionId", new Integer(Types.BIGINT) },

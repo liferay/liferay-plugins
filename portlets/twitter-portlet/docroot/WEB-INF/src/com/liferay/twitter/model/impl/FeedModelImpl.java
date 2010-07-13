@@ -27,6 +27,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.twitter.model.Feed;
+import com.liferay.twitter.model.FeedModel;
 
 import java.io.Serializable;
 
@@ -53,7 +54,7 @@ import java.util.Date;
  * @see       com.liferay.twitter.model.FeedModel
  * @generated
  */
-public class FeedModelImpl extends BaseModelImpl<Feed> {
+public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	public static final String TABLE_NAME = "Twitter_Feed";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "feedId", new Integer(Types.BIGINT) },

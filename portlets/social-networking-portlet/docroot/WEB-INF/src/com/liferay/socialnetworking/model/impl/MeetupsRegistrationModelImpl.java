@@ -28,6 +28,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialnetworking.model.MeetupsRegistration;
+import com.liferay.socialnetworking.model.MeetupsRegistrationModel;
 
 import java.io.Serializable;
 
@@ -54,7 +55,8 @@ import java.util.Date;
  * @see       com.liferay.socialnetworking.model.MeetupsRegistrationModel
  * @generated
  */
-public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistration> {
+public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistration>
+	implements MeetupsRegistrationModel {
 	public static final String TABLE_NAME = "SN_MeetupsRegistration";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "meetupsRegistrationId", new Integer(Types.BIGINT) },

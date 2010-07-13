@@ -25,6 +25,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialcoding.model.JIRAChangeItem;
+import com.liferay.socialcoding.model.JIRAChangeItemModel;
 
 import java.io.Serializable;
 
@@ -49,7 +50,8 @@ import java.sql.Types;
  * @see       com.liferay.socialcoding.model.JIRAChangeItemModel
  * @generated
  */
-public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
+public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
+	implements JIRAChangeItemModel {
 	public static final String TABLE_NAME = "changeitem";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "id", new Integer(Types.BIGINT) },

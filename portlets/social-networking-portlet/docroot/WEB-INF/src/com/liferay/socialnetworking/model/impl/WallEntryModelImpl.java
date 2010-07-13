@@ -28,6 +28,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialnetworking.model.WallEntry;
+import com.liferay.socialnetworking.model.WallEntryModel;
 
 import java.io.Serializable;
 
@@ -54,7 +55,8 @@ import java.util.Date;
  * @see       com.liferay.socialnetworking.model.WallEntryModel
  * @generated
  */
-public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
+public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
+	implements WallEntryModel {
 	public static final String TABLE_NAME = "SN_WallEntry";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "wallEntryId", new Integer(Types.BIGINT) },

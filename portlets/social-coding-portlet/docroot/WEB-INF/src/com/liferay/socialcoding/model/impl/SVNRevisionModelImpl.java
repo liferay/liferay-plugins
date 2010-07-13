@@ -25,6 +25,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialcoding.model.SVNRevision;
+import com.liferay.socialcoding.model.SVNRevisionModel;
 
 import java.io.Serializable;
 
@@ -51,7 +52,8 @@ import java.util.Date;
  * @see       com.liferay.socialcoding.model.SVNRevisionModel
  * @generated
  */
-public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
+public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
+	implements SVNRevisionModel {
 	public static final String TABLE_NAME = "SC_SVNRevision";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "svnRevisionId", new Integer(Types.BIGINT) },

@@ -28,6 +28,7 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
+import com.liferay.portal.workflow.kaleo.model.KaleoDefinitionModel;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -59,7 +60,8 @@ import java.util.Map;
  * @see       com.liferay.portal.workflow.kaleo.model.KaleoDefinitionModel
  * @generated
  */
-public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition> {
+public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
+	implements KaleoDefinitionModel {
 	public static final String TABLE_NAME = "Kaleo_KaleoDefinition";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoDefinitionId", new Integer(Types.BIGINT) },

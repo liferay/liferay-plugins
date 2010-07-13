@@ -15,6 +15,7 @@
 package com.liferay.ams.model.impl;
 
 import com.liferay.ams.model.Asset;
+import com.liferay.ams.model.AssetModel;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -53,7 +54,7 @@ import java.util.Date;
  * @see       com.liferay.ams.model.AssetModel
  * @generated
  */
-public class AssetModelImpl extends BaseModelImpl<Asset> {
+public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	public static final String TABLE_NAME = "AMS_Asset";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "assetId", new Integer(Types.BIGINT) },

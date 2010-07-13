@@ -15,6 +15,7 @@
 package com.liferay.opensocial.model.impl;
 
 import com.liferay.opensocial.model.Gadget;
+import com.liferay.opensocial.model.GadgetModel;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -51,7 +52,8 @@ import java.util.Date;
  * @see       com.liferay.opensocial.model.GadgetModel
  * @generated
  */
-public class GadgetModelImpl extends BaseModelImpl<Gadget> {
+public class GadgetModelImpl extends BaseModelImpl<Gadget>
+	implements GadgetModel {
 	public static final String TABLE_NAME = "OpenSocial_Gadget";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "gadgetId", new Integer(Types.BIGINT) },

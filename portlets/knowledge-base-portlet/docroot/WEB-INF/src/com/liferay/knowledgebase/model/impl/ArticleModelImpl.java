@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.model.impl;
 
 import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.model.ArticleModel;
 import com.liferay.knowledgebase.model.ArticleSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -57,7 +58,8 @@ import java.util.List;
  * @see       com.liferay.knowledgebase.model.ArticleModel
  * @generated
  */
-public class ArticleModelImpl extends BaseModelImpl<Article> {
+public class ArticleModelImpl extends BaseModelImpl<Article>
+	implements ArticleModel {
 	public static final String TABLE_NAME = "KB_Article";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "uuid_", new Integer(Types.VARCHAR) },

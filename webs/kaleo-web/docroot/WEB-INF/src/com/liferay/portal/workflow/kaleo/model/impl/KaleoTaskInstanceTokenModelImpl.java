@@ -23,6 +23,7 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
+import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceTokenModel;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -52,7 +53,8 @@ import java.util.Date;
  * @see       com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceTokenModel
  * @generated
  */
-public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInstanceToken> {
+public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInstanceToken>
+	implements KaleoTaskInstanceTokenModel {
 	public static final String TABLE_NAME = "Kaleo_KaleoTaskInstanceToken";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoTaskInstanceTokenId", new Integer(Types.BIGINT) },

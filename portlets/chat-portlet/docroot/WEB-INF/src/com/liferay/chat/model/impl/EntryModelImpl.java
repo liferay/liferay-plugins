@@ -15,6 +15,7 @@
 package com.liferay.chat.model.impl;
 
 import com.liferay.chat.model.Entry;
+import com.liferay.chat.model.EntryModel;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -51,7 +52,7 @@ import java.sql.Types;
  * @see       com.liferay.chat.model.EntryModel
  * @generated
  */
-public class EntryModelImpl extends BaseModelImpl<Entry> {
+public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	public static final String TABLE_NAME = "Chat_Entry";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "entryId", new Integer(Types.BIGINT) },

@@ -28,6 +28,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.so.model.ProjectsEntry;
+import com.liferay.so.model.ProjectsEntryModel;
 
 import java.io.Serializable;
 
@@ -54,7 +55,8 @@ import java.util.Date;
  * @see       com.liferay.so.model.ProjectsEntryModel
  * @generated
  */
-public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry> {
+public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
+	implements ProjectsEntryModel {
 	public static final String TABLE_NAME = "SO_ProjectsEntry";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "projectsEntryId", new Integer(Types.BIGINT) },

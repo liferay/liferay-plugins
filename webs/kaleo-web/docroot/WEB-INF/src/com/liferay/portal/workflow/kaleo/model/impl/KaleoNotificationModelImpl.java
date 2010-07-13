@@ -23,6 +23,7 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
+import com.liferay.portal.workflow.kaleo.model.KaleoNotificationModel;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -52,7 +53,8 @@ import java.util.Date;
  * @see       com.liferay.portal.workflow.kaleo.model.KaleoNotificationModel
  * @generated
  */
-public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification> {
+public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
+	implements KaleoNotificationModel {
 	public static final String TABLE_NAME = "Kaleo_KaleoNotification";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoNotificationId", new Integer(Types.BIGINT) },

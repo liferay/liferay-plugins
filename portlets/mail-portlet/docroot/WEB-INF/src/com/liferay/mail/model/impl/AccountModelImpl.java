@@ -15,6 +15,7 @@
 package com.liferay.mail.model.impl;
 
 import com.liferay.mail.model.Account;
+import com.liferay.mail.model.AccountModel;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -53,7 +54,8 @@ import java.util.Date;
  * @see       com.liferay.mail.model.AccountModel
  * @generated
  */
-public class AccountModelImpl extends BaseModelImpl<Account> {
+public class AccountModelImpl extends BaseModelImpl<Account>
+	implements AccountModel {
 	public static final String TABLE_NAME = "Mail_Account";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "accountId", new Integer(Types.BIGINT) },

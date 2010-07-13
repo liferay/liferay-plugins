@@ -23,6 +23,7 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
+import com.liferay.portal.workflow.kaleo.model.KaleoTransitionModel;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -52,7 +53,8 @@ import java.util.Date;
  * @see       com.liferay.portal.workflow.kaleo.model.KaleoTransitionModel
  * @generated
  */
-public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition> {
+public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
+	implements KaleoTransitionModel {
 	public static final String TABLE_NAME = "Kaleo_KaleoTransition";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoTransitionId", new Integer(Types.BIGINT) },

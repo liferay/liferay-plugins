@@ -15,6 +15,7 @@
 package com.liferay.chat.model.impl;
 
 import com.liferay.chat.model.Status;
+import com.liferay.chat.model.StatusModel;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -51,7 +52,8 @@ import java.sql.Types;
  * @see       com.liferay.chat.model.StatusModel
  * @generated
  */
-public class StatusModelImpl extends BaseModelImpl<Status> {
+public class StatusModelImpl extends BaseModelImpl<Status>
+	implements StatusModel {
 	public static final String TABLE_NAME = "Chat_Status";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "statusId", new Integer(Types.BIGINT) },

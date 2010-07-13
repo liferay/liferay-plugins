@@ -25,6 +25,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.wsrp.model.WSRPProducer;
+import com.liferay.wsrp.model.WSRPProducerModel;
 
 import java.io.Serializable;
 
@@ -51,7 +52,8 @@ import java.util.Date;
  * @see       com.liferay.wsrp.model.WSRPProducerModel
  * @generated
  */
-public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
+public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
+	implements WSRPProducerModel {
 	public static final String TABLE_NAME = "WSRP_WSRPProducer";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "wsrpProducerId", new Integer(Types.BIGINT) },

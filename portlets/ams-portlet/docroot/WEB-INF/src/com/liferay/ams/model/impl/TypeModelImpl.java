@@ -15,6 +15,7 @@
 package com.liferay.ams.model.impl;
 
 import com.liferay.ams.model.Type;
+import com.liferay.ams.model.TypeModel;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -49,7 +50,7 @@ import java.sql.Types;
  * @see       com.liferay.ams.model.TypeModel
  * @generated
  */
-public class TypeModelImpl extends BaseModelImpl<Type> {
+public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 	public static final String TABLE_NAME = "AMS_Type";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "typeId", new Integer(Types.BIGINT) },

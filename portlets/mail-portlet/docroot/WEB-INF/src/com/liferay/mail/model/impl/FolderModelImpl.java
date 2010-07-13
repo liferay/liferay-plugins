@@ -15,6 +15,7 @@
 package com.liferay.mail.model.impl;
 
 import com.liferay.mail.model.Folder;
+import com.liferay.mail.model.FolderModel;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -53,7 +54,8 @@ import java.util.Date;
  * @see       com.liferay.mail.model.FolderModel
  * @generated
  */
-public class FolderModelImpl extends BaseModelImpl<Folder> {
+public class FolderModelImpl extends BaseModelImpl<Folder>
+	implements FolderModel {
 	public static final String TABLE_NAME = "Mail_Folder";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "folderId", new Integer(Types.BIGINT) },

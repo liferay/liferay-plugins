@@ -28,6 +28,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.so.model.MemberRequest;
+import com.liferay.so.model.MemberRequestModel;
 
 import java.io.Serializable;
 
@@ -54,7 +55,8 @@ import java.util.Date;
  * @see       com.liferay.so.model.MemberRequestModel
  * @generated
  */
-public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest> {
+public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
+	implements MemberRequestModel {
 	public static final String TABLE_NAME = "SO_MemberRequest";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "memberRequestId", new Integer(Types.BIGINT) },

@@ -15,6 +15,7 @@
 package com.liferay.ams.model.impl;
 
 import com.liferay.ams.model.Checkout;
+import com.liferay.ams.model.CheckoutModel;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -53,7 +54,8 @@ import java.util.Date;
  * @see       com.liferay.ams.model.CheckoutModel
  * @generated
  */
-public class CheckoutModelImpl extends BaseModelImpl<Checkout> {
+public class CheckoutModelImpl extends BaseModelImpl<Checkout>
+	implements CheckoutModel {
 	public static final String TABLE_NAME = "AMS_Checkout";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "checkoutId", new Integer(Types.BIGINT) },

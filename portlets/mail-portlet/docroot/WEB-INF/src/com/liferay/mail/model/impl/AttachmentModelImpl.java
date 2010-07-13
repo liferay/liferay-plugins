@@ -15,6 +15,7 @@
 package com.liferay.mail.model.impl;
 
 import com.liferay.mail.model.Attachment;
+import com.liferay.mail.model.AttachmentModel;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -51,7 +52,8 @@ import java.sql.Types;
  * @see       com.liferay.mail.model.AttachmentModel
  * @generated
  */
-public class AttachmentModelImpl extends BaseModelImpl<Attachment> {
+public class AttachmentModelImpl extends BaseModelImpl<Attachment>
+	implements AttachmentModel {
 	public static final String TABLE_NAME = "Mail_Attachment";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "attachmentId", new Integer(Types.BIGINT) },

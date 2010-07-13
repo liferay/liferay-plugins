@@ -23,6 +23,7 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
+import com.liferay.portal.workflow.kaleo.model.KaleoNodeModel;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -52,7 +53,8 @@ import java.util.Date;
  * @see       com.liferay.portal.workflow.kaleo.model.KaleoNodeModel
  * @generated
  */
-public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode> {
+public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
+	implements KaleoNodeModel {
 	public static final String TABLE_NAME = "Kaleo_KaleoNode";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoNodeId", new Integer(Types.BIGINT) },

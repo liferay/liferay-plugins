@@ -26,6 +26,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialcoding.model.JIRAIssue;
+import com.liferay.socialcoding.model.JIRAIssueModel;
 
 import java.io.Serializable;
 
@@ -52,7 +53,8 @@ import java.util.Date;
  * @see       com.liferay.socialcoding.model.JIRAIssueModel
  * @generated
  */
-public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
+public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
+	implements JIRAIssueModel {
 	public static final String TABLE_NAME = "jiraissue";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "id", new Integer(Types.BIGINT) },

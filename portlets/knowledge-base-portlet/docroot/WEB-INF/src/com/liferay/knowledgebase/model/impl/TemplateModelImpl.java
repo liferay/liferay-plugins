@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.model.impl;
 
 import com.liferay.knowledgebase.model.Template;
+import com.liferay.knowledgebase.model.TemplateModel;
 import com.liferay.knowledgebase.model.TemplateSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -57,7 +58,8 @@ import java.util.List;
  * @see       com.liferay.knowledgebase.model.TemplateModel
  * @generated
  */
-public class TemplateModelImpl extends BaseModelImpl<Template> {
+public class TemplateModelImpl extends BaseModelImpl<Template>
+	implements TemplateModel {
 	public static final String TABLE_NAME = "KB_Template";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "uuid_", new Integer(Types.VARCHAR) },

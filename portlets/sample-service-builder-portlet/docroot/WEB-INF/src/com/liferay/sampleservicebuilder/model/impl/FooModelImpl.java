@@ -27,6 +27,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.sampleservicebuilder.model.Foo;
+import com.liferay.sampleservicebuilder.model.FooModel;
 import com.liferay.sampleservicebuilder.model.FooSoap;
 
 import java.io.Serializable;
@@ -56,7 +57,7 @@ import java.util.List;
  * @see       com.liferay.sampleservicebuilder.model.FooModel
  * @generated
  */
-public class FooModelImpl extends BaseModelImpl<Foo> {
+public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	public static final String TABLE_NAME = "SSB_Foo";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "fooId", new Integer(Types.BIGINT) },

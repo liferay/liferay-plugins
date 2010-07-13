@@ -26,6 +26,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialcoding.model.JIRAChangeGroup;
+import com.liferay.socialcoding.model.JIRAChangeGroupModel;
 
 import java.io.Serializable;
 
@@ -52,7 +53,8 @@ import java.util.Date;
  * @see       com.liferay.socialcoding.model.JIRAChangeGroupModel
  * @generated
  */
-public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
+public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
+	implements JIRAChangeGroupModel {
 	public static final String TABLE_NAME = "changegroup";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "id", new Integer(Types.BIGINT) },

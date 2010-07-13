@@ -23,6 +23,7 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
+import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentModel;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -52,7 +53,8 @@ import java.util.Date;
  * @see       com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentModel
  * @generated
  */
-public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignment> {
+public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignment>
+	implements KaleoTaskAssignmentModel {
 	public static final String TABLE_NAME = "Kaleo_KaleoTaskAssignment";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoTaskAssignmentId", new Integer(Types.BIGINT) },

@@ -25,6 +25,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialcoding.model.SVNRepository;
+import com.liferay.socialcoding.model.SVNRepositoryModel;
 
 import java.io.Serializable;
 
@@ -49,7 +50,8 @@ import java.sql.Types;
  * @see       com.liferay.socialcoding.model.SVNRepositoryModel
  * @generated
  */
-public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
+public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
+	implements SVNRepositoryModel {
 	public static final String TABLE_NAME = "SC_SVNRepository";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "svnRepositoryId", new Integer(Types.BIGINT) },

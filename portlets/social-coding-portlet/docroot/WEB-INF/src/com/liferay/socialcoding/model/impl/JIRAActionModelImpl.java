@@ -26,6 +26,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.socialcoding.model.JIRAAction;
+import com.liferay.socialcoding.model.JIRAActionModel;
 
 import java.io.Serializable;
 
@@ -52,7 +53,8 @@ import java.util.Date;
  * @see       com.liferay.socialcoding.model.JIRAActionModel
  * @generated
  */
-public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
+public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
+	implements JIRAActionModel {
 	public static final String TABLE_NAME = "jiraaction";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "id", new Integer(Types.BIGINT) },
