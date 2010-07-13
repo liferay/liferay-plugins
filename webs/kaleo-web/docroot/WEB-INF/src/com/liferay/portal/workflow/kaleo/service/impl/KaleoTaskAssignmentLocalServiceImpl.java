@@ -134,7 +134,7 @@ public class KaleoTaskAssignmentLocalServiceImpl
 				role = roleLocalService.getRole(roleAssignment.getRoleId());
 			}
 
-			kaleoTaskAssignment.setAssigneeClassPK(role.getClassPK());
+			kaleoTaskAssignment.setAssigneeClassPK(role.getRoleId());
 		}
 		else if (assignmentType.equals(AssignmentType.USER)) {
 			kaleoTaskAssignment.setAssigneeClassName(User.class.getName());
