@@ -83,7 +83,10 @@ public class MailPortlet extends MVCPortlet {
 			}
 		}
 
-		MailManager mailManager = MailManager.getInstance(uploadRequest);
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+			actionRequest);
+
+		MailManager mailManager = MailManager.getInstance(request);
 
 		JSONObject responseData = mailManager.sendMessage(
 			accountId, messageId, to, cc, bcc, subject, body, mailFiles);
