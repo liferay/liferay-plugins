@@ -31,7 +31,7 @@ public class SampleUserImpl extends UserWrapper {
 	}
 
 	public String getFirstName() {
-		System.out.println("## Called getFirstName()");
+		System.out.println("Called SampleUserImpl.getFirstName()");
 
 		return super.getFirstName();
 	}
