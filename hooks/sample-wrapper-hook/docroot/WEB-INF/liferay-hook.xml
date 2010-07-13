@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.0.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_0_0.dtd">
+
+<hook>
+	<service>
+		<service-type>com.liferay.portal.service.UserLocalService</service-type>
+		<service-impl>com.liferay.samplewrapper.hook.service.SampleUserLocalServiceImpl</service-impl>
+	</service>
+</hook>
