@@ -75,5 +75,4 @@ String searchTopics = preferences.getValue("searchTopics", StringPool.BLANK);
 String url = preferences.getValue("url", StringPool.BLANK);
 String urlSort = preferences.getValue("urlSort", "promote_date-desc");
 String userUsername = preferences.getValue("userUsername", StringPool.BLANK);
-
 %>
