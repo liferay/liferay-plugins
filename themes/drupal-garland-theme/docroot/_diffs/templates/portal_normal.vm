@@ -73,7 +73,7 @@
 				$theme.wrapPortlet("portlet.vm", $content_include)
 			#end
 		</div>
-  
+
 		<footer id="footer" role="contentinfo">
 			<p class="powered-by">
 				#language("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>

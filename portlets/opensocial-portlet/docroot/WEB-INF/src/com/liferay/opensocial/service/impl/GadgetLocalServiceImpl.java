@@ -226,7 +226,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		portlet.setPortletInfo(portletInfo);
 	}
 
-	protected Portlet getPortlet(long companyId, long gadgetId, String name) 
+	protected Portlet getPortlet(long companyId, long gadgetId, String name)
 		throws Exception {
 
 		Portlet portlet = _portletsPool.get(gadgetId);
