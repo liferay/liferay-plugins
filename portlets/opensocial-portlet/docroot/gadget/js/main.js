@@ -331,7 +331,7 @@ AUI().add(
 								className: instance._CLASS_NAME,
 								tableName: instance._TABLE_NAME,
 								columnName: instance.get('userPrefsKey'),
-								classPK: themeDisplay.getUserId(),
+								classPK: themeDisplay.getUserId()
 							},
 							function(userPrefs) {
 								if (Lang.isFunction(callback)) {
@@ -425,9 +425,9 @@ AUI().add(
 
 						userPrefs[arg] = arguments[i + 1];
 					}
-				}
 
-				gadget.set('userPrefs', userPrefs);
+					gadget.set('userPrefs', userPrefs);
+				}
 			}
 		);
 		gadgets.rpc.register('set_title', Lang.emptyFn);
