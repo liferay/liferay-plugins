@@ -20,6 +20,12 @@
 			<arg value="tmp/WEB-INF/web.xml" />
 		</java>
 
+		<replace file="tmp/WEB-INF/web.xml">
+			<replacefilter token="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" value="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" />
+			<replacefilter token="http://java.sun.com/xml/ns/javaee" value="http://java.sun.com/xml/ns/j2ee" />
+			<replacefilter token="version=&quot;2.5&quot;" value="version=&quot;2.4&quot;" />
+		</replace>
+
 		<if>
 			<not>
 				<available file="tmp/WEB-INF/web.xml.original" />
