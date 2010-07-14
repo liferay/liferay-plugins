@@ -1,0 +1,162 @@
+/* -------- Global -------- */
+
+#skip-to-content,
+#heading .community-title,
+#heading .page-title,
+#navigation h1 {
+	clip: rect(0 0 0 0);
+	position: absolute;
+}
+
+body {
+	background: #077192 url(../images/custom/body_bg.png) repeat-x;
+}
+
+#banner,
+#footer {
+	margin: 0 auto;
+	width: 960px;
+}
+
+/* -------- Wrapper / Skip / Sign-in -------- */
+
+#wrapper {
+	font: 13px Geneva, Calibri, Helvetica, Arial, sans-serif;
+}
+
+#skip-to-content,
+#sign-in {
+	color: #FFF;
+	right: 0.5em;
+	text-decoration: none;
+	top: 0.5em;
+}
+
+#skip-to-content:active,
+#skip-to-content:focus {
+	clip: auto;
+}
+
+#skip-to-content {
+	top: 0;
+}
+
+#sign-in {
+	position: absolute;
+}
+
+/* -------- Banner -------- */
+
+#banner {
+	position: relative;
+}
+
+#heading .company-title {
+	margin: 0;
+	padding: 30px 0 15px;
+}
+
+#heading .company-title a {
+}
+
+/* -------- Navigation -------- */
+
+#navigation {
+	top: 50px;
+	font-size: 110%;
+	position: absolute;
+	right: 0;
+}
+
+#navigation ul {
+	list-style: none;
+	margin: 0;
+}
+
+.ie6 #navigation ul,
+.ie7 #navigation ul {
+	zoom: 1;
+}
+
+#navigation ul:after {
+	clear: both;
+	content: "";
+	display: block;
+}
+
+#navigation li,
+#navigation a {
+	float: left;
+	padding: 0 5px;
+}
+
+#navigation a {
+	color: #FFF;
+	display: block;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#navigation a:active,
+#navigation a:focus,
+#navigation a:hover {
+	text-decoration: underline;
+}
+
+#navigation .selected a {
+	color: #5CCAE5;
+}
+
+/* -------- Content -------- */
+
+#content {
+	background: url(../images/custom/content_bg.png);
+}
+
+#breadcrumbs {
+	display: none;
+}
+
+#main-content {
+	-moz-border-radius: 10px;
+	-moz-box-shadow: 0 1px 5px #333;
+	-webkit-border-radius: 10px;
+	background: #FFF url(../images/custom/main-content_bg.png) repeat-x;
+	border-radius: 10px;
+	box-shadow: 0 0 5px #000;
+	margin: 0 auto;
+	padding: 30px;
+	width: 900px;
+}
+
+.portlet-column-content {
+	padding: 0 15px;
+}
+
+.portlet {
+	color: #111;
+	margin: 0 0 30px;
+}
+
+.portlet-title {
+	font: bold 24px "Century Gothic", "Apple Gothic", sans-serif;
+}
+
+.portlet-content {
+	line-height: 1.6;
+}
+
+/* -------- Footer -------- */
+
+#footer,
+#footer a {
+	color: #111;
+}
+
+#footer {
+	padding: 10px 0;
+}
+
+#footer p {
+	margin: 0;
+}
