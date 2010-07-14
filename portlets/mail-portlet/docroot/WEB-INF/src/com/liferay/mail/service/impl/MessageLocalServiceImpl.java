@@ -214,14 +214,17 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 			String orderByType)
 		throws SystemException {
 
-		DynamicQuery countQuery = DynamicQueryFactoryUtil.forClass(
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			Message.class, getClass().getClassLoader());
 
-		DynamicQuery messageQuery = DynamicQueryFactoryUtil.forClass(
-			Message.class, getClass().getClassLoader());
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
 
-		countQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
-		messageQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
+		if (orderByType.equals("desc")) {
+			dynamicQuery.addOrder(OrderFactoryUtil.desc(orderByField));
+		}
+		else {
+			dynamicQuery.addOrder(OrderFactoryUtil.asc(orderByField));
+		}
 
 		if (Validator.isNotNull(keywords)) {
 			String value = "%" + keywords + "%";
@@ -231,24 +234,16 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 			disjunction.add(RestrictionsFactoryUtil.ilike("subject", value));
 			disjunction.add(RestrictionsFactoryUtil.ilike("body", value));
 
-			countQuery.add(disjunction);
-			messageQuery.add(disjunction);
-		}
-
-		if (orderByType.equals("desc")) {
-			messageQuery.addOrder(OrderFactoryUtil.desc(orderByField));
-		}
-		else {
-			messageQuery.addOrder(OrderFactoryUtil.asc(orderByField));
+			dynamicQuery.add(disjunction);
 		}
 
 		int start = messagesPerPage * (pageNumber - 1);
 		int end = messagesPerPage * pageNumber;
 
 		messages.addAll(
-			messagePersistence.findWithDynamicQuery(messageQuery, start, end));
+			messagePersistence.findWithDynamicQuery(dynamicQuery, start, end));
 
-		return (int)dynamicQueryCount(countQuery);
+		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
 	public Message updateContent(
