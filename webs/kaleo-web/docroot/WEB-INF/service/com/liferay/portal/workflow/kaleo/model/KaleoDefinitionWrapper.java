@@ -197,8 +197,8 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		return _kaleoDefinition.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _kaleoDefinition.setNew(n);
+	public void setNew(boolean n) {
+		_kaleoDefinition.setNew(n);
 	}
 
 	public boolean isCachedModel() {

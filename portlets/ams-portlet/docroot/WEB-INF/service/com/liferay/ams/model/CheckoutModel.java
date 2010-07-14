@@ -96,7 +96,7 @@ public interface CheckoutModel extends BaseModel<Checkout> {
 
 	public boolean isNew();
 
-	public boolean setNew(boolean n);
+	public void setNew(boolean n);
 
 	public boolean isCachedModel();
 

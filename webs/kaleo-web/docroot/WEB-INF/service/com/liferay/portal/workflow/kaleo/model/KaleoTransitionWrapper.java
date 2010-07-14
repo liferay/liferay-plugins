@@ -191,8 +191,8 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 		return _kaleoTransition.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _kaleoTransition.setNew(n);
+	public void setNew(boolean n) {
+		_kaleoTransition.setNew(n);
 	}
 
 	public boolean isCachedModel() {

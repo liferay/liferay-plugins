@@ -171,8 +171,8 @@ public class KaleoNodeWrapper implements KaleoNode {
 		return _kaleoNode.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _kaleoNode.setNew(n);
+	public void setNew(boolean n) {
+		_kaleoNode.setNew(n);
 	}
 
 	public boolean isCachedModel() {

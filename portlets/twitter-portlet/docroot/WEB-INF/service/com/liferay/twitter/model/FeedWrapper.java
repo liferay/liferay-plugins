@@ -107,8 +107,8 @@ public class FeedWrapper implements Feed {
 		return _feed.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _feed.setNew(n);
+	public void setNew(boolean n) {
+		_feed.setNew(n);
 	}
 
 	public boolean isCachedModel() {

@@ -106,8 +106,8 @@ public class WSRPProducerWrapper implements WSRPProducer {
 		return _wsrpProducer.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _wsrpProducer.setNew(n);
+	public void setNew(boolean n) {
+		_wsrpProducer.setNew(n);
 	}
 
 	public boolean isCachedModel() {

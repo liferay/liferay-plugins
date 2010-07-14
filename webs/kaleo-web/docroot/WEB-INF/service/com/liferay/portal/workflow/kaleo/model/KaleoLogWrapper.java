@@ -298,8 +298,8 @@ public class KaleoLogWrapper implements KaleoLog {
 		return _kaleoLog.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _kaleoLog.setNew(n);
+	public void setNew(boolean n) {
+		_kaleoLog.setNew(n);
 	}
 
 	public boolean isCachedModel() {

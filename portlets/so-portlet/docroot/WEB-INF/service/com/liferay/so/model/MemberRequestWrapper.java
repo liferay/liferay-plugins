@@ -164,8 +164,8 @@ public class MemberRequestWrapper implements MemberRequest {
 		return _memberRequest.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _memberRequest.setNew(n);
+	public void setNew(boolean n) {
+		_memberRequest.setNew(n);
 	}
 
 	public boolean isCachedModel() {

@@ -110,7 +110,7 @@ public interface DefinitionModel extends BaseModel<Definition> {
 
 	public boolean isNew();
 
-	public boolean setNew(boolean n);
+	public void setNew(boolean n);
 
 	public boolean isCachedModel();
 

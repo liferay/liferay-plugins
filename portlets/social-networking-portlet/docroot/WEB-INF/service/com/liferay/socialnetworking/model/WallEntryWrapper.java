@@ -123,8 +123,8 @@ public class WallEntryWrapper implements WallEntry {
 		return _wallEntry.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _wallEntry.setNew(n);
+	public void setNew(boolean n) {
+		_wallEntry.setNew(n);
 	}
 
 	public boolean isCachedModel() {

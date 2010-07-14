@@ -103,7 +103,7 @@ public interface ProjectsEntryModel extends BaseModel<ProjectsEntry> {
 
 	public boolean isNew();
 
-	public boolean setNew(boolean n);
+	public void setNew(boolean n);
 
 	public boolean isCachedModel();
 

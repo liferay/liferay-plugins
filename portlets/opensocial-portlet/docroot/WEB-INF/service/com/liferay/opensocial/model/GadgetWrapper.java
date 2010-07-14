@@ -98,8 +98,8 @@ public class GadgetWrapper implements Gadget {
 		return _gadget.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _gadget.setNew(n);
+	public void setNew(boolean n) {
+		_gadget.setNew(n);
 	}
 
 	public boolean isCachedModel() {

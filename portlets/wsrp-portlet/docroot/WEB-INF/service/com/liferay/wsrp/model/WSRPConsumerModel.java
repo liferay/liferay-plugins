@@ -92,7 +92,7 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 
 	public boolean isNew();
 
-	public boolean setNew(boolean n);
+	public void setNew(boolean n);
 
 	public boolean isCachedModel();
 

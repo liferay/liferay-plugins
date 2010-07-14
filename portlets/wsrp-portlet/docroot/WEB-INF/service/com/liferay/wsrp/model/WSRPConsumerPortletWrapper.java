@@ -106,8 +106,8 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 		return _wsrpConsumerPortlet.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _wsrpConsumerPortlet.setNew(n);
+	public void setNew(boolean n) {
+		_wsrpConsumerPortlet.setNew(n);
 	}
 
 	public boolean isCachedModel() {

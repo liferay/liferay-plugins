@@ -126,7 +126,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction> {
 
 	public boolean isNew();
 
-	public boolean setNew(boolean n);
+	public void setNew(boolean n);
 
 	public boolean isCachedModel();
 

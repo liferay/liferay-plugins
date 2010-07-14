@@ -139,8 +139,8 @@ public class CheckoutWrapper implements Checkout {
 		return _checkout.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _checkout.setNew(n);
+	public void setNew(boolean n) {
+		_checkout.setNew(n);
 	}
 
 	public boolean isCachedModel() {

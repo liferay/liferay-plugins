@@ -163,8 +163,8 @@ public class KaleoTaskWrapper implements KaleoTask {
 		return _kaleoTask.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _kaleoTask.setNew(n);
+	public void setNew(boolean n) {
+		_kaleoTask.setNew(n);
 	}
 
 	public boolean isCachedModel() {

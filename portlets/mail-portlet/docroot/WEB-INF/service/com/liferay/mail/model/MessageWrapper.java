@@ -211,8 +211,8 @@ public class MessageWrapper implements Message {
 		return _message.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _message.setNew(n);
+	public void setNew(boolean n) {
+		_message.setNew(n);
 	}
 
 	public boolean isCachedModel() {

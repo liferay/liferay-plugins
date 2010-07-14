@@ -131,8 +131,8 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 		return _meetupsRegistration.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _meetupsRegistration.setNew(n);
+	public void setNew(boolean n) {
+		_meetupsRegistration.setNew(n);
 	}
 
 	public boolean isCachedModel() {

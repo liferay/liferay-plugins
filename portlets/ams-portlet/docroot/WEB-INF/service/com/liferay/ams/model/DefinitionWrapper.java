@@ -163,8 +163,8 @@ public class DefinitionWrapper implements Definition {
 		return _definition.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _definition.setNew(n);
+	public void setNew(boolean n) {
+		_definition.setNew(n);
 	}
 
 	public boolean isCachedModel() {

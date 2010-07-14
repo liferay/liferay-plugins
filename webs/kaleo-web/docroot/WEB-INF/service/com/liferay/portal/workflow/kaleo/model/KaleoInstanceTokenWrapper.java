@@ -191,8 +191,8 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		return _kaleoInstanceToken.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _kaleoInstanceToken.setNew(n);
+	public void setNew(boolean n) {
+		_kaleoInstanceToken.setNew(n);
 	}
 
 	public boolean isCachedModel() {

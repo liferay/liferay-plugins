@@ -74,8 +74,8 @@ public class SVNRepositoryWrapper implements SVNRepository {
 		return _svnRepository.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _svnRepository.setNew(n);
+	public void setNew(boolean n) {
+		_svnRepository.setNew(n);
 	}
 
 	public boolean isCachedModel() {

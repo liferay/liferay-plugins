@@ -80,7 +80,7 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 
 	public boolean isNew();
 
-	public boolean setNew(boolean n);
+	public void setNew(boolean n);
 
 	public boolean isCachedModel();
 

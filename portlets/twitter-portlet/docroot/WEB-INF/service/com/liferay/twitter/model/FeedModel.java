@@ -80,7 +80,7 @@ public interface FeedModel extends BaseModel<Feed> {
 
 	public boolean isNew();
 
-	public boolean setNew(boolean n);
+	public void setNew(boolean n);
 
 	public boolean isCachedModel();
 

@@ -98,8 +98,8 @@ public class SVNRevisionWrapper implements SVNRevision {
 		return _svnRevision.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _svnRevision.setNew(n);
+	public void setNew(boolean n) {
+		_svnRevision.setNew(n);
 	}
 
 	public boolean isCachedModel() {

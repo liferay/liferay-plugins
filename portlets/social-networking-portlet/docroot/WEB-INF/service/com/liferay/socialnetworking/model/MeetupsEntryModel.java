@@ -114,7 +114,7 @@ public interface MeetupsEntryModel extends BaseModel<MeetupsEntry> {
 
 	public boolean isNew();
 
-	public boolean setNew(boolean n);
+	public void setNew(boolean n);
 
 	public boolean isCachedModel();
 

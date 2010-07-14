@@ -147,8 +147,8 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 		return _projectsEntry.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _projectsEntry.setNew(n);
+	public void setNew(boolean n) {
+		_projectsEntry.setNew(n);
 	}
 
 	public boolean isCachedModel() {

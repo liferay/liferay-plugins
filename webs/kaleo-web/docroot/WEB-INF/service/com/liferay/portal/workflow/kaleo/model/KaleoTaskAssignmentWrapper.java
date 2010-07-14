@@ -155,8 +155,8 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		return _kaleoTaskAssignment.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _kaleoTaskAssignment.setNew(n);
+	public void setNew(boolean n) {
+		_kaleoTaskAssignment.setNew(n);
 	}
 
 	public boolean isCachedModel() {

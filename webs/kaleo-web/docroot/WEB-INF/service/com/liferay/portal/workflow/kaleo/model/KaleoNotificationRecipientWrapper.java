@@ -166,8 +166,8 @@ public class KaleoNotificationRecipientWrapper
 		return _kaleoNotificationRecipient.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _kaleoNotificationRecipient.setNew(n);
+	public void setNew(boolean n) {
+		_kaleoNotificationRecipient.setNew(n);
 	}
 
 	public boolean isCachedModel() {

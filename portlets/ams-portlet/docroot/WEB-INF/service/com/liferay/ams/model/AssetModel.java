@@ -99,7 +99,7 @@ public interface AssetModel extends BaseModel<Asset> {
 
 	public boolean isNew();
 
-	public boolean setNew(boolean n);
+	public void setNew(boolean n);
 
 	public boolean isCachedModel();
 

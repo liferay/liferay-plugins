@@ -74,8 +74,8 @@ public class TypeWrapper implements Type {
 		return _type.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _type.setNew(n);
+	public void setNew(boolean n) {
+		_type.setNew(n);
 	}
 
 	public boolean isCachedModel() {

@@ -147,8 +147,8 @@ public class TemplateWrapper implements Template {
 		return _template.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _template.setNew(n);
+	public void setNew(boolean n) {
+		_template.setNew(n);
 	}
 
 	public boolean isCachedModel() {

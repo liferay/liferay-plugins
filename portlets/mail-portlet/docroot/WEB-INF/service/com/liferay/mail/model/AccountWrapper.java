@@ -287,8 +287,8 @@ public class AccountWrapper implements Account {
 		return _account.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _account.setNew(n);
+	public void setNew(boolean n) {
+		_account.setNew(n);
 	}
 
 	public boolean isCachedModel() {

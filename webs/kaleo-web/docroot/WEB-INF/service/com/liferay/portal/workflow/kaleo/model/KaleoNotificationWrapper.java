@@ -187,8 +187,8 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		return _kaleoNotification.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _kaleoNotification.setNew(n);
+	public void setNew(boolean n) {
+		_kaleoNotification.setNew(n);
 	}
 
 	public boolean isCachedModel() {

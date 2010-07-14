@@ -114,8 +114,8 @@ public class JIRAActionWrapper implements JIRAAction {
 		return _jiraAction.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _jiraAction.setNew(n);
+	public void setNew(boolean n) {
+		_jiraAction.setNew(n);
 	}
 
 	public boolean isCachedModel() {

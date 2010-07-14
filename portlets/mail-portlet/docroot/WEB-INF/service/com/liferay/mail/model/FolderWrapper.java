@@ -139,8 +139,8 @@ public class FolderWrapper implements Folder {
 		return _folder.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _folder.setNew(n);
+	public void setNew(boolean n) {
+		_folder.setNew(n);
 	}
 
 	public boolean isCachedModel() {

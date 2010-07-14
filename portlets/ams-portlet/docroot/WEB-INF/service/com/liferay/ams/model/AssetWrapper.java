@@ -143,8 +143,8 @@ public class AssetWrapper implements Asset {
 		return _asset.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _asset.setNew(n);
+	public void setNew(boolean n) {
+		_asset.setNew(n);
 	}
 
 	public boolean isCachedModel() {

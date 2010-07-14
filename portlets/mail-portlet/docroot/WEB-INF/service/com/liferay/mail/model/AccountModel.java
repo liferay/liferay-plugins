@@ -179,7 +179,7 @@ public interface AccountModel extends BaseModel<Account> {
 
 	public boolean isNew();
 
-	public boolean setNew(boolean n);
+	public void setNew(boolean n);
 
 	public boolean isCachedModel();
 

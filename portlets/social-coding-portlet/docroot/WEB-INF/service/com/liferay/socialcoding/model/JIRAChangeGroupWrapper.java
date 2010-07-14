@@ -82,8 +82,8 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 		return _jiraChangeGroup.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _jiraChangeGroup.setNew(n);
+	public void setNew(boolean n) {
+		_jiraChangeGroup.setNew(n);
 	}
 
 	public boolean isCachedModel() {

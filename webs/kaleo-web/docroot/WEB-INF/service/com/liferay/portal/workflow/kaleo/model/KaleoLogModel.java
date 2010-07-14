@@ -183,7 +183,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 
 	public boolean isNew();
 
-	public boolean setNew(boolean n);
+	public void setNew(boolean n);
 
 	public boolean isCachedModel();
 

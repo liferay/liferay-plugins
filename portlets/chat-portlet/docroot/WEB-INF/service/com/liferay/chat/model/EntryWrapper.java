@@ -108,8 +108,8 @@ public class EntryWrapper implements Entry {
 		return _entry.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _entry.setNew(n);
+	public void setNew(boolean n) {
+		_entry.setNew(n);
 	}
 
 	public boolean isCachedModel() {

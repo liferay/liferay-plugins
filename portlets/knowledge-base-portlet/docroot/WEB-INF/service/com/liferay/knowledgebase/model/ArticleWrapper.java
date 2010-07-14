@@ -179,8 +179,8 @@ public class ArticleWrapper implements Article {
 		return _article.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _article.setNew(n);
+	public void setNew(boolean n) {
+		_article.setNew(n);
 	}
 
 	public boolean isCachedModel() {

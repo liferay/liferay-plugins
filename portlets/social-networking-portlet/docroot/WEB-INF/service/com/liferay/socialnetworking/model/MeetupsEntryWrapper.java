@@ -171,8 +171,8 @@ public class MeetupsEntryWrapper implements MeetupsEntry {
 		return _meetupsEntry.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _meetupsEntry.setNew(n);
+	public void setNew(boolean n) {
+		_meetupsEntry.setNew(n);
 	}
 
 	public boolean isCachedModel() {

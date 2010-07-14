@@ -151,8 +151,8 @@ public class FooWrapper implements Foo {
 		return _foo.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _foo.setNew(n);
+	public void setNew(boolean n) {
+		_foo.setNew(n);
 	}
 
 	public boolean isCachedModel() {

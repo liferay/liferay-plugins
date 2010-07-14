@@ -191,8 +191,8 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 		return _kaleoInstance.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _kaleoInstance.setNew(n);
+	public void setNew(boolean n) {
+		_kaleoInstance.setNew(n);
 	}
 
 	public boolean isCachedModel() {

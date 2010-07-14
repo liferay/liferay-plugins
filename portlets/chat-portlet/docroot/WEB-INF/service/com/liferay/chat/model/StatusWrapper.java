@@ -135,8 +135,8 @@ public class StatusWrapper implements Status {
 		return _status.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _status.setNew(n);
+	public void setNew(boolean n) {
+		_status.setNew(n);
 	}
 
 	public boolean isCachedModel() {

@@ -105,7 +105,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 
 	public boolean isNew();
 
-	public boolean setNew(boolean n);
+	public void setNew(boolean n);
 
 	public boolean isCachedModel();
 

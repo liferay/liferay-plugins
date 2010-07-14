@@ -187,8 +187,8 @@ public class KaleoActionWrapper implements KaleoAction {
 		return _kaleoAction.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _kaleoAction.setNew(n);
+	public void setNew(boolean n) {
+		_kaleoAction.setNew(n);
 	}
 
 	public boolean isCachedModel() {

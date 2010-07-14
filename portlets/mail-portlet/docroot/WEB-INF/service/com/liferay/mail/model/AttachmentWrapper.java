@@ -131,8 +131,8 @@ public class AttachmentWrapper implements Attachment {
 		return _attachment.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _attachment.setNew(n);
+	public void setNew(boolean n) {
+		_attachment.setNew(n);
 	}
 
 	public boolean isCachedModel() {

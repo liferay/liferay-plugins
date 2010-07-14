@@ -106,8 +106,8 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem {
 		return _jiraChangeItem.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _jiraChangeItem.setNew(n);
+	public void setNew(boolean n) {
+		_jiraChangeItem.setNew(n);
 	}
 
 	public boolean isCachedModel() {

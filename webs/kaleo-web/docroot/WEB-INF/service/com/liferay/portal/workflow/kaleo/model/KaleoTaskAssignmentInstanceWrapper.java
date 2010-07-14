@@ -202,8 +202,8 @@ public class KaleoTaskAssignmentInstanceWrapper
 		return _kaleoTaskAssignmentInstance.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _kaleoTaskAssignmentInstance.setNew(n);
+	public void setNew(boolean n) {
+		_kaleoTaskAssignmentInstance.setNew(n);
 	}
 
 	public boolean isCachedModel() {

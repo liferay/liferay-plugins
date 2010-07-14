@@ -138,8 +138,8 @@ public class JIRAIssueWrapper implements JIRAIssue {
 		return _jiraIssue.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _jiraIssue.setNew(n);
+	public void setNew(boolean n) {
+		_jiraIssue.setNew(n);
 	}
 
 	public boolean isCachedModel() {

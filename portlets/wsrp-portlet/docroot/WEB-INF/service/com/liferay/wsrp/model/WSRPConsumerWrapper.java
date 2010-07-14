@@ -124,8 +124,8 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 		return _wsrpConsumer.isNew();
 	}
 
-	public boolean setNew(boolean n) {
-		return _wsrpConsumer.setNew(n);
+	public void setNew(boolean n) {
+		_wsrpConsumer.setNew(n);
 	}
 
 	public boolean isCachedModel() {
