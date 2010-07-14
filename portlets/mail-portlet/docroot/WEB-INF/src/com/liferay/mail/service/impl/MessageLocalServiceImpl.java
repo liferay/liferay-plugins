@@ -219,6 +219,13 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
 
+		if (orderByType.equals("desc")) {
+			dynamicQuery.addOrder(OrderFactoryUtil.desc(orderByField));
+		}
+		else {
+			dynamicQuery.addOrder(OrderFactoryUtil.asc(orderByField));
+		}
+
 		if (Validator.isNotNull(keywords)) {
 			String value = "%" + keywords + "%";
 
@@ -230,22 +237,13 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 			dynamicQuery.add(disjunction);
 		}
 
-		int total = (int)dynamicQueryCount(dynamicQuery);
-
-		if (orderByType.equals("desc")) {
-			dynamicQuery.addOrder(OrderFactoryUtil.desc(orderByField));
-		}
-		else {
-			dynamicQuery.addOrder(OrderFactoryUtil.asc(orderByField));
-		}
-
 		int start = messagesPerPage * (pageNumber - 1);
 		int end = messagesPerPage * pageNumber;
 
 		messages.addAll(
 			messagePersistence.findWithDynamicQuery(dynamicQuery, start, end));
 
-		return total;
+		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
 	public Message updateContent(
