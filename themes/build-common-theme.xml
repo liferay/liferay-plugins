@@ -109,7 +109,7 @@
 
 	<target name="compile">
 		<if>
-			<available file="docroot/WEB-INF/src" />
+			<available file="docroot/_diffs/images" />
 			<then>
 				<for param="file">
 					<path>
