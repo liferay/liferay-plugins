@@ -543,6 +543,12 @@ public class StartupAction extends SimpleAction {
 
 		addPortletId(layout, PortletKeys.CALENDAR, "column-2");
 
+		// Email layout
+
+		layout = addLayout(group, "Email", true, "/email", "1_column");
+
+		addPortletId(layout, "1_WAR_mailportlet", "column-1");
+
 		return user;
 	}
 
