@@ -1,0 +1,153 @@
+/* -------- Global -------- */
+
+#skip-to-content,
+#heading .community-title,
+#heading .page-title,
+#navigation h1 {
+	clip: rect(0 0 0 0);
+	position: absolute;
+}
+
+body {
+	background: url(../images/custom/body_bg.png) repeat-x;
+}
+
+/* -------- Wrapper / Skip / Sign-in -------- */
+
+#wrapper {
+	font: 12px Arial, Helvetica, sans-serif;
+	margin: 0 auto;
+	padding: 60px 10px 0;
+	position: relative;
+	width: 940px;
+}
+
+#skip-to-content,
+#sign-in {
+	color: #999;
+	font-size: 90%;
+	text-decoration: none;
+}
+
+#skip-to-content:active,
+#skip-to-content:focus,
+#skip-to-content:hover,
+#sign-in:active,
+#sign-in:focus,
+#sign-in:hover {
+	color: #000;
+}
+
+#skip-to-content:active,
+#skip-to-content:focus {
+	clip: auto;
+}
+
+#skip-to-content {
+	right: 10px;
+	top: 1em;
+}
+
+#sign-in {
+	position: absolute;
+	top: -5px;
+	right: 0;
+}
+
+/* -------- Banner -------- */
+
+#banner {
+	position: relative;
+}
+
+#heading .company-title {
+	margin: 0;
+}
+
+/* -------- Navigation -------- */
+
+#navigation {
+	border-bottom: 1px solid #CCC;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	font: 100%/1.5 "Gill Sans", Calibri, "Trebuchet MS", sans-serif;
+	text-transform: lowercase;
+}
+
+#navigation ul {
+	list-style: none;
+	margin: 0;
+}
+
+.ie6 #navigation ul,
+.ie7 #navigation ul {
+	zoom: 1;
+}
+
+#navigation ul:after {
+	clear: both;
+	content: "";
+	display: block;
+}
+
+#navigation li,
+#navigation a {
+	float: left;
+}
+
+#navigation a {
+	color: #999;
+	display: block;
+	padding: 2px 15px;
+	text-decoration: none;
+}
+
+#navigation a:active,
+#navigation a:focus,
+#navigation a:hover {
+	color: #000;
+}
+
+#navigation .selected a {
+	color: #666247;
+}
+
+/* -------- Content -------- */
+
+#content {
+	margin: 15px 0;
+}
+
+#breadcrumbs {
+	display: none;
+}
+
+.portlet-column-content {
+	padding: 0 10px;
+}
+
+.portlet {
+	margin: 0 0 20px;
+}
+
+.portlet-content {
+	padding: 20px 0 0;
+}
+
+/* -------- Footer -------- */
+
+#footer,
+#footer a {
+	color: #999;
+}
+
+#footer {
+	border-top: 1px solid #B7B7B7;
+	font: 90% "Gill Sans", Calibri, "Trebuchet MS", sans-serif;;
+	padding: 5px 0 30px;
+}
+
+#footer p {
+	margin: 0;
+}
