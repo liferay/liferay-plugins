@@ -108,32 +108,37 @@
 	</target>
 
 	<target name="compile">
-		<for param="file">
-			<path>
-				<fileset
-					dir="docroot/_diffs/images"
-					includes="**/screenshot.png"
-				/>
-			</path>
-			<sequential>
-				<propertyregex input="@{file}" override="yes" property="original.file" regexp="\Q${basedir}\\E" replace=""  />
-				<propertyregex input="${original.file}" override="yes" property="thumbnail.file" regexp="screenshot\.png" replace="thumbnail\.png" />
-
-				<java
-					classname="com.liferay.portal.tools.ThumbnailBuilder"
-					classpathref="portal.classpath"
-					fork="true"
-					newenvironment="true"
-				>
-					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-					<jvmarg value="-Dthumbnail.original.file=${original.file}" />
-					<jvmarg value="-Dthumbnail.thumbnail.file=${thumbnail.file}" />
-					<jvmarg value="-Dthumbnail.height=120" />
-					<jvmarg value="-Dthumbnail.width=160" />
-					<jvmarg value="-Dthumbnail.overwrite=false" />
-				</java>
-			</sequential>
-		</for>
+		<if>
+			<available file="docroot/WEB-INF/src" />
+			<then>
+				<for param="file">
+					<path>
+						<fileset
+							dir="docroot/_diffs/images"
+							includes="**/screenshot.png"
+						/>
+					</path>
+					<sequential>
+						<propertyregex input="@{file}" override="yes" property="original.file" regexp="\Q${basedir}\\E" replace=""  />
+						<propertyregex input="${original.file}" override="yes" property="thumbnail.file" regexp="screenshot\.png" replace="thumbnail\.png" />
+		
+						<java
+							classname="com.liferay.portal.tools.ThumbnailBuilder"
+							classpathref="portal.classpath"
+							fork="true"
+							newenvironment="true"
+						>
+							<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+							<jvmarg value="-Dthumbnail.original.file=${original.file}" />
+							<jvmarg value="-Dthumbnail.thumbnail.file=${thumbnail.file}" />
+							<jvmarg value="-Dthumbnail.height=120" />
+							<jvmarg value="-Dthumbnail.width=160" />
+							<jvmarg value="-Dthumbnail.overwrite=false" />
+						</java>
+					</sequential>
+				</for>
+			</then>
+		</if>
 
 		<if>
 			<not>
