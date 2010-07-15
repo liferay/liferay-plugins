@@ -36,12 +36,6 @@ catch (NoSuchGadgetException nsge) {
 <liferay-ui:error exception="<%= GadgetNameException.class %>" message="please-enter-a-valid-name" />
 <liferay-ui:error exception="<%= GadgetURLException.class %>" message="url-does-not-point-to-a-valid-gadget" />
 
-<div class="breadcrumbs">
-	<span class="first"><a href="<portlet:renderURL />"><liferay-ui:message key="gadgets" /></a></span> &raquo;
-
-	<span class="last"><liferay-ui:message key='<%= ((gadget == null) ? Constants.ADD : Constants.UPDATE) + "-gadget" %>' /></span>
-</div>
-
 <table class="lfr-table">
 <tr>
 	<td>
@@ -85,3 +79,12 @@ catch (NoSuchGadgetException nsge) {
 
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 </aui:script>
+
+<%
+if (gadget != null) {
+	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "edit-gadget"), currentURL);
+}
+else {
+	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "add-gadget"), currentURL);
+}
+%>
