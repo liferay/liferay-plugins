@@ -77,6 +77,9 @@ public class MessageListTable extends Table
 			
 			public void itemClick(ItemClickEvent event) {
 
+				if (event.getButton() != ItemClickEvent.BUTTON_LEFT) {
+					return;
+				}
 				Message id = (Message) event.getItemId();
 				if (event.isCtrlKey()) {
 					if (toggleSelected(id)) {
