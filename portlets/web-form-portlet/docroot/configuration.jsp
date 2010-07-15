@@ -54,7 +54,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 
 				<aui:input cssClass="lfr-input-text-container" name="title" value="<%= HtmlUtil.toInputSafe(title) %>" />
 
-				<aui:input name="description" type="textarea" value="<%= HtmlUtil.toInputSafe(description) %>" wrap="soft" />
+				<aui:input cssClass="lfr-textarea-container" name="description" type="textarea" value="<%= HtmlUtil.toInputSafe(description) %>" wrap="soft" />
 
 				<aui:input name="requireCaptcha" type="checkbox" value="<%= requireCaptcha %>" />
 

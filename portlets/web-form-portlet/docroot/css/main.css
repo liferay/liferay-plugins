@@ -14,17 +14,16 @@
 	width: 6em;
 }
 
-.portlet-configuration .lfr-form-row .aui-ctrl-holder {
+.portlet-configuration .lfr-form-row .aui-field {
 	margin-left: 2em;
 }
 
-.portlet-configuration .lfr-form-row .aui-ctrl-holder.optional-control {
+.portlet-configuration .lfr-form-row .aui-field.optional-control {
 	margin: 1.3em;
 }
 
-.portlet-configuration .lfr-form-row .aui-ctrl-holder.options, .portlet-configuration .lfr-form-row .validation .aui-ctrl-holder {
-	clear: both;
-	float: none;
+.portlet-configuration .lfr-form-row .aui-field.options, .portlet-configuration .lfr-form-row .validation .aui-field {
+	display: block;
 }
 
 .portlet-configuration .lfr-form-row .field-title {
@@ -32,6 +31,10 @@
 	font-size: 120%;
 	font-weight: bold;
 	padding: 3px;
+}
+
+.portlet-configuration .syntax-help {
+	margin: 2em 0 0 2em;
 }
 
 .portlet-configuration .validation {
