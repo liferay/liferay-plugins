@@ -31,14 +31,6 @@ portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 
 <form>
 
-<div class="breadcrumbs">
-	<span class="first"><a href="<portlet:renderURL />"><liferay-ui:message key="consumers" /></a></span> &raquo;
-
-	<a href="<portlet:renderURL><portlet:param name="jspPage" value="/admin/edit_consumer.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" /></portlet:renderURL>"><%= wsrpConsumer.getName() %></a> &raquo;
-
-	<span class="last"><liferay-ui:message key="manage-portlets" /></span>
-</div>
-
 <liferay-ui:search-container
 	emptyResultsMessage="there-are-no-portlets"
 	headerNames="name,remote-portlet"
@@ -95,3 +87,7 @@ portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 </liferay-ui:search-container>
 
 </form>
+
+<%
+PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "manage-portlets"), currentURL);
+%>

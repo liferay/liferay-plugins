@@ -36,12 +36,6 @@ catch (NoSuchConsumerException nsce) {
 <liferay-ui:error exception="<%= WSRPConsumerNameException.class %>" message="please-enter-a-valid-name" />
 <liferay-ui:error exception="<%= WSRPConsumerWSDLException.class %>" message="url-does-not-point-to-a-valid-wsrp-producer" />
 
-<div class="breadcrumbs">
-	<span class="first"><a href="<portlet:renderURL />"><liferay-ui:message key="consumers" /></a></span> &raquo;
-
-	<span class="last"><liferay-ui:message key='<%= ((wsrpConsumer == null) ? Constants.ADD : Constants.UPDATE) + "-consumer" %>' /></span>
-</div>
-
 <table class="lfr-table">
 <tr>
 	<td>
@@ -85,3 +79,12 @@ catch (NoSuchConsumerException nsce) {
 
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 </aui:script>
+
+<%
+if (wsrpConsumer != null) {
+	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "edit"), currentURL);
+}
+else {
+	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "add-consumer"), currentURL);
+}
+%>

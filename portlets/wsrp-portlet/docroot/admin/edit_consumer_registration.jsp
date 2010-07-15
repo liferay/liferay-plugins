@@ -45,12 +45,6 @@ if (supportsInbandRegistration) {
 <form action="<portlet:actionURL name="updateWSRPConsumerRegistration"><portlet:param name="jspPage" value="/admin/edit_consumer_registration.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumerRegistration(); return false;">
 <input name="<portlet:namespace />wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
 
-<div class="breadcrumbs">
-	<span class="first"><a href="<portlet:renderURL />"><liferay-ui:message key="consumers" /></a></span> &raquo;
-
-	<span class="last"><liferay-ui:message key='<%= ((wsrpConsumer == null) ? Constants.ADD : Constants.UPDATE) + "-consumer-registration" %>' /></span>
-</div>
-
 <table class="lfr-table">
 <tr>
 	<td>
@@ -198,3 +192,12 @@ if (supportsInbandRegistration) {
 		}
 	);
 </aui:script>
+
+<%
+if (wsrpConsumer != null) {
+	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "edit"), currentURL);
+}
+else {
+	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "add-consumer-registration"), currentURL);
+}
+%>

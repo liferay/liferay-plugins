@@ -38,12 +38,6 @@ String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, req
 
 <liferay-ui:error exception="<%= WSRPProducerNameException.class %>" message="please-enter-a-valid-name" />
 
-<div class="breadcrumbs">
-	<span class="first"><a href="<portlet:renderURL />"><liferay-ui:message key="producers" /></a></span> &raquo;
-
-	<span class="last"><liferay-ui:message key='<%= ((wsrpProducer == null) ? Constants.ADD : Constants.UPDATE) + "-producer" %>' /></span>
-</div>
-
 <table class="lfr-table">
 <tr>
 	<td>
@@ -166,3 +160,18 @@ String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, req
 
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 </aui:script>
+
+<%
+PortletURL producersURL = renderResponse.createRenderURL();
+
+producersURL.setParameter("tabs1", "producers");
+
+PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "producers"), producersURL.toString());
+
+if (wsrpProducer != null) {
+	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "edit"), currentURL);
+}
+else {
+	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "add-producer"), currentURL);
+}
+%>

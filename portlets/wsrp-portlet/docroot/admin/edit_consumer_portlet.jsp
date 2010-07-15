@@ -48,16 +48,6 @@ PortletDescription[] portletDescriptions = serviceDescription.getOfferedPortlets
 <liferay-ui:error exception="<%= WSRPConsumerPortletHandleException.class %>" message="please-enter-a-valid-remote-portlet" />
 <liferay-ui:error exception="<%= WSRPConsumerPortletNameException.class %>" message="please-enter-a-valid-name" />
 
-<div class="breadcrumbs">
-	<span class="first"><a href="<portlet:renderURL />"><liferay-ui:message key="consumers" /></a></span> &raquo;
-
-	<a href="<portlet:renderURL><portlet:param name="jspPage" value="/admin/edit_consumer.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" /></portlet:renderURL>"><%= wsrpConsumer.getName() %></a> &raquo;
-
-	<a href="<portlet:renderURL><portlet:param name="jspPage" value="/admin/view_consumer_portlets.jsp" /><portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" /></portlet:renderURL>"><liferay-ui:message key="manage-portlets" /></a> &raquo;
-
-	<span class="last"><liferay-ui:message key='<%= ((wsrpConsumerPortlet == null) ? Constants.ADD : Constants.UPDATE) + "-portlet" %>' /></span>
-</div>
-
 <table class="lfr-table">
 <tr>
 	<td>
@@ -113,3 +103,19 @@ PortletDescription[] portletDescriptions = serviceDescription.getOfferedPortlets
 
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 </aui:script>
+
+<%
+PortletURL viewConsumerPortletsURL = renderResponse.createRenderURL();
+
+viewConsumerPortletsURL.setParameter("jspPage", "/admin/view_consumer_portlets.jsp");
+viewConsumerPortletsURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumer.getWsrpConsumerId()));
+
+PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "manage-portlets"), viewConsumerPortletsURL.toString());
+
+if (wsrpConsumerPortlet != null) {
+	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "edit"), currentURL);
+}
+else {
+	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "add-portlet"), currentURL);
+}
+%>
