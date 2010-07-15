@@ -181,7 +181,7 @@ public class MessageUtil {
 
 	public static Message getFullMessage(Message message, boolean forceRefresh)
 			throws PortalException, SystemException {
-		
+
 		if (message == null) {
 			return message;
 		}

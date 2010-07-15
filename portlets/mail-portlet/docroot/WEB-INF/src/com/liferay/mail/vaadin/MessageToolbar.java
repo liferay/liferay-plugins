@@ -15,13 +15,10 @@
 package com.liferay.mail.vaadin;
 
 import com.liferay.mail.MailException;
-import com.liferay.mail.mailbox.Mailbox;
-import com.liferay.mail.mailbox.MailboxFactoryUtil;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.AccountLocalServiceUtil;
-import com.liferay.mail.service.MessageLocalServiceUtil;
 import com.liferay.mail.vaadin.Composer.ComposerListener;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -320,7 +317,7 @@ public class MessageToolbar extends HorizontalLayout {
 			Controller.get().showInfo(Lang.get("no-messages-selected"));
 			return;
 		}
-		
+
 		try {
 			message = MessageUtil.getFullMessage(message, true);
 		} catch (SystemException e) {
@@ -398,7 +395,7 @@ public class MessageToolbar extends HorizontalLayout {
 			Controller.get().showInfo(Lang.get("no-messages-selected"));
 			return;
 		}
-		
+
 		try {
 			message = MessageUtil.getFullMessage(message, true);
 		} catch (SystemException e) {
@@ -414,7 +411,7 @@ public class MessageToolbar extends HorizontalLayout {
 		Controller.get().openDraftInComposer(message);
 
 	}
-	
+
 	protected void refresh() {
 		if (currentAccountId == null) {
 			return;

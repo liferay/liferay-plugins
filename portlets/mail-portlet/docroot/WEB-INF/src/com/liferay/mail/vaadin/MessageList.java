@@ -14,11 +14,8 @@
 
 package com.liferay.mail.vaadin;
 
-import com.liferay.mail.mailbox.Mailbox;
-import com.liferay.mail.mailbox.MailboxFactoryUtil;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
-import com.liferay.mail.service.MessageLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;

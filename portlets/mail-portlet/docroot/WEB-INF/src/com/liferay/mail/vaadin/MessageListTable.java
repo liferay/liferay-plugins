@@ -74,7 +74,7 @@ public class MessageListTable extends Table
 		setSelectable(false);
 
 		addListener(new ItemClickListener() {
-			
+
 			public void itemClick(ItemClickEvent event) {
 
 				if (event.getButton() != ItemClickEvent.BUTTON_LEFT) {
@@ -361,7 +361,7 @@ public class MessageListTable extends Table
 	}
 
 	public void messagesAddedOrRemoved() {
-		
+
 		MessageContainer container = getMessageContainer();
 		if (container != null) {
 			container.refreshMessages();
