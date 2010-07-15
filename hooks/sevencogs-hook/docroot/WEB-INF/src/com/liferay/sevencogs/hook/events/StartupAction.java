@@ -504,8 +504,8 @@ public class StartupAction extends SimpleAction {
 		preferences.put("portlet-setup-show-borders", Boolean.FALSE.toString());
 
 		if (screenName.equals("bruno") || screenName.equals("john")) {
-			preferences.put("src","http://iphone.facebook.com");
-			preferences.put("height-normal","460");
+			preferences.put("src","http://m.digg.com");
+			preferences.put("height-normal","400");
 		}
 		else if (screenName.equals("michelle")) {
 			preferences.put("src","http://m.digg.com");
