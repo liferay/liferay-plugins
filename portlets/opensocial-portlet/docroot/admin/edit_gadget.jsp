@@ -87,7 +87,7 @@ catch (NoSuchGadgetException nsge) {
 
 <%
 if (gadget != null) {
-	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "edit-gadget"), currentURL);
+	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "edit"), currentURL);
 }
 else {
 	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "add-gadget"), currentURL);
