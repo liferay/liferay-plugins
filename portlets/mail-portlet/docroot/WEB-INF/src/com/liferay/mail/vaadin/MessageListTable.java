@@ -74,7 +74,7 @@ public class MessageListTable extends Table
 		setSelectable(false);
 
 		addListener(new ItemClickListener() {
-
+			
 			public void itemClick(ItemClickEvent event) {
 
 				Message id = (Message) event.getItemId();
@@ -94,7 +94,9 @@ public class MessageListTable extends Table
 					mostSelected = id;
 					HashSet<Object> selected = new HashSet<Object>();
 					selected.add(id);
-					setValue(selected);
+					if (!selected.equals(getValue())) {
+						setValue(selected);
+					}
 				}
 				messageList.showMessage(getSelectedMessage());
 			}
@@ -102,10 +104,10 @@ public class MessageListTable extends Table
 		});
 
 		setNullSelectionAllowed(true);
-		addListener(new Property.ValueChangeListener() {
+		addListener(new ValueChangeListener() {
 
 			public void valueChange(
-				com.vaadin.data.Property.ValueChangeEvent event) {
+				Property.ValueChangeEvent event) {
 
 				messageList.showMessage(getSelectedMessage());
 
@@ -337,7 +339,10 @@ public class MessageListTable extends Table
 	public void messageModified(long messageId) {
 
 		try {
-			getMessageContainer().refreshMessageFlags(messageId);
+			MessageContainer container = getMessageContainer();
+			if (container != null) {
+				container.refreshMessageFlags(messageId);
+			}
 		}
 		catch (Exception e) {
 			Controller.get().showError(Lang.get("unable-to-access-account"), e);
@@ -353,8 +358,11 @@ public class MessageListTable extends Table
 	}
 
 	public void messagesAddedOrRemoved() {
-
-		getMessageContainer().refreshMessages();
+		
+		MessageContainer container = getMessageContainer();
+		if (container != null) {
+			container.refreshMessages();
+		}
 	}
 
 }

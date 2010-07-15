@@ -17,10 +17,14 @@ package com.liferay.mail.vaadin;
 import com.liferay.mail.model.Attachment;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.AttachmentLocalServiceUtil;
+import com.liferay.mail.util.AttachmentHandler;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.MimeTypesUtil;
 
+import com.vaadin.terminal.StreamResource;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Button;
@@ -29,6 +33,8 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.BaseTheme;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 
 import java.util.Date;
@@ -164,38 +170,33 @@ public class MessageView extends VerticalLayout implements ClickListener {
 
 	public void buttonClick(ClickEvent event) {
 
-		/*Button b = event.getButton();
+		Button b = event.getButton();
 		Object data = b.getData();
 		if (data != null && data instanceof Attachment) {
 			final Attachment attachment = (Attachment) data;
-			StreamResource r = new StreamResource(new StreamSource() {
-				public InputStream getStream() {
-					try {
-						InputStream is = Controller.get().getMailManager().getAttachment(attachment.getAttachmentId());
-						if (is.available() > 0){
-							return is;
-						}
-					} catch (PortalException e) {
-						Controller.get().showError(Lang.get("unable-to-fetch-attachment"), e);
-					} catch (SystemException e) {
-						Controller.get().showError(Lang.get("unable-to-fetch-attachment"), e);
-					} catch (IOException e) {
-						Controller.get().showError(Lang.get("unable-to-fetch-attachment"), e);
+			try {
+				final AttachmentHandler handler = Controller.get().getMailManager().getAttachment(attachment.getAttachmentId());
+				StreamResource r = new StreamResource(new StreamResource.StreamSource() {
+					public InputStream getStream() {
+
+						return handler.getInputStream();
 					}
 
-					return null;
-				}
+				}, attachment.getFileName(), Controller.get().getApplication());
 
-			}, attachment.getFileName(), Controller.get().getApplication());
+				String contentType = MimeTypesUtil.getContentType(
+						attachment.getFileName());
+				r.setMIMEType(contentType);
 
-			r.setMIMEType("application/octet-stream");
-
-			if (r.getStream().getStream() != null){
 				Controller.get().getApplication().getMainWindow().open(r);
-			} else {
-				Controller.get().showError(Lang.get("unable-to-fetch-attachment"));
+			} catch (PortalException e) {
+				Controller.get().showError(Lang.get("unable-to-fetch-attachment"), e);
+			} catch (SystemException e) {
+				Controller.get().showError(Lang.get("unable-to-fetch-attachment"), e);
+			} catch (IOException e) {
+				Controller.get().showError(Lang.get("unable-to-fetch-attachment"), e);
 			}
-		}*/
+		}
 	}
 
 }

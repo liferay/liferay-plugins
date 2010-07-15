@@ -312,7 +312,7 @@ public class FolderContainer implements Hierarchical, ItemSetChangeNotifier {
 	public Folder getFolder(Object itemId) {
 
 		ItemId id = (ItemId) itemId;
-		if (id.isAccount()) {
+		if (id == null || id.isAccount()) {
 			return null;
 		}
 

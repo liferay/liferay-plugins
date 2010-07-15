@@ -15,10 +15,13 @@
 package com.liferay.mail.vaadin;
 
 import com.liferay.mail.MailException;
+import com.liferay.mail.mailbox.Mailbox;
+import com.liferay.mail.mailbox.MailboxFactoryUtil;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.AccountLocalServiceUtil;
+import com.liferay.mail.service.MessageLocalServiceUtil;
 import com.liferay.mail.vaadin.Composer.ComposerListener;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -61,7 +64,7 @@ public class MessageToolbar extends HorizontalLayout {
 	private static final Resource ICON_MOVE_TO =
 		new PortletResource("images/vaadin/icons/move.png");
 	private static final Resource ICON_REFRESH =
-		new PortletResource("images/vaadin/icons/refresh.png");
+		new PortletResource("images/vaadin/icons/reload.png");
 
 	private int moveToIndex = 4;
 
@@ -317,6 +320,18 @@ public class MessageToolbar extends HorizontalLayout {
 			Controller.get().showInfo(Lang.get("no-messages-selected"));
 			return;
 		}
+		
+		try {
+			message = MessageUtil.getFullMessage(message, true);
+		} catch (SystemException e) {
+			Controller.get().showError(
+					Lang.get("unable-to-synchronize-account"), e);
+			return;
+		} catch (PortalException e) {
+			Controller.get().showError(
+					Lang.get("unable-to-synchronize-account"), e);
+			return;
+		}
 
 		Controller.get().forwardInComposer(message);
 
@@ -325,11 +340,23 @@ public class MessageToolbar extends HorizontalLayout {
 	protected void reply(boolean toAll) {
 
 		// Ensure a mail is selected
-		final Message originalMessage = mainMailView.getSelectedMessage();
-		if (originalMessage == null) {
+		Message selectedMessage = mainMailView.getSelectedMessage();
+		if (selectedMessage == null) {
 			Controller.get().showInfo(Lang.get("no-messages-selected"));
 			return;
 		}
+		try {
+			selectedMessage = MessageUtil.getFullMessage(selectedMessage, true);
+		} catch (SystemException e) {
+			Controller.get().showError(
+					Lang.get("unable-to-synchronize-account"), e);
+			return;
+		} catch (PortalException e) {
+			Controller.get().showError(
+					Lang.get("unable-to-synchronize-account"), e);
+			return;
+		}
+		final Message originalMessage = selectedMessage;
 
 		Composer composer = Controller.get().replyInComposer(originalMessage, toAll);
 		composer.addListener(new ComposerListener() {
@@ -366,16 +393,28 @@ public class MessageToolbar extends HorizontalLayout {
 	protected void openDraft() {
 
 		// Ensure a mail is selected
-		final Message message = mainMailView.getSelectedMessage();
+		Message message = mainMailView.getSelectedMessage();
 		if (message == null) {
 			Controller.get().showInfo(Lang.get("no-messages-selected"));
+			return;
+		}
+		
+		try {
+			message = MessageUtil.getFullMessage(message, true);
+		} catch (SystemException e) {
+			Controller.get().showError(
+					Lang.get("unable-to-synchronize-account"), e);
+			return;
+		} catch (PortalException e) {
+			Controller.get().showError(
+					Lang.get("unable-to-synchronize-account"), e);
 			return;
 		}
 
 		Controller.get().openDraftInComposer(message);
 
 	}
-
+	
 	protected void refresh() {
 		if (currentAccountId == null) {
 			return;

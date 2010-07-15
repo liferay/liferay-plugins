@@ -72,13 +72,7 @@ public class MessageList extends CustomComponent {
 
 		if (Validator.isNotNull(msg) && Validator.isNull(msg.getBody())) {
 			try {
-				Mailbox mailbox = MailboxFactoryUtil.getMailbox(Controller.get()
-							.getUser().getUserId(), msg.getAccountId(), Controller
-							.get().getPasswordRetriever().getPassword(
-									msg.getAccountId()));
-				mailbox.synchronizeMessage(msg.getMessageId());
-
-				msg = MessageLocalServiceUtil.getMessage(msg.getMessageId());
+				msg = MessageUtil.getFullMessage(msg, false);
 			} catch (PortalException e) {
 				_log.debug(e, e);
 				// TODO might not be the best message?

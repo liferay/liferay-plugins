@@ -179,6 +179,27 @@ public class MessageUtil {
 		return AccountLocalServiceUtil.getAccount(accountId);
 	}
 
+	public static Message getFullMessage(Message message, boolean forceRefresh)
+			throws PortalException, SystemException {
+		
+		if (message == null) {
+			return message;
+		}
+		// if the message has a body, it has already been retrieved from the server
+		if (forceRefresh || message.getBody() == null || "".equals(message.getBody())) {
+			Mailbox mailbox = MailboxFactoryUtil.getMailbox(Controller.get()
+					.getUser().getUserId(), message.getAccountId(), Controller
+					.get().getPasswordRetriever().getPassword(
+							message.getAccountId()));
+			mailbox.synchronizeMessage(message.getMessageId());
+
+			return MessageLocalServiceUtil.getMessage(message.getMessageId());
+		} else {
+			// could perhaps even skip this sometimes if the message is already loaded
+			return MessageLocalServiceUtil.getMessage(message.getMessageId());
+		}
+	}
+
 	public static void markMessageRead(Message message, boolean read)
 		throws PortalException, SystemException {
 
