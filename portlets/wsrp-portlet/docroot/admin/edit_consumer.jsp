@@ -30,6 +30,11 @@ catch (NoSuchConsumerException nsce) {
 }
 %>
 
+<liferay-ui:header
+	backURL="<%= redirect %>"
+	title='<%= (wsrpConsumer != null) ? wsrpConsumer.getName() : "new-consumer" %>'
+/>
+
 <form action="<portlet:actionURL name="updateWSRPConsumer"><portlet:param name="jspPage" value="/admin/edit_consumer.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumer(); return false;">
 <input name="<portlet:namespace />wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
 
