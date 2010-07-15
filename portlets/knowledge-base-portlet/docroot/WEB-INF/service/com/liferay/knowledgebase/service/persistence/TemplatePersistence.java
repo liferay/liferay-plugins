@@ -19,11 +19,6 @@ import com.liferay.knowledgebase.model.Template;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
- * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
  * @author    Brian Wing Shun Chan
  * @see       TemplatePersistenceImpl
  * @see       TemplateUtil

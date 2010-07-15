@@ -18,11 +18,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
 
 /**
- * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
  * @author    Brian Wing Shun Chan
  * @see       KaleoNotificationPersistenceImpl
  * @see       KaleoNotificationUtil

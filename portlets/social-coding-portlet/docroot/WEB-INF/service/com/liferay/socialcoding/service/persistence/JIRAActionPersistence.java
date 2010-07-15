@@ -19,11 +19,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.socialcoding.model.JIRAAction;
 
 /**
- * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
  * @author    Brian Wing Shun Chan
  * @see       JIRAActionPersistenceImpl
  * @see       JIRAActionUtil

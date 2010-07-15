@@ -22,11 +22,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
- * <p>
  * This interface defines the service. The default implementation is
  * {@link
  * com.liferay.ams.service.impl.AssetLocalServiceImpl}.

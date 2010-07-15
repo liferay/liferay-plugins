@@ -35,11 +35,6 @@ import java.sql.Types;
 
 /**
  * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
- * <p>
  * This interface is a model that represents the changeitem table in the
  * database.
  * </p>

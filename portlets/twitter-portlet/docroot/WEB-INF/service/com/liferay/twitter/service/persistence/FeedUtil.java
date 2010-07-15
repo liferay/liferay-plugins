@@ -25,11 +25,6 @@ import com.liferay.twitter.model.Feed;
 import java.util.List;
 
 /**
- * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
  * @author    Brian Wing Shun Chan
  * @see       FeedPersistence
  * @see       FeedPersistenceImpl

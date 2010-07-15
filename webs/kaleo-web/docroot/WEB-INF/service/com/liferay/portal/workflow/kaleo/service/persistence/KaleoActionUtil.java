@@ -24,11 +24,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoAction;
 import java.util.List;
 
 /**
- * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
  * @author    Brian Wing Shun Chan
  * @see       KaleoActionPersistence
  * @see       KaleoActionPersistenceImpl

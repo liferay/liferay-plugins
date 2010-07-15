@@ -25,11 +25,6 @@ import com.liferay.wsrp.model.WSRPProducer;
 import java.util.List;
 
 /**
- * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
  * @author    Brian Wing Shun Chan
  * @see       WSRPProducerPersistence
  * @see       WSRPProducerPersistenceImpl
