@@ -30,6 +30,11 @@ catch (NoSuchGadgetException nsge) {
 }
 %>
 
+<liferay-ui:header
+	backURL="<%= redirect %>"
+	title='<%= (gadget != null) ? gadget.getName() : "new-gadget" %>'
+/>
+
 <form action="<portlet:actionURL name="updateGadget"><portlet:param name="jspPage" value="/admin/edit_gadget.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveGadget(); return false;">
 <input name="<portlet:namespace />gadgetId" type="hidden" value="<%= gadgetId %>" />
 
