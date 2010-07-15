@@ -119,7 +119,8 @@
 						/>
 					</path>
 					<sequential>
-						<propertyregex input="@{file}" override="yes" property="original.file" regexp="\Q${basedir}\\E" replace=""  />
+						<propertyregex input="@{basedir}" override="yes" property="original.basedir" regexp="\\" replace="\\\\" />
+						<propertyregex input="@{file}" override="yes" property="original.file" regexp="\Q${original.basedir}\\E" replace="" />
 						<propertyregex input="${original.file}" override="yes" property="thumbnail.file" regexp="screenshot\.png" replace="thumbnail\.png" />
 		
 						<java
