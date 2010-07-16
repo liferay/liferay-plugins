@@ -648,6 +648,12 @@ public class StartupAction extends SimpleAction {
 		}
 
 		if (parentOrganizationId > 0) {
+			long[] userIds = UserLocalServiceUtil.getOrganizationUserIds(
+				parentOrganizationId);
+
+			UserLocalServiceUtil.unsetOrganizationUsers(
+				parentOrganizationId, userIds);
+
 			OrganizationLocalServiceUtil.deleteOrganization(
 				parentOrganizationId);
 		}
@@ -663,9 +669,9 @@ public class StartupAction extends SimpleAction {
 		clearData(companyId);
 		setupCommunities(companyId, defaultUserId);
 		setupOrganizations(companyId, defaultUserId);
-		setupWorkflow(companyId, defaultUserId);
 		setupRoles(companyId, defaultUserId);
 		setupUsers(companyId);
+		setupWorkflow(companyId, defaultUserId);
 	}
 
 	protected byte[] getBytes(String path) throws Exception {
