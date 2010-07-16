@@ -15,7 +15,6 @@
 package com.liferay.sevencogs.hook.events;
 
 import com.liferay.documentlibrary.DuplicateFileException;
-import com.liferay.portal.DuplicateRoleException;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.events.ActionException;
