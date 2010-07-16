@@ -164,7 +164,7 @@ public class UpgradeGroup extends UpgradeProcess {
 			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
 			layout.getTypeSettings());
 
-		if (layoutTypePortlet.hasPortletId("1_WAR_soportlet")) {
+		if (!layoutTypePortlet.hasPortletId("1_WAR_soportlet")) {
 			return;
 		}
 
