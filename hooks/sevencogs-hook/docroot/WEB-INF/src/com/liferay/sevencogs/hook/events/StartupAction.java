@@ -605,16 +605,6 @@ public class StartupAction extends SimpleAction {
 
 		deleteOrganizations(
 			companyId, OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID);
-
-		// Roles
-
-		List<Role> roles = RoleLocalServiceUtil.getRoles(companyId);
-
-		for (Role role : roles) {
-			if (!PortalUtil.isSystemRole(role.getName())) {
-				RoleLocalServiceUtil.deleteRole(role.getRoleId());
-			}
-		}
 	}
 
 	protected void configureJournalContent(
@@ -1742,16 +1732,6 @@ public class StartupAction extends SimpleAction {
 
 	protected void setupRoles(long companyId, long defaultUserId)
 		throws Exception {
-
-		try {
-			RoleLocalServiceUtil.addRole(
-				defaultUserId, companyId, "Portal Content Reviewer", null,
-				"Portal Content Reviewer are responsible for approving " +
-					"content.",
-				RoleConstants.TYPE_REGULAR);
-		}
-		catch (DuplicateRoleException dre) {
-		}
 
 		Role publisherRole = RoleLocalServiceUtil.addRole(
 			defaultUserId, companyId, "Publisher", null,
