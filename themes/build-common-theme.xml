@@ -119,10 +119,8 @@
 						/>
 					</path>
 					<sequential>
-						<propertyregex input="@{basedir}" override="yes" property="original.basedir" regexp="\\" replace="\\\\" />
-						<propertyregex input="@{file}" override="yes" property="original.file" regexp="\Q${original.basedir}\\E" replace="" />
-						<propertyregex input="${original.file}" override="yes" property="thumbnail.file" regexp="screenshot\.png" replace="thumbnail\.png" />
-		
+						<propertyregex input="@{file}" override="yes" property="thumbnail.file" regexp="screenshot\.png" replace="thumbnail\.png" />
+
 						<java
 							classname="com.liferay.portal.tools.ThumbnailBuilder"
 							classpathref="portal.classpath"
@@ -130,7 +128,7 @@
 							newenvironment="true"
 						>
 							<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-							<jvmarg value="-Dthumbnail.original.file=${original.file}" />
+							<jvmarg value="-Dthumbnail.original.file=@{file}" />
 							<jvmarg value="-Dthumbnail.thumbnail.file=${thumbnail.file}" />
 							<jvmarg value="-Dthumbnail.height=120" />
 							<jvmarg value="-Dthumbnail.width=160" />
