@@ -34,6 +34,7 @@ import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
+import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.so.util.PortletPropsKeys;
 import com.liferay.util.portlet.PortletProps;
 
@@ -162,6 +163,19 @@ public class UpgradeGroup extends UpgradeProcess {
 		LayoutLocalServiceUtil.updateLayout(
 			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
 			layout.getTypeSettings());
+
+		if (layoutTypePortlet.hasPortletId("1_WAR_soportlet")) {
+			return;
+		}
+
+		PortletPreferences portletSetup =
+			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+				layout, "1_WAR_soportlet");
+
+		portletSetup.setValue(
+			"portlet-setup-show-borders", String.valueOf(Boolean.TRUE));
+
+		portletSetup.store();
 	}
 
 }
