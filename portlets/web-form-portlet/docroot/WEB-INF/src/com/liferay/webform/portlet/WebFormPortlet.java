@@ -215,6 +215,9 @@ public class WebFormPortlet extends MVCPortlet {
 			else if (cmd.equals("export")) {
 				exportData(resourceRequest, resourceResponse);
 			}
+			else if (cmd.equals("edit-field")) {
+				editField(resourceRequest, resourceResponse);
+			}
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -396,6 +399,16 @@ public class WebFormPortlet extends MVCPortlet {
 
 			return false;
 		}
+	}
+
+	protected void editField(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		resourceRequest.setAttribute(
+			"aui:form:useNamespace", String.valueOf(false));
+		
+		include("/edit_field.jsp", resourceRequest, resourceResponse);
 	}
 
 	protected void serveCaptcha(
