@@ -6,4 +6,8 @@
 		<param-name>portalContextConfigLocation</param-name>
 		<param-value>/WEB-INF/classes/META-INF/messaging-spring.xml</param-value>
 	</context-param>
+	<context-param>
+		<param-name>productionMode</param-name>
+		<param-value>true</param-value>
+	</context-param>
 </web-app>
