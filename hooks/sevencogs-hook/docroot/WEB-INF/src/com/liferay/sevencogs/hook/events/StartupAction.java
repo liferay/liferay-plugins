@@ -571,9 +571,9 @@ public class StartupAction extends SimpleAction {
 			(OrderByComparator)null);
 
 		for (User user : users) {
-			if (user.getScreenName().equals("joebloggs") ||
-				user.getScreenName().equals("test")) {
+			String screenName = user.getScreenName();
 
+			if (screenName.equals("joebloggs") || screenName.equals("test")) {
 				continue;
 			}
 
