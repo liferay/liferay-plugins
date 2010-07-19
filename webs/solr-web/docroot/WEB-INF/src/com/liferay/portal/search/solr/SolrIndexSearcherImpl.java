@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.search.IndexSearcher;
 import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
@@ -57,7 +58,8 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		throws SearchException {
 
 		try {
-			SolrQuery solrQuery = translateQuery(query, sorts, start, end);
+			SolrQuery solrQuery = translateQuery(
+				companyId, query, sorts, start, end);
 
 			QueryResponse queryResponse = _solrServer.query(solrQuery);
 
@@ -187,17 +189,26 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 	}
 
 	protected SolrQuery translateQuery(
-			Query query, Sort[] sorts, int start, int end)
+			long companyId, Query query, Sort[] sorts, int start, int end)
 		throws SearchException {
 
 		try {
+			StringBundler sb = new StringBundler(
+				query.toString().replaceAll(":\\*", ":"));
+
+			sb.append(StringPool.SPACE);
+			sb.append(StringPool.PLUS);
+			sb.append(Field.COMPANY_ID);
+			sb.append(StringPool.COLON);
+			sb.append(companyId);
+
 			SolrQuery solrQuery = new SolrQuery();
 
 			solrQuery.setHighlight(true);
 			solrQuery.setHighlightFragsize(80);
 			solrQuery.setHighlightSnippets(3);
 			solrQuery.setIncludeScore(true);
-			solrQuery.setQuery(query.toString().replaceAll(":\\*", ":"));
+			solrQuery.setQuery(sb.toString());
 
 			if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
 				solrQuery.setRows(0);
