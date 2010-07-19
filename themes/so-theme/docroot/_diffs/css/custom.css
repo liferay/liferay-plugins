@@ -472,6 +472,10 @@ body #banner h1.logo a {
 	width: 210px;
 }
 
+.aui-dialog .sidebar {
+	display: none;
+}
+
 .sidebar .search-input {
 	width: 145px;
 }
