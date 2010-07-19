@@ -408,12 +408,17 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		ResourcePermissionLocalServiceUtil.setResourcePermissions(
 			companyId, name, scope, primKey, role.getRoleId(), actionIds);
 
+		role = RoleLocalServiceUtil.getRole(
+			companyId, RoleConstants.POWER_USER);
+
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, role.getRoleId(), actionIds);
+
 		if (addDefaultActionIds) {
 			actionIds = new String[] {ActionKeys.VIEW};
 		}
 
-		role = RoleLocalServiceUtil.getRole(
-			companyId, RoleConstants.POWER_USER);
+		role = RoleLocalServiceUtil.getRole(companyId, RoleConstants.USER);
 
 		ResourcePermissionLocalServiceUtil.setResourcePermissions(
 			companyId, name, scope, primKey, role.getRoleId(), actionIds);
