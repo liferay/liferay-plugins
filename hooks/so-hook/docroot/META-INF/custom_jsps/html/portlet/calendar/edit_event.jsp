@@ -19,6 +19,10 @@
 
 <%@ include file="/html/portlet/calendar/init.jsp" %>
 
+<c:if test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
+	<script src="<%= themeDisplay.getPortalURL() %>/html/js/liferay/service.js" type="text/javascript"></script>
+</c:if>
+
 <liferay-util:include page="/html/portlet/calendar/sidebar.jsp" />
 
 <liferay-util:buffer var="html">
