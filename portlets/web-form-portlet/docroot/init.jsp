@@ -52,7 +52,11 @@
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
 
-PortletPreferences preferences = renderRequest.getPreferences();
+PortletPreferences preferences = null;
+
+if (renderRequest != null) {
+	preferences = renderRequest.getPreferences();
+}
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
